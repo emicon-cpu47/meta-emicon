@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# 
+
+case "$1" in
+    start )
+	ping 255.255.255.255 -c1
+    cat /etc/issue_temp > /etc/issue
+    # echo "IP:`ifconfig | grep 'inet addr:' | grep -v '127.0.0.1' | cut -d: -f2 | awk '{print $1}'`" >> /etc/issue
+    echo `ifconfig | grep 'inet addr:' | grep -v '127.0.0.1'` >> /etc/issue
+
+    ;;
+    stop )
+        exit 0;;
+esac
+
+exit 0
