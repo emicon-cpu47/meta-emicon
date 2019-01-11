@@ -1,0 +1,213 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Settings &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Settings</a><ul>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#enumerations">Enumerations</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-gatewaykey-int-inactivity-timeout-inactivitytimeoutms">#define GATEWAYKEY_INT_INACTIVITY_TIMEOUT &#8220;InactivityTimeoutMs&#8221;</a></li>
+<li><a class="reference internal" href="#define-gatewaykey-int-inactivity-timeout-default-60000">#define GATEWAYKEY_INT_INACTIVITY_TIMEOUT_DEFAULT 60000</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-rts-result-pfcommdrvsend-rts-handle-hconnhandle-protocol-data-unit-data-rts-ui32-pdwsent">typedef RTS_RESULT( * PFCOMMDRVSEND)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent)</a></li>
+<li><a class="reference internal" href="#typedef-rts-result-pfcommdrvreceive-rts-handle-hconnhandle-protocol-data-unit-pdata">typedef RTS_RESULT( * PFCOMMDRVRECEIVE)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData)</a></li>
+<li><a class="reference internal" href="#typedef-rts-result-pfcommdrvclose-rts-handle-hconnhandle">typedef RTS_RESULT( * PFCOMMDRVCLOSE)(RTS_HANDLE hConnHandle)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#enumeration-type-documentation">Enumeration Type Documentation</a><ul>
+<li><a class="reference internal" href="#enum-5">enum &#64;5</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-result-gwregistercommdrv-commdrvinfo-pinfo-rts-handle-phdriverhandle">RTS_RESULT GWRegisterCommDrv (COMMDRVINFO *pInfo, RTS_HANDLE *phDriverHandle)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_gateway_itf___settings.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="settings">
+<span id="group-cmp-gateway-itf-settings"></span><h1>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-cmp-gateway-itf-settings-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_c_o_m_m_d_r_v_i_n_f_o.html#struct-c-o-m-m-d-r-v-i-n-f-o"><span class="std std-ref">COMMDRVINFO</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-gateway-itf-settings-1ga8798f04044e38eb3f0794a7db2023515"><span class="std std-ref">GATEWAYKEY_INT_INACTIVITY_TIMEOUT</span></a> &#8220;InactivityTimeoutMs&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-gateway-itf-settings-1ga710a11031b4567dfd188f7b1d4bfe7ef"><span class="std std-ref">GATEWAYKEY_INT_INACTIVITY_TIMEOUT_DEFAULT</span></a> 60000</li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef RTS_RESULT(* <a class="reference internal" href="#group-cmp-gateway-itf-settings-1ga736042c5e6e3b724693e276d53dbbef9"><span class="std std-ref">PFCOMMDRVSEND</span></a>)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 <a href="#id1"><span class="problematic" id="id2">*</span></a>pdwSent)</li>
+<li>typedef RTS_RESULT(* <a class="reference internal" href="#group-cmp-gateway-itf-settings-1ga41ec7304e9ea656dbd967dce9d9e0096"><span class="std std-ref">PFCOMMDRVRECEIVE</span></a>)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT <a href="#id3"><span class="problematic" id="id4">*</span></a>pData)</li>
+<li>typedef RTS_RESULT(* <a class="reference internal" href="#group-cmp-gateway-itf-settings-1ga88061d5df63058166a1d7adba5c4f31e"><span class="std std-ref">PFCOMMDRVCLOSE</span></a>)(RTS_HANDLE hConnHandle)</li>
+</ul>
+</div>
+<div class="section" id="enumerations">
+<h2>Enumerations<a class="headerlink" href="#enumerations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>enum <a class="reference internal" href="#group-cmp-gateway-itf-settings-1ga61dadd085c1777f559549e05962b2c9e"><span class="std std-ref">&#64;5</span></a> { <span class="xref std std-ref">COMMDRV_ACTION_SEND</span>, <span class="xref std std-ref">COMMDRV_ACTION_RECEIVE</span> }</li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-gateway-itf-settings-1gadcf2c836ef802732b339f5b78693b3a8"><span class="std std-ref">GWRegisterCommDrv</span></a> (<a class="reference internal" href="struct_c_o_m_m_d_r_v_i_n_f_o.html#struct-c-o-m-m-d-r-v-i-n-f-o"><span class="std std-ref">COMMDRVINFO</span></a> * pInfo, RTS_HANDLE * phDriverHandle)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-gateway-itf-settings-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-gatewaykey-int-inactivity-timeout-inactivitytimeoutms">
+<span id="group-cmp-gateway-itf-settings-1ga8798f04044e38eb3f0794a7db2023515"></span><h3>#define GATEWAYKEY_INT_INACTIVITY_TIMEOUT &#8220;InactivityTimeoutMs&#8221;<a class="headerlink" href="#define-gatewaykey-int-inactivity-timeout-inactivitytimeoutms" title="Permalink to this headline">¶</a></h3>
+<p>Setting to modify the client inactivity timeout in ms. If no piece of data (also no keepalive) is received or successfully sent wihtin this time, the Gateway closes the connection to the client.</p>
+</div>
+<div class="section" id="define-gatewaykey-int-inactivity-timeout-default-60000">
+<span id="group-cmp-gateway-itf-settings-1ga710a11031b4567dfd188f7b1d4bfe7ef"></span><h3>#define GATEWAYKEY_INT_INACTIVITY_TIMEOUT_DEFAULT 60000<a class="headerlink" href="#define-gatewaykey-int-inactivity-timeout-default-60000" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-rts-result-pfcommdrvsend-rts-handle-hconnhandle-protocol-data-unit-data-rts-ui32-pdwsent">
+<span id="group-cmp-gateway-itf-settings-1ga736042c5e6e3b724693e276d53dbbef9"></span><h3>typedef RTS_RESULT( * PFCOMMDRVSEND)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 <a href="#id5"><span class="problematic" id="id6">*</span></a>pdwSent)<a class="headerlink" href="#typedef-rts-result-pfcommdrvsend-rts-handle-hconnhandle-protocol-data-unit-data-rts-ui32-pdwsent" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-rts-result-pfcommdrvreceive-rts-handle-hconnhandle-protocol-data-unit-pdata">
+<span id="group-cmp-gateway-itf-settings-1ga41ec7304e9ea656dbd967dce9d9e0096"></span><h3>typedef RTS_RESULT( * PFCOMMDRVRECEIVE)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT <a href="#id7"><span class="problematic" id="id8">*</span></a>pData)<a class="headerlink" href="#typedef-rts-result-pfcommdrvreceive-rts-handle-hconnhandle-protocol-data-unit-pdata" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-rts-result-pfcommdrvclose-rts-handle-hconnhandle">
+<span id="group-cmp-gateway-itf-settings-1ga88061d5df63058166a1d7adba5c4f31e"></span><h3>typedef RTS_RESULT( * PFCOMMDRVCLOSE)(RTS_HANDLE hConnHandle)<a class="headerlink" href="#typedef-rts-result-pfcommdrvclose-rts-handle-hconnhandle" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="enumeration-type-documentation">
+<h2>Enumeration Type Documentation<a class="headerlink" href="#enumeration-type-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="enum-5">
+<span id="group-cmp-gateway-itf-settings-1ga61dadd085c1777f559549e05962b2c9e"></span><h3>enum &#64;5<a class="headerlink" href="#enum-5" title="Permalink to this headline">¶</a></h3>
+<p><strong>Enumerator:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>COMMDRV_ACTION_SEND</td>
+</tr>
+<tr class="row-even"><td>COMMDRV_ACTION_RECEIVE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-result-gwregistercommdrv-commdrvinfo-pinfo-rts-handle-phdriverhandle">
+<span id="group-cmp-gateway-itf-settings-1gadcf2c836ef802732b339f5b78693b3a8"></span><h3>RTS_RESULT GWRegisterCommDrv (COMMDRVINFO <a href="#id9"><span class="problematic" id="id10">*</span></a>pInfo, RTS_HANDLE <a href="#id11"><span class="problematic" id="id12">*</span></a>phDriverHandle)<a class="headerlink" href="#rts-result-gwregistercommdrv-commdrvinfo-pinfo-rts-handle-phdriverhandle" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

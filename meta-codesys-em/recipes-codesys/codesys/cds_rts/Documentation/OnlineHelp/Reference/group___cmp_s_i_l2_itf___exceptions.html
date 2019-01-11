@@ -1,0 +1,243 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exceptions &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Exceptions</a><ul>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-rts-sil2-fail-general-0x01-unspecified-error">#define RTS_SIL2_FAIL_GENERAL 0x01      /* unspecified Error */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-loadbootproject-0x10-unspecified-error-while-loading-bootproject">#define RTS_SIL2_EXCEPTION_LOADBOOTPROJECT 0x10 /* unspecified Error while Loading Bootproject */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-bootproject-invalid-0x11-bootproject-format-does-not-match">#define RTS_SIL2_EXCEPTION_BOOTPROJECT_INVALID 0x11     /* Bootproject Format does not match */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-compactpreparecode-0x12-error-while-loading-bootproject-creating-of-iec-application">#define RTS_SIL2_EXCEPTION_COMPACTPREPARECODE 0x12      /* Error while Loading Bootproject, Creating of IEC Application */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-compactfinish-0x13-error-while-setting-up-iec-application-calling-iec-init-code-global-init">#define RTS_SIL2_EXCEPTION_COMPACTFINISH 0x13   /* Error while Setting up IEC Application, Calling IEC init Code (global init...) */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-extrefs-0x14-error-while-setting-up-external-references">#define RTS_SIL2_EXCEPTION_EXTREFS 0x14 /* Error while Setting up external References */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-runafterdownload-0x15-error-while-sil2apprunafterdownloadcode">#define RTS_SIL2_EXCEPTION_RUNAFTERDOWNLOAD 0x15        /* Error while SIL2AppRunAfterDownloadCode */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-memory-0x16-error-regarding-the-memory-at-bootproject-start">#define RTS_SIL2_EXCEPTION_MEMORY 0x16  /* Error regarding the Memory at Bootproject start */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-runtime-init-0x17-error-while-cminit2">#define RTS_SIL2_EXCEPTION_RUNTIME_INIT 0x17    /* Error while CMInit2 */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-sched-wd-0x20-scheduler-watchdog-exception">#define RTS_SIL2_EXCEPTION_SCHED_WD 0x20        /* Scheduler Watchdog Exception */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-crc-cyclic-0x21-cyclic-check-of-crc-was-wrong">#define RTS_SIL2_EXCEPTION_CRC_CYCLIC 0x21      /* Cyclic Check of CRC was wrong */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-crc-complete-0x22-complete-check-of-crc-was-wrong">#define RTS_SIL2_EXCEPTION_CRC_COMPLETE 0x22    /* Complete Check of CRC was wrong */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-crc-init-0x23-init-of-crc-check-wrong">#define RTS_SIL2_EXCEPTION_CRC_INIT 0x23        /* Init of CRC Check wrong */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-life-counter-0x24-not-all-components-were-called-in-safe-hook">#define RTS_SIL2_EXCEPTION_LIFE_COUNTER 0x24    /* Not all Components were called in safe Hook */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-exception-callercontext-0x25-caller-context-check-was-wrong">#define RTS_SIL2_EXCEPTION_CALLERCONTEXT 0x25   /* Caller Context Check was wrong */</a></li>
+<li><a class="reference internal" href="#define-rts-sil2-attribute">#define RTS_SIL2_ATTRIBUTE</a></li>
+<li><a class="reference internal" href="#define-rts-safety-components">#define RTS_SAFETY_COMPONENTS</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#int-cmpscheduletimer-entry-init-struct-pinitstruct">int CmpScheduleTimer__Entry (INIT_STRUCT *pInitStruct)</a></li>
+<li><a class="reference internal" href="#int-cmpsil2-entry-init-struct-pinitstruct">int CmpSIL2__Entry (INIT_STRUCT *pInitStruct)</a></li>
+<li><a class="reference internal" href="#int-iodrvunsafebridge-entry-init-struct-pinitstruct">int IoDrvUnsafeBridge__Entry (INIT_STRUCT *pInitStruct)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_s_i_l2_itf___exceptions.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="exceptions">
+<span id="group-cmp-s-i-l2-itf-exceptions"></span><h1>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1ga06598abd370365cf53c7c171cff72ceb"><span class="std std-ref">RTS_SIL2_FAIL_GENERAL</span></a> 0x01   /* unspecified Error <a href="#id1"><span class="problematic" id="id2">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1gaecdbf13708ba89aa7bc4e88a41401e55"><span class="std std-ref">RTS_SIL2_EXCEPTION_LOADBOOTPROJECT</span></a> 0x10      /* unspecified Error while Loading Bootproject <a href="#id3"><span class="problematic" id="id4">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1ga2c6f0d8ced79e4ba30a13d4b830ed1d4"><span class="std std-ref">RTS_SIL2_EXCEPTION_BOOTPROJECT_INVALID</span></a> 0x11  /* Bootproject Format does not match <a href="#id5"><span class="problematic" id="id6">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1ga9a8f1d6276adfd13a51764541e3aad31"><span class="std std-ref">RTS_SIL2_EXCEPTION_COMPACTPREPARECODE</span></a> 0x12   /* Error while Loading Bootproject, Creating of IEC Application <a href="#id7"><span class="problematic" id="id8">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1ga3500e3f79c0da0212f09c57f65637ce8"><span class="std std-ref">RTS_SIL2_EXCEPTION_COMPACTFINISH</span></a> 0x13        /* Error while Setting up IEC Application, Calling IEC init Code (global init...) <a href="#id9"><span class="problematic" id="id10">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1ga905488ea5a4444400604173c4ba5d361"><span class="std std-ref">RTS_SIL2_EXCEPTION_EXTREFS</span></a> 0x14      /* Error while Setting up external References <a href="#id11"><span class="problematic" id="id12">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1ga3bd760bbedd8e4477bc49a621dfd5348"><span class="std std-ref">RTS_SIL2_EXCEPTION_RUNAFTERDOWNLOAD</span></a> 0x15     /* Error while SIL2AppRunAfterDownloadCode <a href="#id13"><span class="problematic" id="id14">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1gac8398305525a569a7eca18fd76b402a9"><span class="std std-ref">RTS_SIL2_EXCEPTION_MEMORY</span></a> 0x16       /* Error regarding the Memory at Bootproject start <a href="#id15"><span class="problematic" id="id16">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1ga6db66edfcb7e00d9e7133e9e538aead4"><span class="std std-ref">RTS_SIL2_EXCEPTION_RUNTIME_INIT</span></a> 0x17 /* Error while CMInit2 <a href="#id17"><span class="problematic" id="id18">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1ga435d85631940ab002a47343dbaa900e7"><span class="std std-ref">RTS_SIL2_EXCEPTION_SCHED_WD</span></a> 0x20     /* Scheduler Watchdog Exception <a href="#id19"><span class="problematic" id="id20">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1gaec5477977b61616524e4b9f855045654"><span class="std std-ref">RTS_SIL2_EXCEPTION_CRC_CYCLIC</span></a> 0x21   /* Cyclic Check of CRC was wrong <a href="#id21"><span class="problematic" id="id22">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1gafef0266e5093060e4f40c7295b261aed"><span class="std std-ref">RTS_SIL2_EXCEPTION_CRC_COMPLETE</span></a> 0x22 /* Complete Check of CRC was wrong <a href="#id23"><span class="problematic" id="id24">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1gac0918ebf3bfd19c1f9fb14c44072810f"><span class="std std-ref">RTS_SIL2_EXCEPTION_CRC_INIT</span></a> 0x23     /* Init of CRC Check wrong <a href="#id25"><span class="problematic" id="id26">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1gabc0b5155caecd1fb4a75c5cd2c00183c"><span class="std std-ref">RTS_SIL2_EXCEPTION_LIFE_COUNTER</span></a> 0x24 /* Not all Components were called in safe Hook <a href="#id27"><span class="problematic" id="id28">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1gafc4bffc861a175cd00f05db8d3d06602"><span class="std std-ref">RTS_SIL2_EXCEPTION_CALLERCONTEXT</span></a> 0x25        /* Caller Context Check was wrong <a href="#id29"><span class="problematic" id="id30">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1gada74b279990b91a69d53d3287c89b226"><span class="std std-ref">RTS_SIL2_ATTRIBUTE</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1ga5ec2aa208ef9ef35fadd8abf2466281b"><span class="std std-ref">RTS_SAFETY_COMPONENTS</span></a> {&#8220;CmpScheduleTimer&#8221;, CmpScheduleTimer__Entry, 1}, </li>
+</ul>
+<p>{&#8220;CmpSIL2&#8221;, CmpSIL2__Entry, 1}, {&#8220;IoDrvUnsafeBridge&#8221;, IoDrvUnsafeBridge__Entry, 1}, {NULL, NULL, 0}</p>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>int <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1gac4f8bb172c2154aecb6a0aecbec6b520"><span class="std std-ref">CmpScheduleTimer__Entry</span></a> (INIT_STRUCT * pInitStruct)</li>
+<li>int <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1ga48ef1811bca9a1ef042e245ea9dd4888"><span class="std std-ref">CmpSIL2__Entry</span></a> (INIT_STRUCT * pInitStruct)</li>
+<li>int <a class="reference internal" href="#group-cmp-s-i-l2-itf-exceptions-1ga874954bac9ab19325d0f6f4d706df644"><span class="std std-ref">IoDrvUnsafeBridge__Entry</span></a> (INIT_STRUCT * pInitStruct)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-s-i-l2-itf-exceptions-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-rts-sil2-fail-general-0x01-unspecified-error">
+<span id="group-cmp-s-i-l2-itf-exceptions-1ga06598abd370365cf53c7c171cff72ceb"></span><h3>#define RTS_SIL2_FAIL_GENERAL 0x01      /* unspecified Error <a href="#id31"><span class="problematic" id="id32">*</span></a>/<a class="headerlink" href="#define-rts-sil2-fail-general-0x01-unspecified-error" title="Permalink to this headline">¶</a></h3>
+<p>Exceptions: Runtime has encountered an error in safety mode and passes the info to an OEM Interface function</p>
+</div>
+<div class="section" id="define-rts-sil2-exception-loadbootproject-0x10-unspecified-error-while-loading-bootproject">
+<span id="group-cmp-s-i-l2-itf-exceptions-1gaecdbf13708ba89aa7bc4e88a41401e55"></span><h3>#define RTS_SIL2_EXCEPTION_LOADBOOTPROJECT 0x10 /* unspecified Error while Loading Bootproject <a href="#id33"><span class="problematic" id="id34">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-loadbootproject-0x10-unspecified-error-while-loading-bootproject" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-exception-bootproject-invalid-0x11-bootproject-format-does-not-match">
+<span id="group-cmp-s-i-l2-itf-exceptions-1ga2c6f0d8ced79e4ba30a13d4b830ed1d4"></span><h3>#define RTS_SIL2_EXCEPTION_BOOTPROJECT_INVALID 0x11     /* Bootproject Format does not match <a href="#id35"><span class="problematic" id="id36">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-bootproject-invalid-0x11-bootproject-format-does-not-match" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-exception-compactpreparecode-0x12-error-while-loading-bootproject-creating-of-iec-application">
+<span id="group-cmp-s-i-l2-itf-exceptions-1ga9a8f1d6276adfd13a51764541e3aad31"></span><h3>#define RTS_SIL2_EXCEPTION_COMPACTPREPARECODE 0x12      /* Error while Loading Bootproject, Creating of IEC Application <a href="#id37"><span class="problematic" id="id38">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-compactpreparecode-0x12-error-while-loading-bootproject-creating-of-iec-application" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-exception-compactfinish-0x13-error-while-setting-up-iec-application-calling-iec-init-code-global-init">
+<span id="group-cmp-s-i-l2-itf-exceptions-1ga3500e3f79c0da0212f09c57f65637ce8"></span><h3>#define RTS_SIL2_EXCEPTION_COMPACTFINISH 0x13   /* Error while Setting up IEC Application, Calling IEC init Code (global init...) <a href="#id39"><span class="problematic" id="id40">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-compactfinish-0x13-error-while-setting-up-iec-application-calling-iec-init-code-global-init" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-exception-extrefs-0x14-error-while-setting-up-external-references">
+<span id="group-cmp-s-i-l2-itf-exceptions-1ga905488ea5a4444400604173c4ba5d361"></span><h3>#define RTS_SIL2_EXCEPTION_EXTREFS 0x14 /* Error while Setting up external References <a href="#id41"><span class="problematic" id="id42">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-extrefs-0x14-error-while-setting-up-external-references" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-exception-runafterdownload-0x15-error-while-sil2apprunafterdownloadcode">
+<span id="group-cmp-s-i-l2-itf-exceptions-1ga3bd760bbedd8e4477bc49a621dfd5348"></span><h3>#define RTS_SIL2_EXCEPTION_RUNAFTERDOWNLOAD 0x15        /* Error while SIL2AppRunAfterDownloadCode <a href="#id43"><span class="problematic" id="id44">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-runafterdownload-0x15-error-while-sil2apprunafterdownloadcode" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-exception-memory-0x16-error-regarding-the-memory-at-bootproject-start">
+<span id="group-cmp-s-i-l2-itf-exceptions-1gac8398305525a569a7eca18fd76b402a9"></span><h3>#define RTS_SIL2_EXCEPTION_MEMORY 0x16  /* Error regarding the Memory at Bootproject start <a href="#id45"><span class="problematic" id="id46">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-memory-0x16-error-regarding-the-memory-at-bootproject-start" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-exception-runtime-init-0x17-error-while-cminit2">
+<span id="group-cmp-s-i-l2-itf-exceptions-1ga6db66edfcb7e00d9e7133e9e538aead4"></span><h3>#define RTS_SIL2_EXCEPTION_RUNTIME_INIT 0x17    /* Error while CMInit2 <a href="#id47"><span class="problematic" id="id48">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-runtime-init-0x17-error-while-cminit2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-exception-sched-wd-0x20-scheduler-watchdog-exception">
+<span id="group-cmp-s-i-l2-itf-exceptions-1ga435d85631940ab002a47343dbaa900e7"></span><h3>#define RTS_SIL2_EXCEPTION_SCHED_WD 0x20        /* Scheduler Watchdog Exception <a href="#id49"><span class="problematic" id="id50">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-sched-wd-0x20-scheduler-watchdog-exception" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-exception-crc-cyclic-0x21-cyclic-check-of-crc-was-wrong">
+<span id="group-cmp-s-i-l2-itf-exceptions-1gaec5477977b61616524e4b9f855045654"></span><h3>#define RTS_SIL2_EXCEPTION_CRC_CYCLIC 0x21      /* Cyclic Check of CRC was wrong <a href="#id51"><span class="problematic" id="id52">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-crc-cyclic-0x21-cyclic-check-of-crc-was-wrong" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-exception-crc-complete-0x22-complete-check-of-crc-was-wrong">
+<span id="group-cmp-s-i-l2-itf-exceptions-1gafef0266e5093060e4f40c7295b261aed"></span><h3>#define RTS_SIL2_EXCEPTION_CRC_COMPLETE 0x22    /* Complete Check of CRC was wrong <a href="#id53"><span class="problematic" id="id54">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-crc-complete-0x22-complete-check-of-crc-was-wrong" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-exception-crc-init-0x23-init-of-crc-check-wrong">
+<span id="group-cmp-s-i-l2-itf-exceptions-1gac0918ebf3bfd19c1f9fb14c44072810f"></span><h3>#define RTS_SIL2_EXCEPTION_CRC_INIT 0x23        /* Init of CRC Check wrong <a href="#id55"><span class="problematic" id="id56">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-crc-init-0x23-init-of-crc-check-wrong" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-exception-life-counter-0x24-not-all-components-were-called-in-safe-hook">
+<span id="group-cmp-s-i-l2-itf-exceptions-1gabc0b5155caecd1fb4a75c5cd2c00183c"></span><h3>#define RTS_SIL2_EXCEPTION_LIFE_COUNTER 0x24    /* Not all Components were called in safe Hook <a href="#id57"><span class="problematic" id="id58">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-life-counter-0x24-not-all-components-were-called-in-safe-hook" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-exception-callercontext-0x25-caller-context-check-was-wrong">
+<span id="group-cmp-s-i-l2-itf-exceptions-1gafc4bffc861a175cd00f05db8d3d06602"></span><h3>#define RTS_SIL2_EXCEPTION_CALLERCONTEXT 0x25   /* Caller Context Check was wrong <a href="#id59"><span class="problematic" id="id60">*</span></a>/<a class="headerlink" href="#define-rts-sil2-exception-callercontext-0x25-caller-context-check-was-wrong" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-sil2-attribute">
+<span id="group-cmp-s-i-l2-itf-exceptions-1gada74b279990b91a69d53d3287c89b226"></span><h3>#define RTS_SIL2_ATTRIBUTE<a class="headerlink" href="#define-rts-sil2-attribute" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-safety-components">
+<span id="group-cmp-s-i-l2-itf-exceptions-1ga5ec2aa208ef9ef35fadd8abf2466281b"></span><h3>#define RTS_SAFETY_COMPONENTS<a class="headerlink" href="#define-rts-safety-components" title="Permalink to this headline">¶</a></h3>
+<p><strong>Value:</strong></p>
+<pre class="literal-block">
+{&quot;CmpScheduleTimer&quot;, CmpScheduleTimer__Entry, 1}, \
+{&quot;CmpSIL2&quot;, CmpSIL2__Entry, 1}, \
+{&quot;IoDrvUnsafeBridge&quot;, IoDrvUnsafeBridge__Entry, 1}, \
+{NULL, NULL, 0}
+</pre>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="int-cmpscheduletimer-entry-init-struct-pinitstruct">
+<span id="group-cmp-s-i-l2-itf-exceptions-1gac4f8bb172c2154aecb6a0aecbec6b520"></span><h3>int CmpScheduleTimer__Entry (INIT_STRUCT <a href="#id61"><span class="problematic" id="id62">*</span></a>pInitStruct)<a class="headerlink" href="#int-cmpscheduletimer-entry-init-struct-pinitstruct" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="int-cmpsil2-entry-init-struct-pinitstruct">
+<span id="group-cmp-s-i-l2-itf-exceptions-1ga48ef1811bca9a1ef042e245ea9dd4888"></span><h3>int CmpSIL2__Entry (INIT_STRUCT <a href="#id63"><span class="problematic" id="id64">*</span></a>pInitStruct)<a class="headerlink" href="#int-cmpsil2-entry-init-struct-pinitstruct" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="int-iodrvunsafebridge-entry-init-struct-pinitstruct">
+<span id="group-cmp-s-i-l2-itf-exceptions-1ga874954bac9ab19325d0f6f4d706df644"></span><h3>int IoDrvUnsafeBridge__Entry (INIT_STRUCT <a href="#id65"><span class="problematic" id="id66">*</span></a>pInitStruct)<a class="headerlink" href="#int-iodrvunsafebridge-entry-init-struct-pinitstruct" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

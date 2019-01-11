@@ -1,0 +1,361 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SysTimeItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="SysTimerItf" href="group___sys_timer_itf.html" />
+    <link rel="prev" title="SysTaskItf" href="group___sys_task_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___sys_timer_itf.html" title="SysTimerItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_task_itf.html" title="SysTaskItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SysTimeItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-rts-systime">#define _RTS_SYSTIME</a></li>
+<li><a class="reference internal" href="#define-rts-systime-max-rts-systime-0">#define RTS_SYSTIME_MAX (~(( <code class="docutils literal"><span class="pre">RTS_SYSTIME</span></code> )0))</a></li>
+<li><a class="reference internal" href="#define-itf-systime">#define ITF_SysTime</a></li>
+<li><a class="reference internal" href="#define-extitf-systime">#define EXTITF_SysTime</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-rts-ui64-rts-systime">typedef RTS_UI64 RTS_SYSTIME</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsystimegetms-struct-systimegetms-struct">typedef struct tagsystimegetms_struct  systimegetms_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsystimegetns-struct-systimegetns-struct">typedef struct tagsystimegetns_struct  systimegetns_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsystimegetus-struct-systimegetus-struct">typedef struct tagsystimegetus_struct  systimegetus_struct</a></li>
+<li><a class="reference internal" href="#typedef-isystime-c-isystime">typedef ISysTime_C ISysTime</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#void-systimegetms-systimegetms-struct-p">void systimegetms (systimegetms_struct *p)</a></li>
+<li><a class="reference internal" href="#void-systimegetns-systimegetns-struct-p">void systimegetns (systimegetns_struct *p)</a></li>
+<li><a class="reference internal" href="#void-systimegetus-systimegetus-struct-p">void systimegetus (systimegetus_struct *p)</a></li>
+<li><a class="reference internal" href="#rts-result-systimeosinit-init-struct-pinit">RTS_RESULT SysTimeOSInit (INIT_STRUCT *pInit)</a></li>
+<li><a class="reference internal" href="#rts-result-systimeoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">RTS_RESULT SysTimeOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</a></li>
+<li><a class="reference internal" href="#rts-ui32-systimegetms-void">RTS_UI32 SysTimeGetMs (void)</a></li>
+<li><a class="reference internal" href="#rts-result-systimegetus-rts-systime-ptime">RTS_RESULT SysTimeGetUs (RTS_SYSTIME *pTime)</a></li>
+<li><a class="reference internal" href="#rts-result-systimegetns-rts-systime-ptime">RTS_RESULT SysTimeGetNs (RTS_SYSTIME *pTime)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___sys_task_itf.html"
+                        title="previous chapter">SysTaskItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___sys_timer_itf.html"
+                        title="next chapter">SysTimerItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_time_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="systimeitf">
+<span id="group-sys-time-itf"></span><h1>SysTimeItf<a class="headerlink" href="#systimeitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of SysTime. <a class="reference internal" href="#group-sys-time-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___sys_time_itf___settings.html#group-sys-time-itf-settings"><span class="std std-ref">Settings</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="structtagsystimegetms__struct.html#structtagsystimegetms-struct"><span class="std std-ref">tagsystimegetms_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsystimegetns__struct.html#structtagsystimegetns-struct"><span class="std std-ref">tagsystimegetns_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsystimegetus__struct.html#structtagsystimegetus-struct"><span class="std std-ref">tagsystimegetus_struct</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_sys_time___c.html#struct-i-sys-time-c"><span class="std std-ref">ISysTime_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-time-itf-1gaaf1cf18246c150405b48bfb9306b735c"><span class="std std-ref">_RTS_SYSTIME</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-time-itf-1ga1321183beff6b4ebd89a9f325c57f568"><span class="std std-ref">RTS_SYSTIME_MAX</span></a> (~(( <a class="reference internal" href="#group-sys-time-itf-1ga10c9d9a4c57129d83432fb02923858bf"><span class="std std-ref">RTS_SYSTIME</span></a> )0))</li>
+<li>#define <a class="reference internal" href="#group-sys-time-itf-1ga01b2e21e9f7d48c6c9033bf6ce08b448"><span class="std std-ref">ITF_SysTime</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-time-itf-1ga78e4c1113ae535d7f700605487bb4ab0"><span class="std std-ref">EXTITF_SysTime</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef RTS_UI64 <a class="reference internal" href="#group-sys-time-itf-1ga10c9d9a4c57129d83432fb02923858bf"><span class="std std-ref">RTS_SYSTIME</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsystimegetms__struct.html#structtagsystimegetms-struct"><span class="std std-ref">tagsystimegetms_struct</span></a> <a class="reference internal" href="#group-sys-time-itf-1gad305e0daa69f3ab7656aa678a477a75b"><span class="std std-ref">systimegetms_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsystimegetns__struct.html#structtagsystimegetns-struct"><span class="std std-ref">tagsystimegetns_struct</span></a> <a class="reference internal" href="#group-sys-time-itf-1ga9030e2651ca6fca69fa2837273d05a27"><span class="std std-ref">systimegetns_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsystimegetus__struct.html#structtagsystimegetus-struct"><span class="std std-ref">tagsystimegetus_struct</span></a> <a class="reference internal" href="#group-sys-time-itf-1gad8128d22b8a1333eb17944ddca4a2711"><span class="std std-ref">systimegetus_struct</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_sys_time___c.html#struct-i-sys-time-c"><span class="std std-ref">ISysTime_C</span></a> <a class="reference internal" href="#group-sys-time-itf-1ga17558f05ec461b9f48f05c0be1a3c389"><span class="std std-ref">ISysTime</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>void <a class="reference internal" href="#group-sys-time-itf-1gab77e2618b8f1cf127526883480969a8a"><span class="std std-ref">systimegetms</span></a> (<a class="reference internal" href="#group-sys-time-itf-1gad305e0daa69f3ab7656aa678a477a75b"><span class="std std-ref">systimegetms_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-time-itf-1ga14210114e502d8f93d9a8ce89e9aa460"><span class="std std-ref">systimegetns</span></a> (<a class="reference internal" href="#group-sys-time-itf-1ga9030e2651ca6fca69fa2837273d05a27"><span class="std std-ref">systimegetns_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-time-itf-1ga48ffbaabd21f1fd0ecbf6844a6197361"><span class="std std-ref">systimegetus</span></a> (<a class="reference internal" href="#group-sys-time-itf-1gad8128d22b8a1333eb17944ddca4a2711"><span class="std std-ref">systimegetus_struct</span></a> * p)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-time-itf-1gae708d649d8267b52af1016d33a6bcfd5"><span class="std std-ref">SysTimeOSInit</span></a> (INIT_STRUCT * pInit)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-time-itf-1ga43a28d8f33a6f490aa932058c5d21394"><span class="std std-ref">SysTimeOSHookFunction</span></a> (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-time-itf-1ga5da4ae803f6328356b5e07dfcc518d59"><span class="std std-ref">SysTimeGetMs</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-time-itf-1gafd2b289865fce2eec1a6cd530276b7a6"><span class="std std-ref">SysTimeGetUs</span></a> (<a class="reference internal" href="#group-sys-time-itf-1ga10c9d9a4c57129d83432fb02923858bf"><span class="std std-ref">RTS_SYSTIME</span></a> * pTime)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-time-itf-1ga17db7eb52dff7f98f0b75c134201d765"><span class="std std-ref">SysTimeGetNs</span></a> (<a class="reference internal" href="#group-sys-time-itf-1ga10c9d9a4c57129d83432fb02923858bf"><span class="std std-ref">RTS_SYSTIME</span></a> * pTime)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-time-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of SysTime.</p>
+<p>The SysTime interface is projected to get access to time tick values with different resolutions (millisecond, microsecond, nanosecond).</p>
+<p>All different ticks are wrapping around their natural data type limits (RTS_UI32 or RTS_SYSTIME). Therefore, they can be used to measure difference timings. They can&#8217;t either be used to measure absolute timings nor can they be calculated from one to each other.</p>
+<p>Implementation Notes:</p>
+<ul class="simple">
+<li>All three different timers need their own handling of wrap arounds, because they have a wrap around at different points in time at different boundaries. In practice, this implies the need for an own, static offset counter for every timer.</li>
+<li>If the timer is based on a periodic interrupt (e.g. millisecond tick), it works only as long as no interrupt lock is held. This might be the case in some flash drivers for example.</li>
+<li>Some timers are called very regularly. So if the wrap around of the timer source itself is very late (low frequency + large timer register), it might be enough for the system to detect timer overruns only at every call.</li>
+</ul>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-rts-systime">
+<span id="group-sys-time-itf-1gaaf1cf18246c150405b48bfb9306b735c"></span><h3>#define _RTS_SYSTIME<a class="headerlink" href="#define-rts-systime" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-systime-max-rts-systime-0">
+<span id="group-sys-time-itf-1ga1321183beff6b4ebd89a9f325c57f568"></span><h3>#define RTS_SYSTIME_MAX (~(( <a class="reference internal" href="#group-sys-time-itf-1ga10c9d9a4c57129d83432fb02923858bf"><span class="std std-ref">RTS_SYSTIME</span></a> )0))<a class="headerlink" href="#define-rts-systime-max-rts-systime-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-itf-systime">
+<span id="group-sys-time-itf-1ga01b2e21e9f7d48c6c9033bf6ce08b448"></span><h3>#define ITF_SysTime<a class="headerlink" href="#define-itf-systime" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-systime">
+<span id="group-sys-time-itf-1ga78e4c1113ae535d7f700605487bb4ab0"></span><h3>#define EXTITF_SysTime<a class="headerlink" href="#define-extitf-systime" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-rts-ui64-rts-systime">
+<span id="group-sys-time-itf-1ga10c9d9a4c57129d83432fb02923858bf"></span><h3>typedef RTS_UI64 RTS_SYSTIME<a class="headerlink" href="#typedef-rts-ui64-rts-systime" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-struct-tagsystimegetms-struct-systimegetms-struct">
+<span id="group-sys-time-itf-1gad305e0daa69f3ab7656aa678a477a75b"></span><h3>typedef struct tagsystimegetms_struct  systimegetms_struct<a class="headerlink" href="#typedef-struct-tagsystimegetms-struct-systimegetms-struct" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION BEGIN &lt;SIL2&gt;</p>
+<p>Returns a monotonic rising millisecond tick. This tick can be used for timeout and relative time measurements. NOTE: The realtime clock is not influencing this tick! RETURN: Returns the millisecond tick</p>
+</div>
+<div class="section" id="typedef-struct-tagsystimegetns-struct-systimegetns-struct">
+<span id="group-sys-time-itf-1ga9030e2651ca6fca69fa2837273d05a27"></span><h3>typedef struct tagsystimegetns_struct  systimegetns_struct<a class="headerlink" href="#typedef-struct-tagsystimegetns-struct-systimegetns-struct" title="Permalink to this headline">¶</a></h3>
+<p>&lt;SIL2&gt;</p>
+<p>Returns a monotonic rising nanosecond tick. This tick can be used for very high resolution time measurements NOTE: The realtime clock does not influences this tick! RETURN: Returns the runtime system error code (see CmpErrors.library)</p>
+</div>
+<div class="section" id="typedef-struct-tagsystimegetus-struct-systimegetus-struct">
+<span id="group-sys-time-itf-1gad8128d22b8a1333eb17944ddca4a2711"></span><h3>typedef struct tagsystimegetus_struct  systimegetus_struct<a class="headerlink" href="#typedef-struct-tagsystimegetus-struct-systimegetus-struct" title="Permalink to this headline">¶</a></h3>
+<p>&lt;SIL2&gt;</p>
+<p>Returns a monotonic rising microsecond tick. This tick can be used for timeout and high resolution time measurements. NOTE: The realtime clock does not influences this tick! RETURN: Returns the runtime system error code (see CmpErrors.library)</p>
+</div>
+<div class="section" id="typedef-isystime-c-isystime">
+<span id="group-sys-time-itf-1ga17558f05ec461b9f48f05c0be1a3c389"></span><h3>typedef ISysTime_C ISysTime<a class="headerlink" href="#typedef-isystime-c-isystime" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="void-systimegetms-systimegetms-struct-p">
+<span id="group-sys-time-itf-1gab77e2618b8f1cf127526883480969a8a"></span><h3>void systimegetms (systimegetms_struct <a href="#id1"><span class="problematic" id="id2">*</span></a>p)<a class="headerlink" href="#void-systimegetms-systimegetms-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-systimegetns-systimegetns-struct-p">
+<span id="group-sys-time-itf-1ga14210114e502d8f93d9a8ce89e9aa460"></span><h3>void systimegetns (systimegetns_struct <a href="#id3"><span class="problematic" id="id4">*</span></a>p)<a class="headerlink" href="#void-systimegetns-systimegetns-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-systimegetus-systimegetus-struct-p">
+<span id="group-sys-time-itf-1ga48ffbaabd21f1fd0ecbf6844a6197361"></span><h3>void systimegetus (systimegetus_struct <a href="#id5"><span class="problematic" id="id6">*</span></a>p)<a class="headerlink" href="#void-systimegetus-systimegetus-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-systimeosinit-init-struct-pinit">
+<span id="group-sys-time-itf-1gae708d649d8267b52af1016d33a6bcfd5"></span><h3>RTS_RESULT SysTimeOSInit (INIT_STRUCT <a href="#id7"><span class="problematic" id="id8">*</span></a>pInit)<a class="headerlink" href="#rts-result-systimeosinit-init-struct-pinit" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION END</p>
+</div>
+<div class="section" id="rts-result-systimeoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">
+<span id="group-sys-time-itf-1ga43a28d8f33a6f490aa932058c5d21394"></span><h3>RTS_RESULT SysTimeOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)<a class="headerlink" href="#rts-result-systimeoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-ui32-systimegetms-void">
+<span id="group-sys-time-itf-1ga5da4ae803f6328356b5e07dfcc518d59"></span><h3>RTS_UI32 SysTimeGetMs (void)<a class="headerlink" href="#rts-ui32-systimegetms-void" title="Permalink to this headline">¶</a></h3>
+<p>Return a monotonic, rising millisecond tick.</p>
+<p><strong>Returns:</strong></p>
+<p>Returns the millisecond tick</p>
+</div>
+<div class="section" id="rts-result-systimegetus-rts-systime-ptime">
+<span id="group-sys-time-itf-1gafd2b289865fce2eec1a6cd530276b7a6"></span><h3>RTS_RESULT SysTimeGetUs (RTS_SYSTIME <a href="#id9"><span class="problematic" id="id10">*</span></a>pTime)<a class="headerlink" href="#rts-result-systimegetus-rts-systime-ptime" title="Permalink to this headline">¶</a></h3>
+<p>Return a monotonic, rising microsecond tick.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="9%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[inout]</td>
+<td>pTime</td>
+<td>Pointer to the time tick result RANGE=[NULL,VALID_PTIME]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Time was returned successfully</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>pTime was NULL</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Internal Error</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-systimegetns-rts-systime-ptime">
+<span id="group-sys-time-itf-1ga17db7eb52dff7f98f0b75c134201d765"></span><h3>RTS_RESULT SysTimeGetNs (RTS_SYSTIME <a href="#id11"><span class="problematic" id="id12">*</span></a>pTime)<a class="headerlink" href="#rts-result-systimegetns-rts-systime-ptime" title="Permalink to this headline">¶</a></h3>
+<p>Return a monotonic, rising nanosecond tick.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="9%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[inout]</td>
+<td>pTime</td>
+<td>Pointer to the time tick result RANGE=[NULL,VALID_PTIME]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Time was returned successfully</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>pTime was NULL</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Internal Error</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___sys_timer_itf.html" title="SysTimerItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_task_itf.html" title="SysTaskItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

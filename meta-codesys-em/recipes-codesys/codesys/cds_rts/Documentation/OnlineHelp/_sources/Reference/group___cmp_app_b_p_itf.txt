@@ -1,0 +1,544 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_app_b_p_itf:
+
+===========
+CmpAppBPItf
+===========
+
+Interface of CmpAppBP. :ref:`More... <group___cmp_app_b_p_itf-details>`
+
+Modules
+-------
+
+- :ref:`Breakpoint context <group___cmp_app_b_p_itf___breakpointcontext>`
+
+- :ref:`Breakpoint description <group___cmp_app_b_p_itf___breakpointdescription>`
+
+- :ref:`Breakpoint handler <group___cmp_app_b_p_itf___breakpointhandler>`
+
+- :ref:`Breakpoint hitcount conditions <group___cmp_app_b_p_itf___breakpointhitcountconditions>`
+
+- :ref:`Breakpoint types <group___cmp_app_b_p_itf___breakpointtypes>`
+
+- :ref:`Code patch event flags <group___cmp_app_b_p_itf___codepatcheventflags>`
+
+- :ref:`Compiler switch <group___cmp_app_b_p_itf___compilerswitch>`
+
+- :ref:`Event parameter <group___cmp_app_b_p_itf___eventparameter>`
+
+- :ref:`Events <group___cmp_app_b_p_itf___events>`
+
+- :ref:`Static defines <group___cmp_app_b_p_itf___staticdefines>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagCallstackEntry <structtag_callstack_entry>`
+
+- struct :ref:`tagappbpgetcallstack_struct <structtagappbpgetcallstack__struct>`
+
+- struct :ref:`ICmpAppBP_C <struct_i_cmp_app_b_p___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpAppBP <group___cmp_app_b_p_itf_1ga2cc0bf9425b4e8a03769b6cf8eb869e9>`
+
+- #define :ref:`EXTITF_CmpAppBP <group___cmp_app_b_p_itf_1ga2087fc64d287123d044fc0f5e6d4b121>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagCallstackEntry <structtag_callstack_entry>` :ref:`CallstackEntry <group___cmp_app_b_p_itf_1gac5c1fd273011cee138d7581a983305c7>`
+
+- typedef struct :ref:`tagappbpgetcallstack_struct <structtagappbpgetcallstack__struct>` :ref:`appbpgetcallstack_struct <group___cmp_app_b_p_itf_1ga6b09d6cdea58d8257dcfcdcf78d97744>`
+
+- typedef :ref:`ICmpAppBP_C <struct_i_cmp_app_b_p___c>` :ref:`ICmpAppBP <group___cmp_app_b_p_itf_1gada6c257f18c24e966efe28f4da7de408>`
+
+Functions
+---------
+
+- void :ref:`appbpgetcallstack <group___cmp_app_b_p_itf_1gaa37770bbeece01afd1c6f5187c50c320>` (:ref:`appbpgetcallstack_struct <group___cmp_app_b_p_itf_1ga6b09d6cdea58d8257dcfcdcf78d97744>` * p)
+
+- RTS_RESULT :ref:`AppBPInit <group___cmp_app_b_p_itf_1gaf41157f21189cc6262e9eb9c917834df>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppBPExit <group___cmp_app_b_p_itf_1ga261acfbcb32c69dbd45b4946890ea1d1>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_UINTPTR :ref:`AppDebugHandler <group___cmp_app_b_p_itf_1ga6b17f465662ba51cf0832f8c2baf0dfd>` (RTS_UINTPTR IP, RTS_UINTPTR SP, RTS_UINTPTR BP)
+
+- RTS_UINTPTR :ref:`AppDebugHandler2 <group___cmp_app_b_p_itf_1gadc306395980c9fae234e95e8d7bdcdf1>` (:ref:`BreakpointContext <group___cmp_app_b_p_itf___breakpointcontext_1ga70333501b2874834e9c68fca22a09c20>` * pBPContext)
+
+- :ref:`Breakpoint <group___cmp_app_b_p_itf___breakpointcontext_1ga4f21dd07bf35c4e74f810dc1e1c9ab1b>` * :ref:`AppBPGetFirst <group___cmp_app_b_p_itf_1ga31dab43f80db08b619cc2b04249518ef>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- :ref:`Breakpoint <group___cmp_app_b_p_itf___breakpointcontext_1ga4f21dd07bf35c4e74f810dc1e1c9ab1b>` * :ref:`AppBPGetNext <group___cmp_app_b_p_itf_1ga05a447ac5ee8e6482aeced2dbb058761>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`Breakpoint <group___cmp_app_b_p_itf___breakpointcontext_1ga4f21dd07bf35c4e74f810dc1e1c9ab1b>` * pPrevBreakpoint, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppBPDeleteAll <group___cmp_app_b_p_itf_1gac10f981959313826a493d6443ab88fa4>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulSessionId)
+
+- RTS_RESULT :ref:`AppBPDeleteAllWithExecutionpoints <group___cmp_app_b_p_itf_1ga0ec5e0cc95b436933012dcc15ca3c9bc>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulSessionId)
+
+- RTS_RESULT :ref:`AppBPLeave <group___cmp_app_b_p_itf_1ga9bf950f11374b74593bbe5a19501cbd5>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppBPStep <group___cmp_app_b_p_itf_1ga6a946d4501dc1c6cd8be704b565ca27f>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppBPGetHitCount <group___cmp_app_b_p_itf_1ga515a682e0e3efb371daac5526eb13f51>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int * piHitCount)
+
+- RTS_RESULT :ref:`AppBPUpdate <group___cmp_app_b_p_itf_1gab7173ae79c940049c9c32423b5a47448>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_SIZE ulTypeIn)
+
+- RTS_RESULT :ref:`AppBPGetFirstCallstackEntry <group___cmp_app_b_p_itf_1ga3d830adf0b9e04c9772e7b5776d65fc1>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>` * pContext, :ref:`CallstackEntry <group___cmp_app_b_p_itf_1gac5c1fd273011cee138d7581a983305c7>` * pCallstackEntry)
+
+- RTS_RESULT :ref:`AppBPGetFirstCallstackEntry2 <group___cmp_app_b_p_itf_1ga1a7cd52a7364865bf3cc3887d3ec5ca6>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_HANDLE hIecTask, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>` * pContext, :ref:`CallstackEntry <group___cmp_app_b_p_itf_1gac5c1fd273011cee138d7581a983305c7>` * pCallstackEntry)
+
+- RTS_RESULT :ref:`AppBPGetNextCallstackEntry <group___cmp_app_b_p_itf_1gacfb1706256de396263af5acc11fc6536>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>` * pContext, :ref:`CallstackEntry <group___cmp_app_b_p_itf_1gac5c1fd273011cee138d7581a983305c7>` * pCallstackEntry)
+
+- RTS_RESULT :ref:`AppBPGetNextCallstackEntry2 <group___cmp_app_b_p_itf_1ga39c91fb9e55e9c85c241933360127ea2>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bIecCode, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>` * pContext, :ref:`CallstackEntry <group___cmp_app_b_p_itf_1gac5c1fd273011cee138d7581a983305c7>` * pCallstackEntry)
+
+- RTS_UI8 :ref:`AppBPGetCallStack <group___cmp_app_b_p_itf_1ga974fc162993b606d18a6578699c7b976>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_HANDLE hIecTask, :ref:`CallstackEntry <group___cmp_app_b_p_itf_1gac5c1fd273011cee138d7581a983305c7>` * pCallstackentries, RTS_UI8 byMaxEntries)
+
+- RTS_RESULT :ref:`AppBPServiceHandler2 <group___cmp_app_b_p_itf_1gacd7603f9c27be9787861ee67dd8ac034>` (RTS_UI32 ulChannelId, :ref:`HEADER_TAG <struct_h_e_a_d_e_r___t_a_g>` * pHeaderTag, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>` * pduSendBuffer)
+
+- RTS_RESULT :ref:`AppBPSet <group___cmp_app_b_p_itf_1ga3d1db256d194ff02f92517185968b118>` (:ref:`BreakpointDesc <group___cmp_app_b_p_itf___breakpointdescription_1gaf4fefc2caa0bfc32073d57d8dd84bf9b>` * pBpDesc, RTS_BOOL bPatchCode, :ref:`Breakpoint <group___cmp_app_b_p_itf___breakpointcontext_1ga4f21dd07bf35c4e74f810dc1e1c9ab1b>` ** ppbpOut)
+
+- RTS_RESULT :ref:`AppBPDelete <group___cmp_app_b_p_itf_1ga7edf589d6bf3beaa815adfd7ef8e3942>` (:ref:`Breakpoint <group___cmp_app_b_p_itf___breakpointcontext_1ga4f21dd07bf35c4e74f810dc1e1c9ab1b>` * pbp)
+
+.. _group___cmp_app_b_p_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpAppBP.
+
+This is the interface of the IEC application manager to handle breakpoints
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_app_b_p_itf_1ga2cc0bf9425b4e8a03769b6cf8eb869e9:
+
+#define ITF_CmpAppBP
+^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_b_p_itf_1ga2087fc64d287123d044fc0f5e6d4b121:
+
+#define EXTITF_CmpAppBP
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_app_b_p_itf_1gac5c1fd273011cee138d7581a983305c7:
+
+typedef struct tagCallstackEntry  CallstackEntry
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION BEGIN
+
+CallstackEntry
+
+.. _group___cmp_app_b_p_itf_1ga6b09d6cdea58d8257dcfcdcf78d97744:
+
+typedef struct tagappbpgetcallstack_struct  appbpgetcallstack_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appbpgetcallstack
+
+.. _group___cmp_app_b_p_itf_1gada6c257f18c24e966efe28f4da7de408:
+
+typedef ICmpAppBP_C ICmpAppBP
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_app_b_p_itf_1gaa37770bbeece01afd1c6f5187c50c320:
+
+void appbpgetcallstack (appbpgetcallstack_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_b_p_itf_1gaf41157f21189cc6262e9eb9c917834df:
+
+RTS_RESULT AppBPInit (APPLICATION *pApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION END
+
+Init breakpoint list on the specified application
+
+**Parameters**
+
++---------+------+--------------------------------------------------+
+| [in]    | pApp | Pointer to the specified application description |
++---------+------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_b_p_itf_1ga261acfbcb32c69dbd45b4946890ea1d1:
+
+RTS_RESULT AppBPExit (APPLICATION *pApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Exit breakpoint list on the specified application
+
+**Parameters**
+
++---------+------+--------------------------------------------------+
+| [in]    | pApp | Pointer to the specified application description |
++---------+------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_b_p_itf_1ga6b17f465662ba51cf0832f8c2baf0dfd:
+
+RTS_UINTPTR AppDebugHandler (RTS_UINTPTR IP, RTS_UINTPTR SP, RTS_UINTPTR BP)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine handle a debug breakpoint. This routine is typically called from the :ref:`syscpudebughandler() <group___sys_cpu_handling_itf_1gaf578b1b3a5575decb892beb9ce698a90>` method of the CmpCpuHandling component. This routine must handle the folliwinghave to handle
+
+**Parameters**
+
++---------+----+------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | IP | Program counter or instruction pointer of breakpoint position, where the debug opcode is executed                            |
++---------+----+------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | SP | Actual stack pointer                                                                                                         |
++---------+----+------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | BP | Frame pointer or base pointer to the stack, where the first entry function right after the debug code begins its stack usage |
++---------+----+------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Return address, to which we would like to return right after leaving this function. *NOTE: This must be adopted by the caller!
+
+.. _group___cmp_app_b_p_itf_1gadc306395980c9fae234e95e8d7bdcdf1:
+
+RTS_UINTPTR AppDebugHandler2 (BreakpointContext *pBPContext)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+See AppDebugHandler. AppDebugHandler2 supports also data breakpoints
+
+**Parameters**
+
++---------+------------+-----------------------------------------------+
+| [in]    | pBPContext | Low level register context of the breakpoint. |
++---------+------------+-----------------------------------------------+
+
+**Returns:**
+
+Return address, to which we would like to return right after leaving this function. *NOTE: This must be adopted by the caller!
+
+.. _group___cmp_app_b_p_itf_1ga31dab43f80db08b619cc2b04249518ef:
+
+Breakpoint* AppBPGetFirst (APPLICATION *pApp, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the first breakpoint (if available)
+
+**Parameters**
+
++---------+---------+--------------------------------------------------+
+| [in]    | pApp    | Pointer to the specified application description |
++---------+---------+--------------------------------------------------+
+| [out]   | pResult | Pointer to error code                            |
++---------+---------+--------------------------------------------------+
+
+**Returns:**
+
+Pointer to first breakpoint
+
+.. _group___cmp_app_b_p_itf_1ga05a447ac5ee8e6482aeced2dbb058761:
+
+Breakpoint* AppBPGetNext (APPLICATION *pApp, Breakpoint *pPrevBreakpoint, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the next breakpoint (if available)
+
+**Parameters**
+
++---------+-----------------+--------------------------------------------------------------------------------------------+
+| [in]    | pApp            | Pointer to the specified application description                                           |
++---------+-----------------+--------------------------------------------------------------------------------------------+
+| [in]    | pPrevBreakpoint | Pointer to previous breakpoint returned by previous calls of AppGetFirstBP or AppGetNextBP |
++---------+-----------------+--------------------------------------------------------------------------------------------+
+| [out]   | pResult         | Pointer to error code                                                                      |
++---------+-----------------+--------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to next breakpoint
+
+.. _group___cmp_app_b_p_itf_1gac10f981959313826a493d6443ab88fa4:
+
+RTS_RESULT AppBPDeleteAll (APPLICATION *pApp, RTS_UI32 ulSessionId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete all breakpoints of the specified application
+
+**Parameters**
+
++---------+-------------+--------------------------------------------------+
+| [in]    | pApp        | Pointer to the specified application description |
++---------+-------------+--------------------------------------------------+
+| [in]    | ulSessionId | Session id of the communication channel          |
++---------+-------------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_b_p_itf_1ga0ec5e0cc95b436933012dcc15ca3c9bc:
+
+RTS_RESULT AppBPDeleteAllWithExecutionpoints (APPLICATION *pApp, RTS_UI32 ulSessionId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete all breakpoints and executionpoints of the specified application
+
+**Parameters**
+
++---------+-------------+--------------------------------------------------+
+| [in]    | pApp        | Pointer to the specified application description |
++---------+-------------+--------------------------------------------------+
+| [in]    | ulSessionId | Session id of the communication channel          |
++---------+-------------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_b_p_itf_1ga9bf950f11374b74593bbe5a19501cbd5:
+
+RTS_RESULT AppBPLeave (APPLICATION *pApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Leave a breakpoint and continue executing the specified application
+
+**Parameters**
+
++---------+------+--------------------------------------------------+
+| [in]    | pApp | Pointer to the specified application description |
++---------+------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_b_p_itf_1ga6a946d4501dc1c6cd8be704b565ca27f:
+
+RTS_RESULT AppBPStep (APPLICATION *pApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Do one step to the next breakpoint
+
+**Parameters**
+
++---------+------+--------------------------------------------------+
+| [in]    | pApp | Pointer to the specified application description |
++---------+------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_b_p_itf_1ga515a682e0e3efb371daac5526eb13f51:
+
+RTS_RESULT AppBPGetHitCount (APPLICATION *pApp, int *piHitCount)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the hit counter of the actual breakpoint
+
+**Parameters**
+
++---------+------------+-----------------------------------------------------+
+| [in]    | pApp       | Pointer to the specified application description    |
++---------+------------+-----------------------------------------------------+
+| [out]   | piHitCount | Pointer to the hit counter of the active breakpoint |
++---------+------------+-----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_b_p_itf_1gab7173ae79c940049c9c32423b5a47448:
+
+RTS_RESULT AppBPUpdate (APPLICATION *pApp, RTS_SIZE ulTypeIn)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Update all breakpoints (repatch or not depends on the context)
+
+**Parameters**
+
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pApp     | Pointer to the specified application description                                                                                     |
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulTypeIn | TypeIn it eh type of the currently reached breakpoint. If this breakpoint is a repatch breakpoint, dont delete temporary breakpoints |
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_b_p_itf_1ga3d830adf0b9e04c9772e7b5776d65fc1:
+
+RTS_RESULT AppBPGetFirstCallstackEntry (APPLICATION *pApp, RegContext *pContext, CallstackEntry *pCallstackEntry)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the first callstack entry (if available). This is the most nested calling position from the callstack. A callstack is only available, if the application in in state stop!
+
+**Parameters**
+
++---------+-----------------+---------------------------------------------------------------------------------+
+| [in]    | pApp            | Pointer to the specified application description                                |
++---------+-----------------+---------------------------------------------------------------------------------+
+| [out]   | pContext        | Returns register context, e.g. the base pointer to find the next calstack entry |
++---------+-----------------+---------------------------------------------------------------------------------+
+| [out]   | pCallstackEntry | Pointer to the callstack entry                                                  |
++---------+-----------------+---------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_b_p_itf_1ga1a7cd52a7364865bf3cc3887d3ec5ca6:
+
+RTS_RESULT AppBPGetFirstCallstackEntry2 (APPLICATION *pApp, RTS_HANDLE hIecTask, RegContext *pContext, CallstackEntry *pCallstackEntry)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_b_p_itf_1gacfb1706256de396263af5acc11fc6536:
+
+RTS_RESULT AppBPGetNextCallstackEntry (APPLICATION *pApp, RegContext *pContext, CallstackEntry *pCallstackEntry)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the next callstack entry (if available). This is the less nested calling position from the previous call or the AppGetFirstCallstackEntry() function.
+
+**Parameters**
+
++---------+-----------------+---------------------------------------------------------------------------------+
+| [in]    | pApp            | Pointer to the specified application description                                |
++---------+-----------------+---------------------------------------------------------------------------------+
+| [out]   | pContext        | Returns register context, e.g. the base pointer to find the next calstack entry |
++---------+-----------------+---------------------------------------------------------------------------------+
+| [out]   | pCallstackEntry | Pointer to the callstack entry                                                  |
++---------+-----------------+---------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_b_p_itf_1ga39c91fb9e55e9c85c241933360127ea2:
+
+RTS_RESULT AppBPGetNextCallstackEntry2 (APPLICATION *pApp, int bIecCode, RegContext *pContext, CallstackEntry *pCallstackEntry)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the next callstack entry (if available). This is the less nested calling position from the previous call or the AppGetFirstCallstackEntry() function.
+
+**Parameters**
+
++---------+-----------------+----------------------------------------------------------------------------------------+
+| [in]    | pApp            | Pointer to the specified application description                                       |
++---------+-----------------+----------------------------------------------------------------------------------------+
+| [in]    | bIecCode        | Specifies, if callstack is searched in IecCode. If bIecCode is 0, we search in C-code! |
++---------+-----------------+----------------------------------------------------------------------------------------+
+| [out]   | pContext        | Returns register context, e.g. the base pointer to find the next calstack entry        |
++---------+-----------------+----------------------------------------------------------------------------------------+
+| [out]   | pCallstackEntry | Pointer to the callstack entry                                                         |
++---------+-----------------+----------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_b_p_itf_1ga974fc162993b606d18a6578699c7b976:
+
+RTS_UI8 AppBPGetCallStack (APPLICATION *pApp, RTS_HANDLE hIecTask, CallstackEntry *pCallstackentries, RTS_UI8 byMaxEntries)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the callstack of the current task.
+
+**Parameters**
+
++---------+-------------------+---------------------------------------------------+
+| [in]    | pApp              | Pointer to the specified application description  |
++---------+-------------------+---------------------------------------------------+
+| [in]    | hIecTask          | Handle of the IEC task to get the callstack from. |
++---------+-------------------+---------------------------------------------------+
+| [inout] | pCallstackentries | Pointer to an array of callstack entries.         |
++---------+-------------------+---------------------------------------------------+
+| [in]    | byMaxEntries      | Number of callstack entries within the array.     |
++---------+-------------------+---------------------------------------------------+
+
+**Returns:**
+
+Number of callstack entries filled up (Depth of the callstack).
+
+.. _group___cmp_app_b_p_itf_1gacd7603f9c27be9787861ee67dd8ac034:
+
+RTS_RESULT AppBPServiceHandler2 (RTS_UI32 ulChannelId, HEADER_TAG *pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT *pduSendBuffer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Handler for all breakpoint services
+
+**Parameters**
+
++---------+---------------+----------------------------------------+
+| [in]    | ulChannelId   | ChannelID of the communication channel |
++---------+---------------+----------------------------------------+
+| [in]    | pHeaderTag    | Pointer to the service header          |
++---------+---------------+----------------------------------------+
+| [in]    | pduData       | Data unit of the received service      |
++---------+---------------+----------------------------------------+
+| [in]    | pduSendBuffer | Data unit for the service reply        |
++---------+---------------+----------------------------------------+
+
+**Returns:**
+
+Error code: *ERR_OK: Service could be executed successfully. *ERR_NOT_SUPPORTED: Service is not supported *ERR_FAILED: Error during executing service
+
+.. _group___cmp_app_b_p_itf_1ga3d1db256d194ff02f92517185968b118:
+
+RTS_RESULT AppBPSet (BreakpointDesc *pBpDesc, RTS_BOOL bPatchCode, Breakpoint **ppbpOut)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set a breakpoint in the specified position. ATTENTION ATTENTION ATTENTION: Only for internal use in the runtime system!! Don't use it in adaptations!
+
+**Parameters**
+
++---------+------------+-----------------------------------------------------------------------------+
+| [in]    | pBpDesc    | Pointer to breakpoint description. See "Breakpoint description" for details |
++---------+------------+-----------------------------------------------------------------------------+
+| [in]    | bPatchCode | 1=Patch code immediately, 0=Only create the breakpoint object               |
++---------+------------+-----------------------------------------------------------------------------+
+| [out]   | ppbpOut    | Returns the new created breakpoint                                          |
++---------+------------+-----------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_b_p_itf_1ga7edf589d6bf3beaa815adfd7ef8e3942:
+
+RTS_RESULT AppBPDelete (Breakpoint *pbp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete a breakpoint ATTENTION ATTENTION ATTENTION: Only for internal use in the runtime system!! Don't use it in adaptations!
+
+**Parameters**
+
++---------+-----+--------------------------------------------------------------------------------------------------------------------+
+| [in]    | pbp | Pointer to breakpoint retrieved by :ref:`AppBPSet() <group___cmp_app_b_p_itf_1ga3d1db256d194ff02f92517185968b118>` |
++---------+-----+--------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

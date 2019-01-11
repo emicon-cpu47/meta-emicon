@@ -1,0 +1,273 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Timer type &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Timer type</a><ul>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-rts-timer-none-0">#define RTS_TIMER_NONE 0</a></li>
+<li><a class="reference internal" href="#define-rts-timer-periodic-1">#define RTS_TIMER_PERIODIC 1</a></li>
+<li><a class="reference internal" href="#define-rts-timer-oneshot-2">#define RTS_TIMER_ONESHOT 2</a></li>
+<li><a class="reference internal" href="#define-ti-started-0x0001">#define TI_STARTED 0x0001</a></li>
+<li><a class="reference internal" href="#define-ti-active-0x0002">#define TI_ACTIVE 0x0002</a></li>
+<li><a class="reference internal" href="#define-ti-resetfollow-0x0004">#define TI_RESETFOLLOW 0x0004</a></li>
+<li><a class="reference internal" href="#define-ti-initialized-0x0008">#define TI_INITIALIZED 0x0008</a></li>
+<li><a class="reference internal" href="#define-ti-watchdog-0x0020">#define TI_WATCHDOG 0x0020</a></li>
+<li><a class="reference internal" href="#define-ti-breakpoint-0x0040">#define TI_BREAKPOINT 0x0040</a></li>
+<li><a class="reference internal" href="#define-timeriswatchdog-sys-timer-info-ptimerinfo-istate-ti-watchdog">#define TimerIsWatchdog ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp; <code class="docutils literal"><span class="pre">TI_WATCHDOG</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timersetwatchdog-sys-timer-info-ptimerinfo-istate-ti-watchdog">#define TimerSetWatchdog ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState |= <code class="docutils literal"><span class="pre">TI_WATCHDOG</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timerresetwatchdog-sys-timer-info-ptimerinfo-istate-ti-watchdog">#define TimerResetWatchdog ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp;= ~ <code class="docutils literal"><span class="pre">TI_WATCHDOG</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timerresetfollow-sys-timer-info-ptimerinfo-istate-ti-resetfollow">#define TimerResetFollow ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp; <code class="docutils literal"><span class="pre">TI_RESETFOLLOW</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timersetresetfollow-sys-timer-info-ptimerinfo-istate-ti-resetfollow">#define TimerSetResetFollow ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState |= <code class="docutils literal"><span class="pre">TI_RESETFOLLOW</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timerresetresetfollow-sys-timer-info-ptimerinfo-istate-ti-resetfollow">#define TimerResetResetFollow ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp;= ~ <code class="docutils literal"><span class="pre">TI_RESETFOLLOW</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timerisactive-sys-timer-info-ptimerinfo-istate-ti-active">#define TimerIsActive ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp; <code class="docutils literal"><span class="pre">TI_ACTIVE</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timersetactive-sys-timer-info-ptimerinfo-istate-ti-active">#define TimerSetActive ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState |= <code class="docutils literal"><span class="pre">TI_ACTIVE</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timerresetactive-sys-timer-info-ptimerinfo-istate-ti-active">#define TimerResetActive ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp;= ~ <code class="docutils literal"><span class="pre">TI_ACTIVE</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timersetstarted-sys-timer-info-ptimerinfo-istate-ti-started">#define TimerSetStarted ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState |= <code class="docutils literal"><span class="pre">TI_STARTED</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timerresetstarted-sys-timer-info-ptimerinfo-istate-ti-started">#define TimerResetStarted ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp;= ~ <code class="docutils literal"><span class="pre">TI_STARTED</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timerisstarted-sys-timer-info-ptimerinfo-istate-ti-started">#define TimerIsStarted ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp; <code class="docutils literal"><span class="pre">TI_STARTED</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timersetstart-sys-timer-info-ptimerinfo-istate-ti-started">#define TimerSetStart ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState |= <code class="docutils literal"><span class="pre">TI_STARTED</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timerisstopped-sys-timer-info-ptimerinfo-istate-ti-started">#define TimerIsStopped (~((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp; <code class="docutils literal"><span class="pre">TI_STARTED</span></code> ))</a></li>
+<li><a class="reference internal" href="#define-timersetstop-sys-timer-info-ptimerinfo-istate-ti-started">#define TimerSetStop ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp;= ~ <code class="docutils literal"><span class="pre">TI_STARTED</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timeronbp-sys-timer-info-ptimerinfo-istate-ti-breakpoint">#define TimerOnBP ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp; <code class="docutils literal"><span class="pre">TI_BREAKPOINT</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timersetonbp-sys-timer-info-ptimerinfo-istate-ti-breakpoint">#define TimerSetOnBP ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState |= <code class="docutils literal"><span class="pre">TI_BREAKPOINT</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timerresetonbp-sys-timer-info-ptimerinfo-istate-ti-breakpoint">#define TimerResetOnBP ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp;= ~ <code class="docutils literal"><span class="pre">TI_BREAKPOINT</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timerisinit-sys-timer-info-ptimerinfo-istate-ti-initialized">#define TimerIsInit ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp; <code class="docutils literal"><span class="pre">TI_INITIALIZED</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timersetinit-sys-timer-info-ptimerinfo-istate-ti-initialized">#define TimerSetInit ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState |= <code class="docutils literal"><span class="pre">TI_INITIALIZED</span></code> )</a></li>
+<li><a class="reference internal" href="#define-timerresetinit-sys-timer-info-ptimerinfo-istate-ti-initialized">#define TimerResetInit ((( <code class="docutils literal"><span class="pre">SYS_TIMER_INFO</span></code> *)pTimerInfo)-&gt;iState &amp;= ~ <code class="docutils literal"><span class="pre">TI_INITIALIZED</span></code> )</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_timer_itf___timertype.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="timer-type">
+<span id="group-sys-timer-itf-timertype"></span><h1>Timer type<a class="headerlink" href="#timer-type" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-sys-timer-itf-timertype-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga009e9dced5f6379ce6a8347b2764b715"><span class="std std-ref">RTS_TIMER_NONE</span></a> 0</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga25c9b7776eca641709e65f41014a5b78"><span class="std std-ref">RTS_TIMER_PERIODIC</span></a> 1</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga0e89e846647f02369da158351d0c6d7a"><span class="std std-ref">RTS_TIMER_ONESHOT</span></a> 2</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"><span class="std std-ref">TI_STARTED</span></a> 0x0001</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa25778cb9acc6237b0bf1dd019b2fceb"><span class="std std-ref">TI_ACTIVE</span></a> 0x0002</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga7dcd301719f7002c19d5534acd54ceca"><span class="std std-ref">TI_RESETFOLLOW</span></a> 0x0004</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa37e089d920f201db9d3482cdbdc9aad"><span class="std std-ref">TI_INITIALIZED</span></a> 0x0008</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga0599a4cc73400fbf96f2e51e58827915"><span class="std std-ref">TI_WATCHDOG</span></a> 0x0020</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68e06b72ea963c78a556ef9682d07f00"><span class="std std-ref">TI_BREAKPOINT</span></a> 0x0040</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga80173d12de52122b4fbee1e7ba6f4c0c"><span class="std std-ref">TimerIsWatchdog</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id1"><span class="problematic" id="id2">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga0599a4cc73400fbf96f2e51e58827915"><span class="std std-ref">TI_WATCHDOG</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga273b93257c45b5955df67e74c85a8bfb"><span class="std std-ref">TimerSetWatchdog</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id3"><span class="problematic" id="id4">*</span></a>)pTimerInfo)-&gt;iState <a href="#id5"><span class="problematic" id="id6">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga0599a4cc73400fbf96f2e51e58827915"><span class="std std-ref">TI_WATCHDOG</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga43865a7fd17ef9f2d3aa5ce2f590ab9e"><span class="std std-ref">TimerResetWatchdog</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id7"><span class="problematic" id="id8">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga0599a4cc73400fbf96f2e51e58827915"><span class="std std-ref">TI_WATCHDOG</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga8a4ee451540ede718d48cdc85622c73e"><span class="std std-ref">TimerResetFollow</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id9"><span class="problematic" id="id10">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga7dcd301719f7002c19d5534acd54ceca"><span class="std std-ref">TI_RESETFOLLOW</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga21d9a203344b2ca2f166c28c293d822f"><span class="std std-ref">TimerSetResetFollow</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id11"><span class="problematic" id="id12">*</span></a>)pTimerInfo)-&gt;iState <a href="#id13"><span class="problematic" id="id14">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga7dcd301719f7002c19d5534acd54ceca"><span class="std std-ref">TI_RESETFOLLOW</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaeb2666e5f29e0b081296b1bbfe07cd38"><span class="std std-ref">TimerResetResetFollow</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id15"><span class="problematic" id="id16">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga7dcd301719f7002c19d5534acd54ceca"><span class="std std-ref">TI_RESETFOLLOW</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga97c6a4d30bc8fddde0aee25957c49415"><span class="std std-ref">TimerIsActive</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id17"><span class="problematic" id="id18">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa25778cb9acc6237b0bf1dd019b2fceb"><span class="std std-ref">TI_ACTIVE</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga3329dddadf0b110618f5a90d0ae06300"><span class="std std-ref">TimerSetActive</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id19"><span class="problematic" id="id20">*</span></a>)pTimerInfo)-&gt;iState <a href="#id21"><span class="problematic" id="id22">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa25778cb9acc6237b0bf1dd019b2fceb"><span class="std std-ref">TI_ACTIVE</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga15e78467768043d428a9c1366fed92fc"><span class="std std-ref">TimerResetActive</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id23"><span class="problematic" id="id24">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa25778cb9acc6237b0bf1dd019b2fceb"><span class="std std-ref">TI_ACTIVE</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga7a92be57c8a48447bb5058a36974cb14"><span class="std std-ref">TimerSetStarted</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id25"><span class="problematic" id="id26">*</span></a>)pTimerInfo)-&gt;iState <a href="#id27"><span class="problematic" id="id28">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"><span class="std std-ref">TI_STARTED</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga3f672a8099c3973f36f4a72a5a268a6a"><span class="std std-ref">TimerResetStarted</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id29"><span class="problematic" id="id30">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"><span class="std std-ref">TI_STARTED</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga6c516c51a0cfc99fe1328c8720f9157d"><span class="std std-ref">TimerIsStarted</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id31"><span class="problematic" id="id32">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"><span class="std std-ref">TI_STARTED</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga64292cb73539ba8e0db3574a23918a78"><span class="std std-ref">TimerSetStart</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id33"><span class="problematic" id="id34">*</span></a>)pTimerInfo)-&gt;iState <a href="#id35"><span class="problematic" id="id36">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"><span class="std std-ref">TI_STARTED</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga70b4f2b503a5307db24800169f251897"><span class="std std-ref">TimerIsStopped</span></a> (~((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id37"><span class="problematic" id="id38">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"><span class="std std-ref">TI_STARTED</span></a> ))</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga21d9f87afb6bbaa82bcf99cc2060dd39"><span class="std std-ref">TimerSetStop</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id39"><span class="problematic" id="id40">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"><span class="std std-ref">TI_STARTED</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaabc53cdd8fe6150fde56b94acc68a1f1"><span class="std std-ref">TimerOnBP</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id41"><span class="problematic" id="id42">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68e06b72ea963c78a556ef9682d07f00"><span class="std std-ref">TI_BREAKPOINT</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaffc551105fa80460203cffa1b68a812a"><span class="std std-ref">TimerSetOnBP</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id43"><span class="problematic" id="id44">*</span></a>)pTimerInfo)-&gt;iState <a href="#id45"><span class="problematic" id="id46">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68e06b72ea963c78a556ef9682d07f00"><span class="std std-ref">TI_BREAKPOINT</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga014085e43f7a76a75775fc11c59edfcf"><span class="std std-ref">TimerResetOnBP</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id47"><span class="problematic" id="id48">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68e06b72ea963c78a556ef9682d07f00"><span class="std std-ref">TI_BREAKPOINT</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga895470db05e9295c301a1fac1a281213"><span class="std std-ref">TimerIsInit</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id49"><span class="problematic" id="id50">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa37e089d920f201db9d3482cdbdc9aad"><span class="std std-ref">TI_INITIALIZED</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga305f6eebab97e0c380d673fb00a18dc5"><span class="std std-ref">TimerSetInit</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id51"><span class="problematic" id="id52">*</span></a>)pTimerInfo)-&gt;iState <a href="#id53"><span class="problematic" id="id54">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa37e089d920f201db9d3482cdbdc9aad"><span class="std std-ref">TI_INITIALIZED</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga3b881276d669c5edf8e814777af4a930"><span class="std std-ref">TimerResetInit</span></a> ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id55"><span class="problematic" id="id56">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa37e089d920f201db9d3482cdbdc9aad"><span class="std std-ref">TI_INITIALIZED</span></a> )</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-timer-itf-timertype-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-rts-timer-none-0">
+<span id="group-sys-timer-itf-timertype-1ga009e9dced5f6379ce6a8347b2764b715"></span><h3>#define RTS_TIMER_NONE 0<a class="headerlink" href="#define-rts-timer-none-0" title="Permalink to this headline">¶</a></h3>
+<p>Possible type of a Timer: RTS_TIMER_NONE: Not Defined RTS_TIMER_PERIODIC: Periodical timer RTS_TIMER_ONESHOT: Oneshot timer</p>
+</div>
+<div class="section" id="define-rts-timer-periodic-1">
+<span id="group-sys-timer-itf-timertype-1ga25c9b7776eca641709e65f41014a5b78"></span><h3>#define RTS_TIMER_PERIODIC 1<a class="headerlink" href="#define-rts-timer-periodic-1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-timer-oneshot-2">
+<span id="group-sys-timer-itf-timertype-1ga0e89e846647f02369da158351d0c6d7a"></span><h3>#define RTS_TIMER_ONESHOT 2<a class="headerlink" href="#define-rts-timer-oneshot-2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-ti-started-0x0001">
+<span id="group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"></span><h3>#define TI_STARTED 0x0001<a class="headerlink" href="#define-ti-started-0x0001" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-ti-active-0x0002">
+<span id="group-sys-timer-itf-timertype-1gaa25778cb9acc6237b0bf1dd019b2fceb"></span><h3>#define TI_ACTIVE 0x0002<a class="headerlink" href="#define-ti-active-0x0002" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-ti-resetfollow-0x0004">
+<span id="group-sys-timer-itf-timertype-1ga7dcd301719f7002c19d5534acd54ceca"></span><h3>#define TI_RESETFOLLOW 0x0004<a class="headerlink" href="#define-ti-resetfollow-0x0004" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-ti-initialized-0x0008">
+<span id="group-sys-timer-itf-timertype-1gaa37e089d920f201db9d3482cdbdc9aad"></span><h3>#define TI_INITIALIZED 0x0008<a class="headerlink" href="#define-ti-initialized-0x0008" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-ti-watchdog-0x0020">
+<span id="group-sys-timer-itf-timertype-1ga0599a4cc73400fbf96f2e51e58827915"></span><h3>#define TI_WATCHDOG 0x0020<a class="headerlink" href="#define-ti-watchdog-0x0020" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-ti-breakpoint-0x0040">
+<span id="group-sys-timer-itf-timertype-1ga68e06b72ea963c78a556ef9682d07f00"></span><h3>#define TI_BREAKPOINT 0x0040<a class="headerlink" href="#define-ti-breakpoint-0x0040" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timeriswatchdog-sys-timer-info-ptimerinfo-istate-ti-watchdog">
+<span id="group-sys-timer-itf-timertype-1ga80173d12de52122b4fbee1e7ba6f4c0c"></span><h3>#define TimerIsWatchdog ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id57"><span class="problematic" id="id58">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga0599a4cc73400fbf96f2e51e58827915"><span class="std std-ref">TI_WATCHDOG</span></a> )<a class="headerlink" href="#define-timeriswatchdog-sys-timer-info-ptimerinfo-istate-ti-watchdog" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timersetwatchdog-sys-timer-info-ptimerinfo-istate-ti-watchdog">
+<span id="group-sys-timer-itf-timertype-1ga273b93257c45b5955df67e74c85a8bfb"></span><h3>#define TimerSetWatchdog ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id59"><span class="problematic" id="id60">*</span></a>)pTimerInfo)-&gt;iState <a href="#id61"><span class="problematic" id="id62">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga0599a4cc73400fbf96f2e51e58827915"><span class="std std-ref">TI_WATCHDOG</span></a> )<a class="headerlink" href="#define-timersetwatchdog-sys-timer-info-ptimerinfo-istate-ti-watchdog" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timerresetwatchdog-sys-timer-info-ptimerinfo-istate-ti-watchdog">
+<span id="group-sys-timer-itf-timertype-1ga43865a7fd17ef9f2d3aa5ce2f590ab9e"></span><h3>#define TimerResetWatchdog ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id63"><span class="problematic" id="id64">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga0599a4cc73400fbf96f2e51e58827915"><span class="std std-ref">TI_WATCHDOG</span></a> )<a class="headerlink" href="#define-timerresetwatchdog-sys-timer-info-ptimerinfo-istate-ti-watchdog" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timerresetfollow-sys-timer-info-ptimerinfo-istate-ti-resetfollow">
+<span id="group-sys-timer-itf-timertype-1ga8a4ee451540ede718d48cdc85622c73e"></span><h3>#define TimerResetFollow ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id65"><span class="problematic" id="id66">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga7dcd301719f7002c19d5534acd54ceca"><span class="std std-ref">TI_RESETFOLLOW</span></a> )<a class="headerlink" href="#define-timerresetfollow-sys-timer-info-ptimerinfo-istate-ti-resetfollow" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timersetresetfollow-sys-timer-info-ptimerinfo-istate-ti-resetfollow">
+<span id="group-sys-timer-itf-timertype-1ga21d9a203344b2ca2f166c28c293d822f"></span><h3>#define TimerSetResetFollow ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id67"><span class="problematic" id="id68">*</span></a>)pTimerInfo)-&gt;iState <a href="#id69"><span class="problematic" id="id70">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga7dcd301719f7002c19d5534acd54ceca"><span class="std std-ref">TI_RESETFOLLOW</span></a> )<a class="headerlink" href="#define-timersetresetfollow-sys-timer-info-ptimerinfo-istate-ti-resetfollow" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timerresetresetfollow-sys-timer-info-ptimerinfo-istate-ti-resetfollow">
+<span id="group-sys-timer-itf-timertype-1gaeb2666e5f29e0b081296b1bbfe07cd38"></span><h3>#define TimerResetResetFollow ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id71"><span class="problematic" id="id72">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga7dcd301719f7002c19d5534acd54ceca"><span class="std std-ref">TI_RESETFOLLOW</span></a> )<a class="headerlink" href="#define-timerresetresetfollow-sys-timer-info-ptimerinfo-istate-ti-resetfollow" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timerisactive-sys-timer-info-ptimerinfo-istate-ti-active">
+<span id="group-sys-timer-itf-timertype-1ga97c6a4d30bc8fddde0aee25957c49415"></span><h3>#define TimerIsActive ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id73"><span class="problematic" id="id74">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa25778cb9acc6237b0bf1dd019b2fceb"><span class="std std-ref">TI_ACTIVE</span></a> )<a class="headerlink" href="#define-timerisactive-sys-timer-info-ptimerinfo-istate-ti-active" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timersetactive-sys-timer-info-ptimerinfo-istate-ti-active">
+<span id="group-sys-timer-itf-timertype-1ga3329dddadf0b110618f5a90d0ae06300"></span><h3>#define TimerSetActive ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id75"><span class="problematic" id="id76">*</span></a>)pTimerInfo)-&gt;iState <a href="#id77"><span class="problematic" id="id78">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa25778cb9acc6237b0bf1dd019b2fceb"><span class="std std-ref">TI_ACTIVE</span></a> )<a class="headerlink" href="#define-timersetactive-sys-timer-info-ptimerinfo-istate-ti-active" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timerresetactive-sys-timer-info-ptimerinfo-istate-ti-active">
+<span id="group-sys-timer-itf-timertype-1ga15e78467768043d428a9c1366fed92fc"></span><h3>#define TimerResetActive ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id79"><span class="problematic" id="id80">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa25778cb9acc6237b0bf1dd019b2fceb"><span class="std std-ref">TI_ACTIVE</span></a> )<a class="headerlink" href="#define-timerresetactive-sys-timer-info-ptimerinfo-istate-ti-active" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timersetstarted-sys-timer-info-ptimerinfo-istate-ti-started">
+<span id="group-sys-timer-itf-timertype-1ga7a92be57c8a48447bb5058a36974cb14"></span><h3>#define TimerSetStarted ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id81"><span class="problematic" id="id82">*</span></a>)pTimerInfo)-&gt;iState <a href="#id83"><span class="problematic" id="id84">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"><span class="std std-ref">TI_STARTED</span></a> )<a class="headerlink" href="#define-timersetstarted-sys-timer-info-ptimerinfo-istate-ti-started" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timerresetstarted-sys-timer-info-ptimerinfo-istate-ti-started">
+<span id="group-sys-timer-itf-timertype-1ga3f672a8099c3973f36f4a72a5a268a6a"></span><h3>#define TimerResetStarted ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id85"><span class="problematic" id="id86">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"><span class="std std-ref">TI_STARTED</span></a> )<a class="headerlink" href="#define-timerresetstarted-sys-timer-info-ptimerinfo-istate-ti-started" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timerisstarted-sys-timer-info-ptimerinfo-istate-ti-started">
+<span id="group-sys-timer-itf-timertype-1ga6c516c51a0cfc99fe1328c8720f9157d"></span><h3>#define TimerIsStarted ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id87"><span class="problematic" id="id88">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"><span class="std std-ref">TI_STARTED</span></a> )<a class="headerlink" href="#define-timerisstarted-sys-timer-info-ptimerinfo-istate-ti-started" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timersetstart-sys-timer-info-ptimerinfo-istate-ti-started">
+<span id="group-sys-timer-itf-timertype-1ga64292cb73539ba8e0db3574a23918a78"></span><h3>#define TimerSetStart ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id89"><span class="problematic" id="id90">*</span></a>)pTimerInfo)-&gt;iState <a href="#id91"><span class="problematic" id="id92">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"><span class="std std-ref">TI_STARTED</span></a> )<a class="headerlink" href="#define-timersetstart-sys-timer-info-ptimerinfo-istate-ti-started" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timerisstopped-sys-timer-info-ptimerinfo-istate-ti-started">
+<span id="group-sys-timer-itf-timertype-1ga70b4f2b503a5307db24800169f251897"></span><h3>#define TimerIsStopped (~((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id93"><span class="problematic" id="id94">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"><span class="std std-ref">TI_STARTED</span></a> ))<a class="headerlink" href="#define-timerisstopped-sys-timer-info-ptimerinfo-istate-ti-started" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timersetstop-sys-timer-info-ptimerinfo-istate-ti-started">
+<span id="group-sys-timer-itf-timertype-1ga21d9f87afb6bbaa82bcf99cc2060dd39"></span><h3>#define TimerSetStop ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id95"><span class="problematic" id="id96">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68055504102d4df6f698de35a6aeaa39"><span class="std std-ref">TI_STARTED</span></a> )<a class="headerlink" href="#define-timersetstop-sys-timer-info-ptimerinfo-istate-ti-started" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timeronbp-sys-timer-info-ptimerinfo-istate-ti-breakpoint">
+<span id="group-sys-timer-itf-timertype-1gaabc53cdd8fe6150fde56b94acc68a1f1"></span><h3>#define TimerOnBP ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id97"><span class="problematic" id="id98">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68e06b72ea963c78a556ef9682d07f00"><span class="std std-ref">TI_BREAKPOINT</span></a> )<a class="headerlink" href="#define-timeronbp-sys-timer-info-ptimerinfo-istate-ti-breakpoint" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timersetonbp-sys-timer-info-ptimerinfo-istate-ti-breakpoint">
+<span id="group-sys-timer-itf-timertype-1gaffc551105fa80460203cffa1b68a812a"></span><h3>#define TimerSetOnBP ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id99"><span class="problematic" id="id100">*</span></a>)pTimerInfo)-&gt;iState <a href="#id101"><span class="problematic" id="id102">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68e06b72ea963c78a556ef9682d07f00"><span class="std std-ref">TI_BREAKPOINT</span></a> )<a class="headerlink" href="#define-timersetonbp-sys-timer-info-ptimerinfo-istate-ti-breakpoint" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timerresetonbp-sys-timer-info-ptimerinfo-istate-ti-breakpoint">
+<span id="group-sys-timer-itf-timertype-1ga014085e43f7a76a75775fc11c59edfcf"></span><h3>#define TimerResetOnBP ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id103"><span class="problematic" id="id104">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1ga68e06b72ea963c78a556ef9682d07f00"><span class="std std-ref">TI_BREAKPOINT</span></a> )<a class="headerlink" href="#define-timerresetonbp-sys-timer-info-ptimerinfo-istate-ti-breakpoint" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timerisinit-sys-timer-info-ptimerinfo-istate-ti-initialized">
+<span id="group-sys-timer-itf-timertype-1ga895470db05e9295c301a1fac1a281213"></span><h3>#define TimerIsInit ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id105"><span class="problematic" id="id106">*</span></a>)pTimerInfo)-&gt;iState &amp; <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa37e089d920f201db9d3482cdbdc9aad"><span class="std std-ref">TI_INITIALIZED</span></a> )<a class="headerlink" href="#define-timerisinit-sys-timer-info-ptimerinfo-istate-ti-initialized" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timersetinit-sys-timer-info-ptimerinfo-istate-ti-initialized">
+<span id="group-sys-timer-itf-timertype-1ga305f6eebab97e0c380d673fb00a18dc5"></span><h3>#define TimerSetInit ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id107"><span class="problematic" id="id108">*</span></a>)pTimerInfo)-&gt;iState <a href="#id109"><span class="problematic" id="id110">|</span></a>= <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa37e089d920f201db9d3482cdbdc9aad"><span class="std std-ref">TI_INITIALIZED</span></a> )<a class="headerlink" href="#define-timersetinit-sys-timer-info-ptimerinfo-istate-ti-initialized" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-timerresetinit-sys-timer-info-ptimerinfo-istate-ti-initialized">
+<span id="group-sys-timer-itf-timertype-1ga3b881276d669c5edf8e814777af4a930"></span><h3>#define TimerResetInit ((( <a class="reference internal" href="struct_s_y_s___t_i_m_e_r___i_n_f_o.html#struct-s-y-s-t-i-m-e-r-i-n-f-o"><span class="std std-ref">SYS_TIMER_INFO</span></a> <a href="#id111"><span class="problematic" id="id112">*</span></a>)pTimerInfo)-&gt;iState &amp;= ~ <a class="reference internal" href="#group-sys-timer-itf-timertype-1gaa37e089d920f201db9d3482cdbdc9aad"><span class="std std-ref">TI_INITIALIZED</span></a> )<a class="headerlink" href="#define-timerresetinit-sys-timer-info-ptimerinfo-istate-ti-initialized" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

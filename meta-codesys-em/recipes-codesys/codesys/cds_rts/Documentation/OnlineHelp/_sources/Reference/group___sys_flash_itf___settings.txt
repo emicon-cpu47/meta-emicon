@@ -1,0 +1,170 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_flash_itf___settings:
+
+========
+Settings
+========
+
+ :ref:`More... <group___sys_flash_itf___settings-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`FILE_DESCtag <struct_f_i_l_e___d_e_s_ctag>`
+
+Macros
+------
+
+- #define :ref:`SYSFLASH_KEY_INT_ERASE_BLOCK_SIZE <group___sys_flash_itf___settings_1gae88272e69b66e214213b518c9a7a8502>` "EraseBlockSize"
+
+- #define :ref:`SYSFLASH_VALUE_INT_ERASE_BLOCK_SIZE_DEFAULT <group___sys_flash_itf___settings_1ga2d03f7dc8de26d5bcc1fe6eba6bf214c>` INT32_C(0x1000)
+
+- #define :ref:`SYSFLASH_KEY_INT_READ_BLOCK_SIZE <group___sys_flash_itf___settings_1gabbe665ac1eb493877e38e91c1fecc6f9>` "ReadBlockSize"
+
+- #define :ref:`SYSFLASH_VALUE_INT_READ_BLOCK_SIZE_DEFAULT <group___sys_flash_itf___settings_1ga7e8b30a88881a4a0feff57ac8aaea154>` INT32_C(0x10000)
+
+- #define :ref:`SYSFLASH_KEY_INT_WRITE_BLOCK_SIZE <group___sys_flash_itf___settings_1gacd072cb6a3625cf5c1913f74a2815e6f>` "WriteBlockSize"
+
+- #define :ref:`SYSFLASH_VALUE_INT_WRITE_BLOCK_SIZE_DEFAULT <group___sys_flash_itf___settings_1ga7374a9ca4fd72937e97bdeb3ea8bec6e>` INT32_C(0x1000)
+
+- #define :ref:`SYSFLASH_KEY_INT_FLUSH_BLOCK_SIZE <group___sys_flash_itf___settings_1ga9afcefbac9388c6381d35ee72e525842>` "FlushBlockSize"
+
+- #define :ref:`SYSFLASH_VALUE_INT_FLUSH_BLOCK_SIZE_DEFAULT <group___sys_flash_itf___settings_1ga5d5db5516c205f78c0c42cdce7f9f423>` INT32_C(0x10000000)
+
+- #define :ref:`MAX_FILENAME <group___sys_flash_itf___settings_1gabe0ec333b60117063f9b9fd9f849cb08>` 32
+
+Typedefs
+--------
+
+- typedef enum :ref:`tagFlashArea <group___sys_flash_itf___settings_1gaab7373f3d02c11e0849445fb480ec0d9>` :ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`
+
+- typedef struct :ref:`FILE_DESCtag <struct_f_i_l_e___d_e_s_ctag>` :ref:`FILE_DESC <group___sys_flash_itf___settings_1ga6b52dd6db6eddfc75b19c1cee34ab84c>`
+
+Enumerations
+------------
+
+- enum :ref:`tagFlashArea <group___sys_flash_itf___settings_1gaab7373f3d02c11e0849445fb480ec0d9>` { :ref:`FA_UNKNOWN <group___sys_flash_itf___settings_1ggaab7373f3d02c11e0849445fb480ec0d9a54058e6c6b3c417ce53eafb0fe7f6806>`, :ref:`FA_FILE <group___sys_flash_itf___settings_1ggaab7373f3d02c11e0849445fb480ec0d9ac315b7d2339e60b9c9e6a689962c4c13>`, :ref:`FA_CODE <group___sys_flash_itf___settings_1ggaab7373f3d02c11e0849445fb480ec0d9af255155e366a11d9b7987dd1a843841e>` }
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysFlashOSInit <group___sys_flash_itf___settings_1ga22dd3249f6e6c066799ddb133580cb9d>` (INIT_STRUCT * pInit)
+
+- RTS_RESULT :ref:`SysFlashOSHookFunction <group___sys_flash_itf___settings_1ga4e04232e16ff1d0709d43bde8460dc7a>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+.. _group___sys_flash_itf___settings-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_flash_itf___settings_1gae88272e69b66e214213b518c9a7a8502:
+
+#define SYSFLASH_KEY_INT_ERASE_BLOCK_SIZE "EraseBlockSize"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Max. size of a block, which is erased in one piece. If a block exceeds this size, the erase operation is splitted up into several calls of :ref:`SysFlashErase_() <group___sys_flash_itf_1ga21fd79f255440888df20a0a73f181d87>` , each limited to this value. Should be set to a size, which is erased in below 1 second, because the CommCycleHook is called after each block to keep the rest of the RTS alive.
+
+.. _group___sys_flash_itf___settings_1ga2d03f7dc8de26d5bcc1fe6eba6bf214c:
+
+#define SYSFLASH_VALUE_INT_ERASE_BLOCK_SIZE_DEFAULT INT32_C(0x1000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_flash_itf___settings_1gabbe665ac1eb493877e38e91c1fecc6f9:
+
+#define SYSFLASH_KEY_INT_READ_BLOCK_SIZE "ReadBlockSize"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Max. size of a block, which is read in one piece. If a block exceeds this size, the erase operation is splitted up into several calls of :ref:`SysFlashRead_() <group___sys_flash_itf_1gaf5c5962662e1806888cfb0e624afee97>` , each limited to this value. Should be set to a size, which is read in below 1 second, because the CommCycleHook is called after each block to keep the rest of the RTS alive.
+
+.. _group___sys_flash_itf___settings_1ga7e8b30a88881a4a0feff57ac8aaea154:
+
+#define SYSFLASH_VALUE_INT_READ_BLOCK_SIZE_DEFAULT INT32_C(0x10000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_flash_itf___settings_1gacd072cb6a3625cf5c1913f74a2815e6f:
+
+#define SYSFLASH_KEY_INT_WRITE_BLOCK_SIZE "WriteBlockSize"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Max. size of a block, which is written in one piece. If a block exceeds this size, the write operation is splitted up into several calls of :ref:`SysFlashWrite_() <group___sys_flash_itf_1ga0e9c7a6ca1e7ac2637fae386cd4b84bd>` , each limited to this value. Should be set to a size, which is written in below 1 second, because the CommCycleHook is called after each block to keep the rest of the RTS alive.
+
+.. _group___sys_flash_itf___settings_1ga7374a9ca4fd72937e97bdeb3ea8bec6e:
+
+#define SYSFLASH_VALUE_INT_WRITE_BLOCK_SIZE_DEFAULT INT32_C(0x1000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_flash_itf___settings_1ga9afcefbac9388c6381d35ee72e525842:
+
+#define SYSFLASH_KEY_INT_FLUSH_BLOCK_SIZE "FlushBlockSize"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Max. size of a block, which is flushed in one piece. If a block exceeds this size, the flush operation is splitted up into several calls of :ref:`SysFlashFlush_() <group___sys_flash_itf_1gaf4cc69f895ad17f6e6a7b31a4c290396>` , each limited to this value. Should be set to a size, which is flushed in below 1 second, because the CommCycleHook is called after each block to keep the rest of the RTS alive.
+
+.. _group___sys_flash_itf___settings_1ga5d5db5516c205f78c0c42cdce7f9f423:
+
+#define SYSFLASH_VALUE_INT_FLUSH_BLOCK_SIZE_DEFAULT INT32_C(0x10000000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_flash_itf___settings_1gabe0ec333b60117063f9b9fd9f849cb08:
+
+#define MAX_FILENAME 32
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb:
+
+typedef enum tagFlashArea  FlashArea
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_flash_itf___settings_1ga6b52dd6db6eddfc75b19c1cee34ab84c:
+
+typedef struct FILE_DESCtag  FILE_DESC
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enumeration Type Documentation
+------------------------------
+
+.. _group___sys_flash_itf___settings_1gaab7373f3d02c11e0849445fb480ec0d9:
+
+enum tagFlashArea
+^^^^^^^^^^^^^^^^^
+
+
+**Enumerator:**
+
++------------+
+| FA_UNKNOWN |
++------------+
+| FA_FILE    |
++------------+
+| FA_CODE    |
++------------+
+
+Function Documentation
+----------------------
+
+.. _group___sys_flash_itf___settings_1ga22dd3249f6e6c066799ddb133580cb9d:
+
+RTS_RESULT SysFlashOSInit (INIT_STRUCT *pInit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_flash_itf___settings_1ga4e04232e16ff1d0709d43bde8460dc7a:
+
+RTS_RESULT SysFlashOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,28 @@
+
+
+PPC VLE Codegenerator 
+=====================
+
+SysCpuHandling implementation notes
+-----------------------------------
+
+- SysCpuSearchOnStack_():
+
+This function is used to roll back the call stack in case of an exception, which occured in an externl C function. As the stack frame and 
+colling convention of the C compiler and the CODESYS codegenerator are different and thus the rolling back of the callstack is different,
+a pattern is pushed to stack by the CODESYS application before an external C function is called. The pattern is marking the transition 
+between the C and the CODESYS application context.
+SysCpuSearchOnStack_() is used to seach for that pattern on stack.
+
+This feature is not supported for PowerPC and SysCpuSearchOnStack_() must return ERR_NOTIMPLEMENTED.
+
+
+- SysCpuGetInstancePointer():
+
+Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context. 
+The offset is specific to the platform. It is 8 byte for the PPC codegenerator, if the 'codegenerator\\EABIStackFrame' target setting is used and 16 byte if it is not used.    
+
+An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.
+
+
+

@@ -1,0 +1,62 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _struct___security_editable_setting:
+
+=========================================
+_SecurityEditableSetting Struct Reference
+=========================================
+
+| #include ":ref:`CmpSecurityManagerItf.h <_cmp_security_manager_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_UI32 :ref:`flags <struct___security_editable_setting_1a0363289af686e1e92769b6454cc63c92>`
+- char * :ref:`pszSecName <struct___security_editable_setting_1a6c901f375ab16e9e508d50c3456851ff>`
+- char * :ref:`pszDescription <struct___security_editable_setting_1a710fe8646517a808fdfe25b292428a83>`
+- :ref:`SecuritySettingValue <group___cmp_security_manager_itf_1gac5532c61f8490e8516c74d9ecbdce621>` :ref:`secValue <struct___security_editable_setting_1a00819693498bec61b3a15dfc6e0e5acb>`
+
+Detailed Description
+--------------------
+
+This structure stores a editable setting. The setting can be registerd using SecManRegisterEditableSetting function. The default value given when registring will be returned until the setting has been changed by the someone. Then the changed value will be returned. To indicate if a string or an intager is stored use either CMPSECMAN_FLAGS_STRINGSETTING or CMPSECMAN_FLAGS_INTSETTING. The corresponding field in the secValue union is then used. Use the function SecManGetSettingValue to retrieve the valued stored.
+
+Field Documentation
+-------------------
+
+.. _struct___security_editable_setting_1a0363289af686e1e92769b6454cc63c92:
+
+RTS_UI32 _SecurityEditableSetting::flags
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Flags of the entry. See "SecuritySettingFlags" for details.
+
+.. _struct___security_editable_setting_1a6c901f375ab16e9e508d50c3456851ff:
+
+char* _SecurityEditableSetting::pszSecName
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Name of the security setting
+
+.. _struct___security_editable_setting_1a710fe8646517a808fdfe25b292428a83:
+
+char* _SecurityEditableSetting::pszDescription
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Description of the security setting
+
+.. _struct___security_editable_setting_1a00819693498bec61b3a15dfc6e0e5acb:
+
+SecuritySettingValue _SecurityEditableSetting::secValue
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpSecurityManagerItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

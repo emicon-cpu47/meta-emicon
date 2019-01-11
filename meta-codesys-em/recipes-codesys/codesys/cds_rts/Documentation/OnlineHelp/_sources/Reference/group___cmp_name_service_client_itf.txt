@@ -1,0 +1,398 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_name_service_client_itf:
+
+=======================
+CmpNameServiceClientItf
+=======================
+
+Interface of CmpNameServiceClient. :ref:`More... <group___cmp_name_service_client_itf-details>`
+
+Modules
+-------
+
+- :ref:`Settings <group___cmp_name_service_client_itf___settings>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpNameServiceClient_C <struct_i_cmp_name_service_client___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpNameServiceClient <group___cmp_name_service_client_itf_1ga605d5e7cf7212faa9d7a28927d7e00b7>`
+
+- #define :ref:`EXTITF_CmpNameServiceClient <group___cmp_name_service_client_itf_1ga37db05cfd2280fee2157822296e21295>`
+
+Typedefs
+--------
+
+- typedef void(* :ref:`PFHANDLENSRESPONSE <group___cmp_name_service_client_itf_1ga66198a4227da7545b58564a6bd46579e>`)(RTS_RESULT nResult, NODEADDRESS addrNode, NODEINFOPACKED *pNodeInfo, unsigned short wVersion, RTS_HANDLE dwRequestId, int bComplete)
+
+- typedef void(* :ref:`PFHANDLENSRESPONSE2 <group___cmp_name_service_client_itf_1gaf6a84eace8e1f663744a437490efaafc>`)(RTS_RESULT nResult, NODEADDRESS addrNode, NODEINFOPACKED2 *pNodeInfo2, unsigned short wVersion, RTS_HANDLE dwRequestId, int bComplete)
+
+- typedef void(* :ref:`PFHANDLENSRESPONSE3 <group___cmp_name_service_client_itf_1ga6c948f282a09b39bcd95306cbfcf4cce>`)(RTS_RESULT nResult, NODEADDRESS addrNode, NODEINFOPACKED3 *pNodeInfo3, unsigned short wVersion, RTS_UI8 byClientBlkDrvType, RTS_HANDLE dwRequestId, int bComplete)
+
+- typedef :ref:`ICmpNameServiceClient_C <struct_i_cmp_name_service_client___c>` :ref:`ICmpNameServiceClient <group___cmp_name_service_client_itf_1ga21ef1098749be210922fb5ad6ee4a952>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`NSClientHandleData <group___cmp_name_service_client_itf_1ga757cf20c2236dcb918eadcc9342f5c32>` (RTS_HANDLE hRouter, RTS_HANDLE hNetworkInterface, RTS_UI8 byServiceId, RTS_UI8 byMessageId, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrSender, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrReceiver, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData, RTS_RESULT nRouterError)
+
+- RTS_RESULT :ref:`NSResolveName <group___cmp_name_service_client_itf_1ga0d1be22d775264af48ab460af623763f>` (const RTS_WCHAR * pwszName, RTS_HANDLE dwRequestId, :ref:`PFHANDLENSRESPONSE <group___cmp_name_service_client_itf_1ga66198a4227da7545b58564a6bd46579e>`  pfCallback)
+
+- RTS_RESULT :ref:`NSResolveName3 <group___cmp_name_service_client_itf_1ga047b2f3a83563e5553715d8403ca8ed4>` (const RTS_WCHAR * pwszName, RTS_UI32 dwTimeout, RTS_BOOL bFinishWithFirstNode, RTS_HANDLE dwRequestId, :ref:`PFHANDLENSRESPONSE3 <group___cmp_name_service_client_itf_1ga6c948f282a09b39bcd95306cbfcf4cce>`  pfCallback3)
+
+- RTS_RESULT :ref:`NSResolveAddress <group___cmp_name_service_client_itf_1ga27827a9db89e986d9239c872971553f5>` (:ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>`  addrNode, RTS_HANDLE dwRequestId, :ref:`PFHANDLENSRESPONSE <group___cmp_name_service_client_itf_1ga66198a4227da7545b58564a6bd46579e>`  pfCallback)
+
+- RTS_RESULT :ref:`NSResolveAddress2 <group___cmp_name_service_client_itf_1ga81e4e93aefd9454aac1406a5c6a3f2be>` (:ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>`  addrNode, RTS_HANDLE dwRequestId, :ref:`PFHANDLENSRESPONSE2 <group___cmp_name_service_client_itf_1gaf6a84eace8e1f663744a437490efaafc>`  pfCallback2)
+
+- RTS_RESULT :ref:`NSResolveAddress3 <group___cmp_name_service_client_itf_1ga814e0166aa6f9bdc9019296bc19c147e>` (:ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>`  addrNode, RTS_UI32 dwTimeout, RTS_HANDLE dwRequestId, :ref:`PFHANDLENSRESPONSE3 <group___cmp_name_service_client_itf_1ga6c948f282a09b39bcd95306cbfcf4cce>`  pfCallback3)
+
+- RTS_RESULT :ref:`NSResolveBlkDrvAddress2 <group___cmp_name_service_client_itf_1gabbbe8cda510898d7479aa053b839249c>` (RTS_UI8 byBlkDrvType, RTS_UI8 byFlags, RTS_UI8 byAddrBitLength, :ref:`NETWORKADDRESS <struct_n_e_t_w_o_r_k_a_d_d_r_e_s_s>` * pNetworkAddr, RTS_HANDLE dwRequestId, :ref:`PFHANDLENSRESPONSE2 <group___cmp_name_service_client_itf_1gaf6a84eace8e1f663744a437490efaafc>`  pfCallback2)
+
+- RTS_RESULT :ref:`NSResolveBlkDrvAddress3 <group___cmp_name_service_client_itf_1ga0053b9c8d7638fec725e9e0bd634a18d>` (RTS_UI8 byBlkDrvType, RTS_UI8 byFlags, RTS_UI8 byAddrBitLength, :ref:`NETWORKADDRESS <struct_n_e_t_w_o_r_k_a_d_d_r_e_s_s>` * pNetworkAddr, RTS_UI32 dwTimeout, RTS_HANDLE dwRequestId, :ref:`PFHANDLENSRESPONSE3 <group___cmp_name_service_client_itf_1ga6c948f282a09b39bcd95306cbfcf4cce>`  pfCallback3)
+
+- RTS_RESULT :ref:`NSResolveAll <group___cmp_name_service_client_itf_1ga44c747b6ec51cbe607311aa516d19ad5>` (RTS_HANDLE dwRequestId, :ref:`PFHANDLENSRESPONSE <group___cmp_name_service_client_itf_1ga66198a4227da7545b58564a6bd46579e>`  pfCallback)
+
+- RTS_RESULT :ref:`NSResolveAll2 <group___cmp_name_service_client_itf_1ga1a91919cd550e76a388a9b208c144e8a>` (RTS_HANDLE dwRequestId, :ref:`PFHANDLENSRESPONSE2 <group___cmp_name_service_client_itf_1gaf6a84eace8e1f663744a437490efaafc>`  pfCallback2)
+
+- RTS_RESULT :ref:`NSResolveAll3 <group___cmp_name_service_client_itf_1gab3e56180d1be42125bf0a6d3c2a2a4f8>` (RTS_UI32 dwTimeout, RTS_HANDLE dwRequestId, :ref:`PFHANDLENSRESPONSE3 <group___cmp_name_service_client_itf_1ga6c948f282a09b39bcd95306cbfcf4cce>`  pfCallback3)
+
+- RTS_RESULT :ref:`NSAdjustResolveTimeout <group___cmp_name_service_client_itf_1gaabfbca9a8549b262fae760fd5df6202a>` (RTS_UI32 dwRemainingTimeout, RTS_HANDLE dwRequestId)
+
+.. _group___cmp_name_service_client_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpNameServiceClient.
+
+External interface for the naming service client
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_name_service_client_itf_1ga605d5e7cf7212faa9d7a28927d7e00b7:
+
+#define ITF_CmpNameServiceClient
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_name_service_client_itf_1ga37db05cfd2280fee2157822296e21295:
+
+#define EXTITF_CmpNameServiceClient
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_name_service_client_itf_1ga66198a4227da7545b58564a6bd46579e:
+
+typedef void( * PFHANDLENSRESPONSE)(RTS_RESULT nResult, NODEADDRESS addrNode, NODEINFOPACKED *pNodeInfo, unsigned short wVersion, RTS_HANDLE dwRequestId, int bComplete)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_name_service_client_itf_1gaf6a84eace8e1f663744a437490efaafc:
+
+typedef void( * PFHANDLENSRESPONSE2)(RTS_RESULT nResult, NODEADDRESS addrNode, NODEINFOPACKED2 *pNodeInfo2, unsigned short wVersion, RTS_HANDLE dwRequestId, int bComplete)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_name_service_client_itf_1ga6c948f282a09b39bcd95306cbfcf4cce:
+
+typedef void( * PFHANDLENSRESPONSE3)(RTS_RESULT nResult, NODEADDRESS addrNode, NODEINFOPACKED3 *pNodeInfo3, unsigned short wVersion, RTS_UI8 byClientBlkDrvType, RTS_HANDLE dwRequestId, int bComplete)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_name_service_client_itf_1ga21ef1098749be210922fb5ad6ee4a952:
+
+typedef ICmpNameServiceClient_C ICmpNameServiceClient
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_name_service_client_itf_1ga757cf20c2236dcb918eadcc9342f5c32:
+
+RTS_RESULT NSClientHandleData (RTS_HANDLE hRouter, RTS_HANDLE hNetworkInterface, RTS_UI8 byServiceId, RTS_UI8 byMessageId, PEERADDRESS addrSender, PEERADDRESS addrReceiver, PROTOCOL_DATA_UNIT pduData, RTS_RESULT nRouterError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Protocol handler of CmpNameServiceClient. Attention: Must only be called by CmpRouter to forward an incoming data package.
+
+**Parameters**
+
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hRouter           | Handle of router instance calling this function. For L4 client implementations, by default it is called by the router instance 0. For L4 server implementations, it is called by the router instance which has received the package originally.                                                                           |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hNetworkInterface | Handle of the network interface receiving originally the package                                                                                                                                                                                                                                                          |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | byServiceId       | The protocol id of the package                                                                                                                                                                                                                                                                                            |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | byMessageId       | The message id of the package                                                                                                                                                                                                                                                                                             |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | addrSender        | Sender address. The pointer within will not be valid after this function returns.                                                                                                                                                                                                                                         |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | addrReceiver      | Receiver address (either the address of this node or a broadcast address). The pointer within will not be valid after this function returns.                                                                                                                                                                              |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pduData           | The received data. The data pointer will not be valid after this function returns.                                                                                                                                                                                                                                        |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | nRouterError      | If this value is not ERR_OK, then this message has been generated by an intermediate node in response to a message previously sent by this node, that could not be delivered. nRouterError identifies the kind of error that happened. pduData then contains a detailed error description depending on the kind of error. |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_name_service_client_itf_1ga0d1be22d775264af48ab460af623763f:
+
+RTS_RESULT NSResolveName (const RTS_WCHAR *pwszName, RTS_HANDLE dwRequestId, PFHANDLENSRESPONSE pfCallback)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve the node information for the node with name pwszName. The result is returned asynchronously by calling the pfCallback function, as soon as a node answers. If the node is not unique in the PLC network all nodes with the specified name will answer. The end of the scan is indicated by calling pfCallback with ERR_TIMEOUT. In some cases the pfCallback might be called before this function returns. The caller must be prepared to deal with that situation.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------+
+| [in]    | pwszName    | The name of the node to find                                                                                          |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwRequestId | Identifies the request. Parallel running requests should have a unique id. Returned again by the pfCallback function. |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfCallback  | The function to be called when retrieving an answer.                                                                  |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_name_service_client_itf_1ga047b2f3a83563e5553715d8403ca8ed4:
+
+RTS_RESULT NSResolveName3 (const RTS_WCHAR *pwszName, RTS_UI32 dwTimeout, RTS_BOOL bFinishWithFirstNode, RTS_HANDLE dwRequestId, PFHANDLENSRESPONSE3 pfCallback3)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve the node information for the node with name pwszName. The result is returned asynchronously by calling the pfCallback function, as soon as a node answers. If the node is not unique in the PLC network all nodes with the specified name will answer. Setting the parameter bFinishWithFirstNode to TRUE is useful, if the client want to connect to the first answering node without waiting for the timeout. Typically this is used, if unique node names in the network are assured. The end of the scan is only indicated by calling pfCallback with ERR_TIMEOUT, if bFinishWithFirstNode was set to FALSE or if no node has anwered the request. In some cases the pfCallback might be called before this function returns. The caller must be prepared to deal with that situation.
+
+**Parameters**
+
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pwszName             | The name of the node to find                                                                                           |
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwTimeout            | Overall timeout in ms for this operation. If 0, the default NAMESERVICESRVKEY_INT_SCAN_TIME is used.                   |
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bFinishWithFirstNode | If TRUE, pfCallback will be called only once for this request. Further answering nodes are ignored.                    |
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwRequestId          | Identifies the request. Parallel running requests should have a unique id. Returned again by the pfCallback3 function. |
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfCallback3          | The function to be called when retrieving an answer.                                                                   |
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_name_service_client_itf_1ga27827a9db89e986d9239c872971553f5:
+
+RTS_RESULT NSResolveAddress (NODEADDRESS addrNode, RTS_HANDLE dwRequestId, PFHANDLENSRESPONSE pfCallback)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve the node information for the node with the given address. The result is returned asynchronously by calling the pfCallback function, as soon as the node answers. pfCallback will be called only once for this request. In some cases the pfCallback might be called before this function returns. The caller must be prepared to deal with that situation.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------+
+| [in]    | addrNode    | Address of the node to find.                                                                                          |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwRequestId | Identifies the request. Parallel running requests should have a unique id. Returned again by the pfCallback function. |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfCallback  | The function to be called when retrieving an answer.                                                                  |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_name_service_client_itf_1ga81e4e93aefd9454aac1406a5c6a3f2be:
+
+RTS_RESULT NSResolveAddress2 (NODEADDRESS addrNode, RTS_HANDLE dwRequestId, PFHANDLENSRESPONSE2 pfCallback2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve the node information for the node with the given address. The result is returned asynchronously by calling the pfCallback2 function, as soon as the node answers. pfCallback2 will be called only once for this request. In some cases the pfCallback2 might be called before this function returns. The caller must be prepared to deal with that situation.
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | addrNode    | Address of the node to find.                                                                                           |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwRequestId | Identifies the request. Parallel running requests should have a unique id. Returned again by the pfCallback2 function. |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfCallback2 | The function to be called when retrieving an answer.                                                                   |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_name_service_client_itf_1ga814e0166aa6f9bdc9019296bc19c147e:
+
+RTS_RESULT NSResolveAddress3 (NODEADDRESS addrNode, RTS_UI32 dwTimeout, RTS_HANDLE dwRequestId, PFHANDLENSRESPONSE3 pfCallback3)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve the node information for the node with the given address. The result is returned asynchronously by calling the pfCallback3 function, as soon as the node answers. pfCallback3 will be called only once for this request. In some cases the pfCallback3 might be called before this function returns. The caller must be prepared to deal with that situation.
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | addrNode    | Address of the node to find.                                                                                           |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwTimeout   | Overall timeout in ms for this operation. If 0, the default NAMESERVICESRVKEY_INT_SCAN_TIME is used.                   |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwRequestId | Identifies the request. Parallel running requests should have a unique id. Returned again by the pfCallback3 function. |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfCallback3 | The function to be called when retrieving an answer.                                                                   |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_name_service_client_itf_1gabbbe8cda510898d7479aa053b839249c:
+
+RTS_RESULT NSResolveBlkDrvAddress2 (RTS_UI8 byBlkDrvType, RTS_UI8 byFlags, RTS_UI8 byAddrBitLength, NETWORKADDRESS *pNetworkAddr, RTS_HANDLE dwRequestId, PFHANDLENSRESPONSE2 pfCallback2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve the node information for the node with the given block driver address. This is specified by the block driver type and the address in the local network (e. g. ipaddress and port). If RTS_BLK_DRV_TYPE_NONE is passed, the function returns the address of the own runtime system. In this special use case the node info may not contain a valid node info. The result is returned asynchronously by calling the pfCallback2 function, as soon as the node answers. pfCallback2 will be called only once for this request. In some cases the pfCallback2 might be called before this function returns. The caller must be prepared to deal with that situation.
+
+**Parameters**
+
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | byBlkDrvType    | The type of the block driver, which should should resolve the address. If set to RTS_BLK_DRV_TYPE_NONE, the address of the own runtime system is returned. |
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | byFlags         | For future use, must be 0.                                                                                                                                 |
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | byAddrBitLength | Bit length of the network address. Must match with the block driver configuration. Should be 0, if RTS_BLK_DRV_TYPE_NONE is used to get the own node info. |
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pNetworkAddr    | Local network address of the node to find. Should be NULL, if RTS_BLK_DRV_TYPE_NONE is used to get the own node info.                                      |
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwRequestId     | Identifies the request. Returned again by the pfCallback2 function. Parallel running requests should have a unique id.                                     |
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfCallback2     | The function to be called when retrieving an answer.                                                                                                       |
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_name_service_client_itf_1ga0053b9c8d7638fec725e9e0bd634a18d:
+
+RTS_RESULT NSResolveBlkDrvAddress3 (RTS_UI8 byBlkDrvType, RTS_UI8 byFlags, RTS_UI8 byAddrBitLength, NETWORKADDRESS *pNetworkAddr, RTS_UI32 dwTimeout, RTS_HANDLE dwRequestId, PFHANDLENSRESPONSE3 pfCallback3)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve the node information for the node with the given block driver address. This is specified by the block driver type and the address in the local network (e. g. ipaddress and port). If RTS_BLK_DRV_TYPE_NONE is passed, the function returns the address of the own runtime system. In this special use case the node info may not contain a valid node info. The result is returned asynchronously by calling the pfCallback3 function, as soon as the node answers. pfCallback3 will be called only once for this request. In some cases the pfCallback3 might be called before this function returns. The caller must be prepared to deal with that situation.
+
+**Parameters**
+
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | byBlkDrvType    | The type of the block driver, which should should resolve the address. If set to RTS_BLK_DRV_TYPE_NONE, the address of the own runtime system is returned. |
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | byFlags         | For future use, must be 0.                                                                                                                                 |
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | byAddrBitLength | Bit length of the network address. Must match with the block driver configuration. Should be 0, if RTS_BLK_DRV_TYPE_NONE is used to get the own node info. |
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pNetworkAddr    | Local network address of the node to find. Should be NULL, if RTS_BLK_DRV_TYPE_NONE is used to get the own node info.                                      |
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwTimeout       | Overall timeout in ms for this operation. If 0, the default NAMESERVICESRVKEY_INT_SCAN_TIME is used.                                                       |
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwRequestId     | Identifies the request. Returned again by the pfCallback3 function. Parallel running requests should have a unique id.                                     |
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfCallback3     | The function to be called when retrieving an answer.                                                                                                       |
++---------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_name_service_client_itf_1ga44c747b6ec51cbe607311aa516d19ad5:
+
+RTS_RESULT NSResolveAll (RTS_HANDLE dwRequestId, PFHANDLENSRESPONSE pfCallback)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve all nodes in the network. The result is returned asynchronously by calling the pfCallback function once for every answering node. That means pfCallback will be called an unknown number of times. bComplete will not resolve to TRUE until nResult is set to ERR_TIMEOUT. Thus ERR_TIMEOUT is an expected result for this request. In some cases the pfCallback might be called before this function returns. The caller must be prepared to deal with that situation.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwRequestId | Identifies the request. Parallel running requests should have a unique id. Returned again by the pfCallback function. |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfCallback  | The function to be called when retrieving an answer.                                                                  |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_name_service_client_itf_1ga1a91919cd550e76a388a9b208c144e8a:
+
+RTS_RESULT NSResolveAll2 (RTS_HANDLE dwRequestId, PFHANDLENSRESPONSE2 pfCallback2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve all nodes in the network. The result is returned asynchronously by calling the pfCallback2 function once for every answering node. That means pfCallback2 will be called an unknown number of times. bComplete will not resolve to TRUE until nResult is set to ERR_TIMEOUT. Thus ERR_TIMEOUT is an expected result for this request. In some cases the pfCallback2 might be called before this function returns. The caller must be prepared to deal with that situation.
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwRequestId | Identifies the request. Parallel running requests should have a unique id. Returned again by the pfCallback2 function. |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfCallback2 | The function to be called when retrieving an answer.                                                                   |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_name_service_client_itf_1gab3e56180d1be42125bf0a6d3c2a2a4f8:
+
+RTS_RESULT NSResolveAll3 (RTS_UI32 dwTimeout, RTS_HANDLE dwRequestId, PFHANDLENSRESPONSE3 pfCallback3)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve all nodes in the network. The result is returned asynchronously by calling the pfCallback3 function once for every answering node. That means pfCallback3 will be called an unknown number of times. bComplete will not resolve to TRUE until nResult is set to ERR_TIMEOUT. Thus ERR_TIMEOUT is an expected result for this request. In some cases the pfCallback3 might be called before this function returns. The caller must be prepared to deal with that situation.
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwTimeout   | Overall timeout in ms for this operation. If 0, the default NAMESERVICESRVKEY_INT_SCAN_TIME is used.                   |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwRequestId | Identifies the request. Parallel running requests should have a unique id. Returned again by the pfCallback3 function. |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfCallback3 | The function to be called when retrieving an answer.                                                                   |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_name_service_client_itf_1gaabfbca9a8549b262fae760fd5df6202a:
+
+RTS_RESULT NSAdjustResolveTimeout (RTS_UI32 dwRemainingTimeout, RTS_HANDLE dwRequestId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+With this function the remaining timeout of all NSResolve... functions can be adjusted. The typical use case is to set the timeout to 0, as soon as the expected node has answered. Beside the new timeout the running NSResolve... function is not affected in its behavior.
+
+**Parameters**
+
++---------+--------------------+----------------------------------------------------------------+
+| [in]    | dwRemainingTimeout | Remaining timeout in ms for already running resolve request.   |
++---------+--------------------+----------------------------------------------------------------+
+| [in]    | dwRequestId        | Id of the request, whose remaining resolve time should be set. |
++---------+--------------------+----------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

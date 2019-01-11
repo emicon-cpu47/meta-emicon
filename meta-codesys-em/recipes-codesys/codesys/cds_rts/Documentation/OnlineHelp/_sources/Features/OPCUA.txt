@@ -1,0 +1,54 @@
+
+======
+OPC UA
+======
+
+Overview
+========
+
+OPC UA is a communication protocol developed by the OPC Foundation. This protocol
+is used to exchange data between different controllers and to exchange data
+from the controller to higher level systems like SCADA systems. In contrast 
+to the classical OPC protocol OPC UA doesn't use Microsoft COM/DCOM 
+technology. It uses a TCP based protocol to exchange data. So OPC UA is platform independent
+an the protocol can be implemented on different platforms using different programming
+languages. The OPC Foundation provides three different implementations of the 
+protocol to its members:
+
+    - ANSI-C implementation
+    - .Net implementation written in C#
+    - Java implementation
+
+The protocol was designed fulfil different aspects:
+
+    - Scalability: The same protocol can be used from sensor level up to SCADA systems
+    - Security: Is an incorporated part of the protocol
+    - Profiles: Describing the capabilities of servers or clients
+
+Delivery
+========
+
+Because of some license restriction of the OPC Foundation there are two 
+different ways how to get access to the OPC UA component:
+
+#. Binary: A binary version of the component can be shipped to every OEM if 
+   we have the toolchain of this platform.
+#. Sources: The OPC UA license doesn't allow shipping the OPC UA stack source code. 
+   To be able to build the OPC UA component from source the OEM needs to be a member 
+   of the OPC Foundation. Only members get access to the source code of the OPC UA ANSI-C stack. We ship the 
+   following components to be able to build the component:
+
+   - The platform adaptation of the OPC UA stack to the runtime system.
+   - The component source code itself.
+   - A patch containing modifications made to the original ANSI-C source code.
+   - A list of source files needed out of the ANSI-C stack.
+
+OPC UA requirements
+===================
+
+OPC UA component relies mainly on the components SysSocket and SysSemCount.
+Furthermore it's only usable with a full mutlitasking scheduler.
+
+.. include:: OPCUA_Server.rst
+.. include:: OPCUA_Client.rst
+

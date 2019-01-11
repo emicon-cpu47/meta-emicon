@@ -1,0 +1,2124 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SysGraphicItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="SysGraphicLightItf" href="group___sys_graphic_light_itf.html" />
+    <link rel="prev" title="SysFramebufferItf" href="group___sys_framebuffer_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___sys_graphic_light_itf.html" title="SysGraphicLightItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_framebuffer_itf.html" title="SysFramebufferItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SysGraphicItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-sysgraphic-key-replacement-font-name-replacementfontname">#define SYSGRAPHIC_KEY_REPLACEMENT_FONT_NAME &#8220;ReplacementFontName&#8221;</a></li>
+<li><a class="reference internal" href="#define-pat-horizontal-1">#define PAT_HORIZONTAL 1</a></li>
+<li><a class="reference internal" href="#define-pat-vertical-2">#define PAT_VERTICAL 2</a></li>
+<li><a class="reference internal" href="#define-pat-cross-3">#define PAT_CROSS 3</a></li>
+<li><a class="reference internal" href="#define-pat-dense-light-4">#define PAT_DENSE_LIGHT 4</a></li>
+<li><a class="reference internal" href="#define-pat-dense-normal-5">#define PAT_DENSE_NORMAL 5</a></li>
+<li><a class="reference internal" href="#define-pat-dense-very-6">#define PAT_DENSE_VERY 6</a></li>
+<li><a class="reference internal" href="#define-itf-sysgraphic">#define ITF_SysGraphic</a></li>
+<li><a class="reference internal" href="#define-extitf-sysgraphic">#define EXTITF_SysGraphic</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-gradientdata-gradientdata">typedef struct _GradientData  GradientData</a></li>
+<li><a class="reference internal" href="#typedef-isysgraphic-c-isysgraphic">typedef ISysGraphic_C ISysGraphic</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-result-sysgraphiccreatecompatibledevicecontext-rts-handle-hwindow-rts-handle-phdc">RTS_RESULT SysGraphicCreateCompatibleDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE *phDC)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphiccreatecompatibledevicecontextwithcustomsize-rts-handle-hwindow-rts-i16-iwidth-rts-i16-iheight-rts-handle-phdc">RTS_RESULT SysGraphicCreateCompatibleDeviceContextWithCustomSize (RTS_HANDLE hWindow, RTS_I16 iWidth, RTS_I16 iHeight, RTS_HANDLE *phDC)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicdeletedevicecontext-rts-handle-hwindow-rts-handle-hdc">RTS_RESULT SysGraphicDeleteDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE hDC)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicgetdevicecontext-rts-handle-hwindow-rts-handle-phdc">RTS_RESULT SysGraphicGetDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE *phDC)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicreleasedevicecontext-rts-handle-hwindow-rts-handle-hdc">RTS_RESULT SysGraphicReleaseDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE hDC)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicgetdevicecontextforwindowdevicecontext-rts-handle-hwindow-rts-handle-hdcwindow-rts-handle-phdc">RTS_RESULT SysGraphicGetDeviceContextForWindowDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE hDCWindow, RTS_HANDLE *phDC)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicreleasedevicecontextforwindowdevicecontext-rts-handle-hwindow-rts-handle-hdc">RTS_RESULT SysGraphicReleaseDeviceContextForWindowDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE hDC)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicsetbackgroundcolor-rts-handle-hdc-rts-ui32-ulcolor">RTS_RESULT SysGraphicSetBackgroundColor (RTS_HANDLE hDC, RTS_UI32 ulColor)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicclearrectangle-rts-handle-hdc-rts-rectangle-rect">RTS_RESULT SysGraphicClearRectangle (RTS_HANDLE hDC, RTS_Rectangle rect)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicbitblt-rts-handle-hdcdestination-rts-handle-hdcsource-rts-rectangle-rect">RTS_RESULT SysGraphicBitBlt (RTS_HANDLE hDCDestination, RTS_HANDLE hDCSource, RTS_Rectangle rect)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicstretchblt-rts-handle-hdcdestination-rts-rectangle-rectdestination-rts-handle-hdcsource-rts-rectangle-rectsource">RTS_RESULT SysGraphicStretchBlt (RTS_HANDLE hDCDestination, RTS_Rectangle rectDestination, RTS_HANDLE hDCSource, RTS_Rectangle rectSource)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicdrawrect-rts-handle-hdc-rts-rectangle-rect-rectangletype-ntype">RTS_RESULT SysGraphicDrawRect (RTS_HANDLE hDC, RTS_Rectangle rect, RectangleType nType)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicdrawrectf-rts-handle-hdc-rts-rectanglef-rect-rectangletype-ntype">RTS_RESULT SysGraphicDrawRectF (RTS_HANDLE hDC, RTS_RectangleF rect, RectangleType nType)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicdrawpolygon-rts-handle-hdc-rts-i16-npoints-rts-point-ppoints-polygontype-ntype">RTS_RESULT SysGraphicDrawPolygon (RTS_HANDLE hDC, RTS_I16 nPoints, RTS_Point *pPoints, PolygonType nType)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicdrawpolygonf-rts-handle-hdc-rts-i16-npoints-rts-pointf-ppoints-polygontype-ntype">RTS_RESULT SysGraphicDrawPolygonF (RTS_HANDLE hDC, RTS_I16 nPoints, RTS_PointF *pPoints, PolygonType nType)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicdrawpie-rts-handle-hdc-rts-rectangle-rect-rts-iec-int-istartangle-rts-iec-int-isweepangle-pietype-ntype">RTS_RESULT SysGraphicDrawPie (RTS_HANDLE hDC, RTS_Rectangle rect, RTS_IEC_INT iStartAngle, RTS_IEC_INT iSweepAngle, PieType nType)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicrotateat-rts-handle-hdc-rts-real32-fangle-rts-point-point-rts-bool-breset">RTS_RESULT SysGraphicRotateAt (RTS_HANDLE hDC, RTS_REAL32 fAngle, RTS_Point point, RTS_BOOL bReset)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicdrawtext-rts-handle-hdc-rts-rectangle-rect-void-psztext-rts-ui32-uldrawflags">RTS_RESULT SysGraphicDrawText (RTS_HANDLE hDC, RTS_Rectangle rect, void *pszText, RTS_UI32 ulDrawFlags)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicgettextmetrics-rts-handle-hdc-sys-textmetrics-ptm">RTS_RESULT SysGraphicGetTextMetrics (RTS_HANDLE hDC, SYS_TEXTMETRICS *ptm)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicgettextextent-rts-handle-hdc-void-psztext-rts-ui32-uldrawflags-rts-size-psize">RTS_RESULT SysGraphicGetTextExtent (RTS_HANDLE hDC, void *pszText, RTS_UI32 ulDrawFlags, RTS_Size *pSize)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicgetfontheight-rts-handle-hdc-rts-i16-piheight">RTS_RESULT SysGraphicGetFontHeight (RTS_HANDLE hDC, RTS_I16 *piHeight)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicgetfonthandle-rts-handle-hdc-rts-handle-phfont">RTS_RESULT SysGraphicGetFontHandle (RTS_HANDLE hDC, RTS_HANDLE *phFont)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphiccreatebrush-rts-handle-hdc-rts-ui32-ulfillflags-rts-ui32-ulfillcolor-rts-handle-phbrush">RTS_RESULT SysGraphicCreateBrush (RTS_HANDLE hDC, RTS_UI32 ulFillFlags, RTS_UI32 ulFillColor, RTS_HANDLE *phBrush)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicsetbrush-rts-handle-hdc-rts-handle-hbrush-rts-handle-pholdbrush">RTS_RESULT SysGraphicSetBrush (RTS_HANDLE hDC, RTS_HANDLE hBrush, RTS_HANDLE *phOldBrush)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicfreebrush-rts-handle-hdc-rts-handle-hbrush">RTS_RESULT SysGraphicFreeBrush (RTS_HANDLE hDC, RTS_HANDLE hBrush)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphiccreategradientbrush-rts-handle-hdc-gradientdata-gradient-rts-rectangle-rectangle-rts-handle-phbrush">RTS_RESULT SysGraphicCreateGradientBrush (RTS_HANDLE hDC, GradientData *gradient, RTS_Rectangle rectangle, RTS_HANDLE *phBrush)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphiccreatepatternbrush-rts-handle-hdc-rts-ui16-patterntype-rts-ui32-color-rts-handle-phbrush">RTS_RESULT SysGraphicCreatePatternBrush (RTS_HANDLE hDC, RTS_UI16 patternType, RTS_UI32 color, RTS_HANDLE *phBrush)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphiccreatependetailed-rts-handle-hdc-rts-i16-nlinewidth-rts-ui32-ullineflags-rts-ui32-ullinecolor-rts-i16-nlinecapflag-rts-i16-nlinejoinflag-rts-real32-rmiterlimit-rts-handle-phpen">RTS_RESULT SysGraphicCreatePenDetailed (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, RTS_REAL32 rMiterLimit, RTS_HANDLE *phPen)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphiccreatepen-rts-handle-hdc-rts-i16-nlinewidth-rts-ui32-ullineflags-rts-ui32-ullinecolor-rts-handle-phpen">RTS_RESULT SysGraphicCreatePen (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_HANDLE *phPen)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicsetpen-rts-handle-hdc-rts-handle-hpen-rts-handle-pholdpen">RTS_RESULT SysGraphicSetPen (RTS_HANDLE hDC, RTS_HANDLE hPen, RTS_HANDLE *phOldPen)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicfreepen-rts-handle-hdc-rts-handle-hpen">RTS_RESULT SysGraphicFreePen (RTS_HANDLE hDC, RTS_HANDLE hPen)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphiccreatefont-rts-handle-hdc-char-pszfontname-rts-i16-nfontsize-rts-ui32-ulfontflags-rts-handle-phfont">RTS_RESULT SysGraphicCreateFont (RTS_HANDLE hDC, char *pszFontName, RTS_I16 nFontSize, RTS_UI32 ulFontFlags, RTS_HANDLE *phFont)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicfreefont-rts-handle-hdc-rts-handle-hfont">RTS_RESULT SysGraphicFreeFont (RTS_HANDLE hDC, RTS_HANDLE hFont)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicsetfont-rts-handle-hdc-rts-handle-hfont-rts-ui32-ulfontcolor-rts-handle-pholdfont">RTS_RESULT SysGraphicSetFont (RTS_HANDLE hDC, RTS_HANDLE hFont, RTS_UI32 ulFontColor, RTS_HANDLE *phOldFont)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicsetfont2-rts-handle-hdc-rts-handle-hfont-rts-ui32-ulfontcolor-rts-handle-pholdfont-rts-ui32-puloldfontcolor">RTS_RESULT SysGraphicSetFont2 (RTS_HANDLE hDC, RTS_HANDLE hFont, RTS_UI32 ulFontColor, RTS_HANDLE *phOldFont, RTS_UI32 *pulOldFontColor)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphiccreatebitmap-rts-handle-hdc-const-char-pszbmppath-rts-ui32-ultransparentcolor-rts-ui32-ulflags-rts-handle-phbitmap">RTS_RESULT SysGraphicCreateBitmap (RTS_HANDLE hDC, const char *pszBmpPath, RTS_UI32 ulTransparentColor, RTS_UI32 ulFlags, RTS_HANDLE *phBitmap)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicdrawbitmap-rts-handle-hdc-rts-handle-hbmp-rts-rectangle-rpos-rts-ui32-ultransparentcolor-rts-ui32-ulflags">RTS_RESULT SysGraphicDrawBitmap (RTS_HANDLE hDC, RTS_HANDLE hBmp, RTS_Rectangle rPos, RTS_UI32 ulTransparentColor, RTS_UI32 ulFlags)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicfreebitmap-rts-handle-hdc-rts-handle-hbmp">RTS_RESULT SysGraphicFreeBitmap (RTS_HANDLE hDC, RTS_HANDLE hBmp)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicgetbitmapsize-rts-handle-hbmp-rts-point-psize">RTS_RESULT SysGraphicGetBitmapSize (RTS_HANDLE hBmp, RTS_Point *pSize)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicaddcliprectangle-rts-handle-hdc-rts-rectangle-rect">RTS_RESULT SysGraphicAddClipRectangle (RTS_HANDLE hDC, RTS_Rectangle rect)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicremovecliprectangle-rts-handle-hdc-rts-rectangle-rect">RTS_RESULT SysGraphicRemoveClipRectangle (RTS_HANDLE hDC, RTS_Rectangle rect)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicsetcliprectangle-rts-handle-hdc-rts-rectangle-prect">RTS_RESULT SysGraphicSetClipRectangle (RTS_HANDLE hDC, RTS_Rectangle *prect)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicbeginpaint-rts-handle-hdc-rts-handle-phpaintcontext">RTS_RESULT SysGraphicBeginPaint (RTS_HANDLE hDC, RTS_HANDLE *phPaintContext)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicendpaint-rts-handle-hdc-rts-handle-hpaintcontext">RTS_RESULT SysGraphicEndPaint (RTS_HANDLE hDC, RTS_HANDLE hPaintContext)</a></li>
+<li><a class="reference internal" href="#rts-ui32-sysgraphicgetfeatureflags-void">RTS_UI32 SysGraphicGetFeatureFlags (void)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicprepareprinting-rts-handle-hdc-rts-handle-phoptionalresultdata-rts-rectangle-prwindow-rts-rectangle-prprintoutput">RTS_RESULT SysGraphicPreparePrinting (RTS_HANDLE hDC, RTS_HANDLE *phOptionalResultData, RTS_Rectangle *prWindow, RTS_Rectangle *prPrintOutput)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicfinishprinting-rts-handle-hdc-rts-handle-hoptionalresultdata">RTS_RESULT SysGraphicFinishPrinting (RTS_HANDLE hDC, RTS_HANDLE hOptionalResultData)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicsetantialiasingmode-rts-handle-hdc-rts-ui32-uiantialiasingsettings">RTS_RESULT SysGraphicSetAntiAliasingMode (RTS_HANDLE hDC, RTS_UI32 uiAntiAliasingSettings)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicgetsyswindowfont-rts-handle-hdc-rts-handle-hsysgraphicfont-rts-handle-phsyswindowfont">RTS_RESULT SysGraphicGetSysWindowFont (RTS_HANDLE hDC, RTS_HANDLE hSysGraphicFont, RTS_HANDLE *phSysWindowFont)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicinvalidaterectangle-rts-handle-hdc-rts-rectangle-rect">RTS_RESULT SysGraphicInvalidateRectangle (RTS_HANDLE hDC, RTS_Rectangle rect)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicresetinvalidation-rts-handle-hdc">RTS_RESULT SysGraphicResetInvalidation (RTS_HANDLE hDC)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicinvalidateclientarea-rts-handle-hdc">RTS_RESULT SysGraphicInvalidateClientArea (RTS_HANDLE hDC)</a></li>
+<li><a class="reference internal" href="#rts-handle-sysgraphiccreatetransformation-rts-result-presult">RTS_HANDLE SysGraphicCreateTransformation (RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-sysgraphiccreatetransformationbyvalues-rts-real32-m11-rts-real32-m12-rts-real32-m21-rts-real32-m22-rts-real32-dx-rts-real32-dy-rts-result-presult">RTS_HANDLE SysGraphicCreateTransformationByValues (RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicfreetransformation-rts-handle-htransform">RTS_RESULT SysGraphicFreeTransformation (RTS_HANDLE hTransform)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphictransformationscale-rts-handle-htransform-rts-real32-x-rts-real32-y">RTS_RESULT SysGraphicTransformationScale (RTS_HANDLE hTransform, RTS_REAL32 x, RTS_REAL32 y)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphictransformationrotate-rts-handle-htransform-rts-real32-angle">RTS_RESULT SysGraphicTransformationRotate (RTS_HANDLE hTransform, RTS_REAL32 angle)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphictransformationtranslate-rts-handle-htransform-rts-real32-x-rts-real32-y">RTS_RESULT SysGraphicTransformationTranslate (RTS_HANDLE hTransform, RTS_REAL32 x, RTS_REAL32 y)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphicsetactivetransformation-rts-handle-hdc-rts-handle-htransform">RTS_RESULT SysGraphicSetActiveTransformation (RTS_HANDLE hdc, RTS_HANDLE hTransform)</a></li>
+<li><a class="reference internal" href="#rts-handle-sysgraphicgetactivetransformation-rts-handle-hdc-rts-result-presult">RTS_HANDLE SysGraphicGetActiveTransformation (RTS_HANDLE hdc, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-sysgraphicclonetransformation-rts-handle-htransform-rts-result-presult">RTS_HANDLE SysGraphicCloneTransformation (RTS_HANDLE hTransform, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-sysgraphictransformationtransform-rts-handle-htransform-rts-real32-m11-rts-real32-m12-rts-real32-m21-rts-real32-m22-rts-real32-dx-rts-real32-dy">RTS_RESULT SysGraphicTransformationTransform (RTS_HANDLE hTransform, RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___sys_framebuffer_itf.html"
+                        title="previous chapter">SysFramebufferItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___sys_graphic_light_itf.html"
+                        title="next chapter">SysGraphicLightItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_graphic_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sysgraphicitf">
+<span id="group-sys-graphic-itf"></span><h1>SysGraphicItf<a class="headerlink" href="#sysgraphicitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of SysGraphic. <a class="reference internal" href="#group-sys-graphic-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___sys_graphic_itf___antialiasingmodes.html#group-sys-graphic-itf-antialiasingmodes"><span class="std std-ref">Antialiasing modes</span></a></li>
+<li><a class="reference internal" href="group___sys_graphic_itf___bitmapstyle.html#group-sys-graphic-itf-bitmapstyle"><span class="std std-ref">Bitmap style</span></a></li>
+<li><a class="reference internal" href="group___sys_graphic_itf___brushstyle.html#group-sys-graphic-itf-brushstyle"><span class="std std-ref">Brush style</span></a></li>
+<li><a class="reference internal" href="group___sys_graphic_itf___feature_flags.html#group-sys-graphic-itf-feature-flags"><span class="std std-ref">Feature Flags</span></a></li>
+<li><a class="reference internal" href="group___sys_graphic_itf___fontstyle.html#group-sys-graphic-itf-fontstyle"><span class="std std-ref">Font style</span></a></li>
+<li><a class="reference internal" href="group___sys_graphic_itf___gradient_type.html#group-sys-graphic-itf-gradient-type"><span class="std std-ref">Gradient Type</span></a></li>
+<li><a class="reference internal" href="group___sys_graphic_itf___pen_line_cap_style.html#group-sys-graphic-itf-pen-line-cap-style"><span class="std std-ref">Pen LineCapStyle</span></a></li>
+<li><a class="reference internal" href="group___sys_graphic_itf___pen_line_join_style.html#group-sys-graphic-itf-pen-line-join-style"><span class="std std-ref">Pen LineJoinStyle</span></a></li>
+<li><a class="reference internal" href="group___sys_graphic_itf___penstyle.html#group-sys-graphic-itf-penstyle"><span class="std std-ref">Pen style</span></a></li>
+<li><a class="reference internal" href="group___sys_graphic_itf___settings.html#group-sys-graphic-itf-settings"><span class="std std-ref">Settings</span></a></li>
+<li><a class="reference internal" href="group___sys_graphic_itf___t_f.html#group-sys-graphic-itf-t-f"><span class="std std-ref">TF</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct___gradient_data.html#struct-gradient-data"><span class="std std-ref">_GradientData</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_sys_graphic___c.html#struct-i-sys-graphic-c"><span class="std std-ref">ISysGraphic_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-graphic-itf-1gab6ae7a8ff91b31dd0e039c06556e143a"><span class="std std-ref">SYSGRAPHIC_KEY_REPLACEMENT_FONT_NAME</span></a> &#8220;ReplacementFontName&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-graphic-itf-1ga8e0cb68246f82be365b7232be299c630"><span class="std std-ref">PAT_HORIZONTAL</span></a> 1</li>
+<li>#define <a class="reference internal" href="#group-sys-graphic-itf-1gad9f76c96b0ec92ba150f80e68b3a28f6"><span class="std std-ref">PAT_VERTICAL</span></a> 2</li>
+<li>#define <a class="reference internal" href="#group-sys-graphic-itf-1gab931a323389f0c4aa013770ff6c7066f"><span class="std std-ref">PAT_CROSS</span></a> 3</li>
+<li>#define <a class="reference internal" href="#group-sys-graphic-itf-1gaa6c133ed309e755c8095d533155845bd"><span class="std std-ref">PAT_DENSE_LIGHT</span></a> 4</li>
+<li>#define <a class="reference internal" href="#group-sys-graphic-itf-1ga73a5ec5586969398ddb4263340511ea1"><span class="std std-ref">PAT_DENSE_NORMAL</span></a> 5</li>
+<li>#define <a class="reference internal" href="#group-sys-graphic-itf-1ga09f6fe9217e8efcbb9861f4571726949"><span class="std std-ref">PAT_DENSE_VERY</span></a> 6</li>
+<li>#define <a class="reference internal" href="#group-sys-graphic-itf-1ga415ca8a0f6b5104702020c099e3cb383"><span class="std std-ref">ITF_SysGraphic</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-graphic-itf-1ga2d1bfd4a14527d311fe1fc80986464c9"><span class="std std-ref">EXTITF_SysGraphic</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="struct___gradient_data.html#struct-gradient-data"><span class="std std-ref">_GradientData</span></a> <a class="reference internal" href="#group-sys-graphic-itf-1ga507c7cb26cae26f0ad758a1939baccc3"><span class="std std-ref">GradientData</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_sys_graphic___c.html#struct-i-sys-graphic-c"><span class="std std-ref">ISysGraphic_C</span></a> <a class="reference internal" href="#group-sys-graphic-itf-1gafe67efdf13237f3ef0708b35e597c166"><span class="std std-ref">ISysGraphic</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gad38bbc1e3d6bf72163ba911310b18b81"><span class="std std-ref">SysGraphicCreateCompatibleDeviceContext</span></a> (RTS_HANDLE hWindow, RTS_HANDLE * phDC)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gaf6db81769847bd132d3317d8c3a87905"><span class="std std-ref">SysGraphicCreateCompatibleDeviceContextWithCustomSize</span></a> (RTS_HANDLE hWindow, RTS_I16 iWidth, RTS_I16 iHeight, RTS_HANDLE * phDC)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga1f7d83efb9ca42b8a5372b642b92f493"><span class="std std-ref">SysGraphicDeleteDeviceContext</span></a> (RTS_HANDLE hWindow, RTS_HANDLE hDC)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga88f720f73eef1959fb8f8a70b7290b3e"><span class="std std-ref">SysGraphicGetDeviceContext</span></a> (RTS_HANDLE hWindow, RTS_HANDLE * phDC)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga5f23a2178c76df5997219a0335860604"><span class="std std-ref">SysGraphicReleaseDeviceContext</span></a> (RTS_HANDLE hWindow, RTS_HANDLE hDC)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga4a064b7c502a1f03e3c943a0e3973eb5"><span class="std std-ref">SysGraphicGetDeviceContextForWindowDeviceContext</span></a> (RTS_HANDLE hWindow, RTS_HANDLE hDCWindow, RTS_HANDLE * phDC)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga40fac78f1b984a54cd6ef762ea1bbe77"><span class="std std-ref">SysGraphicReleaseDeviceContextForWindowDeviceContext</span></a> (RTS_HANDLE hWindow, RTS_HANDLE hDC)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga2ac4a36d1bb4dd53ac25dbf588c8f9db"><span class="std std-ref">SysGraphicSetBackgroundColor</span></a> (RTS_HANDLE hDC, RTS_UI32 ulColor)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gac014b9b2c389929aee4b69472042fbf4"><span class="std std-ref">SysGraphicClearRectangle</span></a> (RTS_HANDLE hDC, RTS_Rectangle rect)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga865883bf178906506d59abcf785ccfbc"><span class="std std-ref">SysGraphicBitBlt</span></a> (RTS_HANDLE hDCDestination, RTS_HANDLE hDCSource, RTS_Rectangle rect)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga7b0f3dc33f572f2a4736bebf5fc4ba1f"><span class="std std-ref">SysGraphicStretchBlt</span></a> (RTS_HANDLE hDCDestination, RTS_Rectangle rectDestination, RTS_HANDLE hDCSource, RTS_Rectangle rectSource)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga3a2605ef39ff92002a071b3e9a4261dd"><span class="std std-ref">SysGraphicDrawRect</span></a> (RTS_HANDLE hDC, RTS_Rectangle rect, RectangleType nType)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gaed020ad8c55aa17c379e44ba1141f017"><span class="std std-ref">SysGraphicDrawRectF</span></a> (RTS_HANDLE hDC, RTS_RectangleF rect, RectangleType nType)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga588ec66d8f579e345d6314e49fe95437"><span class="std std-ref">SysGraphicDrawPolygon</span></a> (RTS_HANDLE hDC, RTS_I16 nPoints, RTS_Point * pPoints, PolygonType nType)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gad7e48202c700bf7e9058b6e3219a23c3"><span class="std std-ref">SysGraphicDrawPolygonF</span></a> (RTS_HANDLE hDC, RTS_I16 nPoints, RTS_PointF * pPoints, PolygonType nType)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gaa56ee438551927e7eaee1380fe97e8a3"><span class="std std-ref">SysGraphicDrawPie</span></a> (RTS_HANDLE hDC, RTS_Rectangle rect, RTS_IEC_INT iStartAngle, RTS_IEC_INT iSweepAngle, PieType nType)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gaac6fc6648e3ca5a0335a8e9c690c060f"><span class="std std-ref">SysGraphicRotateAt</span></a> (RTS_HANDLE hDC, RTS_REAL32 fAngle, RTS_Point point, RTS_BOOL bReset)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gaca75cad33953fe8aaa8b78c7d8e0d1c4"><span class="std std-ref">SysGraphicDrawText</span></a> (RTS_HANDLE hDC, RTS_Rectangle rect, void * pszText, RTS_UI32 ulDrawFlags)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga3f0472fbc9f099e9fd351e5df5a02f48"><span class="std std-ref">SysGraphicGetTextMetrics</span></a> (RTS_HANDLE hDC, <a class="reference internal" href="struct_s_y_s___t_e_x_t_m_e_t_r_i_c_s.html#struct-s-y-s-t-e-x-t-m-e-t-r-i-c-s"><span class="std std-ref">SYS_TEXTMETRICS</span></a> * ptm)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga9853f1793ae85562cf8d80846231ae95"><span class="std std-ref">SysGraphicGetTextExtent</span></a> (RTS_HANDLE hDC, void * pszText, RTS_UI32 ulDrawFlags, RTS_Size * pSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga3fc974d64fa5b645cebc37b8919592cd"><span class="std std-ref">SysGraphicGetFontHeight</span></a> (RTS_HANDLE hDC, RTS_I16 * piHeight)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga762257cc9c9749d144ce0c6257020208"><span class="std std-ref">SysGraphicGetFontHandle</span></a> (RTS_HANDLE hDC, RTS_HANDLE * phFont)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga87b88da8c3d0ace48fbd03c3a401712d"><span class="std std-ref">SysGraphicCreateBrush</span></a> (RTS_HANDLE hDC, RTS_UI32 ulFillFlags, RTS_UI32 ulFillColor, RTS_HANDLE * phBrush)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gad21369f57e48c12ece7e8b53b47bdced"><span class="std std-ref">SysGraphicSetBrush</span></a> (RTS_HANDLE hDC, RTS_HANDLE hBrush, RTS_HANDLE * phOldBrush)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga653772662b6e8c0ee97771c9f1346aa0"><span class="std std-ref">SysGraphicFreeBrush</span></a> (RTS_HANDLE hDC, RTS_HANDLE hBrush)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga2d891b1089c459be1569799449bfabbe"><span class="std std-ref">SysGraphicCreateGradientBrush</span></a> (RTS_HANDLE hDC, <a class="reference internal" href="#group-sys-graphic-itf-1ga507c7cb26cae26f0ad758a1939baccc3"><span class="std std-ref">GradientData</span></a> * gradient, RTS_Rectangle rectangle, RTS_HANDLE * phBrush)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga57a5e333e02d210f9ef6b9c7f0451ce9"><span class="std std-ref">SysGraphicCreatePatternBrush</span></a> (RTS_HANDLE hDC, RTS_UI16 patternType, RTS_UI32 color, RTS_HANDLE * phBrush)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gaad77ff326127752b51ef29daa3e547e8"><span class="std std-ref">SysGraphicCreatePenDetailed</span></a> (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, RTS_REAL32 rMiterLimit, RTS_HANDLE * phPen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gac98afa65facb04e54e062bbb8f3b677f"><span class="std std-ref">SysGraphicCreatePen</span></a> (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_HANDLE * phPen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gaf55649de63079081f3441b543ffb1f3f"><span class="std std-ref">SysGraphicSetPen</span></a> (RTS_HANDLE hDC, RTS_HANDLE hPen, RTS_HANDLE * phOldPen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga4890a42dbcbd203e7234e016399169cd"><span class="std std-ref">SysGraphicFreePen</span></a> (RTS_HANDLE hDC, RTS_HANDLE hPen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga83c7bdc13f3087d480b10f98a4d7ccca"><span class="std std-ref">SysGraphicCreateFont</span></a> (RTS_HANDLE hDC, char * pszFontName, RTS_I16 nFontSize, RTS_UI32 ulFontFlags, RTS_HANDLE * phFont)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga414d8f1b71f6a4c731e4ae1ae5f0e4f7"><span class="std std-ref">SysGraphicFreeFont</span></a> (RTS_HANDLE hDC, RTS_HANDLE hFont)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gaad02a964f1aac284ac066cb245645eb5"><span class="std std-ref">SysGraphicSetFont</span></a> (RTS_HANDLE hDC, RTS_HANDLE hFont, RTS_UI32 ulFontColor, RTS_HANDLE * phOldFont)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga66d539e14643847f108094be8dceef3e"><span class="std std-ref">SysGraphicSetFont2</span></a> (RTS_HANDLE hDC, RTS_HANDLE hFont, RTS_UI32 ulFontColor, RTS_HANDLE * phOldFont, RTS_UI32 * pulOldFontColor)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gad434f39d949c81be2792ba9e516a4b3a"><span class="std std-ref">SysGraphicCreateBitmap</span></a> (RTS_HANDLE hDC, const char * pszBmpPath, RTS_UI32 ulTransparentColor, RTS_UI32 ulFlags, RTS_HANDLE * phBitmap)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga283918b82a010b08074a068c5e6cfa4a"><span class="std std-ref">SysGraphicDrawBitmap</span></a> (RTS_HANDLE hDC, RTS_HANDLE hBmp, RTS_Rectangle rPos, RTS_UI32 ulTransparentColor, RTS_UI32 ulFlags)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gafb18c87ed7134463fff0ee365da64bcb"><span class="std std-ref">SysGraphicFreeBitmap</span></a> (RTS_HANDLE hDC, RTS_HANDLE hBmp)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga7b277d3b02e61db1671ef39bf8f4bba4"><span class="std std-ref">SysGraphicGetBitmapSize</span></a> (RTS_HANDLE hBmp, RTS_Point * pSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga61b0c0b5ba6ca3e1834aa0d45f46ea66"><span class="std std-ref">SysGraphicAddClipRectangle</span></a> (RTS_HANDLE hDC, RTS_Rectangle rect)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga303cb91efb4328c23f9734737cb8bc35"><span class="std std-ref">SysGraphicRemoveClipRectangle</span></a> (RTS_HANDLE hDC, RTS_Rectangle rect)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga22c8b8719f9c4ffc28cf6eaca7efcffb"><span class="std std-ref">SysGraphicSetClipRectangle</span></a> (RTS_HANDLE hDC, RTS_Rectangle * prect)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga93fc9d9c7aa0c8852a345d2e23b1b181"><span class="std std-ref">SysGraphicBeginPaint</span></a> (RTS_HANDLE hDC, RTS_HANDLE * phPaintContext)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gaf302e17b875f61d1ae3baac9831a15e4"><span class="std std-ref">SysGraphicEndPaint</span></a> (RTS_HANDLE hDC, RTS_HANDLE hPaintContext)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-graphic-itf-1ga4c0d51f7be70c79f53a17d48c146b53c"><span class="std std-ref">SysGraphicGetFeatureFlags</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga5e5817bd44aebc91394f1c74ab68a3c7"><span class="std std-ref">SysGraphicPreparePrinting</span></a> (RTS_HANDLE hDC, RTS_HANDLE * phOptionalResultData, RTS_Rectangle * prWindow, RTS_Rectangle * prPrintOutput)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gaaecddbc61733e95b7b10e70ce7aecef2"><span class="std std-ref">SysGraphicFinishPrinting</span></a> (RTS_HANDLE hDC, RTS_HANDLE hOptionalResultData)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga782820e35db3bcf8c9da6a5ed21e1c0e"><span class="std std-ref">SysGraphicSetAntiAliasingMode</span></a> (RTS_HANDLE hDC, RTS_UI32 uiAntiAliasingSettings)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gaaf724496eec95a23e49d9cb4b140c51a"><span class="std std-ref">SysGraphicGetSysWindowFont</span></a> (RTS_HANDLE hDC, RTS_HANDLE hSysGraphicFont, RTS_HANDLE * phSysWindowFont)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga2277a14c1ee963c5306c2c881a095c51"><span class="std std-ref">SysGraphicInvalidateRectangle</span></a> (RTS_HANDLE hDC, RTS_Rectangle rect)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga209b5e9be7a1508a627cd4c65855f26a"><span class="std std-ref">SysGraphicResetInvalidation</span></a> (RTS_HANDLE hDC)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gab4e06f08874da823a924b13228391f03"><span class="std std-ref">SysGraphicInvalidateClientArea</span></a> (RTS_HANDLE hDC)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-graphic-itf-1ga8a9e4f1d861e20593927748577f251a7"><span class="std std-ref">SysGraphicCreateTransformation</span></a> (RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-graphic-itf-1ga5b9675a578e8be1d9e64c11ca36eb073"><span class="std std-ref">SysGraphicCreateTransformationByValues</span></a> (RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga08a9f7b4037486e372a8954e7151dc9e"><span class="std std-ref">SysGraphicFreeTransformation</span></a> (RTS_HANDLE hTransform)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gabfaaf78e208bd246010f49ede5b3c235"><span class="std std-ref">SysGraphicTransformationScale</span></a> (RTS_HANDLE hTransform, RTS_REAL32 x, RTS_REAL32 y)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gaaa21188545a72b597d396a0fe05a78f4"><span class="std std-ref">SysGraphicTransformationRotate</span></a> (RTS_HANDLE hTransform, RTS_REAL32 angle)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga82856e23fdd3c2de0b1c202b6d276a78"><span class="std std-ref">SysGraphicTransformationTranslate</span></a> (RTS_HANDLE hTransform, RTS_REAL32 x, RTS_REAL32 y)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1ga7ddaf9233f7b58f511e59ddcf83ccbaf"><span class="std std-ref">SysGraphicSetActiveTransformation</span></a> (RTS_HANDLE hdc, RTS_HANDLE hTransform)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-graphic-itf-1ga4330b069437a1f23f4871ce0d1e08b09"><span class="std std-ref">SysGraphicGetActiveTransformation</span></a> (RTS_HANDLE hdc, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-graphic-itf-1ga8d9cdfa3bc890e30429817b6bf3f6872"><span class="std std-ref">SysGraphicCloneTransformation</span></a> (RTS_HANDLE hTransform, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-graphic-itf-1gab2b9f9a793623d9be2639f8cd944f740"><span class="std std-ref">SysGraphicTransformationTransform</span></a> (RTS_HANDLE hTransform, RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-graphic-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of SysGraphic.</p>
+<p>The SysGraphic interface is projected to get access to the graphic library routines of a system. This is the system interface typically for the CoDeSys target visualization.</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-sysgraphic-key-replacement-font-name-replacementfontname">
+<span id="group-sys-graphic-itf-1gab6ae7a8ff91b31dd0e039c06556e143a"></span><h3>#define SYSGRAPHIC_KEY_REPLACEMENT_FONT_NAME &#8220;ReplacementFontName&#8221;<a class="headerlink" href="#define-sysgraphic-key-replacement-font-name-replacementfontname" title="Permalink to this headline">¶</a></h3>
+<p>Setting which decides if another font should be used.</p>
+</div>
+<div class="section" id="define-pat-horizontal-1">
+<span id="group-sys-graphic-itf-1ga8e0cb68246f82be365b7232be299c630"></span><h3>#define PAT_HORIZONTAL 1<a class="headerlink" href="#define-pat-horizontal-1" title="Permalink to this headline">¶</a></h3>
+<p>Specifies a pattern of horizontal lines for SysGraphicCreatePatternBrush.</p>
+</div>
+<div class="section" id="define-pat-vertical-2">
+<span id="group-sys-graphic-itf-1gad9f76c96b0ec92ba150f80e68b3a28f6"></span><h3>#define PAT_VERTICAL 2<a class="headerlink" href="#define-pat-vertical-2" title="Permalink to this headline">¶</a></h3>
+<p>Specifies a pattern of vertical lines for SysGraphicCreatePatternBrush.</p>
+</div>
+<div class="section" id="define-pat-cross-3">
+<span id="group-sys-graphic-itf-1gab931a323389f0c4aa013770ff6c7066f"></span><h3>#define PAT_CROSS 3<a class="headerlink" href="#define-pat-cross-3" title="Permalink to this headline">¶</a></h3>
+<p>Specifies a pattern of crossing (at 90-degree angles) horizontal and vertical lines for SysGraphicCreatePatternBrush.</p>
+</div>
+<div class="section" id="define-pat-dense-light-4">
+<span id="group-sys-graphic-itf-1gaa6c133ed309e755c8095d533155845bd"></span><h3>#define PAT_DENSE_LIGHT 4<a class="headerlink" href="#define-pat-dense-light-4" title="Permalink to this headline">¶</a></h3>
+<p>Specifies a light hatch (about 10%) for SysGraphicCreatePatternBrush.</p>
+</div>
+<div class="section" id="define-pat-dense-normal-5">
+<span id="group-sys-graphic-itf-1ga73a5ec5586969398ddb4263340511ea1"></span><h3>#define PAT_DENSE_NORMAL 5<a class="headerlink" href="#define-pat-dense-normal-5" title="Permalink to this headline">¶</a></h3>
+<p>Specifies a normal hatch (about 40-50%) for SysGraphicCreatePatternBrush.</p>
+</div>
+<div class="section" id="define-pat-dense-very-6">
+<span id="group-sys-graphic-itf-1ga09f6fe9217e8efcbb9861f4571726949"></span><h3>#define PAT_DENSE_VERY 6<a class="headerlink" href="#define-pat-dense-very-6" title="Permalink to this headline">¶</a></h3>
+<p>Specifies a dense hatch (about 80%) for SysGraphicCreatePatternBrush.</p>
+</div>
+<div class="section" id="define-itf-sysgraphic">
+<span id="group-sys-graphic-itf-1ga415ca8a0f6b5104702020c099e3cb383"></span><h3>#define ITF_SysGraphic<a class="headerlink" href="#define-itf-sysgraphic" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-sysgraphic">
+<span id="group-sys-graphic-itf-1ga2d1bfd4a14527d311fe1fc80986464c9"></span><h3>#define EXTITF_SysGraphic<a class="headerlink" href="#define-extitf-sysgraphic" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-gradientdata-gradientdata">
+<span id="group-sys-graphic-itf-1ga507c7cb26cae26f0ad758a1939baccc3"></span><h3>typedef struct _GradientData  GradientData<a class="headerlink" href="#typedef-struct-gradientdata-gradientdata" title="Permalink to this headline">¶</a></h3>
+<p>Data for gradient brush</p>
+</div>
+<div class="section" id="typedef-isysgraphic-c-isysgraphic">
+<span id="group-sys-graphic-itf-1gafe67efdf13237f3ef0708b35e597c166"></span><h3>typedef ISysGraphic_C ISysGraphic<a class="headerlink" href="#typedef-isysgraphic-c-isysgraphic" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-result-sysgraphiccreatecompatibledevicecontext-rts-handle-hwindow-rts-handle-phdc">
+<span id="group-sys-graphic-itf-1gad38bbc1e3d6bf72163ba911310b18b81"></span><h3>RTS_RESULT SysGraphicCreateCompatibleDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE <a href="#id1"><span class="problematic" id="id2">*</span></a>phDC)<a class="headerlink" href="#rts-result-sysgraphiccreatecompatibledevicecontext-rts-handle-hwindow-rts-handle-phdc" title="Permalink to this headline">¶</a></h3>
+<p>Create compatible device context</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hWindow</td>
+<td>Handle to the actual window</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>phDC</td>
+<td>Pointer to handle to get the device context</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphiccreatecompatibledevicecontextwithcustomsize-rts-handle-hwindow-rts-i16-iwidth-rts-i16-iheight-rts-handle-phdc">
+<span id="group-sys-graphic-itf-1gaf6db81769847bd132d3317d8c3a87905"></span><h3>RTS_RESULT SysGraphicCreateCompatibleDeviceContextWithCustomSize (RTS_HANDLE hWindow, RTS_I16 iWidth, RTS_I16 iHeight, RTS_HANDLE <a href="#id3"><span class="problematic" id="id4">*</span></a>phDC)<a class="headerlink" href="#rts-result-sysgraphiccreatecompatibledevicecontextwithcustomsize-rts-handle-hwindow-rts-i16-iwidth-rts-i16-iheight-rts-handle-phdc" title="Permalink to this headline">¶</a></h3>
+<p>Create compatible device context with custom size</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hWindow</td>
+<td>Handle to the actual window</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>iWidth</td>
+<td>Width of the device Context</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>iHeight</td>
+<td>Height of the device Context</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>phDC</td>
+<td>Pointer to handle to get the device context</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicdeletedevicecontext-rts-handle-hwindow-rts-handle-hdc">
+<span id="group-sys-graphic-itf-1ga1f7d83efb9ca42b8a5372b642b92f493"></span><h3>RTS_RESULT SysGraphicDeleteDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE hDC)<a class="headerlink" href="#rts-result-sysgraphicdeletedevicecontext-rts-handle-hwindow-rts-handle-hdc" title="Permalink to this headline">¶</a></h3>
+<p>Delete compatible device context</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="19%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hWindow</td>
+<td>Handle to the actual window</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to the device context</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicgetdevicecontext-rts-handle-hwindow-rts-handle-phdc">
+<span id="group-sys-graphic-itf-1ga88f720f73eef1959fb8f8a70b7290b3e"></span><h3>RTS_RESULT SysGraphicGetDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE <a href="#id5"><span class="problematic" id="id6">*</span></a>phDC)<a class="headerlink" href="#rts-result-sysgraphicgetdevicecontext-rts-handle-hwindow-rts-handle-phdc" title="Permalink to this headline">¶</a></h3>
+<p>Get a device context. Remember to release such a device context using SysGraphicReleaseDeviceContext and not with SysGraphicDeleteDeviceContext!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hWindow</td>
+<td>Handle to the actual window</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>phDC</td>
+<td>Pointer to handle to get the device context</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicreleasedevicecontext-rts-handle-hwindow-rts-handle-hdc">
+<span id="group-sys-graphic-itf-1ga5f23a2178c76df5997219a0335860604"></span><h3>RTS_RESULT SysGraphicReleaseDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE hDC)<a class="headerlink" href="#rts-result-sysgraphicreleasedevicecontext-rts-handle-hwindow-rts-handle-hdc" title="Permalink to this headline">¶</a></h3>
+<p>Release a device context that has been retrieved using SysGraphicGetDeviceContext</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="19%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hWindow</td>
+<td>Handle to the actual window</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to the device context</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicgetdevicecontextforwindowdevicecontext-rts-handle-hwindow-rts-handle-hdcwindow-rts-handle-phdc">
+<span id="group-sys-graphic-itf-1ga4a064b7c502a1f03e3c943a0e3973eb5"></span><h3>RTS_RESULT SysGraphicGetDeviceContextForWindowDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE hDCWindow, RTS_HANDLE <a href="#id7"><span class="problematic" id="id8">*</span></a>phDC)<a class="headerlink" href="#rts-result-sysgraphicgetdevicecontextforwindowdevicecontext-rts-handle-hwindow-rts-handle-hdcwindow-rts-handle-phdc" title="Permalink to this headline">¶</a></h3>
+<p>Get a device context for an existing device context object belonging to a window. Remember to release such a device context using SysGraphicReleaseDeviceContextForWindowDeviceContext and not with SysGraphicDeleteDeviceContext or SysGraphicReleaseDeviceContext!</p>
+<p>This method should be used when the SysWindow component wants to use SysGraphic methods directly. The intent of this method is to allow the syswindow component to convert a system specific device context to a device context that the SysGraphic component can work with.</p>
+<p>This can be necessary in the following situation:</p>
+<ul class="simple">
+<li>SysWindow uses a system specific device context it received from the operating system</li>
+<li>SysWindow wants to call methods from SysGraphic on this device context</li>
+<li>The actual type SysGraphic uses for a device context is different than the operating system&#8217;s type</li>
+</ul>
+<p>The previous siutation will work correctly only when both SysGraphic and SysWindow use the same datatype for device contexts.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="15%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hWindow</td>
+<td>Handle to the actual window</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hDCWindow</td>
+<td>Handle to the device context of the actual window</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>phDC</td>
+<td>Pointer to handle to get the device context</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicreleasedevicecontextforwindowdevicecontext-rts-handle-hwindow-rts-handle-hdc">
+<span id="group-sys-graphic-itf-1ga40fac78f1b984a54cd6ef762ea1bbe77"></span><h3>RTS_RESULT SysGraphicReleaseDeviceContextForWindowDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE hDC)<a class="headerlink" href="#rts-result-sysgraphicreleasedevicecontextforwindowdevicecontext-rts-handle-hwindow-rts-handle-hdc" title="Permalink to this headline">¶</a></h3>
+<p>Release a device context that has been retrieved using SysGraphicGetDeviceContextForWindowDeviceContext</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="19%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hWindow</td>
+<td>Handle to the actual window</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to the device context</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicsetbackgroundcolor-rts-handle-hdc-rts-ui32-ulcolor">
+<span id="group-sys-graphic-itf-1ga2ac4a36d1bb4dd53ac25dbf588c8f9db"></span><h3>RTS_RESULT SysGraphicSetBackgroundColor (RTS_HANDLE hDC, RTS_UI32 ulColor)<a class="headerlink" href="#rts-result-sysgraphicsetbackgroundcolor-rts-handle-hdc-rts-ui32-ulcolor" title="Permalink to this headline">¶</a></h3>
+<p>Set the background color of the device context</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hWindow</td>
+<td>Handle to the device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulColor</td>
+<td>Color. Defined in IEC-Code for Visualization</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicclearrectangle-rts-handle-hdc-rts-rectangle-rect">
+<span id="group-sys-graphic-itf-1gac014b9b2c389929aee4b69472042fbf4"></span><h3>RTS_RESULT SysGraphicClearRectangle (RTS_HANDLE hDC, RTS_Rectangle rect)<a class="headerlink" href="#rts-result-sysgraphicclearrectangle-rts-handle-hdc-rts-rectangle-rect" title="Permalink to this headline">¶</a></h3>
+<p>Clear the specified rectangle</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="19%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hWindow</td>
+<td>Handle to the device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>rect</td>
+<td>Rectangle description</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicbitblt-rts-handle-hdcdestination-rts-handle-hdcsource-rts-rectangle-rect">
+<span id="group-sys-graphic-itf-1ga865883bf178906506d59abcf785ccfbc"></span><h3>RTS_RESULT SysGraphicBitBlt (RTS_HANDLE hDCDestination, RTS_HANDLE hDCSource, RTS_Rectangle rect)<a class="headerlink" href="#rts-result-sysgraphicbitblt-rts-handle-hdcdestination-rts-handle-hdcsource-rts-rectangle-rect" title="Permalink to this headline">¶</a></h3>
+<p>Performs a bit-block transfer of the color data corresponding to a rectangle of pixels from the specified source device context into a destination device context</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="25%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDCDestination</td>
+<td>Handle to destination device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hDCSource</td>
+<td>Handle to source device context</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>rect</td>
+<td>Rectangle description</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicstretchblt-rts-handle-hdcdestination-rts-rectangle-rectdestination-rts-handle-hdcsource-rts-rectangle-rectsource">
+<span id="group-sys-graphic-itf-1ga7b0f3dc33f572f2a4736bebf5fc4ba1f"></span><h3>RTS_RESULT SysGraphicStretchBlt (RTS_HANDLE hDCDestination, RTS_Rectangle rectDestination, RTS_HANDLE hDCSource, RTS_Rectangle rectSource)<a class="headerlink" href="#rts-result-sysgraphicstretchblt-rts-handle-hdcdestination-rts-rectangle-rectdestination-rts-handle-hdcsource-rts-rectangle-rectsource" title="Permalink to this headline">¶</a></h3>
+<p>Copies a bitmap from a source rectangle into a destination rectangle, stretching or compressing the bitmap to fit the dimensions of the destination rectangle, if necessary. The system stretches or compresses the bitmap according to the stretching mode currently set in the destination device context.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="27%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDCDestination</td>
+<td>Handle to destination device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>rectDestination</td>
+<td>Destination rectangle</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>hDCSource</td>
+<td>Handle to source device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>rectSource</td>
+<td>Source rectangle</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicdrawrect-rts-handle-hdc-rts-rectangle-rect-rectangletype-ntype">
+<span id="group-sys-graphic-itf-1ga3a2605ef39ff92002a071b3e9a4261dd"></span><h3>RTS_RESULT SysGraphicDrawRect (RTS_HANDLE hDC, RTS_Rectangle rect, RectangleType nType)<a class="headerlink" href="#rts-result-sysgraphicdrawrect-rts-handle-hdc-rts-rectangle-rect-rectangletype-ntype" title="Permalink to this headline">¶</a></h3>
+<p>Function to draw a rectangle based on top left and bottom right</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="12%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>rect</td>
+<td>Rectangle description</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>nType</td>
+<td>Rectangle type. See corresponding category</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicdrawrectf-rts-handle-hdc-rts-rectanglef-rect-rectangletype-ntype">
+<span id="group-sys-graphic-itf-1gaed020ad8c55aa17c379e44ba1141f017"></span><h3>RTS_RESULT SysGraphicDrawRectF (RTS_HANDLE hDC, RTS_RectangleF rect, RectangleType nType)<a class="headerlink" href="#rts-result-sysgraphicdrawrectf-rts-handle-hdc-rts-rectanglef-rect-rectangletype-ntype" title="Permalink to this headline">¶</a></h3>
+<p>Function to draw a rectangle based on top left and bottom right with real value coordinates</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="12%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>rect</td>
+<td>Rectangle description</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>nType</td>
+<td>Rectangle type. See corresponding category</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicdrawpolygon-rts-handle-hdc-rts-i16-npoints-rts-point-ppoints-polygontype-ntype">
+<span id="group-sys-graphic-itf-1ga588ec66d8f579e345d6314e49fe95437"></span><h3>RTS_RESULT SysGraphicDrawPolygon (RTS_HANDLE hDC, RTS_I16 nPoints, RTS_Point <a href="#id9"><span class="problematic" id="id10">*</span></a>pPoints, PolygonType nType)<a class="headerlink" href="#rts-result-sysgraphicdrawpolygon-rts-handle-hdc-rts-i16-npoints-rts-point-ppoints-polygontype-ntype" title="Permalink to this headline">¶</a></h3>
+<p>Function to draw a polygon based on an array of points</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="10%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>nPoints</td>
+<td>Number of points in the array</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pPoints</td>
+<td>Pointer to the array of points. Length must be less or equal nPoints!</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>nType</td>
+<td>Polygon type. See corresponding category</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicdrawpolygonf-rts-handle-hdc-rts-i16-npoints-rts-pointf-ppoints-polygontype-ntype">
+<span id="group-sys-graphic-itf-1gad7e48202c700bf7e9058b6e3219a23c3"></span><h3>RTS_RESULT SysGraphicDrawPolygonF (RTS_HANDLE hDC, RTS_I16 nPoints, RTS_PointF <a href="#id11"><span class="problematic" id="id12">*</span></a>pPoints, PolygonType nType)<a class="headerlink" href="#rts-result-sysgraphicdrawpolygonf-rts-handle-hdc-rts-i16-npoints-rts-pointf-ppoints-polygontype-ntype" title="Permalink to this headline">¶</a></h3>
+<p>Function to draw a polygon based on an array of points</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="10%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>nPoints</td>
+<td>Number of points in the array</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pPoints</td>
+<td>Pointer to the array of points. Length must be less or equal nPoints!</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>nType</td>
+<td>Polygon type. See corresponding category</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicdrawpie-rts-handle-hdc-rts-rectangle-rect-rts-iec-int-istartangle-rts-iec-int-isweepangle-pietype-ntype">
+<span id="group-sys-graphic-itf-1gaa56ee438551927e7eaee1380fe97e8a3"></span><h3>RTS_RESULT SysGraphicDrawPie (RTS_HANDLE hDC, RTS_Rectangle rect, RTS_IEC_INT iStartAngle, RTS_IEC_INT iSweepAngle, PieType nType)<a class="headerlink" href="#rts-result-sysgraphicdrawpie-rts-handle-hdc-rts-rectangle-rect-rts-iec-int-istartangle-rts-iec-int-isweepangle-pietype-ntype" title="Permalink to this headline">¶</a></h3>
+<p>Function to draw a pie based on top left and bottom right</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="22%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>rect</td>
+<td>Rectangle description</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>iStartAngle</td>
+<td>The start angle</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>iSweepAngle</td>
+<td>The sweep angle</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>nType</td>
+<td>Pie type. See corresponding category</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicrotateat-rts-handle-hdc-rts-real32-fangle-rts-point-point-rts-bool-breset">
+<span id="group-sys-graphic-itf-1gaac6fc6648e3ca5a0335a8e9c690c060f"></span><h3>RTS_RESULT SysGraphicRotateAt (RTS_HANDLE hDC, RTS_REAL32 fAngle, RTS_Point point, RTS_BOOL bReset)<a class="headerlink" href="#rts-result-sysgraphicrotateat-rts-handle-hdc-rts-real32-fangle-rts-point-point-rts-bool-breset" title="Permalink to this headline">¶</a></h3>
+<p>Applies a clockwise rotation to this system drawing matrix around the point specified in the point parameter</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="12%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>iAngle</td>
+<td>The angle to rotate in radians</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>point</td>
+<td>The point represents the center of the rotation</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>bReset</td>
+<td>Reset the transformation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicdrawtext-rts-handle-hdc-rts-rectangle-rect-void-psztext-rts-ui32-uldrawflags">
+<span id="group-sys-graphic-itf-1gaca75cad33953fe8aaa8b78c7d8e0d1c4"></span><h3>RTS_RESULT SysGraphicDrawText (RTS_HANDLE hDC, RTS_Rectangle rect, void <a href="#id13"><span class="problematic" id="id14">*</span></a>pszText, RTS_UI32 ulDrawFlags)<a class="headerlink" href="#rts-result-sysgraphicdrawtext-rts-handle-hdc-rts-rectangle-rect-void-psztext-rts-ui32-uldrawflags" title="Permalink to this headline">¶</a></h3>
+<p>Function to draw a text, based on top left and bottom right. Only the first line, if more than one is given.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="18%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>rect</td>
+<td>Rectangle description</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pszText</td>
+<td><p class="first">Will be either:</p>
+<ul class="last simple">
+<li>charif TF_WSTRING is not set in ulDrawFlags</li>
+<li>shortif (TF_WSTRING is set in ulDrawFlags)</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulDrawFlags</td>
+<td>Draw flags. Defined in IEC-Code for Visualization</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicgettextmetrics-rts-handle-hdc-sys-textmetrics-ptm">
+<span id="group-sys-graphic-itf-1ga3f0472fbc9f099e9fd351e5df5a02f48"></span><h3>RTS_RESULT SysGraphicGetTextMetrics (RTS_HANDLE hDC, SYS_TEXTMETRICS <a href="#id15"><span class="problematic" id="id16">*</span></a>ptm)<a class="headerlink" href="#rts-result-sysgraphicgettextmetrics-rts-handle-hdc-sys-textmetrics-ptm" title="Permalink to this headline">¶</a></h3>
+<p>Get the system metrics of a device context</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="5%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>ptm</td>
+<td>Pointer to the system metrics This function is not used yet and might not be implemented.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicgettextextent-rts-handle-hdc-void-psztext-rts-ui32-uldrawflags-rts-size-psize">
+<span id="group-sys-graphic-itf-1ga9853f1793ae85562cf8d80846231ae95"></span><h3>RTS_RESULT SysGraphicGetTextExtent (RTS_HANDLE hDC, void <a href="#id17"><span class="problematic" id="id18">*</span></a>pszText, RTS_UI32 ulDrawFlags, RTS_Size <a href="#id19"><span class="problematic" id="id20">*</span></a>pSize)<a class="headerlink" href="#rts-result-sysgraphicgettextextent-rts-handle-hdc-void-psztext-rts-ui32-uldrawflags-rts-size-psize" title="Permalink to this headline">¶</a></h3>
+<p>Function to calculate the size of a given text with the currently selected font. Use case (1): The function will treat the string as a single line string, ie. it will cut the string after a possible linefeed and calculate the size of the first line only! Use case (2): The string will be formated and measured as defined by it&#8217;s ulDrawFlags. Here, also text with flag TF_LINEBREAK will be measured, as it will be drawn. For using this case, the flag TF_MEASURE_ALL has to be used additional. And the paint rectangle size has to be forwarded by using pSize.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="18%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszText</td>
+<td><p class="first">Will be either:</p>
+<ul class="last simple">
+<li>charif TF_WSTRING is not set in ulDrawFlags</li>
+<li>shortif (TF_WSTRING is set in ulDrawFlags)</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulDrawFlags</td>
+<td>Draw flags. Defined in IEC-Code for Visualization</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicgetfontheight-rts-handle-hdc-rts-i16-piheight">
+<span id="group-sys-graphic-itf-1ga3fc974d64fa5b645cebc37b8919592cd"></span><h3>RTS_RESULT SysGraphicGetFontHeight (RTS_HANDLE hDC, RTS_I16 <a href="#id21"><span class="problematic" id="id22">*</span></a>piHeight)<a class="headerlink" href="#rts-result-sysgraphicgetfontheight-rts-handle-hdc-rts-i16-piheight" title="Permalink to this headline">¶</a></h3>
+<p>Function to get the height of the currently selected font.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="22%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>piHeight</td>
+<td>Height of the text</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicgetfonthandle-rts-handle-hdc-rts-handle-phfont">
+<span id="group-sys-graphic-itf-1ga762257cc9c9749d144ce0c6257020208"></span><h3>RTS_RESULT SysGraphicGetFontHandle (RTS_HANDLE hDC, RTS_HANDLE <a href="#id23"><span class="problematic" id="id24">*</span></a>phFont)<a class="headerlink" href="#rts-result-sysgraphicgetfonthandle-rts-handle-hdc-rts-handle-phfont" title="Permalink to this headline">¶</a></h3>
+<p>Function to get the handle of the currently selected font.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="16%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>phFont</td>
+<td>Pointer to get the font handle</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphiccreatebrush-rts-handle-hdc-rts-ui32-ulfillflags-rts-ui32-ulfillcolor-rts-handle-phbrush">
+<span id="group-sys-graphic-itf-1ga87b88da8c3d0ace48fbd03c3a401712d"></span><h3>RTS_RESULT SysGraphicCreateBrush (RTS_HANDLE hDC, RTS_UI32 ulFillFlags, RTS_UI32 ulFillColor, RTS_HANDLE <a href="#id25"><span class="problematic" id="id26">*</span></a>phBrush)<a class="headerlink" href="#rts-result-sysgraphiccreatebrush-rts-handle-hdc-rts-ui32-ulfillflags-rts-ui32-ulfillcolor-rts-handle-phbrush" title="Permalink to this headline">¶</a></h3>
+<p>Function to set the fill style of the following objects (i.e. the Brush in Win32)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="18%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulFillFlags</td>
+<td>Fill flags. Defined in IEC-Code for Visualization</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulFillColor</td>
+<td>Fill color. Defined in IEC-Code for Visualization</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>phBrush</td>
+<td>Pointer to get the brush handle</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicsetbrush-rts-handle-hdc-rts-handle-hbrush-rts-handle-pholdbrush">
+<span id="group-sys-graphic-itf-1gad21369f57e48c12ece7e8b53b47bdced"></span><h3>RTS_RESULT SysGraphicSetBrush (RTS_HANDLE hDC, RTS_HANDLE hBrush, RTS_HANDLE <a href="#id27"><span class="problematic" id="id28">*</span></a>phOldBrush)<a class="headerlink" href="#rts-result-sysgraphicsetbrush-rts-handle-hdc-rts-handle-hbrush-rts-handle-pholdbrush" title="Permalink to this headline">¶</a></h3>
+<p>Function to set the font for the following drawn texts</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="5%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hBrush</td>
+<td>Handle to the brush</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>phOldBrush</td>
+<td>Pointer to get the old brush handle. This pointer can be null if the old brush should not be returned. In this situation, you should take care that you still know a reference to this old brush to be able to release it after it is used!</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicfreebrush-rts-handle-hdc-rts-handle-hbrush">
+<span id="group-sys-graphic-itf-1ga653772662b6e8c0ee97771c9f1346aa0"></span><h3>RTS_RESULT SysGraphicFreeBrush (RTS_HANDLE hDC, RTS_HANDLE hBrush)<a class="headerlink" href="#rts-result-sysgraphicfreebrush-rts-handle-hdc-rts-handle-hbrush" title="Permalink to this headline">¶</a></h3>
+<p>Function to free an earlier created font object</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="19%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hBrush</td>
+<td>Handle to the brush</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphiccreategradientbrush-rts-handle-hdc-gradientdata-gradient-rts-rectangle-rectangle-rts-handle-phbrush">
+<span id="group-sys-graphic-itf-1ga2d891b1089c459be1569799449bfabbe"></span><h3>RTS_RESULT SysGraphicCreateGradientBrush (RTS_HANDLE hDC, GradientData <a href="#id29"><span class="problematic" id="id30">*</span></a>gradient, RTS_Rectangle rectangle, RTS_HANDLE <a href="#id31"><span class="problematic" id="id32">*</span></a>phBrush)<a class="headerlink" href="#rts-result-sysgraphiccreategradientbrush-rts-handle-hdc-gradientdata-gradient-rts-rectangle-rectangle-rts-handle-phbrush" title="Permalink to this headline">¶</a></h3>
+<p>Function to store the gradient fill data of the following objects (i.e. the Brush in Win32). Note: Optional</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="25%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>GradientData</td>
+<td>GradientData</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>rectangle</td>
+<td>rectangle</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>phBrush</td>
+<td>Pointer to get the brush handle</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphiccreatepatternbrush-rts-handle-hdc-rts-ui16-patterntype-rts-ui32-color-rts-handle-phbrush">
+<span id="group-sys-graphic-itf-1ga57a5e333e02d210f9ef6b9c7f0451ce9"></span><h3>RTS_RESULT SysGraphicCreatePatternBrush (RTS_HANDLE hDC, RTS_UI16 patternType, RTS_UI32 color, RTS_HANDLE <a href="#id33"><span class="problematic" id="id34">*</span></a>phBrush)<a class="headerlink" href="#rts-result-sysgraphiccreatepatternbrush-rts-handle-hdc-rts-ui16-patterntype-rts-ui32-color-rts-handle-phbrush" title="Permalink to this headline">¶</a></h3>
+<p>Creates a brush representing a spedific repeating pattern that can be used to fill elements.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="5%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>patternType</td>
+<td>The type of pattern used by this brush</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>rectangle</td>
+<td>The foreground color of the pattern</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>phBrush</td>
+<td>Pointer to get the brush handle &lt;remark&gt;Please remark: The background color of such a brush is expected to be fully transparent. That means only the foreground color should be used for drawing the pattern.&lt;/remark&gt;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphiccreatependetailed-rts-handle-hdc-rts-i16-nlinewidth-rts-ui32-ullineflags-rts-ui32-ullinecolor-rts-i16-nlinecapflag-rts-i16-nlinejoinflag-rts-real32-rmiterlimit-rts-handle-phpen">
+<span id="group-sys-graphic-itf-1gaad77ff326127752b51ef29daa3e547e8"></span><h3>RTS_RESULT SysGraphicCreatePenDetailed (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, RTS_REAL32 rMiterLimit, RTS_HANDLE <a href="#id35"><span class="problematic" id="id36">*</span></a>phPen)<a class="headerlink" href="#rts-result-sysgraphiccreatependetailed-rts-handle-hdc-rts-i16-nlinewidth-rts-ui32-ullineflags-rts-ui32-ullinecolor-rts-i16-nlinecapflag-rts-i16-nlinejoinflag-rts-real32-rmiterlimit-rts-handle-phpen" title="Permalink to this headline">¶</a></h3>
+<p>Function to set the line style of the following objects (i.e. the Pen in Win32)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="20%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>nLineWidth</td>
+<td>Width of the line as in Win32</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulLineFlags</td>
+<td>Line flags. Defined in IEC-Code for Visualization</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulLineColor</td>
+<td>Line color. Defined in IEC-Code for Visualization</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>nLineCapFlag</td>
+<td>Line cap. Defined in IEC-Code for Visualization</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>nLineJoinFlag</td>
+<td>Line join. Defined in IEC-Code for Visualization</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>rMiterLimit</td>
+<td>Miter limit. Defined in IEC-Code for Visualization</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>phPen</td>
+<td>Pointer to get the pen handle</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphiccreatepen-rts-handle-hdc-rts-i16-nlinewidth-rts-ui32-ullineflags-rts-ui32-ullinecolor-rts-handle-phpen">
+<span id="group-sys-graphic-itf-1gac98afa65facb04e54e062bbb8f3b677f"></span><h3>RTS_RESULT SysGraphicCreatePen (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_HANDLE <a href="#id37"><span class="problematic" id="id38">*</span></a>phPen)<a class="headerlink" href="#rts-result-sysgraphiccreatepen-rts-handle-hdc-rts-i16-nlinewidth-rts-ui32-ullineflags-rts-ui32-ullinecolor-rts-handle-phpen" title="Permalink to this headline">¶</a></h3>
+<p>Function to set the line style of the following objects (i.e. the Pen in Win32)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="18%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>nLineWidth</td>
+<td>Width of the line as in Win32</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulLineFlags</td>
+<td>Line flags. Defined in IEC-Code for Visualization</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulLineColor</td>
+<td>Line color. Defined in IEC-Code for Visualization</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>phPen</td>
+<td>Pointer to get the pen handle</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicsetpen-rts-handle-hdc-rts-handle-hpen-rts-handle-pholdpen">
+<span id="group-sys-graphic-itf-1gaf55649de63079081f3441b543ffb1f3f"></span><h3>RTS_RESULT SysGraphicSetPen (RTS_HANDLE hDC, RTS_HANDLE hPen, RTS_HANDLE <a href="#id39"><span class="problematic" id="id40">*</span></a>phOldPen)<a class="headerlink" href="#rts-result-sysgraphicsetpen-rts-handle-hdc-rts-handle-hpen-rts-handle-pholdpen" title="Permalink to this headline">¶</a></h3>
+<p>Function to set the font for the following drawn texts</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="4%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hPen</td>
+<td>Handle to the new pen</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>phOldPen</td>
+<td>Pointer to get the previous set pen. This pointer can be null if the old pen should not be returned. In this situation, you should take care that you still know a reference to this old pen to be able to release it after it is used!</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicfreepen-rts-handle-hdc-rts-handle-hpen">
+<span id="group-sys-graphic-itf-1ga4890a42dbcbd203e7234e016399169cd"></span><h3>RTS_RESULT SysGraphicFreePen (RTS_HANDLE hDC, RTS_HANDLE hPen)<a class="headerlink" href="#rts-result-sysgraphicfreepen-rts-handle-hdc-rts-handle-hpen" title="Permalink to this headline">¶</a></h3>
+<p>Function to free a earlier created font object</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="15%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hPen</td>
+<td>Handle to the new pen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphiccreatefont-rts-handle-hdc-char-pszfontname-rts-i16-nfontsize-rts-ui32-ulfontflags-rts-handle-phfont">
+<span id="group-sys-graphic-itf-1ga83c7bdc13f3087d480b10f98a4d7ccca"></span><h3>RTS_RESULT SysGraphicCreateFont (RTS_HANDLE hDC, char <a href="#id41"><span class="problematic" id="id42">*</span></a>pszFontName, RTS_I16 nFontSize, RTS_UI32 ulFontFlags, RTS_HANDLE <a href="#id43"><span class="problematic" id="id44">*</span></a>phFont)<a class="headerlink" href="#rts-result-sysgraphiccreatefont-rts-handle-hdc-char-pszfontname-rts-i16-nfontsize-rts-ui32-ulfontflags-rts-handle-phfont" title="Permalink to this headline">¶</a></h3>
+<p>Function to create a font object(i.e. the Font in Win32)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="22%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszFontName</td>
+<td>Name of the font that should be set</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>nFontSize</td>
+<td>Size of the font as in Win32</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>phFont</td>
+<td>Pointer to get the font handle</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicfreefont-rts-handle-hdc-rts-handle-hfont">
+<span id="group-sys-graphic-itf-1ga414d8f1b71f6a4c731e4ae1ae5f0e4f7"></span><h3>RTS_RESULT SysGraphicFreeFont (RTS_HANDLE hDC, RTS_HANDLE hFont)<a class="headerlink" href="#rts-result-sysgraphicfreefont-rts-handle-hdc-rts-handle-hfont" title="Permalink to this headline">¶</a></h3>
+<p>Function to free an earlier created font object</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="16%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hFont</td>
+<td>Handle to the font object</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicsetfont-rts-handle-hdc-rts-handle-hfont-rts-ui32-ulfontcolor-rts-handle-pholdfont">
+<span id="group-sys-graphic-itf-1gaad02a964f1aac284ac066cb245645eb5"></span><h3>RTS_RESULT SysGraphicSetFont (RTS_HANDLE hDC, RTS_HANDLE hFont, RTS_UI32 ulFontColor, RTS_HANDLE <a href="#id45"><span class="problematic" id="id46">*</span></a>phOldFont)<a class="headerlink" href="#rts-result-sysgraphicsetfont-rts-handle-hdc-rts-handle-hfont-rts-ui32-ulfontcolor-rts-handle-pholdfont" title="Permalink to this headline">¶</a></h3>
+<p>Function to set the font for the following drawn texts</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="5%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hFont</td>
+<td>Handle to the font object</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulFontColor</td>
+<td>Font color. Defined in IEC-Code for Visualization</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>phOldFont</td>
+<td>Pointer to get the previous set font. This pointer can be null if the old font should not be returned. In this situation, you should take care that you still know a reference to this old font to be able to release it after it is used!</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicsetfont2-rts-handle-hdc-rts-handle-hfont-rts-ui32-ulfontcolor-rts-handle-pholdfont-rts-ui32-puloldfontcolor">
+<span id="group-sys-graphic-itf-1ga66d539e14643847f108094be8dceef3e"></span><h3>RTS_RESULT SysGraphicSetFont2 (RTS_HANDLE hDC, RTS_HANDLE hFont, RTS_UI32 ulFontColor, RTS_HANDLE <a href="#id47"><span class="problematic" id="id48">*</span></a>phOldFont, RTS_UI32 <a href="#id49"><span class="problematic" id="id50">*</span></a>pulOldFontColor)<a class="headerlink" href="#rts-result-sysgraphicsetfont2-rts-handle-hdc-rts-handle-hfont-rts-ui32-ulfontcolor-rts-handle-pholdfont-rts-ui32-puloldfontcolor" title="Permalink to this headline">¶</a></h3>
+<p>Function to set the font for the following drawn texts</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="6%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hFont</td>
+<td>Handle to the font object</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulFontColor</td>
+<td>Font color. Defined in IEC-Code for Visualization</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>phOldFont</td>
+<td>Pointer to get the previous set font. This pointer can be null if the old font should not be returned. In this situation, you should take care that you still know a reference to this old font to be able to release it after it is used!</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pulOldFontColor</td>
+<td>Pointer to get the previously used font color. This pointer can be null if the old font color should not be returned.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphiccreatebitmap-rts-handle-hdc-const-char-pszbmppath-rts-ui32-ultransparentcolor-rts-ui32-ulflags-rts-handle-phbitmap">
+<span id="group-sys-graphic-itf-1gad434f39d949c81be2792ba9e516a4b3a"></span><h3>RTS_RESULT SysGraphicCreateBitmap (RTS_HANDLE hDC, const char <a href="#id51"><span class="problematic" id="id52">*</span></a>pszBmpPath, RTS_UI32 ulTransparentColor, RTS_UI32 ulFlags, RTS_HANDLE <a href="#id53"><span class="problematic" id="id54">*</span></a>phBitmap)<a class="headerlink" href="#rts-result-sysgraphiccreatebitmap-rts-handle-hdc-const-char-pszbmppath-rts-ui32-ultransparentcolor-rts-ui32-ulflags-rts-handle-phbitmap" title="Permalink to this headline">¶</a></h3>
+<p>Function to create a Bitmap object(i.e. the HBITMAP in Win32)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="2%" />
+<col width="4%" />
+<col width="95%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszBmpPath</td>
+<td>The path of the bitmap to load. Please remark that no mapping of this path is done before this method is called! That means that it is up to the system specific implementation to respect possible mappings of paths that might be configured by the SysFile component. This mapping can be done by either using SysFileOpen for accessing files or by calling SysFileGetFullPath before passing the path to an operating system file implementation (like fopen or classes loading images directly like QImage from Qt or Bitmap from GDI+).</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulTransparentColor</td>
+<td>Contains the color that should be used as the transparent color. Will only be evaluated when the according flag is set. This color value can be used during loading an image when it is possible to do an optimization for painting transparent images like setting this color to transparent directly after loading or so. If such an optimization is not possible or not relevant, then the previous implementation by evaluating it within SysGraphicDrawBitmap can be used.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulFlags</td>
+<td>Flags. Defined in IEC-Code for Visualization. At the moment only the flag for transparency is relevant when loading an image!</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>phBitmap</td>
+<td>Pointer to get the bitmap handle</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code
+<strong>Note:</strong></p>
+<p>Due to optimization reasons, the signature of this function was changed for the version 3.4.4. The transparency information is passed to this function too, to allow caching of transparency information. If you do not need to implement such a caching algorithm, then you can simply ignore the two parameters &#8220;ulFlags&#8221; and &#8220;ulTransparentColor&#8221;.</p>
+</div>
+<div class="section" id="rts-result-sysgraphicdrawbitmap-rts-handle-hdc-rts-handle-hbmp-rts-rectangle-rpos-rts-ui32-ultransparentcolor-rts-ui32-ulflags">
+<span id="group-sys-graphic-itf-1ga283918b82a010b08074a068c5e6cfa4a"></span><h3>RTS_RESULT SysGraphicDrawBitmap (RTS_HANDLE hDC, RTS_HANDLE hBmp, RTS_Rectangle rPos, RTS_UI32 ulTransparentColor, RTS_UI32 ulFlags)<a class="headerlink" href="#rts-result-sysgraphicdrawbitmap-rts-handle-hdc-rts-handle-hbmp-rts-rectangle-rpos-rts-ui32-ultransparentcolor-rts-ui32-ulflags" title="Permalink to this headline">¶</a></h3>
+<p>Function to draw a bitmap into a rectangle</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="8%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hBmp</td>
+<td>Handle to the bitmap</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>rPos</td>
+<td>Position of the rectangle</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulTransparentColor</td>
+<td>Contains the color that should be used as the transparent color. Will only be evaluated when the according flag is set. Additionally, this paramter can be ignored, when it is already evaluated by SysGraphicCreateBitmap!</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulFlags</td>
+<td>Flags. Defined in IEC-Code for Visualization</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicfreebitmap-rts-handle-hdc-rts-handle-hbmp">
+<span id="group-sys-graphic-itf-1gafb18c87ed7134463fff0ee365da64bcb"></span><h3>RTS_RESULT SysGraphicFreeBitmap (RTS_HANDLE hDC, RTS_HANDLE hBmp)<a class="headerlink" href="#rts-result-sysgraphicfreebitmap-rts-handle-hdc-rts-handle-hbmp" title="Permalink to this headline">¶</a></h3>
+<p>Function to free a bitmap object</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="15%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hBmp</td>
+<td>Handle to the bitmap</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicgetbitmapsize-rts-handle-hbmp-rts-point-psize">
+<span id="group-sys-graphic-itf-1ga7b277d3b02e61db1671ef39bf8f4bba4"></span><h3>RTS_RESULT SysGraphicGetBitmapSize (RTS_HANDLE hBmp, RTS_Point <a href="#id55"><span class="problematic" id="id56">*</span></a>pSize)<a class="headerlink" href="#rts-result-sysgraphicgetbitmapsize-rts-handle-hbmp-rts-point-psize" title="Permalink to this headline">¶</a></h3>
+<p>Function to get the bitmap size</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="13%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hBmp</td>
+<td>Handle to the bitmap</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pSize</td>
+<td>Point to store the size of the bitmap</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicaddcliprectangle-rts-handle-hdc-rts-rectangle-rect">
+<span id="group-sys-graphic-itf-1ga61b0c0b5ba6ca3e1834aa0d45f46ea66"></span><h3>RTS_RESULT SysGraphicAddClipRectangle (RTS_HANDLE hDC, RTS_Rectangle rect)<a class="headerlink" href="#rts-result-sysgraphicaddcliprectangle-rts-handle-hdc-rts-rectangle-rect" title="Permalink to this headline">¶</a></h3>
+<p>Obsolete: Use SysGraphicSetClipRectangle instead!</p>
+<p>OBSOLETE Function to add a clipping rectangle to the current clipping region, i.e. elements beyond this rectangle won&#8217;t be drawn</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="15%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>rect</td>
+<td>Rectangle description</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicremovecliprectangle-rts-handle-hdc-rts-rectangle-rect">
+<span id="group-sys-graphic-itf-1ga303cb91efb4328c23f9734737cb8bc35"></span><h3>RTS_RESULT SysGraphicRemoveClipRectangle (RTS_HANDLE hDC, RTS_Rectangle rect)<a class="headerlink" href="#rts-result-sysgraphicremovecliprectangle-rts-handle-hdc-rts-rectangle-rect" title="Permalink to this headline">¶</a></h3>
+<p>Obsolete: Use SysGraphicSetClipRectangle instead!</p>
+<p>OBSOLETE function to remove a clipping rectangle from the current clipping region i.e. elements beyond this rectangle will be drawn again</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="15%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>rect</td>
+<td>Rectangle description</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicsetcliprectangle-rts-handle-hdc-rts-rectangle-prect">
+<span id="group-sys-graphic-itf-1ga22c8b8719f9c4ffc28cf6eaca7efcffb"></span><h3>RTS_RESULT SysGraphicSetClipRectangle (RTS_HANDLE hDC, RTS_Rectangle <a href="#id57"><span class="problematic" id="id58">*</span></a>prect)<a class="headerlink" href="#rts-result-sysgraphicsetcliprectangle-rts-handle-hdc-rts-rectangle-prect" title="Permalink to this headline">¶</a></h3>
+<p>function to set and reset the currently active clipping rectangle i.e. elements beyond this rectangle will not be drawn</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="3%" />
+<col width="93%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>Handle to device context</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>prect</td>
+<td>An optional Rectangle. If a rectangle is passed here, this rectangle will become the new clipping rectangle. If NULL is passed, the clipping region will cleared. The passed rectangle must not be modified by the implementation!</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicbeginpaint-rts-handle-hdc-rts-handle-phpaintcontext">
+<span id="group-sys-graphic-itf-1ga93fc9d9c7aa0c8852a345d2e23b1b181"></span><h3>RTS_RESULT SysGraphicBeginPaint (RTS_HANDLE hDC, RTS_HANDLE <a href="#id59"><span class="problematic" id="id60">*</span></a>phPaintContext)<a class="headerlink" href="#rts-result-sysgraphicbeginpaint-rts-handle-hdc-rts-handle-phpaintcontext" title="Permalink to this headline">¶</a></h3>
+<p>This function and SysGraphicEndPaint are used to encapsule some paint calls together. An implementing platform could use this encapsulation for some optimizations. For every call to SysGraphicBeginPaint there will be an according call to SysGraphicEndPaint.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="8%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>The device context that will be drawn onto until the next call to SysGraphicEndPaint</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>phPaintContext</td>
+<td>An implementation could allocate some data and return it using this parameter. It will be given in the according call to SysGraphicEndPaint and can be deleted there.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicendpaint-rts-handle-hdc-rts-handle-hpaintcontext">
+<span id="group-sys-graphic-itf-1gaf302e17b875f61d1ae3baac9831a15e4"></span><h3>RTS_RESULT SysGraphicEndPaint (RTS_HANDLE hDC, RTS_HANDLE hPaintContext)<a class="headerlink" href="#rts-result-sysgraphicendpaint-rts-handle-hdc-rts-handle-hpaintcontext" title="Permalink to this headline">¶</a></h3>
+<p>This function and SysGraphicBeginPaint are used to encapsule some paint calls together. An implementing platform could use this encapsulation for some optimizations. For every call to SysGraphicBeginPaint there will be an according call to SysGraphicEndPaint.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="14%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>The device context that has been drawn onto until this call</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>hPaintContext</td>
+<td>The data that has been returned by the corresponding call to SysGraphicBeginPaint.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-ui32-sysgraphicgetfeatureflags-void">
+<span id="group-sys-graphic-itf-1ga4c0d51f7be70c79f53a17d48c146b53c"></span><h3>RTS_UI32 SysGraphicGetFeatureFlags (void)<a class="headerlink" href="#rts-ui32-sysgraphicgetfeatureflags-void" title="Permalink to this headline">¶</a></h3>
+<p>This function allows the sysgraphic implementation to give a hint to the kernel part of the targetvisualization about some more or less optional feature that can be supported by an implementation. As this function was introduced lateron, it should be included as an optional import to prevent inconsistencies. Additionally, calling code should assume a result of SYSGRAPHIC_FEATURES_ALL in case this function is not implemented for compatibility reasons.
+<strong>Returns:</strong></p>
+<p>The optional features that are implemented by the current sysgraphic implementation as a combination of the <a href="#id61"><span class="problematic" id="id62">*</span></a>flag values <a href="#id79"><span class="problematic" id="id80">SYSGRAPHIC_FEATURES_</span></a>...</p>
+</div>
+<div class="section" id="rts-result-sysgraphicprepareprinting-rts-handle-hdc-rts-handle-phoptionalresultdata-rts-rectangle-prwindow-rts-rectangle-prprintoutput">
+<span id="group-sys-graphic-itf-1ga5e5817bd44aebc91394f1c74ab68a3c7"></span><h3>RTS_RESULT SysGraphicPreparePrinting (RTS_HANDLE hDC, RTS_HANDLE <a href="#id63"><span class="problematic" id="id64">*</span></a>phOptionalResultData, RTS_Rectangle <a href="#id65"><span class="problematic" id="id66">*</span></a>prWindow, RTS_Rectangle <a href="#id67"><span class="problematic" id="id68">*</span></a>prPrintOutput)<a class="headerlink" href="#rts-result-sysgraphicprepareprinting-rts-handle-hdc-rts-handle-phoptionalresultdata-rts-rectangle-prwindow-rts-rectangle-prprintoutput" title="Permalink to this headline">¶</a></h3>
+<p>This function can be used to prepare a device context for printing. Normally, this preparation is done by the assignment of a transformation so that the screen output is scaled correctly to a printer device context. This is perhaps necessary when the extent and/or the resolution of a printer device context is different than these properties of the screen device context.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="7%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>The device context of the printer that has to be prepared by this call.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>phOptionalResultData</td>
+<td>An optional pointer to a handle that allows this method to allocate data that can be released lateron in the call to SysGraphicFinishPrinting. If such data is not necessary on a specific platform implementation, this pointer can be NULL so that nothing can be returned here.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>prWindow</td>
+<td>A pointer to a rectangle that describes the extent of the targetvisualization window on the screen.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>prPrintOutput</td>
+<td>A pointer to a rectangle that describes the extent of the destination on the printer.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicfinishprinting-rts-handle-hdc-rts-handle-hoptionalresultdata">
+<span id="group-sys-graphic-itf-1gaaecddbc61733e95b7b10e70ce7aecef2"></span><h3>RTS_RESULT SysGraphicFinishPrinting (RTS_HANDLE hDC, RTS_HANDLE hOptionalResultData)<a class="headerlink" href="#rts-result-sysgraphicfinishprinting-rts-handle-hdc-rts-handle-hoptionalresultdata" title="Permalink to this headline">¶</a></h3>
+<p>This function reverts the adaptations done by SysGraphicPreparePrinting</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="11%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>The device context of the printer that has to be reverted by this call.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hOptionalResultData</td>
+<td>When SysGraphicPreparePrinting allocated and returned some additional data, this handle will be passed here again to be able to release the data correctly.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicsetantialiasingmode-rts-handle-hdc-rts-ui32-uiantialiasingsettings">
+<span id="group-sys-graphic-itf-1ga782820e35db3bcf8c9da6a5ed21e1c0e"></span><h3>RTS_RESULT SysGraphicSetAntiAliasingMode (RTS_HANDLE hDC, RTS_UI32 uiAntiAliasingSettings)<a class="headerlink" href="#rts-result-sysgraphicsetantialiasingmode-rts-handle-hdc-rts-ui32-uiantialiasingsettings" title="Permalink to this headline">¶</a></h3>
+<p>This function assigns the antialiasing mode to a device context. By default, a device context should be in mode SYSGRAPHIC_ANTIALIASING_NONE. If a device does not support antialiased drawing, it should return ERR_NOT_SUPPORTED. To tell the programming system, whether the antialiasing feature is supported, the targetsetting &#8220;visualizationtargetsupporttargetvisualization_antialiasing&#8221; can be used.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="26%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>The device context to assign the antialiasing mode to.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>uiAntiAliasingSettings</td>
+<td>The antialiasing mode (SYSGRAPHIC_ANTIALIASING_NONE,...).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicgetsyswindowfont-rts-handle-hdc-rts-handle-hsysgraphicfont-rts-handle-phsyswindowfont">
+<span id="group-sys-graphic-itf-1gaaf724496eec95a23e49d9cb4b140c51a"></span><h3>RTS_RESULT SysGraphicGetSysWindowFont (RTS_HANDLE hDC, RTS_HANDLE hSysGraphicFont, RTS_HANDLE <a href="#id69"><span class="problematic" id="id70">*</span></a>phSysWindowFont)<a class="headerlink" href="#rts-result-sysgraphicgetsyswindowfont-rts-handle-hdc-rts-handle-hsysgraphicfont-rts-handle-phsyswindowfont" title="Permalink to this headline">¶</a></h3>
+<p>This function is able to return the probably underlying font type as it is known by the SysWindow component from a font object that was allocated by the SysGraphic-Component.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="10%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>The device context that should be used for the conversion of the font type.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hSysGraphicFont</td>
+<td>The font that was allocated by the SysGraphic-Component and that should be converted to a font object that can be handled by the SysWindow-Component.</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>phSysWindowFont</td>
+<td>A pointer that will receive the resulting (SysWindow) font.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicinvalidaterectangle-rts-handle-hdc-rts-rectangle-rect">
+<span id="group-sys-graphic-itf-1ga2277a14c1ee963c5306c2c881a095c51"></span><h3>RTS_RESULT SysGraphicInvalidateRectangle (RTS_HANDLE hDC, RTS_Rectangle rect)<a class="headerlink" href="#rts-result-sysgraphicinvalidaterectangle-rts-handle-hdc-rts-rectangle-rect" title="Permalink to this headline">¶</a></h3>
+<p>This function is optional and can be implemented by systems that need a valid backbuffer for painting to the foreground. This fact probably depends on the underlying graphics system (for Windows or native systems, this is probably not necessary, for QT based systems, an implementation might be necessary. The resulting list of invalidated rectangles should be reset in an implementation of SysGraphicResetInvalidation</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="3%" />
+<col width="93%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>The device context to invalidate in.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>rect</td>
+<td>The rectangle that is invalidated by the visualization. An implementation can use this call for example to fill a clip region so that only valid content will be drawn into the backbuffer.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicresetinvalidation-rts-handle-hdc">
+<span id="group-sys-graphic-itf-1ga209b5e9be7a1508a627cd4c65855f26a"></span><h3>RTS_RESULT SysGraphicResetInvalidation (RTS_HANDLE hDC)<a class="headerlink" href="#rts-result-sysgraphicresetinvalidation-rts-handle-hdc" title="Permalink to this headline">¶</a></h3>
+<p>This function is optional in the same way than SysGraphicInvalidateRectangle. Nevertheless, if SysGraphicInvalidateRectangle is implemented, then this function should be implemented too. It will be called to reset the list of passed invalidation rectangles. This fact probably depends on the underlying graphics system (for Windows or native systems, this is probably not necessary, for QT based systems, an implementation might be necessary.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>The device context to invalidate in.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicinvalidateclientarea-rts-handle-hdc">
+<span id="group-sys-graphic-itf-1gab4e06f08874da823a924b13228391f03"></span><h3>RTS_RESULT SysGraphicInvalidateClientArea (RTS_HANDLE hDC)<a class="headerlink" href="#rts-result-sysgraphicinvalidateclientarea-rts-handle-hdc" title="Permalink to this headline">¶</a></h3>
+<p>This function is optional, just as SysGraphicInvalidateRectangle, but should be implemented, if SysGraphicInvalidateRectangle is implemented. It will be called when the whole client area should be invalidated.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="11%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDC</td>
+<td>A handle to the device context.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+<div class="section" id="rts-handle-sysgraphiccreatetransformation-rts-result-presult">
+<span id="group-sys-graphic-itf-1ga8a9e4f1d861e20593927748577f251a7"></span><h3>RTS_HANDLE SysGraphicCreateTransformation (RTS_RESULT <a href="#id71"><span class="problematic" id="id72">*</span></a>pResult)<a class="headerlink" href="#rts-handle-sysgraphiccreatetransformation-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Creates an affine transformation object. Such transformations can be used for client local animations (eg. when displaying the preview of multitouch gestures) or for drawing transformed elements (eg. rotated images or text). Usually such transformations are represented by transformation matrices. If affine transformations are not supported by the implementing platform,pResult should be set to ERR_NOTIMPLEMENTED. In such a situation, some features might not work correctly.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="18%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Optional pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>A handle to the created transformation object</p>
+</div>
+<div class="section" id="rts-handle-sysgraphiccreatetransformationbyvalues-rts-real32-m11-rts-real32-m12-rts-real32-m21-rts-real32-m22-rts-real32-dx-rts-real32-dy-rts-result-presult">
+<span id="group-sys-graphic-itf-1ga5b9675a578e8be1d9e64c11ca36eb073"></span><h3>RTS_HANDLE SysGraphicCreateTransformationByValues (RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy, RTS_RESULT <a href="#id73"><span class="problematic" id="id74">*</span></a>pResult)<a class="headerlink" href="#rts-handle-sysgraphiccreatetransformationbyvalues-rts-real32-m11-rts-real32-m12-rts-real32-m21-rts-real32-m22-rts-real32-dx-rts-real32-dy-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Creates an affine transformation object using the given matrix members. Such transformations can be used for client local animations (eg. when displaying the preview of multitouch gestures) or for drawing transformed elements (eg. rotated images or text). Usually such transformations are represented by transformation matrices. If affine transformations are not supported by the implementing platform,pResult should be set to ERR_NOTIMPLEMENTED. In such a situation, some features might not work correctly.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>m11</td>
+<td>The transformation matrix value in the first row, first column</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>m12</td>
+<td>The transformation matrix value in the first row, second column</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>m21</td>
+<td>The transformation matrix value in the second row, first column</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>m22</td>
+<td>The transformation matrix value in the second row, second column</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>dx</td>
+<td>The transformation matrix value in the third row, first column</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>dy</td>
+<td>The transformation matrix value in the third row, second column</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Optional pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>A handle to the created transformation object</p>
+</div>
+<div class="section" id="rts-result-sysgraphicfreetransformation-rts-handle-htransform">
+<span id="group-sys-graphic-itf-1ga08a9f7b4037486e372a8954e7151dc9e"></span><h3>RTS_RESULT SysGraphicFreeTransformation (RTS_HANDLE hTransform)<a class="headerlink" href="#rts-result-sysgraphicfreetransformation-rts-handle-htransform" title="Permalink to this headline">¶</a></h3>
+<p>Deletes an affine transformation object.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="23%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTransform</td>
+<td>The transformation to delete.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphictransformationscale-rts-handle-htransform-rts-real32-x-rts-real32-y">
+<span id="group-sys-graphic-itf-1gabfaaf78e208bd246010f49ede5b3c235"></span><h3>RTS_RESULT SysGraphicTransformationScale (RTS_HANDLE hTransform, RTS_REAL32 x, RTS_REAL32 y)<a class="headerlink" href="#rts-result-sysgraphictransformationscale-rts-handle-htransform-rts-real32-x-rts-real32-y" title="Permalink to this headline">¶</a></h3>
+<p>Applies a scaling operation to the transformation object. The origin of the coordinate system (could have been moved by a previous call to SysGraphicTransformationTranslate will be used as the origin for the scaling operation.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="18%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTransform</td>
+<td>The transformation to scale.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>x</td>
+<td>The factor to scale in horizontal direction.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>y</td>
+<td>The factor to scale in vertical direction.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphictransformationrotate-rts-handle-htransform-rts-real32-angle">
+<span id="group-sys-graphic-itf-1gaaa21188545a72b597d396a0fe05a78f4"></span><h3>RTS_RESULT SysGraphicTransformationRotate (RTS_HANDLE hTransform, RTS_REAL32 angle)<a class="headerlink" href="#rts-result-sysgraphictransformationrotate-rts-handle-htransform-rts-real32-angle" title="Permalink to this headline">¶</a></h3>
+<p>Applies a rotation operation to the transformation object. The origin of the coordinate system (could have been moved by a previous call to SysGraphicTransformationTranslate will be used as the center for the rotation operation.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTransform</td>
+<td>The transformation to rotate.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>angle</td>
+<td>The angle of the rotation in degrees. Positive values specify clockwise rotation.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphictransformationtranslate-rts-handle-htransform-rts-real32-x-rts-real32-y">
+<span id="group-sys-graphic-itf-1ga82856e23fdd3c2de0b1c202b6d276a78"></span><h3>RTS_RESULT SysGraphicTransformationTranslate (RTS_HANDLE hTransform, RTS_REAL32 x, RTS_REAL32 y)<a class="headerlink" href="#rts-result-sysgraphictransformationtranslate-rts-handle-htransform-rts-real32-x-rts-real32-y" title="Permalink to this headline">¶</a></h3>
+<p>Applies a translation operation to the transformation object.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="18%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTransform</td>
+<td>The transformation to translate.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>x</td>
+<td>The offset to shift in horizontal direction.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>y</td>
+<td>The offset to shift in vertical direction.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+<div class="section" id="rts-result-sysgraphicsetactivetransformation-rts-handle-hdc-rts-handle-htransform">
+<span id="group-sys-graphic-itf-1ga7ddaf9233f7b58f511e59ddcf83ccbaf"></span><h3>RTS_RESULT SysGraphicSetActiveTransformation (RTS_HANDLE hdc, RTS_HANDLE hTransform)<a class="headerlink" href="#rts-result-sysgraphicsetactivetransformation-rts-handle-hdc-rts-handle-htransform" title="Permalink to this headline">¶</a></h3>
+<p>Activates an affine transformation object on the given device context. This transformation will be applied to modify all followup drawing operations on this device context until a different (or no) transformation is set.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="11%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hdc</td>
+<td>The device context to apply the transformation on.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hTransform</td>
+<td>The transformation to apply. Pass RTS_INVALID_HANDLE to deactivate any transformations.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+<div class="section" id="rts-handle-sysgraphicgetactivetransformation-rts-handle-hdc-rts-result-presult">
+<span id="group-sys-graphic-itf-1ga4330b069437a1f23f4871ce0d1e08b09"></span><h3>RTS_HANDLE SysGraphicGetActiveTransformation (RTS_HANDLE hdc, RTS_RESULT <a href="#id75"><span class="problematic" id="id76">*</span></a>pResult)<a class="headerlink" href="#rts-handle-sysgraphicgetactivetransformation-rts-handle-hdc-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Returns the currently active affine transformation object on the given device context.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="11%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hdc</td>
+<td>The device context to retrieve the the transformation from.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hTransform</td>
+<td>The transformation to apply. Pass RTS_INVALID_HANDLE to deactivate any transformations.</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Optional pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>The handle or the active transformation or RTS_INVALID_HANDLE if there was no active one..</p>
+</div>
+<div class="section" id="rts-handle-sysgraphicclonetransformation-rts-handle-htransform-rts-result-presult">
+<span id="group-sys-graphic-itf-1ga8d9cdfa3bc890e30429817b6bf3f6872"></span><h3>RTS_HANDLE SysGraphicCloneTransformation (RTS_HANDLE hTransform, RTS_RESULT <a href="#id77"><span class="problematic" id="id78">*</span></a>pResult)<a class="headerlink" href="#rts-handle-sysgraphicclonetransformation-rts-handle-htransform-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Creates a new affine transformation object that is a copy of an existing affine transformation object.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="22%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTransform</td>
+<td>A handle to the object to clone.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Optional pointer to error code.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>A handle to the created transformation object or RTS_INVALID_HANDLE if there was an error.</p>
+</div>
+<div class="section" id="rts-result-sysgraphictransformationtransform-rts-handle-htransform-rts-real32-m11-rts-real32-m12-rts-real32-m21-rts-real32-m22-rts-real32-dx-rts-real32-dy">
+<span id="group-sys-graphic-itf-1gab2b9f9a793623d9be2639f8cd944f740"></span><h3>RTS_RESULT SysGraphicTransformationTransform (RTS_HANDLE hTransform, RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy)<a class="headerlink" href="#rts-result-sysgraphictransformationtransform-rts-handle-htransform-rts-real32-m11-rts-real32-m12-rts-real32-m21-rts-real32-m22-rts-real32-dx-rts-real32-dy" title="Permalink to this headline">¶</a></h3>
+<p>Applies a transformation operation to the transformation object.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="14%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTransform</td>
+<td>Handle to the transformation object to transform.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>m11</td>
+<td>The transformation matrix value in the first row, first column</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>m12</td>
+<td>The transformation matrix value in the first row, second column</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>m21</td>
+<td>The transformation matrix value in the second row, first column</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>m22</td>
+<td>The transformation matrix value in the second row, second column</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>dx</td>
+<td>The transformation matrix value in the third row, first column</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>dy</td>
+<td>The transformation matrix value in the third row, second column</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>An error code</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___sys_graphic_light_itf.html" title="SysGraphicLightItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_framebuffer_itf.html" title="SysFramebufferItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

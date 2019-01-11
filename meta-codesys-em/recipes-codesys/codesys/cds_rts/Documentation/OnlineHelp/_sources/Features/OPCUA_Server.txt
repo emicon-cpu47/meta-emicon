@@ -1,0 +1,110 @@
+
+
+OPC UA Server
+=============
+
+Overview
+--------
+
+The OPC UA Server exposes variables configured in the symbolic configuration
+of the CODESYS project to the OPC UA address space. Clients can read, write
+and monitor the values of the PLC.
+To enable the OPC UA support in the CODESYS IDE the option "Support OPC UA Features"
+must be set in the Symbolconfiguration.
+
+Currently the OPC UA server supports the "Micro Embedded Device Server Profile".
+This server profile allows reading, writing, and subscribing of items. Security features
+such as encrypted communication and user management are currently not supported. 
+
+OPC UA allows defining different data types. The combination of customer
+defined data types, object types and reference types allows defining your own
+information model. An information model describes how the data should be 
+exposed to the address space. By now only the basic information model is 
+provided. The PLCopen information model is planned for one of the 
+next service packs. It is possible to add an own information model to the
+OPC UA Server. To extend the OPC UA server with your specific information 
+model and your specific data it is required to implement the Provider 
+interface which is described in the next chapter.
+
+
+Provider Interface
+------------------
+The provider interface is used to add nodes to the address space of the
+OPC UA server. The server itself doesn't provide any nodes. The basic nodes
+are already defined in an own provider. The server itself does as much 
+preprocessing as possible to identify errors in the requests of the client.
+After these checks have been done the server calls all registered providers
+to get the data to be sent to the client.
+
+The subscriptions work slightly different. The server does the complete
+handling of the subscriptions and monitored items. The provider is only
+responsible to sample the item if the sampling interval exceeds. All
+additional processing (filtering, buffering, publishing) is done by the server.
+
+A detailed  description of the provider interface can be found in the 
+corresponding header file (see: OpcUaProvider.h). As a short overview these
+are the functions of the provider interface:
+
+- Initialization and clean up
+- CreateMonitoredItem
+- SampleMonitoredItem
+- DeleteMonitoredItem
+- Read
+- Write
+- Browse
+
+Server Interface
+----------------
+
+A server interface is provided for interactions with the OPC UA server. This interface allows the following
+operations:
+
+- Get the index of the given namespace
+- Register a new namespace to the server
+- Load an information model out of a XML file. The XML file has to follow the
+OPC UA UANodeset.xsd schema. The schema can be found at: http://www.opcfoundation.org/UA/schemas/1.02/UANodeSet.xsd
+
+
+Platforms
+---------
+
+The OPC UA server works on all platforms matching the minimum requirements.
+The runtime system must include all required components. Because OPC UA 
+moves a lot of logic of the client into the server platforms the OPC UA server
+may cause a high CPU load. Devices with slow processors aren't able to run
+the OPC UA server. The RAM footprint of a runtime with OPC UA is nearly doubled.
+
+Ressources
+----------
+
+==============               ========       ========        ===========================
+Platform                     ROM (kB)       RAM idle        RAM (1000 monitored items)
+==============               ========       ========        ===========================
+Control Win V3               ~450           ~250kB          ~1MB
+Raspserry Pi                 ~900           ~1084           ~1MB
+==============               ========       ========        ===========================
+
+
+Configuration File
+------------------
+
+To configure the behaviour of the OPC UA server there are some entries in
+the CODESYSControl configuration file. For details see the CmpOPCUAServer
+interface description (see :ref:`group___cmp_o_p_c_u_a_server_itf`).
+
+Restrictions
+------------
+- No user management is available. 
+
+Security
+--------
+The availble security features of the OPC UA server are documented in :ref:`opcua_server_security`.
+
+Requirements
+------------
+
+Additionally the OPC UA server requires the following components of the runtime system:
+
+- SysTarget
+- CmpIecVarAccess
+- CmpApp

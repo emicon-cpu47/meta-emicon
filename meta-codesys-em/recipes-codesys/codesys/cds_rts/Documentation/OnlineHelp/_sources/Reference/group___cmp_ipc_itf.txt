@@ -1,0 +1,518 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_ipc_itf:
+
+=========
+CmpIpcItf
+=========
+
+Interface of CmpIpc. :ref:`More... <group___cmp_ipc_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpIpc_C <struct_i_cmp_ipc___c>`
+
+Macros
+------
+
+- #define :ref:`CMPIPC_KEY_SHAREDMEMSIZE <group___cmp_ipc_itf_1ga3f0ea2212adc1feb00a51ebd93b76fef>` "SharedMemSize"
+
+- #define :ref:`CMPIPC_KEY_SHAREDMEMSIZE_DEFAULT <group___cmp_ipc_itf_1gaf7efac259a6064754ecd5125c5351cf8>` INT32_C(5000)
+
+- #define :ref:`CMPIPC_KEY_SHAREDMEM_BASENAME <group___cmp_ipc_itf_1ga584e5423c45ce81a61a83032401e24fb>` "SharedMemBaseName"
+
+- #define :ref:`CMPIPC_KEY_SHAREDMEM_BASENAME_DEFAULT <group___cmp_ipc_itf_1ga5f286add1dbe0dc4be6689325d6fed7c>` "IPC_SHM_"
+
+- #define :ref:`CMPIPC_KEY_IPCTASKINTERVAL <group___cmp_ipc_itf_1gae5eafd46b26aaea016273bf6ebb6953d>` "IpcTaskInterval"
+
+- #define :ref:`CMPIPC_KEY_IPCTASKINTERVAL_DEFAULT <group___cmp_ipc_itf_1ga26a86d7a76cd0ec53bfde10356648924>` INT32_C(20000)
+
+- #define :ref:`CMPIPC_KEY_IPCTASKONEFORALL <group___cmp_ipc_itf_1gaf118a57dff5327d623464a7c93f868c6>` "IpcOneTaskForAll"
+
+- #define :ref:`CMPIPC_KEY_IPCTASKONEFORALL_DEFAULT <group___cmp_ipc_itf_1gafb096260ad0f6fed526b2a154cf794fb>` 0
+
+- #define :ref:`CMPIPC_KEY_IPCPOLLINGWAITTIME <group___cmp_ipc_itf_1ga5c823c17eeffd17e808b4682d9ba5390>` "IpcPollingWaittime"
+
+- #define :ref:`CMPIPC_KEY_IPCPOLLINGWAITTIME_DEFAULT <group___cmp_ipc_itf_1gabd38789bfd0c77f676cb844014518fc5>` 20
+
+- #define :ref:`CMPIPC_KEY_IPCSTARTUPWAITTIME <group___cmp_ipc_itf_1gae2ab1745465340305394b5e8dd897595>` "IpcStartupWaittime"
+
+- #define :ref:`CMPIPC_KEY_IPCSTARTUPWAITTIME_DEFAULT <group___cmp_ipc_itf_1ga113b78f553d42a7f0a019e93a4a0f0e5>` INT32_C(10000)
+
+- #define :ref:`CMPIPC_KEY_EVENTSYNC <group___cmp_ipc_itf_1gac3be6614c0b80d9ab23663ba7e21e158>` "EventSync"
+
+- #define :ref:`CMPIPC_KEY_EVENTSYNC_DEFAULT <group___cmp_ipc_itf_1gac00860c0dc939011d8320490df882605>` 1
+
+- #define :ref:`MAX_METHOD_NAME_LEN <group___cmp_ipc_itf_1gafe1224f1c479805c248f5b106fda51c2>` 40
+
+- #define :ref:`ERR_CHANNELNAMETOOLONG <group___cmp_ipc_itf_1gafd1df491f04d8b0ce95c0d8fc1d647ee>` 0x0500
+
+- #define :ref:`ERR_METHODNAMETOOLONG <group___cmp_ipc_itf_1ga67fba71b7f62949893bccc5b2dea32c6>` 0x0501
+
+- #define :ref:`ERR_INVALIDTYPEFORGETVALUE <group___cmp_ipc_itf_1ga3d1071adb6f734026fde3642ad55bb05>` 0x0502
+
+- #define :ref:`IPC_TYPE_VOID <group___cmp_ipc_itf_1ga3a8bccbbb2030fd560aa30e9bf0612f4>` 0
+
+- #define :ref:`IPC_TYPE_DWORD <group___cmp_ipc_itf_1ga56444004c530f5277f4a782c3c7036ee>` 1
+
+- #define :ref:`IPC_TYPE_BOOLEAN <group___cmp_ipc_itf_1ga7b810734d042ea0188ee3b8f63a95aac>` 2
+
+- #define :ref:`IPC_TYPE_STRING <group___cmp_ipc_itf_1gade1a0256d84e2458a6c81329d8fb1447>` 3
+
+- #define :ref:`IPC_TYPE_BINARY <group___cmp_ipc_itf_1gaf408ce858a0e324fbc2e3e81b20b75c9>` 4
+
+- #define :ref:`IPC_TYPE_STRUCTURED <group___cmp_ipc_itf_1ga3d66d75108c0e53677f926708ca020c3>` 100
+
+- #define :ref:`ITF_CmpIpc <group___cmp_ipc_itf_1ga51b21a1d08b665e93353cbfc2e575a13>`
+
+- #define :ref:`EXTITF_CmpIpc <group___cmp_ipc_itf_1ga338840e3dec38bf544ab0f029f8d4f7f>`
+
+Typedefs
+--------
+
+- typedef RTS_RESULT(* :ref:`PFIPCHANDLER <group___cmp_ipc_itf_1gaa54ce9d6013a3cd71757ae6b96bfabc6>`)(RTS_HANDLE hParam, RTS_HANDLE *phResultParam, RTS_UINTPTR ulParam)
+
+- typedef :ref:`ICmpIpc_C <struct_i_cmp_ipc___c>` :ref:`ICmpIpc <group___cmp_ipc_itf_1ga0bd187da73db3dfbcae15cdfb8ab51fa>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`IpcOpen <group___cmp_ipc_itf_1gaab3148bd70d038274bb87bf09c557c91>` (char * pszName, RTS_HANDLE * phReturn)
+
+- RTS_RESULT :ref:`IpcClose <group___cmp_ipc_itf_1gad7e7b2d2d662e793c967b62527b27cd9>` (RTS_HANDLE hIpc)
+
+- RTS_RESULT :ref:`IpcStop <group___cmp_ipc_itf_1ga7a96e02097d8164b8e8e230bbd774b06>` (RTS_HANDLE hIpc)
+
+- RTS_RESULT :ref:`IpcRegisterHandler <group___cmp_ipc_itf_1ga0134b4f47e0fa8e5b22ecdb48e430216>` (RTS_HANDLE hIpc, char * pszMethod, :ref:`PFIPCHANDLER <group___cmp_ipc_itf_1gaa54ce9d6013a3cd71757ae6b96bfabc6>`  pfHandler, RTS_UINTPTR ulParam)
+
+- RTS_RESULT :ref:`IpcUnregisterHandler <group___cmp_ipc_itf_1ga0df08e420793ddbd324d6a5e29ec7871>` (RTS_HANDLE hIpc, char * pszMethod)
+
+- RTS_RESULT :ref:`IpcCall <group___cmp_ipc_itf_1ga83fc032f7ab9d697abf4b297678c0b12>` (RTS_HANDLE hIpc, char * pszMethod, RTS_HANDLE hParams, RTS_HANDLE * phResult, RTS_UI32 iTimeOutMs)
+
+- RTS_RESULT :ref:`IpcCreateParam <group___cmp_ipc_itf_1gad7cd6cc7f1f3d20ba68c936efdfe20d9>` (char * pszName, RTS_HANDLE * phResult)
+
+- RTS_RESULT :ref:`IpcFreeParam <group___cmp_ipc_itf_1ga02d8ebd6b0fc57a6fc0c913d704f1d05>` (RTS_HANDLE hParam)
+
+- RTS_RESULT :ref:`IpcParamSetValue <group___cmp_ipc_itf_1ga2d31f7651db3db6380f07e8a83e94408>` (RTS_HANDLE hParam, RTS_I32 iType, RTS_SIZE iSize, void * pData)
+
+- RTS_RESULT :ref:`IpcParamGetValue <group___cmp_ipc_itf_1ga615d3d69f6463f741409c25991bd721b>` (RTS_HANDLE hParam, RTS_SIZE * piSize, void * pBuffer)
+
+- RTS_RESULT :ref:`IpcParamGetName <group___cmp_ipc_itf_1ga726789bd7ca629a4ad16f067289897a5>` (RTS_HANDLE hParam, char ** ppszName)
+
+- RTS_RESULT :ref:`IpcParamGetType <group___cmp_ipc_itf_1ga9567a2218b160d739573ca100c1fa924>` (RTS_HANDLE hParam, RTS_I32 * piType)
+
+- RTS_RESULT :ref:`IpcParamAddMember <group___cmp_ipc_itf_1gad1f45ec2cadc14ee74805044150c4bd9>` (RTS_HANDLE hParam, RTS_HANDLE hParamMember)
+
+- RTS_RESULT :ref:`IpcParamGetMemberCount <group___cmp_ipc_itf_1ga8538db2af41d1d89b8bc03c11531e20b>` (RTS_HANDLE hParam, RTS_I32 * piCount)
+
+- RTS_RESULT :ref:`IpcParamGetMember <group___cmp_ipc_itf_1ga1dea6656dcea4f18cdf4191ee128233e>` (RTS_HANDLE hParam, RTS_I32 iNumber, RTS_HANDLE * phParamMember)
+
+.. _group___cmp_ipc_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpIpc.
+
+Interface of the inter process communication component.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_ipc_itf_1ga3f0ea2212adc1feb00a51ebd93b76fef:
+
+#define CMPIPC_KEY_SHAREDMEMSIZE "SharedMemSize"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting that decides about the size of the sharedmemory that is used for the inter process communication. This size limits the maximal size of data that can be transferred withing one call. The size for the data that can be used is about one half of this size for parameters to the call as well as return values.
+
+.. _group___cmp_ipc_itf_1gaf7efac259a6064754ecd5125c5351cf8:
+
+#define CMPIPC_KEY_SHAREDMEMSIZE_DEFAULT INT32_C(5000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga584e5423c45ce81a61a83032401e24fb:
+
+#define CMPIPC_KEY_SHAREDMEM_BASENAME "SharedMemBaseName"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting that decides about basename for the shared memory used for the communication of the channel.
+
+.. _group___cmp_ipc_itf_1ga5f286add1dbe0dc4be6689325d6fed7c:
+
+#define CMPIPC_KEY_SHAREDMEM_BASENAME_DEFAULT "IPC_SHM_"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1gae5eafd46b26aaea016273bf6ebb6953d:
+
+#define CMPIPC_KEY_IPCTASKINTERVAL "IpcTaskInterval"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting that decides about the interval for the task polling for result or call on a channel. This value is in microseconds.
+
+.. _group___cmp_ipc_itf_1ga26a86d7a76cd0ec53bfde10356648924:
+
+#define CMPIPC_KEY_IPCTASKINTERVAL_DEFAULT INT32_C(20000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1gaf118a57dff5327d623464a7c93f868c6:
+
+#define CMPIPC_KEY_IPCTASKONEFORALL "IpcOneTaskForAll"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting that decides about whether one task handles all connections. If this setting is active, then usage of event synchronization is not possible at the moment.
+
+.. _group___cmp_ipc_itf_1gafb096260ad0f6fed526b2a154cf794fb:
+
+#define CMPIPC_KEY_IPCTASKONEFORALL_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga5c823c17eeffd17e808b4682d9ba5390:
+
+#define CMPIPC_KEY_IPCPOLLINGWAITTIME "IpcPollingWaittime"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting that decides about the time the task that is polling for calls or returns will sleep after it has done its work. Increasing this time will reduce cpuload for ipchandling but will also increase the latency for a call or result to be detected. This value is in milliseconds.
+
+.. _group___cmp_ipc_itf_1gabd38789bfd0c77f676cb844014518fc5:
+
+#define CMPIPC_KEY_IPCPOLLINGWAITTIME_DEFAULT 20
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1gae2ab1745465340305394b5e8dd897595:
+
+#define CMPIPC_KEY_IPCSTARTUPWAITTIME "IpcStartupWaittime"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting that decides about the maximal time a connected client will wait until the connection has been completely initialized by the creating communication partner. This value is in milliseconds.
+
+.. _group___cmp_ipc_itf_1ga113b78f553d42a7f0a019e93a4a0f0e5:
+
+#define CMPIPC_KEY_IPCSTARTUPWAITTIME_DEFAULT INT32_C(10000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1gac3be6614c0b80d9ab23663ba7e21e158:
+
+#define CMPIPC_KEY_EVENTSYNC "EventSync"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting that decides about whether this side of an IPC channel should try to use events for faster calls. In fact the usage of events is only possible if both channels support this.
+
+.. _group___cmp_ipc_itf_1gac00860c0dc939011d8320490df882605:
+
+#define CMPIPC_KEY_EVENTSYNC_DEFAULT 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1gafe1224f1c479805c248f5b106fda51c2:
+
+#define MAX_METHOD_NAME_LEN 40
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1gafd1df491f04d8b0ce95c0d8fc1d647ee:
+
+#define ERR_CHANNELNAMETOOLONG 0x0500
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga67fba71b7f62949893bccc5b2dea32c6:
+
+#define ERR_METHODNAMETOOLONG 0x0501
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga3d1071adb6f734026fde3642ad55bb05:
+
+#define ERR_INVALIDTYPEFORGETVALUE 0x0502
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga3a8bccbbb2030fd560aa30e9bf0612f4:
+
+#define IPC_TYPE_VOID 0
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga56444004c530f5277f4a782c3c7036ee:
+
+#define IPC_TYPE_DWORD 1
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga7b810734d042ea0188ee3b8f63a95aac:
+
+#define IPC_TYPE_BOOLEAN 2
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1gade1a0256d84e2458a6c81329d8fb1447:
+
+#define IPC_TYPE_STRING 3
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1gaf408ce858a0e324fbc2e3e81b20b75c9:
+
+#define IPC_TYPE_BINARY 4
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga3d66d75108c0e53677f926708ca020c3:
+
+#define IPC_TYPE_STRUCTURED 100
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga51b21a1d08b665e93353cbfc2e575a13:
+
+#define ITF_CmpIpc
+^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga338840e3dec38bf544ab0f029f8d4f7f:
+
+#define EXTITF_CmpIpc
+^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_ipc_itf_1gaa54ce9d6013a3cd71757ae6b96bfabc6:
+
+typedef RTS_RESULT( * PFIPCHANDLER)(RTS_HANDLE hParam, RTS_HANDLE *phResultParam, RTS_UINTPTR ulParam)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Callback function for the ipc-mechanism
+
+**Parameters**
+
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hParam        | Handle to the parameters to this call.                                                                                                               |
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phResultParam | The result of this call, if RTS_INVALID_HANDLE will be set to this parameter, than a parameter of type IPC_TYPE_VOID will be returned to the caller. |
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulParam       | The parameter registered in IpcRegisterHandler                                                                                                       |
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK or ERR_PARAMETER
+
+.. _group___cmp_ipc_itf_1ga0bd187da73db3dfbcae15cdfb8ab51fa:
+
+typedef ICmpIpc_C ICmpIpc
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_ipc_itf_1gaab3148bd70d038274bb87bf09c557c91:
+
+RTS_RESULT IpcOpen (char *pszName, RTS_HANDLE *phReturn)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1gad7e7b2d2d662e793c967b62527b27cd9:
+
+RTS_RESULT IpcClose (RTS_HANDLE hIpc)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga7a96e02097d8164b8e8e230bbd774b06:
+
+RTS_RESULT IpcStop (RTS_HANDLE hIpc)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function that must be called before unregistering callbacks on the server side of an ipc channel.
+
+**Parameters**
+
++---------+------+-----------------------------------------+
+| [in]    | hIpc | Handle to the ipc communcation channel. |
++---------+------+-----------------------------------------+
+
+**Returns:**
+
+ERR_OK
+
+.. _group___cmp_ipc_itf_1ga0134b4f47e0fa8e5b22ecdb48e430216:
+
+RTS_RESULT IpcRegisterHandler (RTS_HANDLE hIpc, char *pszMethod, PFIPCHANDLER pfHandler, RTS_UINTPTR ulParam)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Register a handler for a method that should be called via the ipc-mechanism.
+
+**Parameters**
+
++---------+-----------+--------------------------------------------------------------+
+| [in]    | hIpc      | Handle to the IPC-instance                                   |
++---------+-----------+--------------------------------------------------------------+
+| [in]    | pszMethod | Name of the registered method.                               |
++---------+-----------+--------------------------------------------------------------+
+| [in]    | pfHandler | The callback method.                                         |
++---------+-----------+--------------------------------------------------------------+
+| [in]    | ulParam   | A parameter that will be forwarded to each call to pfHandler |
++---------+-----------+--------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK or ERR_PARAMETER
+
+.. _group___cmp_ipc_itf_1ga0df08e420793ddbd324d6a5e29ec7871:
+
+RTS_RESULT IpcUnregisterHandler (RTS_HANDLE hIpc, char *pszMethod)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga83fc032f7ab9d697abf4b297678c0b12:
+
+RTS_RESULT IpcCall (RTS_HANDLE hIpc, char *pszMethod, RTS_HANDLE hParams, RTS_HANDLE *phResult, RTS_UI32 iTimeOutMs)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Call a method via the ipc-mechanism.
+
+**Parameters**
+
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hIpc       | Handle to the IPC-instance                                                                                                                                                                          |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszMethod  | Name of the method to call.                                                                                                                                                                         |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hParams    | The parameter that will be used for the call. In case of RTS_INVALID_HANDLE a parameter of type IPC_TYPE_VOID will be used for the call. The paramter given here must not be freed after a IpcCall! |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phResult   | The pointer will recieve the result of the call. The paramter returned here must be freed after a IpcCall!                                                                                          |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | iTimeOutMs | The maximal time that will be waited for the return of the call                                                                                                                                     |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK if the call succeeded, ERR_PARAMETER in case of invalid parameters to this call, ERR_TIMOUT if the current call *timed out or ERR_PENDING if the communication channel is still blocked due to a previously timed out call.
+
+.. _group___cmp_ipc_itf_1gad7cd6cc7f1f3d20ba68c936efdfe20d9:
+
+RTS_RESULT IpcCreateParam (char *pszName, RTS_HANDLE *phResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function creates a new parameter and returns a handle to it.
+
+**Parameters**
+
++---------+----------+-------------------------------------------------------------------+
+| [in]    | pszName  | Optional name of the parameter, may be NULL if no name is needed. |
++---------+----------+-------------------------------------------------------------------+
+| [out]   | phResult | Pointer that will recieve the created parameter.                  |
++---------+----------+-------------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK or ERR_PARAMETER
+
+.. _group___cmp_ipc_itf_1ga02d8ebd6b0fc57a6fc0c913d704f1d05:
+
+RTS_RESULT IpcFreeParam (RTS_HANDLE hParam)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function destroys a parameter.
+
+**Parameters**
+
++---------+--------+--------------------------+
+| [in]    | hParam | Handle to the parameter. |
++---------+--------+--------------------------+
+
+**Returns:**
+
+ERR_OK or ERR_PARAMETER
+
+.. _group___cmp_ipc_itf_1ga2d31f7651db3db6380f07e8a83e94408:
+
+RTS_RESULT IpcParamSetValue (RTS_HANDLE hParam, RTS_I32 iType, RTS_SIZE iSize, void *pData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function sets the value in a parameter. If you call this function on a structured parameter, then all members of the structure will be freed, so they may not be access afterwards.
+
+**Parameters**
+
++---------+-------+---------------------------------------------------------------------------------------------------------+
+| [in]    | iType | The type of the given value, one of the IPC_TYPE_... constants without IPC_TYPE_STRUCTURED.             |
++---------+-------+---------------------------------------------------------------------------------------------------------+
+| [in]    | iSize | This parameter is only needed for types with an unknown size ie. strings or binary.                     |
++---------+-------+---------------------------------------------------------------------------------------------------------+
+| [out]   | pData | Pointer to the data of the value to set. This data will be copied, so it can be deleted after the call. |
++---------+-------+---------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK or ERR_PARAMETER
+
+.. _group___cmp_ipc_itf_1ga615d3d69f6463f741409c25991bd721b:
+
+RTS_RESULT IpcParamGetValue (RTS_HANDLE hParam, RTS_SIZE *piSize, void *pBuffer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function returns the value of a parameter. The value will be copied to the buffer pointed to by pBuffer.
+
+**Parameters**
+
++---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hParam  | Handle to the parameter                                                                                                                                                                                                                           |
++---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | piSize  | Pointer to a int that contains the size of the buffer as an IN-param, and after the call will contain the size of the used buffer as an OUT-param. For Types with fixed sizes like IPC_TYPE_BOOLEAN or IPC_TYPE_DWORD this parameter may be NULL. |
++---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pBuffer | Buffer where the data should be copied to. If NULL, only the size will be returned.                                                                                                                                                               |
++---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK or ERR_PARAMETER or ERR_NOBUFFER, if the given size of pBuffer is too small
+
+.. _group___cmp_ipc_itf_1ga726789bd7ca629a4ad16f067289897a5:
+
+RTS_RESULT IpcParamGetName (RTS_HANDLE hParam, char **ppszName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function retrieves the value of a parameter.
+
+**Parameters**
+
++---------+----------+---------------------------------------------------------------------------------+
+| [in]    | hParam   | Handle to the parameter                                                         |
++---------+----------+---------------------------------------------------------------------------------+
+| [out]   | ppszName | Pointer to a c-string. This string will return the name. It will never be NULL! |
++---------+----------+---------------------------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK or ERR_PARAMETER
+
+.. _group___cmp_ipc_itf_1ga9567a2218b160d739573ca100c1fa924:
+
+RTS_RESULT IpcParamGetType (RTS_HANDLE hParam, RTS_I32 *piType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function returns the type of a given parameter.
+
+**Parameters**
+
++---------+--------+-----------------------------------------------------------------------------------------+
+| [in]    | hParam | Handle to the parameter                                                                 |
++---------+--------+-----------------------------------------------------------------------------------------+
+| [out]   | piType | Pointer that will recieve the type of this parameter as one of the IPC_TYPE_... values. |
++---------+--------+-----------------------------------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK or ERR_PARAMETER
+
+.. _group___cmp_ipc_itf_1gad1f45ec2cadc14ee74805044150c4bd9:
+
+RTS_RESULT IpcParamAddMember (RTS_HANDLE hParam, RTS_HANDLE hParamMember)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga8538db2af41d1d89b8bc03c11531e20b:
+
+RTS_RESULT IpcParamGetMemberCount (RTS_HANDLE hParam, RTS_I32 *piCount)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_ipc_itf_1ga1dea6656dcea4f18cdf4191ee128233e:
+
+RTS_RESULT IpcParamGetMember (RTS_HANDLE hParam, RTS_I32 iNumber, RTS_HANDLE *phParamMember)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

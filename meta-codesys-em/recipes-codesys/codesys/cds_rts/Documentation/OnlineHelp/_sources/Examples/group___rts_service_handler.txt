@@ -1,0 +1,193 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___rts_service_handler:
+
+=================
+RtsServiceHandler
+=================
+
+ :ref:`More... <group___rts_service_handler-details>`
+
+Macros
+------
+
+- #define :ref:`SG_TEMP <group___rts_service_handler_1gabe52beee1a7def1b8372d24f70ffbde8>` 0x0100
+
+- #define :ref:`TEMP_GET_RTS_VERSION <group___rts_service_handler_1gaf4176bb8db62e9ff333427a15206b092>` 0x12
+
+- #define :ref:`TAG_TEMP_VERSION_TYPE <group___rts_service_handler_1ga9ddfa4441cb6cd7d87205cb35ca15acc>` 0x10
+
+- #define :ref:`TEMP_COMMAND_READ_IP <group___rts_service_handler_1gafea7658307d935d3cb7849f683c94373>` 0x13
+
+- #define :ref:`TEMP_TAG_IP_BYTES <group___rts_service_handler_1gac29fd72965aec5ee0bcaf7e0dabab2bf>` 0x11
+
+- #define :ref:`TEMP_TAG_SUBNET_BYTES <group___rts_service_handler_1gaa45bd0f48e5241cae4f8824908a4bbfe>` 0x12
+
+- #define :ref:`TEMP_COMMAND_READ_CLOCK <group___rts_service_handler_1ga17dc533568712c47757e31b8008fa680>` 0x14
+
+- #define :ref:`TEMP_COMMAND_SET_CLOCK <group___rts_service_handler_1ga3eb577e2cb06e31514077bfb49516cb5>` 0x15
+
+- #define :ref:`TEMP_TAG_RTC_TIME <group___rts_service_handler_1ga388710890778cef7d08c343adff0f5d1>` 0x11
+
+- #define :ref:`TEMP_TAG_RTC_RESULT <group___rts_service_handler_1ga48375614a69f186c10e97ea3839dea52>` 0x12
+
+- #define :ref:`USERDB_OBJECT_TEMPLATE <group___rts_service_handler_1gaaa2d352eebe05a85b3fd3328cad1005a>` "Device.MyObject"
+
+- #define :ref:`USERDB_OBJECT_TEMPLATE_SERVICE1 <group___rts_service_handler_1ga87d2980720ce924d15d5ec929db85a84>` :ref:`USERDB_OBJECT_TEMPLATE <group___rts_service_handler_1gaaa2d352eebe05a85b3fd3328cad1005a>` ".__GET_RTS_VERSION"
+
+- #define :ref:`USERDB_OBJECT_TEMPLATE_SERVICE2 <group___rts_service_handler_1gaa523aa4736105d4dc89825f4431df1db>` :ref:`USERDB_OBJECT_TEMPLATE <group___rts_service_handler_1gaaa2d352eebe05a85b3fd3328cad1005a>` ".__COMMAND_READ_IP"
+
+- #define :ref:`USERDB_OBJECT_TEMPLATE_SERVICE3 <group___rts_service_handler_1ga8c9d9d63f35d87440e5f9dc69669723d>` :ref:`USERDB_OBJECT_TEMPLATE <group___rts_service_handler_1gaaa2d352eebe05a85b3fd3328cad1005a>` ".__COMMAND_READ_CLOCK"
+
+- #define :ref:`USERDB_OBJECT_TEMPLATE_SERVICE4 <group___rts_service_handler_1ga0c83315a3603333ece3f7c6cde4c25f2>` :ref:`USERDB_OBJECT_TEMPLATE <group___rts_service_handler_1gaaa2d352eebe05a85b3fd3328cad1005a>` ".__COMMAND_SET_CLOCK"
+
+Functions
+---------
+
+- RTS_RESULT :ref:`AddMyObjects <group___rts_service_handler_1gaf5ec8b9d4541fb0d1f568f5885c0abe6>` (void)
+
+- RTS_RESULT :ref:`RemoveMyObjects <group___rts_service_handler_1ga819aedebe13b807fb5fd53a60b5045ab>` (void)
+
+- RTS_RESULT :ref:`TempServiceHandler <group___rts_service_handler_1gad69d5dc0b43efdb2051d2783e3e0537d>` (RTS_UI32 ulChannelId, HEADER_TAG * pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)
+
+- RTS_RESULT :ref:`InitServiceHandler <group___rts_service_handler_1gab94a2e55b5a5c6238cde7eff991022ec>` (void)
+
+- RTS_RESULT :ref:`ExitServiceHandler <group___rts_service_handler_1ga0990653b311caeaf55127229c80f7ca3>` (void)
+
+- RTS_RESULT :ref:`HasAccessRights <group___rts_service_handler_1gafec37409df48ff96c77889f810f1fc0a>` (char * pszObject, RTS_UI32 ulRequestedRights, RTS_UI32 ulSessionId, BINTAGWRITER * pWriter)
+
+.. _group___rts_service_handler-details:
+
+Detailed Description
+--------------------
+
+
+
+Template component to handle layer7 services
+
+- CH_INIT3: call InitServiceHandler() from your component hook function
+
+- CH_EXIT3: call ExitServiceHandler() from your component hook function
+
+- TempServiceHandler(): Implements service routines
+
+**Copyright:**
+
+\(c) 2003-2016 3S-Smart Software Solutions
+
+Macro Definition Documentation
+------------------------------
+.. _group___rts_service_handler_1gabe52beee1a7def1b8372d24f70ffbde8:
+
+#define SG_TEMP 0x0100
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1gaf4176bb8db62e9ff333427a15206b092:
+
+#define TEMP_GET_RTS_VERSION 0x12
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1ga9ddfa4441cb6cd7d87205cb35ca15acc:
+
+#define TAG_TEMP_VERSION_TYPE 0x10
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1gafea7658307d935d3cb7849f683c94373:
+
+#define TEMP_COMMAND_READ_IP 0x13
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1gac29fd72965aec5ee0bcaf7e0dabab2bf:
+
+#define TEMP_TAG_IP_BYTES 0x11
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1gaa45bd0f48e5241cae4f8824908a4bbfe:
+
+#define TEMP_TAG_SUBNET_BYTES 0x12
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1ga17dc533568712c47757e31b8008fa680:
+
+#define TEMP_COMMAND_READ_CLOCK 0x14
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1ga3eb577e2cb06e31514077bfb49516cb5:
+
+#define TEMP_COMMAND_SET_CLOCK 0x15
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1ga388710890778cef7d08c343adff0f5d1:
+
+#define TEMP_TAG_RTC_TIME 0x11
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1ga48375614a69f186c10e97ea3839dea52:
+
+#define TEMP_TAG_RTC_RESULT 0x12
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1gaaa2d352eebe05a85b3fd3328cad1005a:
+
+#define USERDB_OBJECT_TEMPLATE "Device.MyObject"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1ga87d2980720ce924d15d5ec929db85a84:
+
+#define USERDB_OBJECT_TEMPLATE_SERVICE1 :ref:`USERDB_OBJECT_TEMPLATE <group___rts_service_handler_1gaaa2d352eebe05a85b3fd3328cad1005a>` ".__GET_RTS_VERSION"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1gaa523aa4736105d4dc89825f4431df1db:
+
+#define USERDB_OBJECT_TEMPLATE_SERVICE2 :ref:`USERDB_OBJECT_TEMPLATE <group___rts_service_handler_1gaaa2d352eebe05a85b3fd3328cad1005a>` ".__COMMAND_READ_IP"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1ga8c9d9d63f35d87440e5f9dc69669723d:
+
+#define USERDB_OBJECT_TEMPLATE_SERVICE3 :ref:`USERDB_OBJECT_TEMPLATE <group___rts_service_handler_1gaaa2d352eebe05a85b3fd3328cad1005a>` ".__COMMAND_READ_CLOCK"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1ga0c83315a3603333ece3f7c6cde4c25f2:
+
+#define USERDB_OBJECT_TEMPLATE_SERVICE4 :ref:`USERDB_OBJECT_TEMPLATE <group___rts_service_handler_1gaaa2d352eebe05a85b3fd3328cad1005a>` ".__COMMAND_SET_CLOCK"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___rts_service_handler_1gaf5ec8b9d4541fb0d1f568f5885c0abe6:
+
+static RTS_RESULT AddMyObjects (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1ga819aedebe13b807fb5fd53a60b5045ab:
+
+static RTS_RESULT RemoveMyObjects (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1gad69d5dc0b43efdb2051d2783e3e0537d:
+
+static RTS_RESULT TempServiceHandler (RTS_UI32 ulChannelId, HEADER_TAG *pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1gab94a2e55b5a5c6238cde7eff991022ec:
+
+static RTS_RESULT InitServiceHandler (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1ga0990653b311caeaf55127229c80f7ca3:
+
+static RTS_RESULT ExitServiceHandler (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_service_handler_1gafec37409df48ff96c77889f810f1fc0a:
+
+static RTS_RESULT HasAccessRights (char *pszObject, RTS_UI32 ulRequestedRights, RTS_UI32 ulSessionId, BINTAGWRITER *pWriter)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

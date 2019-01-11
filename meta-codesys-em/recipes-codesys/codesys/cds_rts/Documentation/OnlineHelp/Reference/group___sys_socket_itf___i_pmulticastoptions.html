@@ -1,0 +1,211 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>IP multicast options &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">IP multicast options</a><ul>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-socket-ip-multicast-if-0x0009-ip-multicast-interface">#define SOCKET_IP_MULTICAST_IF 0x0009           /* IP multicast interface */</a></li>
+<li><a class="reference internal" href="#define-socket-so-multicast-if-socket-ip-multicast-if-backward-compatibility">#define SOCKET_SO_MULTICAST_IF <code class="docutils literal"><span class="pre">SOCKET_IP_MULTICAST_IF</span></code> /* backward compatibility */</a></li>
+<li><a class="reference internal" href="#define-socket-ip-multicast-ttl-0x000a-ip-multicast-ttl-hop-limit">#define SOCKET_IP_MULTICAST_TTL 0x000A          /* IP multicast TTL (hop limit) */</a></li>
+<li><a class="reference internal" href="#define-socket-ip-multicast-loop-0x000b-ip-multicast-loopback">#define SOCKET_IP_MULTICAST_LOOP 0x000B         /* IP multicast loopback */</a></li>
+<li><a class="reference internal" href="#define-socket-ip-add-membership-0x000c-add-an-ip-group-membership-see-category-ip-multicast-options-for-extended-parameters-for-this-option">#define SOCKET_IP_ADD_MEMBERSHIP 0x000C         /* Add an IP group membership. See category &#8220;IP multicast options&#8221; for extended parameters for this option. */</a></li>
+<li><a class="reference internal" href="#define-socket-ip-drop-membership-0x000d-drop-an-ip-group-membership-see-category-ip-multicast-options-for-extended-parameters-for-this-option">#define SOCKET_IP_DROP_MEMBERSHIP 0x000D                /* Drop an IP group membership. See category &#8220;IP multicast options&#8221; for extended parameters for this option. */</a></li>
+<li><a class="reference internal" href="#define-socket-ip-dontfragment-0x000e-indicates-that-data-should-not-be-fragmented-regardless-of-the-local-mtu-valid-only-for-message-oriented-protocols-udp-etc">#define SOCKET_IP_DONTFRAGMENT 0x000E           /* Indicates that data should not be fragmented regardless of the local MTU. Valid only for message oriented protocols (UDP etc). */</a></li>
+<li><a class="reference internal" href="#define-socket-fd-setsize-64">#define SOCKET_FD_SETSIZE 64</a></li>
+<li><a class="reference internal" href="#define-socket-fd-init-cal-syssockfdinit-fd-set">#define SOCKET_FD_INIT CAL_SysSockFdInit(fd, set)</a></li>
+<li><a class="reference internal" href="#define-socket-fd-isset-cal-syssockfdisset-fd-set">#define SOCKET_FD_ISSET CAL_SysSockFdIsset(fd, set)</a></li>
+<li><a class="reference internal" href="#define-socket-fd-zero-cal-syssockfdzero-set">#define SOCKET_FD_ZERO CAL_SysSockFdZero(set)</a></li>
+<li><a class="reference internal" href="#define-socket-zero-fd-cal-syssockfdzero-set">#define SOCKET_ZERO_FD CAL_SysSockFdZero(set)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-rts-socket-so-value-ip-mreq-t-rts-socket-so-value-ip-mreq">typedef struct RTS_SOCKET_SO_VALUE_IP_MREQ_T  RTS_SOCKET_SO_VALUE_IP_MREQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_socket_itf___i_pmulticastoptions.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ip-multicast-options">
+<span id="group-sys-socket-itf-i-pmulticastoptions"></span><h1>IP multicast options<a class="headerlink" href="#ip-multicast-options" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_r_t_s___s_o_c_k_e_t___s_o___v_a_l_u_e___i_p___m_r_e_q___t.html#struct-r-t-s-s-o-c-k-e-t-s-o-v-a-l-u-e-i-p-m-r-e-q-t"><span class="std std-ref">RTS_SOCKET_SO_VALUE_IP_MREQ_T</span></a></li>
+<li>struct <a class="reference internal" href="struct_s_o_c_k_e_t___f_d___s_e_t.html#struct-s-o-c-k-e-t-f-d-s-e-t"><span class="std std-ref">SOCKET_FD_SET</span></a></li>
+<li>struct <a class="reference internal" href="struct_s_o_c_k_e_t___t_i_m_e_v_a_l.html#struct-s-o-c-k-e-t-t-i-m-e-v-a-l"><span class="std std-ref">SOCKET_TIMEVAL</span></a></li>
+<li>struct <a class="reference internal" href="struct_s_o_c_k___h_o_s_t_e_n_t.html#struct-s-o-c-k-h-o-s-t-e-n-t"><span class="std std-ref">SOCK_HOSTENT</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1ga6d19718ef05498902aa51622540d20f8"><span class="std std-ref">SOCKET_IP_MULTICAST_IF</span></a> 0x0009               /* IP multicast interface <a href="#id1"><span class="problematic" id="id2">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1gabc86ffe48cec3dfe81c9151410cb6ab7"><span class="std std-ref">SOCKET_SO_MULTICAST_IF</span></a> <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1ga6d19718ef05498902aa51622540d20f8"><span class="std std-ref">SOCKET_IP_MULTICAST_IF</span></a> /* backward compatibility <a href="#id3"><span class="problematic" id="id4">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1gad33677b3b212300d6dc0db853cc323ba"><span class="std std-ref">SOCKET_IP_MULTICAST_TTL</span></a> 0x000A              /* IP multicast TTL (hop limit) <a href="#id5"><span class="problematic" id="id6">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1gab122141ddb5d37ff334be16c245f70a0"><span class="std std-ref">SOCKET_IP_MULTICAST_LOOP</span></a> 0x000B             /* IP multicast loopback <a href="#id7"><span class="problematic" id="id8">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1ga3a982d41e0cbfea982c0ee35cab78ae3"><span class="std std-ref">SOCKET_IP_ADD_MEMBERSHIP</span></a> 0x000C             /* Add an IP group membership. See category &#8220;IP multicast options&#8221; for extended parameters for this option. <a href="#id9"><span class="problematic" id="id10">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1ga057793cb88e55bf92024c4c36e81a9e5"><span class="std std-ref">SOCKET_IP_DROP_MEMBERSHIP</span></a> 0x000D            /* Drop an IP group membership. See category &#8220;IP multicast options&#8221; for extended parameters for this option. <a href="#id11"><span class="problematic" id="id12">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1gaa59f39211e2b45f2db8ea6673cbcfd62"><span class="std std-ref">SOCKET_IP_DONTFRAGMENT</span></a> 0x000E               /* Indicates that data should not be fragmented regardless of the local MTU. Valid only for message oriented protocols (UDP etc). <a href="#id13"><span class="problematic" id="id14">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1gabec33c20ceacd3f14e31c4ed7a5061a8"><span class="std std-ref">SOCKET_FD_SETSIZE</span></a> 64</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1ga226706b87a7dbe49a2df6adb3e18ec4b"><span class="std std-ref">SOCKET_FD_INIT</span></a> CAL_SysSockFdInit(fd, set)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1ga07c50794be1ec032c16d061ba1b3ffaa"><span class="std std-ref">SOCKET_FD_ISSET</span></a> CAL_SysSockFdIsset(fd, set)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1ga4001a62dd29d7af3ff69bff265f3363d"><span class="std std-ref">SOCKET_FD_ZERO</span></a> CAL_SysSockFdZero(set)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1ga0ed808b3798f03cbfc3c7b5d372781e1"><span class="std std-ref">SOCKET_ZERO_FD</span></a> CAL_SysSockFdZero(set)</li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="struct_r_t_s___s_o_c_k_e_t___s_o___v_a_l_u_e___i_p___m_r_e_q___t.html#struct-r-t-s-s-o-c-k-e-t-s-o-v-a-l-u-e-i-p-m-r-e-q-t"><span class="std std-ref">RTS_SOCKET_SO_VALUE_IP_MREQ_T</span></a> <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1ga7017b130df769ce0e5fb1d31e654784a"><span class="std std-ref">RTS_SOCKET_SO_VALUE_IP_MREQ</span></a></li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-socket-itf-i-pmulticastoptions-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-socket-ip-multicast-if-0x0009-ip-multicast-interface">
+<span id="group-sys-socket-itf-i-pmulticastoptions-1ga6d19718ef05498902aa51622540d20f8"></span><h3>#define SOCKET_IP_MULTICAST_IF 0x0009           /* IP multicast interface <a href="#id15"><span class="problematic" id="id16">*</span></a>/<a class="headerlink" href="#define-socket-ip-multicast-if-0x0009-ip-multicast-interface" title="Permalink to this headline">¶</a></h3>
+<p>Socket options for <span class="xref std std-ref">SysSockGetOption()</span> /SysSockSetOption(). Only to be used for SOCKET_IPPROTO_IP.</p>
+</div>
+<div class="section" id="define-socket-so-multicast-if-socket-ip-multicast-if-backward-compatibility">
+<span id="group-sys-socket-itf-i-pmulticastoptions-1gabc86ffe48cec3dfe81c9151410cb6ab7"></span><h3>#define SOCKET_SO_MULTICAST_IF <a class="reference internal" href="#group-sys-socket-itf-i-pmulticastoptions-1ga6d19718ef05498902aa51622540d20f8"><span class="std std-ref">SOCKET_IP_MULTICAST_IF</span></a> /* backward compatibility <a href="#id17"><span class="problematic" id="id18">*</span></a>/<a class="headerlink" href="#define-socket-so-multicast-if-socket-ip-multicast-if-backward-compatibility" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-ip-multicast-ttl-0x000a-ip-multicast-ttl-hop-limit">
+<span id="group-sys-socket-itf-i-pmulticastoptions-1gad33677b3b212300d6dc0db853cc323ba"></span><h3>#define SOCKET_IP_MULTICAST_TTL 0x000A          /* IP multicast TTL (hop limit) <a href="#id19"><span class="problematic" id="id20">*</span></a>/<a class="headerlink" href="#define-socket-ip-multicast-ttl-0x000a-ip-multicast-ttl-hop-limit" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-ip-multicast-loop-0x000b-ip-multicast-loopback">
+<span id="group-sys-socket-itf-i-pmulticastoptions-1gab122141ddb5d37ff334be16c245f70a0"></span><h3>#define SOCKET_IP_MULTICAST_LOOP 0x000B         /* IP multicast loopback <a href="#id21"><span class="problematic" id="id22">*</span></a>/<a class="headerlink" href="#define-socket-ip-multicast-loop-0x000b-ip-multicast-loopback" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-ip-add-membership-0x000c-add-an-ip-group-membership-see-category-ip-multicast-options-for-extended-parameters-for-this-option">
+<span id="group-sys-socket-itf-i-pmulticastoptions-1ga3a982d41e0cbfea982c0ee35cab78ae3"></span><h3>#define SOCKET_IP_ADD_MEMBERSHIP 0x000C         /* Add an IP group membership. See category &#8220;IP multicast options&#8221; for extended parameters for this option. <a href="#id23"><span class="problematic" id="id24">*</span></a>/<a class="headerlink" href="#define-socket-ip-add-membership-0x000c-add-an-ip-group-membership-see-category-ip-multicast-options-for-extended-parameters-for-this-option" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-ip-drop-membership-0x000d-drop-an-ip-group-membership-see-category-ip-multicast-options-for-extended-parameters-for-this-option">
+<span id="group-sys-socket-itf-i-pmulticastoptions-1ga057793cb88e55bf92024c4c36e81a9e5"></span><h3>#define SOCKET_IP_DROP_MEMBERSHIP 0x000D                /* Drop an IP group membership. See category &#8220;IP multicast options&#8221; for extended parameters for this option. <a href="#id25"><span class="problematic" id="id26">*</span></a>/<a class="headerlink" href="#define-socket-ip-drop-membership-0x000d-drop-an-ip-group-membership-see-category-ip-multicast-options-for-extended-parameters-for-this-option" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-ip-dontfragment-0x000e-indicates-that-data-should-not-be-fragmented-regardless-of-the-local-mtu-valid-only-for-message-oriented-protocols-udp-etc">
+<span id="group-sys-socket-itf-i-pmulticastoptions-1gaa59f39211e2b45f2db8ea6673cbcfd62"></span><h3>#define SOCKET_IP_DONTFRAGMENT 0x000E           /* Indicates that data should not be fragmented regardless of the local MTU. Valid only for message oriented protocols (UDP etc). <a href="#id27"><span class="problematic" id="id28">*</span></a>/<a class="headerlink" href="#define-socket-ip-dontfragment-0x000e-indicates-that-data-should-not-be-fragmented-regardless-of-the-local-mtu-valid-only-for-message-oriented-protocols-udp-etc" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-fd-setsize-64">
+<span id="group-sys-socket-itf-i-pmulticastoptions-1gabec33c20ceacd3f14e31c4ed7a5061a8"></span><h3>#define SOCKET_FD_SETSIZE 64<a class="headerlink" href="#define-socket-fd-setsize-64" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-fd-init-cal-syssockfdinit-fd-set">
+<span id="group-sys-socket-itf-i-pmulticastoptions-1ga226706b87a7dbe49a2df6adb3e18ec4b"></span><h3>#define SOCKET_FD_INIT CAL_SysSockFdInit(fd, set)<a class="headerlink" href="#define-socket-fd-init-cal-syssockfdinit-fd-set" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-fd-isset-cal-syssockfdisset-fd-set">
+<span id="group-sys-socket-itf-i-pmulticastoptions-1ga07c50794be1ec032c16d061ba1b3ffaa"></span><h3>#define SOCKET_FD_ISSET CAL_SysSockFdIsset(fd, set)<a class="headerlink" href="#define-socket-fd-isset-cal-syssockfdisset-fd-set" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-fd-zero-cal-syssockfdzero-set">
+<span id="group-sys-socket-itf-i-pmulticastoptions-1ga4001a62dd29d7af3ff69bff265f3363d"></span><h3>#define SOCKET_FD_ZERO CAL_SysSockFdZero(set)<a class="headerlink" href="#define-socket-fd-zero-cal-syssockfdzero-set" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-zero-fd-cal-syssockfdzero-set">
+<span id="group-sys-socket-itf-i-pmulticastoptions-1ga0ed808b3798f03cbfc3c7b5d372781e1"></span><h3>#define SOCKET_ZERO_FD CAL_SysSockFdZero(set)<a class="headerlink" href="#define-socket-zero-fd-cal-syssockfdzero-set" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-rts-socket-so-value-ip-mreq-t-rts-socket-so-value-ip-mreq">
+<span id="group-sys-socket-itf-i-pmulticastoptions-1ga7017b130df769ce0e5fb1d31e654784a"></span><h3>typedef struct RTS_SOCKET_SO_VALUE_IP_MREQ_T  RTS_SOCKET_SO_VALUE_IP_MREQ<a class="headerlink" href="#typedef-struct-rts-socket-so-value-ip-mreq-t-rts-socket-so-value-ip-mreq" title="Permalink to this headline">¶</a></h3>
+<p>Parameters for the socket options SOCKET_IP_ADD_MEMBERSHIP and SOCKET_IP_DROP_MEMBERSHIP to join/leave the socket to/from the supplied multicast group on the specified interface.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

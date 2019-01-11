@@ -1,0 +1,74 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagtracemgrrecordupdate2__struct:
+
+================================================
+tagtracemgrrecordupdate2_struct Struct Reference
+================================================
+
+| #include ":ref:`CmpTraceMgrItf.h <_cmp_trace_mgr_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_HANDLE :ref:`hPacket <structtagtracemgrrecordupdate2__struct_1a1a115c99878181d20dad3136822f6cd9>`
+- RTS_IEC_HANDLE :ref:`hRecord <structtagtracemgrrecordupdate2__struct_1a7fb85b7ac93d248ba9b024b54d836580>`
+- :ref:`TraceRecordEntry <group___cmp_trace_mgr_itf_1ga49b1553f6ac8b3f9685de54dd1f97836>` * :ref:`pBuffer <structtagtracemgrrecordupdate2__struct_1af80661a5f246657c48ccebda58e3f730>`
+- RTS_IEC_UDINT :ref:`ulLen <structtagtracemgrrecordupdate2__struct_1afaf704bfd7bc5bd174efd4a6594c89b9>`
+- RTS_IEC_RESULT :ref:`TraceMgrRecordUpdate2 <structtagtracemgrrecordupdate2__struct_1aeeb6df379efa2807a939df6d5e395c99>`
+
+Detailed Description
+--------------------
+
+Stores entries in the ring buffer of a trace record.
+
+This function can be used to provide the data for so called system parameters from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.) If only a single entry is to be added, consider using |TraceMgrRecordUpdate3| instead.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle
+
+- ERR_NOTINITIALIZED if the packet is not currently recording (not started, trigger reached, ...)
+
+- ERR_PENDING if no value is recorded for this cycle due to :ref:`TracePacketConfiguration.ulEveryNCycles <structtag_trace_packet_configuration_1a29112671b73a99708fc7be47c372ba08>`
+
+- ERR_FAILED if ulLen is not a multiple of the entry size (size of a time stamp plus a sample value)
+
+Field Documentation
+-------------------
+
+.. _structtagtracemgrrecordupdate2__struct_1a1a115c99878181d20dad3136822f6cd9:
+
+RTS_IEC_HANDLE tagtracemgrrecordupdate2_struct::hPacket
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrrecordupdate2__struct_1a7fb85b7ac93d248ba9b024b54d836580:
+
+RTS_IEC_HANDLE tagtracemgrrecordupdate2_struct::hRecord
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrrecordupdate2__struct_1af80661a5f246657c48ccebda58e3f730:
+
+TraceRecordEntry* tagtracemgrrecordupdate2_struct::pBuffer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrrecordupdate2__struct_1afaf704bfd7bc5bd174efd4a6594c89b9:
+
+RTS_IEC_UDINT tagtracemgrrecordupdate2_struct::ulLen
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrrecordupdate2__struct_1aeeb6df379efa2807a939df6d5e395c99:
+
+RTS_IEC_RESULT tagtracemgrrecordupdate2_struct::TraceMgrRecordUpdate2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpTraceMgrItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

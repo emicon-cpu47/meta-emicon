@@ -1,0 +1,76 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _struct_sys_native_control_create___struct:
+
+==============================================
+SysNativeControlCreate_Struct Struct Reference
+==============================================
+
+| #include ":ref:`SysNativeControlItf.h <_sys_native_control_itf_8h>`"
+
+Data Fields
+-----------
+
+- char * :ref:`pszControlName <struct_sys_native_control_create___struct_1ab281801706f2048c08ee416b772621e1>`
+- RTS_HANDLE :ref:`hParentWindow <struct_sys_native_control_create___struct_1a60a88001bdbd978b7de5edeaafaf5225>`
+- RTS_Rectangle * :ref:`prWindow <struct_sys_native_control_create___struct_1a816d264cd52dc85aea3b0f88d3f81a3f>`
+- RTS_UI16 :ref:`ulType <struct_sys_native_control_create___struct_1a38f5903b578066ea09258e62eaf889c4>`
+- RTS_UI32 :ref:`ulCreationFlags <struct_sys_native_control_create___struct_1a4b8f6639aba7338a2312ef1a786befdf>`
+
+Detailed Description
+--------------------
+
+This structure describes a native control that has to be created.
+
+Field Documentation
+-------------------
+
+.. _struct_sys_native_control_create___struct_1ab281801706f2048c08ee416b772621e1:
+
+char* SysNativeControlCreate_Struct::pszControlName
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The name/title of the window that shall be created.
+
+.. _struct_sys_native_control_create___struct_1a60a88001bdbd978b7de5edeaafaf5225:
+
+RTS_HANDLE SysNativeControlCreate_Struct::hParentWindow
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If this member equals RTS_INVALID_HANDLE, than the window will be a top level window. In this case it must do cyclic checks whether it is still alive. For this cyclic checking it has to do the following steps every second or so:
+
+- InternCallCallback(hWindow, WCB_CYCLIC, 0, 0); // allow other components to react to the window
+
+- if (!InternWindowStillAlive(hWindow)) DoSomethingToCloseTheWindow(hWindow); // check if the window has to be closed and close it if needed
+
+To make this mechanism work correctly it is necessary that each top level window registers itself within the platform independent part using the method InterWindowRegister.
+
+.. _struct_sys_native_control_create___struct_1a816d264cd52dc85aea3b0f88d3f81a3f:
+
+RTS_Rectangle* SysNativeControlCreate_Struct::prWindow
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The position where the native control should be opened.
+
+.. _struct_sys_native_control_create___struct_1a38f5903b578066ea09258e62eaf889c4:
+
+RTS_UI16 SysNativeControlCreate_Struct::ulType
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _struct_sys_native_control_create___struct_1a4b8f6639aba7338a2312ef1a786befdf:
+
+RTS_UI32 SysNativeControlCreate_Struct::ulCreationFlags
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Additional flags affecting the creation of the native control.
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysNativeControlItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

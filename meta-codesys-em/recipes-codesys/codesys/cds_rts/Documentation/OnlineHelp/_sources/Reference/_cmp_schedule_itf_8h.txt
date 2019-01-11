@@ -1,0 +1,361 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __cmp_schedule_itf_8h:
+
+===============================
+CmpScheduleItf.h File Reference
+===============================
+
+| #include ":ref:`CmpIecTaskItf.h <_cmp_iec_task_itf_8h>`"
+| #include ":ref:`SysCpuMultiCoreItf.h <_sys_cpu_multi_core_itf_8h>`"
+
+Data Structures
+---------------
+
+- struct :ref:`EVTPARAM_CmpSchedule <struct_e_v_t_p_a_r_a_m___cmp_schedule>`
+
+- struct :ref:`EVTPARAM_CmpScheduleTick <struct_e_v_t_p_a_r_a_m___cmp_schedule_tick>`
+
+- struct :ref:`EVTPARAM_CmpScheduleTaskGapApp <struct_e_v_t_p_a_r_a_m___cmp_schedule_task_gap_app>`
+
+- struct :ref:`tagschedgetcurrenttask_struct <structtagschedgetcurrenttask__struct>`
+
+- struct :ref:`tagschedgetnumoftasks_struct <structtagschedgetnumoftasks__struct>`
+
+- struct :ref:`tagschedgetprocessorload_struct <structtagschedgetprocessorload__struct>`
+
+- struct :ref:`tagschedgettaskeventbyhandle_struct <structtagschedgettaskeventbyhandle__struct>`
+
+- struct :ref:`tagschedgettaskhandlebyindex_struct <structtagschedgettaskhandlebyindex__struct>`
+
+- struct :ref:`tagschedgettaskhandlebyname_struct <structtagschedgettaskhandlebyname__struct>`
+
+- struct :ref:`tagschedgettaskinterval_struct <structtagschedgettaskinterval__struct>`
+
+- struct :ref:`tagschedpostexternalevent_struct <structtagschedpostexternalevent__struct>`
+
+- struct :ref:`tagschedregisterexternalevent_struct <structtagschedregisterexternalevent__struct>`
+
+- struct :ref:`tagschedsettaskinterval_struct <structtagschedsettaskinterval__struct>`
+
+- struct :ref:`tagschedtaskresume_struct <structtagschedtaskresume__struct>`
+
+- struct :ref:`tagschedtasksuspend_struct <structtagschedtasksuspend__struct>`
+
+- struct :ref:`tagschedunregisterexternalevent_struct <structtagschedunregisterexternalevent__struct>`
+
+- struct :ref:`tagschedwaitbusy_struct <structtagschedwaitbusy__struct>`
+
+- struct :ref:`tagschedwaitsleep_struct <structtagschedwaitsleep__struct>`
+
+- struct :ref:`ICmpSchedule_C <struct_i_cmp_schedule___c>`
+
+Macros
+------
+
+- #define :ref:`CMD_INIT <group___cmp_schedule_itf_1ga2677fc43f8393bcf3bafc8bbface003f>` 0
+
+- #define :ref:`CMD_TICK <group___cmp_schedule_itf_1ga75193bceb35520e3ab3db84e6a00b551>` 1
+
+- #define :ref:`CMD_WAIT <group___cmp_schedule_itf_1ga6336e6fafd6732a81e1c58b669293657>` 2
+
+- #define :ref:`CMD_DEBUG_LOOP <group___cmp_schedule_itf_1ga9534cb3d0d2d2165ec30f0897d5b8149>` 3
+
+- #define :ref:`CMD_TIMESLICE_BEGIN <group___cmp_schedule_itf_1ga3db86340e4dd57d2d6f3af7c6a269b89>` 4
+
+- #define :ref:`CMD_TIMESLICE_END <group___cmp_schedule_itf_1ga095194108cab962d602bcd2be3920113>` 5
+
+- #define :ref:`CMPSCHEDULE_IECTASK_STACK_SIZE <group___cmp_schedule_itf___stacksize_1ga2fe2454ab31e186d63babd9b71d51cea>` 0
+
+- #define :ref:`SCHEDULEKEY_INT_SCHEDULER_PRIORITY <group___cmp_schedule_itf___settings_1gaf4cc66bef88dd946a2606ffe481dba28>` "SchedulerPriority"
+
+- #define :ref:`SCHEDULEKEY_INT_SCHEDULER_PRIORITY_DEFAULT <group___cmp_schedule_itf___settings_1ga38eca6e74a4fbccf6a9e193ab94ff5de>` 0
+
+- #define :ref:`SCHEDULEKEY_INT_SCHEDULER_INTERVAL_US <group___cmp_schedule_itf_1ga7d7ddbeeedf4d4c3b1e6a03c53929368>` "SchedulerInterval"
+
+- #define :ref:`SCHEDULEKEY_INT_SCHEDULER_INTERVAL_DEFAULT <group___cmp_schedule_itf_1gaae352bacfebf68e13196822a32d8ed63>` INT32_C(1000)
+
+- #define :ref:`SCHEDULEKEY_INT_PROCESSOR_LOAD_ENABLE <group___cmp_schedule_itf_1gaf305b2aae89ef50eaa23e5d084b9e588>` "ProcessorLoad.Enable"
+
+- #define :ref:`SCHEDULEVALUE_INT_PROCESSOR_LOAD_ENABLE_DEFAULT <group___cmp_schedule_itf_1gaa216bfdce71477486c37c4194adbf3cb>` 1
+
+- #define :ref:`SCHEDULEKEY_INT_PROCESSOR_LOAD_MAX <group___cmp_schedule_itf_1ga3a6ac6a60f0c406d2a28c37c88762bcc>` "ProcessorLoad.Maximum"
+
+- #define :ref:`SCHEDULEKEY_INT_PROCESSOR_LOAD_MAX_DEFAULT <group___cmp_schedule_itf_1ga389771404a384585ae3928869faa096f>` 0
+
+- #define :ref:`SCHEDULEKEY_INT_PROCESSOR_LOAD_INTERVAL <group___cmp_schedule_itf_1ga235f3b458d707e56ff60f915b5a9ab1d>` "ProcessorLoad.Interval"
+
+- #define :ref:`SCHEDULEKEY_INT_PROCESSOR_LOAD_INTERVAL_DEFAULT <group___cmp_schedule_itf_1ga621266a8276ba4feccde24bb8f17bf66>` INT32_C(1000)
+
+- #define :ref:`SCHEDULEKEY_STRING_TIMESLICING_MODE <group___cmp_schedule_itf_1ga851f471f8d35cda92ff9caaa77fee1ed>` "Timeslicing.Mode"
+
+- #define :ref:`SCHEDULEVALUE_STRING_TIMESLICING_MODE_NONE <group___cmp_schedule_itf_1gac1641ad8036281c9f097e8cb62ca8b67>` "None"
+
+- #define :ref:`SCHEDULEVALUE_STRING_TIMESLICING_MODE_INTERNAL <group___cmp_schedule_itf_1ga7d4395d7d1a1ffe5ef0e71042acecd2b>` "Internal"
+
+- #define :ref:`SCHEDULEVALUE_STRING_TIMESLICING_MODE_EXTERNAL <group___cmp_schedule_itf_1ga3104770b51a6c0d376c059a947811c2b>` "External"
+
+- #define :ref:`SCHEDULEVALUE_STRING_TIMESLICING_MODE_DEFAULT <group___cmp_schedule_itf_1ga79ddc37ff7f59b1f485c3344da098333>` :ref:`SCHEDULEVALUE_STRING_TIMESLICING_MODE_NONE <group___cmp_schedule_itf_1gac1641ad8036281c9f097e8cb62ca8b67>`
+
+- #define :ref:`SCHEDULEKEY_INT_TIMESLICING_PLCSLICE_PERCENT <group___cmp_schedule_itf_1ga5c894d81a2a849dbd9ba4c73296eafae>` "Timeslicing.PlcSlicePercent"
+
+- #define :ref:`SCHEDULEKEY_INT_TIMESLICING_PLCSLICE_PERCENT_DEFAULT <group___cmp_schedule_itf_1ga9967a4ff704ea7d7e237b5a65e38cbcd>` 0
+
+- #define :ref:`SCHEDULEKEY_INT_TIMESLICING_PLCSLICE_US <group___cmp_schedule_itf_1gad5ec974321fc9c8d8a1561ab5cb53ead>` "Timeslicing.PlcSliceUs"
+
+- #define :ref:`SCHEDULEKEY_INT_TIMESLICING_START_ON_PROCESSORLOAD <group___cmp_schedule_itf_1ga8c968efed440b6e2f29a45dc9f25bb0f>` "Timeslicing.StartOnProcessorLoad"
+
+- #define :ref:`SCHEDULETIMERKEY_USE_WATCHDOG_TIMER <group___cmp_schedule_itf_1gad0bd330cd8fe13f5fa893bdd6c372e6b>` "UseWatchdogTimer"
+
+- #define :ref:`SCHEDULETIMERVALUE_USE_WATCHDOG_TIMER_DEFAULT <group___cmp_schedule_itf_1ga309f1aaddbd67d56ca7c1a1f7697d1e0>` 1
+
+- #define :ref:`SCHEDULEKEY_INT_ENABLE_LOGGER <group___cmp_schedule_itf_1gae064d8b75e8f27260c09c86de0af5035>` "EnableLogger"
+
+- #define :ref:`SCHEDULEKEY_INT_FREEWHEELING_CYCLETIME_US <group___cmp_schedule_itf_1ga3298d253eb05aeee7c0ea0c756a89d35>` "Task.Freewheeling.Cycletime"
+
+- #define :ref:`SCHEDULEKEY_INT_FREEWHEELING_CYCLETIME_DEFAULT <group___cmp_schedule_itf_1ga8b1659b133a0adfc9e87a04a16b8824d>` INT32_C(-1)
+
+- #define :ref:`SCHEDULEKEY_DONT_USE_MICROSECOND_TIMING <group___cmp_schedule_itf_1gaf7e5f5cf31445208ddb2e4c9e3abc797>` "DontUseMicrosecondTiming"
+
+- #define :ref:`SCHEDULEVALUE_DONT_USE_MICROSECOND_TIMING_DEFAULT <group___cmp_schedule_itf_1gabc12c1a5bd8a33f81c7352be8dea8a2c>` 0
+
+- #define :ref:`SCHEDULEKEY_STRING_SCHEDULING_MODE <group___cmp_schedule_itf_1ga213614f35353d15b1b904c491124518d>` "Scheduling.Mode"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_MODE_MICROSECOND <group___cmp_schedule_itf_1ga5165cba0a7eceb5d78487421cc15306b>` "MicroSecond"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_MODE_TICK <group___cmp_schedule_itf_1ga7b8dfc69398b8f672cbe36ad80e3af99>` "Tick"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_MODE_OS_SCHEDULE <group___cmp_schedule_itf_1gad561232efce551d4da512d7f30c41901>` "OSScheduler"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_MODE_DEFAULT <group___cmp_schedule_itf_1gaa376aefac478d4ec2937ae7eb5506e38>` :ref:`SCHEDULEVALUE_STRING_SCHEDULING_MODE_MICROSECOND <group___cmp_schedule_itf_1ga5165cba0a7eceb5d78487421cc15306b>`
+
+- #define :ref:`SCHEDULEKEY_STRING_SCHEDULING_TASKSUPERVISOR <group___cmp_schedule_itf_1gaa15cf54b5480e6734cd515ae247d2207>` "Scheduling.TaskSupervisor"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_SCHEDULETICK <group___cmp_schedule_itf_1ga917efa45a1b7f98bd3dbbe17038c9ae3>` "ScheduleTick"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_WATCHDOGTIMER <group___cmp_schedule_itf_1ga70534ca0f692a1b91fb38805956e096d>` "WatchdogTimer"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_SCHEDULETICK_TASK <group___cmp_schedule_itf_1ga3b406da6dd35a6c5b04a4e11095669b1>` "ScheduleTickTask"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_DEFAULT <group___cmp_schedule_itf_1gaa3b98cfdeb74da9bce6f548641c6d1a5>` :ref:`SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_SCHEDULETICK <group___cmp_schedule_itf_1ga917efa45a1b7f98bd3dbbe17038c9ae3>`
+
+- #define :ref:`SCHEDULEKEY_DISABLE_OMITTED_CYCLE_WATCHDOG <group___cmp_schedule_itf_1ga441a57e03b15bc909bdbba3f980b275b>` "DisableOmittedCycleWatchdog"
+
+- #define :ref:`SCHEDULEKEY_DISABLE_OMITTED_CYCLE_WATCHDOG_DEFAULT <group___cmp_schedule_itf_1gaf9ac94174612b06c195cc12dccb8ecda>` 0
+
+- #define :ref:`SCHEDULEKEY_INT_OMITTED_CYCLE_WATCHDOG_OC <group___cmp_schedule_itf_1gad4f55fb7b6a1be789abe3fdaee5ffc8c>` "OmittedCycleWatchdog.OnlineChangeUs"
+
+- #define :ref:`SCHEDULEVALUE_INT_OMITTED_CYCLE_WATCHDOG_OC_DEFAULT <group___cmp_schedule_itf_1ga0173f03b34930c520029793d84eda622>` 0
+
+- #define :ref:`SCHEDULEKEY_INT_SUPERVISOR_TIMEOUT_MULTIPLIER <group___cmp_schedule_itf_1ga86431032a9f9e8fbf607db013581dbc4>` "SupervisorTimeoutMultiplier"
+
+- #define :ref:`SCHEDULEVALUE_INT_SUPERVISOR_TIMEOUT_MULTIPLIER_DEFAULT <group___cmp_schedule_itf_1ga600bdf246f07c0b6cc488a908f01d3fb>` INT32_C(2)
+
+- #define :ref:`RTS_OPID_SchedulerTick <group___cmp_schedule_itf___operation_i_d_1ga14e9788d3745b1cef644be844e4ee370>` 1
+
+- #define :ref:`RTS_OPID_SchedulerTick_Description <group___cmp_schedule_itf___operation_i_d_1ga0f9568b0f9186c8ff8f260c106f7275c>` "Scheduler Tick"
+
+- #define :ref:`RTS_OPID_WatchdogTimer <group___cmp_schedule_itf___operation_i_d_1gac8e2bc07e75014c160641d6d742c01dd>` 2
+
+- #define :ref:`RTS_OPID_WatchdogTimer_Description <group___cmp_schedule_itf___operation_i_d_1gab9402b7a7f89e27ae4947398cf42f17f>` "Watchdog Timer"
+
+- #define :ref:`SCHED_DEBUG_LOOP_CYCLE_TIME <group___cmp_schedule_itf___staticdefines_1ga5c35d45d43df43e59b201d1544c1b3ad>` 100
+
+- #define :ref:`CMPSCHEDULETIMER_WATCHDOG_PRIORITY <group___cmp_schedule_itf___staticdefines_1gaff72b65f54434bf2a29ca5f66f3c1e09>` 0
+
+- #define :ref:`CMPSCHEDULETIMER_WATCHDOG_INTERVAL <group___cmp_schedule_itf___staticdefines_1ga12cc72e0c8a312dff9f6f7b287e141d8>` 1000000 /* 1 ms */
+
+- #define :ref:`CMPSCHEDULE_SEARCH_NOP_AFTER_EXTERNAL_CALL <group___cmp_schedule_itf___staticdefines_1gab9bd8587765e9f5339953dc5fc3f7393>` 21
+
+- #define :ref:`SCHEDULE_FEATURE_RESET_ON_BREAKPOINT <group___cmp_schedule_itf___features_1ga7a0d5d8338e3a39331ca54c9f49744b5>` 0x00000001
+
+- #define :ref:`SCHEDULE_FEATURE_INTERNAL_TIMESLICING <group___cmp_schedule_itf___features_1gacb351ef861526e87872677a1b7ae96a2>` 0x00000002
+
+- #define :ref:`SCHEDULE_FEATURE_EXTERNAL_TIMESLICING <group___cmp_schedule_itf___features_1ga237354c9d1c862b2724a2176363eaa4f>` 0x00000003
+
+- #define :ref:`SCHEDULE_FEATURE_PROCESSOR_LOAD_CHECK <group___cmp_schedule_itf___features_1ga631d7e89c95d817327dcba5508cbb2eb>` 0x00000004
+
+- #define :ref:`EVTPARAMID_CmpSchedule <group___cmp_schedule_itf___eventparameter_1ga6464e477ea25c4b6e803e49ca9a208d8>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpSchedule <group___cmp_schedule_itf___eventparameter_1ga559d54ad96c7858e1cd830a520561a67>` 0x0001
+
+- #define :ref:`EVT_TaskCreateDone <group___cmp_schedule_itf___events_1ga42d4a39bfaa20fb7719a0084ae29c0d9>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`EVT_PrepareTaskDelete <group___cmp_schedule_itf___events_1gad44fc0229dab6e5f1757565e83700e9c>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+
+- #define :ref:`EVT_ExternalEventTaskCreateDone <group___cmp_schedule_itf___events_1ga6ed9346a5d281e19022a004083eb538c>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
+
+- #define :ref:`EVT_PrepareExternalEventTaskDelete <group___cmp_schedule_itf___events_1gad895b79014f58c6c051fc6f6277e614a>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 4)
+
+- #define :ref:`EVTPARAMID_CmpScheduleTick <group___cmp_schedule_itf___eventparameter_1gac7c6194c91306fc5f46a02230b42839f>` 0x0002
+
+- #define :ref:`EVTVERSION_CmpScheduleTick <group___cmp_schedule_itf___eventparameter_1gabeea13e5e13320f6b0495294105749a8>` 0x0002
+
+- #define :ref:`EVT_ScheduleTick <group___cmp_schedule_itf___events_1gaaf2e66110da2bab5546340ca3461b75d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 5)
+
+- #define :ref:`EVT_ScheduleTaskGap <group___cmp_schedule_itf___events_1gaa62d05bd705c653ddfa8fd54a3253045>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 6)
+
+- #define :ref:`EVTPARAMID_CmpScheduleTaskGapApp <group___cmp_schedule_itf___eventparameter_1ga7a1482b2641aaaf6c717028d3d84164c>` 0x0003
+
+- #define :ref:`EVTVERSION_CmpScheduleTaskGapApp <group___cmp_schedule_itf___eventparameter_1ga005d5f56573ce4ab65b9e626c8e2567f>` 0x0001
+
+- #define :ref:`EVT_ScheduleTaskGapApp <group___cmp_schedule_itf___events_1ga9c10fcbc8376b51847a5e821964611c5>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 7)
+
+- #define :ref:`ITF_CmpSchedule <_cmp_schedule_itf_8h_1aca2b296ed52c28ccc7788fb047a6fb4f>`
+
+- #define :ref:`EXTITF_CmpSchedule <_cmp_schedule_itf_8h_1a5de353daa57e36a9d5aa58aede46ca63>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagschedgetcurrenttask_struct <structtagschedgetcurrenttask__struct>` :ref:`schedgetcurrenttask_struct <_cmp_schedule_itf_8h_1a7b5bc904cb84b4225b7edf6fcb82dfb0>`
+
+- typedef struct :ref:`tagschedgetnumoftasks_struct <structtagschedgetnumoftasks__struct>` :ref:`schedgetnumoftasks_struct <_cmp_schedule_itf_8h_1abed37608ae8e8086a18afb3444e443d3>`
+
+- typedef struct :ref:`tagschedgetprocessorload_struct <structtagschedgetprocessorload__struct>` :ref:`schedgetprocessorload_struct <_cmp_schedule_itf_8h_1a7265dca77b4bd1bc82f62f23d8216894>`
+
+- typedef struct :ref:`tagschedgettaskeventbyhandle_struct <structtagschedgettaskeventbyhandle__struct>` :ref:`schedgettaskeventbyhandle_struct <_cmp_schedule_itf_8h_1acfa65f0ab35d41cbde7ba33035220e0e>`
+
+- typedef struct :ref:`tagschedgettaskhandlebyindex_struct <structtagschedgettaskhandlebyindex__struct>` :ref:`schedgettaskhandlebyindex_struct <_cmp_schedule_itf_8h_1a1ccf12cf6f5139782ed6370b7c6e324d>`
+
+- typedef struct :ref:`tagschedgettaskhandlebyname_struct <structtagschedgettaskhandlebyname__struct>` :ref:`schedgettaskhandlebyname_struct <_cmp_schedule_itf_8h_1ae0285287f1be6b4bde961a420914a1f4>`
+
+- typedef struct :ref:`tagschedgettaskinterval_struct <structtagschedgettaskinterval__struct>` :ref:`schedgettaskinterval_struct <_cmp_schedule_itf_8h_1a06879827e752e229a9d3f58e7aaff2ee>`
+
+- typedef struct :ref:`tagschedpostexternalevent_struct <structtagschedpostexternalevent__struct>` :ref:`schedpostexternalevent_struct <_cmp_schedule_itf_8h_1ad6b5789b1a6f0d96913be4d95c9c518e>`
+
+- typedef struct :ref:`tagschedregisterexternalevent_struct <structtagschedregisterexternalevent__struct>` :ref:`schedregisterexternalevent_struct <_cmp_schedule_itf_8h_1a7bd7eed96c074b258f900b392ab77f20>`
+
+- typedef struct :ref:`tagschedsettaskinterval_struct <structtagschedsettaskinterval__struct>` :ref:`schedsettaskinterval_struct <_cmp_schedule_itf_8h_1a75f8282b38572a0e401ee7ea98ee5254>`
+
+- typedef struct :ref:`tagschedtaskresume_struct <structtagschedtaskresume__struct>` :ref:`schedtaskresume_struct <_cmp_schedule_itf_8h_1a0dc06ba1ab92ed754f0f2c1c975c2df0>`
+
+- typedef struct :ref:`tagschedtasksuspend_struct <structtagschedtasksuspend__struct>` :ref:`schedtasksuspend_struct <_cmp_schedule_itf_8h_1a2653c718ba5a1b8db842e7b42181ab55>`
+
+- typedef struct :ref:`tagschedunregisterexternalevent_struct <structtagschedunregisterexternalevent__struct>` :ref:`schedunregisterexternalevent_struct <_cmp_schedule_itf_8h_1abb9cf62279ca09d1da4ee623231744fc>`
+
+- typedef struct :ref:`tagschedwaitbusy_struct <structtagschedwaitbusy__struct>` :ref:`schedwaitbusy_struct <_cmp_schedule_itf_8h_1a8ac9b1a82951324a526bdfde7a94dae4>`
+
+- typedef struct :ref:`tagschedwaitsleep_struct <structtagschedwaitsleep__struct>` :ref:`schedwaitsleep_struct <_cmp_schedule_itf_8h_1a80c81c37f2941f1e4d9781b914238dd5>`
+
+- typedef :ref:`ICmpSchedule_C <struct_i_cmp_schedule___c>` :ref:`ICmpSchedule <_cmp_schedule_itf_8h_1aa0f7dfdeb1fa5a7402e880f13dcc9995>`
+
+Functions
+---------
+
+- void :ref:`schedgetcurrenttask <_cmp_schedule_itf_8h_1a3e8e03b030af8785ac7124f017a0fd82>` (:ref:`schedgetcurrenttask_struct <_cmp_schedule_itf_8h_1a7b5bc904cb84b4225b7edf6fcb82dfb0>` * p)
+
+- void :ref:`schedgetnumoftasks <_cmp_schedule_itf_8h_1a1595c5d81bf291e8366e818a6720fbe4>` (:ref:`schedgetnumoftasks_struct <_cmp_schedule_itf_8h_1abed37608ae8e8086a18afb3444e443d3>` * p)
+
+- void :ref:`schedgetprocessorload <_cmp_schedule_itf_8h_1ae67b6d39ddbafe4ba0991d9574ab0beb>` (:ref:`schedgetprocessorload_struct <_cmp_schedule_itf_8h_1a7265dca77b4bd1bc82f62f23d8216894>` * p)
+
+- void :ref:`schedgettaskeventbyhandle <_cmp_schedule_itf_8h_1ad3a1b0f5032a10535ab7ed11fd09fb6a>` (:ref:`schedgettaskeventbyhandle_struct <_cmp_schedule_itf_8h_1acfa65f0ab35d41cbde7ba33035220e0e>` * p)
+
+- void :ref:`schedgettaskhandlebyindex <_cmp_schedule_itf_8h_1a19eeb4f19b5570e5cccb08a51d47e219>` (:ref:`schedgettaskhandlebyindex_struct <_cmp_schedule_itf_8h_1a1ccf12cf6f5139782ed6370b7c6e324d>` * p)
+
+- void :ref:`schedgettaskhandlebyname <_cmp_schedule_itf_8h_1a5bdaba8bd96bee514f8abdeaab5a2dad>` (:ref:`schedgettaskhandlebyname_struct <_cmp_schedule_itf_8h_1ae0285287f1be6b4bde961a420914a1f4>` * p)
+
+- void :ref:`schedgettaskinterval <_cmp_schedule_itf_8h_1add17c75f0404ad11757a277f7b8a7282>` (:ref:`schedgettaskinterval_struct <_cmp_schedule_itf_8h_1a06879827e752e229a9d3f58e7aaff2ee>` * p)
+
+- void :ref:`schedpostexternalevent <_cmp_schedule_itf_8h_1a1433b3ab41a32bb7cfb3bab6d5afe8c3>` (:ref:`schedpostexternalevent_struct <_cmp_schedule_itf_8h_1ad6b5789b1a6f0d96913be4d95c9c518e>` * p)
+
+- void :ref:`schedregisterexternalevent <_cmp_schedule_itf_8h_1a7965bc04a67c08866afbaa14f1cea387>` (:ref:`schedregisterexternalevent_struct <_cmp_schedule_itf_8h_1a7bd7eed96c074b258f900b392ab77f20>` * p)
+
+- void :ref:`schedsettaskinterval <_cmp_schedule_itf_8h_1a5ffe8f94a0b6421c9f832b6002d6154d>` (:ref:`schedsettaskinterval_struct <_cmp_schedule_itf_8h_1a75f8282b38572a0e401ee7ea98ee5254>` * p)
+
+- void :ref:`schedtaskresume <_cmp_schedule_itf_8h_1a9fc3788a0efe44fcf2d0d419aa836c08>` (:ref:`schedtaskresume_struct <_cmp_schedule_itf_8h_1a0dc06ba1ab92ed754f0f2c1c975c2df0>` * p)
+
+- void :ref:`schedtasksuspend <_cmp_schedule_itf_8h_1aa0a18d08a0321f9d42657ced7279984f>` (:ref:`schedtasksuspend_struct <_cmp_schedule_itf_8h_1a2653c718ba5a1b8db842e7b42181ab55>` * p)
+
+- void :ref:`schedunregisterexternalevent <_cmp_schedule_itf_8h_1ae37e41df2ee4e942d571e2a386640316>` (:ref:`schedunregisterexternalevent_struct <_cmp_schedule_itf_8h_1abb9cf62279ca09d1da4ee623231744fc>` * p)
+
+- void :ref:`schedwaitbusy <_cmp_schedule_itf_8h_1a843e4c5f2f32a0b46b7676f79929ede7>` (:ref:`schedwaitbusy_struct <_cmp_schedule_itf_8h_1a8ac9b1a82951324a526bdfde7a94dae4>` * p)
+
+- void :ref:`schedwaitsleep <_cmp_schedule_itf_8h_1a200c55c7c6390409c0bf5cc05c58f462>` (:ref:`schedwaitsleep_struct <_cmp_schedule_itf_8h_1a80c81c37f2941f1e4d9781b914238dd5>` * p)
+
+- RTS_RESULT :ref:`SchedHasFeature <_cmp_schedule_itf_8h_1aa23ddf79d409da2e96f55f5fdb0c6e78>` (unsigned long ulFeatures)
+
+- RTS_HANDLE :ref:`SchedAddTask <_cmp_schedule_itf_8h_1a97cf2c1552f70570c790827bb82d6a6c>` (:ref:`Task_Desc <group___cmp_iec_task_itf_1ga3e7248e4ba098ac4bb720b4a1ac4f6dd>` * pTask, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SchedRemoveTask <_cmp_schedule_itf_8h_1a2c8034bf7f89052105f94ab6dc8d3d1b>` (RTS_HANDLE hSchedTask)
+
+- RTS_RESULT :ref:`SchedRemoveTask2 <_cmp_schedule_itf_8h_1ae52dbdbb5f4a1d9a582ad8ec5619b7e5>` (RTS_HANDLE hSchedTask, RTS_UI32 ulTimeoutMs)
+
+- RTS_RESULT :ref:`Schedule <_cmp_schedule_itf_8h_1aa4e110d2b572a55739fd9cb6e790f12b>` (RTS_HANDLE hSchedTask, int iCmd)
+
+- RTS_RESULT :ref:`SchedDebugEnter <_cmp_schedule_itf_8h_1a314f3d9986ee6c07c893e965411897a7>` (RTS_HANDLE hSchedTask)
+
+- RTS_RESULT :ref:`SchedDebugLeave <_cmp_schedule_itf_8h_1a48bbd53df63d9951b95423a65cbd597f>` (RTS_HANDLE hSchedTask)
+
+- RTS_RESULT :ref:`SchedPrepareReset <_cmp_schedule_itf_8h_1afd5a6c24d642abe80493f3547f5da6cb>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bResetOrigin)
+
+- RTS_RESULT :ref:`SchedResetDone <_cmp_schedule_itf_8h_1a87af5a5c80870f68932d36a197259825>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bResetOrigin)
+
+- RTS_RESULT :ref:`SchedStart <_cmp_schedule_itf_8h_1aa7bf93836615e788bb5e9e7d41cb2655>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`SchedStop <_cmp_schedule_itf_8h_1a820061956933ca9e340e5f7d860236d2>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_HANDLE hTaskToExclude)
+
+- RTS_HANDLE :ref:`SchedGetCurrentTask <_cmp_schedule_itf_8h_1aa077a735f2c0f6aaf586763190099f83>` (:ref:`Task_Desc <group___cmp_iec_task_itf_1ga3e7248e4ba098ac4bb720b4a1ac4f6dd>` ** ppTask, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SchedGetContext <_cmp_schedule_itf_8h_1ae02331c4b8fbe0026b7d5e7174de4d54>` (RTS_HANDLE hSchedTask, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>` * pContext)
+
+- int :ref:`SchedGetNumOfTasks <_cmp_schedule_itf_8h_1a740ebf2a723caaa858072893aaf4c082>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- :ref:`Task_Desc <group___cmp_iec_task_itf_1ga3e7248e4ba098ac4bb720b4a1ac4f6dd>` * :ref:`SchedGetTaskDescByIndex <_cmp_schedule_itf_8h_1a842d75dfd88497dc2c0ec61efd298a51>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int iIndex, RTS_RESULT * pResult)
+
+- :ref:`Task_Desc <group___cmp_iec_task_itf_1ga3e7248e4ba098ac4bb720b4a1ac4f6dd>` * :ref:`SchedGetTaskDescByHandle <_cmp_schedule_itf_8h_1ab930bff8f638a577033ee6e977b65b23>` (RTS_HANDLE hSchedTask, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`SchedGetTaskHandleByIndex <_cmp_schedule_itf_8h_1ae5240901ba2396c33c9141eec5409abf>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int iIndex, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`SchedGetTaskHandleByName <_cmp_schedule_itf_8h_1ab4a321f1e5bf408cb85f50b03b08c4fe>` (char * pszTaskName, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`SchedGetTaskEventByHandle <_cmp_schedule_itf_8h_1a7e1a3bf554f6405eb83a77ace3a05c41>` (RTS_HANDLE hSchedTask, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SchedTimeslicePlcBegin <_cmp_schedule_itf_8h_1acd1800c4aec89c8deeb88c821ca1ec6f>` (void)
+
+- RTS_RESULT :ref:`SchedTimeslicePlcEnd <_cmp_schedule_itf_8h_1a61f14de511570d9b32911b422ec79c85>` (void)
+
+- unsigned long :ref:`SchedGetProcessorLoad <_cmp_schedule_itf_8h_1a169a5f9c17c6f3f081ae8f41805ce03c>` (RTS_RESULT * pResult)
+
+- RTS_UI32 :ref:`SchedGetProcessorLoadOnCore <_cmp_schedule_itf_8h_1acb31419874816156d95b2e34d7b70de2>` (RTS_UI32 uCoreID, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SchedGetTaskInterval <_cmp_schedule_itf_8h_1ae1b1d213d9942794b33076899b0ac467>` (RTS_HANDLE hSchedTask, RTS_UI32 * pulInterval)
+
+- RTS_RESULT :ref:`SchedSetTaskInterval <_cmp_schedule_itf_8h_1a38343a42c411c3764583e0f56ef4bcee>` (RTS_HANDLE hSchedTask, RTS_UI32 ulInterval)
+
+- RTS_RESULT :ref:`SchedWaitSleep <_cmp_schedule_itf_8h_1a578126616fc8813f8c1ce3b5c628b15c>` (:ref:`RTS_SYSTIME <group___sys_time_itf_1ga10c9d9a4c57129d83432fb02923858bf>` * ptSleepUs)
+
+- RTS_RESULT :ref:`SchedWaitBusy <_cmp_schedule_itf_8h_1a218075730f7c3059a4b7c43436f8f6d4>` (:ref:`RTS_SYSTIME <group___sys_time_itf_1ga10c9d9a4c57129d83432fb02923858bf>` * ptSleepUs)
+
+- RTS_RESULT :ref:`SchedWatchdogExceptionHandler <_cmp_schedule_itf_8h_1ac7b52ee0e9928bedc8cb2ac11cb67a7e>` (RTS_HANDLE hSchedTask)
+
+- int :ref:`SchedGetScheduleIntervalUs <_cmp_schedule_itf_8h_1a49bbcbb702137ad00895eb141d54d567>` (RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SchedSetScheduleIntervalUs <_cmp_schedule_itf_8h_1afe19862ffe3759c7da1eb43cbf8a06c2>` (int iScheduleIntervalUsNew)
+
+- RTS_RESULT :ref:`SchedSetTaskIntervalByTaskHandle <_cmp_schedule_itf_8h_1a82d7aed8841ba727ef7571dd93cdc020>` (RTS_HANDLE hSysTask, RTS_UI32 ulInterval)
+
+- RTS_HANDLE :ref:`SchedRegisterExternalEvent <_cmp_schedule_itf_8h_1a880b7a6a07983c220103310b8c42199c>` (const char * pszExtEventName, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SchedUnregisterExternalEvent <_cmp_schedule_itf_8h_1afb8e26e9007991141c1d7feade9f4be4>` (RTS_HANDLE hExtEvent)
+
+- RTS_RESULT :ref:`SchedPostExternalEvent <_cmp_schedule_itf_8h_1a03afb1d011f53d849b974e43e3b936ab>` (RTS_HANDLE hExtEvent)
+
+- RTS_HANDLE :ref:`SchedGetTaskHandleBackend <_cmp_schedule_itf_8h_1ae067e3cf856fc14d51bb2ca2a60a7d88>` (RTS_HANDLE hSchedTask, CMPID * pCmpIdBackend, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SchedTaskSuspend <_cmp_schedule_itf_8h_1a307e0291a968f1af5552886ee418a03d>` (RTS_HANDLE hSchedTask)
+
+- RTS_RESULT :ref:`SchedTaskResume <_cmp_schedule_itf_8h_1a69e5a612d3c08549674665cc66c12911>` (RTS_HANDLE hSchedTask)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpScheduleItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

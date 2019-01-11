@@ -1,0 +1,82 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _struct_sys_window_create___struct:
+
+=======================================
+SysWindowCreate_Struct Struct Reference
+=======================================
+
+| #include ":ref:`SysWindowItf.h <_sys_window_itf_8h>`"
+
+Data Fields
+-----------
+
+- char * :ref:`pszWindowName <struct_sys_window_create___struct_1a8bdb4214a46ac9d0c27e818ccc209319>`
+- char * :ref:`pszClassName <struct_sys_window_create___struct_1a5df9d623c69eae983c4dd7bdbd163eb3>`
+- RTS_Rectangle * :ref:`prWindow <struct_sys_window_create___struct_1a653ce792974cf293c94c81be37e18a22>`
+- RTS_HANDLE :ref:`hParentWindow <struct_sys_window_create___struct_1a318711174c3eb5f27d8ce5b7c29b0689>`
+- RTS_UI32 :ref:`ulWindowType <struct_sys_window_create___struct_1a5abd218f77b36b497e6371ce6c3ab483>`
+- RTS_UI32 :ref:`ulCreationFlags <struct_sys_window_create___struct_1a7d7ee6421714d1e16579ea7971d2c7c9>`
+
+Detailed Description
+--------------------
+
+This structure describes a window that has to be created. The parameters pszWindowName and pszClassName may be NULL If pszClassName == "EDIT", a new Editcontrol will be created.
+
+Field Documentation
+-------------------
+
+.. _struct_sys_window_create___struct_1a8bdb4214a46ac9d0c27e818ccc209319:
+
+char* SysWindowCreate_Struct::pszWindowName
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The name/title of the window that shall be created.
+
+.. _struct_sys_window_create___struct_1a5df9d623c69eae983c4dd7bdbd163eb3:
+
+char* SysWindowCreate_Struct::pszClassName
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The type of window that shall be created. At the moment the following windows are supported: SYSWINDOW_CLASS_TARGETVISU_WINDOW and SYSWINDOW_CLASS_TARGETVISU_EDITCONTROL
+
+.. _struct_sys_window_create___struct_1a653ce792974cf293c94c81be37e18a22:
+
+RTS_Rectangle* SysWindowCreate_Struct::prWindow
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _struct_sys_window_create___struct_1a318711174c3eb5f27d8ce5b7c29b0689:
+
+RTS_HANDLE SysWindowCreate_Struct::hParentWindow
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If this member equals RTS_INVALID_HANDLE, than the window will be a top level window. In this case it must do cyclic checks whether it is still alive. For this cyclic checking it has to do the following steps every second or so:
+
+- InternCallCallback(hWindow, WCB_CYCLIC, 0, 0); // allow other components to react to the window
+
+- if (!InternWindowStillAlive(hWindow)) DoSomethingToCloseTheWindow(hWindow); // check if the window has to be closed and close it if needed
+
+To make this mechanism work correctly it is necessary that each top level window registers itself within the platform independent part using the method InterWindowRegister.
+
+.. _struct_sys_window_create___struct_1a5abd218f77b36b497e6371ce6c3ab483:
+
+RTS_UI32 SysWindowCreate_Struct::ulWindowType
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _struct_sys_window_create___struct_1a7d7ee6421714d1e16579ea7971d2c7c9:
+
+RTS_UI32 SysWindowCreate_Struct::ulCreationFlags
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A combination of the SYSWINCREATE_FLAGS... for optionally setting additional flags affecting the creation of a window.
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysWindowItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

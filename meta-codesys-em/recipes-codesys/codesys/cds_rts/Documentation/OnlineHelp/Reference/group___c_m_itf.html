@@ -1,0 +1,1689 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CMItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CMLockItf" href="group___c_m_lock_itf.html" />
+    <link rel="prev" title="CMBasicChecksItf" href="group___c_m_basic_checks_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___c_m_lock_itf.html" title="CMLockItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___c_m_basic_checks_itf.html" title="CMBasicChecksItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CMItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-external-lib-packmode-8">#define EXTERNAL_LIB_PACKMODE 8</a></li>
+<li><a class="reference internal" href="#define-rts-checkpoint">#define RTS_CHECKPOINT</a></li>
+<li><a class="reference internal" href="#define-license-not-available-uint32-c-0xffffffff">#define LICENSE_NOT_AVAILABLE UINT32_C(0xffffffff)</a></li>
+<li><a class="reference internal" href="#define-license-invalid-uint32-c-0x00000000">#define LICENSE_INVALID UINT32_C(0x00000000)</a></li>
+<li><a class="reference internal" href="#define-cm-profiling-id-add-begin-id-uint32-c-0x40000000">#define CM_PROFILING_ID_ADD_BEGIN (ID | UINT32_C(0x40000000))</a></li>
+<li><a class="reference internal" href="#define-cm-profiling-id-add-end-id-uint32-c-0x80000000">#define CM_PROFILING_ID_ADD_END (ID | UINT32_C(0x80000000))</a></li>
+<li><a class="reference internal" href="#define-cm-profiling-id-isbegin-id-uint32-c-0x40000000-0">#define CM_PROFILING_ID_ISBEGIN ((ID &amp; UINT32_C(0x40000000)) != 0)</a></li>
+<li><a class="reference internal" href="#define-cm-profiling-id-isend-id-uint32-c-0x80000000-0">#define CM_PROFILING_ID_ISEND ((ID &amp; UINT32_C(0x80000000)) != 0)</a></li>
+<li><a class="reference internal" href="#define-cm-profiling-id-get-id-uint32-c-0x3fffffff">#define CM_PROFILING_ID_GET (ID &amp; UINT32_C(0x3FFFFFFF))</a></li>
+<li><a class="reference internal" href="#define-itf-cm">#define ITF_CM</a></li>
+<li><a class="reference internal" href="#define-extitf-cm">#define EXTITF_CM</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-taglicensefunctions-licensefunctions">typedef struct tagLicenseFunctions  LicenseFunctions</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmaddcomponent-struct-cmaddcomponent-struct">typedef struct tagcmaddcomponent_struct  cmaddcomponent_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmaddcomponent2-struct-cmaddcomponent2-struct">typedef struct tagcmaddcomponent2_struct  cmaddcomponent2_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmexitcomponent-struct-cmexitcomponent-struct">typedef struct tagcmexitcomponent_struct  cmexitcomponent_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmgetcomponentbyname-struct-cmgetcomponentbyname-struct">typedef struct tagcmgetcomponentbyname_struct  cmgetcomponentbyname_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcminitcomponent-struct-cminitcomponent-struct">typedef struct tagcminitcomponent_struct  cminitcomponent_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmregistergetuserlicensevalue-struct-cmregistergetuserlicensevalue-struct">typedef struct tagcmregistergetuserlicensevalue_struct  cmregistergetuserlicensevalue_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmregisterlicensefunctions-struct-cmregisterlicensefunctions-struct">typedef struct tagcmregisterlicensefunctions_struct  cmregisterlicensefunctions_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmremovecomponent-struct-cmremovecomponent-struct">typedef struct tagcmremovecomponent_struct  cmremovecomponent_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmshutdown-struct-cmshutdown-struct">typedef struct tagcmshutdown_struct  cmshutdown_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmunregistergetuserlicensevalue-struct-cmunregistergetuserlicensevalue-struct">typedef struct tagcmunregistergetuserlicensevalue_struct  cmunregistergetuserlicensevalue_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmunregisterlicensefunctions-struct-cmunregisterlicensefunctions-struct">typedef struct tagcmunregisterlicensefunctions_struct  cmunregisterlicensefunctions_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmutlcwstrcpy-struct-cmutlcwstrcpy-struct">typedef struct tagcmutlcwstrcpy_struct  cmutlcwstrcpy_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmutlsafestrcpy-struct-cmutlsafestrcpy-struct">typedef struct tagcmutlsafestrcpy_struct  cmutlsafestrcpy_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmutlstricmp-struct-cmutlstricmp-struct">typedef struct tagcmutlstricmp_struct  cmutlstricmp_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmutlutf8tow-struct-cmutlutf8tow-struct">typedef struct tagcmutlutf8tow_struct  cmutlutf8tow_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmutlwstrcpy-struct-cmutlwstrcpy-struct">typedef struct tagcmutlwstrcpy_struct  cmutlwstrcpy_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcmutlwtoutf8-struct-cmutlwtoutf8-struct">typedef struct tagcmutlwtoutf8_struct  cmutlwtoutf8_struct</a></li>
+<li><a class="reference internal" href="#typedef-void-pfgetuserlicensevalue-getuserlicensevalue-struct">typedef void( * PFGETUSERLICENSEVALUE)(getuserlicensevalue_struct)</a></li>
+<li><a class="reference internal" href="#typedef-void-pfreqdynlicchallenge-reqdynlicchallenge-struct">typedef void( * PFREQDYNLICCHALLENGE)(reqdynlicchallenge_struct)</a></li>
+<li><a class="reference internal" href="#typedef-void-pfconfdynlicchallenge-confdynlicchallenge-struct">typedef void( * PFCONFDYNLICCHALLENGE)(confdynlicchallenge_struct)</a></li>
+<li><a class="reference internal" href="#typedef-icm-c-icm">typedef ICM_C ICM</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#void-cmaddcomponent-cmaddcomponent-struct-p">void cmaddcomponent (cmaddcomponent_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmaddcomponent2-cmaddcomponent2-struct-p">void cmaddcomponent2 (cmaddcomponent2_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmexitcomponent-cmexitcomponent-struct-p">void cmexitcomponent (cmexitcomponent_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmgetcomponentbyname-cmgetcomponentbyname-struct-p">void cmgetcomponentbyname (cmgetcomponentbyname_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cminitcomponent-cminitcomponent-struct-p">void cminitcomponent (cminitcomponent_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmregistergetuserlicensevalue-cmregistergetuserlicensevalue-struct-p">void cmregistergetuserlicensevalue (cmregistergetuserlicensevalue_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmregisterlicensefunctions-cmregisterlicensefunctions-struct-p">void cmregisterlicensefunctions (cmregisterlicensefunctions_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmremovecomponent-cmremovecomponent-struct-p">void cmremovecomponent (cmremovecomponent_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmshutdown-cmshutdown-struct-p">void cmshutdown (cmshutdown_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmunregistergetuserlicensevalue-cmunregistergetuserlicensevalue-struct-p">void cmunregistergetuserlicensevalue (cmunregistergetuserlicensevalue_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmunregisterlicensefunctions-cmunregisterlicensefunctions-struct-p">void cmunregisterlicensefunctions (cmunregisterlicensefunctions_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmutlcwstrcpy-cmutlcwstrcpy-struct-p">void cmutlcwstrcpy (cmutlcwstrcpy_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmutlsafestrcpy-cmutlsafestrcpy-struct-p">void cmutlsafestrcpy (cmutlsafestrcpy_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmutlstricmp-cmutlstricmp-struct-p">void cmutlstricmp (cmutlstricmp_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmutlutf8tow-cmutlutf8tow-struct-p">void cmutlutf8tow (cmutlutf8tow_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmutlwstrcpy-cmutlwstrcpy-struct-p">void cmutlwstrcpy (cmutlwstrcpy_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cmutlwtoutf8-cmutlwtoutf8-struct-p">void cmutlwtoutf8 (cmutlwtoutf8_struct *p)</a></li>
+<li><a class="reference internal" href="#rts-result-cminit-char-pszsettingsfile-staticcomponent-pstaticcomponents">RTS_RESULT CMInit (char *pszSettingsFile, StaticComponent *pStaticComponents)</a></li>
+<li><a class="reference internal" href="#rts-result-cminit2-char-pszsettingsfile-staticcomponent-pstaticcomponents-int-bsettingsfileisoptional">RTS_RESULT CMInit2 (char *pszSettingsFile, StaticComponent *pStaticComponents, int bSettingsFileIsOptional)</a></li>
+<li><a class="reference internal" href="#rts-result-cminit3-char-pszsettingsfile-staticcomponent-pstaticcomponents-rts-ui32-options">RTS_RESULT CMInit3 (char *pszSettingsFile, StaticComponent *pStaticComponents, RTS_UI32 options)</a></li>
+<li><a class="reference internal" href="#rts-result-cmexit-void">RTS_RESULT CMExit (void)</a></li>
+<li><a class="reference internal" href="#rts-result-cmsetexit-void">RTS_RESULT CMSetExit (void)</a></li>
+<li><a class="reference internal" href="#rts-result-cmgetexit-void">RTS_RESULT CMGetExit (void)</a></li>
+<li><a class="reference internal" href="#rts-result-cmdebugout-const-char-szformat">RTS_RESULT CMDebugOut (const char *szFormat,...)</a></li>
+<li><a class="reference internal" href="#rts-result-cmdebugoutarg-const-char-szformat-va-list-parglist">RTS_RESULT CMDebugOutArg (const char *szFormat, va_list *pargList)</a></li>
+<li><a class="reference internal" href="#rts-result-cmregisterapi-const-cmp-ext-function-ref-pexptable-rts-uintptr-dummy-int-bexternallibrary-rts-ui32-cmpid">RTS_RESULT CMRegisterAPI (const CMP_EXT_FUNCTION_REF *pExpTable, RTS_UINTPTR dummy, int bExternalLibrary, RTS_UI32 cmpId)</a></li>
+<li><a class="reference internal" href="#rts-result-cmregisterapi2-const-char-pszapiname-rts-void-fctptr-pfapifunction-int-bexternallibrary-rts-ui32-ulsignatureid-rts-ui32-ulversion">RTS_RESULT CMRegisterAPI2 (const char *pszAPIName, RTS_VOID_FCTPTR pfAPIFunction, int bExternalLibrary, RTS_UI32 ulSignatureID, RTS_UI32 ulVersion)</a></li>
+<li><a class="reference internal" href="#dll-decl-rts-result-cmgetapi-char-pszapiname-rts-void-fctptr-ppfapifunction-rts-ui32-ulsignatureid">DLL_DECL RTS_RESULT CMGetAPI (char *pszAPIName, RTS_VOID_FCTPTR *ppfAPIFunction, RTS_UI32 ulSignatureID)</a></li>
+<li><a class="reference internal" href="#dll-decl-rts-result-cmgetapi2-char-pszapiname-rts-void-fctptr-ppfapifunction-int-importoptions-rts-ui32-ulsignatureid-rts-ui32-ulversion">DLL_DECL RTS_RESULT CMGetAPI2 (char *pszAPIName, RTS_VOID_FCTPTR *ppfAPIFunction, int importOptions, RTS_UI32 ulSignatureID, RTS_UI32 ulVersion)</a></li>
+<li><a class="reference internal" href="#rts-result-cmgetapi3-char-pszapiname-rts-void-fctptr-ppfapifunction-int-importoptions-rts-ui32-pulsignatureid-rts-ui32-pulversion">RTS_RESULT CMGetAPI3 (char *pszAPIName, RTS_VOID_FCTPTR *ppfAPIFunction, int importOptions, RTS_UI32 *pulSignatureID, RTS_UI32 *pulVersion)</a></li>
+<li><a class="reference internal" href="#rts-result-cmgetapitoresolve-api-resolve-info-papiresolveinfo">RTS_RESULT CMGetAPIToResolve (API_RESOLVE_INFO *pApiResolveInfo)</a></li>
+<li><a class="reference internal" href="#rts-result-cmreleaseapi-rts-void-fctptr-pfapifunction">RTS_RESULT CMReleaseAPI (RTS_VOID_FCTPTR pfAPIFunction)</a></li>
+<li><a class="reference internal" href="#rts-handle-cmloadcomponent-char-pszcomponent-rts-result-presult">RTS_HANDLE CMLoadComponent (char *pszComponent, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#void-cmloadcomponent-cmloadcomponent-struct-p">void cmloadcomponent (cmloadcomponent_struct *p)</a></li>
+<li><a class="reference internal" href="#rts-handle-cmloadcomponent2-char-pszcomponent-rts-ui16-itype-rts-result-presult">RTS_HANDLE CMLoadComponent2 (char *pszComponent, RTS_UI16 iType, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-cmloadcomponent3-char-pszcomponent-char-pszfilepath-rts-ui16-itype-rts-result-presult">RTS_HANDLE CMLoadComponent3 (char *pszComponent, char *pszFilePath, RTS_UI16 iType, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-cminitcomponent-rts-handle-hcomponent">RTS_RESULT CMInitComponent (RTS_HANDLE hComponent)</a></li>
+<li><a class="reference internal" href="#rts-result-cmimportfunctions-void">RTS_RESULT CMImportFunctions (void)</a></li>
+<li><a class="reference internal" href="#rts-result-cmexitcomponent-rts-handle-hcomponent">RTS_RESULT CMExitComponent (RTS_HANDLE hComponent)</a></li>
+<li><a class="reference internal" href="#rts-result-cmunloadcomponent-rts-handle-hcomponent">RTS_RESULT CMUnloadComponent (RTS_HANDLE hComponent)</a></li>
+<li><a class="reference internal" href="#void-cmunloadcomponent-cmunloadcomponent-struct-p">void cmunloadcomponent (cmunloadcomponent_struct *p)</a></li>
+<li><a class="reference internal" href="#rts-handle-cmaddcomponent-component-entry-pcomponent-rts-result-presult">RTS_HANDLE CMAddComponent (COMPONENT_ENTRY *pComponent, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-cmremovecomponent-rts-handle-hcomponent">RTS_RESULT CMRemoveComponent (RTS_HANDLE hComponent)</a></li>
+<li><a class="reference internal" href="#rts-handle-cmgetcomponentbyname-char-pszcmpname-rts-result-presult">RTS_HANDLE CMGetComponentByName (char *pszCmpName, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-cmgetcmpid-char-pszcmpname-cmpid-pcmpid">RTS_RESULT CMGetCmpId (char *pszCmpName, CMPID *pCmpId)</a></li>
+<li><a class="reference internal" href="#rts-result-cmgetcmpname-cmpid-cmpid-char-pszcmpname-int-imaxcmpname">RTS_RESULT CMGetCmpName (CMPID CmpId, char *pszCmpName, int iMaxCmpName)</a></li>
+<li><a class="reference internal" href="#component-entry-cmgetcomponent-cmpid-cmpid">COMPONENT_ENTRY* CMGetComponent (CMPID CmpId)</a></li>
+<li><a class="reference internal" href="#int-cmgetnumofcomponents-void">int CMGetNumOfComponents (void)</a></li>
+<li><a class="reference internal" href="#component-entry-cmgetcomponentbyindex-int-iindex">COMPONENT_ENTRY* CMGetComponentByIndex (int iIndex)</a></li>
+<li><a class="reference internal" href="#component-entry-cmgetfirstcomponent-rts-result-presult">COMPONENT_ENTRY* CMGetFirstComponent (RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#component-entry-cmgetnextcomponent-component-entry-pcmp-rts-result-presult">COMPONENT_ENTRY* CMGetNextComponent (COMPONENT_ENTRY *pCmp, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#ibase-cmcreateinstance-classid-classid-rts-result-presult">IBase* CMCreateInstance (CLASSID ClassId, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-cmdeleteinstance-ibase-pibase">RTS_RESULT CMDeleteInstance (IBase *pIBase)</a></li>
+<li><a class="reference internal" href="#rts-result-cmdeleteinstance2-classid-classid-ibase-pibase">RTS_RESULT CMDeleteInstance2 (CLASSID ClassId, IBase *pIBase)</a></li>
+<li><a class="reference internal" href="#ibase-cmgetinstance-classid-classid-objid-objid-rts-result-presult">IBase* CMGetInstance (CLASSID ClassId, OBJID ObjId, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-cmregisterinstance-classid-classid-objid-objid-ibase-pibase">RTS_RESULT CMRegisterInstance (CLASSID ClassId, OBJID ObjId, IBase *pIBase)</a></li>
+<li><a class="reference internal" href="#rts-result-cmunregisterinstance-ibase-pibase">RTS_RESULT CMUnregisterInstance (IBase *pIBase)</a></li>
+<li><a class="reference internal" href="#rts-result-cmgetinstancelist-itfid-itfid-rts-handle-hibasepool">RTS_RESULT CMGetInstanceList (ITFID ItfId, RTS_HANDLE hIBasePool)</a></li>
+<li><a class="reference internal" href="#rts-result-cmcallhook-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2-int-breverse">RTS_RESULT CMCallHook (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2, int bReverse)</a></li>
+<li><a class="reference internal" href="#rts-result-cmcallhook2-rts-ui16-uscomponenttypemask-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">RTS_RESULT CMCallHook2 (RTS_UI16 usComponentTypeMask, RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</a></li>
+<li><a class="reference internal" href="#int-cmisdemo-void">int CMIsDemo (void)</a></li>
+<li><a class="reference internal" href="#rts-result-cminitend-void">RTS_RESULT CMInitEnd (void)</a></li>
+<li><a class="reference internal" href="#rts-result-cmchecksystargetsignature-void">RTS_RESULT CMCheckSysTargetSignature (void)</a></li>
+<li><a class="reference internal" href="#rts-ui32-cmgetuserlicensevalue-rts-ui32-ullicenseid-rts-result-presult">RTS_UI32 CMGetUserLicenseValue (RTS_UI32 ulLicenseID, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-ui32-cmreqdynlicchallenge-rts-ui32-ullicenseid-rts-ui32-ulnewlicensevalue-rts-result-presult">RTS_UI32 CMReqDynLicChallenge (RTS_UI32 ulLicenseID, RTS_UI32 ulNewLicenseValue, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#int-cmconfdynlicchallenge-rts-ui32-ullicenseid-rts-ui32-ulnewlicensevalue-rts-ui32-ulchallenge-rts-result-presult">int CMConfDynLicChallenge (RTS_UI32 ulLicenseID, RTS_UI32 ulNewLicenseValue, RTS_UI32 ulChallenge, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-cmcallextracommcyclehook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">RTS_RESULT CMCallExtraCommCycleHook (RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</a></li>
+<li><a class="reference internal" href="#rts-ui32-cmgetcurrenthook-void">RTS_UI32 CMGetCurrentHook (void)</a></li>
+<li><a class="reference internal" href="#rts-result-cmisoperationdisabled-cmpid-cmpid-rts-ui32-uloperation-cmpid-pcmpiddisabled">RTS_RESULT CMIsOperationDisabled (CMPID cmpId, RTS_UI32 ulOperation, CMPID *pCmpIdDisabled)</a></li>
+<li><a class="reference internal" href="#rts-result-cmprofiling-char-pszinfo-cmpid-cmpid-char-pszcomponentname-char-pszmodulename-rts-i32-nline-rts-i32-iid">RTS_RESULT CMProfiling (char *pszInfo, CMPID cmpId, char *pszComponentName, char *pszModuleName, RTS_I32 nLine, RTS_I32 iID)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___c_m_basic_checks_itf.html"
+                        title="previous chapter">CMBasicChecksItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___c_m_lock_itf.html"
+                        title="next chapter">CMLockItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___c_m_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmitf">
+<span id="group-c-m-itf"></span><h1>CMItf<a class="headerlink" href="#cmitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CmpMgr. <a class="reference internal" href="#group-c-m-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___c_m_itf___api_resolve_info.html#group-c-m-itf-api-resolve-info"><span class="std std-ref">ApiResolveInfo</span></a></li>
+<li><a class="reference internal" href="group___c_m_itf___c_m_initoptions.html#group-c-m-itf-c-m-initoptions"><span class="std std-ref">CMInit options</span></a></li>
+<li><a class="reference internal" href="group___c_m_itf___c_o_m_m___c_y_c_l_e___h_o_o_ktypes.html#group-c-m-itf-c-o-m-m-c-y-c-l-e-h-o-o-ktypes"><span class="std std-ref">COMM_CYCLE_HOOK types</span></a></li>
+<li><a class="reference internal" href="group___c_m_itf___compilerswitch.html#group-c-m-itf-compilerswitch"><span class="std std-ref">Compiler switch</span></a></li>
+<li><a class="reference internal" href="group___c_m_itf___component_name.html#group-c-m-itf-component-name"><span class="std std-ref">ComponentName</span></a></li>
+<li><a class="reference internal" href="group___c_m_itf___component_name_flags.html#group-c-m-itf-component-name-flags"><span class="std std-ref">ComponentNameFlags</span></a></li>
+<li><a class="reference internal" href="group___c_m_itf___component_state.html#group-c-m-itf-component-state"><span class="std std-ref">ComponentState</span></a></li>
+<li><a class="reference internal" href="group___c_m_itf___component_type.html#group-c-m-itf-component-type"><span class="std std-ref">ComponentType</span></a></li>
+<li><a class="reference internal" href="group___c_m_itf___eventparameter.html#group-c-m-itf-eventparameter"><span class="std std-ref">Event parameter</span></a></li>
+<li><a class="reference internal" href="group___c_m_itf___events.html#group-c-m-itf-events"><span class="std std-ref">Events</span></a></li>
+<li><a class="reference internal" href="group___c_m_itf___profiler.html#group-c-m-itf-profiler"><span class="std std-ref">Profiler</span></a></li>
+<li><a class="reference internal" href="group___c_m_itf___settings.html#group-c-m-itf-settings"><span class="std std-ref">Settings</span></a></li>
+<li><a class="reference internal" href="group___c_m_itf___staticdefines.html#group-c-m-itf-staticdefines"><span class="std std-ref">Static defines</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="structtag_license_functions.html#structtag-license-functions"><span class="std std-ref">tagLicenseFunctions</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmaddcomponent__struct.html#structtagcmaddcomponent-struct"><span class="std std-ref">tagcmaddcomponent_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmaddcomponent2__struct.html#structtagcmaddcomponent2-struct"><span class="std std-ref">tagcmaddcomponent2_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmexitcomponent__struct.html#structtagcmexitcomponent-struct"><span class="std std-ref">tagcmexitcomponent_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmgetcomponentbyname__struct.html#structtagcmgetcomponentbyname-struct"><span class="std std-ref">tagcmgetcomponentbyname_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcminitcomponent__struct.html#structtagcminitcomponent-struct"><span class="std std-ref">tagcminitcomponent_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmregistergetuserlicensevalue__struct.html#structtagcmregistergetuserlicensevalue-struct"><span class="std std-ref">tagcmregistergetuserlicensevalue_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmregisterlicensefunctions__struct.html#structtagcmregisterlicensefunctions-struct"><span class="std std-ref">tagcmregisterlicensefunctions_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmremovecomponent__struct.html#structtagcmremovecomponent-struct"><span class="std std-ref">tagcmremovecomponent_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmshutdown__struct.html#structtagcmshutdown-struct"><span class="std std-ref">tagcmshutdown_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmunregistergetuserlicensevalue__struct.html#structtagcmunregistergetuserlicensevalue-struct"><span class="std std-ref">tagcmunregistergetuserlicensevalue_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmunregisterlicensefunctions__struct.html#structtagcmunregisterlicensefunctions-struct"><span class="std std-ref">tagcmunregisterlicensefunctions_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmutlcwstrcpy__struct.html#structtagcmutlcwstrcpy-struct"><span class="std std-ref">tagcmutlcwstrcpy_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmutlsafestrcpy__struct.html#structtagcmutlsafestrcpy-struct"><span class="std std-ref">tagcmutlsafestrcpy_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmutlstricmp__struct.html#structtagcmutlstricmp-struct"><span class="std std-ref">tagcmutlstricmp_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmutlutf8tow__struct.html#structtagcmutlutf8tow-struct"><span class="std std-ref">tagcmutlutf8tow_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmutlwstrcpy__struct.html#structtagcmutlwstrcpy-struct"><span class="std std-ref">tagcmutlwstrcpy_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcmutlwtoutf8__struct.html#structtagcmutlwtoutf8-struct"><span class="std std-ref">tagcmutlwtoutf8_struct</span></a></li>
+<li>struct <a class="reference internal" href="structcmloadcomponent__struct.html#structcmloadcomponent-struct"><span class="std std-ref">cmloadcomponent_struct</span></a></li>
+<li>struct <a class="reference internal" href="structcmunloadcomponent__struct.html#structcmunloadcomponent-struct"><span class="std std-ref">cmunloadcomponent_struct</span></a></li>
+<li>struct <a class="reference internal" href="structgetuserlicensevalue__struct.html#structgetuserlicensevalue-struct"><span class="std std-ref">getuserlicensevalue_struct</span></a></li>
+<li>struct <a class="reference internal" href="structreqdynlicchallenge__struct.html#structreqdynlicchallenge-struct"><span class="std std-ref">reqdynlicchallenge_struct</span></a></li>
+<li>struct <a class="reference internal" href="structconfdynlicchallenge__struct.html#structconfdynlicchallenge-struct"><span class="std std-ref">confdynlicchallenge_struct</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_c_m___c.html#struct-i-c-m-c"><span class="std std-ref">ICM_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-c-m-itf-1ga1e9adb1fbf79099ec5621be30f2f933e"><span class="std std-ref">EXTERNAL_LIB_PACKMODE</span></a> 8</li>
+<li>#define <a class="reference internal" href="#group-c-m-itf-1gaefa62e45397392025071f338d11ec38f"><span class="std std-ref">RTS_CHECKPOINT</span></a></li>
+<li>#define <a class="reference internal" href="#group-c-m-itf-1ga79901fe2535f1b7e289ce9f2dafdd2cc"><span class="std std-ref">LICENSE_NOT_AVAILABLE</span></a> UINT32_C(0xffffffff)</li>
+<li>#define <a class="reference internal" href="#group-c-m-itf-1gab9f2c214e3e4d686344abf8b0f7561fc"><span class="std std-ref">LICENSE_INVALID</span></a> UINT32_C(0x00000000)</li>
+<li>#define <a class="reference internal" href="#group-c-m-itf-1ga3be676907c448393b4ff703596a14116"><span class="std std-ref">CM_PROFILING_ID_ADD_BEGIN</span></a> (ID | UINT32_C(0x40000000))</li>
+<li>#define <a class="reference internal" href="#group-c-m-itf-1gad357f2cd976ef2f1d176dc3fa53fffc8"><span class="std std-ref">CM_PROFILING_ID_ADD_END</span></a> (ID | UINT32_C(0x80000000))</li>
+<li>#define <a class="reference internal" href="#group-c-m-itf-1ga79411b552918ea84f4b266fbb62764cc"><span class="std std-ref">CM_PROFILING_ID_ISBEGIN</span></a> ((ID &amp; UINT32_C(0x40000000)) != 0)</li>
+<li>#define <a class="reference internal" href="#group-c-m-itf-1gaaf391414ed38c85cd1c5ac057106716a"><span class="std std-ref">CM_PROFILING_ID_ISEND</span></a> ((ID &amp; UINT32_C(0x80000000)) != 0)</li>
+<li>#define <a class="reference internal" href="#group-c-m-itf-1ga3e52ee3634493415129a44eb03e17592"><span class="std std-ref">CM_PROFILING_ID_GET</span></a> (ID &amp; UINT32_C(0x3FFFFFFF))</li>
+<li>#define <a class="reference internal" href="#group-c-m-itf-1ga61f0c0ead6bd2318dd35a91eb12b2520"><span class="std std-ref">ITF_CM</span></a></li>
+<li>#define <a class="reference internal" href="#group-c-m-itf-1ga580d932bcd6f727f2b3e250d39a76eac"><span class="std std-ref">EXTITF_CM</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="structtag_license_functions.html#structtag-license-functions"><span class="std std-ref">tagLicenseFunctions</span></a> <a class="reference internal" href="#group-c-m-itf-1ga516a5ec5dd2e25ae6a6e316eceb17c8f"><span class="std std-ref">LicenseFunctions</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmaddcomponent__struct.html#structtagcmaddcomponent-struct"><span class="std std-ref">tagcmaddcomponent_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1gaf173983244f7843ed8c7642afd77d4c8"><span class="std std-ref">cmaddcomponent_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmaddcomponent2__struct.html#structtagcmaddcomponent2-struct"><span class="std std-ref">tagcmaddcomponent2_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1gafb5d0b67f9a1dba004415b612abc71d4"><span class="std std-ref">cmaddcomponent2_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmexitcomponent__struct.html#structtagcmexitcomponent-struct"><span class="std std-ref">tagcmexitcomponent_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1ga4d6acacf3068e80a0768087490414914"><span class="std std-ref">cmexitcomponent_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmgetcomponentbyname__struct.html#structtagcmgetcomponentbyname-struct"><span class="std std-ref">tagcmgetcomponentbyname_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1gaf68e8771ff2f8b877bf270a026b22da7"><span class="std std-ref">cmgetcomponentbyname_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcminitcomponent__struct.html#structtagcminitcomponent-struct"><span class="std std-ref">tagcminitcomponent_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1ga8d62f811ee66b66e7ac2969d59d52239"><span class="std std-ref">cminitcomponent_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmregistergetuserlicensevalue__struct.html#structtagcmregistergetuserlicensevalue-struct"><span class="std std-ref">tagcmregistergetuserlicensevalue_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1ga42d14c939cb295bd0470f0bcf60d9fa4"><span class="std std-ref">cmregistergetuserlicensevalue_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmregisterlicensefunctions__struct.html#structtagcmregisterlicensefunctions-struct"><span class="std std-ref">tagcmregisterlicensefunctions_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1gaf08dcdeb34004eb2111881d22e8ad36d"><span class="std std-ref">cmregisterlicensefunctions_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmremovecomponent__struct.html#structtagcmremovecomponent-struct"><span class="std std-ref">tagcmremovecomponent_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1gac53c7c626ca2db9c2f200bc93f19d432"><span class="std std-ref">cmremovecomponent_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmshutdown__struct.html#structtagcmshutdown-struct"><span class="std std-ref">tagcmshutdown_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1gadcdbcc3605ccb2cdcb4840b93f740d4f"><span class="std std-ref">cmshutdown_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmunregistergetuserlicensevalue__struct.html#structtagcmunregistergetuserlicensevalue-struct"><span class="std std-ref">tagcmunregistergetuserlicensevalue_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1gaaf003ce773259523210250fe7e8c569c"><span class="std std-ref">cmunregistergetuserlicensevalue_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmunregisterlicensefunctions__struct.html#structtagcmunregisterlicensefunctions-struct"><span class="std std-ref">tagcmunregisterlicensefunctions_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1ga2d48d37133912d9f1b553d7c3207ad71"><span class="std std-ref">cmunregisterlicensefunctions_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmutlcwstrcpy__struct.html#structtagcmutlcwstrcpy-struct"><span class="std std-ref">tagcmutlcwstrcpy_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1ga12605b097630b541abfc1ac5f47502d0"><span class="std std-ref">cmutlcwstrcpy_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmutlsafestrcpy__struct.html#structtagcmutlsafestrcpy-struct"><span class="std std-ref">tagcmutlsafestrcpy_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1ga7a1c374304d8e00f19f395a9cb450e86"><span class="std std-ref">cmutlsafestrcpy_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmutlstricmp__struct.html#structtagcmutlstricmp-struct"><span class="std std-ref">tagcmutlstricmp_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1ga6a3ff3d340c454787fa4fd2bfd996ddf"><span class="std std-ref">cmutlstricmp_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmutlutf8tow__struct.html#structtagcmutlutf8tow-struct"><span class="std std-ref">tagcmutlutf8tow_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1ga380e2b558872a047e981190d7eed9ae5"><span class="std std-ref">cmutlutf8tow_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmutlwstrcpy__struct.html#structtagcmutlwstrcpy-struct"><span class="std std-ref">tagcmutlwstrcpy_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1gab62ab6abfd08ad9bcf1e5a9d6d642fc4"><span class="std std-ref">cmutlwstrcpy_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcmutlwtoutf8__struct.html#structtagcmutlwtoutf8-struct"><span class="std std-ref">tagcmutlwtoutf8_struct</span></a> <a class="reference internal" href="#group-c-m-itf-1ga1bab8f0a14c35188767bbd2d219c3a1b"><span class="std std-ref">cmutlwtoutf8_struct</span></a></li>
+<li>typedef void(* <a class="reference internal" href="#group-c-m-itf-1ga045330029894373f707aa79633cb5cee"><span class="std std-ref">PFGETUSERLICENSEVALUE</span></a>)(getuserlicensevalue_struct)</li>
+<li>typedef void(* <a class="reference internal" href="#group-c-m-itf-1ga0bde18f72f128e8190faa8ecc89479f6"><span class="std std-ref">PFREQDYNLICCHALLENGE</span></a>)(reqdynlicchallenge_struct)</li>
+<li>typedef void(* <a class="reference internal" href="#group-c-m-itf-1ga1a28e25ec712c38d96e1cba9a6f4a71f"><span class="std std-ref">PFCONFDYNLICCHALLENGE</span></a>)(confdynlicchallenge_struct)</li>
+<li>typedef <a class="reference internal" href="struct_i_c_m___c.html#struct-i-c-m-c"><span class="std std-ref">ICM_C</span></a> <a class="reference internal" href="#group-c-m-itf-1ga983ab90df439c07d3dc899529c92aa61"><span class="std std-ref">ICM</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>void <a class="reference internal" href="#group-c-m-itf-1gabb81474df9661e2bfa1da358d1064451"><span class="std std-ref">cmaddcomponent</span></a> (<a class="reference internal" href="#group-c-m-itf-1gaf173983244f7843ed8c7642afd77d4c8"><span class="std std-ref">cmaddcomponent_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1gae0051d6ba0279333c2c30c2659c548ed"><span class="std std-ref">cmaddcomponent2</span></a> (<a class="reference internal" href="#group-c-m-itf-1gafb5d0b67f9a1dba004415b612abc71d4"><span class="std std-ref">cmaddcomponent2_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1ga14bbf2afca63011078fe8291db3e94c1"><span class="std std-ref">cmexitcomponent</span></a> (<a class="reference internal" href="#group-c-m-itf-1ga4d6acacf3068e80a0768087490414914"><span class="std std-ref">cmexitcomponent_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1ga7eb48d82b85cf3fad645d3c2075631a4"><span class="std std-ref">cmgetcomponentbyname</span></a> (<a class="reference internal" href="#group-c-m-itf-1gaf68e8771ff2f8b877bf270a026b22da7"><span class="std std-ref">cmgetcomponentbyname_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1ga4e84f6d1cb599519214f8b3dd10d22eb"><span class="std std-ref">cminitcomponent</span></a> (<a class="reference internal" href="#group-c-m-itf-1ga8d62f811ee66b66e7ac2969d59d52239"><span class="std std-ref">cminitcomponent_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1gaffe023b985245db5fc5d6dbbabb432c3"><span class="std std-ref">cmregistergetuserlicensevalue</span></a> (<a class="reference internal" href="#group-c-m-itf-1ga42d14c939cb295bd0470f0bcf60d9fa4"><span class="std std-ref">cmregistergetuserlicensevalue_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1gaaaac3b4d2130c2e9b47f07a85ee2d28f"><span class="std std-ref">cmregisterlicensefunctions</span></a> (<a class="reference internal" href="#group-c-m-itf-1gaf08dcdeb34004eb2111881d22e8ad36d"><span class="std std-ref">cmregisterlicensefunctions_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1gad8354c4a49a9aee85c25f59cc58f4e86"><span class="std std-ref">cmremovecomponent</span></a> (<a class="reference internal" href="#group-c-m-itf-1gac53c7c626ca2db9c2f200bc93f19d432"><span class="std std-ref">cmremovecomponent_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1ga4fc274121db40d8b4767c00b5bb5e817"><span class="std std-ref">cmshutdown</span></a> (<a class="reference internal" href="#group-c-m-itf-1gadcdbcc3605ccb2cdcb4840b93f740d4f"><span class="std std-ref">cmshutdown_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1ga459d25c69f40ca03471825fb2bc53068"><span class="std std-ref">cmunregistergetuserlicensevalue</span></a> (<a class="reference internal" href="#group-c-m-itf-1gaaf003ce773259523210250fe7e8c569c"><span class="std std-ref">cmunregistergetuserlicensevalue_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1ga77c50280a4257d73399295ea5f2e4b5c"><span class="std std-ref">cmunregisterlicensefunctions</span></a> (<a class="reference internal" href="#group-c-m-itf-1ga2d48d37133912d9f1b553d7c3207ad71"><span class="std std-ref">cmunregisterlicensefunctions_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1gae93e54b4897dfd1d432a313f5d413ac5"><span class="std std-ref">cmutlcwstrcpy</span></a> (<a class="reference internal" href="#group-c-m-itf-1ga12605b097630b541abfc1ac5f47502d0"><span class="std std-ref">cmutlcwstrcpy_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1ga577b0d57c9bd6363be1827763d85d134"><span class="std std-ref">cmutlsafestrcpy</span></a> (<a class="reference internal" href="#group-c-m-itf-1ga7a1c374304d8e00f19f395a9cb450e86"><span class="std std-ref">cmutlsafestrcpy_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1gabdc6ad1af9072e49dd5a8f9ad75e3ec7"><span class="std std-ref">cmutlstricmp</span></a> (<a class="reference internal" href="#group-c-m-itf-1ga6a3ff3d340c454787fa4fd2bfd996ddf"><span class="std std-ref">cmutlstricmp_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1ga251b1c54a5f2ef6f7910548a477a612e"><span class="std std-ref">cmutlutf8tow</span></a> (<a class="reference internal" href="#group-c-m-itf-1ga380e2b558872a047e981190d7eed9ae5"><span class="std std-ref">cmutlutf8tow_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1ga5261ce4e6d583a961193c1a457c592ab"><span class="std std-ref">cmutlwstrcpy</span></a> (<a class="reference internal" href="#group-c-m-itf-1gab62ab6abfd08ad9bcf1e5a9d6d642fc4"><span class="std std-ref">cmutlwstrcpy_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1gabd597922379cc391d0ac5bf029871967"><span class="std std-ref">cmutlwtoutf8</span></a> (<a class="reference internal" href="#group-c-m-itf-1ga1bab8f0a14c35188767bbd2d219c3a1b"><span class="std std-ref">cmutlwtoutf8_struct</span></a> * p)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1gaf05b74542b88e19cba42aaf6048429a4"><span class="std std-ref">CMInit</span></a> (char * pszSettingsFile, <a class="reference internal" href="group___c_m_itf___component_name.html#group-c-m-itf-component-name-1gaed4d46d17dc6b38cb3846e6db0938a6f"><span class="std std-ref">StaticComponent</span></a> * pStaticComponents)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1gaf7a568446ffb81c4e3cf2f6352650ed8"><span class="std std-ref">CMInit2</span></a> (char * pszSettingsFile, <a class="reference internal" href="group___c_m_itf___component_name.html#group-c-m-itf-component-name-1gaed4d46d17dc6b38cb3846e6db0938a6f"><span class="std std-ref">StaticComponent</span></a> * pStaticComponents, int bSettingsFileIsOptional)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1gaaf5c89f9a32848417d795908bf3ef25a"><span class="std std-ref">CMInit3</span></a> (char * pszSettingsFile, <a class="reference internal" href="group___c_m_itf___component_name.html#group-c-m-itf-component-name-1gaed4d46d17dc6b38cb3846e6db0938a6f"><span class="std std-ref">StaticComponent</span></a> * pStaticComponents, RTS_UI32 options)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga0227148712c0fb5b69d49d921bef25a8"><span class="std std-ref">CMExit</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1gab1e82745a4395afe05533fe95c085b9e"><span class="std std-ref">CMSetExit</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga2ed25d4b792ca38fc99824a011778182"><span class="std std-ref">CMGetExit</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga3929789cd6294dd00d39467f9c9ad843"><span class="std std-ref">CMDebugOut</span></a> (const char * szFormat, ...)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga892619201567cc534245066361d416cd"><span class="std std-ref">CMDebugOutArg</span></a> (const char * szFormat, va_list * pargList)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1gaeee866d8a9158daa4bef3e48aa0138b7"><span class="std std-ref">CMRegisterAPI</span></a> (const CMP_EXT_FUNCTION_REF * pExpTable, RTS_UINTPTR dummy, int bExternalLibrary, RTS_UI32 cmpId)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1gad189ecacb244a5ea200dffe33b50860f"><span class="std std-ref">CMRegisterAPI2</span></a> (const char * pszAPIName, RTS_VOID_FCTPTR pfAPIFunction, int bExternalLibrary, RTS_UI32 ulSignatureID, RTS_UI32 ulVersion)</li>
+<li>DLL_DECL RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga2e0bd13ddf81ffb69797adbb99eab9cb"><span class="std std-ref">CMGetAPI</span></a> (char * pszAPIName, RTS_VOID_FCTPTR * ppfAPIFunction, RTS_UI32 ulSignatureID)</li>
+<li>DLL_DECL RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga69f40399bfffe6c26c6eb86ba2b75da9"><span class="std std-ref">CMGetAPI2</span></a> (char * pszAPIName, RTS_VOID_FCTPTR * ppfAPIFunction, int importOptions, RTS_UI32 ulSignatureID, RTS_UI32 ulVersion)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga7f6aa70ceb418ca93363b451b3f9603a"><span class="std std-ref">CMGetAPI3</span></a> (char * pszAPIName, RTS_VOID_FCTPTR * ppfAPIFunction, int importOptions, RTS_UI32 * pulSignatureID, RTS_UI32 * pulVersion)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1gadb9b0f3c32342e12b227da2cd199623c"><span class="std std-ref">CMGetAPIToResolve</span></a> (<a class="reference internal" href="group___c_m_itf___api_resolve_info.html#group-c-m-itf-api-resolve-info-1gab9565a2863d19785c9b52114ceafe72f"><span class="std std-ref">API_RESOLVE_INFO</span></a> * pApiResolveInfo)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga6be00dc8a3bdab64ff6647eaf79d7da1"><span class="std std-ref">CMReleaseAPI</span></a> (RTS_VOID_FCTPTR pfAPIFunction)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-c-m-itf-1ga10b3d7a4a68c9228e16f774867750b6c"><span class="std std-ref">CMLoadComponent</span></a> (char * pszComponent, RTS_RESULT * pResult)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1ga99134d18ae67a7e21bd82174e95a2550"><span class="std std-ref">cmloadcomponent</span></a> (<a class="reference internal" href="structcmloadcomponent__struct.html#structcmloadcomponent-struct"><span class="std std-ref">cmloadcomponent_struct</span></a> * p)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-c-m-itf-1ga14bbd5aac99a653f32c1e580b2d0dd1c"><span class="std std-ref">CMLoadComponent2</span></a> (char * pszComponent, RTS_UI16 iType, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-c-m-itf-1ga4e0ebc4d7687a49310824347baaf070e"><span class="std std-ref">CMLoadComponent3</span></a> (char * pszComponent, char * pszFilePath, RTS_UI16 iType, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga56333a0d1cd19a000279e9e4d8081ed3"><span class="std std-ref">CMInitComponent</span></a> (RTS_HANDLE hComponent)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga350dd2e2f5d946935a49666022e0df99"><span class="std std-ref">CMImportFunctions</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1gac805a13f2f77fe14a3858261363b5179"><span class="std std-ref">CMExitComponent</span></a> (RTS_HANDLE hComponent)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga58c619b84d82b9ce60512082705b6025"><span class="std std-ref">CMUnloadComponent</span></a> (RTS_HANDLE hComponent)</li>
+<li>void <a class="reference internal" href="#group-c-m-itf-1ga1e4bba7ccea19081b151c03ff55afd7f"><span class="std std-ref">cmunloadcomponent</span></a> (<a class="reference internal" href="structcmunloadcomponent__struct.html#structcmunloadcomponent-struct"><span class="std std-ref">cmunloadcomponent_struct</span></a> * p)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-c-m-itf-1ga49cdd0da5019acc57a5ff9be80b98250"><span class="std std-ref">CMAddComponent</span></a> (<a class="reference internal" href="group___c_m_itf___component_name.html#group-c-m-itf-component-name-1gaae03dae15a92a41cb9e05534ce94a576"><span class="std std-ref">COMPONENT_ENTRY</span></a> * pComponent, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1gaa51ef04014cca8cf9b54cbbe9c6c4849"><span class="std std-ref">CMRemoveComponent</span></a> (RTS_HANDLE hComponent)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-c-m-itf-1gac68bf9a9cecc1fb28e80766e318f68da"><span class="std std-ref">CMGetComponentByName</span></a> (char * pszCmpName, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga02299050371b37e830914f320d5c12dc"><span class="std std-ref">CMGetCmpId</span></a> (char * pszCmpName, CMPID * pCmpId)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga719bb8ef97383d2b7356552709ae0a60"><span class="std std-ref">CMGetCmpName</span></a> (CMPID CmpId, char * pszCmpName, int iMaxCmpName)</li>
+<li><a class="reference internal" href="group___c_m_itf___component_name.html#group-c-m-itf-component-name-1gaae03dae15a92a41cb9e05534ce94a576"><span class="std std-ref">COMPONENT_ENTRY</span></a> * <a class="reference internal" href="#group-c-m-itf-1gadc355a43dfbc02ac84969770f95db31a"><span class="std std-ref">CMGetComponent</span></a> (CMPID CmpId)</li>
+<li>int <a class="reference internal" href="#group-c-m-itf-1ga11cc52ad88fde02914914c1aba94bd2d"><span class="std std-ref">CMGetNumOfComponents</span></a> (void)</li>
+<li><a class="reference internal" href="group___c_m_itf___component_name.html#group-c-m-itf-component-name-1gaae03dae15a92a41cb9e05534ce94a576"><span class="std std-ref">COMPONENT_ENTRY</span></a> * <a class="reference internal" href="#group-c-m-itf-1gac5e13736913420c13d9f40d5953bd7f7"><span class="std std-ref">CMGetComponentByIndex</span></a> (int iIndex)</li>
+<li><a class="reference internal" href="group___c_m_itf___component_name.html#group-c-m-itf-component-name-1gaae03dae15a92a41cb9e05534ce94a576"><span class="std std-ref">COMPONENT_ENTRY</span></a> * <a class="reference internal" href="#group-c-m-itf-1ga057df3fc4357231700e3f7ae17929f06"><span class="std std-ref">CMGetFirstComponent</span></a> (RTS_RESULT * pResult)</li>
+<li><a class="reference internal" href="group___c_m_itf___component_name.html#group-c-m-itf-component-name-1gaae03dae15a92a41cb9e05534ce94a576"><span class="std std-ref">COMPONENT_ENTRY</span></a> * <a class="reference internal" href="#group-c-m-itf-1ga970ace3d4a07bf7320d1456d2089bd89"><span class="std std-ref">CMGetNextComponent</span></a> (<a class="reference internal" href="group___c_m_itf___component_name.html#group-c-m-itf-component-name-1gaae03dae15a92a41cb9e05534ce94a576"><span class="std std-ref">COMPONENT_ENTRY</span></a> * pCmp, RTS_RESULT * pResult)</li>
+<li>IBase * <a class="reference internal" href="#group-c-m-itf-1gaa436c3a1c4beaa5d333373ee43e7a82d"><span class="std std-ref">CMCreateInstance</span></a> (CLASSID ClassId, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga9742523d2433643388920756679c3237"><span class="std std-ref">CMDeleteInstance</span></a> (IBase * pIBase)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga4f4651646362b7183d5e16975fbfabf8"><span class="std std-ref">CMDeleteInstance2</span></a> (CLASSID ClassId, IBase * pIBase)</li>
+<li>IBase * <a class="reference internal" href="#group-c-m-itf-1ga0ac13021662eda794e70c99c0a16a6bc"><span class="std std-ref">CMGetInstance</span></a> (CLASSID ClassId, OBJID ObjId, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga94ecbc39aa43368f6e8b348397ab2fd2"><span class="std std-ref">CMRegisterInstance</span></a> (CLASSID ClassId, OBJID ObjId, IBase * pIBase)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga8d66e0fb9a5b31201049092c3b71ca74"><span class="std std-ref">CMUnregisterInstance</span></a> (IBase * pIBase)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga84a11b1617c11fb3ce378354324b8363"><span class="std std-ref">CMGetInstanceList</span></a> (ITFID ItfId, RTS_HANDLE hIBasePool)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1gade57c65791c54884d36898bb8062cb41"><span class="std std-ref">CMCallHook</span></a> (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2, int bReverse)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga7b331ee99c72c0ecb3ead290cfbd136b"><span class="std std-ref">CMCallHook2</span></a> (RTS_UI16 usComponentTypeMask, RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</li>
+<li>int <a class="reference internal" href="#group-c-m-itf-1ga06b703bef3feaaffb8ba4cdb9cd74397"><span class="std std-ref">CMIsDemo</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga83b61cae6ab87284f41f66db8d1d76d0"><span class="std std-ref">CMInitEnd</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1gac0e6df0a0f013fcb877e42cf151e9de4"><span class="std std-ref">CMCheckSysTargetSignature</span></a> (void)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-c-m-itf-1ga71a6d1c1d634ba5674c749ab43cc2fd3"><span class="std std-ref">CMGetUserLicenseValue</span></a> (RTS_UI32 ulLicenseID, RTS_RESULT * pResult)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-c-m-itf-1gaa10334cd8ee8526d53dd42ab106b8e2f"><span class="std std-ref">CMReqDynLicChallenge</span></a> (RTS_UI32 ulLicenseID, RTS_UI32 ulNewLicenseValue, RTS_RESULT * pResult)</li>
+<li>int <a class="reference internal" href="#group-c-m-itf-1ga6f1f5d71e33840937959d2f2d0c166f3"><span class="std std-ref">CMConfDynLicChallenge</span></a> (RTS_UI32 ulLicenseID, RTS_UI32 ulNewLicenseValue, RTS_UI32 ulChallenge, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga0c684457436b2dd561191e8767817587"><span class="std std-ref">CMCallExtraCommCycleHook</span></a> (RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-c-m-itf-1ga95ab8e8b3a6ed2e8a67429e64eebf46e"><span class="std std-ref">CMGetCurrentHook</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1gaca15661884ff93447533796c38f62c5f"><span class="std std-ref">CMIsOperationDisabled</span></a> (CMPID cmpId, RTS_UI32 ulOperation, CMPID * pCmpIdDisabled)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-itf-1ga8f596715677be928e9f97e05c72202b3"><span class="std std-ref">CMProfiling</span></a> (char * pszInfo, CMPID cmpId, char * pszComponentName, char * pszModuleName, RTS_I32 nLine, RTS_I32 iID)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-c-m-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CmpMgr.</p>
+<p>Interface of the component manager</p>
+<p>The component manager component is the central component of the runtime system. The component manager is responsible for:</p>
+<ul class="simple">
+<li>startup and shutdown of the runtime system</li>
+<li>loading and unloading all components</li>
+<li>intializing all components</li>
+<li>linking all functions, including the external IEC library functions</li>
+<li>checking the consistency of calling a function (matching function prototypes)</li>
+</ul>
+<p>The list of components that should be loaded can be specified in different ways.</p>
+<p>If the components are linked static, there are two different ways to specify the component list:</p>
+<ul class="simple">
+<li>Static list: The list of static loaded components can be specified as a calling option for the <a class="reference internal" href="#group-c-m-itf-1gaf05b74542b88e19cba42aaf6048429a4"><span class="std std-ref">CMInit()</span></a> interface method. The name of the component on the entry funtion of each component must be specified. See the description of the <a class="reference internal" href="#group-c-m-itf-1gaf05b74542b88e19cba42aaf6048429a4"><span class="std std-ref">CMInit()</span></a> method for detailed information.</li>
+<li>Settings: The settings component has a settings interface, where the component list can be specified. Here only the component name must be specified. In this case, the function MainLoadComponent() must be impleemnted in the Main module and here all static linked components must be added to the list. The advantage of this method is that in the settings you can specify, which static component can be loaded or not. This is quite flexible.</li>
+</ul>
+<p>For dynamically linked components, the component list can only be specified in the settings component.</p>
+<p>External IEC library functions are managed by the component manager too. Each interface have to specify, if it could be used for IEC code or not in the m4 Interface definition.</p>
+<p>An additional feature is the possibility to use all components with a C++ interface. Here you can implement your own component in C++ and can use all other runtime components object oriented with a C++ interface.</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-external-lib-packmode-8">
+<span id="group-c-m-itf-1ga1e9adb1fbf79099ec5621be30f2f933e"></span><h3>#define EXTERNAL_LIB_PACKMODE 8<a class="headerlink" href="#define-external-lib-packmode-8" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-checkpoint">
+<span id="group-c-m-itf-1gaefa62e45397392025071f338d11ec38f"></span><h3>#define RTS_CHECKPOINT<a class="headerlink" href="#define-rts-checkpoint" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-license-not-available-uint32-c-0xffffffff">
+<span id="group-c-m-itf-1ga79901fe2535f1b7e289ce9f2dafdd2cc"></span><h3>#define LICENSE_NOT_AVAILABLE UINT32_C(0xffffffff)<a class="headerlink" href="#define-license-not-available-uint32-c-0xffffffff" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-license-invalid-uint32-c-0x00000000">
+<span id="group-c-m-itf-1gab9f2c214e3e4d686344abf8b0f7561fc"></span><h3>#define LICENSE_INVALID UINT32_C(0x00000000)<a class="headerlink" href="#define-license-invalid-uint32-c-0x00000000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-cm-profiling-id-add-begin-id-uint32-c-0x40000000">
+<span id="group-c-m-itf-1ga3be676907c448393b4ff703596a14116"></span><h3>#define CM_PROFILING_ID_ADD_BEGIN (ID | UINT32_C(0x40000000))<a class="headerlink" href="#define-cm-profiling-id-add-begin-id-uint32-c-0x40000000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-cm-profiling-id-add-end-id-uint32-c-0x80000000">
+<span id="group-c-m-itf-1gad357f2cd976ef2f1d176dc3fa53fffc8"></span><h3>#define CM_PROFILING_ID_ADD_END (ID | UINT32_C(0x80000000))<a class="headerlink" href="#define-cm-profiling-id-add-end-id-uint32-c-0x80000000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-cm-profiling-id-isbegin-id-uint32-c-0x40000000-0">
+<span id="group-c-m-itf-1ga79411b552918ea84f4b266fbb62764cc"></span><h3>#define CM_PROFILING_ID_ISBEGIN ((ID &amp; UINT32_C(0x40000000)) != 0)<a class="headerlink" href="#define-cm-profiling-id-isbegin-id-uint32-c-0x40000000-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-cm-profiling-id-isend-id-uint32-c-0x80000000-0">
+<span id="group-c-m-itf-1gaaf391414ed38c85cd1c5ac057106716a"></span><h3>#define CM_PROFILING_ID_ISEND ((ID &amp; UINT32_C(0x80000000)) != 0)<a class="headerlink" href="#define-cm-profiling-id-isend-id-uint32-c-0x80000000-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-cm-profiling-id-get-id-uint32-c-0x3fffffff">
+<span id="group-c-m-itf-1ga3e52ee3634493415129a44eb03e17592"></span><h3>#define CM_PROFILING_ID_GET (ID &amp; UINT32_C(0x3FFFFFFF))<a class="headerlink" href="#define-cm-profiling-id-get-id-uint32-c-0x3fffffff" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-itf-cm">
+<span id="group-c-m-itf-1ga61f0c0ead6bd2318dd35a91eb12b2520"></span><h3>#define ITF_CM<a class="headerlink" href="#define-itf-cm" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cm">
+<span id="group-c-m-itf-1ga580d932bcd6f727f2b3e250d39a76eac"></span><h3>#define EXTITF_CM<a class="headerlink" href="#define-extitf-cm" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-taglicensefunctions-licensefunctions">
+<span id="group-c-m-itf-1ga516a5ec5dd2e25ae6a6e316eceb17c8f"></span><h3>typedef struct tagLicenseFunctions  LicenseFunctions<a class="headerlink" href="#typedef-struct-taglicensefunctions-licensefunctions" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION BEGIN</p>
+<p>LicenseFunctions</p>
+</div>
+<div class="section" id="typedef-struct-tagcmaddcomponent-struct-cmaddcomponent-struct">
+<span id="group-c-m-itf-1gaf173983244f7843ed8c7642afd77d4c8"></span><h3>typedef struct tagcmaddcomponent_struct  cmaddcomponent_struct<a class="headerlink" href="#typedef-struct-tagcmaddcomponent-struct-cmaddcomponent-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmaddcomponent</p>
+</div>
+<div class="section" id="typedef-struct-tagcmaddcomponent2-struct-cmaddcomponent2-struct">
+<span id="group-c-m-itf-1gafb5d0b67f9a1dba004415b612abc71d4"></span><h3>typedef struct tagcmaddcomponent2_struct  cmaddcomponent2_struct<a class="headerlink" href="#typedef-struct-tagcmaddcomponent2-struct-cmaddcomponent2-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmaddcomponent2</p>
+</div>
+<div class="section" id="typedef-struct-tagcmexitcomponent-struct-cmexitcomponent-struct">
+<span id="group-c-m-itf-1ga4d6acacf3068e80a0768087490414914"></span><h3>typedef struct tagcmexitcomponent_struct  cmexitcomponent_struct<a class="headerlink" href="#typedef-struct-tagcmexitcomponent-struct-cmexitcomponent-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmexitcomponent</p>
+</div>
+<div class="section" id="typedef-struct-tagcmgetcomponentbyname-struct-cmgetcomponentbyname-struct">
+<span id="group-c-m-itf-1gaf68e8771ff2f8b877bf270a026b22da7"></span><h3>typedef struct tagcmgetcomponentbyname_struct  cmgetcomponentbyname_struct<a class="headerlink" href="#typedef-struct-tagcmgetcomponentbyname-struct-cmgetcomponentbyname-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmgetcomponentbyname</p>
+</div>
+<div class="section" id="typedef-struct-tagcminitcomponent-struct-cminitcomponent-struct">
+<span id="group-c-m-itf-1ga8d62f811ee66b66e7ac2969d59d52239"></span><h3>typedef struct tagcminitcomponent_struct  cminitcomponent_struct<a class="headerlink" href="#typedef-struct-tagcminitcomponent-struct-cminitcomponent-struct" title="Permalink to this headline">¶</a></h3>
+<p>cminitcomponent</p>
+</div>
+<div class="section" id="typedef-struct-tagcmregistergetuserlicensevalue-struct-cmregistergetuserlicensevalue-struct">
+<span id="group-c-m-itf-1ga42d14c939cb295bd0470f0bcf60d9fa4"></span><h3>typedef struct tagcmregistergetuserlicensevalue_struct  cmregistergetuserlicensevalue_struct<a class="headerlink" href="#typedef-struct-tagcmregistergetuserlicensevalue-struct-cmregistergetuserlicensevalue-struct" title="Permalink to this headline">¶</a></h3>
+<p>OBSOLETE FUNCTION: Use CMRegisterLicenseFunctions instead</p>
+</div>
+<div class="section" id="typedef-struct-tagcmregisterlicensefunctions-struct-cmregisterlicensefunctions-struct">
+<span id="group-c-m-itf-1gaf08dcdeb34004eb2111881d22e8ad36d"></span><h3>typedef struct tagcmregisterlicensefunctions_struct  cmregisterlicensefunctions_struct<a class="headerlink" href="#typedef-struct-tagcmregisterlicensefunctions-struct-cmregisterlicensefunctions-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmregisterlicensefunctions</p>
+</div>
+<div class="section" id="typedef-struct-tagcmremovecomponent-struct-cmremovecomponent-struct">
+<span id="group-c-m-itf-1gac53c7c626ca2db9c2f200bc93f19d432"></span><h3>typedef struct tagcmremovecomponent_struct  cmremovecomponent_struct<a class="headerlink" href="#typedef-struct-tagcmremovecomponent-struct-cmremovecomponent-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmremovecomponent</p>
+</div>
+<div class="section" id="typedef-struct-tagcmshutdown-struct-cmshutdown-struct">
+<span id="group-c-m-itf-1gadcdbcc3605ccb2cdcb4840b93f740d4f"></span><h3>typedef struct tagcmshutdown_struct  cmshutdown_struct<a class="headerlink" href="#typedef-struct-tagcmshutdown-struct-cmshutdown-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmshutdown</p>
+</div>
+<div class="section" id="typedef-struct-tagcmunregistergetuserlicensevalue-struct-cmunregistergetuserlicensevalue-struct">
+<span id="group-c-m-itf-1gaaf003ce773259523210250fe7e8c569c"></span><h3>typedef struct tagcmunregistergetuserlicensevalue_struct  cmunregistergetuserlicensevalue_struct<a class="headerlink" href="#typedef-struct-tagcmunregistergetuserlicensevalue-struct-cmunregistergetuserlicensevalue-struct" title="Permalink to this headline">¶</a></h3>
+<p>OBSOLETE FUNCTION: Use CMUnregisterLicenseFunctions instead</p>
+</div>
+<div class="section" id="typedef-struct-tagcmunregisterlicensefunctions-struct-cmunregisterlicensefunctions-struct">
+<span id="group-c-m-itf-1ga2d48d37133912d9f1b553d7c3207ad71"></span><h3>typedef struct tagcmunregisterlicensefunctions_struct  cmunregisterlicensefunctions_struct<a class="headerlink" href="#typedef-struct-tagcmunregisterlicensefunctions-struct-cmunregisterlicensefunctions-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmunregisterlicensefunctions</p>
+</div>
+<div class="section" id="typedef-struct-tagcmutlcwstrcpy-struct-cmutlcwstrcpy-struct">
+<span id="group-c-m-itf-1ga12605b097630b541abfc1ac5f47502d0"></span><h3>typedef struct tagcmutlcwstrcpy_struct  cmutlcwstrcpy_struct<a class="headerlink" href="#typedef-struct-tagcmutlcwstrcpy-struct-cmutlcwstrcpy-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmutlcwstrcpy</p>
+</div>
+<div class="section" id="typedef-struct-tagcmutlsafestrcpy-struct-cmutlsafestrcpy-struct">
+<span id="group-c-m-itf-1ga7a1c374304d8e00f19f395a9cb450e86"></span><h3>typedef struct tagcmutlsafestrcpy_struct  cmutlsafestrcpy_struct<a class="headerlink" href="#typedef-struct-tagcmutlsafestrcpy-struct-cmutlsafestrcpy-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmutlsafestrcpy</p>
+</div>
+<div class="section" id="typedef-struct-tagcmutlstricmp-struct-cmutlstricmp-struct">
+<span id="group-c-m-itf-1ga6a3ff3d340c454787fa4fd2bfd996ddf"></span><h3>typedef struct tagcmutlstricmp_struct  cmutlstricmp_struct<a class="headerlink" href="#typedef-struct-tagcmutlstricmp-struct-cmutlstricmp-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmutlstricmp</p>
+</div>
+<div class="section" id="typedef-struct-tagcmutlutf8tow-struct-cmutlutf8tow-struct">
+<span id="group-c-m-itf-1ga380e2b558872a047e981190d7eed9ae5"></span><h3>typedef struct tagcmutlutf8tow_struct  cmutlutf8tow_struct<a class="headerlink" href="#typedef-struct-tagcmutlutf8tow-struct-cmutlutf8tow-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmutlutf8tow</p>
+</div>
+<div class="section" id="typedef-struct-tagcmutlwstrcpy-struct-cmutlwstrcpy-struct">
+<span id="group-c-m-itf-1gab62ab6abfd08ad9bcf1e5a9d6d642fc4"></span><h3>typedef struct tagcmutlwstrcpy_struct  cmutlwstrcpy_struct<a class="headerlink" href="#typedef-struct-tagcmutlwstrcpy-struct-cmutlwstrcpy-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmutlwstrcpy</p>
+</div>
+<div class="section" id="typedef-struct-tagcmutlwtoutf8-struct-cmutlwtoutf8-struct">
+<span id="group-c-m-itf-1ga1bab8f0a14c35188767bbd2d219c3a1b"></span><h3>typedef struct tagcmutlwtoutf8_struct  cmutlwtoutf8_struct<a class="headerlink" href="#typedef-struct-tagcmutlwtoutf8-struct-cmutlwtoutf8-struct" title="Permalink to this headline">¶</a></h3>
+<p>cmutlwtoutf8</p>
+</div>
+<div class="section" id="typedef-void-pfgetuserlicensevalue-getuserlicensevalue-struct">
+<span id="group-c-m-itf-1ga045330029894373f707aa79633cb5cee"></span><h3>typedef void( * PFGETUSERLICENSEVALUE)(getuserlicensevalue_struct)<a class="headerlink" href="#typedef-void-pfgetuserlicensevalue-getuserlicensevalue-struct" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-void-pfreqdynlicchallenge-reqdynlicchallenge-struct">
+<span id="group-c-m-itf-1ga0bde18f72f128e8190faa8ecc89479f6"></span><h3>typedef void( * PFREQDYNLICCHALLENGE)(reqdynlicchallenge_struct)<a class="headerlink" href="#typedef-void-pfreqdynlicchallenge-reqdynlicchallenge-struct" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-void-pfconfdynlicchallenge-confdynlicchallenge-struct">
+<span id="group-c-m-itf-1ga1a28e25ec712c38d96e1cba9a6f4a71f"></span><h3>typedef void( * PFCONFDYNLICCHALLENGE)(confdynlicchallenge_struct)<a class="headerlink" href="#typedef-void-pfconfdynlicchallenge-confdynlicchallenge-struct" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-icm-c-icm">
+<span id="group-c-m-itf-1ga983ab90df439c07d3dc899529c92aa61"></span><h3>typedef ICM_C ICM<a class="headerlink" href="#typedef-icm-c-icm" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="void-cmaddcomponent-cmaddcomponent-struct-p">
+<span id="group-c-m-itf-1gabb81474df9661e2bfa1da358d1064451"></span><h3>void cmaddcomponent (cmaddcomponent_struct <a href="#id1"><span class="problematic" id="id2">*</span></a>p)<a class="headerlink" href="#void-cmaddcomponent-cmaddcomponent-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmaddcomponent2-cmaddcomponent2-struct-p">
+<span id="group-c-m-itf-1gae0051d6ba0279333c2c30c2659c548ed"></span><h3>void cmaddcomponent2 (cmaddcomponent2_struct <a href="#id3"><span class="problematic" id="id4">*</span></a>p)<a class="headerlink" href="#void-cmaddcomponent2-cmaddcomponent2-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmexitcomponent-cmexitcomponent-struct-p">
+<span id="group-c-m-itf-1ga14bbf2afca63011078fe8291db3e94c1"></span><h3>void cmexitcomponent (cmexitcomponent_struct <a href="#id5"><span class="problematic" id="id6">*</span></a>p)<a class="headerlink" href="#void-cmexitcomponent-cmexitcomponent-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmgetcomponentbyname-cmgetcomponentbyname-struct-p">
+<span id="group-c-m-itf-1ga7eb48d82b85cf3fad645d3c2075631a4"></span><h3>void cmgetcomponentbyname (cmgetcomponentbyname_struct <a href="#id7"><span class="problematic" id="id8">*</span></a>p)<a class="headerlink" href="#void-cmgetcomponentbyname-cmgetcomponentbyname-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cminitcomponent-cminitcomponent-struct-p">
+<span id="group-c-m-itf-1ga4e84f6d1cb599519214f8b3dd10d22eb"></span><h3>void cminitcomponent (cminitcomponent_struct <a href="#id9"><span class="problematic" id="id10">*</span></a>p)<a class="headerlink" href="#void-cminitcomponent-cminitcomponent-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmregistergetuserlicensevalue-cmregistergetuserlicensevalue-struct-p">
+<span id="group-c-m-itf-1gaffe023b985245db5fc5d6dbbabb432c3"></span><h3>void cmregistergetuserlicensevalue (cmregistergetuserlicensevalue_struct <a href="#id11"><span class="problematic" id="id12">*</span></a>p)<a class="headerlink" href="#void-cmregistergetuserlicensevalue-cmregistergetuserlicensevalue-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmregisterlicensefunctions-cmregisterlicensefunctions-struct-p">
+<span id="group-c-m-itf-1gaaaac3b4d2130c2e9b47f07a85ee2d28f"></span><h3>void cmregisterlicensefunctions (cmregisterlicensefunctions_struct <a href="#id13"><span class="problematic" id="id14">*</span></a>p)<a class="headerlink" href="#void-cmregisterlicensefunctions-cmregisterlicensefunctions-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmremovecomponent-cmremovecomponent-struct-p">
+<span id="group-c-m-itf-1gad8354c4a49a9aee85c25f59cc58f4e86"></span><h3>void cmremovecomponent (cmremovecomponent_struct <a href="#id15"><span class="problematic" id="id16">*</span></a>p)<a class="headerlink" href="#void-cmremovecomponent-cmremovecomponent-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmshutdown-cmshutdown-struct-p">
+<span id="group-c-m-itf-1ga4fc274121db40d8b4767c00b5bb5e817"></span><h3>void cmshutdown (cmshutdown_struct <a href="#id17"><span class="problematic" id="id18">*</span></a>p)<a class="headerlink" href="#void-cmshutdown-cmshutdown-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmunregistergetuserlicensevalue-cmunregistergetuserlicensevalue-struct-p">
+<span id="group-c-m-itf-1ga459d25c69f40ca03471825fb2bc53068"></span><h3>void cmunregistergetuserlicensevalue (cmunregistergetuserlicensevalue_struct <a href="#id19"><span class="problematic" id="id20">*</span></a>p)<a class="headerlink" href="#void-cmunregistergetuserlicensevalue-cmunregistergetuserlicensevalue-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmunregisterlicensefunctions-cmunregisterlicensefunctions-struct-p">
+<span id="group-c-m-itf-1ga77c50280a4257d73399295ea5f2e4b5c"></span><h3>void cmunregisterlicensefunctions (cmunregisterlicensefunctions_struct <a href="#id21"><span class="problematic" id="id22">*</span></a>p)<a class="headerlink" href="#void-cmunregisterlicensefunctions-cmunregisterlicensefunctions-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmutlcwstrcpy-cmutlcwstrcpy-struct-p">
+<span id="group-c-m-itf-1gae93e54b4897dfd1d432a313f5d413ac5"></span><h3>void cmutlcwstrcpy (cmutlcwstrcpy_struct <a href="#id23"><span class="problematic" id="id24">*</span></a>p)<a class="headerlink" href="#void-cmutlcwstrcpy-cmutlcwstrcpy-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmutlsafestrcpy-cmutlsafestrcpy-struct-p">
+<span id="group-c-m-itf-1ga577b0d57c9bd6363be1827763d85d134"></span><h3>void cmutlsafestrcpy (cmutlsafestrcpy_struct <a href="#id25"><span class="problematic" id="id26">*</span></a>p)<a class="headerlink" href="#void-cmutlsafestrcpy-cmutlsafestrcpy-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmutlstricmp-cmutlstricmp-struct-p">
+<span id="group-c-m-itf-1gabdc6ad1af9072e49dd5a8f9ad75e3ec7"></span><h3>void cmutlstricmp (cmutlstricmp_struct <a href="#id27"><span class="problematic" id="id28">*</span></a>p)<a class="headerlink" href="#void-cmutlstricmp-cmutlstricmp-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmutlutf8tow-cmutlutf8tow-struct-p">
+<span id="group-c-m-itf-1ga251b1c54a5f2ef6f7910548a477a612e"></span><h3>void cmutlutf8tow (cmutlutf8tow_struct <a href="#id29"><span class="problematic" id="id30">*</span></a>p)<a class="headerlink" href="#void-cmutlutf8tow-cmutlutf8tow-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmutlwstrcpy-cmutlwstrcpy-struct-p">
+<span id="group-c-m-itf-1ga5261ce4e6d583a961193c1a457c592ab"></span><h3>void cmutlwstrcpy (cmutlwstrcpy_struct <a href="#id31"><span class="problematic" id="id32">*</span></a>p)<a class="headerlink" href="#void-cmutlwstrcpy-cmutlwstrcpy-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cmutlwtoutf8-cmutlwtoutf8-struct-p">
+<span id="group-c-m-itf-1gabd597922379cc391d0ac5bf029871967"></span><h3>void cmutlwtoutf8 (cmutlwtoutf8_struct <a href="#id33"><span class="problematic" id="id34">*</span></a>p)<a class="headerlink" href="#void-cmutlwtoutf8-cmutlwtoutf8-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-cminit-char-pszsettingsfile-staticcomponent-pstaticcomponents">
+<span id="group-c-m-itf-1gaf05b74542b88e19cba42aaf6048429a4"></span><h3>RTS_RESULT CMInit (char <a href="#id35"><span class="problematic" id="id36">*</span></a>pszSettingsFile, StaticComponent <a href="#id37"><span class="problematic" id="id38">*</span></a>pStaticComponents)<a class="headerlink" href="#rts-result-cminit-char-pszsettingsfile-staticcomponent-pstaticcomponents" title="Permalink to this headline">¶</a></h3>
+<p>Called to initialize the component manager</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="15%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszSettingsFile</td>
+<td>Pointer to name of the configuration file</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pStaticComponents</td>
+<td>Pointer to list of components with name and entry routine to initialize without configuration</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code:</p>
+<ul class="simple">
+<li>ERR_OK</li>
+<li>ERR_FAILED: One or more components failed to load</li>
+<li>ERR_ID_MISMATCH: Signature mismatch of the SysTargetIDs</li>
+</ul>
+</div>
+<div class="section" id="rts-result-cminit2-char-pszsettingsfile-staticcomponent-pstaticcomponents-int-bsettingsfileisoptional">
+<span id="group-c-m-itf-1gaf7a568446ffb81c4e3cf2f6352650ed8"></span><h3>RTS_RESULT CMInit2 (char <a href="#id39"><span class="problematic" id="id40">*</span></a>pszSettingsFile, StaticComponent <a href="#id41"><span class="problematic" id="id42">*</span></a>pStaticComponents, int bSettingsFileIsOptional)<a class="headerlink" href="#rts-result-cminit2-char-pszsettingsfile-staticcomponent-pstaticcomponents-int-bsettingsfileisoptional" title="Permalink to this headline">¶</a></h3>
+<p>Called to initialize the component manager</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="19%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszSettingsFile</td>
+<td>Pointer to name of the configuration file</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pStaticComponents</td>
+<td>Pointer to list of components with name and entry routine to initialize without configuration</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>bSettingsFileIsOptional</td>
+<td>Specifies, if the Settingsfile is only used optionally</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cminit3-char-pszsettingsfile-staticcomponent-pstaticcomponents-rts-ui32-options">
+<span id="group-c-m-itf-1gaaf5c89f9a32848417d795908bf3ef25a"></span><h3>RTS_RESULT CMInit3 (char <a href="#id43"><span class="problematic" id="id44">*</span></a>pszSettingsFile, StaticComponent <a href="#id45"><span class="problematic" id="id46">*</span></a>pStaticComponents, RTS_UI32 options)<a class="headerlink" href="#rts-result-cminit3-char-pszsettingsfile-staticcomponent-pstaticcomponents-rts-ui32-options" title="Permalink to this headline">¶</a></h3>
+<p>Called to initialize the component manager</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="15%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszSettingsFile</td>
+<td>Pointer to name of the configuration file</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pStaticComponents</td>
+<td>Pointer to list of components with name and entry routine to initialize without configuration</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>options</td>
+<td>Options for the init sequence of the component manager. See category &#8220;CMInit options&#8221; for details.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmexit-void">
+<span id="group-c-m-itf-1ga0227148712c0fb5b69d49d921bef25a8"></span><h3>RTS_RESULT CMExit (void)<a class="headerlink" href="#rts-result-cmexit-void" title="Permalink to this headline">¶</a></h3>
+<p>Called to deinitialize the component manager</p>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmsetexit-void">
+<span id="group-c-m-itf-1gab1e82745a4395afe05533fe95c085b9e"></span><h3>RTS_RESULT CMSetExit (void)<a class="headerlink" href="#rts-result-cmsetexit-void" title="Permalink to this headline">¶</a></h3>
+<p>Set a flag for main loop to exit
+<strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmgetexit-void">
+<span id="group-c-m-itf-1ga2ed25d4b792ca38fc99824a011778182"></span><h3>RTS_RESULT CMGetExit (void)<a class="headerlink" href="#rts-result-cmgetexit-void" title="Permalink to this headline">¶</a></h3>
+<p>Get a flag to exit main loop
+<strong>Returns:</strong></p>
+<p>ERR_OK, if exit flag is set <a href="#id47"><span class="problematic" id="id48">*</span></a>ERR_FAILED else</p>
+</div>
+<div class="section" id="rts-result-cmdebugout-const-char-szformat">
+<span id="group-c-m-itf-1ga3929789cd6294dd00d39467f9c9ad843"></span><h3>RTS_RESULT CMDebugOut (const char <a href="#id49"><span class="problematic" id="id50">*</span></a>szFormat,...)<a class="headerlink" href="#rts-result-cmdebugout-const-char-szformat" title="Permalink to this headline">¶</a></h3>
+<p>Can be used for debug outputs on a console.
+<strong>Returns:</strong></p>
+<p>ERR_OK or ERR_NOT_SUPPORTED, if SysOut component is not available</p>
+</div>
+<div class="section" id="rts-result-cmdebugoutarg-const-char-szformat-va-list-parglist">
+<span id="group-c-m-itf-1ga892619201567cc534245066361d416cd"></span><h3>RTS_RESULT CMDebugOutArg (const char <a href="#id51"><span class="problematic" id="id52">*</span></a>szFormat, va_list <a href="#id53"><span class="problematic" id="id54">*</span></a>pargList)<a class="headerlink" href="#rts-result-cmdebugoutarg-const-char-szformat-va-list-parglist" title="Permalink to this headline">¶</a></h3>
+<p>Can be used for debug outputs on a console.
+<strong>Returns:</strong></p>
+<p>ERR_OK or ERR_NOT_SUPPORTED, if SysOut component is not available</p>
+</div>
+<div class="section" id="rts-result-cmregisterapi-const-cmp-ext-function-ref-pexptable-rts-uintptr-dummy-int-bexternallibrary-rts-ui32-cmpid">
+<span id="group-c-m-itf-1gaeee866d8a9158daa4bef3e48aa0138b7"></span><h3>RTS_RESULT CMRegisterAPI (const CMP_EXT_FUNCTION_REF <a href="#id55"><span class="problematic" id="id56">*</span></a>pExpTable, RTS_UINTPTR dummy, int bExternalLibrary, RTS_UI32 cmpId)<a class="headerlink" href="#rts-result-cmregisterapi-const-cmp-ext-function-ref-pexptable-rts-uintptr-dummy-int-bexternallibrary-rts-ui32-cmpid" title="Permalink to this headline">¶</a></h3>
+<p>Called to register a list of component API functions at the component manager</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="23%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pExpTable</td>
+<td>Table of functions to be registered</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>CmpId</td>
+<td>Component identifier</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>bExternalLibrary</td>
+<td>Can be used as external library in the plc program</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmregisterapi2-const-char-pszapiname-rts-void-fctptr-pfapifunction-int-bexternallibrary-rts-ui32-ulsignatureid-rts-ui32-ulversion">
+<span id="group-c-m-itf-1gad189ecacb244a5ea200dffe33b50860f"></span><h3>RTS_RESULT CMRegisterAPI2 (const char <a href="#id57"><span class="problematic" id="id58">*</span></a>pszAPIName, RTS_VOID_FCTPTR pfAPIFunction, int bExternalLibrary, RTS_UI32 ulSignatureID, RTS_UI32 ulVersion)<a class="headerlink" href="#rts-result-cmregisterapi2-const-char-pszapiname-rts-void-fctptr-pfapifunction-int-bexternallibrary-rts-ui32-ulsignatureid-rts-ui32-ulversion" title="Permalink to this headline">¶</a></h3>
+<p>Called to register a component API function at the component manager</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="23%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszAPIName</td>
+<td>Name of the API routine</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pfAPIFunction</td>
+<td>Function pointer of the API routine</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>bExternalLibrary</td>
+<td>Can be used as external library in the plc program</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulSignatureID</td>
+<td>SignatureID of the function prototype</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulVersion</td>
+<td>Actual supported implementation version</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="dll-decl-rts-result-cmgetapi-char-pszapiname-rts-void-fctptr-ppfapifunction-rts-ui32-ulsignatureid">
+<span id="group-c-m-itf-1ga2e0bd13ddf81ffb69797adbb99eab9cb"></span><h3>DLL_DECL RTS_RESULT CMGetAPI (char <a href="#id59"><span class="problematic" id="id60">*</span></a>pszAPIName, RTS_VOID_FCTPTR <a href="#id61"><span class="problematic" id="id62">*</span></a>ppfAPIFunction, RTS_UI32 ulSignatureID)<a class="headerlink" href="#dll-decl-rts-result-cmgetapi-char-pszapiname-rts-void-fctptr-ppfapifunction-rts-ui32-ulsignatureid" title="Permalink to this headline">¶</a></h3>
+<p>Called to get an API function of another component</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="21%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszAPIName</td>
+<td>Name of the API routine</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>ppfAPIFunction</td>
+<td>Returned the function pointer of the API routine</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulSignatureID</td>
+<td>SignatureID of the function prototype we expected</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="dll-decl-rts-result-cmgetapi2-char-pszapiname-rts-void-fctptr-ppfapifunction-int-importoptions-rts-ui32-ulsignatureid-rts-ui32-ulversion">
+<span id="group-c-m-itf-1ga69f40399bfffe6c26c6eb86ba2b75da9"></span><h3>DLL_DECL RTS_RESULT CMGetAPI2 (char <a href="#id63"><span class="problematic" id="id64">*</span></a>pszAPIName, RTS_VOID_FCTPTR <a href="#id65"><span class="problematic" id="id66">*</span></a>ppfAPIFunction, int importOptions, RTS_UI32 ulSignatureID, RTS_UI32 ulVersion)<a class="headerlink" href="#dll-decl-rts-result-cmgetapi2-char-pszapiname-rts-void-fctptr-ppfapifunction-int-importoptions-rts-ui32-ulsignatureid-rts-ui32-ulversion" title="Permalink to this headline">¶</a></h3>
+<p>Called to get an API function of another component</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="18%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszAPIName</td>
+<td>Name of the API routine</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>ppfAPIFunction</td>
+<td>Returned the function pointer of the API routine</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulSignatureID</td>
+<td>SignatureID of the function prototype we expected</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulVersion</td>
+<td>Actual implementation version requested</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>importOptions</td>
+<td>Import options. See CM_IMPORT_xx defines in CmpStd.h for details</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmgetapi3-char-pszapiname-rts-void-fctptr-ppfapifunction-int-importoptions-rts-ui32-pulsignatureid-rts-ui32-pulversion">
+<span id="group-c-m-itf-1ga7f6aa70ceb418ca93363b451b3f9603a"></span><h3>RTS_RESULT CMGetAPI3 (char <a href="#id67"><span class="problematic" id="id68">*</span></a>pszAPIName, RTS_VOID_FCTPTR <a href="#id69"><span class="problematic" id="id70">*</span></a>ppfAPIFunction, int importOptions, RTS_UI32 <a href="#id71"><span class="problematic" id="id72">*</span></a>pulSignatureID, RTS_UI32 <a href="#id73"><span class="problematic" id="id74">*</span></a>pulVersion)<a class="headerlink" href="#rts-result-cmgetapi3-char-pszapiname-rts-void-fctptr-ppfapifunction-int-importoptions-rts-ui32-pulsignatureid-rts-ui32-pulversion" title="Permalink to this headline">¶</a></h3>
+<p>Called to get an API function of another component</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="13%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszAPIName</td>
+<td>Name of the API routine</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>ppfAPIFunction</td>
+<td>Returned the function pointer of the API routine</td>
+</tr>
+<tr class="row-odd"><td>[inout]</td>
+<td>pulSignatureID</td>
+<td>SignatureID of the function prototype requested and returns the actual signature implemented</td>
+</tr>
+<tr class="row-even"><td>[inout]</td>
+<td>pulVersion</td>
+<td>Implementation version requested and returns the actual version implemented</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>importOptions</td>
+<td>Import options. See CM_IMPORT_xx defines in CmpStd.h for details</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmgetapitoresolve-api-resolve-info-papiresolveinfo">
+<span id="group-c-m-itf-1gadb9b0f3c32342e12b227da2cd199623c"></span><h3>RTS_RESULT CMGetAPIToResolve (API_RESOLVE_INFO <a href="#id75"><span class="problematic" id="id76">*</span></a>pApiResolveInfo)<a class="headerlink" href="#rts-result-cmgetapitoresolve-api-resolve-info-papiresolveinfo" title="Permalink to this headline">¶</a></h3>
+<p>Returns the info of the current API function to resolve. Only valid during the run of CMGetAPIx. Otherwise the function returns ERR_NOT_INITIALIZED.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="22%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pApiResolveInfo</td>
+<td>API function info to be filled. See ApiResolveInfo.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmreleaseapi-rts-void-fctptr-pfapifunction">
+<span id="group-c-m-itf-1ga6be00dc8a3bdab64ff6647eaf79d7da1"></span><h3>RTS_RESULT CMReleaseAPI (RTS_VOID_FCTPTR pfAPIFunction)<a class="headerlink" href="#rts-result-cmreleaseapi-rts-void-fctptr-pfapifunction" title="Permalink to this headline">¶</a></h3>
+<p>Called to release an API function of another component</p>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-handle-cmloadcomponent-char-pszcomponent-rts-result-presult">
+<span id="group-c-m-itf-1ga10b3d7a4a68c9228e16f774867750b6c"></span><h3>RTS_HANDLE CMLoadComponent (char <a href="#id77"><span class="problematic" id="id78">*</span></a>pszComponent, RTS_RESULT <a href="#id79"><span class="problematic" id="id80">*</span></a>pResult)<a class="headerlink" href="#rts-handle-cmloadcomponent-char-pszcomponent-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Called to load a component. Can also be called during runtime. ATTENTION: If component has references to other components, referenced components must be loaded first!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszComponent</td>
+<td>Name of the component</td>
+</tr>
+<tr class="row-even"><td>[inout]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Component handle or RTS_INVALID_HANDLE, if an error is occured</p>
+</div>
+<div class="section" id="void-cmloadcomponent-cmloadcomponent-struct-p">
+<span id="group-c-m-itf-1ga99134d18ae67a7e21bd82174e95a2550"></span><h3>void cmloadcomponent (cmloadcomponent_struct <a href="#id81"><span class="problematic" id="id82">*</span></a>p)<a class="headerlink" href="#void-cmloadcomponent-cmloadcomponent-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-handle-cmloadcomponent2-char-pszcomponent-rts-ui16-itype-rts-result-presult">
+<span id="group-c-m-itf-1ga14bbd5aac99a653f32c1e580b2d0dd1c"></span><h3>RTS_HANDLE CMLoadComponent2 (char <a href="#id83"><span class="problematic" id="id84">*</span></a>pszComponent, RTS_UI16 iType, RTS_RESULT <a href="#id85"><span class="problematic" id="id86">*</span></a>pResult)<a class="headerlink" href="#rts-handle-cmloadcomponent2-char-pszcomponent-rts-ui16-itype-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Called to load a component. Can also be called during runtime. ATTENTION: If component has references to other components, referenced components must be loaded first!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="16%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszComponent</td>
+<td>Name of the component</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>iType</td>
+<td>Type of the component. See category &#8220;ComponentType&#8221; for details.</td>
+</tr>
+<tr class="row-odd"><td>[inout]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Component handle or RTS_INVALID_HANDLE, if an error is occured</p>
+</div>
+<div class="section" id="rts-handle-cmloadcomponent3-char-pszcomponent-char-pszfilepath-rts-ui16-itype-rts-result-presult">
+<span id="group-c-m-itf-1ga4e0ebc4d7687a49310824347baaf070e"></span><h3>RTS_HANDLE CMLoadComponent3 (char <a href="#id87"><span class="problematic" id="id88">*</span></a>pszComponent, char <a href="#id89"><span class="problematic" id="id90">*</span></a>pszFilePath, RTS_UI16 iType, RTS_RESULT <a href="#id91"><span class="problematic" id="id92">*</span></a>pResult)<a class="headerlink" href="#rts-handle-cmloadcomponent3-char-pszcomponent-char-pszfilepath-rts-ui16-itype-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Called to load a component. Can also be called during runtime. ATTENTION: If component has references to other components, referenced components must be loaded first!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="16%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszComponent</td>
+<td>Name of the component</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszFilePath</td>
+<td>Complete file path of the component</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>iType</td>
+<td>Type of the component. See category &#8220;ComponentType&#8221; for details.</td>
+</tr>
+<tr class="row-even"><td>[inout]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Component handle or RTS_INVALID_HANDLE, if an error is occured</p>
+</div>
+<div class="section" id="rts-result-cminitcomponent-rts-handle-hcomponent">
+<span id="group-c-m-itf-1ga56333a0d1cd19a000279e9e4d8081ed3"></span><h3>RTS_RESULT CMInitComponent (RTS_HANDLE hComponent)<a class="headerlink" href="#rts-result-cminitcomponent-rts-handle-hcomponent" title="Permalink to this headline">¶</a></h3>
+<p>Called to initialize a component after it was loaded during runtime.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="26%" />
+<col width="54%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hComponent</td>
+<td>Handle of the component</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmimportfunctions-void">
+<span id="group-c-m-itf-1ga350dd2e2f5d946935a49666022e0df99"></span><h3>RTS_RESULT CMImportFunctions (void)<a class="headerlink" href="#rts-result-cmimportfunctions-void" title="Permalink to this headline">¶</a></h3>
+<p>Called to update the function pointers of the previous loaded components to let them point to the new added functions.</p>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmexitcomponent-rts-handle-hcomponent">
+<span id="group-c-m-itf-1gac805a13f2f77fe14a3858261363b5179"></span><h3>RTS_RESULT CMExitComponent (RTS_HANDLE hComponent)<a class="headerlink" href="#rts-result-cmexitcomponent-rts-handle-hcomponent" title="Permalink to this headline">¶</a></h3>
+<p>Called to exit a component after it was loaded during runtime. After this it can be unloaded, if no other components references this component</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="26%" />
+<col width="54%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hComponent</td>
+<td>Handle of the component</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmunloadcomponent-rts-handle-hcomponent">
+<span id="group-c-m-itf-1ga58c619b84d82b9ce60512082705b6025"></span><h3>RTS_RESULT CMUnloadComponent (RTS_HANDLE hComponent)<a class="headerlink" href="#rts-result-cmunloadcomponent-rts-handle-hcomponent" title="Permalink to this headline">¶</a></h3>
+<p>Called to unload a component. Can also be called during runtime. ATTENTION: CMExitComponent must be called before unloading the component!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="26%" />
+<col width="54%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hComponent</td>
+<td>Handle of the component</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="void-cmunloadcomponent-cmunloadcomponent-struct-p">
+<span id="group-c-m-itf-1ga1e4bba7ccea19081b151c03ff55afd7f"></span><h3>void cmunloadcomponent (cmunloadcomponent_struct <a href="#id93"><span class="problematic" id="id94">*</span></a>p)<a class="headerlink" href="#void-cmunloadcomponent-cmunloadcomponent-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-handle-cmaddcomponent-component-entry-pcomponent-rts-result-presult">
+<span id="group-c-m-itf-1ga49cdd0da5019acc57a5ff9be80b98250"></span><h3>RTS_HANDLE CMAddComponent (COMPONENT_ENTRY <a href="#id95"><span class="problematic" id="id96">*</span></a>pComponent, RTS_RESULT <a href="#id97"><span class="problematic" id="id98">*</span></a>pResult)<a class="headerlink" href="#rts-handle-cmaddcomponent-component-entry-pcomponent-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Add a component to the list</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="22%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pComponent</td>
+<td>Pointer to component description</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>returns a handle to the component</p>
+</div>
+<div class="section" id="rts-result-cmremovecomponent-rts-handle-hcomponent">
+<span id="group-c-m-itf-1gaa51ef04014cca8cf9b54cbbe9c6c4849"></span><h3>RTS_RESULT CMRemoveComponent (RTS_HANDLE hComponent)<a class="headerlink" href="#rts-result-cmremovecomponent-rts-handle-hcomponent" title="Permalink to this headline">¶</a></h3>
+<p>Remove a component from the list</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="26%" />
+<col width="54%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hComponent</td>
+<td>Handle to the component</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-handle-cmgetcomponentbyname-char-pszcmpname-rts-result-presult">
+<span id="group-c-m-itf-1gac68bf9a9cecc1fb28e80766e318f68da"></span><h3>RTS_HANDLE CMGetComponentByName (char <a href="#id99"><span class="problematic" id="id100">*</span></a>pszCmpName, RTS_RESULT <a href="#id101"><span class="problematic" id="id102">*</span></a>pResult)<a class="headerlink" href="#rts-handle-cmgetcomponentbyname-char-pszcmpname-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get the component handle of a component specified by name.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="27%" />
+<col width="52%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszCmpName</td>
+<td>Name of the component</td>
+</tr>
+<tr class="row-even"><td>[inout]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Component handle or RTS_INVALID_HANDLE, if an error is occured</p>
+</div>
+<div class="section" id="rts-result-cmgetcmpid-char-pszcmpname-cmpid-pcmpid">
+<span id="group-c-m-itf-1ga02299050371b37e830914f320d5c12dc"></span><h3>RTS_RESULT CMGetCmpId (char <a href="#id103"><span class="problematic" id="id104">*</span></a>pszCmpName, CMPID <a href="#id105"><span class="problematic" id="id106">*</span></a>pCmpId)<a class="headerlink" href="#rts-result-cmgetcmpid-char-pszcmpname-cmpid-pcmpid" title="Permalink to this headline">¶</a></h3>
+<p>Get the component id of a component specified by name. A component id always consists of the unique vendor id as high word and the specific component id as low word. So each component can be assigned to the specific vendor.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="27%" />
+<col width="52%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszCmpName</td>
+<td>Name of the component</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pCmpId</td>
+<td>Component id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmgetcmpname-cmpid-cmpid-char-pszcmpname-int-imaxcmpname">
+<span id="group-c-m-itf-1ga719bb8ef97383d2b7356552709ae0a60"></span><h3>RTS_RESULT CMGetCmpName (CMPID CmpId, char <a href="#id107"><span class="problematic" id="id108">*</span></a>pszCmpName, int iMaxCmpName)<a class="headerlink" href="#rts-result-cmgetcmpname-cmpid-cmpid-char-pszcmpname-int-imaxcmpname" title="Permalink to this headline">¶</a></h3>
+<p>Get the component name of a component specified by the component id.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="21%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pCmpId</td>
+<td>Component id</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pszCmpName</td>
+<td>Name of the component</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>iMaxCmpName</td>
+<td>Max length of the component name buffer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="component-entry-cmgetcomponent-cmpid-cmpid">
+<span id="group-c-m-itf-1gadc355a43dfbc02ac84969770f95db31a"></span><h3>COMPONENT_ENTRY* CMGetComponent (CMPID CmpId)<a class="headerlink" href="#component-entry-cmgetcomponent-cmpid-cmpid" title="Permalink to this headline">¶</a></h3>
+<p>Get the component description of a component specified by the component id.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="26%" />
+<col width="45%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pCmpId</td>
+<td>Component id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to COMPONENT_ENTRY</p>
+</div>
+<div class="section" id="int-cmgetnumofcomponents-void">
+<span id="group-c-m-itf-1ga11cc52ad88fde02914914c1aba94bd2d"></span><h3>int CMGetNumOfComponents (void)<a class="headerlink" href="#int-cmgetnumofcomponents-void" title="Permalink to this headline">¶</a></h3>
+<p>Returns the number of registered components</p>
+<p><strong>Returns:</strong></p>
+<p>Number of components</p>
+</div>
+<div class="section" id="component-entry-cmgetcomponentbyindex-int-iindex">
+<span id="group-c-m-itf-1gac5e13736913420c13d9f40d5953bd7f7"></span><h3>COMPONENT_ENTRY* CMGetComponentByIndex (int iIndex)<a class="headerlink" href="#component-entry-cmgetcomponentbyindex-int-iindex" title="Permalink to this headline">¶</a></h3>
+<p>Returns the registered component specified by index</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="15%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>iIndex</td>
+<td>Index of the component in the list</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to component or NULL if index ist out of range</p>
+</div>
+<div class="section" id="component-entry-cmgetfirstcomponent-rts-result-presult">
+<span id="group-c-m-itf-1ga057df3fc4357231700e3f7ae17929f06"></span><h3>COMPONENT_ENTRY* CMGetFirstComponent (RTS_RESULT <a href="#id109"><span class="problematic" id="id110">*</span></a>pResult)<a class="headerlink" href="#component-entry-cmgetfirstcomponent-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Returns the first component entry</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[inout]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to component or NULL if no component available</p>
+</div>
+<div class="section" id="component-entry-cmgetnextcomponent-component-entry-pcmp-rts-result-presult">
+<span id="group-c-m-itf-1ga970ace3d4a07bf7320d1456d2089bd89"></span><h3>COMPONENT_ENTRY* CMGetNextComponent (COMPONENT_ENTRY <a href="#id111"><span class="problematic" id="id112">*</span></a>pCmp, RTS_RESULT <a href="#id113"><span class="problematic" id="id114">*</span></a>pResult)<a class="headerlink" href="#component-entry-cmgetnextcomponent-component-entry-pcmp-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Returns the registered component specified by index</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pCmp</td>
+<td>Pointer to the previous component</td>
+</tr>
+<tr class="row-even"><td>[inout]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to component or NULL if end of list is reached</p>
+</div>
+<div class="section" id="ibase-cmcreateinstance-classid-classid-rts-result-presult">
+<span id="group-c-m-itf-1gaa436c3a1c4beaa5d333373ee43e7a82d"></span><h3>IBase* CMCreateInstance (CLASSID ClassId, RTS_RESULT <a href="#id115"><span class="problematic" id="id116">*</span></a>pResult)<a class="headerlink" href="#ibase-cmcreateinstance-classid-classid-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Create an instance of a specified class.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ClassId</td>
+<td>ClassId of the class to create an object</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code for result</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to IBase interface of the object</p>
+</div>
+<div class="section" id="rts-result-cmdeleteinstance-ibase-pibase">
+<span id="group-c-m-itf-1ga9742523d2433643388920756679c3237"></span><h3>RTS_RESULT CMDeleteInstance (IBase <a href="#id117"><span class="problematic" id="id118">*</span></a>pIBase)<a class="headerlink" href="#rts-result-cmdeleteinstance-ibase-pibase" title="Permalink to this headline">¶</a></h3>
+<p>Delete an instance.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="18%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pIBase</td>
+<td>Pointer to IBase interface</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmdeleteinstance2-classid-classid-ibase-pibase">
+<span id="group-c-m-itf-1ga4f4651646362b7183d5e16975fbfabf8"></span><h3>RTS_RESULT CMDeleteInstance2 (CLASSID ClassId, IBase <a href="#id119"><span class="problematic" id="id120">*</span></a>pIBase)<a class="headerlink" href="#rts-result-cmdeleteinstance2-classid-classid-ibase-pibase" title="Permalink to this headline">¶</a></h3>
+<p>Delete an instance.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ClassId</td>
+<td>ClassId of the instance</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pIBase</td>
+<td>Pointer to IBase interface</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="ibase-cmgetinstance-classid-classid-objid-objid-rts-result-presult">
+<span id="group-c-m-itf-1ga0ac13021662eda794e70c99c0a16a6bc"></span><h3>IBase* CMGetInstance (CLASSID ClassId, OBJID ObjId, RTS_RESULT <a href="#id121"><span class="problematic" id="id122">*</span></a>pResult)<a class="headerlink" href="#ibase-cmgetinstance-classid-classid-objid-objid-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get instance of a class.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ClassId</td>
+<td>ClassId of the class to create an object</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ObjId</td>
+<td>Index number of the instance</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code for result</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to IBase interface of the object</p>
+</div>
+<div class="section" id="rts-result-cmregisterinstance-classid-classid-objid-objid-ibase-pibase">
+<span id="group-c-m-itf-1ga94ecbc39aa43368f6e8b348397ab2fd2"></span><h3>RTS_RESULT CMRegisterInstance (CLASSID ClassId, OBJID ObjId, IBase <a href="#id123"><span class="problematic" id="id124">*</span></a>pIBase)<a class="headerlink" href="#rts-result-cmregisterinstance-classid-classid-objid-objid-ibase-pibase" title="Permalink to this headline">¶</a></h3>
+<p>Register an exisiting instance to the component manager.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ClassId</td>
+<td>ClassId of the class to create an object</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ObjId</td>
+<td>Index number of the instance</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code for result</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmunregisterinstance-ibase-pibase">
+<span id="group-c-m-itf-1ga8d66e0fb9a5b31201049092c3b71ca74"></span><h3>RTS_RESULT CMUnregisterInstance (IBase <a href="#id125"><span class="problematic" id="id126">*</span></a>pIBase)<a class="headerlink" href="#rts-result-cmunregisterinstance-ibase-pibase" title="Permalink to this headline">¶</a></h3>
+<p>Unregister an existing instance from component manager.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="18%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pIBase</td>
+<td>Pointer to IBase interface</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmgetinstancelist-itfid-itfid-rts-handle-hibasepool">
+<span id="group-c-m-itf-1ga84a11b1617c11fb3ce378354324b8363"></span><h3>RTS_RESULT CMGetInstanceList (ITFID ItfId, RTS_HANDLE hIBasePool)<a class="headerlink" href="#rts-result-cmgetinstancelist-itfid-itfid-rts-handle-hibasepool" title="Permalink to this headline">¶</a></h3>
+<p>Get a list of instances, that implements the specified interface.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="9%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ItfId</td>
+<td>Id of the interface</td>
+</tr>
+<tr class="row-even"><td>[inout]</td>
+<td>hIBasePool</td>
+<td>Must be a MemPool handle. All instances that implements the interface are stored in this pool as result.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmcallhook-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2-int-breverse">
+<span id="group-c-m-itf-1gade57c65791c54884d36898bb8062cb41"></span><h3>RTS_RESULT CMCallHook (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2, int bReverse)<a class="headerlink" href="#rts-result-cmcallhook-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2-int-breverse" title="Permalink to this headline">¶</a></h3>
+<p>Called to call all components with the specified hook</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="12%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulHook</td>
+<td>Hook (for definition, look into CmpItf.h)</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulParam1</td>
+<td>First parameter. Hook dependant</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulParam2</td>
+<td>Second parameter. Hook dependant</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>bReverse</td>
+<td>Called the components in the opposite order as they were loaded</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmcallhook2-rts-ui16-uscomponenttypemask-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">
+<span id="group-c-m-itf-1ga7b331ee99c72c0ecb3ead290cfbd136b"></span><h3>RTS_RESULT CMCallHook2 (RTS_UI16 usComponentTypeMask, RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)<a class="headerlink" href="#rts-result-cmcallhook2-rts-ui16-uscomponenttypemask-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2" title="Permalink to this headline">¶</a></h3>
+<p>Called to call all components with the specified type provided with the specified hook</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="16%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>usComponentTypeMask</td>
+<td>ComponentType mask. See corresponding category RANGE=[CMPTYPE_ALL,CMPTYPE_SAFETY,CMPTYPE_STANDARD]</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulHook</td>
+<td>Hook (for definition, look into CmpItf.h) RANGE=[CH_COMM_CYCLE,CMCALLHOOK_PSEUDOHOOK,RTS_UI32_MAX]</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulParam1</td>
+<td>First parameter. Hook dependant RANGE=[0,CMCALLHOOK_TEST1]</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulParam2</td>
+<td>Second parameter. Hook dependant RANGE=[0,CMCALLHOOK_TEST2]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Hookfunction successfully called</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Component Pool not initialized or any Component responded with some error</td>
+</tr>
+<tr class="row-odd"><td>ERR_PENDING</td>
+<td>Any Component responded with ERR_PENDING</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="int-cmisdemo-void">
+<span id="group-c-m-itf-1ga06b703bef3feaaffb8ba4cdb9cd74397"></span><h3>int CMIsDemo (void)<a class="headerlink" href="#int-cmisdemo-void" title="Permalink to this headline">¶</a></h3>
+<p>Routine to check, if runtime runs in demo mode
+<strong>Returns:</strong></p>
+<p>1=Demo mode, 0=No demo</p>
+</div>
+<div class="section" id="rts-result-cminitend-void">
+<span id="group-c-m-itf-1ga83b61cae6ab87284f41f66db8d1d76d0"></span><h3>RTS_RESULT CMInitEnd (void)<a class="headerlink" href="#rts-result-cminitend-void" title="Permalink to this headline">¶</a></h3>
+<p>Routine to complete the component manager initialization. Contains calling the hooks from CH_INIT2 to CH_INIT_COMM.
+<strong>Returns:</strong></p>
+<ul class="simple">
+<li>ERR_OK</li>
+<li>ERR_DUPLICATE: If init end is still done, this error message will be returned</li>
+</ul>
+</div>
+<div class="section" id="rts-result-cmchecksystargetsignature-void">
+<span id="group-c-m-itf-1gac0e6df0a0f013fcb877e42cf151e9de4"></span><h3>RTS_RESULT CMCheckSysTargetSignature (void)<a class="headerlink" href="#rts-result-cmchecksystargetsignature-void" title="Permalink to this headline">¶</a></h3>
+<p>Functtion checks, if the SysTarget component is originally signed and was not modified.</p>
+<p><strong>Returns:</strong></p>
+<p>error code: ERR_OK: SysTarget is signed, ERR_FAILED: SysTarget was modified or is unsigned</p>
+</div>
+<div class="section" id="rts-ui32-cmgetuserlicensevalue-rts-ui32-ullicenseid-rts-result-presult">
+<span id="group-c-m-itf-1ga71a6d1c1d634ba5674c749ab43cc2fd3"></span><h3>RTS_UI32 CMGetUserLicenseValue (RTS_UI32 ulLicenseID, RTS_RESULT <a href="#id127"><span class="problematic" id="id128">*</span></a>pResult)<a class="headerlink" href="#rts-ui32-cmgetuserlicensevalue-rts-ui32-ullicenseid-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Function to check the license of a feature</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="21%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulLicenseID</td>
+<td>HIGHWORD: VendorID, LOWWORD: FeatureID</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>LICENSE_INVALID, LICENSE_NOT_AVAILABLE (Demo mode) or specific license code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Specific license code or LICENSE_NOT_AVAILABLE (Demo mode)</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Not licensed</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOT_SUPPORTED</td>
+<td>License library is not registered</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-ui32-cmreqdynlicchallenge-rts-ui32-ullicenseid-rts-ui32-ulnewlicensevalue-rts-result-presult">
+<span id="group-c-m-itf-1gaa10334cd8ee8526d53dd42ab106b8e2f"></span><h3>RTS_UI32 CMReqDynLicChallenge (RTS_UI32 ulLicenseID, RTS_UI32 ulNewLicenseValue, RTS_RESULT <a href="#id129"><span class="problematic" id="id130">*</span></a>pResult)<a class="headerlink" href="#rts-ui32-cmreqdynlicchallenge-rts-ui32-ullicenseid-rts-ui32-ulnewlicensevalue-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="21%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulLicenseID</td>
+<td>HIGHWORD: VendorID, LOWWORD: FeatureID</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="int-cmconfdynlicchallenge-rts-ui32-ullicenseid-rts-ui32-ulnewlicensevalue-rts-ui32-ulchallenge-rts-result-presult">
+<span id="group-c-m-itf-1ga6f1f5d71e33840937959d2f2d0c166f3"></span><h3>int CMConfDynLicChallenge (RTS_UI32 ulLicenseID, RTS_UI32 ulNewLicenseValue, RTS_UI32 ulChallenge, RTS_RESULT <a href="#id131"><span class="problematic" id="id132">*</span></a>pResult)<a class="headerlink" href="#int-cmconfdynlicchallenge-rts-ui32-ullicenseid-rts-ui32-ulnewlicensevalue-rts-ui32-ulchallenge-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="21%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulLicenseID</td>
+<td>HIGHWORD: VendorID, LOWWORD: FeatureID</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-cmcallextracommcyclehook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">
+<span id="group-c-m-itf-1ga0c684457436b2dd561191e8767817587"></span><h3>RTS_RESULT CMCallExtraCommCycleHook (RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)<a class="headerlink" href="#rts-result-cmcallextracommcyclehook-rts-uintptr-ulparam1-rts-uintptr-ulparam2" title="Permalink to this headline">¶</a></h3>
+<p>Function to call the CommCycleHook of all components from outside the CM, if neccessary. This function is intended to be called on singletasking systems (with CmpScheduleTimer or CmpScheduleEmbedded) during long lasting operations. For example SysFlash calls this function to keep the communication alive during writing long memory areas. Before calling the CommCycleHook, the function internally checks the following conditions:</p>
+<ul class="simple">
+<li>Is SysTask implemented?</li>
+<li>Is the less then the configured time since the last call of the CommCycleHook elapsed? If one of this conditions is true, the hook is not called. This allows to use this function without doing these checks locally in the caller. On multitasking systems this function has no effect. Use AsyncServices instead.</li>
+</ul>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="13%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulParam1</td>
+<td>Type of the COMM_CYCLE_HOOK. See CM_HOOK_TYPE... types.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulParam2</td>
+<td>Second parameter. Hook dependant, typically 0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-ui32-cmgetcurrenthook-void">
+<span id="group-c-m-itf-1ga95ab8e8b3a6ed2e8a67429e64eebf46e"></span><h3>RTS_UI32 CMGetCurrentHook (void)<a class="headerlink" href="#rts-ui32-cmgetcurrenthook-void" title="Permalink to this headline">¶</a></h3>
+<p>Function returns the current hook function, that is called by the component manager</p>
+<p><strong>Returns:</strong></p>
+<p>Current hook</p>
+</div>
+<div class="section" id="rts-result-cmisoperationdisabled-cmpid-cmpid-rts-ui32-uloperation-cmpid-pcmpiddisabled">
+<span id="group-c-m-itf-1gaca15661884ff93447533796c38f62c5f"></span><h3>RTS_RESULT CMIsOperationDisabled (CMPID cmpId, RTS_UI32 ulOperation, CMPID <a href="#id133"><span class="problematic" id="id134">*</span></a>pCmpIdDisabled)<a class="headerlink" href="#rts-result-cmisoperationdisabled-cmpid-cmpid-rts-ui32-uloperation-cmpid-pcmpiddisabled" title="Permalink to this headline">¶</a></h3>
+<p>Function can be called from each component to disable single operations. If this function is called, the event EVT_CmpMgr_DisableOperation is sent to disable this operation from any component or IEC program.</p>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li>ERR_OK: Operation is disabled</li>
+<li>ERR_FAILED: Operation is enabled [default]</li>
+<li>ERR_NOT_SUPPORTED: Cannot be retrieved, because the event is not available</li>
+</ul>
+</div>
+<div class="section" id="rts-result-cmprofiling-char-pszinfo-cmpid-cmpid-char-pszcomponentname-char-pszmodulename-rts-i32-nline-rts-i32-iid">
+<span id="group-c-m-itf-1ga8f596715677be928e9f97e05c72202b3"></span><h3>RTS_RESULT CMProfiling (char <a href="#id135"><span class="problematic" id="id136">*</span></a>pszInfo, CMPID cmpId, char <a href="#id137"><span class="problematic" id="id138">*</span></a>pszComponentName, char <a href="#id139"><span class="problematic" id="id140">*</span></a>pszModuleName, RTS_I32 nLine, RTS_I32 iID)<a class="headerlink" href="#rts-result-cmprofiling-char-pszinfo-cmpid-cmpid-char-pszcomponentname-char-pszmodulename-rts-i32-nline-rts-i32-iid" title="Permalink to this headline">¶</a></h3>
+<p>Central function for profiling</p>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___c_m_lock_itf.html" title="CMLockItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___c_m_basic_checks_itf.html" title="CMBasicChecksItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

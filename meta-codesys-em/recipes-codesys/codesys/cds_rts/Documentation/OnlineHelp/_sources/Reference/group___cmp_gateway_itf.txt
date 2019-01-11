@@ -1,0 +1,110 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_gateway_itf:
+
+=============
+CmpGatewayItf
+=============
+
+Interface of CmpGateway. :ref:`More... <group___cmp_gateway_itf-details>`
+
+Modules
+-------
+
+- :ref:`Settings <group___cmp_gateway_itf___settings>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpGateway_C <struct_i_cmp_gateway___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpGateway <group___cmp_gateway_itf_1gab4cfcc051803846dbab29af419577116>`
+
+- #define :ref:`EXTITF_CmpGateway <group___cmp_gateway_itf_1gaa7e7f55c14f76ab6c0a12acdc844bc27>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpGateway_C <struct_i_cmp_gateway___c>` :ref:`ICmpGateway <group___cmp_gateway_itf_1ga94ad6f83424506d92106651fdbfcc441>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`GWConnectionReady <group___cmp_gateway_itf_1ga8710f436ff795cf02a64516f92c660b5>` (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction)
+
+- RTS_RESULT :ref:`GWClientConnect <group___cmp_gateway_itf_1ga5ab846bd6ceb2bf35a358f662a48c280>` (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)
+
+- RTS_RESULT :ref:`GWClientDisconnect <group___cmp_gateway_itf_1gaed50886539cfaaa4b160cdb5c02668e6>` (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)
+
+.. _group___cmp_gateway_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpGateway.
+
+Interface of the gateway
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_gateway_itf_1gab4cfcc051803846dbab29af419577116:
+
+#define ITF_CmpGateway
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gateway_itf_1gaa7e7f55c14f76ab6c0a12acdc844bc27:
+
+#define EXTITF_CmpGateway
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_gateway_itf_1ga94ad6f83424506d92106651fdbfcc441:
+
+typedef ICmpGateway_C ICmpGateway
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_gateway_itf_1ga8710f436ff795cf02a64516f92c660b5:
+
+RTS_RESULT GWConnectionReady (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+May be called by a commdriver if a connection is ready to send/receive. This function shall not signal a condition more then once without the gateway reacting to that signal. Eg. if the commdriver signals that a connection is ready to send it shall not signal this situation again before the gateway actually called "send". The gwclient must not rely on this function to be called but may use it to increase the performance of the connection.
+
+**Parameters**
+
++---------+---------------+-----------------------------------------------------------------------------------------------+
+| [in]    | hDriverHandle | The driver handle returned by GWRegisterCommDrv.                                              |
++---------+---------------+-----------------------------------------------------------------------------------------------+
+| [in]    | hConnHandle   | The handle to the connection.                                                                 |
++---------+---------------+-----------------------------------------------------------------------------------------------+
+| [in]    | nAction       | The action that is ready on this connection - eg. COMMDRV_ACTION_SEND, COMMDRV_ACTION_RECEIVE |
++---------+---------------+-----------------------------------------------------------------------------------------------+
+
+.. _group___cmp_gateway_itf_1ga5ab846bd6ceb2bf35a358f662a48c280:
+
+RTS_RESULT GWClientConnect (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gateway_itf_1gaed50886539cfaaa4b160cdb5c02668e6:
+
+RTS_RESULT GWClientDisconnect (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

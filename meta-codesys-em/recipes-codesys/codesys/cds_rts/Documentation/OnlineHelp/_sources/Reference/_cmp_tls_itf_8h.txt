@@ -1,0 +1,250 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __cmp_tls_itf_8h:
+
+==========================
+CmpTlsItf.h File Reference
+==========================
+
+| #include ":ref:`CmpSrvItf.h <_cmp_srv_itf_8h>`"
+| #include ":ref:`CmpCryptoItf.h <_cmp_crypto_itf_8h>`"
+
+Data Structures
+---------------
+
+- struct :ref:`tagcmptlsaccept_struct <structtagcmptlsaccept__struct>`
+
+- struct :ref:`tagcmptlsbufferdatareceived_struct <structtagcmptlsbufferdatareceived__struct>`
+
+- struct :ref:`tagcmptlsbufferdatasent_struct <structtagcmptlsbufferdatasent__struct>`
+
+- struct :ref:`tagcmptlsbufferdatatosendavailable_struct <structtagcmptlsbufferdatatosendavailable__struct>`
+
+- struct :ref:`tagcmptlsbufferopen_struct <structtagcmptlsbufferopen__struct>`
+
+- struct :ref:`tagcmptlsclose_struct <structtagcmptlsclose__struct>`
+
+- struct :ref:`tagcmptlsconnect_struct <structtagcmptlsconnect__struct>`
+
+- struct :ref:`tagcmptlscreatecontext_struct <structtagcmptlscreatecontext__struct>`
+
+- struct :ref:`tagcmptlsfreecontext_struct <structtagcmptlsfreecontext__struct>`
+
+- struct :ref:`tagcmptlsread_struct <structtagcmptlsread__struct>`
+
+- struct :ref:`tagcmptlsshutdown_struct <structtagcmptlsshutdown__struct>`
+
+- struct :ref:`tagcmptlswrite_struct <structtagcmptlswrite__struct>`
+
+- struct :ref:`ICmpTls_C <struct_i_cmp_tls___c>`
+
+Macros
+------
+
+- #define :ref:`TLS_METHOD_SSLv2_CLIENT <group___cmp_tls_itf_1ga2f945a725fdb8b437620b2be99608184>` 0x00		/* Not compiled */
+
+- #define :ref:`TLS_METHOD_SSLv3_CLIENT <group___cmp_tls_itf_1ga6f50c58ca4c4b245e95bad4fe9d1979c>` 0x01
+
+- #define :ref:`TLS_METHOD_SSLv23_CLIENT <group___cmp_tls_itf_1ga948a89d97e28957b50fdba4206bb5191>` 0x02
+
+- #define :ref:`TLS_METHOD_TLSv1_CLIENT <group___cmp_tls_itf_1ga1c883c9e08b01aeacd39a3d5c8ec988d>` 0x03
+
+- #define :ref:`TLS_METHOD_TLSv2_CLIENT <group___cmp_tls_itf_1gac43ae6b3fd2cdf6e8a188c44705261ce>` 0x04
+
+- #define :ref:`TLS_METHOD_SSLv2_SERVER <group___cmp_tls_itf_1gaf34261fc526160aa4543b8fd2a7f59a2>` 0x05		/* Not compiled */
+
+- #define :ref:`TLS_METHOD_SSLv3_SERVER <group___cmp_tls_itf_1gaf2e4b5c2a1e7ce03474604df045b2722>` 0x06
+
+- #define :ref:`TLS_METHOD_SSLv23_SERVER <group___cmp_tls_itf_1gac404cb66feefe0408fd10f3bafe0c87a>` 0x07
+
+- #define :ref:`TLS_METHOD_TLSv1_SERVER <group___cmp_tls_itf_1ga8a14eff2bfbeccb1861fc01cfaf9376f>` 0x08
+
+- #define :ref:`TLS_METHOD_TLSv2_SERVER <group___cmp_tls_itf_1ga4a8a031b3f41d9664b84d04318e37d94>` 0x09
+
+- #define :ref:`TLS_METHOD_LAST_INDEX <group___cmp_tls_itf_1ga3d07524e3c19a0274e6934d5e6d288a4>` 0x0A
+
+- #define :ref:`TLS_VERIFY_NONE <group___cmp_tls_itf_1gaf7a27f470dd48b00832366e9566fa68d>` 0x01
+
+- #define :ref:`TLS_VERIFY_PEER <group___cmp_tls_itf_1gaf25f84bbcb48a5cc367eba969607f144>` 0x02
+
+- #define :ref:`TLS_VERIFY_FAIL_IF_NO_PEER_CERT <group___cmp_tls_itf_1ga3586fdb1fc15a02d7d052e11d1fb845f>` 0x04
+
+- #define :ref:`TLS_VERIFY_CLIENT_ONCE <group___cmp_tls_itf_1gaeea97d714a254197bb37ed9e04d7c48a>` 0x08
+
+- #define :ref:`TLS_FIRST_RELEASE_MAJOR <group___cmp_tls_itf_1ga3d7d85c556a161e774227a97d500ab09>` 1
+
+- #define :ref:`TLS_FIRST_RELEASE_MINOR <group___cmp_tls_itf_1ga0155ec62013c3751c43cbcfbc91300a2>` 0
+
+- #define :ref:`TLS_HIGHEST_SUPPORTED_MAJOR <group___cmp_tls_itf_1ga2bd667c5e401338c0437c3717a51bf65>` 1
+
+- #define :ref:`TLS_HIGHEST_SUPPORTED_MINOR <group___cmp_tls_itf_1ga5bc3d4af7fa35b88dd38e81f757ad0bb>` 0
+
+- #define :ref:`TLS_MAX_RECORD_SIZE <group___cmp_tls_itf_1ga8e6616487e4f14e26caa910bbc5bfdf6>` 0x4000
+
+- #define :ref:`TLS_MAX_HEADER_SIZE <group___cmp_tls_itf_1ga0607b84539683d37291820ebab6482bc>` 0x0158
+
+- #define :ref:`TLS_MAX_CONNECTION_COUNT <group___cmp_tls_itf___memorysettings_1gaa946f617fbd0a81c6d8c9c02c7f51af2>` 100
+
+- #define :ref:`TLS_MAX_CONTEXT_COUNT <group___cmp_tls_itf___memorysettings_1ga83059fbf2559acd924fc1ae76cf0b64c>` 10
+
+- #define :ref:`TLSKEY_STR_CERT_STORE_BASE_DIR <group___cmp_tls_itf_1ga5c65adc827dc0eb67eb0c70f720b9001>` "CertStoreBase"
+
+- #define :ref:`TLSVALUE_STR_CERT_STORE_BASE_DIR_DEFAULT <group___cmp_tls_itf_1ga4469b7efccca694cb588f1773ec21917>` "./PKI/"
+
+- #define :ref:`TLS_CERT_STORE_CERT_DIR <group___cmp_tls_itf_1gabcf8cfcf0a6c4638909dacc4d36fd276>` "cert/"
+
+- #define :ref:`TLS_CERT_STORE_PRIVATE_DIR <group___cmp_tls_itf_1ga458bf578f8e7657c1db85f238c374223>` "private/"
+
+- #define :ref:`TLS_CERT_STORE_TURESTED_DIR <group___cmp_tls_itf_1gab8404c3883344e116be26cec31f1236f>` "trusted/"
+
+- #define :ref:`TLS_CERT_STORE_CRL_DIR <group___cmp_tls_itf_1ga88e698e3041c57ffa751cf5de1f43060>` "crl/"
+
+- #define :ref:`TLSKEY_INT_CTX_METHOD <group___cmp_tls_itf___contextsettings_1gadbaa44c91cc77a11ad5954808a5154ec>` "Method"
+
+- #define :ref:`TLSVALUE_INT_CTX_METHOD_DEFAULT <group___cmp_tls_itf___contextsettings_1ga52d055a4bd365a182292c59b1a86e6c6>` :ref:`TLS_METHOD_TLSv2_SERVER <group___cmp_tls_itf_1ga4a8a031b3f41d9664b84d04318e37d94>`
+
+- #define :ref:`TLSKEY_STR_CTX_CERT_FILE <group___cmp_tls_itf___contextsettings_1ga72295dbfad7469aa7544caa8d2ab4e16>` "Cert"
+
+- #define :ref:`TLSVALUE_STR_CTX_CERT_FILE_DEFAULT <group___cmp_tls_itf___contextsettings_1ga7cb22e57fa451fc47c7d181cf755b040>` "server.cer"
+
+- #define :ref:`TLSKEY_STR_CTX_PRIVATE_KEY_FILE <group___cmp_tls_itf___contextsettings_1gaf172f5fdbca4ed5bbde45f1e1f237276>` "PrivateKey"
+
+- #define :ref:`TLSVALUE_STR_CTX_PRIVATE_KEY_FILE_DEFAULT <group___cmp_tls_itf___contextsettings_1gae9c6c8ee2063d2144283ad9a858127ae>` "server.key"
+
+- #define :ref:`TLSKEY_INT_CTX_VERIFY_MODE <group___cmp_tls_itf___contextsettings_1gadd3e1c9398cf35faeecaf4de2f33ba58>` "VerifyMode"
+
+- #define :ref:`TLSKEY_STR_CTX_CIPHER_LIST <group___cmp_tls_itf___contextsettings_1ga1a3fdbff9ab73756c4d431c5befb39c6>` "CipherList"
+
+- #define :ref:`TLSVALUE_STR_CTX_CIPHER_LIST_DEFAULT <group___cmp_tls_itf___contextsettings_1gaca744a6deb5c4efc3e4e2d3bd69eaeb8>` "HIGH+ECDH:HIGH+DH"
+
+- #define :ref:`TLSKEY_STR_CTX_DH_PARAMS <group___cmp_tls_itf___contextsettings_1gafc2f7bc9680a2a06a04142930529434d>` "DHParams"
+
+- #define :ref:`TLSVALUE_STR_CTX_DH_PARAMS_DEFAULT <group___cmp_tls_itf___contextsettings_1gae1185f47cbcb0bd1e6c4eb2245b76831>` "dhparams.pem"
+
+- #define :ref:`CMPTLSMETHOD_SSLV2_CLIENT <group___cmp_tls_itf_1gab798b02cb166a4ce5190f395d409ee21>` RTS_IEC_INT_C(0x0)
+
+- #define :ref:`CMPTLSMETHOD_SSLV3_CLIENT <group___cmp_tls_itf_1gaf617299953ac42f44eaac55821554d33>` RTS_IEC_INT_C(0x1)	/* Not Available */
+
+- #define :ref:`CMPTLSMETHOD_SSLV23_CLIENT <group___cmp_tls_itf_1gaa61090aebff1c6a58ba852fd4b8b3e41>` RTS_IEC_INT_C(0x2)	/* SSL v3 Client */
+
+- #define :ref:`CMPTLSMETHOD_TLSV1_CLIENT <group___cmp_tls_itf_1ga7ef136802ab87e1e8ab01f79f7291ee6>` RTS_IEC_INT_C(0x3)	/* SSL Client accepting all versions but SSL v2 */
+
+- #define :ref:`CMPTLSMETHOD_TLSV2_CLIENT <group___cmp_tls_itf_1ga8b0b51d8815bd1bc44bcf188bddc6048>` RTS_IEC_INT_C(0x4)	/* TLS 1.1 Client */
+
+- #define :ref:`CMPTLSMETHOD_SSLV2_SERVER <group___cmp_tls_itf_1ga9e021fa013bdf92cc647f389c01c5850>` RTS_IEC_INT_C(0x5)	/* TLS 1.2 Client (Default for CmpTlsCreateContext) */
+
+- #define :ref:`CMPTLSMETHOD_SSLV3_SERVER <group___cmp_tls_itf_1ga74a7aa08aa276a4557ad6d0e39b31d6a>` RTS_IEC_INT_C(0x6)	/* Not Available */
+
+- #define :ref:`CMPTLSMETHOD_SSLV23_SERVER <group___cmp_tls_itf_1ga7a39accbb83c68a19eed571e09b3368f>` RTS_IEC_INT_C(0x7)	/* SSL v3 Server */
+
+- #define :ref:`CMPTLSMETHOD_TLSV1_SERVER <group___cmp_tls_itf_1gad9d361385fa34612d76973ed3a2573c7>` RTS_IEC_INT_C(0x8)	/* SSL Server accepting all versions but SSL v2 */
+
+- #define :ref:`CMPTLSMETHOD_TLSV2_SERVER <group___cmp_tls_itf_1ga4f22482770ef8cb4fde1f1a8cfb123d7>` RTS_IEC_INT_C(0x9)	/* TLS 1.1 Server
+TLS 1.2 Server */
+
+- #define :ref:`CMPTLSMETHOD <group___cmp_tls_itf_1ga3b96caf939f04cb43c7362b3d3259156>` RTS_IEC_INT
+
+- #define :ref:`ITF_CmpTls <group___cmp_tls_itf_1ga420ad42d93ceb6d4a8400f77df105369>`
+
+- #define :ref:`EXTITF_CmpTls <group___cmp_tls_itf_1gafac2792b33df992964d0f750da11863e>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagcmptlsaccept_struct <structtagcmptlsaccept__struct>` :ref:`cmptlsaccept_struct <group___cmp_tls_itf_1ga382897581ea888d0863284c9056c1366>`
+
+- typedef struct :ref:`tagcmptlsbufferdatareceived_struct <structtagcmptlsbufferdatareceived__struct>` :ref:`cmptlsbufferdatareceived_struct <group___cmp_tls_itf_1gad75b12460f95e7b3b182b784a0363f14>`
+
+- typedef struct :ref:`tagcmptlsbufferdatasent_struct <structtagcmptlsbufferdatasent__struct>` :ref:`cmptlsbufferdatasent_struct <group___cmp_tls_itf_1ga95b7ba266dba1954da0c99f8ae2d99f7>`
+
+- typedef struct :ref:`tagcmptlsbufferdatatosendavailable_struct <structtagcmptlsbufferdatatosendavailable__struct>` :ref:`cmptlsbufferdatatosendavailable_struct <group___cmp_tls_itf_1ga5da2bdff418c7119da6d8989951cb332>`
+
+- typedef struct :ref:`tagcmptlsbufferopen_struct <structtagcmptlsbufferopen__struct>` :ref:`cmptlsbufferopen_struct <group___cmp_tls_itf_1ga1a3de0b7ab342720da7fda21b0a86f04>`
+
+- typedef struct :ref:`tagcmptlsclose_struct <structtagcmptlsclose__struct>` :ref:`cmptlsclose_struct <group___cmp_tls_itf_1ga42a29fd86f0cbe69ec290a4a847e70a7>`
+
+- typedef struct :ref:`tagcmptlsconnect_struct <structtagcmptlsconnect__struct>` :ref:`cmptlsconnect_struct <group___cmp_tls_itf_1ga0c1140f72f8ac8016da60625a14226cd>`
+
+- typedef struct :ref:`tagcmptlscreatecontext_struct <structtagcmptlscreatecontext__struct>` :ref:`cmptlscreatecontext_struct <group___cmp_tls_itf_1ga67434aef139afd0e16585c0fc0cbd8bf>`
+
+- typedef struct :ref:`tagcmptlsfreecontext_struct <structtagcmptlsfreecontext__struct>` :ref:`cmptlsfreecontext_struct <group___cmp_tls_itf_1gab1953133c689f82ef3b485d6227a6a81>`
+
+- typedef struct :ref:`tagcmptlsread_struct <structtagcmptlsread__struct>` :ref:`cmptlsread_struct <group___cmp_tls_itf_1ga089017dad964ff393318c31620b63c5d>`
+
+- typedef struct :ref:`tagcmptlsshutdown_struct <structtagcmptlsshutdown__struct>` :ref:`cmptlsshutdown_struct <group___cmp_tls_itf_1ga2a09444e860e6f2511dac62df5759833>`
+
+- typedef struct :ref:`tagcmptlswrite_struct <structtagcmptlswrite__struct>` :ref:`cmptlswrite_struct <group___cmp_tls_itf_1ga01a0db75e3d1704c3e1dc10835edf15c>`
+
+- typedef :ref:`ICmpTls_C <struct_i_cmp_tls___c>` :ref:`ICmpTls <group___cmp_tls_itf_1ga6560a6395f044f77d90f20a5fc41e242>`
+
+Functions
+---------
+
+- RTS_HANDLE :ref:`TlsCreateContext <group___cmp_tls_itf_1gacc000e3cd5fa34999896abf07160003c>` (char * pszNamespace, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`TlsCreateContext2 <group___cmp_tls_itf_1ga3b3f5ee888d46abc4757a7f0d9d6c560>` (RTS_HANDLE hCert, RTS_UI32 ui32TlsMethod, char * szCipherList, RTS_I32 i32VerifyMode, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`TlsFreeContext <group___cmp_tls_itf_1gad1c85fc8d93dc13be8b84d25d2c5e6df>` (RTS_HANDLE hTlsContext)
+
+- RTS_HANDLE :ref:`TlsBufferOpen <group___cmp_tls_itf_1gaa5375effc8e1bd3ceb4f716eebb65e97>` (RTS_HANDLE hContext, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pRxBuffer, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pTxBuffer, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`TlsBufferDataReveived <group___cmp_tls_itf_1ga00666f1288e41aedb2bece75022f4c23>` (RTS_HANDLE hTlsConn)
+
+- RTS_RESULT :ref:`TlsBufferDataSent <group___cmp_tls_itf_1gad175022db20e44bb4848c591b4683c5a>` (RTS_HANDLE hTlsConn)
+
+- RTS_BOOL :ref:`TlsBufferDataToSendAvailable <group___cmp_tls_itf_1ga618c499bd6b31cf68f2ce5388beca1a1>` (RTS_HANDLE hTlsConn)
+
+- RTS_UI32 :ref:`TlsBufferNumOfWrittenBlocks <group___cmp_tls_itf_1gaacb8435caf7aa4da27866d4deb0d6434>` (RTS_HANDLE hTlsConn)
+
+- RTS_RESULT :ref:`TlsAccept <group___cmp_tls_itf_1gaa7f35b84dc83d95d0f73b18f18bf5fb6>` (RTS_HANDLE hTlsConn)
+
+- RTS_RESULT :ref:`TlsConnect <group___cmp_tls_itf_1ga6cb5cdbfe28b6f16a54cb0d86e957345>` (RTS_HANDLE hTlsConn)
+
+- RTS_SSIZE :ref:`TlsRead <group___cmp_tls_itf_1gab6c4d5f5a049c926cd64d4805134432a>` (RTS_HANDLE hTlsConn, RTS_UI8 * pbyBuffer, RTS_SSIZE ulBufferSize, RTS_RESULT * pResult)
+
+- RTS_SSIZE :ref:`TlsWrite <group___cmp_tls_itf_1ga060d452f7860f52a5720c75653457e4a>` (RTS_HANDLE hTlsConn, RTS_UI8 * pbyData, RTS_SSIZE ulDataSize, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`TlsShutdown <group___cmp_tls_itf_1ga600585a8ccf4ed9f99834f2078edfb4a>` (RTS_HANDLE hTlsConn)
+
+- RTS_RESULT :ref:`TlsClose <group___cmp_tls_itf_1gabc9e98cc9d5079e2ea3290bb40e71d53>` (RTS_HANDLE hTlsConn)
+
+- void :ref:`TlsRandAdd <group___cmp_tls_itf_1gaf21c9eefa62ecd03eec441668dc8e5b8>` (const RTS_UI8 * pui8Buffer, RTS_I32 i32BufferSize, RTS_REAL64 r64Entroy)
+
+- RTS_BOOL :ref:`TlsRandCheckStatus <group___cmp_tls_itf_1gabe9ae196c7e2992609a1ce6bf48d0163>` (void)
+
+- void :ref:`cmptlsaccept <group___cmp_tls_itf_1ga72db2b27a16d150b0c59f5300e3a0f42>` (:ref:`cmptlsaccept_struct <group___cmp_tls_itf_1ga382897581ea888d0863284c9056c1366>` * p)
+
+- void :ref:`cmptlsbufferdatareceived <group___cmp_tls_itf_1gae4204c1710d79b372db9de8653950821>` (:ref:`cmptlsbufferdatareceived_struct <group___cmp_tls_itf_1gad75b12460f95e7b3b182b784a0363f14>` * p)
+
+- void :ref:`cmptlsbufferdatasent <group___cmp_tls_itf_1gabba9dca4bc90e77db4477b43e15d312c>` (:ref:`cmptlsbufferdatasent_struct <group___cmp_tls_itf_1ga95b7ba266dba1954da0c99f8ae2d99f7>` * p)
+
+- void :ref:`cmptlsbufferdatatosendavailable <group___cmp_tls_itf_1gac88f556750f1e39e09f870b0a77e61b1>` (:ref:`cmptlsbufferdatatosendavailable_struct <group___cmp_tls_itf_1ga5da2bdff418c7119da6d8989951cb332>` * p)
+
+- void :ref:`cmptlsbufferopen <group___cmp_tls_itf_1ga15bba2da25368c81c7bc2a63e6d579f4>` (:ref:`cmptlsbufferopen_struct <group___cmp_tls_itf_1ga1a3de0b7ab342720da7fda21b0a86f04>` * p)
+
+- void :ref:`cmptlsclose <group___cmp_tls_itf_1gaeaf9e54504ea32a9ab1566950f828404>` (:ref:`cmptlsclose_struct <group___cmp_tls_itf_1ga42a29fd86f0cbe69ec290a4a847e70a7>` * p)
+
+- void :ref:`cmptlsconnect <group___cmp_tls_itf_1gac17d68f46c1e04dfcc010988d4a2617b>` (:ref:`cmptlsconnect_struct <group___cmp_tls_itf_1ga0c1140f72f8ac8016da60625a14226cd>` * p)
+
+- void :ref:`cmptlscreatecontext <group___cmp_tls_itf_1ga04ed6e2332b6f0e6c5255030f53eefa9>` (:ref:`cmptlscreatecontext_struct <group___cmp_tls_itf_1ga67434aef139afd0e16585c0fc0cbd8bf>` * p)
+
+- void :ref:`cmptlsfreecontext <group___cmp_tls_itf_1gaca686cd927ae8ddeeb5c61ea23caa01e>` (:ref:`cmptlsfreecontext_struct <group___cmp_tls_itf_1gab1953133c689f82ef3b485d6227a6a81>` * p)
+
+- void :ref:`cmptlsread <group___cmp_tls_itf_1gae6f6f54d76b9b337ce5fd8eab6d04d0c>` (:ref:`cmptlsread_struct <group___cmp_tls_itf_1ga089017dad964ff393318c31620b63c5d>` * p)
+
+- void :ref:`cmptlsshutdown <group___cmp_tls_itf_1gac1882aad4851fec869d644ce14a001ce>` (:ref:`cmptlsshutdown_struct <group___cmp_tls_itf_1ga2a09444e860e6f2511dac62df5759833>` * p)
+
+- void :ref:`cmptlswrite <group___cmp_tls_itf_1ga702156563dd9658580d2d703f4531ef4>` (:ref:`cmptlswrite_struct <group___cmp_tls_itf_1ga01a0db75e3d1704c3e1dc10835edf15c>` * p)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpTlsItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

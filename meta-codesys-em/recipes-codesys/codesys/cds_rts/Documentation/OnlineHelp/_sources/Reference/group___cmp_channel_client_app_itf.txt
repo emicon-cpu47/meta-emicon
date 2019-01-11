@@ -1,0 +1,118 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_channel_client_app_itf:
+
+======================
+CmpChannelClientAppItf
+======================
+
+Interface of CmpChannelClientApp. :ref:`More... <group___cmp_channel_client_app_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpChannelClientApp_C <struct_i_cmp_channel_client_app___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpChannelClientApp <group___cmp_channel_client_app_itf_1ga3c44b495671d42cc6a7376382b474349>`
+
+- #define :ref:`EXTITF_CmpChannelClientApp <group___cmp_channel_client_app_itf_1ga21fa1348f2576e357b495ca88e37865a>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpChannelClientApp_C <struct_i_cmp_channel_client_app___c>` :ref:`ICmpChannelClientApp <group___cmp_channel_client_app_itf_1ga2ede08f9cd29e5620f0901e49fa96f42>`
+
+Functions
+---------
+
+- STATICITF_DEF int :ref:`ClientAppHandleMessage <group___cmp_channel_client_app_itf_1gacc8eb01cd620d656d48c253ae4a29641>` (RTS_HANDLE hInstance, unsigned short wChannelHandle, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData)
+
+- STATICITF_DEF int :ref:`ClientAppOnChannelError <group___cmp_channel_client_app_itf_1ga9306a585871739828b4705fa05044970>` (RTS_HANDLE hInstance, unsigned short wChannelHandle, int nError)
+
+.. _group___cmp_channel_client_app_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpChannelClientApp.
+
+Interface for the client application to be exported to the NetClient component.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_channel_client_app_itf_1ga3c44b495671d42cc6a7376382b474349:
+
+#define ITF_CmpChannelClientApp
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_client_app_itf_1ga21fa1348f2576e357b495ca88e37865a:
+
+#define EXTITF_CmpChannelClientApp
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_channel_client_app_itf_1ga2ede08f9cd29e5620f0901e49fa96f42:
+
+typedef ICmpChannelClientApp_C ICmpChannelClientApp
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_channel_client_app_itf_1gacc8eb01cd620d656d48c253ae4a29641:
+
+STATICITF_DEF int ClientAppHandleMessage (RTS_HANDLE hInstance, unsigned short wChannelHandle, PROTOCOL_DATA_UNIT pduData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called when a layer4 message has been received.
+
+**Parameters**
+
++---------+----------------+---------------------------------------+
+| [in]    | hInstance      | Handle to the instance                |
++---------+----------------+---------------------------------------+
+| [in]    | wChannelHandle | The channel that received the message |
++---------+----------------+---------------------------------------+
+| [in]    | pduData        | The message that has been received    |
++---------+----------------+---------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_channel_client_app_itf_1ga9306a585871739828b4705fa05044970:
+
+STATICITF_DEF int ClientAppOnChannelError (RTS_HANDLE hInstance, unsigned short wChannelHandle, int nError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called by the NetClient component when a channel is closed by the server or a communication error occurs. This function is not called when the channel is closed by a call to NetClientCloseChannel.
+
+**Parameters**
+
++---------+----------------+-------------------------------------+
+| [in]    | hInstance      | Handle to the instance              |
++---------+----------------+-------------------------------------+
+| [in]    | wChannelHandle | The closed channel                  |
++---------+----------------+-------------------------------------+
+| [in]    | nError         | The cause why the channel is closed |
++---------+----------------+-------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

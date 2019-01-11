@@ -1,0 +1,172 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>OpenSSL &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">OpenSSL</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#integration-of-openssl">Integration of OpenSSL</a></li>
+<li><a class="reference internal" href="#id2">Certificate handling</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Features/OpenSSL.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="openssl">
+<span id="tag-openssl"></span><h1>OpenSSL<a class="headerlink" href="#openssl" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>To realize most of the security features, you need a crypto component that can implement the following interfaces:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../Reference/group___cmp_crypto_itf.html#group-cmp-crypto-itf"><span class="std std-ref">CmpCryptoItf</span></a></li>
+<li><a class="reference internal" href="../Reference/group___cmp_tls_itf.html#group-cmp-tls-itf"><span class="std std-ref">CmpTlsItf</span></a></li>
+<li><a class="reference internal" href="../Reference/group___cmp_x509_cert_itf.html#group-cmp-x509-cert-itf"><span class="std std-ref">CmpX509CertItf</span></a></li>
+<li><a class="reference internal" href="../Reference/group___sys_socket2_itf.html#group-sys-socket2-itf"><span class="std std-ref">SysSocket2Itf</span></a></li>
+</ul>
+<p>In the runtime system we use here the open source component <a class="reference external" href="https://www.openssl.org/">OpenSSL</a> by default. This component is encapsulated in the CmpOpenSSL component of the runtime system.</p>
+</div>
+<div class="section" id="integration-of-openssl">
+<h2>Integration of OpenSSL<a class="headerlink" href="#integration-of-openssl" title="Permalink to this headline">¶</a></h2>
+<p>The integration of OpenSSL can be done in 2 variants:</p>
+<ol class="arabic">
+<li><p class="first">Operating system integrated OpenSSL:</p>
+<p>If your operating system contains an implementation of OpenSSL, you can use the CmpOpenSSL component of the runtime system _without_ the OpenSSL implementation. In this case you have to define the compiler
+switch CMPOPENSSL_USE_SYSLIB for compiling the runtime system!</p>
+</li>
+<li><p class="first">Using the OpenSSL source components shipped with the runtime system:</p>
+<p>If your operating system does _not_ contain an implementation of OpenSSL, you can use the CmpOpenSSL component of the runtime system _with_ the OpenSSL implementation. In this case you must not define the
+compiler switch CMPOPENSSL_USE_SYSLIB for compiling the runtime system. Additionally you have to include all OpenSSL modules into your build project specified in CmpOpenSSLDep.h.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="id2">
+<h2><span class="target" id="certificate-handling">Certificate handling</span><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>The above mentionned security features are realized by using X.509 certificates. Actually, the certificates are stored in the file system
+of the runtime in a hidden folder &#8221;.pki&#8221;, including the private keys for own certificates. The OEM must make sure that this
+folder is not accessed from outside, especially the private keys must not be copied from one device to another. This
+configuration is only available until a backend component for managing certificates is available. This will be removed in future!</p>
+<p>There are two possibilities to equip the runtime with the necessary certificates:</p>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Selfsigned certificates:</dt>
+<dd><p class="first last">The runtime is able to create a selfsigned certificates (e.g. by using the PLCShell command &#8220;cert-genselfsigned&#8221;).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>CA signed certificates:</dt>
+<dd><p class="first">These certificates are generated by a certificate authority (e.g. VeriSign, GeoTrust, etc.) or by a CA hosted in the plant of the operator.</p>
+<p>How to get a CA signed certificate:</p>
+<ul class="last simple">
+<li>The runtime creates a CSR (Certificate Signing Request) and keeps its private key on the device (e.g. by using the PLCShell command &#8220;cert-createcsr&#8221;).
+In this case the CSR file can be found in the &#8220;cert/export&#8221; folder.</li>
+<li>Get the CSR file out of the export folder per file transfer</li>
+<li>Send the CSR to a CA and let them generate a signed certificate</li>
+<li>Send the signed certificate into the import folder (&#8220;cert/import&#8221;) per file transfer</li>
+<li>The signed certificate from the authority can then be imported to the runtime (e.g. with the PLCShell command &#8220;cert-import&#8221;).</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>The following runtime system components are necessary for this feature:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#tag-openssl">OpenSSL</a> or equivalent crypto component</li>
+<li>CmpSecurityManager: <a class="reference internal" href="../Reference/group___cmp_security_manager_itf.html#group-cmp-security-manager-itf"><span class="std std-ref">CmpSecurityManagerItf</span></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

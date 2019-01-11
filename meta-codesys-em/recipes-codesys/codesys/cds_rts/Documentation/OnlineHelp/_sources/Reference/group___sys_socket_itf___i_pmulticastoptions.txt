@@ -1,0 +1,142 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_socket_itf___i_pmulticastoptions:
+
+====================
+IP multicast options
+====================
+
+ :ref:`More... <group___sys_socket_itf___i_pmulticastoptions-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`RTS_SOCKET_SO_VALUE_IP_MREQ_T <struct_r_t_s___s_o_c_k_e_t___s_o___v_a_l_u_e___i_p___m_r_e_q___t>`
+
+- struct :ref:`SOCKET_FD_SET <struct_s_o_c_k_e_t___f_d___s_e_t>`
+
+- struct :ref:`SOCKET_TIMEVAL <struct_s_o_c_k_e_t___t_i_m_e_v_a_l>`
+
+- struct :ref:`SOCK_HOSTENT <struct_s_o_c_k___h_o_s_t_e_n_t>`
+
+Macros
+------
+
+- #define :ref:`SOCKET_IP_MULTICAST_IF <group___sys_socket_itf___i_pmulticastoptions_1ga6d19718ef05498902aa51622540d20f8>` 0x0009		/* IP multicast interface */
+
+- #define :ref:`SOCKET_SO_MULTICAST_IF <group___sys_socket_itf___i_pmulticastoptions_1gabc86ffe48cec3dfe81c9151410cb6ab7>` :ref:`SOCKET_IP_MULTICAST_IF <group___sys_socket_itf___i_pmulticastoptions_1ga6d19718ef05498902aa51622540d20f8>` /* backward compatibility */
+
+- #define :ref:`SOCKET_IP_MULTICAST_TTL <group___sys_socket_itf___i_pmulticastoptions_1gad33677b3b212300d6dc0db853cc323ba>` 0x000A		/* IP multicast TTL (hop limit) */
+
+- #define :ref:`SOCKET_IP_MULTICAST_LOOP <group___sys_socket_itf___i_pmulticastoptions_1gab122141ddb5d37ff334be16c245f70a0>` 0x000B		/* IP multicast loopback */
+
+- #define :ref:`SOCKET_IP_ADD_MEMBERSHIP <group___sys_socket_itf___i_pmulticastoptions_1ga3a982d41e0cbfea982c0ee35cab78ae3>` 0x000C		/* Add an IP group membership. See category "IP multicast options" for extended parameters for this option. */
+
+- #define :ref:`SOCKET_IP_DROP_MEMBERSHIP <group___sys_socket_itf___i_pmulticastoptions_1ga057793cb88e55bf92024c4c36e81a9e5>` 0x000D		/* Drop an IP group membership. See category "IP multicast options" for extended parameters for this option. */
+
+- #define :ref:`SOCKET_IP_DONTFRAGMENT <group___sys_socket_itf___i_pmulticastoptions_1gaa59f39211e2b45f2db8ea6673cbcfd62>` 0x000E		/* Indicates that data should not be fragmented regardless of the local MTU. Valid only for message oriented protocols (UDP etc). */
+
+- #define :ref:`SOCKET_FD_SETSIZE <group___sys_socket_itf___i_pmulticastoptions_1gabec33c20ceacd3f14e31c4ed7a5061a8>` 64
+
+- #define :ref:`SOCKET_FD_INIT <group___sys_socket_itf___i_pmulticastoptions_1ga226706b87a7dbe49a2df6adb3e18ec4b>` CAL_SysSockFdInit(fd, set)
+
+- #define :ref:`SOCKET_FD_ISSET <group___sys_socket_itf___i_pmulticastoptions_1ga07c50794be1ec032c16d061ba1b3ffaa>` CAL_SysSockFdIsset(fd, set)
+
+- #define :ref:`SOCKET_FD_ZERO <group___sys_socket_itf___i_pmulticastoptions_1ga4001a62dd29d7af3ff69bff265f3363d>` CAL_SysSockFdZero(set)
+
+- #define :ref:`SOCKET_ZERO_FD <group___sys_socket_itf___i_pmulticastoptions_1ga0ed808b3798f03cbfc3c7b5d372781e1>` CAL_SysSockFdZero(set)
+
+Typedefs
+--------
+
+- typedef struct :ref:`RTS_SOCKET_SO_VALUE_IP_MREQ_T <struct_r_t_s___s_o_c_k_e_t___s_o___v_a_l_u_e___i_p___m_r_e_q___t>` :ref:`RTS_SOCKET_SO_VALUE_IP_MREQ <group___sys_socket_itf___i_pmulticastoptions_1ga7017b130df769ce0e5fb1d31e654784a>`
+
+.. _group___sys_socket_itf___i_pmulticastoptions-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_socket_itf___i_pmulticastoptions_1ga6d19718ef05498902aa51622540d20f8:
+
+#define SOCKET_IP_MULTICAST_IF 0x0009		/* IP multicast interface */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Socket options for :ref:`SysSockGetOption() <group___cmp_blk_drv_udp_dep___task_1ga54179643b3850eb56fc5bd6d930012ad>` /SysSockSetOption(). Only to be used for SOCKET_IPPROTO_IP.
+
+.. _group___sys_socket_itf___i_pmulticastoptions_1gabc86ffe48cec3dfe81c9151410cb6ab7:
+
+#define SOCKET_SO_MULTICAST_IF :ref:`SOCKET_IP_MULTICAST_IF <group___sys_socket_itf___i_pmulticastoptions_1ga6d19718ef05498902aa51622540d20f8>` /* backward compatibility */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_socket_itf___i_pmulticastoptions_1gad33677b3b212300d6dc0db853cc323ba:
+
+#define SOCKET_IP_MULTICAST_TTL 0x000A		/* IP multicast TTL (hop limit) */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_socket_itf___i_pmulticastoptions_1gab122141ddb5d37ff334be16c245f70a0:
+
+#define SOCKET_IP_MULTICAST_LOOP 0x000B		/* IP multicast loopback */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_socket_itf___i_pmulticastoptions_1ga3a982d41e0cbfea982c0ee35cab78ae3:
+
+#define SOCKET_IP_ADD_MEMBERSHIP 0x000C		/* Add an IP group membership. See category "IP multicast options" for extended parameters for this option. */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_socket_itf___i_pmulticastoptions_1ga057793cb88e55bf92024c4c36e81a9e5:
+
+#define SOCKET_IP_DROP_MEMBERSHIP 0x000D		/* Drop an IP group membership. See category "IP multicast options" for extended parameters for this option. */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_socket_itf___i_pmulticastoptions_1gaa59f39211e2b45f2db8ea6673cbcfd62:
+
+#define SOCKET_IP_DONTFRAGMENT 0x000E		/* Indicates that data should not be fragmented regardless of the local MTU. Valid only for message oriented protocols (UDP etc). */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_socket_itf___i_pmulticastoptions_1gabec33c20ceacd3f14e31c4ed7a5061a8:
+
+#define SOCKET_FD_SETSIZE 64
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_socket_itf___i_pmulticastoptions_1ga226706b87a7dbe49a2df6adb3e18ec4b:
+
+#define SOCKET_FD_INIT CAL_SysSockFdInit(fd, set)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_socket_itf___i_pmulticastoptions_1ga07c50794be1ec032c16d061ba1b3ffaa:
+
+#define SOCKET_FD_ISSET CAL_SysSockFdIsset(fd, set)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_socket_itf___i_pmulticastoptions_1ga4001a62dd29d7af3ff69bff265f3363d:
+
+#define SOCKET_FD_ZERO CAL_SysSockFdZero(set)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_socket_itf___i_pmulticastoptions_1ga0ed808b3798f03cbfc3c7b5d372781e1:
+
+#define SOCKET_ZERO_FD CAL_SysSockFdZero(set)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_socket_itf___i_pmulticastoptions_1ga7017b130df769ce0e5fb1d31e654784a:
+
+typedef struct RTS_SOCKET_SO_VALUE_IP_MREQ_T  RTS_SOCKET_SO_VALUE_IP_MREQ
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Parameters for the socket options SOCKET_IP_ADD_MEMBERSHIP and SOCKET_IP_DROP_MEMBERSHIP to join/leave the socket to/from the supplied multicast group on the specified interface.
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,80 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagtracemgrpacketreadfirst__struct:
+
+==================================================
+tagtracemgrpacketreadfirst_struct Struct Reference
+==================================================
+
+| #include ":ref:`CmpTraceMgrItf.h <_cmp_trace_mgr_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_HANDLE :ref:`hPacket <structtagtracemgrpacketreadfirst__struct_1a4687468a486da815380bce8d34bb62ef>`
+- :ref:`TraceRecordEntry <group___cmp_trace_mgr_itf_1ga49b1553f6ac8b3f9685de54dd1f97836>` * :ref:`pTraceBuffer <structtagtracemgrpacketreadfirst__struct_1a42831343aab10f46d3bdabbc6aeba45e>`
+- RTS_IEC_UDINT * :ref:`pulReadBytes <structtagtracemgrpacketreadfirst__struct_1a78f924d2cb5485610ef850b589d85c0d>`
+- RTS_IEC_RESULT * :ref:`pResult <structtagtracemgrpacketreadfirst__struct_1a62f1c033c4f29719a37ec831e8b74ddf>`
+- RTS_IEC_HANDLE :ref:`TraceMgrPacketReadFirst <structtagtracemgrpacketreadfirst__struct_1a3555e411d2f600a4b392cbe362899fac>`
+
+Detailed Description
+--------------------
+
+Reads the contents of the first record.
+
+.. note:: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
+
+.. note:: You should call |TraceMgrPacketReadBegin| before calling this function, to make sure any outstanding trace values are written to the trace buffers.
+
+.. note:: Data is always returned in little endian byte order even if the device has big endian byte order.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+- ERR_NO_OBJECT if the packet does not have a single record
+
+- ERR_NOTINITIALIZED if the packet is not complete
+
+- ERR_TIMEOUT if reading took too long
+
+- ERR_ENTRIES_REMAINING if more data can be read by a subsequent call (this is not an error)
+
+Field Documentation
+-------------------
+
+.. _structtagtracemgrpacketreadfirst__struct_1a4687468a486da815380bce8d34bb62ef:
+
+RTS_IEC_HANDLE tagtracemgrpacketreadfirst_struct::hPacket
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadfirst__struct_1a42831343aab10f46d3bdabbc6aeba45e:
+
+TraceRecordEntry* tagtracemgrpacketreadfirst_struct::pTraceBuffer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadfirst__struct_1a78f924d2cb5485610ef850b589d85c0d:
+
+RTS_IEC_UDINT* tagtracemgrpacketreadfirst_struct::pulReadBytes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadfirst__struct_1a62f1c033c4f29719a37ec831e8b74ddf:
+
+RTS_IEC_RESULT* tagtracemgrpacketreadfirst_struct::pResult
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadfirst__struct_1a3555e411d2f600a4b392cbe362899fac:
+
+RTS_IEC_HANDLE tagtracemgrpacketreadfirst_struct::TraceMgrPacketReadFirst
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpTraceMgrItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

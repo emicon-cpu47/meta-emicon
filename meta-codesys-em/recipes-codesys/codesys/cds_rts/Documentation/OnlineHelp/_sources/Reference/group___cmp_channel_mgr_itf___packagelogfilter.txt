@@ -1,0 +1,440 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter:
+
+=================
+Package logfilter
+=================
+
+ :ref:`More... <group___cmp_channel_mgr_itf___packagelogfilter-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`L4PACKAGE <struct_l4_p_a_c_k_a_g_e>`
+
+- struct :ref:`L4ACKNOWLEDGE <struct_l4_a_c_k_n_o_w_l_e_d_g_e>`
+
+- struct :ref:`L4DATA <struct_l4_d_a_t_a>`
+
+- struct :ref:`L4DATAFIRST <struct_l4_d_a_t_a_f_i_r_s_t>`
+
+- struct :ref:`L4KEEPALIVE <struct_l4_k_e_e_p_a_l_i_v_e>`
+
+- struct :ref:`L4METAPACKAGE <struct_l4_m_e_t_a_p_a_c_k_a_g_e>`
+
+- struct :ref:`L4RTSINFO_REQ <struct_l4_r_t_s_i_n_f_o___r_e_q>`
+
+- struct :ref:`L4RTSINFO_RESP <struct_l4_r_t_s_i_n_f_o___r_e_s_p>`
+
+- struct :ref:`L4OPENCHANNEL_REQ <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_q>`
+
+- struct :ref:`L4OPENCHANNEL_REQ_2 <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_q__2>`
+
+- struct :ref:`L4OPENCHANNEL_RESP_1_0 <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_s_p__1__0>`
+
+- struct :ref:`L4OPENCHANNEL_RESP <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_s_p>`
+
+- struct :ref:`L4CLOSECHANNEL_REQ <struct_l4_c_l_o_s_e_c_h_a_n_n_e_l___r_e_q>`
+
+- struct :ref:`BLOCKINFO <struct_b_l_o_c_k_i_n_f_o>`
+
+- struct :ref:`CHANNELRECEIVESTATE <struct_c_h_a_n_n_e_l_r_e_c_e_i_v_e_s_t_a_t_e>`
+
+- struct :ref:`CHANNELSENDSTATE <struct_c_h_a_n_n_e_l_s_e_n_d_s_t_a_t_e>`
+
+- struct :ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>`
+
+Macros
+------
+
+- #define :ref:`PKG_LOG_NONE <group___cmp_channel_mgr_itf___packagelogfilter_1gaf52cda61d16b2aa17373e24574040644>` UINT32_C(0x00000000)
+
+- #define :ref:`PKG_LOG_DUPLICATE <group___cmp_channel_mgr_itf___packagelogfilter_1gafdb9b9581bbf0c18ce4a128b68507208>` UINT32_C(0x00000001)
+
+- #define :ref:`PKG_LOG_RX <group___cmp_channel_mgr_itf___packagelogfilter_1gad67014ccda23cb8b7e73657ad9705377>` UINT32_C(0x00000002)
+
+- #define :ref:`PKG_LOG_TX <group___cmp_channel_mgr_itf___packagelogfilter_1ga0f4250f8e437aa11f017b757d14fb55b>` UINT32_C(0x00000004)
+
+- #define :ref:`PKG_LOG_ACK_TRIG_NUM <group___cmp_channel_mgr_itf___packagelogfilter_1gac0ff7c63308623a3ef40ed5828277710>` UINT32_C(0x00000010)
+
+- #define :ref:`PKG_LOG_ACK_TRIG_TO <group___cmp_channel_mgr_itf___packagelogfilter_1ga3261f9f52740de66a163f9ebc826248a>` UINT32_C(0x00000020)
+
+- #define :ref:`PKG_LOG_IN_ORDER_BLOCK <group___cmp_channel_mgr_itf___packagelogfilter_1gaf07e932a488cb50d0763be3c28d395c9>` UINT32_C(0x00000040)
+
+- #define :ref:`PKG_LOG_COMPRESS_BLOCK <group___cmp_channel_mgr_itf___packagelogfilter_1ga08300210e618d8b08d0bb20207492fdf>` UINT32_C(0x00000080)
+
+- #define :ref:`PKG_LOG_OUT_OF_ORDER_BLOCK <group___cmp_channel_mgr_itf___packagelogfilter_1gae5b9c3eac97497b41d08caccc63778fc>` UINT32_C(0x00000100)
+
+- #define :ref:`PT_DATA <group___cmp_channel_mgr_itf___packagelogfilter_1gada7e28873e77cffe829f30f70d5ec657>` 0x01
+
+- #define :ref:`PT_ACK <group___cmp_channel_mgr_itf___packagelogfilter_1gab683e8092d71563bb5772f95e43c6535>` 0x02
+
+- #define :ref:`PT_KEEPALIVE <group___cmp_channel_mgr_itf___packagelogfilter_1ga2b904a988f6652dca9e9f3f061443e7f>` 0x03
+
+- #define :ref:`PT_NOTIFICATION <group___cmp_channel_mgr_itf___packagelogfilter_1ga1194eaaa0a4d6af352632b78b8204470>` (0x80 + 0x01)
+
+- #define :ref:`PT_RTSINFO <group___cmp_channel_mgr_itf___packagelogfilter_1ga9ce742be60f5fc53bd7bd556d19a9b79>` (0x80 + 0x02)
+
+- #define :ref:`PT_OPENCHANNEL <group___cmp_channel_mgr_itf___packagelogfilter_1ga794245076a3214a49dfefef1160dc714>` (0x80 + 0x03)
+
+- #define :ref:`PT_CLOSECHANNEL <group___cmp_channel_mgr_itf___packagelogfilter_1ga5d7feb3469f08776bfb35934cc5a3b3a>` (0x80 + 0x04)
+
+- #define :ref:`PT_RTSINFO_REQ <group___cmp_channel_mgr_itf___packagelogfilter_1ga3ce5bedf1a0a081596985f45921a0b38>` (0xC0 + 0x02)
+
+- #define :ref:`PT_OPENCHANNEL_REQ <group___cmp_channel_mgr_itf___packagelogfilter_1ga8b443439843006dc409bab0195a89374>` (0xC0 + 0x03)
+
+- #define :ref:`PT_CLOSECHANNEL_REQ <group___cmp_channel_mgr_itf___packagelogfilter_1ga4bccd4d5a074fab1b8beb7601e92c99e>` (0xC0 + 0x04)
+
+- #define :ref:`ISMETAPACKAGE <group___cmp_channel_mgr_itf___packagelogfilter_1gadd00b868d2aab9a9f81da4ddfb4cecb0>` ((pkgType & 0x80) == 0x80)
+
+- #define :ref:`ISREQUEST <group___cmp_channel_mgr_itf___packagelogfilter_1gadcb96814564d949552c9cff4812a76fa>` ((pkgType & 0xC0) == 0xC0)
+
+- #define :ref:`PTF_FIRSTPACKAGE <group___cmp_channel_mgr_itf___packagelogfilter_1ga96b86b0163e5f1ebb4161d7d135e8ce1>` 0x01
+
+- #define :ref:`PTF_MISSINGPACKAGE <group___cmp_channel_mgr_itf___packagelogfilter_1ga7f0fb1ce531e66e724e51beaba0d7e5b>` 0x02
+
+- #define :ref:`PTF_DATADIRTOSERVER <group___cmp_channel_mgr_itf___packagelogfilter_1gaeaa200249a3b2f100d8e75629e503682>` 0x80
+
+- #define :ref:`OPENC_SUCCESS <group___cmp_channel_mgr_itf___packagelogfilter_1ga5299f7df0687d63f2a33d510c826ca2c>` 0  /* Channel has been created */
+
+- #define :ref:`OPENC_NOFREECHANNEL <group___cmp_channel_mgr_itf___packagelogfilter_1gafa0ce727f745304921c3424f612083b2>` 1  /* All available channels already in use */
+
+- #define :ref:`OPENC_NOTSERVER <group___cmp_channel_mgr_itf___packagelogfilter_1gac9cb9d919c43a58d8d5dc09adb918f24>` 2  /* This is not a server - you cannot open a channel to this node */
+
+- #define :ref:`CHF_BIGENDIAN <group___cmp_channel_mgr_itf___packagelogfilter_1ga08951c1e4f8887f8afffd7f96770492b>` 0x01 /* "Motorola byteorder" */
+
+- #define :ref:`BF_SENT <group___cmp_channel_mgr_itf___packagelogfilter_1ga276367d6b0a331a453c65b298595835a>` 0x01
+
+- #define :ref:`BF_RECEIVED <group___cmp_channel_mgr_itf___packagelogfilter_1ga9701b2213c74eb2aa9278b2c8d545fd2>` 0x02
+
+- #define :ref:`BF_REPEATED <group___cmp_channel_mgr_itf___packagelogfilter_1ga85fc2be9b41d775f6952ddd24771f929>` 0x04  /* Set if the block was sent more then once */
+
+- #define :ref:`CF_SERVERCHANNEL <group___cmp_channel_mgr_itf___packagelogfilter_1gaa8e87b90b2af6167f7fc003c0c785aa0>` 0x01	/* Channel resides on the server side */
+
+- #define :ref:`CF_BIT_SERVERCHANNEL <group___cmp_channel_mgr_itf___packagelogfilter_1ga9d689dd783d2f7bcb45e369af1185ceb>` 0		/* Bit number of previous value */
+
+- #define :ref:`CF_SENDMODE <group___cmp_channel_mgr_itf___packagelogfilter_1ga901b3c3f548f3db395823b97a8d8bd36>` 0x02	/* Channel is currently in send mode */
+
+- #define :ref:`CF_BIT_SENDMODE <group___cmp_channel_mgr_itf___packagelogfilter_1ga6c226dd8bb692a8c41a101e51ff894f5>` 1		/* Bit number of previous value */
+
+- #define :ref:`CF_ADDRRELATIVE <group___cmp_channel_mgr_itf___packagelogfilter_1ga34cb53e201c76a40301581b97c5b1b21>` 0x04	/* Relative addressing is used */
+
+- #define :ref:`CF_BIT_ADDRRELATIVE <group___cmp_channel_mgr_itf___packagelogfilter_1gad41d1ed68859dc26831406d0f268f29a>` 2		/* Bit number of previous value */
+
+- #define :ref:`CF_SEND_BLOCKS_ACTIVE <group___cmp_channel_mgr_itf___packagelogfilter_1ga2c0237c906918cd032a8c80e9f187008>` 0x08	/* Flag to avoid reentrance in send routine */
+
+- #define :ref:`CF_BIT_SEND_BLOCKS_ACTIVE <group___cmp_channel_mgr_itf___packagelogfilter_1ga2365a0a93686fd0d2431d4d3d53e6692>` 3		/* Bit number of previous value */
+
+- #define :ref:`CF_REPEAT_APP_CALL <group___cmp_channel_mgr_itf___packagelogfilter_1gabef0c280bc47457c7b0b5df1329a7019>` 0x10	/* If this flag is set, the app (CmpSrv) is called cyclically until the service is handled. */
+
+- #define :ref:`CF_BIT_REPEAT_APP_CALL <group___cmp_channel_mgr_itf___packagelogfilter_1ga01d0d364057c2810d356d4db6b2a2a02>` 4		/* Bit number of previous value */
+
+- #define :ref:`GET_L4PACKAGE_TYPE <group___cmp_channel_mgr_itf___packagelogfilter_1gaca45234cb0145872146d84934b93a6f8>` (unsigned char)(( :ref:`L4PACKAGE <struct_l4_p_a_c_k_a_g_e>` *)pkg)->byPkgType
+
+- #define :ref:`GET_L4PACKAGE_FLAGS <group___cmp_channel_mgr_itf___packagelogfilter_1ga8af6205fb3082940646cd6478034d8bb>` (unsigned char)(( :ref:`L4PACKAGE <struct_l4_p_a_c_k_a_g_e>` *)pkg)->byFlags
+
+- #define :ref:`SET_L4PACKAGE_TYPE <group___cmp_channel_mgr_itf___packagelogfilter_1ga9843cc9b90364f4be1e0b6980cd9fa3f>` (( :ref:`L4PACKAGE <struct_l4_p_a_c_k_a_g_e>` *)pkg)->byPkgType = (unsigned char) nType
+
+- #define :ref:`CLEAR_L4PACKAGE_FLAGS <group___cmp_channel_mgr_itf___packagelogfilter_1gafbd9586aa00ef2680b4f0bbe4843fbaa>` (( :ref:`L4PACKAGE <struct_l4_p_a_c_k_a_g_e>` *)pkg)->byFlags = 0
+
+- #define :ref:`SET_L4PACKAGE_FLAG <group___cmp_channel_mgr_itf___packagelogfilter_1gab97a1eeed58e281d7de983661713a0ec>` (( :ref:`L4PACKAGE <struct_l4_p_a_c_k_a_g_e>` *)pkg)->byFlags |= nFlag
+
+- #define :ref:`GET_L4OPENCHANNEL_REQ_2_MAX_ADDR_SIZE <group___cmp_channel_mgr_itf___packagelogfilter_1ga7b91603bd1354c432bdefe604b9ff428>` (RTS_UI8)(( :ref:`L4OPENCHANNEL_REQ_2 <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_q__2>` *)pkg)->byMaxAddressSize
+
+- #define :ref:`SET_L4OPENCHANNEL_REQ_2_MAX_ADDR_SIZE <group___cmp_channel_mgr_itf___packagelogfilter_1ga5222759dbdcb9db0ebf052de03bab38c>` (( :ref:`L4OPENCHANNEL_REQ_2 <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_q__2>` *)pkg)->byMaxAddressSize = (RTS_UI8) nMaxAddrSize
+
+- #define :ref:`GET_L4OPENCHANNEL_RESP_FLAGS <group___cmp_channel_mgr_itf___packagelogfilter_1gaa278a181a23165511b9de3085b8d6fc4>` (RTS_UI8)(( :ref:`L4OPENCHANNEL_RESP <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_s_p>` *)pkg)->byFlags
+
+- #define :ref:`GET_L4OPENCHANNEL_RESP_MAX_ADDR_SIZE <group___cmp_channel_mgr_itf___packagelogfilter_1ga2d5b02e0099828ac88f80f1b68882107>` (RTS_UI8)(( :ref:`L4OPENCHANNEL_RESP <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_s_p>` *)pkg)->byMaxAddressSize
+
+- #define :ref:`CLEAR_L4OPENCHANNEL_RESP_FLAGS <group___cmp_channel_mgr_itf___packagelogfilter_1gad681cf361154df26f346e3195673476f>` (( :ref:`L4OPENCHANNEL_RESP <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_s_p>` *)pkg)->byFlags = 0
+
+- #define :ref:`SET_L4OPENCHANNEL_RESP_FLAG <group___cmp_channel_mgr_itf___packagelogfilter_1ga125c9df8dea1186aa3e75091f8cfeedd>` (( :ref:`L4OPENCHANNEL_RESP <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_s_p>` *)pkg)->byFlags |= nFlag
+
+- #define :ref:`SET_L4OPENCHANNEL_RESP_MAX_ADDR_SIZE <group___cmp_channel_mgr_itf___packagelogfilter_1ga32b0f268a9ec1c3cdd7718ac668ce451>` (( :ref:`L4OPENCHANNEL_RESP <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_s_p>` *)pkg)->byMaxAddressSize = (RTS_UI8) nMaxAddrSize
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gaf52cda61d16b2aa17373e24574040644:
+
+#define PKG_LOG_NONE UINT32_C(0x00000000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Package info log entry filters for the CmpChannelMgr
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gafdb9b9581bbf0c18ce4a128b68507208:
+
+#define PKG_LOG_DUPLICATE UINT32_C(0x00000001)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gad67014ccda23cb8b7e73657ad9705377:
+
+#define PKG_LOG_RX UINT32_C(0x00000002)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga0f4250f8e437aa11f017b757d14fb55b:
+
+#define PKG_LOG_TX UINT32_C(0x00000004)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gac0ff7c63308623a3ef40ed5828277710:
+
+#define PKG_LOG_ACK_TRIG_NUM UINT32_C(0x00000010)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga3261f9f52740de66a163f9ebc826248a:
+
+#define PKG_LOG_ACK_TRIG_TO UINT32_C(0x00000020)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gaf07e932a488cb50d0763be3c28d395c9:
+
+#define PKG_LOG_IN_ORDER_BLOCK UINT32_C(0x00000040)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga08300210e618d8b08d0bb20207492fdf:
+
+#define PKG_LOG_COMPRESS_BLOCK UINT32_C(0x00000080)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gae5b9c3eac97497b41d08caccc63778fc:
+
+#define PKG_LOG_OUT_OF_ORDER_BLOCK UINT32_C(0x00000100)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gada7e28873e77cffe829f30f70d5ec657:
+
+#define PT_DATA 0x01
+^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gab683e8092d71563bb5772f95e43c6535:
+
+#define PT_ACK 0x02
+^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga2b904a988f6652dca9e9f3f061443e7f:
+
+#define PT_KEEPALIVE 0x03
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga1194eaaa0a4d6af352632b78b8204470:
+
+#define PT_NOTIFICATION (0x80 + 0x01)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga9ce742be60f5fc53bd7bd556d19a9b79:
+
+#define PT_RTSINFO (0x80 + 0x02)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga794245076a3214a49dfefef1160dc714:
+
+#define PT_OPENCHANNEL (0x80 + 0x03)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga5d7feb3469f08776bfb35934cc5a3b3a:
+
+#define PT_CLOSECHANNEL (0x80 + 0x04)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga3ce5bedf1a0a081596985f45921a0b38:
+
+#define PT_RTSINFO_REQ (0xC0 + 0x02)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga8b443439843006dc409bab0195a89374:
+
+#define PT_OPENCHANNEL_REQ (0xC0 + 0x03)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga4bccd4d5a074fab1b8beb7601e92c99e:
+
+#define PT_CLOSECHANNEL_REQ (0xC0 + 0x04)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gadd00b868d2aab9a9f81da4ddfb4cecb0:
+
+#define ISMETAPACKAGE ((pkgType & 0x80) == 0x80)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gadcb96814564d949552c9cff4812a76fa:
+
+#define ISREQUEST ((pkgType & 0xC0) == 0xC0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga96b86b0163e5f1ebb4161d7d135e8ce1:
+
+#define PTF_FIRSTPACKAGE 0x01
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga7f0fb1ce531e66e724e51beaba0d7e5b:
+
+#define PTF_MISSINGPACKAGE 0x02
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gaeaa200249a3b2f100d8e75629e503682:
+
+#define PTF_DATADIRTOSERVER 0x80
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga5299f7df0687d63f2a33d510c826ca2c:
+
+#define OPENC_SUCCESS 0  /* Channel has been created */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gafa0ce727f745304921c3424f612083b2:
+
+#define OPENC_NOFREECHANNEL 1  /* All available channels already in use */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gac9cb9d919c43a58d8d5dc09adb918f24:
+
+#define OPENC_NOTSERVER 2  /* This is not a server - you cannot open a channel to this node */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga08951c1e4f8887f8afffd7f96770492b:
+
+#define CHF_BIGENDIAN 0x01 /* "Motorola byteorder" */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga276367d6b0a331a453c65b298595835a:
+
+#define BF_SENT 0x01
+^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga9701b2213c74eb2aa9278b2c8d545fd2:
+
+#define BF_RECEIVED 0x02
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga85fc2be9b41d775f6952ddd24771f929:
+
+#define BF_REPEATED 0x04  /* Set if the block was sent more then once */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gaa8e87b90b2af6167f7fc003c0c785aa0:
+
+#define CF_SERVERCHANNEL 0x01	/* Channel resides on the server side */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga9d689dd783d2f7bcb45e369af1185ceb:
+
+#define CF_BIT_SERVERCHANNEL 0		/* Bit number of previous value */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga901b3c3f548f3db395823b97a8d8bd36:
+
+#define CF_SENDMODE 0x02	/* Channel is currently in send mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga6c226dd8bb692a8c41a101e51ff894f5:
+
+#define CF_BIT_SENDMODE 1		/* Bit number of previous value */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga34cb53e201c76a40301581b97c5b1b21:
+
+#define CF_ADDRRELATIVE 0x04	/* Relative addressing is used */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gad41d1ed68859dc26831406d0f268f29a:
+
+#define CF_BIT_ADDRRELATIVE 2		/* Bit number of previous value */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga2c0237c906918cd032a8c80e9f187008:
+
+#define CF_SEND_BLOCKS_ACTIVE 0x08	/* Flag to avoid reentrance in send routine */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga2365a0a93686fd0d2431d4d3d53e6692:
+
+#define CF_BIT_SEND_BLOCKS_ACTIVE 3		/* Bit number of previous value */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gabef0c280bc47457c7b0b5df1329a7019:
+
+#define CF_REPEAT_APP_CALL 0x10	/* If this flag is set, the app (CmpSrv) is called cyclically until the service is handled. */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga01d0d364057c2810d356d4db6b2a2a02:
+
+#define CF_BIT_REPEAT_APP_CALL 4		/* Bit number of previous value */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gaca45234cb0145872146d84934b93a6f8:
+
+#define GET_L4PACKAGE_TYPE (unsigned char)(( :ref:`L4PACKAGE <struct_l4_p_a_c_k_a_g_e>` *)pkg)->byPkgType
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga8af6205fb3082940646cd6478034d8bb:
+
+#define GET_L4PACKAGE_FLAGS (unsigned char)(( :ref:`L4PACKAGE <struct_l4_p_a_c_k_a_g_e>` *)pkg)->byFlags
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga9843cc9b90364f4be1e0b6980cd9fa3f:
+
+#define SET_L4PACKAGE_TYPE (( :ref:`L4PACKAGE <struct_l4_p_a_c_k_a_g_e>` *)pkg)->byPkgType = (unsigned char) nType
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gafbd9586aa00ef2680b4f0bbe4843fbaa:
+
+#define CLEAR_L4PACKAGE_FLAGS (( :ref:`L4PACKAGE <struct_l4_p_a_c_k_a_g_e>` *)pkg)->byFlags = 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gab97a1eeed58e281d7de983661713a0ec:
+
+#define SET_L4PACKAGE_FLAG (( :ref:`L4PACKAGE <struct_l4_p_a_c_k_a_g_e>` *)pkg)->byFlags |= nFlag
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga7b91603bd1354c432bdefe604b9ff428:
+
+#define GET_L4OPENCHANNEL_REQ_2_MAX_ADDR_SIZE (RTS_UI8)(( :ref:`L4OPENCHANNEL_REQ_2 <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_q__2>` *)pkg)->byMaxAddressSize
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga5222759dbdcb9db0ebf052de03bab38c:
+
+#define SET_L4OPENCHANNEL_REQ_2_MAX_ADDR_SIZE (( :ref:`L4OPENCHANNEL_REQ_2 <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_q__2>` *)pkg)->byMaxAddressSize = (RTS_UI8) nMaxAddrSize
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gaa278a181a23165511b9de3085b8d6fc4:
+
+#define GET_L4OPENCHANNEL_RESP_FLAGS (RTS_UI8)(( :ref:`L4OPENCHANNEL_RESP <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_s_p>` *)pkg)->byFlags
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga2d5b02e0099828ac88f80f1b68882107:
+
+#define GET_L4OPENCHANNEL_RESP_MAX_ADDR_SIZE (RTS_UI8)(( :ref:`L4OPENCHANNEL_RESP <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_s_p>` *)pkg)->byMaxAddressSize
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1gad681cf361154df26f346e3195673476f:
+
+#define CLEAR_L4OPENCHANNEL_RESP_FLAGS (( :ref:`L4OPENCHANNEL_RESP <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_s_p>` *)pkg)->byFlags = 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga125c9df8dea1186aa3e75091f8cfeedd:
+
+#define SET_L4OPENCHANNEL_RESP_FLAG (( :ref:`L4OPENCHANNEL_RESP <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_s_p>` *)pkg)->byFlags |= nFlag
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf___packagelogfilter_1ga32b0f268a9ec1c3cdd7718ac668ce451:
+
+#define SET_L4OPENCHANNEL_RESP_MAX_ADDR_SIZE (( :ref:`L4OPENCHANNEL_RESP <struct_l4_o_p_e_n_c_h_a_n_n_e_l___r_e_s_p>` *)pkg)->byMaxAddressSize = (RTS_UI8) nMaxAddrSize
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,362 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SysSemProcessItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="SysSocket2Itf" href="group___sys_socket2_itf.html" />
+    <link rel="prev" title="SysSemItf" href="group___sys_sem_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___sys_socket2_itf.html" title="SysSocket2Itf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_sem_itf.html" title="SysSemItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SysSemProcessItf</a><ul>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-syssemprocess-wait-infinite-unsigned-long-1">#define SYSSEMPROCESS_WAIT_INFINITE ((unsigned long)-1)</a></li>
+<li><a class="reference internal" href="#define-itf-syssemprocess">#define ITF_SysSemProcess</a></li>
+<li><a class="reference internal" href="#define-extitf-syssemprocess">#define EXTITF_SysSemProcess</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-tagsyssemprocesscreate-struct-syssemprocesscreate-struct">typedef struct tagsyssemprocesscreate_struct  syssemprocesscreate_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssemprocessdelete-struct-syssemprocessdelete-struct">typedef struct tagsyssemprocessdelete_struct  syssemprocessdelete_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssemprocessenter-struct-syssemprocessenter-struct">typedef struct tagsyssemprocessenter_struct  syssemprocessenter_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssemprocessleave-struct-syssemprocessleave-struct">typedef struct tagsyssemprocessleave_struct  syssemprocessleave_struct</a></li>
+<li><a class="reference internal" href="#typedef-isyssemprocess-c-isyssemprocess">typedef ISysSemProcess_C ISysSemProcess</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#void-syssemprocesscreate-syssemprocesscreate-struct-p">void syssemprocesscreate (syssemprocesscreate_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssemprocessdelete-syssemprocessdelete-struct-p">void syssemprocessdelete (syssemprocessdelete_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssemprocessenter-syssemprocessenter-struct-p">void syssemprocessenter (syssemprocessenter_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssemprocessleave-syssemprocessleave-struct-p">void syssemprocessleave (syssemprocessleave_struct *p)</a></li>
+<li><a class="reference internal" href="#rts-result-syssemprocessosinit-init-struct-pinit">RTS_RESULT SysSemProcessOSInit (INIT_STRUCT *pInit)</a></li>
+<li><a class="reference internal" href="#rts-result-syssemprocessoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">RTS_RESULT SysSemProcessOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</a></li>
+<li><a class="reference internal" href="#rts-handle-syssemprocesscreate-char-pszname-rts-result-presult">RTS_HANDLE SysSemProcessCreate (char *pszName, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-syssemprocessdelete-rts-handle-hsem">RTS_RESULT SysSemProcessDelete (RTS_HANDLE hSem)</a></li>
+<li><a class="reference internal" href="#rts-result-syssemprocessenter-rts-handle-hsem-unsigned-long-ultimeoutms">RTS_RESULT SysSemProcessEnter (RTS_HANDLE hSem, unsigned long ulTimeoutMs)</a></li>
+<li><a class="reference internal" href="#rts-result-syssemprocessleave-rts-handle-hsem">RTS_RESULT SysSemProcessLeave (RTS_HANDLE hSem)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___sys_sem_itf.html"
+                        title="previous chapter">SysSemItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___sys_socket2_itf.html"
+                        title="next chapter">SysSocket2Itf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_sem_process_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="syssemprocessitf">
+<span id="group-sys-sem-process-itf"></span><h1>SysSemProcessItf<a class="headerlink" href="#syssemprocessitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of SysSemProcess. <a class="reference internal" href="#group-sys-sem-process-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="structtagsyssemprocesscreate__struct.html#structtagsyssemprocesscreate-struct"><span class="std std-ref">tagsyssemprocesscreate_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssemprocessdelete__struct.html#structtagsyssemprocessdelete-struct"><span class="std std-ref">tagsyssemprocessdelete_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssemprocessenter__struct.html#structtagsyssemprocessenter-struct"><span class="std std-ref">tagsyssemprocessenter_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssemprocessleave__struct.html#structtagsyssemprocessleave-struct"><span class="std std-ref">tagsyssemprocessleave_struct</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_sys_sem_process___c.html#struct-i-sys-sem-process-c"><span class="std std-ref">ISysSemProcess_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-sem-process-itf-1gaf198444eb576b074f1d6908af7f76852"><span class="std std-ref">SYSSEMPROCESS_WAIT_INFINITE</span></a> ((unsigned long)-1)</li>
+<li>#define <a class="reference internal" href="#group-sys-sem-process-itf-1gaebad91f47f240d1df0bb125866cf6029"><span class="std std-ref">ITF_SysSemProcess</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-sem-process-itf-1gab4f1f8458bba5571bd344c03d38e3cfe"><span class="std std-ref">EXTITF_SysSemProcess</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="structtagsyssemprocesscreate__struct.html#structtagsyssemprocesscreate-struct"><span class="std std-ref">tagsyssemprocesscreate_struct</span></a> <a class="reference internal" href="#group-sys-sem-process-itf-1ga6617889ec3b294003df0056f347a1325"><span class="std std-ref">syssemprocesscreate_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssemprocessdelete__struct.html#structtagsyssemprocessdelete-struct"><span class="std std-ref">tagsyssemprocessdelete_struct</span></a> <a class="reference internal" href="#group-sys-sem-process-itf-1gabb3b911e1193f53d77f641a8ef645903"><span class="std std-ref">syssemprocessdelete_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssemprocessenter__struct.html#structtagsyssemprocessenter-struct"><span class="std std-ref">tagsyssemprocessenter_struct</span></a> <a class="reference internal" href="#group-sys-sem-process-itf-1gade871304acb8a8f089a60204773761df"><span class="std std-ref">syssemprocessenter_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssemprocessleave__struct.html#structtagsyssemprocessleave-struct"><span class="std std-ref">tagsyssemprocessleave_struct</span></a> <a class="reference internal" href="#group-sys-sem-process-itf-1ga7245c2b8823e816a97abf55502698c95"><span class="std std-ref">syssemprocessleave_struct</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_sys_sem_process___c.html#struct-i-sys-sem-process-c"><span class="std std-ref">ISysSemProcess_C</span></a> <a class="reference internal" href="#group-sys-sem-process-itf-1gaf603b82d852081355c44412866f8a444"><span class="std std-ref">ISysSemProcess</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>void <a class="reference internal" href="#group-sys-sem-process-itf-1ga519279f6b3c77b36c9c8128b4b19d3d1"><span class="std std-ref">syssemprocesscreate</span></a> (<a class="reference internal" href="#group-sys-sem-process-itf-1ga6617889ec3b294003df0056f347a1325"><span class="std std-ref">syssemprocesscreate_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-sem-process-itf-1ga3ac260081ac184636f5492dcd6c54183"><span class="std std-ref">syssemprocessdelete</span></a> (<a class="reference internal" href="#group-sys-sem-process-itf-1gabb3b911e1193f53d77f641a8ef645903"><span class="std std-ref">syssemprocessdelete_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-sem-process-itf-1ga1ae156dad1956b0dbc393d1572c6c1b8"><span class="std std-ref">syssemprocessenter</span></a> (<a class="reference internal" href="#group-sys-sem-process-itf-1gade871304acb8a8f089a60204773761df"><span class="std std-ref">syssemprocessenter_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-sem-process-itf-1ga5a826a6ec7bf8479b57ad918681a1aa3"><span class="std std-ref">syssemprocessleave</span></a> (<a class="reference internal" href="#group-sys-sem-process-itf-1ga7245c2b8823e816a97abf55502698c95"><span class="std std-ref">syssemprocessleave_struct</span></a> * p)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-sem-process-itf-1gaa4e9171ebcb3b91be97b690e70e7a41e"><span class="std std-ref">SysSemProcessOSInit</span></a> (INIT_STRUCT * pInit)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-sem-process-itf-1ga612d39fa01f1060045fe337c43416e1b"><span class="std std-ref">SysSemProcessOSHookFunction</span></a> (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-sem-process-itf-1ga533f9da119219ce77a796206894f8a6d"><span class="std std-ref">SysSemProcessCreate</span></a> (char * pszName, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-sem-process-itf-1ga92704146193898f68e9b8204b3e83ae0"><span class="std std-ref">SysSemProcessDelete</span></a> (RTS_HANDLE hSem)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-sem-process-itf-1ga08f5723d1942f0e7b537e42ae2a7d45d"><span class="std std-ref">SysSemProcessEnter</span></a> (RTS_HANDLE hSem, unsigned long ulTimeoutMs)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-sem-process-itf-1ga255ec899cf363d733ee7b88d87f6c0db"><span class="std std-ref">SysSemProcessLeave</span></a> (RTS_HANDLE hSem)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-sem-process-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of SysSemProcess.</p>
+<p>The SysSemProcess interface is projected to handle synchonization objects for processes. The synchronization objects are called semaphores to synchronize concurrent access to single system global resources.</p>
+<p>For example:</p>
+<p>Process1: ... SysSemProcessEnter(hSem); [Here you can accessed the protected global resource] SysSemProcessLeave(hSem); [After <a class="reference internal" href="#group-sys-sem-process-itf-1ga255ec899cf363d733ee7b88d87f6c0db"><span class="std std-ref">SysSemProcessLeave()</span></a> you must not access the protected globale resource] ....</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-syssemprocess-wait-infinite-unsigned-long-1">
+<span id="group-sys-sem-process-itf-1gaf198444eb576b074f1d6908af7f76852"></span><h3>#define SYSSEMPROCESS_WAIT_INFINITE ((unsigned long)-1)<a class="headerlink" href="#define-syssemprocess-wait-infinite-unsigned-long-1" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION END</p>
+</div>
+<div class="section" id="define-itf-syssemprocess">
+<span id="group-sys-sem-process-itf-1gaebad91f47f240d1df0bb125866cf6029"></span><h3>#define ITF_SysSemProcess<a class="headerlink" href="#define-itf-syssemprocess" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-syssemprocess">
+<span id="group-sys-sem-process-itf-1gab4f1f8458bba5571bd344c03d38e3cfe"></span><h3>#define EXTITF_SysSemProcess<a class="headerlink" href="#define-extitf-syssemprocess" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-tagsyssemprocesscreate-struct-syssemprocesscreate-struct">
+<span id="group-sys-sem-process-itf-1ga6617889ec3b294003df0056f347a1325"></span><h3>typedef struct tagsyssemprocesscreate_struct  syssemprocesscreate_struct<a class="headerlink" href="#typedef-struct-tagsyssemprocesscreate-struct-syssemprocesscreate-struct" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION BEGIN</p>
+<p>Create a new semaphore object to synchronize processes (global semaphores)
+<strong>Returns:</strong></p>
+<p><a href="#id1"><span class="problematic" id="id2">*</span></a>RESULT: Handle to the sempahore object</p>
+</div>
+<div class="section" id="typedef-struct-tagsyssemprocessdelete-struct-syssemprocessdelete-struct">
+<span id="group-sys-sem-process-itf-1gabb3b911e1193f53d77f641a8ef645903"></span><h3>typedef struct tagsyssemprocessdelete_struct  syssemprocessdelete_struct<a class="headerlink" href="#typedef-struct-tagsyssemprocessdelete-struct-syssemprocessdelete-struct" title="Permalink to this headline">¶</a></h3>
+<p>Delete a semaphore object
+<strong>Returns:</strong></p>
+<p><a href="#id3"><span class="problematic" id="id4">*</span></a>RESULT: Returns the runtime system error code (see CmpErrors.library).</p>
+</div>
+<div class="section" id="typedef-struct-tagsyssemprocessenter-struct-syssemprocessenter-struct">
+<span id="group-sys-sem-process-itf-1gade871304acb8a8f089a60204773761df"></span><h3>typedef struct tagsyssemprocessenter_struct  syssemprocessenter_struct<a class="headerlink" href="#typedef-struct-tagsyssemprocessenter-struct-syssemprocessenter-struct" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-struct-tagsyssemprocessleave-struct-syssemprocessleave-struct">
+<span id="group-sys-sem-process-itf-1ga7245c2b8823e816a97abf55502698c95"></span><h3>typedef struct tagsyssemprocessleave_struct  syssemprocessleave_struct<a class="headerlink" href="#typedef-struct-tagsyssemprocessleave-struct-syssemprocessleave-struct" title="Permalink to this headline">¶</a></h3>
+<p>Leave the given semaphore.
+<strong>Returns:</strong></p>
+<p><a href="#id5"><span class="problematic" id="id6">*</span></a>RESULT: Returns the runtime system error code (see CmpErrors.library).</p>
+</div>
+<div class="section" id="typedef-isyssemprocess-c-isyssemprocess">
+<span id="group-sys-sem-process-itf-1gaf603b82d852081355c44412866f8a444"></span><h3>typedef ISysSemProcess_C ISysSemProcess<a class="headerlink" href="#typedef-isyssemprocess-c-isyssemprocess" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="void-syssemprocesscreate-syssemprocesscreate-struct-p">
+<span id="group-sys-sem-process-itf-1ga519279f6b3c77b36c9c8128b4b19d3d1"></span><h3>void syssemprocesscreate (syssemprocesscreate_struct <a href="#id7"><span class="problematic" id="id8">*</span></a>p)<a class="headerlink" href="#void-syssemprocesscreate-syssemprocesscreate-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssemprocessdelete-syssemprocessdelete-struct-p">
+<span id="group-sys-sem-process-itf-1ga3ac260081ac184636f5492dcd6c54183"></span><h3>void syssemprocessdelete (syssemprocessdelete_struct <a href="#id9"><span class="problematic" id="id10">*</span></a>p)<a class="headerlink" href="#void-syssemprocessdelete-syssemprocessdelete-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssemprocessenter-syssemprocessenter-struct-p">
+<span id="group-sys-sem-process-itf-1ga1ae156dad1956b0dbc393d1572c6c1b8"></span><h3>void syssemprocessenter (syssemprocessenter_struct <a href="#id11"><span class="problematic" id="id12">*</span></a>p)<a class="headerlink" href="#void-syssemprocessenter-syssemprocessenter-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssemprocessleave-syssemprocessleave-struct-p">
+<span id="group-sys-sem-process-itf-1ga5a826a6ec7bf8479b57ad918681a1aa3"></span><h3>void syssemprocessleave (syssemprocessleave_struct <a href="#id13"><span class="problematic" id="id14">*</span></a>p)<a class="headerlink" href="#void-syssemprocessleave-syssemprocessleave-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-syssemprocessosinit-init-struct-pinit">
+<span id="group-sys-sem-process-itf-1gaa4e9171ebcb3b91be97b690e70e7a41e"></span><h3>RTS_RESULT SysSemProcessOSInit (INIT_STRUCT <a href="#id15"><span class="problematic" id="id16">*</span></a>pInit)<a class="headerlink" href="#rts-result-syssemprocessosinit-init-struct-pinit" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-syssemprocessoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">
+<span id="group-sys-sem-process-itf-1ga612d39fa01f1060045fe337c43416e1b"></span><h3>RTS_RESULT SysSemProcessOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)<a class="headerlink" href="#rts-result-syssemprocessoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-handle-syssemprocesscreate-char-pszname-rts-result-presult">
+<span id="group-sys-sem-process-itf-1ga533f9da119219ce77a796206894f8a6d"></span><h3>RTS_HANDLE SysSemProcessCreate (char <a href="#id17"><span class="problematic" id="id18">*</span></a>pszName, RTS_RESULT <a href="#id19"><span class="problematic" id="id20">*</span></a>pResult)<a class="headerlink" href="#rts-handle-syssemprocesscreate-char-pszname-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Create a new semaphore object to synchronize processes (global semaphores)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszName</td>
+<td>Name of the semaphore</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>ERR_OK or ERR_DUPLICATE if semaphore already exists</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the sempahore object</p>
+</div>
+<div class="section" id="rts-result-syssemprocessdelete-rts-handle-hsem">
+<span id="group-sys-sem-process-itf-1ga92704146193898f68e9b8204b3e83ae0"></span><h3>RTS_RESULT SysSemProcessDelete (RTS_HANDLE hSem)<a class="headerlink" href="#rts-result-syssemprocessdelete-rts-handle-hsem" title="Permalink to this headline">¶</a></h3>
+<p>Delete a semaphore object</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="15%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hSem</td>
+<td>Handle to the semaphore</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-syssemprocessenter-rts-handle-hsem-unsigned-long-ultimeoutms">
+<span id="group-sys-sem-process-itf-1ga08f5723d1942f0e7b537e42ae2a7d45d"></span><h3>RTS_RESULT SysSemProcessEnter (RTS_HANDLE hSem, unsigned long ulTimeoutMs)<a class="headerlink" href="#rts-result-syssemprocessenter-rts-handle-hsem-unsigned-long-ultimeoutms" title="Permalink to this headline">¶</a></h3>
+<p>Enter the given semaphore.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="10%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hSem</td>
+<td>Handle to the semaphore</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulTimeoutMs</td>
+<td>Timeout in milliseconds to wait to enter the semaphore or SYSSEMPROCESS_WAIT_INFINITE for an infinite wait.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>ERR_OK or ERR_TIMEOUT if timeout expires before enter the semaphore</p>
+</div>
+<div class="section" id="rts-result-syssemprocessleave-rts-handle-hsem">
+<span id="group-sys-sem-process-itf-1ga255ec899cf363d733ee7b88d87f6c0db"></span><h3>RTS_RESULT SysSemProcessLeave (RTS_HANDLE hSem)<a class="headerlink" href="#rts-result-syssemprocessleave-rts-handle-hsem" title="Permalink to this headline">¶</a></h3>
+<p>Leave the given semaphore.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="15%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hSem</td>
+<td>Handle to the semaphore</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___sys_socket2_itf.html" title="SysSocket2Itf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_sem_itf.html" title="SysSemItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

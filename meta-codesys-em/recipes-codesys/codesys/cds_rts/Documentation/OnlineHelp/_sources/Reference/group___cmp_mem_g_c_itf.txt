@@ -1,0 +1,235 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_mem_g_c_itf:
+
+===========
+CmpMemGCItf
+===========
+
+Interface of CmpMemGC. :ref:`More... <group___cmp_mem_g_c_itf-details>`
+
+Modules
+-------
+
+- :ref:`Garbage collector entry <group___cmp_mem_g_c_itf___garbagecollectorentry>`
+
+- :ref:`OperationID <group___cmp_mem_g_c_itf___operation_i_d>`
+
+- :ref:`Settings <group___cmp_mem_g_c_itf___settings>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpMemGC_C <struct_i_cmp_mem_g_c___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpMemGC <group___cmp_mem_g_c_itf_1ga86582cb442cb37a670fd4df9f4ab0b22>`
+
+- #define :ref:`EXTITF_CmpMemGC <group___cmp_mem_g_c_itf_1ga1ca29b32731c337fbfd423e41765fb23>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpMemGC_C <struct_i_cmp_mem_g_c___c>` :ref:`ICmpMemGC <group___cmp_mem_g_c_itf_1ga26b8df387867906c93d69b4ccbb7bbdc>`
+
+Functions
+---------
+
+- RTS_SIZE :ref:`MemGCGetSize <group___cmp_mem_g_c_itf_1ga1f8bc38e83b27acf0f8edacb5f456b1f>` (RTS_SIZE ulSize)
+
+- RTS_SIZE :ref:`MemGCGetCurrentHeapSize <group___cmp_mem_g_c_itf_1ga60ee1fd135de3c40bb5ae1b197295acc>` (RTS_RESULT * pResult)
+
+- void * :ref:`MemGCAdd <group___cmp_mem_g_c_itf_1ga7ee25cf542d295379942d00adc94f015>` (char * pszComponentName, void * pMem, RTS_SIZE ulSizeGc)
+
+- void * :ref:`MemGCRemove <group___cmp_mem_g_c_itf_1ga06038a7a0fb34476c8a8da8717500de1>` (char * pszComponentName, void * pMem, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`MemGCCheckBoundsAll <group___cmp_mem_g_c_itf_1gaf1c3529d243264089923f6f83617b11c>` (void)
+
+- :ref:`GARBAGE_COLLECTOR <group___cmp_mem_g_c_itf___garbagecollectorentry_1ga4144fc8972d13d1f89489889db6bd7cc>` * :ref:`MemGCFindEntry <group___cmp_mem_g_c_itf_1ga40f046c74edad0a26468c89c443d9a12>` (void * pMem)
+
+- RTS_RESULT :ref:`MemGCGetHead <group___cmp_mem_g_c_itf_1gac6fb18cd1a393fcdabfff4750712a238>` (:ref:`GARBAGE_COLLECTOR <group___cmp_mem_g_c_itf___garbagecollectorentry_1ga4144fc8972d13d1f89489889db6bd7cc>` ** ppHead)
+
+- void * :ref:`MemGCGetMemBlock <group___cmp_mem_g_c_itf_1ga1f449dc8405d0bd1dee31917fae0c526>` (:ref:`GARBAGE_COLLECTOR <group___cmp_mem_g_c_itf___garbagecollectorentry_1ga4144fc8972d13d1f89489889db6bd7cc>` * pGarbage)
+
+.. _group___cmp_mem_g_c_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpMemGC.
+
+Interface of the garbage collector, that detects memory leaks and memory overwrite operations.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_mem_g_c_itf_1ga86582cb442cb37a670fd4df9f4ab0b22:
+
+#define ITF_CmpMemGC
+^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_g_c_itf_1ga1ca29b32731c337fbfd423e41765fb23:
+
+#define EXTITF_CmpMemGC
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_mem_g_c_itf_1ga26b8df387867906c93d69b4ccbb7bbdc:
+
+typedef ICmpMemGC_C ICmpMemGC
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_mem_g_c_itf_1ga1f8bc38e83b27acf0f8edacb5f456b1f:
+
+RTS_SIZE MemGCGetSize (RTS_SIZE ulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to get size of a new heap memblock with garbage collection.
+
+**Parameters**
+
++---------+--------+--------------------------------------------------+
+| [in]    | ulSize | Size of the memory block, that should be checked |
++---------+--------+--------------------------------------------------+
+
+**Returns:**
+
+Number of bytes to allocate included the garbage memory overhead
+
+.. _group___cmp_mem_g_c_itf_1ga60ee1fd135de3c40bb5ae1b197295acc:
+
+RTS_SIZE MemGCGetCurrentHeapSize (RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to get total size of the currently allocated heap memory.
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Returns:**
+
+Size of the memory in bytes that is currently allocated from the heap
+
+.. _group___cmp_mem_g_c_itf_1ga7ee25cf542d295379942d00adc94f015:
+
+void* MemGCAdd (char *pszComponentName, void *pMem, RTS_SIZE ulSizeGc)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to add a new heap memblock to the garbage collector.
+
+**Parameters**
+
++---------+------------------+-------------------------------------------------------------------------------------------------+
+| [in]    | pszComponentName | Component name, that allocates the memory                                                       |
++---------+------------------+-------------------------------------------------------------------------------------------------+
+| [in]    | pMem             | Pointer to the memory block                                                                     |
++---------+------------------+-------------------------------------------------------------------------------------------------+
+| [in]    | ulSizeGc         | Size of the memory block including the garbage collection overhead (see result of MemGCGetSize) |
++---------+------------------+-------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to the memory data block
+
+.. _group___cmp_mem_g_c_itf_1ga06038a7a0fb34476c8a8da8717500de1:
+
+void* MemGCRemove (char *pszComponentName, void *pMem, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to remove a heap memblock from the garbage collector.
+
+**Parameters**
+
++---------+------------------+-------------------------------------------+
+| [in]    | pszComponentName | Component name, that allocates the memory |
++---------+------------------+-------------------------------------------+
+| [in]    | pMem             | Pointer to the memory data block          |
++---------+------------------+-------------------------------------------+
+| [out]   | pResult          | Pointer to error code                     |
++---------+------------------+-------------------------------------------+
+
+**Returns:**
+
+Pointer to the memory block to free
+
+.. _group___cmp_mem_g_c_itf_1gaf1c3529d243264089923f6f83617b11c:
+
+RTS_RESULT MemGCCheckBoundsAll (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to check all registered memory block bounds for overwrite actions.
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_mem_g_c_itf_1ga40f046c74edad0a26468c89c443d9a12:
+
+GARBAGE_COLLECTOR* MemGCFindEntry (void *pMem)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to find original heap memory pointer from garbage collector.
+
+**Parameters**
+
++---------+------+----------------------------------+
+| [in]    | pMem | Pointer to the memory data block |
++---------+------+----------------------------------+
+
+**Returns:**
+
+Pointer to the garabge collector entry
+
+.. _group___cmp_mem_g_c_itf_1gac6fb18cd1a393fcdabfff4750712a238:
+
+RTS_RESULT MemGCGetHead (GARBAGE_COLLECTOR **ppHead)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to get the head node of the garbage collector to check for garbage memory.
+
+**Parameters**
+
++---------+--------+-----------------------------------------------+
+| [in]    | ppHead | Get first entry of the garbage collector list |
++---------+--------+-----------------------------------------------+
+
+**Returns:**
+
+Pointer to the garabge collector entry
+
+.. _group___cmp_mem_g_c_itf_1ga1f449dc8405d0bd1dee31917fae0c526:
+
+void* MemGCGetMemBlock (GARBAGE_COLLECTOR *pGarbage)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to get the pointer to the real memory block.
+
+**Parameters**
+
++---------+----------+-------------------------+
+| [in]    | pGarbage | Garbage collector entry |
++---------+----------+-------------------------+
+
+**Returns:**
+
+Get memory block from the garbage collector entry
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,139 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_target_itf___settings:
+
+========
+Settings
+========
+
+ :ref:`More... <group___sys_target_itf___settings-details>`
+
+Macros
+------
+
+- #define :ref:`SYSTARGETKEY_STRING_GET_NODENAME <group___sys_target_itf___settings_1ga1eb92dca033d4cd2358afde357ab9378>` "NodeName"
+
+- #define :ref:`SYSTARGETKEY_WSTRING_GET_NODENAME_UNICODE <group___sys_target_itf___settings_1gac390f0c49789a612f8a9e81ad3479c4e>` "NodeNameUnicode"
+
+- #define :ref:`SYSTARGETKEY_INT_GET_VERSION <group___sys_target_itf___settings_1ga2b69a129ea08d5a4102bbbb3156d7617>` "TargetVersion"
+
+- #define :ref:`SYSTARGETKEY_WSTRING_GET_DEVICENAME_UNICODE <group___sys_target_itf___settings_1gae018b7d5e407c09308ff50688ae9978d>` "DeviceNameUnicode"
+
+- #define :ref:`SYSTARGETKEY_STRING_GET_DEVICENAME <group___sys_target_itf___settings_1ga9565ded68c14a5addf9130c674fc66d2>` "DeviceName"
+
+- #define :ref:`SYSTARGETKEY_WSTRING_GET_VENDORNAME_UNICODE <group___sys_target_itf___settings_1gaaf84f997af73e61479d5805f6573e2d6>` "VendorNameUnicode"
+
+- #define :ref:`SYSTARGETKEY_STRING_GET_VENDORNAME <group___sys_target_itf___settings_1gafb1dac42301a98a424976dba15b0e24f>` "VendorName"
+
+- #define :ref:`SYSTARGETKEY_INT_TARGET_VERSION_MASK <group___sys_target_itf___settings_1ga093249357abb4c5c65a81d9082511ae9>` "TargetVersionMask"
+
+- #define :ref:`SYSTARGETVALUE_INT_TARGET_VERSION_MASK_DEFAULT <group___sys_target_itf___settings_1gacf4fd975c79a7ea35d51d5872fe33e55>` INT32_C(0xFFFF0000)
+
+- #define :ref:`SYSTARGETKEY_INT_TARGET_VERSION_COMPATIBILITY_MASK <group___sys_target_itf___settings_1ga48f192a5d1d036d2b0dec6dc0a4f9810>` "TargetVersionCompatibilityMask"
+
+- #define :ref:`SYSTARGETVALUE_INT_TARGET_VERSION_COMPATIBILITY_MASK_DEFAULT <group___sys_target_itf___settings_1ga24933cb3eff9c671ec0eaff5808e5e0d>` INT32_C(0xFFFFFF00)
+
+.. _group___sys_target_itf___settings-details:
+
+Detailed Description
+--------------------
+
+
+
+With DeviceID, VendorID, Type, OperatingSystemID and ProcessorID a unique signature is generated to be safe against modifications.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_target_itf___settings_1ga1eb92dca033d4cd2358afde357ab9378:
+
+#define SYSTARGETKEY_STRING_GET_NODENAME "NodeName"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to get the target name. Router name could be used as prefix to specify router specific target informations, e.g.: Router2.NodeName="CoDeSysControl Win"
+
+.. _group___sys_target_itf___settings_1gac390f0c49789a612f8a9e81ad3479c4e:
+
+#define SYSTARGETKEY_WSTRING_GET_NODENAME_UNICODE "NodeNameUnicode"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to get the target name in UTF-16. Router name could be used as prefix to specify router specific target informations, e.g.: Router2.NodeNameUnicode="C\00o\00D\00e\00S\00y\00s\00S\00P\00 \00W\00i\00n\00"
+
+.. _group___sys_target_itf___settings_1ga2b69a129ea08d5a4102bbbb3156d7617:
+
+#define SYSTARGETKEY_INT_GET_VERSION "TargetVersion"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to get the target version. Router name optional as prefix separated by a '.'
+
+.. _group___sys_target_itf___settings_1gae018b7d5e407c09308ff50688ae9978d:
+
+#define SYSTARGETKEY_WSTRING_GET_DEVICENAME_UNICODE "DeviceNameUnicode"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to get the device name in UTF-16. Router name could be used as prefix to specify router specific target informations.
+
+.. _group___sys_target_itf___settings_1ga9565ded68c14a5addf9130c674fc66d2:
+
+#define SYSTARGETKEY_STRING_GET_DEVICENAME "DeviceName"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to get the device name. Router name could be used as prefix to specify router specific target informations.
+
+.. _group___sys_target_itf___settings_1gaaf84f997af73e61479d5805f6573e2d6:
+
+#define SYSTARGETKEY_WSTRING_GET_VENDORNAME_UNICODE "VendorNameUnicode"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to get the vendor name in UTF-16. Router name could be used as prefix to specify router specific target informations.
+
+.. _group___sys_target_itf___settings_1gafb1dac42301a98a424976dba15b0e24f:
+
+#define SYSTARGETKEY_STRING_GET_VENDORNAME "VendorName"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to get the vendor name. Router name could be used as prefix to specify router specific target informations.
+
+.. _group___sys_target_itf___settings_1ga093249357abb4c5c65a81d9082511ae9:
+
+#define SYSTARGETKEY_INT_TARGET_VERSION_MASK "TargetVersionMask"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to specify a mask to check the target version for compatibility with the device description. In the mask only the significant digits are checked.
+
+Example: TargetVersionMask = 0xFFFF0000
+
+1. devdesc = 3.5.1.0 (0x03050100) target = 3.5.2.0 (0x03050200) -> Identifications compatible
+
+2. devdesc = 3.4.3.0 (0x03040300) target = 3.5.2.0 (0x03050200) -> Identifications _not_ compatible
+
+.. _group___sys_target_itf___settings_1gacf4fd975c79a7ea35d51d5872fe33e55:
+
+#define SYSTARGETVALUE_INT_TARGET_VERSION_MASK_DEFAULT INT32_C(0xFFFF0000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_target_itf___settings_1ga48f192a5d1d036d2b0dec6dc0a4f9810:
+
+#define SYSTARGETKEY_INT_TARGET_VERSION_COMPATIBILITY_MASK "TargetVersionCompatibilityMask"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to specify a compatibility mask to check the target version for compatibility with the device description. A device description that is lower or equal the target version is accepted. A higher device description version is denied.
+
+Example: TargetVersionMask = 0xFFFF0000 TargetVersionCompatibilityMask = 0xFFFFFF00
+
+1. devdesc = 3.5.1.0 (0x03050100) target = 3.5.2.0 (0x03050200) -> Identifications compatible
+
+2. devdesc = 3.5.3.0 (0x03050300) target = 3.5.2.0 (0x03050200) -> Identifications _not_ compatible
+
+3. devdesc = 3.4.3.0 (0x03040300) target = 3.5.2.0 (0x03050200) -> Identifications _not_ compatible
+
+.. _group___sys_target_itf___settings_1ga24933cb3eff9c671ec0eaff5808e5e0d:
+
+#define SYSTARGETVALUE_INT_TARGET_VERSION_COMPATIBILITY_MASK_DEFAULT INT32_C(0xFFFFFF00)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,62 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_io_drv_itf___connectoroptions:
+
+=================
+Connector options
+=================
+
+ :ref:`More... <group___cmp_io_drv_itf___connectoroptions-details>`
+
+Macros
+------
+
+- #define :ref:`CO_NONE <group___cmp_io_drv_itf___connectoroptions_1ga6498296d6794ffec1f0e038426992979>` 0x0000
+
+- #define :ref:`CO_SCAN_PENDING_SUPPORTED <group___cmp_io_drv_itf___connectoroptions_1ga20578767cc57bbd318bc09716b6ab228>` 0x0001
+
+- #define :ref:`CO_ALLOWED <group___cmp_io_drv_itf___connectoroptions_1gad2120d4c5a169ea44d5b55990200d68f>` :ref:`CO_SCAN_PENDING_SUPPORTED <group___cmp_io_drv_itf___connectoroptions_1ga20578767cc57bbd318bc09716b6ab228>`
+
+- #define :ref:`CO_OPTIONS_VALID <group___cmp_io_drv_itf___connectoroptions_1ga2ba7e2bf9866c9357302617a8f37487c>` ((options & ~ :ref:`CO_ALLOWED <group___cmp_io_drv_itf___connectoroptions_1gad2120d4c5a169ea44d5b55990200d68f>` )? FALSE : TRUE)
+
+.. _group___cmp_io_drv_itf___connectoroptions-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_io_drv_itf___connectoroptions_1ga6498296d6794ffec1f0e038426992979:
+
+#define CO_NONE 0x0000
+^^^^^^^^^^^^^^^^^^^^^^
+
+Options to specify properties of a connector
+
+.. _group___cmp_io_drv_itf___connectoroptions_1ga20578767cc57bbd318bc09716b6ab228:
+
+#define CO_SCAN_PENDING_SUPPORTED 0x0001
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Scan the IO-configuration with segmented transfer is supported. In this case, the call of :ref:`IoDrvScanModules() <group___cmp_io_drv_itf_1ga5f1ba7a16dc1fa5b8f588f1978a47503>` can return ERR_PENDING to get further calls to transmit more scan results.
+
+.. _group___cmp_io_drv_itf___connectoroptions_1gad2120d4c5a169ea44d5b55990200d68f:
+
+#define CO_ALLOWED :ref:`CO_SCAN_PENDING_SUPPORTED <group___cmp_io_drv_itf___connectoroptions_1ga20578767cc57bbd318bc09716b6ab228>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_drv_itf___connectoroptions_1ga2ba7e2bf9866c9357302617a8f37487c:
+
+#define CO_OPTIONS_VALID ((options & ~ :ref:`CO_ALLOWED <group___cmp_io_drv_itf___connectoroptions_1gad2120d4c5a169ea44d5b55990200d68f>` )? FALSE : TRUE)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

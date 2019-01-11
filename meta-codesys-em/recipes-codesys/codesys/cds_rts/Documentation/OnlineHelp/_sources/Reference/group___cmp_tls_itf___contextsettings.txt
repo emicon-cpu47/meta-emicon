@@ -1,0 +1,137 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_tls_itf___contextsettings:
+
+================
+Context settings
+================
+
+ :ref:`More... <group___cmp_tls_itf___contextsettings-details>`
+
+Macros
+------
+
+- #define :ref:`TLSKEY_INT_CTX_METHOD <group___cmp_tls_itf___contextsettings_1gadbaa44c91cc77a11ad5954808a5154ec>` "Method"
+
+- #define :ref:`TLSVALUE_INT_CTX_METHOD_DEFAULT <group___cmp_tls_itf___contextsettings_1ga52d055a4bd365a182292c59b1a86e6c6>` :ref:`TLS_METHOD_TLSv2_SERVER <group___cmp_tls_itf_1ga4a8a031b3f41d9664b84d04318e37d94>`
+
+- #define :ref:`TLSKEY_STR_CTX_CERT_FILE <group___cmp_tls_itf___contextsettings_1ga72295dbfad7469aa7544caa8d2ab4e16>` "Cert"
+
+- #define :ref:`TLSVALUE_STR_CTX_CERT_FILE_DEFAULT <group___cmp_tls_itf___contextsettings_1ga7cb22e57fa451fc47c7d181cf755b040>` "server.cer"
+
+- #define :ref:`TLSKEY_STR_CTX_PRIVATE_KEY_FILE <group___cmp_tls_itf___contextsettings_1gaf172f5fdbca4ed5bbde45f1e1f237276>` "PrivateKey"
+
+- #define :ref:`TLSVALUE_STR_CTX_PRIVATE_KEY_FILE_DEFAULT <group___cmp_tls_itf___contextsettings_1gae9c6c8ee2063d2144283ad9a858127ae>` "server.key"
+
+- #define :ref:`TLSKEY_INT_CTX_VERIFY_MODE <group___cmp_tls_itf___contextsettings_1gadd3e1c9398cf35faeecaf4de2f33ba58>` "VerifyMode"
+
+- #define :ref:`TLSKEY_STR_CTX_CIPHER_LIST <group___cmp_tls_itf___contextsettings_1ga1a3fdbff9ab73756c4d431c5befb39c6>` "CipherList"
+
+- #define :ref:`TLSVALUE_STR_CTX_CIPHER_LIST_DEFAULT <group___cmp_tls_itf___contextsettings_1gaca744a6deb5c4efc3e4e2d3bd69eaeb8>` "HIGH+ECDH:HIGH+DH"
+
+- #define :ref:`TLSKEY_STR_CTX_DH_PARAMS <group___cmp_tls_itf___contextsettings_1gafc2f7bc9680a2a06a04142930529434d>` "DHParams"
+
+- #define :ref:`TLSVALUE_STR_CTX_DH_PARAMS_DEFAULT <group___cmp_tls_itf___contextsettings_1gae1185f47cbcb0bd1e6c4eb2245b76831>` "dhparams.pem"
+
+.. _group___cmp_tls_itf___contextsettings-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_tls_itf___contextsettings_1gadbaa44c91cc77a11ad5954808a5154ec:
+
+#define TLSKEY_INT_CTX_METHOD "Method"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Protocol version of TLS or SSL connection. Can be set per context. Select out of the following values:
+
+- SSL v2: not available
+
+- SSLv3: client = 1, server = 6
+
+- Auto selection from SSLv3 to TLS1.2: client = 2, server = 7
+
+- TLSv1.1: client = 3, server = 8
+
+- TLSv1.2: client = 4, server = 9 (default)
+
+.. _group___cmp_tls_itf___contextsettings_1ga52d055a4bd365a182292c59b1a86e6c6:
+
+#define TLSVALUE_INT_CTX_METHOD_DEFAULT :ref:`TLS_METHOD_TLSv2_SERVER <group___cmp_tls_itf_1ga4a8a031b3f41d9664b84d04318e37d94>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_tls_itf___contextsettings_1ga72295dbfad7469aa7544caa8d2ab4e16:
+
+#define TLSKEY_STR_CTX_CERT_FILE "Cert"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Certificate for a context. Value is the filename of the certificate inside the PKI/cert folder. Supported filetypes are BASE64 encoding an DER encoding. See the manuel for support in generating a private key and the corresponding certificate. (Default = server.cer)
+
+.. _group___cmp_tls_itf___contextsettings_1ga7cb22e57fa451fc47c7d181cf755b040:
+
+#define TLSVALUE_STR_CTX_CERT_FILE_DEFAULT "server.cer"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_tls_itf___contextsettings_1gaf172f5fdbca4ed5bbde45f1e1f237276:
+
+#define TLSKEY_STR_CTX_PRIVATE_KEY_FILE "PrivateKey"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Private key of the certificate configured with the "Cert" setting. Value is the filename of the private key inside the PKI/private folder. Supported are BASE64 and DER encodings. (Default = sercer.key)
+
+.. _group___cmp_tls_itf___contextsettings_1gae9c6c8ee2063d2144283ad9a858127ae:
+
+#define TLSVALUE_STR_CTX_PRIVATE_KEY_FILE_DEFAULT "server.key"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_tls_itf___contextsettings_1gadd3e1c9398cf35faeecaf4de2f33ba58:
+
+#define TLSKEY_INT_CTX_VERIFY_MODE "VerifyMode"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+How the verification process at connection establishment is managed: Behaves different on client or server side:
+
+- TLS_VERIFY_NONE (1): The peer side certificate is not checked against the local CAs. Default for server side.
+
+- TLS_VERIFY_PEER (2): The peer side certificate is checked against the local CAs. Default on client side
+
+- TLS_VERIFY_FAIL_IF_NO_PEER_CERT (4): Fail the verification of the peer send no cert. Server only. Add value to TLS_VERIFY_PEER
+
+- TLS_VERIFY_CLIENT_ONCE (8): Verify the client on each renegotiation. Server only. Add value to TLS_VERIFY_PEER.
+
+.. _group___cmp_tls_itf___contextsettings_1ga1a3fdbff9ab73756c4d431c5befb39c6:
+
+#define TLSKEY_STR_CTX_CIPHER_LIST "CipherList"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A list of availabe cipher suites for the TLS Context. See notation for cipher selection at: http://www.openssl.org/docs/apps/ciphers.html Default selection uses all cipher suites with DiffieHellman key exchange and strong encryption (HIGH+DH). To support the Microsoft Internet Explorer as client this setting should be set to HIGH. ECDH, ECDSA, ECRSA, IDEA, DES, 3DES, JPAKE, Kerberos 5, MD2, MD5 are not supported
+
+.. _group___cmp_tls_itf___contextsettings_1gaca744a6deb5c4efc3e4e2d3bd69eaeb8:
+
+#define TLSVALUE_STR_CTX_CIPHER_LIST_DEFAULT "HIGH+ECDH:HIGH+DH"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_tls_itf___contextsettings_1gafc2f7bc9680a2a06a04142930529434d:
+
+#define TLSKEY_STR_CTX_DH_PARAMS "DHParams"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Path to a file im pem format containing the diffie hellman parameters used for DH key excange. These parameters are neede for secure Diffie Hellman key exchange. These parameters may be generated on a seperate fast workstation. The generation will take a while. Use the OpenSSL toolkit to generate these parameters. See the manual. The Value is the filename of these parameters in the PKI/private folder.
+
+.. _group___cmp_tls_itf___contextsettings_1gae1185f47cbcb0bd1e6c4eb2245b76831:
+
+#define TLSVALUE_STR_CTX_DH_PARAMS_DEFAULT "dhparams.pem"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

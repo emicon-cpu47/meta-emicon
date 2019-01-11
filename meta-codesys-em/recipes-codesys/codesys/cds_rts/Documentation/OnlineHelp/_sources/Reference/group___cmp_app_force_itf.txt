@@ -1,0 +1,310 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_app_force_itf:
+
+==============
+CmpAppForceItf
+==============
+
+Interface of CmpAppForce. :ref:`More... <group___cmp_app_force_itf-details>`
+
+Modules
+-------
+
+- :ref:`Compiler switch <group___cmp_app_force_itf___compilerswitch>`
+
+- :ref:`Settings <group___cmp_app_force_itf___settings>`
+
+- :ref:`Static defines <group___cmp_app_force_itf___staticdefines>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpAppForce_C <struct_i_cmp_app_force___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpAppForce <group___cmp_app_force_itf_1gafa0024e16afe36a26f75724c26e2364b>`
+
+- #define :ref:`EXTITF_CmpAppForce <group___cmp_app_force_itf_1ga834205acd7224bd87b49706607bb0186>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpAppForce_C <struct_i_cmp_app_force___c>` :ref:`ICmpAppForce <group___cmp_app_force_itf_1ga54a6f1be99f6dfd941411c438523199a>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`AppForceInit <group___cmp_app_force_itf_1gae246c9ef57f3f6559c8412216831bbde>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppForceExit <group___cmp_app_force_itf_1ga1b933ba01700b00a089950b006d298f2>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bShutdown)
+
+- RTS_RESULT :ref:`AppAddForceValue <group___cmp_app_force_itf_1gae57ee365d68d6b09cad4338e1631af03>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`VarDataRef <group___cmp_app_itf_1ga51361a0fdd7ac8b491d32e18f15b5ba2>` * pDataRef, :ref:`VarValue <group___cmp_app_itf_1gabad6f24dff9cb81dfa4a5f0ca92ef522>` * pValue)
+
+- RTS_RESULT :ref:`AppReleaseForceValue <group___cmp_app_force_itf_1ga7c48dc3d1bc8ea87a13e40515febabe6>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`VarDataRef <group___cmp_app_itf_1ga51361a0fdd7ac8b491d32e18f15b5ba2>` * pDataRef, int bRestoreValue)
+
+- :ref:`ForceVarDesc <group___cmp_app_force_itf___settings_1ga177d30545bdc0e439e640466188d23b0>` * :ref:`AppGetFirstForce <group___cmp_app_force_itf_1ga6a1f7cdb9f655ce9ffb204c0cebe4961>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- :ref:`ForceVarDesc <group___cmp_app_force_itf___settings_1ga177d30545bdc0e439e640466188d23b0>` * :ref:`AppGetNextForce <group___cmp_app_force_itf_1ga9e33fd11584189ba5fae6561c5ef257a>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`ForceVarDesc <group___cmp_app_force_itf___settings_1ga177d30545bdc0e439e640466188d23b0>` * pPrevForce, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppReleaseAllForceValues <group___cmp_app_force_itf_1ga6faabff4065941c309e45af74d20285d>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bShutdown)
+
+- RTS_RESULT :ref:`AppLoadPersistentForce <group___cmp_app_force_itf_1ga04743604219f5407c12af22729dfcb79>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppCreatePersistentForce <group___cmp_app_force_itf_1gaf243de2829be678b0b04786bf769046b>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppDeletePersistentForce <group___cmp_app_force_itf_1ga9a0d1804daf655d8cde1e3bb2f379947>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppForceServiceHandler2 <group___cmp_app_force_itf_1gaf09bb31a03c43da06c30bf9645a90956>` (RTS_UI32 ulChannelId, :ref:`HEADER_TAG <struct_h_e_a_d_e_r___t_a_g>` * pHeaderTag, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>` * pduSendBuffer)
+
+.. _group___cmp_app_force_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpAppForce.
+
+This is the interface of the IEC application manager to handle forcing variables.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_app_force_itf_1gafa0024e16afe36a26f75724c26e2364b:
+
+#define ITF_CmpAppForce
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_force_itf_1ga834205acd7224bd87b49706607bb0186:
+
+#define EXTITF_CmpAppForce
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_app_force_itf_1ga54a6f1be99f6dfd941411c438523199a:
+
+typedef ICmpAppForce_C ICmpAppForce
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_app_force_itf_1gae246c9ef57f3f6559c8412216831bbde:
+
+RTS_RESULT AppForceInit (APPLICATION *pApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Init force list on the specified application
+
+**Parameters**
+
++---------+------+--------------------------------------------------+
+| [in]    | pApp | Pointer to the specified application description |
++---------+------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_force_itf_1ga1b933ba01700b00a089950b006d298f2:
+
+RTS_RESULT AppForceExit (APPLICATION *pApp, int bShutdown)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Exit force list on the specified application
+
+**Parameters**
+
++---------+------+--------------------------------------------------+
+| [in]    | pApp | Pointer to the specified application description |
++---------+------+--------------------------------------------------+
+
+**Returns:**
+
+error code 1=Runtime exits the application and so the force during shutdown, 0=else
+
+.. _group___cmp_app_force_itf_1gae57ee365d68d6b09cad4338e1631af03:
+
+RTS_RESULT AppAddForceValue (APPLICATION *pApp, VarDataRef *pDataRef, VarValue *pValue)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add a new force value, that is forced in every task of the application
+
+**Parameters**
+
++---------+----------+----------------------------------------------------------+
+| [in]    | pApp     | Pointer to the specified application description         |
++---------+----------+----------------------------------------------------------+
+| [in]    | pDataRef | Pointer to decription of the force variable              |
++---------+----------+----------------------------------------------------------+
+| [in]    | pValue   | Pointer to value of the force variable that will be hold |
++---------+----------+----------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_force_itf_1ga7c48dc3d1bc8ea87a13e40515febabe6:
+
+RTS_RESULT AppReleaseForceValue (APPLICATION *pApp, VarDataRef *pDataRef, int bRestoreValue)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove a single force value
+
+**Parameters**
+
++---------+---------------+-----------------------------------------------------------------------------+
+| [in]    | pApp          | Pointer to the specified application description                            |
++---------+---------------+-----------------------------------------------------------------------------+
+| [in]    | pDataRef      | Pointer to decription of the force variable                                 |
++---------+---------------+-----------------------------------------------------------------------------+
+| [in]    | bRestoreValue | 1=Restore old value before force. 0=Actual force value will not be modified |
++---------+---------------+-----------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_force_itf_1ga6a1f7cdb9f655ce9ffb204c0cebe4961:
+
+ForceVarDesc* AppGetFirstForce (APPLICATION *pApp, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get first force entry
+
+**Parameters**
+
++---------+---------+--------------------------------------------------+
+| [in]    | pApp    | Pointer to the specified application description |
++---------+---------+--------------------------------------------------+
+| [out]   | pResult | Pointer to error code                            |
++---------+---------+--------------------------------------------------+
+
+**Returns:**
+
+Pointer to force value
+
+.. _group___cmp_app_force_itf_1ga9e33fd11584189ba5fae6561c5ef257a:
+
+ForceVarDesc* AppGetNextForce (APPLICATION *pApp, ForceVarDesc *pPrevForce, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get next force entry
+
+**Parameters**
+
++---------+------------+--------------------------------------------------+
+| [in]    | pApp       | Pointer to the specified application description |
++---------+------------+--------------------------------------------------+
+| [in]    | pPrevForce | Pointer to previous force entry                  |
++---------+------------+--------------------------------------------------+
+| [out]   | pResult    | Pointer to error code                            |
++---------+------------+--------------------------------------------------+
+
+**Returns:**
+
+Pointer to force value
+
+.. _group___cmp_app_force_itf_1ga6faabff4065941c309e45af74d20285d:
+
+RTS_RESULT AppReleaseAllForceValues (APPLICATION *pApp, int bShutdown)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Release all force values of the specified application
+
+**Parameters**
+
++---------+------+--------------------------------------------------+
+| [in]    | pApp | Pointer to the specified application description |
++---------+------+--------------------------------------------------+
+
+**Returns:**
+
+error code 1=Runtime exits the application and so the force during shutdown, 0=else
+
+.. _group___cmp_app_force_itf_1ga04743604219f5407c12af22729dfcb79:
+
+RTS_RESULT AppLoadPersistentForce (APPLICATION *pApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Load persistent force list, if available
+
+**Parameters**
+
++---------+------+--------------------------------------------------+
+| [in]    | pApp | Pointer to the specified application description |
++---------+------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_force_itf_1gaf243de2829be678b0b04786bf769046b:
+
+RTS_RESULT AppCreatePersistentForce (APPLICATION *pApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create persistent force list. This is used to force values right after a reboot of the controller
+
+**Parameters**
+
++---------+------+--------------------------------------------------+
+| [in]    | pApp | Pointer to the specified application description |
++---------+------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_force_itf_1ga9a0d1804daf655d8cde1e3bb2f379947:
+
+RTS_RESULT AppDeletePersistentForce (APPLICATION *pApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete persistent force list of the specified application
+
+**Parameters**
+
++---------+------+--------------------------------------------------+
+| [in]    | pApp | Pointer to the specified application description |
++---------+------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_force_itf_1gaf09bb31a03c43da06c30bf9645a90956:
+
+RTS_RESULT AppForceServiceHandler2 (RTS_UI32 ulChannelId, HEADER_TAG *pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT *pduSendBuffer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Handler for all force services
+
+**Parameters**
+
++---------+---------------+----------------------------------------+
+| [in]    | ulChannelId   | ChannelID of the communication channel |
++---------+---------------+----------------------------------------+
+| [in]    | pHeaderTag    | Pointer to the service header          |
++---------+---------------+----------------------------------------+
+| [in]    | pduData       | Data unit of the received service      |
++---------+---------------+----------------------------------------+
+| [in]    | pduSendBuffer | Data unit for the service reply        |
++---------+---------------+----------------------------------------+
+
+**Returns:**
+
+Error code: *ERR_OK: Service could be executed successfully. *ERR_NOT_SUPPORTED: Service is not supported *ERR_FAILED: Error during executing service
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,378 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_file_transfer_itf:
+
+==================
+CmpFileTransferItf
+==================
+
+Interface of CmpFileTransfer. :ref:`More... <group___cmp_file_transfer_itf-details>`
+
+Modules
+-------
+
+- :ref:`Alloc types <group___cmp_file_transfer_itf___alloctypes>`
+
+- :ref:`Directory extra info flags <group___cmp_file_transfer_itf___directoryextrainfoflags>`
+
+- :ref:`Event parameter <group___cmp_file_transfer_itf___eventparameter>`
+
+- :ref:`Events <group___cmp_file_transfer_itf___events>`
+
+- :ref:`Online reply tags <group___cmp_file_transfer_itf___onlinereplytags>`
+
+- :ref:`Online services <group___cmp_file_transfer_itf___onlineservices>`
+
+- :ref:`Operations <group___cmp_file_transfer_itf___operations>`
+
+- :ref:`Settings <group___cmp_file_transfer_itf___settings>`
+
+- :ref:`Static defines <group___cmp_file_transfer_itf___staticdefines>`
+
+- :ref:`Transfer types <group___cmp_file_transfer_itf___transfertypes>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpFileTransfer_C <struct_i_cmp_file_transfer___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpFileTransfer <group___cmp_file_transfer_itf_1gaa6fd8c6cd6cae162c56e6e15a0294f94>`
+
+- #define :ref:`EXTITF_CmpFileTransfer <group___cmp_file_transfer_itf_1gaa2e4fae0353a348adb0418c684cb38f9>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpFileTransfer_C <struct_i_cmp_file_transfer___c>` :ref:`ICmpFileTransfer <group___cmp_file_transfer_itf_1gad61a0cf3ab5449c5625f484b7e901e0b>`
+
+Functions
+---------
+
+- RTS_HANDLE :ref:`FileTransferStartDownload <group___cmp_file_transfer_itf_1ga033232f2c1e9dbb5049eb02c521facb0>` (char * pszFileName, :ref:`FileInfo <struct_file_info>` * pInfo, RTS_UI32 ulSessionId, int bRestart, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`FileTransferDownload <group___cmp_file_transfer_itf_1gafc8613776f70c2cd74aabb258b2936c9>` (RTS_HANDLE hFiletransfer, unsigned char * pbyData, RTS_SIZE ulLen)
+
+- RTS_RESULT :ref:`FileTransferEndDownload <group___cmp_file_transfer_itf_1gad16b2093d83869160c91a7d69c51b754>` (RTS_HANDLE hFiletransfer)
+
+- RTS_HANDLE :ref:`FileTransferStartUpload <group___cmp_file_transfer_itf_1ga2f591dc06306a175c365b8b18e767c87>` (char * pszFileName, :ref:`FileInfo <struct_file_info>` * pInfo, RTS_UI32 ulSessionId, int bRestart, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`FileTransferUpload <group___cmp_file_transfer_itf_1gaafd30cdeda57f080741ff6b7a22e0913>` (RTS_HANDLE hFiletransfer, unsigned char * pbyData, RTS_SIZE * pulMaxLen)
+
+- RTS_RESULT :ref:`FileTransferEndUpload <group___cmp_file_transfer_itf_1gab29e3301bfe625801c1451f44095f5df>` (RTS_HANDLE hFiletransfer, :ref:`FileInfo <struct_file_info>` * pFileInfo)
+
+- RTS_RESULT :ref:`FileTransferClose <group___cmp_file_transfer_itf_1gad76ee122b3aa1f0af7cfa83261f03c32>` (RTS_HANDLE hFiletransfer)
+
+- RTS_RESULT :ref:`FileTransferCancel <group___cmp_file_transfer_itf_1gaaec88ac066c46f76af94133132700d3d>` (RTS_HANDLE hFiletransfer)
+
+- RTS_RESULT :ref:`FileTransferCancelAll <group___cmp_file_transfer_itf_1gabe46ab9ea202570ffc490665f3304b6b>` (RTS_UI32 ulSessionId)
+
+- RTS_RESULT :ref:`FileTransferGetInfo <group___cmp_file_transfer_itf_1ga3827395bddf269d24db01c27aacc6e4c>` (char * pszFileName, :ref:`FileInfo <struct_file_info>` * pInfo, :ref:`FileInfo <struct_file_info>` * pInfoClient)
+
+- RTS_SIZE :ref:`FileTransferToTransmit <group___cmp_file_transfer_itf_1gab35a43fdc2969d65a16755aa9d5acd22>` (RTS_HANDLE hFiletransfer, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`FileTransferSafeSignature <group___cmp_file_transfer_itf_1ga7eabb283118b8fea8b26f4d6a8e90a05>` (char * pszFileName, RTS_UI32 ulCRC32)
+
+- RTS_RESULT :ref:`FileTransferGetSafedSignature <group___cmp_file_transfer_itf_1gad81ea0a57efbfa1bbfb6da3dfbda9c24>` (char * pszFileName, RTS_UI32 * pulCRC32)
+
+.. _group___cmp_file_transfer_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpFileTransfer.
+
+This interface is specified for the file transfer component, to enable the transmission of files from and to the runtime system, to browse the directories online on the target and to handle directories (create, delete, rename).
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_file_transfer_itf_1gaa6fd8c6cd6cae162c56e6e15a0294f94:
+
+#define ITF_CmpFileTransfer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_file_transfer_itf_1gaa2e4fae0353a348adb0418c684cb38f9:
+
+#define EXTITF_CmpFileTransfer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_file_transfer_itf_1gad61a0cf3ab5449c5625f484b7e901e0b:
+
+typedef ICmpFileTransfer_C ICmpFileTransfer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_file_transfer_itf_1ga033232f2c1e9dbb5049eb02c521facb0:
+
+RTS_HANDLE FileTransferStartDownload (char *pszFileName, FileInfo *pInfo, RTS_UI32 ulSessionId, int bRestart, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creates a file transfer download object to transfer a file from client to target
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------------------------+
+| [in]    | pszFileName | File name (can have a file path)                                                         |
++---------+-------------+------------------------------------------------------------------------------------------+
+| [in]    | pInfo       | File info of the file to be transmitted from the client                                  |
++---------+-------------+------------------------------------------------------------------------------------------+
+| [in]    | ulSessionId | SessionId (can be the channelid) of the transfer                                         |
++---------+-------------+------------------------------------------------------------------------------------------+
+| [in]    | bRestart    | 1: the file transfer will be continued, 0: start of the file transfer from the beginning |
++---------+-------------+------------------------------------------------------------------------------------------+
+| [out]   | pResult     | Pointer to error code                                                                    |
++---------+-------------+------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the file transfer object
+
+.. _group___cmp_file_transfer_itf_1gafc8613776f70c2cd74aabb258b2936c9:
+
+RTS_RESULT FileTransferDownload (RTS_HANDLE hFiletransfer, unsigned char *pbyData, RTS_SIZE ulLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Transfer file data to the target
+
+**Parameters**
+
++---------+---------------+------------------------------------+
+| [in]    | hFiletransfer | Handle to the file transfer object |
++---------+---------------+------------------------------------+
+| [in]    | pbyData       | Data to transfer into the file     |
++---------+---------------+------------------------------------+
+| [in]    | ulLen         | Number of bytes to transfer        |
++---------+---------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_file_transfer_itf_1gad16b2093d83869160c91a7d69c51b754:
+
+RTS_RESULT FileTransferEndDownload (RTS_HANDLE hFiletransfer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Finish file transfer download
+
+**Parameters**
+
++---------+---------------+------------------------------------+
+| [in]    | hFiletransfer | Handle to the file transfer object |
++---------+---------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_file_transfer_itf_1ga2f591dc06306a175c365b8b18e767c87:
+
+RTS_HANDLE FileTransferStartUpload (char *pszFileName, FileInfo *pInfo, RTS_UI32 ulSessionId, int bRestart, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creates a file transfer upload object to transfer a file from target to client
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------------------------+
+| [in]    | pszFileName | File name (can have a file path)                                                         |
++---------+-------------+------------------------------------------------------------------------------------------+
+| [in]    | pInfo       | File info of the file to be transmitted to the client                                    |
++---------+-------------+------------------------------------------------------------------------------------------+
+| [in]    | ulSessionId | SessionId (can be the channelid) of the transfer                                         |
++---------+-------------+------------------------------------------------------------------------------------------+
+| [in]    | bRestart    | 1: the file transfer will be continued, 0: start of the file transfer from the beginning |
++---------+-------------+------------------------------------------------------------------------------------------+
+| [out]   | pResult     | Pointer to error code                                                                    |
++---------+-------------+------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the file transfer object
+
+.. _group___cmp_file_transfer_itf_1gaafd30cdeda57f080741ff6b7a22e0913:
+
+RTS_RESULT FileTransferUpload (RTS_HANDLE hFiletransfer, unsigned char *pbyData, RTS_SIZE *pulMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Transfer file data to the client
+
+**Parameters**
+
++---------+---------------+---------------------------------------------------------------------------+
+| [in]    | hFiletransfer | Handle to the file transfer object                                        |
++---------+---------------+---------------------------------------------------------------------------+
+| [in]    | pbyData       | Data to transfer from the file                                            |
++---------+---------------+---------------------------------------------------------------------------+
+| [inout] | pulMaxLen     | Number of bytes to transfer, returns the real number of transferred bytes |
++---------+---------------+---------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_file_transfer_itf_1gab29e3301bfe625801c1451f44095f5df:
+
+RTS_RESULT FileTransferEndUpload (RTS_HANDLE hFiletransfer, FileInfo *pFileInfo)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Finish file transfer upload
+
+**Parameters**
+
++---------+---------------+------------------------------------------------------------------------------------------------------+
+| [in]    | hFiletransfer | Handle to the file transfer object                                                                   |
++---------+---------------+------------------------------------------------------------------------------------------------------+
+| [out]   | pFileInfo     | Returns the file info of the uploaded file. Can be used to check the consistence on the upload side. |
++---------+---------------+------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_file_transfer_itf_1gad76ee122b3aa1f0af7cfa83261f03c32:
+
+RTS_RESULT FileTransferClose (RTS_HANDLE hFiletransfer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Close a file transfer
+
+**Parameters**
+
++---------+---------------+------------------------------------+
+| [in]    | hFiletransfer | Handle to the file transfer object |
++---------+---------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_file_transfer_itf_1gaaec88ac066c46f76af94133132700d3d:
+
+RTS_RESULT FileTransferCancel (RTS_HANDLE hFiletransfer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Cancel and abort a file transfer
+
+**Parameters**
+
++---------+---------------+------------------------------------+
+| [in]    | hFiletransfer | Handle to the file transfer object |
++---------+---------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_file_transfer_itf_1gabe46ab9ea202570ffc490665f3304b6b:
+
+RTS_RESULT FileTransferCancelAll (RTS_UI32 ulSessionId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Cancel and abort all file transfers on the specified sessionid (channelid)
+
+**Parameters**
+
++---------+---------------+------------------------------------+
+| [in]    | hFiletransfer | Handle to the file transfer object |
++---------+---------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_file_transfer_itf_1ga3827395bddf269d24db01c27aacc6e4c:
+
+RTS_RESULT FileTransferGetInfo (char *pszFileName, FileInfo *pInfo, FileInfo *pInfoClient)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get file infos from target and client
+
+**Parameters**
+
++---------+-------------+-------------------------------------+
+| [in]    | pszFileName | File name (can have a file path)    |
++---------+-------------+-------------------------------------+
+| [out]   | pInfo       | File info of the file in the target |
++---------+-------------+-------------------------------------+
+| [in]    | pInfoClient | File info of the file at the client |
++---------+-------------+-------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_file_transfer_itf_1gab35a43fdc2969d65a16755aa9d5acd22:
+
+RTS_SIZE FileTransferToTransmit (RTS_HANDLE hFiletransfer, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get number of bytes to transmit
+
+**Parameters**
+
++---------+---------------+------------------------------------+
+| [in]    | hFiletransfer | Handle to the file transfer object |
++---------+---------------+------------------------------------+
+| [out]   | pResult       | Pointer to error code              |
++---------+---------------+------------------------------------+
+
+**Returns:**
+
+Number of bytes to transmit
+
+.. _group___cmp_file_transfer_itf_1ga7eabb283118b8fea8b26f4d6a8e90a05:
+
+RTS_RESULT FileTransferSafeSignature (char *pszFileName, RTS_UI32 ulCRC32)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Safe signature of a specified file to check consistency
+
+**Parameters**
+
++---------+-------------+----------------------------------+
+| [in]    | pszFileName | File name (can have a file path) |
++---------+-------------+----------------------------------+
+| [in]    | ulCRC32     | CRC32 of the file                |
++---------+-------------+----------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_file_transfer_itf_1gad81ea0a57efbfa1bbfb6da3dfbda9c24:
+
+RTS_RESULT FileTransferGetSafedSignature (char *pszFileName, RTS_UI32 *pulCRC32)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get safed signature of a specified file to check consistency
+
+**Parameters**
+
++---------+-------------+----------------------------------+
+| [in]    | pszFileName | File name (can have a file path) |
++---------+-------------+----------------------------------+
+| [out]   | pulCRC32    | Pointer to get CRC32 of the file |
++---------+-------------+----------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

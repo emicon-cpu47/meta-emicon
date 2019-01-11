@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceDescription xmlns="http://www.3s-software.com/schemas/DeviceDescription-1.0.xsd" xmlns:ts="http://www.3s-software.com/schemas/TargetSettings-0.1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Types namespace="localTypes">
+		<!-- example for bitfield -->
+		<BitfieldType basetype="std:BYTE" name="TBYTE">
+			<Component identifier="Bit0" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:">Bit0</VisibleName>
+			</Component>
+			<Component identifier="Bit1" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:">Bit1</VisibleName>
+			</Component>
+			<Component identifier="Bit2" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:">Bit2</VisibleName>
+			</Component>
+			<Component identifier="Bit3" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:">Bit3</VisibleName>
+			</Component>
+			<Component identifier="Bit4" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:">Bit4</VisibleName>
+			</Component>
+			<Component identifier="Bit5" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:">Bit5</VisibleName>
+			</Component>
+			<Component identifier="Bit6" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:">Bit6</VisibleName>
+			</Component>
+			<Component identifier="Bit7" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:">Bit7</VisibleName>
+			</Component>
+		</BitfieldType>
+	</Types>
+	<Strings namespace="local">
+		<Language lang="en">
+			<String identifier="ModelName">MyCard_IecDriver</String>
+			<String identifier="DeviceDescription"></String>
+			<String identifier="VendorName">MyCompany</String>
+			<String identifier="typename">MyDevice_With_Lib</String>
+			<String identifier="typedescription">
+		A device that includes libs and automatically generates some FB instances from this libs.
+			</String>
+		</Language>
+	</Strings>
+	<Device hideInCatalogue="false">
+		<DeviceIdentification>
+			<Type>40100</Type>
+			<Id>1001 0007</Id>
+			<Version>3.5.11.0</Version>
+		</DeviceIdentification>
+		<DeviceInfo>
+			<Name name="local:ModelName">MyCard_IecDriver</Name>
+			<Description name="local:DeviceDescription">MyDescription</Description>
+			<Vendor name="local:VendorName">MyCompany</Vendor>
+			<OrderNumber>???</OrderNumber>
+		</DeviceInfo>
+		<Connector moduleType="257" interface="Common.PCI" role="child" explicit="false" connectorId="1" hostpath="-1">
+			<InterfaceName name="local:PCI">PCI-Bus</InterfaceName>
+			<Slot count="1" allowEmpty="false"></Slot>
+		</Connector>
+		<Connector moduleType="40100" interface="MyCompany:Internal" role="parent" explicit="false" connectorId="2" hostpath="1">
+			<InterfaceName name="local:DP">Internal</InterfaceName>
+			<Var max="125" ></Var>
+			<HostParameterSet>
+				<Parameter ParameterId="393218" type="std:STRING">
+					<Attributes channel="none" download="true" functional="false" offlineaccess="write" onlineaccess="read" />
+					<Default>'MyCompany'</Default>
+					<Name name="local:Id393218">Vendor</Name>
+					<Description name="local:Id393218.Desc">Vendor of the device</Description>
+				</Parameter>
+				<Parameter ParameterId="393219" type="std:STRING">
+					<Attributes channel="none" download="true" functional="false" offlineaccess="write" onlineaccess="read" />
+					<Default>'MyCard'</Default>
+					<Name name="local:Id393219">ModelName</Name>
+					<Description name="local:Id393219.Desc">Model name of the device</Description>
+				</Parameter>
+				<Parameter ParameterId="1000" type="std:DWORD">
+					<Attributes channel="input"/>
+					<Default>17</Default>
+					<Name name="local:in1">in1</Name>
+				</Parameter>
+				<Parameter ParameterId="1001" type="localTypes:TBYTE">
+					<Attributes channel="input"/>
+					<Default/>					
+					<Name name="local:in2">in2</Name>
+				</Parameter>
+				<Parameter ParameterId="2000" type="std:DWORD">
+					<Attributes channel="output"/>
+					<Default>17</Default>
+					<Name name="local:out1">out1</Name>
+				</Parameter>
+				<Parameter ParameterId="2001" type="localTypes:TBYTE">
+					<Attributes channel="output"/>
+					<Default/>
+					<Name name="local:out2">out2</Name>
+				</Parameter>
+				<Parameter ParameterId="393220" type="std:DWORD">
+					<Attributes channel="none" download="true" functional="false" offlineaccess="read" onlineaccess="read" />
+					<Default>5678</Default>
+					<Name name="local:Id393220">ReadOnlyDwordParameter</Name>
+					<Description name="local:Id393220.Desc">ReadOnly Test parameter</Description>
+				</Parameter>
+				<Parameter ParameterId="393221" type="std:BOOL">
+					<Attributes channel="none" download="true" functional="false" offlineaccess="readwrite" onlineaccess="readwrite" />
+					<Default>FALSE</Default>
+					<Name name="local:Id393221">TriggerDiagnosis</Name>
+					<Description name="local:Id393221.Desc">Set TRUE to trigger diagnosis</Description>
+				</Parameter>
+				<Parameter ParameterId="393222" type="std:BYTE">
+					<Attributes channel="none" download="true" functional="false" offlineaccess="readwrite" onlineaccess="readwrite" />
+					<Default>222</Default>
+					<Name name="local:Id393222">ByteParameter</Name>
+					<Description name="local:Id393222.Desc">Test parameter 1</Description>
+				</Parameter>
+				<Parameter ParameterId="393223" type="std:STRING">
+					<Attributes channel="none" download="true" functional="false" offlineaccess="readwrite" onlineaccess="readwrite" />
+					<Default>'Hallo'</Default>
+					<Name name="local:Id393223">StringParameter</Name>
+					<Description name="local:Id393223.Desc">Test parameter 2</Description>
+				</Parameter>
+				<Parameter ParameterId="4711" type="std:STRING">
+					<Attributes channel="diag" download="true" functional="false" offlineaccess="read" onlineaccess="read" />
+					<Default>''</Default>
+					<Name name="local:Id4711">Diagnosis Message:</Name>
+					<Description name="local:Id4711.Desc"></Description>
+				</Parameter>
+				<Parameter ParameterId="4712" type="std:BOOL">
+					<Attributes channel="diagAck" download="true" functional="false" offlineaccess="read" onlineaccess="readwrite" />
+					<Default>0</Default>
+					<Name name="local:Id4712">DiagAcknowledge</Name>
+					<Description name="local:Id4712.Desc">Extended diagnostic information acknowledge</Description>
+				</Parameter>
+			</HostParameterSet>
+			<DriverInfo needsBusCycle="true">
+				<RequiredLib libname="IoDrvTemplate" placeholderlib="IoDrvTemplate" vendor="MyCompany" version="*" identifier="IoDrvTemplate">
+					<FBInstance basename="$(DeviceName)" fbname="IoDrvTemplate" fbnamediag="IoDrvTemplateDiag">
+						<Initialize methodName="Initialize"/>
+					</FBInstance>
+				</RequiredLib>
+				<Scan supported="true"/>
+			</DriverInfo>
+		</Connector>
+		<ExtendedSettings>
+			<ts:TargetSettings>
+				<ts:section name="deviceconfiguration">
+					<ts:setting name="createBitChannels" type="boolean" access="visible">
+						<ts:value>1</ts:value>
+					</ts:setting>
+				</ts:section>
+				<ts:section name="library-management">
+					<ts:section name="placeholder-libraries">
+						<ts:setting name="IoDrvTemplate" type="string" access="visible">
+							<ts:value>IoDrvTemplate, 3.5.11.0 (MyCompany)</ts:value> <!-- Note: Normally this is defined in PLC devdesc! It's only included here to use a default PLC Win Control where placeholder is missing -->
+						</ts:setting>
+					</ts:section>
+				</ts:section>
+			</ts:TargetSettings>
+		</ExtendedSettings>
+		<CompatibleVersions>
+			<Version>3.5.*.*</Version>
+		</CompatibleVersions>
+	</Device>
+</DeviceDescription>

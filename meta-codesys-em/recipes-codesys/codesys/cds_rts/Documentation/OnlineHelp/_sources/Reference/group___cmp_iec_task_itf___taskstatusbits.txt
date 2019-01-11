@@ -1,0 +1,321 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_iec_task_itf___taskstatusbits:
+
+================
+Task status bits
+================
+
+ :ref:`More... <group___cmp_iec_task_itf___taskstatusbits-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`SlotPOU <struct_slot_p_o_u>`
+
+Macros
+------
+
+- #define :ref:`TF_WATCHDOG_ENABLE <group___cmp_iec_task_itf___taskstatusbits_1gae5a7ef98e6c5d531e4b48201c4bbc905>` 6
+
+- #define :ref:`TF_DISABLE_TASK_TIME <group___cmp_iec_task_itf___taskstatusbits_1ga7821fc0b6711662b2f5e608640f66fdb>` 7
+
+- #define :ref:`TF_ACTIVATED <group___cmp_iec_task_itf___taskstatusbits_1ga1a38b6a114d7fe33e8764e8b7d507e2e>` 8
+
+- #define :ref:`TF_TOACTIVATE <group___cmp_iec_task_itf___taskstatusbits_1gabb338450cea63657abae8bb4adf06b56>` 9
+
+- #define :ref:`TF_STOP <group___cmp_iec_task_itf___taskstatusbits_1ga641bf582cde86870bcdcc99fcc3e6088>` 10
+
+- #define :ref:`TF_HALT_ON_BP <group___cmp_iec_task_itf___taskstatusbits_1ga5c193893801c3db62ba46464348b8e56>` 11
+
+- #define :ref:`TF_SINGLE_CYCLE <group___cmp_iec_task_itf___taskstatusbits_1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93>` 12
+
+- #define :ref:`TF_WATCHDOG_ENABLE2 <group___cmp_iec_task_itf___taskstatusbits_1ga8d68b82a4e5f1bc8cef62a3e32535464>` 13
+
+- #define :ref:`IsWatchdogEnabled <group___cmp_iec_task_itf___taskstatusbits_1gadea9d121efb11bd903e18c91dc384e93>` ((pTask->iState & :ref:`TS_WATCHDOG_ENABLE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga38e4cf07b43b804adde5a3c6e2bd6613>` ) && (pTask->iState & :ref:`TS_WATCHDOG_ENABLE2 <group___cmp_iec_task_itf___taskstatusdefinitions_1ga45f3c424cfb2be2ce4da954d68dfd656>` ))
+
+- #define :ref:`IsTaskTimeEnabled <group___cmp_iec_task_itf___taskstatusbits_1ga7d7baba98475a65751ddd4b8aff1040d>` ((pTask->iState & :ref:`TS_DISABLE_TASK_TIME <group___cmp_iec_task_itf___taskstatusdefinitions_1ga6a3591af21dc58e929de048abecbaf9a>` ) == 0)
+
+- #define :ref:`IsActivated <group___cmp_iec_task_itf___taskstatusbits_1ga522b5cb1d5a150992977470ab32a3d2b>` (pTask->iState & :ref:`TS_ACTIVATED <group___cmp_iec_task_itf___taskstatusdefinitions_1ga7a04046244803fb540bf76ac471c6fa0>` )
+
+- #define :ref:`ToActivate <group___cmp_iec_task_itf___taskstatusbits_1ga2d6ae19f6e4ce48b611053aacbbf23b8>` (pTask->iState & :ref:`TS_TOACTIVATE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga3b83ae99a133b548fde9a424f9946fd3>` )
+
+- #define :ref:`IsStopped <group___cmp_iec_task_itf___taskstatusbits_1ga924d83747bf443e0fb4b390c408254dc>` (pTask->iState & :ref:`TS_STOP <group___cmp_iec_task_itf___taskstatusdefinitions_1gacf55d2174435d56f966bdfa647fe6d3e>` )
+
+- #define :ref:`IsHaltOnBreakpoint <group___cmp_iec_task_itf___taskstatusbits_1ga31592be6b9fdd014330af00a2e7098d6>` (pTask->iState & :ref:`TS_HALT_ON_BP <group___cmp_iec_task_itf___taskstatusdefinitions_1gaa7e54955c09fd86561493f5680a4cb10>` )
+
+- #define :ref:`IsSingleCycle <group___cmp_iec_task_itf___taskstatusbits_1ga371e36b3ee7113fa0bbbcc174c044bdb>` (pTask->iState & :ref:`TS_SINGLE_CYCLE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga7ed16770704181e098355f88655b7161>` )
+
+- #define :ref:`SetWatchdogEnabled <group___cmp_iec_task_itf___taskstatusbits_1ga5d509e84b3a90ee712ca99def1e288df>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_WATCHDOG_ENABLE <group___cmp_iec_task_itf___taskstatusbits_1gae5a7ef98e6c5d531e4b48201c4bbc905>` , 1)
+
+- #define :ref:`SetWatchdogDisabled <group___cmp_iec_task_itf___taskstatusbits_1gaecf2dd2fc102840ca9fe390c2714c766>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_WATCHDOG_ENABLE <group___cmp_iec_task_itf___taskstatusbits_1gae5a7ef98e6c5d531e4b48201c4bbc905>` , 0)
+
+- #define :ref:`SetWatchdogEnabled2 <group___cmp_iec_task_itf___taskstatusbits_1gac009ed490336b679fcec69cc9b18bf4d>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_WATCHDOG_ENABLE2 <group___cmp_iec_task_itf___taskstatusbits_1ga8d68b82a4e5f1bc8cef62a3e32535464>` , 1)
+
+- #define :ref:`SetWatchdogDisabled2 <group___cmp_iec_task_itf___taskstatusbits_1gaf47f248bd7724c0a4b2c04c319c989f5>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_WATCHDOG_ENABLE2 <group___cmp_iec_task_itf___taskstatusbits_1ga8d68b82a4e5f1bc8cef62a3e32535464>` , 0)
+
+- #define :ref:`SetTaskTimeDisabled <group___cmp_iec_task_itf___taskstatusbits_1ga4993d13e681ff3059be9a0a93258bc55>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_DISABLE_TASK_TIME <group___cmp_iec_task_itf___taskstatusbits_1ga7821fc0b6711662b2f5e608640f66fdb>` , 1)
+
+- #define :ref:`SetTaskTimeEnabled <group___cmp_iec_task_itf___taskstatusbits_1ga848503e77256f8933d56d5113c3f04eb>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_DISABLE_TASK_TIME <group___cmp_iec_task_itf___taskstatusbits_1ga7821fc0b6711662b2f5e608640f66fdb>` , 0)
+
+- #define :ref:`SetActivated <group___cmp_iec_task_itf___taskstatusbits_1gad949de33eda0b32eeabf8b0f1fc9fd03>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_ACTIVATED <group___cmp_iec_task_itf___taskstatusbits_1ga1a38b6a114d7fe33e8764e8b7d507e2e>` , 1)
+
+- #define :ref:`ResetActivated <group___cmp_iec_task_itf___taskstatusbits_1ga1c2dd48c04602cc19a8f356e5e82c17a>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_ACTIVATED <group___cmp_iec_task_itf___taskstatusbits_1ga1a38b6a114d7fe33e8764e8b7d507e2e>` , 0)
+
+- #define :ref:`SetToActivate <group___cmp_iec_task_itf___taskstatusbits_1ga2f7ba09de404e6000b91687eb477d138>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_TOACTIVATE <group___cmp_iec_task_itf___taskstatusbits_1gabb338450cea63657abae8bb4adf06b56>` , 1)
+
+- #define :ref:`ResetToActivate <group___cmp_iec_task_itf___taskstatusbits_1ga31d7b26fce4ce14493374ff964247e1c>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_TOACTIVATE <group___cmp_iec_task_itf___taskstatusbits_1gabb338450cea63657abae8bb4adf06b56>` , 0)
+
+- #define :ref:`SetStopped <group___cmp_iec_task_itf___taskstatusbits_1gac8eb7c66eeef3784dc92b0ef9140b66c>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_STOP <group___cmp_iec_task_itf___taskstatusbits_1ga641bf582cde86870bcdcc99fcc3e6088>` , 1)
+
+- #define :ref:`SetRunning <group___cmp_iec_task_itf___taskstatusbits_1ga5ab9e75024ac3c56e61179f1293d3c9f>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_STOP <group___cmp_iec_task_itf___taskstatusbits_1ga641bf582cde86870bcdcc99fcc3e6088>` , 0)
+
+- #define :ref:`SetHaltOnBreakpoint <group___cmp_iec_task_itf___taskstatusbits_1gab10cda1ba9a0e62119d71b6a8b4b402b>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_HALT_ON_BP <group___cmp_iec_task_itf___taskstatusbits_1ga5c193893801c3db62ba46464348b8e56>` , 1)
+
+- #define :ref:`ResetHaltOnBreakpoint <group___cmp_iec_task_itf___taskstatusbits_1ga746eba1ebbb0e84fb829f4cb15a8bd0a>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_HALT_ON_BP <group___cmp_iec_task_itf___taskstatusbits_1ga5c193893801c3db62ba46464348b8e56>` , 0)
+
+- #define :ref:`SetSingleCycle <group___cmp_iec_task_itf___taskstatusbits_1gaf18c0cde7f011ee017f631a7af75cdc7>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_SINGLE_CYCLE <group___cmp_iec_task_itf___taskstatusbits_1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93>` , 1)
+
+- #define :ref:`ResetSingleCycle <group___cmp_iec_task_itf___taskstatusbits_1ga1faa320efb723b7cf8790731344bc419>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_SINGLE_CYCLE <group___cmp_iec_task_itf___taskstatusbits_1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93>` , 0)
+
+- #define :ref:`SLOT_BEFORE_READ_INPUTS <group___cmp_iec_task_itf___taskstatusbits_1gac9441a320aa839536c3262e8a1feebc7>` 50
+
+- #define :ref:`SLOT_READ_INPUTS <group___cmp_iec_task_itf___taskstatusbits_1ga0c81cabcb0083be001d29f8b5ad5af8d>` 100
+
+- #define :ref:`SLOT_AFTER_READ_INPUTS <group___cmp_iec_task_itf___taskstatusbits_1gaabe32e61d7108139d13f3644e59733ad>` 15000
+
+- #define :ref:`SLOT_IEC_CODE <group___cmp_iec_task_itf___taskstatusbits_1ga137616508dfbfed9baf8611f3db52545>` 30000
+
+- #define :ref:`SLOT_BEFORE_WRITE_OUTPUTS <group___cmp_iec_task_itf___taskstatusbits_1ga1fe6df6ed87a65005d892cd5cebf348b>` 45000
+
+- #define :ref:`SLOT_WRITE_OUTPUTS <group___cmp_iec_task_itf___taskstatusbits_1ga83514dbd5666f919cd8553acf4fad99c>` 60000
+
+- #define :ref:`SLOT_AFTER_WRITE_OUTPUTS <group___cmp_iec_task_itf___taskstatusbits_1ga33ab349e8169672a0f6a3f6982529692>` 75000
+
+Typedefs
+--------
+
+- typedef void HUGEPTR(** :ref:`PF_SLOT_IEC_CALLBACK <group___cmp_iec_task_itf___taskstatusbits_1ga97f1143bf1cc8f75f026c1d53ae81ae5>`)(void)
+
+- typedef void HUGEPTR(* :ref:`PF_SLOT_CALLBACK <group___cmp_iec_task_itf___taskstatusbits_1gaa25511b3021bffa45f1124b84ac100e1>`)(struct tagTask_Desc *pTask)
+
+.. _group___cmp_iec_task_itf___taskstatusbits-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_iec_task_itf___taskstatusbits_1gae5a7ef98e6c5d531e4b48201c4bbc905:
+
+#define TF_WATCHDOG_ENABLE 6
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga7821fc0b6711662b2f5e608640f66fdb:
+
+#define TF_DISABLE_TASK_TIME 7
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga1a38b6a114d7fe33e8764e8b7d507e2e:
+
+#define TF_ACTIVATED 8
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1gabb338450cea63657abae8bb4adf06b56:
+
+#define TF_TOACTIVATE 9
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga641bf582cde86870bcdcc99fcc3e6088:
+
+#define TF_STOP 10
+^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga5c193893801c3db62ba46464348b8e56:
+
+#define TF_HALT_ON_BP 11
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93:
+
+#define TF_SINGLE_CYCLE 12
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga8d68b82a4e5f1bc8cef62a3e32535464:
+
+#define TF_WATCHDOG_ENABLE2 13
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1gadea9d121efb11bd903e18c91dc384e93:
+
+#define IsWatchdogEnabled ((pTask->iState & :ref:`TS_WATCHDOG_ENABLE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga38e4cf07b43b804adde5a3c6e2bd6613>` ) && (pTask->iState & :ref:`TS_WATCHDOG_ENABLE2 <group___cmp_iec_task_itf___taskstatusdefinitions_1ga45f3c424cfb2be2ce4da954d68dfd656>` ))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga7d7baba98475a65751ddd4b8aff1040d:
+
+#define IsTaskTimeEnabled ((pTask->iState & :ref:`TS_DISABLE_TASK_TIME <group___cmp_iec_task_itf___taskstatusdefinitions_1ga6a3591af21dc58e929de048abecbaf9a>` ) == 0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga522b5cb1d5a150992977470ab32a3d2b:
+
+#define IsActivated (pTask->iState & :ref:`TS_ACTIVATED <group___cmp_iec_task_itf___taskstatusdefinitions_1ga7a04046244803fb540bf76ac471c6fa0>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga2d6ae19f6e4ce48b611053aacbbf23b8:
+
+#define ToActivate (pTask->iState & :ref:`TS_TOACTIVATE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga3b83ae99a133b548fde9a424f9946fd3>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga924d83747bf443e0fb4b390c408254dc:
+
+#define IsStopped (pTask->iState & :ref:`TS_STOP <group___cmp_iec_task_itf___taskstatusdefinitions_1gacf55d2174435d56f966bdfa647fe6d3e>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga31592be6b9fdd014330af00a2e7098d6:
+
+#define IsHaltOnBreakpoint (pTask->iState & :ref:`TS_HALT_ON_BP <group___cmp_iec_task_itf___taskstatusdefinitions_1gaa7e54955c09fd86561493f5680a4cb10>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga371e36b3ee7113fa0bbbcc174c044bdb:
+
+#define IsSingleCycle (pTask->iState & :ref:`TS_SINGLE_CYCLE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga7ed16770704181e098355f88655b7161>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga5d509e84b3a90ee712ca99def1e288df:
+
+#define SetWatchdogEnabled CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_WATCHDOG_ENABLE <group___cmp_iec_task_itf___taskstatusbits_1gae5a7ef98e6c5d531e4b48201c4bbc905>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1gaecf2dd2fc102840ca9fe390c2714c766:
+
+#define SetWatchdogDisabled CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_WATCHDOG_ENABLE <group___cmp_iec_task_itf___taskstatusbits_1gae5a7ef98e6c5d531e4b48201c4bbc905>` , 0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1gac009ed490336b679fcec69cc9b18bf4d:
+
+#define SetWatchdogEnabled2 CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_WATCHDOG_ENABLE2 <group___cmp_iec_task_itf___taskstatusbits_1ga8d68b82a4e5f1bc8cef62a3e32535464>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1gaf47f248bd7724c0a4b2c04c319c989f5:
+
+#define SetWatchdogDisabled2 CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_WATCHDOG_ENABLE2 <group___cmp_iec_task_itf___taskstatusbits_1ga8d68b82a4e5f1bc8cef62a3e32535464>` , 0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga4993d13e681ff3059be9a0a93258bc55:
+
+#define SetTaskTimeDisabled CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_DISABLE_TASK_TIME <group___cmp_iec_task_itf___taskstatusbits_1ga7821fc0b6711662b2f5e608640f66fdb>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga848503e77256f8933d56d5113c3f04eb:
+
+#define SetTaskTimeEnabled CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_DISABLE_TASK_TIME <group___cmp_iec_task_itf___taskstatusbits_1ga7821fc0b6711662b2f5e608640f66fdb>` , 0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1gad949de33eda0b32eeabf8b0f1fc9fd03:
+
+#define SetActivated CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_ACTIVATED <group___cmp_iec_task_itf___taskstatusbits_1ga1a38b6a114d7fe33e8764e8b7d507e2e>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga1c2dd48c04602cc19a8f356e5e82c17a:
+
+#define ResetActivated CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_ACTIVATED <group___cmp_iec_task_itf___taskstatusbits_1ga1a38b6a114d7fe33e8764e8b7d507e2e>` , 0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga2f7ba09de404e6000b91687eb477d138:
+
+#define SetToActivate CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_TOACTIVATE <group___cmp_iec_task_itf___taskstatusbits_1gabb338450cea63657abae8bb4adf06b56>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga31d7b26fce4ce14493374ff964247e1c:
+
+#define ResetToActivate CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_TOACTIVATE <group___cmp_iec_task_itf___taskstatusbits_1gabb338450cea63657abae8bb4adf06b56>` , 0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1gac8eb7c66eeef3784dc92b0ef9140b66c:
+
+#define SetStopped CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_STOP <group___cmp_iec_task_itf___taskstatusbits_1ga641bf582cde86870bcdcc99fcc3e6088>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga5ab9e75024ac3c56e61179f1293d3c9f:
+
+#define SetRunning CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_STOP <group___cmp_iec_task_itf___taskstatusbits_1ga641bf582cde86870bcdcc99fcc3e6088>` , 0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1gab10cda1ba9a0e62119d71b6a8b4b402b:
+
+#define SetHaltOnBreakpoint CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_HALT_ON_BP <group___cmp_iec_task_itf___taskstatusbits_1ga5c193893801c3db62ba46464348b8e56>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga746eba1ebbb0e84fb829f4cb15a8bd0a:
+
+#define ResetHaltOnBreakpoint CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_HALT_ON_BP <group___cmp_iec_task_itf___taskstatusbits_1ga5c193893801c3db62ba46464348b8e56>` , 0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1gaf18c0cde7f011ee017f631a7af75cdc7:
+
+#define SetSingleCycle CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_SINGLE_CYCLE <group___cmp_iec_task_itf___taskstatusbits_1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga1faa320efb723b7cf8790731344bc419:
+
+#define ResetSingleCycle CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_SINGLE_CYCLE <group___cmp_iec_task_itf___taskstatusbits_1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93>` , 0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1gac9441a320aa839536c3262e8a1feebc7:
+
+#define SLOT_BEFORE_READ_INPUTS 50
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga0c81cabcb0083be001d29f8b5ad5af8d:
+
+#define SLOT_READ_INPUTS 100
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1gaabe32e61d7108139d13f3644e59733ad:
+
+#define SLOT_AFTER_READ_INPUTS 15000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga137616508dfbfed9baf8611f3db52545:
+
+#define SLOT_IEC_CODE 30000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga1fe6df6ed87a65005d892cd5cebf348b:
+
+#define SLOT_BEFORE_WRITE_OUTPUTS 45000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga83514dbd5666f919cd8553acf4fad99c:
+
+#define SLOT_WRITE_OUTPUTS 60000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga33ab349e8169672a0f6a3f6982529692:
+
+#define SLOT_AFTER_WRITE_OUTPUTS 75000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1ga97f1143bf1cc8f75f026c1d53ae81ae5:
+
+typedef void HUGEPTR( ** PF_SLOT_IEC_CALLBACK)(void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___taskstatusbits_1gaa25511b3021bffa45f1124b84ac100e1:
+
+typedef void HUGEPTR( * PF_SLOT_CALLBACK)(struct tagTask_Desc *pTask)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

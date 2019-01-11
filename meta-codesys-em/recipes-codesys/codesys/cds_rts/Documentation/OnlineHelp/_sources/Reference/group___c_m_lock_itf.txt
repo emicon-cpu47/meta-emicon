@@ -1,0 +1,204 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___c_m_lock_itf:
+
+=========
+CMLockItf
+=========
+
+Interface of CMLock. :ref:`More... <group___c_m_lock_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICMLock_C <struct_i_c_m_lock___c>`
+
+Macros
+------
+
+- #define :ref:`CMLOCK_PREFER_SYSSEM <group___c_m_lock_itf_1ga1ecdd063f40c92ec5be4ae9fed96dee4>`
+
+- #define :ref:`CM_GET_LOCK <group___c_m_lock_itf_1gaff83b61e17007e983e8ec1167f468744>` lock = lockobject;
+
+- #define :ref:`ITF_CMLock <group___c_m_lock_itf_1ga42749e13901cd6c99326775eac7566c6>`
+
+- #define :ref:`EXTITF_CMLock <group___c_m_lock_itf_1ga568762e66dd796dfd79eff0ce0d5fcf3>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICMLock_C <struct_i_c_m_lock___c>` :ref:`ICMLock <group___c_m_lock_itf_1gac1f10ba878c6f45f56fdfcf927a21c9a>`
+
+Functions
+---------
+
+- RTS_HANDLE :ref:`CMLockCreate <group___c_m_lock_itf_1ga37828972c0c49ca8c6fac57dc24c64b5>` (RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CMLockDelete <group___c_m_lock_itf_1ga27b1605f674da61a03578459ba9442d6>` (RTS_HANDLE hLock)
+
+- RTS_RESULT :ref:`CMLockEnter <group___c_m_lock_itf_1gaeec8041d015664ad7732282b3ca4e48f>` (RTS_HANDLE hLock)
+
+- RTS_RESULT :ref:`CMLockLeave <group___c_m_lock_itf_1gaaf4f6f8a2f093dc88a938510a00c79dc>` (RTS_HANDLE hLock)
+
+.. _group___c_m_lock_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CMLock.
+
+Interface for a generic locking mechanism
+
+If both SysSem and SysInt components are implemented in the runtime system, a global int-lock implementation can be choosen with CMLOCK_PREFER_SYSINT macro. Otherwise, a mutex-based implementation is automatically selected.
+
+If either SysSem or SysInt component is implemented only, then the CMLock implementation is based on an existing component.
+::
+    *				    USAGE in a module:
+    *
+    *				        RTS_HANDLE s_hLock = RTS_INVALID_HANDLE;
+    *				        CH_INIT:
+    *				            RTS_RESULT result;
+    *				            s_hLock = CAL_CMLockCreate(&result);
+    *				        CH_EXIT:
+    *				            CAL_CMLockDelete(s_hLock);
+    *
+    *				        Function()
+    *				        {
+    *				            RTS_HANDLE hLock;
+    *				            CM_GET_LOCK(s_hLock, hLock);
+    *
+    *				            CAL_CMLockEnter(hLock);
+    *				            ...
+    *				            CAL_CMLockLeave(hLock);
+    *				        }
+    *
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___c_m_lock_itf_1ga1ecdd063f40c92ec5be4ae9fed96dee4:
+
+#define CMLOCK_PREFER_SYSSEM
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_lock_itf_1gaff83b61e17007e983e8ec1167f468744:
+
+#define CM_GET_LOCK lock = lockobject;
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Macro to get the correct parameter for the lock functions: :ref:`CM_GET_LOCK(hLock, hLocalLock) <group___c_m_lock_itf_1gaff83b61e17007e983e8ec1167f468744>`
+
+**Parameters**
+
++---------+-------------+-------------------------------------------------------------------------------------------------+
+| [in]    | hLockObject | is retrieved by :ref:`CMLockCreate() <group___cmp_log_dep_1ga49f5fe86bef155c8bc562d166a3e3c69>` |
++---------+-------------+-------------------------------------------------------------------------------------------------+
+| [in]    | hLock       | local variable of type RTS_HANDLE (declared in the local function!)                             |
++---------+-------------+-------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___c_m_lock_itf_1ga42749e13901cd6c99326775eac7566c6:
+
+#define ITF_CMLock
+^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_lock_itf_1ga568762e66dd796dfd79eff0ce0d5fcf3:
+
+#define EXTITF_CMLock
+^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___c_m_lock_itf_1gac1f10ba878c6f45f56fdfcf927a21c9a:
+
+typedef ICMLock_C ICMLock
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___c_m_lock_itf_1ga37828972c0c49ca8c6fac57dc24c64b5:
+
+RTS_HANDLE CMLockCreate (RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to create a lock object to synchronize data against concurrent task or interrupt access.
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Returns:**
+
+Handle to the lock object
+
+.. _group___c_m_lock_itf_1ga27b1605f674da61a03578459ba9442d6:
+
+RTS_RESULT CMLockDelete (RTS_HANDLE hLock)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to delete a lock object.
+
+**Parameters**
+
++---------+-------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hLock | Handle to the lock object retrieved by :ref:`CMLockCreate() <group___cmp_log_dep_1ga49f5fe86bef155c8bc562d166a3e3c69>` |
++---------+-------+------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___c_m_lock_itf_1gaeec8041d015664ad7732282b3ca4e48f:
+
+RTS_RESULT CMLockEnter (RTS_HANDLE hLock)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to enter a lock object. After entering, the accessed data is _safe_ against concurrent access.
+
+**Parameters**
+
++---------+-------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hLock | Handle to the lock object retrieved by macro: :ref:`CM_GET_LOCK(hLockObject, hLock) <group___c_m_lock_itf_1gaff83b61e17007e983e8ec1167f468744>`  |
+|         |       |                                                                                                                                                  |
+|         |       | - hLockObject is retrieved by :ref:`CMLockCreate() <group___cmp_log_dep_1ga49f5fe86bef155c8bc562d166a3e3c69>`                                    |
+|         |       |                                                                                                                                                  |
+|         |       | - hLock is a local variable of type RTS_HANDLE (declared in the local function!)                                                                 |
++---------+-------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___c_m_lock_itf_1gaaf4f6f8a2f093dc88a938510a00c79dc:
+
+RTS_RESULT CMLockLeave (RTS_HANDLE hLock)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to leave a lock object. After leaving, the accessed data is _unsafe_ against concurrent access.
+
+**Parameters**
+
++---------+-------+------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hLock | Handle to the lock object retrieved by :ref:`CMLockCreate() <group___cmp_log_dep_1ga49f5fe86bef155c8bc562d166a3e3c69>` |
++---------+-------+------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

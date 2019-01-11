@@ -1,0 +1,195 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_o_p_c_u_a_stack_itf:
+
+================
+CmpOPCUAStackItf
+================
+
+Interface of CmpOPCUAStack
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. :ref:`More... <group___cmp_o_p_c_u_a_stack_itf-details>`
+
+Modules
+-------
+
+- :ref:`Compiler switches <group___cmp_o_p_c_u_a_stack_itf___compilerswitches>`
+
+- :ref:`Settings <group___cmp_o_p_c_u_a_stack_itf___settings>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpOPCUAStack_C <struct_i_cmp_o_p_c_u_a_stack___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpOPCUAStack <group___cmp_o_p_c_u_a_stack_itf_1ga6f47c127326f8b6dc47012d26f2a65c7>`
+
+- #define :ref:`EXTITF_CmpOPCUAStack <group___cmp_o_p_c_u_a_stack_itf_1gaad21a83ada3ee4f403f9c1dd348a957f>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpOPCUAStack_C <struct_i_cmp_o_p_c_u_a_stack___c>` :ref:`ICmpOPCUAStack <group___cmp_o_p_c_u_a_stack_itf_1gac12ae3fad6bd2817e5a3fb15b66a7232>`
+
+Functions
+---------
+
+- OpcUa_EncodeableType * :ref:`OpcUaGetEncodableObjectType <group___cmp_o_p_c_u_a_stack_itf_1ga9a0b25a943aab8d438921ad54017e4f0>` (OpcUa_UInt32 ui32TypeId)
+
+- OpcUa_PfnBeginInvokeService * :ref:`OpcUaGetBeginServiceFunction <group___cmp_o_p_c_u_a_stack_itf_1ga745c0f908adff946a3816b5a99c36dd9>` (OpcUa_UInt32 ui32ServiceId)
+
+- OpcUa_StatusCode :ref:`OpcUaStackConvertAsymmetricKey <group___cmp_o_p_c_u_a_stack_itf_1gaef6e6f5d5ce2e2136a1daf91b5699a23>` (:ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>` * rtsKey, OpcUa_Boolean bPrivateKey, OpcUa_Key * opcuaKey)
+
+- OpcUa_Void :ref:`OpcUaSignatureInitialize <group___cmp_o_p_c_u_a_stack_itf_1ga47d217753894e64088b75908fde57c3f>` (OpcUa_Signature * pSignature)
+
+- OpcUa_Void :ref:`OpcUaSignatureClear <group___cmp_o_p_c_u_a_stack_itf_1ga23b2c0087fa11654284d7020ec57b841>` (OpcUa_Signature * pSignature)
+
+- OpcUa_Void :ref:`OpcUaKeyInitialize <group___cmp_o_p_c_u_a_stack_itf_1gae9cb59d0ab711c25c4fd8da72f3c8d3c>` (OpcUa_Key * pKey)
+
+- OpcUa_Void :ref:`OpcUaKeyClear <group___cmp_o_p_c_u_a_stack_itf_1ga39cf3c5a463cb8d391c8f71d0d61c6f6>` (OpcUa_Key * pKey)
+
+- OpcUa_StatusCode :ref:`OpcUaCryptoGenerateKey <group___cmp_o_p_c_u_a_stack_itf_1ga40ffc91e291ed0b98def2d95aba8c6a0>` (OpcUa_CryptoProvider * pProvider, OpcUa_Int32 keyLen, OpcUa_Key * pKey)
+
+- OpcUa_StatusCode :ref:`OpcUaCryptoDeriveKey <group___cmp_o_p_c_u_a_stack_itf_1ga92fe6219acfea492761b9f4a49aa5cb9>` (OpcUa_CryptoProvider * pProvider, OpcUa_ByteString secret, OpcUa_ByteString seed, OpcUa_Int32 keyLen, OpcUa_Key * pKey)
+
+- OpcUa_StatusCode :ref:`OpcUaCryptoAsymmetricSign <group___cmp_o_p_c_u_a_stack_itf_1ga00cc10d0623cd237321be6c8e121e8db>` (OpcUa_CryptoProvider * pProvider, OpcUa_ByteString data, OpcUa_Key * privateKey, OpcUa_ByteString * pSignature)
+
+- OpcUa_StatusCode :ref:`OpcUaCryptoAsymmetricVerify <group___cmp_o_p_c_u_a_stack_itf_1ga58d7dcbd9915972c06be0bca1448bc9c>` (OpcUa_CryptoProvider * pProvider, OpcUa_ByteString data, OpcUa_Key * publicKey, OpcUa_ByteString * pSignature)
+
+- OpcUa_StatusCode :ref:`OpcUaCryptoAsymmetricDecrypt <group___cmp_o_p_c_u_a_stack_itf_1ga246c411398e9928ee1d54ca8d2bbb46f>` (OpcUa_CryptoProvider * pProvider, OpcUa_Byte * pCipherText, OpcUa_UInt32 cipherTextLen, OpcUa_Key * privateKey, OpcUa_Byte * pPlainText, OpcUa_UInt32 * pPlainTextLen)
+
+- OpcUa_CharA * :ref:`OpcUaCryptoGetSignatureAlgorithmUri <group___cmp_o_p_c_u_a_stack_itf_1ga0a759dae8a06ded33eca1e428149000f>` (OpcUa_CryptoProvider * pProvider)
+
+- OpcUa_StatusCode :ref:`OpcUaCryptoGetAsymmetricKeyLength <group___cmp_o_p_c_u_a_stack_itf_1ga5348a8ae2d00e016bb1ca4783a371b31>` (OpcUa_CryptoProvider * a_pProvider, OpcUa_Key a_publicKey, OpcUa_UInt32 * a_pBits)
+
+- OpcUa_StatusCode :ref:`OpcUaCryptoProviderCreate <group___cmp_o_p_c_u_a_stack_itf_1gae350407382d6b91a4be806b9aa6bc25d>` (OpcUa_StringA a_psSecurityProfileUri, OpcUa_CryptoProvider * a_pProvider)
+
+- OpcUa_StatusCode :ref:`OpcUaCryptoProviderDelete <group___cmp_o_p_c_u_a_stack_itf_1ga041a68b6b87cb17eb8a9f4a7cccc6e96>` (OpcUa_CryptoProvider * a_pProvider)
+
+.. _group___cmp_o_p_c_u_a_stack_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpOPCUAStack
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga6f47c127326f8b6dc47012d26f2a65c7:
+
+#define ITF_CmpOPCUAStack
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1gaad21a83ada3ee4f403f9c1dd348a957f:
+
+#define EXTITF_CmpOPCUAStack
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1gac12ae3fad6bd2817e5a3fb15b66a7232:
+
+typedef ICmpOPCUAStack_C ICmpOPCUAStack
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga9a0b25a943aab8d438921ad54017e4f0:
+
+OpcUa_EncodeableType* OpcUaGetEncodableObjectType (OpcUa_UInt32 ui32TypeId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the adress of an encodable object type description. This adress can be passed directly to OpcUaEncodableObjectCreate or OpcUaEncodableObjectCreateExtension. As ui32TypeId use the OpcUaId_... Macros. If the type is not available the function will return NULL.
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga745c0f908adff946a3816b5a99c36dd9:
+
+OpcUa_PfnBeginInvokeService* OpcUaGetBeginServiceFunction (OpcUa_UInt32 ui32ServiceId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1gaef6e6f5d5ce2e2136a1daf91b5699a23:
+
+OpcUa_StatusCode OpcUaStackConvertAsymmetricKey (RtsCryptoKey *rtsKey, OpcUa_Boolean bPrivateKey, OpcUa_Key *opcuaKey)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga47d217753894e64088b75908fde57c3f:
+
+OpcUa_Void OpcUaSignatureInitialize (OpcUa_Signature *pSignature)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga23b2c0087fa11654284d7020ec57b841:
+
+OpcUa_Void OpcUaSignatureClear (OpcUa_Signature *pSignature)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1gae9cb59d0ab711c25c4fd8da72f3c8d3c:
+
+OpcUa_Void OpcUaKeyInitialize (OpcUa_Key *pKey)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga39cf3c5a463cb8d391c8f71d0d61c6f6:
+
+OpcUa_Void OpcUaKeyClear (OpcUa_Key *pKey)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga40ffc91e291ed0b98def2d95aba8c6a0:
+
+OpcUa_StatusCode OpcUaCryptoGenerateKey (OpcUa_CryptoProvider *pProvider, OpcUa_Int32 keyLen, OpcUa_Key *pKey)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga92fe6219acfea492761b9f4a49aa5cb9:
+
+OpcUa_StatusCode OpcUaCryptoDeriveKey (OpcUa_CryptoProvider *pProvider, OpcUa_ByteString secret, OpcUa_ByteString seed, OpcUa_Int32 keyLen, OpcUa_Key *pKey)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga00cc10d0623cd237321be6c8e121e8db:
+
+OpcUa_StatusCode OpcUaCryptoAsymmetricSign (OpcUa_CryptoProvider *pProvider, OpcUa_ByteString data, OpcUa_Key *privateKey, OpcUa_ByteString *pSignature)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga58d7dcbd9915972c06be0bca1448bc9c:
+
+OpcUa_StatusCode OpcUaCryptoAsymmetricVerify (OpcUa_CryptoProvider *pProvider, OpcUa_ByteString data, OpcUa_Key *publicKey, OpcUa_ByteString *pSignature)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga246c411398e9928ee1d54ca8d2bbb46f:
+
+OpcUa_StatusCode OpcUaCryptoAsymmetricDecrypt (OpcUa_CryptoProvider *pProvider, OpcUa_Byte *pCipherText, OpcUa_UInt32 cipherTextLen, OpcUa_Key *privateKey, OpcUa_Byte *pPlainText, OpcUa_UInt32 *pPlainTextLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga0a759dae8a06ded33eca1e428149000f:
+
+OpcUa_CharA* OpcUaCryptoGetSignatureAlgorithmUri (OpcUa_CryptoProvider *pProvider)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga5348a8ae2d00e016bb1ca4783a371b31:
+
+OpcUa_StatusCode OpcUaCryptoGetAsymmetricKeyLength (OpcUa_CryptoProvider *a_pProvider, OpcUa_Key a_publicKey, OpcUa_UInt32 *a_pBits)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1gae350407382d6b91a4be806b9aa6bc25d:
+
+OpcUa_StatusCode OpcUaCryptoProviderCreate (OpcUa_StringA a_psSecurityProfileUri, OpcUa_CryptoProvider *a_pProvider)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_o_p_c_u_a_stack_itf_1ga041a68b6b87cb17eb8a9f4a7cccc6e96:
+
+OpcUa_StatusCode OpcUaCryptoProviderDelete (OpcUa_CryptoProvider *a_pProvider)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,1205 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_window_itf:
+
+============
+SysWindowItf
+============
+
+Interface of SysWindow. :ref:`More... <group___sys_window_itf-details>`
+
+Modules
+-------
+
+- :ref:`Event parameter <group___sys_window_itf___eventparameter>`
+
+- :ref:`Events <group___sys_window_itf___events>`
+
+- :ref:`Settings <group___sys_window_itf___settings>`
+
+- :ref:`Window Creation Flags <group___sys_window_itf___window_creation_flags>`
+
+- :ref:`Window Flags <group___sys_window_itf___window_flags>`
+
+- :ref:`Window create description <group___sys_window_itf___windowcreatedescription>`
+
+- :ref:`Window support flags <group___sys_window_itf___windowsupportflags>`
+
+Data Structures
+---------------
+
+- struct :ref:`ISysWindow_C <struct_i_sys_window___c>`
+
+Macros
+------
+
+- #define :ref:`ERR_TOOMANYWINDOWS <group___sys_window_itf_1ga9fb4a9594dc14d6989b2571f8f6a13c8>` 0x0001
+
+- #define :ref:`ERR_TOOMANYCALLBACKS <group___sys_window_itf_1ga66b928101b307ac5b689a7be95b9d9fb>` 0x0002
+
+- #define :ref:`ERR_WINDOWNOTCREATED <group___sys_window_itf_1ga794f02e506475185425006d1bc2bdde6>` 0x0003
+
+- #define :ref:`ERR_WINDOWNOTREGISTERED <group___sys_window_itf_1ga7e89d20a250231c5cbb6ac97dee1b6cf>` 0x0004
+
+- #define :ref:`WINDOW_TYPE_TITLE_FRAME <group___sys_window_itf_1gae05f691f72be4aff8c288e70c7841883>` 0x0000
+
+- #define :ref:`WINDOW_TYPE_FRAME <group___sys_window_itf_1ga065a52d1e11985b06d52395b307dbef8>` 0x0001
+
+- #define :ref:`WINDOW_TYPE_NONE <group___sys_window_itf_1ga23c3de1f7eb30f839c0db4f6e1a8c136>` 0x0002
+
+- #define :ref:`WINDOW_TYPE_TITLE_FRAME_CLIENT_SIZE <group___sys_window_itf_1ga00a2c5a9d3df473c0394fdf38dc7726f>` 0x0003
+
+- #define :ref:`WINDOW_TYPE_FRAME_CLIENT_SIZE <group___sys_window_itf_1ga84d55e9b618d5f80b322ec104978ccb8>` 0x0004
+
+- #define :ref:`SYSWINDOW_NOTIFICATION_REFRESH_REQUESTED <group___sys_window_itf_1gafcd7e29aeb730c803ee83a2cd5ef2d9e>` 1
+
+- #define :ref:`SYSWINDOW_CLASS_TARGETVISU_WINDOW <group___sys_window_itf_1gaca76736df3c8d55525f04cd1bfb37ee6>` "TargetVisu_Window"
+
+- #define :ref:`SYSWINDOW_CLASS_TARGETVISU_EDITCONTROL <group___sys_window_itf_1ga89b87eef7a7a44b58178b0592b35469f>` "TargetVisu_EditControl"
+
+- #define :ref:`WCB_RETURN_ABORT <group___sys_window_itf_1gaf2a9807f2730f6c4be645358174571d3>` 0x0001		/* if a callback returns this, the window will be killed and the messageloop leaved */
+
+- #define :ref:`MB_TYPE_OK <group___sys_window_itf_1gae30c23b06698cd2cded32aa7096294b0>` 0x0000
+
+- #define :ref:`MB_TYPE_OKCANCEL <group___sys_window_itf_1ga5707769e2b56c7dab32db60e6f63bf14>` 0x0001
+
+- #define :ref:`MB_TYPE_ABORTRETRYIGNORE <group___sys_window_itf_1ga64c6696007d4fc07336d2ea1076cd797>` 0x0002
+
+- #define :ref:`MB_TYPE_YESNOCANCEL <group___sys_window_itf_1gab33281584e6b708a3dfb115f2ea3d6b9>` 0x0003
+
+- #define :ref:`MB_TYPE_YESNO <group___sys_window_itf_1ga2cfda5f0396f1f5e287dd031f85f43f7>` 0x0004
+
+- #define :ref:`MB_TYPE_RETRYCANCEL <group___sys_window_itf_1ga7549dba7eaa85aef07abe0e6b3c66102>` 0x0005
+
+- #define :ref:`MB_TYPE_ICONERROR <group___sys_window_itf_1ga225320aa59c4d8cbc0106657737a92da>` 0x0010
+
+- #define :ref:`MB_TYPE_ICONQUESTION <group___sys_window_itf_1ga83b9b46378d5cbf7e5961113e9b9c938>` 0x0020
+
+- #define :ref:`MB_TYPE_ICONWARNING <group___sys_window_itf_1ga08b3e231dbfc36d1ebddda769878c0bf>` 0x0030
+
+- #define :ref:`MB_TYPE_ICONINFORMATION <group___sys_window_itf_1ga2ea9fda75ddc2f77dbf15c8531755fe3>` 0x0040
+
+- #define :ref:`MB_TYPE_DEFBUTTON1 <group___sys_window_itf_1gaad1b4adb540fab2cd5c842732727db27>` 0x0000
+
+- #define :ref:`MB_TYPE_DEFBUTTON2 <group___sys_window_itf_1gad6f7311903ffe2d5ec5724ac632ab3ec>` 0x0100
+
+- #define :ref:`MB_TYPE_DEFBUTTON3 <group___sys_window_itf_1gaeeb01e2274b239040e35bf9547936e47>` 0x0200
+
+- #define :ref:`MB_TYPE_DEFBUTTON4 <group___sys_window_itf_1ga239288d6f5f25d539a28f2f867e50da3>` 0x0300
+
+- #define :ref:`MB_RESULT_OK <group___sys_window_itf_1ga1cb19c31af2c39f46ea4f54d0dd0ff24>` 0x0001
+
+- #define :ref:`MB_RESULT_CANCEL <group___sys_window_itf_1gada79ee03c18c5d475571e348b7a7f55a>` 0x0002
+
+- #define :ref:`MB_RESULT_ABORT <group___sys_window_itf_1gac57b31a8554d8a0bc1bc979193265143>` 0x0003
+
+- #define :ref:`MB_RESULT_RETRY <group___sys_window_itf_1ga5e81b403d255b89415bdee455d44989e>` 0x0004
+
+- #define :ref:`MB_RESULT_IGNORE <group___sys_window_itf_1gab9921dc7bbe0dfda7b3d3a2975be6d6d>` 0x0005
+
+- #define :ref:`MB_RESULT_YES <group___sys_window_itf_1ga006c6e93af5f722bdd72f169c720fecc>` 0x0006
+
+- #define :ref:`MB_RESULT_NO <group___sys_window_itf_1ga79b41081ed6bbf1afd7f804876d12e97>` 0x0007
+
+- #define :ref:`ITF_SysWindow <group___sys_window_itf_1ga00f0defeb6e8911e8e0de9ffc1132a0d>`
+
+- #define :ref:`EXTITF_SysWindow <group___sys_window_itf_1ga9240c541674517e2744eeee6d2631e87>`
+
+Typedefs
+--------
+
+- typedef int(* :ref:`PFWINDOWCALLBACK <group___sys_window_itf_1ga97e3b14b02d966bfe43f600d0aa3b2e9>`)(RTS_HANDLE hWindow, WindowCallbacks wcb, RTS_UINTPTR ulCallbackParam, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- typedef void(* :ref:`SysWindowTimerCallback <group___sys_window_itf_1gaa6aad92bd734ac0c13baf29a8d41183c>`)(RTS_HANDLE hWindow, void *pParams)
+
+- typedef :ref:`ISysWindow_C <struct_i_sys_window___c>` :ref:`ISysWindow <group___sys_window_itf_1ga779fd14943d2899a472eafbfb6af432a>`
+
+Enumerations
+------------
+
+- enum :ref:`SysWindowCursor <group___sys_window_itf_1ga9557b1508c8bb6261701f2f10ca6e2d9>` { :ref:`SYSWINCUR_DEFAULT <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9ab5c10c368762c2b4e4ad1a0e6e8a81b3>`, :ref:`SYSWINCUR_ARROW <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9a03a2c70995298c85cac438bb55ee3288>`, :ref:`SYSWINCUR_HAND <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9ac5f2c2dd86e07c532d53b40c8c57b85d>`, :ref:`SYSWINCUR_WAIT <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9a3891f625a72ab5100492feca28ec7b93>`, :ref:`SYSWINCUR_IBEAM <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9aa1bac1d52f361afa43797897835781c9>`, :ref:`SYSWINCUR_CROSS <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9af648f3a952d35fc903b6915bee129e66>`, :ref:`SYSWINCUR_HELP <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9a6b98945041c09c8e2e5d18c84a1151fd>`, :ref:`SYSWINCUR_HSPLIT <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9a4dd0f9f2091af4f97b270a54ba3c0f8f>`, :ref:`SYSWINCUR_VSPLIT <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9a486dff149a51814edaeff5a2f660f822>`, :ref:`SYSWINCUR_SIZENWSE <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9a5e475b3e37e06ea982abea1f6abaf6d1>`, :ref:`SYSWINCUR_SIZENESW <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9acdab362d17199df25f935cf283800524>`, :ref:`SYSWINCUR_SIZEWE <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9af1e5fbad057f92a9bb0a022ab382c1e4>`, :ref:`SYSWINCUR_SIZENS <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9a8338ce6a9ce71d39571052a1e811b053>`, :ref:`SYSWINCUR_SIZEALL <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9a1494b28a984fc1bfa2b6838e6d9e78a3>`, :ref:`SYSWINCUR_INVISIBLE <group___sys_window_itf_1gga9557b1508c8bb6261701f2f10ca6e2d9aa4cbf6e92443bf1abd4649029be5f692>` }
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysWindowOSInit <group___sys_window_itf_1ga27bc9666d3e4ebffb102f8facfed4b3e>` (INIT_STRUCT * pInit)
+
+- RTS_RESULT :ref:`SysWindowOSHookFunction <group___sys_window_itf_1ga95094a3811f55142264d3d8446c39150>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_RESULT :ref:`SysWindowCyclicCall <group___sys_window_itf_1ga55e84310ecfa2721f6b66aa2f5a3a10c>` (void)
+
+- RTS_RESULT :ref:`SysWindowSupportsSeveralTasks <group___sys_window_itf_1gaa4f51bfc1c630c9dd035c8068b1762a6>` (void)
+
+- RTS_RESULT :ref:`SysWindowInvokeInWindowTask <group___sys_window_itf_1ga5297e60d129b4649370ace53e8abfc04>` (PFINVOKEINWINDOWTASK pfToCall, RTS_UINTPTR ulParam)
+
+- RTS_HANDLE :ref:`SysWindowCreate <group___sys_window_itf_1ga88f45561dfa65e04b47c00ff1f35ac84>` (:ref:`SysWindowCreate_Struct <struct_sys_window_create___struct>` * pCreate, RTS_UINTPTR ulParam, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysWindowDestroy <group___sys_window_itf_1gae27eeb9853600629d88b3be4ddda91fb>` (RTS_HANDLE hWindow)
+
+- RTS_RESULT :ref:`SysWindowSetUserData <group___sys_window_itf_1gaea11dc12815ff6c3b8ba4cd7815b581e>` (RTS_HANDLE hWindow, RTS_UINTPTR ulData)
+
+- RTS_RESULT :ref:`SysWindowShow <group___sys_window_itf_1ga2e72f7503948a09e60d7c1294ffa9b71>` (RTS_HANDLE hWindow, RTS_UI32 ulData)
+
+- RTS_RESULT :ref:`SysWindowGetUserData <group___sys_window_itf_1ga184db829788face1c39842fcad3d1f5d>` (RTS_HANDLE hWindow, RTS_UINTPTR * pulData)
+
+- RTS_RESULT :ref:`SysWindowSetCallback <group___sys_window_itf_1ga78c038d4e9c3361915f6b88f5fe36413>` (RTS_HANDLE hWindow, unsigned long ulCallback, unsigned long * pulOldCallback)
+
+- RTS_RESULT :ref:`SysWindowMessageLoop <group___sys_window_itf_1gaf80ada640c7ae58af28a9499973310a8>` (RTS_HANDLE hWindow)
+
+- RTS_RESULT :ref:`SysWindowRegisterCallback <group___sys_window_itf_1ga6836ccc60c62058bd7218ae164d566fb>` (RTS_HANDLE hWindow, WindowCallbacks wcb, :ref:`PFWINDOWCALLBACK <group___sys_window_itf_1ga97e3b14b02d966bfe43f600d0aa3b2e9>`  callback, RTS_UINTPTR ulParam)
+
+- RTS_RESULT :ref:`SysWindowUnregisterCallback <group___sys_window_itf_1gafdd358333e7d45da733650a3844ac30a>` (RTS_HANDLE hWindow, WindowCallbacks wcb, :ref:`PFWINDOWCALLBACK <group___sys_window_itf_1ga97e3b14b02d966bfe43f600d0aa3b2e9>`  callback)
+
+- RTS_RESULT :ref:`SysWindowInvalidateRectangle <group___sys_window_itf_1ga254f949393701470b3a907689a476ca6>` (RTS_HANDLE hWindow, RTS_Rectangle rect)
+
+- RTS_RESULT :ref:`SysWindowUpdate <group___sys_window_itf_1gaae05753abbd60c589f520e83ab48addb>` (RTS_HANDLE hWindow)
+
+- RTS_RESULT :ref:`SysWindowForceUpdate <group___sys_window_itf_1ga54bf277584d63747a87aa73f537ab2d8>` (RTS_HANDLE hWindow)
+
+- RTS_RESULT :ref:`SysWindowGetPos <group___sys_window_itf_1ga24eb4acab705a238443333bf879c26a3>` (RTS_HANDLE hWindow, RTS_Rectangle * pRect)
+
+- RTS_RESULT :ref:`SysWindowSetPos <group___sys_window_itf_1ga89ff154a97860ae2e85a9cba0430d1a6>` (RTS_HANDLE hWindow, RTS_Rectangle rect)
+
+- RTS_RESULT :ref:`SysWindowGetClientRectangle <group___sys_window_itf_1gad18e301af5acf723ba5084fff8d30c72>` (RTS_HANDLE hWindow, RTS_Rectangle * pRect)
+
+- RTS_RESULT :ref:`SysWindowSetFont <group___sys_window_itf_1gada99402106422dc2254c035d5ce78a8c>` (RTS_HANDLE hWindow, RTS_HANDLE hFont)
+
+- RTS_RESULT :ref:`SysWindowGetFont <group___sys_window_itf_1ga1f4d0edaa8b25a00b46f1ea1884456cb>` (RTS_HANDLE hWindow, RTS_HANDLE * phFont)
+
+- RTS_RESULT :ref:`SysWindowGetText <group___sys_window_itf_1ga1d65c900096da0234073812d0557d593>` (RTS_HANDLE hWindow, char * pszValue, RTS_SIZE * piLen)
+
+- RTS_RESULT :ref:`SysWindowSetText <group___sys_window_itf_1gacf78302757637ecd780cc0b91cb37e7c>` (RTS_HANDLE hWindow, char * pszText)
+
+- RTS_RESULT :ref:`SysWindowSetTextW <group___sys_window_itf_1ga2b8f3d41aad7d34fd71398949c9d509a>` (RTS_HANDLE hWindow, RTS_WCHAR * pwsText)
+
+- RTS_RESULT :ref:`SysWindowSetFocus <group___sys_window_itf_1ga06b2476dcb398947e295ae189bb40beb>` (RTS_HANDLE hWindow)
+
+- RTS_RESULT :ref:`SysWindowSetSelection <group___sys_window_itf_1ga47774e65652fbf5a72317d6dd597cca3>` (RTS_HANDLE hWindow, char * pszClassName, RTS_I32 dwParam1, RTS_I32 dwParam2)
+
+- RTS_RESULT :ref:`SysWindowSetCursor <group___sys_window_itf_1ga0a80e04166d137e1a0701540a6f4af6f>` (RTS_HANDLE hWindow, RTS_UI16 usCursor)
+
+- RTS_RESULT :ref:`SysWindowSetFlags <group___sys_window_itf_1ga9a7cd26b046120a42164b76575f0957b>` (RTS_HANDLE hWindow, RTS_UI32 uiFlag, RTS_BOOL bValue)
+
+- RTS_RESULT :ref:`SysWindowPrint <group___sys_window_itf_1ga8842622915f0615dbeeb398ac570c9d5>` (RTS_HANDLE hWindow, char * pszTitle)
+
+- RTS_RESULT :ref:`SysWindowPrintStart <group___sys_window_itf_1ga2d3db9efcef1f9c97bf933a2d7aa6968>` (RTS_HANDLE hWindow, char * pszTitle, char * pszPrinter)
+
+- RTS_RESULT :ref:`SysWindowPrintStartDocument <group___sys_window_itf_1ga5bb724fcd1054e0df13da45c9de68b95>` (RTS_HANDLE hWindow)
+
+- RTS_RESULT :ref:`SysWindowPrintEndDocument <group___sys_window_itf_1ga8a3b64c737f944e8381969c7e00550b9>` (RTS_HANDLE hWindow)
+
+- RTS_RESULT :ref:`SysWindowPrintRelease <group___sys_window_itf_1gae0f1a75fec82bfb7466f4a9e94fd2cec>` (RTS_HANDLE hWindow)
+
+- RTS_RESULT :ref:`SysWindowNotify <group___sys_window_itf_1ga887f1e4910868167dd7543c1e768f1aa>` (RTS_HANDLE hWindow, RTS_UI32 notificationCode, void * notificationParam)
+
+- RTS_UI32 :ref:`SysWindowSupportInfo <group___sys_window_itf_1ga9ae5a6595c61b0ee8901f0e365a23092>` (RTS_HANDLE hWindow, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`SysWindowCreateTimer <group___sys_window_itf_1ga42684268921b6cdc67e87954a3d5e9e3>` (RTS_HANDLE hWindow, RTS_UI32 interval, :ref:`SysWindowTimerCallback <group___sys_window_itf_1gaa6aad92bd734ac0c13baf29a8d41183c>`  callback, void * pCallbackParams, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysWindowDestroyTimer <group___sys_window_itf_1gaa2fc98c8609b731d99da73554f362153>` (RTS_HANDLE hWindow, RTS_HANDLE hTimer)
+
+- RTS_RESULT :ref:`SysWindowOpenMessageBox <group___sys_window_itf_1gabd8b2d4b675054524047824d8bf64fc6>` (RTS_HANDLE hWindow, char * pszText, char * pszCaption, RTS_UI32 uiType)
+
+- RTS_RESULT :ref:`SysWindowOpenMessageBoxW <group___sys_window_itf_1gaa18975023b51d7de146080c69162f20c>` (RTS_HANDLE hWindow, RTS_WCHAR * pwsText, RTS_WCHAR * pwsCaption, RTS_UI32 uiType)
+
+.. _group___sys_window_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysWindow.
+
+SysWindow interfaces is porjected to get access to the window manager of a graphical environment To handle the window of the target visualisation.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_window_itf_1ga9fb4a9594dc14d6989b2571f8f6a13c8:
+
+#define ERR_TOOMANYWINDOWS 0x0001
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga66b928101b307ac5b689a7be95b9d9fb:
+
+#define ERR_TOOMANYCALLBACKS 0x0002
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga794f02e506475185425006d1bc2bdde6:
+
+#define ERR_WINDOWNOTCREATED 0x0003
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga7e89d20a250231c5cbb6ac97dee1b6cf:
+
+#define ERR_WINDOWNOTREGISTERED 0x0004
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1gae05f691f72be4aff8c288e70c7841883:
+
+#define WINDOW_TYPE_TITLE_FRAME 0x0000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga065a52d1e11985b06d52395b307dbef8:
+
+#define WINDOW_TYPE_FRAME 0x0001
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga23c3de1f7eb30f839c0db4f6e1a8c136:
+
+#define WINDOW_TYPE_NONE 0x0002
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga00a2c5a9d3df473c0394fdf38dc7726f:
+
+#define WINDOW_TYPE_TITLE_FRAME_CLIENT_SIZE 0x0003
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga84d55e9b618d5f80b322ec104978ccb8:
+
+#define WINDOW_TYPE_FRAME_CLIENT_SIZE 0x0004
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1gafcd7e29aeb730c803ee83a2cd5ef2d9e:
+
+#define SYSWINDOW_NOTIFICATION_REFRESH_REQUESTED 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Notification code that can be sent to a window using SysWindowNotify. The intention of this notification is to trigger a refresh and repaint of the window. In case of a targetvisualization window, this notification will usually be sent, when there is new paintinformation available that should be retrieved by the window. The notification parameter is not used at the moment.
+
+.. _group___sys_window_itf_1gaca76736df3c8d55525f04cd1bfb37ee6:
+
+#define SYSWINDOW_CLASS_TARGETVISU_WINDOW "TargetVisu_Window"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A window handling the targetvisualization. This window must have the following behaviour: First of all during the creation of this window, a pointer to a structure of type TargetvisuParams will be given in the parameter ulParam of SysWindowCreate. This structure will be valid until the targetvisualization is closed. The window has to remember this structure because it contains all the information that is needed for working as a targetvisualization. One important member in this structure is the member callback. This substructure contains function pointers that must be called by the targetvisualization window. These callbacks handle for example the mouse, updating etc.
+
+.. _group___sys_window_itf_1ga89b87eef7a7a44b58178b0592b35469f:
+
+#define SYSWINDOW_CLASS_TARGETVISU_EDITCONTROL "TargetVisu_EditControl"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+An editcontrol that can be used by the targetvisualizaton. This control must react to the RETURN-Key and the ESCAPE-Key. As reaction to these keys it must call the according callback in the TargetvisuParams.
+
+.. _group___sys_window_itf_1gaf2a9807f2730f6c4be645358174571d3:
+
+#define WCB_RETURN_ABORT 0x0001		/* if a callback returns this, the window will be killed and the messageloop leaved */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1gae30c23b06698cd2cded32aa7096294b0:
+
+#define MB_TYPE_OK 0x0000
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga5707769e2b56c7dab32db60e6f63bf14:
+
+#define MB_TYPE_OKCANCEL 0x0001
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga64c6696007d4fc07336d2ea1076cd797:
+
+#define MB_TYPE_ABORTRETRYIGNORE 0x0002
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1gab33281584e6b708a3dfb115f2ea3d6b9:
+
+#define MB_TYPE_YESNOCANCEL 0x0003
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga2cfda5f0396f1f5e287dd031f85f43f7:
+
+#define MB_TYPE_YESNO 0x0004
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga7549dba7eaa85aef07abe0e6b3c66102:
+
+#define MB_TYPE_RETRYCANCEL 0x0005
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga225320aa59c4d8cbc0106657737a92da:
+
+#define MB_TYPE_ICONERROR 0x0010
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga83b9b46378d5cbf7e5961113e9b9c938:
+
+#define MB_TYPE_ICONQUESTION 0x0020
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga08b3e231dbfc36d1ebddda769878c0bf:
+
+#define MB_TYPE_ICONWARNING 0x0030
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga2ea9fda75ddc2f77dbf15c8531755fe3:
+
+#define MB_TYPE_ICONINFORMATION 0x0040
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1gaad1b4adb540fab2cd5c842732727db27:
+
+#define MB_TYPE_DEFBUTTON1 0x0000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1gad6f7311903ffe2d5ec5724ac632ab3ec:
+
+#define MB_TYPE_DEFBUTTON2 0x0100
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1gaeeb01e2274b239040e35bf9547936e47:
+
+#define MB_TYPE_DEFBUTTON3 0x0200
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga239288d6f5f25d539a28f2f867e50da3:
+
+#define MB_TYPE_DEFBUTTON4 0x0300
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga1cb19c31af2c39f46ea4f54d0dd0ff24:
+
+#define MB_RESULT_OK 0x0001
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1gada79ee03c18c5d475571e348b7a7f55a:
+
+#define MB_RESULT_CANCEL 0x0002
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1gac57b31a8554d8a0bc1bc979193265143:
+
+#define MB_RESULT_ABORT 0x0003
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga5e81b403d255b89415bdee455d44989e:
+
+#define MB_RESULT_RETRY 0x0004
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1gab9921dc7bbe0dfda7b3d3a2975be6d6d:
+
+#define MB_RESULT_IGNORE 0x0005
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga006c6e93af5f722bdd72f169c720fecc:
+
+#define MB_RESULT_YES 0x0006
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga79b41081ed6bbf1afd7f804876d12e97:
+
+#define MB_RESULT_NO 0x0007
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga00f0defeb6e8911e8e0de9ffc1132a0d:
+
+#define ITF_SysWindow
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga9240c541674517e2744eeee6d2631e87:
+
+#define EXTITF_SysWindow
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_window_itf_1ga97e3b14b02d966bfe43f600d0aa3b2e9:
+
+typedef int( * PFWINDOWCALLBACK)(RTS_HANDLE hWindow, WindowCallbacks wcb, RTS_UINTPTR ulCallbackParam, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Callback prototype
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1gaa6aad92bd734ac0c13baf29a8d41183c:
+
+typedef void(* SysWindowTimerCallback)(RTS_HANDLE hWindow, void *pParams)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Signature of the callback passed to SysWindowCreateTimer.
+
+.. _group___sys_window_itf_1ga779fd14943d2899a472eafbfb6af432a:
+
+typedef ISysWindow_C ISysWindow
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enumeration Type Documentation
+------------------------------
+
+.. _group___sys_window_itf_1ga9557b1508c8bb6261701f2f10ca6e2d9:
+
+enum SysWindowCursor
+^^^^^^^^^^^^^^^^^^^^
+
+Enumeration of different cursor types. Identical to VisuEnumCursor from VisuElemBase.library 
+
+**Enumerator:**
+
++---------------------+
+| SYSWINCUR_DEFAULT   |
++---------------------+
+| SYSWINCUR_ARROW     |
++---------------------+
+| SYSWINCUR_HAND      |
++---------------------+
+| SYSWINCUR_WAIT      |
++---------------------+
+| SYSWINCUR_IBEAM     |
++---------------------+
+| SYSWINCUR_CROSS     |
++---------------------+
+| SYSWINCUR_HELP      |
++---------------------+
+| SYSWINCUR_HSPLIT    |
++---------------------+
+| SYSWINCUR_VSPLIT    |
++---------------------+
+| SYSWINCUR_SIZENWSE  |
++---------------------+
+| SYSWINCUR_SIZENESW  |
++---------------------+
+| SYSWINCUR_SIZEWE    |
++---------------------+
+| SYSWINCUR_SIZENS    |
++---------------------+
+| SYSWINCUR_SIZEALL   |
++---------------------+
+| SYSWINCUR_INVISIBLE |
++---------------------+
+
+Function Documentation
+----------------------
+
+.. _group___sys_window_itf_1ga27bc9666d3e4ebffb102f8facfed4b3e:
+
+RTS_RESULT SysWindowOSInit (INIT_STRUCT *pInit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga95094a3811f55142264d3d8446c39150:
+
+RTS_RESULT SysWindowOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1ga55e84310ecfa2721f6b66aa2f5a3a10c:
+
+RTS_RESULT SysWindowCyclicCall (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf_1gaa4f51bfc1c630c9dd035c8068b1762a6:
+
+RTS_RESULT SysWindowSupportsSeveralTasks (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to check whether an implementation of SysWindow can work with windows that are created from several independant tasks. If several tasks are not supported, then the method SysWindowInvokeInWindowTask must be implemented.
+
+**Returns:**
+
+ERR_OK if several tasks are allowed, otherwise a different error code
+
+.. _group___sys_window_itf_1ga5297e60d129b4649370ace53e8abfc04:
+
+RTS_RESULT SysWindowInvokeInWindowTask (PFINVOKEINWINDOWTASK pfToCall, RTS_UINTPTR ulParam)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to transfer a function call from any task to the task where all windows are handled. This might be needed on some platforms (SysWindowSupportsSeveralTasks says that multitasking is not allowed for windows.
+
+**Parameters**
+
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfToCall | The function that shall be called from the window task                                                                                                             |
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulParam  | A parameter that will be passed to the call to pfToCall. If this parameter is a pointer to some object, then this object must be alive until the method is called. |
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+An error code. Will return ERR_NOTIMPLEMENTED if the singletasking mode is not available.
+
+.. _group___sys_window_itf_1ga88f45561dfa65e04b47c00ff1f35ac84:
+
+RTS_HANDLE SysWindowCreate (SysWindowCreate_Struct *pCreate, RTS_UINTPTR ulParam, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to create a new window
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pCreate | The structure that describes the window that has to be created.                                                                                                                                                                               |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulParam | A parameter that is dependant of the type of the window. Might be a Pointer pointing to a structure with further information for the creation of this window. In case of a pointer, this pointer must be valid until the window is destroyed. |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to error code                                                                                                                                                                                                                         |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the created window
+
+.. _group___sys_window_itf_1gae27eeb9853600629d88b3be4ddda91fb:
+
+RTS_RESULT SysWindowDestroy (RTS_HANDLE hWindow)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to destroy a new window
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Note:**
+
+A top level window should unregister itself within the platform independent part using the method InternWindowUnregister
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1gaea11dc12815ff6c3b8ba4cd7815b581e:
+
+RTS_RESULT SysWindowSetUserData (RTS_HANDLE hWindow, RTS_UINTPTR ulData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set some userdefined data for a window, can be used to retrieve information within a window callback. The window should just store this data in a way so that it can be retrieved lateron using the hWindow and calling SysWindowGetUserData
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+| [in]    | ulData  | User data            |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga2e72f7503948a09e60d7c1294ffa9b71:
+
+RTS_RESULT SysWindowShow (RTS_HANDLE hWindow, RTS_UI32 ulData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to change the show flag of a window
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------+
+| [in]    | hWindow | Handle to the window                                            |
++---------+---------+-----------------------------------------------------------------+
+| [in]    | ulData  | User data. 1 is passed for hiding the window, 0 for showing it. |
++---------+---------+-----------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga184db829788face1c39842fcad3d1f5d:
+
+RTS_RESULT SysWindowGetUserData (RTS_HANDLE hWindow, RTS_UINTPTR *pulData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to get the userdefined data for a window. This data can be attached before using SysWindowSetUserData. At the moment, this method is not called.
+
+**Parameters**
+
++---------+---------+-------------------------------------------+
+| [in]    | hWindow | Handle to the window                      |
++---------+---------+-------------------------------------------+
+| [in]    | pulData | Pointer to user data that will be filled. |
++---------+---------+-------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga78c038d4e9c3361915f6b88f5fe36413:
+
+RTS_RESULT SysWindowSetCallback (RTS_HANDLE hWindow, unsigned long ulCallback, unsigned long *pulOldCallback)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to replace the current window callback function of a window, can be used for subclassing controls
+
+**Parameters**
+
++---------+----------------+----------------------+
+| [in]    | hWindow        | Handle to the window |
++---------+----------------+----------------------+
+| [in]    | ulCallback     | New callback address |
++---------+----------------+----------------------+
+| [in]    | pulOldCallback | Old callback address |
++---------+----------------+----------------------+
+
+**Returns:**
+
+error code This function is obsolete and is no longer called and used. For that reason, it might be removed in future releases.
+
+.. _group___sys_window_itf_1gaf80ada640c7ae58af28a9499973310a8:
+
+RTS_RESULT SysWindowMessageLoop (RTS_HANDLE hWindow)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to run the message loop for handling the created window. Will block and will not return until the window is closed,... Must only be called when SysWindowSupportsSeveralTasks returns ERR_OK.
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code, will return ERR_NOTIMPLEMENTED if the window is handled in a single task
+
+.. _group___sys_window_itf_1ga6836ccc60c62058bd7218ae164d566fb:
+
+RTS_RESULT SysWindowRegisterCallback (RTS_HANDLE hWindow, WindowCallbacks wcb, PFWINDOWCALLBACK callback, RTS_UINTPTR ulParam)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Register window handler callback
+
+**Note:**
+
+For Implementers: The platform independent part of the SysWindow component has a default implementation for this method. You can just add the following code in this implemenation: return InternRegisterCallback(hWindow, wcb, callback, ulParam);
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1gafdd358333e7d45da733650a3844ac30a:
+
+RTS_RESULT SysWindowUnregisterCallback (RTS_HANDLE hWindow, WindowCallbacks wcb, PFWINDOWCALLBACK callback)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unregister window handler callback
+**Note:**
+
+For Implementers: The platform independent part of the SysWindow component has a default implementation for this method. You can just add the following code in this implemenation: return InternUnregisterCallback(hWindow, wcb, callback);
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga254f949393701470b3a907689a476ca6:
+
+RTS_RESULT SysWindowInvalidateRectangle (RTS_HANDLE hWindow, RTS_Rectangle rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to add invalidate a screen rectangle
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1gaae05753abbd60c589f520e83ab48addb:
+
+RTS_RESULT SysWindowUpdate (RTS_HANDLE hWindow)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to repaint a window. In contrast to SysWindowForceUpdate, this method does not have to trigger an immediate repaint. It can delay the repaint to the system for performance reasons if necessary.
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga54bf277584d63747a87aa73f537ab2d8:
+
+RTS_RESULT SysWindowForceUpdate (RTS_HANDLE hWindow)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function that causes an immediate repaint of a window. In contrast to SysWindowUpdate, this method must trigger an immediate repaint. The intention of this method is to redraw immediately which can be used for animations for example. On systems where SysWindowUpdate already triggered an immediate repaint, this method can simply call SysWindowUpdate.
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga24eb4acab705a238443333bf879c26a3:
+
+RTS_RESULT SysWindowGetPos (RTS_HANDLE hWindow, RTS_Rectangle *pRect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to retrieve the rectangle of a window (including a title bar etc)
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga89ff154a97860ae2e85a9cba0430d1a6:
+
+RTS_RESULT SysWindowSetPos (RTS_HANDLE hWindow, RTS_Rectangle rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set the position of a window
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1gad18e301af5acf723ba5084fff8d30c72:
+
+RTS_RESULT SysWindowGetClientRectangle (RTS_HANDLE hWindow, RTS_Rectangle *pRect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to retrieve the client rectangle of a window (without a title bar)
+
+The rectangle should cover exactly the region that is available for drawing. Typically 0/0 -> clientwidth - 1/clientheight - 1 is the result.
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1gada99402106422dc2254c035d5ce78a8c:
+
+RTS_RESULT SysWindowSetFont (RTS_HANDLE hWindow, RTS_HANDLE hFont)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set the font in a window
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga1f4d0edaa8b25a00b46f1ea1884456cb:
+
+RTS_RESULT SysWindowGetFont (RTS_HANDLE hWindow, RTS_HANDLE *phFont)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to get the font in a window. Please remember that this function is not yet completely defined. For the moment it is ok to have an empty implementation returning ERR_NOTIMPLEMENTED.
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga1d65c900096da0234073812d0557d593:
+
+RTS_RESULT SysWindowGetText (RTS_HANDLE hWindow, char *pszValue, RTS_SIZE *piLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the Text of a window
+
+**Parameters**
+
++---------+----------+---------------------------------------------------------------------+
+| [in]    | ulWindow | The handle to the window                                            |
++---------+----------+---------------------------------------------------------------------+
+| [inout] | pszValue | Pointer to value for result                                         |
++---------+----------+---------------------------------------------------------------------+
+| [inout] | piLen    | Max length of string value as IN and length of copied values as OUT |
++---------+----------+---------------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK or ERR_PARAMETER
+
+.. _group___sys_window_itf_1gacf78302757637ecd780cc0b91cb37e7c:
+
+RTS_RESULT SysWindowSetText (RTS_HANDLE hWindow, char *pszText)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set the text in a window
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga2b8f3d41aad7d34fd71398949c9d509a:
+
+RTS_RESULT SysWindowSetTextW (RTS_HANDLE hWindow, RTS_WCHAR *pwsText)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set the unicode text in a window
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga06b2476dcb398947e295ae189bb40beb:
+
+RTS_RESULT SysWindowSetFocus (RTS_HANDLE hWindow)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set the input focus to a specific window
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga47774e65652fbf5a72317d6dd597cca3:
+
+RTS_RESULT SysWindowSetSelection (RTS_HANDLE hWindow, char *pszClassName, RTS_I32 dwParam1, RTS_I32 dwParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set the selection in a window. In case of an edit control, the specified range of text will be highlighted and selected. For users of this control, that means, they can start entering text and the selected range will be overwritten.
+
+**Parameters**
+
++---------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hWindow      | Handle to the window                                                                                                                                                                                                   |
++---------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszClassName | The class name of the affected window. At the moment, this feature is only implemented for the window class "TargetVisu_EditControl".                                                                                  |
++---------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwParam1     | Parameter to specify details for the selection. In case of pszClassName=="TargetVisu_EditControl", this will be the start index of the selection. 0 will be given to start the selection at the beginning of the text. |
++---------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwParam2     | Parameter to specify details for the selection. In case of pszClassName=="TargetVisu_EditControl", this will be the end index of the selection..                                                                       |
++---------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Note:**
+
+If the start is 0 and the end is -1, all the text in the edit control is selected. If the start is -1, the current selection is deselected.
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga0a80e04166d137e1a0701540a6f4af6f:
+
+RTS_RESULT SysWindowSetCursor (RTS_HANDLE hWindow, RTS_UI16 usCursor)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+function to set the currently visible cursor
+
+**Parameters**
+
++---------+----------+--------------------------------------------+
+| [in]    | hWindow  | Handle to the window                       |
++---------+----------+--------------------------------------------+
+| [in]    | usCursor | A value of the enumeration SysWindowCursor |
++---------+----------+--------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_window_itf_1ga9a7cd26b046120a42164b76575f0957b:
+
+RTS_RESULT SysWindowSetFlags (RTS_HANDLE hWindow, RTS_UI32 uiFlag, RTS_BOOL bValue)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set flags on a window. For a detailed description of the possible flags have a look at the defines beginning with SYSWIN_FLAGS_.
+
+**Parameters**
+
++---------+---------+-------------------------------+
+| [in]    | hWindow | Handle to the window          |
++---------+---------+-------------------------------+
+| [in]    | uiFlag  | The flags                     |
++---------+---------+-------------------------------+
+| [in]    | bValue  | The boolean value of the flag |
++---------+---------+-------------------------------+
+
+**Returns:**
+
+Will return ERR_OK if the flag could be set, ERR_NOT_SUPPORTED if the class of the given window *does not support this kind of flag or another error code if other errors happen.
+
+.. _group___sys_window_itf_1ga8842622915f0615dbeeb398ac570c9d5:
+
+RTS_RESULT SysWindowPrint (RTS_HANDLE hWindow, char *pszTitle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+function print the current screen
+
+**Parameters**
+
++---------+----------+----------------------+
+| [in]    | hWindow  | Handle to the window |
++---------+----------+----------------------+
+| [in]    | pszTitle | The print title      |
++---------+----------+----------------------+
+
+**Returns:**
+
+error code This function is obsolete, might be removed in one of the next releases and is included only for compatibility reasons. Please use SysWindowPrintStart etc. instead.
+
+.. _group___sys_window_itf_1ga2d3db9efcef1f9c97bf933a2d7aa6968:
+
+RTS_RESULT SysWindowPrintStart (RTS_HANDLE hWindow, char *pszTitle, char *pszPrinter)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+function print the current screen
+
+**Parameters**
+
++---------+------------+----------------------+
+| [in]    | hWindow    | Handle to the window |
++---------+------------+----------------------+
+| [in]    | pszTitle   | The print title      |
++---------+------------+----------------------+
+| [in]    | pszPrinter | The printer name     |
++---------+------------+----------------------+
+
+**Returns:**
+
+The result
+
+.. _group___sys_window_itf_1ga5bb724fcd1054e0df13da45c9de68b95:
+
+RTS_RESULT SysWindowPrintStartDocument (RTS_HANDLE hWindow)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Start the print document
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+The result
+
+.. _group___sys_window_itf_1ga8a3b64c737f944e8381969c7e00550b9:
+
+RTS_RESULT SysWindowPrintEndDocument (RTS_HANDLE hWindow)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+End the print document
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+The result
+
+.. _group___sys_window_itf_1gae0f1a75fec82bfb7466f4a9e94fd2cec:
+
+RTS_RESULT SysWindowPrintRelease (RTS_HANDLE hWindow)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Release all print objects if needed
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hWindow | Handle to the window |
++---------+---------+----------------------+
+
+**Returns:**
+
+The result
+
+.. _group___sys_window_itf_1ga887f1e4910868167dd7543c1e768f1aa:
+
+RTS_RESULT SysWindowNotify (RTS_HANDLE hWindow, RTS_UI32 notificationCode, void *notificationParam)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Notifies a window about a certain situation. The intention of this method is to be able to send notifications to a window from an arbitrary thread (ie. a different one than the one handling the window). Implementations of this method should post an according message to the according window and return without waiting for evaluation of this message.
+
+**Parameters**
+
++---------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hWindow           | Handle to the window                                                                                                                                         |
++---------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | notificationCode  | A numeric value that signals the type of notification.                                                                                                       |
++---------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | notificationParam | A pointer sized value that is used as a parameter. The meaning of this value depends on notificationCode; it can as well be a numeric and non pointer value. |
++---------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+The result
+
+.. _group___sys_window_itf_1ga9ae5a6595c61b0ee8901f0e365a23092:
+
+RTS_UI32 SysWindowSupportInfo (RTS_HANDLE hWindow, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves information about the support of specific features from the current window. Implementations of this method should post an according message to the according window and return without waiting for evaluation of this message.
+
+**Parameters**
+
++---------+---------+----------------------------------------+
+| [in]    | hWindow | Handle to the window                   |
++---------+---------+----------------------------------------+
+| [out]   | pResult | An optional pointer to a result value. |
++---------+---------+----------------------------------------+
+
+**Returns:**
+
+The result is a flat combination of the values SYSWINSUPPORT_FLAG_
+
+.. _group___sys_window_itf_1ga42684268921b6cdc67e87954a3d5e9e3:
+
+RTS_HANDLE SysWindowCreateTimer (RTS_HANDLE hWindow, RTS_UI32 interval, SysWindowTimerCallback callback, void *pCallbackParams, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creates a timer that periodically calls a function.
+
+**Parameters**
+
++---------+----------------+----------------------------------------------------------------+
+| [in]    | hWindow        | Handle to the window                                           |
++---------+----------------+----------------------------------------------------------------+
+| [in]    | interval       | The timer interval in milliseconds.                            |
++---------+----------------+----------------------------------------------------------------+
+| [in]    | callback       | The function to call after every interval.                     |
++---------+----------------+----------------------------------------------------------------+
+| [in]    | callbackParams | The paramaters that should be passed to the callback function. |
++---------+----------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Identifier for the timer that can be used to destroy it.
+
+.. _group___sys_window_itf_1gaa2fc98c8609b731d99da73554f362153:
+
+RTS_RESULT SysWindowDestroyTimer (RTS_HANDLE hWindow, RTS_HANDLE hTimer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creates a timer that periodically calls a function.
+
+**Parameters**
+
++---------+--------+-----------------------+
+| [in]    | hTimer | The timer to destroy. |
++---------+--------+-----------------------+
+
+**Returns:**
+
+Error code.
+
+.. _group___sys_window_itf_1gabd8b2d4b675054524047824d8bf64fc6:
+
+RTS_RESULT SysWindowOpenMessageBox (RTS_HANDLE hWindow, char *pszText, char *pszCaption, RTS_UI32 uiType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to open a message box.
+
+**Parameters**
+
++---------+------------+----------------------------------------------+
+| [in]    | hWindow    | Handle to the window                         |
++---------+------------+----------------------------------------------+
+| [in]    | pszText    | The message to show                          |
++---------+------------+----------------------------------------------+
+| [in]    | pszCaption | The caption to show                          |
++---------+------------+----------------------------------------------+
+| [in]    | uiType     | The type of message box. See MB_TYPE defines |
++---------+------------+----------------------------------------------+
+
+**Returns:**
+
+see MB_RESULT defines
+
+.. _group___sys_window_itf_1gaa18975023b51d7de146080c69162f20c:
+
+RTS_RESULT SysWindowOpenMessageBoxW (RTS_HANDLE hWindow, RTS_WCHAR *pwsText, RTS_WCHAR *pwsCaption, RTS_UI32 uiType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to open a message box.
+
+**Parameters**
+
++---------+------------+----------------------------------------------+
+| [in]    | hWindow    | Handle to the window                         |
++---------+------------+----------------------------------------------+
+| [in]    | pwsText    | The message to show                          |
++---------+------------+----------------------------------------------+
+| [in]    | pwsCaption | The caption to show                          |
++---------+------------+----------------------------------------------+
+| [in]    | uiType     | The type of message box. See MB_TYPE defines |
++---------+------------+----------------------------------------------+
+
+**Returns:**
+
+see MB_RESULT defines
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

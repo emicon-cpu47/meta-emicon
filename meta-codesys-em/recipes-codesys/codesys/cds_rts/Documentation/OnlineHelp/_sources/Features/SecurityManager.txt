@@ -1,0 +1,30 @@
+
+_`SecurityManager`
+==================
+
+The SecurityManager controls all current available security features via security settings.
+
+Security settings
+-----------------
+
+Within a set of security levels the level of the highest security is always at the first position. The levels are in descending order. The default level represents the most tolerant setting.
+
+If the compile switch CMPSECURITYMANAGER_SET_SECURITY_LEVEL_MAXIMUM is defined, the SecurityManager advises all components to use the highest security level instead of the default one.
+See in the chapter "Security settings" of each feature the corresponding security settings.
+
+The security manager setting "CreateAllOnStartup" (see :ref:`group___cmp_security_manager_itf`) can be activated in the runtime cfg-file. With this setting the following certificates 
+and keys are created during startup:
+
+- CmpSecureChannel: Create a selfsigned certificate
+
+- CmpWebserver: Create a selfsigned certificate
+
+- CmpOpenSSL: Create Diffie Hellman parameters
+
+Requirements
+------------
+
+The following runtime system components are necessary for this feature:
+
+- CmpSecurityManager: :ref:`group___cmp_security_manager_itf`      
+

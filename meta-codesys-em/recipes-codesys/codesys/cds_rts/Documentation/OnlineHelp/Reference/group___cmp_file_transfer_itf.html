@@ -1,0 +1,568 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpFileTransferItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpGatewayItf" href="group___cmp_gateway_itf.html" />
+    <link rel="prev" title="CmpEventMgrItf" href="group___cmp_event_mgr_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_gateway_itf.html" title="CmpGatewayItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_event_mgr_itf.html" title="CmpEventMgrItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpFileTransferItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-itf-cmpfiletransfer">#define ITF_CmpFileTransfer</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpfiletransfer">#define EXTITF_CmpFileTransfer</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-icmpfiletransfer-c-icmpfiletransfer">typedef ICmpFileTransfer_C ICmpFileTransfer</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-handle-filetransferstartdownload-char-pszfilename-fileinfo-pinfo-rts-ui32-ulsessionid-int-brestart-rts-result-presult">RTS_HANDLE FileTransferStartDownload (char *pszFileName, FileInfo *pInfo, RTS_UI32 ulSessionId, int bRestart, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-filetransferdownload-rts-handle-hfiletransfer-unsigned-char-pbydata-rts-size-ullen">RTS_RESULT FileTransferDownload (RTS_HANDLE hFiletransfer, unsigned char *pbyData, RTS_SIZE ulLen)</a></li>
+<li><a class="reference internal" href="#rts-result-filetransferenddownload-rts-handle-hfiletransfer">RTS_RESULT FileTransferEndDownload (RTS_HANDLE hFiletransfer)</a></li>
+<li><a class="reference internal" href="#rts-handle-filetransferstartupload-char-pszfilename-fileinfo-pinfo-rts-ui32-ulsessionid-int-brestart-rts-result-presult">RTS_HANDLE FileTransferStartUpload (char *pszFileName, FileInfo *pInfo, RTS_UI32 ulSessionId, int bRestart, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-filetransferupload-rts-handle-hfiletransfer-unsigned-char-pbydata-rts-size-pulmaxlen">RTS_RESULT FileTransferUpload (RTS_HANDLE hFiletransfer, unsigned char *pbyData, RTS_SIZE *pulMaxLen)</a></li>
+<li><a class="reference internal" href="#rts-result-filetransferendupload-rts-handle-hfiletransfer-fileinfo-pfileinfo">RTS_RESULT FileTransferEndUpload (RTS_HANDLE hFiletransfer, FileInfo *pFileInfo)</a></li>
+<li><a class="reference internal" href="#rts-result-filetransferclose-rts-handle-hfiletransfer">RTS_RESULT FileTransferClose (RTS_HANDLE hFiletransfer)</a></li>
+<li><a class="reference internal" href="#rts-result-filetransfercancel-rts-handle-hfiletransfer">RTS_RESULT FileTransferCancel (RTS_HANDLE hFiletransfer)</a></li>
+<li><a class="reference internal" href="#rts-result-filetransfercancelall-rts-ui32-ulsessionid">RTS_RESULT FileTransferCancelAll (RTS_UI32 ulSessionId)</a></li>
+<li><a class="reference internal" href="#rts-result-filetransfergetinfo-char-pszfilename-fileinfo-pinfo-fileinfo-pinfoclient">RTS_RESULT FileTransferGetInfo (char *pszFileName, FileInfo *pInfo, FileInfo *pInfoClient)</a></li>
+<li><a class="reference internal" href="#rts-size-filetransfertotransmit-rts-handle-hfiletransfer-rts-result-presult">RTS_SIZE FileTransferToTransmit (RTS_HANDLE hFiletransfer, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-filetransfersafesignature-char-pszfilename-rts-ui32-ulcrc32">RTS_RESULT FileTransferSafeSignature (char *pszFileName, RTS_UI32 ulCRC32)</a></li>
+<li><a class="reference internal" href="#rts-result-filetransfergetsafedsignature-char-pszfilename-rts-ui32-pulcrc32">RTS_RESULT FileTransferGetSafedSignature (char *pszFileName, RTS_UI32 *pulCRC32)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_event_mgr_itf.html"
+                        title="previous chapter">CmpEventMgrItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_gateway_itf.html"
+                        title="next chapter">CmpGatewayItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_file_transfer_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpfiletransferitf">
+<span id="group-cmp-file-transfer-itf"></span><h1>CmpFileTransferItf<a class="headerlink" href="#cmpfiletransferitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CmpFileTransfer. <a class="reference internal" href="#group-cmp-file-transfer-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___cmp_file_transfer_itf___alloctypes.html#group-cmp-file-transfer-itf-alloctypes"><span class="std std-ref">Alloc types</span></a></li>
+<li><a class="reference internal" href="group___cmp_file_transfer_itf___directoryextrainfoflags.html#group-cmp-file-transfer-itf-directoryextrainfoflags"><span class="std std-ref">Directory extra info flags</span></a></li>
+<li><a class="reference internal" href="group___cmp_file_transfer_itf___eventparameter.html#group-cmp-file-transfer-itf-eventparameter"><span class="std std-ref">Event parameter</span></a></li>
+<li><a class="reference internal" href="group___cmp_file_transfer_itf___events.html#group-cmp-file-transfer-itf-events"><span class="std std-ref">Events</span></a></li>
+<li><a class="reference internal" href="group___cmp_file_transfer_itf___onlinereplytags.html#group-cmp-file-transfer-itf-onlinereplytags"><span class="std std-ref">Online reply tags</span></a></li>
+<li><a class="reference internal" href="group___cmp_file_transfer_itf___onlineservices.html#group-cmp-file-transfer-itf-onlineservices"><span class="std std-ref">Online services</span></a></li>
+<li><a class="reference internal" href="group___cmp_file_transfer_itf___operations.html#group-cmp-file-transfer-itf-operations"><span class="std std-ref">Operations</span></a></li>
+<li><a class="reference internal" href="group___cmp_file_transfer_itf___settings.html#group-cmp-file-transfer-itf-settings"><span class="std std-ref">Settings</span></a></li>
+<li><a class="reference internal" href="group___cmp_file_transfer_itf___staticdefines.html#group-cmp-file-transfer-itf-staticdefines"><span class="std std-ref">Static defines</span></a></li>
+<li><a class="reference internal" href="group___cmp_file_transfer_itf___transfertypes.html#group-cmp-file-transfer-itf-transfertypes"><span class="std std-ref">Transfer types</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_i_cmp_file_transfer___c.html#struct-i-cmp-file-transfer-c"><span class="std std-ref">ICmpFileTransfer_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-file-transfer-itf-1gaa6fd8c6cd6cae162c56e6e15a0294f94"><span class="std std-ref">ITF_CmpFileTransfer</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-file-transfer-itf-1gaa2e4fae0353a348adb0418c684cb38f9"><span class="std std-ref">EXTITF_CmpFileTransfer</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef <a class="reference internal" href="struct_i_cmp_file_transfer___c.html#struct-i-cmp-file-transfer-c"><span class="std std-ref">ICmpFileTransfer_C</span></a> <a class="reference internal" href="#group-cmp-file-transfer-itf-1gad61a0cf3ab5449c5625f484b7e901e0b"><span class="std std-ref">ICmpFileTransfer</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-file-transfer-itf-1ga033232f2c1e9dbb5049eb02c521facb0"><span class="std std-ref">FileTransferStartDownload</span></a> (char * pszFileName, <a class="reference internal" href="struct_file_info.html#struct-file-info"><span class="std std-ref">FileInfo</span></a> * pInfo, RTS_UI32 ulSessionId, int bRestart, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-file-transfer-itf-1gafc8613776f70c2cd74aabb258b2936c9"><span class="std std-ref">FileTransferDownload</span></a> (RTS_HANDLE hFiletransfer, unsigned char * pbyData, RTS_SIZE ulLen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-file-transfer-itf-1gad16b2093d83869160c91a7d69c51b754"><span class="std std-ref">FileTransferEndDownload</span></a> (RTS_HANDLE hFiletransfer)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-file-transfer-itf-1ga2f591dc06306a175c365b8b18e767c87"><span class="std std-ref">FileTransferStartUpload</span></a> (char * pszFileName, <a class="reference internal" href="struct_file_info.html#struct-file-info"><span class="std std-ref">FileInfo</span></a> * pInfo, RTS_UI32 ulSessionId, int bRestart, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-file-transfer-itf-1gaafd30cdeda57f080741ff6b7a22e0913"><span class="std std-ref">FileTransferUpload</span></a> (RTS_HANDLE hFiletransfer, unsigned char * pbyData, RTS_SIZE * pulMaxLen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-file-transfer-itf-1gab29e3301bfe625801c1451f44095f5df"><span class="std std-ref">FileTransferEndUpload</span></a> (RTS_HANDLE hFiletransfer, <a class="reference internal" href="struct_file_info.html#struct-file-info"><span class="std std-ref">FileInfo</span></a> * pFileInfo)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-file-transfer-itf-1gad76ee122b3aa1f0af7cfa83261f03c32"><span class="std std-ref">FileTransferClose</span></a> (RTS_HANDLE hFiletransfer)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-file-transfer-itf-1gaaec88ac066c46f76af94133132700d3d"><span class="std std-ref">FileTransferCancel</span></a> (RTS_HANDLE hFiletransfer)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-file-transfer-itf-1gabe46ab9ea202570ffc490665f3304b6b"><span class="std std-ref">FileTransferCancelAll</span></a> (RTS_UI32 ulSessionId)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-file-transfer-itf-1ga3827395bddf269d24db01c27aacc6e4c"><span class="std std-ref">FileTransferGetInfo</span></a> (char * pszFileName, <a class="reference internal" href="struct_file_info.html#struct-file-info"><span class="std std-ref">FileInfo</span></a> * pInfo, <a class="reference internal" href="struct_file_info.html#struct-file-info"><span class="std std-ref">FileInfo</span></a> * pInfoClient)</li>
+<li>RTS_SIZE <a class="reference internal" href="#group-cmp-file-transfer-itf-1gab35a43fdc2969d65a16755aa9d5acd22"><span class="std std-ref">FileTransferToTransmit</span></a> (RTS_HANDLE hFiletransfer, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-file-transfer-itf-1ga7eabb283118b8fea8b26f4d6a8e90a05"><span class="std std-ref">FileTransferSafeSignature</span></a> (char * pszFileName, RTS_UI32 ulCRC32)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-file-transfer-itf-1gad81ea0a57efbfa1bbfb6da3dfbda9c24"><span class="std std-ref">FileTransferGetSafedSignature</span></a> (char * pszFileName, RTS_UI32 * pulCRC32)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-file-transfer-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CmpFileTransfer.</p>
+<p>This interface is specified for the file transfer component, to enable the transmission of files from and to the runtime system, to browse the directories online on the target and to handle directories (create, delete, rename).</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-itf-cmpfiletransfer">
+<span id="group-cmp-file-transfer-itf-1gaa6fd8c6cd6cae162c56e6e15a0294f94"></span><h3>#define ITF_CmpFileTransfer<a class="headerlink" href="#define-itf-cmpfiletransfer" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpfiletransfer">
+<span id="group-cmp-file-transfer-itf-1gaa2e4fae0353a348adb0418c684cb38f9"></span><h3>#define EXTITF_CmpFileTransfer<a class="headerlink" href="#define-extitf-cmpfiletransfer" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-icmpfiletransfer-c-icmpfiletransfer">
+<span id="group-cmp-file-transfer-itf-1gad61a0cf3ab5449c5625f484b7e901e0b"></span><h3>typedef ICmpFileTransfer_C ICmpFileTransfer<a class="headerlink" href="#typedef-icmpfiletransfer-c-icmpfiletransfer" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-handle-filetransferstartdownload-char-pszfilename-fileinfo-pinfo-rts-ui32-ulsessionid-int-brestart-rts-result-presult">
+<span id="group-cmp-file-transfer-itf-1ga033232f2c1e9dbb5049eb02c521facb0"></span><h3>RTS_HANDLE FileTransferStartDownload (char <a href="#id1"><span class="problematic" id="id2">*</span></a>pszFileName, FileInfo <a href="#id3"><span class="problematic" id="id4">*</span></a>pInfo, RTS_UI32 ulSessionId, int bRestart, RTS_RESULT <a href="#id5"><span class="problematic" id="id6">*</span></a>pResult)<a class="headerlink" href="#rts-handle-filetransferstartdownload-char-pszfilename-fileinfo-pinfo-rts-ui32-ulsessionid-int-brestart-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Creates a file transfer download object to transfer a file from client to target</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszFileName</td>
+<td>File name (can have a file path)</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pInfo</td>
+<td>File info of the file to be transmitted from the client</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulSessionId</td>
+<td>SessionId (can be the channelid) of the transfer</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>bRestart</td>
+<td>1: the file transfer will be continued, 0: start of the file transfer from the beginning</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the file transfer object</p>
+</div>
+<div class="section" id="rts-result-filetransferdownload-rts-handle-hfiletransfer-unsigned-char-pbydata-rts-size-ullen">
+<span id="group-cmp-file-transfer-itf-1gafc8613776f70c2cd74aabb258b2936c9"></span><h3>RTS_RESULT FileTransferDownload (RTS_HANDLE hFiletransfer, unsigned char <a href="#id7"><span class="problematic" id="id8">*</span></a>pbyData, RTS_SIZE ulLen)<a class="headerlink" href="#rts-result-filetransferdownload-rts-handle-hfiletransfer-unsigned-char-pbydata-rts-size-ullen" title="Permalink to this headline">¶</a></h3>
+<p>Transfer file data to the target</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="25%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hFiletransfer</td>
+<td>Handle to the file transfer object</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pbyData</td>
+<td>Data to transfer into the file</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulLen</td>
+<td>Number of bytes to transfer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-filetransferenddownload-rts-handle-hfiletransfer">
+<span id="group-cmp-file-transfer-itf-1gad16b2093d83869160c91a7d69c51b754"></span><h3>RTS_RESULT FileTransferEndDownload (RTS_HANDLE hFiletransfer)<a class="headerlink" href="#rts-result-filetransferenddownload-rts-handle-hfiletransfer" title="Permalink to this headline">¶</a></h3>
+<p>Finish file transfer download</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="25%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hFiletransfer</td>
+<td>Handle to the file transfer object</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-handle-filetransferstartupload-char-pszfilename-fileinfo-pinfo-rts-ui32-ulsessionid-int-brestart-rts-result-presult">
+<span id="group-cmp-file-transfer-itf-1ga2f591dc06306a175c365b8b18e767c87"></span><h3>RTS_HANDLE FileTransferStartUpload (char <a href="#id9"><span class="problematic" id="id10">*</span></a>pszFileName, FileInfo <a href="#id11"><span class="problematic" id="id12">*</span></a>pInfo, RTS_UI32 ulSessionId, int bRestart, RTS_RESULT <a href="#id13"><span class="problematic" id="id14">*</span></a>pResult)<a class="headerlink" href="#rts-handle-filetransferstartupload-char-pszfilename-fileinfo-pinfo-rts-ui32-ulsessionid-int-brestart-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Creates a file transfer upload object to transfer a file from target to client</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszFileName</td>
+<td>File name (can have a file path)</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pInfo</td>
+<td>File info of the file to be transmitted to the client</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulSessionId</td>
+<td>SessionId (can be the channelid) of the transfer</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>bRestart</td>
+<td>1: the file transfer will be continued, 0: start of the file transfer from the beginning</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the file transfer object</p>
+</div>
+<div class="section" id="rts-result-filetransferupload-rts-handle-hfiletransfer-unsigned-char-pbydata-rts-size-pulmaxlen">
+<span id="group-cmp-file-transfer-itf-1gaafd30cdeda57f080741ff6b7a22e0913"></span><h3>RTS_RESULT FileTransferUpload (RTS_HANDLE hFiletransfer, unsigned char <a href="#id15"><span class="problematic" id="id16">*</span></a>pbyData, RTS_SIZE <a href="#id17"><span class="problematic" id="id18">*</span></a>pulMaxLen)<a class="headerlink" href="#rts-result-filetransferupload-rts-handle-hfiletransfer-unsigned-char-pbydata-rts-size-pulmaxlen" title="Permalink to this headline">¶</a></h3>
+<p>Transfer file data to the client</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="15%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hFiletransfer</td>
+<td>Handle to the file transfer object</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pbyData</td>
+<td>Data to transfer from the file</td>
+</tr>
+<tr class="row-odd"><td>[inout]</td>
+<td>pulMaxLen</td>
+<td>Number of bytes to transfer, returns the real number of transferred bytes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-filetransferendupload-rts-handle-hfiletransfer-fileinfo-pfileinfo">
+<span id="group-cmp-file-transfer-itf-1gab29e3301bfe625801c1451f44095f5df"></span><h3>RTS_RESULT FileTransferEndUpload (RTS_HANDLE hFiletransfer, FileInfo <a href="#id19"><span class="problematic" id="id20">*</span></a>pFileInfo)<a class="headerlink" href="#rts-result-filetransferendupload-rts-handle-hfiletransfer-fileinfo-pfileinfo" title="Permalink to this headline">¶</a></h3>
+<p>Finish file transfer upload</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="12%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hFiletransfer</td>
+<td>Handle to the file transfer object</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pFileInfo</td>
+<td>Returns the file info of the uploaded file. Can be used to check the consistence on the upload side.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-filetransferclose-rts-handle-hfiletransfer">
+<span id="group-cmp-file-transfer-itf-1gad76ee122b3aa1f0af7cfa83261f03c32"></span><h3>RTS_RESULT FileTransferClose (RTS_HANDLE hFiletransfer)<a class="headerlink" href="#rts-result-filetransferclose-rts-handle-hfiletransfer" title="Permalink to this headline">¶</a></h3>
+<p>Close a file transfer</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="25%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hFiletransfer</td>
+<td>Handle to the file transfer object</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-filetransfercancel-rts-handle-hfiletransfer">
+<span id="group-cmp-file-transfer-itf-1gaaec88ac066c46f76af94133132700d3d"></span><h3>RTS_RESULT FileTransferCancel (RTS_HANDLE hFiletransfer)<a class="headerlink" href="#rts-result-filetransfercancel-rts-handle-hfiletransfer" title="Permalink to this headline">¶</a></h3>
+<p>Cancel and abort a file transfer</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="25%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hFiletransfer</td>
+<td>Handle to the file transfer object</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-filetransfercancelall-rts-ui32-ulsessionid">
+<span id="group-cmp-file-transfer-itf-1gabe46ab9ea202570ffc490665f3304b6b"></span><h3>RTS_RESULT FileTransferCancelAll (RTS_UI32 ulSessionId)<a class="headerlink" href="#rts-result-filetransfercancelall-rts-ui32-ulsessionid" title="Permalink to this headline">¶</a></h3>
+<p>Cancel and abort all file transfers on the specified sessionid (channelid)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="25%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hFiletransfer</td>
+<td>Handle to the file transfer object</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-filetransfergetinfo-char-pszfilename-fileinfo-pinfo-fileinfo-pinfoclient">
+<span id="group-cmp-file-transfer-itf-1ga3827395bddf269d24db01c27aacc6e4c"></span><h3>RTS_RESULT FileTransferGetInfo (char <a href="#id21"><span class="problematic" id="id22">*</span></a>pszFileName, FileInfo <a href="#id23"><span class="problematic" id="id24">*</span></a>pInfo, FileInfo <a href="#id25"><span class="problematic" id="id26">*</span></a>pInfoClient)<a class="headerlink" href="#rts-result-filetransfergetinfo-char-pszfilename-fileinfo-pinfo-fileinfo-pinfoclient" title="Permalink to this headline">¶</a></h3>
+<p>Get file infos from target and client</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="22%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszFileName</td>
+<td>File name (can have a file path)</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pInfo</td>
+<td>File info of the file in the target</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pInfoClient</td>
+<td>File info of the file at the client</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-size-filetransfertotransmit-rts-handle-hfiletransfer-rts-result-presult">
+<span id="group-cmp-file-transfer-itf-1gab35a43fdc2969d65a16755aa9d5acd22"></span><h3>RTS_SIZE FileTransferToTransmit (RTS_HANDLE hFiletransfer, RTS_RESULT <a href="#id27"><span class="problematic" id="id28">*</span></a>pResult)<a class="headerlink" href="#rts-size-filetransfertotransmit-rts-handle-hfiletransfer-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get number of bytes to transmit</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="25%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hFiletransfer</td>
+<td>Handle to the file transfer object</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Number of bytes to transmit</p>
+</div>
+<div class="section" id="rts-result-filetransfersafesignature-char-pszfilename-rts-ui32-ulcrc32">
+<span id="group-cmp-file-transfer-itf-1ga7eabb283118b8fea8b26f4d6a8e90a05"></span><h3>RTS_RESULT FileTransferSafeSignature (char <a href="#id29"><span class="problematic" id="id30">*</span></a>pszFileName, RTS_UI32 ulCRC32)<a class="headerlink" href="#rts-result-filetransfersafesignature-char-pszfilename-rts-ui32-ulcrc32" title="Permalink to this headline">¶</a></h3>
+<p>Safe signature of a specified file to check consistency</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="23%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszFileName</td>
+<td>File name (can have a file path)</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulCRC32</td>
+<td>CRC32 of the file</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-filetransfergetsafedsignature-char-pszfilename-rts-ui32-pulcrc32">
+<span id="group-cmp-file-transfer-itf-1gad81ea0a57efbfa1bbfb6da3dfbda9c24"></span><h3>RTS_RESULT FileTransferGetSafedSignature (char <a href="#id31"><span class="problematic" id="id32">*</span></a>pszFileName, RTS_UI32 <a href="#id33"><span class="problematic" id="id34">*</span></a>pulCRC32)<a class="headerlink" href="#rts-result-filetransfergetsafedsignature-char-pszfilename-rts-ui32-pulcrc32" title="Permalink to this headline">¶</a></h3>
+<p>Get safed signature of a specified file to check consistency</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="23%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszFileName</td>
+<td>File name (can have a file path)</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulCRC32</td>
+<td>Pointer to get CRC32 of the file</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_gateway_itf.html" title="CmpGatewayItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_event_mgr_itf.html" title="CmpEventMgrItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

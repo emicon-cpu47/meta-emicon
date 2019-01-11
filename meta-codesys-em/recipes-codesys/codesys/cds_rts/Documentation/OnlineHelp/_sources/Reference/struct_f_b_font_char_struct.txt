@@ -1,0 +1,70 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _struct_f_b_font_char_struct:
+
+=================================
+FBFontCharStruct Struct Reference
+=================================
+
+| #include ":ref:`SysFramebufferItf.h <_sys_framebuffer_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_UI8 :ref:`ucHeight <struct_f_b_font_char_struct_1ac57067acaa2eb9603fc677d4b4927103>`
+- RTS_UI8 :ref:`ucWidth <struct_f_b_font_char_struct_1a0920e211f0eb2451a40f1564e4922f79>`
+- RTS_UI8 :ref:`ucLength <struct_f_b_font_char_struct_1a5bae6615f7fc4e7472083dd43b1da8e3>`
+- RTS_UI8 :ref:`ucBaseline <struct_f_b_font_char_struct_1a348d09b108547b41fdd6c0420144e39d>`
+- RTS_UI32 :ref:`usOffset <struct_f_b_font_char_struct_1aad6f397de36dc03b15561a7485434c84>`
+
+Detailed Description
+--------------------
+
+Font Character Descriptor; describes where a specific character can be found in the Font bitmap; characters are stored byte-aligned within the bitmap. See this encoded "2":
+
+byte42 byte43 > usOffset = 42, as byte 42 is the first used byte [ 00000000 | 00000000 ]
+
+- 0 00011110 00000000 > ucWidth = 10 Pixels (= 10Bit) 0 01100001 10000000 0 11000000 11000000 0 00000001 10000000
+
+- 0 00000110 00000000 0 00011100 00000000 0 11111111 11000000 > ucHeight = 7 Pixels (= 7 Bit) 0 00000000 00000000 > ucBaseline = 1 Pixel (= 1 Bit)
+
+-
+
+Field Documentation
+-------------------
+
+.. _struct_f_b_font_char_struct_1ac57067acaa2eb9603fc677d4b4927103:
+
+RTS_UI8 FBFontCharStruct::ucHeight
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _struct_f_b_font_char_struct_1a0920e211f0eb2451a40f1564e4922f79:
+
+RTS_UI8 FBFontCharStruct::ucWidth
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _struct_f_b_font_char_struct_1a5bae6615f7fc4e7472083dd43b1da8e3:
+
+RTS_UI8 FBFontCharStruct::ucLength
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _struct_f_b_font_char_struct_1a348d09b108547b41fdd6c0420144e39d:
+
+RTS_UI8 FBFontCharStruct::ucBaseline
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _struct_f_b_font_char_struct_1aad6f397de36dc03b15561a7485434c84:
+
+RTS_UI32 FBFontCharStruct::usOffset
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysFramebufferItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

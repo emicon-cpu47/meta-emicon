@@ -1,0 +1,60 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_socket_itf___events:
+
+======
+Events
+======
+
+ :ref:`More... <group___sys_socket_itf___events-details>`
+
+Macros
+------
+
+- #define :ref:`EVT_SysSocket_BeforeSetIpAndMask <group___sys_socket_itf___events_1gaad79aa95a240e7e622ff4c3736ab0908>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`EVT_SysSocket_AfterSetIpAndMask <group___sys_socket_itf___events_1gadcbb320f2007bf523d645b80447afee2>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+
+.. _group___sys_socket_itf___events-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_socket_itf___events_1gaad79aa95a240e7e622ff4c3736ab0908:
+
+#define EVT_SysSocket_BeforeSetIpAndMask :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Event is sent in function :ref:`SysSockSetIpAddressAndNetMask() <group___sys_socket_itf_1ga96779e5ea363ffe3eb12e8c196f50348>` before the ip address and network mask is set in the SysSocket OS layer. The following results are provided to the event: ERR_OPERATION_DENIED: Adapter is not white listed to allow address changes. ERR_OK: Adapter is in the white listes for address changes. The result codes ERR_OPERATION_DENIED and ERR_OK can be changed to the opposite to overwrite the adapter list settings. Furthermore it is possible to implement the functionality to set the ip address and network mask completely in this event. In this case ERR_NOTHING_TO_DO have to be returned to signal this to the internal implementation. Then the internal implementation is skipped and :ref:`SysSockSetIpAddressAndNetMask() <group___sys_socket_itf_1ga96779e5ea363ffe3eb12e8c196f50348>` will return ERR_OK. The event should only be used by OEMs an not by the application.
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------------------------------------+
+| [in]    | pEventParam | :ref:`EVTPARAM_CmpDevice_InteractiveLogin <struct_e_v_t_p_a_r_a_m___cmp_device___interactive_login>` |
++---------+-------------+------------------------------------------------------------------------------------------------------+
+
+.. _group___sys_socket_itf___events_1gadcbb320f2007bf523d645b80447afee2:
+
+#define EVT_SysSocket_AfterSetIpAndMask :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Event is sent in function :ref:`SysSockSetIpAddressAndNetMask() <group___sys_socket_itf_1ga96779e5ea363ffe3eb12e8c196f50348>` after the ip address and network mask was set in the SysSocket OS layer. The event is called in any case regardless, if the operation was successful or not. Typically this is used to store the new ip configuration for example in a system bootup file to keep it also after a reboot. The event should only be used by OEMs an not by the application.
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------------------------------------+
+| [in]    | pEventParam | :ref:`EVTPARAM_CmpDevice_InteractiveLogin <struct_e_v_t_p_a_r_a_m___cmp_device___interactive_login>` |
++---------+-------------+------------------------------------------------------------------------------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

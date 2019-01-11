@@ -1,0 +1,700 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __cmp_iec_var_access_itf_8h:
+
+===================================
+CmpIecVarAccessItf.h File Reference
+===================================
+
+| #include ":ref:`CmpItf.h`"
+| #include ":ref:`SysInternalLibItf.h <_sys_internal_lib_itf_8h>`"
+| #include ":ref:`SysTimeItf.h <_sys_time_itf_8h>`"
+| #include ":ref:`SysTimeRtcItf.h <_sys_time_rtc_itf_8h>`"
+| #include ":ref:`CmpSrvItf.h <_cmp_srv_itf_8h>`"
+| #include ":ref:`IecVarAccess_ItfsItf.h <_iec_var_access___itfs_itf_8h>`"
+
+Data Structures
+---------------
+
+- struct :ref:`EVTPARAM_CmpIecVarAccess_WriteVar_ <struct_e_v_t_p_a_r_a_m___cmp_iec_var_access___write_var__>`
+
+- struct :ref:`BrowseBranchNode <struct_browse_branch_node>`
+
+- struct :ref:`BrowseLeafNode <struct_browse_leaf_node>`
+
+- struct :ref:`VarAccessInfo <struct_var_access_info>`
+
+- struct :ref:`RegisterVarList <struct_register_var_list>`
+
+- struct :ref:`RegisterVar <struct_register_var>`
+
+- struct :ref:`RegisterVar2 <struct_register_var2>`
+
+- struct :ref:`RegisterVarListReply <struct_register_var_list_reply>`
+
+- struct :ref:`RegisterVarReply <struct_register_var_reply>`
+
+- struct :ref:`VarListReply <struct_var_list_reply>`
+
+- struct :ref:`VarValueReply <struct_var_value_reply>`
+
+- struct :ref:`tagiecvaraccbrowsedown2_struct <structtagiecvaraccbrowsedown2__struct>`
+
+- struct :ref:`tagiecvaraccbrowsegetnext2_struct <structtagiecvaraccbrowsegetnext2__struct>`
+
+- struct :ref:`tagiecvaraccbrowserecursive_struct <structtagiecvaraccbrowserecursive__struct>`
+
+- struct :ref:`tagiecvaraccbrowseup2_struct <structtagiecvaraccbrowseup2__struct>`
+
+- struct :ref:`tagiecvaraccexitvarinfo_struct <structtagiecvaraccexitvarinfo__struct>`
+
+- struct :ref:`tagiecvaraccgetfirstinterface_struct <structtagiecvaraccgetfirstinterface__struct>`
+
+- struct :ref:`tagiecvaraccgetfirstinterface2_struct <structtagiecvaraccgetfirstinterface2__struct>`
+
+- struct :ref:`tagiecvaraccgetnextinterface_struct <structtagiecvaraccgetnextinterface__struct>`
+
+- struct :ref:`tagiecvaraccgetnextinterface2_struct <structtagiecvaraccgetnextinterface2__struct>`
+
+- struct :ref:`tagiecvaraccgetnode4_struct <structtagiecvaraccgetnode4__struct>`
+
+- struct :ref:`tagiecvaraccgetnodefullpath4_struct <structtagiecvaraccgetnodefullpath4__struct>`
+
+- struct :ref:`tagiecvaraccgetnodename4_struct <structtagiecvaraccgetnodename4__struct>`
+
+- struct :ref:`tagiecvaraccgetsymbolsetmask_struct <structtagiecvaraccgetsymbolsetmask__struct>`
+
+- struct :ref:`tagiecvaraccinitvarinfo_struct <structtagiecvaraccinitvarinfo__struct>`
+
+- struct :ref:`tagiecvaraccinitvarinfo2_struct <structtagiecvaraccinitvarinfo2__struct>`
+
+- struct :ref:`tagiecvaraccinvalidatenode_struct <structtagiecvaraccinvalidatenode__struct>`
+
+- struct :ref:`tagiecvaraccnodeinfoaddbrowseinfo_struct <structtagiecvaraccnodeinfoaddbrowseinfo__struct>`
+
+- struct :ref:`tagiecvaraccnodeinfoaddreference_struct <structtagiecvaraccnodeinfoaddreference__struct>`
+
+- struct :ref:`tagiecvaraccnodeinfogetbrowseinfo_struct <structtagiecvaraccnodeinfogetbrowseinfo__struct>`
+
+- struct :ref:`tagiecvaraccnodeinfogetreference_struct <structtagiecvaraccnodeinfogetreference__struct>`
+
+- struct :ref:`tagiecvaraccnodeinforemovebrowseinfo_struct <structtagiecvaraccnodeinforemovebrowseinfo__struct>`
+
+- struct :ref:`tagiecvaraccnodeinforemovereference_struct <structtagiecvaraccnodeinforemovereference__struct>`
+
+- struct :ref:`tagiecvaraccregisterinstance_struct <structtagiecvaraccregisterinstance__struct>`
+
+- struct :ref:`tagiecvaraccregisterinstance2_struct <structtagiecvaraccregisterinstance2__struct>`
+
+- struct :ref:`tagiecvaraccregisterinstance3_struct <structtagiecvaraccregisterinstance3__struct>`
+
+- struct :ref:`tagiecvaraccregisterinstancebase_struct <structtagiecvaraccregisterinstancebase__struct>`
+
+- struct :ref:`tagiecvaraccsetsymbolconfigcrc_struct <structtagiecvaraccsetsymbolconfigcrc__struct>`
+
+- struct :ref:`tagiecvaraccunregisterinstance_struct <structtagiecvaraccunregisterinstance__struct>`
+
+- struct :ref:`tagiecvaraccupdatesymbolsets_struct <structtagiecvaraccupdatesymbolsets__struct>`
+
+- struct :ref:`_IecVarAccBrowseCallback <struct___iec_var_acc_browse_callback>`
+
+- struct :ref:`ICmpIecVarAccess_C <struct_i_cmp_iec_var_access___c>`
+
+Macros
+------
+
+- #define :ref:`IECVARACCESS_NUM_OF_STATIC_APP <group___cmp_iec_var_access_itf_1ga88ff35ae96eebfad5e5a4dd17eaab75b>` 4
+
+- #define :ref:`IECVARACCESS_ROOT_NODE <group___cmp_iec_var_access_itf_1gaabcbc942432eac42a94946ebcbe6a2ae>` "ROOT__NODE"
+
+- #define :ref:`IECVARACCESS_NUM_OF_STATIC_VARLISTS <group___cmp_iec_var_access_itf_1gafdb07f5920b19423aa13db77e5a0d15f>` 10
+
+- #define :ref:`IECVARACCESS_NUM_OF_STATIC_VARS <group___cmp_iec_var_access_itf_1ga6014ff42c782c68a8aef18bd690bb0b0>` 1000
+
+- #define :ref:`CMPIECVARACCESS_NUM_OF_STATIC_VARLISTS <group___cmp_iec_var_access_itf_1ga936125fdbf8f939421598d9ede1d9e11>` :ref:`IECVARACCESS_NUM_OF_STATIC_VARLISTS <group___cmp_iec_var_access_itf_1gafdb07f5920b19423aa13db77e5a0d15f>`
+
+- #define :ref:`CMPIECVARACCESS_NUM_OF_STATIC_VARS <group___cmp_iec_var_access_itf_1ga756b4308a9550fa5ddde37218eaf4d41>` :ref:`IECVARACCESS_NUM_OF_STATIC_VARS <group___cmp_iec_var_access_itf_1ga6014ff42c782c68a8aef18bd690bb0b0>`
+
+- #define :ref:`CMPIECVARACCESS_NUM_OF_STATIC_BROWSEINFOS <group___cmp_iec_var_access_itf_1ga8e28463565d28f8ccc799ecfe894b8a5>` 10
+
+- #define :ref:`IECVARACC_INT_CONSISTENCY_MONITORING <group___cmp_iec_var_access_itf___settings_1ga43d6ee960013a56a3aa95702b5fbbdba>` "ConsistencyMonitoring.Enable"
+
+- #define :ref:`IECVARACC_INT_CONSISTENCY_MONITORING_DEFAULT <group___cmp_iec_var_access_itf___settings_1ga76afc9edb1b52f8c82aab67eb3e7157a>` 0
+
+- #define :ref:`IECVARACC_INT_CONSISTENCY_MONITORING_TIMEOUT <group___cmp_iec_var_access_itf___settings_1gaf67f593780d2585a6652a6fa3de2aaba>` "ConsistencyMonitoring.Timeout"
+
+- #define :ref:`IECVARACC_INT_CONSISTENCY_MONITORING_TIMEOUT_DEFAULT <group___cmp_iec_var_access_itf___settings_1gaa8659fb81902f4fba32b88545256a7d5>` 1000
+
+- #define :ref:`EVTPARAMID_CmpIecVarAccess_WriteVar <group___cmp_iec_var_access_itf___eventparameter_1ga4e033c33d7e13f107afb1e30fe69c711>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpIecVarAccess_WriteVar <group___cmp_iec_var_access_itf___eventparameter_1ga6b97c201a69400a0490c5850238f1c2a>` 0x0001
+
+- #define :ref:`EVT_CmpIecVarAccess_PrepareWriteVariable <group___cmp_iec_var_access_itf___events_1ga53a880406dc8b4aa4669c4db582f6aa8>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`EVT_CmpIecVarAccess_WriteVariableDone <group___cmp_iec_var_access_itf___events_1gaf3bd3923190683997abd4eb1eedf8719>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+
+- #define :ref:`USERDB_OBJECT_SYMBOLSET <group___cmp_iec_var_access_itf___staticdefines_1ga20fbb4ea15a658a1f72d391c6707b617>` "__SymbolSets"
+
+- #define :ref:`SRV_IECVARACC_REGISTER_VAR_LIST <group___cmp_iec_var_access_itf___categoryonlineservices_1ga5067e6e326972c96fdd1c0f8220166b7>` 0x01
+
+- #define :ref:`SRV_IECVARACC_UNREGISTER_VAR_LIST <group___cmp_iec_var_access_itf___categoryonlineservices_1ga7c862de33adbf44f0149a290b9040dad>` 0x02
+
+- #define :ref:`SRV_IECVARACC_READ_VAR_LIST <group___cmp_iec_var_access_itf___categoryonlineservices_1ga9985764b5a60d444aa1652a5096436b9>` 0x03
+
+- #define :ref:`SRV_IECVARACC_WRITE_VAR_LIST <group___cmp_iec_var_access_itf___categoryonlineservices_1gaf92f6ec22816dae0b2cd890fa537f29e>` 0x04
+
+- #define :ref:`SRV_IECVARACC_READ_VARS <group___cmp_iec_var_access_itf___categoryonlineservices_1ga894c7e9bcc05d15a957e8b4767e0437f>` 0x05
+
+- #define :ref:`SRV_IECVARACC_WRITE_VARS <group___cmp_iec_var_access_itf___categoryonlineservices_1gae1e70dc4c5e3c10dae919d9080a7c0cd>` 0x06
+
+- #define :ref:`SRV_IECVARACC_BROWSE_GET_ROOT_NODES <group___cmp_iec_var_access_itf___categoryonlineservices_1gab68859514ed1bcd21adadc561e7b79a5>` 0x07
+
+- #define :ref:`SRV_IECVARACC_BROWSE_GET_CHILDREN <group___cmp_iec_var_access_itf___categoryonlineservices_1gac389771eadd98fe6daa0424bd03ae693>` 0x08
+
+- #define :ref:`SRV_IECVARACC_BROWSE_GET_TYPE_DESCS <group___cmp_iec_var_access_itf___categoryonlineservices_1gaab21f04dc67e13b1db68d6f15755cfb4>` 0x09
+
+- #define :ref:`SRV_IECVARACC_GET_ADDRESS_INFO <group___cmp_iec_var_access_itf___categoryonlineservices_1gaf5958c61b91c414a5bff6ebc74094d35>` 0x0A
+
+- #define :ref:`SRV_IECVARACC_REMOVE_VARS_FROM_LIST <group___cmp_iec_var_access_itf___categoryonlineservices_1ga25bd9bd1bb9b33837020e5ba0b1a71ec>` 0x0B
+
+- #define :ref:`SRV_IECVARACC_GET_SYMBOLSETS <group___cmp_iec_var_access_itf___categoryonlineservices_1ga29b2ff14f5ab9d26d70fbde93243a641>` 0x0C
+
+- #define :ref:`SRV_IECVARACC_CONFIGURE_SYMBOLSET <group___cmp_iec_var_access_itf___categoryonlineservices_1gabf16c8d04b42a14917f8211e1911a050>` 0x0D
+
+- #define :ref:`TAG_IECVARACC_VARLIST_HANDLE <group___cmp_iec_var_access_itf___categoryonlinetags_1gab3de844b1a50537687e67d15d063241e>` 0x10
+
+- #define :ref:`TAG_IECVARACC_PEERADDRESS <group___cmp_iec_var_access_itf___categoryonlinetags_1ga208b5bb993710715e7c9f5c4a6e0c25f>` 0x81
+
+- #define :ref:`TAG_IECVARACC_PEERADDRESS_INFO <group___cmp_iec_var_access_itf___categoryonlinetags_1ga10fe4141af1da561b894c85583210c8a>` 0x11
+
+- #define :ref:`TAG_IECVARACC_PEERADDRESS_COMPONENT <group___cmp_iec_var_access_itf___categoryonlinetags_1gaba2b523053fdf0a201435e8e1a802163>` 0x12
+
+- #define :ref:`TAG_IECVARACC_FLAGS <group___cmp_iec_var_access_itf___categoryonlinetags_1gad6c848241d61d6b621cb88521f635beb>` 0x13
+
+- #define :ref:`TAG_IECVARACC_RESULT <group___cmp_iec_var_access_itf___categoryonlinetags_1gafb461d5a3f86e21233e5a1c643050efa>` 0x14
+
+- #define :ref:`TAG_IECVARACC_NAME_LEN <group___cmp_iec_var_access_itf___categoryonlinetags_1ga10be1ab678decd254226fb431cf9b15c>` 0x15
+
+- #define :ref:`TAG_IECVARACC_NAME <group___cmp_iec_var_access_itf___categoryonlinetags_1gaec01877012f03b4be8789fe2050b228d>` 0x16
+
+- #define :ref:`TAG_IECVARACC_UPDATERATE <group___cmp_iec_var_access_itf___categoryonlinetags_1ga6294499c6907e1d1ef1783ca98ef7aa2>` 0x17
+
+- #define :ref:`TAG_IECVARACC_NUM_OF_VARS <group___cmp_iec_var_access_itf___categoryonlinetags_1gaebc4f5f6bfaf98fc7a4ba2a3f703db0c>` 0x18
+
+- #define :ref:`TAG_IECVARACC_VAR <group___cmp_iec_var_access_itf___categoryonlinetags_1gac25a8e40aacab6a483294088e68bd599>` 0x19
+
+- #define :ref:`TAG_IECVARACC_VAR2 <group___cmp_iec_var_access_itf___categoryonlinetags_1ga203db36c339d9e7f753972c4216f0425>` 0x1A
+
+- #define :ref:`TAG_IECVARACC_VAR_ACCESS_INFO <group___cmp_iec_var_access_itf___categoryonlinetags_1gae1666360c0249a9531fcd88ae534c42a>` 0x1B
+
+- #define :ref:`TAG_IECVARACC_VAR_ERROR <group___cmp_iec_var_access_itf___categoryonlinetags_1ga6553237df1566c80b6ae239d882a1c4c>` 0x1C
+
+- #define :ref:`TAG_IECVARACC_VAR_READ <group___cmp_iec_var_access_itf___categoryonlinetags_1ga328f14c69c571ad7c2b32847048d8167>` 0x1D
+
+- #define :ref:`TAG_IECVARACC_VAR_WRITE <group___cmp_iec_var_access_itf___categoryonlinetags_1ga4d99ef8220bff47ece82746f841b00af>` 0x1E
+
+- #define :ref:`TAG_IECVARACC_VAR_HANDLE <group___cmp_iec_var_access_itf___categoryonlinetags_1gaef79006e48a04984c2ef6e062593ef3c>` 0x1F
+
+- #define :ref:`TAG_IECVARACC_VAR_RESULT <group___cmp_iec_var_access_itf___categoryonlinetags_1ga20bc0e753da2d95aee69c7bb6861c8d6>` 0x20
+
+- #define :ref:`TAG_IECVARACC_VAR_NAME <group___cmp_iec_var_access_itf___categoryonlinetags_1ga1911c7de6880e2703adaed77df7d9cbc>` 0x21
+
+- #define :ref:`TAG_IECVARACC_TIMESTAMP <group___cmp_iec_var_access_itf___categoryonlinetags_1ga3cdc742ad9714cae50ec51e9663b2870>` 0x22
+
+- #define :ref:`TAG_IECVARACC_VAR_CLIENTHANDLE <group___cmp_iec_var_access_itf___categoryonlinetags_1gab575a38fbfa8dfff778c2e75150302ea>` 0x23
+
+- #define :ref:`TAG_IECVARACC_NAMELIST_OPT <group___cmp_iec_var_access_itf___categoryonlinetags_1ga07028ae4c04bd5bc33d66f131b7fdd1e>` 0x24
+
+- #define :ref:`TAG_IECVARACC_FIRST_VAR_HANDLE <group___cmp_iec_var_access_itf___categoryonlinetags_1ga4bee711bf00d757c249afba76c97131a>` 0x25
+
+- #define :ref:`TAG_IECVARACC_COMPLETE_VAR_DESC <group___cmp_iec_var_access_itf___categoryonlinetags_1gae433e0865d43939c4bf95305378109f2>` 0x26
+
+- #define :ref:`TAG_IECVARACC_BROWSE_BRANCH_NODE <group___cmp_iec_var_access_itf___categoryonlinetags_1ga987616fdf42b7a57d0bc6c18c8037061>` 0x30
+
+- #define :ref:`TAG_IECVARACC_BROWSE_LEAF_NODE <group___cmp_iec_var_access_itf___categoryonlinetags_1ga14f40721ac03b32b23e75f4e9c5f91f3>` 0x31
+
+- #define :ref:`TAG_IECVARACC_BROWSE_BEGIN_INDEX <group___cmp_iec_var_access_itf___categoryonlinetags_1ga65aad7e2fd203f2c4ed714af351f9d25>` 0x32
+
+- #define :ref:`TAG_IECVARACC_BROWSE_TYPE_NODE <group___cmp_iec_var_access_itf___categoryonlinetags_1gafd669ae77de26ff59608b05ab6d1b782>` 0x33
+
+- #define :ref:`TAG_IECVARACC_TYPE_DESC <group___cmp_iec_var_access_itf___categoryonlinetags_1ga36386f79017e4e06a7fffdfee92c12b6>` 0xB4
+
+- #define :ref:`TAG_IECVARACC_TYPE <group___cmp_iec_var_access_itf___categoryonlinetags_1gaabe636bc942eafad17caaf43cdd1a561>` 0x35
+
+- #define :ref:`TAG_IECVARACC_TYPE_INFO <group___cmp_iec_var_access_itf___categoryonlinetags_1gae229c4cb15ac201c604b897f14d7a037>` 0x36
+
+- #define :ref:`TAG_IECVARACC_TYPE_ERROR <group___cmp_iec_var_access_itf___categoryonlinetags_1ga52ad159ccfd57de3ddca7652f7abaf2e>` 0x37
+
+- #define :ref:`TAG_IECVARACC_INTERFACE_GUID <group___cmp_iec_var_access_itf___categoryonlinetags_1gadfa444e0313249c79d2c79049cdbfcaf>` 0x38
+
+- #define :ref:`TAG_IECVARACC_INTERFACE <group___cmp_iec_var_access_itf___categoryonlinetags_1ga3cf76d6499072954f8ba8cc96ca7f935>` 0x39
+
+- #define :ref:`TAG_IECVARACC_CONFIG_CHANGED_TIMESTAMP <group___cmp_iec_var_access_itf___categoryonlinetags_1gadcfc46a940096d943e62c91e71f40d18>` 0x3A
+
+- #define :ref:`TAG_IECVARACC_ADDRESS_INFO <group___cmp_iec_var_access_itf___categoryonlinetags_1ga8e5fd076abea232b6c15287787ab4ea9>` 0x3B
+
+- #define :ref:`TAG_IECVARACC_APP_NAME_PREFIX <group___cmp_iec_var_access_itf___categoryonlinetags_1gabaf5e0ae0dc2ca01b559e2d1f18068df>` 0x3C
+
+- #define :ref:`TAG_IECVARACC_BROWSE_NEXT_INDEX <group___cmp_iec_var_access_itf___categoryonlinetags_1gabe5ce07161a80cbbe9fca21957507bb5>` 0x3D
+
+- #define :ref:`TAG_IECVARACC_CLIENT_OPTIONS <group___cmp_iec_var_access_itf___categoryonlinetags_1ga1adaf80b3d9078d66d6cbc17c6a010c8>` 0x40
+
+- #define :ref:`TAG_IECVARACC_VAR_DESC <group___cmp_iec_var_access_itf___categoryonlinetags_1ga3e048c508ea1905fff1e143f677e5862>` 0x41
+
+- #define :ref:`TAG_IECVARACC_VAR_OFFSET <group___cmp_iec_var_access_itf___categoryonlinetags_1ga417dd040df5ed1b47688475520af7308>` 0x42
+
+- #define :ref:`TAG_IECVARACC_VAR_SIZE <group___cmp_iec_var_access_itf___categoryonlinetags_1ga2830eff1199a45ceeaf3e9d207e9260b>` 0x43
+
+- #define :ref:`TAG_IECVARACC_VAR_FLAGS <group___cmp_iec_var_access_itf___categoryonlinetags_1ga7d23091eca2598f61d51bcabf1a5461c>` 0x44
+
+- #define :ref:`TAG_IECVARACC_VAR_PIECE_OFFSET <group___cmp_iec_var_access_itf___categoryonlinetags_1gab765c80835506a89ad3c3e6cb3ec8be4>` 0x45
+
+- #define :ref:`TAG_IECVARACC_VAR_PIECE_SIZE <group___cmp_iec_var_access_itf___categoryonlinetags_1ga0277ac42f4f1454cd006c417f918c7be>` 0x46
+
+- #define :ref:`TAG_IECVARACC_SYMBOLSET <group___cmp_iec_var_access_itf___categoryonlinetags_1ga9528259f6832e195d831302302f496de>` 0x81
+
+- #define :ref:`TAG_IECVARACC_SYMBOLSET_NAME <group___cmp_iec_var_access_itf___categoryonlinetags_1gac747abf47d0fb2284327f501b18a663d>` 0x50
+
+- #define :ref:`TAG_IECVARACC_SYMBOLSET_APPLICATION <group___cmp_iec_var_access_itf___categoryonlinetags_1ga9891dd837556fc3e6ba986161ceb9acd>` 0x51
+
+- #define :ref:`TAG_IECVARACC_SYBMOLSET_GROUP <group___cmp_iec_var_access_itf___categoryonlinetags_1ga778a2f045af6c4087df7f37b6ed02f5d>` 0x52
+
+- #define :ref:`TAG_IECVARACC_SYMBOLSET_EXTEND_CONFIG <group___cmp_iec_var_access_itf___categoryonlinetags_1gad94800818a7027b2b09f1b22851b25d1>` 0x53
+
+- #define :ref:`TAG_IECVARACC_SYMBOLSET_RESULT <group___cmp_iec_var_access_itf___categoryonlinetags_1ga37b79611e41e685fada3de177a5ea646>` :ref:`TAG_ERROR <group___cmp_srv_itf___servicereplytags_1gad1414fd0d54e87e0f3881dde41c09f88>`
+
+- #define :ref:`CO_CLIENT_ADDRESS_RESOLUTION <group___cmp_iec_var_access_itf___clientoptions_1gac2c65aa749365af7bcad0c7e31009de5>` 0x00000001
+
+- #define :ref:`CO_DIRECT_ADDRESS_INFO <group___cmp_iec_var_access_itf___clientoptions_1gac0a498de12d5ed97a35ea2a24e90ecb6>` 0x00000002
+
+- #define :ref:`VLF_MOTOROLA_BYTE_ORDER <group___cmp_iec_var_access_itf___varlistflags_1gaf4a3de8ce339a2712f0948d61e5ee25c>` 0x00000001
+
+- #define :ref:`VLF_CONSISTENT_BACKGROUND_READ <group___cmp_iec_var_access_itf___varlistflags_1ga166b0ecae4c99fc33583f8accd271b51>` 0x00000002
+
+- #define :ref:`VLF_CONSISTENT <group___cmp_iec_var_access_itf___varlistflags_1ga86e1f0d61417a6e7a63e7658c030da91>` :ref:`VLF_CONSISTENT_BACKGROUND_READ <group___cmp_iec_var_access_itf___varlistflags_1ga166b0ecae4c99fc33583f8accd271b51>`
+
+- #define :ref:`VLF_DATA_CHANGE <group___cmp_iec_var_access_itf___varlistflags_1ga09387a6a0a69b52640bf512b347dca44>` 0x00000004
+
+- #define :ref:`VLF_EXTENDABLE <group___cmp_iec_var_access_itf___varlistflags_1ga1536583b71fe8775791fc69dfcb5b98a>` 0x00000008
+
+- #define :ref:`VLF_EXTENDABLE_SUPPORTED <group___cmp_iec_var_access_itf___varlistflags_1gadde7d6408e9380f39735bec605e80259>` 0x00000010
+
+- #define :ref:`VLF_ACCESS_BY_VARHANDLE <group___cmp_iec_var_access_itf___varlistflags_1ga1ed15b4fa97c5d03bb582664f1b9a41e>` 0x00000020
+
+- #define :ref:`VLF_SPLIT_HUGE_VARIABLES <group___cmp_iec_var_access_itf___varlistflags_1gacf2a1b407f21a211991e7ea88258bcb2>` 0x00000040
+
+- #define :ref:`VLF_CONSISTENT_SYNCHRONIZED_READ <group___cmp_iec_var_access_itf___varlistflags_1ga43509272ebbfd00ac4a157d703905380>` 0x00000080
+
+- #define :ref:`VLF_CONSISTENT_SYNCHRONIZED_WRITE <group___cmp_iec_var_access_itf___varlistflags_1gaa7450ccbed9656f8cd01a0fd6d117f9d>` 0x00000100
+
+- #define :ref:`VLF_CONSISTENCY_SUPPORTED <group___cmp_iec_var_access_itf___varlistflags_1gae02dced163d6f885359a33ceb11f414e>` 0x00000200
+
+- #define :ref:`VLF_EXECUTE_CONSISTENT_READ <group___cmp_iec_var_access_itf___varlistflags_1gad1785b28968292927a4dcc74ec2a854e>` 0x00000400
+
+- #define :ref:`VLF_EXECUTE_CONSISTENT_WRITE <group___cmp_iec_var_access_itf___varlistflags_1ga1ff62cc06b799d2d992cd23e4a8dd309>` 0x00000800
+
+- #define :ref:`VLF_RETURN_VARINFO <group___cmp_iec_var_access_itf___varlistflags_1gab9111086a0d096539bd273bddf4c6b72>` 0x00001000
+
+- #define :ref:`VLF_TIMESTAMP_UTC <group___cmp_iec_var_access_itf___varlistflags_1gab5c2e218167fd09827406540ba529105>` 0x00010000
+
+- #define :ref:`VLF_TIMESTAMP_TIMEDATE <group___cmp_iec_var_access_itf___varlistflags_1gaa41325cf1cd9d3815bca1a363808ea70>` 0x00020000
+
+- #define :ref:`VLF_TIMESTAMP_MS <group___cmp_iec_var_access_itf___varlistflags_1ga79cf13ffce1acecfdc37dbdd9573956f>` 0x00040000
+
+- #define :ref:`VLF_TIMESTAMP_US <group___cmp_iec_var_access_itf___varlistflags_1ga40b04f20d29bb48116bb89e062f6fe3b>` 0x00080000
+
+- #define :ref:`VLF_TIMESTAMP_NS <group___cmp_iec_var_access_itf___varlistflags_1ga1fe09cf526e4c2e5ca2ceeffac6c5fc8>` 0x00100000
+
+- #define :ref:`BLNF_DIRECTADDRESS <group___cmp_iec_var_access_itf___branchleafnodeflags_1ga99083d0b1d9fd5673e5175b1e8d87158>` 0x00000001
+
+- #define :ref:`QUALITY_GOOD <group___cmp_iec_var_access_itf___quality_1gaf67095abcbe247df5c055fc98b19b031>` 0
+
+- #define :ref:`QUALITY_NOT_CONNECTED <group___cmp_iec_var_access_itf___quality_1gaf877c1699636ca24e46370c023e94ef4>` 1
+
+- #define :ref:`QUALITY_NOT_AVAILABLE <group___cmp_iec_var_access_itf___quality_1ga3900bf8835f3aaff04f5112cc4564ba7>` 2
+
+- #define :ref:`QUALITY_NO_ACCESS_RIGHT <group___cmp_iec_var_access_itf___quality_1ga721ddffd6478e631bb9eebf85d123c34>` 3
+
+- #define :ref:`TCF_GET_TYPE <group___cmp_iec_var_access_itf_1ga8f58c4daeea94667d861dd32cbc476cd>` 0
+
+- #define :ref:`TCF_GET_BASE_TYPE <group___cmp_iec_var_access_itf_1ga26b159ad229b0756ab853156d42e63e6>` 1
+
+- #define :ref:`TCF_GET_POU_TYPE <group___cmp_iec_var_access_itf_1ga14618ab1b5e7e863af7d98703ac8b73a>` 2
+
+- #define :ref:`TCF_GET_ENUM_TYPE <group___cmp_iec_var_access_itf_1gaeb83e8407b113379c9cd94aed18adb5b>` 4
+
+- #define :ref:`TYPE_POU_FUNCTION <group___cmp_iec_var_access_itf___p_o_u_type_class_1ga565ce0848e5bd823bce9c7b16c0800dd>` 0x0100
+
+- #define :ref:`TYPE_POU_FUNCTION_BLOCK <group___cmp_iec_var_access_itf___p_o_u_type_class_1gad8f201e2e4eb58572a257b7b7a894222>` 0x0200
+
+- #define :ref:`TYPE_POU_PROGRAM <group___cmp_iec_var_access_itf___p_o_u_type_class_1ga3573bfeb6d39791a9d8c71a67d64be0d>` 0x0300
+
+- #define :ref:`TYPE_POU_STRUCTURE <group___cmp_iec_var_access_itf___p_o_u_type_class_1ga5bfe4b6e9d48cf80040f76302c0bd4da>` 0x0400
+
+- #define :ref:`LTNF_NONE <group___cmp_iec_var_access_itf___node_flags_1gaac0830e75a9c8361de14cf972cc80c06>` 0x00000000
+
+- #define :ref:`LTNF_VAR <group___cmp_iec_var_access_itf___node_flags_1ga1c5ccfe0783e628fc2b359cb77640c19>` 0x00000001
+
+- #define :ref:`LTNF_VAR_INPUT <group___cmp_iec_var_access_itf___node_flags_1gae9b4c2c95320ad93289953b07dde5cc0>` 0x00000002
+
+- #define :ref:`LTNF_VAR_OUTPUT <group___cmp_iec_var_access_itf___node_flags_1ga4eede135605a8205ee299493f13302ee>` 0x00000004
+
+- #define :ref:`LTNF_VAR_IN_OUT <group___cmp_iec_var_access_itf___node_flags_1gaa6187744bc50178edd4b4540937aaea0>` 0x00000008
+
+- #define :ref:`LTNF_VAR_EXEC <group___cmp_iec_var_access_itf___node_flags_1ga6c83ed6b0eafabdb51dafb83524cd3d9>` 0x00000010
+
+- #define :ref:`LTNF_VAR_PROP <group___cmp_iec_var_access_itf___node_flags_1ga67d454535bf1a5287f31e5970b6111dc>` 0x00000020
+
+- #define :ref:`LTNF_CALL_PROP <group___cmp_iec_var_access_itf___node_flags_1ga07b0b0f25c0b203cc5689e93724498dd>` 0x00000040
+
+- #define :ref:`LTNF_INHERITED_MEMBER <group___cmp_iec_var_access_itf___node_flags_1ga714aee9107b6834f3d3918974846bd59>` 0x00010000
+
+- #define :ref:`ITF_CmpIecVarAccess <group___cmp_iec_var_access_itf_1ga9afce982cc399358aa2af19aec93b42c>`
+
+- #define :ref:`EXTITF_CmpIecVarAccess <group___cmp_iec_var_access_itf_1ga3ef74ef14f3df6ab57ff520fa288eef8>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`EVTPARAM_CmpIecVarAccess_WriteVar_ <struct_e_v_t_p_a_r_a_m___cmp_iec_var_access___write_var__>` :ref:`EVTPARAM_CmpIecVarAccess_WriteVar <group___cmp_iec_var_access_itf___eventparameter_1ga75240f31a223bdf9613313af6429230c>`
+
+- typedef enum :ref:`_POUClass <group___cmp_iec_var_access_itf___p_o_u_class_1ga04431294437807168ba8dc80f12ddafb>` :ref:`POUClass <group___cmp_iec_var_access_itf___p_o_u_class_1ga035e3d5685b47689a39345af2a7a4ea4>`
+
+- typedef :ref:`IIecVarAccess_Itfs_C <struct_i_iec_var_access___itfs___c>` :ref:`IIecVarAccess <group___cmp_iec_var_access_itf___node_flags_1ga036e98aab723dced4c3d3d9824c23b98>`
+
+- typedef :ref:`IIecVarAccess_Itfs_C <struct_i_iec_var_access___itfs___c>` :ref:`IIecVarAccess2 <group___cmp_iec_var_access_itf___node_flags_1ga680af77ca656a0b2b8e714d7bf8f5b0e>`
+
+- typedef :ref:`IIecVarAccess_Itfs_C <struct_i_iec_var_access___itfs___c>` :ref:`IIecVarAccess3 <group___cmp_iec_var_access_itf___node_flags_1ga92ca62c8e4164a47f5cc5287b200d846>`
+
+- typedef struct :ref:`tagiecvaraccbrowsedown2_struct <structtagiecvaraccbrowsedown2__struct>` :ref:`iecvaraccbrowsedown2_struct <group___cmp_iec_var_access_itf_1ga46bae2b4c8426550105e346dd5c8f4ef>`
+
+- typedef struct :ref:`tagiecvaraccbrowsegetnext2_struct <structtagiecvaraccbrowsegetnext2__struct>` :ref:`iecvaraccbrowsegetnext2_struct <group___cmp_iec_var_access_itf_1ga1d4dc2f0b89bc4a4233fec90bad696b4>`
+
+- typedef struct :ref:`tagiecvaraccbrowserecursive_struct <structtagiecvaraccbrowserecursive__struct>` :ref:`iecvaraccbrowserecursive_struct <group___cmp_iec_var_access_itf_1ga677ef0230bb65171b6f9aae4f8d3435f>`
+
+- typedef struct :ref:`tagiecvaraccbrowseup2_struct <structtagiecvaraccbrowseup2__struct>` :ref:`iecvaraccbrowseup2_struct <group___cmp_iec_var_access_itf_1ga5a4a8e1d457fe9755c5e8386551d73ef>`
+
+- typedef struct :ref:`tagiecvaraccexitvarinfo_struct <structtagiecvaraccexitvarinfo__struct>` :ref:`iecvaraccexitvarinfo_struct <group___cmp_iec_var_access_itf_1ga1c6c216918565e540ab1fe2ab96a1d85>`
+
+- typedef struct :ref:`tagiecvaraccgetfirstinterface_struct <structtagiecvaraccgetfirstinterface__struct>` :ref:`iecvaraccgetfirstinterface_struct <group___cmp_iec_var_access_itf_1gadff429f5ef0fa9d2dc41c45317dd5562>`
+
+- typedef struct :ref:`tagiecvaraccgetfirstinterface2_struct <structtagiecvaraccgetfirstinterface2__struct>` :ref:`iecvaraccgetfirstinterface2_struct <group___cmp_iec_var_access_itf_1ga4ff11e60f9b918097f40fb3c9ea953bd>`
+
+- typedef struct :ref:`tagiecvaraccgetnextinterface_struct <structtagiecvaraccgetnextinterface__struct>` :ref:`iecvaraccgetnextinterface_struct <group___cmp_iec_var_access_itf_1ga4e67ef5258eae17f66c45e112e954a84>`
+
+- typedef struct :ref:`tagiecvaraccgetnextinterface2_struct <structtagiecvaraccgetnextinterface2__struct>` :ref:`iecvaraccgetnextinterface2_struct <group___cmp_iec_var_access_itf_1gabec551da9e33b01f54bacd17a85f9679>`
+
+- typedef struct :ref:`tagiecvaraccgetnode4_struct <structtagiecvaraccgetnode4__struct>` :ref:`iecvaraccgetnode4_struct <group___cmp_iec_var_access_itf_1ga25fe771b9ca2e17fc4611bca7262b445>`
+
+- typedef struct :ref:`tagiecvaraccgetnodefullpath4_struct <structtagiecvaraccgetnodefullpath4__struct>` :ref:`iecvaraccgetnodefullpath4_struct <group___cmp_iec_var_access_itf_1ga7711ece8d2de545a7c282b7c61d44797>`
+
+- typedef struct :ref:`tagiecvaraccgetnodename4_struct <structtagiecvaraccgetnodename4__struct>` :ref:`iecvaraccgetnodename4_struct <group___cmp_iec_var_access_itf_1ga8d30967974a16107a041d04319cc4e14>`
+
+- typedef struct :ref:`tagiecvaraccgetsymbolsetmask_struct <structtagiecvaraccgetsymbolsetmask__struct>` :ref:`iecvaraccgetsymbolsetmask_struct <group___cmp_iec_var_access_itf_1ga2797728cd6e1a678775fd670ff813a2e>`
+
+- typedef struct :ref:`tagiecvaraccinitvarinfo_struct <structtagiecvaraccinitvarinfo__struct>` :ref:`iecvaraccinitvarinfo_struct <group___cmp_iec_var_access_itf_1ga185900fe3308849081b8487f3a388c1a>`
+
+- typedef struct :ref:`tagiecvaraccinitvarinfo2_struct <structtagiecvaraccinitvarinfo2__struct>` :ref:`iecvaraccinitvarinfo2_struct <group___cmp_iec_var_access_itf_1ga13fbbac923256fbb1ae65b7749d193a5>`
+
+- typedef struct :ref:`tagiecvaraccinvalidatenode_struct <structtagiecvaraccinvalidatenode__struct>` :ref:`iecvaraccinvalidatenode_struct <group___cmp_iec_var_access_itf_1ga7e792159e11001ed44a4d44b4a3e2742>`
+
+- typedef struct :ref:`tagiecvaraccnodeinfoaddbrowseinfo_struct <structtagiecvaraccnodeinfoaddbrowseinfo__struct>` :ref:`iecvaraccnodeinfoaddbrowseinfo_struct <group___cmp_iec_var_access_itf_1ga7234b7db42c7f7e0f9a42b4b81de1225>`
+
+- typedef struct :ref:`tagiecvaraccnodeinfoaddreference_struct <structtagiecvaraccnodeinfoaddreference__struct>` :ref:`iecvaraccnodeinfoaddreference_struct <group___cmp_iec_var_access_itf_1ga8a3b4b6313262c5d7f4b0f294c326b97>`
+
+- typedef struct :ref:`tagiecvaraccnodeinfogetbrowseinfo_struct <structtagiecvaraccnodeinfogetbrowseinfo__struct>` :ref:`iecvaraccnodeinfogetbrowseinfo_struct <group___cmp_iec_var_access_itf_1gafa2f0d6cff0cbae22b0ede41d2049c11>`
+
+- typedef struct :ref:`tagiecvaraccnodeinfogetreference_struct <structtagiecvaraccnodeinfogetreference__struct>` :ref:`iecvaraccnodeinfogetreference_struct <group___cmp_iec_var_access_itf_1ga93eb5707f38fc19d5a895800b2adfc7e>`
+
+- typedef struct :ref:`tagiecvaraccnodeinforemovebrowseinfo_struct <structtagiecvaraccnodeinforemovebrowseinfo__struct>` :ref:`iecvaraccnodeinforemovebrowseinfo_struct <group___cmp_iec_var_access_itf_1gaeab9798f5ca358586bd323b7114ba470>`
+
+- typedef struct :ref:`tagiecvaraccnodeinforemovereference_struct <structtagiecvaraccnodeinforemovereference__struct>` :ref:`iecvaraccnodeinforemovereference_struct <group___cmp_iec_var_access_itf_1ga3ad805cd733d04660d3cb0eedce838c7>`
+
+- typedef struct :ref:`tagiecvaraccregisterinstance_struct <structtagiecvaraccregisterinstance__struct>` :ref:`iecvaraccregisterinstance_struct <group___cmp_iec_var_access_itf_1ga51b46b86a0ae33fde35801db7b1f6737>`
+
+- typedef struct :ref:`tagiecvaraccregisterinstance2_struct <structtagiecvaraccregisterinstance2__struct>` :ref:`iecvaraccregisterinstance2_struct <group___cmp_iec_var_access_itf_1ga5bc859b891f930649b8fcf1b968c3c53>`
+
+- typedef struct :ref:`tagiecvaraccregisterinstance3_struct <structtagiecvaraccregisterinstance3__struct>` :ref:`iecvaraccregisterinstance3_struct <group___cmp_iec_var_access_itf_1gae116d7d79d1e884bcf6690d5137bbaa4>`
+
+- typedef struct :ref:`tagiecvaraccregisterinstancebase_struct <structtagiecvaraccregisterinstancebase__struct>` :ref:`iecvaraccregisterinstancebase_struct <group___cmp_iec_var_access_itf_1ga0403f592ee6b11330e5e3e93d4739674>`
+
+- typedef struct :ref:`tagiecvaraccsetsymbolconfigcrc_struct <structtagiecvaraccsetsymbolconfigcrc__struct>` :ref:`iecvaraccsetsymbolconfigcrc_struct <group___cmp_iec_var_access_itf_1ga0840d7b338a11f4486741dfe389fbb07>`
+
+- typedef struct :ref:`tagiecvaraccunregisterinstance_struct <structtagiecvaraccunregisterinstance__struct>` :ref:`iecvaraccunregisterinstance_struct <group___cmp_iec_var_access_itf_1gaba6d299512653cfb29a4716f2db0d616>`
+
+- typedef struct :ref:`tagiecvaraccupdatesymbolsets_struct <structtagiecvaraccupdatesymbolsets__struct>` :ref:`iecvaraccupdatesymbolsets_struct <group___cmp_iec_var_access_itf_1ga14d4a61498d6eaf2507b87d82380d5a1>`
+
+- typedef enum :ref:`_IecVarAccBrowseDirection <group___cmp_iec_var_access_itf_1gaae1db1d53e1eaf49d7b481ffbad61bab>` :ref:`IecVarAccBrowseDirection <group___cmp_iec_var_access_itf_1ga6947b1464c32103b21f7a7becc5e1957>`
+
+- typedef struct :ref:`_IecVarAccBrowseCallback <struct___iec_var_acc_browse_callback>` :ref:`IecVarAccBrowseCallback <group___cmp_iec_var_access_itf_1ga60f864ee75a3a9512db71fc063366dcb>`
+
+- typedef void(* :ref:`PF_IECVARACC_BROWSECALLBACK <group___cmp_iec_var_access_itf_1ga3ca74d4d445ce8ce22989b92cfb40be0>`)(IecVarAccBrowseCallback *pBrowseParam)
+
+- typedef :ref:`ICmpIecVarAccess_C <struct_i_cmp_iec_var_access___c>` :ref:`ICmpIecVarAccess <group___cmp_iec_var_access_itf_1gaa426786e17974209d90b6f5d40f68e21>`
+
+Enumerations
+------------
+
+- enum :ref:`_POUClass <group___cmp_iec_var_access_itf___p_o_u_class_1ga04431294437807168ba8dc80f12ddafb>` { :ref:`POU_CLASS_NONE <group___cmp_iec_var_access_itf___p_o_u_class_1gga04431294437807168ba8dc80f12ddafbaf0b08c7062076f401cfdd35a148b2e97>`, :ref:`POU_CLASS_FUNCTION <group___cmp_iec_var_access_itf___p_o_u_class_1gga04431294437807168ba8dc80f12ddafbaa4e0e2260e59011f7ca041b7d4cf17c9>`, :ref:`POU_CLASS_FUNCTION_BLOCK <group___cmp_iec_var_access_itf___p_o_u_class_1gga04431294437807168ba8dc80f12ddafba1c2c7c46f0890d12fb7e3a8b49104e99>`, :ref:`POU_CLASS_PROGRAM <group___cmp_iec_var_access_itf___p_o_u_class_1gga04431294437807168ba8dc80f12ddafbaca2c8aab10a8dbff2da66bda83afce1c>`, :ref:`POU_CLASS_STRUCTURE <group___cmp_iec_var_access_itf___p_o_u_class_1gga04431294437807168ba8dc80f12ddafba8611956bf457afeeb0bc71bf966afc43>` }
+
+- enum :ref:`_IecVarAccBrowseDirection <group___cmp_iec_var_access_itf_1gaae1db1d53e1eaf49d7b481ffbad61bab>` { :ref:`BROWSEDIRECTION_ROOT <group___cmp_iec_var_access_itf_1ggaae1db1d53e1eaf49d7b481ffbad61baba26d9f6f94e12c093b28a6d4f29d8624f>`, :ref:`BROWSEDIRECTION_DOWN <group___cmp_iec_var_access_itf_1ggaae1db1d53e1eaf49d7b481ffbad61baba4a0860b338920fb6793273714e5cfdf2>`, :ref:`BROWSEDIRECTION_NEXT <group___cmp_iec_var_access_itf_1ggaae1db1d53e1eaf49d7b481ffbad61babab543fe60f81ad1ac3154b6dad4bd788f>`, :ref:`BROWSEDIRECTION_UP <group___cmp_iec_var_access_itf_1ggaae1db1d53e1eaf49d7b481ffbad61babaf3ab755625f693e97c8736b9e0c4f5fc>` }
+
+Functions
+---------
+
+- void :ref:`iecvaraccbrowsedown2 <group___cmp_iec_var_access_itf_1gad9b4fc8ef389d8c5252549c276508a65>` (:ref:`iecvaraccbrowsedown2_struct <group___cmp_iec_var_access_itf_1ga46bae2b4c8426550105e346dd5c8f4ef>` * p)
+
+- void :ref:`iecvaraccbrowsegetnext2 <group___cmp_iec_var_access_itf_1ga0884031da8629536bba5e9d1aa2c81ed>` (:ref:`iecvaraccbrowsegetnext2_struct <group___cmp_iec_var_access_itf_1ga1d4dc2f0b89bc4a4233fec90bad696b4>` * p)
+
+- void :ref:`iecvaraccbrowserecursive <group___cmp_iec_var_access_itf_1gaf8cccd3258b06b570e2362601d8315a8>` (:ref:`iecvaraccbrowserecursive_struct <group___cmp_iec_var_access_itf_1ga677ef0230bb65171b6f9aae4f8d3435f>` * p)
+
+- void :ref:`iecvaraccbrowseup2 <group___cmp_iec_var_access_itf_1gadeabedef7c709a613665453de9fa1c8a>` (:ref:`iecvaraccbrowseup2_struct <group___cmp_iec_var_access_itf_1ga5a4a8e1d457fe9755c5e8386551d73ef>` * p)
+
+- void :ref:`iecvaraccexitvarinfo <group___cmp_iec_var_access_itf_1gae32a91c327579ab3b20cb5eb2eff1bd0>` (:ref:`iecvaraccexitvarinfo_struct <group___cmp_iec_var_access_itf_1ga1c6c216918565e540ab1fe2ab96a1d85>` * p)
+
+- void :ref:`iecvaraccgetfirstinterface <group___cmp_iec_var_access_itf_1gac36ea09c27d89ce60604af14676a48f0>` (:ref:`iecvaraccgetfirstinterface_struct <group___cmp_iec_var_access_itf_1gadff429f5ef0fa9d2dc41c45317dd5562>` * p)
+
+- void :ref:`iecvaraccgetfirstinterface2 <group___cmp_iec_var_access_itf_1gab40a9373b5133299999b66746a6761e8>` (:ref:`iecvaraccgetfirstinterface2_struct <group___cmp_iec_var_access_itf_1ga4ff11e60f9b918097f40fb3c9ea953bd>` * p)
+
+- void :ref:`iecvaraccgetnextinterface <group___cmp_iec_var_access_itf_1ga29f406091ebcfa4dd1a9f7f61f2252c3>` (:ref:`iecvaraccgetnextinterface_struct <group___cmp_iec_var_access_itf_1ga4e67ef5258eae17f66c45e112e954a84>` * p)
+
+- void :ref:`iecvaraccgetnextinterface2 <group___cmp_iec_var_access_itf_1gadd2e310b89ea6c4a9b4703ff6bd1f513>` (:ref:`iecvaraccgetnextinterface2_struct <group___cmp_iec_var_access_itf_1gabec551da9e33b01f54bacd17a85f9679>` * p)
+
+- void :ref:`iecvaraccgetnode4 <group___cmp_iec_var_access_itf_1ga7733a2c7d4f8dd1ff493c3b361318560>` (:ref:`iecvaraccgetnode4_struct <group___cmp_iec_var_access_itf_1ga25fe771b9ca2e17fc4611bca7262b445>` * p)
+
+- void :ref:`iecvaraccgetnodefullpath4 <group___cmp_iec_var_access_itf_1ga9058a8ea7e71ce8aaac606b652ad6890>` (:ref:`iecvaraccgetnodefullpath4_struct <group___cmp_iec_var_access_itf_1ga7711ece8d2de545a7c282b7c61d44797>` * p)
+
+- void :ref:`iecvaraccgetnodename4 <group___cmp_iec_var_access_itf_1gab37f901650294cab160e977959ca7f83>` (:ref:`iecvaraccgetnodename4_struct <group___cmp_iec_var_access_itf_1ga8d30967974a16107a041d04319cc4e14>` * p)
+
+- void :ref:`iecvaraccgetsymbolsetmask <group___cmp_iec_var_access_itf_1ga5dd42b509283b738b48754af295bc3ca>` (:ref:`iecvaraccgetsymbolsetmask_struct <group___cmp_iec_var_access_itf_1ga2797728cd6e1a678775fd670ff813a2e>` * p)
+
+- void :ref:`iecvaraccinitvarinfo <group___cmp_iec_var_access_itf_1gaf3e493b1fb6215d81cc30ed6369a4221>` (:ref:`iecvaraccinitvarinfo_struct <group___cmp_iec_var_access_itf_1ga185900fe3308849081b8487f3a388c1a>` * p)
+
+- void :ref:`iecvaraccinitvarinfo2 <group___cmp_iec_var_access_itf_1gafaaeaf65f298834d441c695432fc9383>` (:ref:`iecvaraccinitvarinfo2_struct <group___cmp_iec_var_access_itf_1ga13fbbac923256fbb1ae65b7749d193a5>` * p)
+
+- void :ref:`iecvaraccinvalidatenode <group___cmp_iec_var_access_itf_1ga455ef5d7699698dabd431559cf1ddee0>` (:ref:`iecvaraccinvalidatenode_struct <group___cmp_iec_var_access_itf_1ga7e792159e11001ed44a4d44b4a3e2742>` * p)
+
+- void :ref:`iecvaraccnodeinfoaddbrowseinfo <group___cmp_iec_var_access_itf_1gae006f7b047ea83593a099e67c8cfe42a>` (:ref:`iecvaraccnodeinfoaddbrowseinfo_struct <group___cmp_iec_var_access_itf_1ga7234b7db42c7f7e0f9a42b4b81de1225>` * p)
+
+- void :ref:`iecvaraccnodeinfoaddreference <group___cmp_iec_var_access_itf_1gae2a84644899801e44848194080886051>` (:ref:`iecvaraccnodeinfoaddreference_struct <group___cmp_iec_var_access_itf_1ga8a3b4b6313262c5d7f4b0f294c326b97>` * p)
+
+- void :ref:`iecvaraccnodeinfogetbrowseinfo <group___cmp_iec_var_access_itf_1ga26337fa813700ac8476d6013ff5e2a0d>` (:ref:`iecvaraccnodeinfogetbrowseinfo_struct <group___cmp_iec_var_access_itf_1gafa2f0d6cff0cbae22b0ede41d2049c11>` * p)
+
+- void :ref:`iecvaraccnodeinfogetreference <group___cmp_iec_var_access_itf_1ga3923d3c2a00bd60cd1a9ea297cd378c4>` (:ref:`iecvaraccnodeinfogetreference_struct <group___cmp_iec_var_access_itf_1ga93eb5707f38fc19d5a895800b2adfc7e>` * p)
+
+- void :ref:`iecvaraccnodeinforemovebrowseinfo <group___cmp_iec_var_access_itf_1ga614b1bdc38952509194da6ae9ccd2d4c>` (:ref:`iecvaraccnodeinforemovebrowseinfo_struct <group___cmp_iec_var_access_itf_1gaeab9798f5ca358586bd323b7114ba470>` * p)
+
+- void :ref:`iecvaraccnodeinforemovereference <group___cmp_iec_var_access_itf_1ga77b4d40386e4bd3a4d931a54864c052f>` (:ref:`iecvaraccnodeinforemovereference_struct <group___cmp_iec_var_access_itf_1ga3ad805cd733d04660d3cb0eedce838c7>` * p)
+
+- void :ref:`iecvaraccregisterinstance <group___cmp_iec_var_access_itf_1ga6c0e0a00cd99b83679929e84b105aa84>` (:ref:`iecvaraccregisterinstance_struct <group___cmp_iec_var_access_itf_1ga51b46b86a0ae33fde35801db7b1f6737>` * p)
+
+- void :ref:`iecvaraccregisterinstance2 <group___cmp_iec_var_access_itf_1gab1fa009e14c4468e4e28642c737a5f69>` (:ref:`iecvaraccregisterinstance2_struct <group___cmp_iec_var_access_itf_1ga5bc859b891f930649b8fcf1b968c3c53>` * p)
+
+- void :ref:`iecvaraccregisterinstance3 <group___cmp_iec_var_access_itf_1ga24b9d63be6c872ba306b0cf0e8e20f38>` (:ref:`iecvaraccregisterinstance3_struct <group___cmp_iec_var_access_itf_1gae116d7d79d1e884bcf6690d5137bbaa4>` * p)
+
+- void :ref:`iecvaraccregisterinstancebase <group___cmp_iec_var_access_itf_1ga7c4500fc2270c23fc6e23cfc298ac1d2>` (:ref:`iecvaraccregisterinstancebase_struct <group___cmp_iec_var_access_itf_1ga0403f592ee6b11330e5e3e93d4739674>` * p)
+
+- void :ref:`iecvaraccsetsymbolconfigcrc <group___cmp_iec_var_access_itf_1ga8b05c419beb475a4008e0d9055c7f09e>` (:ref:`iecvaraccsetsymbolconfigcrc_struct <group___cmp_iec_var_access_itf_1ga0840d7b338a11f4486741dfe389fbb07>` * p)
+
+- void :ref:`iecvaraccunregisterinstance <group___cmp_iec_var_access_itf_1gafbba8b55669011bbb4662ee6c4a7d8f4>` (:ref:`iecvaraccunregisterinstance_struct <group___cmp_iec_var_access_itf_1gaba6d299512653cfb29a4716f2db0d616>` * p)
+
+- void :ref:`iecvaraccupdatesymbolsets <group___cmp_iec_var_access_itf_1ga3bcb252b2d11bb78305c89379f3cd714>` (:ref:`iecvaraccupdatesymbolsets_struct <group___cmp_iec_var_access_itf_1ga14d4a61498d6eaf2507b87d82380d5a1>` * p)
+
+- RTS_RESULT :ref:`IecVarAccInitVarInfo <group___cmp_iec_var_access_itf_1ga722faf6483e1c0cd61756b40902b2391>` (:ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVarInfo, RTS_UI16 nSizeOfVarInfo)
+
+- RTS_RESULT :ref:`IecVarAccInitVarInfo2 <group___cmp_iec_var_access_itf_1ga5460422a4540f247b5a29bbf25139e1b>` (:ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVarInfo, RTS_UI16 nSizeOfVarInfo, RTS_HANDLE hUser)
+
+- RTS_RESULT :ref:`IecVarAccExitVarInfo <group___cmp_iec_var_access_itf_1ga97b0fe9ad9fd0abb7adb9011b834165f>` (:ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVarInfo)
+
+- RTS_RESULT :ref:`IecVarAccCopyVarInfo <group___cmp_iec_var_access_itf_1ga7707b94689989a881eb433ed97ef3130>` (:ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformationDest, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformationSrc)
+
+- RTS_HANDLE :ref:`IecVarAccGetFirstInterface <group___cmp_iec_var_access_itf_1ga4aa0d771ef262824906ba1ed8128892a>` (RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccGetNextInterface <group___cmp_iec_var_access_itf_1gad0b0367b82aa3ba97d2f76de68be382e>` (RTS_HANDLE hPrevInterface, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IecVarAccGetApplicationName <group___cmp_iec_var_access_itf_1ga0f3e6dedcabd964e441eb73cfa7fbdf7>` (RTS_HANDLE hInterface, char * pszApplicationName, int nMaxLen)
+
+- RTS_HANDLE :ref:`IecVarAccCreateVarList <group___cmp_iec_var_access_itf_1gab9de52d6883c703a1ee8cacb6afe249a>` (RTS_UI32 ulChannelId, RTS_UI32 ulFlags, RTS_UI32 ulUpdateRateMs, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IecVarAccDeleteVarList <group___cmp_iec_var_access_itf_1gac7c7933412d1244064b806a9f861bc3e>` (RTS_HANDLE hVarList)
+
+- RTS_RESULT :ref:`IecVarAccDeleteVarLists <group___cmp_iec_var_access_itf_1gabb3ff1d88df9f76b471246119f76e78f>` (RTS_UI32 ulChannelId)
+
+- RTS_RESULT :ref:`IecVarAccDeleteAllLists <group___cmp_iec_var_access_itf_1ga889121b9d6d0ccd93bf8586b010f3d0b>` (void)
+
+- RTS_RESULT :ref:`IecVarAccVarListGetFlags <group___cmp_iec_var_access_itf_1ga2c97a334e372d4b676f1afc0aa3a5bc9>` (RTS_HANDLE hVarList, RTS_UI32 * pulFlags)
+
+- RTS_HANDLE :ref:`IecVarAccAppendVar <group___cmp_iec_var_access_itf_1gac4db3907315200638e33a5e77f41c968>` (RTS_HANDLE hVarList, char * pszVar, RTS_SIZE ulSize, RTS_UI32 hClientHandle, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IecVarAccRemoveVar <group___cmp_iec_var_access_itf_1gaecddfad2f2b3cf09bc15256e48481773>` (RTS_HANDLE hVarList, RTS_HANDLE hVar)
+
+- RTS_HANDLE :ref:`IecVarAccGetFirstVar <group___cmp_iec_var_access_itf_1ga325b815dc44aa469f4a8741eb4d97ddf>` (RTS_HANDLE hVarList, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccGetNextVar <group___cmp_iec_var_access_itf_1ga6b57c97f336cbb3295d93581a110e526>` (RTS_HANDLE hVarList, RTS_HANDLE hPrevVar, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IecVarAccInvalidateVar <group___cmp_iec_var_access_itf_1gab7320325b460df2fe14b787bd6bb388d>` (RTS_HANDLE hVarList, RTS_HANDLE hVar)
+
+- RTS_SIZE :ref:`IecVarAccReadVar <group___cmp_iec_var_access_itf_1gaf583afb5e5bf47c0979fb77e10a83784>` (RTS_HANDLE hVar, void * pData, RTS_SIZE ulLen, RTS_UI32 * pulQuality, int varFlags, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccWriteVar <group___cmp_iec_var_access_itf_1ga4c4b1886906bcef5126035edf4b7e986>` (RTS_HANDLE hVar, void * pData, RTS_SIZE ulLen, int varFlags, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccWriteVar2 <group___cmp_iec_var_access_itf_1gab4860f6330508f99a97cfe724be3b50f>` (RTS_HANDLE hVar, void * pData, RTS_SIZE ulLen, int varFlags, RTS_UI32 ulSessionId, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IecVarAccBeginVariableConfiguration <group___cmp_iec_var_access_itf_1ga418190796c87f261ec1b18ae232f07d4>` (RTS_HANDLE hInterface, int bBlocking)
+
+- RTS_RESULT :ref:`IecVarAccAppendVariable <group___cmp_iec_var_access_itf_1ga7775e03e4d3a8637c97d762b0811a65f>` (RTS_HANDLE hInterface, RTS_HANDLE hNode)
+
+- RTS_RESULT :ref:`IecVarAccAppendVariable3 <group___cmp_iec_var_access_itf_1ga23f9fb98ffe100ec27b2a515bb27f074>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation)
+
+- RTS_RESULT :ref:`IecVarAccRemoveVariable <group___cmp_iec_var_access_itf_1ga47f1d4d759fca05cf4d64af52871859e>` (RTS_HANDLE hInterface, RTS_HANDLE hNode)
+
+- RTS_RESULT :ref:`IecVarAccRemoveVariable3 <group___cmp_iec_var_access_itf_1ga4ca3f5246bbdc3ddb0238f5d42142290>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation)
+
+- RTS_RESULT :ref:`IecVarAccEndVariableConfiguration <group___cmp_iec_var_access_itf_1ga0e383a9b609d5b690eac92362f4def02>` (RTS_HANDLE hInterface)
+
+- RTS_RESULT :ref:`IecVarAccBrowseRecursive <group___cmp_iec_var_access_itf_1gad1b0dd591f89b3fda26e4e93d422a8c6>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct3 <group___iec_var_access___itfs_itf_1ga28313d192103af84467da2cdf6c22766>` * pVariableInformation, :ref:`PF_IECVARACC_BROWSECALLBACK <group___cmp_iec_var_access_itf_1ga3ca74d4d445ce8ce22989b92cfb40be0>`  pfBrowseCallback, RTS_BOOL bIecCallback, void * pUserParameter)
+
+- RTS_HANDLE :ref:`IecVarAccBrowseGetRoot <group___cmp_iec_var_access_itf_1ga77b3849fa95b83076ca3a11a34cc523d>` (RTS_HANDLE hInterface, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccBrowseGetRoot2 <group___cmp_iec_var_access_itf_1gac83af04253b433db9534ba7f6cdd9ae8>` (RTS_HANDLE hInterface, RTS_HANDLE hUser, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccBrowseDown <group___cmp_iec_var_access_itf_1gaf34865e321ec497113f277eb8162e79e>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccBrowseDown2 <group___cmp_iec_var_access_itf_1ga6efc0067f129d689779d731e29fb5df2>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct3 <group___iec_var_access___itfs_itf_1ga28313d192103af84467da2cdf6c22766>` * pVariableInformation, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccBrowseDown3 <group___cmp_iec_var_access_itf_1ga3fb0aa335f1c71392518657b1e9778f2>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, RTS_BOOL bBrowseComplexTypes, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccBrowseUp <group___cmp_iec_var_access_itf_1ga22fa16e6bf2d11b5187b1576e669fcda>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccBrowseUp2 <group___cmp_iec_var_access_itf_1ga83f59c0af1e78b23afeeb00b1340618a>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct3 <group___iec_var_access___itfs_itf_1ga28313d192103af84467da2cdf6c22766>` * pVariableInformation, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccBrowseUp3 <group___cmp_iec_var_access_itf_1gac64d2f3228b750df1d247f5455e526a0>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, RTS_BOOL bBrowseComplexTypes, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccBrowseGetNext <group___cmp_iec_var_access_itf_1ga995df33faec377743519ff3c2ca298fb>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccBrowseGetNext2 <group___cmp_iec_var_access_itf_1gaa4c72362843603b3f0d5407cf6ed1b11>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct3 <group___iec_var_access___itfs_itf_1ga28313d192103af84467da2cdf6c22766>` * pVariableInformation, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccBrowseGetNext3 <group___cmp_iec_var_access_itf_1ga79385b3399724319fd1dc3b15c43553e>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, RTS_BOOL bBrowseComplexTypes, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccBrowseGetChildByIndex <group___cmp_iec_var_access_itf_1ga475ea49521cc9b91df42be4c73126140>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_UI32 ulIndex, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccBrowseGetChildByIndex2 <group___cmp_iec_var_access_itf_1ga1d27cac93f2b795bba01f5910c338e28>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_UI32 ulIndex, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccGetNode <group___cmp_iec_var_access_itf_1ga7b185cab50f947cf607fcc3762d85ea4>` (char * pszPath, RTS_SIZE * pulOffset, RTS_HANDLE * phInterface, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccGetNode3 <group___cmp_iec_var_access_itf_1gab47d5d5b3334338ea9543e62b7c588bc>` (char * pszPath, RTS_HANDLE * phInterface, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccGetNode4 <group___cmp_iec_var_access_itf_1ga0cf0feab72cb496b2fa067740952f217>` (char * pszPath, RTS_HANDLE * phInterface, :ref:`VariableInformationStruct3 <group___iec_var_access___itfs_itf_1ga28313d192103af84467da2cdf6c22766>` * pVariableInformation, RTS_RESULT * pResult)
+
+- int :ref:`IecVarAccGetNodeFullPath <group___cmp_iec_var_access_itf_1ga5c350ab398fb9ad7ada87b8bbf563371>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, char * pszPath, int iMaxPath, RTS_RESULT * pResult)
+
+- int :ref:`IecVarAccGetNodeFullPath3 <group___cmp_iec_var_access_itf_1ga36a0557e1e7a430ffc39f248a7f21242>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, char * pszPath, int iMaxPath, RTS_RESULT * pResult)
+
+- int :ref:`IecVarAccGetNodeFullPath4 <group___cmp_iec_var_access_itf_1ga0863e37c60512949b6362b96d89d8a1d>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct3 <group___iec_var_access___itfs_itf_1ga28313d192103af84467da2cdf6c22766>` * pVariableInformation, char * pszPath, int iMaxPath, RTS_RESULT * pResult)
+
+- char * :ref:`IecVarAccGetNodeName <group___cmp_iec_var_access_itf_1gae41411f2114b601a2030a108c1e56248>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- char * :ref:`IecVarAccGetNodeName3 <group___cmp_iec_var_access_itf_1gac2d0cf6d0c549665b6caf2c549b7e544>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IecVarAccGetNodeName4 <group___cmp_iec_var_access_itf_1ga0534f71c17820b2ff84de3f3f99e9b31>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct3 <group___iec_var_access___itfs_itf_1ga28313d192103af84467da2cdf6c22766>` * pVariableInformation, char * pszNodeName, RTS_UI32 nNodeNameLen)
+
+- RTS_IEC_INT :ref:`IecVarAccGetAccessRights <group___cmp_iec_var_access_itf_1gafa2ee937409344d46dcb79d1240d0c29>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- RTS_IEC_INT :ref:`IecVarAccGetAccessRights2 <group___cmp_iec_var_access_itf_1gaea162133f4291b74638638e7846fd131>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, RTS_BOOL bGetUserRights, RTS_RESULT * pResult)
+
+- void * :ref:`IecVarAccGetAddress <group___cmp_iec_var_access_itf_1gaa1eaf3290d6d024bbd66dad98b1a119d>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- void * :ref:`IecVarAccGetAddress2 <group___cmp_iec_var_access_itf_1ga174228d840c9aba801527fde2675ba80>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_SIZE ulOffset, RTS_RESULT * pResult)
+
+- void * :ref:`IecVarAccGetAddress3 <group___cmp_iec_var_access_itf_1ga884daf0176d3582cc5cf7a866f60cfdb>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, RTS_RESULT * pResult)
+
+- RTS_IEC_INT :ref:`IecVarAccGetNodeType <group___cmp_iec_var_access_itf_1gac9661cb807489559d01e51d5fe4d7471>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccGetSize <group___cmp_iec_var_access_itf_1ga676e57d6fba66f482521b4d1b52eb651>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccGetSize2 <group___cmp_iec_var_access_itf_1ga8a00da17bbafad16137831fd6b7c9cc3>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_SIZE ulOffset, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccGetSize3 <group___cmp_iec_var_access_itf_1gaa72c0fd79a6635f9472c30eff1361891>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccGetSwapSize <group___cmp_iec_var_access_itf_1gabe5b217e9ff7363b95863f2e9feb3746>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- :ref:`TypeClass3 <group___sys_internal_lib_itf___typeclass_1gaa0b5be7baae0808a4f3bb9ccc5c79a39>` :ref:`IecVarAccGetTypeClass <group___cmp_iec_var_access_itf_1gaa5bc0641efceaf778958f2510a0636f7>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- :ref:`TypeClass3 <group___sys_internal_lib_itf___typeclass_1gaa0b5be7baae0808a4f3bb9ccc5c79a39>` :ref:`IecVarAccGetTypeClass3 <group___cmp_iec_var_access_itf_1gab1432dd0ab4697d17566b52ff3d7cf4e>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccGetValue <group___cmp_iec_var_access_itf_1ga2141fc2ba3a6666281e2d3010c42b60d>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, void * pDest, RTS_SIZE ulOffset, RTS_SIZE ulSize, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccGetValue3 <group___cmp_iec_var_access_itf_1ga790587021297dbc40405a7a22f947f90>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, void * pDest, RTS_SIZE ulSize, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccSetValue <group___cmp_iec_var_access_itf_1gaee41867702b94ec9a0a0fac61af96197>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, void * pSrc, RTS_SIZE ulOffset, RTS_SIZE ulSize, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccSetValue3 <group___cmp_iec_var_access_itf_1ga0abf53e66a108815f9f945b412bf297d>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, void * pSrc, RTS_SIZE ulSize, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccSwap <group___cmp_iec_var_access_itf_1ga3f35d3f15c5317c559b4b6b66fb5a799>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, void * pData, RTS_SIZE ulSize, int bMotorola, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccSwap2 <group___cmp_iec_var_access_itf_1gae9596f6d7b9153e18fc29f16bc8ff8d4>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, void * pData, RTS_SIZE ulSize, int bMotorola, RTS_SIZE ulOffset, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccSwap3 <group___cmp_iec_var_access_itf_1ga276d1d9bc937ea721327368adc39d0e6>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, void * pData, RTS_SIZE ulSize, int bMotorola, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccGetTypeNode <group___cmp_iec_var_access_itf_1ga6dc7fb4f1ce8a1d84395984ada8025dc>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccGetTypeNode2 <group___cmp_iec_var_access_itf_1ga3eb6e3dd592af9c3c84472d720693d95>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_SIZE ulOffset, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccGetTypeNode3 <group___cmp_iec_var_access_itf_1ga0caef1ef8ae7573466e32922796adeb1>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IecVarAccGetTypeDesc <group___cmp_iec_var_access_itf_1ga91251974f7900189e40549f77417a983>` (RTS_HANDLE hInterface, RTS_HANDLE hTypeNode, :ref:`TypeDescAsUnion <group___iec_var_access___itfs_itf_1ga75453f9f66fab7d5d36cd8cf6e04566b>` * pTypeDesc)
+
+- RTS_RESULT :ref:`IecVarAccGetAddressInfo <group___cmp_iec_var_access_itf_1gaa606497474807e8a13598ceabd5a10ac>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, char * pszAdressInfo, int * pnAddressInfoLen)
+
+- RTS_I32 :ref:`IecVarAccGetNumOfTypes <group___cmp_iec_var_access_itf_1gaab4b0c1626d8a4e65bedb03a102a531d>` (RTS_HANDLE hInterface, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccGetTypeNodeByIndex <group___cmp_iec_var_access_itf_1ga9d75461cd7b83a51b899eabdfa0fa616>` (RTS_HANDLE hInterface, RTS_I32 nIndex, RTS_RESULT * pResult)
+
+- char * :ref:`IecVarAccGetTypeName <group___cmp_iec_var_access_itf_1ga720265ea27770f46180b84b8dc5cdcad>` (RTS_HANDLE hInterface, RTS_HANDLE hTypeNode, RTS_RESULT * pResult)
+
+- :ref:`TypeClass3 <group___sys_internal_lib_itf___typeclass_1gaa0b5be7baae0808a4f3bb9ccc5c79a39>` :ref:`IecVarAccGetTypeClassFromType <group___cmp_iec_var_access_itf_1gafa120fb54bc99900ea9ee5710bab3153>` (RTS_HANDLE hInterface, RTS_HANDLE hTypeNode, RTS_IEC_DWORD dwFlags, RTS_RESULT * pResult)
+
+- :ref:`POUClass <group___cmp_iec_var_access_itf___p_o_u_class_1ga035e3d5685b47689a39345af2a7a4ea4>` :ref:`IecVarAccGetPOUClass <group___cmp_iec_var_access_itf_1ga559ffe28b5222970c77b7e5f43b87f93>` (RTS_HANDLE hInterface, RTS_HANDLE hTypeNode, RTS_RESULT * pResult)
+
+- RTS_UI32 :ref:`IecVarAccGetNodeFlags <group___cmp_iec_var_access_itf_1gaed13ac03ee8ccf2194ae77f9c389e7fc>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- RTS_UI16 :ref:`IecVarAccGetNumOfAttributes <group___cmp_iec_var_access_itf_1gad92d11ef8fc40cee078d63a29040101a>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- char * :ref:`IecVarAccGetAttributeByIndex <group___cmp_iec_var_access_itf_1ga5a486ad34bc9f59dee933d615fdfaae9>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_UI16 ui16Index, RTS_RESULT * pResult)
+
+- :ref:`EnumValues <group___iec_var_access___itfs_itf_1gabec54f2f1e411c4f15a0b60ec4828a10>` * :ref:`IecVarAccGetEnumValues <group___cmp_iec_var_access_itf_1gae564e9d09383778e8ba8ffc74c34bd37>` (RTS_HANDLE hInterface, RTS_HANDLE hTypeNode, RTS_I16 * pi16NumOfEnums, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecVarAccGetDerivedBaseType <group___cmp_iec_var_access_itf_1ga68c4d859a8609329cecec7ff094e0184>` (RTS_HANDLE hInterface, RTS_HANDLE hTypeNode, RTS_RESULT * pResult)
+
+- RTS_BOOL :ref:`IecVarAccIsDerivedType <group___cmp_iec_var_access_itf_1ga49854cbdcb7fa57210f3d9d50b2de70e>` (RTS_HANDLE hInterface, RTS_HANDLE hTypeNode, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccGetClientOffset <group___cmp_iec_var_access_itf_1gab541def6dd65399a4f7ba20d1ec69956>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- RTS_IEC_LWORD :ref:`IecVarAccGetNamespaceNodeFlags <group___cmp_iec_var_access_itf_1ga1511d714cba0d65818a128b6a045d2d2>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`IecVarAccGetNativeSize <group___cmp_iec_var_access_itf_1gad4a7527069c60e3bc51b87e150069e6e>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, RTS_RESULT * pResult)
+
+- :ref:`EnumAttributes <group___iec_var_access___itfs_itf_1gadc8196f9ee2f89d90244d9cb143c91de>` * :ref:`IecVarAccGetEnumMemberAttributeList <group___cmp_iec_var_access_itf_1gadaa8713059f58a06b297db54efe3f8c8>` (RTS_HANDLE hInterface, RTS_HANDLE hTypeNode, RTS_I16 * pnNumOfEnumValues, RTS_RESULT * pResult)
+
+- RTS_UI16 :ref:`IecVarAccGetNumOfTypeAttributes <group___cmp_iec_var_access_itf_1ga5e65112687f8ad7b346df17f9aea77f9>` (RTS_HANDLE hInterface, RTS_HANDLE hTypeNode, RTS_RESULT * pResult)
+
+- char * :ref:`IecVarAccGetTypeAttributeByIndex <group___cmp_iec_var_access_itf_1ga029b7cf3c4b47ea14e826f761e46ba51>` (RTS_HANDLE hInterface, RTS_HANDLE hTypeNode, RTS_UI16 wIndex, RTS_RESULT * pResult)
+
+- RTS_BOOL :ref:`IecVarAccGetRange <group___cmp_iec_var_access_itf_1ga1b5d953c7b9933518076de734b4da22c>` (RTS_HANDLE hInterface, RTS_HANDLE hTypeNode, RTS_UI64 * pLower, RTS_UI64 * pUpper, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IecVarAccGetContentFeatureFlags <group___cmp_iec_var_access_itf_1gaf0bdc4e113c0009e4a0b2fcdb63f984e>` (RTS_HANDLE hInterface, RTS_IEC_INT * pContentFeatureFlags)
+
+- RTS_RESULT :ref:`IecVarAccExecuteCall <group___cmp_iec_var_access_itf_1ga51360c9ec3cb48086ad5ce79f1a15c19>` (RTS_HANDLE hInterface, RTS_HANDLE hNode, :ref:`VariableInformationStruct2 <group___iec_var_access___itfs_itf_1ga1ae47347becabb1b5592c417df1e3ab5>` * pVariableInformation, RTS_UI8 * pArgumentBuffer, RTS_SIZE nArgumentBufferSize)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpIecVarAccessItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

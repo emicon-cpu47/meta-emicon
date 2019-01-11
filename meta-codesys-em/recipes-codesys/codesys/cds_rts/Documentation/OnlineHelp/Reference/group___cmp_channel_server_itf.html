@@ -1,0 +1,585 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpChannelServerItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpChecksumItf" href="group___cmp_checksum_itf.html" />
+    <link rel="prev" title="CmpChannelMgrItf" href="group___cmp_channel_mgr_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_checksum_itf.html" title="CmpChecksumItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_channel_mgr_itf.html" title="CmpChannelMgrItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpChannelServerItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-itf-cmpchannelserver">#define ITF_CmpChannelServer</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpchannelserver">#define EXTITF_CmpChannelServer</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-icmpchannelserver-c-icmpchannelserver">typedef ICmpChannelServer_C ICmpChannelServer</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-result-netservergetmaxchannels-rts-ui16-pwmaxchannels">RTS_RESULT NetServerGetMaxChannels (RTS_UI16 *pwMaxChannels)</a></li>
+<li><a class="reference internal" href="#rts-result-netservergetmaxchannelbuffersize-rts-i32-pi32maxchannelbuffersize">RTS_RESULT NetServerGetMaxChannelBufferSize (RTS_I32 *pi32MaxChannelBufferSize)</a></li>
+<li><a class="reference internal" href="#rts-result-netservergetchannelinfobyindex-rts-ui16-ui16channelindex-rts-ui32-pui32serverstate-channelbuffer-pchinfobuffer-rts-size-psibufferlen">RTS_RESULT NetServerGetChannelInfoByIndex (RTS_UI16 ui16ChannelIndex, RTS_UI32 *pui32ServerState, CHANNELBUFFER *pChInfoBuffer, RTS_SIZE *psiBufferLen)</a></li>
+<li><a class="reference internal" href="#rts-result-netservergetchannelinfobyindex2-rts-ui16-ui16channelindex-rts-ui32-pui32serverstate-channelinfo-pchinfobuffer-rts-size-psibufferlen">RTS_RESULT NetServerGetChannelInfoByIndex2 (RTS_UI16 ui16ChannelIndex, RTS_UI32 *pui32ServerState, CHANNELINFO *pChInfoBuffer, RTS_SIZE *psiBufferLen)</a></li>
+<li><a class="reference internal" href="#rts-result-netservergetstatus-rts-ui32-ulchannelhandle-rts-ui16-pusstatus-rts-ui8-pbyscalingfactor-rts-i32-pnitemscomplete-rts-i32-pntotalitems">RTS_RESULT NetServerGetStatus (RTS_UI32 ulChannelHandle, RTS_UI16 *pusStatus, RTS_UI8 *pbyScalingFactor, RTS_I32 *pnItemsComplete, RTS_I32 *pnTotalItems)</a></li>
+<li><a class="reference internal" href="#rts-result-netservergetrequest-rts-ui32-ulchannelhandle-protocol-data-unit-ppdurequest-protocol-data-unit-ppdureplybuffer">RTS_RESULT NetServerGetRequest (RTS_UI32 ulChannelHandle, PROTOCOL_DATA_UNIT *ppduRequest, PROTOCOL_DATA_UNIT *ppduReplyBuffer)</a></li>
+<li><a class="reference internal" href="#rts-result-netserverfinishrequest-rts-ui32-ulchannelhandle-protocol-data-unit-pdudata">RTS_RESULT NetServerFinishRequest (RTS_UI32 ulChannelHandle, PROTOCOL_DATA_UNIT pduData)</a></li>
+<li><a class="reference internal" href="#rts-result-netserversetsessionid-rts-ui32-ulchannelhandle-rts-ui32-ulsessionid">RTS_RESULT NetServerSetSessionId (RTS_UI32 ulChannelHandle, RTS_UI32 ulSessionId)</a></li>
+<li><a class="reference internal" href="#rts-result-netservergetsessionid-rts-ui32-ulchannelhandle-rts-ui32-pulsessionid">RTS_RESULT NetServerGetSessionId (RTS_UI32 ulChannelHandle, RTS_UI32 *pulSessionId)</a></li>
+<li><a class="reference internal" href="#int-netservergetchannel-peeraddress-addrpeer-unsigned-short-wchannelid-channelbuffer-ppchbuffer">int NetServerGetChannel (PEERADDRESS addrPeer, unsigned short wChannelId, CHANNELBUFFER **ppChBuffer)</a></li>
+<li><a class="reference internal" href="#int-netserverreleasechannel-channelbuffer-pchbuffer">int NetServerReleaseChannel (CHANNELBUFFER *pChBuffer)</a></li>
+<li><a class="reference internal" href="#int-netserverhandlemetarequest-rts-handle-hrouter-peeraddress-addrsender-protocol-data-unit-pdudata">int NetServerHandleMetaRequest (RTS_HANDLE hRouter, PEERADDRESS addrSender, PROTOCOL_DATA_UNIT pduData)</a></li>
+<li><a class="reference internal" href="#void-netserverforeachchannel-pfchannelhandler-pfchannelhandler-void-pparam">void NetServerForEachChannel (PFCHANNELHANDLER pfChannelHandler, void *pParam)</a></li>
+<li><a class="reference internal" href="#int-netservermessagereceived-channelbuffer-pchbuffer-protocol-data-unit-pdudata">int NetServerMessageReceived (CHANNELBUFFER *pChBuffer, PROTOCOL_DATA_UNIT pduData)</a></li>
+<li><a class="reference internal" href="#int-netservermessagereceived2-rts-handle-hrouter-channelbuffer-pchbuffer-protocol-data-unit-pdudata">int NetServerMessageReceived2 (RTS_HANDLE hRouter, CHANNELBUFFER *pChBuffer, PROTOCOL_DATA_UNIT pduData)</a></li>
+<li><a class="reference internal" href="#rts-result-netservermessagereceived3-channelbuffer-pchbuffer-protocol-data-unit-pdudata-rts-ui32-bfirstcall">RTS_RESULT NetServerMessageReceived3 (CHANNELBUFFER *pChBuffer, PROTOCOL_DATA_UNIT pduData, RTS_UI32 bFirstCall)</a></li>
+<li><a class="reference internal" href="#int-netserverchannelerror-channelbuffer-pchbuffer-int-nerror">int NetServerChannelError (CHANNELBUFFER *pChBuffer, int nError)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_channel_mgr_itf.html"
+                        title="previous chapter">CmpChannelMgrItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_checksum_itf.html"
+                        title="next chapter">CmpChecksumItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_channel_server_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpchannelserveritf">
+<span id="group-cmp-channel-server-itf"></span><h1>CmpChannelServerItf<a class="headerlink" href="#cmpchannelserveritf" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-cmp-channel-server-itf-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___cmp_channel_server_itf___eventparameter.html#group-cmp-channel-server-itf-eventparameter"><span class="std std-ref">Event parameter</span></a></li>
+<li><a class="reference internal" href="group___cmp_channel_server_itf___events.html#group-cmp-channel-server-itf-events"><span class="std std-ref">Events</span></a></li>
+<li><a class="reference internal" href="group___cmp_channel_server_itf___settings.html#group-cmp-channel-server-itf-settings"><span class="std std-ref">Settings</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_i_cmp_channel_server___c.html#struct-i-cmp-channel-server-c"><span class="std std-ref">ICmpChannelServer_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-channel-server-itf-1ga5af6297baff82b348ed308edcef925d3"><span class="std std-ref">ITF_CmpChannelServer</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-channel-server-itf-1gadcdcf6d61f34f733160ec53a17b1e385"><span class="std std-ref">EXTITF_CmpChannelServer</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef <a class="reference internal" href="struct_i_cmp_channel_server___c.html#struct-i-cmp-channel-server-c"><span class="std std-ref">ICmpChannelServer_C</span></a> <a class="reference internal" href="#group-cmp-channel-server-itf-1ga210c4c13ac2920d84670061a6a4804d0"><span class="std std-ref">ICmpChannelServer</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-channel-server-itf-1gaa61219249349fff27e8d5026984d69eb"><span class="std std-ref">NetServerGetMaxChannels</span></a> (RTS_UI16 * pwMaxChannels)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-channel-server-itf-1ga70303eac042a808bc04909757b4879d3"><span class="std std-ref">NetServerGetMaxChannelBufferSize</span></a> (RTS_I32 * pi32MaxChannelBufferSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-channel-server-itf-1gaf77f99a0acb88ef37188f4eb44ada1b7"><span class="std std-ref">NetServerGetChannelInfoByIndex</span></a> (RTS_UI16 ui16ChannelIndex, RTS_UI32 * pui32ServerState, <a class="reference internal" href="struct_c_h_a_n_n_e_l_b_u_f_f_e_r.html#struct-c-h-a-n-n-e-l-b-u-f-f-e-r"><span class="std std-ref">CHANNELBUFFER</span></a> * pChInfoBuffer, RTS_SIZE * psiBufferLen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-channel-server-itf-1ga1b88d27b187b18b540ab30c0ab6013de"><span class="std std-ref">NetServerGetChannelInfoByIndex2</span></a> (RTS_UI16 ui16ChannelIndex, RTS_UI32 * pui32ServerState, <a class="reference internal" href="struct_c_h_a_n_n_e_l_i_n_f_o.html#struct-c-h-a-n-n-e-l-i-n-f-o"><span class="std std-ref">CHANNELINFO</span></a> * pChInfoBuffer, RTS_SIZE * psiBufferLen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-channel-server-itf-1gaf050a401e94cd38d1aaa2d3aaf2c91ae"><span class="std std-ref">NetServerGetStatus</span></a> (RTS_UI32 ulChannelHandle, RTS_UI16 * pusStatus, RTS_UI8 * pbyScalingFactor, RTS_I32 * pnItemsComplete, RTS_I32 * pnTotalItems)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-channel-server-itf-1ga40fb91f88755597d5b6eda05c9a28697"><span class="std std-ref">NetServerGetRequest</span></a> (RTS_UI32 ulChannelHandle, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a> * ppduRequest, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a> * ppduReplyBuffer)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-channel-server-itf-1ga340718f90a7eca4b17b75ce83b5bf30f"><span class="std std-ref">NetServerFinishRequest</span></a> (RTS_UI32 ulChannelHandle, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduData)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-channel-server-itf-1gac137e47c3a5fdd01150edf34f6e066e5"><span class="std std-ref">NetServerSetSessionId</span></a> (RTS_UI32 ulChannelHandle, RTS_UI32 ulSessionId)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-channel-server-itf-1ga7c130fed4dc66eee53fbeff1bf6295fc"><span class="std std-ref">NetServerGetSessionId</span></a> (RTS_UI32 ulChannelHandle, RTS_UI32 * pulSessionId)</li>
+<li>int <a class="reference internal" href="#group-cmp-channel-server-itf-1gab766ff65e706c26c830d7a25b260927d"><span class="std std-ref">NetServerGetChannel</span></a> (<a class="reference internal" href="struct_p_e_e_r_a_d_d_r_e_s_s.html#struct-p-e-e-r-a-d-d-r-e-s-s"><span class="std std-ref">PEERADDRESS</span></a>  addrPeer, unsigned short wChannelId, <a class="reference internal" href="struct_c_h_a_n_n_e_l_b_u_f_f_e_r.html#struct-c-h-a-n-n-e-l-b-u-f-f-e-r"><span class="std std-ref">CHANNELBUFFER</span></a> ** ppChBuffer)</li>
+<li>int <a class="reference internal" href="#group-cmp-channel-server-itf-1ga50119c1e88fa896c1577e6f6ba59f655"><span class="std std-ref">NetServerReleaseChannel</span></a> (<a class="reference internal" href="struct_c_h_a_n_n_e_l_b_u_f_f_e_r.html#struct-c-h-a-n-n-e-l-b-u-f-f-e-r"><span class="std std-ref">CHANNELBUFFER</span></a> * pChBuffer)</li>
+<li>int <a class="reference internal" href="#group-cmp-channel-server-itf-1gaf52e870aa5161b58734a8eae3d028dfc"><span class="std std-ref">NetServerHandleMetaRequest</span></a> (RTS_HANDLE hRouter, <a class="reference internal" href="struct_p_e_e_r_a_d_d_r_e_s_s.html#struct-p-e-e-r-a-d-d-r-e-s-s"><span class="std std-ref">PEERADDRESS</span></a>  addrSender, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduData)</li>
+<li>void <a class="reference internal" href="#group-cmp-channel-server-itf-1ga4fec7786feefac8319ede3e8cb06b86e"><span class="std std-ref">NetServerForEachChannel</span></a> (<a class="reference internal" href="group___cmp_channel_mgr_itf.html#group-cmp-channel-mgr-itf-1gaa6bb7106c459aa8702f58da0df9919c2"><span class="std std-ref">PFCHANNELHANDLER</span></a>  pfChannelHandler, void * pParam)</li>
+<li>int <a class="reference internal" href="#group-cmp-channel-server-itf-1gad1721a0b7624dd70db7a4060e3a08abf"><span class="std std-ref">NetServerMessageReceived</span></a> (<a class="reference internal" href="struct_c_h_a_n_n_e_l_b_u_f_f_e_r.html#struct-c-h-a-n-n-e-l-b-u-f-f-e-r"><span class="std std-ref">CHANNELBUFFER</span></a> * pChBuffer, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduData)</li>
+<li>int <a class="reference internal" href="#group-cmp-channel-server-itf-1gac15631c2e30feea02ce34caab494c52b"><span class="std std-ref">NetServerMessageReceived2</span></a> (RTS_HANDLE hRouter, <a class="reference internal" href="struct_c_h_a_n_n_e_l_b_u_f_f_e_r.html#struct-c-h-a-n-n-e-l-b-u-f-f-e-r"><span class="std std-ref">CHANNELBUFFER</span></a> * pChBuffer, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduData)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-channel-server-itf-1gae75efe79619be304817299704f536ff1"><span class="std std-ref">NetServerMessageReceived3</span></a> (<a class="reference internal" href="struct_c_h_a_n_n_e_l_b_u_f_f_e_r.html#struct-c-h-a-n-n-e-l-b-u-f-f-e-r"><span class="std std-ref">CHANNELBUFFER</span></a> * pChBuffer, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduData, RTS_UI32 bFirstCall)</li>
+<li>int <a class="reference internal" href="#group-cmp-channel-server-itf-1gac1428a568b4f07be79b180d12e23fa5c"><span class="std std-ref">NetServerChannelError</span></a> (<a class="reference internal" href="struct_c_h_a_n_n_e_l_b_u_f_f_e_r.html#struct-c-h-a-n-n-e-l-b-u-f-f-e-r"><span class="std std-ref">CHANNELBUFFER</span></a> * pChBuffer, int nError)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-channel-server-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-itf-cmpchannelserver">
+<span id="group-cmp-channel-server-itf-1ga5af6297baff82b348ed308edcef925d3"></span><h3>#define ITF_CmpChannelServer<a class="headerlink" href="#define-itf-cmpchannelserver" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpchannelserver">
+<span id="group-cmp-channel-server-itf-1gadcdcf6d61f34f733160ec53a17b1e385"></span><h3>#define EXTITF_CmpChannelServer<a class="headerlink" href="#define-extitf-cmpchannelserver" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-icmpchannelserver-c-icmpchannelserver">
+<span id="group-cmp-channel-server-itf-1ga210c4c13ac2920d84670061a6a4804d0"></span><h3>typedef ICmpChannelServer_C ICmpChannelServer<a class="headerlink" href="#typedef-icmpchannelserver-c-icmpchannelserver" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-result-netservergetmaxchannels-rts-ui16-pwmaxchannels">
+<span id="group-cmp-channel-server-itf-1gaa61219249349fff27e8d5026984d69eb"></span><h3>RTS_RESULT NetServerGetMaxChannels (RTS_UI16 <a href="#id1"><span class="problematic" id="id2">*</span></a>pwMaxChannels)<a class="headerlink" href="#rts-result-netservergetmaxchannels-rts-ui16-pwmaxchannels" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the number of available server channels. This is equal to the max. number of clients, which can be connected at the same time.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="31%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pwMaxChannels</td>
+<td>Number of of channels.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-netservergetmaxchannelbuffersize-rts-i32-pi32maxchannelbuffersize">
+<span id="group-cmp-channel-server-itf-1ga70303eac042a808bc04909757b4879d3"></span><h3>RTS_RESULT NetServerGetMaxChannelBufferSize (RTS_I32 <a href="#id3"><span class="problematic" id="id4">*</span></a>pi32MaxChannelBufferSize)<a class="headerlink" href="#rts-result-netservergetmaxchannelbuffersize-rts-i32-pi32maxchannelbuffersize" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the max. size of the send and receive buffer of the communication channels. This size cannot be exceeded by any online service or service reply.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="34%" />
+<col width="54%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pi32MaxChannelBufferSize</td>
+<td>Max. size of each communication buffer.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-netservergetchannelinfobyindex-rts-ui16-ui16channelindex-rts-ui32-pui32serverstate-channelbuffer-pchinfobuffer-rts-size-psibufferlen">
+<span id="group-cmp-channel-server-itf-1gaf77f99a0acb88ef37188f4eb44ada1b7"></span><h3>RTS_RESULT NetServerGetChannelInfoByIndex (RTS_UI16 ui16ChannelIndex, RTS_UI32 <a href="#id5"><span class="problematic" id="id6">*</span></a>pui32ServerState, CHANNELBUFFER <a href="#id7"><span class="problematic" id="id8">*</span></a>pChInfoBuffer, RTS_SIZE <a href="#id9"><span class="problematic" id="id10">*</span></a>psiBufferLen)<a class="headerlink" href="#rts-result-netservergetchannelinfobyindex-rts-ui16-ui16channelindex-rts-ui32-pui32serverstate-channelbuffer-pchinfobuffer-rts-size-psibufferlen" title="Permalink to this headline">¶</a></h3>
+<p>OBSOLETE: Function will be removed in future versions!!! Use NetServerGetChannelInfoByIndex2 instead. Retrieves general information for the specified server channel. This function is intended for information purpoeses only.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="13%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ui16ChannelIndex</td>
+<td>Index of the channel. Allowed range: 0..MaxChannels-1.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pui32ServerState</td>
+<td>State of the server channel, see category &#8220;channel server state&#8221; for <a href="#id45"><span class="problematic" id="id46">CSSTATE_</span></a> values in CmpCommunicationLibItf.</td>
+</tr>
+<tr class="row-odd"><td>[inout]</td>
+<td>pChInfoBuffer</td>
+<td>Caller allocated buffer, to which the content of the internal channel buffer structure is copied to.</td>
+</tr>
+<tr class="row-even"><td>[inout]</td>
+<td>psiBufferLen</td>
+<td>Pointer to the size of the buffer in bytes, returns the number of copied bytes.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-netservergetchannelinfobyindex2-rts-ui16-ui16channelindex-rts-ui32-pui32serverstate-channelinfo-pchinfobuffer-rts-size-psibufferlen">
+<span id="group-cmp-channel-server-itf-1ga1b88d27b187b18b540ab30c0ab6013de"></span><h3>RTS_RESULT NetServerGetChannelInfoByIndex2 (RTS_UI16 ui16ChannelIndex, RTS_UI32 <a href="#id11"><span class="problematic" id="id12">*</span></a>pui32ServerState, CHANNELINFO <a href="#id13"><span class="problematic" id="id14">*</span></a>pChInfoBuffer, RTS_SIZE <a href="#id15"><span class="problematic" id="id16">*</span></a>psiBufferLen)<a class="headerlink" href="#rts-result-netservergetchannelinfobyindex2-rts-ui16-ui16channelindex-rts-ui32-pui32serverstate-channelinfo-pchinfobuffer-rts-size-psibufferlen" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves general information for the specified server channel. This function is intended for information purpoeses only.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="9%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ui16ChannelIndex</td>
+<td>Index of the channel. Allowed range: 0..MaxChannels-1.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pui32ServerState</td>
+<td>State of the server channel, see category &#8220;channel server state&#8221; for <a href="#id47"><span class="problematic" id="id48">CSSTATE_</span></a> values in CmpCommunicationLibItf.</td>
+</tr>
+<tr class="row-odd"><td>[inout]</td>
+<td>pChInfoBuffer</td>
+<td>Caller allocated buffer, which is filled by the <a class="reference internal" href="struct_c_h_a_n_n_e_l_i_n_f_o.html#struct-c-h-a-n-n-e-l-i-n-f-o"><span class="std std-ref">CHANNELINFO</span></a> structure. If the the state is CSSTATE_FREE, no structure is returned.</td>
+</tr>
+<tr class="row-even"><td>[inout]</td>
+<td>psiBufferLen</td>
+<td>Pointer to the size of the buffer in bytes, returns the number of copied bytes.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-netservergetstatus-rts-ui32-ulchannelhandle-rts-ui16-pusstatus-rts-ui8-pbyscalingfactor-rts-i32-pnitemscomplete-rts-i32-pntotalitems">
+<span id="group-cmp-channel-server-itf-1gaf050a401e94cd38d1aaa2d3aaf2c91ae"></span><h3>RTS_RESULT NetServerGetStatus (RTS_UI32 ulChannelHandle, RTS_UI16 <a href="#id17"><span class="problematic" id="id18">*</span></a>pusStatus, RTS_UI8 <a href="#id19"><span class="problematic" id="id20">*</span></a>pbyScalingFactor, RTS_I32 <a href="#id21"><span class="problematic" id="id22">*</span></a>pnItemsComplete, RTS_I32 <a href="#id23"><span class="problematic" id="id24">*</span></a>pnTotalItems)<a class="headerlink" href="#rts-result-netservergetstatus-rts-ui32-ulchannelhandle-rts-ui16-pusstatus-rts-ui8-pbyscalingfactor-rts-i32-pnitemscomplete-rts-i32-pntotalitems" title="Permalink to this headline">¶</a></h3>
+<p>Get the current status of an active channel.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="8%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>wChannelHandle</td>
+<td>Id of the channel</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pusStatus</td>
+<td>Is set to the current progress state. The PROGRESS_xxx constants define valied values.</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pbyScalingFactor</td>
+<td>Provides the scaling factor for pnItemsComplete and pnTotalItems. These values have been scaled down by dividing them through 2^ScalingFactor (i.e. they have been right shifted by ScalingFactor bits).</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pnItemsComplete</td>
+<td>Number of items completed (eg. the number of bytes transfered).</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pnTotalItems</td>
+<td>Total number of item. Is set to -1 if unknown.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-netservergetrequest-rts-ui32-ulchannelhandle-protocol-data-unit-ppdurequest-protocol-data-unit-ppdureplybuffer">
+<span id="group-cmp-channel-server-itf-1ga40fb91f88755597d5b6eda05c9a28697"></span><h3>RTS_RESULT NetServerGetRequest (RTS_UI32 ulChannelHandle, PROTOCOL_DATA_UNIT <a href="#id25"><span class="problematic" id="id26">*</span></a>ppduRequest, PROTOCOL_DATA_UNIT <a href="#id27"><span class="problematic" id="id28">*</span></a>ppduReplyBuffer)<a class="headerlink" href="#rts-result-netservergetrequest-rts-ui32-ulchannelhandle-protocol-data-unit-ppdurequest-protocol-data-unit-ppdureplybuffer" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the current request and reply buffer.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="15%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulChannelHandle</td>
+<td>Id of the channel for which the session id should be read.</td>
+</tr>
+<tr class="row-even"><td>[inout]</td>
+<td>ppduRequest</td>
+<td>Caller allocated PDU to be filled with pointer and length of the received request.</td>
+</tr>
+<tr class="row-odd"><td>[inout]</td>
+<td>ppduReplyBuffer</td>
+<td>Caller allocated PDU to be filled with pointer and length of the reply.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-netserverfinishrequest-rts-ui32-ulchannelhandle-protocol-data-unit-pdudata">
+<span id="group-cmp-channel-server-itf-1ga340718f90a7eca4b17b75ce83b5bf30f"></span><h3>RTS_RESULT NetServerFinishRequest (RTS_UI32 ulChannelHandle, PROTOCOL_DATA_UNIT pduData)<a class="headerlink" href="#rts-result-netserverfinishrequest-rts-ui32-ulchannelhandle-protocol-data-unit-pdudata" title="Permalink to this headline">¶</a></h3>
+<p>Commits the filled reply buffer to the channel and triggers sending the reply.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="20%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulChannelHandle</td>
+<td>Id of the channel for which the session id should be read.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pduData</td>
+<td>Pointer to the reply buffer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-netserversetsessionid-rts-ui32-ulchannelhandle-rts-ui32-ulsessionid">
+<span id="group-cmp-channel-server-itf-1gac137e47c3a5fdd01150edf34f6e066e5"></span><h3>RTS_RESULT NetServerSetSessionId (RTS_UI32 ulChannelHandle, RTS_UI32 ulSessionId)<a class="headerlink" href="#rts-result-netserversetsessionid-rts-ui32-ulchannelhandle-rts-ui32-ulsessionid" title="Permalink to this headline">¶</a></h3>
+<p>Stores the session id in the channel server status structure.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="20%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulChannelHandle</td>
+<td>Id of the channel for which the session id should be set.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulSessionId</td>
+<td>New session id fo the channel.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-netservergetsessionid-rts-ui32-ulchannelhandle-rts-ui32-pulsessionid">
+<span id="group-cmp-channel-server-itf-1ga7c130fed4dc66eee53fbeff1bf6295fc"></span><h3>RTS_RESULT NetServerGetSessionId (RTS_UI32 ulChannelHandle, RTS_UI32 <a href="#id29"><span class="problematic" id="id30">*</span></a>pulSessionId)<a class="headerlink" href="#rts-result-netservergetsessionid-rts-ui32-ulchannelhandle-rts-ui32-pulsessionid" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the stored session id from the channel server status structure.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="20%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulChannelHandle</td>
+<td>Id of the channel for which the session id should be read.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulSessionId</td>
+<td>Pointer to return the session id.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="int-netservergetchannel-peeraddress-addrpeer-unsigned-short-wchannelid-channelbuffer-ppchbuffer">
+<span id="group-cmp-channel-server-itf-1gab766ff65e706c26c830d7a25b260927d"></span><h3>int NetServerGetChannel (PEERADDRESS addrPeer, unsigned short wChannelId, CHANNELBUFFER <a href="#id31"><span class="problematic" id="id32">**</span></a>ppChBuffer)<a class="headerlink" href="#int-netservergetchannel-peeraddress-addrpeer-unsigned-short-wchannelid-channelbuffer-ppchbuffer" title="Permalink to this headline">¶</a></h3>
+<p>Get the buffer for the specified channel id.</p>
+<p>NOTE: After usage the channelbuffer MUST be released by calling NetServerReleaseChannel. Failing to do so will prevent the channel from being closed and the server will eventually run out of channels. Nevertheless, this function DOES NOT provide exclusive access to the channel. The L4Base component must use appropriate semaphores to ensure exclusive access.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="16%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>addrPeer</td>
+<td>The second endpoint of the channel</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>wChannelId</td>
+<td>The id of the channel.</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>ppChBuffer</td>
+<td>Is set to the channelbuffer, if the channel exists.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="int-netserverreleasechannel-channelbuffer-pchbuffer">
+<span id="group-cmp-channel-server-itf-1ga50119c1e88fa896c1577e6f6ba59f655"></span><h3>int NetServerReleaseChannel (CHANNELBUFFER <a href="#id33"><span class="problematic" id="id34">*</span></a>pChBuffer)<a class="headerlink" href="#int-netserverreleasechannel-channelbuffer-pchbuffer" title="Permalink to this headline">¶</a></h3>
+<p>Release a channel buffer returned by NetServerGetChannel. This buffer may not be used after calling this function. Use NetServerGetChannel to acquire access to this channel again.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="22%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pChBuffer</td>
+<td>The channel buffer to release</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="int-netserverhandlemetarequest-rts-handle-hrouter-peeraddress-addrsender-protocol-data-unit-pdudata">
+<span id="group-cmp-channel-server-itf-1gaf52e870aa5161b58734a8eae3d028dfc"></span><h3>int NetServerHandleMetaRequest (RTS_HANDLE hRouter, PEERADDRESS addrSender, PROTOCOL_DATA_UNIT pduData)<a class="headerlink" href="#int-netserverhandlemetarequest-rts-handle-hrouter-peeraddress-addrsender-protocol-data-unit-pdudata" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-netserverforeachchannel-pfchannelhandler-pfchannelhandler-void-pparam">
+<span id="group-cmp-channel-server-itf-1ga4fec7786feefac8319ede3e8cb06b86e"></span><h3>void NetServerForEachChannel (PFCHANNELHANDLER pfChannelHandler, void <a href="#id35"><span class="problematic" id="id36">*</span></a>pParam)<a class="headerlink" href="#void-netserverforeachchannel-pfchannelhandler-pfchannelhandler-void-pparam" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="int-netservermessagereceived-channelbuffer-pchbuffer-protocol-data-unit-pdudata">
+<span id="group-cmp-channel-server-itf-1gad1721a0b7624dd70db7a4060e3a08abf"></span><h3>int NetServerMessageReceived (CHANNELBUFFER <a href="#id37"><span class="problematic" id="id38">*</span></a>pChBuffer, PROTOCOL_DATA_UNIT pduData)<a class="headerlink" href="#int-netservermessagereceived-channelbuffer-pchbuffer-protocol-data-unit-pdudata" title="Permalink to this headline">¶</a></h3>
+<p>Obsolete: Use NetServerMessageReceived3 instead. Will be removed in future versions!</p>
+</div>
+<div class="section" id="int-netservermessagereceived2-rts-handle-hrouter-channelbuffer-pchbuffer-protocol-data-unit-pdudata">
+<span id="group-cmp-channel-server-itf-1gac15631c2e30feea02ce34caab494c52b"></span><h3>int NetServerMessageReceived2 (RTS_HANDLE hRouter, CHANNELBUFFER <a href="#id39"><span class="problematic" id="id40">*</span></a>pChBuffer, PROTOCOL_DATA_UNIT pduData)<a class="headerlink" href="#int-netservermessagereceived2-rts-handle-hrouter-channelbuffer-pchbuffer-protocol-data-unit-pdudata" title="Permalink to this headline">¶</a></h3>
+<p>Obsolete: Use NetServerMessageReceived3 instead. Will be removed in future versions!</p>
+</div>
+<div class="section" id="rts-result-netservermessagereceived3-channelbuffer-pchbuffer-protocol-data-unit-pdudata-rts-ui32-bfirstcall">
+<span id="group-cmp-channel-server-itf-1gae75efe79619be304817299704f536ff1"></span><h3>RTS_RESULT NetServerMessageReceived3 (CHANNELBUFFER <a href="#id41"><span class="problematic" id="id42">*</span></a>pChBuffer, PROTOCOL_DATA_UNIT pduData, RTS_UI32 bFirstCall)<a class="headerlink" href="#rts-result-netservermessagereceived3-channelbuffer-pchbuffer-protocol-data-unit-pdudata-rts-ui32-bfirstcall" title="Permalink to this headline">¶</a></h3>
+<p>Called by the L4Base component whenever a complete L7 message arrived on a server channel</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="7%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pChBuffer</td>
+<td>Pointer to the channel buffer</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pduData</td>
+<td>Content of the message. The data pointed to by will be valid only until the reply has been passed to channel manager or the channel is closed.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>bFirstCall</td>
+<td>0: Tells the function, if it was already called for the same request before (0) or not (1).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Received service was completely handeled.</td>
+</tr>
+<tr class="row-even"><td>ERR_PENDING</td>
+<td>Received service will be handled asynchronously by the higher layers, but the caller has not to take care about this.</td>
+</tr>
+<tr class="row-odd"><td>ERR_CALL_AGAIN</td>
+<td>Received service will be handled asynchronously. To progress this function have to be called again for the same received service data with bFirstCall=0.</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Error occured, channel close has been triggered.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="int-netserverchannelerror-channelbuffer-pchbuffer-int-nerror">
+<span id="group-cmp-channel-server-itf-1gac1428a568b4f07be79b180d12e23fa5c"></span><h3>int NetServerChannelError (CHANNELBUFFER <a href="#id43"><span class="problematic" id="id44">*</span></a>pChBuffer, int nError)<a class="headerlink" href="#int-netserverchannelerror-channelbuffer-pchbuffer-int-nerror" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_checksum_itf.html" title="CmpChecksumItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_channel_mgr_itf.html" title="CmpChannelMgrItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

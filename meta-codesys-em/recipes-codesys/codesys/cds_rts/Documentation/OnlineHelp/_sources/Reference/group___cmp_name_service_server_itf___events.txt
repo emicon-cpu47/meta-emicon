@@ -1,0 +1,45 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_name_service_server_itf___events:
+
+======
+Events
+======
+
+ :ref:`More... <group___cmp_name_service_server_itf___events-details>`
+
+Macros
+------
+
+- #define :ref:`EVT_CmpNSSOemCallback <group___cmp_name_service_server_itf___events_1gaa345055e63f697d405d7caf6ef1cdb1d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_NONE <group___cmp_event_mgr_itf___eventclasses_1ga22110eb4c9f52d7df007c8cc375c2b14>` , 1)
+
+.. _group___cmp_name_service_server_itf___events-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_name_service_server_itf___events_1gaa345055e63f697d405d7caf6ef1cdb1d:
+
+#define EVT_CmpNSSOemCallback :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_NONE <group___cmp_event_mgr_itf___eventclasses_1ga22110eb4c9f52d7df007c8cc375c2b14>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Event is sent when a the NameServiceServer retrieves the information put into the OEM field of the naming response. Note: The information put here are not evaluted by the default Automation Platform. A OEM plug in is needed to handle this data in the Automation Platform. Note: The event is sent twice. The first time pData is NULL and ui8OemDataLen is 0. This is used to get the needed length of the OEM data.The OEM should fill up the needed length into the ui8OemDataLen. The second time the pData is available an can be filled up. ui8OemDataLen should be filled up with the actual written length.
+
+**Parameters**
+
++---------+-------------+----------------------+
+| [in]    | pEventParam | EVTPARAMID_CmpNSSOem |
++---------+-------------+----------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

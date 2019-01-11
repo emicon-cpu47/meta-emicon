@@ -1,0 +1,189 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_out_itf:
+
+=========
+SysOutItf
+=========
+
+Interface of SysOut. :ref:`More... <group___sys_out_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`ISysOut_C <struct_i_sys_out___c>`
+
+Macros
+------
+
+- #define :ref:`SysOutPrintfArg <group___sys_out_itf_1ga21343a81b2d82d0f466ba3da53f9e363>` :ref:`SysOutVPrintf <group___sys_out_itf_1gae138f2e4b7308ff7c8773f43ed02b349>`
+
+- #define :ref:`CPT <group___sys_out_itf_1ga2b00f68f6da722535bfc69c7bce3c815>` :ref:`SysOutDebug <group___sys_out_itf_1ga55da652862f7fb3ce1065e90ff7fac6a>` ("%s checkpoint at line %d\n", __FILE__, __LINE__);
+
+- #define :ref:`CPTPRINTF <group___sys_out_itf_1ga037f5c5e21d190812df19da084a4f83b>` ("%s checkpoint at line %d\n", __FILE__, __LINE__);
+
+- #define :ref:`ITF_SysOut <group___sys_out_itf_1ga08cfe25589654868316d78fb1552eb6f>`
+
+- #define :ref:`EXTITF_SysOut <group___sys_out_itf_1ga2a82e374b2fe804746c7ef96ee79cfb2>`
+
+Typedefs
+--------
+
+- typedef :ref:`ISysOut_C <struct_i_sys_out___c>` :ref:`ISysOut <group___sys_out_itf_1ga12cea356af1fd92e5219de67b39500eb>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysOutOSInit <group___sys_out_itf_1ga49be6f7c002291a21c87c082c7676609>` (INIT_STRUCT * pInit)
+
+- RTS_RESULT :ref:`SysOutOSHookFunction <group___sys_out_itf_1ga8896426bc9d923bdfaadb451a3ad00e8>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_RESULT :ref:`SysOutPrintf <group___sys_out_itf_1ga36cebbd1562ea61f22d81e74bcf3b039>` (char * szFormat, ...)
+
+- RTS_RESULT :ref:`SysOutVPrintf <group___sys_out_itf_1gae138f2e4b7308ff7c8773f43ed02b349>` (char * szFormat, va_list * pargList)
+
+- RTS_RESULT :ref:`SysOutDebug <group___sys_out_itf_1ga55da652862f7fb3ce1065e90ff7fac6a>` (char * szFormat, ...)
+
+- RTS_RESULT :ref:`SysOutDebugArg <group___sys_out_itf_1ga9a2e4ab4850ea6f44a3ac5b328481325>` (char * szFormat, va_list * pargList)
+
+.. _group___sys_out_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysOut.
+
+The SysOut interface is projected to get access to the console output routines. This can be used for debugging or logging needs.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_out_itf_1ga21343a81b2d82d0f466ba3da53f9e363:
+
+#define SysOutPrintfArg :ref:`SysOutVPrintf <group___sys_out_itf_1gae138f2e4b7308ff7c8773f43ed02b349>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to print out an argument list on the standard console output
+
+**Parameters**
+
++---------+----------+------------------------------------------------+
+| [in]    | szFormat | Format string                                  |
++---------+----------+------------------------------------------------+
+| [in]    | pargList | Pointer to argument list for the format string |
++---------+----------+------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_out_itf_1ga2b00f68f6da722535bfc69c7bce3c815:
+
+#define CPT :ref:`SysOutDebug <group___sys_out_itf_1ga55da652862f7fb3ce1065e90ff7fac6a>` ("%s checkpoint at line %d\n", __FILE__, __LINE__);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Checkpoints for debugging needs. Prints the actual file and line number
+
+.. _group___sys_out_itf_1ga037f5c5e21d190812df19da084a4f83b:
+
+#define CPTPRINTF ("%s checkpoint at line %d\n", __FILE__, __LINE__);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_out_itf_1ga08cfe25589654868316d78fb1552eb6f:
+
+#define ITF_SysOut
+^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_out_itf_1ga2a82e374b2fe804746c7ef96ee79cfb2:
+
+#define EXTITF_SysOut
+^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_out_itf_1ga12cea356af1fd92e5219de67b39500eb:
+
+typedef ISysOut_C ISysOut
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_out_itf_1ga49be6f7c002291a21c87c082c7676609:
+
+RTS_RESULT SysOutOSInit (INIT_STRUCT *pInit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_out_itf_1ga8896426bc9d923bdfaadb451a3ad00e8:
+
+RTS_RESULT SysOutOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_out_itf_1ga36cebbd1562ea61f22d81e74bcf3b039:
+
+RTS_RESULT SysOutPrintf (char *szFormat,...)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to print out a formatted string on the standard console output
+
+**Parameters**
+
++---------+----------+---------------------------------------+
+| [in]    | szFormat | Format string with optional arguments |
++---------+----------+---------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_out_itf_1gae138f2e4b7308ff7c8773f43ed02b349:
+
+RTS_RESULT SysOutVPrintf (char *szFormat, va_list *pargList)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_out_itf_1ga55da652862f7fb3ce1065e90ff7fac6a:
+
+RTS_RESULT SysOutDebug (char *szFormat,...)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Debug output fo a formatted string on the standard console output. NOTE: Actual time should be added in front of each debug output string
+
+**Parameters**
+
++---------+----------+---------------------------------------+
+| [in]    | szFormat | Format string with optional arguments |
++---------+----------+---------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_out_itf_1ga9a2e4ab4850ea6f44a3ac5b328481325:
+
+RTS_RESULT SysOutDebugArg (char *szFormat, va_list *pargList)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Debug output of an argument list on the standard console output. NOTE: Actual time should be added in front of each debug output string
+
+**Parameters**
+
++---------+----------+------------------------------------------------+
+| [in]    | szFormat | Format string                                  |
++---------+----------+------------------------------------------------+
+| [in]    | pargList | Pointer to argument list for the format string |
++---------+----------+------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

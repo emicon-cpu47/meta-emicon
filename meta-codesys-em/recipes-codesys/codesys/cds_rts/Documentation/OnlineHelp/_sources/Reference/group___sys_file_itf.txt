@@ -1,0 +1,1771 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_file_itf:
+
+==========
+SysFileItf
+==========
+
+Interface of SysFile. :ref:`More... <group___sys_file_itf-details>`
+
+Modules
+-------
+
+- :ref:`Event parameter <group___sys_file_itf___eventparameter>`
+
+- :ref:`Events <group___sys_file_itf___events>`
+
+- :ref:`File info <group___sys_file_itf___fileinfo>`
+
+- :ref:`Options <group___sys_file_itf___options>`
+
+- :ref:`Settings <group___sys_file_itf___settings>`
+
+- :ref:`Static defines <group___sys_file_itf___staticdefines>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagSYS_FILETIME <structtag_s_y_s___f_i_l_e_t_i_m_e>`
+
+- struct :ref:`tagsysfileclose_struct <structtagsysfileclose__struct>`
+
+- struct :ref:`tagsysfilecopy_struct <structtagsysfilecopy__struct>`
+
+- struct :ref:`tagsysfiledelete_struct <structtagsysfiledelete__struct>`
+
+- struct :ref:`tagsysfiledeletebyhandle_struct <structtagsysfiledeletebyhandle__struct>`
+
+- struct :ref:`tagsysfileeof_struct <structtagsysfileeof__struct>`
+
+- struct :ref:`tagsysfileflush_struct <structtagsysfileflush__struct>`
+
+- struct :ref:`tagsysfilegetname_struct <structtagsysfilegetname__struct>`
+
+- struct :ref:`tagsysfilegetname2_struct <structtagsysfilegetname2__struct>`
+
+- struct :ref:`tagsysfilegetpath_struct <structtagsysfilegetpath__struct>`
+
+- struct :ref:`tagsysfilegetpos_struct <structtagsysfilegetpos__struct>`
+
+- struct :ref:`tagsysfilegetsize_struct <structtagsysfilegetsize__struct>`
+
+- struct :ref:`tagsysfilegetsizebyhandle_struct <structtagsysfilegetsizebyhandle__struct>`
+
+- struct :ref:`tagsysfilegetstatus_struct <structtagsysfilegetstatus__struct>`
+
+- struct :ref:`tagsysfilegetstatus2_struct <structtagsysfilegetstatus2__struct>`
+
+- struct :ref:`tagsysfilegettime_struct <structtagsysfilegettime__struct>`
+
+- struct :ref:`tagsysfileopen_struct <structtagsysfileopen__struct>`
+
+- struct :ref:`tagsysfileread_struct <structtagsysfileread__struct>`
+
+- struct :ref:`tagsysfilerename_struct <structtagsysfilerename__struct>`
+
+- struct :ref:`tagsysfilesetpos_struct <structtagsysfilesetpos__struct>`
+
+- struct :ref:`tagsysfiletruncate_struct <structtagsysfiletruncate__struct>`
+
+- struct :ref:`tagsysfilewrite_struct <structtagsysfilewrite__struct>`
+
+- struct :ref:`ISysFile_C <struct_i_sys_file___c>`
+
+Macros
+------
+
+- #define :ref:`RTS_ACCESS_MODE_AM_READ <group___sys_file_itf_1gab07324d909f0778e06a07f5086a4aa54>` 0	/* Open an existing file with Read access. If file does not exist, Open fails */
+
+- #define :ref:`RTS_ACCESS_MODE_AM_WRITE <group___sys_file_itf_1gad55849dec67d4ae690c203f856811b20>` 1	/* Create new file with Write access. If file does exist, content is discarded */
+
+- #define :ref:`RTS_ACCESS_MODE_AM_APPEND <group___sys_file_itf_1gab530a9b184a410ccfd99700f72a2031b>` 2	/* Open an existing file with Append (only write) access. If file does not exist, Open fails */
+
+- #define :ref:`RTS_ACCESS_MODE_AM_READ_PLUS <group___sys_file_itf_1ga9d40f9bb332843a13f9da7f4718d430e>` 3	/* Open an existing file with Read/Write access. If file does not exist, Open fails */
+
+- #define :ref:`RTS_ACCESS_MODE_AM_WRITE_PLUS <group___sys_file_itf_1ga24ce0bfac979f179747381875f5fb46c>` 4	/* Create new file with Read/Write access. If file does exist, content is discarded */
+
+- #define :ref:`RTS_ACCESS_MODE_AM_APPEND_PLUS <group___sys_file_itf_1gab987ef9cec2bdb0c212183673a1d7024>` 5	/* Open an existing file with Append (read/write) access. If file does not exist, Open creates a new file */
+
+- #define :ref:`RTS_ACCESS_MODE <group___sys_file_itf_1ga1b2628cecaccecd001ae60cc85c97ee7>` RTS_IEC_UDINT
+
+- #define :ref:`SYS_FILE_STATUS_FS_OK <group___sys_file_itf_1ga3b02f79982bb6d6eaf2a818aeb38a1b2>` 0	/* File could be opened */
+
+- #define :ref:`SYS_FILE_STATUS_FS_NO_FILE <group___sys_file_itf_1ga4e8d673828e9ae77fefb196edf6f3c3f>` 1	/* No file available */
+
+- #define :ref:`SYS_FILE_STATUS_FS_ILLEGAL_POS <group___sys_file_itf_1ga5b0a73a8175fb8e505bcb24495a772a7>` 2	/* Illegal position in the file */
+
+- #define :ref:`SYS_FILE_STATUS_FS_FULL <group___sys_file_itf_1ga579877343b6f54c6a9c34ccdae8c2323>` 3	/* No more space on the filesystem */
+
+- #define :ref:`SYS_FILE_STATUS_FS_EOF <group___sys_file_itf_1ga2f2cd85a8b8d3e9e0f18ed1a5098ddc0>` 4	/* End of file reached */
+
+- #define :ref:`SYS_FILE_STATUS <group___sys_file_itf_1ga004418b0fe30244d5849374861872574>` RTS_IEC_INT
+
+- #define :ref:`SYSFILE_PATH_OPTION_UNKNOWN <group___sys_file_itf_1ga0917ed3895c96243a6f6d09c3650bbea>` 0
+
+- #define :ref:`SYSFILE_PATH_OPTION_FILE <group___sys_file_itf_1ga836fe749c66e2b364bc0b760461cf3d0>` 1
+
+- #define :ref:`SYSFILE_PATH_OPTION_DIRECTORY <group___sys_file_itf_1ga315192d4dad4251f90f16426b829a7e2>` 2
+
+- #define :ref:`SYSFILE_PATH_OPTION_FILE_KEEP_NAME <group___sys_file_itf_1ga0a653cc8c6112eb939e04b6e38569b51>` 3
+
+- #define :ref:`ITF_SysFile <group___sys_file_itf_1ga794072460800454cc8da694c883bda88>`
+
+- #define :ref:`EXTITF_SysFile <group___sys_file_itf_1ga84004b7149a72fdc23afad19f5666258>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagSYS_FILETIME <structtag_s_y_s___f_i_l_e_t_i_m_e>` :ref:`SYS_FILETIME <group___sys_file_itf_1ga8b261b327949b99b2d4f1f4b73d68686>`
+
+- typedef struct :ref:`tagsysfileclose_struct <structtagsysfileclose__struct>` :ref:`sysfileclose_struct <group___sys_file_itf_1gac32e3f13b091ae01c7e3483495177e80>`
+
+- typedef struct :ref:`tagsysfilecopy_struct <structtagsysfilecopy__struct>` :ref:`sysfilecopy_struct <group___sys_file_itf_1ga848b4b52470a2e83e3cc4609cc460281>`
+
+- typedef struct :ref:`tagsysfiledelete_struct <structtagsysfiledelete__struct>` :ref:`sysfiledelete_struct <group___sys_file_itf_1ga7ae7738449b95a909b6f7b53cee2f7eb>`
+
+- typedef struct :ref:`tagsysfiledeletebyhandle_struct <structtagsysfiledeletebyhandle__struct>` :ref:`sysfiledeletebyhandle_struct <group___sys_file_itf_1gaea28537a937050926ce71bc49c133446>`
+
+- typedef struct :ref:`tagsysfileeof_struct <structtagsysfileeof__struct>` :ref:`sysfileeof_struct <group___sys_file_itf_1ga2e855766cd831ec36d04daef52ebc5ef>`
+
+- typedef struct :ref:`tagsysfileflush_struct <structtagsysfileflush__struct>` :ref:`sysfileflush_struct <group___sys_file_itf_1gac4012ec8ef0cd80269f9e9b447b73cea>`
+
+- typedef struct :ref:`tagsysfilegetname_struct <structtagsysfilegetname__struct>` :ref:`sysfilegetname_struct <group___sys_file_itf_1ga50487913f38f25789e14dd6157b8fc62>`
+
+- typedef struct :ref:`tagsysfilegetname2_struct <structtagsysfilegetname2__struct>` :ref:`sysfilegetname2_struct <group___sys_file_itf_1ga670575616a0ed5935bbe5340d27d01af>`
+
+- typedef struct :ref:`tagsysfilegetpath_struct <structtagsysfilegetpath__struct>` :ref:`sysfilegetpath_struct <group___sys_file_itf_1ga2c2745ce182cc9f648978f61b29ea709>`
+
+- typedef struct :ref:`tagsysfilegetpos_struct <structtagsysfilegetpos__struct>` :ref:`sysfilegetpos_struct <group___sys_file_itf_1ga6adb72f732867ab34774f5d05e17067e>`
+
+- typedef struct :ref:`tagsysfilegetsize_struct <structtagsysfilegetsize__struct>` :ref:`sysfilegetsize_struct <group___sys_file_itf_1gaf70b6bcd2c811732eb31200eb7f77987>`
+
+- typedef struct :ref:`tagsysfilegetsizebyhandle_struct <structtagsysfilegetsizebyhandle__struct>` :ref:`sysfilegetsizebyhandle_struct <group___sys_file_itf_1gad81d77d04d073fdfed868ce78ba7ccf3>`
+
+- typedef struct :ref:`tagsysfilegetstatus_struct <structtagsysfilegetstatus__struct>` :ref:`sysfilegetstatus_struct <group___sys_file_itf_1ga61077f57aef77e4893e64f772bd5c2f7>`
+
+- typedef struct :ref:`tagsysfilegetstatus2_struct <structtagsysfilegetstatus2__struct>` :ref:`sysfilegetstatus2_struct <group___sys_file_itf_1ga745d80be296739f398e252e2bc71174f>`
+
+- typedef struct :ref:`tagsysfilegettime_struct <structtagsysfilegettime__struct>` :ref:`sysfilegettime_struct <group___sys_file_itf_1gac120ee6e839172cad6aad82b727b7ad0>`
+
+- typedef struct :ref:`tagsysfileopen_struct <structtagsysfileopen__struct>` :ref:`sysfileopen_struct <group___sys_file_itf_1ga97d8bc08ed6ae75d8361b21b854f3adb>`
+
+- typedef struct :ref:`tagsysfileread_struct <structtagsysfileread__struct>` :ref:`sysfileread_struct <group___sys_file_itf_1gacc4746442e57c900ab5dbad866f80d4f>`
+
+- typedef struct :ref:`tagsysfilerename_struct <structtagsysfilerename__struct>` :ref:`sysfilerename_struct <group___sys_file_itf_1ga88e6cc35a980d70dd206738f37c36d1d>`
+
+- typedef struct :ref:`tagsysfilesetpos_struct <structtagsysfilesetpos__struct>` :ref:`sysfilesetpos_struct <group___sys_file_itf_1ga033017e510ac26e6baba29430f8482ff>`
+
+- typedef struct :ref:`tagsysfiletruncate_struct <structtagsysfiletruncate__struct>` :ref:`sysfiletruncate_struct <group___sys_file_itf_1ga735e4fb0b748f978a465351ba13dbfaa>`
+
+- typedef struct :ref:`tagsysfilewrite_struct <structtagsysfilewrite__struct>` :ref:`sysfilewrite_struct <group___sys_file_itf_1gaedb994e98af6d7e63220e9ff73d9d043>`
+
+- typedef :ref:`ISysFile_C <struct_i_sys_file___c>` :ref:`ISysFile <group___sys_file_itf_1gae71646d84bfe17f7905ba7349669e54e>`
+
+Functions
+---------
+
+- void :ref:`sysfileclose <group___sys_file_itf_1ga0061abd0b904551729cee6f3be0477a8>` (:ref:`sysfileclose_struct <group___sys_file_itf_1gac32e3f13b091ae01c7e3483495177e80>` * p)
+
+- void :ref:`sysfilecopy <group___sys_file_itf_1gae1a82fc30582adda1451ab6ea726faad>` (:ref:`sysfilecopy_struct <group___sys_file_itf_1ga848b4b52470a2e83e3cc4609cc460281>` * p)
+
+- void :ref:`sysfiledelete <group___sys_file_itf_1gab893b41ebd71e26916b4c5cd4009c3a3>` (:ref:`sysfiledelete_struct <group___sys_file_itf_1ga7ae7738449b95a909b6f7b53cee2f7eb>` * p)
+
+- void :ref:`sysfiledeletebyhandle <group___sys_file_itf_1ga61175537e2a83591c2145fefd852f1cd>` (:ref:`sysfiledeletebyhandle_struct <group___sys_file_itf_1gaea28537a937050926ce71bc49c133446>` * p)
+
+- void :ref:`sysfileeof <group___sys_file_itf_1gae48869908cf08bdc2fcda787bee6a7ed>` (:ref:`sysfileeof_struct <group___sys_file_itf_1ga2e855766cd831ec36d04daef52ebc5ef>` * p)
+
+- void :ref:`sysfileflush <group___sys_file_itf_1ga39bfd36ebd18fe21a7b4396d6069ab99>` (:ref:`sysfileflush_struct <group___sys_file_itf_1gac4012ec8ef0cd80269f9e9b447b73cea>` * p)
+
+- void :ref:`sysfilegetname <group___sys_file_itf_1ga6a67d74932ba74420d82bdb75305999b>` (:ref:`sysfilegetname_struct <group___sys_file_itf_1ga50487913f38f25789e14dd6157b8fc62>` * p)
+
+- void :ref:`sysfilegetname2 <group___sys_file_itf_1ga0255ce7ba12ce68a599cf13405d75e2b>` (:ref:`sysfilegetname2_struct <group___sys_file_itf_1ga670575616a0ed5935bbe5340d27d01af>` * p)
+
+- void :ref:`sysfilegetpath <group___sys_file_itf_1ga1a5653beb161713e3f0ce705731890c6>` (:ref:`sysfilegetpath_struct <group___sys_file_itf_1ga2c2745ce182cc9f648978f61b29ea709>` * p)
+
+- void :ref:`sysfilegetpos <group___sys_file_itf_1ga82d86dd0ebfff96c73d9d6a1042c4c3b>` (:ref:`sysfilegetpos_struct <group___sys_file_itf_1ga6adb72f732867ab34774f5d05e17067e>` * p)
+
+- void :ref:`sysfilegetsize <group___sys_file_itf_1gaa825e1d35775490a013a65de61d4c228>` (:ref:`sysfilegetsize_struct <group___sys_file_itf_1gaf70b6bcd2c811732eb31200eb7f77987>` * p)
+
+- void :ref:`sysfilegetsizebyhandle <group___sys_file_itf_1ga58c4f50ab2e6f6213ab88a383411efe0>` (:ref:`sysfilegetsizebyhandle_struct <group___sys_file_itf_1gad81d77d04d073fdfed868ce78ba7ccf3>` * p)
+
+- void :ref:`sysfilegetstatus <group___sys_file_itf_1ga173162061344cfa9f296fbf51d8c2080>` (:ref:`sysfilegetstatus_struct <group___sys_file_itf_1ga61077f57aef77e4893e64f772bd5c2f7>` * p)
+
+- void :ref:`sysfilegetstatus2 <group___sys_file_itf_1gaf4502198915276c0c0a22b2302a1f9ba>` (:ref:`sysfilegetstatus2_struct <group___sys_file_itf_1ga745d80be296739f398e252e2bc71174f>` * p)
+
+- void :ref:`sysfilegettime <group___sys_file_itf_1ga61e377f157a576a6906b31f30078d912>` (:ref:`sysfilegettime_struct <group___sys_file_itf_1gac120ee6e839172cad6aad82b727b7ad0>` * p)
+
+- void :ref:`sysfileopen <group___sys_file_itf_1gae7ff0e335790cfd453ba197b2c1b0a3e>` (:ref:`sysfileopen_struct <group___sys_file_itf_1ga97d8bc08ed6ae75d8361b21b854f3adb>` * p)
+
+- void :ref:`sysfileread <group___sys_file_itf_1ga32392398649eff90b9d76800c8e3b160>` (:ref:`sysfileread_struct <group___sys_file_itf_1gacc4746442e57c900ab5dbad866f80d4f>` * p)
+
+- void :ref:`sysfilerename <group___sys_file_itf_1ga91255ddabc2f4b94f83cbcd1aa6b02d8>` (:ref:`sysfilerename_struct <group___sys_file_itf_1ga88e6cc35a980d70dd206738f37c36d1d>` * p)
+
+- void :ref:`sysfilesetpos <group___sys_file_itf_1gafffe5e9d0ecdb93ce2ddea5fe72e661e>` (:ref:`sysfilesetpos_struct <group___sys_file_itf_1ga033017e510ac26e6baba29430f8482ff>` * p)
+
+- void :ref:`sysfiletruncate <group___sys_file_itf_1gaefd0ef3d234408d313f9f8ad38590b2a>` (:ref:`sysfiletruncate_struct <group___sys_file_itf_1ga735e4fb0b748f978a465351ba13dbfaa>` * p)
+
+- void :ref:`sysfilewrite <group___sys_file_itf_1ga3764bd0101867195258e05571e5359f5>` (:ref:`sysfilewrite_struct <group___sys_file_itf_1gaedb994e98af6d7e63220e9ff73d9d043>` * p)
+
+- RTS_HANDLE :ref:`SysFileOpen <group___sys_file_itf_1ga0b94d05ae2b24ef9f85b96232b9c4f67>` (char * pszFile, RTS_IEC_UDINT am, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`SysFileOpen_ <group___sys_file_itf_1ga50e60bca131446de5b0bc6829047d32f>` (char * pszFile, RTS_IEC_UDINT am, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysFileClose <group___sys_file_itf_1gab336124d8c37c421c5956a48c645e33a>` (RTS_HANDLE hFile)
+
+- RTS_RESULT :ref:`SysFileClose_ <group___sys_file_itf_1ga84cc539d0129f1595727147118441d88>` (RTS_HANDLE hFile)
+
+- RTS_IEC_INT :ref:`SysFileGetStatus <group___sys_file_itf_1ga291c4327dc452ae6264296c733ebd226>` (RTS_HANDLE hFile, RTS_RESULT * pResult)
+
+- char * :ref:`SysFileGetName <group___sys_file_itf_1ga15ac48e7fcb401063c858b4ba1b8d064>` (RTS_HANDLE hFile, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`SysFileRead <group___sys_file_itf_1gacd9c60979859fb47fe63cc640757798f>` (RTS_HANDLE hFile, unsigned char * pbyBuffer, RTS_SIZE uiSize, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`SysFileWrite <group___sys_file_itf_1gabc1a4c173a725757f15fd458d3bc12c7>` (RTS_HANDLE hFile, unsigned char * pbyBuffer, RTS_SIZE uiSize, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysFileDelete <group___sys_file_itf_1ga6249943cd6ce805c8be96d498e4eb09d>` (char * pszFile)
+
+- RTS_RESULT :ref:`SysFileDelete_ <group___sys_file_itf_1gae06bfbd2505c3a679c594635df13bba9>` (char * pszFile)
+
+- RTS_RESULT :ref:`SysFileDeleteByHandle <group___sys_file_itf_1gacb8ff5e187272991723a200fb50d5d1b>` (RTS_HANDLE hFile)
+
+- RTS_RESULT :ref:`SysFileRename <group___sys_file_itf_1ga4110a0fdaf6396e780db147b9e10c6b4>` (char * pszOldFileName, char * pszNewFileName)
+
+- RTS_RESULT :ref:`SysFileRename_ <group___sys_file_itf_1gac4a222edef9794685791a7aa6bfddc16>` (char * pszOldFileName, char * pszNewFileName)
+
+- RTS_RESULT :ref:`SysFileSetPos <group___sys_file_itf_1gaeda098ed8fae41feba2caa5aa76ae678>` (RTS_HANDLE hFile, RTS_SIZE uiOffset)
+
+- RTS_RESULT :ref:`SysFileGetPos <group___sys_file_itf_1ga00d97ffd5ea16e3b43a071a6c8f1dfde>` (RTS_HANDLE hFile, RTS_SIZE * puiPos)
+
+- RTS_SIZE :ref:`SysFileGetSize <group___sys_file_itf_1gab3735db3d7518860c234d732d302bd69>` (char * pszFile, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`SysFileGetSize_ <group___sys_file_itf_1gaaa33b83b997acb3f902c42146b4b3ba1>` (char * pszFile, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`SysFileGetSizeByHandle <group___sys_file_itf_1ga9360a127e85c8e0c4728aeab60c9de58>` (RTS_HANDLE hFile, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysFileGetTime <group___sys_file_itf_1ga5047093717c0ce27132f593bada3550a>` (char * pszFile, :ref:`SYS_FILETIME <group___sys_file_itf_1ga8b261b327949b99b2d4f1f4b73d68686>` * pftFileTime)
+
+- RTS_RESULT :ref:`SysFileGetTime_ <group___sys_file_itf_1gaac750b008681fedbd5cc20fac2fbbcc1>` (char * pszFile, :ref:`SYS_FILETIME <group___sys_file_itf_1ga8b261b327949b99b2d4f1f4b73d68686>` * pftFileTime)
+
+- RTS_RESULT :ref:`SysFileEOF <group___sys_file_itf_1ga0a11344a7db0e28ca8e3e48735c9836a>` (RTS_HANDLE hFile)
+
+- RTS_RESULT :ref:`SysFileCopy <group___sys_file_itf_1ga541e38ef3f5986ce1797a3e3103f9aa9>` (char * pszDestFileName, char * pszSourceFileName, RTS_SIZE * puiCopied)
+
+- RTS_RESULT :ref:`SysFileCopy_ <group___sys_file_itf_1ga0f160d8dc444a364f4e6ea8947618983>` (char * pszDestFileName, char * pszSourceFileName, RTS_SIZE * puiCopied)
+
+- RTS_RESULT :ref:`SysFileGetPath <group___sys_file_itf_1ga04a426f813d58f9b45ad3446a76db4aa>` (char * pszFileName, char * pszPath, RTS_SIZE iMaxLen)
+
+- RTS_RESULT :ref:`SysFileGetPath2 <group___sys_file_itf_1ga0f30ff7cd62bb6813b0e1ccf3341dfe0>` (char * pszFileName, RTS_I32 nOption, char * pszPath, RTS_SIZE iMaxLen)
+
+- RTS_RESULT :ref:`SysFileGetFullPath <group___sys_file_itf_1ga1ff4902ee72a1314a48cedbaef82ad13>` (char * pszFileName, char * pszPath, RTS_SIZE iMaxLen)
+
+- RTS_RESULT :ref:`SysFileGetFullPath2 <group___sys_file_itf_1ga67fbe682bc445a66092f23670b8098f5>` (char * pszFileName, RTS_I32 nOption, char * pszPath, RTS_SIZE iMaxLen)
+
+- RTS_RESULT :ref:`SysFileGetIecPath <group___sys_file_itf_1ga33b2f22974bf1f7453a0c3110a65588e>` (char * pszFileName, char * pszPath, RTS_SIZE iMaxLen)
+
+- RTS_RESULT :ref:`SysFileGetIecPath2 <group___sys_file_itf_1ga47121d2dbf82e135143541308a0946b3>` (char * pszFileName, RTS_I32 nOption, char * pszPath, RTS_SIZE iMaxLen)
+
+- RTS_RESULT :ref:`SysFileGenerateCRC <group___sys_file_itf_1ga0c9bf0fa199b607a70550de73bf8900c>` (char * pszFile, RTS_SIZE ulSize, RTS_UI32 * pulCRC)
+
+- RTS_RESULT :ref:`SysFileGenerateCRC2 <group___sys_file_itf_1ga19d7642f72f961919f0090522a618383>` (char * pszFile, RTS_SIZE ulSize, RTS_UI32 * pulCRC)
+
+- RTS_RESULT :ref:`SysFileGenerateCRC3 <group___sys_file_itf_1ga0be5f7aad5a35feee6e23ed1e20e8a4b>` (char * pszFile, RTS_SIZE ulSize, RTS_UI32 * pulCRC, RTS_BOOL bUseCache)
+
+- RTS_RESULT :ref:`SysFileGenerateCRC3_ <group___sys_file_itf_1ga9fd5f8996b864ee3e58e61ad86078004>` (char * pszFile, RTS_SIZE ulSize, RTS_UI32 * pulCRC, RTS_BOOL bUseCache)
+
+- RTS_RESULT :ref:`SysFileGenerateCRC2_ <group___sys_file_itf_1ga4d28d12f76b503951a9927c03e24e086>` (char * pszFile, RTS_SIZE ulSize, RTS_UI32 * pulCRC)
+
+- RTS_RESULT :ref:`SysFileFlush <group___sys_file_itf_1gaab879175f88d0f1b42862af3e5ce0103>` (RTS_HANDLE hFile)
+
+- RTS_RESULT :ref:`SysFileIsInvisible <group___sys_file_itf_1gaea1e7b53616d79e6270e910923b64bc6>` (char * pszFileName)
+
+- RTS_RESULT :ref:`SysFileTruncate <group___sys_file_itf_1ga574fce5bfcfc3484d0b7b00aee2f4422>` (RTS_HANDLE hFile, RTS_SIZE sSizeNew)
+
+- RTS_HANDLE :ref:`SysFileGetFirstConfiguredPath <group___sys_file_itf_1ga242a47c9d6c1414adcf86ddc4f7da2bd>` (char * pszFilePath, RTS_I32 nMaxFilePathLen, char * pszPlaceholder, RTS_I32 nMaxPlaceholderLen, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`SysFileGetNextConfiguredPath <group___sys_file_itf_1ga91bed77da95f648f5fc0617a48a725cd>` (RTS_HANDLE hPrevPath, char * pszFilePath, RTS_I32 nMaxFilePathLen, char * pszPlaceholder, RTS_I32 nMaxPlaceholderLen, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`SysFileGetNextConfiguredPath2 <group___sys_file_itf_1ga7e9ea372cb3d8d181f4b40fd3709849f>` (RTS_HANDLE hPrevPath, char * pszFilePath, RTS_I32 nMaxFilePathLen, char * pszPlaceholder, RTS_I32 nMaxPlaceholderLen, RTS_UI32 nFlags, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysFileSetIecPath <group___sys_file_itf_1gaa379d87bd6fb758c6812c5af34e647fe>` (char * pszPath)
+
+- char * :ref:`SysFileGetPlcLogicPrefix <group___sys_file_itf_1ga9096d44db42a0c50aa3908573d613a65>` (void)
+
+- RTS_RESULT :ref:`SysFilePlcLogicPrefix <group___sys_file_itf_1ga1389feb4f282083cf88a78123482d794>` (char * pszPathOut, RTS_SIZE ulPathOutSize, char * pszSubDir, char * pszName, const char * pszExt)
+
+- RTS_RESULT :ref:`SysFileIsBlacklisted <group___sys_file_itf_1ga5681f6aac97d8c314e2a167db8848a45>` (char * pszPath)
+
+- RTS_RESULT :ref:`SysFileAddToBlacklist <group___sys_file_itf_1ga457a33093cdbc0bd46eec7693e60333a>` (char * pszPath)
+
+- RTS_RESULT :ref:`SysFileIsOnlineAccessDenied <group___sys_file_itf_1ga3e59ed5842dadc542712b5b4b69f0c25>` (char * pszPath)
+
+.. _group___sys_file_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysFile.
+
+The SysFile interface is projected to get access to the files of a filesystem. The filesystem can be on harddisk, a flash/flash disk, a RAM disk or what ever. The only requirement is, that the filesystem is non volatile!
+
+Please read following notes if using the SysFileFlash with our SysFlash: This component needs a global define of the file table FILE_MAP. It has to be declared in sysdefines.h. Here is an example with the neccessay initializations: #define FILE1_SIZE 0x4000 #define FILE2_SIZE 0x2000 #define FILE3_SIZE 0x2000 #define FILE4_SIZE 0x38000 #define FILE5_SIZE 0x40000 #define SYSFILEFLASH_MAX_SIZE (FILE1_SIZE + FILE2_SIZE + FILE3_SIZE + FILE4_SIZE + FILE5_SIZE) #define FILE_MAP static FILE_DESC m_FileSystem[] = \ { \ Name Offset MaxSize read index write index\ {"file1.txt", 0x0, FILE1_SIZE, 0xFFFFFFFF, 0xFFFFFFFF}, \ {"app.crc", FILE1_SIZE, FILE2_SIZE, 0xFFFFFFFF, 0xFFFFFFFF}, \ {"file2.txt", FILE1_SIZE+FILE2_SIZE, FILE3_SIZE, 0xFFFFFFFF, 0xFFFFFFFF}, \ {"file4.txt", FILE1_SIZE+FILE2_SIZE+FILE3_SIZE, FILE4_SIZE, 0xFFFFFFFF, 0xFFFFFFFF}, \ {"app.app", FILE1_SIZE+FILE2_SIZE+FILE3_SIZE+FILE4_SIZE, FILE5_SIZE, 0xFFFFFFFF, 0xFFFFFFFF}, \ }; Please note that the offsets of the files have to correspond with sector borders of the flash. One file should be stored in one sector.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_file_itf_1gab07324d909f0778e06a07f5086a4aa54:
+
+#define RTS_ACCESS_MODE_AM_READ 0	/* Open an existing file with Read access. If file does not exist, Open fails */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION BEGIN
+
+| Access mode | File modes to open a file.
+
+.. note:: For all ``_PLUS`` modes be aware, that after reading from a file, writing can only be done after a call to |SysFileGetPos| or |SysFileSetPos|! If you call |SysFileWrite| right after |SysFileRead|, the file pointer could be on an invalid position!
+
+Correct example::
+
+:ref:`SysFileRead() <group___cmp_c_a_a_file_dep_1ga074f1adf44bddffeef72aa580ba4c6cd>` ; :ref:`SysFileGetPos() <group___cmp_c_a_a_file_dep_1ga50e5e9cd23682e24298545737a805f23>` ; :ref:`SysFileWrite() <group___cmp_backup_dep_1ga92309baeebd4fbe1a73cd71f9bf561cc>` ;
+
+.. _group___sys_file_itf_1gad55849dec67d4ae690c203f856811b20:
+
+#define RTS_ACCESS_MODE_AM_WRITE 1	/* Create new file with Write access. If file does exist, content is discarded */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1gab530a9b184a410ccfd99700f72a2031b:
+
+#define RTS_ACCESS_MODE_AM_APPEND 2	/* Open an existing file with Append (only write) access. If file does not exist, Open fails */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga9d40f9bb332843a13f9da7f4718d430e:
+
+#define RTS_ACCESS_MODE_AM_READ_PLUS 3	/* Open an existing file with Read/Write access. If file does not exist, Open fails */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga24ce0bfac979f179747381875f5fb46c:
+
+#define RTS_ACCESS_MODE_AM_WRITE_PLUS 4	/* Create new file with Read/Write access. If file does exist, content is discarded */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1gab987ef9cec2bdb0c212183673a1d7024:
+
+#define RTS_ACCESS_MODE_AM_APPEND_PLUS 5	/* Open an existing file with Append (read/write) access. If file does not exist, Open creates a new file */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga1b2628cecaccecd001ae60cc85c97ee7:
+
+#define RTS_ACCESS_MODE RTS_IEC_UDINT
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga3b02f79982bb6d6eaf2a818aeb38a1b2:
+
+#define SYS_FILE_STATUS_FS_OK 0	/* File could be opened */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| File status | Actual file status of the specified file.
+
+.. _group___sys_file_itf_1ga4e8d673828e9ae77fefb196edf6f3c3f:
+
+#define SYS_FILE_STATUS_FS_NO_FILE 1	/* No file available */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga5b0a73a8175fb8e505bcb24495a772a7:
+
+#define SYS_FILE_STATUS_FS_ILLEGAL_POS 2	/* Illegal position in the file */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga579877343b6f54c6a9c34ccdae8c2323:
+
+#define SYS_FILE_STATUS_FS_FULL 3	/* No more space on the filesystem */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga2f2cd85a8b8d3e9e0f18ed1a5098ddc0:
+
+#define SYS_FILE_STATUS_FS_EOF 4	/* End of file reached */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga004418b0fe30244d5849374861872574:
+
+#define SYS_FILE_STATUS RTS_IEC_INT
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga0917ed3895c96243a6f6d09c3650bbea:
+
+#define SYSFILE_PATH_OPTION_UNKNOWN 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| Option for SysFileGetPath2, SysFileGetFullPath2, SysFileGetIecPath2 | Separation of directory or file
+
+.. _group___sys_file_itf_1ga836fe749c66e2b364bc0b760461cf3d0:
+
+#define SYSFILE_PATH_OPTION_FILE 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga315192d4dad4251f90f16426b829a7e2:
+
+#define SYSFILE_PATH_OPTION_DIRECTORY 2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga0a653cc8c6112eb939e04b6e38569b51:
+
+#define SYSFILE_PATH_OPTION_FILE_KEEP_NAME 3
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga794072460800454cc8da694c883bda88:
+
+#define ITF_SysFile
+^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga84004b7149a72fdc23afad19f5666258:
+
+#define EXTITF_SysFile
+^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_file_itf_1ga8b261b327949b99b2d4f1f4b73d68686:
+
+typedef struct tagSYS_FILETIME  SYS_FILETIME
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| File TIME | Timestamps of the specified file.
+
+.. _group___sys_file_itf_1gac32e3f13b091ae01c7e3483495177e80:
+
+typedef struct tagsysfileclose_struct  sysfileclose_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Close a file specified by handle :return: Returns the runtime system error code (see CmpErrors.library)
+
+.. _group___sys_file_itf_1ga848b4b52470a2e83e3cc4609cc460281:
+
+typedef struct tagsysfilecopy_struct  sysfilecopy_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| Copy one file to another. | A standard path will be added to the filename, if no path is specified. :return: The runtime system error code (see CmpErrors.library)
+
+.. _group___sys_file_itf_1ga7ae7738449b95a909b6f7b53cee2f7eb:
+
+typedef struct tagsysfiledelete_struct  sysfiledelete_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| Delete the file specified by name. | A standard path will be added in the runtime system to the filename, if no path is specified. :return: Returns the runtime system error code (see CmpErrors.library)
+
+.. _group___sys_file_itf_1gaea28537a937050926ce71bc49c133446:
+
+typedef struct tagsysfiledeletebyhandle_struct  sysfiledeletebyhandle_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete the file specified by handle :return: Returns the runtime system error code (see CmpErrors.library)
+
+.. _group___sys_file_itf_1ga2e855766cd831ec36d04daef52ebc5ef:
+
+typedef struct tagsysfileeof_struct  sysfileeof_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check, if end of file is reached :return: Returns the runtime system error code (see CmpErrors.library)
+
+.. _group___sys_file_itf_1gac4012ec8ef0cd80269f9e9b447b73cea:
+
+typedef struct tagsysfileflush_struct  sysfileflush_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Flush the file cache and write into the file :return: Returns the runtime system error code (see CmpErrors_Itfs.library):
+
+- ERR_OK: Succeeded flushing the file
+
+- ERR_FAILED: Error occurred during file flush
+
+- ERR_NOTIMPLEMENTED: File flush is not implemented
+
+- ERR_NOT_SUPPORTED: File flush not available on the target
+
+.. _group___sys_file_itf_1ga50487913f38f25789e14dd6157b8fc62:
+
+typedef struct tagsysfilegetname_struct  sysfilegetname_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the file name from file specified by handle :return: File name of the specified file
+
+.. _group___sys_file_itf_1ga670575616a0ed5935bbe5340d27d01af:
+
+typedef struct tagsysfilegetname2_struct  sysfilegetname2_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the file name from file specified by handle :return: File name of the specified file
+
+.. _group___sys_file_itf_1ga2c2745ce182cc9f648978f61b29ea709:
+
+typedef struct tagsysfilegetpath_struct  sysfilegetpath_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| Get the path of this file. | If a path is specified in the filename, the path will be extracted from the filename. | If no path is specified in the filename, the standard path for this file extension type will be returned. :return: The runtime system error code (see CmpErrors.library)
+
+.. _group___sys_file_itf_1ga6adb72f732867ab34774f5d05e17067e:
+
+typedef struct tagsysfilegetpos_struct  sysfilegetpos_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get actual file pointer position :return: The runtime system error code (see CmpErrors.library)
+
+.. _group___sys_file_itf_1gaf70b6bcd2c811732eb31200eb7f77987:
+
+typedef struct tagsysfilegetsize_struct  sysfilegetsize_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| Get file size of the file specified by name. | A standard path will be added to the filename, if no path is specified. :return: Size of the file in bytes
+
+.. _group___sys_file_itf_1gad81d77d04d073fdfed868ce78ba7ccf3:
+
+typedef struct tagsysfilegetsizebyhandle_struct  sysfilegetsizebyhandle_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get file size of the file specified by handle :return: Size of the file in bytes
+
+.. _group___sys_file_itf_1ga61077f57aef77e4893e64f772bd5c2f7:
+
+typedef struct tagsysfilegetstatus_struct  sysfilegetstatus_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the file status :return: File status. See category file status
+
+.. _group___sys_file_itf_1ga745d80be296739f398e252e2bc71174f:
+
+typedef struct tagsysfilegetstatus2_struct  sysfilegetstatus2_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the file status :return: File status. See category file status
+
+.. _group___sys_file_itf_1gac120ee6e839172cad6aad82b727b7ad0:
+
+typedef struct tagsysfilegettime_struct  sysfilegettime_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| Get file time of the specified file. | A standard path will be added to the filename, if no path is specified. :return: The runtime system error code (see CmpErrors.library)
+
+.. _group___sys_file_itf_1ga97d8bc08ed6ae75d8361b21b854f3adb:
+
+typedef struct tagsysfileopen_struct  sysfileopen_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| Open or create file. A standard path will be added to the filename, if no path is specified in the file name. | If a file extension is specified in the settings, this path will be used (see category settings).
+
+.. note:: File name can contain an absolute or relative path to the file. Path entries must be separated with a Slash (/) and not with a Backslash (\)!
+
+:return: Handle to the file or RTS_INVALID_HANDLE if failed
+
+.. _group___sys_file_itf_1gacc4746442e57c900ab5dbad866f80d4f:
+
+typedef struct tagsysfileread_struct  sysfileread_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Read number of bytes out of the file :return: Number of bytes read from file. 0=if failed
+
+.. _group___sys_file_itf_1ga88e6cc35a980d70dd206738f37c36d1d:
+
+typedef struct tagsysfilerename_struct  sysfilerename_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| Rename the file. | A standard path will be added to the filename, if no path is specified. :return: Returns the runtime system error code (see CmpErrors.library)
+
+.. _group___sys_file_itf_1ga033017e510ac26e6baba29430f8482ff:
+
+typedef struct tagsysfilesetpos_struct  sysfilesetpos_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the file pointer to the specified position :return: Returns the runtime system error code (see CmpErrors.library)
+
+.. _group___sys_file_itf_1ga735e4fb0b748f978a465351ba13dbfaa:
+
+typedef struct tagsysfiletruncate_struct  sysfiletruncate_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set a new filesize. May be larger or smaller than current size. :return: Returns the runtime system error code (see CmpErrors.library)
+
+.. _group___sys_file_itf_1gaedb994e98af6d7e63220e9ff73d9d043:
+
+typedef struct tagsysfilewrite_struct  sysfilewrite_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Write number of bytes to the file. File must be opened with |AM_WRITE| or |AM_APPEND|. :return: Number of bytes written to the file. 0=if failed
+
+.. _group___sys_file_itf_1gae71646d84bfe17f7905ba7349669e54e:
+
+typedef ISysFile_C ISysFile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_file_itf_1ga0061abd0b904551729cee6f3be0477a8:
+
+void sysfileclose (sysfileclose_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1gae1a82fc30582adda1451ab6ea726faad:
+
+void sysfilecopy (sysfilecopy_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1gab893b41ebd71e26916b4c5cd4009c3a3:
+
+void sysfiledelete (sysfiledelete_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga61175537e2a83591c2145fefd852f1cd:
+
+void sysfiledeletebyhandle (sysfiledeletebyhandle_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1gae48869908cf08bdc2fcda787bee6a7ed:
+
+void sysfileeof (sysfileeof_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga39bfd36ebd18fe21a7b4396d6069ab99:
+
+void sysfileflush (sysfileflush_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga6a67d74932ba74420d82bdb75305999b:
+
+void sysfilegetname (sysfilegetname_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga0255ce7ba12ce68a599cf13405d75e2b:
+
+void sysfilegetname2 (sysfilegetname2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga1a5653beb161713e3f0ce705731890c6:
+
+void sysfilegetpath (sysfilegetpath_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga82d86dd0ebfff96c73d9d6a1042c4c3b:
+
+void sysfilegetpos (sysfilegetpos_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1gaa825e1d35775490a013a65de61d4c228:
+
+void sysfilegetsize (sysfilegetsize_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga58c4f50ab2e6f6213ab88a383411efe0:
+
+void sysfilegetsizebyhandle (sysfilegetsizebyhandle_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga173162061344cfa9f296fbf51d8c2080:
+
+void sysfilegetstatus (sysfilegetstatus_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1gaf4502198915276c0c0a22b2302a1f9ba:
+
+void sysfilegetstatus2 (sysfilegetstatus2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga61e377f157a576a6906b31f30078d912:
+
+void sysfilegettime (sysfilegettime_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1gae7ff0e335790cfd453ba197b2c1b0a3e:
+
+void sysfileopen (sysfileopen_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga32392398649eff90b9d76800c8e3b160:
+
+void sysfileread (sysfileread_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga91255ddabc2f4b94f83cbcd1aa6b02d8:
+
+void sysfilerename (sysfilerename_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1gafffe5e9d0ecdb93ce2ddea5fe72e661e:
+
+void sysfilesetpos (sysfilesetpos_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1gaefd0ef3d234408d313f9f8ad38590b2a:
+
+void sysfiletruncate (sysfiletruncate_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga3764bd0101867195258e05571e5359f5:
+
+void sysfilewrite (sysfilewrite_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga0b94d05ae2b24ef9f85b96232b9c4f67:
+
+RTS_HANDLE SysFileOpen (char *pszFile, RTS_IEC_UDINT am, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Open or create file. A standard path will be added to the filename, if no path is specified in the file name.
+
+If a file extension is specified in the settings, this path will be used (see category settings).
+
+IMPLEMENTATION NOTE: File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"!
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszFile | File name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | am      | Requested access mode to the file:                                                                                                      |
+|         |         |                                                                                                                                         |
+|         |         | - AM_READ: If file does not exist, an error is returned. If the file exists, the file will be opened                                    |
+|         |         |                                                                                                                                         |
+|         |         | - AM_WRITE: If file does not exist, a new file will be created. If the file exists, it will be overwritten!                             |
+|         |         |                                                                                                                                         |
+|         |         | - AM_APPEND: If the file does not exist, an error is returned. If the file exists, the file will be opened                              |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to error code                                                                                                                   |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the file or RTS_INVALID_HANDLE if failed
+
+.. _group___sys_file_itf_1ga50e60bca131446de5b0bc6829047d32f:
+
+RTS_HANDLE SysFileOpen_ (char *pszFile, RTS_IEC_UDINT am, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Open or create a file. File will be opened with no standard path. The file name will be used as it is.
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszFile | File name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | am      | Requested access mode to the file:                                                                                                      |
+|         |         |                                                                                                                                         |
+|         |         | - AM_READ: If file does not exist, an error is returned. If the file exists, the file will be opened                                    |
+|         |         |                                                                                                                                         |
+|         |         | - AM_WRITE: If file does not exist, a new file will be created. If the file exists, it will be overwritten!                             |
+|         |         |                                                                                                                                         |
+|         |         | - AM_APPEND: If the file does not exist, an error is returned. If the file exists, the file will be opened                              |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to error code                                                                                                                   |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the file or RTS_INVALID_HANDLE if failed
+
+.. _group___sys_file_itf_1gab336124d8c37c421c5956a48c645e33a:
+
+RTS_RESULT SysFileClose (RTS_HANDLE hFile)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Close a file specified by handle
+
+**Parameters**
+
++---------+-------+--------------------+
+| [in]    | hFile | Handle to the file |
++---------+-------+--------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1ga84cc539d0129f1595727147118441d88:
+
+RTS_RESULT SysFileClose_ (RTS_HANDLE hFile)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Close a file specified by handle. System specific version of the function
+
+**Parameters**
+
++---------+-------+--------------------+
+| [in]    | hFile | Handle to the file |
++---------+-------+--------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1ga291c4327dc452ae6264296c733ebd226:
+
+RTS_IEC_INT SysFileGetStatus (RTS_HANDLE hFile, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the file status
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [in]    | hFile   | Handle to the file    |
++---------+---------+-----------------------+
+| [in]    | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Returns:**
+
+File status. See category file status
+
+.. _group___sys_file_itf_1ga15ac48e7fcb401063c858b4ba1b8d064:
+
+char* SysFileGetName (RTS_HANDLE hFile, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the file name from file specified by handle
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [in]    | hFile   | Handle to the file    |
++---------+---------+-----------------------+
+| [in]    | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Returns:**
+
+File name
+
+.. _group___sys_file_itf_1gacd9c60979859fb47fe63cc640757798f:
+
+RTS_SIZE SysFileRead (RTS_HANDLE hFile, unsigned char *pbyBuffer, RTS_SIZE uiSize, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Read number of bytes out of the file
+
+**Parameters**
+
++---------+-----------+---------------------------------------------------------------------------+
+| [in]    | hFile     | Handle to the file                                                        |
++---------+-----------+---------------------------------------------------------------------------+
+| [out]   | pbyBuffer | Pointer to buffer for read data                                           |
++---------+-----------+---------------------------------------------------------------------------+
+| [in]    | uiSize    | Number of bytes to read from file. Must be less or equal the buffer size! |
++---------+-----------+---------------------------------------------------------------------------+
+| [out]   | pResult   | Pointer to error code                                                     |
++---------+-----------+---------------------------------------------------------------------------+
+
+**Returns:**
+
+Number of bytes read from file. 0=if failed
+
+.. _group___sys_file_itf_1gabc1a4c173a725757f15fd458d3bc12c7:
+
+RTS_SIZE SysFileWrite (RTS_HANDLE hFile, unsigned char *pbyBuffer, RTS_SIZE uiSize, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Write number of bytes to the file. File must be opened with AM_WRITE or AM_APPEND.
+
+**Parameters**
+
++---------+-----------+------------------------------------------------------------------------------+
+| [in]    | hFile     | Handle to the file                                                           |
++---------+-----------+------------------------------------------------------------------------------+
+| [in]    | pbyBuffer | Pointer to buffer with data to write to file                                 |
++---------+-----------+------------------------------------------------------------------------------+
+| [in]    | uiSize    | Number of bytes to write in the file. Must be less or equal the buffer size! |
++---------+-----------+------------------------------------------------------------------------------+
+| [out]   | pResult   | Pointer to error code                                                        |
++---------+-----------+------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+--------------------------------------------------------------------------+
+| ERR_OK        | File could be written                                                    |
++---------------+--------------------------------------------------------------------------+
+| ERR_PARAMETER | Invalid parameter (handle invalid, buffer pointer NULL or buffer size 0) |
++---------------+--------------------------------------------------------------------------+
+| ERR_FAILED    | Error occurred during writing                                            |
++---------------+--------------------------------------------------------------------------+
+| ERR_DISK_FULL | Disk is full so writing failed                                           |
++---------------+--------------------------------------------------------------------------+
+
+**Returns:**
+
+Number of bytes written to the file. 0=if failed
+
+.. _group___sys_file_itf_1ga6249943cd6ce805c8be96d498e4eb09d:
+
+RTS_RESULT SysFileDelete (char *pszFile)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete the file specified by name. A standard path will be added to the filename, if no path is specified.
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszFile | File name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1gae06bfbd2505c3a679c594635df13bba9:
+
+RTS_RESULT SysFileDelete_ (char *pszFile)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete the file specified by name. Filename will be used with no standard path.
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszFile | File name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1gacb8ff5e187272991723a200fb50d5d1b:
+
+RTS_RESULT SysFileDeleteByHandle (RTS_HANDLE hFile)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete the file specified by handle
+
+**Parameters**
+
++---------+-------+--------------------+
+| [in]    | hFile | Handle to the file |
++---------+-------+--------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1ga4110a0fdaf6396e780db147b9e10c6b4:
+
+RTS_RESULT SysFileRename (char *pszOldFileName, char *pszNewFileName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Rename the file. A standard path will be added to the filename, if no path is specified.
+
+**Parameters**
+
++---------+----------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszOldFileName | Old file name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+----------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszNewFileName | New file name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+----------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+----------------------------------------------+
+| ERR_OK        | File could be successfully renamed           |
++---------------+----------------------------------------------+
+| ERR_PARAMETER | Invalid parameter (pointer NULL or length 0) |
++---------------+----------------------------------------------+
+| ERR_NO_OBJECT | Failed because old file does not exist       |
++---------------+----------------------------------------------+
+| ERR_DUPLICATE | Failed because new file already exists       |
++---------------+----------------------------------------------+
+
+.. _group___sys_file_itf_1gac4a222edef9794685791a7aa6bfddc16:
+
+RTS_RESULT SysFileRename_ (char *pszOldFileName, char *pszNewFileName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Rename the file. File will be renamed with no standard path.
+
+**Parameters**
+
++---------+----------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszOldFileName | Old file name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+----------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszNewFileName | New file name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+----------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1gaeda098ed8fae41feba2caa5aa76ae678:
+
+RTS_RESULT SysFileSetPos (RTS_HANDLE hFile, RTS_SIZE uiOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the file pointer to the specified position
+
+**Parameters**
+
++---------+----------+----------------------------------------------+
+| [in]    | hFile    | Handle to the file                           |
++---------+----------+----------------------------------------------+
+| [in]    | uiOffset | Offset to set from the beginning of the file |
++---------+----------+----------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1ga00d97ffd5ea16e3b43a071a6c8f1dfde:
+
+RTS_RESULT SysFileGetPos (RTS_HANDLE hFile, RTS_SIZE *puiPos)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get actual file pointer position
+
+**Parameters**
+
++---------+--------+-----------------------------------------------------------------------------------+
+| [in]    | hFile  | Handle to the file                                                                |
++---------+--------+-----------------------------------------------------------------------------------+
+| [out]   | puiPos | Pointer to get actual position of the file pointer from the beginning of the file |
++---------+--------+-----------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1gab3735db3d7518860c234d732d302bd69:
+
+RTS_SIZE SysFileGetSize (char *pszFile, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get file size of the file specified by name A standard path will be added to the filename, if no path is specified.
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszFile | File name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to error code: ERR_OK: Successful ERR_NO_OBJECT: File not available ERR_FAILED: Failed to get file size                         |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Size of the file in bytes
+
+.. _group___sys_file_itf_1gaaa33b83b997acb3f902c42146b4b3ba1:
+
+RTS_SIZE SysFileGetSize_ (char *pszFile, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get file size of the file specified by name, No standard path will be added to the file name.
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszFile | File name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to error code                                                                                                                   |
++---------+---------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Size of the file in bytes
+
+.. _group___sys_file_itf_1ga9360a127e85c8e0c4728aeab60c9de58:
+
+RTS_SIZE SysFileGetSizeByHandle (RTS_HANDLE hFile, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get file size of the actual opened file
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [in]    | hFile   | Handle to the file    |
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Returns:**
+
+Size of the file in bytes
+
+.. _group___sys_file_itf_1ga5047093717c0ce27132f593bada3550a:
+
+RTS_RESULT SysFileGetTime (char *pszFile, SYS_FILETIME *pftFileTime)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get file time of the specified file. A standard path will be added to the filename, if no path is specified.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszFile     | File name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pftFileTime | Pointer to get the file time results. IMPLEMENTATION NOTE: All time values must be local time!                                          |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1gaac750b008681fedbd5cc20fac2fbbcc1:
+
+RTS_RESULT SysFileGetTime_ (char *pszFile, SYS_FILETIME *pftFileTime)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get file time of the file specified by name. No standard path will be added.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszFile     | File name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pftFileTime | Pointer to get the file time results. IMPLEMENTATION NOTE: All time values must be local time!                                          |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1ga0a11344a7db0e28ca8e3e48735c9836a:
+
+RTS_RESULT SysFileEOF (RTS_HANDLE hFile)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check, if end of file is reached at reading from the file. IMPLEMENTATION NOTE: End of file is only checked after a read operation with SysFileRead! But after a SysFileWrite or SysFileSetPos call, the function returns ERR_FAILED (no end of file)!
+
+**Parameters**
+
++---------+-------+--------------------+
+| [in]    | hFile | Handle to the file |
++---------+-------+--------------------+
+
+**Returns:**
+
+Error code:
+
+- ERR_OK: End of file reached at reading beyond the end of the file
+
+- ERR_FAILED: No end of file reached
+
+- ERR_PARAMETER: hFile is invalid
+
+.. _group___sys_file_itf_1ga541e38ef3f5986ce1797a3e3103f9aa9:
+
+RTS_RESULT SysFileCopy (char *pszDestFileName, char *pszSourceFileName, RTS_SIZE *puiCopied)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Copy one file to another. A standard path will be added to the filename, if no path is specified. IMPLEMENTATION NOTE: If the destination file exists, the file will be overwritten and the function succeeded.
+
+**Parameters**
+
++---------+-------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszDestFileName   | Destination file name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+-------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszSourceFileName | Source file name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"!      |
++---------+-------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | puiCopied         | Number of bytes copied                                                                                                                              |
++---------+-------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1ga0f160d8dc444a364f4e6ea8947618983:
+
+RTS_RESULT SysFileCopy_ (char *pszDestFileName, char *pszSourceFileName, RTS_SIZE *puiCopied)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Copy one file in another. No standard path will be added to filename.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszFile     | File name. File name can contain an absolute or relative path to the file. Path entries must be separated with a '/' and not with a '"! |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pftFileTime | Pointer to get the file time results                                                                                                    |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1ga04a426f813d58f9b45ad3446a76db4aa:
+
+RTS_RESULT SysFileGetPath (char *pszFileName, char *pszPath, RTS_SIZE iMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the path of this file. If a path is specified in the filename, the path will be extracted from the filename. If no path is specified in the filename, the standard path for this file extension type will be returned.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------+
+| [in]    | pszFileName | File name. Can contain an absolute or relative path |
++---------+-------------+-----------------------------------------------------+
+| [out]   | pszPath     | Path for this file                                  |
++---------+-------------+-----------------------------------------------------+
+| [in]    | iMaxLen     | Maximum size in bytes of path length                |
++---------+-------------+-----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_OK               | Resolved file path is correctly returned                                                     |
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_PARAMETER        | Invalid parameter (pointer NULL or length 0)                                                 |
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_BUFFERSIZE       | Path buffer too short                                                                        |
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_OPERATION_DENIED | Access to this file path not allowed! The following file or directory access must be denied! |
++----------------------+----------------------------------------------------------------------------------------------+
+
+.. _group___sys_file_itf_1ga0f30ff7cd62bb6813b0e1ccf3341dfe0:
+
+RTS_RESULT SysFileGetPath2 (char *pszFileName, RTS_I32 nOption, char *pszPath, RTS_SIZE iMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the path of this file. If a path is specified in the filename, the path will be extracted from the filename. If no path is specified in the filename, the standard path for this file extension type will be returned.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------+
+| [in]    | pszFileName | File name. Can contain an absolute or relative path |
++---------+-------------+-----------------------------------------------------+
+| [in]    | nOption     | Separation of directory or file                     |
++---------+-------------+-----------------------------------------------------+
+| [out]   | pszPath     | Path for this file                                  |
++---------+-------------+-----------------------------------------------------+
+| [in]    | iMaxLen     | Maximum size in bytes of path length                |
++---------+-------------+-----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_OK               | Resolved file path is correctly returned                                                     |
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_PARAMETER        | Invalid parameter (pointer NULL or length 0)                                                 |
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_BUFFERSIZE       | Path buffer too short                                                                        |
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_OPERATION_DENIED | Access to this file path not allowed! The following file or directory access must be denied! |
++----------------------+----------------------------------------------------------------------------------------------+
+
+.. _group___sys_file_itf_1ga1ff4902ee72a1314a48cedbaef82ad13:
+
+RTS_RESULT SysFileGetFullPath (char *pszFileName, char *pszPath, RTS_SIZE iMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the path of this file including the filename. If no path is specified in pszFileName, the filename is returned in pszPath.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------+
+| [in]    | pszFileName | File name. Can contain an absolute or relative path |
++---------+-------------+-----------------------------------------------------+
+| [out]   | pszPath     | Path for this file including the filename           |
++---------+-------------+-----------------------------------------------------+
+| [in]    | iMaxLen     | Maximum size in bytes of path length                |
++---------+-------------+-----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_OK               | Resolved file path including the filename is correctly returned                              |
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_PARAMETER        | Invalid parameter (pointer NULL or length 0)                                                 |
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_BUFFERSIZE       | Path buffer too short                                                                        |
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_OPERATION_DENIED | Access to this file path not allowed! The following file or directory access must be denied! |
++----------------------+----------------------------------------------------------------------------------------------+
+
+.. _group___sys_file_itf_1ga67fbe682bc445a66092f23670b8098f5:
+
+RTS_RESULT SysFileGetFullPath2 (char *pszFileName, RTS_I32 nOption, char *pszPath, RTS_SIZE iMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the path of this file including the filename. If no path is specified in pszFileName, the filename is returned in pszPath.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------+
+| [in]    | pszFileName | File name. Can contain an absolute or relative path |
++---------+-------------+-----------------------------------------------------+
+| [in]    | nOption     | Separation of directory or file                     |
++---------+-------------+-----------------------------------------------------+
+| [out]   | pszPath     | Path for this file including the filename           |
++---------+-------------+-----------------------------------------------------+
+| [in]    | iMaxLen     | Maximum size in bytes of path length                |
++---------+-------------+-----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_OK               | Resolved file path including the filename is correctly returned                              |
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_PARAMETER        | Invalid parameter (pointer NULL or length 0)                                                 |
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_BUFFERSIZE       | Path buffer too short                                                                        |
++----------------------+----------------------------------------------------------------------------------------------+
+| ERR_OPERATION_DENIED | Access to this file path not allowed! The following file or directory access must be denied! |
++----------------------+----------------------------------------------------------------------------------------------+
+
+.. _group___sys_file_itf_1ga33b2f22974bf1f7453a0c3110a65588e:
+
+RTS_RESULT SysFileGetIecPath (char *pszFileName, char *pszPath, RTS_SIZE iMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the path of this file for Iec applications. If a path is specified in the filename, the path will be extracted from the filename. If no path is specified in the filename, the standard path for this file extension type will be returned.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------+
+| [in]    | pszFileName | File name. Can contain an absolute or relative path |
++---------+-------------+-----------------------------------------------------+
+| [out]   | pszPath     | Path for this file                                  |
++---------+-------------+-----------------------------------------------------+
+| [in]    | iMaxLen     | Maximum size in bytes of path length                |
++---------+-------------+-----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1ga47121d2dbf82e135143541308a0946b3:
+
+RTS_RESULT SysFileGetIecPath2 (char *pszFileName, RTS_I32 nOption, char *pszPath, RTS_SIZE iMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the path of this file for Iec applications. If a path is specified in the filename, the path will be extracted from the filename. If no path is specified in the filename, the standard path for this file extension type will be returned.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------+
+| [in]    | pszFileName | File name. Can contain an absolute or relative path |
++---------+-------------+-----------------------------------------------------+
+| [in]    | nOption     | Separation of directory or file                     |
++---------+-------------+-----------------------------------------------------+
+| [out]   | pszPath     | Path for this file                                  |
++---------+-------------+-----------------------------------------------------+
+| [in]    | iMaxLen     | Maximum size in bytes of path length                |
++---------+-------------+-----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1ga0c9bf0fa199b607a70550de73bf8900c:
+
+RTS_RESULT SysFileGenerateCRC (char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Generate the CRC32 of a file. Can be used to check file integrity. ATTENTION: Only for backward compatibility! CRC is implemented not independent from buffer size!
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------------------+
+| [in]    | pszFile | File name. Can contain an absolute or relative path                         |
++---------+---------+-----------------------------------------------------------------------------+
+| [in]    | ulSize  | Size to calculate checksum. 0 if real size of file should be used [default] |
++---------+---------+-----------------------------------------------------------------------------+
+| [out]   | pulCRC  | Pointer to get CRC32 result                                                 |
++---------+---------+-----------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1ga19d7642f72f961919f0090522a618383:
+
+RTS_RESULT SysFileGenerateCRC2 (char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Generate the CRC32 of a file. Can be used to check file integrity.
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------------------+
+| [in]    | pszFile | File name. Can contain an absolute or relative path                         |
++---------+---------+-----------------------------------------------------------------------------+
+| [in]    | ulSize  | Size to calculate checksum. 0 if real size of file should be used [default] |
++---------+---------+-----------------------------------------------------------------------------+
+| [out]   | pulCRC  | Pointer to get CRC32 result                                                 |
++---------+---------+-----------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1ga0be5f7aad5a35feee6e23ed1e20e8a4b:
+
+RTS_RESULT SysFileGenerateCRC3 (char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC, RTS_BOOL bUseCache)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga9fd5f8996b864ee3e58e61ad86078004:
+
+RTS_RESULT SysFileGenerateCRC3_ (char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC, RTS_BOOL bUseCache)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf_1ga4d28d12f76b503951a9927c03e24e086:
+
+RTS_RESULT SysFileGenerateCRC2_ (char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Generate the CRC32 of a file. Can be used to check file integrity. IMPLEMENTATION NOTE: This interface function is implemented operating system dependant! Optimizations can be done here.
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------------------+
+| [in]    | pszFile | File name. Can contain an absolute or relative path                         |
++---------+---------+-----------------------------------------------------------------------------+
+| [in]    | ulSize  | Size to calculate checksum. 0 if real size of file should be used [default] |
++---------+---------+-----------------------------------------------------------------------------+
+| [out]   | pulCRC  | Pointer to get CRC32 result                                                 |
++---------+---------+-----------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_file_itf_1gaab879175f88d0f1b42862af3e5ce0103:
+
+RTS_RESULT SysFileFlush (RTS_HANDLE hFile)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Flush the file cache and write into the file.
+
+**Parameters**
+
++---------+-------+--------------------+
+| [in]    | hFile | Handle to the file |
++---------+-------+--------------------+
+
+**Returns:**
+
+Error code:
+
+- ERR_OK: Succeeded flushing the file
+
+- ERR_FAILED: Error occurred during file flush
+
+- ERR_NOTIMPLEMENTED: File flush is not implemented
+
+- ERR_NOT_SUPPORTED: File flush not available on the target
+
+.. _group___sys_file_itf_1gaea1e7b53616d79e6270e910923b64bc6:
+
+RTS_RESULT SysFileIsInvisible (char *pszFileName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface function to check, if the filename has a prefix that marked that this file must be invisible outside the runtime system (e.g. in CmpFileTransfer).
+
+**Parameters**
+
++---------+-------------+-----------------------------------+
+| [in]    | pszFileName | HPointer to the filename to check |
++---------+-------------+-----------------------------------+
+
+**Returns:**
+
+Error code:
+
+- ERR_OK: Invisible file! Must be invisible outside the runtime system (e.g. in CmpFileTransfer)
+
+- ERR_FAILED: No invisible file
+
+- ERR_PARAMETER: Invalid parameter pszFileName
+
+.. _group___sys_file_itf_1ga574fce5bfcfc3484d0b7b00aee2f4422:
+
+RTS_RESULT SysFileTruncate (RTS_HANDLE hFile, RTS_SIZE sSizeNew)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the size of the actual opened file. Used for increasing/decreasing the size of a file. The current fileoffset (filepointer) is not changed.
+
+**Parameters**
+
++---------+----------+--------------------------------------+
+| [in]    | hFile    | Handle to the file                   |
++---------+----------+--------------------------------------+
+| [in]    | sSizeNew | New size of the file, type: RTS_SIZE |
++---------+----------+--------------------------------------+
+
+**Returns:**
+
+Error code.
+
+.. _group___sys_file_itf_1ga242a47c9d6c1414adcf86ddc4f7da2bd:
+
+RTS_HANDLE SysFileGetFirstConfiguredPath (char *pszFilePath, RTS_I32 nMaxFilePathLen, char *pszPlaceholder, RTS_I32 nMaxPlaceholderLen, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the first configured path and a handle for further processing.
+
+**Parameters**
+
++---------+--------------------+----------------------------+
+| [out]   | pszFilePath        | File path                  |
++---------+--------------------+----------------------------+
+| [in]    | nMaxFilePathLen    | Max size of pszFilePath    |
++---------+--------------------+----------------------------+
+| [out]   | pszPlaceholder     | Name of placeholder        |
++---------+--------------------+----------------------------+
+| [in]    | nMaxPlaceholderLen | Max size of pszPlaceholder |
++---------+--------------------+----------------------------+
+| [out]   | pResult            | Error code                 |
++---------+--------------------+----------------------------+
+
+**Returns:**
+
+Handle
+
+**Return values**
+
++-------------------+------------------------------------------------------------------------------------------------+
+| ERR_OK            | A placeholder and its path are successfully found and returned                                 |
++-------------------+------------------------------------------------------------------------------------------------+
+| ERR_PARAMETER     | Invalid parameter (pointer NULL or length 0)                                                   |
++-------------------+------------------------------------------------------------------------------------------------+
+| ERR_END_OF_OBJECT | No entries found. The referenced buffers of pszFilePath and pszPlaceholder are left untouched. |
++-------------------+------------------------------------------------------------------------------------------------+
+
+.. _group___sys_file_itf_1ga91bed77da95f648f5fc0617a48a725cd:
+
+RTS_HANDLE SysFileGetNextConfiguredPath (RTS_HANDLE hPrevPath, char *pszFilePath, RTS_I32 nMaxFilePathLen, char *pszPlaceholder, RTS_I32 nMaxPlaceholderLen, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the next configured path and a handle for further processing.
+
+**Parameters**
+
++---------+--------------------+----------------------------+
+| [in]    | hPrevPath          | Handle from previous call  |
++---------+--------------------+----------------------------+
+| [out]   | pszFilePath        | File path                  |
++---------+--------------------+----------------------------+
+| [in]    | nMaxFilePathLen    | Max size of pszFilePath    |
++---------+--------------------+----------------------------+
+| [out]   | pszPlaceholder     | Name of placeholder        |
++---------+--------------------+----------------------------+
+| [in]    | nMaxPlaceholderLen | Max size of pszPlaceholder |
++---------+--------------------+----------------------------+
+| [out]   | pResult            | Error code                 |
++---------+--------------------+----------------------------+
+
+**Returns:**
+
+Handle
+
+**Return values**
+
++-------------------+-----------------------------------------------------------------------------------------------------+
+| ERR_OK            | A placeholder and its path are successfully found and returned.                                     |
++-------------------+-----------------------------------------------------------------------------------------------------+
+| ERR_PARAMETER     | Invalid parameter (pointer NULL or length 0)                                                        |
++-------------------+-----------------------------------------------------------------------------------------------------+
+| ERR_END_OF_OBJECT | No more entries found. The referenced buffers of pszFilePath and pszPlaceholder are left untouched. |
++-------------------+-----------------------------------------------------------------------------------------------------+
+
+.. _group___sys_file_itf_1ga7e9ea372cb3d8d181f4b40fd3709849f:
+
+RTS_HANDLE SysFileGetNextConfiguredPath2 (RTS_HANDLE hPrevPath, char *pszFilePath, RTS_I32 nMaxFilePathLen, char *pszPlaceholder, RTS_I32 nMaxPlaceholderLen, RTS_UI32 nFlags, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the next configured path and a handle for further processing.
+
+**Parameters**
+
++---------+--------------------+---------------------------------------------+
+| [in]    | hPrevPath          | Handle from previous call                   |
++---------+--------------------+---------------------------------------------+
+| [out]   | pszFilePath        | File path                                   |
++---------+--------------------+---------------------------------------------+
+| [in]    | nMaxFilePathLen    | Max size of pszFilePath                     |
++---------+--------------------+---------------------------------------------+
+| [out]   | pszPlaceholder     | Name of placeholder                         |
++---------+--------------------+---------------------------------------------+
+| [in]    | nMaxPlaceholderLen | Max size of pszPlaceholder                  |
++---------+--------------------+---------------------------------------------+
+| [in]    | nFlags             | See Flags for SysFileGetNextConfiguredPath2 |
++---------+--------------------+---------------------------------------------+
+| [out]   | pResult            | Error code                                  |
++---------+--------------------+---------------------------------------------+
+
+**Returns:**
+
+Handle
+
+**Return values**
+
++-------------------+-----------------------------------------------------------------------------------------------------+
+| ERR_OK            | A placeholder and its path are successfully found and returned.                                     |
++-------------------+-----------------------------------------------------------------------------------------------------+
+| ERR_PARAMETER     | Invalid parameter (pointer NULL or length 0)                                                        |
++-------------------+-----------------------------------------------------------------------------------------------------+
+| ERR_END_OF_OBJECT | No more entries found. The referenced buffers of pszFilePath and pszPlaceholder are left untouched. |
++-------------------+-----------------------------------------------------------------------------------------------------+
+
+.. _group___sys_file_itf_1gaa379d87bd6fb758c6812c5af34e647fe:
+
+RTS_RESULT SysFileSetIecPath (char *pszPath)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the standard path for all IEC file operations (IEC working directory). Reset with empty path.
+
+**Parameters**
+
++---------+---------+------------------------+
+| [in]    | pszPath | Standard IEC file path |
++---------+---------+------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___sys_file_itf_1ga9096d44db42a0c50aa3908573d613a65:
+
+char* SysFileGetPlcLogicPrefix (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the plc logic prefix.
+
+**Returns:**
+
+plc logic prefix
+
+.. _group___sys_file_itf_1ga1389feb4f282083cf88a78123482d794:
+
+RTS_RESULT SysFilePlcLogicPrefix (char *pszPathOut, RTS_SIZE ulPathOutSize, char *pszSubDir, char *pszName, const char *pszExt)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Prepends the plc logic prefix to name and ext in the resulting pathOut, makes sure the extension is there at the cost of the filename.
+
+**Parameters**
+
++---------+---------------+-------------------------------------------------------------------+
+| [out]   | pszPathOut    | Resulting file path                                               |
++---------+---------------+-------------------------------------------------------------------+
+| [in]    | ulPathOutSize | Size of resulting file path                                       |
++---------+---------------+-------------------------------------------------------------------+
+| [in]    | pszSubDir     | Name of subdir (optional, only used when plc logic prefix is set) |
++---------+---------------+-------------------------------------------------------------------+
+| [in]    | pszName       | Name of file                                                      |
++---------+---------------+-------------------------------------------------------------------+
+| [in]    | pszExt        | >Extension of file                                                |
++---------+---------------+-------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___sys_file_itf_1ga5681f6aac97d8c314e2a167db8848a45:
+
+RTS_RESULT SysFileIsBlacklisted (char *pszPath)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check whether a given file and/or path is blacklisted On a blacklisted file or path it is intended to deny all operations NOTE: SysFile uses this blacklist to deny file access from IEC. NOTE: Other components may use this blacklist too (currently CmpFileTransfer).
+
+**Parameters**
+
++---------+---------+---------------------------+
+| [in]    | pszPath | File and/or path to check |
++---------+---------+---------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+--------------------------------------------------------+
+| ERR_OK             | The checked file/path is blacklisted                   |
++--------------------+--------------------------------------------------------+
+| ERR_FAILED         | The checked file/path not blacklisted.                 |
++--------------------+--------------------------------------------------------+
+| ERR_PARAMETER      | The file/path to check is empty or the pointer is NULL |
++--------------------+--------------------------------------------------------+
+| ERR_NOTINITIALIZED | List is not initialized                                |
++--------------------+--------------------------------------------------------+
+
+.. _group___sys_file_itf_1ga457a33093cdbc0bd46eec7693e60333a:
+
+RTS_RESULT SysFileAddToBlacklist (char *pszPath)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add a given file and/or path to the blacklist NOTE: SysFile uses this blacklist to deny file access from IEC. NOTE: Other components may use this blacklist too (currently CmpFileTransfer).
+
+**Parameters**
+
++---------+---------+-------------------------+
+| [in]    | pszPath | File and/or path to add |
++---------+---------+-------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+------------------------------------------------------+
+| ERR_OK             | The file/path is successfully added to the list.     |
++--------------------+------------------------------------------------------+
+| ERR_NOMEMORY       | Not enough memory to add the file/path               |
++--------------------+------------------------------------------------------+
+| ERR_NOBUFFER       | Copy failure, file/path is to long                   |
++--------------------+------------------------------------------------------+
+| ERR_PARAMETER      | The file/path to add is empty or the pointer is NULL |
++--------------------+------------------------------------------------------+
+| ERR_NOTINITIALIZED | List is not initialized                              |
++--------------------+------------------------------------------------------+
+
+.. _group___sys_file_itf_1ga3e59ed5842dadc542712b5b4b69f0c25:
+
+RTS_RESULT SysFileIsOnlineAccessDenied (char *pszPath)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check whether online access of a given file/path is denied If ForceOnlineFilePath (s.a) is set, which is default, this check works as follows: If an absolute file path is requested, which is not a configured path, or a directory traversal path ERR_OK is returned.
+
+**Parameters**
+
++---------+---------+-----------+
+| [in]    | pszPath | File path |
++---------+---------+-----------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-----------------------------------------------+
+| ERR_OK        | The file path is not accessible               |
++---------------+-----------------------------------------------+
+| ERR_FAILED    | The file path is accessible                   |
++---------------+-----------------------------------------------+
+| ERR_PARAMETER | The file path is empty or the pointer is NULL |
++---------------+-----------------------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

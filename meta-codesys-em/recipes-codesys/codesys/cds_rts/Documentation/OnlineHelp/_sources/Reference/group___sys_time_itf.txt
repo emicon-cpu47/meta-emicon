@@ -1,0 +1,255 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_time_itf:
+
+==========
+SysTimeItf
+==========
+
+Interface of SysTime. :ref:`More... <group___sys_time_itf-details>`
+
+Modules
+-------
+
+- :ref:`Settings <group___sys_time_itf___settings>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagsystimegetms_struct <structtagsystimegetms__struct>`
+
+- struct :ref:`tagsystimegetns_struct <structtagsystimegetns__struct>`
+
+- struct :ref:`tagsystimegetus_struct <structtagsystimegetus__struct>`
+
+- struct :ref:`ISysTime_C <struct_i_sys_time___c>`
+
+Macros
+------
+
+- #define :ref:`_RTS_SYSTIME <group___sys_time_itf_1gaaf1cf18246c150405b48bfb9306b735c>`
+
+- #define :ref:`RTS_SYSTIME_MAX <group___sys_time_itf_1ga1321183beff6b4ebd89a9f325c57f568>` (~(( :ref:`RTS_SYSTIME <group___sys_time_itf_1ga10c9d9a4c57129d83432fb02923858bf>` )0))
+
+- #define :ref:`ITF_SysTime <group___sys_time_itf_1ga01b2e21e9f7d48c6c9033bf6ce08b448>`
+
+- #define :ref:`EXTITF_SysTime <group___sys_time_itf_1ga78e4c1113ae535d7f700605487bb4ab0>`
+
+Typedefs
+--------
+
+- typedef RTS_UI64 :ref:`RTS_SYSTIME <group___sys_time_itf_1ga10c9d9a4c57129d83432fb02923858bf>`
+
+- typedef struct :ref:`tagsystimegetms_struct <structtagsystimegetms__struct>` :ref:`systimegetms_struct <group___sys_time_itf_1gad305e0daa69f3ab7656aa678a477a75b>`
+
+- typedef struct :ref:`tagsystimegetns_struct <structtagsystimegetns__struct>` :ref:`systimegetns_struct <group___sys_time_itf_1ga9030e2651ca6fca69fa2837273d05a27>`
+
+- typedef struct :ref:`tagsystimegetus_struct <structtagsystimegetus__struct>` :ref:`systimegetus_struct <group___sys_time_itf_1gad8128d22b8a1333eb17944ddca4a2711>`
+
+- typedef :ref:`ISysTime_C <struct_i_sys_time___c>` :ref:`ISysTime <group___sys_time_itf_1ga17558f05ec461b9f48f05c0be1a3c389>`
+
+Functions
+---------
+
+- void :ref:`systimegetms <group___sys_time_itf_1gab77e2618b8f1cf127526883480969a8a>` (:ref:`systimegetms_struct <group___sys_time_itf_1gad305e0daa69f3ab7656aa678a477a75b>` * p)
+
+- void :ref:`systimegetns <group___sys_time_itf_1ga14210114e502d8f93d9a8ce89e9aa460>` (:ref:`systimegetns_struct <group___sys_time_itf_1ga9030e2651ca6fca69fa2837273d05a27>` * p)
+
+- void :ref:`systimegetus <group___sys_time_itf_1ga48ffbaabd21f1fd0ecbf6844a6197361>` (:ref:`systimegetus_struct <group___sys_time_itf_1gad8128d22b8a1333eb17944ddca4a2711>` * p)
+
+- RTS_RESULT :ref:`SysTimeOSInit <group___sys_time_itf_1gae708d649d8267b52af1016d33a6bcfd5>` (INIT_STRUCT * pInit)
+
+- RTS_RESULT :ref:`SysTimeOSHookFunction <group___sys_time_itf_1ga43a28d8f33a6f490aa932058c5d21394>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_UI32 :ref:`SysTimeGetMs <group___sys_time_itf_1ga5da4ae803f6328356b5e07dfcc518d59>` (void)
+
+- RTS_RESULT :ref:`SysTimeGetUs <group___sys_time_itf_1gafd2b289865fce2eec1a6cd530276b7a6>` (:ref:`RTS_SYSTIME <group___sys_time_itf_1ga10c9d9a4c57129d83432fb02923858bf>` * pTime)
+
+- RTS_RESULT :ref:`SysTimeGetNs <group___sys_time_itf_1ga17db7eb52dff7f98f0b75c134201d765>` (:ref:`RTS_SYSTIME <group___sys_time_itf_1ga10c9d9a4c57129d83432fb02923858bf>` * pTime)
+
+.. _group___sys_time_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysTime.
+
+The SysTime interface is projected to get access to time tick values with different resolutions (millisecond, microsecond, nanosecond).
+
+All different ticks are wrapping around their natural data type limits (RTS_UI32 or RTS_SYSTIME). Therefore, they can be used to measure difference timings. They can't either be used to measure absolute timings nor can they be calculated from one to each other.
+
+Implementation Notes:
+
+- All three different timers need their own handling of wrap arounds, because they have a wrap around at different points in time at different boundaries. In practice, this implies the need for an own, static offset counter for every timer.
+
+- If the timer is based on a periodic interrupt (e.g. millisecond tick), it works only as long as no interrupt lock is held. This might be the case in some flash drivers for example.
+
+- Some timers are called very regularly. So if the wrap around of the timer source itself is very late (low frequency + large timer register), it might be enough for the system to detect timer overruns only at every call.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_time_itf_1gaaf1cf18246c150405b48bfb9306b735c:
+
+#define _RTS_SYSTIME
+^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_time_itf_1ga1321183beff6b4ebd89a9f325c57f568:
+
+#define RTS_SYSTIME_MAX (~(( :ref:`RTS_SYSTIME <group___sys_time_itf_1ga10c9d9a4c57129d83432fb02923858bf>` )0))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_time_itf_1ga01b2e21e9f7d48c6c9033bf6ce08b448:
+
+#define ITF_SysTime
+^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_time_itf_1ga78e4c1113ae535d7f700605487bb4ab0:
+
+#define EXTITF_SysTime
+^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_time_itf_1ga10c9d9a4c57129d83432fb02923858bf:
+
+typedef RTS_UI64 RTS_SYSTIME
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_time_itf_1gad305e0daa69f3ab7656aa678a477a75b:
+
+typedef struct tagsystimegetms_struct  systimegetms_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION BEGIN <SIL2>
+
+Returns a monotonic rising millisecond tick. This tick can be used for timeout and relative time measurements. NOTE: The realtime clock is not influencing this tick! RETURN: Returns the millisecond tick
+
+.. _group___sys_time_itf_1ga9030e2651ca6fca69fa2837273d05a27:
+
+typedef struct tagsystimegetns_struct  systimegetns_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+<SIL2>
+
+Returns a monotonic rising nanosecond tick. This tick can be used for very high resolution time measurements NOTE: The realtime clock does not influences this tick! RETURN: Returns the runtime system error code (see CmpErrors.library)
+
+.. _group___sys_time_itf_1gad8128d22b8a1333eb17944ddca4a2711:
+
+typedef struct tagsystimegetus_struct  systimegetus_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+<SIL2>
+
+Returns a monotonic rising microsecond tick. This tick can be used for timeout and high resolution time measurements. NOTE: The realtime clock does not influences this tick! RETURN: Returns the runtime system error code (see CmpErrors.library)
+
+.. _group___sys_time_itf_1ga17558f05ec461b9f48f05c0be1a3c389:
+
+typedef ISysTime_C ISysTime
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_time_itf_1gab77e2618b8f1cf127526883480969a8a:
+
+void systimegetms (systimegetms_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_time_itf_1ga14210114e502d8f93d9a8ce89e9aa460:
+
+void systimegetns (systimegetns_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_time_itf_1ga48ffbaabd21f1fd0ecbf6844a6197361:
+
+void systimegetus (systimegetus_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_time_itf_1gae708d649d8267b52af1016d33a6bcfd5:
+
+RTS_RESULT SysTimeOSInit (INIT_STRUCT *pInit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION END
+
+.. _group___sys_time_itf_1ga43a28d8f33a6f490aa932058c5d21394:
+
+RTS_RESULT SysTimeOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_time_itf_1ga5da4ae803f6328356b5e07dfcc518d59:
+
+RTS_UI32 SysTimeGetMs (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return a monotonic, rising millisecond tick.
+
+**Returns:**
+
+Returns the millisecond tick
+
+.. _group___sys_time_itf_1gafd2b289865fce2eec1a6cd530276b7a6:
+
+RTS_RESULT SysTimeGetUs (RTS_SYSTIME *pTime)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return a monotonic, rising microsecond tick.
+
+**Parameters**
+
++---------+-------+----------------------------------------------------------+
+| [inout] | pTime | Pointer to the time tick result RANGE=[NULL,VALID_PTIME] |
++---------+-------+----------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+--------------------------------+
+| ERR_OK        | Time was returned successfully |
++---------------+--------------------------------+
+| ERR_PARAMETER | pTime was NULL                 |
++---------------+--------------------------------+
+| ERR_FAILED    | Internal Error                 |
++---------------+--------------------------------+
+
+.. _group___sys_time_itf_1ga17db7eb52dff7f98f0b75c134201d765:
+
+RTS_RESULT SysTimeGetNs (RTS_SYSTIME *pTime)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return a monotonic, rising nanosecond tick.
+
+**Parameters**
+
++---------+-------+----------------------------------------------------------+
+| [inout] | pTime | Pointer to the time tick result RANGE=[NULL,VALID_PTIME] |
++---------+-------+----------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+--------------------------------+
+| ERR_OK        | Time was returned successfully |
++---------------+--------------------------------+
+| ERR_PARAMETER | pTime was NULL                 |
++---------------+--------------------------------+
+| ERR_FAILED    | Internal Error                 |
++---------------+--------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

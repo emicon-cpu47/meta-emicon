@@ -1,0 +1,1 @@
+/* this is just a stub header file for the CmpPLCHandler component */

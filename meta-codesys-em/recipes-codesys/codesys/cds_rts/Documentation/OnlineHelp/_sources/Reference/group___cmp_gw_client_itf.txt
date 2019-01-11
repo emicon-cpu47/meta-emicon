@@ -1,0 +1,396 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_gw_client_itf:
+
+==============
+CmpGwClientItf
+==============
+
+Interface of CmpGwClient. :ref:`More... <group___cmp_gw_client_itf-details>`
+
+Modules
+-------
+
+- :ref:`Settings <group___cmp_gw_client_itf___settings>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpGwClient_C <struct_i_cmp_gw_client___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpGwClient <group___cmp_gw_client_itf_1ga0b01b033bff09e468eefbc82dde402a8>`
+
+- #define :ref:`EXTITF_CmpGwClient <group___cmp_gw_client_itf_1ga0a97e7a5dd1beba9a39e7f7db17e74c5>`
+
+Typedefs
+--------
+
+- typedef void(* :ref:`PFENUMCOMMDRVCALLBACK <group___cmp_gw_client_itf_1ga80d588e965f00830e07ee16f55f9a7ef>`)(RTS_HANDLE hDriver, RTS_GUID *guid, RTS_WCHAR *pwszName, PARAMDEFLIST *pParams, RTS_I8 bLast, RTS_I32 nMinPingInterval)
+
+- typedef void(* :ref:`PFENUMCOMMDRVCALLBACK2 <group___cmp_gw_client_itf_1gabcbd1bc419b370742e9727820b0f49e2>`)(RTS_UINTPTR dwUser, RTS_HANDLE hDriver, RTS_GUID *guid, RTS_WCHAR *pwszName, PARAMDEFLIST *pParams, RTS_I8 bLast, RTS_I32 nMinPingInterval)
+
+- typedef void(* :ref:`PFNODEINFOCALLBACK <group___cmp_gw_client_itf_1ga59b9c10253e039e1995aae9f6c1b396d>`)(RTS_UINTPTR dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, RTS_I32 nMaxChannels, RTS_UI32 dwTargetId, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszTargetName)
+
+- typedef void(* :ref:`PFNODEINFOCALLBACK2 <group___cmp_gw_client_itf_1ga427cb37eaea841e9cd8c35e0074a0e47>`)(RTS_UINTPTR dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, RTS_I32 nMaxChannels, RTS_UI32 dwTargetType, RTS_UI32 dwTargetId, RTS_UI32 dwTargetVersion, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszDeviceName, RTS_WCHAR *wszVendorName)
+
+- typedef void(* :ref:`PFNODEINFOCALLBACK3 <group___cmp_gw_client_itf_1ga840f70d3f382d5a3c20bbbcdaf1f4b67>`)(RTS_UINTPTR dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, GWCLIENTNODEINFO *pGwClientNodeInfo, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszDeviceName, RTS_WCHAR *wszVendorName, RTS_CSTRING *pszSerialNumber, RTS_UI8 *pbyOemData, RTS_UI32 dwOemDataLength)
+
+- typedef :ref:`ICmpGwClient_C <struct_i_cmp_gw_client___c>` :ref:`ICmpGwClient <group___cmp_gw_client_itf_1ga94a17e1dfd883f50fc6a0f94a8ede46e>`
+
+Enumerations
+------------
+
+- enum :ref:`@7 <group___cmp_gw_client_itf_1ga0411cd49bb5b71852cecd93bcbf0ca2d>` { :ref:`COMMDRV_ACTION_SEND <group___cmp_gw_client_itf_1gga0411cd49bb5b71852cecd93bcbf0ca2da3253c8e1890d8b28cb60a4b2b2969cfc>`, :ref:`COMMDRV_ACTION_RECEIVE <group___cmp_gw_client_itf_1gga0411cd49bb5b71852cecd93bcbf0ca2dabc09813b740b4eacecab1ca5688809b7>` }
+
+Functions
+---------
+
+- RTS_RESULT :ref:`GWClientRegisterCommDrv <group___cmp_gw_client_itf_1gab413c42037c31a13672077f759a3327a>` (:ref:`COMMDRVITF <struct_c_o_m_m_d_r_v_i_t_f>` * pItf, :ref:`COMMDRVINFO <struct_c_o_m_m_d_r_v_i_n_f_o>` * pDrvInfo, RTS_HANDLE * phDriverHandle)
+
+- RTS_RESULT :ref:`GWClientConnectionReady <group___cmp_gw_client_itf_1gac7dfdcc5f37e9b702c66730eae5c73d1>` (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction)
+
+- RTS_RESULT :ref:`GWClientGetInterfaceVersion <group___cmp_gw_client_itf_1ga1a47fa582bd621084d90b7e93efe7fdc>` (RTS_UI16 * pwMajor, RTS_UI16 * pwMinor)
+
+- RTS_RESULT :ref:`GWClientEnumCommDrivers <group___cmp_gw_client_itf_1gabef29312a048de94f37828ba8541dc57>` (:ref:`PFENUMCOMMDRVCALLBACK <group___cmp_gw_client_itf_1ga80d588e965f00830e07ee16f55f9a7ef>`  pfCallback)
+
+- RTS_RESULT :ref:`GWClientEnumCommDrivers2 <group___cmp_gw_client_itf_1gab3f9caa1f5412f548f9b655d334802e2>` (:ref:`PFENUMCOMMDRVCALLBACK2 <group___cmp_gw_client_itf_1gabcbd1bc419b370742e9727820b0f49e2>`  pfCallback, RTS_UINTPTR dwUser)
+
+- RTS_RESULT :ref:`GWClientBeginConnectToGateway <group___cmp_gw_client_itf_1gae50c53ac66dfd67bc1ee4292972a6910>` (RTS_HANDLE hDriver, RTS_I32 nNumParams, :ref:`PARAMETER <struct_p_a_r_a_m_e_t_e_r>` * pParams, RTS_HANDLE * phGateway, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientBeginConnectToGateway2 <group___cmp_gw_client_itf_1ga8e0ddbd6b117af34b4c5b459849f1ce2>` (RTS_HANDLE hDriver, RTS_I32 nNumParams, :ref:`PARAMETER <struct_p_a_r_a_m_e_t_e_r>` * pParams, RTS_UI32 ui32GwInactivityTimeout, RTS_HANDLE * phGateway, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientEndConnectToGateway <group___cmp_gw_client_itf_1gaf32ce0c55e04e6b4fa3fdf3868d8956f>` (:ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes, RTS_HANDLE * phGateway)
+
+- RTS_RESULT :ref:`GWClientDisconnectFromGateway <group___cmp_gw_client_itf_1gab2ef94262cbe8ba2979ca8f95be39659>` (RTS_HANDLE hGateway)
+
+- RTS_RESULT :ref:`GWClientBeginIncrementalResolveAllNodes <group___cmp_gw_client_itf_1gae650fcf174cc943af83acf6516c5d28d>` (RTS_HANDLE hGateway, RTS_UINTPTR dwUser, :ref:`PFNODEINFOCALLBACK <group___cmp_gw_client_itf_1ga59b9c10253e039e1995aae9f6c1b396d>`  pfCallback, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientBeginIncrementalResolveAllNodes2 <group___cmp_gw_client_itf_1gab73cc1f8f57a9e5bbe275cc64b3aa32d>` (RTS_HANDLE hGateway, RTS_UINTPTR dwUser, :ref:`PFNODEINFOCALLBACK2 <group___cmp_gw_client_itf_1ga427cb37eaea841e9cd8c35e0074a0e47>`  pfCallback2, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientBeginIncrementalResolveAllNodes3 <group___cmp_gw_client_itf_1ga9c59dffce2413a67633444cfc2e17d27>` (RTS_HANDLE hGateway, RTS_UI32 dwTimeout, RTS_UINTPTR dwUser, :ref:`PFNODEINFOCALLBACK3 <group___cmp_gw_client_itf_1ga840f70d3f382d5a3c20bbbcdaf1f4b67>`  pfCallback3, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientAdjustIncrementalResolveAllNodesTimeout <group___cmp_gw_client_itf_1ga795a2d3bec0699ae7053aef69ebb57d1>` (RTS_UI32 dwRemainingTimeout, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientEndIncrementalResolveAllNodes <group___cmp_gw_client_itf_1gab9a297dbd3ef687baefc45ecd38f264e>` (:ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientBeginIncrementalResolveName <group___cmp_gw_client_itf_1ga8d466010dee855bb8bc1bf39aecb6964>` (const RTS_WCHAR * pwszNodeName, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, :ref:`PFNODEINFOCALLBACK <group___cmp_gw_client_itf_1ga59b9c10253e039e1995aae9f6c1b396d>`  pfCallback, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientBeginIncrementalResolveName3 <group___cmp_gw_client_itf_1ga5edcc48c515d6a36b93e51a7e8aeef94>` (const RTS_WCHAR * pwszNodeName, RTS_HANDLE hGateway, RTS_UI32 dwTimeout, RTS_BOOL bFinishWithFirstNode, RTS_UINTPTR dwUser, :ref:`PFNODEINFOCALLBACK3 <group___cmp_gw_client_itf_1ga840f70d3f382d5a3c20bbbcdaf1f4b67>`  pfCallback3, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientAdjustIncrementalResolveNameTimeout <group___cmp_gw_client_itf_1ga2d05dcc89787236db629d8ff1be69d78>` (RTS_UI32 dwRemainingTimeout, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientEndIncrementalResolveName <group___cmp_gw_client_itf_1gae18436bc27002de842dcada6cac1727d>` (:ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientBeginResolveBlockDriverAddress <group___cmp_gw_client_itf_1gad453e5d61f70eada48cf5fd06e74d810>` (RTS_UI8 byBlkDrvType, RTS_UI8 byBlkDrvFlags, RTS_UI8 byAddrBitLength, RTS_UI8 * pbyAddress, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, :ref:`PFNODEINFOCALLBACK2 <group___cmp_gw_client_itf_1ga427cb37eaea841e9cd8c35e0074a0e47>`  pfCallback, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientBeginResolveBlockDriverAddress3 <group___cmp_gw_client_itf_1ga07213c7fc052fc5aeeb62ddfb561c6b9>` (RTS_UI8 byBlkDrvType, RTS_UI8 byBlkDrvFlags, RTS_UI8 byAddrBitLength, RTS_UI8 * pbyAddress, RTS_HANDLE hGateway, RTS_UI32 dwTimeout, RTS_UINTPTR dwUser, :ref:`PFNODEINFOCALLBACK3 <group___cmp_gw_client_itf_1ga840f70d3f382d5a3c20bbbcdaf1f4b67>`  pfCallback3, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientAdjustResolveBlockDriverAddressTimeout <group___cmp_gw_client_itf_1gaed4bc48b679905e385ee8522304269de>` (RTS_UI32 dwRemainingTimeout, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientEndResolveBlockDriverAddress <group___cmp_gw_client_itf_1ga5998a56e335d1210b8f9ee3a4261e508>` (:ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientBeginResolveAddress <group___cmp_gw_client_itf_1ga1c3eecd333e8f769c74d2dc39670f15d>` (RTS_UI8 byAddrComponentLength, RTS_UI8 * pbyAddress, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, :ref:`PFNODEINFOCALLBACK2 <group___cmp_gw_client_itf_1ga427cb37eaea841e9cd8c35e0074a0e47>`  pfCallback, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientBeginResolveAddress3 <group___cmp_gw_client_itf_1gab1166752e9209a87beaac6692846336c>` (RTS_UI8 byAddrComponentLength, RTS_UI8 * pbyAddress, RTS_HANDLE hGateway, RTS_UI32 dwTimeout, RTS_UINTPTR dwUser, :ref:`PFNODEINFOCALLBACK3 <group___cmp_gw_client_itf_1ga840f70d3f382d5a3c20bbbcdaf1f4b67>`  pfCallback3, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientAdjustResolveAddressTimeout <group___cmp_gw_client_itf_1ga5d2884a0b3bb413675d0d73e2190d121>` (RTS_UI32 dwRemainingTimeout, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientEndResolveAddress <group___cmp_gw_client_itf_1ga43ba6e723afb4c2996e5eff408cb10f7>` (:ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientBeginSendRequest <group___cmp_gw_client_itf_1ga7b7ad07b0de22921568fc5c0cb26d7e7>` (RTS_HANDLE hGateway, RTS_HANDLE hChannel, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduReq, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>` * ppduResp, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientEndSendRequest <group___cmp_gw_client_itf_1ga88a9d8f88f3c231e0ca6d141e23823e6>` (:ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>` * ppduResp)
+
+- RTS_RESULT :ref:`GWClientGetRequestStatus <group___cmp_gw_client_itf_1ga23b9dad49f519b4e30f4503b3cea64e6>` (:ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes, RTS_UI16 * pwStatus, RTS_UI8 * pbyScaling, RTS_I32 * pnItemsComplete, RTS_I32 * pnTotalItems)
+
+- RTS_RESULT :ref:`GWClientBeginOpenChannel <group___cmp_gw_client_itf_1ga6d40b8f8a8450a29cb8c9f0ca6752199>` (RTS_HANDLE hGateway, :ref:`NODEADDRESS_OLD <struct_n_o_d_e_a_d_d_r_e_s_s___o_l_d>`  addrTo, :ref:`CHANNELQOS <struct_c_h_a_n_n_e_l_q_o_s>`  qosChannel, RTS_HANDLE * phChannel, RTS_UI32 * pdwCommBufferSize, RTS_UI8 * pbBigEndianTarget, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientBeginOpenChannel2 <group___cmp_gw_client_itf_1ga849d4771f1942151b8e84cb441c6b116>` (RTS_HANDLE hGateway, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrTo, :ref:`CHANNELQOS <struct_c_h_a_n_n_e_l_q_o_s>`  qosChannel, RTS_HANDLE * phChannel, RTS_UI32 * pdwCommBufferSize, RTS_UI8 * pbBigEndianTarget, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientEndOpenChannel <group___cmp_gw_client_itf_1gafa16ea33226f7ce46dc34d26e5de4ce5>` (:ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes, RTS_HANDLE * phChannel, RTS_UI32 * pdwCommBufferSize, RTS_UI8 * pbBigEndianTarget)
+
+- RTS_RESULT :ref:`GWClientBeginCloseChannel <group___cmp_gw_client_itf_1gac8181a746136e6e8fffcccdecbb2be87>` (RTS_HANDLE hGateway, RTS_HANDLE hChannel, :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+- RTS_RESULT :ref:`GWClientEndCloseChannel <group___cmp_gw_client_itf_1ga7c80c705e6dcb76fb44463fbb6d0c38c>` (:ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>` * pAsyncRes)
+
+.. _group___cmp_gw_client_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpGwClient.
+
+Interface of the gateway client as an entry point in the plc network.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_gw_client_itf_1ga0b01b033bff09e468eefbc82dde402a8:
+
+#define ITF_CmpGwClient
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga0a97e7a5dd1beba9a39e7f7db17e74c5:
+
+#define EXTITF_CmpGwClient
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_gw_client_itf_1ga80d588e965f00830e07ee16f55f9a7ef:
+
+typedef void( * PFENUMCOMMDRVCALLBACK)(RTS_HANDLE hDriver, RTS_GUID *guid, RTS_WCHAR *pwszName, PARAMDEFLIST *pParams, RTS_I8 bLast, RTS_I32 nMinPingInterval)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gabcbd1bc419b370742e9727820b0f49e2:
+
+typedef void( * PFENUMCOMMDRVCALLBACK2)(RTS_UINTPTR dwUser, RTS_HANDLE hDriver, RTS_GUID *guid, RTS_WCHAR *pwszName, PARAMDEFLIST *pParams, RTS_I8 bLast, RTS_I32 nMinPingInterval)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga59b9c10253e039e1995aae9f6c1b396d:
+
+typedef void( * PFNODEINFOCALLBACK)(RTS_UINTPTR dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, RTS_I32 nMaxChannels, RTS_UI32 dwTargetId, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszTargetName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga427cb37eaea841e9cd8c35e0074a0e47:
+
+typedef void( * PFNODEINFOCALLBACK2)(RTS_UINTPTR dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, RTS_I32 nMaxChannels, RTS_UI32 dwTargetType, RTS_UI32 dwTargetId, RTS_UI32 dwTargetVersion, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszDeviceName, RTS_WCHAR *wszVendorName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga840f70d3f382d5a3c20bbbcdaf1f4b67:
+
+typedef void( * PFNODEINFOCALLBACK3)(RTS_UINTPTR dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, GWCLIENTNODEINFO *pGwClientNodeInfo, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszDeviceName, RTS_WCHAR *wszVendorName, RTS_CSTRING *pszSerialNumber, RTS_UI8 *pbyOemData, RTS_UI32 dwOemDataLength)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga94a17e1dfd883f50fc6a0f94a8ede46e:
+
+typedef ICmpGwClient_C ICmpGwClient
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enumeration Type Documentation
+------------------------------
+
+.. _group___cmp_gw_client_itf_1ga0411cd49bb5b71852cecd93bcbf0ca2d:
+
+enum @7
+^^^^^^^
+
+
+**Enumerator:**
+
++------------------------+
+| COMMDRV_ACTION_SEND    |
++------------------------+
+| COMMDRV_ACTION_RECEIVE |
++------------------------+
+
+Function Documentation
+----------------------
+
+.. _group___cmp_gw_client_itf_1gab413c42037c31a13672077f759a3327a:
+
+RTS_RESULT GWClientRegisterCommDrv (COMMDRVITF *pItf, COMMDRVINFO *pDrvInfo, RTS_HANDLE *phDriverHandle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Register a commdriver with the gateway client.
+
+**Parameters**
+
++---------+----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pItf           | The interface functions of the comm driver.                                                                                                       |
++---------+----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pDrvInfo       | Information about the driver. The hDriver field is unused in this call.                                                                           |
++---------+----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phDriverHandle | Will be set with the handle assigned to the communication-driver. The driver must use this handle in all callbacks (eg. GWClientConnectionReady). |
++---------+----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_gw_client_itf_1gac7dfdcc5f37e9b702c66730eae5c73d1:
+
+RTS_RESULT GWClientConnectionReady (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+May be called by a commdriver if a connection is ready to send/receive. This function shall not signal a condition more then once without the gateway client reacting to that signal. Eg. if the commdriver signals that a connection is ready to send it shall not signal this situation again before the gateway client actually called "send". The gwclient must not rely on this function to be called but may use it to increase the performance of the connection.
+
+**Parameters**
+
++---------+---------------+-----------------------------------------------------------------------------------------------+
+| [in]    | hDriverHandle | The driver handle returned by GWClientRegisterCommDrv.                                        |
++---------+---------------+-----------------------------------------------------------------------------------------------+
+| [in]    | hConnHandle   | The handle to the connection.                                                                 |
++---------+---------------+-----------------------------------------------------------------------------------------------+
+| [in]    | nAction       | The action that is ready on this connection - eg. COMMDRV_ACTION_SEND, COMMDRV_ACTION_RECEIVE |
++---------+---------------+-----------------------------------------------------------------------------------------------+
+
+.. _group___cmp_gw_client_itf_1ga1a47fa582bd621084d90b7e93efe7fdc:
+
+RTS_RESULT GWClientGetInterfaceVersion (RTS_UI16 *pwMajor, RTS_UI16 *pwMinor)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gabef29312a048de94f37828ba8541dc57:
+
+RTS_RESULT GWClientEnumCommDrivers (PFENUMCOMMDRVCALLBACK pfCallback)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gab3f9caa1f5412f548f9b655d334802e2:
+
+RTS_RESULT GWClientEnumCommDrivers2 (PFENUMCOMMDRVCALLBACK2 pfCallback, RTS_UINTPTR dwUser)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gae50c53ac66dfd67bc1ee4292972a6910:
+
+RTS_RESULT GWClientBeginConnectToGateway (RTS_HANDLE hDriver, RTS_I32 nNumParams, PARAMETER *pParams, RTS_HANDLE *phGateway, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga8e0ddbd6b117af34b4c5b459849f1ce2:
+
+RTS_RESULT GWClientBeginConnectToGateway2 (RTS_HANDLE hDriver, RTS_I32 nNumParams, PARAMETER *pParams, RTS_UI32 ui32GwInactivityTimeout, RTS_HANDLE *phGateway, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gaf32ce0c55e04e6b4fa3fdf3868d8956f:
+
+RTS_RESULT GWClientEndConnectToGateway (ASYNCRESULT *pAsyncRes, RTS_HANDLE *phGateway)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gab2ef94262cbe8ba2979ca8f95be39659:
+
+RTS_RESULT GWClientDisconnectFromGateway (RTS_HANDLE hGateway)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gae650fcf174cc943af83acf6516c5d28d:
+
+RTS_RESULT GWClientBeginIncrementalResolveAllNodes (RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gab73cc1f8f57a9e5bbe275cc64b3aa32d:
+
+RTS_RESULT GWClientBeginIncrementalResolveAllNodes2 (RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK2 pfCallback2, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga9c59dffce2413a67633444cfc2e17d27:
+
+RTS_RESULT GWClientBeginIncrementalResolveAllNodes3 (RTS_HANDLE hGateway, RTS_UI32 dwTimeout, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK3 pfCallback3, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga795a2d3bec0699ae7053aef69ebb57d1:
+
+RTS_RESULT GWClientAdjustIncrementalResolveAllNodesTimeout (RTS_UI32 dwRemainingTimeout, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gab9a297dbd3ef687baefc45ecd38f264e:
+
+RTS_RESULT GWClientEndIncrementalResolveAllNodes (ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga8d466010dee855bb8bc1bf39aecb6964:
+
+RTS_RESULT GWClientBeginIncrementalResolveName (const RTS_WCHAR *pwszNodeName, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga5edcc48c515d6a36b93e51a7e8aeef94:
+
+RTS_RESULT GWClientBeginIncrementalResolveName3 (const RTS_WCHAR *pwszNodeName, RTS_HANDLE hGateway, RTS_UI32 dwTimeout, RTS_BOOL bFinishWithFirstNode, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK3 pfCallback3, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga2d05dcc89787236db629d8ff1be69d78:
+
+RTS_RESULT GWClientAdjustIncrementalResolveNameTimeout (RTS_UI32 dwRemainingTimeout, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gae18436bc27002de842dcada6cac1727d:
+
+RTS_RESULT GWClientEndIncrementalResolveName (ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gad453e5d61f70eada48cf5fd06e74d810:
+
+RTS_RESULT GWClientBeginResolveBlockDriverAddress (RTS_UI8 byBlkDrvType, RTS_UI8 byBlkDrvFlags, RTS_UI8 byAddrBitLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga07213c7fc052fc5aeeb62ddfb561c6b9:
+
+RTS_RESULT GWClientBeginResolveBlockDriverAddress3 (RTS_UI8 byBlkDrvType, RTS_UI8 byBlkDrvFlags, RTS_UI8 byAddrBitLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, RTS_UI32 dwTimeout, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK3 pfCallback3, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gaed4bc48b679905e385ee8522304269de:
+
+RTS_RESULT GWClientAdjustResolveBlockDriverAddressTimeout (RTS_UI32 dwRemainingTimeout, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga5998a56e335d1210b8f9ee3a4261e508:
+
+RTS_RESULT GWClientEndResolveBlockDriverAddress (ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga1c3eecd333e8f769c74d2dc39670f15d:
+
+RTS_RESULT GWClientBeginResolveAddress (RTS_UI8 byAddrComponentLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gab1166752e9209a87beaac6692846336c:
+
+RTS_RESULT GWClientBeginResolveAddress3 (RTS_UI8 byAddrComponentLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, RTS_UI32 dwTimeout, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK3 pfCallback3, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga5d2884a0b3bb413675d0d73e2190d121:
+
+RTS_RESULT GWClientAdjustResolveAddressTimeout (RTS_UI32 dwRemainingTimeout, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga43ba6e723afb4c2996e5eff408cb10f7:
+
+RTS_RESULT GWClientEndResolveAddress (ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga7b7ad07b0de22921568fc5c0cb26d7e7:
+
+RTS_RESULT GWClientBeginSendRequest (RTS_HANDLE hGateway, RTS_HANDLE hChannel, PROTOCOL_DATA_UNIT pduReq, PROTOCOL_DATA_UNIT *ppduResp, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga88a9d8f88f3c231e0ca6d141e23823e6:
+
+RTS_RESULT GWClientEndSendRequest (ASYNCRESULT *pAsyncRes, PROTOCOL_DATA_UNIT *ppduResp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga23b9dad49f519b4e30f4503b3cea64e6:
+
+RTS_RESULT GWClientGetRequestStatus (ASYNCRESULT *pAsyncRes, RTS_UI16 *pwStatus, RTS_UI8 *pbyScaling, RTS_I32 *pnItemsComplete, RTS_I32 *pnTotalItems)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga6d40b8f8a8450a29cb8c9f0ca6752199:
+
+RTS_RESULT GWClientBeginOpenChannel (RTS_HANDLE hGateway, NODEADDRESS_OLD addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, RTS_UI32 *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga849d4771f1942151b8e84cb441c6b116:
+
+RTS_RESULT GWClientBeginOpenChannel2 (RTS_HANDLE hGateway, PEERADDRESS addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, RTS_UI32 *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gafa16ea33226f7ce46dc34d26e5de4ce5:
+
+RTS_RESULT GWClientEndOpenChannel (ASYNCRESULT *pAsyncRes, RTS_HANDLE *phChannel, RTS_UI32 *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1gac8181a746136e6e8fffcccdecbb2be87:
+
+RTS_RESULT GWClientBeginCloseChannel (RTS_HANDLE hGateway, RTS_HANDLE hChannel, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf_1ga7c80c705e6dcb76fb44463fbb6d0c38c:
+
+RTS_RESULT GWClientEndCloseChannel (ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

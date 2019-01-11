@@ -1,0 +1,136 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __cmp_async_mgr_itf_8h:
+
+===============================
+CmpAsyncMgrItf.h File Reference
+===============================
+
+| #include ":ref:`CmpItf.h`"
+
+Data Structures
+---------------
+
+- struct :ref:`ASYNCJOB_IECCALLPARAM_METH <struct_a_s_y_n_c_j_o_b___i_e_c_c_a_l_l_p_a_r_a_m___m_e_t_h>`
+
+- struct :ref:`ASYNCJOB_IECCALLPARAM_FUNC <struct_a_s_y_n_c_j_o_b___i_e_c_c_a_l_l_p_a_r_a_m___f_u_n_c>`
+
+- struct :ref:`ASYNCJOB_TASKPARAM <struct_a_s_y_n_c_j_o_b___t_a_s_k_p_a_r_a_m>`
+
+- struct :ref:`ASYNCJOB_EVENTPARAM <struct_a_s_y_n_c_j_o_b___e_v_e_n_t_p_a_r_a_m>`
+
+- struct :ref:`ASYNCJOB_HOOKPARAM <struct_a_s_y_n_c_j_o_b___h_o_o_k_p_a_r_a_m>`
+
+- struct :ref:`ASYNCJOB_PARAM <union_a_s_y_n_c_j_o_b___p_a_r_a_m>`
+
+- struct :ref:`ASYNCJOB_INFO <struct_a_s_y_n_c_j_o_b___i_n_f_o>`
+
+- struct :ref:`ASYNCJOB_INFO2 <struct_a_s_y_n_c_j_o_b___i_n_f_o2>`
+
+- struct :ref:`ASYNCJOB_INFO3 <struct_a_s_y_n_c_j_o_b___i_n_f_o3>`
+
+- struct :ref:`tagasyncadd_struct <structtagasyncadd__struct>`
+
+- struct :ref:`tagasyncgetjobreturnvalue_struct <structtagasyncgetjobreturnvalue__struct>`
+
+- struct :ref:`tagasynckill_struct <structtagasynckill__struct>`
+
+- struct :ref:`tagasyncremove_struct <structtagasyncremove__struct>`
+
+- struct :ref:`tagasyncremoveall_struct <structtagasyncremoveall__struct>`
+
+- struct :ref:`ICmpAsyncMgr_C <struct_i_cmp_async_mgr___c>`
+
+Macros
+------
+
+- #define :ref:`ASYNCJOB_TASK <group___cmp_async_mgr_itf_1gafa67fc3007b68f7a21e1f6d19d983c81>` 0
+
+- #define :ref:`ASYNCJOB_EVENT <group___cmp_async_mgr_itf_1ga7852434d943b0eee3da975283bb6fc0b>` 1
+
+- #define :ref:`ASYNCJOB_HOOK <group___cmp_async_mgr_itf_1gac12ac56ee47beb5c99629e43d80b43ce>` 2
+
+- #define :ref:`ASYNCSTATE_INVALID <group___cmp_async_mgr_itf_1gab90db1a6d169237ed73795b574e2976e>` UINT32_MAX
+
+- #define :ref:`ASYNCSTATE_PENDING <group___cmp_async_mgr_itf_1gada06dd26cee553fe42c73cbc37aaea91>` 0
+
+- #define :ref:`ASYNCSTATE_ACTIVE <group___cmp_async_mgr_itf_1ga00509d3207121697bf73806d77e7c13d>` 1
+
+- #define :ref:`ASYNCSTATE_READY <group___cmp_async_mgr_itf_1ga498801d0bcdbe4e35acd30f1b349fb8b>` 2
+
+- #define :ref:`ASYNCSTATE_ERROR <group___cmp_async_mgr_itf_1ga020d9ca4ac98807de8d33186edb9142a>` 3
+
+- #define :ref:`ASYNCSTATE_TIMEOUT <group___cmp_async_mgr_itf_1ga199c49dcdf48afb03757d1a753728971>` 4
+
+- #define :ref:`ASYNCSTATE_CANCELED <group___cmp_async_mgr_itf_1ga0973a0840c5b5e7e85ecec017c88a9ee>` 6
+
+- #define :ref:`ASYNC_TIMEOUT_INFINITE <group___cmp_async_mgr_itf_1gaeb9731a10800e60ff81b506a53ed21a4>` 0
+
+- #define :ref:`ASYNCMGR_NUM_OF_STATIC_JOBS <group___cmp_async_mgr_itf_1ga3c30a6cc51e34cf5c0ea9fcbdf675e7a>` 10
+
+- #define :ref:`CMPASYNCMGR_INT_DEFAULT_TASK_PRIORITY_IEC <group___cmp_async_mgr_itf___settings_1ga18f61c27e83e06a87aa58539a05de022>` "DefaultTaskPriorityIEC"
+
+- #define :ref:`CMPASYNCMGR_INT_DEFAULT_TASK_PRIORITY_IEC_DEFAULT <group___cmp_async_mgr_itf___settings_1ga1c3e1c5c4fe9291451b6c5ba3899a0e0>` :ref:`TASKPRIO_IDLE <group___sys_task_itf___priorityranges_1ga3b4df50386a0218e7f2a6d9bb24700c2>`
+
+- #define :ref:`ITF_CmpAsyncMgr <group___cmp_async_mgr_itf_1gaa54366a207d4045fc0e9cd0585e95dca>`
+
+- #define :ref:`EXTITF_CmpAsyncMgr <group___cmp_async_mgr_itf_1ga7a38bdcb893b0735f774acf71e283bc0>`
+
+Typedefs
+--------
+
+- typedef void HUGEPTR(* :ref:`PFASYNCJOBFUNCTION <group___cmp_async_mgr_itf___settings_1ga74bf21ba5e09221f0dbbb97735a8f28a>`)(void *pParam)
+
+- typedef void(* :ref:`PFASYNCMGREXCEPTIONHANDLER <group___cmp_async_mgr_itf_1gaee66e6c8a158a74cefe9a91bf39018d4>`)(PFASYNCJOBFUNCTION pAsynFunction, void *pParam, RTS_UI32 ulException, RegContext Context)
+
+- typedef struct :ref:`tagasyncadd_struct <structtagasyncadd__struct>` :ref:`asyncadd_struct <group___cmp_async_mgr_itf_1ga805857f13b7b05e1a4cabca1d7946148>`
+
+- typedef struct :ref:`tagasyncgetjobreturnvalue_struct <structtagasyncgetjobreturnvalue__struct>` :ref:`asyncgetjobreturnvalue_struct <group___cmp_async_mgr_itf_1gaafba9cbd181eb3e2a7eb8f2abf7ec059>`
+
+- typedef struct :ref:`tagasynckill_struct <structtagasynckill__struct>` :ref:`asynckill_struct <group___cmp_async_mgr_itf_1ga8f4ebbd7b1794042d00ab89470634b5f>`
+
+- typedef struct :ref:`tagasyncremove_struct <structtagasyncremove__struct>` :ref:`asyncremove_struct <group___cmp_async_mgr_itf_1ga3eede7c640d808d56b27235a4e1a990b>`
+
+- typedef struct :ref:`tagasyncremoveall_struct <structtagasyncremoveall__struct>` :ref:`asyncremoveall_struct <group___cmp_async_mgr_itf_1gaf4821b290613076a766c62561ffccc71>`
+
+- typedef :ref:`ICmpAsyncMgr_C <struct_i_cmp_async_mgr___c>` :ref:`ICmpAsyncMgr <group___cmp_async_mgr_itf_1ga82af510067da2833d66a51e44bb90872>`
+
+Functions
+---------
+
+- void :ref:`asyncadd <group___cmp_async_mgr_itf_1gac2e6ab56bb020fee27c981107300b853>` (:ref:`asyncadd_struct <group___cmp_async_mgr_itf_1ga805857f13b7b05e1a4cabca1d7946148>` * p)
+
+- void :ref:`asyncgetjobreturnvalue <group___cmp_async_mgr_itf_1ga202890e297a053926f91dce76f824dde>` (:ref:`asyncgetjobreturnvalue_struct <group___cmp_async_mgr_itf_1gaafba9cbd181eb3e2a7eb8f2abf7ec059>` * p)
+
+- void :ref:`asynckill <group___cmp_async_mgr_itf_1ga6d218296ba91527196414f73da64e00c>` (:ref:`asynckill_struct <group___cmp_async_mgr_itf_1ga8f4ebbd7b1794042d00ab89470634b5f>` * p)
+
+- void :ref:`asyncremove <group___cmp_async_mgr_itf_1ga4e61b5815488be707003af108189f82d>` (:ref:`asyncremove_struct <group___cmp_async_mgr_itf_1ga3eede7c640d808d56b27235a4e1a990b>` * p)
+
+- void :ref:`asyncremoveall <group___cmp_async_mgr_itf_1ga28fc734fee6c02c6607011ee673c810f>` (:ref:`asyncremoveall_struct <group___cmp_async_mgr_itf_1gaf4821b290613076a766c62561ffccc71>` * p)
+
+- RTS_HANDLE :ref:`AsyncAdd <group___cmp_async_mgr_itf_1ga24a8861cf4e1ab703c05b50a3c57fc2d>` (:ref:`PFASYNCJOBFUNCTION <group___cmp_async_mgr_itf___settings_1ga74bf21ba5e09221f0dbbb97735a8f28a>`  pfAsyncJobFunc, void * pParam, void * pInstance, RTS_UI32 * pulState, RTS_I32 bIecFunc, RTS_UI32 ulType, RTS_UI32 ulTimeout, :ref:`ASYNCJOB_PARAM <union_a_s_y_n_c_j_o_b___p_a_r_a_m>` * pAsyncJobParam, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AsyncAdd2 <group___cmp_async_mgr_itf_1ga1eaf8d0b636628842f328bd6db34e36e>` (:ref:`ASYNCJOB_INFO2 <struct_a_s_y_n_c_j_o_b___i_n_f_o2>` * pJob)
+
+- RTS_RESULT :ref:`AsyncAdd3 <group___cmp_async_mgr_itf_1ga22e67fdfd4c239d83636642389640d40>` (:ref:`ASYNCJOB_INFO3 <struct_a_s_y_n_c_j_o_b___i_n_f_o3>` * pJob)
+
+- RTS_RESULT :ref:`AsyncRemove <group___cmp_async_mgr_itf_1gaa8908f5354a8722d127fdbf24b11ba5f>` (RTS_HANDLE hJob)
+
+- RTS_RESULT :ref:`AsyncRemoveAll <group___cmp_async_mgr_itf_1gae0ad2181694b2be591ccc1ce24ae4a47>` (void)
+
+- RTS_RESULT :ref:`AsyncGetJobReturnValue <group___cmp_async_mgr_itf_1ga7ffda2a2970b1e07ca8c76ef20ce66a1>` (RTS_HANDLE hJob, RTS_UI32 * pulRetVal)
+
+- RTS_RESULT :ref:`AsyncKill <group___cmp_async_mgr_itf_1ga33766e6e792a69156f2c97200fd5367b>` (RTS_HANDLE hJob)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpAsyncMgrItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

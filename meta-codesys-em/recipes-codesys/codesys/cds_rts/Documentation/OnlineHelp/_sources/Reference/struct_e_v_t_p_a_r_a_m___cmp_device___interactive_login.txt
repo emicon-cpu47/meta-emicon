@@ -1,0 +1,70 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _struct_e_v_t_p_a_r_a_m___cmp_device___interactive_login:
+
+====================================================
+EVTPARAM_CmpDevice_InteractiveLogin Struct Reference
+====================================================
+
+| #include ":ref:`CmpDeviceItf.h <_cmp_device_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_UI32 :ref:`ui32LoginCommand <struct_e_v_t_p_a_r_a_m___cmp_device___interactive_login_1ad763686e07f0c93bc378030008fd8ffe>`
+- RTS_UI32 :ref:`ui32LoginMode <struct_e_v_t_p_a_r_a_m___cmp_device___interactive_login_1a2303797138ac297a0817bd500876d39d>`
+- RTS_UI8 * :ref:`pui8LoginData <struct_e_v_t_p_a_r_a_m___cmp_device___interactive_login_1ab051a0de14e000dfcc8fbfd1e11c4a6c>`
+- RTS_RESULT :ref:`rLoginResult <struct_e_v_t_p_a_r_a_m___cmp_device___interactive_login_1a9953b37671244a413edd2a3692409b3a>`
+
+Detailed Description
+--------------------
+
+
+
+Field Documentation
+-------------------
+
+.. _struct_e_v_t_p_a_r_a_m___cmp_device___interactive_login_1ad763686e07f0c93bc378030008fd8ffe:
+
+RTS_UI32 EVTPARAM_CmpDevice_InteractiveLogin::ui32LoginCommand
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Login command. See category "Interactive login commands" (look for DEV_ILC_xxx defines).
+
+.. _struct_e_v_t_p_a_r_a_m___cmp_device___interactive_login_1a2303797138ac297a0817bd500876d39d:
+
+RTS_UI32 EVTPARAM_CmpDevice_InteractiveLogin::ui32LoginMode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Login mode. See category "Interactive login mode flags" (look for DEV_ILMF_xxx defines). Only used for command DEV_ILC_LOGIN_REQUEST.
+
+.. _struct_e_v_t_p_a_r_a_m___cmp_device___interactive_login_1ab051a0de14e000dfcc8fbfd1e11c4a6c:
+
+RTS_UI8* EVTPARAM_CmpDevice_InteractiveLogin::pui8LoginData
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Login information to be checked by the runtime system. Only used for mode DEV_ILM_STRING
+
+.. _struct_e_v_t_p_a_r_a_m___cmp_device___interactive_login_1a9953b37671244a413edd2a3692409b3a:
+
+RTS_RESULT EVTPARAM_CmpDevice_InteractiveLogin::rLoginResult
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error code of event handler:
+
+- ERR_OK: Operation succeeded
+
+- ERR_ID_MISMATCH: Is returned at DEV_ILMF_ID, if the ID does not match (e.g. the entered serial number is not identical to the target)
+
+- ERR_PENDING: Is returned at DEV_ILMF_KEY_PRESS, if we wait for pressing the key
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpDeviceItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

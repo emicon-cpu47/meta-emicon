@@ -1,0 +1,892 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpSrvItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpSupervisorItf" href="group___cmp_supervisor_itf.html" />
+    <link rel="prev" title="CmpSoftingProfibusItf" href="group___cmp_softing_profibus_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_supervisor_itf.html" title="CmpSupervisorItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_softing_profibus_itf.html" title="CmpSoftingProfibusItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpSrvItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-headertag-3s-0xcd55">#define HEADERTAG_3S 0xCD55</a></li>
+<li><a class="reference internal" href="#define-headertag-crypt-0x7557">#define HEADERTAG_CRYPT 0x7557</a></li>
+<li><a class="reference internal" href="#define-headertag-safety-0x5af4">#define HEADERTAG_SAFETY 0x5AF4</a></li>
+<li><a class="reference internal" href="#define-srv-session-id-empty-0">#define SRV_SESSION_ID_EMPTY 0</a></li>
+<li><a class="reference internal" href="#define-srv-session-id-invalid-0x00000001">#define SRV_SESSION_ID_INVALID 0x00000001</a></li>
+<li><a class="reference internal" href="#define-srv-session-id-inital-request-0x00000011">#define SRV_SESSION_ID_INITAL_REQUEST 0x00000011</a></li>
+<li><a class="reference internal" href="#define-srv-session-id-remote-visu-client-0x00000815">#define SRV_SESSION_ID_REMOTE_VISU_CLIENT 0x00000815</a></li>
+<li><a class="reference internal" href="#define-srv-session-id-webserver-0x0000abcd">#define SRV_SESSION_ID_WEBSERVER 0x0000ABCD</a></li>
+<li><a class="reference internal" href="#define-srv-session-id-validation-bit-0x80000000">#define SRV_SESSION_ID_VALIDATION_BIT 0x80000000</a></li>
+<li><a class="reference internal" href="#define-itf-cmpsrv">#define ITF_CmpSrv</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpsrv">#define EXTITF_CmpSrv</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-rts-result-pfservicehandler-rts-ui32-ulchannelid-header-tag-pheadertag-protocol-data-unit-pdudata-protocol-data-unit-pdusendbuffer">typedef RTS_RESULT( * PFServiceHandler)(RTS_UI32 ulChannelId, HEADER_TAG *pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)</a></li>
+<li><a class="reference internal" href="#typedef-rts-result-pfservicehandler2-rts-handle-hrouter-rts-ui32-ulchannelid-header-tag-pheadertag-protocol-data-unit-pdudata-protocol-data-unit-pdusendbuffer">typedef RTS_RESULT( * PFServiceHandler2)(RTS_HANDLE hRouter, RTS_UI32 ulChannelId, HEADER_TAG *pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)</a></li>
+<li><a class="reference internal" href="#typedef-icmpsrv-c-icmpsrv">typedef ICmpSrv_C ICmpSrv</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-result-serverapphandlerequest-rts-ui32-ulchannelid-protocol-data-unit-pdurequest-protocol-data-unit-pdureply">RTS_RESULT ServerAppHandleRequest (RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduRequest, PROTOCOL_DATA_UNIT pduReply)</a></li>
+<li><a class="reference internal" href="#rts-result-serverapphandlerequest2-rts-handle-hrouter-rts-ui32-ulchannelid-protocol-data-unit-pdurequest-protocol-data-unit-pdureply">RTS_RESULT ServerAppHandleRequest2 (RTS_HANDLE hRouter, RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduRequest, PROTOCOL_DATA_UNIT pduReply)</a></li>
+<li><a class="reference internal" href="#rts-result-serverapphandlerequest3-rts-ui32-ulchannelid-protocol-data-unit-pdurequest-protocol-data-unit-pdureply-rts-ui32-bfirstcall">RTS_RESULT ServerAppHandleRequest3 (RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduRequest, PROTOCOL_DATA_UNIT pduReply, RTS_UI32 bFirstCall)</a></li>
+<li><a class="reference internal" href="#rts-result-serverregisterservicehandler-rts-ui32-ulservicegroup-pfservicehandler-pfservicehandler">RTS_RESULT ServerRegisterServiceHandler (RTS_UI32 ulServiceGroup, PFServiceHandler pfServiceHandler)</a></li>
+<li><a class="reference internal" href="#rts-result-serverregisterservicehandler2-rts-ui32-ulservicegroup-pfservicehandler-pfservicehandler-char-pszrouter">RTS_RESULT ServerRegisterServiceHandler2 (RTS_UI32 ulServiceGroup, PFServiceHandler pfServiceHandler, char *pszRouter)</a></li>
+<li><a class="reference internal" href="#rts-result-serverregisterservicehandler3-rts-ui32-ulservicegroup-pfservicehandler2-pfservicehandler2">RTS_RESULT ServerRegisterServiceHandler3 (RTS_UI32 ulServiceGroup, PFServiceHandler2 pfServiceHandler2)</a></li>
+<li><a class="reference internal" href="#rts-result-serverunregisterservicehandler-rts-ui32-ulservicegroup-pfservicehandler-pfservicehandler">RTS_RESULT ServerUnRegisterServiceHandler (RTS_UI32 ulServiceGroup, PFServiceHandler pfServiceHandler)</a></li>
+<li><a class="reference internal" href="#rts-result-serverregisterprotocolhandler-rts-ui16-usprotocolid-pfservicehandler-pfservicehandler">RTS_RESULT ServerRegisterProtocolHandler (RTS_UI16 usProtocolId, PFServiceHandler pfServiceHandler)</a></li>
+<li><a class="reference internal" href="#rts-result-serverregisterprotocolhandler2-rts-ui16-usprotocolid-pfservicehandler-pfservicehandler-char-pszrouter">RTS_RESULT ServerRegisterProtocolHandler2 (RTS_UI16 usProtocolId, PFServiceHandler pfServiceHandler, char *pszRouter)</a></li>
+<li><a class="reference internal" href="#rts-result-serverunregisterprotocolhandler-rts-ui16-usprotocolid-pfservicehandler-pfservicehandler">RTS_RESULT ServerUnRegisterProtocolHandler (RTS_UI16 usProtocolId, PFServiceHandler pfServiceHandler)</a></li>
+<li><a class="reference internal" href="#rts-result-serverfinishrequest-rts-ui32-ulchannelid-protocol-data-unit-pdudata">RTS_RESULT ServerFinishRequest (RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduData)</a></li>
+<li><a class="reference internal" href="#rts-result-servergeneratesessionid-rts-ui32-pulsessionid">RTS_RESULT ServerGenerateSessionId (RTS_UI32 *pulSessionId)</a></li>
+<li><a class="reference internal" href="#rts-result-serversetsessionid-rts-ui32-ulchannelhandle-rts-ui32-ulsessionid">RTS_RESULT ServerSetSessionId (RTS_UI32 ulChannelHandle, RTS_UI32 ulSessionId)</a></li>
+<li><a class="reference internal" href="#rts-result-servergetsessionid-rts-ui32-ulchannelhandle-rts-ui32-pulsessionid">RTS_RESULT ServerGetSessionId (RTS_UI32 ulChannelHandle, RTS_UI32 *pulSessionId)</a></li>
+<li><a class="reference internal" href="#rts-result-servergetmaxchannels-rts-ui16-pwmaxchannels">RTS_RESULT ServerGetMaxChannels (RTS_UI16 *pwMaxChannels)</a></li>
+<li><a class="reference internal" href="#rts-result-servergetchannelinfobyindex-rts-ui16-ui16channelindex-rts-ui32-pui32serverstate-channelinfo-pchinfobuffer-rts-size-psibufferlen">RTS_RESULT ServerGetChannelInfoByIndex (RTS_UI16 ui16ChannelIndex, RTS_UI32 *pui32ServerState, CHANNELINFO *pChInfoBuffer, RTS_SIZE *psiBufferLen)</a></li>
+<li><a class="reference internal" href="#rts-result-servergetstatus-rts-ui32-ulchannelhandle-rts-ui16-pusstatus-rts-ui8-pbyscalingfactor-rts-i32-pnitemscomplete-rts-i32-pntotalitems">RTS_RESULT ServerGetStatus (RTS_UI32 ulChannelHandle, RTS_UI16 *pusStatus, RTS_UI8 *pbyScalingFactor, RTS_I32 *pnItemsComplete, RTS_I32 *pnTotalItems)</a></li>
+<li><a class="reference internal" href="#rts-result-serversetredundancymode-rts-bool-bredundant">RTS_RESULT ServerSetRedundancyMode (RTS_BOOL bRedundant)</a></li>
+<li><a class="reference internal" href="#rts-result-serversetredundancymodestandby-rts-bool-bredundanystandby">RTS_RESULT ServerSetRedundancyModeStandby (RTS_BOOL bRedundanyStandby)</a></li>
+<li><a class="reference internal" href="#rts-result-serverexecuteonlineservice-void">RTS_RESULT ServerExecuteOnlineService (void)</a></li>
+<li><a class="reference internal" href="#rts-result-serverhandlerequest-rts-ui32-ulchannelid-protocol-data-unit-pdurequest-protocol-data-unit-pdureply">RTS_RESULT ServerHandleRequest (RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduRequest, PROTOCOL_DATA_UNIT pduReply)</a></li>
+<li><a class="reference internal" href="#rts-result-srvgetusernotificationservice-bintagwriter-pwriter-protocol-data-unit-pdusendbuffer">RTS_RESULT SrvGetUserNotificationService (BINTAGWRITER *pWriter, PROTOCOL_DATA_UNIT *pduSendBuffer)</a></li>
+<li><a class="reference internal" href="#rts-result-srvgetusernotificationservice2-bintagwriter-pwriter-protocol-data-unit-pdusendbuffer-unsigned-long-ultagid">RTS_RESULT SrvGetUserNotificationService2 (BINTAGWRITER *pWriter, PROTOCOL_DATA_UNIT *pduSendBuffer, unsigned long ulTagId)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_softing_profibus_itf.html"
+                        title="previous chapter">CmpSoftingProfibusItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_supervisor_itf.html"
+                        title="next chapter">CmpSupervisorItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_srv_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpsrvitf">
+<span id="group-cmp-srv-itf"></span><h1>CmpSrvItf<a class="headerlink" href="#cmpsrvitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CmpSrv. <a class="reference internal" href="#group-cmp-srv-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___cmp_srv_itf___eventparameter.html#group-cmp-srv-itf-eventparameter"><span class="std std-ref">Event parameter</span></a></li>
+<li><a class="reference internal" href="group___cmp_srv_itf___events.html#group-cmp-srv-itf-events"><span class="std std-ref">Events</span></a></li>
+<li><a class="reference internal" href="group___cmp_srv_itf___service_groups.html#group-cmp-srv-itf-service-groups"><span class="std std-ref">Service Groups</span></a></li>
+<li><a class="reference internal" href="group___cmp_srv_itf___servicereplytags.html#group-cmp-srv-itf-servicereplytags"><span class="std std-ref">Service reply tags</span></a></li>
+<li><a class="reference internal" href="group___cmp_srv_itf___staticdefines.html#group-cmp-srv-itf-staticdefines"><span class="std std-ref">Static defines</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_i_cmp_srv___c.html#struct-i-cmp-srv-c"><span class="std std-ref">ICmpSrv_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-srv-itf-1ga0046428262063f454be57aa827cdfd98"><span class="std std-ref">HEADERTAG_3S</span></a> 0xCD55</li>
+<li>#define <a class="reference internal" href="#group-cmp-srv-itf-1ga7c5366bf491add14d2855bf0afb01071"><span class="std std-ref">HEADERTAG_CRYPT</span></a> 0x7557</li>
+<li>#define <a class="reference internal" href="#group-cmp-srv-itf-1gab722842fef72272a2e942b9cf5aed4fe"><span class="std std-ref">HEADERTAG_SAFETY</span></a> 0x5AF4</li>
+<li>#define <a class="reference internal" href="#group-cmp-srv-itf-1ga4de72117c791ede3981a7e1451c40b66"><span class="std std-ref">SRV_SESSION_ID_EMPTY</span></a> 0</li>
+<li>#define <a class="reference internal" href="#group-cmp-srv-itf-1gaa7fbd8d1acecbbfbbc6f58d0bf234a43"><span class="std std-ref">SRV_SESSION_ID_INVALID</span></a> 0x00000001</li>
+<li>#define <a class="reference internal" href="#group-cmp-srv-itf-1ga7a4571db36dcc072c449daff1ffa08fb"><span class="std std-ref">SRV_SESSION_ID_INITAL_REQUEST</span></a> 0x00000011</li>
+<li>#define <a class="reference internal" href="#group-cmp-srv-itf-1ga421e2e91fbc87e88bda8f41f3cb508ac"><span class="std std-ref">SRV_SESSION_ID_REMOTE_VISU_CLIENT</span></a> 0x00000815</li>
+<li>#define <a class="reference internal" href="#group-cmp-srv-itf-1ga51cd7f5f268c6fa5c5e048bcb63a3eb2"><span class="std std-ref">SRV_SESSION_ID_WEBSERVER</span></a> 0x0000ABCD</li>
+<li>#define <a class="reference internal" href="#group-cmp-srv-itf-1ga3417a43c9c67c72cdfb949a0c2f8d0ba"><span class="std std-ref">SRV_SESSION_ID_VALIDATION_BIT</span></a> 0x80000000</li>
+<li>#define <a class="reference internal" href="#group-cmp-srv-itf-1ga576259b0ba6642dd1867ab9e2e096b75"><span class="std std-ref">ITF_CmpSrv</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-srv-itf-1gabed52952896368f8abf4a8d276e498c1"><span class="std std-ref">EXTITF_CmpSrv</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef RTS_RESULT(* <a class="reference internal" href="#group-cmp-srv-itf-1ga441b16c1f6973ca0c9ebd0a339e86531"><span class="std std-ref">PFServiceHandler</span></a>)(RTS_UI32 ulChannelId, HEADER_TAG <a href="#id1"><span class="problematic" id="id2">*</span></a>pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)</li>
+<li>typedef RTS_RESULT(* <a class="reference internal" href="#group-cmp-srv-itf-1ga1fccaae79144a93ec9998176a821c808"><span class="std std-ref">PFServiceHandler2</span></a>)(RTS_HANDLE hRouter, RTS_UI32 ulChannelId, HEADER_TAG <a href="#id3"><span class="problematic" id="id4">*</span></a>pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)</li>
+<li>typedef <a class="reference internal" href="struct_i_cmp_srv___c.html#struct-i-cmp-srv-c"><span class="std std-ref">ICmpSrv_C</span></a> <a class="reference internal" href="#group-cmp-srv-itf-1ga6988cf0c8f48e1808fc020f1e5858552"><span class="std std-ref">ICmpSrv</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga36c79c1c4ea2881de45257692f94af16"><span class="std std-ref">ServerAppHandleRequest</span></a> (RTS_UI32 ulChannelId, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduRequest, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduReply)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga58d4eaee96676a23879fd1b9405dbf13"><span class="std std-ref">ServerAppHandleRequest2</span></a> (RTS_HANDLE hRouter, RTS_UI32 ulChannelId, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduRequest, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduReply)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1gadd61540aa74bae25150b1d4fe96609ef"><span class="std std-ref">ServerAppHandleRequest3</span></a> (RTS_UI32 ulChannelId, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduRequest, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduReply, RTS_UI32 bFirstCall)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga485f7aaf5009723d62200f31f6e2d65f"><span class="std std-ref">ServerRegisterServiceHandler</span></a> (RTS_UI32 ulServiceGroup, <a class="reference internal" href="#group-cmp-srv-itf-1ga441b16c1f6973ca0c9ebd0a339e86531"><span class="std std-ref">PFServiceHandler</span></a>  pfServiceHandler)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1gae85b4c0435220a9662226d3f6538942b"><span class="std std-ref">ServerRegisterServiceHandler2</span></a> (RTS_UI32 ulServiceGroup, <a class="reference internal" href="#group-cmp-srv-itf-1ga441b16c1f6973ca0c9ebd0a339e86531"><span class="std std-ref">PFServiceHandler</span></a>  pfServiceHandler, char * pszRouter)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1gae52a96e6cd998e926a403173667e95a7"><span class="std std-ref">ServerRegisterServiceHandler3</span></a> (RTS_UI32 ulServiceGroup, <a class="reference internal" href="#group-cmp-srv-itf-1ga1fccaae79144a93ec9998176a821c808"><span class="std std-ref">PFServiceHandler2</span></a>  pfServiceHandler2)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga34a0a4d439a54dd5e75fe2f414ca0a58"><span class="std std-ref">ServerUnRegisterServiceHandler</span></a> (RTS_UI32 ulServiceGroup, <a class="reference internal" href="#group-cmp-srv-itf-1ga441b16c1f6973ca0c9ebd0a339e86531"><span class="std std-ref">PFServiceHandler</span></a>  pfServiceHandler)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga362a87043d6c86695ef3cfc1b4525579"><span class="std std-ref">ServerRegisterProtocolHandler</span></a> (RTS_UI16 usProtocolId, <a class="reference internal" href="#group-cmp-srv-itf-1ga441b16c1f6973ca0c9ebd0a339e86531"><span class="std std-ref">PFServiceHandler</span></a>  pfServiceHandler)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga4032fd640d13076a903f3541679f3a87"><span class="std std-ref">ServerRegisterProtocolHandler2</span></a> (RTS_UI16 usProtocolId, <a class="reference internal" href="#group-cmp-srv-itf-1ga441b16c1f6973ca0c9ebd0a339e86531"><span class="std std-ref">PFServiceHandler</span></a>  pfServiceHandler, char * pszRouter)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga7e9ff60fc3a285f61e7470662385ef14"><span class="std std-ref">ServerUnRegisterProtocolHandler</span></a> (RTS_UI16 usProtocolId, <a class="reference internal" href="#group-cmp-srv-itf-1ga441b16c1f6973ca0c9ebd0a339e86531"><span class="std std-ref">PFServiceHandler</span></a>  pfServiceHandler)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1gaeac2e260382c3b9ef40e6ba1def76e0c"><span class="std std-ref">ServerFinishRequest</span></a> (RTS_UI32 ulChannelId, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduData)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1gafc3e3143d0d038cfdb26c563d0f62af0"><span class="std std-ref">ServerGenerateSessionId</span></a> (RTS_UI32 * pulSessionId)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1gac5ba09b19c0abca1d170684a445aafcb"><span class="std std-ref">ServerSetSessionId</span></a> (RTS_UI32 ulChannelHandle, RTS_UI32 ulSessionId)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga10d3760ff6b77de724ac210cb8a0a4a9"><span class="std std-ref">ServerGetSessionId</span></a> (RTS_UI32 ulChannelHandle, RTS_UI32 * pulSessionId)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1gafa508e300d932cd0732ee7881c413e03"><span class="std std-ref">ServerGetMaxChannels</span></a> (RTS_UI16 * pwMaxChannels)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga9735307044d638000c3f2241bff60362"><span class="std std-ref">ServerGetChannelInfoByIndex</span></a> (RTS_UI16 ui16ChannelIndex, RTS_UI32 * pui32ServerState, <a class="reference internal" href="struct_c_h_a_n_n_e_l_i_n_f_o.html#struct-c-h-a-n-n-e-l-i-n-f-o"><span class="std std-ref">CHANNELINFO</span></a> * pChInfoBuffer, RTS_SIZE * psiBufferLen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga75d24b922e6819c69632a5f22fcfcf00"><span class="std std-ref">ServerGetStatus</span></a> (RTS_UI32 ulChannelHandle, RTS_UI16 * pusStatus, RTS_UI8 * pbyScalingFactor, RTS_I32 * pnItemsComplete, RTS_I32 * pnTotalItems)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga8d2b08b616998a2c73b2e01bdace4753"><span class="std std-ref">ServerSetRedundancyMode</span></a> (RTS_BOOL bRedundant)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1gaa0a956722fa3a51fcccec49f8d463fcf"><span class="std std-ref">ServerSetRedundancyModeStandby</span></a> (RTS_BOOL bRedundanyStandby)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga0121deb31f2b40837f381a45a73c43ad"><span class="std std-ref">ServerExecuteOnlineService</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga16c7f32f6b6792df66637c74803b67d4"><span class="std std-ref">ServerHandleRequest</span></a> (RTS_UI32 ulChannelId, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduRequest, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduReply)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga15f99c5983f0573542aef291a6097bde"><span class="std std-ref">SrvGetUserNotificationService</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a> * pduSendBuffer)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-srv-itf-1ga10067ebfcec16fafbf3d4f2b27c41de5"><span class="std std-ref">SrvGetUserNotificationService2</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a> * pduSendBuffer, unsigned long ulTagId)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-srv-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CmpSrv.</p>
+<p>Interface of the level 7 server.</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-headertag-3s-0xcd55">
+<span id="group-cmp-srv-itf-1ga0046428262063f454be57aa827cdfd98"></span><h3>#define HEADERTAG_3S 0xCD55<a class="headerlink" href="#define-headertag-3s-0xcd55" title="Permalink to this headline">¶</a></h3>
+<p>Defines the default CoDeSys layer 7 protocol.</p>
+</div>
+<div class="section" id="define-headertag-crypt-0x7557">
+<span id="group-cmp-srv-itf-1ga7c5366bf491add14d2855bf0afb01071"></span><h3>#define HEADERTAG_CRYPT 0x7557<a class="headerlink" href="#define-headertag-crypt-0x7557" title="Permalink to this headline">¶</a></h3>
+<p>Defines the default CoDeSys encrypted layer 7 protocol.</p>
+</div>
+<div class="section" id="define-headertag-safety-0x5af4">
+<span id="group-cmp-srv-itf-1gab722842fef72272a2e942b9cf5aed4fe"></span><h3>#define HEADERTAG_SAFETY 0x5AF4<a class="headerlink" href="#define-headertag-safety-0x5af4" title="Permalink to this headline">¶</a></h3>
+<p>Defines the default safety communication layer 7 protocol.</p>
+</div>
+<div class="section" id="define-srv-session-id-empty-0">
+<span id="group-cmp-srv-itf-1ga4de72117c791ede3981a7e1451c40b66"></span><h3>#define SRV_SESSION_ID_EMPTY 0<a class="headerlink" href="#define-srv-session-id-empty-0" title="Permalink to this headline">¶</a></h3>
+<p>Defines some special values for session ids</p>
+</div>
+<div class="section" id="define-srv-session-id-invalid-0x00000001">
+<span id="group-cmp-srv-itf-1gaa7fbd8d1acecbbfbbc6f58d0bf234a43"></span><h3>#define SRV_SESSION_ID_INVALID 0x00000001<a class="headerlink" href="#define-srv-session-id-invalid-0x00000001" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-srv-session-id-inital-request-0x00000011">
+<span id="group-cmp-srv-itf-1ga7a4571db36dcc072c449daff1ffa08fb"></span><h3>#define SRV_SESSION_ID_INITAL_REQUEST 0x00000011<a class="headerlink" href="#define-srv-session-id-inital-request-0x00000011" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-srv-session-id-remote-visu-client-0x00000815">
+<span id="group-cmp-srv-itf-1ga421e2e91fbc87e88bda8f41f3cb508ac"></span><h3>#define SRV_SESSION_ID_REMOTE_VISU_CLIENT 0x00000815<a class="headerlink" href="#define-srv-session-id-remote-visu-client-0x00000815" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-srv-session-id-webserver-0x0000abcd">
+<span id="group-cmp-srv-itf-1ga51cd7f5f268c6fa5c5e048bcb63a3eb2"></span><h3>#define SRV_SESSION_ID_WEBSERVER 0x0000ABCD<a class="headerlink" href="#define-srv-session-id-webserver-0x0000abcd" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-srv-session-id-validation-bit-0x80000000">
+<span id="group-cmp-srv-itf-1ga3417a43c9c67c72cdfb949a0c2f8d0ba"></span><h3>#define SRV_SESSION_ID_VALIDATION_BIT 0x80000000<a class="headerlink" href="#define-srv-session-id-validation-bit-0x80000000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-itf-cmpsrv">
+<span id="group-cmp-srv-itf-1ga576259b0ba6642dd1867ab9e2e096b75"></span><h3>#define ITF_CmpSrv<a class="headerlink" href="#define-itf-cmpsrv" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpsrv">
+<span id="group-cmp-srv-itf-1gabed52952896368f8abf4a8d276e498c1"></span><h3>#define EXTITF_CmpSrv<a class="headerlink" href="#define-extitf-cmpsrv" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-rts-result-pfservicehandler-rts-ui32-ulchannelid-header-tag-pheadertag-protocol-data-unit-pdudata-protocol-data-unit-pdusendbuffer">
+<span id="group-cmp-srv-itf-1ga441b16c1f6973ca0c9ebd0a339e86531"></span><h3>typedef RTS_RESULT( * PFServiceHandler)(RTS_UI32 ulChannelId, HEADER_TAG <a href="#id5"><span class="problematic" id="id6">*</span></a>pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)<a class="headerlink" href="#typedef-rts-result-pfservicehandler-rts-ui32-ulchannelid-header-tag-pheadertag-protocol-data-unit-pdudata-protocol-data-unit-pdusendbuffer" title="Permalink to this headline">¶</a></h3>
+<p>Servers register this callback function to process services of a service group. The reply to such a request must be sent using FinishRequest.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="13%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulChannelId</td>
+<td>Id of the channel on which the request arrived</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pHeaderTag</td>
+<td>Pointer to the header struct of the message</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pduData</td>
+<td>References the request data (without header)</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pduSendBuffer</td>
+<td>Contains the length of the buffer for the reply data, and the buffer for the replay data</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p><a href="#id7"><span class="problematic" id="id8">*</span></a>Should return ERR_OK (succeeded immediatly) or ERR_PENDING (service is handled asynchronously). <a href="#id9"><span class="problematic" id="id10">*</span></a>All other results abort the request.</p>
+</div>
+<div class="section" id="typedef-rts-result-pfservicehandler2-rts-handle-hrouter-rts-ui32-ulchannelid-header-tag-pheadertag-protocol-data-unit-pdudata-protocol-data-unit-pdusendbuffer">
+<span id="group-cmp-srv-itf-1ga1fccaae79144a93ec9998176a821c808"></span><h3>typedef RTS_RESULT( * PFServiceHandler2)(RTS_HANDLE hRouter, RTS_UI32 ulChannelId, HEADER_TAG <a href="#id11"><span class="problematic" id="id12">*</span></a>pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)<a class="headerlink" href="#typedef-rts-result-pfservicehandler2-rts-handle-hrouter-rts-ui32-ulchannelid-header-tag-pheadertag-protocol-data-unit-pdudata-protocol-data-unit-pdusendbuffer" title="Permalink to this headline">¶</a></h3>
+<p>Obsolete: Use PFServiceHandler (above) instead. Will be removed in future versions!</p>
+<p>Servers register this callback function to process services of a service group. The reply to such a request must be sent using FinishRequest.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="13%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hRouter</td>
+<td>Obsolete parameter, should be set to RTS_INVALID_HANDLE.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulChannelId</td>
+<td>Id of the channel on which the request arrived</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pHeaderTag</td>
+<td>Pointer to the header struct of the message</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pduData</td>
+<td>References the request data (without header)</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pduSendBuffer</td>
+<td>Contains the length of the buffer for the reply data, and the buffer for the replay data</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p><a href="#id13"><span class="problematic" id="id14">*</span></a>Should return ERR_OK (succeeded immediatly) or ERR_PENDING (service is handled asynchronously). <a href="#id15"><span class="problematic" id="id16">*</span></a>All other results abort the request.</p>
+</div>
+<div class="section" id="typedef-icmpsrv-c-icmpsrv">
+<span id="group-cmp-srv-itf-1ga6988cf0c8f48e1808fc020f1e5858552"></span><h3>typedef ICmpSrv_C ICmpSrv<a class="headerlink" href="#typedef-icmpsrv-c-icmpsrv" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-result-serverapphandlerequest-rts-ui32-ulchannelid-protocol-data-unit-pdurequest-protocol-data-unit-pdureply">
+<span id="group-cmp-srv-itf-1ga36c79c1c4ea2881de45257692f94af16"></span><h3>RTS_RESULT ServerAppHandleRequest (RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduRequest, PROTOCOL_DATA_UNIT pduReply)<a class="headerlink" href="#rts-result-serverapphandlerequest-rts-ui32-ulchannelid-protocol-data-unit-pdurequest-protocol-data-unit-pdureply" title="Permalink to this headline">¶</a></h3>
+<p>Obsolete: Use ServerAppHandleRequest3 instead. Will be removed in future versions!</p>
+</div>
+<div class="section" id="rts-result-serverapphandlerequest2-rts-handle-hrouter-rts-ui32-ulchannelid-protocol-data-unit-pdurequest-protocol-data-unit-pdureply">
+<span id="group-cmp-srv-itf-1ga58d4eaee96676a23879fd1b9405dbf13"></span><h3>RTS_RESULT ServerAppHandleRequest2 (RTS_HANDLE hRouter, RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduRequest, PROTOCOL_DATA_UNIT pduReply)<a class="headerlink" href="#rts-result-serverapphandlerequest2-rts-handle-hrouter-rts-ui32-ulchannelid-protocol-data-unit-pdurequest-protocol-data-unit-pdureply" title="Permalink to this headline">¶</a></h3>
+<p>Obsolete: Use ServerAppHandleRequest3 instead. Will be removed in future versions!</p>
+</div>
+<div class="section" id="rts-result-serverapphandlerequest3-rts-ui32-ulchannelid-protocol-data-unit-pdurequest-protocol-data-unit-pdureply-rts-ui32-bfirstcall">
+<span id="group-cmp-srv-itf-1gadd61540aa74bae25150b1d4fe96609ef"></span><h3>RTS_RESULT ServerAppHandleRequest3 (RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduRequest, PROTOCOL_DATA_UNIT pduReply, RTS_UI32 bFirstCall)<a class="headerlink" href="#rts-result-serverapphandlerequest3-rts-ui32-ulchannelid-protocol-data-unit-pdurequest-protocol-data-unit-pdureply-rts-ui32-bfirstcall" title="Permalink to this headline">¶</a></h3>
+<p>Handle one sevice request from the communication layer below (channel server)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="11%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulChannelId</td>
+<td>Id of the channel on which the request arrived</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pduRequest</td>
+<td>Pointer to the request</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pduReply</td>
+<td>Pointer to the request reply buffer</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>bFirstCall</td>
+<td>0: Tells the function, if it was already called for the same request before (0) or not (1).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Received service was completely handeled.</td>
+</tr>
+<tr class="row-even"><td>ERR_PENDING</td>
+<td>Received service will be handled asynchronously, but the caller has not to take care about this anymore.</td>
+</tr>
+<tr class="row-odd"><td>ERR_CALL_AGAIN</td>
+<td>Received service will be handled asynchronously. To progress this function have to be called again for the same received service data with bFirstCall=0.</td>
+</tr>
+<tr class="row-even"><td><a href="#id49"><span class="problematic" id="id50">ERR_</span></a>...</td>
+<td>Another error occured, channel should be closed.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-serverregisterservicehandler-rts-ui32-ulservicegroup-pfservicehandler-pfservicehandler">
+<span id="group-cmp-srv-itf-1ga485f7aaf5009723d62200f31f6e2d65f"></span><h3>RTS_RESULT ServerRegisterServiceHandler (RTS_UI32 ulServiceGroup, PFServiceHandler pfServiceHandler)<a class="headerlink" href="#rts-result-serverregisterservicehandler-rts-ui32-ulservicegroup-pfservicehandler-pfservicehandler" title="Permalink to this headline">¶</a></h3>
+<p>Register a handler for requests to a specific service group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="20%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulServiceGroup</td>
+<td>The service group which is handled by the provided function</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pfServiceHandler</td>
+<td>A handler function.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-serverregisterservicehandler2-rts-ui32-ulservicegroup-pfservicehandler-pfservicehandler-char-pszrouter">
+<span id="group-cmp-srv-itf-1gae85b4c0435220a9662226d3f6538942b"></span><h3>RTS_RESULT ServerRegisterServiceHandler2 (RTS_UI32 ulServiceGroup, PFServiceHandler pfServiceHandler, char <a href="#id17"><span class="problematic" id="id18">*</span></a>pszRouter)<a class="headerlink" href="#rts-result-serverregisterservicehandler2-rts-ui32-ulservicegroup-pfservicehandler-pfservicehandler-char-pszrouter" title="Permalink to this headline">¶</a></h3>
+<p>Obsolete: Use ServerRegisterServiceHandler instead. Will be removed in future versions!</p>
+<p>Register a handler for requests to a specific service group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="20%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulServiceGroup</td>
+<td>The service group which is handled by the provided function</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pfServiceHandler</td>
+<td>A handler function.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pszRouter</td>
+<td>Obsolete parameter, should be set to NULL.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-serverregisterservicehandler3-rts-ui32-ulservicegroup-pfservicehandler2-pfservicehandler2">
+<span id="group-cmp-srv-itf-1gae52a96e6cd998e926a403173667e95a7"></span><h3>RTS_RESULT ServerRegisterServiceHandler3 (RTS_UI32 ulServiceGroup, PFServiceHandler2 pfServiceHandler2)<a class="headerlink" href="#rts-result-serverregisterservicehandler3-rts-ui32-ulservicegroup-pfservicehandler2-pfservicehandler2" title="Permalink to this headline">¶</a></h3>
+<p>Obsolete: Use ServerRegisterServiceHandler instead. Will be removed in future versions!</p>
+<p>Register a handler for requests to a specific service group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="21%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulServiceGroup</td>
+<td>The service group which is handled by the provided function</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pfServiceHandler2</td>
+<td>A handler function.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-serverunregisterservicehandler-rts-ui32-ulservicegroup-pfservicehandler-pfservicehandler">
+<span id="group-cmp-srv-itf-1ga34a0a4d439a54dd5e75fe2f414ca0a58"></span><h3>RTS_RESULT ServerUnRegisterServiceHandler (RTS_UI32 ulServiceGroup, PFServiceHandler pfServiceHandler)<a class="headerlink" href="#rts-result-serverunregisterservicehandler-rts-ui32-ulservicegroup-pfservicehandler-pfservicehandler" title="Permalink to this headline">¶</a></h3>
+<p>Unregister a handler for requests to a specific service group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="20%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulServiceGroup</td>
+<td>The service group which is handled by the provided function</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pfServiceHandler</td>
+<td>A handler function.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-serverregisterprotocolhandler-rts-ui16-usprotocolid-pfservicehandler-pfservicehandler">
+<span id="group-cmp-srv-itf-1ga362a87043d6c86695ef3cfc1b4525579"></span><h3>RTS_RESULT ServerRegisterProtocolHandler (RTS_UI16 usProtocolId, PFServiceHandler pfServiceHandler)<a class="headerlink" href="#rts-result-serverregisterprotocolhandler-rts-ui16-usprotocolid-pfservicehandler-pfservicehandler" title="Permalink to this headline">¶</a></h3>
+<p>Register a handler for requests of a specific protocol other then HEADERTAG_3S. All requests with that protocol will be sent to this handler.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="21%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>usProtocolId</td>
+<td>The protocol id which is handled by the provided function</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pfServiceHandler</td>
+<td>A handler function.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-serverregisterprotocolhandler2-rts-ui16-usprotocolid-pfservicehandler-pfservicehandler-char-pszrouter">
+<span id="group-cmp-srv-itf-1ga4032fd640d13076a903f3541679f3a87"></span><h3>RTS_RESULT ServerRegisterProtocolHandler2 (RTS_UI16 usProtocolId, PFServiceHandler pfServiceHandler, char <a href="#id19"><span class="problematic" id="id20">*</span></a>pszRouter)<a class="headerlink" href="#rts-result-serverregisterprotocolhandler2-rts-ui16-usprotocolid-pfservicehandler-pfservicehandler-char-pszrouter" title="Permalink to this headline">¶</a></h3>
+<p>Obsolete: Use ServerRegisterProtocolHandler instead. Will be removed in future versions!</p>
+<p>Register a handler for requests of a specific protocol other then HEADERTAG_3S. All requests with that protocol will be sent to this handler.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="21%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>usProtocolId</td>
+<td>The protocol id which is handled by the provided function</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pfServiceHandler</td>
+<td>A handler function.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pszRouter</td>
+<td>Obsolete parameter, should be set to NULL.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-serverunregisterprotocolhandler-rts-ui16-usprotocolid-pfservicehandler-pfservicehandler">
+<span id="group-cmp-srv-itf-1ga7e9ff60fc3a285f61e7470662385ef14"></span><h3>RTS_RESULT ServerUnRegisterProtocolHandler (RTS_UI16 usProtocolId, PFServiceHandler pfServiceHandler)<a class="headerlink" href="#rts-result-serverunregisterprotocolhandler-rts-ui16-usprotocolid-pfservicehandler-pfservicehandler" title="Permalink to this headline">¶</a></h3>
+<p>Unregister a handler for requests of a specific protocol.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="21%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>usProtocolId</td>
+<td>The protocol id which is handled by the provided function</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pfServiceHandler</td>
+<td>A handler function.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-serverfinishrequest-rts-ui32-ulchannelid-protocol-data-unit-pdudata">
+<span id="group-cmp-srv-itf-1gaeac2e260382c3b9ef40e6ba1def76e0c"></span><h3>RTS_RESULT ServerFinishRequest (RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduData)<a class="headerlink" href="#rts-result-serverfinishrequest-rts-ui32-ulchannelid-protocol-data-unit-pdudata" title="Permalink to this headline">¶</a></h3>
+<p>Send a reply to a request previously received by a service handler</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="6%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulChannelId</td>
+<td>Id of the channel on which to answer a reply. Must be the same that was passed in to the service handler function.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pduData</td>
+<td>Contains the buffer and the length of the reply data. Buffer must be the same as the one passed in to the service handler function, the length must not be greater then the maximum reply buffer length.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-servergeneratesessionid-rts-ui32-pulsessionid">
+<span id="group-cmp-srv-itf-1gafc3e3143d0d038cfdb26c563d0f62af0"></span><h3>RTS_RESULT ServerGenerateSessionId (RTS_UI32 <a href="#id21"><span class="problematic" id="id22">*</span></a>pulSessionId)<a class="headerlink" href="#rts-result-servergeneratesessionid-rts-ui32-pulsessionid" title="Permalink to this headline">¶</a></h3>
+<p>Generates a unique session Id</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="20%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pulSessionId</td>
+<td>Pointer to get back the generated session Id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-serversetsessionid-rts-ui32-ulchannelhandle-rts-ui32-ulsessionid">
+<span id="group-cmp-srv-itf-1gac5ba09b19c0abca1d170684a445aafcb"></span><h3>RTS_RESULT ServerSetSessionId (RTS_UI32 ulChannelHandle, RTS_UI32 ulSessionId)<a class="headerlink" href="#rts-result-serversetsessionid-rts-ui32-ulchannelhandle-rts-ui32-ulsessionid" title="Permalink to this headline">¶</a></h3>
+<p>Stores the session id in the channel instance.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="20%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulChannelHandle</td>
+<td>Id of the channel for which the session id should be set.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulSessionId</td>
+<td>New session id fo the channel.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-servergetsessionid-rts-ui32-ulchannelhandle-rts-ui32-pulsessionid">
+<span id="group-cmp-srv-itf-1ga10d3760ff6b77de724ac210cb8a0a4a9"></span><h3>RTS_RESULT ServerGetSessionId (RTS_UI32 ulChannelHandle, RTS_UI32 <a href="#id23"><span class="problematic" id="id24">*</span></a>pulSessionId)<a class="headerlink" href="#rts-result-servergetsessionid-rts-ui32-ulchannelhandle-rts-ui32-pulsessionid" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the stored session id from the channel instance.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="20%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulChannelHandle</td>
+<td>Id of the channel for which the session id should be read.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulSessionId</td>
+<td>Pointer to return the session id.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-servergetmaxchannels-rts-ui16-pwmaxchannels">
+<span id="group-cmp-srv-itf-1gafa508e300d932cd0732ee7881c413e03"></span><h3>RTS_RESULT ServerGetMaxChannels (RTS_UI16 <a href="#id25"><span class="problematic" id="id26">*</span></a>pwMaxChannels)<a class="headerlink" href="#rts-result-servergetmaxchannels-rts-ui16-pwmaxchannels" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the number of available server channels. This is equal to the max. number of clients, which can be connected at the same time.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="31%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pwMaxChannels</td>
+<td>Number of of channels.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-servergetchannelinfobyindex-rts-ui16-ui16channelindex-rts-ui32-pui32serverstate-channelinfo-pchinfobuffer-rts-size-psibufferlen">
+<span id="group-cmp-srv-itf-1ga9735307044d638000c3f2241bff60362"></span><h3>RTS_RESULT ServerGetChannelInfoByIndex (RTS_UI16 ui16ChannelIndex, RTS_UI32 <a href="#id27"><span class="problematic" id="id28">*</span></a>pui32ServerState, CHANNELINFO <a href="#id29"><span class="problematic" id="id30">*</span></a>pChInfoBuffer, RTS_SIZE <a href="#id31"><span class="problematic" id="id32">*</span></a>psiBufferLen)<a class="headerlink" href="#rts-result-servergetchannelinfobyindex-rts-ui16-ui16channelindex-rts-ui32-pui32serverstate-channelinfo-pchinfobuffer-rts-size-psibufferlen" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves general information for the specified server channel. This function is intended for information purpoeses only.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="9%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ui16ChannelIndex</td>
+<td>Index of the channel. Allowed range: 0..MaxChannels-1.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pui32ServerState</td>
+<td>State of the server channel, see category &#8220;channel server state&#8221; for <a href="#id51"><span class="problematic" id="id52">CSSTATE_</span></a> values in CmpCommunicationLibItf.</td>
+</tr>
+<tr class="row-odd"><td>[inout]</td>
+<td>pChInfoBuffer</td>
+<td>Caller allocated buffer, which is filled by the <a class="reference internal" href="struct_c_h_a_n_n_e_l_i_n_f_o.html#struct-c-h-a-n-n-e-l-i-n-f-o"><span class="std std-ref">CHANNELINFO</span></a> structure. If the the state is CSSTATE_FREE, no structure is returned.</td>
+</tr>
+<tr class="row-even"><td>[inout]</td>
+<td>psiBufferLen</td>
+<td>Pointer to the size of the buffer in bytes, returns the number of copied bytes.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-servergetstatus-rts-ui32-ulchannelhandle-rts-ui16-pusstatus-rts-ui8-pbyscalingfactor-rts-i32-pnitemscomplete-rts-i32-pntotalitems">
+<span id="group-cmp-srv-itf-1ga75d24b922e6819c69632a5f22fcfcf00"></span><h3>RTS_RESULT ServerGetStatus (RTS_UI32 ulChannelHandle, RTS_UI16 <a href="#id33"><span class="problematic" id="id34">*</span></a>pusStatus, RTS_UI8 <a href="#id35"><span class="problematic" id="id36">*</span></a>pbyScalingFactor, RTS_I32 <a href="#id37"><span class="problematic" id="id38">*</span></a>pnItemsComplete, RTS_I32 <a href="#id39"><span class="problematic" id="id40">*</span></a>pnTotalItems)<a class="headerlink" href="#rts-result-servergetstatus-rts-ui32-ulchannelhandle-rts-ui16-pusstatus-rts-ui8-pbyscalingfactor-rts-i32-pnitemscomplete-rts-i32-pntotalitems" title="Permalink to this headline">¶</a></h3>
+<p>Get the current status of an active channel.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="8%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>wChannelHandle</td>
+<td>Id of the channel</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pusStatus</td>
+<td>Is set to the current progress state. The PROGRESS_xxx constants define valied values.</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pbyScalingFactor</td>
+<td>Provides the scaling factor for pnItemsComplete and pnTotalItems. These values have been scaled down by dividing them through 2^ScalingFactor (i.e. they have been right shifted by ScalingFactor bits).</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pnItemsComplete</td>
+<td>Number of items completed (eg. the number of bytes transfered).</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pnTotalItems</td>
+<td>Total number of item. Is set to -1 if unknown.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-serversetredundancymode-rts-bool-bredundant">
+<span id="group-cmp-srv-itf-1ga8d2b08b616998a2c73b2e01bdace4753"></span><h3>RTS_RESULT ServerSetRedundancyMode (RTS_BOOL bRedundant)<a class="headerlink" href="#rts-result-serversetredundancymode-rts-bool-bredundant" title="Permalink to this headline">¶</a></h3>
+<p>Set redundancy mode to enable synchronous execution of services (called by CmpRedundancy)
+<strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-serversetredundancymodestandby-rts-bool-bredundanystandby">
+<span id="group-cmp-srv-itf-1gaa0a956722fa3a51fcccec49f8d463fcf"></span><h3>RTS_RESULT ServerSetRedundancyModeStandby (RTS_BOOL bRedundanyStandby)<a class="headerlink" href="#rts-result-serversetredundancymodestandby-rts-bool-bredundanystandby" title="Permalink to this headline">¶</a></h3>
+<p>Set redundancy mode standby to enable session id handling for standby controller (called by CmpRedundancy)
+<strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-serverexecuteonlineservice-void">
+<span id="group-cmp-srv-itf-1ga0121deb31f2b40837f381a45a73c43ad"></span><h3>RTS_RESULT ServerExecuteOnlineService (void)<a class="headerlink" href="#rts-result-serverexecuteonlineservice-void" title="Permalink to this headline">¶</a></h3>
+<p>Set flag to execute online service (called by CmpRedundancy)
+<strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-serverhandlerequest-rts-ui32-ulchannelid-protocol-data-unit-pdurequest-protocol-data-unit-pdureply">
+<span id="group-cmp-srv-itf-1ga16c7f32f6b6792df66637c74803b67d4"></span><h3>RTS_RESULT ServerHandleRequest (RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduRequest, PROTOCOL_DATA_UNIT pduReply)<a class="headerlink" href="#rts-result-serverhandlerequest-rts-ui32-ulchannelid-protocol-data-unit-pdurequest-protocol-data-unit-pdureply" title="Permalink to this headline">¶</a></h3>
+<p>Handle one request (called by CmpRedundancy)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="19%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulChannelId</td>
+<td>Id of the channel on which the request arrived</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pduRequest</td>
+<td>Pointer to the request</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pduReply</td>
+<td>Pointer to the request reply</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-srvgetusernotificationservice-bintagwriter-pwriter-protocol-data-unit-pdusendbuffer">
+<span id="group-cmp-srv-itf-1ga15f99c5983f0573542aef291a6097bde"></span><h3>RTS_RESULT SrvGetUserNotificationService (BINTAGWRITER <a href="#id41"><span class="problematic" id="id42">*</span></a>pWriter, PROTOCOL_DATA_UNIT <a href="#id43"><span class="problematic" id="id44">*</span></a>pduSendBuffer)<a class="headerlink" href="#rts-result-srvgetusernotificationservice-bintagwriter-pwriter-protocol-data-unit-pdusendbuffer" title="Permalink to this headline">¶</a></h3>
+<p>Get the last log entry of class LOG_USER_NOTIFY as a toplevel online service tag</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="16%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pWriter</td>
+<td>Pointer to the bintag writer to get the service tag</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pduSendBuffer</td>
+<td>Pointer to the send buffer to reset the content of the bintag writer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code:</p>
+<ul class="simple">
+<li>ERR_OK: There is still an unread log entry of the type LOG_USER_NOTIFY</li>
+<li>ERR_NO_OBJECT: No pending log entry of the type LOG_USER_NOTIFY</li>
+<li>ERR_NOT_SUPPORTED: Service not supported</li>
+</ul>
+</div>
+<div class="section" id="rts-result-srvgetusernotificationservice2-bintagwriter-pwriter-protocol-data-unit-pdusendbuffer-unsigned-long-ultagid">
+<span id="group-cmp-srv-itf-1ga10067ebfcec16fafbf3d4f2b27c41de5"></span><h3>RTS_RESULT SrvGetUserNotificationService2 (BINTAGWRITER <a href="#id45"><span class="problematic" id="id46">*</span></a>pWriter, PROTOCOL_DATA_UNIT <a href="#id47"><span class="problematic" id="id48">*</span></a>pduSendBuffer, unsigned long ulTagId)<a class="headerlink" href="#rts-result-srvgetusernotificationservice2-bintagwriter-pwriter-protocol-data-unit-pdusendbuffer-unsigned-long-ultagid" title="Permalink to this headline">¶</a></h3>
+<p>Get the last log entry of class LOG_USER_NOTIFY as a toplevel online service tag</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="16%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pWriter</td>
+<td>Pointer to the bintag writer to get the service tag</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pduSendBuffer</td>
+<td>Pointer to the send buffer to reset the content of the bintag writer</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulTagId</td>
+<td>TagId to send user notify info</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code:</p>
+<ul class="simple">
+<li>ERR_OK: There is still an unread log entry of the type LOG_USER_NOTIFY</li>
+<li>ERR_NO_OBJECT: No pending log entry of the type LOG_USER_NOTIFY</li>
+<li>ERR_NOT_SUPPORTED: Service not supported</li>
+</ul>
+<p>cmpsrv</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_supervisor_itf.html" title="CmpSupervisorItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_softing_profibus_itf.html" title="CmpSoftingProfibusItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

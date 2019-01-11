@@ -1,0 +1,206 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_sem_count_itf:
+
+==============
+SysSemCountItf
+==============
+
+Interface of SysSemaphore. :ref:`More... <group___sys_sem_count_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`ISysSemCount_C <struct_i_sys_sem_count___c>`
+
+Macros
+------
+
+- #define :ref:`RTS_SEMAPHORE_NOWAIT <group___sys_sem_count_itf_1ga9d53f026ee8dde1007558bbe2266113c>` 0x0			/* Unblocking behavior of the SysSemaphoreEnter function */
+
+- #define :ref:`RTS_SEMAPHORE_WAIT_INFINIT <group___sys_sem_count_itf_1ga37b1ad4f29ecdd012a30d55d07463dd0>` 0xFFFFFFFF	/* Blocking behavior of the SysSemaphoreEnter function */
+
+- #define :ref:`ITF_SysSemCount <group___sys_sem_count_itf_1gaf35c93ce28882b7a7ea009cd12f0c8d1>`
+
+- #define :ref:`EXTITF_SysSemCount <group___sys_sem_count_itf_1gaa2ca50a073f4ae6ee8021113b5be44a4>`
+
+Typedefs
+--------
+
+- typedef :ref:`ISysSemCount_C <struct_i_sys_sem_count___c>` :ref:`ISysSemCount <group___sys_sem_count_itf_1ga1b5a0cd85294d58788427ee61fe59656>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysSemCountOSInit <group___sys_sem_count_itf_1gad3bb22866f64d9c23fa7531c4563b337>` (INIT_STRUCT * pInit)
+
+- RTS_RESULT :ref:`SysSemCountOSHookFunction <group___sys_sem_count_itf_1gaa4575f3380b5324d9048f3f5032440c6>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_HANDLE :ref:`SysSemCountCreate <group___sys_sem_count_itf_1ga774eea13b58fa73a944a7c2596db6686>` (RTS_UI32 ui32InitialValue, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysSemCountDelete <group___sys_sem_count_itf_1ga71d229de94361478c512af44ae7ad0eb>` (RTS_HANDLE hSemaphore)
+
+- RTS_RESULT :ref:`SysSemCountEnter <group___sys_sem_count_itf_1gaa9df357e76020329028ded517c668ac5>` (RTS_HANDLE hSemaphore, RTS_UI32 ui32TimeoutMs)
+
+- RTS_RESULT :ref:`SysSemCountLeave <group___sys_sem_count_itf_1gae0ce2c4cb39aa56c444547e852ff9318>` (RTS_HANDLE hSemaphore)
+
+.. _group___sys_sem_count_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysSemaphore.
+
+The SysSemaphore interface is projected to handle synchonization objects for tasks and threads. The synchronization objects are called semaphores to synchronize concurrent access to single data resources.
+
+For example:
+
+Task1: ... SysSemaphoreEnter(hSem, timeval); [Here you can accessed the protected data] SysSemaphoreEnter(hSem); [After :ref:`SysSemLeave() <group___cmp_blk_drv_usb_dep___task_1gaba4e64394542b1835d2defca112616a5>` you must not access the protected data] ....
+
+IMPLEMENTATION NOTE: The semaphores must work recursive! That means, that a multiple call out of one task must not block the execution! For each SysSemaphoreEnter() call, a corresponding SysSemphoreLeave() must be used!
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_sem_count_itf_1ga9d53f026ee8dde1007558bbe2266113c:
+
+#define RTS_SEMAPHORE_NOWAIT 0x0			/* Unblocking behavior of the SysSemaphoreEnter function */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_sem_count_itf_1ga37b1ad4f29ecdd012a30d55d07463dd0:
+
+#define RTS_SEMAPHORE_WAIT_INFINIT 0xFFFFFFFF	/* Blocking behavior of the SysSemaphoreEnter function */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_sem_count_itf_1gaf35c93ce28882b7a7ea009cd12f0c8d1:
+
+#define ITF_SysSemCount
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_sem_count_itf_1gaa2ca50a073f4ae6ee8021113b5be44a4:
+
+#define EXTITF_SysSemCount
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_sem_count_itf_1ga1b5a0cd85294d58788427ee61fe59656:
+
+typedef ISysSemCount_C ISysSemCount
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_sem_count_itf_1gad3bb22866f64d9c23fa7531c4563b337:
+
+RTS_RESULT SysSemCountOSInit (INIT_STRUCT *pInit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_sem_count_itf_1gaa4575f3380b5324d9048f3f5032440c6:
+
+RTS_RESULT SysSemCountOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_sem_count_itf_1ga774eea13b58fa73a944a7c2596db6686:
+
+RTS_HANDLE SysSemCountCreate (RTS_UI32 ui32InitialValue, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create a new counting semaphore object
+
+**Parameters**
+
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ui32InitialValue | Initial semaphore value. Value is counted down by each :ref:`SysSemCountEnter() <group___sys_read_write_lock_dep_1ga69e261c00ccda11917aa2a32c98cb37b>` call and blocks, if internal counter is 0! At each :ref:`SysSemCountLeave() <group___sys_read_write_lock_dep_1gac8dce82943e69d1e327b4e0c38de0d09>` call, the counter is counting up. So the initial value is the number of critical sections, which can be entered at the same time! NOTE: A SysSemCount semaphore is typically not inversion safe and is not thread local (multiple eneter in one task blocks the semaphore, if internal counter reaches 0)! |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult          | One of: ERR_OK: The semaphore was created. ERR_PARAMETER: Error within the given parameters. ERR_NOMEMORY: The needed ressources couldn't be allocated. ERR_FAILED: An internal error occured.                                                                                                                                                                                                                                                                                                                                                                                                                       |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the semaphore. RTS_INVALIDHANDLE in case of an error.
+
+.. _group___sys_sem_count_itf_1ga71d229de94361478c512af44ae7ad0eb:
+
+RTS_RESULT SysSemCountDelete (RTS_HANDLE hSemaphore)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete a semaphore object
+
+**Parameters**
+
++---------+------------+--------------------------------------------------------------------+
+| [in]    | hSemaphore | Handle to the semaphore that is provided from SysSemaphoreCreate() |
++---------+------------+--------------------------------------------------------------------+
+
+**Returns:**
+
+*One of: *ERR_OK: The semaphore was deleted successful. *ERR_INVALID_HANDLE: The given semaphore isn't a valid semaphore handle. *ERR_FAILED: An internal error occured.
+
+.. _group___sys_sem_count_itf_1gaa9df357e76020329028ded517c668ac5:
+
+RTS_RESULT SysSemCountEnter (RTS_HANDLE hSemaphore, RTS_UI32 ui32TimeoutMs)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Try to enter the semaphore. If semaphore is available, the function enteres the semaphore and returnes ERR_OK. If semaphore is not available, ERR_TIMEOUT is returned. The behavior of the function depends on the timeout value:
+
+- RTS_TIMEOUT_NO_WAIT indicates that the function is nonblocking. If the semaphore is not available, the function will return immediatly
+
+- RTS_TIMEOUT_INFINITE indicates that the function is blocking. The thread will be suspended until the semaphore is available.
+
+- Any other value: The Function will block until the semaphore is available, but will return after the timeout if the semaphore was not available. ERR_TIMEOUT will be returned in this case.
+
+**Parameters**
+
++---------+------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | hSemaphore | Handle to the semaphore that is provided from SysSemaphoreCreate()  Timeout for the enter operation in ms |
++---------+------------+-----------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+e *One of:
+
+- ERR_OK: The semaphore was enterd.
+
+- ERR_FAILED: The semaphore couldn't be entered.
+
+- ERR_TIMEOUT: The given timeout expired.
+
+- ERR_INVALID_HANDLE: The given semaphore isn't a valid semaphore handle.
+
+- ERR_PARAMETER: Error within the given parameters.
+
+.. _group___sys_sem_count_itf_1gae0ce2c4cb39aa56c444547e852ff9318:
+
+RTS_RESULT SysSemCountLeave (RTS_HANDLE hSemaphore)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Leave the given semaphore.
+
+**Parameters**
+
++---------+------+--------------------------------------------------------------------+
+| [in]    | hSem | Handle to the semaphore that is provided from SysSemaphoreCreate() |
++---------+------+--------------------------------------------------------------------+
+
+**Returns:**
+
+*One of:
+
+- ERR_OK: The operation was successful
+
+- ERR_INVALID_HANDLE: The given semaphore isn't a valid semaphore handle.
+
+- ERR_FAILED: The operation failed.
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

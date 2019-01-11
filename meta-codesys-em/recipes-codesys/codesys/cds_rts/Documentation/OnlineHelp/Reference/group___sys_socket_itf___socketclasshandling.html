@@ -1,0 +1,213 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Socket class handling &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Socket class handling</a><ul>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-socket-in-classa-rts-ui32-i-uint32-c-0x80000000-0">#define SOCKET_IN_CLASSA (((RTS_UI32)(i) &amp; UINT32_C(0x80000000)) == 0)</a></li>
+<li><a class="reference internal" href="#define-socket-in-classa-net-uint32-c-0xff000000">#define SOCKET_IN_CLASSA_NET UINT32_C(0xff000000)</a></li>
+<li><a class="reference internal" href="#define-socket-in-classa-nshift-24">#define SOCKET_IN_CLASSA_NSHIFT 24</a></li>
+<li><a class="reference internal" href="#define-socket-in-classa-host-uint32-c-0x00ffffff">#define SOCKET_IN_CLASSA_HOST UINT32_C(0x00ffffff)</a></li>
+<li><a class="reference internal" href="#define-socket-in-classa-max-128">#define SOCKET_IN_CLASSA_MAX 128</a></li>
+<li><a class="reference internal" href="#define-socket-in-classb-rts-ui32-i-uint32-c-0xc0000000-uint32-c-0x80000000">#define SOCKET_IN_CLASSB (((RTS_UI32)(i) &amp; UINT32_C(0xc0000000)) == UINT32_C(0x80000000))</a></li>
+<li><a class="reference internal" href="#define-socket-in-classb-net-uint32-c-0xffff0000">#define SOCKET_IN_CLASSB_NET UINT32_C(0xffff0000)</a></li>
+<li><a class="reference internal" href="#define-socket-in-classb-nshift-16">#define SOCKET_IN_CLASSB_NSHIFT 16</a></li>
+<li><a class="reference internal" href="#define-socket-in-classb-host-uint32-c-0x0000ffff">#define SOCKET_IN_CLASSB_HOST UINT32_C(0x0000ffff)</a></li>
+<li><a class="reference internal" href="#define-socket-in-classb-max-65536">#define SOCKET_IN_CLASSB_MAX 65536</a></li>
+<li><a class="reference internal" href="#define-socket-in-classc-rts-ui32-i-uint32-c-0xe0000000-uint32-c-0xc0000000">#define SOCKET_IN_CLASSC (((RTS_UI32)(i) &amp; UINT32_C(0xe0000000)) == UINT32_C(0xc0000000))</a></li>
+<li><a class="reference internal" href="#define-socket-in-classc-net-uint32-c-0xffffff00">#define SOCKET_IN_CLASSC_NET UINT32_C(0xffffff00)</a></li>
+<li><a class="reference internal" href="#define-socket-in-classc-nshift-8">#define SOCKET_IN_CLASSC_NSHIFT 8</a></li>
+<li><a class="reference internal" href="#define-socket-in-classc-host-uint32-c-0x000000ff">#define SOCKET_IN_CLASSC_HOST UINT32_C(0x000000ff)</a></li>
+<li><a class="reference internal" href="#define-socket-inaddr-any-uint32-c-0x00000000">#define SOCKET_INADDR_ANY UINT32_C(0x00000000)</a></li>
+<li><a class="reference internal" href="#define-socket-inaddr-loopback-uint32-c-0x7f000001">#define SOCKET_INADDR_LOOPBACK UINT32_C(0x7f000001)</a></li>
+<li><a class="reference internal" href="#define-socket-inaddr-broadcast-uint32-c-0xffffffff">#define SOCKET_INADDR_BROADCAST UINT32_C(0xffffffff)</a></li>
+<li><a class="reference internal" href="#define-socket-inaddr-none-uint32-c-0xffffffff">#define SOCKET_INADDR_NONE UINT32_C(0xffffffff)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_socket_itf___socketclasshandling.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="socket-class-handling">
+<span id="group-sys-socket-itf-socketclasshandling"></span><h1>Socket class handling<a class="headerlink" href="#socket-class-handling" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1ga9760d2fe9d74d9c11a049a1d7daccaa2"><span class="std std-ref">SOCKET_IN_CLASSA</span></a> (((RTS_UI32)(i) &amp; UINT32_C(0x80000000)) == 0)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1ga8b6369d637d0144a60b5efa397ee3774"><span class="std std-ref">SOCKET_IN_CLASSA_NET</span></a> UINT32_C(0xff000000)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1ga3d85d14ac41468d4cf2a9d73fd9f96dc"><span class="std std-ref">SOCKET_IN_CLASSA_NSHIFT</span></a> 24</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1ga9b9414d84499d3a3bd80c07d52a38841"><span class="std std-ref">SOCKET_IN_CLASSA_HOST</span></a> UINT32_C(0x00ffffff)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1ga949cd0ceed0b68725091b70c92e7d9b6"><span class="std std-ref">SOCKET_IN_CLASSA_MAX</span></a> 128</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1ga9fe593e70fa988c6247c9f324e4aceb9"><span class="std std-ref">SOCKET_IN_CLASSB</span></a> (((RTS_UI32)(i) &amp; UINT32_C(0xc0000000)) == UINT32_C(0x80000000))</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1gaef54300cf1fa576587311eaa60ce2556"><span class="std std-ref">SOCKET_IN_CLASSB_NET</span></a> UINT32_C(0xffff0000)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1gae7c0a1ba50e357a0623083f30fd293a2"><span class="std std-ref">SOCKET_IN_CLASSB_NSHIFT</span></a> 16</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1gab1ea4edf1896eaaa9f45aca544ebd690"><span class="std std-ref">SOCKET_IN_CLASSB_HOST</span></a> UINT32_C(0x0000ffff)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1ga3ee4e191d763373e00d5a48af41a233b"><span class="std std-ref">SOCKET_IN_CLASSB_MAX</span></a> 65536</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1ga7c93069166fda650699d49185c50c866"><span class="std std-ref">SOCKET_IN_CLASSC</span></a> (((RTS_UI32)(i) &amp; UINT32_C(0xe0000000)) == UINT32_C(0xc0000000))</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1ga21ac796ff258dfe46e99747cfaf21450"><span class="std std-ref">SOCKET_IN_CLASSC_NET</span></a> UINT32_C(0xffffff00)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1gada66517ad79b8e1e1ac0fed2d4cf42e3"><span class="std std-ref">SOCKET_IN_CLASSC_NSHIFT</span></a> 8</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1ga31d51628464864dabfbcaba849b470db"><span class="std std-ref">SOCKET_IN_CLASSC_HOST</span></a> UINT32_C(0x000000ff)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1ga0405dbe0dacf7d992ebb6bf866792610"><span class="std std-ref">SOCKET_INADDR_ANY</span></a> UINT32_C(0x00000000)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1gaa4c029302bea75b89beeed7d426b4779"><span class="std std-ref">SOCKET_INADDR_LOOPBACK</span></a> UINT32_C(0x7f000001)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1gad1aa55f6d0c076f2dafd7b8283c255fa"><span class="std std-ref">SOCKET_INADDR_BROADCAST</span></a> UINT32_C(0xffffffff)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-socketclasshandling-1gab8e10fb944213240a8a9a01a327e4b8f"><span class="std std-ref">SOCKET_INADDR_NONE</span></a> UINT32_C(0xffffffff)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-socket-itf-socketclasshandling-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-socket-in-classa-rts-ui32-i-uint32-c-0x80000000-0">
+<span id="group-sys-socket-itf-socketclasshandling-1ga9760d2fe9d74d9c11a049a1d7daccaa2"></span><h3>#define SOCKET_IN_CLASSA (((RTS_UI32)(i) &amp; UINT32_C(0x80000000)) == 0)<a class="headerlink" href="#define-socket-in-classa-rts-ui32-i-uint32-c-0x80000000-0" title="Permalink to this headline">¶</a></h3>
+<p>Definitions of bits in internet address integers. On subnets, the decomposition of addresses to host and net parts is done according to subnet mask, not the masks here.</p>
+</div>
+<div class="section" id="define-socket-in-classa-net-uint32-c-0xff000000">
+<span id="group-sys-socket-itf-socketclasshandling-1ga8b6369d637d0144a60b5efa397ee3774"></span><h3>#define SOCKET_IN_CLASSA_NET UINT32_C(0xff000000)<a class="headerlink" href="#define-socket-in-classa-net-uint32-c-0xff000000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-in-classa-nshift-24">
+<span id="group-sys-socket-itf-socketclasshandling-1ga3d85d14ac41468d4cf2a9d73fd9f96dc"></span><h3>#define SOCKET_IN_CLASSA_NSHIFT 24<a class="headerlink" href="#define-socket-in-classa-nshift-24" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-in-classa-host-uint32-c-0x00ffffff">
+<span id="group-sys-socket-itf-socketclasshandling-1ga9b9414d84499d3a3bd80c07d52a38841"></span><h3>#define SOCKET_IN_CLASSA_HOST UINT32_C(0x00ffffff)<a class="headerlink" href="#define-socket-in-classa-host-uint32-c-0x00ffffff" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-in-classa-max-128">
+<span id="group-sys-socket-itf-socketclasshandling-1ga949cd0ceed0b68725091b70c92e7d9b6"></span><h3>#define SOCKET_IN_CLASSA_MAX 128<a class="headerlink" href="#define-socket-in-classa-max-128" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-in-classb-rts-ui32-i-uint32-c-0xc0000000-uint32-c-0x80000000">
+<span id="group-sys-socket-itf-socketclasshandling-1ga9fe593e70fa988c6247c9f324e4aceb9"></span><h3>#define SOCKET_IN_CLASSB (((RTS_UI32)(i) &amp; UINT32_C(0xc0000000)) == UINT32_C(0x80000000))<a class="headerlink" href="#define-socket-in-classb-rts-ui32-i-uint32-c-0xc0000000-uint32-c-0x80000000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-in-classb-net-uint32-c-0xffff0000">
+<span id="group-sys-socket-itf-socketclasshandling-1gaef54300cf1fa576587311eaa60ce2556"></span><h3>#define SOCKET_IN_CLASSB_NET UINT32_C(0xffff0000)<a class="headerlink" href="#define-socket-in-classb-net-uint32-c-0xffff0000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-in-classb-nshift-16">
+<span id="group-sys-socket-itf-socketclasshandling-1gae7c0a1ba50e357a0623083f30fd293a2"></span><h3>#define SOCKET_IN_CLASSB_NSHIFT 16<a class="headerlink" href="#define-socket-in-classb-nshift-16" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-in-classb-host-uint32-c-0x0000ffff">
+<span id="group-sys-socket-itf-socketclasshandling-1gab1ea4edf1896eaaa9f45aca544ebd690"></span><h3>#define SOCKET_IN_CLASSB_HOST UINT32_C(0x0000ffff)<a class="headerlink" href="#define-socket-in-classb-host-uint32-c-0x0000ffff" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-in-classb-max-65536">
+<span id="group-sys-socket-itf-socketclasshandling-1ga3ee4e191d763373e00d5a48af41a233b"></span><h3>#define SOCKET_IN_CLASSB_MAX 65536<a class="headerlink" href="#define-socket-in-classb-max-65536" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-in-classc-rts-ui32-i-uint32-c-0xe0000000-uint32-c-0xc0000000">
+<span id="group-sys-socket-itf-socketclasshandling-1ga7c93069166fda650699d49185c50c866"></span><h3>#define SOCKET_IN_CLASSC (((RTS_UI32)(i) &amp; UINT32_C(0xe0000000)) == UINT32_C(0xc0000000))<a class="headerlink" href="#define-socket-in-classc-rts-ui32-i-uint32-c-0xe0000000-uint32-c-0xc0000000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-in-classc-net-uint32-c-0xffffff00">
+<span id="group-sys-socket-itf-socketclasshandling-1ga21ac796ff258dfe46e99747cfaf21450"></span><h3>#define SOCKET_IN_CLASSC_NET UINT32_C(0xffffff00)<a class="headerlink" href="#define-socket-in-classc-net-uint32-c-0xffffff00" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-in-classc-nshift-8">
+<span id="group-sys-socket-itf-socketclasshandling-1gada66517ad79b8e1e1ac0fed2d4cf42e3"></span><h3>#define SOCKET_IN_CLASSC_NSHIFT 8<a class="headerlink" href="#define-socket-in-classc-nshift-8" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-in-classc-host-uint32-c-0x000000ff">
+<span id="group-sys-socket-itf-socketclasshandling-1ga31d51628464864dabfbcaba849b470db"></span><h3>#define SOCKET_IN_CLASSC_HOST UINT32_C(0x000000ff)<a class="headerlink" href="#define-socket-in-classc-host-uint32-c-0x000000ff" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-inaddr-any-uint32-c-0x00000000">
+<span id="group-sys-socket-itf-socketclasshandling-1ga0405dbe0dacf7d992ebb6bf866792610"></span><h3>#define SOCKET_INADDR_ANY UINT32_C(0x00000000)<a class="headerlink" href="#define-socket-inaddr-any-uint32-c-0x00000000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-inaddr-loopback-uint32-c-0x7f000001">
+<span id="group-sys-socket-itf-socketclasshandling-1gaa4c029302bea75b89beeed7d426b4779"></span><h3>#define SOCKET_INADDR_LOOPBACK UINT32_C(0x7f000001)<a class="headerlink" href="#define-socket-inaddr-loopback-uint32-c-0x7f000001" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-inaddr-broadcast-uint32-c-0xffffffff">
+<span id="group-sys-socket-itf-socketclasshandling-1gad1aa55f6d0c076f2dafd7b8283c255fa"></span><h3>#define SOCKET_INADDR_BROADCAST UINT32_C(0xffffffff)<a class="headerlink" href="#define-socket-inaddr-broadcast-uint32-c-0xffffffff" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-socket-inaddr-none-uint32-c-0xffffffff">
+<span id="group-sys-socket-itf-socketclasshandling-1gab8e10fb944213240a8a9a01a327e4b8f"></span><h3>#define SOCKET_INADDR_NONE UINT32_C(0xffffffff)<a class="headerlink" href="#define-socket-inaddr-none-uint32-c-0xffffffff" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

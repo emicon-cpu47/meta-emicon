@@ -1,0 +1,470 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_flash_itf:
+
+===========
+SysFlashItf
+===========
+
+Interface of SysFlash. :ref:`More... <group___sys_flash_itf-details>`
+
+Modules
+-------
+
+- :ref:`Settings <group___sys_flash_itf___settings>`
+
+Data Structures
+---------------
+
+- struct :ref:`ISysFlash_C <struct_i_sys_flash___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_SysFlash <group___sys_flash_itf_1gad98347a44879f880ca649f97934fed34>`
+
+- #define :ref:`EXTITF_SysFlash <group___sys_flash_itf_1ga5fc3ff2d8067e4738c18823cfb9732a6>`
+
+Typedefs
+--------
+
+- typedef :ref:`ISysFlash_C <struct_i_sys_flash___c>` :ref:`ISysFlash <group___sys_flash_itf_1ga777a60308a85d8ff0f0c1d4f1ab5d862>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysFlashInit <group___sys_flash_itf_1ga35fbff0ae7e4a8e206b57b89d4277e58>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa)
+
+- RTS_RESULT :ref:`SysFlashErase <group___sys_flash_itf_1gae5d531621146c84a4da162ea1f07175b>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+
+- RTS_RESULT :ref:`SysFlashRead <group___sys_flash_itf_1ga26f8bf1c7020cf6001a923599e72531c>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa, char * pcDest, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+
+- RTS_RESULT :ref:`SysFlashWrite <group___sys_flash_itf_1ga7f6f843ecfa4d0a430cfea4c5b0c7dc0>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa, char * pcSource, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+
+- RTS_RESULT :ref:`SysFlashFlush <group___sys_flash_itf_1gaf63efee5ecd81889352162c5d8dc4ca3>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+
+- RTS_UINTPTR :ref:`SysFlashGetPhysicalAddress <group___sys_flash_itf_1gada6709acd984a4eed5308a522d085936>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`SysFlashGetSize <group___sys_flash_itf_1ga30d51584eebad5d2d74dfec73c34bc08>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysFlashErase_ <group___sys_flash_itf_1ga21fd79f255440888df20a0a73f181d87>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+
+- RTS_RESULT :ref:`SysFlashRead_ <group___sys_flash_itf_1gaf5c5962662e1806888cfb0e624afee97>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa, char * pcDest, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+
+- RTS_RESULT :ref:`SysFlashWrite_ <group___sys_flash_itf_1ga0e9c7a6ca1e7ac2637fae386cd4b84bd>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa, char * pcSource, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+
+- RTS_RESULT :ref:`SysFlashFlush_ <group___sys_flash_itf_1gaf4cc69f895ad17f6e6a7b31a4c290396>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+
+.. _group___sys_flash_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysFlash.
+
+The SysFlash interface is projected to get access to flash memory of a controller. It has to be adpated to your flash.
+
+There are functions to read and write to flash memory. It is used by some implementations of the file component (SysFileFlash) to store some files in flash, and by the application component for execution of user code in flash. The SysFlash Component divides two different kinds of flash areas: FA_CODE and FA_FILE. FA_FILE is only needed, if SysFileFlash is used. Please see further description for SysFileFlash and our Flash-Filesystem. Please note that the offsets of the files have to correspond with sector borders of the flash. One file should be stored in one sector.
+
+There is also the possibility to use more than one code area in the project and to move the application code between those areas. The OEM SysFlash implementation should then check the offset parameter and decide, which of the flash areas should be modified then. When the offset parameter is bigger than the first code area for example, then the second code area should be accessed.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_flash_itf_1gad98347a44879f880ca649f97934fed34:
+
+#define ITF_SysFlash
+^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_flash_itf_1ga5fc3ff2d8067e4738c18823cfb9732a6:
+
+#define EXTITF_SysFlash
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_flash_itf_1ga777a60308a85d8ff0f0c1d4f1ab5d862:
+
+typedef ISysFlash_C ISysFlash
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_flash_itf_1ga35fbff0ae7e4a8e206b57b89d4277e58:
+
+RTS_RESULT SysFlashInit (FlashArea fa)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Init the flash system
+
+**Parameters**
+
++---------+----+---------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE] |
++---------+----+---------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+------------------------------------+
+| ERR_OK            | Flash init was successful          |
++-------------------+------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported |
++-------------------+------------------------------------+
+| ERR_FAILED        | Flash could not be initialized     |
++-------------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_flash_itf_1gae5d531621146c84a4da162ea1f07175b:
+
+RTS_RESULT SysFlashErase (FlashArea fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Erases a block of flash memory. You must erase a flash area before writing to it. This function is implemented in the generic part of SysFlash and splits up the block to erase in several smaller pieces with the maximum size of EraseBlockSize. For each piece :ref:`SysFlashErase_() <group___sys_flash_itf_1ga21fd79f255440888df20a0a73f181d87>` and the CommCycleHook is called, to keep the rest of the RTS also on single-tasking systems alive.
+
+**Parameters**
+
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa       | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]                                                        |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulSize   | Size of flash area to erase RANGE=[0,VALID_FLASH_SIZE,INVALID_FLASH_SIZE]                                                                                                        |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulOffset | Offset of flash area to erase. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET] |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+------------------------------------+
+| ERR_OK            | Flash erase was successful         |
++-------------------+------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported |
++-------------------+------------------------------------+
+| ERR_PARAMETER     | size or offset wrong               |
++-------------------+------------------------------------+
+| ERR_FAILED        | Flash could not be erased          |
++-------------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_flash_itf_1ga26f8bf1c7020cf6001a923599e72531c:
+
+RTS_RESULT SysFlashRead (FlashArea fa, char *pcDest, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Reads a block of memory from the flash. This function is implemented in the generic part of SysFlash and splits up the block to read in several smaller pieces with the maximum size of ReadBlockSize. For each piece :ref:`SysFlashRead_() <group___sys_flash_itf_1gaf5c5962662e1806888cfb0e624afee97>` and the CommCycleHook is called, to keep the rest of the RTS also on single-tasking systems alive.
+
+**Parameters**
+
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa       | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]                                                            |
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pcDest   | Pointer to buffer that receives the data RANGE=[0,INVALID_DEST_BUFFER,VALID_DEST_BUFFER]                                                                                             |
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulSize   | Size of the buffer RANGE=[0,VALID_BUFFER_SIZE,INVALID_BUFFER_SIZE]                                                                                                                   |
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulOffset | Offset of flash area to read from. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET] |
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+-------------------------------------+
+| ERR_OK            | Flash read was successful           |
++-------------------+-------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported  |
++-------------------+-------------------------------------+
+| ERR_PARAMETER     | pcDest,size or offset wrong or null |
++-------------------+-------------------------------------+
+| ERR_FAILED        | Flash could not be read             |
++-------------------+-------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_flash_itf_1ga7f6f843ecfa4d0a430cfea4c5b0c7dc0:
+
+RTS_RESULT SysFlashWrite (FlashArea fa, char *pcSource, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Writes a block of data to the flash. The flash area has to be erased first with SysFlashErase. This function is implemented in the generic part of SysFlash and splits up the block to write in several smaller pieces with the maximum size of WriteBlockSize. For each piece :ref:`SysFlashWrite() <group___sys_file_flash_dep_1ga6c58f02fa7feb4f5954f2d5c7a06790a>` and the CommCycleHook is called, to keep the rest of the RTS also on single-tasking systems alive.
+
+**Parameters**
+
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa       | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]                                                           |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pcSource | Pointer to buffer that contains the data RANGE=[0,INVALID_SRC_BUFFER,VALID_SRC_BUFFER]                                                                                              |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulSize   | Size of the buffer RANGE=[0,VALID_BUFFER_SIZE,INVALID_BUFFER_SIZE]                                                                                                                  |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulOffset | Offset of flash area to write to. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET] |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+------------------------------------+
+| ERR_OK            | Flash read was successful          |
++-------------------+------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported |
++-------------------+------------------------------------+
+| ERR_PARAMETER     | pcSrc,size or offset wrong or null |
++-------------------+------------------------------------+
+| ERR_FAILED        | Flash could not be read            |
++-------------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_flash_itf_1gaf63efee5ecd81889352162c5d8dc4ca3:
+
+RTS_RESULT SysFlashFlush (FlashArea fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called when a file that was opened for writing is closed. This function is implemented in the generic part of SysFlash and splits up the block to flush in several smaller pieces with the maximum size of FlushBlockSize. For each piece :ref:`SysFlashFlush() <group___cmp_s_i_l2_dep_1gaddabb7abfe91a62e73c3c8b36407cb02>` and the CommCycleHook is called, to keep the rest of the RTS also on single-tasking systems alive.
+
+**Parameters**
+
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa       | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]                                                           |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulSize   | Size of the buffer RANGE=[0,VALID_BUFFER_SIZE,INVALID_BUFFER_SIZE]                                                                                                                  |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulOffset | Offset of flash area to write to. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET] |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+------------------------------------+
+| ERR_OK            | Flash flush was successful         |
++-------------------+------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported |
++-------------------+------------------------------------+
+| ERR_PARAMETER     | size or offset wrong or null       |
++-------------------+------------------------------------+
+| ERR_FAILED        | Flash could not be flushed         |
++-------------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_flash_itf_1gada6709acd984a4eed5308a522d085936:
+
+RTS_UINTPTR SysFlashGetPhysicalAddress (FlashArea fa, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve the physical address of a flash area
+
+**Parameters**
+
++---------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa                  | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]                                                                                                                                                                 |
++---------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bWriteFlashPattern  | ***PSEUDO*** A pattern was written to the flash, using :ref:`SysFlashWrite() <group___sys_file_flash_dep_1ga6c58f02fa7feb4f5954f2d5c7a06790a>` , before the call to :ref:`SysFlashGetPhysicalAddress() <group___cmp_s_i_l2_dep_1gaa1b55ce64358b59fe5fa20c2acb4c307>` . RANGE=[TRUE,FALSE] |
++---------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bWriteMemoryPattern | ***PSEUDO*** A pattern was written to the flash, using direct memory access, before the call to :ref:`SysFlashGetPhysicalAddress() <group___cmp_s_i_l2_dep_1gaa1b55ce64358b59fe5fa20c2acb4c307>` . RANGE=[TRUE,FALSE]                                                                     |
++---------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bFlashFlush         | ***PSEUDO*** :ref:`SysFlashFlush() <group___cmp_s_i_l2_dep_1gaddabb7abfe91a62e73c3c8b36407cb02>` was called before the call to :ref:`SysFlashGetPhysicalAddress() <group___cmp_s_i_l2_dep_1gaa1b55ce64358b59fe5fa20c2acb4c307>` . RANGE=[TRUE,FALSE]                                      |
++---------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | bExceptionGenerated | ***PSEUDO*** An exception was generated. RANGE=[TRUE,FALSE]                                                                                                                                                                                                                               |
++---------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | bPatternExists      | ***PSEUDO*** The pattern could be read, using standard memory access. RANGE=[TRUE,FALSE]                                                                                                                                                                                                  |
++---------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult             | Pointer to error code                                                                                                                                                                                                                                                                     |
++---------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+---------------------------------------+
+| ERR_OK            | Startaddress was successful retrieved |
++-------------------+---------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported    |
++-------------------+---------------------------------------+
+| ERR_FAILED        | Startaddress could not be retrieved   |
++-------------------+---------------------------------------+
+
+**Returns:**
+
+Physical address of flash area
+
+.. _group___sys_flash_itf_1ga30d51584eebad5d2d74dfec73c34bc08:
+
+RTS_SIZE SysFlashGetSize (FlashArea fa, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve the size of a flash area
+
+**Parameters**
+
++---------+---------+---------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa      | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE] |
++---------+---------+---------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to error code                                                                                                     |
++---------+---------+---------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+------------------------------------+
+| ERR_OK            | Flashsize was successful retrieved |
++-------------------+------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported |
++-------------------+------------------------------------+
+| ERR_FAILED        | Flashsize could not be retrieved   |
++-------------------+------------------------------------+
+
+**Returns:**
+
+Size of flash area
+
+.. _group___sys_flash_itf_1ga21fd79f255440888df20a0a73f181d87:
+
+RTS_RESULT SysFlashErase_ (FlashArea fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Erases a block of flash memory. You must erase a flash area before writing to it. The content of the flash area should be erased with 0 or ff. Must be implemented in the OS-specific part of SysFlash. Should only be called by :ref:`SysFlashErase() <group___sys_file_flash_dep_1ga4ef94685910f68891bf00950d634bf3d>` .
+
+**Parameters**
+
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa       | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]                                                        |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulSize   | Size of flash area to erase RANGE=[0,VALID_BUFFER_SIZE,INVALID_BUFFER_SIZE]                                                                                                      |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulOffset | Offset of flash area to erase. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET] |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+------------------------------------+
+| ERR_OK            | Flash was successfully erased      |
++-------------------+------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported |
++-------------------+------------------------------------+
+| ERR_PARAMETER     | Size or Offset is not correct      |
++-------------------+------------------------------------+
+| ERR_FAILED        | Flash could not be erased          |
++-------------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_flash_itf_1gaf5c5962662e1806888cfb0e624afee97:
+
+RTS_RESULT SysFlashRead_ (FlashArea fa, char *pcDest, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Reads a block of memory from the flash. Must be implemented in the OS-specific part of SysFlash. Should only be called by :ref:`SysFlashRead() <group___sys_file_flash_dep_1ga906fe18f2fa683d9b6272ef5d031dc03>` .
+
+**Parameters**
+
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa       | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]                                                            |
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pcDest   | Pointer to buffer that receives the data RANGE=[0,INVALID_DEST_BUFFER,VALID_DEST_BUFFER]                                                                                             |
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulSize   | Size of the buffer RANGE=[0,VALID_BUFFER_SIZE,INVALID_BUFFER_SIZE]                                                                                                                   |
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulOffset | Offset of flash area to read from. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET] |
++---------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+------------------------------------+
+| ERR_OK            | Flash was successfully read        |
++-------------------+------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported |
++-------------------+------------------------------------+
+| ERR_PARAMETER     | Size or Offset is not correct      |
++-------------------+------------------------------------+
+| ERR_FAILED        | Flash could not be read            |
++-------------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_flash_itf_1ga0e9c7a6ca1e7ac2637fae386cd4b84bd:
+
+RTS_RESULT SysFlashWrite_ (FlashArea fa, char *pcSource, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Writes a block of data to the flash. The flash area has to be erased first with SysFlashErase. Must be implemented in the OS-specific part of SysFlash. Should only be called by :ref:`SysFlashWrite() <group___sys_file_flash_dep_1ga6c58f02fa7feb4f5954f2d5c7a06790a>` .
+
+**Parameters**
+
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa       | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]                                                           |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pcSource | Pointer to buffer that contains the data RANGE=[0,INVALID_SRC_BUFFER,VALID_SRC_BUFFER]                                                                                              |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulSize   | Size of the buffer RANGE=[0,VALID_BUFFER_SIZE,INVALID_BUFFER_SIZE]                                                                                                                  |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulOffset | Offset of flash area to write to. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET] |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+------------------------------------+
+| ERR_OK            | Flash was successfully written     |
++-------------------+------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported |
++-------------------+------------------------------------+
+| ERR_PARAMETER     | Size or Offset is not correct      |
++-------------------+------------------------------------+
+| ERR_FAILED        | Flash could not be written         |
++-------------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_flash_itf_1gaf4cc69f895ad17f6e6a7b31a4c290396:
+
+RTS_RESULT SysFlashFlush_ (FlashArea fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called when a file that was opened for writing is closed. Normally, this function can be left empty. It can be useful, if the data is not written to flash directly, but buffered in RAM. The call of this function indicates that the file is closed and the data has to be written to flash. Must be implemented in the OS-specific part of SysFlash. Should only be called by :ref:`SysFlashFlush() <group___cmp_s_i_l2_dep_1gaddabb7abfe91a62e73c3c8b36407cb02>` .
+
+**Parameters**
+
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa       | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]                                                           |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulSize   | Size of the buffer RANGE=[0,VALID_BUFFER_SIZE,INVALID_BUFFER_SIZE]                                                                                                                  |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulOffset | Offset of flash area to write to. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET] |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+------------------------------------+
+| ERR_OK            | Flash was successfully flushed     |
++-------------------+------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported |
++-------------------+------------------------------------+
+| ERR_PARAMETER     | Size or Offset is not correct      |
++-------------------+------------------------------------+
+| ERR_FAILED        | Flash could not be flushed         |
++-------------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

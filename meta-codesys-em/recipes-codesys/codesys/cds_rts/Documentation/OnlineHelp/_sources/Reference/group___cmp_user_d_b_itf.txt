@@ -1,0 +1,1271 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_user_d_b_itf:
+
+============
+CmpUserDBItf
+============
+
+Interface of CmpUserDB. :ref:`More... <group___cmp_user_d_b_itf-details>`
+
+Modules
+-------
+
+- :ref:`Event parameter <group___cmp_user_d_b_itf___eventparameter>`
+
+- :ref:`Events <group___cmp_user_d_b_itf___events>`
+
+- :ref:`Predefined user groups <group___cmp_user_d_b_itf___predefinedusergroups>`
+
+- :ref:`Predefined users <group___cmp_user_d_b_itf___predefinedusers>`
+
+- :ref:`Static defines <group___cmp_user_d_b_itf___staticdefines>`
+
+- :ref:`Union to store the cleartext password or a password hash optional <group___cmp_user_d_b_itf___uniontostorethecleartextpasswordorapasswordhashoptional>`
+
+- :ref:`User database entry <group___cmp_user_d_b_itf___userdatabaseentry>`
+
+- :ref:`User group database entry <group___cmp_user_d_b_itf___usergroupdatabaseentry>`
+
+- :ref:`User rights <group___cmp_user_d_b_itf___userrights>`
+
+- :ref:`UserDB properties <group___cmp_user_d_b_itf___user_d_bproperties>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpUserDB_C <struct_i_cmp_user_d_b___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpUserDB <group___cmp_user_d_b_itf_1gabb53395a6a984a913f911edb18b6ec1b>`
+
+- #define :ref:`EXTITF_CmpUserDB <group___cmp_user_d_b_itf_1ga8b7950f1d381f98051d500246a570700>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpUserDB_C <struct_i_cmp_user_d_b___c>` :ref:`ICmpUserDB <group___cmp_user_d_b_itf_1gacfbe54e170156b44b8a61ff41bfdb230>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`UserDBIsConfigurable <group___cmp_user_d_b_itf_1ga4c9bb0711591572563938429d3765354>` (RTS_UI32 * pulPropertyUsers, RTS_UI32 * pulPropertyGroups)
+
+- RTS_RESULT :ref:`UserDBLoad <group___cmp_user_d_b_itf_1ga42f257e1b934bdc47d2433ed1b332e15>` (void)
+
+- RTS_RESULT :ref:`UserDBStore <group___cmp_user_d_b_itf_1ga18dde7305e7f9854825bfa986904df41>` (void)
+
+- RTS_RESULT :ref:`UserDBRelease <group___cmp_user_d_b_itf_1ga1ee2c04f93ab8aaddb33ecc80c49cdf7>` (void)
+
+- RTS_HANDLE :ref:`UserDBAdd <group___cmp_user_d_b_itf_1gafea5dcd6b7a34019bf034eea04951808>` (char * pszUser, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBRemove <group___cmp_user_d_b_itf_1gaa8d91d5c6560bf90c6eca398f3d50360>` (RTS_HANDLE hUser)
+
+- RTS_RESULT :ref:`UserDBSetPassword <group___cmp_user_d_b_itf_1ga44ddbe364e7d74d7854acaf7f42ddc72>` (RTS_HANDLE hUser, char * pszPassword)
+
+- RTS_RESULT :ref:`UserDBGetPasswordMD5 <group___cmp_user_d_b_itf_1ga7e88c897cbf2fa1b99d3f251c5815a8c>` (RTS_HANDLE hUser, unsigned char * pbyPasswordMD5, int * piMaxLen)
+
+- RTS_RESULT :ref:`UserDBSetPasswordMD5 <group___cmp_user_d_b_itf_1ga54f0191b2e375c6ad21f826f664c62c0>` (RTS_HANDLE hUser, unsigned char * pbyPasswordMD5, int * piMaxLen)
+
+- RTS_RESULT :ref:`UserDBSetProperty <group___cmp_user_d_b_itf_1ga9bad26c173acb05c79cd7fa80b05b14b>` (RTS_HANDLE hUser, RTS_UI32 ulProperty)
+
+- RTS_HANDLE :ref:`UserDBGetFirst <group___cmp_user_d_b_itf_1gad945d309b83a82294517242a8e7f3557>` (RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGetNext <group___cmp_user_d_b_itf_1gac0d58351305afe299d1c6eea2533ca8b>` (RTS_HANDLE hPrevUser, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBOpen <group___cmp_user_d_b_itf_1gaa78bb481b3f3548dd2ffe5f91becf683>` (char * pszUser, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBClose <group___cmp_user_d_b_itf_1gae62c1d3f39df8506c441ae6a3106eb40>` (RTS_HANDLE hUser)
+
+- RTS_RESULT :ref:`UserDBGetName <group___cmp_user_d_b_itf_1ga621695714b63963d6f28a43ee598cfec>` (RTS_HANDLE hUser, char * pszUser, int * piMaxLen)
+
+- RTS_RESULT :ref:`UserDBGetProperty <group___cmp_user_d_b_itf_1ga47236fcee7c6865e762d7f70a54a6ac7>` (RTS_HANDLE hUser, RTS_UI32 * pulProperty)
+
+- RTS_RESULT :ref:`UserDBCheckPassword <group___cmp_user_d_b_itf_1ga97c12727fe2bc03b857aed0749c67ea7>` (RTS_HANDLE hUser, char * pszPassword)
+
+- RTS_HANDLE :ref:`UserDBGetFirstGroup <group___cmp_user_d_b_itf_1gaae875907da955eb486c104c6df2a5a8b>` (RTS_HANDLE hUser, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGetNextGroup <group___cmp_user_d_b_itf_1ga7e9cd0425a047f653badde2dd1500db4>` (RTS_HANDLE hUser, RTS_HANDLE hPrevGroup, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGroupAdd <group___cmp_user_d_b_itf_1ga310c3ae23d02c9ea8d072c2bb27fca34>` (char * pszGroup, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBGroupRemove <group___cmp_user_d_b_itf_1ga53eb2ead2c70472e1aaedb46519fa899>` (RTS_HANDLE hGroup)
+
+- RTS_RESULT :ref:`UserDBGroupAddUser <group___cmp_user_d_b_itf_1ga592f6109f59dd2334bdea684bbed611e>` (RTS_HANDLE hGroup, RTS_HANDLE hUser)
+
+- RTS_RESULT :ref:`UserDBGroupRemoveUser <group___cmp_user_d_b_itf_1gab2fafe4f1859e282428a8bd923f24c81>` (RTS_HANDLE hGroup, RTS_HANDLE hUser)
+
+- RTS_RESULT :ref:`UserDBGroupSetProperty <group___cmp_user_d_b_itf_1ga71b472bc0cd6c9b6b85160aa05860454>` (RTS_HANDLE hGroup, RTS_UI32 ulProperty)
+
+- RTS_RESULT :ref:`UserDBGroupAddMember <group___cmp_user_d_b_itf_1ga20afb4d486b5e13ed81c0ab99dd4a7a0>` (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)
+
+- RTS_RESULT :ref:`UserDBGroupRemoveMember <group___cmp_user_d_b_itf_1gaf5075c4df9d39a576bf3a295f3098fe5>` (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)
+
+- RTS_RESULT :ref:`UserDBEnforce <group___cmp_user_d_b_itf_1gac4650a1183375bec8ab92f855a659e19>` (void)
+
+- RTS_HANDLE :ref:`UserDBGroupGetFirst <group___cmp_user_d_b_itf_1gadf2c07b5c0a8633f1d19631c674f31c7>` (RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGroupGetNext <group___cmp_user_d_b_itf_1ga330560f782f1357476d13600beec6dfe>` (RTS_HANDLE hPrevGroup, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGroupOpen <group___cmp_user_d_b_itf_1gaadc1b6e4555a5bdbc95a57e90793ce67>` (char * pszGroup, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBGroupClose <group___cmp_user_d_b_itf_1ga2bd36eb02e92b555783cb80dcddc03cd>` (RTS_HANDLE hGroup)
+
+- RTS_RESULT :ref:`UserDBGroupGetName <group___cmp_user_d_b_itf_1gaa369c57d9fbd1bb2e377b4a827559819>` (RTS_HANDLE hGroup, char * pszGroup, int * piMaxLen)
+
+- RTS_RESULT :ref:`UserDBGroupGetProperty <group___cmp_user_d_b_itf_1ga1fbd5d0a7d55623bbd65d073b31e3668>` (RTS_HANDLE hGroup, RTS_UI32 * pulProperty)
+
+- RTS_RESULT :ref:`UserDBGroupHasUser <group___cmp_user_d_b_itf_1gaf35118fab9a262b7b12e3d14e8c7dcea>` (RTS_HANDLE hGroup, RTS_HANDLE hUser)
+
+- RTS_HANDLE :ref:`UserDBGroupGetFirstUser <group___cmp_user_d_b_itf_1ga8a833a1d5bdff8bb593a331a70da690b>` (RTS_HANDLE hGroup, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGroupGetNextUser <group___cmp_user_d_b_itf_1gabea7ead32f191a299f9e9ff9dee71c3f>` (RTS_HANDLE hGroup, RTS_HANDLE hPrevUser, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBGroupHasMember <group___cmp_user_d_b_itf_1ga9f4db2b4c2e026cfb3b40ca067a2b074>` (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)
+
+- RTS_HANDLE :ref:`UserDBGroupGetFirstMember <group___cmp_user_d_b_itf_1ga14c27328dcfd923c2fd0848f3ab7e6d2>` (RTS_HANDLE hGroup, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGroupGetNextMember <group___cmp_user_d_b_itf_1ga524e5d7e9db408eb950fbc5488f631ea>` (RTS_HANDLE hGroup, RTS_HANDLE hPrevGroupMember, RTS_RESULT * pResult)
+
+.. _group___cmp_user_d_b_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpUserDB.
+
+Interface for the user management database. Two different kinds of user management items must be stored:
+
+1. Users + Groups: Here you have to store all users with their credentials and their property flags, additionally all user groups with all assigned users and the usergroup property flags.
+
+Example:
+
+- User: Name = "MyUser"; Password = [password in a safe hash]; Property = 0x....
+
+- UserGroup: Name = "Administrator"; UserMembers = "MyUser", "..."; Property = 0x....
+
+2. User Rights: Here you have to store the tree of all objects of the runtime system with their assigned usergroups and the configured rights on it.
+
+Example:
+
+- Object: Name = "Device"; UserGroup = "Administator" | Rights = USERDB_RIGHT_ALL | DeniedRights = USERDB_RIGHT_NONE; UserGroup = "..." | Rights = ... | DeniedRights = ...; ...
+
+- Object: Name = "Device.MyObject"; UserGroup = "Administator" | Rights = USERDB_RIGHT_ALL | DeniedRights = USERDB_RIGHT_NONE; UserGroup = "..." | Rights = ... | DeniedRights = ...; ...
+
+For details see :ref:`CmpUserMgrItf.h <_cmp_user_mgr_itf_8h>` .
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. GmbH
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_user_d_b_itf_1gabb53395a6a984a913f911edb18b6ec1b:
+
+#define ITF_CmpUserDB
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_user_d_b_itf_1ga8b7950f1d381f98051d500246a570700:
+
+#define EXTITF_CmpUserDB
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_user_d_b_itf_1gacfbe54e170156b44b8a61ff41bfdb230:
+
+typedef ICmpUserDB_C ICmpUserDB
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_user_d_b_itf_1ga4c9bb0711591572563938429d3765354:
+
+RTS_RESULT UserDBIsConfigurable (RTS_UI32 *pulPropertyUsers, RTS_UI32 *pulPropertyGroups)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to check if users and usergroups database is configurable (not fix compiled)
+
+**Parameters**
+
++---------+-------------------+------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pulPropertyUsers  | Pointer to get the users property: USERDB_PROP_ALL = Users are configurable, USERDB_PROP_NONE = Users are not configurable         |
++---------+-------------------+------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pulPropertyGroups | Pointer to get the user groups property: USERDB_PROP_ALL = Groups are configurable, USERDB_PROP_NONE = Groups are not configurable |
++---------+-------------------+------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++------------+------------------------+
+| ERR_OK     | Succeeded              |
++------------+------------------------+
+| ERR_FAILED | Could not be retrieved |
++------------+------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga42f257e1b934bdc47d2433ed1b332e15:
+
+RTS_RESULT UserDBLoad (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Load the user database into memory
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------+
+| ERR_OK             | Succeeded                                    |
++--------------------+----------------------------------------------+
+| ERR_FAILED         | Error loading user database                  |
++--------------------+----------------------------------------------+
+| ERR_NOTIMPLEMENTED | Is not implemented perhaps the UserDB is fix |
++--------------------+----------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga18dde7305e7f9854825bfa986904df41:
+
+RTS_RESULT UserDBStore (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Storing the current user management into permanent database file
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------+
+| ERR_OK             | Succeeded                                    |
++--------------------+----------------------------------------------+
+| ERR_FAILED         | Error storing user database                  |
++--------------------+----------------------------------------------+
+| ERR_NOTIMPLEMENTED | Is not implemented perhaps the UserDB is fix |
++--------------------+----------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga1ee2c04f93ab8aaddb33ecc80c49cdf7:
+
+RTS_RESULT UserDBRelease (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Release user management in memory. NOTE: The database file is not removed!
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------+
+| ERR_OK             | Succeeded                                    |
++--------------------+----------------------------------------------+
+| ERR_FAILED         | Failed releasing user management             |
++--------------------+----------------------------------------------+
+| ERR_NOTIMPLEMENTED | Is not implemented perhaps the UserDB is fix |
++--------------------+----------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1gafea5dcd6b7a34019bf034eea04951808:
+
+RTS_HANDLE UserDBAdd (char *pszUser, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add a new user to the user database
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [in]    | pszUser | User name             |
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | User could be added                                            |
++--------------------+----------------------------------------------------------------+
+| ERR_DUPLICATE      | User already exists                                            |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Invalid parameter. pszUser = NULL or empty                     |
++--------------------+----------------------------------------------------------------+
+| ERR_NOMEMORY       | No memory available to store new user                          |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the added user or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_itf_1gaa8d91d5c6560bf90c6eca398f3d50360:
+
+RTS_RESULT UserDBRemove (RTS_HANDLE hUser)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove user from the user database
+
+**Parameters**
+
++---------+-------+--------------------+
+| [in]    | hUser | Handle to the user |
++---------+-------+--------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-----------------------+
+| ERR_OK        | User could be removed |
++---------------+-----------------------+
+| ERR_PARAMETER | Invalid user handle   |
++---------------+-----------------------+
+
+.. _group___cmp_user_d_b_itf_1ga44ddbe364e7d74d7854acaf7f42ddc72:
+
+RTS_RESULT UserDBSetPassword (RTS_HANDLE hUser, char *pszPassword)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set or overwrite the password credential of the user
+
+**Parameters**
+
++---------+-------------+----------------------------------+
+| [in]    | hUser       | Handle to the user               |
++---------+-------------+----------------------------------+
+| [in]    | pszPassword | Pointer to password in cleartext |
++---------+-------------+----------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-------------------------------------------+
+| ERR_OK        | Password could be set                     |
++---------------+-------------------------------------------+
+| ERR_PARAMETER | Invalid user handle or password = NULL    |
++---------------+-------------------------------------------+
+| ERR_DUPLICATE | The new and the old password are the same |
++---------------+-------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga7e88c897cbf2fa1b99d3f251c5815a8c:
+
+RTS_RESULT UserDBGetPasswordMD5 (RTS_HANDLE hUser, unsigned char *pbyPasswordMD5, int *piMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the password credential of the user
+
+**Parameters**
+
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+| [in]    | hUser          | Handle to the user                                                                                                 |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+| [in]    | pbyPasswordMD5 | Pointer to MD5 hash of the password                                                                                |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+| [inout] | piMaxLen       | Pointer to password MD5 hash length. If it is too short, needed length is returned if error code is ERR_BUFFERSIZE |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++----------------+-----------------------------------------------------------------------+
+| ERR_OK         | Password could be set                                                 |
++----------------+-----------------------------------------------------------------------+
+| ERR_PARAMETER  | Invalid user handle or piMaxLen = NULL                                |
++----------------+-----------------------------------------------------------------------+
+| ERR_BUFFERSIZE | If password buffer is too short. Needed length is returned inpiMaxLen |
++----------------+-----------------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga54f0191b2e375c6ad21f826f664c62c0:
+
+RTS_RESULT UserDBSetPasswordMD5 (RTS_HANDLE hUser, unsigned char *pbyPasswordMD5, int *piMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set or overwrite the password credential of the user
+
+**Parameters**
+
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+| [in]    | hUser          | Handle to the user                                                                                                 |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+| [in]    | pbyPasswordMD5 | Pointer to MD5 hash of the password                                                                                |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+| [inout] | piMaxLen       | Pointer to password MD5 hash length. If it is too short, needed length is returned if error code is ERR_BUFFERSIZE |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++----------------+----------------------------------------------------------------+
+| ERR_OK         | Password could be set                                          |
++----------------+----------------------------------------------------------------+
+| ERR_PARAMETER  | Invalid user handle or piMaxLen = NULL                         |
++----------------+----------------------------------------------------------------+
+| ERR_BUFFERSIZE | If password is too short. Needed length is returned inpiMaxLen |
++----------------+----------------------------------------------------------------+
+| ERR_DUPLICATE  | The new and the old password are the same                      |
++----------------+----------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga9bad26c173acb05c79cd7fa80b05b14b:
+
+RTS_RESULT UserDBSetProperty (RTS_HANDLE hUser, RTS_UI32 ulProperty)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set properties of a user
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------------------+
+| [in]    | hUser       | Handle to the user                                                          |
++---------+-------------+-----------------------------------------------------------------------------+
+| [in]    | pulProperty | Pointer to set the properties. For details see category "UserDB properties" |
++---------+-------------+-----------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-------------------------------------------------------------------------------------------------+
+| ERR_OK        | Properties could be set                                                                         |
++---------------+-------------------------------------------------------------------------------------------------+
+| ERR_PARAMETER | Invalid user handle or property pointer = NULL                                                  |
++---------------+-------------------------------------------------------------------------------------------------+
+| ERR_FAILED    | Invalid combination of property flags (password change not allowed but password not up to date) |
++---------------+-------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1gad945d309b83a82294517242a8e7f3557:
+
+RTS_HANDLE UserDBGetFirst (RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get the first configured user
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Return values**
+
++---------------+----------------------+
+| ERR_OK        | First user available |
++---------------+----------------------+
+| ERR_NO_OBJECT | No user configured   |
++---------------+----------------------+
+
+**Returns:**
+
+Handle to the first user or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_itf_1gac0d58351305afe299d1c6eea2533ca8b:
+
+RTS_HANDLE UserDBGetNext (RTS_HANDLE hPrevUser, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get next configured user. Must be started with :ref:`UserDBGetFirst() <group___cmp_user_mgr_dep_1gabd93d58a1d4c9888017dde577fbcc601>`
+
+**Parameters**
+
++---------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hPrevUser | Handle to the previous user retrieved via :ref:`UserDBGetFirst() <group___cmp_user_mgr_dep_1gabd93d58a1d4c9888017dde577fbcc601>` or subsequent calls of :ref:`UserDBGetNext() <group___cmp_user_mgr_dep_1ga1525726f4b481ddea82858d95eb6afd0>` |
++---------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult   | Pointer to error code                                                                                                                                                                                                                         |
++---------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+------------------------+
+| ERR_OK        | Next user available    |
++---------------+------------------------+
+| ERR_NO_OBJECT | No next user available |
++---------------+------------------------+
+
+**Returns:**
+
+Handle to the next user or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_itf_1gaa78bb481b3f3548dd2ffe5f91becf683:
+
+RTS_HANDLE UserDBOpen (char *pszUser, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Open user specified by its name
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [in]    | pszUser | User name             |
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | User could be opened                                           |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Invalid parameter. pszUser = NULL or empty                     |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the user or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_itf_1gae62c1d3f39df8506c441ae6a3106eb40:
+
+RTS_RESULT UserDBClose (RTS_HANDLE hUser)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Close a user
+
+**Parameters**
+
++---------+-------+--------------------+
+| [in]    | hUser | Handle to the user |
++---------+-------+--------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+----------------------+
+| ERR_OK        | User could be closed |
++---------------+----------------------+
+| ERR_PARAMETER | Invalid user handle  |
++---------------+----------------------+
+
+.. _group___cmp_user_d_b_itf_1ga621695714b63963d6f28a43ee598cfec:
+
+RTS_RESULT UserDBGetName (RTS_HANDLE hUser, char *pszUser, int *piMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get user name
+
+**Parameters**
+
++---------+----------+--------------------------------------------------------------------------------------------------------------------+
+| [in]    | hUser    | Handle to the user                                                                                                 |
++---------+----------+--------------------------------------------------------------------------------------------------------------------+
+| [out]   | pszUser  | Pointer to get user name                                                                                           |
++---------+----------+--------------------------------------------------------------------------------------------------------------------+
+| [inout] | piMaxLen | Pointer to length of buffer in pszUser. If pszUser = NULL, only the length of the user name is returned inpiMaxLen |
++---------+----------+--------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-----------------------------------------------------------+
+| ERR_OK        | User name is returned                                     |
++---------------+-----------------------------------------------------------+
+| ERR_PARAMETER | Invalid user handle or pszUser = NULL and piMaxLen = NULL |
++---------------+-----------------------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga47236fcee7c6865e762d7f70a54a6ac7:
+
+RTS_RESULT UserDBGetProperty (RTS_HANDLE hUser, RTS_UI32 *pulProperty)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get properties of a user
+
+**Parameters**
+
++---------+-------------+--------------------------------------------------------------------------------+
+| [in]    | hUser       | Handle to the user                                                             |
++---------+-------------+--------------------------------------------------------------------------------+
+| [out]   | pulProperty | Pointer to return the properties. For details see category "UserDB properties" |
++---------+-------------+--------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+------------------------------------------------+
+| ERR_OK        | Properties could be retrieved                  |
++---------------+------------------------------------------------+
+| ERR_PARAMETER | Invalid user handle or property pointer = NULL |
++---------------+------------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga97c12727fe2bc03b857aed0749c67ea7:
+
+RTS_RESULT UserDBCheckPassword (RTS_HANDLE hUser, char *pszPassword)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check user credentials (authentication)
+
+**Parameters**
+
++---------+-------------+----------------------------------+
+| [in]    | hUser       | Handle to the user               |
++---------+-------------+----------------------------------+
+| [in]    | pszPassword | Pointer to password in cleartext |
++---------+-------------+----------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-------------------------------------------------------------------------------+
+| ERR_OK        | Password credential matched!                                                  |
++---------------+-------------------------------------------------------------------------------+
+| ERR_PARAMETER | Invalid user handle or password = NULL so password credential does not match! |
++---------------+-------------------------------------------------------------------------------+
+| ERR_FAILED    | Password credential does not match!                                           |
++---------------+-------------------------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1gaae875907da955eb486c104c6df2a5a8b:
+
+RTS_HANDLE UserDBGetFirstGroup (RTS_HANDLE hUser, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get the first group to which the user is assigned
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [in]    | hUser   | Handle to the user    |
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Return values**
+
++---------------+----------------------------+
+| ERR_OK        | First user group available |
++---------------+----------------------------+
+| ERR_PARAMETER | Invalid user handle        |
++---------------+----------------------------+
+| ERR_NO_OBJECT | No user group configured   |
++---------------+----------------------------+
+
+**Returns:**
+
+Handle to the first user group or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_itf_1ga7e9cd0425a047f653badde2dd1500db4:
+
+RTS_HANDLE UserDBGetNextGroup (RTS_HANDLE hUser, RTS_HANDLE hPrevGroup, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get next configured user group to which the user is assigned. Must be started with :ref:`UserDBGetFirstGroup() <group___cmp_user_mgr_dep_1ga99ae9d172a67a4614339425fd21da4b1>`
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hUser      | Handle to the user                                                                                                                                                                                                                                            |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hPrevGroup | Handle to the previous user group retrieved via :ref:`UserDBGetFirstGroup() <group___cmp_user_mgr_dep_1ga99ae9d172a67a4614339425fd21da4b1>` or subsequent calls of :ref:`UserDBGetNextGroup() <group___cmp_user_mgr_dep_1gad13447fb022bf0577a00de39a8e2909a>` |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult    | Pointer to error code                                                                                                                                                                                                                                         |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+------------------------------+
+| ERR_OK        | Next user group available    |
++---------------+------------------------------+
+| ERR_NO_OBJECT | No next user group available |
++---------------+------------------------------+
+
+**Returns:**
+
+Handle to the next user group or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_itf_1ga310c3ae23d02c9ea8d072c2bb27fca34:
+
+RTS_HANDLE UserDBGroupAdd (char *pszGroup, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add a new user group to the user database
+
+**Parameters**
+
++---------+----------+-----------------------+
+| [in]    | pszGroup | Group name            |
++---------+----------+-----------------------+
+| [out]   | pResult  | Pointer to error code |
++---------+----------+-----------------------+
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | Group could be added                                           |
++--------------------+----------------------------------------------------------------+
+| ERR_DUPLICATE      | Group already exists                                           |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Invalid parameter. pszGroup = NULL or empty                    |
++--------------------+----------------------------------------------------------------+
+| ERR_NOMEMORY       | No memory available to store new group                         |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the added group or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_itf_1ga53eb2ead2c70472e1aaedb46519fa899:
+
+RTS_RESULT UserDBGroupRemove (RTS_HANDLE hGroup)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove user group from the user database
+
+**Parameters**
+
++---------+--------+---------------------+
+| [in]    | hGroup | Handle to the group |
++---------+--------+---------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+------------------------+
+| ERR_OK        | Group could be removed |
++---------------+------------------------+
+| ERR_PARAMETER | Invalid group handle   |
++---------------+------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga592f6109f59dd2334bdea684bbed611e:
+
+RTS_RESULT UserDBGroupAddUser (RTS_HANDLE hGroup, RTS_HANDLE hUser)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add a new user to a group
+
+**Parameters**
+
++---------+--------+---------------------+
+| [in]    | hGroup | Handle to the group |
++---------+--------+---------------------+
+| [in]    | hUser  | Handle to the user  |
++---------+--------+---------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | User could be added or is already added                        |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Invalid parameter. hGroup or hUser invalid                     |
++--------------------+----------------------------------------------------------------+
+| ERR_NOMEMORY       | No memory available to add user to group                       |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1gab2fafe4f1859e282428a8bd923f24c81:
+
+RTS_RESULT UserDBGroupRemoveUser (RTS_HANDLE hGroup, RTS_HANDLE hUser)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove a user from a group
+
+**Parameters**
+
++---------+--------+---------------------+
+| [in]    | hGroup | Handle to the group |
++---------+--------+---------------------+
+| [in]    | hUser  | Handle to the user  |
++---------+--------+---------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | User could be removed                                          |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Invalid parameter. hGroup or hUser invalid                     |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga71b472bc0cd6c9b6b85160aa05860454:
+
+RTS_RESULT UserDBGroupSetProperty (RTS_HANDLE hGroup, RTS_UI32 ulProperty)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set properties of a group
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------------------+
+| [in]    | hGroup      | Handle to the group                                                         |
++---------+-------------+-----------------------------------------------------------------------------+
+| [in]    | pulProperty | Pointer to set the properties. For details see category "UserDB properties" |
++---------+-------------+-----------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-----------------------------------------------+
+| ERR_OK        | Properties could be set                       |
++---------------+-----------------------------------------------+
+| ERR_PARAMETER | Invalid user group or property pointer = NULL |
++---------------+-----------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga20afb4d486b5e13ed81c0ab99dd4a7a0:
+
+RTS_RESULT UserDBGroupAddMember (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add a group as a member to another group. So that group is derived from the first one
+
+**Parameters**
+
++---------+--------------+--------------------------------------------------------------------------------------+
+| [in]    | hGroup       | First group to derive from                                                           |
++---------+--------------+--------------------------------------------------------------------------------------+
+| [in]    | hGroupMember | New member group which is derived from the first group (hGroup) after this operation |
++---------+--------------+--------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | Group could be added                                           |
++--------------------+----------------------------------------------------------------+
+| ERR_DUPLICATE      | Group is already added                                         |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Invalid parameter. hGroup or hGroupMember invalid              |
++--------------------+----------------------------------------------------------------+
+| ERR_NOMEMORY       | No memory available to add group to another group              |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1gaf5075c4df9d39a576bf3a295f3098fe5:
+
+RTS_RESULT UserDBGroupRemoveMember (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove a group as a member from another group. So the group is no longer derived from the first one
+
+**Parameters**
+
++---------+--------------+--------------------------------------------------------------------------------------------+
+| [in]    | hGroup       | First group to remove the derived group from                                               |
++---------+--------------+--------------------------------------------------------------------------------------------+
+| [in]    | hGroupMember | Member group which is no longer derived from the first group (hGroup) after this operation |
++---------+--------------+--------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | Group could be removed                                         |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Invalid parameter. hGroup or hGroupMember invalid              |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1gac4650a1183375bec8ab92f855a659e19:
+
+RTS_RESULT UserDBEnforce (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Explicitly enforce the usage of user authentication: no anonymous login is possible, login with user and password is required NOTE: The UserDB is enforced implicitly when a DB file is loaded or configured via CODESYS.
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | User and password login is required                            |
++--------------------+----------------------------------------------------------------+
+| ERR_FAILED         | Anonymous login is possible                                    |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1gadf2c07b5c0a8633f1d19631c674f31c7:
+
+RTS_HANDLE UserDBGroupGetFirst (RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get the first configured user group
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Return values**
+
++---------------+----------------------------+
+| ERR_OK        | First user group available |
++---------------+----------------------------+
+| ERR_NO_OBJECT | No user group configured   |
++---------------+----------------------------+
+
+**Returns:**
+
+Handle to the first user group or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_itf_1ga330560f782f1357476d13600beec6dfe:
+
+RTS_HANDLE UserDBGroupGetNext (RTS_HANDLE hPrevGroup, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get next configured user group. Must be started with :ref:`UserDBGroupGetFirst() <group___cmp_user_mgr_dep_1ga4f850cd22f8e7b2544252a1ab5d7b894>`
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hPrevGroup | Handle to the previous user group retrieved via :ref:`UserDBGroupGetFirst() <group___cmp_user_mgr_dep_1ga4f850cd22f8e7b2544252a1ab5d7b894>` or subsequent calls of :ref:`UserDBGroupGetNext() <group___cmp_user_mgr_dep_1gaf5970b32e28da98077d1675b722a0752>` |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult    | Pointer to error code                                                                                                                                                                                                                                         |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+------------------------------+
+| ERR_OK        | Next user group available    |
++---------------+------------------------------+
+| ERR_NO_OBJECT | No next user group available |
++---------------+------------------------------+
+
+**Returns:**
+
+Handle to the next user group or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_itf_1gaadc1b6e4555a5bdbc95a57e90793ce67:
+
+RTS_HANDLE UserDBGroupOpen (char *pszGroup, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Open user group specified by its name
+
+**Parameters**
+
++---------+----------+-----------------------+
+| [in]    | pszGroup | User group name       |
++---------+----------+-----------------------+
+| [out]   | pResult  | Pointer to error code |
++---------+----------+-----------------------+
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | User group could be opened                                     |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Invalid parameter. pszGroup = NULL or empty                    |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the user group or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_itf_1ga2bd36eb02e92b555783cb80dcddc03cd:
+
+RTS_RESULT UserDBGroupClose (RTS_HANDLE hGroup)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Close a user group
+
+**Parameters**
+
++---------+--------+--------------------------+
+| [in]    | hGroup | Handle to the user group |
++---------+--------+--------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+----------------------------+
+| ERR_OK        | User group could be closed |
++---------------+----------------------------+
+| ERR_PARAMETER | Invalid user group handle  |
++---------------+----------------------------+
+
+.. _group___cmp_user_d_b_itf_1gaa369c57d9fbd1bb2e377b4a827559819:
+
+RTS_RESULT UserDBGroupGetName (RTS_HANDLE hGroup, char *pszGroup, int *piMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get user group name
+
+**Parameters**
+
++---------+----------+----------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hGroup   | Handle to the user group                                                                                                   |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pszGroup | Pointer to get user group name                                                                                             |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------+
+| [inout] | piMaxLen | Pointer to length of buffer in pszGroup. If pszGroup = NULL, only the length of the user group name is returned inpiMaxLen |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+------------------------------------------------------------------+
+| ERR_OK        | User group name is returned                                      |
++---------------+------------------------------------------------------------------+
+| ERR_PARAMETER | Invalid user group handle or pszGroup = NULL and piMaxLen = NULL |
++---------------+------------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga1fbd5d0a7d55623bbd65d073b31e3668:
+
+RTS_RESULT UserDBGroupGetProperty (RTS_HANDLE hGroup, RTS_UI32 *pulProperty)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get properties of a group
+
+**Parameters**
+
++---------+-------------+--------------------------------------------------------------------------------+
+| [in]    | hGroup      | Handle to the group                                                            |
++---------+-------------+--------------------------------------------------------------------------------+
+| [out]   | pulProperty | Pointer to return the properties. For details see category "UserDB properties" |
++---------+-------------+--------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-----------------------------------------------+
+| ERR_OK        | Properties could be retrieved                 |
++---------------+-----------------------------------------------+
+| ERR_PARAMETER | Invalid user group or property pointer = NULL |
++---------------+-----------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1gaf35118fab9a262b7b12e3d14e8c7dcea:
+
+RTS_RESULT UserDBGroupHasUser (RTS_HANDLE hGroup, RTS_HANDLE hUser)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check if the user is a member of the group
+
+**Parameters**
+
++---------+--------+--------------------------+
+| [in]    | hGroup | Handle to the user group |
++---------+--------+--------------------------+
+| [in]    | hUser  | Handle to the user       |
++---------+--------+--------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-----------------------------------------------+
+| ERR_OK        | User is a member of the group                 |
++---------------+-----------------------------------------------+
+| ERR_PARAMETER | Invalid user or user group handle             |
++---------------+-----------------------------------------------+
+| ERR_FAILED    | User is no member of the specified user group |
++---------------+-----------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga8a833a1d5bdff8bb593a331a70da690b:
+
+RTS_HANDLE UserDBGroupGetFirstUser (RTS_HANDLE hGroup, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get the first user of the user group
+
+**Parameters**
+
++---------+---------+--------------------------+
+| [in]    | hGroup  | Handle to the user group |
++---------+---------+--------------------------+
+| [out]   | pResult | Pointer to error code    |
++---------+---------+--------------------------+
+
+**Return values**
+
++---------------+--------------------------------------+
+| ERR_OK        | First user in the group available    |
++---------------+--------------------------------------+
+| ERR_NO_OBJECT | No user configured in the user group |
++---------------+--------------------------------------+
+
+**Returns:**
+
+Handle to the first user in the user group or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_itf_1gabea7ead32f191a299f9e9ff9dee71c3f:
+
+RTS_HANDLE UserDBGroupGetNextUser (RTS_HANDLE hGroup, RTS_HANDLE hPrevUser, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get next configured user of the user group. Must be started with :ref:`UserDBGroupGetFirstUser() <group___cmp_user_mgr_dep_1ga435a64aae8d56149af74cc5bc8809502>`
+
+**Parameters**
+
++---------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hGroup    | Handle to the user group                                                                                                                                                                                                                                        |
++---------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hPrevUser | Handle to the previous user retrieved via :ref:`UserDBGroupGetFirstUser() <group___cmp_user_mgr_dep_1ga435a64aae8d56149af74cc5bc8809502>` or subsequent calls of :ref:`UserDBGroupGetNextUser() <group___cmp_user_mgr_dep_1gab7f3ebcd85d6072c1ec44ea249c0e6d8>` |
++---------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult   | Pointer to error code                                                                                                                                                                                                                                           |
++---------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+------------------------+
+| ERR_OK        | Next user available    |
++---------------+------------------------+
+| ERR_PARAMETER | Invalid handles        |
++---------------+------------------------+
+| ERR_NO_OBJECT | No next user available |
++---------------+------------------------+
+
+**Returns:**
+
+Handle to the next user or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_itf_1ga9f4db2b4c2e026cfb3b40ca067a2b074:
+
+RTS_RESULT UserDBGroupHasMember (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check if a user group is a member of the first specified group
+
+**Parameters**
+
++---------+--------------+---------------------------------------------------------------+
+| [in]    | hGroup       | Handle to the first user group                                |
++---------+--------------+---------------------------------------------------------------+
+| [in]    | hGroupMember | Handle to the user group to check if it is a member of hGroup |
++---------+--------------+---------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-----------------------------------------------------+
+| ERR_OK        | User group is a member of the first group           |
++---------------+-----------------------------------------------------+
+| ERR_PARAMETER | Invalid user group handles                          |
++---------------+-----------------------------------------------------+
+| ERR_FAILED    | User group is no member of the specified user group |
++---------------+-----------------------------------------------------+
+
+.. _group___cmp_user_d_b_itf_1ga14c27328dcfd923c2fd0848f3ab7e6d2:
+
+RTS_HANDLE UserDBGroupGetFirstMember (RTS_HANDLE hGroup, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get the first user group as member of the specified group
+
+**Parameters**
+
++---------+---------+--------------------------+
+| [in]    | hGroup  | Handle to the user group |
++---------+---------+--------------------------+
+| [out]   | pResult | Pointer to error code    |
++---------+---------+--------------------------+
+
+**Return values**
+
++---------------+-----------------------------------+
+| ERR_OK        | First user group member available |
++---------------+-----------------------------------+
+| ERR_PARAMETER | Invalid user group handle         |
++---------------+-----------------------------------+
+| ERR_NO_OBJECT | No user group configured          |
++---------------+-----------------------------------+
+
+**Returns:**
+
+Handle to the first user group member or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_itf_1ga524e5d7e9db408eb950fbc5488f631ea:
+
+RTS_HANDLE UserDBGroupGetNextMember (RTS_HANDLE hGroup, RTS_HANDLE hPrevGroupMember, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get next configured user group as member of the specified group. Must be started with :ref:`UserDBGroupGetFirstMember() <group___cmp_user_mgr_dep_1gaf028190479e1934b6eeff9d258438ae3>`
+
+**Parameters**
+
++---------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hGroup           | Handle to the user group                                                                                                                                                                                                                                                  |
++---------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hPrevGroupMember | Handle to the previous user group retrieved via :ref:`UserDBGroupGetFirstMember() <group___cmp_user_mgr_dep_1gaf028190479e1934b6eeff9d258438ae3>` or subsequent calls of :ref:`UserDBGroupGetNextMember() <group___cmp_user_mgr_dep_1ga7553df8f16edfd109e3fad1d931644a8>` |
++---------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult          | Pointer to error code                                                                                                                                                                                                                                                     |
++---------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+-------------------------------------+
+| ERR_OK        | Next user group member available    |
++---------------+-------------------------------------+
+| ERR_NO_OBJECT | No next user group member available |
++---------------+-------------------------------------+
+
+**Returns:**
+
+Handle to the next user group member or RTS_INVALID_HANDLE if failed
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

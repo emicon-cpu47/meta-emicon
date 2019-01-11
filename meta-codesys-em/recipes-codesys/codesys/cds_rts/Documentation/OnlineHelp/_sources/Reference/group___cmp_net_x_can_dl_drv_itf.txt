@@ -1,0 +1,104 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_net_x_can_dl_drv_itf:
+
+==================
+CmpNetXCanDlDrvItf
+==================
+
+Interface of CmpNetXCanDlDrv. :ref:`More... <group___cmp_net_x_can_dl_drv_itf-details>`
+
+Modules
+-------
+
+- :ref:`Event parameter <group___cmp_net_x_can_dl_drv_itf___eventparameter>`
+
+- :ref:`Events <group___cmp_net_x_can_dl_drv_itf___events>`
+
+- :ref:`Settings <group___cmp_net_x_can_dl_drv_itf___settings>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpNetXCanDlDrv_C <struct_i_cmp_net_x_can_dl_drv___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpNetXCanDlDrv <group___cmp_net_x_can_dl_drv_itf_1ga69e5569b529c0f904d766b4fb2506e8b>`
+
+- #define :ref:`EXTITF_CmpNetXCanDlDrv <group___cmp_net_x_can_dl_drv_itf_1gaa41c244f538a159dd18aa12c43d88e2c>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpNetXCanDlDrv_C <struct_i_cmp_net_x_can_dl_drv___c>` :ref:`ICmpNetXCanDlDrv <group___cmp_net_x_can_dl_drv_itf_1ga293e52c6423d2020c52f4d60eb36f751>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`NetX_SetupChannel <group___cmp_net_x_can_dl_drv_itf_1ga9b8da805ef525a1d21a7b7f0ff71d415>` (unsigned char byNet, int iBoard, int iChannel)
+
+.. _group___cmp_net_x_can_dl_drv_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpNetXCanDlDrv.
+
+This is the CAA Can Mini Driver for NetX Can Open cards. It is based on the NetX Dl layer.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_net_x_can_dl_drv_itf_1ga69e5569b529c0f904d766b4fb2506e8b:
+
+#define ITF_CmpNetXCanDlDrv
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_net_x_can_dl_drv_itf_1gaa41c244f538a159dd18aa12c43d88e2c:
+
+#define EXTITF_CmpNetXCanDlDrv
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_net_x_can_dl_drv_itf_1ga293e52c6423d2020c52f4d60eb36f751:
+
+typedef ICmpNetXCanDlDrv_C ICmpNetXCanDlDrv
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_net_x_can_dl_drv_itf_1ga9b8da805ef525a1d21a7b7f0ff71d415:
+
+RTS_RESULT NetX_SetupChannel (unsigned char byNet, int iBoard, int iChannel)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Initializes a netX channel. Afterwards, the netX is passive on the bus. If the firmware is loaded dynamically, this function could be called to initialize the netX channel. The net Id is passed as an parameter with the event EVT_START_NETX_CONFIG, the board and channel number must be evaluated by the customer.
+
+**Parameters**
+
++---------+----------+-------------------------------------------+
+| [in]    | byNet    | CANbus net ID                             |
++---------+----------+-------------------------------------------+
+| [in]    | iBoard   | Number of the netX board to initialize.   |
++---------+----------+-------------------------------------------+
+| [in]    | iChannel | Number of the netX Channel to initialize. |
++---------+----------+-------------------------------------------+
+
+**Returns:**
+
+Errorcode
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

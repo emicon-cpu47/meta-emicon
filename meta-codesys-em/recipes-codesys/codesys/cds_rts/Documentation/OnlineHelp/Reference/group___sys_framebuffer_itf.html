@@ -1,0 +1,495 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SysFramebufferItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="SysGraphicItf" href="group___sys_graphic_itf.html" />
+    <link rel="prev" title="SysFlashItf" href="group___sys_flash_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___sys_graphic_itf.html" title="SysGraphicItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_flash_itf.html" title="SysFlashItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SysFramebufferItf</a><ul>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-fb-pal-conv-buffer-size-16">#define FB_PAL_CONV_BUFFER_SIZE 16</a></li>
+<li><a class="reference internal" href="#define-fb-platform-fb-platform-32-le">#define FB_PLATFORM FB_PLATFORM_32_LE</a></li>
+<li><a class="reference internal" href="#define-fb-use-sqrt-fb-yes-default-fb-no-use-square-root-function-or-use-an-approximation">#define FB_USE_SQRT FB_YES              /* default FB_NO                //use square root function or use an approximation? */</a></li>
+<li><a class="reference internal" href="#define-fb-use-float-fb-no-default-fb-no-use-float-values-or-avoid-them-e-g-by-alternative-algorithms">#define FB_USE_FLOAT FB_NO              /* default FB_NO                //use float values or avoid them (e.g. by alternative algorithms) */</a></li>
+<li><a class="reference internal" href="#define-fb-use-mod-fb-no-default-fb-no-use-native-modulo-operator">#define FB_USE_MOD FB_NO                /* default FB_NO                //use native modulo operator? */</a></li>
+<li><a class="reference internal" href="#define-fb-font-truetype-fb-no-default-fb-no-must-be-fb-no-because-truetype-fonts-are-not-implemented-yet">#define FB_FONT_TRUETYPE FB_NO          /* default FB_NO; must be FB_NO because TrueType fonts are not implemented yet */</a></li>
+<li><a class="reference internal" href="#define-fb-test-videodriver-fb-no-default-fb-no">#define FB_TEST_VIDEODRIVER FB_NO               /* default FB_NO */</a></li>
+<li><a class="reference internal" href="#define-fb-overrides-bitblt-fb-no-default-fb-no">#define FB_OVERRIDES_BITBLT FB_NO               /* default FB_NO*/</a></li>
+<li><a class="reference internal" href="#define-fb-overrides-stretchblt-fb-no-default-fb-no">#define FB_OVERRIDES_STRETCHBLT FB_NO           /* default FB_NO */</a></li>
+<li><a class="reference internal" href="#define-fb-supports-large-unicodefonts-fb-yes-default-fb-no">#define FB_SUPPORTS_LARGE_UNICODEFONTS FB_YES           /* default FB_NO*/</a></li>
+<li><a class="reference internal" href="#define-fb-clip-mode-fb-clip-pixelbased">#define FB_CLIP_MODE FB_CLIP_PIXELBASED</a></li>
+<li><a class="reference internal" href="#define-fb-clip-force-pixelbased-fb-no">#define FB_CLIP_FORCE_PIXELBASED FB_NO</a></li>
+<li><a class="reference internal" href="#define-fb-pf-indexed-color-1-1-packed-pixels-11111111-2-indexed-fbpaletteentries">#define FB_PF_INDEXED_COLOR_1 1 /* packed pixels:       [11111111]                                                      - 2 indexed FBPaletteEntries */</a></li>
+<li><a class="reference internal" href="#define-fb-pf-indexed-color-2-2-packed-pixels-2-2-2-2-4-indexed-fbpaletteentries">#define FB_PF_INDEXED_COLOR_2 2 /* packed pixels:       [2 2 2 2 ]                                                      - 4 indexed FBPaletteEntries */</a></li>
+<li><a class="reference internal" href="#define-fb-pf-indexed-color-4-3-packed-pixels-4-4-16-indexed-fbpaletteentries">#define FB_PF_INDEXED_COLOR_4 3 /* packed pixels:       [4   4   ]                                                      - 16 indexed FBPaletteEntries */</a></li>
+<li><a class="reference internal" href="#define-fb-pf-indexed-color-8-4-packed-pixels-8-256-indexed-fbpaletteentries">#define FB_PF_INDEXED_COLOR_8 4 /* packed pixels:       [8       ]                                                      - 256 indexed FBPaletteEntries */</a></li>
+<li><a class="reference internal" href="#define-fb-pf-direct-color-8-5-direct-color-rrrgggbb-8-reds-8-greens-4-blues">#define FB_PF_DIRECT_COLOR_8 5  /* Direct Color:                [RRRGGGBB]                                                      - 8 reds, 8 greens, 4 blues */</a></li>
+<li><a class="reference internal" href="#define-fb-pf-direct-color-15-6-high-color-15bpp-rrrrrgg-gggbbbbb-32-reds-32-greens-32-blues">#define FB_PF_DIRECT_COLOR_15 6 /* High Color 15bpp:    [ RRRRRGG|GGGBBBBB]                                     - 32 reds, 32 greens, 32 blues */</a></li>
+<li><a class="reference internal" href="#define-fb-pf-direct-color-16-7-high-color-16bpp-rrrrrggg-gggbbbbb-32-reds-64-greens-32-blues">#define FB_PF_DIRECT_COLOR_16 7 /* High Color 16bpp:    [RRRRRGGG|GGGBBBBB]                                     - 32 reds, 64 greens, 32 blues */</a></li>
+<li><a class="reference internal" href="#define-fb-pf-direct-color-24-8-true-color-24bpp-rrrrrrrr-gggggggg-bbbbbbbb-256-reds-256-greens-256-blues">#define FB_PF_DIRECT_COLOR_24 8 /* True Color 24bpp:    [RRRRRRRR|GGGGGGGG|BBBBBBBB]                    - 256 reds, 256 greens, 256 blues */</a></li>
+<li><a class="reference internal" href="#define-fb-pf-direct-color-32-9-true-color-32bpp-aaaaaaaa-rrrrrrrr-gggggggg-bbbbbbbb-256-alpha-channels-256-reds-256-greens-256-blues">#define FB_PF_DIRECT_COLOR_32 9 /* True Color 32bpp;    [AAAAAAAA|RRRRRRRR|GGGGGGGG|BBBBBBBB]   - 256 alpha channels, 256 reds, 256 greens, 256 blues */</a></li>
+<li><a class="reference internal" href="#define-fb-pf-direct-color-32-rgb-10-true-color-32bpp-rrrrrrrr-gggggggg-bbbbbbbb-256-reds-256-greens-256-blues-1-byte-ignored">#define FB_PF_DIRECT_COLOR_32_RGB 10    /* True Color 32bpp:    [        |RRRRRRRR|GGGGGGGG|BBBBBBBB]   - 256 reds, 256 greens, 256 blues, 1 byte ignored */</a></li>
+<li><a class="reference internal" href="#define-fb-pf-fb-pf-direct-color-24">#define FB_PF <code class="docutils literal"><span class="pre">FB_PF_DIRECT_COLOR_24</span></code></a></li>
+<li><a class="reference internal" href="#define-fb-num-fonts-12">#define FB_NUM_FONTS 12</a></li>
+<li><a class="reference internal" href="#define-fb-size-x-640">#define FB_SIZE_X 640</a></li>
+<li><a class="reference internal" href="#define-fb-size-y-480">#define FB_SIZE_Y 480</a></li>
+<li><a class="reference internal" href="#define-fb-bytes-per-pixel-fb-bits-per-pixel-7-8">#define FB_BYTES_PER_PIXEL (( <code class="docutils literal"><span class="pre">FB_BITS_PER_PIXEL</span></code> +7)/8)</a></li>
+<li><a class="reference internal" href="#define-fb-char-bmpoffset-rts-ui32">#define FB_CHAR_BMPOFFSET RTS_UI32</a></li>
+<li><a class="reference internal" href="#define-fb-bits-per-pixel-24">#define FB_BITS_PER_PIXEL 24</a></li>
+<li><a class="reference internal" href="#define-magicnumber-fontfile-64266447-ascii-fbft-framebufferfont">#define MAGICNUMBER_FONTFILE 64266447  /* Ascii: FbFt (FramebufferFont)*/</a></li>
+<li><a class="reference internal" href="#define-fileformat-fontfile-0-for-a-possible-change-of-the-fileformat">#define FILEFORMAT_FONTFILE 0   /* for a possible change of the fileformat */</a></li>
+<li><a class="reference internal" href="#define-characterdata-id-1">#define CHARACTERDATA_ID 1</a></li>
+<li><a class="reference internal" href="#define-characterdesc-id-3">#define CHARACTERDESC_ID 3</a></li>
+<li><a class="reference internal" href="#define-fontarea-id-8">#define FONTAREA_ID 8</a></li>
+<li><a class="reference internal" href="#define-fontinfo-id-10">#define FONTINFO_ID 10</a></li>
+<li><a class="reference internal" href="#define-itf-sysframebuffer">#define ITF_SysFramebuffer</a></li>
+<li><a class="reference internal" href="#define-extitf-sysframebuffer">#define EXTITF_SysFramebuffer</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-fbpixel-24-fbpixel">typedef FBPixel_24 FBPixel</a></li>
+<li><a class="reference internal" href="#typedef-struct-fbfontcharstruct-fbfontchar">typedef struct FBFontCharStruct  FBFontChar</a></li>
+<li><a class="reference internal" href="#typedef-isysframebuffer-c-isysframebuffer">typedef ISysFramebuffer_C ISysFramebuffer</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-result-sysframebufferosinit-init-struct-pinit">RTS_RESULT SysFramebufferOSInit (INIT_STRUCT *pInit)</a></li>
+<li><a class="reference internal" href="#rts-result-sysframebufferoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">RTS_RESULT SysFramebufferOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</a></li>
+<li><a class="reference internal" href="#rts-result-sysframebufferdeviceinit-void">RTS_RESULT SysFramebufferDeviceInit (void)</a></li>
+<li><a class="reference internal" href="#rts-result-sysframebufferbeginpaint-void">RTS_RESULT SysFramebufferBeginPaint (void)</a></li>
+<li><a class="reference internal" href="#rts-result-sysframebufferendpaint-void">RTS_RESULT SysFramebufferEndPaint (void)</a></li>
+<li><a class="reference internal" href="#rts-result-sysframebufferflush-rts-rectangle-ainvalidate-rts-ui32-uinumrects">RTS_RESULT SysFramebufferFlush (RTS_Rectangle *aInvalidate, RTS_UI32 uiNumRects)</a></li>
+<li><a class="reference internal" href="#rts-result-sysframebuffergetcurrentaddress-fbpixel-paddress">RTS_RESULT SysFramebufferGetCurrentAddress (FBPixel **pAddress)</a></li>
+<li><a class="reference internal" href="#rts-result-sysframebufferenablecolorpalette8-rts-ui8-ppalette">RTS_RESULT SysFramebufferEnableColorPalette8 (RTS_UI8 *pPalette)</a></li>
+<li><a class="reference internal" href="#rts-handle-sysframebuffergetfontlist-void">RTS_HANDLE SysFramebufferGetFontList (void)</a></li>
+<li><a class="reference internal" href="#rts-result-sysframebuffergetfont-fbfont-ppfont-char-pszfontname-rts-ui8-ucfontsize-rts-ui32-uiflags">RTS_RESULT SysFramebufferGetFont (FBFont **ppFont, char *pszFontName, RTS_UI8 ucFontSize, RTS_UI32 uiFlags)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___sys_flash_itf.html"
+                        title="previous chapter">SysFlashItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___sys_graphic_itf.html"
+                        title="next chapter">SysGraphicItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_framebuffer_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sysframebufferitf">
+<span id="group-sys-framebuffer-itf"></span><h1>SysFramebufferItf<a class="headerlink" href="#sysframebufferitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of SysFramebuffer. <a class="reference internal" href="#group-sys-framebuffer-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_f_b_pixel__24.html#struct-f-b-pixel-24"><span class="std std-ref">FBPixel_24</span></a></li>
+<li>struct <a class="reference internal" href="struct_f_b_font_char_struct.html#struct-f-b-font-char-struct"><span class="std std-ref">FBFontCharStruct</span></a></li>
+<li>struct <a class="reference internal" href="struct_f_b_font_area.html#struct-f-b-font-area"><span class="std std-ref">FBFontArea</span></a></li>
+<li>struct <a class="reference internal" href="struct_f_b_font.html#struct-f-b-font"><span class="std std-ref">FBFont</span></a></li>
+<li>struct <a class="reference internal" href="struct_font_file___t_o_c_entry.html#struct-font-file-t-o-c-entry"><span class="std std-ref">FontFile_TOCEntry</span></a></li>
+<li>struct <a class="reference internal" href="struct_font_file___header.html#struct-font-file-header"><span class="std std-ref">FontFile_Header</span></a></li>
+<li>struct <a class="reference internal" href="struct_font_file___sect___font_info.html#struct-font-file-sect-font-info"><span class="std std-ref">FontFile_Sect_FontInfo</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_sys_framebuffer___c.html#struct-i-sys-framebuffer-c"><span class="std std-ref">ISysFramebuffer_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga05a07b88a1cce45a9e11dd80e16026ac"><span class="std std-ref">FB_PAL_CONV_BUFFER_SIZE</span></a> 16</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gaf59d3aab09f93b2a7fc459387659564a"><span class="std std-ref">FB_PLATFORM</span></a> FB_PLATFORM_32_LE</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga217d12ddb4e112355bf489f3d3c98544"><span class="std std-ref">FB_USE_SQRT</span></a> FB_YES           /* default FB_NO                //use square root function or use an approximation? <a href="#id1"><span class="problematic" id="id2">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gaea26eb07ff76844635e1ee8f3e4b828e"><span class="std std-ref">FB_USE_FLOAT</span></a> FB_NO           /* default FB_NO                //use float values or avoid them (e.g. by alternative algorithms) <a href="#id3"><span class="problematic" id="id4">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga9c3bfb2131a9f15014d6b7de8051eef9"><span class="std std-ref">FB_USE_MOD</span></a> FB_NO             /* default FB_NO                //use native modulo operator? <a href="#id5"><span class="problematic" id="id6">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga4e8c608e2c8aa93e69bfa17e83e1747d"><span class="std std-ref">FB_FONT_TRUETYPE</span></a> FB_NO               /* default FB_NO; must be FB_NO because TrueType fonts are not implemented yet <a href="#id7"><span class="problematic" id="id8">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga479363c9eae741abe771b699e3732ab8"><span class="std std-ref">FB_TEST_VIDEODRIVER</span></a> FB_NO            /* default FB_NO <a href="#id9"><span class="problematic" id="id10">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga6799b4f1cdfd736ccac3c87e76a4720a"><span class="std std-ref">FB_OVERRIDES_BITBLT</span></a> FB_NO            /* default FB_NO*/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga1068d0a9bbd2930d626fed50522660f8"><span class="std std-ref">FB_OVERRIDES_STRETCHBLT</span></a> FB_NO                /* default FB_NO <a href="#id11"><span class="problematic" id="id12">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga562969ca127c0f73ffe2b646fbf45401"><span class="std std-ref">FB_SUPPORTS_LARGE_UNICODEFONTS</span></a> FB_YES                /* default FB_NO*/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gac469b711f4412fb7c104cab8f9487f1b"><span class="std std-ref">FB_CLIP_MODE</span></a> FB_CLIP_PIXELBASED</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga06fad19d0ecd091ea23e6210b1620d9f"><span class="std std-ref">FB_CLIP_FORCE_PIXELBASED</span></a> FB_NO</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gab32badf75bf6beefced79947b307c9d3"><span class="std std-ref">FB_PF_INDEXED_COLOR_1</span></a> 1      /* packed pixels:       [11111111]                                                      - 2 indexed FBPaletteEntries <a href="#id13"><span class="problematic" id="id14">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gac0f35b1c82cdd12b0496f8f4ed535355"><span class="std std-ref">FB_PF_INDEXED_COLOR_2</span></a> 2      /* packed pixels:       [2 2 2 2 ]                                                      - 4 indexed FBPaletteEntries <a href="#id15"><span class="problematic" id="id16">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga200783b56c1b48597a30d737f90a27f6"><span class="std std-ref">FB_PF_INDEXED_COLOR_4</span></a> 3      /* packed pixels:       [4   4   ]                                                      - 16 indexed FBPaletteEntries <a href="#id17"><span class="problematic" id="id18">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga25d8ac5ab035a98dab619bfc4dada753"><span class="std std-ref">FB_PF_INDEXED_COLOR_8</span></a> 4      /* packed pixels:       [8       ]                                                      - 256 indexed FBPaletteEntries <a href="#id19"><span class="problematic" id="id20">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gac14bcda410e21354eb8ca9bd78e8ebac"><span class="std std-ref">FB_PF_DIRECT_COLOR_8</span></a> 5       /* Direct Color:                [RRRGGGBB]                                                      - 8 reds, 8 greens, 4 blues <a href="#id21"><span class="problematic" id="id22">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga09439cce5d3c5e0b1ae5928f17087da7"><span class="std std-ref">FB_PF_DIRECT_COLOR_15</span></a> 6      /* High Color 15bpp:    [ RRRRRGG|GGGBBBBB]                                     - 32 reds, 32 greens, 32 blues <a href="#id23"><span class="problematic" id="id24">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga87bf6514a41f617160da5093640ab371"><span class="std std-ref">FB_PF_DIRECT_COLOR_16</span></a> 7      /* High Color 16bpp:    [RRRRRGGG|GGGBBBBB]                                     - 32 reds, 64 greens, 32 blues <a href="#id25"><span class="problematic" id="id26">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga400fb40ccc514fe3c1deba48ab605e2b"><span class="std std-ref">FB_PF_DIRECT_COLOR_24</span></a> 8      /* True Color 24bpp:    [RRRRRRRR|GGGGGGGG|BBBBBBBB]                    - 256 reds, 256 greens, 256 blues <a href="#id27"><span class="problematic" id="id28">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gac1059f24865a9b6458e4568d36ae78bc"><span class="std std-ref">FB_PF_DIRECT_COLOR_32</span></a> 9      /* True Color 32bpp;    [AAAAAAAA|RRRRRRRR|GGGGGGGG|BBBBBBBB]   - 256 alpha channels, 256 reds, 256 greens, 256 blues <a href="#id29"><span class="problematic" id="id30">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gac243f7b86b6c3917fd5192c4c65fafb0"><span class="std std-ref">FB_PF_DIRECT_COLOR_32_RGB</span></a> 10 /* True Color 32bpp:    [        <a href="#id31"><span class="problematic" id="id32">|</span></a>RRRRRRRR|GGGGGGGG|BBBBBBBB]   - 256 reds, 256 greens, 256 blues, 1 byte ignored <a href="#id33"><span class="problematic" id="id34">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gae5fc875da0d946f96d79dfc5c122a706"><span class="std std-ref">FB_PF</span></a> <a class="reference internal" href="#group-sys-framebuffer-itf-1ga400fb40ccc514fe3c1deba48ab605e2b"><span class="std std-ref">FB_PF_DIRECT_COLOR_24</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gafc4da1df0c702463c14da9c035370c6a"><span class="std std-ref">FB_NUM_FONTS</span></a> 12</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gaca2363b8acef1902625b026cd92ef014"><span class="std std-ref">FB_SIZE_X</span></a> 640</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gae82651b718e1c48fc8ce22c7614c93f6"><span class="std std-ref">FB_SIZE_Y</span></a> 480</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gaeb43e745f0bfe82304d1a1df6e32145d"><span class="std std-ref">FB_BYTES_PER_PIXEL</span></a> (( <a class="reference internal" href="#group-sys-framebuffer-itf-1gaf914dc31e9b9b5d923b213bf42b7aac0"><span class="std std-ref">FB_BITS_PER_PIXEL</span></a> +7)/8)</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga62fc34d1d69a1f314467041f9f996fde"><span class="std std-ref">FB_CHAR_BMPOFFSET</span></a> RTS_UI32</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gaf914dc31e9b9b5d923b213bf42b7aac0"><span class="std std-ref">FB_BITS_PER_PIXEL</span></a> 24</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gae84d2e024bc9ac28d7a9e1ec95971ade"><span class="std std-ref">MAGICNUMBER_FONTFILE</span></a> 64266447  /* Ascii: FbFt (FramebufferFont)*/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga13807478c1ab1bebef62932e9594bd71"><span class="std std-ref">FILEFORMAT_FONTFILE</span></a> 0        /* for a possible change of the fileformat <a href="#id35"><span class="problematic" id="id36">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gaff9e0ebfa0a5db00979135b100f628eb"><span class="std std-ref">CHARACTERDATA_ID</span></a> 1</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga92ca9ba4d2abac9102ce1d0384074ff3"><span class="std std-ref">CHARACTERDESC_ID</span></a> 3</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gac59d93a9c90a60f2b8a36954e2922fd2"><span class="std std-ref">FONTAREA_ID</span></a> 8</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gae1c6a612351ca87f4cb41a4dc3596b08"><span class="std std-ref">FONTINFO_ID</span></a> 10</li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1gac1394941d5a6401bfe45f413e46a63fc"><span class="std std-ref">ITF_SysFramebuffer</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-framebuffer-itf-1ga15c8cacd1edbf0c7384f36d39351b349"><span class="std std-ref">EXTITF_SysFramebuffer</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef <a class="reference internal" href="struct_f_b_pixel__24.html#struct-f-b-pixel-24"><span class="std std-ref">FBPixel_24</span></a> <a class="reference internal" href="#group-sys-framebuffer-itf-1ga792c83f8ae3bc98bb17a0994553de74e"><span class="std std-ref">FBPixel</span></a></li>
+<li>typedef struct <a class="reference internal" href="struct_f_b_font_char_struct.html#struct-f-b-font-char-struct"><span class="std std-ref">FBFontCharStruct</span></a> <a class="reference internal" href="#group-sys-framebuffer-itf-1gaaced0112821007d563b0e816384929ff"><span class="std std-ref">FBFontChar</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_sys_framebuffer___c.html#struct-i-sys-framebuffer-c"><span class="std std-ref">ISysFramebuffer_C</span></a> <a class="reference internal" href="#group-sys-framebuffer-itf-1ga0631aa429be0d9b499fa39ad7e1c1a00"><span class="std std-ref">ISysFramebuffer</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-framebuffer-itf-1gaf7925bab5fe1838be71d8927030f0a60"><span class="std std-ref">SysFramebufferOSInit</span></a> (INIT_STRUCT * pInit)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-framebuffer-itf-1ga6f2b996d67ab4f44819add693cff0388"><span class="std std-ref">SysFramebufferOSHookFunction</span></a> (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-framebuffer-itf-1ga0f76241b7e85e119c6d87da1f21413a8"><span class="std std-ref">SysFramebufferDeviceInit</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-framebuffer-itf-1ga509cc040359ac9b914d44efbafc15d03"><span class="std std-ref">SysFramebufferBeginPaint</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-framebuffer-itf-1ga87908940647a98d13d61b598b70e1b92"><span class="std std-ref">SysFramebufferEndPaint</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-framebuffer-itf-1ga2140264f5e6bf6f5fa461d91a63a019d"><span class="std std-ref">SysFramebufferFlush</span></a> (RTS_Rectangle * aInvalidate, RTS_UI32 uiNumRects)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-framebuffer-itf-1ga0770d295f27778ecbf2791ae5e3a89ab"><span class="std std-ref">SysFramebufferGetCurrentAddress</span></a> (<a class="reference internal" href="#group-sys-framebuffer-itf-1ga792c83f8ae3bc98bb17a0994553de74e"><span class="std std-ref">FBPixel</span></a> ** pAddress)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-framebuffer-itf-1gaf04742f20b6d31db351369415d00ae33"><span class="std std-ref">SysFramebufferEnableColorPalette8</span></a> (RTS_UI8 * pPalette)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-framebuffer-itf-1ga213cfcc916ca5f97a1d908c8bbe30afe"><span class="std std-ref">SysFramebufferGetFontList</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-framebuffer-itf-1gad0d9ec820a80bbd832b083b32f8f29c4"><span class="std std-ref">SysFramebufferGetFont</span></a> (<a class="reference internal" href="struct_f_b_font.html#struct-f-b-font"><span class="std std-ref">FBFont</span></a> ** ppFont, char * pszFontName, RTS_UI8 ucFontSize, RTS_UI32 uiFlags)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-framebuffer-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of SysFramebuffer.</p>
+<p>SysFramebuffer interface. This interface could be implemented by different components.</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-fb-pal-conv-buffer-size-16">
+<span id="group-sys-framebuffer-itf-1ga05a07b88a1cce45a9e11dd80e16026ac"></span><h3>#define FB_PAL_CONV_BUFFER_SIZE 16<a class="headerlink" href="#define-fb-pal-conv-buffer-size-16" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-platform-fb-platform-32-le">
+<span id="group-sys-framebuffer-itf-1gaf59d3aab09f93b2a7fc459387659564a"></span><h3>#define FB_PLATFORM FB_PLATFORM_32_LE<a class="headerlink" href="#define-fb-platform-fb-platform-32-le" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-use-sqrt-fb-yes-default-fb-no-use-square-root-function-or-use-an-approximation">
+<span id="group-sys-framebuffer-itf-1ga217d12ddb4e112355bf489f3d3c98544"></span><h3>#define FB_USE_SQRT FB_YES              /* default FB_NO                //use square root function or use an approximation? <a href="#id37"><span class="problematic" id="id38">*</span></a>/<a class="headerlink" href="#define-fb-use-sqrt-fb-yes-default-fb-no-use-square-root-function-or-use-an-approximation" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-use-float-fb-no-default-fb-no-use-float-values-or-avoid-them-e-g-by-alternative-algorithms">
+<span id="group-sys-framebuffer-itf-1gaea26eb07ff76844635e1ee8f3e4b828e"></span><h3>#define FB_USE_FLOAT FB_NO              /* default FB_NO                //use float values or avoid them (e.g. by alternative algorithms) <a href="#id39"><span class="problematic" id="id40">*</span></a>/<a class="headerlink" href="#define-fb-use-float-fb-no-default-fb-no-use-float-values-or-avoid-them-e-g-by-alternative-algorithms" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-use-mod-fb-no-default-fb-no-use-native-modulo-operator">
+<span id="group-sys-framebuffer-itf-1ga9c3bfb2131a9f15014d6b7de8051eef9"></span><h3>#define FB_USE_MOD FB_NO                /* default FB_NO                //use native modulo operator? <a href="#id41"><span class="problematic" id="id42">*</span></a>/<a class="headerlink" href="#define-fb-use-mod-fb-no-default-fb-no-use-native-modulo-operator" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-font-truetype-fb-no-default-fb-no-must-be-fb-no-because-truetype-fonts-are-not-implemented-yet">
+<span id="group-sys-framebuffer-itf-1ga4e8c608e2c8aa93e69bfa17e83e1747d"></span><h3>#define FB_FONT_TRUETYPE FB_NO          /* default FB_NO; must be FB_NO because TrueType fonts are not implemented yet <a href="#id43"><span class="problematic" id="id44">*</span></a>/<a class="headerlink" href="#define-fb-font-truetype-fb-no-default-fb-no-must-be-fb-no-because-truetype-fonts-are-not-implemented-yet" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-test-videodriver-fb-no-default-fb-no">
+<span id="group-sys-framebuffer-itf-1ga479363c9eae741abe771b699e3732ab8"></span><h3>#define FB_TEST_VIDEODRIVER FB_NO               /* default FB_NO <a href="#id45"><span class="problematic" id="id46">*</span></a>/<a class="headerlink" href="#define-fb-test-videodriver-fb-no-default-fb-no" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-overrides-bitblt-fb-no-default-fb-no">
+<span id="group-sys-framebuffer-itf-1ga6799b4f1cdfd736ccac3c87e76a4720a"></span><h3>#define FB_OVERRIDES_BITBLT FB_NO               /* default FB_NO*/<a class="headerlink" href="#define-fb-overrides-bitblt-fb-no-default-fb-no" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-overrides-stretchblt-fb-no-default-fb-no">
+<span id="group-sys-framebuffer-itf-1ga1068d0a9bbd2930d626fed50522660f8"></span><h3>#define FB_OVERRIDES_STRETCHBLT FB_NO           /* default FB_NO <a href="#id47"><span class="problematic" id="id48">*</span></a>/<a class="headerlink" href="#define-fb-overrides-stretchblt-fb-no-default-fb-no" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-supports-large-unicodefonts-fb-yes-default-fb-no">
+<span id="group-sys-framebuffer-itf-1ga562969ca127c0f73ffe2b646fbf45401"></span><h3>#define FB_SUPPORTS_LARGE_UNICODEFONTS FB_YES           /* default FB_NO*/<a class="headerlink" href="#define-fb-supports-large-unicodefonts-fb-yes-default-fb-no" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-clip-mode-fb-clip-pixelbased">
+<span id="group-sys-framebuffer-itf-1gac469b711f4412fb7c104cab8f9487f1b"></span><h3>#define FB_CLIP_MODE FB_CLIP_PIXELBASED<a class="headerlink" href="#define-fb-clip-mode-fb-clip-pixelbased" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-clip-force-pixelbased-fb-no">
+<span id="group-sys-framebuffer-itf-1ga06fad19d0ecd091ea23e6210b1620d9f"></span><h3>#define FB_CLIP_FORCE_PIXELBASED FB_NO<a class="headerlink" href="#define-fb-clip-force-pixelbased-fb-no" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-pf-indexed-color-1-1-packed-pixels-11111111-2-indexed-fbpaletteentries">
+<span id="group-sys-framebuffer-itf-1gab32badf75bf6beefced79947b307c9d3"></span><h3>#define FB_PF_INDEXED_COLOR_1 1 /* packed pixels:       [11111111]                                                      - 2 indexed FBPaletteEntries <a href="#id49"><span class="problematic" id="id50">*</span></a>/<a class="headerlink" href="#define-fb-pf-indexed-color-1-1-packed-pixels-11111111-2-indexed-fbpaletteentries" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-pf-indexed-color-2-2-packed-pixels-2-2-2-2-4-indexed-fbpaletteentries">
+<span id="group-sys-framebuffer-itf-1gac0f35b1c82cdd12b0496f8f4ed535355"></span><h3>#define FB_PF_INDEXED_COLOR_2 2 /* packed pixels:       [2 2 2 2 ]                                                      - 4 indexed FBPaletteEntries <a href="#id51"><span class="problematic" id="id52">*</span></a>/<a class="headerlink" href="#define-fb-pf-indexed-color-2-2-packed-pixels-2-2-2-2-4-indexed-fbpaletteentries" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-pf-indexed-color-4-3-packed-pixels-4-4-16-indexed-fbpaletteentries">
+<span id="group-sys-framebuffer-itf-1ga200783b56c1b48597a30d737f90a27f6"></span><h3>#define FB_PF_INDEXED_COLOR_4 3 /* packed pixels:       [4   4   ]                                                      - 16 indexed FBPaletteEntries <a href="#id53"><span class="problematic" id="id54">*</span></a>/<a class="headerlink" href="#define-fb-pf-indexed-color-4-3-packed-pixels-4-4-16-indexed-fbpaletteentries" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-pf-indexed-color-8-4-packed-pixels-8-256-indexed-fbpaletteentries">
+<span id="group-sys-framebuffer-itf-1ga25d8ac5ab035a98dab619bfc4dada753"></span><h3>#define FB_PF_INDEXED_COLOR_8 4 /* packed pixels:       [8       ]                                                      - 256 indexed FBPaletteEntries <a href="#id55"><span class="problematic" id="id56">*</span></a>/<a class="headerlink" href="#define-fb-pf-indexed-color-8-4-packed-pixels-8-256-indexed-fbpaletteentries" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-pf-direct-color-8-5-direct-color-rrrgggbb-8-reds-8-greens-4-blues">
+<span id="group-sys-framebuffer-itf-1gac14bcda410e21354eb8ca9bd78e8ebac"></span><h3>#define FB_PF_DIRECT_COLOR_8 5  /* Direct Color:                [RRRGGGBB]                                                      - 8 reds, 8 greens, 4 blues <a href="#id57"><span class="problematic" id="id58">*</span></a>/<a class="headerlink" href="#define-fb-pf-direct-color-8-5-direct-color-rrrgggbb-8-reds-8-greens-4-blues" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-pf-direct-color-15-6-high-color-15bpp-rrrrrgg-gggbbbbb-32-reds-32-greens-32-blues">
+<span id="group-sys-framebuffer-itf-1ga09439cce5d3c5e0b1ae5928f17087da7"></span><h3>#define FB_PF_DIRECT_COLOR_15 6 /* High Color 15bpp:    [ RRRRRGG|GGGBBBBB]                                     - 32 reds, 32 greens, 32 blues <a href="#id59"><span class="problematic" id="id60">*</span></a>/<a class="headerlink" href="#define-fb-pf-direct-color-15-6-high-color-15bpp-rrrrrgg-gggbbbbb-32-reds-32-greens-32-blues" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-pf-direct-color-16-7-high-color-16bpp-rrrrrggg-gggbbbbb-32-reds-64-greens-32-blues">
+<span id="group-sys-framebuffer-itf-1ga87bf6514a41f617160da5093640ab371"></span><h3>#define FB_PF_DIRECT_COLOR_16 7 /* High Color 16bpp:    [RRRRRGGG|GGGBBBBB]                                     - 32 reds, 64 greens, 32 blues <a href="#id61"><span class="problematic" id="id62">*</span></a>/<a class="headerlink" href="#define-fb-pf-direct-color-16-7-high-color-16bpp-rrrrrggg-gggbbbbb-32-reds-64-greens-32-blues" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-pf-direct-color-24-8-true-color-24bpp-rrrrrrrr-gggggggg-bbbbbbbb-256-reds-256-greens-256-blues">
+<span id="group-sys-framebuffer-itf-1ga400fb40ccc514fe3c1deba48ab605e2b"></span><h3>#define FB_PF_DIRECT_COLOR_24 8 /* True Color 24bpp:    [RRRRRRRR|GGGGGGGG|BBBBBBBB]                    - 256 reds, 256 greens, 256 blues <a href="#id63"><span class="problematic" id="id64">*</span></a>/<a class="headerlink" href="#define-fb-pf-direct-color-24-8-true-color-24bpp-rrrrrrrr-gggggggg-bbbbbbbb-256-reds-256-greens-256-blues" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-pf-direct-color-32-9-true-color-32bpp-aaaaaaaa-rrrrrrrr-gggggggg-bbbbbbbb-256-alpha-channels-256-reds-256-greens-256-blues">
+<span id="group-sys-framebuffer-itf-1gac1059f24865a9b6458e4568d36ae78bc"></span><h3>#define FB_PF_DIRECT_COLOR_32 9 /* True Color 32bpp;    [AAAAAAAA|RRRRRRRR|GGGGGGGG|BBBBBBBB]   - 256 alpha channels, 256 reds, 256 greens, 256 blues <a href="#id65"><span class="problematic" id="id66">*</span></a>/<a class="headerlink" href="#define-fb-pf-direct-color-32-9-true-color-32bpp-aaaaaaaa-rrrrrrrr-gggggggg-bbbbbbbb-256-alpha-channels-256-reds-256-greens-256-blues" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-pf-direct-color-32-rgb-10-true-color-32bpp-rrrrrrrr-gggggggg-bbbbbbbb-256-reds-256-greens-256-blues-1-byte-ignored">
+<span id="group-sys-framebuffer-itf-1gac243f7b86b6c3917fd5192c4c65fafb0"></span><h3>#define FB_PF_DIRECT_COLOR_32_RGB 10    /* True Color 32bpp:    [        <a href="#id67"><span class="problematic" id="id68">|</span></a>RRRRRRRR|GGGGGGGG|BBBBBBBB]   - 256 reds, 256 greens, 256 blues, 1 byte ignored <a href="#id69"><span class="problematic" id="id70">*</span></a>/<a class="headerlink" href="#define-fb-pf-direct-color-32-rgb-10-true-color-32bpp-rrrrrrrr-gggggggg-bbbbbbbb-256-reds-256-greens-256-blues-1-byte-ignored" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-pf-fb-pf-direct-color-24">
+<span id="group-sys-framebuffer-itf-1gae5fc875da0d946f96d79dfc5c122a706"></span><h3>#define FB_PF <a class="reference internal" href="#group-sys-framebuffer-itf-1ga400fb40ccc514fe3c1deba48ab605e2b"><span class="std std-ref">FB_PF_DIRECT_COLOR_24</span></a><a class="headerlink" href="#define-fb-pf-fb-pf-direct-color-24" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-num-fonts-12">
+<span id="group-sys-framebuffer-itf-1gafc4da1df0c702463c14da9c035370c6a"></span><h3>#define FB_NUM_FONTS 12<a class="headerlink" href="#define-fb-num-fonts-12" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-size-x-640">
+<span id="group-sys-framebuffer-itf-1gaca2363b8acef1902625b026cd92ef014"></span><h3>#define FB_SIZE_X 640<a class="headerlink" href="#define-fb-size-x-640" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-size-y-480">
+<span id="group-sys-framebuffer-itf-1gae82651b718e1c48fc8ce22c7614c93f6"></span><h3>#define FB_SIZE_Y 480<a class="headerlink" href="#define-fb-size-y-480" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-bytes-per-pixel-fb-bits-per-pixel-7-8">
+<span id="group-sys-framebuffer-itf-1gaeb43e745f0bfe82304d1a1df6e32145d"></span><h3>#define FB_BYTES_PER_PIXEL (( <a class="reference internal" href="#group-sys-framebuffer-itf-1gaf914dc31e9b9b5d923b213bf42b7aac0"><span class="std std-ref">FB_BITS_PER_PIXEL</span></a> +7)/8)<a class="headerlink" href="#define-fb-bytes-per-pixel-fb-bits-per-pixel-7-8" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fb-char-bmpoffset-rts-ui32">
+<span id="group-sys-framebuffer-itf-1ga62fc34d1d69a1f314467041f9f996fde"></span><h3>#define FB_CHAR_BMPOFFSET RTS_UI32<a class="headerlink" href="#define-fb-char-bmpoffset-rts-ui32" title="Permalink to this headline">¶</a></h3>
+<p>Font styles The are taken from the SysGrpahicFramebuffer.h file as part of CoDeSys;</p>
+</div>
+<div class="section" id="define-fb-bits-per-pixel-24">
+<span id="group-sys-framebuffer-itf-1gaf914dc31e9b9b5d923b213bf42b7aac0"></span><h3>#define FB_BITS_PER_PIXEL 24<a class="headerlink" href="#define-fb-bits-per-pixel-24" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-magicnumber-fontfile-64266447-ascii-fbft-framebufferfont">
+<span id="group-sys-framebuffer-itf-1gae84d2e024bc9ac28d7a9e1ec95971ade"></span><h3>#define MAGICNUMBER_FONTFILE 64266447  /* Ascii: FbFt (FramebufferFont)*/<a class="headerlink" href="#define-magicnumber-fontfile-64266447-ascii-fbft-framebufferfont" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fileformat-fontfile-0-for-a-possible-change-of-the-fileformat">
+<span id="group-sys-framebuffer-itf-1ga13807478c1ab1bebef62932e9594bd71"></span><h3>#define FILEFORMAT_FONTFILE 0   /* for a possible change of the fileformat <a href="#id71"><span class="problematic" id="id72">*</span></a>/<a class="headerlink" href="#define-fileformat-fontfile-0-for-a-possible-change-of-the-fileformat" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-characterdata-id-1">
+<span id="group-sys-framebuffer-itf-1gaff9e0ebfa0a5db00979135b100f628eb"></span><h3>#define CHARACTERDATA_ID 1<a class="headerlink" href="#define-characterdata-id-1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-characterdesc-id-3">
+<span id="group-sys-framebuffer-itf-1ga92ca9ba4d2abac9102ce1d0384074ff3"></span><h3>#define CHARACTERDESC_ID 3<a class="headerlink" href="#define-characterdesc-id-3" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fontarea-id-8">
+<span id="group-sys-framebuffer-itf-1gac59d93a9c90a60f2b8a36954e2922fd2"></span><h3>#define FONTAREA_ID 8<a class="headerlink" href="#define-fontarea-id-8" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fontinfo-id-10">
+<span id="group-sys-framebuffer-itf-1gae1c6a612351ca87f4cb41a4dc3596b08"></span><h3>#define FONTINFO_ID 10<a class="headerlink" href="#define-fontinfo-id-10" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-itf-sysframebuffer">
+<span id="group-sys-framebuffer-itf-1gac1394941d5a6401bfe45f413e46a63fc"></span><h3>#define ITF_SysFramebuffer<a class="headerlink" href="#define-itf-sysframebuffer" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-sysframebuffer">
+<span id="group-sys-framebuffer-itf-1ga15c8cacd1edbf0c7384f36d39351b349"></span><h3>#define EXTITF_SysFramebuffer<a class="headerlink" href="#define-extitf-sysframebuffer" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-fbpixel-24-fbpixel">
+<span id="group-sys-framebuffer-itf-1ga792c83f8ae3bc98bb17a0994553de74e"></span><h3>typedef FBPixel_24 FBPixel<a class="headerlink" href="#typedef-fbpixel-24-fbpixel" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-struct-fbfontcharstruct-fbfontchar">
+<span id="group-sys-framebuffer-itf-1gaaced0112821007d563b0e816384929ff"></span><h3>typedef struct FBFontCharStruct  FBFontChar<a class="headerlink" href="#typedef-struct-fbfontcharstruct-fbfontchar" title="Permalink to this headline">¶</a></h3>
+<p>Font Character Descriptor; describes where a specific character can be found in the Font bitmap; characters are stored byte-aligned within the bitmap. See this encoded &#8220;2&#8221;:</p>
+<p>byte42 byte43 &gt; usOffset = 42, as byte 42 is the first used byte [ 00000000 | 00000000 ]</p>
+<ul class="simple">
+<li>0 00011110 00000000 &gt; ucWidth = 10 Pixels (= 10Bit) 0 01100001 10000000 0 11000000 11000000 0 00000001 10000000</li>
+<li>0 00000110 00000000 0 00011100 00000000 0 11111111 11000000 &gt; ucHeight = 7 Pixels (= 7 Bit) 0 00000000 00000000 &gt; ucBaseline = 1 Pixel (= 1 Bit)</li>
+<li></li>
+</ul>
+</div>
+<div class="section" id="typedef-isysframebuffer-c-isysframebuffer">
+<span id="group-sys-framebuffer-itf-1ga0631aa429be0d9b499fa39ad7e1c1a00"></span><h3>typedef ISysFramebuffer_C ISysFramebuffer<a class="headerlink" href="#typedef-isysframebuffer-c-isysframebuffer" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-result-sysframebufferosinit-init-struct-pinit">
+<span id="group-sys-framebuffer-itf-1gaf7925bab5fe1838be71d8927030f0a60"></span><h3>RTS_RESULT SysFramebufferOSInit (INIT_STRUCT <a href="#id73"><span class="problematic" id="id74">*</span></a>pInit)<a class="headerlink" href="#rts-result-sysframebufferosinit-init-struct-pinit" title="Permalink to this headline">¶</a></h3>
+<p>Init routines for OS specific modules</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="13%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pInit</td>
+<td>Init Struct for OS specific modules</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Result of Initialisation.</p>
+</div>
+<div class="section" id="rts-result-sysframebufferoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">
+<span id="group-sys-framebuffer-itf-1ga6f2b996d67ab4f44819add693cff0388"></span><h3>RTS_RESULT SysFramebufferOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)<a class="headerlink" href="#rts-result-sysframebufferoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2" title="Permalink to this headline">¶</a></h3>
+<p>Hook Function for OS specific modules</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="15%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulHook</td>
+<td>Hook Type for OS specific modules</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulParam1</td>
+<td>First Hook Parameter for OS specific modules</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulParam2</td>
+<td>Second Hook Parameter for OS specific modules</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Result of OS Hook.</p>
+</div>
+<div class="section" id="rts-result-sysframebufferdeviceinit-void">
+<span id="group-sys-framebuffer-itf-1ga0f76241b7e85e119c6d87da1f21413a8"></span><h3>RTS_RESULT SysFramebufferDeviceInit (void)<a class="headerlink" href="#rts-result-sysframebufferdeviceinit-void" title="Permalink to this headline">¶</a></h3>
+<p>Device initiate function for frame buffer
+<strong>Returns:</strong></p>
+<p>Result of device initialization</p>
+</div>
+<div class="section" id="rts-result-sysframebufferbeginpaint-void">
+<span id="group-sys-framebuffer-itf-1ga509cc040359ac9b914d44efbafc15d03"></span><h3>RTS_RESULT SysFramebufferBeginPaint (void)<a class="headerlink" href="#rts-result-sysframebufferbeginpaint-void" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-sysframebufferendpaint-void">
+<span id="group-sys-framebuffer-itf-1ga87908940647a98d13d61b598b70e1b92"></span><h3>RTS_RESULT SysFramebufferEndPaint (void)<a class="headerlink" href="#rts-result-sysframebufferendpaint-void" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-sysframebufferflush-rts-rectangle-ainvalidate-rts-ui32-uinumrects">
+<span id="group-sys-framebuffer-itf-1ga2140264f5e6bf6f5fa461d91a63a019d"></span><h3>RTS_RESULT SysFramebufferFlush (RTS_Rectangle <a href="#id75"><span class="problematic" id="id76">*</span></a>aInvalidate, RTS_UI32 uiNumRects)<a class="headerlink" href="#rts-result-sysframebufferflush-rts-rectangle-ainvalidate-rts-ui32-uinumrects" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-sysframebuffergetcurrentaddress-fbpixel-paddress">
+<span id="group-sys-framebuffer-itf-1ga0770d295f27778ecbf2791ae5e3a89ab"></span><h3>RTS_RESULT SysFramebufferGetCurrentAddress (FBPixel <a href="#id77"><span class="problematic" id="id78">**</span></a>pAddress)<a class="headerlink" href="#rts-result-sysframebuffergetcurrentaddress-fbpixel-paddress" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-sysframebufferenablecolorpalette8-rts-ui8-ppalette">
+<span id="group-sys-framebuffer-itf-1gaf04742f20b6d31db351369415d00ae33"></span><h3>RTS_RESULT SysFramebufferEnableColorPalette8 (RTS_UI8 <a href="#id79"><span class="problematic" id="id80">*</span></a>pPalette)<a class="headerlink" href="#rts-result-sysframebufferenablecolorpalette8-rts-ui8-ppalette" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-handle-sysframebuffergetfontlist-void">
+<span id="group-sys-framebuffer-itf-1ga213cfcc916ca5f97a1d908c8bbe30afe"></span><h3>RTS_HANDLE SysFramebufferGetFontList (void)<a class="headerlink" href="#rts-handle-sysframebuffergetfontlist-void" title="Permalink to this headline">¶</a></h3>
+<p>For all systems without a filesystem and without truetype fonts, this function is used to return the best matching font on the system
+<strong>Returns:</strong></p>
+<p>runtime handle</p>
+</div>
+<div class="section" id="rts-result-sysframebuffergetfont-fbfont-ppfont-char-pszfontname-rts-ui8-ucfontsize-rts-ui32-uiflags">
+<span id="group-sys-framebuffer-itf-1gad0d9ec820a80bbd832b083b32f8f29c4"></span><h3>RTS_RESULT SysFramebufferGetFont (FBFont <a href="#id81"><span class="problematic" id="id82">**</span></a>ppFont, char <a href="#id83"><span class="problematic" id="id84">*</span></a>pszFontName, RTS_UI8 ucFontSize, RTS_UI32 uiFlags)<a class="headerlink" href="#rts-result-sysframebuffergetfont-fbfont-ppfont-char-pszfontname-rts-ui8-ucfontsize-rts-ui32-uiflags" title="Permalink to this headline">¶</a></h3>
+<p>In case that no static font list was return, use this function to get dynamic fonts
+<strong>Returns:</strong></p>
+<p>runtime handle</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___sys_graphic_itf.html" title="SysGraphicItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_flash_itf.html" title="SysFlashItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

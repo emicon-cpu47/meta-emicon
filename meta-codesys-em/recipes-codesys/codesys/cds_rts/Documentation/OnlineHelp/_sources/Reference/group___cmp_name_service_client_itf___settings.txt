@@ -1,0 +1,46 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_name_service_client_itf___settings:
+
+========
+Settings
+========
+
+ :ref:`More... <group___cmp_name_service_client_itf___settings-details>`
+
+Macros
+------
+
+- #define :ref:`NAMESERVICESRVKEY_INT_SCAN_TIME <group___cmp_name_service_client_itf___settings_1ga674925b7ffe7531cd8dddd53a8670c37>` "ScanTimeSeconds"
+
+- #define :ref:`NAMESERVICESRVVALUE_INT_SCAN_TIME_DEFAULT <group___cmp_name_service_client_itf___settings_1ga893a40926338e634f7870605712d27dc>` 10
+
+.. _group___cmp_name_service_client_itf___settings-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_name_service_client_itf___settings_1ga674925b7ffe7531cd8dddd53a8670c37:
+
+#define NAMESERVICESRVKEY_INT_SCAN_TIME "ScanTimeSeconds"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Timeout in seconds after the CmpChannelClient (Gateway) signals the end of the network scan to the client. All further incomming network scan answers for this scan request will be dropped. ATTENTION: This timeout should only be adapted, if there are nodes connected to the PLC network, which need more than around 6 seconds to handle the scan request and return the answer. The only known reason is, that the scan have to be forwarded into another network (non-3S-protocol). If this timeout must be adapted, you have to check all used clients (CoDeSys, OPC-Server, PLCHandler, DataServer, ...) if the network scan and finding the nodes still works in a proper way.
+
+.. _group___cmp_name_service_client_itf___settings_1ga893a40926338e634f7870605712d27dc:
+
+#define NAMESERVICESRVVALUE_INT_SCAN_TIME_DEFAULT 10
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

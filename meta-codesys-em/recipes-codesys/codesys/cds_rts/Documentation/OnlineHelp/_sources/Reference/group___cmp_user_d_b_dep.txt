@@ -1,0 +1,48 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_user_d_b_dep:
+
+============
+CmpUserDBDep
+============
+
+ :ref:`More... <group___cmp_user_d_b_dep-details>`
+
+Modules
+-------
+
+- :ref:`Static defines <group___cmp_user_d_b_dep___staticdefines>`
+
+.. _group___cmp_user_d_b_dep-details:
+
+Detailed Description
+--------------------
+
+
+
+Implementation of the UserDB interface based on simple csv-Files to store Users/UserGroups and the UserRights:
+
+1. Users + Groups are stored in the "UserMgmtDB.csv" file: We store a list of users with its password credentials and its properties. Additionally a list of user groups with its assigned users an possible user groups from which they are derived. The format of the user database file is as followed:
+
+For users: <user name="" password="" property="0x/"> The password entry contains the MD5 hash of the encrypted password. The property entry contains the properties of the this user as an hexadecimal value (see "UserDB properties" in :ref:`CmpUserDBItf.h <_cmp_user_d_b_itf_8h>` ).
+
+Example: <user name="MyUser" password="12AB12AB12AB12AB12AB12AB12AB12AB" property="0x0ffffeef/">
+
+For user groups: <group name="" property="0x/">,<user name="MyUser">, <user>, ..., <group name="Developer">, <group>, ...
+
+Example: <group name="Administrator" property="0x0000008f/">, <user name="MyUser">, <group name="Developer">
+
+2. UserRights are stored in the "UserMgmtRightsDB.csv" file: We store a list of all objects (that must be protected) with its assigned groups and the corresponding allowed/denied rights for each group. The format of the user rights database file is as followed: <object name="">,<group name="" rights="0x00000001" deniedrights="0xfffffffe/">, <group>, ...
+
+Example: <object name="Device">,<group name="Watch" rights="0x00000001" deniedrights="0xfffffffe/">,<group name="Developer" rights="0x00000001" deniedrights="0xfffffffe/">,<group name="Service" rights="0x00000001" deniedrights="0xfffffffe/">,<group name="Administrator" rights="0xffffffff" deniedrights="0x00000000/">,<group name="Everyone" rights="0x00000000" deniedrights="0xffffffff/">
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. GmbH
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

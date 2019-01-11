@@ -1,0 +1,202 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_iec_var_access_itf___varlistflags:
+
+=============
+Varlist flags
+=============
+
+ :ref:`More... <group___cmp_iec_var_access_itf___varlistflags-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`BrowseBranchNode <struct_browse_branch_node>`
+
+Macros
+------
+
+- #define :ref:`VLF_MOTOROLA_BYTE_ORDER <group___cmp_iec_var_access_itf___varlistflags_1gaf4a3de8ce339a2712f0948d61e5ee25c>` 0x00000001
+
+- #define :ref:`VLF_CONSISTENT_BACKGROUND_READ <group___cmp_iec_var_access_itf___varlistflags_1ga166b0ecae4c99fc33583f8accd271b51>` 0x00000002
+
+- #define :ref:`VLF_CONSISTENT <group___cmp_iec_var_access_itf___varlistflags_1ga86e1f0d61417a6e7a63e7658c030da91>` :ref:`VLF_CONSISTENT_BACKGROUND_READ <group___cmp_iec_var_access_itf___varlistflags_1ga166b0ecae4c99fc33583f8accd271b51>`
+
+- #define :ref:`VLF_DATA_CHANGE <group___cmp_iec_var_access_itf___varlistflags_1ga09387a6a0a69b52640bf512b347dca44>` 0x00000004
+
+- #define :ref:`VLF_EXTENDABLE <group___cmp_iec_var_access_itf___varlistflags_1ga1536583b71fe8775791fc69dfcb5b98a>` 0x00000008
+
+- #define :ref:`VLF_EXTENDABLE_SUPPORTED <group___cmp_iec_var_access_itf___varlistflags_1gadde7d6408e9380f39735bec605e80259>` 0x00000010
+
+- #define :ref:`VLF_ACCESS_BY_VARHANDLE <group___cmp_iec_var_access_itf___varlistflags_1ga1ed15b4fa97c5d03bb582664f1b9a41e>` 0x00000020
+
+- #define :ref:`VLF_SPLIT_HUGE_VARIABLES <group___cmp_iec_var_access_itf___varlistflags_1gacf2a1b407f21a211991e7ea88258bcb2>` 0x00000040
+
+- #define :ref:`VLF_CONSISTENT_SYNCHRONIZED_READ <group___cmp_iec_var_access_itf___varlistflags_1ga43509272ebbfd00ac4a157d703905380>` 0x00000080
+
+- #define :ref:`VLF_CONSISTENT_SYNCHRONIZED_WRITE <group___cmp_iec_var_access_itf___varlistflags_1gaa7450ccbed9656f8cd01a0fd6d117f9d>` 0x00000100
+
+- #define :ref:`VLF_CONSISTENCY_SUPPORTED <group___cmp_iec_var_access_itf___varlistflags_1gae02dced163d6f885359a33ceb11f414e>` 0x00000200
+
+- #define :ref:`VLF_EXECUTE_CONSISTENT_READ <group___cmp_iec_var_access_itf___varlistflags_1gad1785b28968292927a4dcc74ec2a854e>` 0x00000400
+
+- #define :ref:`VLF_EXECUTE_CONSISTENT_WRITE <group___cmp_iec_var_access_itf___varlistflags_1ga1ff62cc06b799d2d992cd23e4a8dd309>` 0x00000800
+
+- #define :ref:`VLF_RETURN_VARINFO <group___cmp_iec_var_access_itf___varlistflags_1gab9111086a0d096539bd273bddf4c6b72>` 0x00001000
+
+- #define :ref:`VLF_TIMESTAMP_UTC <group___cmp_iec_var_access_itf___varlistflags_1gab5c2e218167fd09827406540ba529105>` 0x00010000
+
+- #define :ref:`VLF_TIMESTAMP_TIMEDATE <group___cmp_iec_var_access_itf___varlistflags_1gaa41325cf1cd9d3815bca1a363808ea70>` 0x00020000
+
+- #define :ref:`VLF_TIMESTAMP_MS <group___cmp_iec_var_access_itf___varlistflags_1ga79cf13ffce1acecfdc37dbdd9573956f>` 0x00040000
+
+- #define :ref:`VLF_TIMESTAMP_US <group___cmp_iec_var_access_itf___varlistflags_1ga40b04f20d29bb48116bb89e062f6fe3b>` 0x00080000
+
+- #define :ref:`VLF_TIMESTAMP_NS <group___cmp_iec_var_access_itf___varlistflags_1ga1fe09cf526e4c2e5ca2ceeffac6c5fc8>` 0x00100000
+
+.. _group___cmp_iec_var_access_itf___varlistflags-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_iec_var_access_itf___varlistflags_1gaf4a3de8ce339a2712f0948d61e5ee25c:
+
+#define VLF_MOTOROLA_BYTE_ORDER 0x00000001
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Motorola byte order (big endian)
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1ga166b0ecae4c99fc33583f8accd271b51:
+
+#define VLF_CONSISTENT_BACKGROUND_READ 0x00000002
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Communication task tries to read the variables in the background. If it is not possible to read all variables without interruption of the IEC tasks during the consistancy timeout the read request is denied with an error result ERR_NO_CONSISTENCY!
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1ga86e1f0d61417a6e7a63e7658c030da91:
+
+#define VLF_CONSISTENT :ref:`VLF_CONSISTENT_BACKGROUND_READ <group___cmp_iec_var_access_itf___varlistflags_1ga166b0ecae4c99fc33583f8accd271b51>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1ga09387a6a0a69b52640bf512b347dca44:
+
+#define VLF_DATA_CHANGE 0x00000004
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Only variables, which values changed, are transmitted
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1ga1536583b71fe8775791fc69dfcb5b98a:
+
+#define VLF_EXTENDABLE 0x00000008
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Client requests to work with varlists, which can extend the comm buffer
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1gadde7d6408e9380f39735bec605e80259:
+
+#define VLF_EXTENDABLE_SUPPORTED 0x00000010
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+PLC supports varlists, which can extend the comm buffer
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1ga1ed15b4fa97c5d03bb582664f1b9a41e:
+
+#define VLF_ACCESS_BY_VARHANDLE 0x00000020
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Client accesses not the complete list, but only the specified vars of the list
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1gacf2a1b407f21a211991e7ea88258bcb2:
+
+#define VLF_SPLIT_HUGE_VARIABLES 0x00000040
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Client can also read variables, which are larger than the communication buffer
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1ga43509272ebbfd00ac4a157d703905380:
+
+#define VLF_CONSISTENT_SYNCHRONIZED_READ 0x00000080
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Communication task waits for an IEC task gap and blocks the IEC tasks until the values are copied from the IEC variables to the cache
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1gaa7450ccbed9656f8cd01a0fd6d117f9d:
+
+#define VLF_CONSISTENT_SYNCHRONIZED_WRITE 0x00000100
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Communication task waits for an IEC task gap and blocks the IEC tasks until the values are copied from the cache into the IEC variables
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1gae02dced163d6f885359a33ceb11f414e:
+
+#define VLF_CONSISTENCY_SUPPORTED 0x00000200
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+PLC supports the requested consistency (VLF_CONSISTENT_BACKGROUND_READ, VLF_CONSISTENT_SYNCHRONIZED_READ or VLF_CONSISTENT_SYNCHRONIZED_WRITE)
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1gad1785b28968292927a4dcc74ec2a854e:
+
+#define VLF_EXECUTE_CONSISTENT_READ 0x00000400
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Flag to mark the first read service of a variable list to read in all values consistent in the cache
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1ga1ff62cc06b799d2d992cd23e4a8dd309:
+
+#define VLF_EXECUTE_CONSISTENT_WRITE 0x00000800
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Flag to mark the last write service of a variable list to write out all values consistent from the cache into the IEC variables
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1gab9111086a0d096539bd273bddf4c6b72:
+
+#define VLF_RETURN_VARINFO 0x00001000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return complete VarInfo to client, to let the client retrieve the variable the next time by varinfo instead of name
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1gab5c2e218167fd09827406540ba529105:
+
+#define VLF_TIMESTAMP_UTC 0x00010000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Timestamp in UTC (Universal Time Coordinated), at which the values are read
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1gaa41325cf1cd9d3815bca1a363808ea70:
+
+#define VLF_TIMESTAMP_TIMEDATE 0x00020000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1ga79cf13ffce1acecfdc37dbdd9573956f:
+
+#define VLF_TIMESTAMP_MS 0x00040000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Timestamp in millisecond, at which the values are read
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1ga40b04f20d29bb48116bb89e062f6fe3b:
+
+#define VLF_TIMESTAMP_US 0x00080000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Timestamp in microseconds, at which the values are read
+
+.. _group___cmp_iec_var_access_itf___varlistflags_1ga1fe09cf526e4c2e5ca2ceeffac6c5fc8:
+
+#define VLF_TIMESTAMP_NS 0x00100000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Timestamp in nanoseconds, at which the values are read
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

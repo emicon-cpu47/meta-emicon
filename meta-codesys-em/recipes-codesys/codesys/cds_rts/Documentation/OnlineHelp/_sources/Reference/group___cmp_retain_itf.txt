@@ -1,0 +1,360 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_retain_itf:
+
+============
+CmpRetainItf
+============
+
+Interface of CmpRetain. :ref:`More... <group___cmp_retain_itf-details>`
+
+Modules
+-------
+
+- :ref:`Delete option <group___cmp_retain_itf___deleteoption>`
+
+- :ref:`Event parameter <group___cmp_retain_itf___eventparameter>`
+
+- :ref:`Events <group___cmp_retain_itf___events>`
+
+- :ref:`Retain header <group___cmp_retain_itf___retainheader>`
+
+- :ref:`Retain type <group___cmp_retain_itf___retaintype>`
+
+- :ref:`Settings <group___cmp_retain_itf___settings>`
+
+- :ref:`Static defines <group___cmp_retain_itf___staticdefines>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpRetain_C <struct_i_cmp_retain___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpRetain <group___cmp_retain_itf_1ga5d19d0f92a8c81d9fc204cf9f8e41651>`
+
+- #define :ref:`EXTITF_CmpRetain <group___cmp_retain_itf_1ga437e44e4cfcd9e4253a2228e536c37e7>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpRetain_C <struct_i_cmp_retain___c>` :ref:`ICmpRetain <group___cmp_retain_itf_1gadee45d8affc6e12f51aeaff43c2d2a0b>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`RetainAlloc <group___cmp_retain_itf_1ga9488af398ccccb9e7cb905c57a5a70b5>` (char * pszName, RTS_GUID * pDataGUID, :ref:`RetainType <group___cmp_retain_itf___retaintype_1ga6e45fc1e6bbb34dc2006aa7d299471a4>`  rtType, RTS_UI16 usAreaType, RTS_SIZE iSize, int bRestore, RTS_UI8 ** ppbyRetain)
+
+- RTS_RESULT :ref:`RetainFree <group___cmp_retain_itf_1ga41db1fb9c53c88c8dff916d99c0adb49>` (char * pszName, RTS_UI8 * pbyRetain, int nDeleteOption)
+
+- RTS_RESULT :ref:`RetainFreeAll <group___cmp_retain_itf_1ga54a0c084a3de1e56312b72038ba66354>` (void)
+
+- RTS_RESULT :ref:`RetainUpdateGuid <group___cmp_retain_itf_1ga0e5e09fc843d927d2cd6b8dfb15d2a69>` (char * pszName, RTS_UI8 * pbyRetain, RTS_GUID * pDataGuidOld, RTS_GUID * pDataGuidNew)
+
+- RTS_RESULT :ref:`RetainCheckGuid <group___cmp_retain_itf_1gab64263b24b17c8f7f26adc4ca08dffe9>` (char * pszName, RTS_UI8 * pbyRetain, RTS_GUID * pDataGuid, RTS_UI16 usAreaType)
+
+- RTS_RESULT :ref:`RetainUpdate <group___cmp_retain_itf_1ga5e4750cb069c93892ada509d08dea350>` (void)
+
+- RTS_RESULT :ref:`RetainStore <group___cmp_retain_itf_1gaef2547c0f31e99a30d940db47e8d06c4>` (char * pszName, RTS_UI8 * pbyRetain, RTS_SIZE iSize, RTS_GUID * pDataGUID, int bBackup)
+
+- RTS_RESULT :ref:`RetainStoreInFile <group___cmp_retain_itf_1ga9d949fa8a21dfae931ca58cfb045b328>` (char * pszFile, char * pszName, RTS_UI8 * pbyRetain, RTS_SIZE iSize, RTS_GUID * pDataGUID)
+
+- RTS_RESULT :ref:`RetainRestore <group___cmp_retain_itf_1gafca05ce675d98106a474a1ef82532d73>` (char * pszName, RTS_UI8 * pbyRetain, RTS_SIZE iSize, RTS_GUID * pDataGUID, RTS_UI16 usAreaType, int bBackup)
+
+- RTS_RESULT :ref:`RetainRestoreFromFile <group___cmp_retain_itf_1gab285d98c2e004226f9c6a50b17dbd397>` (char * pszFile, char * pszName, RTS_UI8 * pbyRetain, RTS_SIZE iSize, RTS_GUID * pDataGUID, RTS_UI16 usAreaType)
+
+- RTS_RESULT :ref:`RetainPrepareStore <group___cmp_retain_itf_1ga4ea6ee220f9993d42939be1c20f0fdd4>` (char * pszFile, char * pszName)
+
+.. _group___cmp_retain_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpRetain.
+
+This is the interface of the retain manager. Retains are data that are not lost after a reboot (non-volatile).
+
+To realize non-volatile data, following different techniques are used typically:
+
+- Store data at shutdown on a non-volatile medium (e.g. harddisk): This can be used only on systems with a defined shutdown and with an UPS (external power supply)!
+
+- Store retain data directly on a non-voaltile RAM (SRAM, NVRAM, etc.): This can be used only on systems with this types of memory.
+
+All retain data is checked for consistency with a data GUID. This GUID is written at the beginning of each retain area and can be checked after the next restore.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_retain_itf_1ga5d19d0f92a8c81d9fc204cf9f8e41651:
+
+#define ITF_CmpRetain
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_retain_itf_1ga437e44e4cfcd9e4253a2228e536c37e7:
+
+#define EXTITF_CmpRetain
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_retain_itf_1gadee45d8affc6e12f51aeaff43c2d2a0b:
+
+typedef ICmpRetain_C ICmpRetain
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_retain_itf_1ga9488af398ccccb9e7cb905c57a5a70b5:
+
+RTS_RESULT RetainAlloc (char *pszName, RTS_GUID *pDataGUID, RetainType rtType, RTS_UI16 usAreaType, RTS_SIZE iSize, int bRestore, RTS_UI8 **ppbyRetain)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to allocate retain memory
+
+**Parameters**
+
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pszName    | Name to assign to the retain memory                                                                   |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pDataGUID  | Pointer to data GUID (GUID of the data content or another unique GUID)                                |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | rtType     | Retain type                                                                                           |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | usAreaType | Area type. See category "Area Types" in :ref:`SysMemItf.h <_sys_mem_itf_8h>` for detailed information |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | iSize      | Requested size of the retain area                                                                     |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | bRestore   | 1=if retain should be restored, 0=no restore necessary                                                |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [out]   | ppbyRetain | Pointer pointer to return the retain memory                                                           |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_retain_itf_1ga41db1fb9c53c88c8dff916d99c0adb49:
+
+RTS_RESULT RetainFree (char *pszName, RTS_UI8 *pbyRetain, int nDeleteOption)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Release the retain memory
+
+**Parameters**
+
++---------+---------------+-----------------------------------------------------+
+| [in]    | pszName       | Name that was assigned to the retain memory         |
++---------+---------------+-----------------------------------------------------+
+| [in]    | pbyRetain     | Pointer of the retain memory to release             |
++---------+---------------+-----------------------------------------------------+
+| [in]    | nDeleteOption | Option to delete retain memory. See "Delete option" |
++---------+---------------+-----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_retain_itf_1ga54a0c084a3de1e56312b72038ba66354:
+
+RTS_RESULT RetainFreeAll (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Release all retain memory
+**Returns:**
+
+error code
+
+.. _group___cmp_retain_itf_1ga0e5e09fc843d927d2cd6b8dfb15d2a69:
+
+RTS_RESULT RetainUpdateGuid (char *pszName, RTS_UI8 *pbyRetain, RTS_GUID *pDataGuidOld, RTS_GUID *pDataGuidNew)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Update data GUID in the specified retain area
+
+**Parameters**
+
++---------+--------------+---------------------------------------------+
+| [in]    | pszName      | Name that was assigned to the retain memory |
++---------+--------------+---------------------------------------------+
+| [in]    | pbyRetain    | Pointer of the retain memory to release     |
++---------+--------------+---------------------------------------------+
+| [in]    | pDataGuidOld | Pointer to old data GUID                    |
++---------+--------------+---------------------------------------------+
+| [in]    | pDataGuidNew | Pointer to new data GUID                    |
++---------+--------------+---------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_retain_itf_1gab64263b24b17c8f7f26adc4ca08dffe9:
+
+RTS_RESULT RetainCheckGuid (char *pszName, RTS_UI8 *pbyRetain, RTS_GUID *pDataGuid, RTS_UI16 usAreaType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check GUID that is stored in the retain memory
+
+**Parameters**
+
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pszName    | Name that was assigned to the retain memory                                                           |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pbyRetain  | Pointer of the retain memory to release                                                               |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pDataGUID  | Pointer to data GUID                                                                                  |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | usAreaType | Area type. See category "Area Types" in :ref:`SysMemItf.h <_sys_mem_itf_8h>` for detailed information |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_retain_itf_1ga5e4750cb069c93892ada509d08dea350:
+
+RTS_RESULT RetainUpdate (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Update retain management. Can be used to detect all free retain areas after loading all bootprojects
+**Returns:**
+
+error code
+
+.. _group___cmp_retain_itf_1gaef2547c0f31e99a30d940db47e8d06c4:
+
+RTS_RESULT RetainStore (char *pszName, RTS_UI8 *pbyRetain, RTS_SIZE iSize, RTS_GUID *pDataGUID, int bBackup)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to store retain data. Is used for example to store retains on a harddisk.
+
+**Parameters**
+
++---------+-----------+------------------------------------------------------------------------------------------+
+| [in]    | pszName   | Name that was assigned to the retain memory                                              |
++---------+-----------+------------------------------------------------------------------------------------------+
+| [in]    | iSize     | Requested size of the retain area                                                        |
++---------+-----------+------------------------------------------------------------------------------------------+
+| [in]    | pDataGUID | Data guid of the retain area                                                             |
++---------+-----------+------------------------------------------------------------------------------------------+
+| [in]    | pbyRetain | Pointer of the retain memory                                                             |
++---------+-----------+------------------------------------------------------------------------------------------+
+| [in]    | bBackup   | If parameter is 1, then the retain data of the specified area is stored for backup needs |
++---------+-----------+------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_retain_itf_1ga9d949fa8a21dfae931ca58cfb045b328:
+
+RTS_RESULT RetainStoreInFile (char *pszFile, char *pszName, RTS_UI8 *pbyRetain, RTS_SIZE iSize, RTS_GUID *pDataGUID)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to store retain data. Is used for example to store retains on a harddisk.
+
+**Parameters**
+
++---------+-----------+---------------------------------------------+
+| [in]    | pszFile   | Name of the file to store retains to        |
++---------+-----------+---------------------------------------------+
+| [in]    | pszName   | Name that was assigned to the retain memory |
++---------+-----------+---------------------------------------------+
+| [in]    | iSize     | Requested size of the retain area           |
++---------+-----------+---------------------------------------------+
+| [in]    | pDataGUID | Data guid of the retain area                |
++---------+-----------+---------------------------------------------+
+| [in]    | pbyRetain | Pointer of the retain memory                |
++---------+-----------+---------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_retain_itf_1gafca05ce675d98106a474a1ef82532d73:
+
+RTS_RESULT RetainRestore (char *pszName, RTS_UI8 *pbyRetain, RTS_SIZE iSize, RTS_GUID *pDataGUID, RTS_UI16 usAreaType, int bBackup)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to restore retain data after booting the plc. Is used for example to restore retains from a harddisk.
+
+**Parameters**
+
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pszName    | Name that was assigned to the retain memory                                                           |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | iSize      | Requested size of the retain area                                                                     |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pDataGUID  | Data guid of the retain area                                                                          |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pbyRetain  | Pointer of the retain memory                                                                          |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | usAreaType | Area type. See category "Area Types" in :ref:`SysMemItf.h <_sys_mem_itf_8h>` for detailed information |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | bBackup    | If parameter is 1, then the retain data of the specified area is restored for backup needs            |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_retain_itf_1gab285d98c2e004226f9c6a50b17dbd397:
+
+RTS_RESULT RetainRestoreFromFile (char *pszFile, char *pszName, RTS_UI8 *pbyRetain, RTS_SIZE iSize, RTS_GUID *pDataGUID, RTS_UI16 usAreaType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to restore retain data after booting the plc. Is used for example to restore retains from a harddisk.
+
+**Parameters**
+
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pszFile    | Name of the file to restore retains from                                                              |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pszName    | Name that was assigned to the retain memory                                                           |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | iSize      | Requested size of the retain area                                                                     |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pDataGUID  | Data guid of the retain area                                                                          |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pbyRetain  | Pointer of the retain memory                                                                          |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | usAreaType | Area type. See category "Area Types" in :ref:`SysMemItf.h <_sys_mem_itf_8h>` for detailed information |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | bBackup    | If parameter is 1, then the retain data of the specified area is restored for backup needs            |
++---------+------------+-------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_retain_itf_1ga4ea6ee220f9993d42939be1c20f0fdd4:
+
+RTS_RESULT RetainPrepareStore (char *pszFile, char *pszName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to prepare store retains
+
+**Parameters**
+
++---------+---------+---------------------------------------------+
+| [in]    | pszFile | Name of the file to prepare                 |
++---------+---------+---------------------------------------------+
+| [in]    | pszName | Name that was assigned to the retain memory |
++---------+---------+---------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

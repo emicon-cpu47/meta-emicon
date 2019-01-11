@@ -1,0 +1,351 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Security &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Features" href="index.html" />
+    <link rel="next" title="Supervisor" href="Supervisor.html" />
+    <link rel="prev" title="Redundancy Toolkit" href="Redundancy_Toolkit.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Supervisor.html" title="Supervisor"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Redundancy_Toolkit.html" title="Redundancy Toolkit"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Features</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Security</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#id1">SecurityManager</a><ul>
+<li><a class="reference internal" href="#security-settings">Security settings</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#openssl">OpenSSL</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#integration-of-openssl">Integration of OpenSSL</a></li>
+<li><a class="reference internal" href="#id3">Certificate handling</a></li>
+<li><a class="reference internal" href="#id4">Requirements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#encrypted-communication">Encrypted communication</a><ul>
+<li><a class="reference internal" href="#id5">Security settings</a></li>
+<li><a class="reference internal" href="#diffie-hellman-parameter">Diffie Hellman parameter</a></li>
+<li><a class="reference internal" href="#id6">Requirements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sign-and-encrypt-application">Sign and Encrypt Application</a><ul>
+<li><a class="reference internal" href="#id7">Security settings</a></li>
+<li><a class="reference internal" href="#id8">Requirements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#https-support-for-the-web-visualization">HTTPS support for the web visualization</a><ul>
+<li><a class="reference internal" href="#id9">Security settings</a></li>
+<li><a class="reference internal" href="#id10">Requirements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opc-ua-server-security-features">OPC UA Server security features</a><ul>
+<li><a class="reference internal" href="#id11">Encrypted communication</a></li>
+<li><a class="reference internal" href="#id12">Security settings</a></li>
+<li><a class="reference internal" href="#id13">Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Redundancy_Toolkit.html"
+                        title="previous chapter">Redundancy Toolkit</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Supervisor.html"
+                        title="next chapter">Supervisor</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Features/Security.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="security">
+<h1>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">This feature bundle enables all currently available security features at once.</div>
+<div class="line">The component <a class="reference internal" href="#securitymanager">SecurityManager</a> is implicitely added with this feature and controls all registered security levels.</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2><span class="target" id="securitymanager">SecurityManager</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>The SecurityManager controls all current available security features via security settings.</p>
+<div class="section" id="security-settings">
+<h3>Security settings<a class="headerlink" href="#security-settings" title="Permalink to this headline">¶</a></h3>
+<p>Within a set of security levels the level of the highest security is always at the first position. The levels are in descending order. The default level represents the most tolerant setting.</p>
+<p>If the compile switch CMPSECURITYMANAGER_SET_SECURITY_LEVEL_MAXIMUM is defined, the SecurityManager advises all components to use the highest security level instead of the default one.
+See in the chapter &#8220;Security settings&#8221; of each feature the corresponding security settings.</p>
+<p>The security manager setting &#8220;CreateAllOnStartup&#8221; (see <a class="reference internal" href="../Reference/group___cmp_security_manager_itf.html#group-cmp-security-manager-itf"><span class="std std-ref">CmpSecurityManagerItf</span></a>) can be activated in the runtime cfg-file. With this setting the following certificates
+and keys are created during startup:</p>
+<ul class="simple">
+<li>CmpSecureChannel: Create a selfsigned certificate</li>
+<li>CmpWebserver: Create a selfsigned certificate</li>
+<li>CmpOpenSSL: Create Diffie Hellman parameters</li>
+</ul>
+</div>
+<div class="section" id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h3>
+<p>The following runtime system components are necessary for this feature:</p>
+<ul class="simple">
+<li>CmpSecurityManager: <a class="reference internal" href="../Reference/group___cmp_security_manager_itf.html#group-cmp-security-manager-itf"><span class="std std-ref">CmpSecurityManagerItf</span></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="openssl">
+<span id="tag-openssl"></span><h2>OpenSSL<a class="headerlink" href="#openssl" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
+<p>To realize most of the security features, you need a crypto component that can implement the following interfaces:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../Reference/group___cmp_crypto_itf.html#group-cmp-crypto-itf"><span class="std std-ref">CmpCryptoItf</span></a></li>
+<li><a class="reference internal" href="../Reference/group___cmp_tls_itf.html#group-cmp-tls-itf"><span class="std std-ref">CmpTlsItf</span></a></li>
+<li><a class="reference internal" href="../Reference/group___cmp_x509_cert_itf.html#group-cmp-x509-cert-itf"><span class="std std-ref">CmpX509CertItf</span></a></li>
+<li><a class="reference internal" href="../Reference/group___sys_socket2_itf.html#group-sys-socket2-itf"><span class="std std-ref">SysSocket2Itf</span></a></li>
+</ul>
+<p>In the runtime system we use here the open source component <a class="reference external" href="https://www.openssl.org/">OpenSSL</a> by default. This component is encapsulated in the CmpOpenSSL component of the runtime system.</p>
+</div>
+<div class="section" id="integration-of-openssl">
+<h3>Integration of OpenSSL<a class="headerlink" href="#integration-of-openssl" title="Permalink to this headline">¶</a></h3>
+<p>The integration of OpenSSL can be done in 2 variants:</p>
+<ol class="arabic">
+<li><p class="first">Operating system integrated OpenSSL:</p>
+<p>If your operating system contains an implementation of OpenSSL, you can use the CmpOpenSSL component of the runtime system _without_ the OpenSSL implementation. In this case you have to define the compiler
+switch CMPOPENSSL_USE_SYSLIB for compiling the runtime system!</p>
+</li>
+<li><p class="first">Using the OpenSSL source components shipped with the runtime system:</p>
+<p>If your operating system does _not_ contain an implementation of OpenSSL, you can use the CmpOpenSSL component of the runtime system _with_ the OpenSSL implementation. In this case you must not define the
+compiler switch CMPOPENSSL_USE_SYSLIB for compiling the runtime system. Additionally you have to include all OpenSSL modules into your build project specified in CmpOpenSSLDep.h.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="id3">
+<h3><span class="target" id="certificate-handling">Certificate handling</span><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>The above mentionned security features are realized by using X.509 certificates. Actually, the certificates are stored in the file system
+of the runtime in a hidden folder &#8221;.pki&#8221;, including the private keys for own certificates. The OEM must make sure that this
+folder is not accessed from outside, especially the private keys must not be copied from one device to another. This
+configuration is only available until a backend component for managing certificates is available. This will be removed in future!</p>
+<p>There are two possibilities to equip the runtime with the necessary certificates:</p>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Selfsigned certificates:</dt>
+<dd><p class="first last">The runtime is able to create a selfsigned certificates (e.g. by using the PLCShell command &#8220;cert-genselfsigned&#8221;).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>CA signed certificates:</dt>
+<dd><p class="first">These certificates are generated by a certificate authority (e.g. VeriSign, GeoTrust, etc.) or by a CA hosted in the plant of the operator.</p>
+<p>How to get a CA signed certificate:</p>
+<ul class="last simple">
+<li>The runtime creates a CSR (Certificate Signing Request) and keeps its private key on the device (e.g. by using the PLCShell command &#8220;cert-createcsr&#8221;).
+In this case the CSR file can be found in the &#8220;cert/export&#8221; folder.</li>
+<li>Get the CSR file out of the export folder per file transfer</li>
+<li>Send the CSR to a CA and let them generate a signed certificate</li>
+<li>Send the signed certificate into the import folder (&#8220;cert/import&#8221;) per file transfer</li>
+<li>The signed certificate from the authority can then be imported to the runtime (e.g. with the PLCShell command &#8220;cert-import&#8221;).</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+<div class="section" id="id4">
+<h3>Requirements<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>The following runtime system components are necessary for this feature:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#tag-openssl">OpenSSL</a> or equivalent crypto component</li>
+<li>CmpSecurityManager: <a class="reference internal" href="../Reference/group___cmp_security_manager_itf.html#group-cmp-security-manager-itf"><span class="std std-ref">CmpSecurityManagerItf</span></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="encrypted-communication">
+<h2>Encrypted communication<a class="headerlink" href="#encrypted-communication" title="Permalink to this headline">¶</a></h2>
+<p>This feature enables the encrypted online communication. The encryption is done using the TLS protocol within our CODESYS
+communication protocol. All L7 services will be signed and encrypted before transmitting them. The implementation uses
+the existing channels to handle the TLS protocol. As a result the encryption will not affect the routing inside a CODESYS
+network. Additional the encrypted communication can be used with any supported transfer medium. There is some protocol
+overhead and the signing and decryption needs some time. So the effective transfer rate will be decreased.</p>
+<p>For encrypted communication an X509 certificate and key for the component &#8220;CmpSecureChannel&#8221; is necessary on the PLC.
+That is a certificate with the extended key usage &#8220;TLS Web Server Authentication&#8221;.</p>
+<div class="section" id="id5">
+<h3>Security settings<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>The secure channel registers a number of security settings to change the security configuration. See: <a class="reference internal" href="../Reference/group___cmp_secure_channel_itf___security_settings.html#group-cmp-secure-channel-itf-security-settings"><span class="std std-ref">SecuritySettings</span></a></p>
+</div>
+<div class="section" id="diffie-hellman-parameter">
+<h3>Diffie Hellman parameter<a class="headerlink" href="#diffie-hellman-parameter" title="Permalink to this headline">¶</a></h3>
+<p>For forward security, it is possible to use a DH (Diffie Hellman) parameter to securely exchange the keys used by the communication partners.
+The runtime is able to create such a DH parameter (is only necessary once per device), e.g. with the PLCShell command &#8220;cert-gendhparams&#8221;.
+As soon as there is a DH parameter available, it will be used for the communication establishment.</p>
+<p>Remark: actually it is not mandatory to use a DH parameter for encrypted communication, since it may take a long time to create the parameter.
+This might be changed in future to ensure better security.</p>
+</div>
+<div class="section" id="id6">
+<h3>Requirements<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>The following runtime system components are necessary for this feature:</p>
+<ul class="simple">
+<li>CmpSecureChannel: <a class="reference internal" href="../Reference/group___cmp_secure_channel_itf.html#group-cmp-secure-channel-itf"><span class="std std-ref">CmpSecureChannelItf</span></a></li>
+<li>CmpSecurityManager: <a class="reference internal" href="../Reference/group___cmp_security_manager_itf.html#group-cmp-security-manager-itf"><span class="std std-ref">CmpSecurityManagerItf</span></a></li>
+<li><a class="reference internal" href="#tag-openssl">OpenSSL</a> or equivalent crypto component</li>
+</ul>
+</div>
+</div>
+<div class="section" id="sign-and-encrypt-application">
+<h2>Sign and Encrypt Application<a class="headerlink" href="#sign-and-encrypt-application" title="Permalink to this headline">¶</a></h2>
+<p>This feature adds support for signed and encrypted applications.</p>
+<p>For encrypted applications an X509 certificate and key for Data Encipherment is necessary on the PLC.
+To download such an application the certificate must be available in CODESYS.</p>
+<p>To sign an application an X509 certificate and key for Digital Signature is required in CODESYS.
+To verify a signed application the X509 certificate for Digital Signature of the signer is required on the PLC.</p>
+<div class="section" id="id7">
+<h3>Security settings<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>The application manager registers a number of security settings to change the security configuration. See: <a class="reference internal" href="../Reference/group___cmp_app_itf___security_settings.html#group-cmp-app-itf-security-settings"><span class="std std-ref">SecuritySettings</span></a></p>
+</div>
+<div class="section" id="id8">
+<h3>Requirements<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>The following runtime system components are necessary for this feature:</p>
+<ul class="simple">
+<li>CmpSecurityManager: <a class="reference internal" href="../Reference/group___cmp_security_manager_itf.html#group-cmp-security-manager-itf"><span class="std std-ref">CmpSecurityManagerItf</span></a></li>
+<li><a class="reference internal" href="#tag-openssl">OpenSSL</a> or equivalent crypto component</li>
+</ul>
+</div>
+</div>
+<div class="section" id="https-support-for-the-web-visualization">
+<h2>HTTPS support for the web visualization<a class="headerlink" href="#https-support-for-the-web-visualization" title="Permalink to this headline">¶</a></h2>
+<p>This feature enables the SSL encryption support for the web visualization (https). An X.509 certificate for TLS Web Server Authentication is necessary.</p>
+<div class="section" id="id9">
+<h3>Security settings<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>The webserver registers a number of security settings to change the security configuration. See: <a class="reference internal" href="../Reference/group___cmp_web_server_itf___security_settings.html#group-cmp-web-server-itf-security-settings"><span class="std std-ref">SecuritySettings</span></a></p>
+</div>
+<div class="section" id="id10">
+<h3>Requirements<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>The following runtime system components are necessary for this feature:</p>
+<ul class="simple">
+<li>CmpSecurityManager: <a class="reference internal" href="../Reference/group___cmp_security_manager_itf.html#group-cmp-security-manager-itf"><span class="std std-ref">CmpSecurityManagerItf</span></a></li>
+<li><a class="reference internal" href="#tag-openssl">OpenSSL</a> or equivalent crypto component</li>
+<li>CmpWebServer must be available. This can be enabled with the feature &#8220;Visualization_Web&#8221;, but must be purchased previously by the OEM customer!</li>
+</ul>
+</div>
+</div>
+<div class="section" id="opc-ua-server-security-features">
+<span id="opcua-server-security"></span><h2>OPC UA Server security features<a class="headerlink" href="#opc-ua-server-security-features" title="Permalink to this headline">¶</a></h2>
+<p>This feature enables the security features of the OPC UA server. All needed requirements are added by this features.</p>
+<p>The following features are supported:</p>
+<div class="section" id="id11">
+<h3>Encrypted communication<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>The encrypted communication profiles of the OPC UA sepcification are suppored. For security reasons the SHA1 based profiles
+are not available by default. As a result the profile Basic256SHA256 is available. Both signed and signed + encrypted
+communication is supported.</p>
+</div>
+<div class="section" id="id12">
+<h3>Security settings<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p>The OPC UA server registers a number of security settings to change the security configuration. See: <a class="reference internal" href="../Reference/group___cmp_o_p_c_u_a_server_itf___security_settings.html#group-cmp-o-p-c-u-a-server-itf-security-settings"><span class="std std-ref">SecuritySettings</span></a></p>
+</div>
+<div class="section" id="id13">
+<h3>Requirements<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>CmpSecurityManager: <a class="reference internal" href="../Reference/group___cmp_security_manager_itf.html#group-cmp-security-manager-itf"><span class="std std-ref">CmpSecurityManagerItf</span></a> (implemented by CmpSecurityManager)</li>
+<li>CmpCrypto: <a class="reference internal" href="../Reference/group___cmp_crypto_itf.html#group-cmp-crypto-itf"><span class="std std-ref">CmpCryptoItf</span></a> (implemented by CmpOpenSSL)</li>
+<li>CmpX509Cert: <a class="reference internal" href="../Reference/group___cmp_x509_cert_itf.html#group-cmp-x509-cert-itf"><span class="std std-ref">CmpX509CertItf</span></a> (implemented by CmpOpenSSL)</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Supervisor.html" title="Supervisor"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Redundancy_Toolkit.html" title="Redundancy Toolkit"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Features</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

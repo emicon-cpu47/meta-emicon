@@ -1,0 +1,205 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_gw_client_itf___settings:
+
+========
+Settings
+========
+
+ :ref:`More... <group___cmp_gw_client_itf___settings-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`NODEADDRESS_OLD <struct_n_o_d_e_a_d_d_r_e_s_s___o_l_d>`
+
+- struct :ref:`CHANNELQOS <struct_c_h_a_n_n_e_l_q_o_s>`
+
+- struct :ref:`PARAMETERDEFINITION <struct_p_a_r_a_m_e_t_e_r_d_e_f_i_n_i_t_i_o_n>`
+
+- struct :ref:`PARAMETER <struct_p_a_r_a_m_e_t_e_r>`
+
+- struct :ref:`PARAMDEFLIST <struct_p_a_r_a_m_d_e_f_l_i_s_t>`
+
+- struct :ref:`PARAMLIST <struct_p_a_r_a_m_l_i_s_t>`
+
+- struct :ref:`COMMDRVINFO <struct_c_o_m_m_d_r_v_i_n_f_o>`
+
+- struct :ref:`tagASYNCRESULT <structtag_a_s_y_n_c_r_e_s_u_l_t>`
+
+- struct :ref:`COMMDRVITF <struct_c_o_m_m_d_r_v_i_t_f>`
+
+- struct :ref:`GWCLIENTNODEINFO <struct_g_w_c_l_i_e_n_t_n_o_d_e_i_n_f_o>`
+
+Macros
+------
+
+- #define :ref:`GWCLIENTKEY_INT_INACTIVITY_TIMEOUT <group___cmp_gw_client_itf___settings_1ga8388a53f8737be0e268916b28ef0a7b9>` "InactivityTimeoutMs"
+
+- #define :ref:`GWCLIENTKEY_INT_INACTIVITY_TIMEOUT_DEFAULT <group___cmp_gw_client_itf___settings_1gae838e4cec86dc8989218a7146cd15eeb>` 30000
+
+- #define :ref:`MAX_CHANNEL_NAME <group___cmp_gw_client_itf___settings_1gaf0a75b78c7d6f81c9f3a224feb5a2047>` 19
+
+- #define :ref:`MAX_PARAM_NAME <group___cmp_gw_client_itf___settings_1gac11a4165d9569815e25993c4f6860fb5>` 19
+
+- #define :ref:`GWCLIENT_NI_BYTEORDER_MOTOROLA <group___cmp_gw_client_itf___settings_1gacf12472a7350e8807d8332b6bc65c004>` 0
+
+- #define :ref:`GWCLIENT_NI_BYTEORDER_INTEL <group___cmp_gw_client_itf___settings_1ga5e3be0bb934adb6eca43e0280e9154d0>` 1
+
+- #define :ref:`GWCLIENT_NI_BYTEORDER_UNKNOWN <group___cmp_gw_client_itf___settings_1gab87f598f862ab0f5373ba0d90daa08a3>` 255
+
+Typedefs
+--------
+
+- typedef void(* :ref:`PFASYNCCALLBACK <group___cmp_gw_client_itf___settings_1ga855492aa64ed33504d146a70894c7471>`)(struct tagASYNCRESULT *pAsyncRes)
+
+- typedef struct :ref:`tagASYNCRESULT <structtag_a_s_y_n_c_r_e_s_u_l_t>` :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>`
+
+- typedef RTS_RESULT(* :ref:`PFCOMMDRVSEND <group___cmp_gw_client_itf___settings_1ga736042c5e6e3b724693e276d53dbbef9>`)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent)
+
+- typedef RTS_RESULT(* :ref:`PFCOMMDRVRECEIVE <group___cmp_gw_client_itf___settings_1ga89ea9f7c0bb594a5bbccb06584e83b72>`)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData, RTS_UI32 dwReceive)
+
+- typedef RTS_RESULT(* :ref:`PFCOMMDRVBEGINCONNECT <group___cmp_gw_client_itf___settings_1ga245d5818bf4649e19c18e3f77acc7acf>`)(PARAMLIST *pParams, RTS_HANDLE *phConnHandle, ASYNCRESULT *pAsyncRes)
+
+- typedef RTS_RESULT(* :ref:`PFCOMMDRVENDCONNECT <group___cmp_gw_client_itf___settings_1gabf4fdffe7fd9a65b41394fdc132ac05c>`)(ASYNCRESULT *pAsyncRes, RTS_HANDLE *phConnHandle)
+
+- typedef RTS_RESULT(* :ref:`PFCOMMDRVCLOSE <group___cmp_gw_client_itf___settings_1ga88061d5df63058166a1d7adba5c4f31e>`)(RTS_HANDLE hConnHandle)
+
+Enumerations
+------------
+
+- enum :ref:`@6 <group___cmp_gw_client_itf___settings_1ga726ca809ffd3d67ab4b8476646f26635>` { :ref:`PT_CHAR <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635a8dca526508800a02bbaaf70cf53ed14f>`, :ref:`PT_BYTE <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635aee362a88104b25c49bbf874f002a025a>`, :ref:`PT_INT16 <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635a9574b885a52ecf978b63e8719fad3837>`, :ref:`PT_UINT16 <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635a4bdde82ebd853af674ce307757c8ee78>`, :ref:`PT_INT32 <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635ad5a0d90f8accbec48f626a937f5c7221>`, :ref:`PT_UINT32 <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635ab4ad761ed01812fc2254b7a1861d6085>`, :ref:`PT_INT64 <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635aee68cd3a2cc2391ca983154f4a06867c>`, :ref:`PT_UINT64 <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635ad04e5d77f2c01fe12930a791dad03497>`, :ref:`PT_WCHAR <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635acdf11e03351e0e2a9e25baedf6a29991>`, :ref:`PT_FLOAT <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635aaa72e6364519b2f5704f4169b6138cdd>`, :ref:`PT_DOUBLE <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635a52946624c43200be974efa027bad70a7>`, :ref:`PT_BOOLEAN <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635a62df92e7508125554fa5f65178888984>`, :ref:`PT_STRING <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635a2bd50da1a59fe6894d91a88928bdcbef>`, :ref:`PT_WSTRING <group___cmp_gw_client_itf___settings_1gga726ca809ffd3d67ab4b8476646f26635a007775001cf3f86d6065619016816902>` }
+
+.. _group___cmp_gw_client_itf___settings-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_gw_client_itf___settings_1ga8388a53f8737be0e268916b28ef0a7b9:
+
+#define GWCLIENTKEY_INT_INACTIVITY_TIMEOUT "InactivityTimeoutMs"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to modify the default value of the Gateway inactivity timeout in ms. This default value is only used, if the Gateway connect is started by BeginConnectToGateway() instead of BeginConnectToGateway2(). If no piece of data (also no keepalive) is received or sent wihtin this time, the GwClient closes the connection to the Gateway.
+
+.. _group___cmp_gw_client_itf___settings_1gae838e4cec86dc8989218a7146cd15eeb:
+
+#define GWCLIENTKEY_INT_INACTIVITY_TIMEOUT_DEFAULT 30000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf___settings_1gaf0a75b78c7d6f81c9f3a224feb5a2047:
+
+#define MAX_CHANNEL_NAME 19
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf___settings_1gac11a4165d9569815e25993c4f6860fb5:
+
+#define MAX_PARAM_NAME 19
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf___settings_1gacf12472a7350e8807d8332b6bc65c004:
+
+#define GWCLIENT_NI_BYTEORDER_MOTOROLA 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf___settings_1ga5e3be0bb934adb6eca43e0280e9154d0:
+
+#define GWCLIENT_NI_BYTEORDER_INTEL 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf___settings_1gab87f598f862ab0f5373ba0d90daa08a3:
+
+#define GWCLIENT_NI_BYTEORDER_UNKNOWN 255
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_gw_client_itf___settings_1ga855492aa64ed33504d146a70894c7471:
+
+typedef void( * PFASYNCCALLBACK)(struct tagASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad:
+
+typedef struct tagASYNCRESULT ASYNCRESULT
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf___settings_1ga736042c5e6e3b724693e276d53dbbef9:
+
+typedef RTS_RESULT( * PFCOMMDRVSEND)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf___settings_1ga89ea9f7c0bb594a5bbccb06584e83b72:
+
+typedef RTS_RESULT( * PFCOMMDRVRECEIVE)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData, RTS_UI32 dwReceive)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf___settings_1ga245d5818bf4649e19c18e3f77acc7acf:
+
+typedef RTS_RESULT( * PFCOMMDRVBEGINCONNECT)(PARAMLIST *pParams, RTS_HANDLE *phConnHandle, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf___settings_1gabf4fdffe7fd9a65b41394fdc132ac05c:
+
+typedef RTS_RESULT( * PFCOMMDRVENDCONNECT)(ASYNCRESULT *pAsyncRes, RTS_HANDLE *phConnHandle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_client_itf___settings_1ga88061d5df63058166a1d7adba5c4f31e:
+
+typedef RTS_RESULT( * PFCOMMDRVCLOSE)(RTS_HANDLE hConnHandle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enumeration Type Documentation
+------------------------------
+
+.. _group___cmp_gw_client_itf___settings_1ga726ca809ffd3d67ab4b8476646f26635:
+
+enum @6
+^^^^^^^
+
+
+**Enumerator:**
+
++------------+
+| PT_CHAR    |
++------------+
+| PT_BYTE    |
++------------+
+| PT_INT16   |
++------------+
+| PT_UINT16  |
++------------+
+| PT_INT32   |
++------------+
+| PT_UINT32  |
++------------+
+| PT_INT64   |
++------------+
+| PT_UINT64  |
++------------+
+| PT_WCHAR   |
++------------+
+| PT_FLOAT   |
++------------+
+| PT_DOUBLE  |
++------------+
+| PT_BOOLEAN |
++------------+
+| PT_STRING  |
++------------+
+| PT_WSTRING |
++------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

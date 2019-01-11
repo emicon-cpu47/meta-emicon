@@ -1,0 +1,53 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_target_itf___events:
+
+======
+Events
+======
+
+ :ref:`More... <group___sys_target_itf___events-details>`
+
+Macros
+------
+
+- #define :ref:`EVT_SysTarget_SetNodeName <group___sys_target_itf___events_1gad5997ff57b6742e5b12b2dcc2f3bb933>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+.. _group___sys_target_itf___events-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_target_itf___events_1gad5997ff57b6742e5b12b2dcc2f3bb933:
+
+#define EVT_SysTarget_SetNodeName :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Event is sent in function :ref:`SysTargetSetNodeName() <group___cmp_device_dep_1ga94562db73eb14215a4d549ecceca0d2f>` before the new node name is stored in the settings. The following results can be returned by the event:
+
+- ERR_OK: Event is not handled. :ref:`SysTargetSetNodeName() <group___cmp_device_dep_1ga94562db73eb14215a4d549ecceca0d2f>` will store the name in the settings.
+
+- ERR_NOTHING_TO_DO: The event handler has already stored the new node name somewhere, thus :ref:`SysTargetSetNodeName() <group___cmp_device_dep_1ga94562db73eb14215a4d549ecceca0d2f>` shall not store the name. A later call to the OEM-specific implementation of :ref:`SysTargetGetNodeName() <group___cmp_app_dep___task_1ga162b32d1e573ba1605eb40e2abd7a00e>` will return the new node name.
+
+- ERR_OPERATION_DENIED: The event handler denies to set the new node name. :ref:`SysTargetSetNodeName() <group___cmp_device_dep_1ga94562db73eb14215a4d549ecceca0d2f>` shall not store the name.
+
+- ERR_NOT_SUPPORTED: Device does not support to store the node name. :ref:`SysTargetSetNodeName() <group___cmp_device_dep_1ga94562db73eb14215a4d549ecceca0d2f>` shall not store the name.
+
+**Parameters**
+
++---------+-------------+-------------------------------------------------------------------------------------------+
+| [in]    | pEventParam | :ref:`EVTPARAM_SysEvent_SetNodeName <struct_e_v_t_p_a_r_a_m___sys_event___set_node_name>` |
++---------+-------------+-------------------------------------------------------------------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

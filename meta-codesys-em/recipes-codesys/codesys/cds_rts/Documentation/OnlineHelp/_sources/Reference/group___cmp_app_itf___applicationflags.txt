@@ -1,0 +1,111 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_app_itf___applicationflags:
+
+=================
+Application flags
+=================
+
+ :ref:`More... <group___cmp_app_itf___applicationflags-details>`
+
+Macros
+------
+
+- #define :ref:`AF_SYSTEM_APPLICATION <group___cmp_app_itf___applicationflags_1ga72577eac71222bbc0bbc3afb80109c06>` UINT32_C(0x00010000)
+
+- #define :ref:`AF_IOCONFIG_BYTE_ADDRESSING <group___cmp_app_itf___applicationflags_1gaf327c4263d374aa00fb9afb2eb5c5aec>` UINT32_C(0x00020000)
+
+- #define :ref:`AF_IOCONFIG_BIT_WORD_ADDRESSING <group___cmp_app_itf___applicationflags_1gafb8958747de2acce0efc2d21abb39369>` UINT32_C(0x00040000)
+
+- #define :ref:`AF_KEEP_AT_PARENT_ONLINE_CHANGE <group___cmp_app_itf___applicationflags_1gae0032ea667548aaf5faf49e219a9ccfc>` UINT32_C(0x00080000)
+
+- #define :ref:`AF_ALLOW_SYMBOLIC_VARIABLE_ACCESS_IN_SYNC_WITH_IEC_TASK <group___cmp_app_itf___applicationflags_1ga3b895ec995eced59615e478adfdf6793>` UINT32_C(0x00100000)
+
+- #define :ref:`AF_SIGNED_APPLICATION <group___cmp_app_itf___applicationflags_1ga4de07aa02b6f697c97840e2ec7ba13da>` UINT32_C(0x00200000)
+
+- #define :ref:`AF_ENCRYPTED_APPLICATION <group___cmp_app_itf___applicationflags_1ga4120588e0420b1617f353e5f6210eb2f>` UINT32_C(0x00400000)
+
+- #define :ref:`AF_DEVICE_APPLICATION <group___cmp_app_itf___applicationflags_1gad317325902d2608bb95f38570f68daab>` UINT32_C(0x00800000)
+
+- #define :ref:`AF_APPLICATION_STOP_PARENT_APPS_ON_EXCEPTION <group___cmp_app_itf___applicationflags_1ga8cdf4ec0e7026714e36044bc37eeb4ab>` UINT32_C(0x01000000)
+
+.. _group___cmp_app_itf___applicationflags-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_app_itf___applicationflags_1ga72577eac71222bbc0bbc3afb80109c06:
+
+#define AF_SYSTEM_APPLICATION UINT32_C(0x00010000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Flags to specify properties of an application This is a system application
+
+.. _group___cmp_app_itf___applicationflags_1gaf327c4263d374aa00fb9afb2eb5c5aec:
+
+#define AF_IOCONFIG_BYTE_ADDRESSING UINT32_C(0x00020000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Byte addressing for all IO channels is activated on the target. e.g. "%IW8" means byte 8 and not byte 16 in this case!
+
+.. _group___cmp_app_itf___applicationflags_1gafb8958747de2acce0efc2d21abb39369:
+
+#define AF_IOCONFIG_BIT_WORD_ADDRESSING UINT32_C(0x00040000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Bits are byte adressed. e.g. "%IX2.3" means bit 3 in word 2 instead of in byte 2!
+
+.. _group___cmp_app_itf___applicationflags_1gae0032ea667548aaf5faf49e219a9ccfc:
+
+#define AF_KEEP_AT_PARENT_ONLINE_CHANGE UINT32_C(0x00080000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This application will survive an online change of the parent application (not a download!)
+
+.. _group___cmp_app_itf___applicationflags_1ga3b895ec995eced59615e478adfdf6793:
+
+#define AF_ALLOW_SYMBOLIC_VARIABLE_ACCESS_IN_SYNC_WITH_IEC_TASK UINT32_C(0x00100000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This application allows the syncronized consistent access by CmpIecVarAccess online services (application accepts possible related jitter).
+
+.. _group___cmp_app_itf___applicationflags_1ga4de07aa02b6f697c97840e2ec7ba13da:
+
+#define AF_SIGNED_APPLICATION UINT32_C(0x00200000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The application was signed at download time. Only signed online changes are allowed in this application.
+
+.. _group___cmp_app_itf___applicationflags_1ga4120588e0420b1617f353e5f6210eb2f:
+
+#define AF_ENCRYPTED_APPLICATION UINT32_C(0x00400000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The application was encrypted at download time. Only encrypted online changes are allowed in this application.
+
+.. _group___cmp_app_itf___applicationflags_1gad317325902d2608bb95f38570f68daab:
+
+#define AF_DEVICE_APPLICATION UINT32_C(0x00800000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is a device application.
+
+.. _group___cmp_app_itf___applicationflags_1ga8cdf4ec0e7026714e36044bc37eeb4ab:
+
+#define AF_APPLICATION_STOP_PARENT_APPS_ON_EXCEPTION UINT32_C(0x01000000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+All parent applications shall be stopped in case of an exception.
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

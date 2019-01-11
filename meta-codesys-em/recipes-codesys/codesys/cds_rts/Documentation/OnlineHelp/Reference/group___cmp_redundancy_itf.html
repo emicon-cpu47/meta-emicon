@@ -1,0 +1,1029 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpRedundancyItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpRetainItf" href="group___cmp_retain_itf.html" />
+    <link rel="prev" title="CmpRedundancyExtensionItf" href="group___cmp_redundancy_extension_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_retain_itf.html" title="CmpRetainItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_redundancy_extension_itf.html" title="CmpRedundancyExtensionItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpRedundancyItf</a><ul>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#enumerations">Enumerations</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-rdcy-srv-writesett-0x01">#define RDCY_SRV_WRITESETT 0x01</a></li>
+<li><a class="reference internal" href="#define-rdcy-srv-readsett-0x02">#define RDCY_SRV_READSETT 0x02</a></li>
+<li><a class="reference internal" href="#define-rdcy-srv-readethercatnicsetting-0x03">#define RDCY_SRV_READETHERCATNICSETTING 0x03</a></li>
+<li><a class="reference internal" href="#define-rdcy-srv-readrdcystate-0x04">#define RDCY_SRV_READRDCYSTATE 0x04</a></li>
+<li><a class="reference internal" href="#define-rdcy-srv-switchover-0x05">#define RDCY_SRV_SWITCHOVER 0x05</a></li>
+<li><a class="reference internal" href="#define-rdcy-srv-synchronize-0x06">#define RDCY_SRV_SYNCHRONIZE 0x06</a></li>
+<li><a class="reference internal" href="#define-rdcy-srv-setsimulationmode-0x07">#define RDCY_SRV_SETSIMULATIONMODE 0x07</a></li>
+<li><a class="reference internal" href="#define-rdcy-srv-switchtostandalone-0x08">#define RDCY_SRV_SWITCHTOSTANDALONE 0x08</a></li>
+<li><a class="reference internal" href="#define-rdcy-srv-switchtoactive-0x09">#define RDCY_SRV_SWITCHTOACTIVE 0x09</a></li>
+<li><a class="reference internal" href="#define-tag-session-id-0x10">#define TAG_SESSION_ID 0x10</a></li>
+<li><a class="reference internal" href="#define-tag-sett-ipaddresslocal-firstlink-0x11">#define TAG_SETT_IPADDRESSLOCAL_FIRSTLINK 0x11</a></li>
+<li><a class="reference internal" href="#define-tag-sett-ipaddresspeer-firstlink-0x12">#define TAG_SETT_IPADDRESSPEER_FIRSTLINK 0x12</a></li>
+<li><a class="reference internal" href="#define-tag-sett-port-firstlink-0x13">#define TAG_SETT_PORT_FIRSTLINK 0x13</a></li>
+<li><a class="reference internal" href="#define-tag-sett-usesecondlink-0x14">#define TAG_SETT_USESECONDLINK 0x14</a></li>
+<li><a class="reference internal" href="#define-tag-sett-ipaddresslocal-secondlink-0x15">#define TAG_SETT_IPADDRESSLOCAL_SECONDLINK 0x15</a></li>
+<li><a class="reference internal" href="#define-tag-sett-ipaddresspeer-secondlink-0x16">#define TAG_SETT_IPADDRESSPEER_SECONDLINK 0x16</a></li>
+<li><a class="reference internal" href="#define-tag-sett-port-secondlink-0x17">#define TAG_SETT_PORT_SECONDLINK 0x17</a></li>
+<li><a class="reference internal" href="#define-tag-sett-bootupwaittime-0x18">#define TAG_SETT_BOOTUPWAITTIME 0x18</a></li>
+<li><a class="reference internal" href="#define-tag-sett-tcpwaittime-0x19">#define TAG_SETT_TCPWAITTIME 0x19</a></li>
+<li><a class="reference internal" href="#define-tag-sett-standbywaittime-0x1a">#define TAG_SETT_STANDBYWAITTIME 0x1A</a></li>
+<li><a class="reference internal" href="#define-tag-sett-locktimeout-0x1b">#define TAG_SETT_LOCKTIMEOUT 0x1B</a></li>
+<li><a class="reference internal" href="#define-tag-sett-bootprojectname-0x1c">#define TAG_SETT_BOOTPROJECTNAME 0x1C</a></li>
+<li><a class="reference internal" href="#define-tag-sett-redundancytaskname-0x1d">#define TAG_SETT_REDUNDANCYTASKNAME 0x1D</a></li>
+<li><a class="reference internal" href="#define-tag-sett-servicewaittime-0x1e">#define TAG_SETT_SERVICEWAITTIME 0x1E</a></li>
+<li><a class="reference internal" href="#define-tag-sett-service-0x1f">#define TAG_SETT_SERVICE 0x1F</a></li>
+<li><a class="reference internal" href="#define-tag-sett-fieldbuses-0x20">#define TAG_SETT_FIELDBUSES 0x20</a></li>
+<li><a class="reference internal" href="#define-tag-sett-ethercatnicsetting-0x21">#define TAG_SETT_ETHERCATNICSETTING 0x21</a></li>
+<li><a class="reference internal" href="#define-tag-sett-macaddresslocal-firstlink-0x22">#define TAG_SETT_MACADDRESSLOCAL_FIRSTLINK 0x22</a></li>
+<li><a class="reference internal" href="#define-tag-sett-redundancyframewaittime-0x23">#define TAG_SETT_REDUNDANCYFRAMEWAITTIME 0x23</a></li>
+<li><a class="reference internal" href="#define-tag-sett-getframesleeptime-0x24">#define TAG_SETT_GETFRAMESLEEPTIME 0x24</a></li>
+<li><a class="reference internal" href="#define-tag-sett-dataviasyncwaittime-0x25">#define TAG_SETT_DATAVIASYNCWAITTIME 0x25</a></li>
+<li><a class="reference internal" href="#define-tag-sett-dataviasyncleeptime-0x26">#define TAG_SETT_DATAVIASYNCLEEPTIME 0x26</a></li>
+<li><a class="reference internal" href="#define-rdcy-ack-0x81">#define RDCY_ACK 0x81</a></li>
+<li><a class="reference internal" href="#define-tag-sett-rdcyconnection-0x82">#define TAG_SETT_RDCYCONNECTION 0x82</a></li>
+<li><a class="reference internal" href="#define-tag-rdcy-success-0x2a">#define TAG_RDCY_SUCCESS 0x2A</a></li>
+<li><a class="reference internal" href="#define-tag-rdcy-error-0x2b">#define TAG_RDCY_ERROR 0x2B</a></li>
+<li><a class="reference internal" href="#define-tag-rdcy-state-0x2c">#define TAG_RDCY_STATE 0x2C</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-bootupwaittime-bootupwaittime">#define RDCYKEY_INT_BOOTUPWAITTIME &#8220;BootupWaitTime&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-bootupwaittime-default-5000">#define RDCYVALUE_INT_BOOTUPWAITTIME_DEFAULT 5000</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-tcpwaittime-tcpwaittime">#define RDCYKEY_INT_TCPWAITTIME &#8220;TcpWaitTime&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-tcpwaittime-default-2000">#define RDCYVALUE_INT_TCPWAITTIME_DEFAULT 2000</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-reconnectwaittime-reconnectwaittime">#define RDCYKEY_INT_RECONNECTWAITTIME &#8220;ReconnectWaitTime&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-reconnectwaittime-default-5000">#define RDCYVALUE_INT_RECONNECTWAITTIME_DEFAULT 5000</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-standbywaittime-standbywaittime">#define RDCYKEY_INT_STANDBYWAITTIME &#8220;StandbyWaitTime&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-standbywaittime-default-30">#define RDCYVALUE_INT_STANDBYWAITTIME_DEFAULT 30</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-locktimeout-locktimeout">#define RDCYKEY_INT_LOCKTIMEOUT &#8220;LockTimeout&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-locktimeout-default-50">#define RDCYVALUE_INT_LOCKTIMEOUT_DEFAULT 50</a></li>
+<li><a class="reference internal" href="#define-rdcykey-string-bootprojectname-bootproject">#define RDCYKEY_STRING_BOOTPROJECTNAME &#8220;Bootproject&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-string-bootprojectname-default">#define RDCYVALUE_STRING_BOOTPROJECTNAME_DEFAULT &#8220;&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcykey-string-redundancymaintaskname-redundancytaskname">#define RDCYKEY_STRING_REDUNDANCYMAINTASKNAME &#8220;RedundancyTaskName&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-string-redundancymaintaskname-default">#define RDCYVALUE_STRING_REDUNDANCYMAINTASKNAME_DEFAULT &#8220;&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-servicewaittime-service-waittime">#define RDCYKEY_INT_SERVICEWAITTIME &#8220;Service.WaitTime&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-servicewaittime-default-1000">#define RDCYVALUE_INT_SERVICEWAITTIME_DEFAULT 1000</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-evttrgstartendcall-evttrgstartendcall">#define RDCYKEY_INT_EVTTRGSTARTENDCALL &#8220;EvtTrgStartEndCall&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-evttrgstartendcall-default-true">#define RDCYVALUE_INT_EVTTRGSTARTENDCALL_DEFAULT TRUE</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-profibus-profibus">#define RDCYKEY_INT_PROFIBUS &#8220;Profibus&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-profibus-default-false">#define RDCYVALUE_INT_PROFIBUS_DEFAULT FALSE</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-ethercat-ethercat">#define RDCYKEY_INT_ETHERCAT &#8220;Ethercat&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-ethercat-default-false">#define RDCYVALUE_INT_ETHERCAT_DEFAULT FALSE</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-debugmessages-debugmessages">#define RDCYKEY_INT_DEBUGMESSAGES &#8220;DebugMessages&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-debugmessages-default-false">#define RDCYVALUE_INT_DEBUGMESSAGES_DEFAULT FALSE</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-debugmessagestasktime-debugmessagestasktime">#define RDCYKEY_INT_DEBUGMESSAGESTASKTIME &#8220;DebugMessagesTaskTime&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-debugmessagestasktime-default-false">#define RDCYVALUE_INT_DEBUGMESSAGESTASKTIME_DEFAULT FALSE</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-callvfinit-callvfinit">#define RDCYKEY_INT_CALLVFINIT &#8220;CallVfInit&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-callvfinit-default-true">#define RDCYVALUE_INT_CALLVFINIT_DEFAULT TRUE</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-simulation-simulation">#define RDCYKEY_INT_SIMULATION &#8220;Simulation&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-simulation-default-false">#define RDCYVALUE_INT_SIMULATION_DEFAULT FALSE</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-synchrophaselength-synchrophaselength">#define RDCYKEY_INT_SYNCHROPHASELENGTH &#8220;SynchroPhaseLength&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-synchrophaselength-default-0">#define RDCYVALUE_INT_SYNCHROPHASELENGTH_DEFAULT 0</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-extrastandbywaittime-extrastandbywaittime">#define RDCYKEY_INT_EXTRASTANDBYWAITTIME &#8220;ExtraStandbyWaitTime&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-extrastandbywaittime-default-0">#define RDCYVALUE_INT_EXTRASTANDBYWAITTIME_DEFAULT 0</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-standaloneafterstandby-standaloneafterstandby">#define RDCYKEY_INT_STANDALONEAFTERSTANDBY &#8220;StandaloneAfterStandby&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-standaloneafterstandby-default-2">#define RDCYVALUE_INT_STANDALONEAFTERSTANDBY_DEFAULT 2</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-inputareacrccheck-inputareacrccheck">#define RDCYKEY_INT_INPUTAREACRCCHECK &#8220;InputAreaCrcCheck&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-inputareacrccheck-default-false">#define RDCYVALUE_INT_INPUTAREACRCCHECK_DEFAULT FALSE</a></li>
+<li><a class="reference internal" href="#define-rdcykey-int-cmpsrv-servicewaittime-service-waittime">#define RDCYKEY_INT_CMPSRV_SERVICEWAITTIME &#8220;Service.WaitTime&#8221;</a></li>
+<li><a class="reference internal" href="#define-rdcyvalue-int-cmpsrv-servicewaittime-default-1000">#define RDCYVALUE_INT_CMPSRV_SERVICEWAITTIME_DEFAULT 1000</a></li>
+<li><a class="reference internal" href="#define-evtparamid-cmpredundancy-vfinit-0x0001">#define EVTPARAMID_CmpRedundancy_vfInit 0x0001</a></li>
+<li><a class="reference internal" href="#define-evtversion-cmpredundancy-vfinit-0x0001">#define EVTVERSION_CmpRedundancy_vfInit 0x0001</a></li>
+<li><a class="reference internal" href="#define-evt-cmpredundancy-vfinit-make-eventid-evtclass-info-1">#define EVT_CmpRedundancy_vfInit <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 1)</a></li>
+<li><a class="reference internal" href="#define-itf-cmpredundancy">#define ITF_CmpRedundancy</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpredundancy">#define EXTITF_CmpRedundancy</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-tagredundancystate-redundancystate">typedef struct tagRedundancyState  RedundancyState</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagredundancytlgheader-redundancytlgheader">typedef struct tagRedundancyTlgHeader  RedundancyTlgHeader</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagclient-reply-client-reply">typedef struct tagCLIENT_REPLY  CLIENT_REPLY</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagarearegister-struct-arearegister-struct">typedef struct tagarearegister_struct  arearegister_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagarearegistersegment-struct-arearegistersegment-struct">typedef struct tagarearegistersegment_struct  arearegistersegment_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagredundancycycleend-struct-redundancycycleend-struct">typedef struct tagredundancycycleend_struct  redundancycycleend_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagunregisterareas-struct-unregisterareas-struct">typedef struct tagunregisterareas_struct  unregisterareas_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagredundancycyclestart-struct-redundancycyclestart-struct">typedef struct tagredundancycyclestart_struct  redundancycyclestart_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-taggetredundancystate-struct-getredundancystate-struct">typedef struct taggetredundancystate_struct  getredundancystate_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagswitchtosimulation-struct-switchtosimulation-struct">typedef struct tagswitchtosimulation_struct  switchtosimulation_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagswitchtostandalone-struct-switchtostandalone-struct">typedef struct tagswitchtostandalone_struct  switchtostandalone_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagswitchtostandby-struct-switchtostandby-struct">typedef struct tagswitchtostandby_struct  switchtostandby_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagswitchtoactive-struct-switchtoactive-struct">typedef struct tagswitchtoactive_struct  switchtoactive_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsynchronize-struct-synchronize-struct">typedef struct tagsynchronize_struct  synchronize_struct</a></li>
+<li><a class="reference internal" href="#typedef-icmpredundancy-c-icmpredundancy">typedef ICmpRedundancy_C ICmpRedundancy</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#enumeration-type-documentation">Enumeration Type Documentation</a><ul>
+<li><a class="reference internal" href="#enum-rdcy-state">enum RDCY_STATE</a></li>
+<li><a class="reference internal" href="#enum-rdcy-error">enum RDCY_ERROR</a></li>
+<li><a class="reference internal" href="#enum-rdcy-area-type">enum RDCY_AREA_TYPE</a></li>
+<li><a class="reference internal" href="#enum-redundancy-comm-mode">enum REDUNDANCY_COMM_MODE</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#void-arearegister-arearegister-struct-p">void arearegister (arearegister_struct *p)</a></li>
+<li><a class="reference internal" href="#void-arearegistersegment-arearegistersegment-struct-p">void arearegistersegment (arearegistersegment_struct *p)</a></li>
+<li><a class="reference internal" href="#void-unregisterareas-unregisterareas-struct-p">void unregisterareas (unregisterareas_struct *p)</a></li>
+<li><a class="reference internal" href="#void-redundancycycleend-redundancycycleend-struct-p">void redundancycycleend (redundancycycleend_struct *p)</a></li>
+<li><a class="reference internal" href="#void-redundancycyclestart-redundancycyclestart-struct-p">void redundancycyclestart (redundancycyclestart_struct *p)</a></li>
+<li><a class="reference internal" href="#void-getredundancystate-getredundancystate-struct-p">void getredundancystate (getredundancystate_struct *p)</a></li>
+<li><a class="reference internal" href="#void-switchtosimulation-switchtosimulation-struct-p">void switchtosimulation (switchtosimulation_struct *p)</a></li>
+<li><a class="reference internal" href="#void-switchtostandalone-switchtostandalone-struct-p">void switchtostandalone (switchtostandalone_struct *p)</a></li>
+<li><a class="reference internal" href="#void-switchtostandby-switchtostandby-struct-p">void switchtostandby (switchtostandby_struct *p)</a></li>
+<li><a class="reference internal" href="#void-switchtoactive-switchtoactive-struct-p">void switchtoactive (switchtoactive_struct *p)</a></li>
+<li><a class="reference internal" href="#void-synchronize-synchronize-struct-p">void synchronize (synchronize_struct *p)</a></li>
+<li><a class="reference internal" href="#rts-iec-bool-redundancyarearegister-unsigned-char-pbyarea-rts-ui32-ulsize-rdcy-area-type-etype">RTS_IEC_BOOL RedundancyAreaRegister (unsigned char *pbyArea, RTS_UI32 ulSize, RDCY_AREA_TYPE eType)</a></li>
+<li><a class="reference internal" href="#rts-iec-bool-redundancyarearegistersegment-rts-ui16-ussegment-rdcy-area-type-etype">RTS_IEC_BOOL RedundancyAreaRegisterSegment (RTS_UI16 usSegment, RDCY_AREA_TYPE eType)</a></li>
+<li><a class="reference internal" href="#rts-iec-bool-redundancyunregisterareas-void">RTS_IEC_BOOL RedundancyUnregisterAreas (void)</a></li>
+<li><a class="reference internal" href="#rts-iec-bool-redundancycycleend-void">RTS_IEC_BOOL RedundancyCycleEnd (void)</a></li>
+<li><a class="reference internal" href="#rts-iec-bool-redundancycyclestart-void">RTS_IEC_BOOL RedundancyCycleStart (void)</a></li>
+<li><a class="reference internal" href="#rts-iec-bool-redundancygetstate-redundancystate-pstate">RTS_IEC_BOOL RedundancyGetState (RedundancyState *pState)</a></li>
+<li><a class="reference internal" href="#rts-iec-bool-redundancyswitchtosimulation-void">RTS_IEC_BOOL RedundancySwitchToSimulation (void)</a></li>
+<li><a class="reference internal" href="#rts-iec-bool-redundancyswitchtostandalone-void">RTS_IEC_BOOL RedundancySwitchToStandalone (void)</a></li>
+<li><a class="reference internal" href="#rts-iec-bool-redundancyswitchtostandby-void">RTS_IEC_BOOL RedundancySwitchToStandby (void)</a></li>
+<li><a class="reference internal" href="#rts-iec-bool-redundancyswitchtoactive-void">RTS_IEC_BOOL RedundancySwitchToActive (void)</a></li>
+<li><a class="reference internal" href="#rts-iec-bool-redundancysynchronize-void">RTS_IEC_BOOL RedundancySynchronize (void)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_redundancy_extension_itf.html"
+                        title="previous chapter">CmpRedundancyExtensionItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_retain_itf.html"
+                        title="next chapter">CmpRetainItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_redundancy_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpredundancyitf">
+<span id="group-cmp-redundancy-itf"></span><h1>CmpRedundancyItf<a class="headerlink" href="#cmpredundancyitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of Redundancy. <a class="reference internal" href="#group-cmp-redundancy-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="structtag_redundancy_state.html#structtag-redundancy-state"><span class="std std-ref">tagRedundancyState</span></a></li>
+<li>struct <a class="reference internal" href="structtag_redundancy_tlg_header.html#structtag-redundancy-tlg-header"><span class="std std-ref">tagRedundancyTlgHeader</span></a></li>
+<li>struct <a class="reference internal" href="structtag_c_l_i_e_n_t___r_e_p_l_y.html#structtag-c-l-i-e-n-t-r-e-p-l-y"><span class="std std-ref">tagCLIENT_REPLY</span></a></li>
+<li>struct <a class="reference internal" href="structtagarearegister__struct.html#structtagarearegister-struct"><span class="std std-ref">tagarearegister_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagarearegistersegment__struct.html#structtagarearegistersegment-struct"><span class="std std-ref">tagarearegistersegment_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagredundancycycleend__struct.html#structtagredundancycycleend-struct"><span class="std std-ref">tagredundancycycleend_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagunregisterareas__struct.html#structtagunregisterareas-struct"><span class="std std-ref">tagunregisterareas_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagredundancycyclestart__struct.html#structtagredundancycyclestart-struct"><span class="std std-ref">tagredundancycyclestart_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtaggetredundancystate__struct.html#structtaggetredundancystate-struct"><span class="std std-ref">taggetredundancystate_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagswitchtosimulation__struct.html#structtagswitchtosimulation-struct"><span class="std std-ref">tagswitchtosimulation_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagswitchtostandalone__struct.html#structtagswitchtostandalone-struct"><span class="std std-ref">tagswitchtostandalone_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagswitchtostandby__struct.html#structtagswitchtostandby-struct"><span class="std std-ref">tagswitchtostandby_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagswitchtoactive__struct.html#structtagswitchtoactive-struct"><span class="std std-ref">tagswitchtoactive_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsynchronize__struct.html#structtagsynchronize-struct"><span class="std std-ref">tagsynchronize_struct</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_cmp_redundancy___c.html#struct-i-cmp-redundancy-c"><span class="std std-ref">ICmpRedundancy_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gae96a07d7daf9f527f9f8d43c2c3b388a"><span class="std std-ref">RDCY_SRV_WRITESETT</span></a> 0x01</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga50e24c74d5a9694b6438f4d7bf989a0d"><span class="std std-ref">RDCY_SRV_READSETT</span></a> 0x02</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga61523c81b2f6e7abf357589b9dde987b"><span class="std std-ref">RDCY_SRV_READETHERCATNICSETTING</span></a> 0x03</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gafecd2dfc305d20ee3441ca8245cd80e0"><span class="std std-ref">RDCY_SRV_READRDCYSTATE</span></a> 0x04</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gab7a645fd77893f7155587318bc1dbeee"><span class="std std-ref">RDCY_SRV_SWITCHOVER</span></a> 0x05</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga465a0bae81d2500ee15095422ccfe7a7"><span class="std std-ref">RDCY_SRV_SYNCHRONIZE</span></a> 0x06</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga09bdd21cebe492c17a71f9ef1d7ca941"><span class="std std-ref">RDCY_SRV_SETSIMULATIONMODE</span></a> 0x07</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga0cda988bddd714983e5d34847a966ca1"><span class="std std-ref">RDCY_SRV_SWITCHTOSTANDALONE</span></a> 0x08</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga7bf0ffe47432bceadaec7fbc8bb3c3a5"><span class="std std-ref">RDCY_SRV_SWITCHTOACTIVE</span></a> 0x09</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gafae0982246719b63bbe4ce30b5b35a41"><span class="std std-ref">TAG_SESSION_ID</span></a> 0x10</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga804d249f730fb2880397d9bdfeed72cc"><span class="std std-ref">TAG_SETT_IPADDRESSLOCAL_FIRSTLINK</span></a> 0x11</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga04c94e8c369d25ad7040754403a31504"><span class="std std-ref">TAG_SETT_IPADDRESSPEER_FIRSTLINK</span></a> 0x12</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga8ea65b3024c1b2345c5f81d8506fbcdb"><span class="std std-ref">TAG_SETT_PORT_FIRSTLINK</span></a> 0x13</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga50113426810b7da45a7eb26dddf51db0"><span class="std std-ref">TAG_SETT_USESECONDLINK</span></a> 0x14</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga0c023809bdd118a665935cb603e3f6d1"><span class="std std-ref">TAG_SETT_IPADDRESSLOCAL_SECONDLINK</span></a> 0x15</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gabd60b6019996330745a9724d9f526737"><span class="std std-ref">TAG_SETT_IPADDRESSPEER_SECONDLINK</span></a> 0x16</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gabd895b21d8d02068bc4cd2db6eb4fcec"><span class="std std-ref">TAG_SETT_PORT_SECONDLINK</span></a> 0x17</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gab8677770df7fa408dd2ae21cd204c0a3"><span class="std std-ref">TAG_SETT_BOOTUPWAITTIME</span></a> 0x18</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga77b5ffd682365c73dc6f5c928fbbd248"><span class="std std-ref">TAG_SETT_TCPWAITTIME</span></a> 0x19</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gab3f92647791a540d37d927c8a5f09e17"><span class="std std-ref">TAG_SETT_STANDBYWAITTIME</span></a> 0x1A</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga44f2fa5911c2511e3bef33d5e0c2e244"><span class="std std-ref">TAG_SETT_LOCKTIMEOUT</span></a> 0x1B</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga1c597bc09dbd877a817ec4fcb060b9b6"><span class="std std-ref">TAG_SETT_BOOTPROJECTNAME</span></a> 0x1C</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gaef35080da08af92b340a46da5e1c527d"><span class="std std-ref">TAG_SETT_REDUNDANCYTASKNAME</span></a> 0x1D</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga1b08073565d19357c1b831e992103ee0"><span class="std std-ref">TAG_SETT_SERVICEWAITTIME</span></a> 0x1E</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gad4bbf0a1db709e9b8c4187670459cc8e"><span class="std std-ref">TAG_SETT_SERVICE</span></a> 0x1F</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga8f99846575f3db5cf3fc699bfebb54e8"><span class="std std-ref">TAG_SETT_FIELDBUSES</span></a> 0x20</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gae7d166770a94bcd1ba00f8c94003ff09"><span class="std std-ref">TAG_SETT_ETHERCATNICSETTING</span></a> 0x21</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga479b6026c7201af254d75a4169af0192"><span class="std std-ref">TAG_SETT_MACADDRESSLOCAL_FIRSTLINK</span></a> 0x22</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gae5f85915ee6c86d1f7664e5f2e320cdb"><span class="std std-ref">TAG_SETT_REDUNDANCYFRAMEWAITTIME</span></a> 0x23</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gaefee8a02c9248066a8e618025a3f20e6"><span class="std std-ref">TAG_SETT_GETFRAMESLEEPTIME</span></a> 0x24</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga1d661015f36c76621c7665a498a9c8f5"><span class="std std-ref">TAG_SETT_DATAVIASYNCWAITTIME</span></a> 0x25</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga80daa90a31f7a1bc205c096eeca38b7e"><span class="std std-ref">TAG_SETT_DATAVIASYNCLEEPTIME</span></a> 0x26</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga238605a0bdfe05ff5b1d4881aff67841"><span class="std std-ref">RDCY_ACK</span></a> 0x81</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga64ee1597f7b496d34c08949b009a6f19"><span class="std std-ref">TAG_SETT_RDCYCONNECTION</span></a> 0x82</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga971c839d67b08b9226a168ce3a4dc3fa"><span class="std std-ref">TAG_RDCY_SUCCESS</span></a> 0x2A</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga9f9a8eb7029f35fa9888c1f7caf7f488"><span class="std std-ref">TAG_RDCY_ERROR</span></a> 0x2B</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga6ebca0b93adb28ea714deca47c6d11bf"><span class="std std-ref">TAG_RDCY_STATE</span></a> 0x2C</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga79035f86ea36351498906b17be43d300"><span class="std std-ref">RDCYKEY_INT_BOOTUPWAITTIME</span></a> &#8220;BootupWaitTime&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga394cea1567a41717bb51fd059ad4b81c"><span class="std std-ref">RDCYVALUE_INT_BOOTUPWAITTIME_DEFAULT</span></a> 5000</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga9e33430a77ba8f2e195254aadb7c64bd"><span class="std std-ref">RDCYKEY_INT_TCPWAITTIME</span></a> &#8220;TcpWaitTime&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga1f02170b142630f4ac4beb8b33f140bf"><span class="std std-ref">RDCYVALUE_INT_TCPWAITTIME_DEFAULT</span></a> 2000</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga670bec42328b36c5ee288d36ef9a7bbc"><span class="std std-ref">RDCYKEY_INT_RECONNECTWAITTIME</span></a> &#8220;ReconnectWaitTime&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gadb1c2bfee0f380ecfe1e35edc03b5d63"><span class="std std-ref">RDCYVALUE_INT_RECONNECTWAITTIME_DEFAULT</span></a> 5000</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga185610f200c635a6bd8937309aa7aa04"><span class="std std-ref">RDCYKEY_INT_STANDBYWAITTIME</span></a> &#8220;StandbyWaitTime&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga389ac542bb79e1d21eb35657a26598ce"><span class="std std-ref">RDCYVALUE_INT_STANDBYWAITTIME_DEFAULT</span></a> 30</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga6e2af35ea62fec35dd300d5774e9b238"><span class="std std-ref">RDCYKEY_INT_LOCKTIMEOUT</span></a> &#8220;LockTimeout&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga3261ed888db61b9c1ec6cd173e6b1088"><span class="std std-ref">RDCYVALUE_INT_LOCKTIMEOUT_DEFAULT</span></a> 50</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga91a933c564c8ccd5450e51c7636e51e8"><span class="std std-ref">RDCYKEY_STRING_BOOTPROJECTNAME</span></a> &#8220;Bootproject&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga4cb58f8acef9cefd44d4e657a539fa26"><span class="std std-ref">RDCYVALUE_STRING_BOOTPROJECTNAME_DEFAULT</span></a> &#8220;&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gacf2e2c258e8ce27dfe9c3997846cccbb"><span class="std std-ref">RDCYKEY_STRING_REDUNDANCYMAINTASKNAME</span></a> &#8220;RedundancyTaskName&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga594a082af5a36993753fa76a2291515c"><span class="std std-ref">RDCYVALUE_STRING_REDUNDANCYMAINTASKNAME_DEFAULT</span></a> &#8220;&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga17c30dd944ae7d2d82bef1985b178f4d"><span class="std std-ref">RDCYKEY_INT_SERVICEWAITTIME</span></a> &#8220;Service.WaitTime&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga3cc7d3ea46cf4dee7607bb1488d4ac88"><span class="std std-ref">RDCYVALUE_INT_SERVICEWAITTIME_DEFAULT</span></a> 1000</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga672a213d60b554466473ea2cee5f8476"><span class="std std-ref">RDCYKEY_INT_EVTTRGSTARTENDCALL</span></a> &#8220;EvtTrgStartEndCall&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga62b97b854be63cc66a708e9230137dea"><span class="std std-ref">RDCYVALUE_INT_EVTTRGSTARTENDCALL_DEFAULT</span></a> TRUE</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gaac06b79590e4762dcf4002b637fd339e"><span class="std std-ref">RDCYKEY_INT_PROFIBUS</span></a> &#8220;Profibus&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga627bd3d8af9cf7749811dd10437282f7"><span class="std std-ref">RDCYVALUE_INT_PROFIBUS_DEFAULT</span></a> FALSE</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gabe276a08ad6b6d51c7f5e7982f03ba79"><span class="std std-ref">RDCYKEY_INT_ETHERCAT</span></a> &#8220;Ethercat&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gab656cad45f996e3e4b907ba38425c39c"><span class="std std-ref">RDCYVALUE_INT_ETHERCAT_DEFAULT</span></a> FALSE</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga34c9684f65423e75d823c212c52ef476"><span class="std std-ref">RDCYKEY_INT_DEBUGMESSAGES</span></a> &#8220;DebugMessages&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga62c9ef624a6364f38e3409b5342714f5"><span class="std std-ref">RDCYVALUE_INT_DEBUGMESSAGES_DEFAULT</span></a> FALSE</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga2e659a100b83f1a78e86c79b83ab8f5d"><span class="std std-ref">RDCYKEY_INT_DEBUGMESSAGESTASKTIME</span></a> &#8220;DebugMessagesTaskTime&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga3a9b0eb78030356d511488a7171a25a8"><span class="std std-ref">RDCYVALUE_INT_DEBUGMESSAGESTASKTIME_DEFAULT</span></a> FALSE</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga6ee97709afe350b01730f3b312655f8f"><span class="std std-ref">RDCYKEY_INT_CALLVFINIT</span></a> &#8220;CallVfInit&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga23a981e6529caa7a537e224f5d73c746"><span class="std std-ref">RDCYVALUE_INT_CALLVFINIT_DEFAULT</span></a> TRUE</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gae4219a9a98212abfd04f04b7616d85ac"><span class="std std-ref">RDCYKEY_INT_SIMULATION</span></a> &#8220;Simulation&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga68e61678bcd78ce7522b2860e28cc05d"><span class="std std-ref">RDCYVALUE_INT_SIMULATION_DEFAULT</span></a> FALSE</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gaad52f851da14ea50aa816baffecee6f5"><span class="std std-ref">RDCYKEY_INT_SYNCHROPHASELENGTH</span></a> &#8220;SynchroPhaseLength&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga2d1b8fefa224d6b4c3076d2fd6fa432c"><span class="std std-ref">RDCYVALUE_INT_SYNCHROPHASELENGTH_DEFAULT</span></a> 0</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gad35f09a337a6749b4a237cf9a65a28f0"><span class="std std-ref">RDCYKEY_INT_EXTRASTANDBYWAITTIME</span></a> &#8220;ExtraStandbyWaitTime&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga51e926fb6f8eeae73cc7229bcaf587bd"><span class="std std-ref">RDCYVALUE_INT_EXTRASTANDBYWAITTIME_DEFAULT</span></a> 0</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga211ef0b915ca5101cabb0d63698a65ef"><span class="std std-ref">RDCYKEY_INT_STANDALONEAFTERSTANDBY</span></a> &#8220;StandaloneAfterStandby&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga40557a3c397b183dec872d62a5b358b6"><span class="std std-ref">RDCYVALUE_INT_STANDALONEAFTERSTANDBY_DEFAULT</span></a> 2</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga1818e6eb97ae10c2467d25f2f73c002a"><span class="std std-ref">RDCYKEY_INT_INPUTAREACRCCHECK</span></a> &#8220;InputAreaCrcCheck&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gaf860f8c3efbd6a93649619ce9a48e2f9"><span class="std std-ref">RDCYVALUE_INT_INPUTAREACRCCHECK_DEFAULT</span></a> FALSE</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga6d3e7c087138089edeec51e01db403c0"><span class="std std-ref">RDCYKEY_INT_CMPSRV_SERVICEWAITTIME</span></a> &#8220;Service.WaitTime&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga468dc65fe9cb9d7150ca6a3d21b4a30f"><span class="std std-ref">RDCYVALUE_INT_CMPSRV_SERVICEWAITTIME_DEFAULT</span></a> 1000</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gada5890de6fae4a519f755d095ba05bed"><span class="std std-ref">EVTPARAMID_CmpRedundancy_vfInit</span></a> 0x0001</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga76c7b44b856150576e3cc198196c0dbe"><span class="std std-ref">EVTVERSION_CmpRedundancy_vfInit</span></a> 0x0001</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga3e3feb269771cdc7f1c8e7496183cb27"><span class="std std-ref">EVT_CmpRedundancy_vfInit</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 1)</li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1ga0dd3ecee7f66540f8b9bc98c212fc0a8"><span class="std std-ref">ITF_CmpRedundancy</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-redundancy-itf-1gac8b7911dd91162a2809e3125142ba9e5"><span class="std std-ref">EXTITF_CmpRedundancy</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="structtag_redundancy_state.html#structtag-redundancy-state"><span class="std std-ref">tagRedundancyState</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1gac5758e0f67b24a0fd33d0eb02f0fd6ed"><span class="std std-ref">RedundancyState</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_redundancy_tlg_header.html#structtag-redundancy-tlg-header"><span class="std std-ref">tagRedundancyTlgHeader</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1ga1e58f398eb3ea0878131a8911b644609"><span class="std std-ref">RedundancyTlgHeader</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_c_l_i_e_n_t___r_e_p_l_y.html#structtag-c-l-i-e-n-t-r-e-p-l-y"><span class="std std-ref">tagCLIENT_REPLY</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1ga9aca827043efb8b7c5d41e1c7b5341af"><span class="std std-ref">CLIENT_REPLY</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagarearegister__struct.html#structtagarearegister-struct"><span class="std std-ref">tagarearegister_struct</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1gab7f9229af993fcc1d30516a2806fab91"><span class="std std-ref">arearegister_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagarearegistersegment__struct.html#structtagarearegistersegment-struct"><span class="std std-ref">tagarearegistersegment_struct</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1ga6d86ff0b6a010cdb1f9fdb5b10b7a87f"><span class="std std-ref">arearegistersegment_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagredundancycycleend__struct.html#structtagredundancycycleend-struct"><span class="std std-ref">tagredundancycycleend_struct</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1gab81e258d5594e94adf36fa3af9d10e39"><span class="std std-ref">redundancycycleend_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagunregisterareas__struct.html#structtagunregisterareas-struct"><span class="std std-ref">tagunregisterareas_struct</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1gadd9130b43f7ce5977243f1699755cf6a"><span class="std std-ref">unregisterareas_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagredundancycyclestart__struct.html#structtagredundancycyclestart-struct"><span class="std std-ref">tagredundancycyclestart_struct</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1gaebcc4a895b191220a2d1b2ab025f586a"><span class="std std-ref">redundancycyclestart_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtaggetredundancystate__struct.html#structtaggetredundancystate-struct"><span class="std std-ref">taggetredundancystate_struct</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1ga13235d10c01b8fd28b255308389d8f59"><span class="std std-ref">getredundancystate_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagswitchtosimulation__struct.html#structtagswitchtosimulation-struct"><span class="std std-ref">tagswitchtosimulation_struct</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1ga092c601c30fc129e3f1104da84f5a14c"><span class="std std-ref">switchtosimulation_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagswitchtostandalone__struct.html#structtagswitchtostandalone-struct"><span class="std std-ref">tagswitchtostandalone_struct</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1ga8f7a449a761e0ee7fd32be29d3e9224a"><span class="std std-ref">switchtostandalone_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagswitchtostandby__struct.html#structtagswitchtostandby-struct"><span class="std std-ref">tagswitchtostandby_struct</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1ga36d76eff3906c29ea16ba9da2f07bbac"><span class="std std-ref">switchtostandby_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagswitchtoactive__struct.html#structtagswitchtoactive-struct"><span class="std std-ref">tagswitchtoactive_struct</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1gab24363868395d8934ae2ed5ac5b07261"><span class="std std-ref">switchtoactive_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsynchronize__struct.html#structtagsynchronize-struct"><span class="std std-ref">tagsynchronize_struct</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1ga61bc0e8b8a5e12157c74b05c88a72522"><span class="std std-ref">synchronize_struct</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_cmp_redundancy___c.html#struct-i-cmp-redundancy-c"><span class="std std-ref">ICmpRedundancy_C</span></a> <a class="reference internal" href="#group-cmp-redundancy-itf-1ga68e81713996b40e816cbeed65d36cf6d"><span class="std std-ref">ICmpRedundancy</span></a></li>
+</ul>
+</div>
+<div class="section" id="enumerations">
+<h2>Enumerations<a class="headerlink" href="#enumerations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>enum <a class="reference internal" href="#group-cmp-redundancy-itf-1ga37d0780292ead094a126f2ea2ad10f7d"><span class="std std-ref">RDCY_STATE</span></a> { <span class="xref std std-ref">RS_START</span>, <span class="xref std std-ref">RS_SYNCHRO</span>, <span class="xref std std-ref">RS_CYCLE_ACTIVE</span>, <span class="xref std std-ref">RS_CYCLE_STANDBY</span>, <span class="xref std std-ref">RS_CYCLE_STANDALONE</span>, <span class="xref std std-ref">RS_CYCLE_ERROR</span>, <span class="xref std std-ref">RS_SIMULATION</span>, <span class="xref std std-ref">RS_BOOTUP_ERROR</span>, <span class="xref std std-ref">RS_SHUTDOWN_ACTIVE</span>, <span class="xref std std-ref">RS_SHUTDOWN_STANDBY</span>, <span class="xref std std-ref">RS_SYNCHRO_ERROR</span>, <span class="xref std std-ref">RS_SIMULATION_START</span>, <span class="xref std std-ref">RS_NO_LICENSE</span> }</li>
+<li>enum <a class="reference internal" href="#group-cmp-redundancy-itf-1ga19cebc1900585838605f8ae89e2b6a51"><span class="std std-ref">RDCY_ERROR</span></a> { <span class="xref std std-ref">RDCY_NO_ERROR</span>, <span class="xref std std-ref">RDCY_ERR_FAILED</span>, <span class="xref std std-ref">RDCY_BOOTUP_ERROR</span>, <span class="xref std std-ref">RDCY_SYNCHRO_ERROR</span>, <span class="xref std std-ref">RDCY_CYCLE_ERROR</span>, <span class="xref std std-ref">RDCY_LINK_ERROR</span>, <span class="xref std std-ref">RDCY_FIELDBUS_ERROR</span>, <span class="xref std std-ref">RDCY_RECEIVEMESSAGE_ERROR</span>, <span class="xref std std-ref">RDCY_NOMESSAGE_ERROR</span>, <span class="xref std std-ref">RDCY_WRONGMESSAGE_ERROR</span>, <span class="xref std std-ref">RDCY_CONFIG_ERROR</span>, <span class="xref std std-ref">RDCY_INPUTAREACRC_ERROR</span>, <span class="xref std std-ref">RDCY_NO_LICENSE_ERROR</span> }</li>
+<li>enum <a class="reference internal" href="#group-cmp-redundancy-itf-1ga187db713ec4f1402790808ed42227e8b"><span class="std std-ref">RDCY_AREA_TYPE</span></a> { <span class="xref std std-ref">AREA_NONE</span>, <span class="xref std std-ref">AREA_INPUT</span>, <span class="xref std std-ref">AREA_SYNCHRO</span>, <span class="xref std std-ref">AREA_OUTPUT</span>, <span class="xref std std-ref">AREA_PASSIVEACTIVE</span> }</li>
+<li>enum <a class="reference internal" href="#group-cmp-redundancy-itf-1gae9015dc80362e86c441a3b750d366dee"><span class="std std-ref">REDUNDANCY_COMM_MODE</span></a> { <span class="xref std std-ref">RCOM_SyncReceive</span>, <span class="xref std std-ref">RCOM_SyncSend</span>, <span class="xref std std-ref">RCOM_DataClient</span>, <span class="xref std std-ref">RCOM_DataServer</span>, <span class="xref std std-ref">RCOM_DataWork</span> }</li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>void <a class="reference internal" href="#group-cmp-redundancy-itf-1ga0c10fff3e2b67dc6d4bfb6bad9f954d6"><span class="std std-ref">arearegister</span></a> (<a class="reference internal" href="#group-cmp-redundancy-itf-1gab7f9229af993fcc1d30516a2806fab91"><span class="std std-ref">arearegister_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-redundancy-itf-1gaca8401df1aff570d7fbdadd0c0ba382c"><span class="std std-ref">arearegistersegment</span></a> (<a class="reference internal" href="#group-cmp-redundancy-itf-1ga6d86ff0b6a010cdb1f9fdb5b10b7a87f"><span class="std std-ref">arearegistersegment_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-redundancy-itf-1gaa43c2bba813a2219570d5a10969d9674"><span class="std std-ref">unregisterareas</span></a> (<a class="reference internal" href="#group-cmp-redundancy-itf-1gadd9130b43f7ce5977243f1699755cf6a"><span class="std std-ref">unregisterareas_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-redundancy-itf-1gab1be23cd29d288a54122e7bf597d79ab"><span class="std std-ref">redundancycycleend</span></a> (<a class="reference internal" href="#group-cmp-redundancy-itf-1gab81e258d5594e94adf36fa3af9d10e39"><span class="std std-ref">redundancycycleend_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-redundancy-itf-1ga9bfdf2c2c1e85d2730b605b06ceea825"><span class="std std-ref">redundancycyclestart</span></a> (<a class="reference internal" href="#group-cmp-redundancy-itf-1gaebcc4a895b191220a2d1b2ab025f586a"><span class="std std-ref">redundancycyclestart_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-redundancy-itf-1ga576dadfc96d6ba198f1010789e076ab3"><span class="std std-ref">getredundancystate</span></a> (<a class="reference internal" href="#group-cmp-redundancy-itf-1ga13235d10c01b8fd28b255308389d8f59"><span class="std std-ref">getredundancystate_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-redundancy-itf-1ga80861ceb9461fc2406ab26f47cbe8b52"><span class="std std-ref">switchtosimulation</span></a> (<a class="reference internal" href="#group-cmp-redundancy-itf-1ga092c601c30fc129e3f1104da84f5a14c"><span class="std std-ref">switchtosimulation_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-redundancy-itf-1ga301cfee21890fcc300d5ae19fe8fb179"><span class="std std-ref">switchtostandalone</span></a> (<a class="reference internal" href="#group-cmp-redundancy-itf-1ga8f7a449a761e0ee7fd32be29d3e9224a"><span class="std std-ref">switchtostandalone_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-redundancy-itf-1ga58716957758c14dbd8615a7c7ce7830c"><span class="std std-ref">switchtostandby</span></a> (<a class="reference internal" href="#group-cmp-redundancy-itf-1ga36d76eff3906c29ea16ba9da2f07bbac"><span class="std std-ref">switchtostandby_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-redundancy-itf-1ga0d38d8ffde71a90aa9d1aef7b7485663"><span class="std std-ref">switchtoactive</span></a> (<a class="reference internal" href="#group-cmp-redundancy-itf-1gab24363868395d8934ae2ed5ac5b07261"><span class="std std-ref">switchtoactive_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-redundancy-itf-1ga34cf799e921c2ceed3318e54643e6a4a"><span class="std std-ref">synchronize</span></a> (<a class="reference internal" href="#group-cmp-redundancy-itf-1ga61bc0e8b8a5e12157c74b05c88a72522"><span class="std std-ref">synchronize_struct</span></a> * p)</li>
+<li>RTS_IEC_BOOL <a class="reference internal" href="#group-cmp-redundancy-itf-1gaf2c843aba8f718d6d56f5fffeaf76c2e"><span class="std std-ref">RedundancyAreaRegister</span></a> (unsigned char * pbyArea, RTS_UI32 ulSize, <a class="reference internal" href="#group-cmp-redundancy-itf-1ga187db713ec4f1402790808ed42227e8b"><span class="std std-ref">RDCY_AREA_TYPE</span></a>  eType)</li>
+<li>RTS_IEC_BOOL <a class="reference internal" href="#group-cmp-redundancy-itf-1gaa9a90e9310fb193a966c0b330fb28cfd"><span class="std std-ref">RedundancyAreaRegisterSegment</span></a> (RTS_UI16 usSegment, <a class="reference internal" href="#group-cmp-redundancy-itf-1ga187db713ec4f1402790808ed42227e8b"><span class="std std-ref">RDCY_AREA_TYPE</span></a>  eType)</li>
+<li>RTS_IEC_BOOL <a class="reference internal" href="#group-cmp-redundancy-itf-1ga0784fd328c24b8874f45ee4cfe30f759"><span class="std std-ref">RedundancyUnregisterAreas</span></a> (void)</li>
+<li>RTS_IEC_BOOL <a class="reference internal" href="#group-cmp-redundancy-itf-1ga26e0c696641e9e11c5f9af46f7048215"><span class="std std-ref">RedundancyCycleEnd</span></a> (void)</li>
+<li>RTS_IEC_BOOL <a class="reference internal" href="#group-cmp-redundancy-itf-1ga68eef26167cc366c8bd64034e14f84e4"><span class="std std-ref">RedundancyCycleStart</span></a> (void)</li>
+<li>RTS_IEC_BOOL <a class="reference internal" href="#group-cmp-redundancy-itf-1ga760495dc4557e42b067250b03bcce016"><span class="std std-ref">RedundancyGetState</span></a> (<a class="reference internal" href="#group-cmp-redundancy-itf-1gac5758e0f67b24a0fd33d0eb02f0fd6ed"><span class="std std-ref">RedundancyState</span></a> * pState)</li>
+<li>RTS_IEC_BOOL <a class="reference internal" href="#group-cmp-redundancy-itf-1ga989b540b847d7a0255ce052768e54b5e"><span class="std std-ref">RedundancySwitchToSimulation</span></a> (void)</li>
+<li>RTS_IEC_BOOL <a class="reference internal" href="#group-cmp-redundancy-itf-1ga3996627874324d8e88581feeccc38206"><span class="std std-ref">RedundancySwitchToStandalone</span></a> (void)</li>
+<li>RTS_IEC_BOOL <a class="reference internal" href="#group-cmp-redundancy-itf-1ga57d06d129f2bcc4159747feec767bbf3"><span class="std std-ref">RedundancySwitchToStandby</span></a> (void)</li>
+<li>RTS_IEC_BOOL <a class="reference internal" href="#group-cmp-redundancy-itf-1ga5db28c197ea9cd17b970f305c1316ca6"><span class="std std-ref">RedundancySwitchToActive</span></a> (void)</li>
+<li>RTS_IEC_BOOL <a class="reference internal" href="#group-cmp-redundancy-itf-1ga4aa99ae17fef5e537b07980f41fc0576"><span class="std std-ref">RedundancySynchronize</span></a> (void)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-redundancy-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of Redundancy.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-rdcy-srv-writesett-0x01">
+<span id="group-cmp-redundancy-itf-1gae96a07d7daf9f527f9f8d43c2c3b388a"></span><h3>#define RDCY_SRV_WRITESETT 0x01<a class="headerlink" href="#define-rdcy-srv-writesett-0x01" title="Permalink to this headline">¶</a></h3>
+<p>Redundancy service Ids</p>
+</div>
+<div class="section" id="define-rdcy-srv-readsett-0x02">
+<span id="group-cmp-redundancy-itf-1ga50e24c74d5a9694b6438f4d7bf989a0d"></span><h3>#define RDCY_SRV_READSETT 0x02<a class="headerlink" href="#define-rdcy-srv-readsett-0x02" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcy-srv-readethercatnicsetting-0x03">
+<span id="group-cmp-redundancy-itf-1ga61523c81b2f6e7abf357589b9dde987b"></span><h3>#define RDCY_SRV_READETHERCATNICSETTING 0x03<a class="headerlink" href="#define-rdcy-srv-readethercatnicsetting-0x03" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcy-srv-readrdcystate-0x04">
+<span id="group-cmp-redundancy-itf-1gafecd2dfc305d20ee3441ca8245cd80e0"></span><h3>#define RDCY_SRV_READRDCYSTATE 0x04<a class="headerlink" href="#define-rdcy-srv-readrdcystate-0x04" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcy-srv-switchover-0x05">
+<span id="group-cmp-redundancy-itf-1gab7a645fd77893f7155587318bc1dbeee"></span><h3>#define RDCY_SRV_SWITCHOVER 0x05<a class="headerlink" href="#define-rdcy-srv-switchover-0x05" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcy-srv-synchronize-0x06">
+<span id="group-cmp-redundancy-itf-1ga465a0bae81d2500ee15095422ccfe7a7"></span><h3>#define RDCY_SRV_SYNCHRONIZE 0x06<a class="headerlink" href="#define-rdcy-srv-synchronize-0x06" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcy-srv-setsimulationmode-0x07">
+<span id="group-cmp-redundancy-itf-1ga09bdd21cebe492c17a71f9ef1d7ca941"></span><h3>#define RDCY_SRV_SETSIMULATIONMODE 0x07<a class="headerlink" href="#define-rdcy-srv-setsimulationmode-0x07" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcy-srv-switchtostandalone-0x08">
+<span id="group-cmp-redundancy-itf-1ga0cda988bddd714983e5d34847a966ca1"></span><h3>#define RDCY_SRV_SWITCHTOSTANDALONE 0x08<a class="headerlink" href="#define-rdcy-srv-switchtostandalone-0x08" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcy-srv-switchtoactive-0x09">
+<span id="group-cmp-redundancy-itf-1ga7bf0ffe47432bceadaec7fbc8bb3c3a5"></span><h3>#define RDCY_SRV_SWITCHTOACTIVE 0x09<a class="headerlink" href="#define-rdcy-srv-switchtoactive-0x09" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-session-id-0x10">
+<span id="group-cmp-redundancy-itf-1gafae0982246719b63bbe4ce30b5b35a41"></span><h3>#define TAG_SESSION_ID 0x10<a class="headerlink" href="#define-tag-session-id-0x10" title="Permalink to this headline">¶</a></h3>
+<p>Redundancy service tag Ids</p>
+</div>
+<div class="section" id="define-tag-sett-ipaddresslocal-firstlink-0x11">
+<span id="group-cmp-redundancy-itf-1ga804d249f730fb2880397d9bdfeed72cc"></span><h3>#define TAG_SETT_IPADDRESSLOCAL_FIRSTLINK 0x11<a class="headerlink" href="#define-tag-sett-ipaddresslocal-firstlink-0x11" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-ipaddresspeer-firstlink-0x12">
+<span id="group-cmp-redundancy-itf-1ga04c94e8c369d25ad7040754403a31504"></span><h3>#define TAG_SETT_IPADDRESSPEER_FIRSTLINK 0x12<a class="headerlink" href="#define-tag-sett-ipaddresspeer-firstlink-0x12" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-port-firstlink-0x13">
+<span id="group-cmp-redundancy-itf-1ga8ea65b3024c1b2345c5f81d8506fbcdb"></span><h3>#define TAG_SETT_PORT_FIRSTLINK 0x13<a class="headerlink" href="#define-tag-sett-port-firstlink-0x13" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-usesecondlink-0x14">
+<span id="group-cmp-redundancy-itf-1ga50113426810b7da45a7eb26dddf51db0"></span><h3>#define TAG_SETT_USESECONDLINK 0x14<a class="headerlink" href="#define-tag-sett-usesecondlink-0x14" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-ipaddresslocal-secondlink-0x15">
+<span id="group-cmp-redundancy-itf-1ga0c023809bdd118a665935cb603e3f6d1"></span><h3>#define TAG_SETT_IPADDRESSLOCAL_SECONDLINK 0x15<a class="headerlink" href="#define-tag-sett-ipaddresslocal-secondlink-0x15" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-ipaddresspeer-secondlink-0x16">
+<span id="group-cmp-redundancy-itf-1gabd60b6019996330745a9724d9f526737"></span><h3>#define TAG_SETT_IPADDRESSPEER_SECONDLINK 0x16<a class="headerlink" href="#define-tag-sett-ipaddresspeer-secondlink-0x16" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-port-secondlink-0x17">
+<span id="group-cmp-redundancy-itf-1gabd895b21d8d02068bc4cd2db6eb4fcec"></span><h3>#define TAG_SETT_PORT_SECONDLINK 0x17<a class="headerlink" href="#define-tag-sett-port-secondlink-0x17" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-bootupwaittime-0x18">
+<span id="group-cmp-redundancy-itf-1gab8677770df7fa408dd2ae21cd204c0a3"></span><h3>#define TAG_SETT_BOOTUPWAITTIME 0x18<a class="headerlink" href="#define-tag-sett-bootupwaittime-0x18" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-tcpwaittime-0x19">
+<span id="group-cmp-redundancy-itf-1ga77b5ffd682365c73dc6f5c928fbbd248"></span><h3>#define TAG_SETT_TCPWAITTIME 0x19<a class="headerlink" href="#define-tag-sett-tcpwaittime-0x19" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-standbywaittime-0x1a">
+<span id="group-cmp-redundancy-itf-1gab3f92647791a540d37d927c8a5f09e17"></span><h3>#define TAG_SETT_STANDBYWAITTIME 0x1A<a class="headerlink" href="#define-tag-sett-standbywaittime-0x1a" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-locktimeout-0x1b">
+<span id="group-cmp-redundancy-itf-1ga44f2fa5911c2511e3bef33d5e0c2e244"></span><h3>#define TAG_SETT_LOCKTIMEOUT 0x1B<a class="headerlink" href="#define-tag-sett-locktimeout-0x1b" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-bootprojectname-0x1c">
+<span id="group-cmp-redundancy-itf-1ga1c597bc09dbd877a817ec4fcb060b9b6"></span><h3>#define TAG_SETT_BOOTPROJECTNAME 0x1C<a class="headerlink" href="#define-tag-sett-bootprojectname-0x1c" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-redundancytaskname-0x1d">
+<span id="group-cmp-redundancy-itf-1gaef35080da08af92b340a46da5e1c527d"></span><h3>#define TAG_SETT_REDUNDANCYTASKNAME 0x1D<a class="headerlink" href="#define-tag-sett-redundancytaskname-0x1d" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-servicewaittime-0x1e">
+<span id="group-cmp-redundancy-itf-1ga1b08073565d19357c1b831e992103ee0"></span><h3>#define TAG_SETT_SERVICEWAITTIME 0x1E<a class="headerlink" href="#define-tag-sett-servicewaittime-0x1e" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-service-0x1f">
+<span id="group-cmp-redundancy-itf-1gad4bbf0a1db709e9b8c4187670459cc8e"></span><h3>#define TAG_SETT_SERVICE 0x1F<a class="headerlink" href="#define-tag-sett-service-0x1f" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-fieldbuses-0x20">
+<span id="group-cmp-redundancy-itf-1ga8f99846575f3db5cf3fc699bfebb54e8"></span><h3>#define TAG_SETT_FIELDBUSES 0x20<a class="headerlink" href="#define-tag-sett-fieldbuses-0x20" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-ethercatnicsetting-0x21">
+<span id="group-cmp-redundancy-itf-1gae7d166770a94bcd1ba00f8c94003ff09"></span><h3>#define TAG_SETT_ETHERCATNICSETTING 0x21<a class="headerlink" href="#define-tag-sett-ethercatnicsetting-0x21" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-macaddresslocal-firstlink-0x22">
+<span id="group-cmp-redundancy-itf-1ga479b6026c7201af254d75a4169af0192"></span><h3>#define TAG_SETT_MACADDRESSLOCAL_FIRSTLINK 0x22<a class="headerlink" href="#define-tag-sett-macaddresslocal-firstlink-0x22" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-redundancyframewaittime-0x23">
+<span id="group-cmp-redundancy-itf-1gae5f85915ee6c86d1f7664e5f2e320cdb"></span><h3>#define TAG_SETT_REDUNDANCYFRAMEWAITTIME 0x23<a class="headerlink" href="#define-tag-sett-redundancyframewaittime-0x23" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-getframesleeptime-0x24">
+<span id="group-cmp-redundancy-itf-1gaefee8a02c9248066a8e618025a3f20e6"></span><h3>#define TAG_SETT_GETFRAMESLEEPTIME 0x24<a class="headerlink" href="#define-tag-sett-getframesleeptime-0x24" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-dataviasyncwaittime-0x25">
+<span id="group-cmp-redundancy-itf-1ga1d661015f36c76621c7665a498a9c8f5"></span><h3>#define TAG_SETT_DATAVIASYNCWAITTIME 0x25<a class="headerlink" href="#define-tag-sett-dataviasyncwaittime-0x25" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-dataviasyncleeptime-0x26">
+<span id="group-cmp-redundancy-itf-1ga80daa90a31f7a1bc205c096eeca38b7e"></span><h3>#define TAG_SETT_DATAVIASYNCLEEPTIME 0x26<a class="headerlink" href="#define-tag-sett-dataviasyncleeptime-0x26" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcy-ack-0x81">
+<span id="group-cmp-redundancy-itf-1ga238605a0bdfe05ff5b1d4881aff67841"></span><h3>#define RDCY_ACK 0x81<a class="headerlink" href="#define-rdcy-ack-0x81" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-sett-rdcyconnection-0x82">
+<span id="group-cmp-redundancy-itf-1ga64ee1597f7b496d34c08949b009a6f19"></span><h3>#define TAG_SETT_RDCYCONNECTION 0x82<a class="headerlink" href="#define-tag-sett-rdcyconnection-0x82" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-rdcy-success-0x2a">
+<span id="group-cmp-redundancy-itf-1ga971c839d67b08b9226a168ce3a4dc3fa"></span><h3>#define TAG_RDCY_SUCCESS 0x2A<a class="headerlink" href="#define-tag-rdcy-success-0x2a" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-rdcy-error-0x2b">
+<span id="group-cmp-redundancy-itf-1ga9f9a8eb7029f35fa9888c1f7caf7f488"></span><h3>#define TAG_RDCY_ERROR 0x2B<a class="headerlink" href="#define-tag-rdcy-error-0x2b" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-rdcy-state-0x2c">
+<span id="group-cmp-redundancy-itf-1ga6ebca0b93adb28ea714deca47c6d11bf"></span><h3>#define TAG_RDCY_STATE 0x2C<a class="headerlink" href="#define-tag-rdcy-state-0x2c" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-bootupwaittime-bootupwaittime">
+<span id="group-cmp-redundancy-itf-1ga79035f86ea36351498906b17be43d300"></span><h3>#define RDCYKEY_INT_BOOTUPWAITTIME &#8220;BootupWaitTime&#8221;<a class="headerlink" href="#define-rdcykey-int-bootupwaittime-bootupwaittime" title="Permalink to this headline">¶</a></h3>
+<p>Redundancy settings names and default values</p>
+</div>
+<div class="section" id="define-rdcyvalue-int-bootupwaittime-default-5000">
+<span id="group-cmp-redundancy-itf-1ga394cea1567a41717bb51fd059ad4b81c"></span><h3>#define RDCYVALUE_INT_BOOTUPWAITTIME_DEFAULT 5000<a class="headerlink" href="#define-rdcyvalue-int-bootupwaittime-default-5000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-tcpwaittime-tcpwaittime">
+<span id="group-cmp-redundancy-itf-1ga9e33430a77ba8f2e195254aadb7c64bd"></span><h3>#define RDCYKEY_INT_TCPWAITTIME &#8220;TcpWaitTime&#8221;<a class="headerlink" href="#define-rdcykey-int-tcpwaittime-tcpwaittime" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-tcpwaittime-default-2000">
+<span id="group-cmp-redundancy-itf-1ga1f02170b142630f4ac4beb8b33f140bf"></span><h3>#define RDCYVALUE_INT_TCPWAITTIME_DEFAULT 2000<a class="headerlink" href="#define-rdcyvalue-int-tcpwaittime-default-2000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-reconnectwaittime-reconnectwaittime">
+<span id="group-cmp-redundancy-itf-1ga670bec42328b36c5ee288d36ef9a7bbc"></span><h3>#define RDCYKEY_INT_RECONNECTWAITTIME &#8220;ReconnectWaitTime&#8221;<a class="headerlink" href="#define-rdcykey-int-reconnectwaittime-reconnectwaittime" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-reconnectwaittime-default-5000">
+<span id="group-cmp-redundancy-itf-1gadb1c2bfee0f380ecfe1e35edc03b5d63"></span><h3>#define RDCYVALUE_INT_RECONNECTWAITTIME_DEFAULT 5000<a class="headerlink" href="#define-rdcyvalue-int-reconnectwaittime-default-5000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-standbywaittime-standbywaittime">
+<span id="group-cmp-redundancy-itf-1ga185610f200c635a6bd8937309aa7aa04"></span><h3>#define RDCYKEY_INT_STANDBYWAITTIME &#8220;StandbyWaitTime&#8221;<a class="headerlink" href="#define-rdcykey-int-standbywaittime-standbywaittime" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-standbywaittime-default-30">
+<span id="group-cmp-redundancy-itf-1ga389ac542bb79e1d21eb35657a26598ce"></span><h3>#define RDCYVALUE_INT_STANDBYWAITTIME_DEFAULT 30<a class="headerlink" href="#define-rdcyvalue-int-standbywaittime-default-30" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-locktimeout-locktimeout">
+<span id="group-cmp-redundancy-itf-1ga6e2af35ea62fec35dd300d5774e9b238"></span><h3>#define RDCYKEY_INT_LOCKTIMEOUT &#8220;LockTimeout&#8221;<a class="headerlink" href="#define-rdcykey-int-locktimeout-locktimeout" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-locktimeout-default-50">
+<span id="group-cmp-redundancy-itf-1ga3261ed888db61b9c1ec6cd173e6b1088"></span><h3>#define RDCYVALUE_INT_LOCKTIMEOUT_DEFAULT 50<a class="headerlink" href="#define-rdcyvalue-int-locktimeout-default-50" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-string-bootprojectname-bootproject">
+<span id="group-cmp-redundancy-itf-1ga91a933c564c8ccd5450e51c7636e51e8"></span><h3>#define RDCYKEY_STRING_BOOTPROJECTNAME &#8220;Bootproject&#8221;<a class="headerlink" href="#define-rdcykey-string-bootprojectname-bootproject" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-string-bootprojectname-default">
+<span id="group-cmp-redundancy-itf-1ga4cb58f8acef9cefd44d4e657a539fa26"></span><h3>#define RDCYVALUE_STRING_BOOTPROJECTNAME_DEFAULT &#8220;&#8221;<a class="headerlink" href="#define-rdcyvalue-string-bootprojectname-default" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-string-redundancymaintaskname-redundancytaskname">
+<span id="group-cmp-redundancy-itf-1gacf2e2c258e8ce27dfe9c3997846cccbb"></span><h3>#define RDCYKEY_STRING_REDUNDANCYMAINTASKNAME &#8220;RedundancyTaskName&#8221;<a class="headerlink" href="#define-rdcykey-string-redundancymaintaskname-redundancytaskname" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-string-redundancymaintaskname-default">
+<span id="group-cmp-redundancy-itf-1ga594a082af5a36993753fa76a2291515c"></span><h3>#define RDCYVALUE_STRING_REDUNDANCYMAINTASKNAME_DEFAULT &#8220;&#8221;<a class="headerlink" href="#define-rdcyvalue-string-redundancymaintaskname-default" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-servicewaittime-service-waittime">
+<span id="group-cmp-redundancy-itf-1ga17c30dd944ae7d2d82bef1985b178f4d"></span><h3>#define RDCYKEY_INT_SERVICEWAITTIME &#8220;Service.WaitTime&#8221;<a class="headerlink" href="#define-rdcykey-int-servicewaittime-service-waittime" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-servicewaittime-default-1000">
+<span id="group-cmp-redundancy-itf-1ga3cc7d3ea46cf4dee7607bb1488d4ac88"></span><h3>#define RDCYVALUE_INT_SERVICEWAITTIME_DEFAULT 1000<a class="headerlink" href="#define-rdcyvalue-int-servicewaittime-default-1000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-evttrgstartendcall-evttrgstartendcall">
+<span id="group-cmp-redundancy-itf-1ga672a213d60b554466473ea2cee5f8476"></span><h3>#define RDCYKEY_INT_EVTTRGSTARTENDCALL &#8220;EvtTrgStartEndCall&#8221;<a class="headerlink" href="#define-rdcykey-int-evttrgstartendcall-evttrgstartendcall" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-evttrgstartendcall-default-true">
+<span id="group-cmp-redundancy-itf-1ga62b97b854be63cc66a708e9230137dea"></span><h3>#define RDCYVALUE_INT_EVTTRGSTARTENDCALL_DEFAULT TRUE<a class="headerlink" href="#define-rdcyvalue-int-evttrgstartendcall-default-true" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-profibus-profibus">
+<span id="group-cmp-redundancy-itf-1gaac06b79590e4762dcf4002b637fd339e"></span><h3>#define RDCYKEY_INT_PROFIBUS &#8220;Profibus&#8221;<a class="headerlink" href="#define-rdcykey-int-profibus-profibus" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-profibus-default-false">
+<span id="group-cmp-redundancy-itf-1ga627bd3d8af9cf7749811dd10437282f7"></span><h3>#define RDCYVALUE_INT_PROFIBUS_DEFAULT FALSE<a class="headerlink" href="#define-rdcyvalue-int-profibus-default-false" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-ethercat-ethercat">
+<span id="group-cmp-redundancy-itf-1gabe276a08ad6b6d51c7f5e7982f03ba79"></span><h3>#define RDCYKEY_INT_ETHERCAT &#8220;Ethercat&#8221;<a class="headerlink" href="#define-rdcykey-int-ethercat-ethercat" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-ethercat-default-false">
+<span id="group-cmp-redundancy-itf-1gab656cad45f996e3e4b907ba38425c39c"></span><h3>#define RDCYVALUE_INT_ETHERCAT_DEFAULT FALSE<a class="headerlink" href="#define-rdcyvalue-int-ethercat-default-false" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-debugmessages-debugmessages">
+<span id="group-cmp-redundancy-itf-1ga34c9684f65423e75d823c212c52ef476"></span><h3>#define RDCYKEY_INT_DEBUGMESSAGES &#8220;DebugMessages&#8221;<a class="headerlink" href="#define-rdcykey-int-debugmessages-debugmessages" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-debugmessages-default-false">
+<span id="group-cmp-redundancy-itf-1ga62c9ef624a6364f38e3409b5342714f5"></span><h3>#define RDCYVALUE_INT_DEBUGMESSAGES_DEFAULT FALSE<a class="headerlink" href="#define-rdcyvalue-int-debugmessages-default-false" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-debugmessagestasktime-debugmessagestasktime">
+<span id="group-cmp-redundancy-itf-1ga2e659a100b83f1a78e86c79b83ab8f5d"></span><h3>#define RDCYKEY_INT_DEBUGMESSAGESTASKTIME &#8220;DebugMessagesTaskTime&#8221;<a class="headerlink" href="#define-rdcykey-int-debugmessagestasktime-debugmessagestasktime" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-debugmessagestasktime-default-false">
+<span id="group-cmp-redundancy-itf-1ga3a9b0eb78030356d511488a7171a25a8"></span><h3>#define RDCYVALUE_INT_DEBUGMESSAGESTASKTIME_DEFAULT FALSE<a class="headerlink" href="#define-rdcyvalue-int-debugmessagestasktime-default-false" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-callvfinit-callvfinit">
+<span id="group-cmp-redundancy-itf-1ga6ee97709afe350b01730f3b312655f8f"></span><h3>#define RDCYKEY_INT_CALLVFINIT &#8220;CallVfInit&#8221;<a class="headerlink" href="#define-rdcykey-int-callvfinit-callvfinit" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-callvfinit-default-true">
+<span id="group-cmp-redundancy-itf-1ga23a981e6529caa7a537e224f5d73c746"></span><h3>#define RDCYVALUE_INT_CALLVFINIT_DEFAULT TRUE<a class="headerlink" href="#define-rdcyvalue-int-callvfinit-default-true" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-simulation-simulation">
+<span id="group-cmp-redundancy-itf-1gae4219a9a98212abfd04f04b7616d85ac"></span><h3>#define RDCYKEY_INT_SIMULATION &#8220;Simulation&#8221;<a class="headerlink" href="#define-rdcykey-int-simulation-simulation" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-simulation-default-false">
+<span id="group-cmp-redundancy-itf-1ga68e61678bcd78ce7522b2860e28cc05d"></span><h3>#define RDCYVALUE_INT_SIMULATION_DEFAULT FALSE<a class="headerlink" href="#define-rdcyvalue-int-simulation-default-false" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-synchrophaselength-synchrophaselength">
+<span id="group-cmp-redundancy-itf-1gaad52f851da14ea50aa816baffecee6f5"></span><h3>#define RDCYKEY_INT_SYNCHROPHASELENGTH &#8220;SynchroPhaseLength&#8221;<a class="headerlink" href="#define-rdcykey-int-synchrophaselength-synchrophaselength" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-synchrophaselength-default-0">
+<span id="group-cmp-redundancy-itf-1ga2d1b8fefa224d6b4c3076d2fd6fa432c"></span><h3>#define RDCYVALUE_INT_SYNCHROPHASELENGTH_DEFAULT 0<a class="headerlink" href="#define-rdcyvalue-int-synchrophaselength-default-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-extrastandbywaittime-extrastandbywaittime">
+<span id="group-cmp-redundancy-itf-1gad35f09a337a6749b4a237cf9a65a28f0"></span><h3>#define RDCYKEY_INT_EXTRASTANDBYWAITTIME &#8220;ExtraStandbyWaitTime&#8221;<a class="headerlink" href="#define-rdcykey-int-extrastandbywaittime-extrastandbywaittime" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-extrastandbywaittime-default-0">
+<span id="group-cmp-redundancy-itf-1ga51e926fb6f8eeae73cc7229bcaf587bd"></span><h3>#define RDCYVALUE_INT_EXTRASTANDBYWAITTIME_DEFAULT 0<a class="headerlink" href="#define-rdcyvalue-int-extrastandbywaittime-default-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-standaloneafterstandby-standaloneafterstandby">
+<span id="group-cmp-redundancy-itf-1ga211ef0b915ca5101cabb0d63698a65ef"></span><h3>#define RDCYKEY_INT_STANDALONEAFTERSTANDBY &#8220;StandaloneAfterStandby&#8221;<a class="headerlink" href="#define-rdcykey-int-standaloneafterstandby-standaloneafterstandby" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-standaloneafterstandby-default-2">
+<span id="group-cmp-redundancy-itf-1ga40557a3c397b183dec872d62a5b358b6"></span><h3>#define RDCYVALUE_INT_STANDALONEAFTERSTANDBY_DEFAULT 2<a class="headerlink" href="#define-rdcyvalue-int-standaloneafterstandby-default-2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-inputareacrccheck-inputareacrccheck">
+<span id="group-cmp-redundancy-itf-1ga1818e6eb97ae10c2467d25f2f73c002a"></span><h3>#define RDCYKEY_INT_INPUTAREACRCCHECK &#8220;InputAreaCrcCheck&#8221;<a class="headerlink" href="#define-rdcykey-int-inputareacrccheck-inputareacrccheck" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-inputareacrccheck-default-false">
+<span id="group-cmp-redundancy-itf-1gaf860f8c3efbd6a93649619ce9a48e2f9"></span><h3>#define RDCYVALUE_INT_INPUTAREACRCCHECK_DEFAULT FALSE<a class="headerlink" href="#define-rdcyvalue-int-inputareacrccheck-default-false" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcykey-int-cmpsrv-servicewaittime-service-waittime">
+<span id="group-cmp-redundancy-itf-1ga6d3e7c087138089edeec51e01db403c0"></span><h3>#define RDCYKEY_INT_CMPSRV_SERVICEWAITTIME &#8220;Service.WaitTime&#8221;<a class="headerlink" href="#define-rdcykey-int-cmpsrv-servicewaittime-service-waittime" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rdcyvalue-int-cmpsrv-servicewaittime-default-1000">
+<span id="group-cmp-redundancy-itf-1ga468dc65fe9cb9d7150ca6a3d21b4a30f"></span><h3>#define RDCYVALUE_INT_CMPSRV_SERVICEWAITTIME_DEFAULT 1000<a class="headerlink" href="#define-rdcyvalue-int-cmpsrv-servicewaittime-default-1000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-evtparamid-cmpredundancy-vfinit-0x0001">
+<span id="group-cmp-redundancy-itf-1gada5890de6fae4a519f755d095ba05bed"></span><h3>#define EVTPARAMID_CmpRedundancy_vfInit 0x0001<a class="headerlink" href="#define-evtparamid-cmpredundancy-vfinit-0x0001" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-evtversion-cmpredundancy-vfinit-0x0001">
+<span id="group-cmp-redundancy-itf-1ga76c7b44b856150576e3cc198196c0dbe"></span><h3>#define EVTVERSION_CmpRedundancy_vfInit 0x0001<a class="headerlink" href="#define-evtversion-cmpredundancy-vfinit-0x0001" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-evt-cmpredundancy-vfinit-make-eventid-evtclass-info-1">
+<span id="group-cmp-redundancy-itf-1ga3e3feb269771cdc7f1c8e7496183cb27"></span><h3>#define EVT_CmpRedundancy_vfInit <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 1)<a class="headerlink" href="#define-evt-cmpredundancy-vfinit-make-eventid-evtclass-info-1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-itf-cmpredundancy">
+<span id="group-cmp-redundancy-itf-1ga0dd3ecee7f66540f8b9bc98c212fc0a8"></span><h3>#define ITF_CmpRedundancy<a class="headerlink" href="#define-itf-cmpredundancy" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpredundancy">
+<span id="group-cmp-redundancy-itf-1gac8b7911dd91162a2809e3125142ba9e5"></span><h3>#define EXTITF_CmpRedundancy<a class="headerlink" href="#define-extitf-cmpredundancy" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-tagredundancystate-redundancystate">
+<span id="group-cmp-redundancy-itf-1gac5758e0f67b24a0fd33d0eb02f0fd6ed"></span><h3>typedef struct tagRedundancyState  RedundancyState<a class="headerlink" href="#typedef-struct-tagredundancystate-redundancystate" title="Permalink to this headline">¶</a></h3>
+<p>Typedef for redundancy state information</p>
+</div>
+<div class="section" id="typedef-struct-tagredundancytlgheader-redundancytlgheader">
+<span id="group-cmp-redundancy-itf-1ga1e58f398eb3ea0878131a8911b644609"></span><h3>typedef struct tagRedundancyTlgHeader  RedundancyTlgHeader<a class="headerlink" href="#typedef-struct-tagredundancytlgheader-redundancytlgheader" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-struct-tagclient-reply-client-reply">
+<span id="group-cmp-redundancy-itf-1ga9aca827043efb8b7c5d41e1c7b5341af"></span><h3>typedef struct tagCLIENT_REPLY  CLIENT_REPLY<a class="headerlink" href="#typedef-struct-tagclient-reply-client-reply" title="Permalink to this headline">¶</a></h3>
+<p>Typedef for client reply</p>
+</div>
+<div class="section" id="typedef-struct-tagarearegister-struct-arearegister-struct">
+<span id="group-cmp-redundancy-itf-1gab7f9229af993fcc1d30516a2806fab91"></span><h3>typedef struct tagarearegister_struct  arearegister_struct<a class="headerlink" href="#typedef-struct-tagarearegister-struct-arearegister-struct" title="Permalink to this headline">¶</a></h3>
+<p>arearegister</p>
+</div>
+<div class="section" id="typedef-struct-tagarearegistersegment-struct-arearegistersegment-struct">
+<span id="group-cmp-redundancy-itf-1ga6d86ff0b6a010cdb1f9fdb5b10b7a87f"></span><h3>typedef struct tagarearegistersegment_struct  arearegistersegment_struct<a class="headerlink" href="#typedef-struct-tagarearegistersegment-struct-arearegistersegment-struct" title="Permalink to this headline">¶</a></h3>
+<p>arearegistersegment</p>
+</div>
+<div class="section" id="typedef-struct-tagredundancycycleend-struct-redundancycycleend-struct">
+<span id="group-cmp-redundancy-itf-1gab81e258d5594e94adf36fa3af9d10e39"></span><h3>typedef struct tagredundancycycleend_struct  redundancycycleend_struct<a class="headerlink" href="#typedef-struct-tagredundancycycleend-struct-redundancycycleend-struct" title="Permalink to this headline">¶</a></h3>
+<p>redundancycycleend</p>
+</div>
+<div class="section" id="typedef-struct-tagunregisterareas-struct-unregisterareas-struct">
+<span id="group-cmp-redundancy-itf-1gadd9130b43f7ce5977243f1699755cf6a"></span><h3>typedef struct tagunregisterareas_struct  unregisterareas_struct<a class="headerlink" href="#typedef-struct-tagunregisterareas-struct-unregisterareas-struct" title="Permalink to this headline">¶</a></h3>
+<p>unregisterareas</p>
+</div>
+<div class="section" id="typedef-struct-tagredundancycyclestart-struct-redundancycyclestart-struct">
+<span id="group-cmp-redundancy-itf-1gaebcc4a895b191220a2d1b2ab025f586a"></span><h3>typedef struct tagredundancycyclestart_struct  redundancycyclestart_struct<a class="headerlink" href="#typedef-struct-tagredundancycyclestart-struct-redundancycyclestart-struct" title="Permalink to this headline">¶</a></h3>
+<p>redundancycyclestart</p>
+</div>
+<div class="section" id="typedef-struct-taggetredundancystate-struct-getredundancystate-struct">
+<span id="group-cmp-redundancy-itf-1ga13235d10c01b8fd28b255308389d8f59"></span><h3>typedef struct taggetredundancystate_struct  getredundancystate_struct<a class="headerlink" href="#typedef-struct-taggetredundancystate-struct-getredundancystate-struct" title="Permalink to this headline">¶</a></h3>
+<p>getredundancystate</p>
+</div>
+<div class="section" id="typedef-struct-tagswitchtosimulation-struct-switchtosimulation-struct">
+<span id="group-cmp-redundancy-itf-1ga092c601c30fc129e3f1104da84f5a14c"></span><h3>typedef struct tagswitchtosimulation_struct  switchtosimulation_struct<a class="headerlink" href="#typedef-struct-tagswitchtosimulation-struct-switchtosimulation-struct" title="Permalink to this headline">¶</a></h3>
+<p>switchtosimulation</p>
+</div>
+<div class="section" id="typedef-struct-tagswitchtostandalone-struct-switchtostandalone-struct">
+<span id="group-cmp-redundancy-itf-1ga8f7a449a761e0ee7fd32be29d3e9224a"></span><h3>typedef struct tagswitchtostandalone_struct  switchtostandalone_struct<a class="headerlink" href="#typedef-struct-tagswitchtostandalone-struct-switchtostandalone-struct" title="Permalink to this headline">¶</a></h3>
+<p>switchtostandalone</p>
+</div>
+<div class="section" id="typedef-struct-tagswitchtostandby-struct-switchtostandby-struct">
+<span id="group-cmp-redundancy-itf-1ga36d76eff3906c29ea16ba9da2f07bbac"></span><h3>typedef struct tagswitchtostandby_struct  switchtostandby_struct<a class="headerlink" href="#typedef-struct-tagswitchtostandby-struct-switchtostandby-struct" title="Permalink to this headline">¶</a></h3>
+<p>switchtostandby</p>
+</div>
+<div class="section" id="typedef-struct-tagswitchtoactive-struct-switchtoactive-struct">
+<span id="group-cmp-redundancy-itf-1gab24363868395d8934ae2ed5ac5b07261"></span><h3>typedef struct tagswitchtoactive_struct  switchtoactive_struct<a class="headerlink" href="#typedef-struct-tagswitchtoactive-struct-switchtoactive-struct" title="Permalink to this headline">¶</a></h3>
+<p>switchtoactive</p>
+</div>
+<div class="section" id="typedef-struct-tagsynchronize-struct-synchronize-struct">
+<span id="group-cmp-redundancy-itf-1ga61bc0e8b8a5e12157c74b05c88a72522"></span><h3>typedef struct tagsynchronize_struct  synchronize_struct<a class="headerlink" href="#typedef-struct-tagsynchronize-struct-synchronize-struct" title="Permalink to this headline">¶</a></h3>
+<p>synchronize</p>
+</div>
+<div class="section" id="typedef-icmpredundancy-c-icmpredundancy">
+<span id="group-cmp-redundancy-itf-1ga68e81713996b40e816cbeed65d36cf6d"></span><h3>typedef ICmpRedundancy_C ICmpRedundancy<a class="headerlink" href="#typedef-icmpredundancy-c-icmpredundancy" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="enumeration-type-documentation">
+<h2>Enumeration Type Documentation<a class="headerlink" href="#enumeration-type-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="enum-rdcy-state">
+<span id="group-cmp-redundancy-itf-1ga37d0780292ead094a126f2ea2ad10f7d"></span><h3>enum RDCY_STATE<a class="headerlink" href="#enum-rdcy-state" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION BEGIN</p>
+<p>Typedef for redundancy state</p>
+<p><strong>Enumerator:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>RS_START</td>
+</tr>
+<tr class="row-even"><td>RS_SYNCHRO</td>
+</tr>
+<tr class="row-odd"><td>RS_CYCLE_ACTIVE</td>
+</tr>
+<tr class="row-even"><td>RS_CYCLE_STANDBY</td>
+</tr>
+<tr class="row-odd"><td>RS_CYCLE_STANDALONE</td>
+</tr>
+<tr class="row-even"><td>RS_CYCLE_ERROR</td>
+</tr>
+<tr class="row-odd"><td>RS_SIMULATION</td>
+</tr>
+<tr class="row-even"><td>RS_BOOTUP_ERROR</td>
+</tr>
+<tr class="row-odd"><td>RS_SHUTDOWN_ACTIVE</td>
+</tr>
+<tr class="row-even"><td>RS_SHUTDOWN_STANDBY</td>
+</tr>
+<tr class="row-odd"><td>RS_SYNCHRO_ERROR</td>
+</tr>
+<tr class="row-even"><td>RS_SIMULATION_START</td>
+</tr>
+<tr class="row-odd"><td>RS_NO_LICENSE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="enum-rdcy-error">
+<span id="group-cmp-redundancy-itf-1ga19cebc1900585838605f8ae89e2b6a51"></span><h3>enum RDCY_ERROR<a class="headerlink" href="#enum-rdcy-error" title="Permalink to this headline">¶</a></h3>
+<p>Typedef for redundancy error</p>
+<p><strong>Enumerator:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>RDCY_NO_ERROR</td>
+</tr>
+<tr class="row-even"><td>RDCY_ERR_FAILED</td>
+</tr>
+<tr class="row-odd"><td>RDCY_BOOTUP_ERROR</td>
+</tr>
+<tr class="row-even"><td>RDCY_SYNCHRO_ERROR</td>
+</tr>
+<tr class="row-odd"><td>RDCY_CYCLE_ERROR</td>
+</tr>
+<tr class="row-even"><td>RDCY_LINK_ERROR</td>
+</tr>
+<tr class="row-odd"><td>RDCY_FIELDBUS_ERROR</td>
+</tr>
+<tr class="row-even"><td>RDCY_RECEIVEMESSAGE_ERROR</td>
+</tr>
+<tr class="row-odd"><td>RDCY_NOMESSAGE_ERROR</td>
+</tr>
+<tr class="row-even"><td>RDCY_WRONGMESSAGE_ERROR</td>
+</tr>
+<tr class="row-odd"><td>RDCY_CONFIG_ERROR</td>
+</tr>
+<tr class="row-even"><td>RDCY_INPUTAREACRC_ERROR</td>
+</tr>
+<tr class="row-odd"><td>RDCY_NO_LICENSE_ERROR</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="enum-rdcy-area-type">
+<span id="group-cmp-redundancy-itf-1ga187db713ec4f1402790808ed42227e8b"></span><h3>enum RDCY_AREA_TYPE<a class="headerlink" href="#enum-rdcy-area-type" title="Permalink to this headline">¶</a></h3>
+<p>Typedef for redundancy area type</p>
+<p><strong>Enumerator:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>AREA_NONE</td>
+</tr>
+<tr class="row-even"><td>AREA_INPUT</td>
+</tr>
+<tr class="row-odd"><td>AREA_SYNCHRO</td>
+</tr>
+<tr class="row-even"><td>AREA_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>AREA_PASSIVEACTIVE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="enum-redundancy-comm-mode">
+<span id="group-cmp-redundancy-itf-1gae9015dc80362e86c441a3b750d366dee"></span><h3>enum REDUNDANCY_COMM_MODE<a class="headerlink" href="#enum-redundancy-comm-mode" title="Permalink to this headline">¶</a></h3>
+<p>Typedef for redundancy communication modes</p>
+<p><strong>Enumerator:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>RCOM_SyncReceive</td>
+</tr>
+<tr class="row-even"><td>RCOM_SyncSend</td>
+</tr>
+<tr class="row-odd"><td>RCOM_DataClient</td>
+</tr>
+<tr class="row-even"><td>RCOM_DataServer</td>
+</tr>
+<tr class="row-odd"><td>RCOM_DataWork</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="void-arearegister-arearegister-struct-p">
+<span id="group-cmp-redundancy-itf-1ga0c10fff3e2b67dc6d4bfb6bad9f954d6"></span><h3>void arearegister (arearegister_struct <a href="#id1"><span class="problematic" id="id2">*</span></a>p)<a class="headerlink" href="#void-arearegister-arearegister-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-arearegistersegment-arearegistersegment-struct-p">
+<span id="group-cmp-redundancy-itf-1gaca8401df1aff570d7fbdadd0c0ba382c"></span><h3>void arearegistersegment (arearegistersegment_struct <a href="#id3"><span class="problematic" id="id4">*</span></a>p)<a class="headerlink" href="#void-arearegistersegment-arearegistersegment-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-unregisterareas-unregisterareas-struct-p">
+<span id="group-cmp-redundancy-itf-1gaa43c2bba813a2219570d5a10969d9674"></span><h3>void unregisterareas (unregisterareas_struct <a href="#id5"><span class="problematic" id="id6">*</span></a>p)<a class="headerlink" href="#void-unregisterareas-unregisterareas-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-redundancycycleend-redundancycycleend-struct-p">
+<span id="group-cmp-redundancy-itf-1gab1be23cd29d288a54122e7bf597d79ab"></span><h3>void redundancycycleend (redundancycycleend_struct <a href="#id7"><span class="problematic" id="id8">*</span></a>p)<a class="headerlink" href="#void-redundancycycleend-redundancycycleend-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-redundancycyclestart-redundancycyclestart-struct-p">
+<span id="group-cmp-redundancy-itf-1ga9bfdf2c2c1e85d2730b605b06ceea825"></span><h3>void redundancycyclestart (redundancycyclestart_struct <a href="#id9"><span class="problematic" id="id10">*</span></a>p)<a class="headerlink" href="#void-redundancycyclestart-redundancycyclestart-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-getredundancystate-getredundancystate-struct-p">
+<span id="group-cmp-redundancy-itf-1ga576dadfc96d6ba198f1010789e076ab3"></span><h3>void getredundancystate (getredundancystate_struct <a href="#id11"><span class="problematic" id="id12">*</span></a>p)<a class="headerlink" href="#void-getredundancystate-getredundancystate-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-switchtosimulation-switchtosimulation-struct-p">
+<span id="group-cmp-redundancy-itf-1ga80861ceb9461fc2406ab26f47cbe8b52"></span><h3>void switchtosimulation (switchtosimulation_struct <a href="#id13"><span class="problematic" id="id14">*</span></a>p)<a class="headerlink" href="#void-switchtosimulation-switchtosimulation-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-switchtostandalone-switchtostandalone-struct-p">
+<span id="group-cmp-redundancy-itf-1ga301cfee21890fcc300d5ae19fe8fb179"></span><h3>void switchtostandalone (switchtostandalone_struct <a href="#id15"><span class="problematic" id="id16">*</span></a>p)<a class="headerlink" href="#void-switchtostandalone-switchtostandalone-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-switchtostandby-switchtostandby-struct-p">
+<span id="group-cmp-redundancy-itf-1ga58716957758c14dbd8615a7c7ce7830c"></span><h3>void switchtostandby (switchtostandby_struct <a href="#id17"><span class="problematic" id="id18">*</span></a>p)<a class="headerlink" href="#void-switchtostandby-switchtostandby-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-switchtoactive-switchtoactive-struct-p">
+<span id="group-cmp-redundancy-itf-1ga0d38d8ffde71a90aa9d1aef7b7485663"></span><h3>void switchtoactive (switchtoactive_struct <a href="#id19"><span class="problematic" id="id20">*</span></a>p)<a class="headerlink" href="#void-switchtoactive-switchtoactive-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-synchronize-synchronize-struct-p">
+<span id="group-cmp-redundancy-itf-1ga34cf799e921c2ceed3318e54643e6a4a"></span><h3>void synchronize (synchronize_struct <a href="#id21"><span class="problematic" id="id22">*</span></a>p)<a class="headerlink" href="#void-synchronize-synchronize-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-iec-bool-redundancyarearegister-unsigned-char-pbyarea-rts-ui32-ulsize-rdcy-area-type-etype">
+<span id="group-cmp-redundancy-itf-1gaf2c843aba8f718d6d56f5fffeaf76c2e"></span><h3>RTS_IEC_BOOL RedundancyAreaRegister (unsigned char <a href="#id23"><span class="problematic" id="id24">*</span></a>pbyArea, RTS_UI32 ulSize, RDCY_AREA_TYPE eType)<a class="headerlink" href="#rts-iec-bool-redundancyarearegister-unsigned-char-pbyarea-rts-ui32-ulsize-rdcy-area-type-etype" title="Permalink to this headline">¶</a></h3>
+<p>This function registers the memory area as redundant area</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="23%" />
+<col width="55%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pbyArea</td>
+<td>Start address</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulSize</td>
+<td>Size</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>eType</td>
+<td>Redundancy area type</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>TRUE in case of success, otherwise FALSE</p>
+</div>
+<div class="section" id="rts-iec-bool-redundancyarearegistersegment-rts-ui16-ussegment-rdcy-area-type-etype">
+<span id="group-cmp-redundancy-itf-1gaa9a90e9310fb193a966c0b330fb28cfd"></span><h3>RTS_IEC_BOOL RedundancyAreaRegisterSegment (RTS_UI16 usSegment, RDCY_AREA_TYPE eType)<a class="headerlink" href="#rts-iec-bool-redundancyarearegistersegment-rts-ui16-ussegment-rdcy-area-type-etype" title="Permalink to this headline">¶</a></h3>
+<p>This function registers a memory area segment as redundant area</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="26%" />
+<col width="52%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>usSegment</td>
+<td>Segment type</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>eType</td>
+<td>Redundancy area type</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>TRUE in case of success, otherwise FALSE</p>
+</div>
+<div class="section" id="rts-iec-bool-redundancyunregisterareas-void">
+<span id="group-cmp-redundancy-itf-1ga0784fd328c24b8874f45ee4cfe30f759"></span><h3>RTS_IEC_BOOL RedundancyUnregisterAreas (void)<a class="headerlink" href="#rts-iec-bool-redundancyunregisterareas-void" title="Permalink to this headline">¶</a></h3>
+<p>This function unregisters all redundancy areas
+<strong>Returns:</strong></p>
+<p>TRUE in case of success, otherwise FALSE</p>
+</div>
+<div class="section" id="rts-iec-bool-redundancycycleend-void">
+<span id="group-cmp-redundancy-itf-1ga26e0c696641e9e11c5f9af46f7048215"></span><h3>RTS_IEC_BOOL RedundancyCycleEnd (void)<a class="headerlink" href="#rts-iec-bool-redundancycycleend-void" title="Permalink to this headline">¶</a></h3>
+<p>This function is called at end of a cycle of the redundancy task
+<strong>Returns:</strong></p>
+<p>TRUE in case of success, otherwise FALSE</p>
+</div>
+<div class="section" id="rts-iec-bool-redundancycyclestart-void">
+<span id="group-cmp-redundancy-itf-1ga68eef26167cc366c8bd64034e14f84e4"></span><h3>RTS_IEC_BOOL RedundancyCycleStart (void)<a class="headerlink" href="#rts-iec-bool-redundancycyclestart-void" title="Permalink to this headline">¶</a></h3>
+<p>This function is called at beginning of a cycle of the redundancy task
+<strong>Returns:</strong></p>
+<p>TRUE in case of success, otherwise FALSE</p>
+</div>
+<div class="section" id="rts-iec-bool-redundancygetstate-redundancystate-pstate">
+<span id="group-cmp-redundancy-itf-1ga760495dc4557e42b067250b03bcce016"></span><h3>RTS_IEC_BOOL RedundancyGetState (RedundancyState <a href="#id25"><span class="problematic" id="id26">*</span></a>pState)<a class="headerlink" href="#rts-iec-bool-redundancygetstate-redundancystate-pstate" title="Permalink to this headline">¶</a></h3>
+<p>This function returns the current redundancy state</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="9%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pState</td>
+<td>Pointer to redundancy state structure to return the redundancy state.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>TRUE in case of success, otherwise FALSE</p>
+</div>
+<div class="section" id="rts-iec-bool-redundancyswitchtosimulation-void">
+<span id="group-cmp-redundancy-itf-1ga989b540b847d7a0255ce052768e54b5e"></span><h3>RTS_IEC_BOOL RedundancySwitchToSimulation (void)<a class="headerlink" href="#rts-iec-bool-redundancyswitchtosimulation-void" title="Permalink to this headline">¶</a></h3>
+<p>This function switches a plc in redundancy state RS_CYCLE_STANDBY to RS_SIMULATION
+<strong>Returns:</strong></p>
+<p>TRUE in case of success, otherwise FALSE</p>
+</div>
+<div class="section" id="rts-iec-bool-redundancyswitchtostandalone-void">
+<span id="group-cmp-redundancy-itf-1ga3996627874324d8e88581feeccc38206"></span><h3>RTS_IEC_BOOL RedundancySwitchToStandalone (void)<a class="headerlink" href="#rts-iec-bool-redundancyswitchtostandalone-void" title="Permalink to this headline">¶</a></h3>
+<p>This function switches a plc in redundancy state RS_SIMULATION_START to RS_CYLCE_STANDALONE
+<strong>Returns:</strong></p>
+<p>TRUE in case of success, otherwise FALSE</p>
+</div>
+<div class="section" id="rts-iec-bool-redundancyswitchtostandby-void">
+<span id="group-cmp-redundancy-itf-1ga57d06d129f2bcc4159747feec767bbf3"></span><h3>RTS_IEC_BOOL RedundancySwitchToStandby (void)<a class="headerlink" href="#rts-iec-bool-redundancyswitchtostandby-void" title="Permalink to this headline">¶</a></h3>
+<p>This function switches a plc in redundancy state RS_CYCLE_ACTIVE to RS_CYCLE_STANDBY
+<strong>Returns:</strong></p>
+<p>TRUE in case of success, otherwise FALSE</p>
+</div>
+<div class="section" id="rts-iec-bool-redundancyswitchtoactive-void">
+<span id="group-cmp-redundancy-itf-1ga5db28c197ea9cd17b970f305c1316ca6"></span><h3>RTS_IEC_BOOL RedundancySwitchToActive (void)<a class="headerlink" href="#rts-iec-bool-redundancyswitchtoactive-void" title="Permalink to this headline">¶</a></h3>
+<p>This function switches a plc in redundancy state RS_SIMULATION to RS_CYCLE_ACTIVE (if the second redundancy plc is running) or RS_CYCLE_STANDALONE (if the second redundancy plc is not running)
+<strong>Returns:</strong></p>
+<p>TRUE in case of success, otherwise FALSE</p>
+</div>
+<div class="section" id="rts-iec-bool-redundancysynchronize-void">
+<span id="group-cmp-redundancy-itf-1ga4aa99ae17fef5e537b07980f41fc0576"></span><h3>RTS_IEC_BOOL RedundancySynchronize (void)<a class="headerlink" href="#rts-iec-bool-redundancysynchronize-void" title="Permalink to this headline">¶</a></h3>
+<p>This function synchronizes a plc in redundancy state RS_START, RS_BOOTUP_ERROR, RS_SYNCHRO_ERROR, RS_CYCLE_ERROR, RS_CYCLE_STANDALONE, RS_SIMULATION or RS_SIMULATION_START
+<strong>Returns:</strong></p>
+<p>TRUE in case of success, otherwise FALSE</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_retain_itf.html" title="CmpRetainItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_redundancy_extension_itf.html" title="CmpRedundancyExtensionItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

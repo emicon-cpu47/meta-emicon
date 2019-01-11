@@ -1,0 +1,56 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagsyssocksetipaddressandnetmask__struct:
+
+========================================================
+tagsyssocksetipaddressandnetmask_struct Struct Reference
+========================================================
+
+| #include ":ref:`SysSocketItf.h <_sys_socket_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_WSTRING * :ref:`wsAdapterName <structtagsyssocksetipaddressandnetmask__struct_1a5469cc26de49ac8e3390b9366524bbc8>`
+- :ref:`INADDR <struct_i_n_a_d_d_r>` * :ref:`IpAddr <structtagsyssocksetipaddressandnetmask__struct_1a95c4292a585aa991ccd43ace8fad5bb2>`
+- :ref:`INADDR <struct_i_n_a_d_d_r>` * :ref:`NetMask <structtagsyssocksetipaddressandnetmask__struct_1a2c898be81dc84172936d0fa8c5c09ceb>`
+- RTS_IEC_RESULT :ref:`SysSockSetIpAddressAndNetMask <structtagsyssocksetipaddressandnetmask__struct_1ac84c5f72205448ae3fc7bdd54f54047a>`
+
+Detailed Description
+--------------------
+
+| Set IP address and subnet mask of an adapter. | It depends on the device, whether the new ip address and subnet mask is reset during reboot or if it is retained. In general the caller should consider these as volatile. The combination IP address = 0.0.0.0 and subnet mask = 0.0.0.0 can be used to remove the IP address from the adapter. After this there is no IP based communication possible anymore, until a new IP address is set. Replaces the functions :ref:`SysSockSetIPAddress() <group___sys_socket_itf_1gac9df27adc7dee251a49276325cb38c4c>` and :ref:`SysSockSetSubnetMask() <group___sys_socket_itf_1gabb69f4209169d1fcd77f059587927930>` . :return: Runtime system error code (see CmpErrors.library).
+
+Field Documentation
+-------------------
+
+.. _structtagsyssocksetipaddressandnetmask__struct_1a5469cc26de49ac8e3390b9366524bbc8:
+
+RTS_IEC_WSTRING* tagsyssocksetipaddressandnetmask_struct::wsAdapterName
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagsyssocksetipaddressandnetmask__struct_1a95c4292a585aa991ccd43ace8fad5bb2:
+
+INADDR* tagsyssocksetipaddressandnetmask_struct::IpAddr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagsyssocksetipaddressandnetmask__struct_1a2c898be81dc84172936d0fa8c5c09ceb:
+
+INADDR* tagsyssocksetipaddressandnetmask_struct::NetMask
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagsyssocksetipaddressandnetmask__struct_1ac84c5f72205448ae3fc7bdd54f54047a:
+
+RTS_IEC_RESULT tagsyssocksetipaddressandnetmask_struct::SysSockSetIpAddressAndNetMask
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysSocketItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

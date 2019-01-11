@@ -1,0 +1,303 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_channel_mgr_itf:
+
+================
+CmpChannelMgrItf
+================
+
+Interface of CmpChannelMgr. :ref:`More... <group___cmp_channel_mgr_itf-details>`
+
+Modules
+-------
+
+- :ref:`Package logfilter <group___cmp_channel_mgr_itf___packagelogfilter>`
+
+- :ref:`Settings <group___cmp_channel_mgr_itf___settings>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpChannelMgr_C <struct_i_cmp_channel_mgr___c>`
+
+Macros
+------
+
+- #define :ref:`L4_VERSION_MAJOR <group___cmp_channel_mgr_itf_1ga035f99a2ee8d7ccee8593135db62eeda>` 0x01
+
+- #define :ref:`L4_VERSION_MINOR <group___cmp_channel_mgr_itf_1gac46e7b3cbe834646847154c8686d2618>` 0x01
+
+- #define :ref:`KEEPALIVE_INTERVAL <group___cmp_channel_mgr_itf_1ga5eeac63dd12a0028fe31009a45e6f2b7>` (1000UL)
+
+- #define :ref:`ITF_CmpChannelMgr <group___cmp_channel_mgr_itf_1ga2d4b349d909077177bc2520361a2576c>`
+
+- #define :ref:`EXTITF_CmpChannelMgr <group___cmp_channel_mgr_itf_1gaeb494d5abac415754c1bcb04c0ec9253>`
+
+Typedefs
+--------
+
+- typedef int(* :ref:`PFCHANNELHANDLER <group___cmp_channel_mgr_itf_1gaa6bb7106c459aa8702f58da0df9919c2>`)(CHANNELBUFFER *pChBuffer, void *pParam)
+
+- typedef :ref:`ICmpChannelMgr_C <struct_i_cmp_channel_mgr___c>` :ref:`ICmpChannelMgr <group___cmp_channel_mgr_itf_1ga2322a5f4a0223a0de7bc1f506afd9d48>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`ChannelMgrHandleData <group___cmp_channel_mgr_itf_1ga5fff2562a9a9441172ca7316499e5048>` (RTS_HANDLE hRouter, RTS_HANDLE hNetworkInterface, RTS_UI8 byServiceId, RTS_UI8 byMessageId, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrSender, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrReceiver, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData, RTS_RESULT nRouterError)
+
+- RTS_UI32 :ref:`NetworkGetChBufferSize <group___cmp_channel_mgr_itf_1ga88e0db7d843d2dd63291a9bf122ed1a2>` (RTS_UI32 dwCommBufferSize, unsigned short wMaxBlockSize, int * pnNumBlocks)
+
+- RTS_UI32 :ref:`NetworkInitChannelBuffer <group___cmp_channel_mgr_itf_1gad1b647b32a792e8ddaf3ca7e127f081b>` (:ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChBuffer, RTS_HANDLE hRouter, RTS_UI32 dwBufferSize, unsigned short wChannelId, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrSender, unsigned char byChFlags, RTS_UI32 dwMaxCommBuffer)
+
+- RTS_UI32 :ref:`NetworkInitChannelBuffer2 <group___cmp_channel_mgr_itf_1gaf3111f973dde9b17c6f77de3a67a9480>` (:ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChBuffer, RTS_HANDLE hRouter, RTS_UI32 dwBufferSize, unsigned short wChannelId, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrSender, unsigned char byChFlags, RTS_UI32 dwMaxCommBuffer, unsigned short wMaxBlockSize)
+
+- int :ref:`NetworkSendMetaPkg <group___cmp_channel_mgr_itf_1gac30a14a4f0c93249a5434d6e88fef8c6>` (RTS_HANDLE hRouter, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrReceiver, :ref:`L4METAPACKAGE <struct_l4_m_e_t_a_p_a_c_k_a_g_e>` * pMetaPkg, int nPkgSize)
+
+- int :ref:`NetworkSendMessage <group___cmp_channel_mgr_itf_1ga3ea09e58b9795a135dd142b68b5640c7>` (:ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChBuffer, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData)
+
+- int :ref:`NetworkGetStatus <group___cmp_channel_mgr_itf_1gaf7189f9c636836d745a4893a99457233>` (:ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChBuffer, RTS_UI16 * pusStatus, RTS_UI8 * pbyScalingFactor, RTS_I32 * pnItemsComplete, RTS_I32 * pnTotalItems)
+
+- RTS_RESULT :ref:`NetworkGetChannelInfo <group___cmp_channel_mgr_itf_1ga33f0d1e478dc9a78557089a76d607016>` (:ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChBuffer, :ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChInfoBuffer, RTS_SIZE * psiBufferLen)
+
+.. _group___cmp_channel_mgr_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpChannelMgr.
+
+Interface for the channel manager.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_channel_mgr_itf_1ga035f99a2ee8d7ccee8593135db62eeda:
+
+#define L4_VERSION_MAJOR 0x01
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf_1gac46e7b3cbe834646847154c8686d2618:
+
+#define L4_VERSION_MINOR 0x01
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf_1ga5eeac63dd12a0028fe31009a45e6f2b7:
+
+#define KEEPALIVE_INTERVAL (1000UL)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf_1ga2d4b349d909077177bc2520361a2576c:
+
+#define ITF_CmpChannelMgr
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf_1gaeb494d5abac415754c1bcb04c0ec9253:
+
+#define EXTITF_CmpChannelMgr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_channel_mgr_itf_1gaa6bb7106c459aa8702f58da0df9919c2:
+
+typedef int(* PFCHANNELHANDLER)(CHANNELBUFFER *pChBuffer, void *pParam)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_mgr_itf_1ga2322a5f4a0223a0de7bc1f506afd9d48:
+
+typedef ICmpChannelMgr_C ICmpChannelMgr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_channel_mgr_itf_1ga5fff2562a9a9441172ca7316499e5048:
+
+RTS_RESULT ChannelMgrHandleData (RTS_HANDLE hRouter, RTS_HANDLE hNetworkInterface, RTS_UI8 byServiceId, RTS_UI8 byMessageId, PEERADDRESS addrSender, PEERADDRESS addrReceiver, PROTOCOL_DATA_UNIT pduData, RTS_RESULT nRouterError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Protocol handler of CmpChannelMgr. Attention: Must only be called by CmpRouter to forward an incoming data package.
+
+**Parameters**
+
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hRouter           | Handle of router instance calling this function. For L4 client implementations, by default it is called by the router instance 0. For L4 server implementations, it is called by the router instance which has received the package originally.                                                                           |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hNetworkInterface | Handle of the network interface receiving originally the package                                                                                                                                                                                                                                                          |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | byServiceId       | The protocol id of the package                                                                                                                                                                                                                                                                                            |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | byMessageId       | The message id of the package                                                                                                                                                                                                                                                                                             |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | addrSender        | Sender address. The pointer within will not be valid after this function returns.                                                                                                                                                                                                                                         |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | addrReceiver      | Receiver address (either the address of this node or a broadcast address). The pointer within will not be valid after this function returns.                                                                                                                                                                              |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pduData           | The received data. The data pointer will not be valid after this function returns.                                                                                                                                                                                                                                        |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | nRouterError      | If this value is not ERR_OK, then this message has been generated by an intermediate node in response to a message previously sent by this node, that could not be delivered. nRouterError identifies the kind of error that happened. pduData then contains a detailed error description depending on the kind of error. |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_channel_mgr_itf_1ga88e0db7d843d2dd63291a9bf122ed1a2:
+
+RTS_UI32 NetworkGetChBufferSize (RTS_UI32 dwCommBufferSize, unsigned short wMaxBlockSize, int *pnNumBlocks)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Given a fixed size for the communication buffer return the required size of the channel buffer.
+
+**Parameters**
+
++---------+------------------+-----------------------------------------------------------------------+
+| [in]    | dwCommBufferSize | Requested size of the communication buffer                            |
++---------+------------------+-----------------------------------------------------------------------+
+| [in]    | wMaxBlockSize    | Maximum size of a layer4 block (as returned by RouterGetMaxBlockSize) |
++---------+------------------+-----------------------------------------------------------------------+
+| [out]   | pnNumBlocks      | Required number of block buffers                                      |
++---------+------------------+-----------------------------------------------------------------------+
+
+**Returns:**
+
+*The size of the channel buffer in bytes.
+
+.. _group___cmp_channel_mgr_itf_1gad1b647b32a792e8ddaf3ca7e127f081b:
+
+RTS_UI32 NetworkInitChannelBuffer (CHANNELBUFFER *pChBuffer, RTS_HANDLE hRouter, RTS_UI32 dwBufferSize, unsigned short wChannelId, PEERADDRESS addrSender, unsigned char byChFlags, RTS_UI32 dwMaxCommBuffer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Initialize the provided channelbuffer.
+
+**Parameters**
+
++---------+-----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | dwBufferSize    | Size of pChBuffer.                                                                            |
++---------+-----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | wChannelId      | The id of the channel.                                                                        |
++---------+-----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | addrSender      | The 3S-address of this channels peer.                                                         |
++---------+-----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | byFlags         | Initial channel flags (CF_SERVERCHANNEL for a serverchannel, CF_SENDMODE for a clientchannel) |
++---------+-----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | dwMaxCommBuffer | Maximum size of the communication buffer to use (usually the requested communication buffer)  |
++---------+-----------------+-----------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+*The size of the communication buffer for this channelbuffer.
+
+.. _group___cmp_channel_mgr_itf_1gaf3111f973dde9b17c6f77de3a67a9480:
+
+RTS_UI32 NetworkInitChannelBuffer2 (CHANNELBUFFER *pChBuffer, RTS_HANDLE hRouter, RTS_UI32 dwBufferSize, unsigned short wChannelId, PEERADDRESS addrSender, unsigned char byChFlags, RTS_UI32 dwMaxCommBuffer, unsigned short wMaxBlockSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Initialize the provided channelbuffer with a given maximum Blocksize.
+
+**Parameters**
+
++---------+-----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | dwBufferSize    | Size of pChBuffer.                                                                            |
++---------+-----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | wChannelId      | The id of the channel.                                                                        |
++---------+-----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | addrSender      | The 3S-address of this channels peer.                                                         |
++---------+-----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | byFlags         | Initial channel flags (CF_SERVERCHANNEL for a serverchannel, CF_SENDMODE for a clientchannel) |
++---------+-----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | dwMaxCommBuffer | Maximum size of the communication buffer to use (usually the requested communication buffer)  |
++---------+-----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | wMaxBlockSize   | Maximum size of one block                                                                     |
++---------+-----------------+-----------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+*The size of the communication buffer for this channelbuffer.
+
+.. _group___cmp_channel_mgr_itf_1gac30a14a4f0c93249a5434d6e88fef8c6:
+
+int NetworkSendMetaPkg (RTS_HANDLE hRouter, PEERADDRESS addrReceiver, L4METAPACKAGE *pMetaPkg, int nPkgSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Send metaPkg to addrReceiver. Sets the checksum field of the metaPkg before sending.
+
+**Parameters**
+
++---------+--------------+-------------------------+
+| [in]    | addrReceiver | Address of the receiver |
++---------+--------------+-------------------------+
+| [in]    | pMetaPkg     | The package to be sent  |
++---------+--------------+-------------------------+
+| [in]    | nPkgSize     | Size of pMetaPkg        |
++---------+--------------+-------------------------+
+
+**Returns:**
+
+*An error code.
+
+.. _group___cmp_channel_mgr_itf_1ga3ea09e58b9795a135dd142b68b5640c7:
+
+int NetworkSendMessage (CHANNELBUFFER *pChBuffer, PROTOCOL_DATA_UNIT pduData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Send a message over the provided channel. A channel can't be receiving and sending at the same time. Thus this function will fail with ERR_CHANNELMODE if the channel is currently in receive mode.
+
+**Returns:**
+
+- ERR_CHANNELMODE if the channel is in receive mode.
+
+- ERR_CHC_MESSAGESIZE/ERR_CHS_MESSAGESIZE if the size of the data is greater then the CommBuffer size.
+
+.. _group___cmp_channel_mgr_itf_1gaf7189f9c636836d745a4893a99457233:
+
+int NetworkGetStatus (CHANNELBUFFER *pChBuffer, RTS_UI16 *pusStatus, RTS_UI8 *pbyScalingFactor, RTS_I32 *pnItemsComplete, RTS_I32 *pnTotalItems)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the current status of an active channel.
+
+**Parameters**
+
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pChBuffer        | The channel for which to retrieve the status                                                                                                                                                             |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pusStatus        | Is set to the current progress state. The PROGRESS_xxx constants define valied values.                                                                                                                   |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pbyScalingFactor | Provides the scaling factor for pnItemsComplete and pnTotalItems. These values have been scaled down by dividing them through 2^ScalingFactor (i.e. they have been right shifted by ScalingFactor bits). |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pnItemsComplete  | Number of items completed (eg. the number of bytes transfered).                                                                                                                                          |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pnTotalItems     | Total number of item. Is set to -1 if unknown.                                                                                                                                                           |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_channel_mgr_itf_1ga33f0d1e478dc9a78557089a76d607016:
+
+RTS_RESULT NetworkGetChannelInfo (CHANNELBUFFER *pChBuffer, CHANNELBUFFER *pChInfoBuffer, RTS_SIZE *psiBufferLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns a copy of the internal channel structure. This function is intended for information purpoeses only.
+
+**Parameters**
+
++---------+---------------+------------------------------------------------------------------------------------------------------+
+| [in]    | pChBuffer     | The channel for which to retrieve the status.                                                        |
++---------+---------------+------------------------------------------------------------------------------------------------------+
+| [inout] | pChInfoBuffer | Caller allocated buffer, to which the content of the internal channel buffer structure is copied to. |
++---------+---------------+------------------------------------------------------------------------------------------------------+
+| [inout] | psiBufferLen  | Pointer to the size of the buffer in bytes, returns the number of copied bytes.                      |
++---------+---------------+------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

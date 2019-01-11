@@ -1,0 +1,465 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpObjectMgrItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpPlcShellItf" href="group___cmp_plc_shell_itf.html" />
+    <link rel="prev" title="CmpOPCUAStackItf" href="group___cmp_o_p_c_u_a_stack_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_plc_shell_itf.html" title="CmpPlcShellItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_o_p_c_u_a_stack_itf.html" title="CmpOPCUAStackItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpObjectMgrItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-itf-cmpobjectmgr">#define ITF_CmpObjectMgr</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpobjectmgr">#define EXTITF_CmpObjectMgr</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-rts-ui32-ikkey">typedef RTS_UI32 IKKey</a></li>
+<li><a class="reference internal" href="#typedef-icmpobjectmgr-c-icmpobjectmgr">typedef ICmpObjectMgr_C ICmpObjectMgr</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-handle-objmandictionaryopen-cmpid-cmpid-rts-size-capacity-rts-bool-brequiresync">RTS_HANDLE ObjManDictionaryOpen (CMPID CmpId, RTS_SIZE capacity, RTS_BOOL bRequireSync)</a></li>
+<li><a class="reference internal" href="#rts-result-objmandictionaryclose-rts-handle-hdictionary">RTS_RESULT ObjManDictionaryClose (RTS_HANDLE hDictionary)</a></li>
+<li><a class="reference internal" href="#ikkey-objmandictionaryaddobject-rts-handle-hdictionary-rts-handle-hobject">IKKey ObjManDictionaryAddObject (RTS_HANDLE hDictionary, RTS_HANDLE hObject)</a></li>
+<li><a class="reference internal" href="#rts-result-objmandictionaryremoveobject-rts-handle-hdictionary-rts-handle-hobject">RTS_RESULT ObjManDictionaryRemoveObject (RTS_HANDLE hDictionary, RTS_HANDLE hObject)</a></li>
+<li><a class="reference internal" href="#rts-result-objmandictionaryremovekey-rts-handle-hdictionary-ikkey-key">RTS_RESULT ObjManDictionaryRemoveKey (RTS_HANDLE hDictionary, IKKey key)</a></li>
+<li><a class="reference internal" href="#rts-result-objmandictionaryclear-rts-handle-hdictionary">RTS_RESULT ObjManDictionaryClear (RTS_HANDLE hDictionary)</a></li>
+<li><a class="reference internal" href="#rts-result-objmandictionarygetsize-rts-handle-hdictionary-rts-size-psize">RTS_RESULT ObjManDictionaryGetSize (RTS_HANDLE hDictionary, RTS_SIZE *pSize)</a></li>
+<li><a class="reference internal" href="#ikkey-objmandictionarygetkey-rts-handle-hdictionary-rts-handle-hobject">IKKey ObjManDictionaryGetKey (RTS_HANDLE hDictionary, RTS_HANDLE hObject)</a></li>
+<li><a class="reference internal" href="#rts-handle-objmandictionarygetobject-rts-handle-hdictionary-ikkey-key">RTS_HANDLE ObjManDictionaryGetObject (RTS_HANDLE hDictionary, IKKey key)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_o_p_c_u_a_stack_itf.html"
+                        title="previous chapter">CmpOPCUAStackItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_plc_shell_itf.html"
+                        title="next chapter">CmpPlcShellItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_object_mgr_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpobjectmgritf">
+<span id="group-cmp-object-mgr-itf"></span><h1>CmpObjectMgrItf<a class="headerlink" href="#cmpobjectmgritf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CmpObjectMgr
+<strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. <a class="reference internal" href="#group-cmp-object-mgr-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___cmp_object_mgr_itf___staticdefines.html#group-cmp-object-mgr-itf-staticdefines"><span class="std std-ref">Static defines</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_i_cmp_object_mgr___c.html#struct-i-cmp-object-mgr-c"><span class="std std-ref">ICmpObjectMgr_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-object-mgr-itf-1gade14686b2869db80787cbbd6308e7289"><span class="std std-ref">ITF_CmpObjectMgr</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-object-mgr-itf-1gabab4fb0780f61e517a9652c65b7093ae"><span class="std std-ref">EXTITF_CmpObjectMgr</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef RTS_UI32 <a class="reference internal" href="#group-cmp-object-mgr-itf-1ga9734b08e685b07e8fcde602baae35c9d"><span class="std std-ref">IKKey</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_cmp_object_mgr___c.html#struct-i-cmp-object-mgr-c"><span class="std std-ref">ICmpObjectMgr_C</span></a> <a class="reference internal" href="#group-cmp-object-mgr-itf-1ga8b601bfc9cf1561cf1e520224476cd0c"><span class="std std-ref">ICmpObjectMgr</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-object-mgr-itf-1ga416ba3763a2fb0cadebc59d99110e595"><span class="std std-ref">ObjManDictionaryOpen</span></a> (CMPID CmpId, RTS_SIZE capacity, RTS_BOOL bRequireSync)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-object-mgr-itf-1gac520cdddb0e1c9cef5b1378314eec8e4"><span class="std std-ref">ObjManDictionaryClose</span></a> (RTS_HANDLE hDictionary)</li>
+<li><a class="reference internal" href="#group-cmp-object-mgr-itf-1ga9734b08e685b07e8fcde602baae35c9d"><span class="std std-ref">IKKey</span></a> <a class="reference internal" href="#group-cmp-object-mgr-itf-1gafd62618b545760e9ee2df06db3f94aa1"><span class="std std-ref">ObjManDictionaryAddObject</span></a> (RTS_HANDLE hDictionary, RTS_HANDLE hObject)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-object-mgr-itf-1gac83713b431a743182478c87a3934532f"><span class="std std-ref">ObjManDictionaryRemoveObject</span></a> (RTS_HANDLE hDictionary, RTS_HANDLE hObject)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-object-mgr-itf-1gab278e22fc26dbf1356bbee04a275c347"><span class="std std-ref">ObjManDictionaryRemoveKey</span></a> (RTS_HANDLE hDictionary, <a class="reference internal" href="#group-cmp-object-mgr-itf-1ga9734b08e685b07e8fcde602baae35c9d"><span class="std std-ref">IKKey</span></a>  key)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-object-mgr-itf-1gae0c0dceedd772082da98c5baad2cd9ab"><span class="std std-ref">ObjManDictionaryClear</span></a> (RTS_HANDLE hDictionary)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-object-mgr-itf-1ga2c499c36955057f8a38762c2ffa85cf5"><span class="std std-ref">ObjManDictionaryGetSize</span></a> (RTS_HANDLE hDictionary, RTS_SIZE * pSize)</li>
+<li><a class="reference internal" href="#group-cmp-object-mgr-itf-1ga9734b08e685b07e8fcde602baae35c9d"><span class="std std-ref">IKKey</span></a> <a class="reference internal" href="#group-cmp-object-mgr-itf-1ga5733c2441d0556e113e4aab701819ae5"><span class="std std-ref">ObjManDictionaryGetKey</span></a> (RTS_HANDLE hDictionary, RTS_HANDLE hObject)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-object-mgr-itf-1gab91271660ea20b4e36d71983ac49d14c"><span class="std std-ref">ObjManDictionaryGetObject</span></a> (RTS_HANDLE hDictionary, <a class="reference internal" href="#group-cmp-object-mgr-itf-1ga9734b08e685b07e8fcde602baae35c9d"><span class="std std-ref">IKKey</span></a>  key)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-object-mgr-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CmpObjectMgr
+<strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-itf-cmpobjectmgr">
+<span id="group-cmp-object-mgr-itf-1gade14686b2869db80787cbbd6308e7289"></span><h3>#define ITF_CmpObjectMgr<a class="headerlink" href="#define-itf-cmpobjectmgr" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpobjectmgr">
+<span id="group-cmp-object-mgr-itf-1gabab4fb0780f61e517a9652c65b7093ae"></span><h3>#define EXTITF_CmpObjectMgr<a class="headerlink" href="#define-extitf-cmpobjectmgr" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-rts-ui32-ikkey">
+<span id="group-cmp-object-mgr-itf-1ga9734b08e685b07e8fcde602baae35c9d"></span><h3>typedef RTS_UI32 IKKey<a class="headerlink" href="#typedef-rts-ui32-ikkey" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-icmpobjectmgr-c-icmpobjectmgr">
+<span id="group-cmp-object-mgr-itf-1ga8b601bfc9cf1561cf1e520224476cd0c"></span><h3>typedef ICmpObjectMgr_C ICmpObjectMgr<a class="headerlink" href="#typedef-icmpobjectmgr-c-icmpobjectmgr" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-handle-objmandictionaryopen-cmpid-cmpid-rts-size-capacity-rts-bool-brequiresync">
+<span id="group-cmp-object-mgr-itf-1ga416ba3763a2fb0cadebc59d99110e595"></span><h3>RTS_HANDLE ObjManDictionaryOpen (CMPID CmpId, RTS_SIZE capacity, RTS_BOOL bRequireSync)<a class="headerlink" href="#rts-handle-objmandictionaryopen-cmpid-cmpid-rts-size-capacity-rts-bool-brequiresync" title="Permalink to this headline">¶</a></h3>
+<p>Opens an object dictionary for the component with CmpId.</p>
+<p>This routine should be called during one of the early phases of system initialization process.</p>
+<p>One component can open a single dictionary only.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="13%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>CmpId</td>
+<td>Specifies a component ID</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>capacity</td>
+<td>Supplies the size for the dictionary. The more capacity, the better performance..</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>bRequireSync</td>
+<td>if TRUE, sets a requirement to create a thread-safe dictionary for this component</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns a handle to an object dictionary</p>
+</div>
+<div class="section" id="rts-result-objmandictionaryclose-rts-handle-hdictionary">
+<span id="group-cmp-object-mgr-itf-1gac520cdddb0e1c9cef5b1378314eec8e4"></span><h3>RTS_RESULT ObjManDictionaryClose (RTS_HANDLE hDictionary)<a class="headerlink" href="#rts-result-objmandictionaryclose-rts-handle-hdictionary" title="Permalink to this headline">¶</a></h3>
+<p>Closes an object dictionary.</p>
+<p>This routine should be called during one of the late phases of system shutdown process.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="16%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDictionary</td>
+<td>Supplies a handle to a dictionary that has to be closed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code:</p>
+<ul class="simple">
+<li>ERR_OK: Dictionary has been closed successfully</li>
+<li>ERR_PARAMETER: Invalid handle passed as the routine parameter</li>
+<li>ERR_FAILED: Failed to close a dictionary</li>
+</ul>
+</div>
+<div class="section" id="ikkey-objmandictionaryaddobject-rts-handle-hdictionary-rts-handle-hobject">
+<span id="group-cmp-object-mgr-itf-1gafd62618b545760e9ee2df06db3f94aa1"></span><h3>IKKey ObjManDictionaryAddObject (RTS_HANDLE hDictionary, RTS_HANDLE hObject)<a class="headerlink" href="#ikkey-objmandictionaryaddobject-rts-handle-hdictionary-rts-handle-hobject" title="Permalink to this headline">¶</a></h3>
+<p>Adds an object to a dictionary returning a 32-bit key.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="14%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDictionary</td>
+<td>Supplies a handle to a dictionary</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hObject</td>
+<td>Supplies a handle to an object that has to be added to a dictionary</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns a key to an object, or IKHS_NO_KEY in case of failure</p>
+</div>
+<div class="section" id="rts-result-objmandictionaryremoveobject-rts-handle-hdictionary-rts-handle-hobject">
+<span id="group-cmp-object-mgr-itf-1gac83713b431a743182478c87a3934532f"></span><h3>RTS_RESULT ObjManDictionaryRemoveObject (RTS_HANDLE hDictionary, RTS_HANDLE hObject)<a class="headerlink" href="#rts-result-objmandictionaryremoveobject-rts-handle-hdictionary-rts-handle-hobject" title="Permalink to this headline">¶</a></h3>
+<p>Removes an object from a dictionary.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="14%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDictionary</td>
+<td>Supplies a handle to a dictionary</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hObject</td>
+<td>Supplies a handle to an object that has to be removed from a dictionary</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code:</p>
+<ul class="simple">
+<li>ERR_OK: Object has been removed successfully</li>
+<li>ERR_PARAMETER: Invalid handle passed as the routine parameter</li>
+<li>ERR_FAILED: Object not found</li>
+</ul>
+</div>
+<div class="section" id="rts-result-objmandictionaryremovekey-rts-handle-hdictionary-ikkey-key">
+<span id="group-cmp-object-mgr-itf-1gab278e22fc26dbf1356bbee04a275c347"></span><h3>RTS_RESULT ObjManDictionaryRemoveKey (RTS_HANDLE hDictionary, IKKey key)<a class="headerlink" href="#rts-result-objmandictionaryremovekey-rts-handle-hdictionary-ikkey-key" title="Permalink to this headline">¶</a></h3>
+<p>Removes an object from a dictionary by a key.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="14%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDictionary</td>
+<td>Supplies a handle to a dictionary</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>key</td>
+<td>Supplies a key to an object that has to be removed from a dictionary</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code:</p>
+<ul class="simple">
+<li>ERR_OK: Object has been removed successfully</li>
+<li>ERR_PARAMETER: Invalid handle or key passed as the routine parameter</li>
+<li>ERR_FAILED: Object not found</li>
+</ul>
+</div>
+<div class="section" id="rts-result-objmandictionaryclear-rts-handle-hdictionary">
+<span id="group-cmp-object-mgr-itf-1gae0c0dceedd772082da98c5baad2cd9ab"></span><h3>RTS_RESULT ObjManDictionaryClear (RTS_HANDLE hDictionary)<a class="headerlink" href="#rts-result-objmandictionaryclear-rts-handle-hdictionary" title="Permalink to this headline">¶</a></h3>
+<p>Clears a dictionary.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="23%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDictionary</td>
+<td>Supplies a handle to a dictionary</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code:</p>
+<ul class="simple">
+<li>ERR_OK: Dictionary has been cleared successfully</li>
+<li>ERR_PARAMETER: Invalid handle passed as the routine parameter</li>
+<li>ERR_FAILED: Dictionary not found</li>
+</ul>
+</div>
+<div class="section" id="rts-result-objmandictionarygetsize-rts-handle-hdictionary-rts-size-psize">
+<span id="group-cmp-object-mgr-itf-1ga2c499c36955057f8a38762c2ffa85cf5"></span><h3>RTS_RESULT ObjManDictionaryGetSize (RTS_HANDLE hDictionary, RTS_SIZE <a href="#id1"><span class="problematic" id="id2">*</span></a>pSize)<a class="headerlink" href="#rts-result-objmandictionarygetsize-rts-handle-hdictionary-rts-size-psize" title="Permalink to this headline">¶</a></h3>
+<p>Returns the number of elements in a dictionary.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="18%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDictionary</td>
+<td>Supplies a handle to a dictionary</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pSize</td>
+<td>Contains the number of elements in a dictionary</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code:</p>
+<ul class="simple">
+<li>ERR_OK: pSize contains some valid value</li>
+<li>ERR_PARAMETER: Invalid handle or null pointer passed as the routine parameter</li>
+<li>ERR_FAILED: Dictionary not found</li>
+</ul>
+</div>
+<div class="section" id="ikkey-objmandictionarygetkey-rts-handle-hdictionary-rts-handle-hobject">
+<span id="group-cmp-object-mgr-itf-1ga5733c2441d0556e113e4aab701819ae5"></span><h3>IKKey ObjManDictionaryGetKey (RTS_HANDLE hDictionary, RTS_HANDLE hObject)<a class="headerlink" href="#ikkey-objmandictionarygetkey-rts-handle-hdictionary-rts-handle-hobject" title="Permalink to this headline">¶</a></h3>
+<p>Returns a 32-bit key for an object previously added to a dictionary.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDictionary</td>
+<td>Supplies a handle to a dictionary</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hObject</td>
+<td>Supplies a handle to an object previously added to a dictionary</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns a key to an object, or IKHS_NO_KEY in case of failure</p>
+</div>
+<div class="section" id="rts-handle-objmandictionarygetobject-rts-handle-hdictionary-ikkey-key">
+<span id="group-cmp-object-mgr-itf-1gab91271660ea20b4e36d71983ac49d14c"></span><h3>RTS_HANDLE ObjManDictionaryGetObject (RTS_HANDLE hDictionary, IKKey key)<a class="headerlink" href="#rts-handle-objmandictionarygetobject-rts-handle-hdictionary-ikkey-key" title="Permalink to this headline">¶</a></h3>
+<p>Returns a handle to an object by a key.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="15%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDictionary</td>
+<td>Supplies a handle to a dictionary</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>key</td>
+<td>Supplies a key to an object previously added to a dictionary</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns a handle to an object, or RTS_INVALID_HANDLE in case of failure</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_plc_shell_itf.html" title="CmpPlcShellItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_o_p_c_u_a_stack_itf.html" title="CmpOPCUAStackItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

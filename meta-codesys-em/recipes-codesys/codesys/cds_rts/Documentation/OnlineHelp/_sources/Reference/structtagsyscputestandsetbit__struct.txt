@@ -1,0 +1,80 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagsyscputestandsetbit__struct:
+
+==============================================
+tagsyscputestandsetbit_struct Struct Reference
+==============================================
+
+| #include ":ref:`SysCpuHandlingItf.h <_sys_cpu_handling_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_BYTE * :ref:`pAddress <structtagsyscputestandsetbit__struct_1a8ac30670610218649600c670cef3fe72>`
+- RTS_IEC_UDINT :ref:`nLen <structtagsyscputestandsetbit__struct_1a54e3c58d30319c3424f8ad304db5f026>`
+- RTS_IEC_DINT :ref:`iBit <structtagsyscputestandsetbit__struct_1aec1c077c85c74c50afe2e269a3df78a4>`
+- RTS_IEC_DINT :ref:`bSet <structtagsyscputestandsetbit__struct_1ada360df432b0fe00b5fc69a47748ccf1>`
+- RTS_IEC_RESULT :ref:`SysCpuTestAndSetBit <structtagsyscputestandsetbit__struct_1afe6bf8137eb4c8af63dee2924674f206>`
+
+Detailed Description
+--------------------
+
+<SIL2>
+
+The function test and set or clear a bit in a variable in one processor step. This operation must be atomic to provide a multitasking save operation.
+
+IMPLEMENTATION NOTE: Try to use a processor opcode, that provides this operation. If such an opcode is not available, use SysCpuTestAndSetBitBase in your platform adaptation.
+
+**Returns:**
+
+*RESULT: Returns the runtime system error code (see CmpErrors.library).
+
+- ERR_OK: bSet=1: If bit could be set and was not set before bSet=0: If bit could be cleared and was set before
+
+- ERR_FAILED: bSet=1: If bit is still set bSet=0: If bit is still cleared
+
+- ERR_PARAMETER: If pAddress=NULL or pAddress is unaligned or iBit is out nSize range
+
+- ERR_NOT_SUPPORTED: If function is not available because of missing components (e.g. SysInt for locking bit access)
+
+- ERR_NOTIMPLEMENTED: If function is not implemented on this platform
+
+Field Documentation
+-------------------
+
+.. _structtagsyscputestandsetbit__struct_1a8ac30670610218649600c670cef3fe72:
+
+RTS_IEC_BYTE* tagsyscputestandsetbit_struct::pAddress
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagsyscputestandsetbit__struct_1a54e3c58d30319c3424f8ad304db5f026:
+
+RTS_IEC_UDINT tagsyscputestandsetbit_struct::nLen
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagsyscputestandsetbit__struct_1aec1c077c85c74c50afe2e269a3df78a4:
+
+RTS_IEC_DINT tagsyscputestandsetbit_struct::iBit
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagsyscputestandsetbit__struct_1ada360df432b0fe00b5fc69a47748ccf1:
+
+RTS_IEC_DINT tagsyscputestandsetbit_struct::bSet
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagsyscputestandsetbit__struct_1afe6bf8137eb4c8af63dee2924674f206:
+
+RTS_IEC_RESULT tagsyscputestandsetbit_struct::SysCpuTestAndSetBit
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysCpuHandlingItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

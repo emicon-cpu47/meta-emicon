@@ -1,0 +1,370 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpCommunicationLibItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpCoreDumpItf" href="group___cmp_core_dump_itf.html" />
+    <link rel="prev" title="CmpCodeMeterItf" href="group___cmp_code_meter_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_core_dump_itf.html" title="CmpCoreDumpItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_code_meter_itf.html" title="CmpCodeMeterItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpCommunicationLibItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-rts-blk-drv-type-none-0x00">#define RTS_BLK_DRV_TYPE_NONE 0x00</a></li>
+<li><a class="reference internal" href="#define-rts-blk-drv-type-tcp-0x01">#define RTS_BLK_DRV_TYPE_TCP 0x01</a></li>
+<li><a class="reference internal" href="#define-rts-blk-drv-type-com-0x02">#define RTS_BLK_DRV_TYPE_COM 0x02</a></li>
+<li><a class="reference internal" href="#define-rts-blk-drv-type-usb-0x03">#define RTS_BLK_DRV_TYPE_USB 0x03</a></li>
+<li><a class="reference internal" href="#define-rts-blk-drv-type-shm-0x04">#define RTS_BLK_DRV_TYPE_SHM 0x04</a></li>
+<li><a class="reference internal" href="#define-rts-blk-drv-type-udp-0x05">#define RTS_BLK_DRV_TYPE_UDP 0x05</a></li>
+<li><a class="reference internal" href="#define-rts-blk-drv-type-can-client-0x06">#define RTS_BLK_DRV_TYPE_CAN_CLIENT 0x06</a></li>
+<li><a class="reference internal" href="#define-rts-blk-drv-type-can-server-0x07">#define RTS_BLK_DRV_TYPE_CAN_SERVER 0x07</a></li>
+<li><a class="reference internal" href="#define-rts-blk-drv-type-direct-call-0x08">#define RTS_BLK_DRV_TYPE_DIRECT_CALL 0x08</a></li>
+<li><a class="reference internal" href="#define-rts-blk-drv-type-oem-begin-0x40">#define RTS_BLK_DRV_TYPE_OEM_BEGIN 0x40</a></li>
+<li><a class="reference internal" href="#define-rts-blk-drv-type-oem-end-0x7f">#define RTS_BLK_DRV_TYPE_OEM_END 0x7F</a></li>
+<li><a class="reference internal" href="#define-rts-blk-drv-flags-plc-0">#define RTS_BLK_DRV_FLAGS_PLC 0</a></li>
+<li><a class="reference internal" href="#define-rts-blk-drv-flags-gateway-1">#define RTS_BLK_DRV_FLAGS_GATEWAY 1</a></li>
+<li><a class="reference internal" href="#define-rts-blk-drv-flags-direct-address-2">#define RTS_BLK_DRV_FLAGS_DIRECT_ADDRESS 2</a></li>
+<li><a class="reference internal" href="#define-nspf-none-0x00000000-empty-flag-field">#define NSPF_NONE 0x00000000 /* empty flag field */</a></li>
+<li><a class="reference internal" href="#define-nspf-encrypted-comm-supported-0x00000001-device-supports-encrypted-online-communication">#define NSPF_ENCRYPTED_COMM_SUPPORTED 0x00000001 /* device supports encrypted online communication */</a></li>
+<li><a class="reference internal" href="#define-nspf-encrypted-comm-required-0x00000002-device-requires-encrypted-online-communication">#define NSPF_ENCRYPTED_COMM_REQUIRED 0x00000002 /* device requires encrypted online communication */</a></li>
+<li><a class="reference internal" href="#define-max-nodeaddr-len-0x0f">#define MAX_NODEADDR_LEN 0x0F</a></li>
+<li><a class="reference internal" href="#define-max-networkaddr-len-8">#define MAX_NETWORKADDR_LEN 8</a></li>
+<li><a class="reference internal" href="#define-progress-invalid-0x0000">#define PROGRESS_INVALID 0x0000</a></li>
+<li><a class="reference internal" href="#define-progress-idle-0x0001-no-pending-requests-a-new-request-may-be-sent-progress-is-0">#define PROGRESS_IDLE 0x0001 /* No pending requests. A new request may be sent. Progress is 0 */</a></li>
+<li><a class="reference internal" href="#define-progress-chsending-0x0010-a-request-is-being-sent-from-gateway-to-target-progress-is-related-to-the-number-of-bytes-to-be-sent">#define PROGRESS_CHSENDING 0x0010 /* A request is being sent from gateway to target. Progress is related to the number of bytes to be sent. */</a></li>
+<li><a class="reference internal" href="#define-progress-chreceiving-0x0011-while-receiving-a-reply-progress-is-related-to-the-number-of-bytes-received">#define PROGRESS_CHRECEIVING 0x0011 /* While receiving a reply. Progress is related to the number of bytes received */</a></li>
+<li><a class="reference internal" href="#define-progress-gwsending-0x0020-sending-a-request-to-the-gateway-progress-is-related-to-the-number-of-bytes-sent">#define PROGRESS_GWSENDING 0x0020 /* Sending a request to the gateway. Progress is related to the number of bytes sent */</a></li>
+<li><a class="reference internal" href="#define-progress-gwreceiving-0x0021-receiving-a-reply-from-the-gateway-progress-is-related-to-the-number-of-bytes-received">#define PROGRESS_GWRECEIVING 0x0021 /* Receiving a reply from the gateway. Progress is related to the number of bytes received */</a></li>
+<li><a class="reference internal" href="#define-progress-gwprocessing-0x0022-the-service-has-been-sent-to-the-gateway-which-is-currently-working-on-the-service">#define PROGRESS_GWPROCESSING 0x0022 /* The service has been sent to the gateway, which is currently working on the service.*/</a></li>
+<li><a class="reference internal" href="#define-progress-trgprocessing-0x1000-target-is-processing-the-service-no-further-information">#define PROGRESS_TRGPROCESSING 0x1000 /* Target is processing the service. No further information. */</a></li>
+<li><a class="reference internal" href="#define-progress-svcspecific-0x1001-service-specific-progress-ids-start-here">#define PROGRESS_SVCSPECIFIC 0x1001 /* Service specific progress IDs start here */</a></li>
+<li><a class="reference internal" href="#define-progress-user-0x8000-customer-specific-progress-ids-start-here">#define PROGRESS_USER 0x8000 /* Customer specific progress IDs start here */</a></li>
+<li><a class="reference internal" href="#define-itf-cmpcommunicationlib">#define ITF_CmpCommunicationLib</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpcommunicationlib">#define EXTITF_CmpCommunicationLib</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-rts-ui8-addresscomponent-2">typedef RTS_UI8 ADDRESSCOMPONENT[2]</a></li>
+<li><a class="reference internal" href="#typedef-icmpcommunicationlib-c-icmpcommunicationlib">typedef ICmpCommunicationLib_C ICmpCommunicationLib</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-bool-addrequals-nodeaddress-addr1-nodeaddress-addr2">RTS_BOOL AddrEquals (NODEADDRESS addr1, NODEADDRESS addr2)</a></li>
+<li><a class="reference internal" href="#rts-bool-addrequalsbuffer-nodeaddress-addr1-addresscomponent-pbufaddr2-rts-ui32-nlenaddr2">RTS_BOOL AddrEqualsBuffer (NODEADDRESS addr1, ADDRESSCOMPONENT *pBufAddr2, RTS_UI32 nLenAddr2)</a></li>
+<li><a class="reference internal" href="#rts-result-copyaddrtobuffer-addresscomponent-pbufdest-rts-ui32-pnlendest-const-addresscomponent-pbufsrc-rts-ui32-nlensrc">RTS_RESULT CopyAddrToBuffer (ADDRESSCOMPONENT *pBufDest, RTS_UI32 *pnLenDest, const ADDRESSCOMPONENT *pBufSrc, RTS_UI32 nLenSrc)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_code_meter_itf.html"
+                        title="previous chapter">CmpCodeMeterItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_core_dump_itf.html"
+                        title="next chapter">CmpCoreDumpItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_communication_lib_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpcommunicationlibitf">
+<span id="group-cmp-communication-lib-itf"></span><h1>CmpCommunicationLibItf<a class="headerlink" href="#cmpcommunicationlibitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CmpCommunicationLib. <a class="reference internal" href="#group-cmp-communication-lib-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___cmp_communication_lib_itf___channelserverstate.html#group-cmp-communication-lib-itf-channelserverstate"><span class="std std-ref">Channel server state</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_i_cmp_communication_lib___c.html#struct-i-cmp-communication-lib-c"><span class="std std-ref">ICmpCommunicationLib_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga702bc6d3eed06ebf3ccd4bfc3e1dafd7"><span class="std std-ref">RTS_BLK_DRV_TYPE_NONE</span></a> 0x00</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga017046ea2e86667dd90e81d65d6bb4e1"><span class="std std-ref">RTS_BLK_DRV_TYPE_TCP</span></a> 0x01</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga2756a8bfe91616faffca672862deae44"><span class="std std-ref">RTS_BLK_DRV_TYPE_COM</span></a> 0x02</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga1085a99025fadcabc3fbec65164a1515"><span class="std std-ref">RTS_BLK_DRV_TYPE_USB</span></a> 0x03</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gaa1411e8fe02d0560710e70a12d9fcdea"><span class="std std-ref">RTS_BLK_DRV_TYPE_SHM</span></a> 0x04</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga7ef6f39a1d7bcdc3cf772c84d53778ba"><span class="std std-ref">RTS_BLK_DRV_TYPE_UDP</span></a> 0x05</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gafe9628422bf404652ed8ab9b3e8740a9"><span class="std std-ref">RTS_BLK_DRV_TYPE_CAN_CLIENT</span></a> 0x06</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga37c034876a863cad0950bae6523445c1"><span class="std std-ref">RTS_BLK_DRV_TYPE_CAN_SERVER</span></a> 0x07</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gac5bb9ca169e9962613b0440410bf3e28"><span class="std std-ref">RTS_BLK_DRV_TYPE_DIRECT_CALL</span></a> 0x08</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga1fb9511a2f0e588631d7b4ae71bb3ba2"><span class="std std-ref">RTS_BLK_DRV_TYPE_OEM_BEGIN</span></a> 0x40</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gaa084f8aaa37e4546d1cf8a6ebd0ca6eb"><span class="std std-ref">RTS_BLK_DRV_TYPE_OEM_END</span></a> 0x7F</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gab302a8621ff83d9a80da4926e9e303cb"><span class="std std-ref">RTS_BLK_DRV_FLAGS_PLC</span></a> 0</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga2d7c2b1d2a9e724e4d22f0309778e91f"><span class="std std-ref">RTS_BLK_DRV_FLAGS_GATEWAY</span></a> 1</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gae5331b11ae8f8376eef9e2bca76c0b3e"><span class="std std-ref">RTS_BLK_DRV_FLAGS_DIRECT_ADDRESS</span></a> 2</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gafc728f691939cd727ec62c27fcdcfb0f"><span class="std std-ref">NSPF_NONE</span></a> 0x00000000 /* empty flag field <a href="#id1"><span class="problematic" id="id2">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gafda05a24c6929e1274673cae46adede0"><span class="std std-ref">NSPF_ENCRYPTED_COMM_SUPPORTED</span></a> 0x00000001 /* device supports encrypted online communication <a href="#id3"><span class="problematic" id="id4">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga8b93fac3d2f128672e9891b8f57c5cf4"><span class="std std-ref">NSPF_ENCRYPTED_COMM_REQUIRED</span></a> 0x00000002 /* device requires encrypted online communication <a href="#id5"><span class="problematic" id="id6">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gae44bcd081a9f1d68c85111178cf899c6"><span class="std std-ref">MAX_NODEADDR_LEN</span></a> 0x0F</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gaad248bdb3a359698817e9ba6fbafaab3"><span class="std std-ref">MAX_NETWORKADDR_LEN</span></a> 8</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga380818c9eabcacc375bd5523f210f9e7"><span class="std std-ref">PROGRESS_INVALID</span></a> 0x0000</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga78c7362d75029a1b80a851920c2ed806"><span class="std std-ref">PROGRESS_IDLE</span></a> 0x0001 /* No pending requests. A new request may be sent. Progress is 0 <a href="#id7"><span class="problematic" id="id8">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga6aa3046a3d768f406b7c3fc5ab7b9fd1"><span class="std std-ref">PROGRESS_CHSENDING</span></a> 0x0010 /* A request is being sent from gateway to target. Progress is related to the number of bytes to be sent. <a href="#id9"><span class="problematic" id="id10">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga4379da33405eb1b19affbdeac1d4b481"><span class="std std-ref">PROGRESS_CHRECEIVING</span></a> 0x0011 /* While receiving a reply. Progress is related to the number of bytes received <a href="#id11"><span class="problematic" id="id12">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga38923ccaaf7a3c2e517afa3e8cc141e4"><span class="std std-ref">PROGRESS_GWSENDING</span></a> 0x0020 /* Sending a request to the gateway. Progress is related to the number of bytes sent <a href="#id13"><span class="problematic" id="id14">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gac0585cd1bc9de0f22cb05eea7fda0bdb"><span class="std std-ref">PROGRESS_GWRECEIVING</span></a> 0x0021 /* Receiving a reply from the gateway. Progress is related to the number of bytes received <a href="#id15"><span class="problematic" id="id16">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga515a03dee37fc1810f70402cb261fd9d"><span class="std std-ref">PROGRESS_GWPROCESSING</span></a> 0x0022 /* The service has been sent to the gateway, which is currently working on the service.*/</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gaae27fb0fba9e19dc38e4db8345ed61d1"><span class="std std-ref">PROGRESS_TRGPROCESSING</span></a> 0x1000 /* Target is processing the service. No further information. <a href="#id17"><span class="problematic" id="id18">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga60c3a545fff3a864b35355314b241abb"><span class="std std-ref">PROGRESS_SVCSPECIFIC</span></a> 0x1001 /* Service specific progress IDs start here <a href="#id19"><span class="problematic" id="id20">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gad70b6ba87831d2f2b559176c7a7f091d"><span class="std std-ref">PROGRESS_USER</span></a> 0x8000 /* Customer specific progress IDs start here <a href="#id21"><span class="problematic" id="id22">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga13ea48d37e7b51736c7eb59e1e811b70"><span class="std std-ref">ITF_CmpCommunicationLib</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-communication-lib-itf-1gada3923beacde756c6c4274f5e0a32978"><span class="std std-ref">EXTITF_CmpCommunicationLib</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef RTS_UI8 :ref:<a href="#id23"><span class="problematic" id="id24">`</span></a>ADDRESSCOMPONENT &lt;group___cmp_communication_lib_itf_1ga81bb0ac00cc0ee9e5866fe0720696d29&gt;`[2]</li>
+<li>typedef <a class="reference internal" href="struct_i_cmp_communication_lib___c.html#struct-i-cmp-communication-lib-c"><span class="std std-ref">ICmpCommunicationLib_C</span></a> <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga6f1c08dea3b7640e323bd78f85a4e421"><span class="std std-ref">ICmpCommunicationLib</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_BOOL <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga3f0d7314b387a554cfb866bda017d272"><span class="std std-ref">AddrEquals</span></a> (<a class="reference internal" href="struct_n_o_d_e_a_d_d_r_e_s_s.html#struct-n-o-d-e-a-d-d-r-e-s-s"><span class="std std-ref">NODEADDRESS</span></a>  addr1, <a class="reference internal" href="struct_n_o_d_e_a_d_d_r_e_s_s.html#struct-n-o-d-e-a-d-d-r-e-s-s"><span class="std std-ref">NODEADDRESS</span></a>  addr2)</li>
+<li>RTS_BOOL <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga78ae63e53aea4b99101d8dc9d3963844"><span class="std std-ref">AddrEqualsBuffer</span></a> (<a class="reference internal" href="struct_n_o_d_e_a_d_d_r_e_s_s.html#struct-n-o-d-e-a-d-d-r-e-s-s"><span class="std std-ref">NODEADDRESS</span></a>  addr1, <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga81bb0ac00cc0ee9e5866fe0720696d29"><span class="std std-ref">ADDRESSCOMPONENT</span></a> * pBufAddr2, RTS_UI32 nLenAddr2)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga6ecb95dd7f990fa4e9bcc628fad8560b"><span class="std std-ref">CopyAddrToBuffer</span></a> (<a class="reference internal" href="#group-cmp-communication-lib-itf-1ga81bb0ac00cc0ee9e5866fe0720696d29"><span class="std std-ref">ADDRESSCOMPONENT</span></a> * pBufDest, RTS_UI32 * pnLenDest, const <a class="reference internal" href="#group-cmp-communication-lib-itf-1ga81bb0ac00cc0ee9e5866fe0720696d29"><span class="std std-ref">ADDRESSCOMPONENT</span></a> * pBufSrc, RTS_UI32 nLenSrc)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-communication-lib-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CmpCommunicationLib.</p>
+<p>Interface for the communication library.</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-rts-blk-drv-type-none-0x00">
+<span id="group-cmp-communication-lib-itf-1ga702bc6d3eed06ebf3ccd4bfc3e1dafd7"></span><h3>#define RTS_BLK_DRV_TYPE_NONE 0x00<a class="headerlink" href="#define-rts-blk-drv-type-none-0x00" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-blk-drv-type-tcp-0x01">
+<span id="group-cmp-communication-lib-itf-1ga017046ea2e86667dd90e81d65d6bb4e1"></span><h3>#define RTS_BLK_DRV_TYPE_TCP 0x01<a class="headerlink" href="#define-rts-blk-drv-type-tcp-0x01" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-blk-drv-type-com-0x02">
+<span id="group-cmp-communication-lib-itf-1ga2756a8bfe91616faffca672862deae44"></span><h3>#define RTS_BLK_DRV_TYPE_COM 0x02<a class="headerlink" href="#define-rts-blk-drv-type-com-0x02" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-blk-drv-type-usb-0x03">
+<span id="group-cmp-communication-lib-itf-1ga1085a99025fadcabc3fbec65164a1515"></span><h3>#define RTS_BLK_DRV_TYPE_USB 0x03<a class="headerlink" href="#define-rts-blk-drv-type-usb-0x03" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-blk-drv-type-shm-0x04">
+<span id="group-cmp-communication-lib-itf-1gaa1411e8fe02d0560710e70a12d9fcdea"></span><h3>#define RTS_BLK_DRV_TYPE_SHM 0x04<a class="headerlink" href="#define-rts-blk-drv-type-shm-0x04" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-blk-drv-type-udp-0x05">
+<span id="group-cmp-communication-lib-itf-1ga7ef6f39a1d7bcdc3cf772c84d53778ba"></span><h3>#define RTS_BLK_DRV_TYPE_UDP 0x05<a class="headerlink" href="#define-rts-blk-drv-type-udp-0x05" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-blk-drv-type-can-client-0x06">
+<span id="group-cmp-communication-lib-itf-1gafe9628422bf404652ed8ab9b3e8740a9"></span><h3>#define RTS_BLK_DRV_TYPE_CAN_CLIENT 0x06<a class="headerlink" href="#define-rts-blk-drv-type-can-client-0x06" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-blk-drv-type-can-server-0x07">
+<span id="group-cmp-communication-lib-itf-1ga37c034876a863cad0950bae6523445c1"></span><h3>#define RTS_BLK_DRV_TYPE_CAN_SERVER 0x07<a class="headerlink" href="#define-rts-blk-drv-type-can-server-0x07" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-blk-drv-type-direct-call-0x08">
+<span id="group-cmp-communication-lib-itf-1gac5bb9ca169e9962613b0440410bf3e28"></span><h3>#define RTS_BLK_DRV_TYPE_DIRECT_CALL 0x08<a class="headerlink" href="#define-rts-blk-drv-type-direct-call-0x08" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-blk-drv-type-oem-begin-0x40">
+<span id="group-cmp-communication-lib-itf-1ga1fb9511a2f0e588631d7b4ae71bb3ba2"></span><h3>#define RTS_BLK_DRV_TYPE_OEM_BEGIN 0x40<a class="headerlink" href="#define-rts-blk-drv-type-oem-begin-0x40" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-blk-drv-type-oem-end-0x7f">
+<span id="group-cmp-communication-lib-itf-1gaa084f8aaa37e4546d1cf8a6ebd0ca6eb"></span><h3>#define RTS_BLK_DRV_TYPE_OEM_END 0x7F<a class="headerlink" href="#define-rts-blk-drv-type-oem-end-0x7f" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-blk-drv-flags-plc-0">
+<span id="group-cmp-communication-lib-itf-1gab302a8621ff83d9a80da4926e9e303cb"></span><h3>#define RTS_BLK_DRV_FLAGS_PLC 0<a class="headerlink" href="#define-rts-blk-drv-flags-plc-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-blk-drv-flags-gateway-1">
+<span id="group-cmp-communication-lib-itf-1ga2d7c2b1d2a9e724e4d22f0309778e91f"></span><h3>#define RTS_BLK_DRV_FLAGS_GATEWAY 1<a class="headerlink" href="#define-rts-blk-drv-flags-gateway-1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rts-blk-drv-flags-direct-address-2">
+<span id="group-cmp-communication-lib-itf-1gae5331b11ae8f8376eef9e2bca76c0b3e"></span><h3>#define RTS_BLK_DRV_FLAGS_DIRECT_ADDRESS 2<a class="headerlink" href="#define-rts-blk-drv-flags-direct-address-2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-nspf-none-0x00000000-empty-flag-field">
+<span id="group-cmp-communication-lib-itf-1gafc728f691939cd727ec62c27fcdcfb0f"></span><h3>#define NSPF_NONE 0x00000000 /* empty flag field <a href="#id25"><span class="problematic" id="id26">*</span></a>/<a class="headerlink" href="#define-nspf-none-0x00000000-empty-flag-field" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-nspf-encrypted-comm-supported-0x00000001-device-supports-encrypted-online-communication">
+<span id="group-cmp-communication-lib-itf-1gafda05a24c6929e1274673cae46adede0"></span><h3>#define NSPF_ENCRYPTED_COMM_SUPPORTED 0x00000001 /* device supports encrypted online communication <a href="#id27"><span class="problematic" id="id28">*</span></a>/<a class="headerlink" href="#define-nspf-encrypted-comm-supported-0x00000001-device-supports-encrypted-online-communication" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-nspf-encrypted-comm-required-0x00000002-device-requires-encrypted-online-communication">
+<span id="group-cmp-communication-lib-itf-1ga8b93fac3d2f128672e9891b8f57c5cf4"></span><h3>#define NSPF_ENCRYPTED_COMM_REQUIRED 0x00000002 /* device requires encrypted online communication <a href="#id29"><span class="problematic" id="id30">*</span></a>/<a class="headerlink" href="#define-nspf-encrypted-comm-required-0x00000002-device-requires-encrypted-online-communication" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-max-nodeaddr-len-0x0f">
+<span id="group-cmp-communication-lib-itf-1gae44bcd081a9f1d68c85111178cf899c6"></span><h3>#define MAX_NODEADDR_LEN 0x0F<a class="headerlink" href="#define-max-nodeaddr-len-0x0f" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-max-networkaddr-len-8">
+<span id="group-cmp-communication-lib-itf-1gaad248bdb3a359698817e9ba6fbafaab3"></span><h3>#define MAX_NETWORKADDR_LEN 8<a class="headerlink" href="#define-max-networkaddr-len-8" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-progress-invalid-0x0000">
+<span id="group-cmp-communication-lib-itf-1ga380818c9eabcacc375bd5523f210f9e7"></span><h3>#define PROGRESS_INVALID 0x0000<a class="headerlink" href="#define-progress-invalid-0x0000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-progress-idle-0x0001-no-pending-requests-a-new-request-may-be-sent-progress-is-0">
+<span id="group-cmp-communication-lib-itf-1ga78c7362d75029a1b80a851920c2ed806"></span><h3>#define PROGRESS_IDLE 0x0001 /* No pending requests. A new request may be sent. Progress is 0 <a href="#id31"><span class="problematic" id="id32">*</span></a>/<a class="headerlink" href="#define-progress-idle-0x0001-no-pending-requests-a-new-request-may-be-sent-progress-is-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-progress-chsending-0x0010-a-request-is-being-sent-from-gateway-to-target-progress-is-related-to-the-number-of-bytes-to-be-sent">
+<span id="group-cmp-communication-lib-itf-1ga6aa3046a3d768f406b7c3fc5ab7b9fd1"></span><h3>#define PROGRESS_CHSENDING 0x0010 /* A request is being sent from gateway to target. Progress is related to the number of bytes to be sent. <a href="#id33"><span class="problematic" id="id34">*</span></a>/<a class="headerlink" href="#define-progress-chsending-0x0010-a-request-is-being-sent-from-gateway-to-target-progress-is-related-to-the-number-of-bytes-to-be-sent" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-progress-chreceiving-0x0011-while-receiving-a-reply-progress-is-related-to-the-number-of-bytes-received">
+<span id="group-cmp-communication-lib-itf-1ga4379da33405eb1b19affbdeac1d4b481"></span><h3>#define PROGRESS_CHRECEIVING 0x0011 /* While receiving a reply. Progress is related to the number of bytes received <a href="#id35"><span class="problematic" id="id36">*</span></a>/<a class="headerlink" href="#define-progress-chreceiving-0x0011-while-receiving-a-reply-progress-is-related-to-the-number-of-bytes-received" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-progress-gwsending-0x0020-sending-a-request-to-the-gateway-progress-is-related-to-the-number-of-bytes-sent">
+<span id="group-cmp-communication-lib-itf-1ga38923ccaaf7a3c2e517afa3e8cc141e4"></span><h3>#define PROGRESS_GWSENDING 0x0020 /* Sending a request to the gateway. Progress is related to the number of bytes sent <a href="#id37"><span class="problematic" id="id38">*</span></a>/<a class="headerlink" href="#define-progress-gwsending-0x0020-sending-a-request-to-the-gateway-progress-is-related-to-the-number-of-bytes-sent" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-progress-gwreceiving-0x0021-receiving-a-reply-from-the-gateway-progress-is-related-to-the-number-of-bytes-received">
+<span id="group-cmp-communication-lib-itf-1gac0585cd1bc9de0f22cb05eea7fda0bdb"></span><h3>#define PROGRESS_GWRECEIVING 0x0021 /* Receiving a reply from the gateway. Progress is related to the number of bytes received <a href="#id39"><span class="problematic" id="id40">*</span></a>/<a class="headerlink" href="#define-progress-gwreceiving-0x0021-receiving-a-reply-from-the-gateway-progress-is-related-to-the-number-of-bytes-received" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-progress-gwprocessing-0x0022-the-service-has-been-sent-to-the-gateway-which-is-currently-working-on-the-service">
+<span id="group-cmp-communication-lib-itf-1ga515a03dee37fc1810f70402cb261fd9d"></span><h3>#define PROGRESS_GWPROCESSING 0x0022 /* The service has been sent to the gateway, which is currently working on the service.*/<a class="headerlink" href="#define-progress-gwprocessing-0x0022-the-service-has-been-sent-to-the-gateway-which-is-currently-working-on-the-service" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-progress-trgprocessing-0x1000-target-is-processing-the-service-no-further-information">
+<span id="group-cmp-communication-lib-itf-1gaae27fb0fba9e19dc38e4db8345ed61d1"></span><h3>#define PROGRESS_TRGPROCESSING 0x1000 /* Target is processing the service. No further information. <a href="#id41"><span class="problematic" id="id42">*</span></a>/<a class="headerlink" href="#define-progress-trgprocessing-0x1000-target-is-processing-the-service-no-further-information" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-progress-svcspecific-0x1001-service-specific-progress-ids-start-here">
+<span id="group-cmp-communication-lib-itf-1ga60c3a545fff3a864b35355314b241abb"></span><h3>#define PROGRESS_SVCSPECIFIC 0x1001 /* Service specific progress IDs start here <a href="#id43"><span class="problematic" id="id44">*</span></a>/<a class="headerlink" href="#define-progress-svcspecific-0x1001-service-specific-progress-ids-start-here" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-progress-user-0x8000-customer-specific-progress-ids-start-here">
+<span id="group-cmp-communication-lib-itf-1gad70b6ba87831d2f2b559176c7a7f091d"></span><h3>#define PROGRESS_USER 0x8000 /* Customer specific progress IDs start here <a href="#id45"><span class="problematic" id="id46">*</span></a>/<a class="headerlink" href="#define-progress-user-0x8000-customer-specific-progress-ids-start-here" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-itf-cmpcommunicationlib">
+<span id="group-cmp-communication-lib-itf-1ga13ea48d37e7b51736c7eb59e1e811b70"></span><h3>#define ITF_CmpCommunicationLib<a class="headerlink" href="#define-itf-cmpcommunicationlib" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpcommunicationlib">
+<span id="group-cmp-communication-lib-itf-1gada3923beacde756c6c4274f5e0a32978"></span><h3>#define EXTITF_CmpCommunicationLib<a class="headerlink" href="#define-extitf-cmpcommunicationlib" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-rts-ui8-addresscomponent-2">
+<span id="group-cmp-communication-lib-itf-1ga81bb0ac00cc0ee9e5866fe0720696d29"></span><h3>typedef RTS_UI8 ADDRESSCOMPONENT[2]<a class="headerlink" href="#typedef-rts-ui8-addresscomponent-2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-icmpcommunicationlib-c-icmpcommunicationlib">
+<span id="group-cmp-communication-lib-itf-1ga6f1c08dea3b7640e323bd78f85a4e421"></span><h3>typedef ICmpCommunicationLib_C ICmpCommunicationLib<a class="headerlink" href="#typedef-icmpcommunicationlib-c-icmpcommunicationlib" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-bool-addrequals-nodeaddress-addr1-nodeaddress-addr2">
+<span id="group-cmp-communication-lib-itf-1ga3f0d7314b387a554cfb866bda017d272"></span><h3>RTS_BOOL AddrEquals (NODEADDRESS addr1, NODEADDRESS addr2)<a class="headerlink" href="#rts-bool-addrequals-nodeaddress-addr1-nodeaddress-addr2" title="Permalink to this headline">¶</a></h3>
+<p><strong>Returns:</strong></p>
+<p><a href="#id47"><span class="problematic" id="id48">*</span></a>Returns TRUE if addr1 == addr2, FALSE else</p>
+</div>
+<div class="section" id="rts-bool-addrequalsbuffer-nodeaddress-addr1-addresscomponent-pbufaddr2-rts-ui32-nlenaddr2">
+<span id="group-cmp-communication-lib-itf-1ga78ae63e53aea4b99101d8dc9d3963844"></span><h3>RTS_BOOL AddrEqualsBuffer (NODEADDRESS addr1, ADDRESSCOMPONENT <a href="#id49"><span class="problematic" id="id50">*</span></a>pBufAddr2, RTS_UI32 nLenAddr2)<a class="headerlink" href="#rts-bool-addrequalsbuffer-nodeaddress-addr1-addresscomponent-pbufaddr2-rts-ui32-nlenaddr2" title="Permalink to this headline">¶</a></h3>
+<p><strong>Returns:</strong></p>
+<p><a href="#id51"><span class="problematic" id="id52">*</span></a>Returns TRUE, if addr1 equals the address described by pBufAddr2 and nlenAddr2</p>
+</div>
+<div class="section" id="rts-result-copyaddrtobuffer-addresscomponent-pbufdest-rts-ui32-pnlendest-const-addresscomponent-pbufsrc-rts-ui32-nlensrc">
+<span id="group-cmp-communication-lib-itf-1ga6ecb95dd7f990fa4e9bcc628fad8560b"></span><h3>RTS_RESULT CopyAddrToBuffer (ADDRESSCOMPONENT <a href="#id53"><span class="problematic" id="id54">*</span></a>pBufDest, RTS_UI32 <a href="#id55"><span class="problematic" id="id56">*</span></a>pnLenDest, const ADDRESSCOMPONENT <a href="#id57"><span class="problematic" id="id58">*</span></a>pBufSrc, RTS_UI32 nLenSrc)<a class="headerlink" href="#rts-result-copyaddrtobuffer-addresscomponent-pbufdest-rts-ui32-pnlendest-const-addresscomponent-pbufsrc-rts-ui32-nlensrc" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_core_dump_itf.html" title="CmpCoreDumpItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_code_meter_itf.html" title="CmpCodeMeterItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

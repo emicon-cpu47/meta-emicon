@@ -1,0 +1,1630 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpUserMgrItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpVisuClientControllerHostItf" href="group___cmp_visu_client_controller_host_itf.html" />
+    <link rel="prev" title="CmpUserDBObjectsItf" href="group___cmp_user_d_b_objects_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_visu_client_controller_host_itf.html" title="CmpVisuClientControllerHostItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_user_d_b_objects_itf.html" title="CmpUserDBObjectsItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpUserMgrItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-itf-cmpusermgr">#define ITF_CmpUserMgr</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpusermgr">#define EXTITF_CmpUserMgr</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-icmpusermgr-c-icmpusermgr">typedef ICmpUserMgr_C ICmpUserMgr</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-handle-usermgrlogin-char-pszuser-rts-result-presult">RTS_HANDLE UserMgrLogin (char *pszUser, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrlogout-rts-handle-huser">RTS_RESULT UserMgrLogout (RTS_HANDLE hUser)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrlogoutbysessionid-rts-ui32-ulsessionid">RTS_RESULT UserMgrLogoutBySessionId (RTS_UI32 ulSessionId)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrcheckpassword-rts-handle-huser-char-pszpassword">RTS_RESULT UserMgrCheckPassword (RTS_HANDLE hUser, char *pszPassword)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrgetproperty-rts-handle-huser-rts-ui32-pulproperty">RTS_RESULT UserMgrGetProperty (RTS_HANDLE hUser, RTS_UI32 *pulProperty)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrisgroupmember-char-pszgroup-rts-handle-huser">RTS_RESULT UserMgrIsGroupMember (char *pszGroup, RTS_HANDLE hUser)</a></li>
+<li><a class="reference internal" href="#rts-ui32-usermgrgetstate-rts-handle-huser-rts-result-presult">RTS_UI32 UserMgrGetState (RTS_HANDLE hUser, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrhasaccessrights-char-pszobject-rts-ui32-ulsessionid-rts-ui32-ulrequestedrights">RTS_RESULT UserMgrHasAccessRights (char *pszObject, RTS_UI32 ulSessionId, RTS_UI32 ulRequestedRights)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrgetaccessrights-char-pszobject-rts-ui32-ulsessionid-rts-ui32-pulrights-rts-ui32-puldeniedrights">RTS_RESULT UserMgrGetAccessRights (char *pszObject, RTS_UI32 ulSessionId, RTS_UI32 *pulRights, RTS_UI32 *pulDeniedRights)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrhasuseraccessrights-char-pszobject-rts-handle-huser-rts-ui32-ulrequestedrights">RTS_RESULT UserMgrHasUserAccessRights (char *pszObject, RTS_HANDLE hUser, RTS_UI32 ulRequestedRights)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrgetuseraccessrights-char-pszobject-rts-handle-huser-rts-ui32-pulrights-rts-ui32-puldeniedrights">RTS_RESULT UserMgrGetUserAccessRights (char *pszObject, RTS_HANDLE hUser, RTS_UI32 *pulRights, RTS_UI32 *pulDeniedRights)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgraddsessionid-rts-handle-huser-rts-ui32-pulsessionid">RTS_RESULT UserMgrAddSessionId (RTS_HANDLE hUser, RTS_UI32 *pulSessionId)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrremovesessionid-rts-ui32-ulsessionid">RTS_RESULT UserMgrRemoveSessionId (RTS_UI32 ulSessionId)</a></li>
+<li><a class="reference internal" href="#rts-handle-usermgrfinduserbysessionid-rts-ui32-ulsessionid-rts-result-presult">RTS_HANDLE UserMgrFindUserBySessionId (RTS_UI32 ulSessionId, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgraddinfotouser-rts-handle-huser-rts-size-key-rts-typedvalue-pvalue">RTS_RESULT UserMgrAddInfoToUser (RTS_HANDLE hUser, RTS_SIZE key, RTS_TYPEDVALUE *pValue)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrremoveinfofromuser-rts-handle-huser-rts-size-key">RTS_RESULT UserMgrRemoveInfoFromUser (RTS_HANDLE hUser, RTS_SIZE key)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrremoveinfofromallusers-rts-size-key">RTS_RESULT UserMgrRemoveInfoFromAllUsers (RTS_SIZE key)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrgetinfoofuser-rts-handle-huser-rts-size-key-rts-typedvalue-pvalue">RTS_RESULT UserMgrGetInfoOfUser (RTS_HANDLE hUser, RTS_SIZE key, RTS_TYPEDVALUE *pValue)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgraddonlineaccesserror-bintagwriter-pwriter-rts-result-result-char-pszobject-rts-ui32-ulrequestedrights-rts-ui32-ulsessionid">RTS_RESULT UserMgrAddOnlineAccessError (BINTAGWRITER *pWriter, RTS_RESULT Result, char *pszObject, RTS_UI32 ulRequestedRights, RTS_UI32 ulSessionID)</a></li>
+<li><a class="reference internal" href="#rts-handle-usermgrobjectadd-char-pszobject-rts-result-presult">RTS_HANDLE UserMgrObjectAdd (char *pszObject, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrobjectremove-rts-handle-hobject">RTS_RESULT UserMgrObjectRemove (RTS_HANDLE hObject)</a></li>
+<li><a class="reference internal" href="#rts-handle-usermgrobjectaddchild-rts-handle-hfatherobject-char-pszobject-rts-result-presult">RTS_HANDLE UserMgrObjectAddChild (RTS_HANDLE hFatherObject, char *pszObject, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrobjectsetusedrights-rts-handle-hobject-rts-ui32-ulusedrights">RTS_RESULT UserMgrObjectSetUsedRights (RTS_HANDLE hObject, RTS_UI32 ulUsedRights)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrobjectgetusedrights-rts-handle-hobject-rts-ui32-pulusedrights">RTS_RESULT UserMgrObjectGetUsedRights (RTS_HANDLE hObject, RTS_UI32 *pulUsedRights)</a></li>
+<li><a class="reference internal" href="#rts-handle-usermgrobjectopen-char-pszobject-rts-result-presult">RTS_HANDLE UserMgrObjectOpen (char *pszObject, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-usermgrobjectopen2-char-pszobject-rts-handle-huser-rts-result-presult">RTS_HANDLE UserMgrObjectOpen2 (char *pszObject, RTS_HANDLE hUser, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrobjectclose-rts-handle-hobject">RTS_RESULT UserMgrObjectClose (RTS_HANDLE hObject)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrgetchallenge-rts-ui32-pulchallenge">RTS_RESULT UserMgrGetChallenge (RTS_UI32 *pulChallenge)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrcryptpassword-char-pszpassword-char-pszpasswordcrypted-int-pnpasswordcryptedsize-rts-ui32-ulcrypttype-rts-ui32-ulchallenge">RTS_RESULT UserMgrCryptPassword (char *pszPassword, char *pszPasswordCrypted, int *pnPasswordCryptedSize, RTS_UI32 ulCryptType, RTS_UI32 ulChallenge)</a></li>
+<li><a class="reference internal" href="#rts-result-usermgrdecryptpassword-char-pszpasswordcrypted-int-npasswordcryptedsize-rts-ui32-ulcrypttype-rts-ui32-ulchallenge-char-pszpassword-int-pnmaxlenpassword">RTS_RESULT UserMgrDecryptPassword (char *pszPasswordCrypted, int nPasswordCryptedSize, RTS_UI32 ulCryptType, RTS_UI32 ulChallenge, char *pszPassword, int *pnMaxLenPassword)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_user_d_b_objects_itf.html"
+                        title="previous chapter">CmpUserDBObjectsItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_visu_client_controller_host_itf.html"
+                        title="next chapter">CmpVisuClientControllerHostItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_user_mgr_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpusermgritf">
+<span id="group-cmp-user-mgr-itf"></span><h1>CmpUserMgrItf<a class="headerlink" href="#cmpusermgritf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CmpUserMgr. <a class="reference internal" href="#group-cmp-user-mgr-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___cmp_user_mgr_itf___crypttypes.html#group-cmp-user-mgr-itf-crypttypes"><span class="std std-ref">Crypt types</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_mgr_itf___eventparameter.html#group-cmp-user-mgr-itf-eventparameter"><span class="std std-ref">Event parameter</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_mgr_itf___events.html#group-cmp-user-mgr-itf-events"><span class="std std-ref">Events</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_mgr_itf___onlineservices.html#group-cmp-user-mgr-itf-onlineservices"><span class="std std-ref">Online services</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_mgr_itf___onlinetags.html#group-cmp-user-mgr-itf-onlinetags"><span class="std std-ref">Online tags</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_mgr_itf___security_settings.html#group-cmp-user-mgr-itf-security-settings"><span class="std std-ref">SecuritySettings</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_mgr_itf___staticdefines.html#group-cmp-user-mgr-itf-staticdefines"><span class="std std-ref">Static defines</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_mgr_itf___usermanagementsessionentry.html#group-cmp-user-mgr-itf-usermanagementsessionentry"><span class="std std-ref">User management session entry</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_i_cmp_user_mgr___c.html#struct-i-cmp-user-mgr-c"><span class="std std-ref">ICmpUserMgr_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-user-mgr-itf-1gab88f7c09dfe09a061e2e65e4956f1637"><span class="std std-ref">ITF_CmpUserMgr</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-user-mgr-itf-1gacb0060492bf0f66e41ce1ab1b7f051fe"><span class="std std-ref">EXTITF_CmpUserMgr</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef <a class="reference internal" href="struct_i_cmp_user_mgr___c.html#struct-i-cmp-user-mgr-c"><span class="std std-ref">ICmpUserMgr_C</span></a> <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga69bbc71eafd986cdec3b69cd43bbb953"><span class="std std-ref">ICmpUserMgr</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga80270babf13f3e227545cbba32125b9b"><span class="std std-ref">UserMgrLogin</span></a> (char * pszUser, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga8bafb4bb1c23e759da7b0132c588cd92"><span class="std std-ref">UserMgrLogout</span></a> (RTS_HANDLE hUser)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1gaa9d6ca064a5d54a34d4633d391455741"><span class="std std-ref">UserMgrLogoutBySessionId</span></a> (RTS_UI32 ulSessionId)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1gafcba0d18affaf1602f6a605ebfac03e1"><span class="std std-ref">UserMgrCheckPassword</span></a> (RTS_HANDLE hUser, char * pszPassword)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga7ffe800f744655a046a43db606b9c26a"><span class="std std-ref">UserMgrGetProperty</span></a> (RTS_HANDLE hUser, RTS_UI32 * pulProperty)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1gae962249386d3a00accfd171770f20539"><span class="std std-ref">UserMgrIsGroupMember</span></a> (char * pszGroup, RTS_HANDLE hUser)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga2daa8f26e18329819c9710f5134db15c"><span class="std std-ref">UserMgrGetState</span></a> (RTS_HANDLE hUser, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga5d11a545de34d03cd0d6cc0f8e6733a4"><span class="std std-ref">UserMgrHasAccessRights</span></a> (char * pszObject, RTS_UI32 ulSessionId, RTS_UI32 ulRequestedRights)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga656e11e35075b93e09d2ca7a56967665"><span class="std std-ref">UserMgrGetAccessRights</span></a> (char * pszObject, RTS_UI32 ulSessionId, RTS_UI32 * pulRights, RTS_UI32 * pulDeniedRights)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga3124c60fe0ff5fa27092bd4ceb122d10"><span class="std std-ref">UserMgrHasUserAccessRights</span></a> (char * pszObject, RTS_HANDLE hUser, RTS_UI32 ulRequestedRights)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1gac9c09641fa7fd6b39e09dcf3f39c433a"><span class="std std-ref">UserMgrGetUserAccessRights</span></a> (char * pszObject, RTS_HANDLE hUser, RTS_UI32 * pulRights, RTS_UI32 * pulDeniedRights)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga646496f21699fe1701c6c741f5e0542b"><span class="std std-ref">UserMgrAddSessionId</span></a> (RTS_HANDLE hUser, RTS_UI32 * pulSessionId)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga92a97b07a7e8d61cd49e11df8007b475"><span class="std std-ref">UserMgrRemoveSessionId</span></a> (RTS_UI32 ulSessionId)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-mgr-itf-1gac36ebd3251499004300db9e53d1b8572"><span class="std std-ref">UserMgrFindUserBySessionId</span></a> (RTS_UI32 ulSessionId, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga621c9ce48b167c9aadf4bb7188c34d79"><span class="std std-ref">UserMgrAddInfoToUser</span></a> (RTS_HANDLE hUser, RTS_SIZE key, RTS_TYPEDVALUE * pValue)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga086c3b0db90ac145d197f64c56c09810"><span class="std std-ref">UserMgrRemoveInfoFromUser</span></a> (RTS_HANDLE hUser, RTS_SIZE key)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga894e70b5aefc4736c825943a9fdd7e26"><span class="std std-ref">UserMgrRemoveInfoFromAllUsers</span></a> (RTS_SIZE key)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga3248a60285c41178b795da5da760d013"><span class="std std-ref">UserMgrGetInfoOfUser</span></a> (RTS_HANDLE hUser, RTS_SIZE key, RTS_TYPEDVALUE * pValue)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1gaddf08a12aea358635a4a9457681a7eaa"><span class="std std-ref">UserMgrAddOnlineAccessError</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_RESULT Result, char * pszObject, RTS_UI32 ulRequestedRights, RTS_UI32 ulSessionID)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-mgr-itf-1gaa021567cec09ab6cc29943be279b432e"><span class="std std-ref">UserMgrObjectAdd</span></a> (char * pszObject, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga363c3413dc5373024db05ce129bd3eb1"><span class="std std-ref">UserMgrObjectRemove</span></a> (RTS_HANDLE hObject)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-mgr-itf-1gaa1aec550d16f1101c2f0d5a556da640b"><span class="std std-ref">UserMgrObjectAddChild</span></a> (RTS_HANDLE hFatherObject, char * pszObject, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga1b6be0047e6d248e2004b175617ccbe1"><span class="std std-ref">UserMgrObjectSetUsedRights</span></a> (RTS_HANDLE hObject, RTS_UI32 ulUsedRights)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1gae57cc6e510589eb43c49d6787185e716"><span class="std std-ref">UserMgrObjectGetUsedRights</span></a> (RTS_HANDLE hObject, RTS_UI32 * pulUsedRights)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-mgr-itf-1gac80d1200c4e35fa00cfda3d214216209"><span class="std std-ref">UserMgrObjectOpen</span></a> (char * pszObject, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga53c3ea3e0dfae31bd085371b11caa6d5"><span class="std std-ref">UserMgrObjectOpen2</span></a> (char * pszObject, RTS_HANDLE hUser, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga183f82c9a2d5b08929bd5538ee6cc83c"><span class="std std-ref">UserMgrObjectClose</span></a> (RTS_HANDLE hObject)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga3fb09a22e2014a8db0c6cb9d6d35bd81"><span class="std std-ref">UserMgrGetChallenge</span></a> (RTS_UI32 * pulChallenge)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1ga3ef36e5728101a8f5c975d4cb4952356"><span class="std std-ref">UserMgrCryptPassword</span></a> (char * pszPassword, char * pszPasswordCrypted, int * pnPasswordCryptedSize, RTS_UI32 ulCryptType, RTS_UI32 ulChallenge)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-mgr-itf-1gad01cecf0fee2a6a5d5bc0d8c2b4a969d"><span class="std std-ref">UserMgrDecryptPassword</span></a> (char * pszPasswordCrypted, int nPasswordCryptedSize, RTS_UI32 ulCryptType, RTS_UI32 ulChallenge, char * pszPassword, int * pnMaxLenPassword)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-user-mgr-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CmpUserMgr.</p>
+<p>Interface for the user management component.</p>
+<p>The user management in the runtime system is based on ACL (Access Control Lists). Here we have Users and UserGroups and access rights on objects.</p>
+<p>Here are the principles of the user management:</p>
+<ol class="arabic simple">
+<li>There are users which are identified by its user name 2. A User can be a member of one or several UserGroups. But at least the user is a member of the group &#8220;Everyone&#8221;. 3. There are some predefined UserGroups, which covers the most typical use cases:</li>
+</ol>
+<ul class="simple">
+<li>&#8220;Administrator&#8221;: Administrator group. A member of this groups has all access rights on all objects!</li>
+<li>&#8220;Developer&#8221;: Developer group. A member of this groups has all access to the IEC applications an all related stuff.</li>
+<li>&#8220;Service&#8221;: Service group. A member of this groups has all access to object for maintenance and service operations.</li>
+<li>&#8220;Watch&#8221;: Watch group. A member of this groups has read-only access to the objects.</li>
+<li>&#8220;Everyone&#8221;: Everyone group. A member of this groups has read-only access to the objects.</li>
+</ul>
+<ol class="arabic simple" start="4">
+<li>A UserGroup can be derived from another UserGroup an inherits all rights from the base group 5. Every object in the runtime system, that must be protected with access rights is registered dynamically during startup of the runtime by the corresponding component under the appropriate folder. The objects in the runtime system are organized as a tree with 2 root nodes:</li>
+</ol>
+<ul class="simple">
+<li>Runtime system object: &#8220;Device&#8221; | &#8220;PlcLogic&#8221; | &#8220;Application&#8221; | &#8220;Logger&#8221; | &#8220;Settings&#8221; | &#8220;UserManagement&#8221;</li>
+<li>Filesystem objects: &#8220;/&#8221; | &#8220;Temp&#8221; | &#8220;Test.txt&#8221;</li>
+</ul>
+<ol class="arabic simple" start="6">
+<li>There are 5 different access rights that can be specified at every group for each object:</li>
+</ol>
+<ul class="simple">
+<li>USERDB_RIGHT_NONE: Access denied</li>
+<li>USERDB_RIGHT_VIEW: Only view rights on the object. Object cannot be modified in any case!</li>
+<li>USERDB_RIGHT_MODIFY: Object can be viewed and modified</li>
+<li>USERDB_RIGHT_EXECUTE: Object can be executed</li>
+<li>USERDB_RIGHT_ADD_REMOVE: It is allowed to add and remove objects or subobjects</li>
+<li>USERDB_RIGHT_ALL: All rights allowed on the object</li>
+</ul>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-itf-cmpusermgr">
+<span id="group-cmp-user-mgr-itf-1gab88f7c09dfe09a061e2e65e4956f1637"></span><h3>#define ITF_CmpUserMgr<a class="headerlink" href="#define-itf-cmpusermgr" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpusermgr">
+<span id="group-cmp-user-mgr-itf-1gacb0060492bf0f66e41ce1ab1b7f051fe"></span><h3>#define EXTITF_CmpUserMgr<a class="headerlink" href="#define-extitf-cmpusermgr" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-icmpusermgr-c-icmpusermgr">
+<span id="group-cmp-user-mgr-itf-1ga69bbc71eafd986cdec3b69cd43bbb953"></span><h3>typedef ICmpUserMgr_C ICmpUserMgr<a class="headerlink" href="#typedef-icmpusermgr-c-icmpusermgr" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-handle-usermgrlogin-char-pszuser-rts-result-presult">
+<span id="group-cmp-user-mgr-itf-1ga80270babf13f3e227545cbba32125b9b"></span><h3>RTS_HANDLE UserMgrLogin (char <a href="#id1"><span class="problematic" id="id2">*</span></a>pszUser, RTS_RESULT <a href="#id3"><span class="problematic" id="id4">*</span></a>pResult)<a class="headerlink" href="#rts-handle-usermgrlogin-char-pszuser-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Login user on the usermanagement NOTE: The returned handle is not compatible with a handle from the UserDB, and these handles must not be mixed.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszUser</td>
+<td>Name of the user</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User is available</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>If pszUser is NULL</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>The user management is not initialized or it is not loaded yet</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_OBJECT</td>
+<td>or ERR_PARAMETER The user is not available in the user management</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOMEMORY</td>
+<td>Could not store user information</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the user or RTS_INVALID_HANDLE if not available</p>
+</div>
+<div class="section" id="rts-result-usermgrlogout-rts-handle-huser">
+<span id="group-cmp-user-mgr-itf-1ga8bafb4bb1c23e759da7b0132c588cd92"></span><h3>RTS_RESULT UserMgrLogout (RTS_HANDLE hUser)<a class="headerlink" href="#rts-result-usermgrlogout-rts-handle-huser" title="Permalink to this headline">¶</a></h3>
+<p>Logout specified by User NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="19%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User is available and logout succeeded</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>If user is not avilable</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>hUser is invalid or unknown</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrlogoutbysessionid-rts-ui32-ulsessionid">
+<span id="group-cmp-user-mgr-itf-1gaa9d6ca064a5d54a34d4633d391455741"></span><h3>RTS_RESULT UserMgrLogoutBySessionId (RTS_UI32 ulSessionId)<a class="headerlink" href="#rts-result-usermgrlogoutbysessionid-rts-ui32-ulsessionid" title="Permalink to this headline">¶</a></h3>
+<p>Logout specified by SessionID</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="11%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulSessionId</td>
+<td>SessionID of the device online connection (see <span class="xref std std-ref">CmpDeviceItf.h</span> )</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>SessionID or user is available and logout succeeded</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>If SessionID or user is not avilable</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>Related user handle of the session is invalid or unknown</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrcheckpassword-rts-handle-huser-char-pszpassword">
+<span id="group-cmp-user-mgr-itf-1gafcba0d18affaf1602f6a605ebfac03e1"></span><h3>RTS_RESULT UserMgrCheckPassword (RTS_HANDLE hUser, char <a href="#id5"><span class="problematic" id="id6">*</span></a>pszPassword)<a class="headerlink" href="#rts-result-usermgrcheckpassword-rts-handle-huser-char-pszpassword" title="Permalink to this headline">¶</a></h3>
+<p>Check user password against credentials (authentication)! NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="22%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszPassword</td>
+<td>Pointer to the cleartext password!</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User is available</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>If user is not avilable</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>If user password does not match credentials</td>
+</tr>
+<tr class="row-even"><td>ERR_INVALID_HANDLE</td>
+<td>hUser is invalid or unknown</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrgetproperty-rts-handle-huser-rts-ui32-pulproperty">
+<span id="group-cmp-user-mgr-itf-1ga7ffe800f744655a046a43db606b9c26a"></span><h3>RTS_RESULT UserMgrGetProperty (RTS_HANDLE hUser, RTS_UI32 <a href="#id7"><span class="problematic" id="id8">*</span></a>pulProperty)<a class="headerlink" href="#rts-result-usermgrgetproperty-rts-handle-huser-rts-ui32-pulproperty" title="Permalink to this headline">¶</a></h3>
+<p>Get properties of a user NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="13%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulProperty</td>
+<td>Pointer to return the properties. For details see category &#8220;UserDB properties&#8221;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Properties could be retrieved</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Property pointer = NULL</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>hUser is invalid or unknown</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrisgroupmember-char-pszgroup-rts-handle-huser">
+<span id="group-cmp-user-mgr-itf-1gae962249386d3a00accfd171770f20539"></span><h3>RTS_RESULT UserMgrIsGroupMember (char <a href="#id9"><span class="problematic" id="id10">*</span></a>pszGroup, RTS_HANDLE hUser)<a class="headerlink" href="#rts-result-usermgrisgroupmember-char-pszgroup-rts-handle-huser" title="Permalink to this headline">¶</a></h3>
+<p>Check if the a user is a member of the given group NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="26%" />
+<col width="51%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszGroup</td>
+<td>Group name</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>The user is a member of the given group</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>The user is not a member of the given group</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>hUser is invalid or unknown</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-ui32-usermgrgetstate-rts-handle-huser-rts-result-presult">
+<span id="group-cmp-user-mgr-itf-1ga2daa8f26e18329819c9710f5134db15c"></span><h3>RTS_UI32 UserMgrGetState (RTS_HANDLE hUser, RTS_RESULT <a href="#id11"><span class="problematic" id="id12">*</span></a>pResult)<a class="headerlink" href="#rts-ui32-usermgrgetstate-rts-handle-huser-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Returns the user state The returned bitfield shows whether the user is logged in and is authenticated (see category User state) NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>User state</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="41%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Success</td>
+</tr>
+<tr class="row-even"><td>ERR_INVALID_HANDLE</td>
+<td>hUser is invalid or unknown</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrhasaccessrights-char-pszobject-rts-ui32-ulsessionid-rts-ui32-ulrequestedrights">
+<span id="group-cmp-user-mgr-itf-1ga5d11a545de34d03cd0d6cc0f8e6733a4"></span><h3>RTS_RESULT UserMgrHasAccessRights (char <a href="#id13"><span class="problematic" id="id14">*</span></a>pszObject, RTS_UI32 ulSessionId, RTS_UI32 ulRequestedRights)<a class="headerlink" href="#rts-result-usermgrhasaccessrights-char-pszobject-rts-ui32-ulsessionid-rts-ui32-ulrequestedrights" title="Permalink to this headline">¶</a></h3>
+<p>Check user access rights on the specified object (authorization)!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="16%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszObject</td>
+<td>Full object name (see object tree)</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulSessionId</td>
+<td>SessionID of the device online connection (see <span class="xref std std-ref">CmpDeviceItf.h</span> )</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulRequestedRights</td>
+<td>Requested rights on that object</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>If user has the requested rights on the object or if no user management is configured</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>If SessionID or user is not avilable or the object does not exist</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>If something failed retrieving the access rights</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_ACCESS_RIGHTS</td>
+<td>Explicitly denied rights</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>Related user handle of the session is invalid or unknown</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrgetaccessrights-char-pszobject-rts-ui32-ulsessionid-rts-ui32-pulrights-rts-ui32-puldeniedrights">
+<span id="group-cmp-user-mgr-itf-1ga656e11e35075b93e09d2ca7a56967665"></span><h3>RTS_RESULT UserMgrGetAccessRights (char <a href="#id15"><span class="problematic" id="id16">*</span></a>pszObject, RTS_UI32 ulSessionId, RTS_UI32 <a href="#id17"><span class="problematic" id="id18">*</span></a>pulRights, RTS_UI32 <a href="#id19"><span class="problematic" id="id20">*</span></a>pulDeniedRights)<a class="headerlink" href="#rts-result-usermgrgetaccessrights-char-pszobject-rts-ui32-ulsessionid-rts-ui32-pulrights-rts-ui32-puldeniedrights" title="Permalink to this headline">¶</a></h3>
+<p>Get user access rights on the specified object (authorization)!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="8%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszObject</td>
+<td>Full object name (see object tree)</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulSessionId</td>
+<td>SessionID of the device online connection (see <span class="xref std std-ref">CmpDeviceItf.h</span> )</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pulRights</td>
+<td>Pointer to get admitted rights</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pulDeniedRights</td>
+<td>Pointer to get denied rights. NOTE: If the required right is denied _and_ admitted on the specified object, the denied right is more significant and so the access must be denied !!</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>If user has the requested rights on the object or if no user management is configured</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>If SessionID or user is not avilable or the object does not exist</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>If something failed retrieving the access rights</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_ACCESS_RIGHTS</td>
+<td>Explicitly denied rights</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>Related user handle of the session is invalid or unknown</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrhasuseraccessrights-char-pszobject-rts-handle-huser-rts-ui32-ulrequestedrights">
+<span id="group-cmp-user-mgr-itf-1ga3124c60fe0ff5fa27092bd4ceb122d10"></span><h3>RTS_RESULT UserMgrHasUserAccessRights (char <a href="#id21"><span class="problematic" id="id22">*</span></a>pszObject, RTS_HANDLE hUser, RTS_UI32 ulRequestedRights)<a class="headerlink" href="#rts-result-usermgrhasuseraccessrights-char-pszobject-rts-handle-huser-rts-ui32-ulrequestedrights" title="Permalink to this headline">¶</a></h3>
+<p>Check user access rights on the specified object (authorization)! NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="30%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszObject</td>
+<td>Full object name (see object tree)</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulRequestedRights</td>
+<td>Requested rights on that object</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>If user has the requested rights on the object or if no user management is configured</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>If user is not avilable or the object does not exist</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>If something failed retrieving the access rights</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_ACCESS_RIGHTS</td>
+<td>Explicitly denied rights</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>hUser is invalid or unknown</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrgetuseraccessrights-char-pszobject-rts-handle-huser-rts-ui32-pulrights-rts-ui32-puldeniedrights">
+<span id="group-cmp-user-mgr-itf-1gac9c09641fa7fd6b39e09dcf3f39c433a"></span><h3>RTS_RESULT UserMgrGetUserAccessRights (char <a href="#id23"><span class="problematic" id="id24">*</span></a>pszObject, RTS_HANDLE hUser, RTS_UI32 <a href="#id25"><span class="problematic" id="id26">*</span></a>pulRights, RTS_UI32 <a href="#id27"><span class="problematic" id="id28">*</span></a>pulDeniedRights)<a class="headerlink" href="#rts-result-usermgrgetuseraccessrights-char-pszobject-rts-handle-huser-rts-ui32-pulrights-rts-ui32-puldeniedrights" title="Permalink to this headline">¶</a></h3>
+<p>Get user access rights on the specified object (authorization)! NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="8%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszObject</td>
+<td>Full object name (see object tree)</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pulRights</td>
+<td>Pointer to get admitted rights</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pulDeniedRights</td>
+<td>Pointer to get denied rights. NOTE: If the required right is denied _and_ admitted on the specified object, the denied right is more significant and so the access must be denied !!</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>If user has the requested rights on the object or if no user management is configured</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>If user is not avilable or the object does not exist</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>If something failed retrieving the access rights</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_ACCESS_RIGHTS</td>
+<td>Explicitly denied rights</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>hUser is invalid or unknown</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgraddsessionid-rts-handle-huser-rts-ui32-pulsessionid">
+<span id="group-cmp-user-mgr-itf-1ga646496f21699fe1701c6c741f5e0542b"></span><h3>RTS_RESULT UserMgrAddSessionId (RTS_HANDLE hUser, RTS_UI32 <a href="#id29"><span class="problematic" id="id30">*</span></a>pulSessionId)<a class="headerlink" href="#rts-result-usermgraddsessionid-rts-handle-huser-rts-ui32-pulsessionid" title="Permalink to this headline">¶</a></h3>
+<p>Add online SessionID to the user (bind the user at this session) NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="11%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulSessionId</td>
+<td>SessionID of the device online connection (see <span class="xref std std-ref">CmpDeviceItf.h</span> )</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>If user has the requested rights on the object or if no user management is configured</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>If CmpUserMgr component is still not initialized</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOMEMORY</td>
+<td>Could not store SessionID</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrremovesessionid-rts-ui32-ulsessionid">
+<span id="group-cmp-user-mgr-itf-1ga92a97b07a7e8d61cd49e11df8007b475"></span><h3>RTS_RESULT UserMgrRemoveSessionId (RTS_UI32 ulSessionId)<a class="headerlink" href="#rts-result-usermgrremovesessionid-rts-ui32-ulsessionid" title="Permalink to this headline">¶</a></h3>
+<p>Remove online SessionID from the user (unbind the user from this session)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="11%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulSessionId</td>
+<td>SessionID of the device online connection (see <span class="xref std std-ref">CmpDeviceItf.h</span> )</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>If user has the requested rights on the object or if no user management is configured</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>If CmpUserMgr component is still not initialized</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOMEMORY</td>
+<td>Could not store SessionID</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-handle-usermgrfinduserbysessionid-rts-ui32-ulsessionid-rts-result-presult">
+<span id="group-cmp-user-mgr-itf-1gac36ebd3251499004300db9e53d1b8572"></span><h3>RTS_HANDLE UserMgrFindUserBySessionId (RTS_UI32 ulSessionId, RTS_RESULT <a href="#id31"><span class="problematic" id="id32">*</span></a>pResult)<a class="headerlink" href="#rts-handle-usermgrfinduserbysessionid-rts-ui32-ulsessionid-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Returns the user bound at the SessionID NOTE: The returned handle is not compatible with a handle from the UserDB, and these handles must not be mixed.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="11%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulSessionId</td>
+<td>SessionID of the device online connection (see <span class="xref std std-ref">CmpDeviceItf.h</span> )</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User is available</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>If SessionID is invalid</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>The user management is not initialized or it is not loaded yet</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_OBJECT</td>
+<td>or ERR_PARAMETER The user is not available in the user management</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the user or RTS_INVALID_HANDLE if not available</p>
+</div>
+<div class="section" id="rts-result-usermgraddinfotouser-rts-handle-huser-rts-size-key-rts-typedvalue-pvalue">
+<span id="group-cmp-user-mgr-itf-1ga621c9ce48b167c9aadf4bb7188c34d79"></span><h3>RTS_RESULT UserMgrAddInfoToUser (RTS_HANDLE hUser, RTS_SIZE key, RTS_TYPEDVALUE <a href="#id33"><span class="problematic" id="id34">*</span></a>pValue)<a class="headerlink" href="#rts-result-usermgraddinfotouser-rts-handle-huser-rts-size-key-rts-typedvalue-pvalue" title="Permalink to this headline">¶</a></h3>
+<p>Adds an value to an logged in user. This can be used as some kind of chache that exists as long as the user is logged in.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="7%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>key</td>
+<td>Access key for the chace value. This has to be used at UserMgrGetInfoOfUser to access the value.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pValue</td>
+<td>Value to cache at the user.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Value cached</td>
+</tr>
+<tr class="row-even"><td>ERR_DUPLICATE</td>
+<td>The same key has been used already</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>The caching failed</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrremoveinfofromuser-rts-handle-huser-rts-size-key">
+<span id="group-cmp-user-mgr-itf-1ga086c3b0db90ac145d197f64c56c09810"></span><h3>RTS_RESULT UserMgrRemoveInfoFromUser (RTS_HANDLE hUser, RTS_SIZE key)<a class="headerlink" href="#rts-result-usermgrremoveinfofromuser-rts-handle-huser-rts-size-key" title="Permalink to this headline">¶</a></h3>
+<p>Removes a specific chace value from an user.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="17%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>key</td>
+<td>Key of the cache value.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Removing cache value successfull</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_OBJECT</td>
+<td>No cache value with this key available.</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Removing cache value failed</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrremoveinfofromallusers-rts-size-key">
+<span id="group-cmp-user-mgr-itf-1ga894e70b5aefc4736c825943a9fdd7e26"></span><h3>RTS_RESULT UserMgrRemoveInfoFromAllUsers (RTS_SIZE key)<a class="headerlink" href="#rts-result-usermgrremoveinfofromallusers-rts-size-key" title="Permalink to this headline">¶</a></h3>
+<p>Removes a specific chace value from all logged in users.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="13%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>key</td>
+<td>Key of the cache value.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Removing cache value successfull</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Removing cache value failed</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrgetinfoofuser-rts-handle-huser-rts-size-key-rts-typedvalue-pvalue">
+<span id="group-cmp-user-mgr-itf-1ga3248a60285c41178b795da5da760d013"></span><h3>RTS_RESULT UserMgrGetInfoOfUser (RTS_HANDLE hUser, RTS_SIZE key, RTS_TYPEDVALUE <a href="#id35"><span class="problematic" id="id36">*</span></a>pValue)<a class="headerlink" href="#rts-result-usermgrgetinfoofuser-rts-handle-huser-rts-size-key-rts-typedvalue-pvalue" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the value cached using UserMgrAddInfoToUser.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="17%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>key</td>
+<td>Key of the cache value.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pValue</td>
+<td>Value to cache at the user.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Retrieving cache value successfull. Value copied to pValue.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Some parameter is invalid</td>
+</tr>
+<tr class="row-odd"><td>ERR_NO_OBJECT</td>
+<td>No cache value with this key available.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgraddonlineaccesserror-bintagwriter-pwriter-rts-result-result-char-pszobject-rts-ui32-ulrequestedrights-rts-ui32-ulsessionid">
+<span id="group-cmp-user-mgr-itf-1gaddf08a12aea358635a4a9457681a7eaa"></span><h3>RTS_RESULT UserMgrAddOnlineAccessError (BINTAGWRITER <a href="#id37"><span class="problematic" id="id38">*</span></a>pWriter, RTS_RESULT Result, char <a href="#id39"><span class="problematic" id="id40">*</span></a>pszObject, RTS_UI32 ulRequestedRights, RTS_UI32 ulSessionID)<a class="headerlink" href="#rts-result-usermgraddonlineaccesserror-bintagwriter-pwriter-rts-result-result-char-pszobject-rts-ui32-ulrequestedrights-rts-ui32-ulsessionid" title="Permalink to this headline">¶</a></h3>
+<p>Add the error tag to the reply stream of an online service, if the service is denied because of a failed access right (authorization error)!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="16%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pWriter</td>
+<td>Pointer the writer stream</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>Result</td>
+<td>Result code of the operation</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pszObject</td>
+<td>Pointer to name of the object, whose access was denied</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulRequestedRights</td>
+<td>Requested rights on the object, which are not enabled</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulSessionId</td>
+<td>SessionID of the device online connection (see <span class="xref std std-ref">CmpDeviceItf.h</span> )</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Reply tag could be created</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Reply tag could not be created</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-handle-usermgrobjectadd-char-pszobject-rts-result-presult">
+<span id="group-cmp-user-mgr-itf-1gaa021567cec09ab6cc29943be279b432e"></span><h3>RTS_HANDLE UserMgrObjectAdd (char <a href="#id41"><span class="problematic" id="id42">*</span></a>pszObject, RTS_RESULT <a href="#id43"><span class="problematic" id="id44">*</span></a>pResult)<a class="headerlink" href="#rts-handle-usermgrobjectadd-char-pszobject-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Add a new object to the user management, so the access rights can be configured on that object. NOTE: The name of the object must include the full namespace with &#8220;Device&#8221; as the root node, e.g. &#8220;Device.MyObject&#8221; or if it&#8217;s a filesystem object with &#8220;/&#8221; as the root node.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="20%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszObject</td>
+<td>Full object name (see object tree)</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Object could be added</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Object invalid = NULL or empty</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>The user management is not initialized or it is not loaded yet</td>
+</tr>
+<tr class="row-even"><td>ERR_NOMEMORY</td>
+<td>If memory could not be allocated to store this object</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the object or RTS_INVALID_HANDLE if it could not be added</p>
+</div>
+<div class="section" id="rts-result-usermgrobjectremove-rts-handle-hobject">
+<span id="group-cmp-user-mgr-itf-1ga363c3413dc5373024db05ce129bd3eb1"></span><h3>RTS_RESULT UserMgrObjectRemove (RTS_HANDLE hObject)<a class="headerlink" href="#rts-result-usermgrobjectremove-rts-handle-hobject" title="Permalink to this headline">¶</a></h3>
+<p>Remove an object from the user management and all its children</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hObject</td>
+<td>Handle to object</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Object could be removed</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid object handle</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-handle-usermgrobjectaddchild-rts-handle-hfatherobject-char-pszobject-rts-result-presult">
+<span id="group-cmp-user-mgr-itf-1gaa1aec550d16f1101c2f0d5a556da640b"></span><h3>RTS_HANDLE UserMgrObjectAddChild (RTS_HANDLE hFatherObject, char <a href="#id45"><span class="problematic" id="id46">*</span></a>pszObject, RTS_RESULT <a href="#id47"><span class="problematic" id="id48">*</span></a>pResult)<a class="headerlink" href="#rts-handle-usermgrobjectaddchild-rts-handle-hfatherobject-char-pszobject-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Add a new object under a father object specified by its name to the user management, so the access rights can be configured on that object.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="16%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hFatherObject</td>
+<td>Handle to the father object, under which the object will be added</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszObject</td>
+<td>Object name (see object tree)</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Object could be added</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Object invalid = NULL or empty</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>The user management is not initialized or it is not loaded yet</td>
+</tr>
+<tr class="row-even"><td>ERR_NOMEMORY</td>
+<td>If memory could not be allocated to store this object</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the object or RTS_INVALID_HANDLE if it could not be added</p>
+</div>
+<div class="section" id="rts-result-usermgrobjectsetusedrights-rts-handle-hobject-rts-ui32-ulusedrights">
+<span id="group-cmp-user-mgr-itf-1ga1b6be0047e6d248e2004b175617ccbe1"></span><h3>RTS_RESULT UserMgrObjectSetUsedRights (RTS_HANDLE hObject, RTS_UI32 ulUsedRights)<a class="headerlink" href="#rts-result-usermgrobjectsetusedrights-rts-handle-hobject-rts-ui32-ulusedrights" title="Permalink to this headline">¶</a></h3>
+<p>Set the used access rights for the object specified by handle. The rights are additionally stored in an internal list. In case USERDB_RIGHT_NONE is passed for ulUsedRights the previously stored rights are retrieved for this object.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="18%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hObject</td>
+<td>Handle to the object</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulUsedRights</td>
+<td>Used access rights or USERDB_RIGHT_NONE for retrieval</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Rights are successfully set</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid object handle</td>
+</tr>
+<tr class="row-odd"><td>ERR_NO_OBJECT</td>
+<td>Object was not found for rights retrieval</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+</div>
+<div class="section" id="rts-result-usermgrobjectgetusedrights-rts-handle-hobject-rts-ui32-pulusedrights">
+<span id="group-cmp-user-mgr-itf-1gae57cc6e510589eb43c49d6787185e716"></span><h3>RTS_RESULT UserMgrObjectGetUsedRights (RTS_HANDLE hObject, RTS_UI32 <a href="#id49"><span class="problematic" id="id50">*</span></a>pulUsedRights)<a class="headerlink" href="#rts-result-usermgrobjectgetusedrights-rts-handle-hobject-rts-ui32-pulusedrights" title="Permalink to this headline">¶</a></h3>
+<p>Get the used access rights for the object specified by handle. NOTE: In case the used rights are not set the function returns USERDB_RIGHT_ALL.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="27%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hObject</td>
+<td>Handle to the object</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulUsedRights</td>
+<td>Pointer to used access rights</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Rights are successfully set</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid object handle or invalid pointer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+</div>
+<div class="section" id="rts-handle-usermgrobjectopen-char-pszobject-rts-result-presult">
+<span id="group-cmp-user-mgr-itf-1gac80d1200c4e35fa00cfda3d214216209"></span><h3>RTS_HANDLE UserMgrObjectOpen (char <a href="#id51"><span class="problematic" id="id52">*</span></a>pszObject, RTS_RESULT <a href="#id53"><span class="problematic" id="id54">*</span></a>pResult)<a class="headerlink" href="#rts-handle-usermgrobjectopen-char-pszobject-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Open an existing object. NOTE: The name of the object must include the full namespace with &#8220;Device&#8221; as the root node, e.g. &#8220;Device.MyObject&#8221; or if it&#8217;s a filesystem object with &#8220;/&#8221; as the root node.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="20%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszObject</td>
+<td>Full object name (see object tree)</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Object could be opened</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Object not available of invalid</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the object or RTS_INVALID_HANDLE if it is not available</p>
+</div>
+<div class="section" id="rts-handle-usermgrobjectopen2-char-pszobject-rts-handle-huser-rts-result-presult">
+<span id="group-cmp-user-mgr-itf-1ga53c3ea3e0dfae31bd085371b11caa6d5"></span><h3>RTS_HANDLE UserMgrObjectOpen2 (char <a href="#id55"><span class="problematic" id="id56">*</span></a>pszObject, RTS_HANDLE hUser, RTS_RESULT <a href="#id57"><span class="problematic" id="id58">*</span></a>pResult)<a class="headerlink" href="#rts-handle-usermgrobjectopen2-char-pszobject-rts-handle-huser-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Opens an existing object. Checks if the user is member of at least one group that has access to this object.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="20%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszObject</td>
+<td>Full object name (see object tree)</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hUser</td>
+<td>Handle of the logged in user.</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Object could be opened. User has access rights to the object.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Object not available of invalid.</td>
+</tr>
+<tr class="row-odd"><td>ERR_NO_ACCESS_RIGHTS</td>
+<td>User has no access rights to this object.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the object or RTS_INVALID_HANDLE if it is not available or no access rights are existing.</p>
+</div>
+<div class="section" id="rts-result-usermgrobjectclose-rts-handle-hobject">
+<span id="group-cmp-user-mgr-itf-1ga183f82c9a2d5b08929bd5538ee6cc83c"></span><h3>RTS_RESULT UserMgrObjectClose (RTS_HANDLE hObject)<a class="headerlink" href="#rts-result-usermgrobjectclose-rts-handle-hobject" title="Permalink to this headline">¶</a></h3>
+<p>Close an object</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hObject</td>
+<td>Handle to object</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Object could be closed</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid object handle</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrgetchallenge-rts-ui32-pulchallenge">
+<span id="group-cmp-user-mgr-itf-1ga3fb09a22e2014a8db0c6cb9d6d35bd81"></span><h3>RTS_RESULT UserMgrGetChallenge (RTS_UI32 <a href="#id59"><span class="problematic" id="id60">*</span></a>pulChallenge)<a class="headerlink" href="#rts-result-usermgrgetchallenge-rts-ui32-pulchallenge" title="Permalink to this headline">¶</a></h3>
+<p>Get a new challenge value to encrypt the password</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="23%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pulChallenge</td>
+<td>Pointer to challenge to get the value</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Challenge could be generated</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid parameter: pulChallenge = NULL</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrcryptpassword-char-pszpassword-char-pszpasswordcrypted-int-pnpasswordcryptedsize-rts-ui32-ulcrypttype-rts-ui32-ulchallenge">
+<span id="group-cmp-user-mgr-itf-1ga3ef36e5728101a8f5c975d4cb4952356"></span><h3>RTS_RESULT UserMgrCryptPassword (char <a href="#id61"><span class="problematic" id="id62">*</span></a>pszPassword, char <a href="#id63"><span class="problematic" id="id64">*</span></a>pszPasswordCrypted, int <a href="#id65"><span class="problematic" id="id66">*</span></a>pnPasswordCryptedSize, RTS_UI32 ulCryptType, RTS_UI32 ulChallenge)<a class="headerlink" href="#rts-result-usermgrcryptpassword-char-pszpassword-char-pszpasswordcrypted-int-pnpasswordcryptedsize-rts-ui32-ulcrypttype-rts-ui32-ulchallenge" title="Permalink to this headline">¶</a></h3>
+<p>Encrypt the password specified by crypt type</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="13%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszPassword</td>
+<td>Cleartext password</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pszPasswordCrypted</td>
+<td>Pointer to get the encrypted password</td>
+</tr>
+<tr class="row-odd"><td>[inout]</td>
+<td>pnPasswordCryptedSize</td>
+<td>Pointer to transmit the buffer length of pszPasswordCrypted or to return the necessary encrypted password length if result code is ERR_BUFFERSIZE</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulCryptType</td>
+<td>Crypt type. See category &#8220;Crypt types&#8221; for details</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulChallenge</td>
+<td>Challenge value to encrypt the password</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Password could be encrypted</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>At least one parameter is invalid</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOT_SUPPORTED</td>
+<td>Unsupported encryption type</td>
+</tr>
+<tr class="row-even"><td>ERR_BUFFERSIZE</td>
+<td>Buffer for pszPasswordCrypted is too short, so the requested length is returned inpnPasswordCryptedSize</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-usermgrdecryptpassword-char-pszpasswordcrypted-int-npasswordcryptedsize-rts-ui32-ulcrypttype-rts-ui32-ulchallenge-char-pszpassword-int-pnmaxlenpassword">
+<span id="group-cmp-user-mgr-itf-1gad01cecf0fee2a6a5d5bc0d8c2b4a969d"></span><h3>RTS_RESULT UserMgrDecryptPassword (char <a href="#id67"><span class="problematic" id="id68">*</span></a>pszPasswordCrypted, int nPasswordCryptedSize, RTS_UI32 ulCryptType, RTS_UI32 ulChallenge, char <a href="#id69"><span class="problematic" id="id70">*</span></a>pszPassword, int <a href="#id71"><span class="problematic" id="id72">*</span></a>pnMaxLenPassword)<a class="headerlink" href="#rts-result-usermgrdecryptpassword-char-pszpasswordcrypted-int-npasswordcryptedsize-rts-ui32-ulcrypttype-rts-ui32-ulchallenge-char-pszpassword-int-pnmaxlenpassword" title="Permalink to this headline">¶</a></h3>
+<p>Decrypt the password specified by crypt type</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="13%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszPasswordCrypted</td>
+<td>Encrypted password</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>nPasswordCryptedSize</td>
+<td>Lenght of the encrypted password</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulCryptType</td>
+<td>Crypt type. See category &#8220;Crypt types&#8221; for details</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulChallenge</td>
+<td>Challenge value to encrypt the password</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pszPassword</td>
+<td>Cleartext password</td>
+</tr>
+<tr class="row-even"><td>[inout]</td>
+<td>pnMaxLenPassword</td>
+<td>Pointer to transmit the buffer length of pszPassword or to return the necessary decrypted password length if result code is ERR_BUFFERSIZE</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Password could be decrypted</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>At least one parameter is invalid</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOT_SUPPORTED</td>
+<td>Unsupported decryption type</td>
+</tr>
+<tr class="row-even"><td>ERR_BUFFERSIZE</td>
+<td>Buffer for pszPassword is too short, so the requested length is returned inpnMaxLenPassword</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_visu_client_controller_host_itf.html" title="CmpVisuClientControllerHostItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_user_d_b_objects_itf.html" title="CmpUserDBObjectsItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

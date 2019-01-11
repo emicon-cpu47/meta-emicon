@@ -1,0 +1,288 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_mod_r_t_sub_itf:
+
+==============
+SysModRTSubItf
+==============
+
+Interface of SysModRTSub
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. :ref:`More... <group___sys_mod_r_t_sub_itf-details>`
+
+Modules
+-------
+
+- :ref:`Static defines <group___sys_mod_r_t_sub_itf___staticdefines>`
+
+Data Structures
+---------------
+
+- struct :ref:`SysModRTSubFunctionTable <struct_sys_mod_r_t_sub_function_table>`
+
+- struct :ref:`ISysModRTSub_C <struct_i_sys_mod_r_t_sub___c>`
+
+Macros
+------
+
+- #define :ref:`EXTITF_SysModRTSub <group___sys_mod_r_t_sub_itf_1gaf3be99d90d4c981900b839d20ebaf7c8>`
+
+Typedefs
+--------
+
+- typedef void(* :ref:`PFMODRTSUBINIT <group___sys_mod_r_t_sub_itf_1ga2d33f5a036b8cab127aa7c5d61306bc5>`)(void)
+
+- typedef void(* :ref:`PFMODRTSUBCOMMCYCLE <group___sys_mod_r_t_sub_itf_1gaa27c8e40032938e2935b7506873dc827>`)(void)
+
+- typedef :ref:`ISysModRTSub_C <struct_i_sys_mod_r_t_sub___c>` :ref:`ISysModRTSub <group___sys_mod_r_t_sub_itf_1ga6187151968409072a2aeaaf4105095cd>`
+
+Functions
+---------
+
+- void :ref:`ModRTSubInit <group___sys_mod_r_t_sub_itf_1gae27c46a17462f0eaee51f26b56e07b19>` (void)
+
+- void :ref:`ModRTSubCommCycle <group___sys_mod_r_t_sub_itf_1gae675bed1bfffba60017fa91da0e4e873>` (void)
+
+- RTS_RESULT :ref:`ModRTMainSysFlashErase <group___sys_mod_r_t_sub_itf_1ga26b84365bb824e1af1a37a42b0226b43>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+
+- RTS_RESULT :ref:`ModRTMainSysFlashWrite <group___sys_mod_r_t_sub_itf_1gada2b5914f6b240ce33b68f434545d155>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa, char * pcSource, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+
+- RTS_RESULT :ref:`ModRTMainSysFlashFlush <group___sys_mod_r_t_sub_itf_1ga923863970726a4f75630ff5d2bfe125d>` (:ref:`FlashArea <group___sys_flash_itf___settings_1ga592e77b8379be53433be404615060ceb>`  fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+
+- RTS_UI32 :ref:`ModRTMainSysTimeGetMs <group___sys_mod_r_t_sub_itf_1ga1605f789cad24c69ba8d7536de79f9bd>` (void)
+
+- RTS_RESULT :ref:`ModRTMainSysTimeGetUs <group___sys_mod_r_t_sub_itf_1ga2f1c9fd746b8f3190845df1fca7b7321>` (:ref:`RTS_SYSTIME <group___sys_time_itf_1ga10c9d9a4c57129d83432fb02923858bf>` * pTime)
+
+- RTS_RESULT :ref:`ModRTMainSysTimeGetNs <group___sys_mod_r_t_sub_itf_1ga6474ac6129d8be65b15a70b7f2bcdcdf>` (:ref:`RTS_SYSTIME <group___sys_time_itf_1ga10c9d9a4c57129d83432fb02923858bf>` * pTime)
+
+.. _group___sys_mod_r_t_sub_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysModRTSub
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_mod_r_t_sub_itf_1gaf3be99d90d4c981900b839d20ebaf7c8:
+
+#define EXTITF_SysModRTSub
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_mod_r_t_sub_itf_1ga2d33f5a036b8cab127aa7c5d61306bc5:
+
+typedef void( * PFMODRTSUBINIT)(void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Memory address of :ref:`SysModRTSubFunctionTable <struct_sys_mod_r_t_sub_function_table>` EXTERN LIB SECTION BEGIN
+
+.. _group___sys_mod_r_t_sub_itf_1gaa27c8e40032938e2935b7506873dc827:
+
+typedef void( * PFMODRTSUBCOMMCYCLE)(void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_mod_r_t_sub_itf_1ga6187151968409072a2aeaaf4105095cd:
+
+typedef ISysModRTSub_C ISysModRTSub
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_mod_r_t_sub_itf_1gae27c46a17462f0eaee51f26b56e07b19:
+
+void ModRTSubInit (void)
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_mod_r_t_sub_itf_1gae675bed1bfffba60017fa91da0e4e873:
+
+void ModRTSubCommCycle (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_mod_r_t_sub_itf_1ga26b84365bb824e1af1a37a42b0226b43:
+
+RTS_RESULT ModRTMainSysFlashErase (FlashArea fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface wrapper function to ModRTMain. Erases a block of flash memory. You must erase a flash area before writing to it. This function is implemented in the generic part of SysFlash and splits up the block to erase in several smaller pieces with the maximum size of EraseBlockSize. For each piece :ref:`SysFlashErase_() <group___sys_flash_itf_1ga21fd79f255440888df20a0a73f181d87>` and the CommCycleHook is called, to keep the rest of the RTS also on single-tasking systems alive.
+
+**Parameters**
+
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa       | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]                                                        |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulSize   | Size of flash area to erase RANGE=[0,VALID_FLASH_SIZE,INVALID_FLASH_SIZE]                                                                                                        |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulOffset | Offset of flash area to erase. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET] |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+------------------------------------+
+| ERR_OK            | Flash erase was successful         |
++-------------------+------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported |
++-------------------+------------------------------------+
+| ERR_PARAMETER     | size or offset wrong               |
++-------------------+------------------------------------+
+| ERR_FAILED        | Flash could not be erased          |
++-------------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_mod_r_t_sub_itf_1gada2b5914f6b240ce33b68f434545d155:
+
+RTS_RESULT ModRTMainSysFlashWrite (FlashArea fa, char *pcSource, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface wrapper function to ModRTMain. Writes a block of data to the flash. The flash area has to be erased first with SysFlashErase. This function is implemented in the generic part of SysFlash and splits up the block to write in several smaller pieces with the maximum size of WriteBlockSize. For each piece :ref:`SysFlashWrite() <group___sys_file_flash_dep_1ga6c58f02fa7feb4f5954f2d5c7a06790a>` and the CommCycleHook is called, to keep the rest of the RTS also on single-tasking systems alive.
+
+**Parameters**
+
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa       | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]                                                           |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pcSource | Pointer to buffer that contains the data RANGE=[0,INVALID_SRC_BUFFER,VALID_SRC_BUFFER]                                                                                              |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulSize   | Size of the buffer RANGE=[0,VALID_BUFFER_SIZE,INVALID_BUFFER_SIZE]                                                                                                                  |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulOffset | Offset of flash area to write to. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET] |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+------------------------------------+
+| ERR_OK            | Flash read was successful          |
++-------------------+------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported |
++-------------------+------------------------------------+
+| ERR_PARAMETER     | pcSrc,size or offset wrong or null |
++-------------------+------------------------------------+
+| ERR_FAILED        | Flash could not be read            |
++-------------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_mod_r_t_sub_itf_1ga923863970726a4f75630ff5d2bfe125d:
+
+RTS_RESULT ModRTMainSysFlashFlush (FlashArea fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface wrapper function to ModRTMain. Called when a file that was opened for writing is closed. This function is implemented in the generic part of SysFlash and splits up the block to flush in several smaller pieces with the maximum size of FlushBlockSize. For each piece :ref:`SysFlashFlush() <group___cmp_s_i_l2_dep_1gaddabb7abfe91a62e73c3c8b36407cb02>` and the CommCycleHook is called, to keep the rest of the RTS also on single-tasking systems alive.
+
+**Parameters**
+
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | fa       | Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]                                                           |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulSize   | Size of the buffer RANGE=[0,VALID_BUFFER_SIZE,INVALID_BUFFER_SIZE]                                                                                                                  |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulOffset | Offset of flash area to write to. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET] |
++---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+------------------------------------+
+| ERR_OK            | Flash flush was successful         |
++-------------------+------------------------------------+
+| ERR_NOT_SUPPORTED | Type of Flasharea is not supported |
++-------------------+------------------------------------+
+| ERR_PARAMETER     | size or offset wrong or null       |
++-------------------+------------------------------------+
+| ERR_FAILED        | Flash could not be flushed         |
++-------------------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_mod_r_t_sub_itf_1ga1605f789cad24c69ba8d7536de79f9bd:
+
+RTS_UI32 ModRTMainSysTimeGetMs (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface wrapper function to ModRTMain.
+
+Return a monotonic, rising millisecond tick.
+
+**Returns:**
+
+Returns the millisecond tick
+
+.. _group___sys_mod_r_t_sub_itf_1ga2f1c9fd746b8f3190845df1fca7b7321:
+
+RTS_RESULT ModRTMainSysTimeGetUs (RTS_SYSTIME *pTime)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface wrapper function to ModRTMain.
+
+Return a monotonic, rising microsecond tick.
+
+**Parameters**
+
++---------+-------+----------------------------------------------------------+
+| [inout] | pTime | Pointer to the time tick result RANGE=[NULL,VALID_PTIME] |
++---------+-------+----------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+--------------------------------+
+| ERR_OK        | Time was returned successfully |
++---------------+--------------------------------+
+| ERR_PARAMETER | pTime was NULL                 |
++---------------+--------------------------------+
+| ERR_FAILED    | Internal Error                 |
++---------------+--------------------------------+
+
+.. _group___sys_mod_r_t_sub_itf_1ga6474ac6129d8be65b15a70b7f2bcdcdf:
+
+RTS_RESULT ModRTMainSysTimeGetNs (RTS_SYSTIME *pTime)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface wrapper function to ModRTMain.
+
+Return a monotonic, rising nanosecond tick.
+
+**Parameters**
+
++---------+-------+----------------------------------------------------------+
+| [inout] | pTime | Pointer to the time tick result RANGE=[NULL,VALID_PTIME] |
++---------+-------+----------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+--------------------------------+
+| ERR_OK        | Time was returned successfully |
++---------------+--------------------------------+
+| ERR_PARAMETER | pTime was NULL                 |
++---------------+--------------------------------+
+| ERR_FAILED    | Internal Error                 |
++---------------+--------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,150 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Compiler switch &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Compiler switch</a><ul>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a><ul>
+<li><a class="reference internal" href="#group-c-m-itf-compilerswitch-1cmitf-compilerswitchsect0">1</a></li>
+<li><a class="reference internal" href="#group-c-m-itf-compilerswitch-1cmitf-compilerswitchsect1">2</a></li>
+<li><a class="reference internal" href="#group-c-m-itf-compilerswitch-1cmitf-compilerswitchsect2">3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___c_m_itf___compilerswitch.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="compiler-switch">
+<span id="group-c-m-itf-compilerswitch"></span><h1>Compiler switch<a class="headerlink" href="#compiler-switch" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-c-m-itf-compilerswitch-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="detailed-description">
+<span id="group-c-m-itf-compilerswitch-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="group-c-m-itf-compilerswitch-1cmitf-compilerswitchsect0">
+<span id="id1"></span><h3>1<a class="headerlink" href="#group-c-m-itf-compilerswitch-1cmitf-compilerswitchsect0" title="Permalink to this headline">¶</a></h3>
+<p>The way components are linked together can be specified by the following compiler switches.</p>
+<p>If nothing is specified, DYNAMIC_LINK is used by default.</p>
+<p>Link examples:</p>
+<ul class="simple">
+<li>Static linked and closed runtime system (e.g. embedded): STATIC_LINK must be specified</li>
+<li>Static linked runtime system, that can be extended via separate, dynamically linkable components: MIXED_LINK must be specified for the runtime system. Nothing must be specified in the external component.</li>
+<li>Complete dynamically linked runtime system (each component is a separate loadable module): Nothing must be specified in each component.</li>
+<li>Static linked runtime system, that can be extended via separate, dynamically linkable components and all interface functions should be overloadable: DYNAMIC_LINK must be specified for the runtime system. Nothing must be specified in the external component.</li>
+<li>C++ runtime system: CPLUSPLUS must be specified always in each component, that is used in a C++ runtime system. This is independant, if the kernel or a separate component is linked (static or dynamically linked!</li>
+<li>STATIC_LINK: All components are linked statically to the component manager during compile time. All components call each other via C-function calls.</li>
+<li>MIXED_LINK: All components are linked static, but can be extended by dynamically linked components. All static components call each other via C-function. All dynamically linked components are called and call the kernel components via function pointers.</li>
+<li>DYNAMIC_LINK: [Default] All components exists as separate compiled modules. So this modules can be loaded dynamically. All components call each other via function pointers. NOTE: If DYNAMIC_LINK is specified explicitly in a runtime system that is linked static, all component functions (also the kernel components) are called via function pointers!</li>
+<li>CPLUSPLUS: All components are linked together via C++ classes. All components call each other via C++ method calls. Internally, the components calls itself via C-function calls.</li>
+</ul>
+</div>
+<div class="section" id="group-c-m-itf-compilerswitch-1cmitf-compilerswitchsect1">
+<span id="id2"></span><h3>2<a class="headerlink" href="#group-c-m-itf-compilerswitch-1cmitf-compilerswitchsect1" title="Permalink to this headline">¶</a></h3>
+<p>Compiler switches to check if the alignment between the DeviceDescription setting &#8220;pack-mode&#8221; of the CODESYS compiler and the C-compiler standard pack mode match together.</p>
+<ul class="simple">
+<li>EXTERNAL_LIB_PACKMODE: Define the alignment of the CODESYS Compiler: 2=2Byte alignment (&#8220;pack-mode&#8221;=2) 4=4Byte alignment (&#8220;pack-mode&#8221;=4) 8=8Byte alignment [default] (&#8220;pack-mode&#8221;=8)</li>
+</ul>
+</div>
+<div class="section" id="group-c-m-itf-compilerswitch-1cmitf-compilerswitchsect2">
+<span id="id3"></span><h3>3<a class="headerlink" href="#group-c-m-itf-compilerswitch-1cmitf-compilerswitchsect2" title="Permalink to this headline">¶</a></h3>
+<p>Compiler switches to enable/disable single features in the component.</p>
+<ul class="simple">
+<li>CM_SYSTARGET_DISABLE_OVERLOADABLE_FUNCTIONS: Switch to disable the possibility to overload the SysTarget functions</li>
+<li>CM_DISABLE_API_SIGNATURE_CHECK: Switch to disable the signature check of all api functions</li>
+<li>CM_DISABLE_API_VERSION_CHECK: Switch to disable the version check of all api functions</li>
+<li>CM_NO_EXIT: Switch to disable definite exit or shutdown process of the runtime system</li>
+<li>CM_NO_DYNAMIC_COMPONENTS: Switch to disable dynamic loadable components</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

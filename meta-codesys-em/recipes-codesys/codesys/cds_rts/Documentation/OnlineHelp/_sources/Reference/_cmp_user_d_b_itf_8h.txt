@@ -1,0 +1,205 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __cmp_user_d_b_itf_8h:
+
+=============================
+CmpUserDBItf.h File Reference
+=============================
+
+| #include ":ref:`CmpItf.h`"
+| #include ":ref:`CmpCryptMD5Itf.h <_cmp_crypt_m_d5_itf_8h>`"
+
+Data Structures
+---------------
+
+- struct :ref:`UserDBPassword <union_user_d_b_password>`
+
+- struct :ref:`UserDBEntry <struct_user_d_b_entry>`
+
+- struct :ref:`GroupDBEntry <struct_group_d_b_entry>`
+
+- struct :ref:`EVTPARAM_UserDbRemoveGroupFromRightsDB <struct_e_v_t_p_a_r_a_m___user_db_remove_group_from_rights_d_b>`
+
+- struct :ref:`ICmpUserDB_C <struct_i_cmp_user_d_b___c>`
+
+Macros
+------
+
+- #define :ref:`USERDB_NUM_OF_STATIC_USERS <group___cmp_user_d_b_itf___staticdefines_1ga6a98a3f2a891d252674e12e53bb7d8c7>` 8
+
+- #define :ref:`USERDB_NUM_OF_STATIC_GROUPS <group___cmp_user_d_b_itf___staticdefines_1ga9903680068beb90da11640f4116fd30a>` 4
+
+- #define :ref:`USERDB_NUM_OF_STATIC_HANDLES <group___cmp_user_d_b_itf___staticdefines_1ga9cb1806145f5608a966773559d93e24d>` 12
+
+- #define :ref:`USERDB_PROP_NONE <group___cmp_user_d_b_itf___user_d_bproperties_1gaa9fdc565368a0b688eec7897ba833528>` UINT32_C(0x00000000)
+
+- #define :ref:`USERDB_PROP_EDITABLE <group___cmp_user_d_b_itf___user_d_bproperties_1ga23145307833035ff8a3a582c177cd194>` UINT32_C(0x00000001)
+
+- #define :ref:`USERDB_PROP_ADD_MEMBER <group___cmp_user_d_b_itf___user_d_bproperties_1ga2524687de6df17cc00ea3c3c57bcc300>` UINT32_C(0x00000002)
+
+- #define :ref:`USERDB_PROP_REMOVE_MEMBER <group___cmp_user_d_b_itf___user_d_bproperties_1ga635d020d67a5d4d5c4b157b207fa9367>` UINT32_C(0x00000004)
+
+- #define :ref:`USERDB_PROP_CREATE <group___cmp_user_d_b_itf___user_d_bproperties_1ga20f90a6bdb5c208bc3d4dcbf9e9a506e>` UINT32_C(0x00000008)
+
+- #define :ref:`USERDB_PROP_DELETE <group___cmp_user_d_b_itf___user_d_bproperties_1ga26ed5270f85ab03f45f5cce8ee56e231>` UINT32_C(0x00000010)
+
+- #define :ref:`USERDB_PROP_REMOVE_ALL_MEMBERS <group___cmp_user_d_b_itf___user_d_bproperties_1gafd75762d3a780acdd4f2284eaad54c35>` UINT32_C(0x00000020)
+
+- #define :ref:`USERDB_PROP_EDIT_RIGHTS <group___cmp_user_d_b_itf___user_d_bproperties_1ga3e0625660162b1bc4233d85f81679918>` UINT32_C(0x00000040)
+
+- #define :ref:`USERDB_PROP_OWNER <group___cmp_user_d_b_itf___user_d_bproperties_1gac88b57e3d3c0ea59de7ac52bf1df4791>` UINT32_C(0x00000080)
+
+- #define :ref:`USERDB_PROP_NAME_EDITABLE <group___cmp_user_d_b_itf___user_d_bproperties_1gad9544c49c62c52520a414bf093234e44>` UINT32_C(0x00000100)
+
+- #define :ref:`USERDB_PROP_PASSWORD_UPTODATE <group___cmp_user_d_b_itf___user_d_bproperties_1ga98757efcd73de278683ea9c078108489>` UINT32_C(0x00001000)
+
+- #define :ref:`USERDB_PROP_ENABLE_CHANGE_PASSWORD <group___cmp_user_d_b_itf___user_d_bproperties_1gab40cce06468fcf8af4f1da4c1a990b7a>` UINT32_C(0x00002000)
+
+- #define :ref:`USERDB_PROP_ALL <group___cmp_user_d_b_itf___user_d_bproperties_1ga8ebaba888a5a022b94c711e8b1e63791>` (UINT32_C(0x0FFFFFFF) & ~USERDB_PROP_OWNER)
+
+- #define :ref:`USERDB_PROP_GROUP_ADMINISTRATOR_DEFAULT <group___cmp_user_d_b_itf___user_d_bproperties_1ga5d0a4291c3d22cdf161a64b7590705fd>` ( :ref:`USERDB_PROP_EDITABLE <group___cmp_user_d_b_itf___user_d_bproperties_1ga23145307833035ff8a3a582c177cd194>` | :ref:`USERDB_PROP_ADD_MEMBER <group___cmp_user_d_b_itf___user_d_bproperties_1ga2524687de6df17cc00ea3c3c57bcc300>` | :ref:`USERDB_PROP_REMOVE_MEMBER <group___cmp_user_d_b_itf___user_d_bproperties_1ga635d020d67a5d4d5c4b157b207fa9367>` | :ref:`USERDB_PROP_CREATE <group___cmp_user_d_b_itf___user_d_bproperties_1ga20f90a6bdb5c208bc3d4dcbf9e9a506e>` | :ref:`USERDB_PROP_OWNER <group___cmp_user_d_b_itf___user_d_bproperties_1gac88b57e3d3c0ea59de7ac52bf1df4791>` )
+
+- #define :ref:`USERDB_PROP_USER_ADMINISTRATOR_DEFAULT <group___cmp_user_d_b_itf___user_d_bproperties_1gadc7948f9cb940fa6b507b993c7ecf3a1>` (UINT32_C(0x0FFFFFFF) & ~USERDB_PROP_NAME_EDITABLE & ~USERDB_PROP_DELETE)
+
+- #define :ref:`USERDB_PROP_GROUP_EVERYONE_DEFAULT <group___cmp_user_d_b_itf___user_d_bproperties_1ga3034eb63238e3dfe188baa5ad449ca2b>` ( :ref:`USERDB_PROP_ADD_MEMBER <group___cmp_user_d_b_itf___user_d_bproperties_1ga2524687de6df17cc00ea3c3c57bcc300>` | :ref:`USERDB_PROP_REMOVE_MEMBER <group___cmp_user_d_b_itf___user_d_bproperties_1ga635d020d67a5d4d5c4b157b207fa9367>` | :ref:`USERDB_PROP_CREATE <group___cmp_user_d_b_itf___user_d_bproperties_1ga20f90a6bdb5c208bc3d4dcbf9e9a506e>` | :ref:`USERDB_PROP_EDIT_RIGHTS <group___cmp_user_d_b_itf___user_d_bproperties_1ga3e0625660162b1bc4233d85f81679918>` )
+
+- #define :ref:`USERDB_PASSWORD_TYPE_STRING <group___cmp_user_d_b_itf___staticdefines_1ga4b2d4a9437c9ce16d949530311dd56de>` UINT32_C(0x00000001)
+
+- #define :ref:`USERDB_PASSWORD_TYPE_MD5 <group___cmp_user_d_b_itf___staticdefines_1ga3347b61db6481d08730b49456c73a906>` UINT32_C(0x00000002)
+
+- #define :ref:`USERDB_GROUP_ADMINISTRATOR <group___cmp_user_d_b_itf___predefinedusergroups_1ga941f4b5a4befd0010cb4098a5ea2357a>` "Administrator"
+
+- #define :ref:`USERDB_GROUP_DEVELOPER <group___cmp_user_d_b_itf___predefinedusergroups_1gae6d7a99a80126b544cc27d81b02f0130>` "Developer"
+
+- #define :ref:`USERDB_GROUP_SERVICE <group___cmp_user_d_b_itf___predefinedusergroups_1gaac90ae2de3084861f3f64daadb8ac1b7>` "Service"
+
+- #define :ref:`USERDB_GROUP_WATCH <group___cmp_user_d_b_itf___predefinedusergroups_1gaebdfee4013878449d543c262fceab776>` "Watch"
+
+- #define :ref:`USERDB_GROUP_EVERYONE <group___cmp_user_d_b_itf___predefinedusergroups_1gaafc0f43c93a464f6c64315555ef608ee>` "Everyone"
+
+- #define :ref:`USERDB_USER_ADMINISTRATOR <group___cmp_user_d_b_itf___predefinedusers_1gaaafa1fcae476fd5d69c810fabe953113>` "Administrator"
+
+- #define :ref:`USERDB_USER_ANONYMOUS <group___cmp_user_d_b_itf___predefinedusers_1ga2bad00a6629a5d1afcd33b1fb65df579>` "Anonymous"
+
+- #define :ref:`USERDB_RIGHT_NONE <group___cmp_user_d_b_itf___userrights_1gafad1fef1af4b373aff9e6773e6dc9faf>` UINT32_C(0x00000000)
+
+- #define :ref:`USERDB_RIGHT_VIEW <group___cmp_user_d_b_itf___userrights_1ga7b2ac5f2b6dcf5a8df07e029c0d7fa91>` UINT32_C(0x00000001)
+
+- #define :ref:`USERDB_RIGHT_MODIFY <group___cmp_user_d_b_itf___userrights_1gaa9d27e26e946ac9a0e371929c0bce782>` UINT32_C(0x00000002)
+
+- #define :ref:`USERDB_RIGHT_EXECUTE <group___cmp_user_d_b_itf___userrights_1gaf3e7a45a8c967e9616470837aad48068>` UINT32_C(0x00000004)
+
+- #define :ref:`USERDB_RIGHT_ADD_REMOVE <group___cmp_user_d_b_itf___userrights_1gae6b4aa37808422481c76f165f4b42737>` UINT32_C(0x00000008)
+
+- #define :ref:`USERDB_RIGHT_OEM <group___cmp_user_d_b_itf___userrights_1gaaece45161c83ab82d1f0ffba8857b513>` UINT32_C(0xFF000000)
+
+- #define :ref:`USERDB_RIGHT_ALL <group___cmp_user_d_b_itf___userrights_1ga25e056428cf038f9e58221c8a9128b2a>` UINT32_C(0xFFFFFFFF)
+
+- #define :ref:`EVTPARAMID_UserDbRemoveGroupFromRightsDB <group___cmp_user_d_b_itf___eventparameter_1gadf001e4d013903d520186d122ab0bcf5>` 0x0001
+
+- #define :ref:`EVTVERSION_UserDbRemoveGroupFromRightsDB <group___cmp_user_d_b_itf___eventparameter_1gaa297a910615e8a589fb02131941933da>` 0x0001
+
+- #define :ref:`EVT_UserDbRemoveGroupFromRightsDB <group___cmp_user_d_b_itf___events_1gadaa9cc200cc116e26e55f4371c2ebd84>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`ITF_CmpUserDB <group___cmp_user_d_b_itf_1gabb53395a6a984a913f911edb18b6ec1b>`
+
+- #define :ref:`EXTITF_CmpUserDB <group___cmp_user_d_b_itf_1ga8b7950f1d381f98051d500246a570700>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpUserDB_C <struct_i_cmp_user_d_b___c>` :ref:`ICmpUserDB <group___cmp_user_d_b_itf_1gacfbe54e170156b44b8a61ff41bfdb230>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`UserDBIsConfigurable <group___cmp_user_d_b_itf_1ga4c9bb0711591572563938429d3765354>` (RTS_UI32 * pulPropertyUsers, RTS_UI32 * pulPropertyGroups)
+
+- RTS_RESULT :ref:`UserDBLoad <group___cmp_user_d_b_itf_1ga42f257e1b934bdc47d2433ed1b332e15>` (void)
+
+- RTS_RESULT :ref:`UserDBStore <group___cmp_user_d_b_itf_1ga18dde7305e7f9854825bfa986904df41>` (void)
+
+- RTS_RESULT :ref:`UserDBRelease <group___cmp_user_d_b_itf_1ga1ee2c04f93ab8aaddb33ecc80c49cdf7>` (void)
+
+- RTS_HANDLE :ref:`UserDBAdd <group___cmp_user_d_b_itf_1gafea5dcd6b7a34019bf034eea04951808>` (char * pszUser, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBRemove <group___cmp_user_d_b_itf_1gaa8d91d5c6560bf90c6eca398f3d50360>` (RTS_HANDLE hUser)
+
+- RTS_RESULT :ref:`UserDBSetPassword <group___cmp_user_d_b_itf_1ga44ddbe364e7d74d7854acaf7f42ddc72>` (RTS_HANDLE hUser, char * pszPassword)
+
+- RTS_RESULT :ref:`UserDBGetPasswordMD5 <group___cmp_user_d_b_itf_1ga7e88c897cbf2fa1b99d3f251c5815a8c>` (RTS_HANDLE hUser, unsigned char * pbyPasswordMD5, int * piMaxLen)
+
+- RTS_RESULT :ref:`UserDBSetPasswordMD5 <group___cmp_user_d_b_itf_1ga54f0191b2e375c6ad21f826f664c62c0>` (RTS_HANDLE hUser, unsigned char * pbyPasswordMD5, int * piMaxLen)
+
+- RTS_RESULT :ref:`UserDBSetProperty <group___cmp_user_d_b_itf_1ga9bad26c173acb05c79cd7fa80b05b14b>` (RTS_HANDLE hUser, RTS_UI32 ulProperty)
+
+- RTS_HANDLE :ref:`UserDBGetFirst <group___cmp_user_d_b_itf_1gad945d309b83a82294517242a8e7f3557>` (RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGetNext <group___cmp_user_d_b_itf_1gac0d58351305afe299d1c6eea2533ca8b>` (RTS_HANDLE hPrevUser, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBOpen <group___cmp_user_d_b_itf_1gaa78bb481b3f3548dd2ffe5f91becf683>` (char * pszUser, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBClose <group___cmp_user_d_b_itf_1gae62c1d3f39df8506c441ae6a3106eb40>` (RTS_HANDLE hUser)
+
+- RTS_RESULT :ref:`UserDBGetName <group___cmp_user_d_b_itf_1ga621695714b63963d6f28a43ee598cfec>` (RTS_HANDLE hUser, char * pszUser, int * piMaxLen)
+
+- RTS_RESULT :ref:`UserDBGetProperty <group___cmp_user_d_b_itf_1ga47236fcee7c6865e762d7f70a54a6ac7>` (RTS_HANDLE hUser, RTS_UI32 * pulProperty)
+
+- RTS_RESULT :ref:`UserDBCheckPassword <group___cmp_user_d_b_itf_1ga97c12727fe2bc03b857aed0749c67ea7>` (RTS_HANDLE hUser, char * pszPassword)
+
+- RTS_HANDLE :ref:`UserDBGetFirstGroup <group___cmp_user_d_b_itf_1gaae875907da955eb486c104c6df2a5a8b>` (RTS_HANDLE hUser, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGetNextGroup <group___cmp_user_d_b_itf_1ga7e9cd0425a047f653badde2dd1500db4>` (RTS_HANDLE hUser, RTS_HANDLE hPrevGroup, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGroupAdd <group___cmp_user_d_b_itf_1ga310c3ae23d02c9ea8d072c2bb27fca34>` (char * pszGroup, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBGroupRemove <group___cmp_user_d_b_itf_1ga53eb2ead2c70472e1aaedb46519fa899>` (RTS_HANDLE hGroup)
+
+- RTS_RESULT :ref:`UserDBGroupAddUser <group___cmp_user_d_b_itf_1ga592f6109f59dd2334bdea684bbed611e>` (RTS_HANDLE hGroup, RTS_HANDLE hUser)
+
+- RTS_RESULT :ref:`UserDBGroupRemoveUser <group___cmp_user_d_b_itf_1gab2fafe4f1859e282428a8bd923f24c81>` (RTS_HANDLE hGroup, RTS_HANDLE hUser)
+
+- RTS_RESULT :ref:`UserDBGroupSetProperty <group___cmp_user_d_b_itf_1ga71b472bc0cd6c9b6b85160aa05860454>` (RTS_HANDLE hGroup, RTS_UI32 ulProperty)
+
+- RTS_RESULT :ref:`UserDBGroupAddMember <group___cmp_user_d_b_itf_1ga20afb4d486b5e13ed81c0ab99dd4a7a0>` (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)
+
+- RTS_RESULT :ref:`UserDBGroupRemoveMember <group___cmp_user_d_b_itf_1gaf5075c4df9d39a576bf3a295f3098fe5>` (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)
+
+- RTS_RESULT :ref:`UserDBEnforce <group___cmp_user_d_b_itf_1gac4650a1183375bec8ab92f855a659e19>` (void)
+
+- RTS_HANDLE :ref:`UserDBGroupGetFirst <group___cmp_user_d_b_itf_1gadf2c07b5c0a8633f1d19631c674f31c7>` (RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGroupGetNext <group___cmp_user_d_b_itf_1ga330560f782f1357476d13600beec6dfe>` (RTS_HANDLE hPrevGroup, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGroupOpen <group___cmp_user_d_b_itf_1gaadc1b6e4555a5bdbc95a57e90793ce67>` (char * pszGroup, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBGroupClose <group___cmp_user_d_b_itf_1ga2bd36eb02e92b555783cb80dcddc03cd>` (RTS_HANDLE hGroup)
+
+- RTS_RESULT :ref:`UserDBGroupGetName <group___cmp_user_d_b_itf_1gaa369c57d9fbd1bb2e377b4a827559819>` (RTS_HANDLE hGroup, char * pszGroup, int * piMaxLen)
+
+- RTS_RESULT :ref:`UserDBGroupGetProperty <group___cmp_user_d_b_itf_1ga1fbd5d0a7d55623bbd65d073b31e3668>` (RTS_HANDLE hGroup, RTS_UI32 * pulProperty)
+
+- RTS_RESULT :ref:`UserDBGroupHasUser <group___cmp_user_d_b_itf_1gaf35118fab9a262b7b12e3d14e8c7dcea>` (RTS_HANDLE hGroup, RTS_HANDLE hUser)
+
+- RTS_HANDLE :ref:`UserDBGroupGetFirstUser <group___cmp_user_d_b_itf_1ga8a833a1d5bdff8bb593a331a70da690b>` (RTS_HANDLE hGroup, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGroupGetNextUser <group___cmp_user_d_b_itf_1gabea7ead32f191a299f9e9ff9dee71c3f>` (RTS_HANDLE hGroup, RTS_HANDLE hPrevUser, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBGroupHasMember <group___cmp_user_d_b_itf_1ga9f4db2b4c2e026cfb3b40ca067a2b074>` (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)
+
+- RTS_HANDLE :ref:`UserDBGroupGetFirstMember <group___cmp_user_d_b_itf_1ga14c27328dcfd923c2fd0848f3ab7e6d2>` (RTS_HANDLE hGroup, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBGroupGetNextMember <group___cmp_user_d_b_itf_1ga524e5d7e9db408eb950fbc5488f631ea>` (RTS_HANDLE hGroup, RTS_HANDLE hPrevGroupMember, RTS_RESULT * pResult)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpUserDBItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

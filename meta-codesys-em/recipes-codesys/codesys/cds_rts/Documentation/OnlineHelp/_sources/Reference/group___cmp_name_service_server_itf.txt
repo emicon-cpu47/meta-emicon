@@ -1,0 +1,112 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_name_service_server_itf:
+
+=======================
+CmpNameServiceServerItf
+=======================
+
+Interface of CmpNameServiceServer. :ref:`More... <group___cmp_name_service_server_itf-details>`
+
+Modules
+-------
+
+- :ref:`Event parameter <group___cmp_name_service_server_itf___eventparameter>`
+
+- :ref:`Events <group___cmp_name_service_server_itf___events>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpNameServiceServer_C <struct_i_cmp_name_service_server___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpNameServiceServer <group___cmp_name_service_server_itf_1ga1f21b30f59572ecb225f637c03ecaa17>`
+
+- #define :ref:`EXTITF_CmpNameServiceServer <group___cmp_name_service_server_itf_1ga848c34e70fe4ba40f1b6bd69a9de2ca3>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpNameServiceServer_C <struct_i_cmp_name_service_server___c>` :ref:`ICmpNameServiceServer <group___cmp_name_service_server_itf_1ga14ab702e128e670ecfd45140270ac4cd>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`NSServerHandleData <group___cmp_name_service_server_itf_1gad4565933ff3c687a95ab7995fbd69e63>` (RTS_HANDLE hRouter, RTS_HANDLE hNetworkInterface, RTS_UI8 byServiceId, RTS_UI8 byMessageId, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrSender, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrReceiver, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData, RTS_RESULT nRouterError)
+
+.. _group___cmp_name_service_server_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpNameServiceServer.
+
+External interface for the naming service server
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_name_service_server_itf_1ga1f21b30f59572ecb225f637c03ecaa17:
+
+#define ITF_CmpNameServiceServer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_name_service_server_itf_1ga848c34e70fe4ba40f1b6bd69a9de2ca3:
+
+#define EXTITF_CmpNameServiceServer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_name_service_server_itf_1ga14ab702e128e670ecfd45140270ac4cd:
+
+typedef ICmpNameServiceServer_C ICmpNameServiceServer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_name_service_server_itf_1gad4565933ff3c687a95ab7995fbd69e63:
+
+RTS_RESULT NSServerHandleData (RTS_HANDLE hRouter, RTS_HANDLE hNetworkInterface, RTS_UI8 byServiceId, RTS_UI8 byMessageId, PEERADDRESS addrSender, PEERADDRESS addrReceiver, PROTOCOL_DATA_UNIT pduData, RTS_RESULT nRouterError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Protocol handler of CmpNameServiceServer. Attention: Must only be called by CmpRouter to forward an incoming data package.
+
+**Parameters**
+
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hRouter           | Handle of router instance calling this function. For L4 client implementations, by default it is called by the router instance 0. For L4 server implementations, it is called by the router instance which has received the package originally.                                                                           |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hNetworkInterface | Handle of the network interface receiving originally the package                                                                                                                                                                                                                                                          |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | byServiceId       | The protocol id of the package                                                                                                                                                                                                                                                                                            |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | byMessageId       | The message id of the package                                                                                                                                                                                                                                                                                             |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | addrSender        | Sender address. The pointer within will not be valid after this function returns.                                                                                                                                                                                                                                         |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | addrReceiver      | Receiver address (either the address of this node or a broadcast address). The pointer within will not be valid after this function returns.                                                                                                                                                                              |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pduData           | The received data. The data pointer will not be valid after this function returns.                                                                                                                                                                                                                                        |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | nRouterError      | If this value is not ERR_OK, then this message has been generated by an intermediate node in response to a message previously sent by this node, that could not be delivered. nRouterError identifies the kind of error that happened. pduData then contains a detailed error description depending on the kind of error. |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

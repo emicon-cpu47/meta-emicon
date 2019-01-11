@@ -1,0 +1,1161 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_crypto_itf:
+
+============
+CmpCryptoItf
+============
+
+Interface of CmpCrypto. :ref:`More... <group___cmp_crypto_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagRtsByteString <structtag_rts_byte_string>`
+
+- struct :ref:`RtsCryptoKeyStorage <union_rts_crypto_key_storage>`
+
+- struct :ref:`tagRtsCryptoKey <structtag_rts_crypto_key>`
+
+- struct :ref:`tagcryptoasymmetricdecrypt_struct <structtagcryptoasymmetricdecrypt__struct>`
+
+- struct :ref:`tagcryptoasymmetricencrypt_struct <structtagcryptoasymmetricencrypt__struct>`
+
+- struct :ref:`tagcryptogeneratehash_struct <structtagcryptogeneratehash__struct>`
+
+- struct :ref:`tagcryptogeneraterandomnumber_struct <structtagcryptogeneraterandomnumber__struct>`
+
+- struct :ref:`tagcryptogetalgorithmbyid_struct <structtagcryptogetalgorithmbyid__struct>`
+
+- struct :ref:`tagcryptogetasymmetrickeylength_struct <structtagcryptogetasymmetrickeylength__struct>`
+
+- struct :ref:`tagcryptogetfirstalgorithm_struct <structtagcryptogetfirstalgorithm__struct>`
+
+- struct :ref:`tagcryptogetnextalgorithm_struct <structtagcryptogetnextalgorithm__struct>`
+
+- struct :ref:`tagcryptohmacsign_struct <structtagcryptohmacsign__struct>`
+
+- struct :ref:`tagcryptohmacverify_struct <structtagcryptohmacverify__struct>`
+
+- struct :ref:`tagcryptokeyexit_struct <structtagcryptokeyexit__struct>`
+
+- struct :ref:`tagcryptokeyinit_struct <structtagcryptokeyinit__struct>`
+
+- struct :ref:`tagcryptortsbytestringexit_struct <structtagcryptortsbytestringexit__struct>`
+
+- struct :ref:`tagcryptortsbytestringinit_struct <structtagcryptortsbytestringinit__struct>`
+
+- struct :ref:`tagcryptosignaturegenerate_struct <structtagcryptosignaturegenerate__struct>`
+
+- struct :ref:`tagcryptosignatureverify_struct <structtagcryptosignatureverify__struct>`
+
+- struct :ref:`tagcryptosymmetricdecrypt_struct <structtagcryptosymmetricdecrypt__struct>`
+
+- struct :ref:`tagcryptosymmetricencrypt_struct <structtagcryptosymmetricencrypt__struct>`
+
+- struct :ref:`RtsSymmetricCipherInfo <struct_rts_symmetric_cipher_info>`
+
+- struct :ref:`RtsDigestInfo <struct_rts_digest_info>`
+
+- struct :ref:`RtsCryptoInfo <struct_rts_crypto_info>`
+
+- struct :ref:`ICmpCrypto_C <struct_i_cmp_crypto___c>`
+
+Macros
+------
+
+- #define :ref:`RTSCRYPTOID_AES_128_CBC <group___cmp_crypto_itf_1ga4306da0e0090da745de1883a8d2bbc38>` RTS_IEC_UDINT_C(0x1001)
+
+- #define :ref:`RTSCRYPTOID_AES_128_CFB <group___cmp_crypto_itf_1ga1f6aadd46c1ff34a62f7438fdf7b7ea1>` RTS_IEC_UDINT_C(0x1002)
+
+- #define :ref:`RTSCRYPTOID_AES_256_CBC <group___cmp_crypto_itf_1gaf54a93a155fe2d77ecbde373c7a6765d>` RTS_IEC_UDINT_C(0x1003)
+
+- #define :ref:`RTSCRYPTOID_DES_CBC <group___cmp_crypto_itf_1ga8fffcf421fdf1c371ec1818e8025fa3a>` RTS_IEC_UDINT_C(0x1004)
+
+- #define :ref:`RTSCRYPTOID_AES_256_CTR <group___cmp_crypto_itf_1ga8906b0502e9f9f9ba17873b7b5ddcd56>` RTS_IEC_UDINT_C(0x1005)
+
+- #define :ref:`RTSCRYPTOID_RSA <group___cmp_crypto_itf_1gafffe0cff7a4cc24f883e002907222b61>` RTS_IEC_UDINT_C(0x2001)
+
+- #define :ref:`RTSCRYPTOID_RSA_OAEP_PADDING <group___cmp_crypto_itf_1ga394ed1b060ced887164d811ff1017aa2>` RTS_IEC_UDINT_C(0x2002)
+
+- #define :ref:`RTSCRYPTOID_RSA_PKCS1_V15_PADDING <group___cmp_crypto_itf_1gadc9cfae374494cd06ba2187bf1c0a98a>` RTS_IEC_UDINT_C(0x2003)
+
+- #define :ref:`RTSCRYPTOID_HASH_MD5 <group___cmp_crypto_itf_1ga8f37e7aacffc86aa1a12d2acddee1885>` RTS_IEC_UDINT_C(0x3001)
+
+- #define :ref:`RTSCRYPTOID_HASH_SHA1 <group___cmp_crypto_itf_1ga445ace011d861ed03693a271ca755c4f>` RTS_IEC_UDINT_C(0x3002)
+
+- #define :ref:`RTSCRYPTOID_HASH_SHA224 <group___cmp_crypto_itf_1ga77cda608a4fc6fc499c6de2fb8c1bce9>` RTS_IEC_UDINT_C(0x3003)
+
+- #define :ref:`RTSCRYPTOID_HASH_SHA256 <group___cmp_crypto_itf_1ga44a7b195ac4a89a2cf540c10d4c9d4b6>` RTS_IEC_UDINT_C(0x3004)
+
+- #define :ref:`RTSCRYPTOID_HASH_SHA384 <group___cmp_crypto_itf_1ga4ed0205c01437979b35757c38595e272>` RTS_IEC_UDINT_C(0x3005)
+
+- #define :ref:`RTSCRYPTOID_HASH_SHA512 <group___cmp_crypto_itf_1ga7d613f0f24d09d2602d76953df34d8a9>` RTS_IEC_UDINT_C(0x3006)
+
+- #define :ref:`RTSCRYPTOID_HMAC_MD5 <group___cmp_crypto_itf_1ga513e22e97af8b17a27aa289435b48aef>` RTS_IEC_UDINT_C(0x4001)
+
+- #define :ref:`RTSCRYPTOID_HMAC_SHA1 <group___cmp_crypto_itf_1gac8066488efef4706865e9832311a998a>` RTS_IEC_UDINT_C(0x4002)
+
+- #define :ref:`RTSCRYPTOID_HMAC_SHA224 <group___cmp_crypto_itf_1gaea48bdd131669179efe06a28fb9264f5>` RTS_IEC_UDINT_C(0x4003)
+
+- #define :ref:`RTSCRYPTOID_HMAC_SHA256 <group___cmp_crypto_itf_1gada73673421a61ffab3a289f743d5af11>` RTS_IEC_UDINT_C(0x4004)
+
+- #define :ref:`RTSCRYPTOID_HMAC_SHA384 <group___cmp_crypto_itf_1ga5cea65bb643859fe8518a2e16d2d7184>` RTS_IEC_UDINT_C(0x4005)
+
+- #define :ref:`RTSCRYPTOID_HMAC_SHA512 <group___cmp_crypto_itf_1ga391c952586743f76434a1d7b353c5406>` RTS_IEC_UDINT_C(0x4006)
+
+- #define :ref:`RTSCRYPTOID_RSA_OAEP_SHA1 <group___cmp_crypto_itf_1gaac1499cc28b42159b8232035857adf1c>` RTS_IEC_UDINT_C(0x5003)
+
+- #define :ref:`RTSCRYPTOID_RSA_OAEP_SHA256 <group___cmp_crypto_itf_1ga80ee561ad84b4f27c70f894fcb64f358>` RTS_IEC_UDINT_C(0x5004)
+
+- #define :ref:`RTSCRYPTOID_RSA_PKCS1_V15_SHA1 <group___cmp_crypto_itf_1ga6f38750cbff797a51bfeba2ad977bf20>` RTS_IEC_UDINT_C(0x5001)
+
+- #define :ref:`RTSCRYPTOID_RSA_PKCS1_V15_SHA256 <group___cmp_crypto_itf_1ga3fdafe4ffb8148efda138167b417f0dd>` RTS_IEC_UDINT_C(0x5002)
+
+- #define :ref:`RTSCRYPTOID <group___cmp_crypto_itf_1ga9ff781cd99b0d7c7e41e5a67d760942c>` RTS_IEC_UDINT
+
+- #define :ref:`KEYTYPE_KEY <group___cmp_crypto_itf_1gab7f2ff673c7ad06c8aea24e3916ccbcd>` RTS_IEC_DINT_C(0x0)	/* The key is directly available. Stored in a RTS_BYTESTRING. */
+
+- #define :ref:`KEYTYPE_CERTHANDLE <group___cmp_crypto_itf_1gad3506c98fc067cf967054383b50e78c9>` RTS_IEC_DINT_C(0x1)	/* The key is identified by a handle to the certificat. Only used for asymmetric keys. */
+
+- #define :ref:`KEYTYPE_CERTCONTENT <group___cmp_crypto_itf_1ga57af89a54ff4166bca45ee3187e94e9c>` RTS_IEC_DINT_C(0x2)	/* The key is identified by the certificate context. Only used for asymmetric keys. */
+
+- #define :ref:`RTSCRYPTOKEYTYPE <group___cmp_crypto_itf_1ga5bfe2d9255372e6ff9ba086ca0bdf0cb>` RTS_IEC_DINT
+
+- #define :ref:`RTSCRYPTOTYPE_SYMMETRIC <group___cmp_crypto_itf_1ga5c97fc51b25624b5e3a14e3cbc920e6f>` RTS_IEC_UDINT_C(0x1000)
+
+- #define :ref:`RTSCRYPTOTYPE_ASYMMETRIC <group___cmp_crypto_itf_1ga31e83979a94bcd8958b848272b17d48b>` RTS_IEC_UDINT_C(0x2000)
+
+- #define :ref:`RTSCRYPTOTYPE_HASH <group___cmp_crypto_itf_1gaedd941515517f9dc39ac09ae1e0198f0>` RTS_IEC_UDINT_C(0x3000)
+
+- #define :ref:`RTSCRYPTOTYPE_HMAC <group___cmp_crypto_itf_1gafc3a000b42b753e45c127e06817709c8>` RTS_IEC_UDINT_C(0x4000)
+
+- #define :ref:`RTSCRYPTOTYPE_SIGNATURE <group___cmp_crypto_itf_1ga49e5af0f1ca0ee7ba59f8f59c6347f31>` RTS_IEC_UDINT_C(0x5000)
+
+- #define :ref:`RTSCRYPTOTYPE <group___cmp_crypto_itf_1ga26348a92c0683e8dc903eb35648f7dfa>` RTS_IEC_UDINT
+
+- #define :ref:`ITF_CmpCrypto <group___cmp_crypto_itf_1ga2aed92746d74b0c2be2734a8eb481f83>`
+
+- #define :ref:`EXTITF_CmpCrypto <group___cmp_crypto_itf_1ga921fabd3625d4c16db0cf2b2ef09dfa5>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagRtsByteString <structtag_rts_byte_string>` :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>`
+
+- typedef struct :ref:`tagRtsCryptoKey <structtag_rts_crypto_key>` :ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>`
+
+- typedef struct :ref:`tagcryptoasymmetricdecrypt_struct <structtagcryptoasymmetricdecrypt__struct>` :ref:`cryptoasymmetricdecrypt_struct <group___cmp_crypto_itf_1ga140b30bc9d0c2bcce3bd9bad1ceb58eb>`
+
+- typedef struct :ref:`tagcryptoasymmetricencrypt_struct <structtagcryptoasymmetricencrypt__struct>` :ref:`cryptoasymmetricencrypt_struct <group___cmp_crypto_itf_1ga09d4a65a6ec398b1c50f11019247c899>`
+
+- typedef struct :ref:`tagcryptogeneratehash_struct <structtagcryptogeneratehash__struct>` :ref:`cryptogeneratehash_struct <group___cmp_crypto_itf_1ga03c30660a07df57b0641aebde0bdba41>`
+
+- typedef struct :ref:`tagcryptogeneraterandomnumber_struct <structtagcryptogeneraterandomnumber__struct>` :ref:`cryptogeneraterandomnumber_struct <group___cmp_crypto_itf_1ga2113f63bb640923f36b0f7f31caa0593>`
+
+- typedef struct :ref:`tagcryptogetalgorithmbyid_struct <structtagcryptogetalgorithmbyid__struct>` :ref:`cryptogetalgorithmbyid_struct <group___cmp_crypto_itf_1gab7387611df856bc764f1021eb80543ea>`
+
+- typedef struct :ref:`tagcryptogetasymmetrickeylength_struct <structtagcryptogetasymmetrickeylength__struct>` :ref:`cryptogetasymmetrickeylength_struct <group___cmp_crypto_itf_1gace88e4ed4aeab4ea0168747a501d1445>`
+
+- typedef struct :ref:`tagcryptogetfirstalgorithm_struct <structtagcryptogetfirstalgorithm__struct>` :ref:`cryptogetfirstalgorithm_struct <group___cmp_crypto_itf_1ga00b14d4628730acf21b78245f9dbd68e>`
+
+- typedef struct :ref:`tagcryptogetnextalgorithm_struct <structtagcryptogetnextalgorithm__struct>` :ref:`cryptogetnextalgorithm_struct <group___cmp_crypto_itf_1gade9645ac2a97fec399d2742ace1cf06f>`
+
+- typedef struct :ref:`tagcryptohmacsign_struct <structtagcryptohmacsign__struct>` :ref:`cryptohmacsign_struct <group___cmp_crypto_itf_1ga99c39b83c2e75adfbaa4a02491ac4258>`
+
+- typedef struct :ref:`tagcryptohmacverify_struct <structtagcryptohmacverify__struct>` :ref:`cryptohmacverify_struct <group___cmp_crypto_itf_1ga785cb4186390a70fcf192ea80f5351fd>`
+
+- typedef struct :ref:`tagcryptokeyexit_struct <structtagcryptokeyexit__struct>` :ref:`cryptokeyexit_struct <group___cmp_crypto_itf_1gaefa9c48f9b1328a7b393a14e3c5ab683>`
+
+- typedef struct :ref:`tagcryptokeyinit_struct <structtagcryptokeyinit__struct>` :ref:`cryptokeyinit_struct <group___cmp_crypto_itf_1ga9689cfb7cae0c400a54294b255d919f7>`
+
+- typedef struct :ref:`tagcryptortsbytestringexit_struct <structtagcryptortsbytestringexit__struct>` :ref:`cryptortsbytestringexit_struct <group___cmp_crypto_itf_1ga310851d15be08a6d0ebb4481ef6f2f6c>`
+
+- typedef struct :ref:`tagcryptortsbytestringinit_struct <structtagcryptortsbytestringinit__struct>` :ref:`cryptortsbytestringinit_struct <group___cmp_crypto_itf_1gaf6b5b13eaf3db4a0e87ca078cb8e18de>`
+
+- typedef struct :ref:`tagcryptosignaturegenerate_struct <structtagcryptosignaturegenerate__struct>` :ref:`cryptosignaturegenerate_struct <group___cmp_crypto_itf_1ga8a4c52fd15248f8b1f4017ed32d309c1>`
+
+- typedef struct :ref:`tagcryptosignatureverify_struct <structtagcryptosignatureverify__struct>` :ref:`cryptosignatureverify_struct <group___cmp_crypto_itf_1gaa466b77b05ccb23cb6b3d6b20ee0222c>`
+
+- typedef struct :ref:`tagcryptosymmetricdecrypt_struct <structtagcryptosymmetricdecrypt__struct>` :ref:`cryptosymmetricdecrypt_struct <group___cmp_crypto_itf_1gaaf3bcc4903e64d143be5385576619c50>`
+
+- typedef struct :ref:`tagcryptosymmetricencrypt_struct <structtagcryptosymmetricencrypt__struct>` :ref:`cryptosymmetricencrypt_struct <group___cmp_crypto_itf_1gafdadae40c983a197256093ae88cd9c1d>`
+
+- typedef :ref:`ICmpCrypto_C <struct_i_cmp_crypto___c>` :ref:`ICmpCrypto <group___cmp_crypto_itf_1gabb70df803f41bdbaeb33e055d0e56345>`
+
+Functions
+---------
+
+- void :ref:`cryptoasymmetricdecrypt <group___cmp_crypto_itf_1gab92bb6b95471220b1eba750a3dd9e2a0>` (:ref:`cryptoasymmetricdecrypt_struct <group___cmp_crypto_itf_1ga140b30bc9d0c2bcce3bd9bad1ceb58eb>` * p)
+
+- void :ref:`cryptoasymmetricencrypt <group___cmp_crypto_itf_1gacbf4d058438159477214f8e0f15d0d4a>` (:ref:`cryptoasymmetricencrypt_struct <group___cmp_crypto_itf_1ga09d4a65a6ec398b1c50f11019247c899>` * p)
+
+- void :ref:`cryptogeneratehash <group___cmp_crypto_itf_1gace43eaf55f95c456a35868c30b002f85>` (:ref:`cryptogeneratehash_struct <group___cmp_crypto_itf_1ga03c30660a07df57b0641aebde0bdba41>` * p)
+
+- void :ref:`cryptogeneraterandomnumber <group___cmp_crypto_itf_1ga370888592dca2b5837867696326a6dc3>` (:ref:`cryptogeneraterandomnumber_struct <group___cmp_crypto_itf_1ga2113f63bb640923f36b0f7f31caa0593>` * p)
+
+- void :ref:`cryptogetalgorithmbyid <group___cmp_crypto_itf_1ga2d3ee83c4597e071f7b2dd563e5954bc>` (:ref:`cryptogetalgorithmbyid_struct <group___cmp_crypto_itf_1gab7387611df856bc764f1021eb80543ea>` * p)
+
+- void :ref:`cryptogetasymmetrickeylength <group___cmp_crypto_itf_1gaf98225d144264dabcc05f4cf9f59317e>` (:ref:`cryptogetasymmetrickeylength_struct <group___cmp_crypto_itf_1gace88e4ed4aeab4ea0168747a501d1445>` * p)
+
+- void :ref:`cryptogetfirstalgorithm <group___cmp_crypto_itf_1ga1f3305ea9eee09d52a87e242f02d2b7c>` (:ref:`cryptogetfirstalgorithm_struct <group___cmp_crypto_itf_1ga00b14d4628730acf21b78245f9dbd68e>` * p)
+
+- void :ref:`cryptogetnextalgorithm <group___cmp_crypto_itf_1ga6481e0d534d4a0a98c0b50f2c419721f>` (:ref:`cryptogetnextalgorithm_struct <group___cmp_crypto_itf_1gade9645ac2a97fec399d2742ace1cf06f>` * p)
+
+- void :ref:`cryptohmacsign <group___cmp_crypto_itf_1ga67d1ba31d7f48a9d6ce5c90ce4937164>` (:ref:`cryptohmacsign_struct <group___cmp_crypto_itf_1ga99c39b83c2e75adfbaa4a02491ac4258>` * p)
+
+- void :ref:`cryptohmacverify <group___cmp_crypto_itf_1ga440f0347f4ab31dc9f6c137e37ce9c4a>` (:ref:`cryptohmacverify_struct <group___cmp_crypto_itf_1ga785cb4186390a70fcf192ea80f5351fd>` * p)
+
+- void :ref:`cryptokeyexit <group___cmp_crypto_itf_1gab68494da3c5507828e25af14ab5ffc42>` (:ref:`cryptokeyexit_struct <group___cmp_crypto_itf_1gaefa9c48f9b1328a7b393a14e3c5ab683>` * p)
+
+- void :ref:`cryptokeyinit <group___cmp_crypto_itf_1gab14a86fc05f8a16792911532cc77944e>` (:ref:`cryptokeyinit_struct <group___cmp_crypto_itf_1ga9689cfb7cae0c400a54294b255d919f7>` * p)
+
+- void :ref:`cryptortsbytestringexit <group___cmp_crypto_itf_1gac93593b842d66018d57aaaa2a06314e1>` (:ref:`cryptortsbytestringexit_struct <group___cmp_crypto_itf_1ga310851d15be08a6d0ebb4481ef6f2f6c>` * p)
+
+- void :ref:`cryptortsbytestringinit <group___cmp_crypto_itf_1ga33b5cad5c7eaf2e5693b24af18f1b186>` (:ref:`cryptortsbytestringinit_struct <group___cmp_crypto_itf_1gaf6b5b13eaf3db4a0e87ca078cb8e18de>` * p)
+
+- void :ref:`cryptosignaturegenerate <group___cmp_crypto_itf_1gaefa32fa537d028a5b72d71f7a4bdfdab>` (:ref:`cryptosignaturegenerate_struct <group___cmp_crypto_itf_1ga8a4c52fd15248f8b1f4017ed32d309c1>` * p)
+
+- void :ref:`cryptosignatureverify <group___cmp_crypto_itf_1ga0921707653e61830f7319b25de3149a3>` (:ref:`cryptosignatureverify_struct <group___cmp_crypto_itf_1gaa466b77b05ccb23cb6b3d6b20ee0222c>` * p)
+
+- void :ref:`cryptosymmetricdecrypt <group___cmp_crypto_itf_1ga429aa7f04d7eba721e3e22f7cc51df8b>` (:ref:`cryptosymmetricdecrypt_struct <group___cmp_crypto_itf_1gaaf3bcc4903e64d143be5385576619c50>` * p)
+
+- void :ref:`cryptosymmetricencrypt <group___cmp_crypto_itf_1ga16d196e0bf642b00b97f9f723192ce10>` (:ref:`cryptosymmetricencrypt_struct <group___cmp_crypto_itf_1gafdadae40c983a197256093ae88cd9c1d>` * p)
+
+- RTS_HANDLE :ref:`CryptoGetAlgorithmById <group___cmp_crypto_itf_1ga6adac43e15d3676e5f10fcefa8c9f9d0>` (RTS_UI32 ui32CryptoID, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`CryptoGetFirstAlgorithm <group___cmp_crypto_itf_1ga2bdafb7e661ec24a3fa7c05d3996e646>` (RTS_UI32 ui32CryptoType, char * pszName, RTS_I32 i32MaxNameLen, RTS_UI32 * pui32CryptoID, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`CryptoGetNextAlgorithm <group___cmp_crypto_itf_1ga44eaa8678f492ac2f76981d13bf10ec3>` (RTS_HANDLE hCrypto, RTS_UI32 ui32CryptoType, char * pszName, RTS_I32 i32MaxNameLen, RTS_UI32 * pui32CryptoID, RTS_RESULT * pResult)
+
+- :ref:`RtsCryptoInfo <struct_rts_crypto_info>` * :ref:`CryptoGetAlgorithmInfo <group___cmp_crypto_itf_1ga82610c2d435311134fd49595a56e4e6d>` (RTS_HANDLE hCrypto, RTS_RESULT * pCryptoInfo)
+
+- RTS_RESULT :ref:`CryptoSymmetricEncrypt <group___cmp_crypto_itf_1gafdf81c6a74fda3f2dc5328c7e92cd1e6>` (RTS_HANDLE hAlgo, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pPlainText, :ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>`  key, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pInitVector, RTS_BOOL bEnablePadding, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCipherText)
+
+- RTS_RESULT :ref:`CryptoSymmetricDecrypt <group___cmp_crypto_itf_1ga9aab33e1f8dd7f5629d205ed2a75967e>` (RTS_HANDLE hAlgo, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCipherText, :ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>`  key, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pInitVector, RTS_BOOL bEnablePadding, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pPlainText)
+
+- RTS_RESULT :ref:`CryptoAsymmetricEncrypt <group___cmp_crypto_itf_1ga303ccce6c893471eddceee7b6dd3a860>` (RTS_HANDLE hAlgo, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pPlainText, :ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>`  publicKey, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCipherText)
+
+- RTS_RESULT :ref:`CryptoAsymmetricDecrypt <group___cmp_crypto_itf_1gad2949a344c7ade1e77d6c45c73ccb53d>` (RTS_HANDLE hAlgo, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCipherText, :ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>`  privateKey, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pPlainText)
+
+- RTS_UI32 :ref:`CryptoGetAsymmetricKeyLength <group___cmp_crypto_itf_1ga27140cdb3795580aea51ad0a92675c4d>` (:ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>`  asymmetricKey, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CryptoGenerateHash <group___cmp_crypto_itf_1ga9d85cdae0f377005ced85fca7367fc4a>` (RTS_HANDLE hAlgo, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pData, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pHash)
+
+- RTS_RESULT :ref:`CryptoHMACSign <group___cmp_crypto_itf_1ga93928baec523a0c3ad06cdf37e41cdcb>` (RTS_HANDLE hAlgo, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pData, :ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>`  key, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pSignature)
+
+- RTS_RESULT :ref:`CryptoHMACVerify <group___cmp_crypto_itf_1ga8a0843ac9387d6be09e56dedc07bd5d8>` (RTS_HANDLE hAlgo, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pData, :ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>`  key, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pSignature)
+
+- RTS_RESULT :ref:`CryptoSignatureGenerate <group___cmp_crypto_itf_1ga85c1b6ecc79525bf0bf39b159c63a4db>` (RTS_HANDLE hAlgo, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pData, :ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>`  privateKey, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pSignature)
+
+- RTS_RESULT :ref:`CryptoSignatureVerify <group___cmp_crypto_itf_1ga5bc6bfa2f81eb3074693486292b43b73>` (RTS_HANDLE hAlgo, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pData, :ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>`  publicKey, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pSignature)
+
+- RTS_RESULT :ref:`CryptoGenerateRandomNumber <group___cmp_crypto_itf_1ga77e847cf24ef6da255e92733d20aec04>` (RTS_UI32 ui32NumOfRandomBytes, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pRandom)
+
+- RTS_RESULT :ref:`CryptoKeyInit <group___cmp_crypto_itf_1ga2e650e42b02d37eb9782fa67e8661283>` (:ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>` * pKey, :ref:`RtsCryptoKeyStorage <union_rts_crypto_key_storage>`  key, RTS_IEC_DINT keyType)
+
+- RTS_RESULT :ref:`CryptoKeyExit <group___cmp_crypto_itf_1ga0082d8c356d9b9ffabd3ea536892e298>` (:ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>` * pKey)
+
+- RTS_RESULT :ref:`CryptoRtsByteStringInit <group___cmp_crypto_itf_1gaad378d3097c39b18dce00a7139447658>` (:ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pByteString)
+
+- RTS_RESULT :ref:`CryptoRtsByteStringInit2 <group___cmp_crypto_itf_1gac3d559e2f116cbb70687ede2b2f03c19>` (:ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pByteString, RTS_UI32 ui32BufferSize, RTS_UI8 * pBuffer)
+
+- RTS_RESULT :ref:`CryptoRtsByteStringExit <group___cmp_crypto_itf_1ga96c8707378e2064d18f26066067de953>` (:ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pByteString)
+
+.. _group___cmp_crypto_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpCrypto.
+
+This interface provides access to different cryptographic algorithms:
+
+- Symmetric ciphers
+
+- Asymmetric ciphers
+
+- Message digest algorithms
+
+- Hashed message authentication codes (HMAC)
+
+- Signature algorithms
+
+- Random number generation
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_crypto_itf_1ga4306da0e0090da745de1883a8d2bbc38:
+
+#define RTSCRYPTOID_AES_128_CBC RTS_IEC_UDINT_C(0x1001)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION BEGIN
+
+Enum: RtsCryptoID
+
+.. _group___cmp_crypto_itf_1ga1f6aadd46c1ff34a62f7438fdf7b7ea1:
+
+#define RTSCRYPTOID_AES_128_CFB RTS_IEC_UDINT_C(0x1002)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gaf54a93a155fe2d77ecbde373c7a6765d:
+
+#define RTSCRYPTOID_AES_256_CBC RTS_IEC_UDINT_C(0x1003)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga8fffcf421fdf1c371ec1818e8025fa3a:
+
+#define RTSCRYPTOID_DES_CBC RTS_IEC_UDINT_C(0x1004)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga8906b0502e9f9f9ba17873b7b5ddcd56:
+
+#define RTSCRYPTOID_AES_256_CTR RTS_IEC_UDINT_C(0x1005)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gafffe0cff7a4cc24f883e002907222b61:
+
+#define RTSCRYPTOID_RSA RTS_IEC_UDINT_C(0x2001)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga394ed1b060ced887164d811ff1017aa2:
+
+#define RTSCRYPTOID_RSA_OAEP_PADDING RTS_IEC_UDINT_C(0x2002)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gadc9cfae374494cd06ba2187bf1c0a98a:
+
+#define RTSCRYPTOID_RSA_PKCS1_V15_PADDING RTS_IEC_UDINT_C(0x2003)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga8f37e7aacffc86aa1a12d2acddee1885:
+
+#define RTSCRYPTOID_HASH_MD5 RTS_IEC_UDINT_C(0x3001)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga445ace011d861ed03693a271ca755c4f:
+
+#define RTSCRYPTOID_HASH_SHA1 RTS_IEC_UDINT_C(0x3002)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga77cda608a4fc6fc499c6de2fb8c1bce9:
+
+#define RTSCRYPTOID_HASH_SHA224 RTS_IEC_UDINT_C(0x3003)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga44a7b195ac4a89a2cf540c10d4c9d4b6:
+
+#define RTSCRYPTOID_HASH_SHA256 RTS_IEC_UDINT_C(0x3004)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga4ed0205c01437979b35757c38595e272:
+
+#define RTSCRYPTOID_HASH_SHA384 RTS_IEC_UDINT_C(0x3005)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga7d613f0f24d09d2602d76953df34d8a9:
+
+#define RTSCRYPTOID_HASH_SHA512 RTS_IEC_UDINT_C(0x3006)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga513e22e97af8b17a27aa289435b48aef:
+
+#define RTSCRYPTOID_HMAC_MD5 RTS_IEC_UDINT_C(0x4001)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gac8066488efef4706865e9832311a998a:
+
+#define RTSCRYPTOID_HMAC_SHA1 RTS_IEC_UDINT_C(0x4002)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gaea48bdd131669179efe06a28fb9264f5:
+
+#define RTSCRYPTOID_HMAC_SHA224 RTS_IEC_UDINT_C(0x4003)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gada73673421a61ffab3a289f743d5af11:
+
+#define RTSCRYPTOID_HMAC_SHA256 RTS_IEC_UDINT_C(0x4004)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga5cea65bb643859fe8518a2e16d2d7184:
+
+#define RTSCRYPTOID_HMAC_SHA384 RTS_IEC_UDINT_C(0x4005)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga391c952586743f76434a1d7b353c5406:
+
+#define RTSCRYPTOID_HMAC_SHA512 RTS_IEC_UDINT_C(0x4006)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gaac1499cc28b42159b8232035857adf1c:
+
+#define RTSCRYPTOID_RSA_OAEP_SHA1 RTS_IEC_UDINT_C(0x5003)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga80ee561ad84b4f27c70f894fcb64f358:
+
+#define RTSCRYPTOID_RSA_OAEP_SHA256 RTS_IEC_UDINT_C(0x5004)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga6f38750cbff797a51bfeba2ad977bf20:
+
+#define RTSCRYPTOID_RSA_PKCS1_V15_SHA1 RTS_IEC_UDINT_C(0x5001)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga3fdafe4ffb8148efda138167b417f0dd:
+
+#define RTSCRYPTOID_RSA_PKCS1_V15_SHA256 RTS_IEC_UDINT_C(0x5002)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga9ff781cd99b0d7c7e41e5a67d760942c:
+
+#define RTSCRYPTOID RTS_IEC_UDINT
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gab7f2ff673c7ad06c8aea24e3916ccbcd:
+
+#define KEYTYPE_KEY RTS_IEC_DINT_C(0x0)	/* The key is directly available. Stored in a RTS_BYTESTRING. */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enum: RtsCryptoKeyType
+
+.. _group___cmp_crypto_itf_1gad3506c98fc067cf967054383b50e78c9:
+
+#define KEYTYPE_CERTHANDLE RTS_IEC_DINT_C(0x1)	/* The key is identified by a handle to the certificat. Only used for asymmetric keys. */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga57af89a54ff4166bca45ee3187e94e9c:
+
+#define KEYTYPE_CERTCONTENT RTS_IEC_DINT_C(0x2)	/* The key is identified by the certificate context. Only used for asymmetric keys. */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga5bfe2d9255372e6ff9ba086ca0bdf0cb:
+
+#define RTSCRYPTOKEYTYPE RTS_IEC_DINT
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga5c97fc51b25624b5e3a14e3cbc920e6f:
+
+#define RTSCRYPTOTYPE_SYMMETRIC RTS_IEC_UDINT_C(0x1000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enum: RtsCryptoType
+
+.. _group___cmp_crypto_itf_1ga31e83979a94bcd8958b848272b17d48b:
+
+#define RTSCRYPTOTYPE_ASYMMETRIC RTS_IEC_UDINT_C(0x2000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gaedd941515517f9dc39ac09ae1e0198f0:
+
+#define RTSCRYPTOTYPE_HASH RTS_IEC_UDINT_C(0x3000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gafc3a000b42b753e45c127e06817709c8:
+
+#define RTSCRYPTOTYPE_HMAC RTS_IEC_UDINT_C(0x4000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga49e5af0f1ca0ee7ba59f8f59c6347f31:
+
+#define RTSCRYPTOTYPE_SIGNATURE RTS_IEC_UDINT_C(0x5000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga26348a92c0683e8dc903eb35648f7dfa:
+
+#define RTSCRYPTOTYPE RTS_IEC_UDINT
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga2aed92746d74b0c2be2734a8eb481f83:
+
+#define ITF_CmpCrypto
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga921fabd3625d4c16db0cf2b2ef09dfa5:
+
+#define EXTITF_CmpCrypto
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6:
+
+typedef struct tagRtsByteString  RtsByteString
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This a representation of a byte string.
+
+.. _group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687:
+
+typedef struct tagRtsCryptoKey  RtsCryptoKey
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A cryptographic key.
+
+.. _group___cmp_crypto_itf_1ga140b30bc9d0c2bcce3bd9bad1ceb58eb:
+
+typedef struct tagcryptoasymmetricdecrypt_struct  cryptoasymmetricdecrypt_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Perform a asymmetric decryption using the algorithm handle. :return: Result of the operation
+
+.. _group___cmp_crypto_itf_1ga09d4a65a6ec398b1c50f11019247c899:
+
+typedef struct tagcryptoasymmetricencrypt_struct  cryptoasymmetricencrypt_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Perform a asymmetric encryption using the algorithm handle. :return: Result of the operation
+
+.. _group___cmp_crypto_itf_1ga03c30660a07df57b0641aebde0bdba41:
+
+typedef struct tagcryptogeneratehash_struct  cryptogeneratehash_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Calculate the message digest of the given data. :return: Result of the operation
+
+.. _group___cmp_crypto_itf_1ga2113f63bb640923f36b0f7f31caa0593:
+
+typedef struct tagcryptogeneraterandomnumber_struct  cryptogeneraterandomnumber_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Generate a number of cryptographic strong bytes. :return: Function returns ERR_OK if the bytes could be generated
+
+.. _group___cmp_crypto_itf_1gab7387611df856bc764f1021eb80543ea:
+
+typedef struct tagcryptogetalgorithmbyid_struct  cryptogetalgorithmbyid_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get a handle to the algorithm using a specific ID :return: Handle to the crypto algorithm
+
+.. _group___cmp_crypto_itf_1gace88e4ed4aeab4ea0168747a501d1445:
+
+typedef struct tagcryptogetasymmetrickeylength_struct  cryptogetasymmetrickeylength_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the asymmetric key size in bits. :return: Size of the asymmetric key in bits
+
+.. _group___cmp_crypto_itf_1ga00b14d4628730acf21b78245f9dbd68e:
+
+typedef struct tagcryptogetfirstalgorithm_struct  cryptogetfirstalgorithm_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the first algorthm matching the type given. Use this with the GetNext function to iterate over algorthmes of a specific type. :return: Handle to the crypto algorithm
+
+.. _group___cmp_crypto_itf_1gade9645ac2a97fec399d2742ace1cf06f:
+
+typedef struct tagcryptogetnextalgorithm_struct  cryptogetnextalgorithm_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the next algorthm matching the type given. :return: Handle to the crypto algorithm
+
+.. _group___cmp_crypto_itf_1ga99c39b83c2e75adfbaa4a02491ac4258:
+
+typedef struct tagcryptohmacsign_struct  cryptohmacsign_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Generate a hashed message authentication code (HMAC) OF the given data AND key. :return: Result of the operation
+
+.. _group___cmp_crypto_itf_1ga785cb4186390a70fcf192ea80f5351fd:
+
+typedef struct tagcryptohmacverify_struct  cryptohmacverify_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Verify a recieved hashed message authentication code (HMAC). :return: Function returns ERR_OK if the HMAC is valid.
+
+.. _group___cmp_crypto_itf_1gaefa9c48f9b1328a7b393a14e3c5ab683:
+
+typedef struct tagcryptokeyexit_struct  cryptokeyexit_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cryptokeyexit
+
+.. _group___cmp_crypto_itf_1ga9689cfb7cae0c400a54294b255d919f7:
+
+typedef struct tagcryptokeyinit_struct  cryptokeyinit_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cryptokeyinit
+
+.. _group___cmp_crypto_itf_1ga310851d15be08a6d0ebb4481ef6f2f6c:
+
+typedef struct tagcryptortsbytestringexit_struct  cryptortsbytestringexit_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cryptortsbytestringexit
+
+.. _group___cmp_crypto_itf_1gaf6b5b13eaf3db4a0e87ca078cb8e18de:
+
+typedef struct tagcryptortsbytestringinit_struct  cryptortsbytestringinit_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cryptortsbytestringinit
+
+.. _group___cmp_crypto_itf_1ga8a4c52fd15248f8b1f4017ed32d309c1:
+
+typedef struct tagcryptosignaturegenerate_struct  cryptosignaturegenerate_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sign the data using a specific message digest and the private key. :return: Result of the operation.
+
+.. _group___cmp_crypto_itf_1gaa466b77b05ccb23cb6b3d6b20ee0222c:
+
+typedef struct tagcryptosignatureverify_struct  cryptosignatureverify_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Verify a recieved signature :return: unction returns ERR_OK if the signature is valid.
+
+.. _group___cmp_crypto_itf_1gaaf3bcc4903e64d143be5385576619c50:
+
+typedef struct tagcryptosymmetricdecrypt_struct  cryptosymmetricdecrypt_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Perform a symmetric decryption using the algorithm handle. :return: Result of the operation
+
+.. _group___cmp_crypto_itf_1gafdadae40c983a197256093ae88cd9c1d:
+
+typedef struct tagcryptosymmetricencrypt_struct  cryptosymmetricencrypt_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Perform a symmetric encryption using the algorithm handle. :return: Result of the operation
+
+.. _group___cmp_crypto_itf_1gabb70df803f41bdbaeb33e055d0e56345:
+
+typedef ICmpCrypto_C ICmpCrypto
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_crypto_itf_1gab92bb6b95471220b1eba750a3dd9e2a0:
+
+void cryptoasymmetricdecrypt (cryptoasymmetricdecrypt_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gacbf4d058438159477214f8e0f15d0d4a:
+
+void cryptoasymmetricencrypt (cryptoasymmetricencrypt_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gace43eaf55f95c456a35868c30b002f85:
+
+void cryptogeneratehash (cryptogeneratehash_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga370888592dca2b5837867696326a6dc3:
+
+void cryptogeneraterandomnumber (cryptogeneraterandomnumber_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga2d3ee83c4597e071f7b2dd563e5954bc:
+
+void cryptogetalgorithmbyid (cryptogetalgorithmbyid_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gaf98225d144264dabcc05f4cf9f59317e:
+
+void cryptogetasymmetrickeylength (cryptogetasymmetrickeylength_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga1f3305ea9eee09d52a87e242f02d2b7c:
+
+void cryptogetfirstalgorithm (cryptogetfirstalgorithm_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga6481e0d534d4a0a98c0b50f2c419721f:
+
+void cryptogetnextalgorithm (cryptogetnextalgorithm_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga67d1ba31d7f48a9d6ce5c90ce4937164:
+
+void cryptohmacsign (cryptohmacsign_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga440f0347f4ab31dc9f6c137e37ce9c4a:
+
+void cryptohmacverify (cryptohmacverify_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gab68494da3c5507828e25af14ab5ffc42:
+
+void cryptokeyexit (cryptokeyexit_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gab14a86fc05f8a16792911532cc77944e:
+
+void cryptokeyinit (cryptokeyinit_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gac93593b842d66018d57aaaa2a06314e1:
+
+void cryptortsbytestringexit (cryptortsbytestringexit_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga33b5cad5c7eaf2e5693b24af18f1b186:
+
+void cryptortsbytestringinit (cryptortsbytestringinit_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1gaefa32fa537d028a5b72d71f7a4bdfdab:
+
+void cryptosignaturegenerate (cryptosignaturegenerate_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga0921707653e61830f7319b25de3149a3:
+
+void cryptosignatureverify (cryptosignatureverify_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga429aa7f04d7eba721e3e22f7cc51df8b:
+
+void cryptosymmetricdecrypt (cryptosymmetricdecrypt_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga16d196e0bf642b00b97f9f723192ce10:
+
+void cryptosymmetricencrypt (cryptosymmetricencrypt_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_crypto_itf_1ga6adac43e15d3676e5f10fcefa8c9f9d0:
+
+RTS_HANDLE CryptoGetAlgorithmById (RTS_UI32 ui32CryptoID, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get a handle to the algorithm using a specific ID
+
+**Parameters**
+
++---------+--------------+---------------------------------------------------+
+| [in]    | ui32CryptoID | ID of the algorithm                               |
++---------+--------------+---------------------------------------------------+
+| [in]    | pResult      | Error code: Result of the operation. Can be NULL. |
++---------+--------------+---------------------------------------------------+
+
+**Returns:**
+
+Handle to the crypto algorithm
+
+.. _group___cmp_crypto_itf_1ga2bdafb7e661ec24a3fa7c05d3996e646:
+
+RTS_HANDLE CryptoGetFirstAlgorithm (RTS_UI32 ui32CryptoType, char *pszName, RTS_I32 i32MaxNameLen, RTS_UI32 *pui32CryptoID, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the first algorithm matching the type given. Use this with the GetNext function to iterate over algorithmes of a specific type.
+
+**Parameters**
+
++---------+----------------+---------------------------------------------------+
+| [in]    | ui32CryptoType | Type of the algorithm. See: Crypto Types          |
++---------+----------------+---------------------------------------------------+
+| [out]   | pszName        | Name of the algorithm. Can be NULL.               |
++---------+----------------+---------------------------------------------------+
+| [out]   | i32MaxNameLen  | Maximum length of the name buffer                 |
++---------+----------------+---------------------------------------------------+
+| [out]   | pui32CryptoID  | ID of the algorithm.                              |
++---------+----------------+---------------------------------------------------+
+| [in]    | pResult        | Error code: Result of the operation. Can be NULL. |
++---------+----------------+---------------------------------------------------+
+
+**Returns:**
+
+Handle to the crypto algorithm
+
+.. _group___cmp_crypto_itf_1ga44eaa8678f492ac2f76981d13bf10ec3:
+
+RTS_HANDLE CryptoGetNextAlgorithm (RTS_HANDLE hCrypto, RTS_UI32 ui32CryptoType, char *pszName, RTS_I32 i32MaxNameLen, RTS_UI32 *pui32CryptoID, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the next algorithm matching the type given.
+
+**Parameters**
+
++---------+----------------+---------------------------------------------------+
+| [in]    | hCrypto        | Handle to the last algorithm.                     |
++---------+----------------+---------------------------------------------------+
+| [in]    | ui32CryptoType | Handle to the last algorithm.                     |
++---------+----------------+---------------------------------------------------+
+| [out]   | pszName        | Name of the algorithm. Can be NULL.               |
++---------+----------------+---------------------------------------------------+
+| [out]   | i32MaxNameLen  | Maximum length of the name buffer                 |
++---------+----------------+---------------------------------------------------+
+| [out]   | pui32CryptoID  | ID of the algorithm.                              |
++---------+----------------+---------------------------------------------------+
+| [in]    | pResult        | Error code: Result of the operation. Can be NULL. |
++---------+----------------+---------------------------------------------------+
+
+**Returns:**
+
+Handle to the crypto algorithm
+
+.. _group___cmp_crypto_itf_1ga82610c2d435311134fd49595a56e4e6d:
+
+RtsCryptoInfo* CryptoGetAlgorithmInfo (RTS_HANDLE hCrypto, RTS_RESULT *pCryptoInfo)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get information of the algorithm. Don't free or modify the CryptoInfo.
+
+**Parameters**
+
++---------+---------+---------------------------------------------------+
+| [in]    | hCrypto | Handle to the algorithm.                          |
++---------+---------+---------------------------------------------------+
+| [in]    | pResult | Error code: Result of the operation. Can be NULL. |
++---------+---------+---------------------------------------------------+
+
+**Returns:**
+
+Pointer to the information structure.
+
+.. _group___cmp_crypto_itf_1gafdf81c6a74fda3f2dc5328c7e92cd1e6:
+
+RTS_RESULT CryptoSymmetricEncrypt (RTS_HANDLE hAlgo, RtsByteString *pPlainText, RtsCryptoKey key, RtsByteString *pInitVector, RTS_BOOL bEnablePadding, RtsByteString *pCipherText)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Perform a symmetric encryption using the algorithm handle.
+
+**Parameters**
+
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hAlgo          | Handle to the algorithm.                                                                                                                |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pPlainText     | Data to be encrypted                                                                                                                    |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | key            | Key to encrypt the data. Has to be a KeyType_Key key.                                                                                   |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pInitVector    | Init vector of the ecryption                                                                                                            |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bEnablePadding | Enables the padding of the algorithm. If padding is not enabled the plaintext length has to match a multiple of the cipher block length |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pCipherText    | Encrypted data.                                                                                                                         |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code: Result of the operation
+
+.. _group___cmp_crypto_itf_1ga9aab33e1f8dd7f5629d205ed2a75967e:
+
+RTS_RESULT CryptoSymmetricDecrypt (RTS_HANDLE hAlgo, RtsByteString *pCipherText, RtsCryptoKey key, RtsByteString *pInitVector, RTS_BOOL bEnablePadding, RtsByteString *pPlainText)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Perform a symmetric decryption using the algorithm handle.
+
+**Parameters**
+
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hAlgo          | Handle to the algorithm.                                                                                                                |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pCipherText    | Data to be decrypted                                                                                                                    |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | key            | Key to decrypt the data. Has to be a KeyType_Key key.                                                                                   |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pInitVector    | Init vector of the decrypt.                                                                                                             |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bEnablePadding | Enables the padding of the algorithm. If padding is not enabled the plaintext length has to match a multiple of the cipher block length |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pCipherText    | Decrypted data.                                                                                                                         |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code: Result of the operation
+
+.. _group___cmp_crypto_itf_1ga303ccce6c893471eddceee7b6dd3a860:
+
+RTS_RESULT CryptoAsymmetricEncrypt (RTS_HANDLE hAlgo, RtsByteString *pPlainText, RtsCryptoKey publicKey, RtsByteString *pCipherText)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Perform an asymmetric encryption using the algorithm handle.
+
+**Parameters**
+
++---------+-------------+----------------------------------------------------------------------------------------------------------+
+| [in]    | hAlgo       | Handle to the algorithm.                                                                                 |
++---------+-------------+----------------------------------------------------------------------------------------------------------+
+| [in]    | pPlainText  | Data to be encrypted                                                                                     |
++---------+-------------+----------------------------------------------------------------------------------------------------------+
+| [in]    | publicKey   | Public key used to encrypt the data. Use X509CertGetPublicKey to get the public key form an certificate. |
++---------+-------------+----------------------------------------------------------------------------------------------------------+
+| [out]   | pCipherText | Encrypted data.                                                                                          |
++---------+-------------+----------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code: Result of the operation
+
+.. _group___cmp_crypto_itf_1gad2949a344c7ade1e77d6c45c73ccb53d:
+
+RTS_RESULT CryptoAsymmetricDecrypt (RTS_HANDLE hAlgo, RtsByteString *pCipherText, RtsCryptoKey privateKey, RtsByteString *pPlainText)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Perform an asymmetric decryption using the algorithm handle.
+
+**Parameters**
+
++---------+-------------+-------------------------------------------------------------------------------------------------------------+
+| [in]    | hAlgo       | Handle to the algorithm.                                                                                    |
++---------+-------------+-------------------------------------------------------------------------------------------------------------+
+| [in]    | pCiperText  | Data to be decrypted                                                                                        |
++---------+-------------+-------------------------------------------------------------------------------------------------------------+
+| [in]    | privateKey  | Private key used to decrypt the data. Use X509CertGetPrivateKey to get the private key from an certificate. |
++---------+-------------+-------------------------------------------------------------------------------------------------------------+
+| [out]   | pCipherText | Decrypted data.                                                                                             |
++---------+-------------+-------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code: Result of the operation
+
+.. _group___cmp_crypto_itf_1ga27140cdb3795580aea51ad0a92675c4d:
+
+RTS_UI32 CryptoGetAsymmetricKeyLength (RtsCryptoKey asymmetricKey, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the private key size in bits.
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------------------------------------+
+| [in]    | priavteKey | Asymmetric key of intrest. Use X509CertGetPublicKey or X509CertGetPrivateKey to get the asymmetric key. |
++---------+------------+---------------------------------------------------------------------------------------------------------+
+| [out]   | pResult    | Error code: Operation Result                                                                            |
++---------+------------+---------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Size of the private key in bits
+
+.. _group___cmp_crypto_itf_1ga9d85cdae0f377005ced85fca7367fc4a:
+
+RTS_RESULT CryptoGenerateHash (RTS_HANDLE hAlgo, RtsByteString *pData, RtsByteString *pHash)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Calculate the message digest of the given data.
+
+**Parameters**
+
++---------+-------+---------------------------------------+
+| [in]    | hAlgo | Handle to the algorithm.              |
++---------+-------+---------------------------------------+
+| [in]    | pData | Data to calculate the message digest. |
++---------+-------+---------------------------------------+
+| [out]   | pHash | Calculated message digest.            |
++---------+-------+---------------------------------------+
+
+**Returns:**
+
+Result of the operation
+
+.. _group___cmp_crypto_itf_1ga93928baec523a0c3ad06cdf37e41cdcb:
+
+RTS_RESULT CryptoHMACSign (RTS_HANDLE hAlgo, RtsByteString *pData, RtsCryptoKey key, RtsByteString *pSignature)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Generate a hashed message authentication code (HMAC) of the given data and key.
+
+**Parameters**
+
++---------+------------+----------------------------------------+
+| [in]    | hAlgo      | Handle to the algorithm.               |
++---------+------------+----------------------------------------+
+| [in]    | pData      | Data to calculate the HMAC.            |
++---------+------------+----------------------------------------+
+| [in]    | key        | Key to be used for the HMAC calcuation |
++---------+------------+----------------------------------------+
+| [out]   | pSignature | Calculated HMAC                        |
++---------+------------+----------------------------------------+
+
+**Returns:**
+
+Error code Result of the operation
+
+.. _group___cmp_crypto_itf_1ga8a0843ac9387d6be09e56dedc07bd5d8:
+
+RTS_RESULT CryptoHMACVerify (RTS_HANDLE hAlgo, RtsByteString *pData, RtsCryptoKey key, RtsByteString *pSignature)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Verify a recieved hashed message authentication code (HMAC).
+
+**Parameters**
+
++---------+------------+----------------------------------------+
+| [in]    | hAlgo      | Handle to the algorithm.               |
++---------+------------+----------------------------------------+
+| [in]    | pData      | Data to calculate the HMAC.            |
++---------+------------+----------------------------------------+
+| [in]    | key        | Key to be used for the HMAC calcuation |
++---------+------------+----------------------------------------+
+| [in]    | pSignature | Recieved HMAC                          |
++---------+------------+----------------------------------------+
+
+**Returns:**
+
+Error Code Function returns ERR_OK if the HMAC is valid.
+
+.. _group___cmp_crypto_itf_1ga85c1b6ecc79525bf0bf39b159c63a4db:
+
+RTS_RESULT CryptoSignatureGenerate (RTS_HANDLE hAlgo, RtsByteString *pData, RtsCryptoKey privateKey, RtsByteString *pSignature)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sign the data using a specific message digest and the private key.
+
+**Parameters**
+
++---------+------------+----------------------------------------------------------------------------------------------------+
+| [in]    | hAlgo      | Handle to the algorithm.                                                                           |
++---------+------------+----------------------------------------------------------------------------------------------------+
+| [in]    | pData      | Data to be signed.                                                                                 |
++---------+------------+----------------------------------------------------------------------------------------------------+
+| [in]    | privateKey | Key to be used signing. Has to be a private key. Use X509CertGetPrivateKey to get the private key. |
++---------+------------+----------------------------------------------------------------------------------------------------+
+| [in]    | pSignature | Calculated signature of the data.                                                                  |
++---------+------------+----------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code: Result of the operation.
+
+.. _group___cmp_crypto_itf_1ga5bc6bfa2f81eb3074693486292b43b73:
+
+RTS_RESULT CryptoSignatureVerify (RTS_HANDLE hAlgo, RtsByteString *pData, RtsCryptoKey publicKey, RtsByteString *pSignature)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Verify a received signature
+
+**Parameters**
+
++---------+------------+----------------------------------------------------------------+
+| [in]    | hAlgo      | Handle to the algorithm.                                       |
++---------+------------+----------------------------------------------------------------+
+| [in]    | pData      | Data to verify.                                                |
++---------+------------+----------------------------------------------------------------+
+| [in]    | publicKey  | Public key of the sender. X509CertGetPublicKey to get the key. |
++---------+------------+----------------------------------------------------------------+
+| [in]    | pSignature | Received signature.                                            |
++---------+------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Error code: Function returns ERR_OK if the signature is valid.
+
+.. _group___cmp_crypto_itf_1ga77e847cf24ef6da255e92733d20aec04:
+
+RTS_RESULT CryptoGenerateRandomNumber (RTS_UI32 ui32NumOfRandomBytes, RtsByteString *pRandom)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Generate a number of cryptographic strong bytes.
+
+**Parameters**
+
++---------+----------------------+----------------------------+
+| [in]    | ui32NumOfRandomBytes | Number of bytes needed.    |
++---------+----------------------+----------------------------+
+| [in]    | pRandom              | Buffer to store the bytes. |
++---------+----------------------+----------------------------+
+
+**Returns:**
+
+Error code: Function returns ERR_OK if the bytes could be generated
+
+.. _group___cmp_crypto_itf_1ga2e650e42b02d37eb9782fa67e8661283:
+
+RTS_RESULT CryptoKeyInit (RtsCryptoKey *pKey, RtsCryptoKeyStorage key, RTS_IEC_DINT keyType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Initialize a crypto key.
+
+**Parameters**
+
++---------+------+---------------------------------------+
+| [in]    | pKey | Pointer to the key to be initialized. |
++---------+------+---------------------------------------+
+| [in]    | key  | Content of the key.                   |
++---------+------+---------------------------------------+
+| [in]    | type | Type of the key.                      |
++---------+------+---------------------------------------+
+
+**Returns:**
+
+Operation result.
+
+.. _group___cmp_crypto_itf_1ga0082d8c356d9b9ffabd3ea536892e298:
+
+RTS_RESULT CryptoKeyExit (RtsCryptoKey *pKey)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Clean up a crypto key.
+
+**Parameters**
+
++---------+------+---------------------+
+| [in]    | pKey | Key to be clean up. |
++---------+------+---------------------+
+
+**Returns:**
+
+Operation result.
+
+.. _group___cmp_crypto_itf_1gaad378d3097c39b18dce00a7139447658:
+
+RTS_RESULT CryptoRtsByteStringInit (RtsByteString *pByteString)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Initialize a byte string.
+
+**Parameters**
+
++---------+-------------+---------------------------------------+
+| [in]    | pByteString | Pointer to the key to be initialized. |
++---------+-------------+---------------------------------------+
+
+**Returns:**
+
+Operation result.
+
+.. _group___cmp_crypto_itf_1gac3d559e2f116cbb70687ede2b2f03c19:
+
+RTS_RESULT CryptoRtsByteStringInit2 (RtsByteString *pByteString, RTS_UI32 ui32BufferSize, RTS_UI8 *pBuffer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Initialize a byte string.
+
+**Parameters**
+
++---------+-------------+---------------------------------------+
+| [in]    | pByteString | Pointer to the key to be initialized. |
++---------+-------------+---------------------------------------+
+
+**Returns:**
+
+Operation result.
+
+.. _group___cmp_crypto_itf_1ga96c8707378e2064d18f26066067de953:
+
+RTS_RESULT CryptoRtsByteStringExit (RtsByteString *pByteString)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Clean up a byte string.
+
+**Parameters**
+
++---------+-------------+-----------------------------+
+| [in]    | pByteString | Byte string to be clean up. |
++---------+-------------+-----------------------------+
+
+**Returns:**
+
+Operation result.
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

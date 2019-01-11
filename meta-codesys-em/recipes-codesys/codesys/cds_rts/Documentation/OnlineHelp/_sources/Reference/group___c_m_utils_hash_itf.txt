@@ -1,0 +1,359 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___c_m_utils_hash_itf:
+
+==============
+CMUtilsHashItf
+==============
+
+ :ref:`More... <group___c_m_utils_hash_itf-details>`
+
+Modules
+-------
+
+- :ref:`Hash entry <group___c_m_utils_hash_itf___hashentry>`
+
+- :ref:`Hash entry flags <group___c_m_utils_hash_itf___hashentryflags>`
+
+- :ref:`Hash flag handling macros <group___c_m_utils_hash_itf___hashflaghandlingmacros>`
+
+- :ref:`Hash key <group___c_m_utils_hash_itf___hashkey>`
+
+- :ref:`Hash table <group___c_m_utils_hash_itf___hashtable>`
+
+- :ref:`Hash table flags <group___c_m_utils_hash_itf___hashtableflags>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICMUtilsHash_C <struct_i_c_m_utils_hash___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CMUtilsHash <group___c_m_utils_hash_itf_1gaf736cd5ad089830646080ab0350c6c26>`
+
+- #define :ref:`EXTITF_CMUtilsHash <group___c_m_utils_hash_itf_1ga628cfe043b3f40cd710133dc4175a614>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICMUtilsHash_C <struct_i_c_m_utils_hash___c>` :ref:`ICMUtilsHash <group___c_m_utils_hash_itf_1ga77c6bf6dd622bf2555cfd3aca1f5ce00>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`CMUtlHashCreate <group___c_m_utils_hash_itf_1ga375c42a276465738d3211280cfe43708>` (:ref:`CMUtlHashTable <group___c_m_utils_hash_itf___hashtable_1ga18c3802cb4ec26bec34e42874fd3b65d>` * pHashTable, RTS_SIZE sNumHashEntries, char * pszComponentName)
+
+- RTS_RESULT :ref:`CMUtlHashCreate2 <group___c_m_utils_hash_itf_1ga9af9fc49890a611ee125df7078d9ea3d>` (:ref:`CMUtlHashTable <group___c_m_utils_hash_itf___hashtable_1ga18c3802cb4ec26bec34e42874fd3b65d>` * pHashTable, RTS_SIZE sNumHashEntries, RTS_UI8 * pHashTableBuffer, char * pszComponentName)
+
+- RTS_RESULT :ref:`CMUtlHashDelete <group___c_m_utils_hash_itf_1ga8ec3ddce056ee5f5291a2f3df5be91c6>` (:ref:`CMUtlHashTable <group___c_m_utils_hash_itf___hashtable_1ga18c3802cb4ec26bec34e42874fd3b65d>` * pHashTable)
+
+- RTS_RESULT :ref:`CMUtlHashInsert <group___c_m_utils_hash_itf_1ga0d34d9a12bb3b22a3e7f84f4cb6461bc>` (:ref:`CMUtlHashTable <group___c_m_utils_hash_itf___hashtable_1ga18c3802cb4ec26bec34e42874fd3b65d>` * pHashTable, RTS_UI8 * pKey, RTS_SIZE keyLen, RTS_BOOL bCopyKey, void * pData)
+
+- RTS_RESULT :ref:`CMUtlHashInsert2 <group___c_m_utils_hash_itf_1ga179a1e14b91e32416317b7424fec5824>` (:ref:`CMUtlHashTable <group___c_m_utils_hash_itf___hashtable_1ga18c3802cb4ec26bec34e42874fd3b65d>` * pHashTable, :ref:`CMUtlHashEntry <group___c_m_utils_hash_itf___hashentry_1gadd57a73c7ff3d9e8bfb558347e689613>` * pNewEntry, RTS_UI8 * pKey, RTS_SIZE keyLen, RTS_BOOL bCopyKey, void * pData)
+
+- RTS_RESULT :ref:`CMUtlHashRemove <group___c_m_utils_hash_itf_1ga4a666238a761ef007c69bf6ecf5c0bfa>` (:ref:`CMUtlHashTable <group___c_m_utils_hash_itf___hashtable_1ga18c3802cb4ec26bec34e42874fd3b65d>` * pHashTable, :ref:`CMUtlHashEntry <group___c_m_utils_hash_itf___hashentry_1gadd57a73c7ff3d9e8bfb558347e689613>` * pEntry)
+
+- RTS_RESULT :ref:`CMUtlHashRemove2 <group___c_m_utils_hash_itf_1ga21dfba83a41eca5dd92864a1495bfad6>` (:ref:`CMUtlHashTable <group___c_m_utils_hash_itf___hashtable_1ga18c3802cb4ec26bec34e42874fd3b65d>` * pHashTable, RTS_UI8 * pKey, RTS_SIZE keyLen)
+
+- :ref:`CMUtlHashEntry <group___c_m_utils_hash_itf___hashentry_1gadd57a73c7ff3d9e8bfb558347e689613>` * :ref:`CMUtlHashSearch <group___c_m_utils_hash_itf_1ga80c5e7e19886459ca77c785c40835363>` (:ref:`CMUtlHashTable <group___c_m_utils_hash_itf___hashtable_1ga18c3802cb4ec26bec34e42874fd3b65d>` * pHashTable, RTS_UI8 * pKey, RTS_SIZE keyLen, RTS_RESULT * pResult)
+
+.. _group___c_m_utils_hash_itf-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___c_m_utils_hash_itf_1gaf736cd5ad089830646080ab0350c6c26:
+
+#define ITF_CMUtilsHash
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_utils_hash_itf_1ga628cfe043b3f40cd710133dc4175a614:
+
+#define EXTITF_CMUtilsHash
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___c_m_utils_hash_itf_1ga77c6bf6dd622bf2555cfd3aca1f5ce00:
+
+typedef ICMUtilsHash_C ICMUtilsHash
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___c_m_utils_hash_itf_1ga375c42a276465738d3211280cfe43708:
+
+RTS_RESULT CMUtlHashCreate (CMUtlHashTable *pHashTable, RTS_SIZE sNumHashEntries, char *pszComponentName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to create a hash table.
+
+**Parameters**
+
++---------+------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pHashTable       | Pointer to a hash table object, which is filled by this function call!                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
++---------+------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | sNumHashEntries  | Lenght of the hash table respectively the number of elements that can be stored in the hash table without any collision. NOTE: Hash table is allocated on heap via :ref:`SysMemAllocData() <group___cmp_app_b_p_dep_1gaf16c5f270b2eb0d85f1019b07a3c8c87>` within this function. If you would like to provide a static memory for the hash table. Use :ref:`CMUtlHashCreate2() <group___c_m_utils_hash_itf_1ga9af9fc49890a611ee125df7078d9ea3d>` instead! The number of available hash entries should be a prime number to get a nice spreading. |
++---------+------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszComponentName | Pointer to component name of the caller (which is generated typically in the macro COMPONENT_NAME)                                                                                                                                                                                                                                                                                                                                                                                                                                              |
++---------+------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+---------------------------------------+
+| ERR_OK        | Hash table could be created           |
++---------------+---------------------------------------+
+| ERR_PARAMETER | Invalid pointer or sHashTableLen is 0 |
++---------------+---------------------------------------+
+| ERR_NOMEMORY  | No memory to create the hash table    |
++---------------+---------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_utils_hash_itf_1ga9af9fc49890a611ee125df7078d9ea3d:
+
+RTS_RESULT CMUtlHashCreate2 (CMUtlHashTable *pHashTable, RTS_SIZE sNumHashEntries, RTS_UI8 *pHashTableBuffer, char *pszComponentName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to create a hash table with a specified hash buffer.
+
+**Parameters**
+
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pHashTable       | Pointer to a hash table object, which is filled by this function                                                                                                                                                                                                                                                                                                                       |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | sNumHashEntries  | Lenght of the hash table respectively the number of elements that can be stored in the hash table without any collision                                                                                                                                                                                                                                                                |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pHashTableBuffer | Pointer to the hash table (can be static memory). Length must be (sNumHashEntriessizeof(RTS_UI8))!. NOTE: If pHashTableBuffer = NULL. the hash table will be allocated on heap via :ref:`SysMemAllocData() <group___cmp_app_b_p_dep_1gaf16c5f270b2eb0d85f1019b07a3c8c87>` within this function. The number of available hash entries should be a prime number to get a nice spreading. |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszComponentName | Pointer to component name of the caller (which is generated typically in the macro COMPONENT_NAME)                                                                                                                                                                                                                                                                                     |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+---------------------------------------+
+| ERR_OK        | Hash table could be created           |
++---------------+---------------------------------------+
+| ERR_PARAMETER | Invalid pointer or sHashTableLen is 0 |
++---------------+---------------------------------------+
+| ERR_NOMEMORY  | No memory to create the hash table    |
++---------------+---------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_utils_hash_itf_1ga8ec3ddce056ee5f5291a2f3df5be91c6:
+
+RTS_RESULT CMUtlHashDelete (CMUtlHashTable *pHashTable)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to delete a hash table.
+
+**Parameters**
+
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pHashTable | Pointer to a hash table filled by :ref:`CMUtlHashCreate() <group___cmp_hilscher_c_i_f_x_dep___taskprefix_1ga20165a11d0e043424d6aa180cf3a5ef4>` or :ref:`CMUtlHashCreate2() <group___c_m_utils_hash_itf_1ga9af9fc49890a611ee125df7078d9ea3d>` |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+---------------------------------+
+| ERR_OK        | Hash table could be deleted     |
++---------------+---------------------------------+
+| ERR_PARAMETER | Invalid hash table pointer      |
++---------------+---------------------------------+
+| ERR_FAILED    | Hash table could not be deleted |
++---------------+---------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_utils_hash_itf_1ga0d34d9a12bb3b22a3e7f84f4cb6461bc:
+
+RTS_RESULT CMUtlHashInsert (CMUtlHashTable *pHashTable, RTS_UI8 *pKey, RTS_SIZE keyLen, RTS_BOOL bCopyKey, void *pData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to insert a new hash entry. New hash entry (CMUtlHashEntry) is allocated from heap via :ref:`SysMemAllocData() <group___cmp_app_b_p_dep_1gaf16c5f270b2eb0d85f1019b07a3c8c87>` . Note: If the size of the key is equal or lower the register size of the architecture the key is directly used as hash.
+
+**Parameters**
+
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pHashTable | Pointer to a hash table filled by :ref:`CMUtlHashCreate() <group___cmp_hilscher_c_i_f_x_dep___taskprefix_1ga20165a11d0e043424d6aa180cf3a5ef4>` or :ref:`CMUtlHashCreate2() <group___c_m_utils_hash_itf_1ga9af9fc49890a611ee125df7078d9ea3d>` |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pKey       | Corresponding unique key. Can be an integer or string key.                                                                                                                                                                                   |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | keyLen     | Key length in bytes                                                                                                                                                                                                                          |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bCopyKey   | Is only relevant for String key: TRUE=Key is allocated and coppied, FALSE=Only a reference to the key is hold!                                                                                                                               |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pData      | Pointer to data to store in hash entry                                                                                                                                                                                                       |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+------------------------------------------------------------+
+| ERR_OK        | Hash entry could be inserted                               |
++---------------+------------------------------------------------------------+
+| ERR_PARAMETER | Invalid hash table pointer                                 |
++---------------+------------------------------------------------------------+
+| ERR_NOMEMORY  | Hash entry failed to insert because of insufficient memory |
++---------------+------------------------------------------------------------+
+| ERR_FAILED    | Hash entry failed to insert                                |
++---------------+------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_utils_hash_itf_1ga179a1e14b91e32416317b7424fec5824:
+
+RTS_RESULT CMUtlHashInsert2 (CMUtlHashTable *pHashTable, CMUtlHashEntry *pNewEntry, RTS_UI8 *pKey, RTS_SIZE keyLen, RTS_BOOL bCopyKey, void *pData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to insert a new hash entry. Note: If the size of the key is equal or lower the register size of the architecture the key is directly used as hash.
+
+**Parameters**
+
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pHashTable | Pointer to a hash table filled by :ref:`CMUtlHashCreate() <group___cmp_hilscher_c_i_f_x_dep___taskprefix_1ga20165a11d0e043424d6aa180cf3a5ef4>` or :ref:`CMUtlHashCreate2() <group___c_m_utils_hash_itf_1ga9af9fc49890a611ee125df7078d9ea3d>`                                     |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pNewEntry  | Pointer to a new the hash entry memory object to be added in the hash table. Can be static memory. If the pointer is NULL, a new hash entry (CMUtlHashEntry) is allocated from heap via :ref:`SysMemAllocData() <group___cmp_app_b_p_dep_1gaf16c5f270b2eb0d85f1019b07a3c8c87>` . |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pKey       | Corresponding unique key. Can be an integer or string key.                                                                                                                                                                                                                       |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | keyLen     | Key length in bytes                                                                                                                                                                                                                                                              |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bCopyKey   | Is only relevant for String key: TRUE=Key is allocated and coppied, FALSE=Only a reference to the key is hold!                                                                                                                                                                   |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pData      | Pointer to data to store in hash entry                                                                                                                                                                                                                                           |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+------------------------------------------------------------+
+| ERR_OK        | Hash entry could be inserted                               |
++---------------+------------------------------------------------------------+
+| ERR_PARAMETER | Invalid hash table pointer                                 |
++---------------+------------------------------------------------------------+
+| ERR_NOMEMORY  | Hash entry failed to insert because of insufficient memory |
++---------------+------------------------------------------------------------+
+| ERR_FAILED    | Hash entry failed to insert                                |
++---------------+------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_utils_hash_itf_1ga4a666238a761ef007c69bf6ecf5c0bfa:
+
+RTS_RESULT CMUtlHashRemove (CMUtlHashTable *pHashTable, CMUtlHashEntry *pEntry)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to remove a hash entry specified by its entry pointer.
+
+**Parameters**
+
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pHashTable | Pointer to a hash table filled by :ref:`CMUtlHashCreate() <group___cmp_hilscher_c_i_f_x_dep___taskprefix_1ga20165a11d0e043424d6aa180cf3a5ef4>` or :ref:`CMUtlHashCreate2() <group___c_m_utils_hash_itf_1ga9af9fc49890a611ee125df7078d9ea3d>` |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pEntry     | Pointer to the hash entry retrieved by CMUtlHashSearch                                                                                                                                                                                       |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+------------------------------------------+
+| ERR_OK        | Hash entry could be removed              |
++---------------+------------------------------------------+
+| ERR_PARAMETER | Invalid hash table pointer or hash entry |
++---------------+------------------------------------------+
+| ERR_NO_OBJECT | Unknown hash entry                       |
++---------------+------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_utils_hash_itf_1ga21dfba83a41eca5dd92864a1495bfad6:
+
+RTS_RESULT CMUtlHashRemove2 (CMUtlHashTable *pHashTable, RTS_UI8 *pKey, RTS_SIZE keyLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to remove a hash entry specified by its key.
+
+**Parameters**
+
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pHashTable | Pointer to a hash table filled by :ref:`CMUtlHashCreate() <group___cmp_hilscher_c_i_f_x_dep___taskprefix_1ga20165a11d0e043424d6aa180cf3a5ef4>` or :ref:`CMUtlHashCreate2() <group___c_m_utils_hash_itf_1ga9af9fc49890a611ee125df7078d9ea3d>` |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pKey       | Corresponding unique key. Can be an integer or string key.                                                                                                                                                                                   |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | keyLen     | Key length in bytes                                                                                                                                                                                                                          |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+------------------------------------------+
+| ERR_OK        | Hash entry could be removed              |
++---------------+------------------------------------------+
+| ERR_PARAMETER | Invalid hash table pointer or hash entry |
++---------------+------------------------------------------+
+| ERR_NO_OBJECT | Unknown hash entry                       |
++---------------+------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_utils_hash_itf_1ga80c5e7e19886459ca77c785c40835363:
+
+CMUtlHashEntry* CMUtlHashSearch (CMUtlHashTable *pHashTable, RTS_UI8 *pKey, RTS_SIZE keyLen, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to search for an entry in the hash table. Note: If the size of the key is equal or lower the register size of the architecture the key is directly used as hash.
+
+**Parameters**
+
++---------+------------+-------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pHashTable | Pointer to a hash table object, which is filled by this function                                                        |
++---------+------------+-------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pKey       | Pointer to the key value toi search for the entry                                                                       |
++---------+------------+-------------------------------------------------------------------------------------------------------------------------+
+| [in]    | keyLen     | Lenght of the key. If the key is a string, additionally the NUL termination character must be _included_ in the keylen! |
++---------+------------+-------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult    | Pointer to error code                                                                                                   |
++---------+------------+-------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+----------------------------------------------+
+| ERR_OK        | Hash entry could be found                    |
++---------------+----------------------------------------------+
+| ERR_PARAMETER | Invalid hash table pointer or pointer to key |
++---------------+----------------------------------------------+
+| ERR_NO_OBJECT | No hash entry matching to the key found      |
++---------------+----------------------------------------------+
+
+**Returns:**
+
+Pointer to the hash entry or NULL if not found
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

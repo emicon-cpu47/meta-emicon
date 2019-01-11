@@ -1,0 +1,75 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __cmp_secure_channel_itf_8h:
+
+====================================
+CmpSecureChannelItf.h File Reference
+====================================
+
+| #include ":ref:`CmpCommunicationLibItf.h <_cmp_communication_lib_itf_8h>`"
+
+Data Structures
+---------------
+
+- struct :ref:`HEADER_TAG_CRYPT <struct_h_e_a_d_e_r___t_a_g___c_r_y_p_t>`
+
+- struct :ref:`ICmpSecureChannel_C <struct_i_cmp_secure_channel___c>`
+
+Macros
+------
+
+- #define :ref:`RTS_SECURITY_SETTINGS_CMPSECURECHANNEL <group___cmp_secure_channel_itf___security_settings_1ga874faeb0d3604f54e1838350ad870200>` { \
+{(RTS_I32) :ref:`OnlineCommMode_ONLY_ENCRYPTED <group___cmp_secure_channel_itf_1ggad1c84e9f6b38751adc581f21286fc071a5d6e4f01d0bb4838ea5f74730d1e75f6>` , 0, "OnlineCommMode_ONLY_ENCRYPTED", "Only encrypted communication allowed [HIGHEST SECURITY LEVEL]"},\
+{(RTS_I32) :ref:`OnlineCommMode_PLAIN_AND_ENCRYPTED <group___cmp_secure_channel_itf_1ggad1c84e9f6b38751adc581f21286fc071abda0c2d3bd25a01ce3c269de4dd7b7f5>` , :ref:`CMPSECMAN_FLAGS_DEFAULT <group___cmp_security_manager_itf___applicationflags_1gaa5df6ddff07339e160fc0ae78770850c>` , "OnlineCommMode_PLAIN_AND_ENCRYPTED", "Encrypted and unencrypted communication supported. Can be decided by the online user"},\
+{(RTS_I32) :ref:`OnlineCommMode_ONLY_PLAIN <group___cmp_secure_channel_itf_1ggad1c84e9f6b38751adc581f21286fc071ad9cceee37591a78051d57e9b18f0ae13>` , 0, "OnlineCommMode_ONLY_PLAIN", "Only unencrypted communication supported"}\
+}
+
+- #define :ref:`RTS_CMPSECURECHANNEL_SECURITY_ID_SERVER <group___cmp_secure_channel_itf___security_settings_1ga3c752d525b6b8fd904cc3df386785ea1>` 0
+
+- #define :ref:`RTS_CMPSECURECHANNEL_SECURITY_ID_SELFSIGNEDCERT <group___cmp_secure_channel_itf___security_settings_1gaa5da58094a09bf44e1101c1fedb6c045>` :ref:`RTS_SECURITY_ID_SELFSIGNEDCERT <_cmp_security_manager_itf_8h_1aba174e53acc672385fac7fb780beda2a>`
+
+- #define :ref:`ITF_CmpSecureChannel <group___cmp_secure_channel_itf_1gaaf1472c5458ea346aa372b5d022fda89>`
+
+- #define :ref:`EXTITF_CmpSecureChannel <group___cmp_secure_channel_itf_1ga0718678cfc04566be33b1f155f67c1cf>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpSecureChannel_C <struct_i_cmp_secure_channel___c>` :ref:`ICmpSecureChannel <group___cmp_secure_channel_itf_1ga255c03d8629e2589510c0d11e9888a62>`
+
+Enumerations
+------------
+
+- enum :ref:`OnlineCommMode <group___cmp_secure_channel_itf_1gad1c84e9f6b38751adc581f21286fc071>` { :ref:`OnlineCommMode_ONLY_PLAIN <group___cmp_secure_channel_itf_1ggad1c84e9f6b38751adc581f21286fc071ad9cceee37591a78051d57e9b18f0ae13>`, :ref:`OnlineCommMode_PLAIN_AND_ENCRYPTED <group___cmp_secure_channel_itf_1ggad1c84e9f6b38751adc581f21286fc071abda0c2d3bd25a01ce3c269de4dd7b7f5>`, :ref:`OnlineCommMode_ONLY_ENCRYPTED <group___cmp_secure_channel_itf_1ggad1c84e9f6b38751adc581f21286fc071a5d6e4f01d0bb4838ea5f74730d1e75f6>` }
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SecChServerHandleRequest <group___cmp_secure_channel_itf_1gacc6a4c3249ece275b0e837cd3741df94>` (RTS_UI32 ui32ChannelHandle, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduRequest, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduReply, RTS_UI32 bFirstCall)
+
+- RTS_RESULT :ref:`SecChServerGetMaxChannels <group___cmp_secure_channel_itf_1ga4f73cb59c662acbc2bb9f6f1daaf5198>` (RTS_UI16 * pui16MaxChannels)
+
+- RTS_RESULT :ref:`SecChServerGetChannelInfoByIndex <group___cmp_secure_channel_itf_1ga026e6d35ebdaf9ca99ad81451c56e63e>` (RTS_UI16 ui16ChannelIndex, RTS_UI32 * pui32ServerState, :ref:`CHANNELINFO <struct_c_h_a_n_n_e_l_i_n_f_o>` * pChInfoBuffer, RTS_SIZE * psiBufferLen)
+
+- RTS_RESULT :ref:`SecChServerGetStatus <group___cmp_secure_channel_itf_1gaf0512229996f9f7b5e9465874cf500a0>` (RTS_UI32 ui32ChannelHandle, RTS_UI16 * pui16Status, RTS_UI8 * pui8ScalingFactor, RTS_I32 * pi32ItemsComplete, RTS_I32 * pi32TotalItems)
+
+- RTS_RESULT :ref:`SecChServerGetRequest <group___cmp_secure_channel_itf_1gac78975548292af0cb4bde4d78da30621>` (RTS_UI32 ui32ChannelHandle, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>` * ppduRequest, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>` * ppduReplyBuffer)
+
+- RTS_RESULT :ref:`SecChServerFinishRequest <group___cmp_secure_channel_itf_1gaacbdb96d7398a0fc54dd546d3283f4ec>` (RTS_UI32 ui32ChannelHandle, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData)
+
+- RTS_RESULT :ref:`SecChServerSetSessionId <group___cmp_secure_channel_itf_1ga1add158784bd5ef28c9f5d6dd7f36cc5>` (RTS_UI32 ui32ChannelHandle, RTS_UI32 ui32SessionId)
+
+- RTS_RESULT :ref:`SecChServerGetSessionId <group___cmp_secure_channel_itf_1gaedee8173939c502904d735d018133c9b>` (RTS_UI32 ui32ChannelHandle, RTS_UI32 * pui32SessionId)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpSecureChannelItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,44 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtag_s_t_o___t_e_x_t:
+
+============================
+tagSTO_TEXT Struct Reference
+============================
+
+| #include ":ref:`CmpCAAStorageItf.h <_cmp_c_a_a_storage_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_BYTE * :ref:`pbyData <structtag_s_t_o___t_e_x_t_1aef22c7f5f8a35f427c2cd527db9de818>`
+
+Detailed Description
+--------------------
+
+This data type is the internal representation of text, that is used in CmpCAAStorage. If the text from a column is retrieved this type will be returned and if the user wants to set the text of a column (both for insert and update the method IRowBase.ColumnSet_TEXT has to be used) or to search within a text column this type has to be passed to the database.
+
+- For reading the text value of a column the TEXT variable has to be converted into a STRING or into a WSTRING (using the functions |TextCopyToString| or |TextCopyToWString|).
+
+- For setting the text of a column or for searching a text the functions |CreateTextFromString| and |CreateTextFromWString| allow to create a TEXT variable.
+
+- After using the TEXT the variable (that has been previously created by functions |CreateTextFromString| or |CreateTextFromWString|) it has to be freed with function |TextFree|
+
+Field Documentation
+-------------------
+
+.. _structtag_s_t_o___t_e_x_t_1aef22c7f5f8a35f427c2cd527db9de818:
+
+RTS_IEC_BYTE* tagSTO_TEXT::pbyData
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpCAAStorageItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

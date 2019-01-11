@@ -1,0 +1,270 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_bitmap_pool_itf:
+
+================
+CmpBitmapPoolItf
+================
+
+Interface of CmpBitmapPool. :ref:`More... <group___cmp_bitmap_pool_itf-details>`
+
+Modules
+-------
+
+- :ref:`BimapPool Settings <group___cmp_bitmap_pool_itf___bimap_pool_settings>`
+
+Data Structures
+---------------
+
+- struct :ref:`bitmappoolregister_struct <structbitmappoolregister__struct>`
+
+- struct :ref:`bitmappoolunregister_struct <structbitmappoolunregister__struct>`
+
+- struct :ref:`ICmpBitmapPool_C <struct_i_cmp_bitmap_pool___c>`
+
+Macros
+------
+
+- #define :ref:`BMPPOOL_KEY_BASEPATH <group___cmp_bitmap_pool_itf_1ga5042f9ee06c87fae051529473e98d482>` "BitmapPath"
+
+- #define :ref:`BMPPOOL_VALUE_BASEPATH_DEFAULT <group___cmp_bitmap_pool_itf_1ga1befae123feaeb98dc891f4fede99a74>` ""
+
+- #define :ref:`ITF_CmpBitmapPool <group___cmp_bitmap_pool_itf_1ga765efd7115bcd169518b16ac0740e880>`
+
+- #define :ref:`EXTITF_CmpBitmapPool <group___cmp_bitmap_pool_itf_1ga1e063731166c6abd281985911625d568>`
+
+Typedefs
+--------
+
+- typedef RTS_RESULT(* :ref:`PFForeachBmpPoolEntry <group___cmp_bitmap_pool_itf_1ga1897c864c315ac1d8a71e7ca7e224f94>`)(void *pData, char *pszId, char *pszPath)
+
+- typedef :ref:`ICmpBitmapPool_C <struct_i_cmp_bitmap_pool___c>` :ref:`ICmpBitmapPool <group___cmp_bitmap_pool_itf_1gaf24d4c6a93cb18dc054683eae7bba8bf>`
+
+Functions
+---------
+
+- void :ref:`bmppoolregister <group___cmp_bitmap_pool_itf_1gae1fa11204c2ef2a2708d3b6af39a61ce>` (:ref:`bitmappoolregister_struct <structbitmappoolregister__struct>` * pEntry)
+
+- void :ref:`bmppoolunregister <group___cmp_bitmap_pool_itf_1ga938e9d1aa18a7a2376f3ce7b7c5d0329>` (:ref:`bitmappoolunregister_struct <structbitmappoolunregister__struct>` * pEntry)
+
+- RTS_RESULT :ref:`BmpPoolRegister <group___cmp_bitmap_pool_itf_1ga06d3360f92af0ed306053d321b0fa5c1>` (const char * pszBmpId, const char * pszPath)
+
+- RTS_RESULT :ref:`BmpPoolUnregister <group___cmp_bitmap_pool_itf_1ga4f82b131a40504d02d5232db793229b7>` (const char * pszBmpId)
+
+- RTS_RESULT :ref:`BmpPoolGetPath <group___cmp_bitmap_pool_itf_1ga4b6072abf80cf8fa8edc8943f286eb64>` (const char * pszBmpId, const char ** ppszBmpPath)
+
+- RTS_RESULT :ref:`BmpPoolClear <group___cmp_bitmap_pool_itf_1ga8a158e40a26b71fa32ef7dc8c93600cb>` (void)
+
+- RTS_RESULT :ref:`BmpPoolReadContents <group___cmp_bitmap_pool_itf_1gab89e1f60a780e304d0cb5fe579e2c29b>` (char * pszFilePath, RTS_BOOL bDelete)
+
+- RTS_RESULT :ref:`BmpPoolWriteContents <group___cmp_bitmap_pool_itf_1ga13de31534f081b6a690c71943360b3b4>` (char ** ppszFilePath)
+
+- RTS_RESULT :ref:`BmpPoolForeachEntry <group___cmp_bitmap_pool_itf_1gacf4e7b1faa63ebc191b615a25a78a388>` (void * pData, :ref:`PFForeachBmpPoolEntry <group___cmp_bitmap_pool_itf_1ga1897c864c315ac1d8a71e7ca7e224f94>`  pfCallback)
+
+.. _group___cmp_bitmap_pool_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpBitmapPool.
+
+Interface for the bitmap pool manager.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_bitmap_pool_itf_1ga5042f9ee06c87fae051529473e98d482:
+
+#define BMPPOOL_KEY_BASEPATH "BitmapPath"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting which decides about the path where the configuration file and all the bitmaps are saved. Default is the current working directory.
+
+.. _group___cmp_bitmap_pool_itf_1ga1befae123feaeb98dc891f4fede99a74:
+
+#define BMPPOOL_VALUE_BASEPATH_DEFAULT ""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bitmap_pool_itf_1ga765efd7115bcd169518b16ac0740e880:
+
+#define ITF_CmpBitmapPool
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bitmap_pool_itf_1ga1e063731166c6abd281985911625d568:
+
+#define EXTITF_CmpBitmapPool
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_bitmap_pool_itf_1ga1897c864c315ac1d8a71e7ca7e224f94:
+
+typedef RTS_RESULT( * PFForeachBmpPoolEntry)(void *pData, char *pszId, char *pszPath)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This callback function can be implemented by components iterating over the content of an imagepool using BmpPoolForeachEntry.
+
+**Parameters**
+
++---------+---------+----------------------------------------------------------------+
+| [in]    | pData   | The pointer that was passed in the call to BmpPoolForeachEntry |
++---------+---------+----------------------------------------------------------------+
+| [in]    | pszId   | The id of an entry                                             |
++---------+---------+----------------------------------------------------------------+
+| [in]    | pszPath | The path of an entry                                           |
++---------+---------+----------------------------------------------------------------+
+
+**Returns:**
+
+*Should return ERR_OK to continue the iteration or an error code to cancel the iteration.
+
+.. _group___cmp_bitmap_pool_itf_1gaf24d4c6a93cb18dc054683eae7bba8bf:
+
+typedef ICmpBitmapPool_C ICmpBitmapPool
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_bitmap_pool_itf_1gae1fa11204c2ef2a2708d3b6af39a61ce:
+
+void bmppoolregister (bitmappoolregister_struct *pEntry)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add a bitmap pool entry from plc program
+
+**Parameters**
+
++---------+--------+----------------------------+
+| [in]    | pEntry | Pointer to entry structure |
++---------+--------+----------------------------+
+
+.. _group___cmp_bitmap_pool_itf_1ga938e9d1aa18a7a2376f3ce7b7c5d0329:
+
+void bmppoolunregister (bitmappoolunregister_struct *pEntry)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove a bitmap pool entry from plc program
+
+**Parameters**
+
++---------+--------+----------------------------+
+| [in]    | pEntry | Pointer to entry structure |
++---------+--------+----------------------------+
+
+.. _group___cmp_bitmap_pool_itf_1ga06d3360f92af0ed306053d321b0fa5c1:
+
+RTS_RESULT BmpPoolRegister (const char *pszBmpId, const char *pszPath)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Registers a bitmap within the bitmappool.
+
+**Parameters**
+
++---------+----------+------------------------------------+
+| [in]    | pszBmpId | Id of the bitmap to register.      |
++---------+----------+------------------------------------+
+| [in]    | pszPath  | The path of the registered bitmap. |
++---------+----------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_bitmap_pool_itf_1ga4f82b131a40504d02d5232db793229b7:
+
+RTS_RESULT BmpPoolUnregister (const char *pszBmpId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Removes a bitmap from the bitmappool.
+
+**Parameters**
+
++---------+----------+----------------------------+
+| [in]    | pszBmpId | Id of the searched bitmap. |
++---------+----------+----------------------------+
+
+**Returns:**
+
+error code: ERR_OK in case of success, ERR_PARAMETER if the bitmap is not registered
+
+.. _group___cmp_bitmap_pool_itf_1ga4b6072abf80cf8fa8edc8943f286eb64:
+
+RTS_RESULT BmpPoolGetPath (const char *pszBmpId, const char **ppszBmpPath)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OBSOLETE FUNCTION: This function should not be used anymore.
+
+Returns the path of a bitmap that is handled by the BitmapPool
+
+**Parameters**
+
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszBmpId   | Id of the searched bitmap.                                                                                                                                                                    |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pszBmpPath | A string containing the path of the requested bitmap or NULL if it hasn't been found. The returned pointer will point to a string within the bitmap pool, so do not free the returned string. |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code: ERR_OK, ERR_PARAMETER or ERR_INVALIDID if the bitmap is not registered
+
+.. _group___cmp_bitmap_pool_itf_1ga8a158e40a26b71fa32ef7dc8c93600cb:
+
+RTS_RESULT BmpPoolClear (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Clears the content of the bitmappool
+**Returns:**
+
+error code
+
+.. _group___cmp_bitmap_pool_itf_1gab89e1f60a780e304d0cb5fe579e2c29b:
+
+RTS_RESULT BmpPoolReadContents (char *pszFilePath, RTS_BOOL bDelete)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Loads the contents of the bitmappool from the configured location.
+**Returns:**
+
+error code
+
+.. _group___cmp_bitmap_pool_itf_1ga13de31534f081b6a690c71943360b3b4:
+
+RTS_RESULT BmpPoolWriteContents (char **ppszFilePath)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Saves the contents of the bitmappool in the configured location.
+**Returns:**
+
+error code
+
+.. _group___cmp_bitmap_pool_itf_1gacf4e7b1faa63ebc191b615a25a78a388:
+
+RTS_RESULT BmpPoolForeachEntry (void *pData, PFForeachBmpPoolEntry pfCallback)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Call this function to iterate over all entries of the imagepool.
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------+
+| [in]    | pData      | A pointer to arbitrary data that will be passed to each callback.         |
++---------+------------+---------------------------------------------------------------------------+
+| [in]    | pfCallback | The callback function that will be called for each entry of the imagepool |
++---------+------------+---------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

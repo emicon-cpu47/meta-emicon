@@ -1,0 +1,118 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __cmp_user_d_b_objects_itf_8h:
+
+====================================
+CmpUserDBObjectsItf.h File Reference
+====================================
+
+| #include ":ref:`CmpItf.h`"
+
+Data Structures
+---------------
+
+- struct :ref:`tagGroupRightsEntry <structtag_group_rights_entry>`
+
+- struct :ref:`tagObjectEntry <structtag_object_entry>`
+
+- struct :ref:`ICmpUserDBObjects_C <struct_i_cmp_user_d_b_objects___c>`
+
+Macros
+------
+
+- #define :ref:`USERDB_NUM_OF_STATIC_OBJECTS <group___cmp_user_d_b_objects_itf___staticdefines_1ga0010ee1b12887a92c97041bd9221e452>` 6
+
+- #define :ref:`USERDB_NUM_OF_STATIC_GROUPRIGHTS <group___cmp_user_d_b_objects_itf___staticdefines_1ga42a0e6ef425b943c25b3722addc6326d>` 10
+
+- #define :ref:`USERDB_HIDE_OBJECT <group___cmp_user_d_b_objects_itf___properties_1ga94b7985cf7ed996b2ed5e386e1c7321e>` 1
+
+- #define :ref:`ITF_CmpUserDBObjects <group___cmp_user_d_b_objects_itf_1gaa96365e4191c167ef61f438912db102d>`
+
+- #define :ref:`EXTITF_CmpUserDBObjects <group___cmp_user_d_b_objects_itf_1ga262520269293c802090ff562fbd0f4b3>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagGroupRightsEntry <structtag_group_rights_entry>` :ref:`GroupRightsEntry <group___cmp_user_d_b_objects_itf___grouprightsentry_1gad899c2967b9ce71a690ab444c47094d4>`
+
+- typedef struct :ref:`tagObjectEntry <structtag_object_entry>` :ref:`ObjectEntry <group___cmp_user_d_b_objects_itf___objectentry_1gac84c69be9898222f75f9d955e5682111>`
+
+- typedef :ref:`ICmpUserDBObjects_C <struct_i_cmp_user_d_b_objects___c>` :ref:`ICmpUserDBObjects <group___cmp_user_d_b_objects_itf_1gaf73277ad34af2b9439063a993d9bdf62>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`UserDBRightsLoad <group___cmp_user_d_b_objects_itf_1ga91659e835b42994966300d8a637fc943>` (void)
+
+- RTS_RESULT :ref:`UserDBRightsStore <group___cmp_user_d_b_objects_itf_1gaa13562c7d0c1225e9ba823e286b5fc7b>` (void)
+
+- RTS_RESULT :ref:`UserDBRightsRelease <group___cmp_user_d_b_objects_itf_1ga740be94d09e4909676c67fb93bf5074d>` (void)
+
+- RTS_HANDLE :ref:`UserDBObjectAdd <group___cmp_user_d_b_objects_itf_1ga025ba4f0a6be7ae9f5b6a72c4d95e568>` (char * pszObject, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectAdd2 <group___cmp_user_d_b_objects_itf_1gae9db6cdbdfff40c0210ff2560aec752d>` (char * pszObject, RTS_UI32 properties, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBObjectRemove <group___cmp_user_d_b_objects_itf_1ga751556c319d0eff1462ffc4c96604e4b>` (RTS_HANDLE hObject)
+
+- RTS_HANDLE :ref:`UserDBObjectAddChild <group___cmp_user_d_b_objects_itf_1gab0373c8bc403ae7ed2c0b41a0d1bbb39>` (RTS_HANDLE hFatherObject, char * pszObject, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBObjectSetUsedRights <group___cmp_user_d_b_objects_itf_1gaab6a03b2bbab14e823ad56d8d337b249>` (RTS_HANDLE hObject, RTS_UI32 ulUsedRights)
+
+- RTS_RESULT :ref:`UserDBObjectGetUsedRights <group___cmp_user_d_b_objects_itf_1ga9b3805986b0a7db4c745b79761c26324>` (RTS_HANDLE hObject, RTS_UI32 * pulUsedRights)
+
+- RTS_RESULT :ref:`UserDBObjectGetProperties <group___cmp_user_d_b_objects_itf_1ga11e4245dc928054549bd3fb36def751d>` (RTS_HANDLE hObject, RTS_UI32 * pulProperties)
+
+- RTS_RESULT :ref:`UserDBObjectGetID <group___cmp_user_d_b_objects_itf_1ga1dbda78722d85e821ef0060cddec27d0>` (RTS_HANDLE hObject, RTS_UI32 * pulID)
+
+- RTS_RESULT :ref:`UserDBObjectSetID <group___cmp_user_d_b_objects_itf_1gae4ff4b101ef8701b294d929dfa8c8858>` (RTS_HANDLE hObject, RTS_UI32 ulID)
+
+- RTS_RESULT :ref:`UserDBObjectAddGroup <group___cmp_user_d_b_objects_itf_1gaa24efd478320759dfbe0e59c29add239>` (RTS_HANDLE hObject, RTS_HANDLE hGroup)
+
+- RTS_RESULT :ref:`UserDBObjectRemoveGroup <group___cmp_user_d_b_objects_itf_1ga3d0cf387e9da96a8e6e5034cb1ec16d1>` (RTS_HANDLE hObject, RTS_HANDLE hGroup)
+
+- RTS_RESULT :ref:`UserDBObjectSetGroupRights <group___cmp_user_d_b_objects_itf_1ga6a983d1a6cdfef28d9ac51972594bfb9>` (RTS_HANDLE hObject, RTS_HANDLE hGroup, RTS_UI32 ulRights)
+
+- RTS_RESULT :ref:`UserDBObjectSetGroupDeniedRights <group___cmp_user_d_b_objects_itf_1gaecb1dbb879b61ac84fb86f57600bb8a3>` (RTS_HANDLE hObject, RTS_HANDLE hGroup, RTS_UI32 ulDeniedRights)
+
+- RTS_HANDLE :ref:`UserDBObjectGetFirst <group___cmp_user_d_b_objects_itf_1gae39441a005c39247db62d7945e555b73>` (RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectGetNext <group___cmp_user_d_b_objects_itf_1ga065389c35d380fc9138cd73fc4fe2eaf>` (RTS_HANDLE hPrevObject, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectOpen <group___cmp_user_d_b_objects_itf_1ga0f34c95214c7f0ed119ae205761337f4>` (char * pszObject, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBObjectClose <group___cmp_user_d_b_objects_itf_1ga2d8673c3a52d6aaa18839944c73b0de4>` (RTS_HANDLE hObject)
+
+- RTS_RESULT :ref:`UserDBObjectGetName <group___cmp_user_d_b_objects_itf_1ga3fd83d0d757af18b83c9434cce474e4b>` (RTS_HANDLE hObject, char * pszObject, int * piMaxLen)
+
+- RTS_RESULT :ref:`UserDBObjectGetPath <group___cmp_user_d_b_objects_itf_1gad42743065d3803b1c91de99ad29258e4>` (RTS_HANDLE hObject, char * pszObject, int * piMaxLen)
+
+- RTS_HANDLE :ref:`UserDBObjectGetFirstChild <group___cmp_user_d_b_objects_itf_1gafac4ff5ab210265b7ea71ff375502d3c>` (RTS_HANDLE hFatherObject, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectGetNextChild <group___cmp_user_d_b_objects_itf_1ga3f6ca2689ac544ecbc6bb1a684ff7ee3>` (RTS_HANDLE hFatherObject, RTS_HANDLE hPrevChildObject, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectGetFather <group___cmp_user_d_b_objects_itf_1gac253d2a61d4b16f9a1a47c88ac586968>` (RTS_HANDLE hChildObject, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectGetFirstGroup <group___cmp_user_d_b_objects_itf_1ga27b9d715209def8ddfab274b981e3b9c>` (RTS_HANDLE hObject, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectGetNextGroup <group___cmp_user_d_b_objects_itf_1ga26e2651eef1f837177d13cbccfdfc0bc>` (RTS_HANDLE hObject, RTS_HANDLE hPrevGroup, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBObjectGetGroupRights <group___cmp_user_d_b_objects_itf_1ga75bfbb56951f552114f2a061f3543bdf>` (RTS_HANDLE hObject, RTS_HANDLE hGroup, RTS_UI32 * pulRights, RTS_UI32 * pulDeniedRights)
+
+- RTS_RESULT :ref:`UserDBObjectHasRights <group___cmp_user_d_b_objects_itf_1ga471e4ecc020e4148efa17830ed104767>` (char * pszObject, RTS_HANDLE hUser, RTS_UI32 ulRequestedRights)
+
+- RTS_RESULT :ref:`UserDBObjectGetRights <group___cmp_user_d_b_objects_itf_1gabd2e62a5fa07a430754f7be16cec3fef>` (char * pszObject, RTS_HANDLE hUser, RTS_UI32 * pulRights, RTS_UI32 * pulDeniedRights)
+
+- RTS_RESULT :ref:`UserDBObjectsActivate <group___cmp_user_d_b_objects_itf_1ga637671c3890ef6e358dc74a0a4dd0454>` (void)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpUserDBObjectsItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

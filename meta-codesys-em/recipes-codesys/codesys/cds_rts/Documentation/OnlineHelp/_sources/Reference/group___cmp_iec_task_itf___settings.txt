@@ -1,0 +1,151 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_iec_task_itf___settings:
+
+========
+Settings
+========
+
+ :ref:`More... <group___cmp_iec_task_itf___settings-details>`
+
+Macros
+------
+
+- #define :ref:`IECTASKKEY_INT_WAIT_FOR_STOP_TIMEOUT <group___cmp_iec_task_itf___settings_1gac50aff44fc044fd92bf2e02d08798ce2>` "WaitForStopTimeoutMs"
+
+- #define :ref:`IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_DEFAULT <group___cmp_iec_task_itf___settings_1ga806fb4decbd1a9252285b1fbebbbdb22>` INT32_C(10000)
+
+- #define :ref:`IECTASKKEY_INT_WAIT_FOR_STOP_TIMEOUT_2 <group___cmp_iec_task_itf___settings_1ga37513ddec3be7a493c2f6a218619402c>` "WaitForStop.TimeoutMs_2"
+
+- #define :ref:`IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_2_DEFAULT <group___cmp_iec_task_itf___settings_1ga3c2d5b8afd2ffbffed0c1bc6f18cd930>` INT32_C(25000)
+
+- #define :ref:`IECTASKKEY_INT_WAIT_FOR_STOP_SKIPTASKSWITHOUTOUTPUTS <group___cmp_iec_task_itf___settings_1ga13b67af339de3e388331f7a011243d7f>` "WaitForStop.SkipTasksWithoutOutputs"
+
+- #define :ref:`IECTASKVALUE_INT_WAIT_FOR_STOP_SKIPTASKSWITHOUTOUTPUTS_DEFAULT <group___cmp_iec_task_itf___settings_1ga17a6a84b6b4d78f068676748c4c703e8>` INT32_C(1)
+
+- #define :ref:`IECTASKKEY_INT_SIMPLE_CYCLE <group___cmp_iec_task_itf___settings_1gad5dcbfdd7595fc6aea9b10e4c5ee6c60>` "Simple_Cycle"
+
+- #define :ref:`IECTASKVALUE_INT_SIMPLE_CYCLE_DEFAULT <group___cmp_iec_task_itf___settings_1ga959c92c87e76a723fba2470a259d81cf>` 0
+
+- #define :ref:`IECTASKKEY_INT_ENABLE_TASK_TRACE <group___cmp_iec_task_itf___settings_1ga25a041842c6b7bb2d639f9a2ca5ac785>` "EnableTaskTrace"
+
+- #define :ref:`IECTASKVALUE_INT_ENABLE_TASK_TRACE_DEFAULT <group___cmp_iec_task_itf___settings_1ga5e69653bed8c3505432104996c20513c>` 0
+
+- #define :ref:`IECTASKKEY_STRING_VISU_TASK <group___cmp_iec_task_itf___settings_1gaa4767986e9484e24adfffec6b398b8bd>` "VisuTask"
+
+- #define :ref:`IECTASKKEY_INT_ENABLE_WATCHDOG_DURING_IOUPDATE <group___cmp_iec_task_itf___settings_1ga3440e2e53062ed684a28b74658a2d0e0>` "EnableWatchdogDuringIOUpdate"
+
+- #define :ref:`IECTASKVALUE_INT_ENABLE_WATCHDOG_DURING_IOUPDATE <group___cmp_iec_task_itf___settings_1ga12ba996600de7edabd0f74e9509adb38>` 1
+
+.. _group___cmp_iec_task_itf___settings-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_iec_task_itf___settings_1gac50aff44fc044fd92bf2e02d08798ce2:
+
+#define IECTASKKEY_INT_WAIT_FOR_STOP_TIMEOUT "WaitForStopTimeoutMs"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Default timeout to wait for a task until stop. If a task is not ending execution in this timeout, the task will be suspended and marked with exception. This timeout is the maximum reaction time on an application stop to set the machine in a safe state! The value is in milliseconds.
+
+.. _group___cmp_iec_task_itf___settings_1ga806fb4decbd1a9252285b1fbebbbdb22:
+
+#define IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_DEFAULT INT32_C(10000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___settings_1ga37513ddec3be7a493c2f6a218619402c:
+
+#define IECTASKKEY_INT_WAIT_FOR_STOP_TIMEOUT_2 "WaitForStop.TimeoutMs_2"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Default timeout to wait for a task until stop, after the safe state is reached! If a task is not ending execution in this timeout, the task will be suspended and marked with exception. The value is in milliseconds.
+
+.. _group___cmp_iec_task_itf___settings_1ga3c2d5b8afd2ffbffed0c1bc6f18cd930:
+
+#define IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_2_DEFAULT INT32_C(25000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___settings_1ga13b67af339de3e388331f7a011243d7f:
+
+#define IECTASKKEY_INT_WAIT_FOR_STOP_SKIPTASKSWITHOUTOUTPUTS "WaitForStop.SkipTasksWithoutOutputs"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to disable the following feature for the RUN/STOP transition of an application.
+
+This feature splits the RUN/STOP transition into 2 phases:
+
+- PHASE 1: This is the phase at the RUN/STOP transition until the safe state of the application/machine will be reached. In this phase, we wait only for IEC tasks wich use mapped outputs!
+
+- PHASE 2: This is the phase at the RUN/STOP transition after the safe state of the application/machine has been reached. In this phase, we wait only for IEC tasks, wich don't use mapped outputs! For this phase, there is a new setting for the timeout: [CmpIecTask] WaitForStop.TimeoutMs_2=25000
+
+Reason for this feature:
+
+- This is because typically non IO tasks (AlarmTasks, TrendTasks, etc.) need a much longer cycle time at the RUN/STOP transition than the IO tasks. And so sometimes a watchdog error occurres at this non IO tasks during normal RUN/STOP transition.
+
+NOTES:
+
+- To disable this feature, you can use the following new setting in the cfg-file: [CmpIecTask] WaitForStop.SkipTasksWithoutOutputs=0
+
+- If your plc does not use the standard CODESYS IO-configuration/IO-mapping, you have to switch off this feature!
+
+.. _group___cmp_iec_task_itf___settings_1ga17a6a84b6b4d78f068676748c4c703e8:
+
+#define IECTASKVALUE_INT_WAIT_FOR_STOP_SKIPTASKSWITHOUTOUTPUTS_DEFAULT INT32_C(1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___settings_1gad5dcbfdd7595fc6aea9b10e4c5ee6c60:
+
+#define IECTASKKEY_INT_SIMPLE_CYCLE "Simple_Cycle"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Flag for using simple cycle mode. To use this feature, the setting "simple_cycle" must be activated in the corresponding devdesc too!
+
+.. _group___cmp_iec_task_itf___settings_1ga959c92c87e76a723fba2470a259d81cf:
+
+#define IECTASKVALUE_INT_SIMPLE_CYCLE_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___settings_1ga25a041842c6b7bb2d639f9a2ca5ac785:
+
+#define IECTASKKEY_INT_ENABLE_TASK_TRACE "EnableTaskTrace"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to activate the task trace.
+
+.. _group___cmp_iec_task_itf___settings_1ga5e69653bed8c3505432104996c20513c:
+
+#define IECTASKVALUE_INT_ENABLE_TASK_TRACE_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_iec_task_itf___settings_1gaa4767986e9484e24adfffec6b398b8bd:
+
+#define IECTASKKEY_STRING_VISU_TASK "VisuTask"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Name of the task, that controls the target visualization. NOTE: For this task, the standard exception handling is skipped, if RTS_STRUCTURED_EXCEPTION_HANDLING is defined additionally! So the application is not forced in stop. Only the visu task is set in exception state and is never scheduled! All other plc tasks are executed unchanged.
+
+.. _group___cmp_iec_task_itf___settings_1ga3440e2e53062ed684a28b74658a2d0e0:
+
+#define IECTASKKEY_INT_ENABLE_WATCHDOG_DURING_IOUPDATE "EnableWatchdogDuringIOUpdate"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting enables the feature to fire a watchdog during an IO-update in an IEC task! Can be disabled if this causes problems in IEC applications and so the behaviour is similar to the runtime system before v3.5.12.0.
+
+.. _group___cmp_iec_task_itf___settings_1ga12ba996600de7edabd0f74e9509adb38:
+
+#define IECTASKVALUE_INT_ENABLE_WATCHDOG_DURING_IOUPDATE 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

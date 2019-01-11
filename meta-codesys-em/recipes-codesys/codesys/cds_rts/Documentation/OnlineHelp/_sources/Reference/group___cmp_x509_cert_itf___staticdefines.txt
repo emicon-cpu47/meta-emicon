@@ -1,0 +1,143 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_x509_cert_itf___staticdefines:
+
+==============
+Static defines
+==============
+
+ :ref:`More... <group___cmp_x509_cert_itf___staticdefines-details>`
+
+Macros
+------
+
+- #define :ref:`X509CERT_STANDARD_DAYS_FOR_CERT <group___cmp_x509_cert_itf___staticdefines_1ga4178f5fe0b77ad68c3a18cfe141eb577>` 365
+
+- #define :ref:`X509CERT_STANDARD_DAYS_FOR_SELFIGNEDCERT <group___cmp_x509_cert_itf___staticdefines_1ga5a57cf023bcfb367324503a1196289fb>` 1
+
+- #define :ref:`X509CERT_MILLISECONDS_PER_DAY <group___cmp_x509_cert_itf___staticdefines_1gabc0e30d2cef4bc3e6118d8837e2cedf7>` (24 * 60 * 60 * 1000)
+
+- #define :ref:`RTS_X509_DIFFIEHELLMAN_DEFAULT_LEN <group___cmp_x509_cert_itf___staticdefines_1gab149a9ccd2436b98483f7311d84f8d4e>` 2048
+
+- #define :ref:`USERDB_OBJECT_X509 <group___cmp_x509_cert_itf___staticdefines_1gab4500585687cc6717caf0e56ce0a60f6>` "Device.X509"
+
+- #define :ref:`USERDB_OBJECT_X509_IMPORT_CERT <group___cmp_x509_cert_itf___staticdefines_1ga44fad9424de506d3594a657fdb65dbf0>` "Device.X509.ImportCertificate"
+
+- #define :ref:`USERDB_OBJECT_X509_EXPORT_CERT <group___cmp_x509_cert_itf___staticdefines_1gae05e67e194cff6645c77da93f4ba47ce>` "Device.X509.ExportCertificate"
+
+- #define :ref:`USERDB_OBJECT_X509_DELETE_CERT <group___cmp_x509_cert_itf___staticdefines_1gaacecb543b612833b6cbf9870182fac1e>` "Device.X509.DeleteCertificate"
+
+- #define :ref:`USERDB_OBJECT_X509_MOVE_CERT <group___cmp_x509_cert_itf___staticdefines_1gadc92828ddeca430ab737e6165b75853a>` "Device.X509.MoveCertificate"
+
+- #define :ref:`USERDB_OBJECT_X509_LIST_CERTS <group___cmp_x509_cert_itf___staticdefines_1ga9d4b1a72529fbf8c4d549b66e89b2e39>` "Device.X509.ListCertificates"
+
+- #define :ref:`USERDB_OBJECT_X509_LIST_USE_CASES <group___cmp_x509_cert_itf___staticdefines_1ga2365c433de0847fc3e36d500fb18f6fd>` "Device.X509.ListUseCases"
+
+- #define :ref:`USERDB_OBJECT_X509_CREATE_SELFSIGNED <group___cmp_x509_cert_itf___staticdefines_1ga9633117cdb2386409b3beef6348fa32d>` "Device.X509.CreateSelfSignedCertificate"
+
+- #define :ref:`USERDB_OBJECT_X509_CREATE_CSR <group___cmp_x509_cert_itf___staticdefines_1ga4cd94441060ca561bdc6dbaaa93c6d1f>` "Device.X509.CreateCertificateSigningRequest"
+
+- #define :ref:`USERDB_OBJECT_X509_GET_STAUTS <group___cmp_x509_cert_itf___staticdefines_1gae31d0f5b5462b249fbe77abb7950330b>` "Device.X509.GetStatus"
+
+- #define :ref:`USERDB_OBJECT_X509_UNKNOWN <group___cmp_x509_cert_itf___staticdefines_1ga8fb4d28aa9b59a04fd14cf9569cc7b32>` "Device.X509.Unknown"
+
+.. _group___cmp_x509_cert_itf___staticdefines-details:
+
+Detailed Description
+--------------------
+
+
+
+Import certificate service. This service imports the given certificate into the corresponding store of the PLC. Since this service changes the security configuration of the PLC administrator rights are needed to execute this service.  <service name="SRV_X509_IMPORT_CERT"> <Request> <tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level where to import the certificate. See the RTSCERTTRUSTLEVEL_defines for details.</tag> <tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend where to store the certificate. Not used by now.</tag> <tag name="TAG_X509_CERT" required="required">Certificate in ANS.1 encoding to import.</tag> </Request> <Response> <tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag> </Response> </service>  Export certificate service. This service exports a selected certificate from the PLC for use in other applications.  <service name="SRV_X509_EXPORT_CERT"> <Request> <tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level of the certificate to export. See the RTSCERTTRUSTLEVEL_defines for details.</tag> <tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend of the certificate. Not used by now.</tag> <tag name="TAG_X509_THUMBPRINT" required="required">Thumbprint of certificate calculated by the runtime system.</tag> </Request> <Response> <tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag> <tag name="TAG_X509_CERT" required="optional">Exported certificate in ASN.1 encoding if the certificate was available.</tag> </Response> </service>  Delete certificate service. This service deletes a certificate from the PLC. Since this service changes the security configuration of the PLC administrator rights are needed to execute this service.  <service name="SRV_X509_DELETE_CERT"> <Request> <tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level of the certificate to delete. See the RTSCERTTRUSTLEVEL_defines for details.</tag> <tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend of the certificate. Not used by now.</tag> <tag name="TAG_X509_THUMBPRINT" required="required">Thumbprint of certificate calculated by the runtime system.</tag> <tag name="TAG_X509_DELETE_PKEY" required="optional">[RTS_UI32]: Flag if the private key should be deleted too. This is only used for trust level 'OWN'.</tag> </Request> <Response> <tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag> </Response> </service>  Move certificate service. This service moves certificates from one place to another. Since this service changes the security configuration of the PLC administrator rights are needed to execute this service.  <service name="SRV_X509_MOVE_CERT"> <Request> <tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level of the certificate to move. See the RTSCERTTRUSTLEVEL_defines for details.</tag> <tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend of the certificate. Not used by now.</tag> <tag name="TAG_X509_THUMBPRINT" required="required">Thumbprint of certificate calculated by the runtime system.</tag> <tag name="TAG_X509_DEST_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level where to move the certificate to. See the RTSCERTTRUSTLEVEL_defines for details.</tag> <tag name="TAG_X509_DEST_BACKEND" required="optional">[Type not yet defined]:Backend where to move the certificate to. Not used by now.</tag> </Request> <Response> <tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag> </Response> </service>  List certificate service. This service lists all certificates from one place. Maybe not all certificates can be transmitted in one single online service. In this case the service return ERR_ENTRIES_REMAINING to indicate that more certificates are available. To get the next junk of certificates put the thumbprint of the last certificate of the last service as a starting point for the next certificates. The thumbprint tag in the response contains the thumbprint of the certificate contained in the previous tag. These tags must always occur as a pair.  <service name="SRV_X509_LIST_CERTS"> <Request> <tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level of the certificate to list. See the RTSCERTTRUSTLEVEL_defines for details.</tag> <tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend of the certificate. Not used by now.</tag> <tag name="TAG_X509_THUMBPRINT" required="optional">Thumbprint of certificate calculated by the runtime system of the last received certificate.</tag> </Request> <Response> <tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag> <tag name="TAG_X509_CERT" required="required">Certificate in ASN.1 format. This tag may occur multiple times.</tag> <tag name="TAG_X509_THUMBPRINT" required="required">Thumbprint of certificate calculated by the runtime system.</tag> </Response> </service>  List certificate use service. This service return a list of all registered servers or clients that need their own certificates. This can be used to generate the needed self signed certificates or to generate the corresponding certificate requests. If a certificate is available for a dedicated use case the thumbprint of this certificate will be put the the service response. This allows to display the corresponding certificate. If the complete list of use cases can't be transmitted in one single service it will be split up. In this case the service return ERR_ENTRIES_REMAINING to indicate that more use cases are available. The get the next junk of use cases is identified by the last usecases index.  <service name="SRV_X509_LIST_USECASES"> <Request> <tag name="TAG_X509_USECASE" required="optional">[RTS_UI32]: If the last service returned ERR_ENTRIES_REMAINING this is the ID of the last received use case.</tag> </Request> <Response> <tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag> <tag name="TAG_X509_USECASE_DETAILS" required="required"> <tag name="TAG_X509_USECASE" required="required">[RTS_UI32]: ID of the use case.</tag> <tag name="TAG_X509_USECASE_COMPONENT" required="required">[String]: Component which registered the use case.</tag> <tag name="TAG_X509_USECASE_NAME" required="optional">[String]: Name of the usecase. Provided by the component.</tag> <tag name="TAG_X509_USECASE_DESC" required="optional">[String]: Description of the use case. Provided by the component.</tag> <tag name="TAG_X509_SUBJECT_ID" required="optional">[String]: OID of the current subject field. Always exists with the following TAG_X509_SUBJECT_VALUE field. Sequenz is likley to be repeated</tag> <tag name="TAG_X509_SUBJECT_VALUE" required="optional">[String]: Value of the current subject field.</tag> <tag name="TAG_X509_ALT_NAME_EMAIL" required="optional">[String]: Alternative name containing an email address.</tag> <tag name="TAG_X509_ALT_NAME_DNSNAME" required="optional">[String]: Alternative name containing the DNS name.</tag> <tag name="TAG_X509_ALT_NAME_URI" required="optional">[String]: Alternative name containing the URI</tag> <tag name="TAG_X509_ALT_NAME_IPADDRESS" required="optional">[String]: Alternative name containing the IP-Address.</tag> <tag name="TAG_X509_ALT_NAME_REGISTEREDID" required="optional">[String]: Alternative name containing an OID in textual representation.</tag> <tag name="TAG_X509_KEYUSAGE" required="optional">[RTS_UI32]: Key usage of the certificate. See: RTS_KEY_USAGE_DIGITAL_macros.</tag> <tag name="TAG_X509_EXT_KEYUSAGE" required="optional">[String]: Extended key usage identified by its textual representation. Can occur multiple times.</tag> <tag name="TAG_X509_THUMBPRINT" required="optional">Thumbprint of the certificate available for this use case. Left out if no certificate is available.</tag> <tag name="TAG_X509_GEN_SELF_SIGNED" required="optional">[Empty tag]: A self signed certificate is beeing generated at the moment.</tag> <tag name="TAG_X509_GEN_CSR" required="optional">[Empty tag]: A certificate request is beeing generated at the moment.</tag> </tag> </Response> </service>  Generate self signed certificate service. This service is used to generate a self signed certificate for a registered use case. This service will also generate the private key used by the new certificate. Since this service changes the security configuration of the PLC administrator rights are needed to execute this service. Repeat this service  <service name="SRV_X509_CREATE_SELFSIGNED"> <Request> <tag name="TAG_X509_USECASE" required="required">[RTS_UI32]: Usecase ID which the certificate is generated for.</tag> <tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Backend where to store the certificate. Not used by now.</tag> <tag name="TAG_X509_KEY_LENGTH" required="optional">[RTS_UI32]: The length of the asymmetric key pair in bits. If left out the default (see MinAsymmetricKeySize) will be used.</tag> <tag name="TAG_X509_DAYS_VALID" required="optional">[RTS_UI32]: Number of days the self signed certificate is valid.</tag> </Request> <Response> <tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag> <tag name="TAG_X509_STATUS_HANDLE" required="required">[RTS_UI16]: Result code of online operation</tag> </Response> </service>  Generate certificate signing request service. This service is used to generate a certificate signing request (CSR) for a registered use case. The private key is stored on the PLC. If the certificate has been generated by a CA this certificate has to be imported to the own store.  <service name="SRV_X509_CREATE_REQUEST"> <Request> <tag name="TAG_X509_USECASE" required="required">[RTS_UI32]: Usecase ID which the CSR is generated for.</tag> <tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Backend where to store the private key. Not used by now.</tag> <tag name="TAG_X509_KEY_LENGTH" required="optional">[RTS_UI32]: The length of the asymmetric key pair in bits. If left out the default (see MinAsymmetricKeySize) will be used.</tag> </Request> <Response> <tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag> <tag name="TAG_X509_CSR" required="optional">The generated CSR in ASN.1 encoding.</tag> </Response> </service>  Get the status of long lasting operation. Actually this is used for generating self signed certificates.  <service name="SRV_X509_GET_STATUS"> <Request> <tag name="TAG_X509_OPERATION" required="required">[RTS_UI32]: Identifier of the operation. Use the service wating for as ID.</tag> <tag name="TAG_X509_STATUS_HANDLE" required="required">[RTS_UI32]: Usecase ID which the CSR is generated for.</tag> </Request> <Response> <tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation. ERR_OK: Operation finished. ERR_INVALID_HANDLE: TAG_X509_STATUS_HANDLE was invalid. ERR_PENDING: Operations still running. ERR_FAILED: Operations failed. </tag> </Response> </service>
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_x509_cert_itf___staticdefines_1ga4178f5fe0b77ad68c3a18cfe141eb577:
+
+#define X509CERT_STANDARD_DAYS_FOR_CERT 365
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This define is used for the PlcShell command "cert-genselfsigned" to specify the number of days until the certificate will expire (if no argument is specified)
+
+.. _group___cmp_x509_cert_itf___staticdefines_1ga5a57cf023bcfb367324503a1196289fb:
+
+#define X509CERT_STANDARD_DAYS_FOR_SELFIGNEDCERT 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This define is used for the number of days until the certificate will expire for selfsigned certificates
+
+.. _group___cmp_x509_cert_itf___staticdefines_1gabc0e30d2cef4bc3e6118d8837e2cedf7:
+
+#define X509CERT_MILLISECONDS_PER_DAY (24 * 60 * 60 * 1000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_x509_cert_itf___staticdefines_1gab149a9ccd2436b98483f7311d84f8d4e:
+
+#define RTS_X509_DIFFIEHELLMAN_DEFAULT_LEN 2048
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This define is used to specify the default length of the diffie hellman parameters
+
+.. _group___cmp_x509_cert_itf___staticdefines_1gab4500585687cc6717caf0e56ce0a60f6:
+
+#define USERDB_OBJECT_X509 "Device.X509"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Predefined objects in the runtime
+
+.. _group___cmp_x509_cert_itf___staticdefines_1ga44fad9424de506d3594a657fdb65dbf0:
+
+#define USERDB_OBJECT_X509_IMPORT_CERT "Device.X509.ImportCertificate"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_x509_cert_itf___staticdefines_1gae05e67e194cff6645c77da93f4ba47ce:
+
+#define USERDB_OBJECT_X509_EXPORT_CERT "Device.X509.ExportCertificate"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_x509_cert_itf___staticdefines_1gaacecb543b612833b6cbf9870182fac1e:
+
+#define USERDB_OBJECT_X509_DELETE_CERT "Device.X509.DeleteCertificate"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_x509_cert_itf___staticdefines_1gadc92828ddeca430ab737e6165b75853a:
+
+#define USERDB_OBJECT_X509_MOVE_CERT "Device.X509.MoveCertificate"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_x509_cert_itf___staticdefines_1ga9d4b1a72529fbf8c4d549b66e89b2e39:
+
+#define USERDB_OBJECT_X509_LIST_CERTS "Device.X509.ListCertificates"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_x509_cert_itf___staticdefines_1ga2365c433de0847fc3e36d500fb18f6fd:
+
+#define USERDB_OBJECT_X509_LIST_USE_CASES "Device.X509.ListUseCases"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_x509_cert_itf___staticdefines_1ga9633117cdb2386409b3beef6348fa32d:
+
+#define USERDB_OBJECT_X509_CREATE_SELFSIGNED "Device.X509.CreateSelfSignedCertificate"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_x509_cert_itf___staticdefines_1ga4cd94441060ca561bdc6dbaaa93c6d1f:
+
+#define USERDB_OBJECT_X509_CREATE_CSR "Device.X509.CreateCertificateSigningRequest"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_x509_cert_itf___staticdefines_1gae31d0f5b5462b249fbe77abb7950330b:
+
+#define USERDB_OBJECT_X509_GET_STAUTS "Device.X509.GetStatus"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_x509_cert_itf___staticdefines_1ga8fb4d28aa9b59a04fd14cf9569cc7b32:
+
+#define USERDB_OBJECT_X509_UNKNOWN "Device.X509.Unknown"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

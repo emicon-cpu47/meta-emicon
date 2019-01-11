@@ -1,0 +1,80 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_except_itf___events:
+
+======
+Events
+======
+
+ :ref:`More... <group___sys_except_itf___events-details>`
+
+Macros
+------
+
+- #define :ref:`EVT_EXCPT_GenerateException <group___sys_except_itf___events_1ga99bd40e997c22d9501a9f10b17b9935d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_EXCEPTION <group___cmp_event_mgr_itf___eventclasses_1ga1f5b32c2ac26993295bbf1e8d55f7d34>` , 1)
+
+- #define :ref:`EVT_EXCPT_GenerateException2 <group___sys_except_itf___events_1ga262086d1fdc506e072824a825ec8c078>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_EXCEPTION <group___cmp_event_mgr_itf___eventclasses_1ga1f5b32c2ac26993295bbf1e8d55f7d34>` , 2)
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysExceptOSInit <group___sys_except_itf___events_1ga6f145cf6540adf18b02d4485ac5aa52a>` (INIT_STRUCT * pInit)
+
+- RTS_RESULT :ref:`SysExceptOSHookFunction <group___sys_except_itf___events_1ga191d323f57193c31b717cbf1300baca3>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+.. _group___sys_except_itf___events-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_except_itf___events_1ga99bd40e997c22d9501a9f10b17b9935d:
+
+#define EVT_EXCPT_GenerateException :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_EXCEPTION <group___cmp_event_mgr_itf___eventclasses_1ga1f5b32c2ac26993295bbf1e8d55f7d34>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The event is sent if an exception occurred (see category exception code for detailed information). NOTE: This event is fired for every exception! That means also for handled exceptions via SEH (Structured Exception Handling) with rts_try/rts_catch!
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------+
+| [in]    | pEventParam | :ref:`EVTPARAM_SysExcept <struct_e_v_t_p_a_r_a_m___sys_except>` |
++---------+-------------+-----------------------------------------------------------------+
+
+.. _group___sys_except_itf___events_1ga262086d1fdc506e072824a825ec8c078:
+
+#define EVT_EXCPT_GenerateException2 :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_EXCEPTION <group___cmp_event_mgr_itf___eventclasses_1ga1f5b32c2ac26993295bbf1e8d55f7d34>` , 2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The event is sent if an exception occurred (see category exception code for detailed information). NOTE: This event is fired only for exceptions that are not handled via SEH (Structured Exception Handling) with rts_try/rts_catch!
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------+
+| [in]    | pEventParam | :ref:`EVTPARAM_SysExcept <struct_e_v_t_p_a_r_a_m___sys_except>` |
++---------+-------------+-----------------------------------------------------------------+
+
+Function Documentation
+----------------------
+
+.. _group___sys_except_itf___events_1ga6f145cf6540adf18b02d4485ac5aa52a:
+
+RTS_RESULT SysExceptOSInit (INIT_STRUCT *pInit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_except_itf___events_1ga191d323f57193c31b717cbf1300baca3:
+
+RTS_RESULT SysExceptOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

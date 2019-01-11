@@ -1,0 +1,470 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_framebuffer_itf:
+
+=================
+SysFramebufferItf
+=================
+
+Interface of SysFramebuffer. :ref:`More... <group___sys_framebuffer_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`FBPixel_24 <struct_f_b_pixel__24>`
+
+- struct :ref:`FBFontCharStruct <struct_f_b_font_char_struct>`
+
+- struct :ref:`FBFontArea <struct_f_b_font_area>`
+
+- struct :ref:`FBFont <struct_f_b_font>`
+
+- struct :ref:`FontFile_TOCEntry <struct_font_file___t_o_c_entry>`
+
+- struct :ref:`FontFile_Header <struct_font_file___header>`
+
+- struct :ref:`FontFile_Sect_FontInfo <struct_font_file___sect___font_info>`
+
+- struct :ref:`ISysFramebuffer_C <struct_i_sys_framebuffer___c>`
+
+Macros
+------
+
+- #define :ref:`FB_PAL_CONV_BUFFER_SIZE <group___sys_framebuffer_itf_1ga05a07b88a1cce45a9e11dd80e16026ac>` 16
+
+- #define :ref:`FB_PLATFORM <group___sys_framebuffer_itf_1gaf59d3aab09f93b2a7fc459387659564a>` FB_PLATFORM_32_LE
+
+- #define :ref:`FB_USE_SQRT <group___sys_framebuffer_itf_1ga217d12ddb4e112355bf489f3d3c98544>` FB_YES		/* default FB_NO		//use square root function or use an approximation? */
+
+- #define :ref:`FB_USE_FLOAT <group___sys_framebuffer_itf_1gaea26eb07ff76844635e1ee8f3e4b828e>` FB_NO		/* default FB_NO		//use float values or avoid them (e.g. by alternative algorithms) */
+
+- #define :ref:`FB_USE_MOD <group___sys_framebuffer_itf_1ga9c3bfb2131a9f15014d6b7de8051eef9>` FB_NO		/* default FB_NO		//use native modulo operator? */
+
+- #define :ref:`FB_FONT_TRUETYPE <group___sys_framebuffer_itf_1ga4e8c608e2c8aa93e69bfa17e83e1747d>` FB_NO		/* default FB_NO; must be FB_NO because TrueType fonts are not implemented yet */
+
+- #define :ref:`FB_TEST_VIDEODRIVER <group___sys_framebuffer_itf_1ga479363c9eae741abe771b699e3732ab8>` FB_NO		/* default FB_NO */
+
+- #define :ref:`FB_OVERRIDES_BITBLT <group___sys_framebuffer_itf_1ga6799b4f1cdfd736ccac3c87e76a4720a>` FB_NO		/* default FB_NO*/
+
+- #define :ref:`FB_OVERRIDES_STRETCHBLT <group___sys_framebuffer_itf_1ga1068d0a9bbd2930d626fed50522660f8>` FB_NO		/* default FB_NO */
+
+- #define :ref:`FB_SUPPORTS_LARGE_UNICODEFONTS <group___sys_framebuffer_itf_1ga562969ca127c0f73ffe2b646fbf45401>` FB_YES		/* default FB_NO*/
+
+- #define :ref:`FB_CLIP_MODE <group___sys_framebuffer_itf_1gac469b711f4412fb7c104cab8f9487f1b>` FB_CLIP_PIXELBASED
+
+- #define :ref:`FB_CLIP_FORCE_PIXELBASED <group___sys_framebuffer_itf_1ga06fad19d0ecd091ea23e6210b1620d9f>` FB_NO
+
+- #define :ref:`FB_PF_INDEXED_COLOR_1 <group___sys_framebuffer_itf_1gab32badf75bf6beefced79947b307c9d3>` 1	/* packed pixels:	[11111111]	         					- 2 indexed FBPaletteEntries */
+
+- #define :ref:`FB_PF_INDEXED_COLOR_2 <group___sys_framebuffer_itf_1gac0f35b1c82cdd12b0496f8f4ed535355>` 2	/* packed pixels:	[2 2 2 2 ]	         					- 4 indexed FBPaletteEntries */
+
+- #define :ref:`FB_PF_INDEXED_COLOR_4 <group___sys_framebuffer_itf_1ga200783b56c1b48597a30d737f90a27f6>` 3	/* packed pixels:	[4   4   ]	         					- 16 indexed FBPaletteEntries */
+
+- #define :ref:`FB_PF_INDEXED_COLOR_8 <group___sys_framebuffer_itf_1ga25d8ac5ab035a98dab619bfc4dada753>` 4	/* packed pixels:	[8       ]	         					- 256 indexed FBPaletteEntries */
+
+- #define :ref:`FB_PF_DIRECT_COLOR_8 <group___sys_framebuffer_itf_1gac14bcda410e21354eb8ca9bd78e8ebac>` 5	/* Direct Color:		[RRRGGGBB]	         					- 8 reds, 8 greens, 4 blues */
+
+- #define :ref:`FB_PF_DIRECT_COLOR_15 <group___sys_framebuffer_itf_1ga09439cce5d3c5e0b1ae5928f17087da7>` 6	/* High Color 15bpp:	[ RRRRRGG|GGGBBBBB]  					- 32 reds, 32 greens, 32 blues */
+
+- #define :ref:`FB_PF_DIRECT_COLOR_16 <group___sys_framebuffer_itf_1ga87bf6514a41f617160da5093640ab371>` 7	/* High Color 16bpp:	[RRRRRGGG|GGGBBBBB]  					- 32 reds, 64 greens, 32 blues */
+
+- #define :ref:`FB_PF_DIRECT_COLOR_24 <group___sys_framebuffer_itf_1ga400fb40ccc514fe3c1deba48ab605e2b>` 8	/* True Color 24bpp:	[RRRRRRRR|GGGGGGGG|BBBBBBBB]			- 256 reds, 256 greens, 256 blues */
+
+- #define :ref:`FB_PF_DIRECT_COLOR_32 <group___sys_framebuffer_itf_1gac1059f24865a9b6458e4568d36ae78bc>` 9	/* True Color 32bpp;	[AAAAAAAA|RRRRRRRR|GGGGGGGG|BBBBBBBB]	- 256 alpha channels, 256 reds, 256 greens, 256 blues */
+
+- #define :ref:`FB_PF_DIRECT_COLOR_32_RGB <group___sys_framebuffer_itf_1gac243f7b86b6c3917fd5192c4c65fafb0>` 10	/* True Color 32bpp:	[        |RRRRRRRR|GGGGGGGG|BBBBBBBB]	- 256 reds, 256 greens, 256 blues, 1 byte ignored */
+
+- #define :ref:`FB_PF <group___sys_framebuffer_itf_1gae5fc875da0d946f96d79dfc5c122a706>` :ref:`FB_PF_DIRECT_COLOR_24 <group___sys_framebuffer_itf_1ga400fb40ccc514fe3c1deba48ab605e2b>`
+
+- #define :ref:`FB_NUM_FONTS <group___sys_framebuffer_itf_1gafc4da1df0c702463c14da9c035370c6a>` 12
+
+- #define :ref:`FB_SIZE_X <group___sys_framebuffer_itf_1gaca2363b8acef1902625b026cd92ef014>` 640
+
+- #define :ref:`FB_SIZE_Y <group___sys_framebuffer_itf_1gae82651b718e1c48fc8ce22c7614c93f6>` 480
+
+- #define :ref:`FB_BYTES_PER_PIXEL <group___sys_framebuffer_itf_1gaeb43e745f0bfe82304d1a1df6e32145d>` (( :ref:`FB_BITS_PER_PIXEL <group___sys_framebuffer_itf_1gaf914dc31e9b9b5d923b213bf42b7aac0>` +7)/8)
+
+- #define :ref:`FB_CHAR_BMPOFFSET <group___sys_framebuffer_itf_1ga62fc34d1d69a1f314467041f9f996fde>` RTS_UI32
+
+- #define :ref:`FB_BITS_PER_PIXEL <group___sys_framebuffer_itf_1gaf914dc31e9b9b5d923b213bf42b7aac0>` 24
+
+- #define :ref:`MAGICNUMBER_FONTFILE <group___sys_framebuffer_itf_1gae84d2e024bc9ac28d7a9e1ec95971ade>` 64266447  /* Ascii: FbFt (FramebufferFont)*/
+
+- #define :ref:`FILEFORMAT_FONTFILE <group___sys_framebuffer_itf_1ga13807478c1ab1bebef62932e9594bd71>` 0	/* for a possible change of the fileformat */
+
+- #define :ref:`CHARACTERDATA_ID <group___sys_framebuffer_itf_1gaff9e0ebfa0a5db00979135b100f628eb>` 1
+
+- #define :ref:`CHARACTERDESC_ID <group___sys_framebuffer_itf_1ga92ca9ba4d2abac9102ce1d0384074ff3>` 3
+
+- #define :ref:`FONTAREA_ID <group___sys_framebuffer_itf_1gac59d93a9c90a60f2b8a36954e2922fd2>` 8
+
+- #define :ref:`FONTINFO_ID <group___sys_framebuffer_itf_1gae1c6a612351ca87f4cb41a4dc3596b08>` 10
+
+- #define :ref:`ITF_SysFramebuffer <group___sys_framebuffer_itf_1gac1394941d5a6401bfe45f413e46a63fc>`
+
+- #define :ref:`EXTITF_SysFramebuffer <group___sys_framebuffer_itf_1ga15c8cacd1edbf0c7384f36d39351b349>`
+
+Typedefs
+--------
+
+- typedef :ref:`FBPixel_24 <struct_f_b_pixel__24>` :ref:`FBPixel <group___sys_framebuffer_itf_1ga792c83f8ae3bc98bb17a0994553de74e>`
+
+- typedef struct :ref:`FBFontCharStruct <struct_f_b_font_char_struct>` :ref:`FBFontChar <group___sys_framebuffer_itf_1gaaced0112821007d563b0e816384929ff>`
+
+- typedef :ref:`ISysFramebuffer_C <struct_i_sys_framebuffer___c>` :ref:`ISysFramebuffer <group___sys_framebuffer_itf_1ga0631aa429be0d9b499fa39ad7e1c1a00>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysFramebufferOSInit <group___sys_framebuffer_itf_1gaf7925bab5fe1838be71d8927030f0a60>` (INIT_STRUCT * pInit)
+
+- RTS_RESULT :ref:`SysFramebufferOSHookFunction <group___sys_framebuffer_itf_1ga6f2b996d67ab4f44819add693cff0388>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_RESULT :ref:`SysFramebufferDeviceInit <group___sys_framebuffer_itf_1ga0f76241b7e85e119c6d87da1f21413a8>` (void)
+
+- RTS_RESULT :ref:`SysFramebufferBeginPaint <group___sys_framebuffer_itf_1ga509cc040359ac9b914d44efbafc15d03>` (void)
+
+- RTS_RESULT :ref:`SysFramebufferEndPaint <group___sys_framebuffer_itf_1ga87908940647a98d13d61b598b70e1b92>` (void)
+
+- RTS_RESULT :ref:`SysFramebufferFlush <group___sys_framebuffer_itf_1ga2140264f5e6bf6f5fa461d91a63a019d>` (RTS_Rectangle * aInvalidate, RTS_UI32 uiNumRects)
+
+- RTS_RESULT :ref:`SysFramebufferGetCurrentAddress <group___sys_framebuffer_itf_1ga0770d295f27778ecbf2791ae5e3a89ab>` (:ref:`FBPixel <group___sys_framebuffer_itf_1ga792c83f8ae3bc98bb17a0994553de74e>` ** pAddress)
+
+- RTS_RESULT :ref:`SysFramebufferEnableColorPalette8 <group___sys_framebuffer_itf_1gaf04742f20b6d31db351369415d00ae33>` (RTS_UI8 * pPalette)
+
+- RTS_HANDLE :ref:`SysFramebufferGetFontList <group___sys_framebuffer_itf_1ga213cfcc916ca5f97a1d908c8bbe30afe>` (void)
+
+- RTS_RESULT :ref:`SysFramebufferGetFont <group___sys_framebuffer_itf_1gad0d9ec820a80bbd832b083b32f8f29c4>` (:ref:`FBFont <struct_f_b_font>` ** ppFont, char * pszFontName, RTS_UI8 ucFontSize, RTS_UI32 uiFlags)
+
+.. _group___sys_framebuffer_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysFramebuffer.
+
+SysFramebuffer interface. This interface could be implemented by different components.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_framebuffer_itf_1ga05a07b88a1cce45a9e11dd80e16026ac:
+
+#define FB_PAL_CONV_BUFFER_SIZE 16
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gaf59d3aab09f93b2a7fc459387659564a:
+
+#define FB_PLATFORM FB_PLATFORM_32_LE
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga217d12ddb4e112355bf489f3d3c98544:
+
+#define FB_USE_SQRT FB_YES		/* default FB_NO		//use square root function or use an approximation? */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gaea26eb07ff76844635e1ee8f3e4b828e:
+
+#define FB_USE_FLOAT FB_NO		/* default FB_NO		//use float values or avoid them (e.g. by alternative algorithms) */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga9c3bfb2131a9f15014d6b7de8051eef9:
+
+#define FB_USE_MOD FB_NO		/* default FB_NO		//use native modulo operator? */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga4e8c608e2c8aa93e69bfa17e83e1747d:
+
+#define FB_FONT_TRUETYPE FB_NO		/* default FB_NO; must be FB_NO because TrueType fonts are not implemented yet */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga479363c9eae741abe771b699e3732ab8:
+
+#define FB_TEST_VIDEODRIVER FB_NO		/* default FB_NO */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga6799b4f1cdfd736ccac3c87e76a4720a:
+
+#define FB_OVERRIDES_BITBLT FB_NO		/* default FB_NO*/
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga1068d0a9bbd2930d626fed50522660f8:
+
+#define FB_OVERRIDES_STRETCHBLT FB_NO		/* default FB_NO */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga562969ca127c0f73ffe2b646fbf45401:
+
+#define FB_SUPPORTS_LARGE_UNICODEFONTS FB_YES		/* default FB_NO*/
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gac469b711f4412fb7c104cab8f9487f1b:
+
+#define FB_CLIP_MODE FB_CLIP_PIXELBASED
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga06fad19d0ecd091ea23e6210b1620d9f:
+
+#define FB_CLIP_FORCE_PIXELBASED FB_NO
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gab32badf75bf6beefced79947b307c9d3:
+
+#define FB_PF_INDEXED_COLOR_1 1	/* packed pixels:	[11111111]	         					- 2 indexed FBPaletteEntries */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gac0f35b1c82cdd12b0496f8f4ed535355:
+
+#define FB_PF_INDEXED_COLOR_2 2	/* packed pixels:	[2 2 2 2 ]	         					- 4 indexed FBPaletteEntries */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga200783b56c1b48597a30d737f90a27f6:
+
+#define FB_PF_INDEXED_COLOR_4 3	/* packed pixels:	[4   4   ]	         					- 16 indexed FBPaletteEntries */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga25d8ac5ab035a98dab619bfc4dada753:
+
+#define FB_PF_INDEXED_COLOR_8 4	/* packed pixels:	[8       ]	         					- 256 indexed FBPaletteEntries */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gac14bcda410e21354eb8ca9bd78e8ebac:
+
+#define FB_PF_DIRECT_COLOR_8 5	/* Direct Color:		[RRRGGGBB]	         					- 8 reds, 8 greens, 4 blues */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga09439cce5d3c5e0b1ae5928f17087da7:
+
+#define FB_PF_DIRECT_COLOR_15 6	/* High Color 15bpp:	[ RRRRRGG|GGGBBBBB]  					- 32 reds, 32 greens, 32 blues */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga87bf6514a41f617160da5093640ab371:
+
+#define FB_PF_DIRECT_COLOR_16 7	/* High Color 16bpp:	[RRRRRGGG|GGGBBBBB]  					- 32 reds, 64 greens, 32 blues */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga400fb40ccc514fe3c1deba48ab605e2b:
+
+#define FB_PF_DIRECT_COLOR_24 8	/* True Color 24bpp:	[RRRRRRRR|GGGGGGGG|BBBBBBBB]			- 256 reds, 256 greens, 256 blues */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gac1059f24865a9b6458e4568d36ae78bc:
+
+#define FB_PF_DIRECT_COLOR_32 9	/* True Color 32bpp;	[AAAAAAAA|RRRRRRRR|GGGGGGGG|BBBBBBBB]	- 256 alpha channels, 256 reds, 256 greens, 256 blues */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gac243f7b86b6c3917fd5192c4c65fafb0:
+
+#define FB_PF_DIRECT_COLOR_32_RGB 10	/* True Color 32bpp:	[        |RRRRRRRR|GGGGGGGG|BBBBBBBB]	- 256 reds, 256 greens, 256 blues, 1 byte ignored */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gae5fc875da0d946f96d79dfc5c122a706:
+
+#define FB_PF :ref:`FB_PF_DIRECT_COLOR_24 <group___sys_framebuffer_itf_1ga400fb40ccc514fe3c1deba48ab605e2b>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gafc4da1df0c702463c14da9c035370c6a:
+
+#define FB_NUM_FONTS 12
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gaca2363b8acef1902625b026cd92ef014:
+
+#define FB_SIZE_X 640
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gae82651b718e1c48fc8ce22c7614c93f6:
+
+#define FB_SIZE_Y 480
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gaeb43e745f0bfe82304d1a1df6e32145d:
+
+#define FB_BYTES_PER_PIXEL (( :ref:`FB_BITS_PER_PIXEL <group___sys_framebuffer_itf_1gaf914dc31e9b9b5d923b213bf42b7aac0>` +7)/8)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga62fc34d1d69a1f314467041f9f996fde:
+
+#define FB_CHAR_BMPOFFSET RTS_UI32
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Font styles The are taken from the SysGrpahicFramebuffer.h file as part of CoDeSys;
+
+.. _group___sys_framebuffer_itf_1gaf914dc31e9b9b5d923b213bf42b7aac0:
+
+#define FB_BITS_PER_PIXEL 24
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gae84d2e024bc9ac28d7a9e1ec95971ade:
+
+#define MAGICNUMBER_FONTFILE 64266447  /* Ascii: FbFt (FramebufferFont)*/
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga13807478c1ab1bebef62932e9594bd71:
+
+#define FILEFORMAT_FONTFILE 0	/* for a possible change of the fileformat */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gaff9e0ebfa0a5db00979135b100f628eb:
+
+#define CHARACTERDATA_ID 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga92ca9ba4d2abac9102ce1d0384074ff3:
+
+#define CHARACTERDESC_ID 3
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gac59d93a9c90a60f2b8a36954e2922fd2:
+
+#define FONTAREA_ID 8
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gae1c6a612351ca87f4cb41a4dc3596b08:
+
+#define FONTINFO_ID 10
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gac1394941d5a6401bfe45f413e46a63fc:
+
+#define ITF_SysFramebuffer
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga15c8cacd1edbf0c7384f36d39351b349:
+
+#define EXTITF_SysFramebuffer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_framebuffer_itf_1ga792c83f8ae3bc98bb17a0994553de74e:
+
+typedef FBPixel_24 FBPixel
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gaaced0112821007d563b0e816384929ff:
+
+typedef struct FBFontCharStruct  FBFontChar
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Font Character Descriptor; describes where a specific character can be found in the Font bitmap; characters are stored byte-aligned within the bitmap. See this encoded "2":
+
+byte42 byte43 > usOffset = 42, as byte 42 is the first used byte [ 00000000 | 00000000 ]
+
+- 0 00011110 00000000 > ucWidth = 10 Pixels (= 10Bit) 0 01100001 10000000 0 11000000 11000000 0 00000001 10000000
+
+- 0 00000110 00000000 0 00011100 00000000 0 11111111 11000000 > ucHeight = 7 Pixels (= 7 Bit) 0 00000000 00000000 > ucBaseline = 1 Pixel (= 1 Bit)
+
+-
+
+.. _group___sys_framebuffer_itf_1ga0631aa429be0d9b499fa39ad7e1c1a00:
+
+typedef ISysFramebuffer_C ISysFramebuffer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_framebuffer_itf_1gaf7925bab5fe1838be71d8927030f0a60:
+
+RTS_RESULT SysFramebufferOSInit (INIT_STRUCT *pInit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Init routines for OS specific modules
+
+**Parameters**
+
++---------+-------+-------------------------------------+
+| [in]    | pInit | Init Struct for OS specific modules |
++---------+-------+-------------------------------------+
+
+**Returns:**
+
+Result of Initialisation.
+
+.. _group___sys_framebuffer_itf_1ga6f2b996d67ab4f44819add693cff0388:
+
+RTS_RESULT SysFramebufferOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Hook Function for OS specific modules
+
+**Parameters**
+
++---------+----------+-----------------------------------------------+
+| [in]    | ulHook   | Hook Type for OS specific modules             |
++---------+----------+-----------------------------------------------+
+| [in]    | ulParam1 | First Hook Parameter for OS specific modules  |
++---------+----------+-----------------------------------------------+
+| [in]    | ulParam2 | Second Hook Parameter for OS specific modules |
++---------+----------+-----------------------------------------------+
+
+**Returns:**
+
+Result of OS Hook.
+
+.. _group___sys_framebuffer_itf_1ga0f76241b7e85e119c6d87da1f21413a8:
+
+RTS_RESULT SysFramebufferDeviceInit (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Device initiate function for frame buffer
+**Returns:**
+
+Result of device initialization
+
+.. _group___sys_framebuffer_itf_1ga509cc040359ac9b914d44efbafc15d03:
+
+RTS_RESULT SysFramebufferBeginPaint (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga87908940647a98d13d61b598b70e1b92:
+
+RTS_RESULT SysFramebufferEndPaint (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga2140264f5e6bf6f5fa461d91a63a019d:
+
+RTS_RESULT SysFramebufferFlush (RTS_Rectangle *aInvalidate, RTS_UI32 uiNumRects)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga0770d295f27778ecbf2791ae5e3a89ab:
+
+RTS_RESULT SysFramebufferGetCurrentAddress (FBPixel **pAddress)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1gaf04742f20b6d31db351369415d00ae33:
+
+RTS_RESULT SysFramebufferEnableColorPalette8 (RTS_UI8 *pPalette)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_framebuffer_itf_1ga213cfcc916ca5f97a1d908c8bbe30afe:
+
+RTS_HANDLE SysFramebufferGetFontList (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For all systems without a filesystem and without truetype fonts, this function is used to return the best matching font on the system
+**Returns:**
+
+runtime handle
+
+.. _group___sys_framebuffer_itf_1gad0d9ec820a80bbd832b083b32f8f29c4:
+
+RTS_RESULT SysFramebufferGetFont (FBFont **ppFont, char *pszFontName, RTS_UI8 ucFontSize, RTS_UI32 uiFlags)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In case that no static font list was return, use this function to get dynamic fonts
+**Returns:**
+
+runtime handle
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

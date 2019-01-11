@@ -1,0 +1,449 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Codegenerator &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Features" href="index.html" />
+    <link rel="next" title="Interactive Login" href="InteractiveLogin.html" />
+    <link rel="prev" title="WIBU CodeMeter" href="CodeMeter_legacy.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="InteractiveLogin.html" title="Interactive Login"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CodeMeter_legacy.html" title="WIBU CodeMeter"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Features</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Codegenerator</a><ul>
+<li><a class="reference internal" href="#arm-codegenerator">ARM Codegenerator</a><ul>
+<li><a class="reference internal" href="#syscpuhandling-implementation-notes">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#arm-thumb2-codegenerator">ARM Thumb2 Codegenerator</a><ul>
+<li><a class="reference internal" href="#id1">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#blackfin-codegenerator">Blackfin Codegenerator</a><ul>
+<li><a class="reference internal" href="#id2">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#c2000-codegenerator">C2000 Codegenerator</a><ul>
+<li><a class="reference internal" href="#id3">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#coldfire-codegenerator">ColdFire Codegenerator</a><ul>
+<li><a class="reference internal" href="#id4">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mips-codegenerator">MIPS Codegenerator</a><ul>
+<li><a class="reference internal" href="#id5">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nios-codegenerator">NIOS Codegenerator</a><ul>
+<li><a class="reference internal" href="#id6">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ppc-codegenerator">PPC Codegenerator</a><ul>
+<li><a class="reference internal" href="#id7">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ppc-vle-codegenerator">PPC VLE Codegenerator</a><ul>
+<li><a class="reference internal" href="#id8">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rx6-codegenerator">RX6 Codegenerator</a><ul>
+<li><a class="reference internal" href="#id9">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sh-codegenerator">SH Codegenerator</a><ul>
+<li><a class="reference internal" href="#id10">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sh2-codegenerator">SH2 Codegenerator</a><ul>
+<li><a class="reference internal" href="#id11">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sh3-codegenerator">SH3 Codegenerator</a><ul>
+<li><a class="reference internal" href="#id12">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sh4-codegenerator">SH4 Codegenerator</a><ul>
+<li><a class="reference internal" href="#id13">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ti-c28x-codegenerator">TI C28x Codegenerator</a><ul>
+<li><a class="reference internal" href="#id14">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tricore-codegenerator">TriCore Codegenerator</a><ul>
+<li><a class="reference internal" href="#id15">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v850-codegenerator">V850 Codegenerator</a><ul>
+<li><a class="reference internal" href="#id16">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#x64-codegenerator">X64 Codegenerator</a><ul>
+<li><a class="reference internal" href="#id17">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#x86-codegenerator">X86 Codegenerator</a><ul>
+<li><a class="reference internal" href="#id18">SysCpuHandling implementation notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CodeMeter_legacy.html"
+                        title="previous chapter">WIBU CodeMeter</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="InteractiveLogin.html"
+                        title="next chapter">Interactive Login</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Features/CPU.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="codegenerator">
+<h1>Codegenerator<a class="headerlink" href="#codegenerator" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="arm-codegenerator">
+<h2>ARM Codegenerator<a class="headerlink" href="#arm-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="syscpuhandling-implementation-notes">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#syscpuhandling-implementation-notes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 8 byte for the ARM codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="arm-thumb2-codegenerator">
+<h2>ARM Thumb2 Codegenerator<a class="headerlink" href="#arm-thumb2-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 8 byte for the ARM Thumb2 codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="blackfin-codegenerator">
+<h2>Blackfin Codegenerator<a class="headerlink" href="#blackfin-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 8 byte for the Blackfin codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="c2000-codegenerator">
+<h2>C2000 Codegenerator<a class="headerlink" href="#c2000-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 12 byte for the C2000 codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="coldfire-codegenerator">
+<h2>ColdFire Codegenerator<a class="headerlink" href="#coldfire-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 8 byte for the ColdFire codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="mips-codegenerator">
+<h2>MIPS Codegenerator<a class="headerlink" href="#mips-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 12 byte for the MIPS codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="nios-codegenerator">
+<h2>NIOS Codegenerator<a class="headerlink" href="#nios-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 8 byte for the NIOS codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="ppc-codegenerator">
+<h2>PPC Codegenerator<a class="headerlink" href="#ppc-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuSearchOnStack_():</li>
+</ul>
+<p>This function is used to roll back the call stack in case of an exception, which occured in an externl C function. As the stack frame and
+colling convention of the C compiler and the CODESYS codegenerator are different and thus the rolling back of the callstack is different,
+a pattern is pushed to stack by the CODESYS application before an external C function is called. The pattern is marking the transition
+between the C and the CODESYS application context.
+SysCpuSearchOnStack_() is used to seach for that pattern on stack.</p>
+<p>This feature is not supported for PowerPC and SysCpuSearchOnStack_() must return ERR_NOTIMPLEMENTED.</p>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform. It is 8 byte for the PPC codegenerator, if the &#8216;codegenerator\EABIStackFrame&#8217; target setting is used and 16 byte if it is not used.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="ppc-vle-codegenerator">
+<h2>PPC VLE Codegenerator<a class="headerlink" href="#ppc-vle-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuSearchOnStack_():</li>
+</ul>
+<p>This function is used to roll back the call stack in case of an exception, which occured in an externl C function. As the stack frame and
+colling convention of the C compiler and the CODESYS codegenerator are different and thus the rolling back of the callstack is different,
+a pattern is pushed to stack by the CODESYS application before an external C function is called. The pattern is marking the transition
+between the C and the CODESYS application context.
+SysCpuSearchOnStack_() is used to seach for that pattern on stack.</p>
+<p>This feature is not supported for PowerPC and SysCpuSearchOnStack_() must return ERR_NOTIMPLEMENTED.</p>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform. It is 8 byte for the PPC codegenerator, if the &#8216;codegenerator\EABIStackFrame&#8217; target setting is used and 16 byte if it is not used.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="rx6-codegenerator">
+<h2>RX6 Codegenerator<a class="headerlink" href="#rx6-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 8 byte for the RX6 codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="sh-codegenerator">
+<h2>SH Codegenerator<a class="headerlink" href="#sh-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id10">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 8 byte for the SH codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="sh2-codegenerator">
+<h2>SH2 Codegenerator<a class="headerlink" href="#sh2-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id11">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 8 byte for the SH codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="sh3-codegenerator">
+<h2>SH3 Codegenerator<a class="headerlink" href="#sh3-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 8 byte for the SH codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="sh4-codegenerator">
+<h2>SH4 Codegenerator<a class="headerlink" href="#sh4-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 8 byte for the SH codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="ti-c28x-codegenerator">
+<h2>TI C28x Codegenerator<a class="headerlink" href="#ti-c28x-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id14">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 12 byte for the TI C28x codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="tricore-codegenerator">
+<h2>TriCore Codegenerator<a class="headerlink" href="#tricore-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id15">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="v850-codegenerator">
+<h2>V850 Codegenerator<a class="headerlink" href="#v850-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id16">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 8 byte for the V850 codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="x64-codegenerator">
+<h2>X64 Codegenerator<a class="headerlink" href="#x64-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id17">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 16 byte for the X64 codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+<div class="section" id="x86-codegenerator">
+<h2>X86 Codegenerator<a class="headerlink" href="#x86-codegenerator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id18">
+<h3>SysCpuHandling implementation notes<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SysCpuGetInstancePointer():</li>
+</ul>
+<p>Function to get the instance pointer on the basis of the base pointer. Both the instance pointer and the base pointer are only valid and used in the CODESYS application context.
+The offset is specific to the platform and is 8 byte for the X86 codegenerator.</p>
+<p>An example implementation may be found in Platforms/SysTemplates/Sys/SysCpuHandlingOS.c of the runtime system toolkit.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="InteractiveLogin.html" title="Interactive Login"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CodeMeter_legacy.html" title="WIBU CodeMeter"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Features</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

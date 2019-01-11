@@ -1,0 +1,80 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___rts_disable_operations:
+
+====================
+RtsDisableOperations
+====================
+
+ :ref:`More... <group___rts_disable_operations-details>`
+
+Functions
+---------
+
+- void :ref:`CBDisableOperations <group___rts_disable_operations_1ga5304d0917f57d14f0c9f8f85a1ec280e>` (EventParam * pEventParam)
+
+- RTS_RESULT :ref:`InitDisableOperations <group___rts_disable_operations_1ga0df2d81811fc19d13320952344651177>` (void)
+
+- RTS_RESULT :ref:`ExitDisableOperations <group___rts_disable_operations_1ga024b57422e654de367aeb379c781a87e>` (void)
+
+.. _group___rts_disable_operations-details:
+
+Detailed Description
+--------------------
+
+
+
+Example to disable single/all operations in a critical machine state, that can disturb the operating of the machine like setting a breakpoint or do an OnlineChange.
+
+USAGE:
+
+- InitDisableOperations() must be called out of CH_INIT3 hook
+
+- ExitDisableOperations() must be called out of CH_EXIT3 hook
+
+- CBDisableOperations() is the callback function to disable single operations
+
+**Copyright:**
+
+\(c) 2003-2016 3S-Smart Software Solutions
+
+Function Documentation
+----------------------
+
+.. _group___rts_disable_operations_1ga5304d0917f57d14f0c9f8f85a1ec280e:
+
+static void CBDisableOperations (EventParam *pEventParam)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Callback function to disable single operations
+
+**Parameters**
+
++---------+-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pEventParam | Pointer to event parameter set. pEventParam->pParameter is a pointer to EVTPARAM_CmpMgr_DisableOperation. And with the member bDisable = 1 you can disable this operation! |
++---------+-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _group___rts_disable_operations_1ga0df2d81811fc19d13320952344651177:
+
+static RTS_RESULT InitDisableOperations (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to init example at startup of the runtime system. USAGE:
+
+- Must be called in CH_INIT3 out of component HookFunction()!
+
+**Returns:**
+
+error code
+
+.. _group___rts_disable_operations_1ga024b57422e654de367aeb379c781a87e:
+
+static RTS_RESULT ExitDisableOperations (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,2330 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_trace_mgr_itf:
+
+==============
+CmpTraceMgrItf
+==============
+
+Interface of CmpTraceMgr. :ref:`More... <group___cmp_trace_mgr_itf-details>`
+
+Modules
+-------
+
+- :ref:`Compiler switch <group___cmp_trace_mgr_itf___compilerswitch>`
+
+- :ref:`Events <group___cmp_trace_mgr_itf___events>`
+
+- :ref:`Features <group___cmp_trace_mgr_itf___features>`
+
+- :ref:`Graph types <group___cmp_trace_mgr_itf___graphtypes>`
+
+- :ref:`Monitoring2 byte code constants <group___cmp_trace_mgr_itf___monitoring2bytecodeconstants>`
+
+- :ref:`Online service tags <group___cmp_trace_mgr_itf___onlineservicetags>`
+
+- :ref:`Online services <group___cmp_trace_mgr_itf___onlineservices>`
+
+- :ref:`Static defines <group___cmp_trace_mgr_itf___staticdefines>`
+
+- :ref:`Trace packet flags <group___cmp_trace_mgr_itf___tracepacketflags>`
+
+- :ref:`Trace record flags <group___cmp_trace_mgr_itf___tracerecordflags>`
+
+- :ref:`Trace state <group___cmp_trace_mgr_itf___tracestate>`
+
+- :ref:`Trace variable address flags <group___cmp_trace_mgr_itf___tracevariableaddressflags>`
+
+- :ref:`TraceIecScope <group___cmp_trace_mgr_itf___trace_iec_scope>`
+
+- :ref:`TraceName <group___cmp_trace_mgr_itf___trace_name>`
+
+- :ref:`TracePacket <group___cmp_trace_mgr_itf___trace_packet>`
+
+- :ref:`TraceRecord <group___cmp_trace_mgr_itf___trace_record>`
+
+- :ref:`TraceString <group___cmp_trace_mgr_itf___trace_string>`
+
+- :ref:`Trigger edge <group___cmp_trace_mgr_itf___triggeredge>`
+
+- :ref:`Trigger flags <group___cmp_trace_mgr_itf___triggerflags>`
+
+- :ref:`Trigger state <group___cmp_trace_mgr_itf___triggerstate>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagTracePacketConfiguration <structtag_trace_packet_configuration>`
+
+- struct :ref:`tagAddressArea <structtag_address_area>`
+
+- struct :ref:`tagEVTPARAM_CmpTraceMgr_Packet <structtag_e_v_t_p_a_r_a_m___cmp_trace_mgr___packet>`
+
+- struct :ref:`tagEVTPARAM_CmpTraceMgr_Record <structtag_e_v_t_p_a_r_a_m___cmp_trace_mgr___record>`
+
+- struct :ref:`Monitoring2ByteCodeUnion <union_monitoring2_byte_code_union>`
+
+- struct :ref:`tagMonitoring2ByteCode <structtag_monitoring2_byte_code>`
+
+- struct :ref:`tagMonitoringService <structtag_monitoring_service>`
+
+- struct :ref:`tagPropertyLocation <structtag_property_location>`
+
+- struct :ref:`TraceVarInfo <union_trace_var_info>`
+
+- struct :ref:`tagSymVarAccess <structtag_sym_var_access>`
+
+- struct :ref:`tagSystemParameter <structtag_system_parameter>`
+
+- struct :ref:`TraceAddress <union_trace_address>`
+
+- struct :ref:`tagTraceVariableAddress <structtag_trace_variable_address>`
+
+- struct :ref:`tagTraceVariable <structtag_trace_variable>`
+
+- struct :ref:`TriggerValue <union_trigger_value>`
+
+- struct :ref:`tagTraceTrigger <structtag_trace_trigger>`
+
+- struct :ref:`tagTraceRecordConfiguration <structtag_trace_record_configuration>`
+
+- struct :ref:`tagTraceRecordEntry <structtag_trace_record_entry>`
+
+- struct :ref:`tagTriggerState <structtag_trigger_state>`
+
+- struct :ref:`tagTraceState <structtag_trace_state>`
+
+- struct :ref:`tagtracemgrgetconfigfromfile_struct <structtagtracemgrgetconfigfromfile__struct>`
+
+- struct :ref:`tagtracemgrgetconfigfromfilerelease_struct <structtagtracemgrgetconfigfromfilerelease__struct>`
+
+- struct :ref:`tagtracemgrpacketchecktrigger_struct <structtagtracemgrpacketchecktrigger__struct>`
+
+- struct :ref:`tagtracemgrpacketclose_struct <structtagtracemgrpacketclose__struct>`
+
+- struct :ref:`tagtracemgrpacketcomplete_struct <structtagtracemgrpacketcomplete__struct>`
+
+- struct :ref:`tagtracemgrpacketcreate_struct <structtagtracemgrpacketcreate__struct>`
+
+- struct :ref:`tagtracemgrpacketdelete_struct <structtagtracemgrpacketdelete__struct>`
+
+- struct :ref:`tagtracemgrpacketdisable_struct <structtagtracemgrpacketdisable__struct>`
+
+- struct :ref:`tagtracemgrpacketdisabletrigger_struct <structtagtracemgrpacketdisabletrigger__struct>`
+
+- struct :ref:`tagtracemgrpacketenable_struct <structtagtracemgrpacketenable__struct>`
+
+- struct :ref:`tagtracemgrpacketenabletrigger_struct <structtagtracemgrpacketenabletrigger__struct>`
+
+- struct :ref:`tagtracemgrpacketgetabsolutestarttime_struct <structtagtracemgrpacketgetabsolutestarttime__struct>`
+
+- struct :ref:`tagtracemgrpacketgetchangetimestamp_struct <structtagtracemgrpacketgetchangetimestamp__struct>`
+
+- struct :ref:`tagtracemgrpacketgetconfig_struct <structtagtracemgrpacketgetconfig__struct>`
+
+- struct :ref:`tagtracemgrpacketgetfirst_struct <structtagtracemgrpacketgetfirst__struct>`
+
+- struct :ref:`tagtracemgrpacketgetnext_struct <structtagtracemgrpacketgetnext__struct>`
+
+- struct :ref:`tagtracemgrpacketgetstarttime_struct <structtagtracemgrpacketgetstarttime__struct>`
+
+- struct :ref:`tagtracemgrpacketgetstate_struct <structtagtracemgrpacketgetstate__struct>`
+
+- struct :ref:`tagtracemgrpacketopen_struct <structtagtracemgrpacketopen__struct>`
+
+- struct :ref:`tagtracemgrpacketreadbegin_struct <structtagtracemgrpacketreadbegin__struct>`
+
+- struct :ref:`tagtracemgrpacketreadend_struct <structtagtracemgrpacketreadend__struct>`
+
+- struct :ref:`tagtracemgrpacketreadfirst_struct <structtagtracemgrpacketreadfirst__struct>`
+
+- struct :ref:`tagtracemgrpacketreadfirst2_struct <structtagtracemgrpacketreadfirst2__struct>`
+
+- struct :ref:`tagtracemgrpacketreadnext_struct <structtagtracemgrpacketreadnext__struct>`
+
+- struct :ref:`tagtracemgrpacketreadnext2_struct <structtagtracemgrpacketreadnext2__struct>`
+
+- struct :ref:`tagtracemgrpacketresettrigger_struct <structtagtracemgrpacketresettrigger__struct>`
+
+- struct :ref:`tagtracemgrpacketrestart_struct <structtagtracemgrpacketrestart__struct>`
+
+- struct :ref:`tagtracemgrpacketrestore_struct <structtagtracemgrpacketrestore__struct>`
+
+- struct :ref:`tagtracemgrpacketstart_struct <structtagtracemgrpacketstart__struct>`
+
+- struct :ref:`tagtracemgrpacketstop_struct <structtagtracemgrpacketstop__struct>`
+
+- struct :ref:`tagtracemgrpacketstore_struct <structtagtracemgrpacketstore__struct>`
+
+- struct :ref:`tagtracemgrrecordadd_struct <structtagtracemgrrecordadd__struct>`
+
+- struct :ref:`tagtracemgrrecordgetconfig_struct <structtagtracemgrrecordgetconfig__struct>`
+
+- struct :ref:`tagtracemgrrecordgetfirst_struct <structtagtracemgrrecordgetfirst__struct>`
+
+- struct :ref:`tagtracemgrrecordgetnext_struct <structtagtracemgrrecordgetnext__struct>`
+
+- struct :ref:`tagtracemgrrecordremove_struct <structtagtracemgrrecordremove__struct>`
+
+- struct :ref:`tagtracemgrrecordupdate_struct <structtagtracemgrrecordupdate__struct>`
+
+- struct :ref:`tagtracemgrrecordupdate2_struct <structtagtracemgrrecordupdate2__struct>`
+
+- struct :ref:`tagtracemgrrecordupdate3_struct <structtagtracemgrrecordupdate3__struct>`
+
+- struct :ref:`tagtracemgrrecordupdate4_struct <structtagtracemgrrecordupdate4__struct>`
+
+- struct :ref:`ICmpTraceMgr_C <struct_i_cmp_trace_mgr___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpTraceMgr <group___cmp_trace_mgr_itf_1ga7b089a5625ac5edc0613b79b7ea5c876>`
+
+- #define :ref:`EXTITF_CmpTraceMgr <group___cmp_trace_mgr_itf_1ga3aa4728171d77e8651c4ac155ef05dee>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagTracePacketConfiguration <structtag_trace_packet_configuration>` :ref:`TracePacketConfiguration <group___cmp_trace_mgr_itf_1ga8b87d21b2badb4e18b4483d5875d0cae>`
+
+- typedef struct :ref:`tagAddressArea <structtag_address_area>` :ref:`AddressArea <group___cmp_trace_mgr_itf_1gae781d638707d3af6e50f0b876c1c18c7>`
+
+- typedef struct :ref:`tagEVTPARAM_CmpTraceMgr_Packet <structtag_e_v_t_p_a_r_a_m___cmp_trace_mgr___packet>` :ref:`EVTPARAM_CmpTraceMgr_Packet <group___cmp_trace_mgr_itf_1gae62fd1329b66b5ecf7f0d436fbfa0114>`
+
+- typedef struct :ref:`tagEVTPARAM_CmpTraceMgr_Record <structtag_e_v_t_p_a_r_a_m___cmp_trace_mgr___record>` :ref:`EVTPARAM_CmpTraceMgr_Record <group___cmp_trace_mgr_itf_1ga95505f6e486c0d09fc4031df0c492121>`
+
+- typedef struct :ref:`tagMonitoring2ByteCode <structtag_monitoring2_byte_code>` :ref:`Monitoring2ByteCode <group___cmp_trace_mgr_itf_1gad8ec343dd4b8c9e584568bfd8d02f531>`
+
+- typedef struct :ref:`tagMonitoringService <structtag_monitoring_service>` :ref:`MonitoringService <group___cmp_trace_mgr_itf_1ga2cc4025634acff84eefc06244c1f9623>`
+
+- typedef struct :ref:`tagPropertyLocation <structtag_property_location>` :ref:`PropertyLocation <group___cmp_trace_mgr_itf_1gaa1f3230491c54fe59fc890f946558f52>`
+
+- typedef struct :ref:`tagSymVarAccess <structtag_sym_var_access>` :ref:`SymVarAccess <group___cmp_trace_mgr_itf_1ga40a57ff9b142248050f3c8d7fbc303db>`
+
+- typedef struct :ref:`tagSystemParameter <structtag_system_parameter>` :ref:`SystemParameter <group___cmp_trace_mgr_itf_1ga0465cab40bb0a63cba74cbc0fded6c10>`
+
+- typedef struct :ref:`tagTraceVariableAddress <structtag_trace_variable_address>` :ref:`TraceVariableAddress <group___cmp_trace_mgr_itf_1ga11d7020beeb318687e1a3f3b38e8d8c9>`
+
+- typedef struct :ref:`tagTraceVariable <structtag_trace_variable>` :ref:`TraceVariable <group___cmp_trace_mgr_itf_1ga5ec637fbdc7d5da686a792072a69c736>`
+
+- typedef struct :ref:`tagTraceTrigger <structtag_trace_trigger>` :ref:`TraceTrigger <group___cmp_trace_mgr_itf_1ga07cea81a2274f36e066fc0ced19ffaa7>`
+
+- typedef struct :ref:`tagTraceRecordConfiguration <structtag_trace_record_configuration>` :ref:`TraceRecordConfiguration <group___cmp_trace_mgr_itf_1gab8c4a4109443dc67723e68331b8d7200>`
+
+- typedef struct :ref:`tagTraceRecordEntry <structtag_trace_record_entry>` :ref:`TraceRecordEntry <group___cmp_trace_mgr_itf_1ga49b1553f6ac8b3f9685de54dd1f97836>`
+
+- typedef struct :ref:`tagTriggerState <structtag_trigger_state>` :ref:`TriggerState <group___cmp_trace_mgr_itf_1ga31434e3633f02c9a0d0df1956f5abcb7>`
+
+- typedef struct :ref:`tagTraceState <structtag_trace_state>` :ref:`TraceState <group___cmp_trace_mgr_itf_1ga06f372e5f3cb8b13a5655466638eec98>`
+
+- typedef struct :ref:`tagtracemgrgetconfigfromfile_struct <structtagtracemgrgetconfigfromfile__struct>` :ref:`tracemgrgetconfigfromfile_struct <group___cmp_trace_mgr_itf_1ga14811830cc8b32765e52e10d842e470a>`
+
+- typedef struct :ref:`tagtracemgrgetconfigfromfilerelease_struct <structtagtracemgrgetconfigfromfilerelease__struct>` :ref:`tracemgrgetconfigfromfilerelease_struct <group___cmp_trace_mgr_itf_1ga416bab7da81952eda411f7a15a82b925>`
+
+- typedef struct :ref:`tagtracemgrpacketchecktrigger_struct <structtagtracemgrpacketchecktrigger__struct>` :ref:`tracemgrpacketchecktrigger_struct <group___cmp_trace_mgr_itf_1ga4e2016a336b939bfc7111711f8ac1c4c>`
+
+- typedef struct :ref:`tagtracemgrpacketclose_struct <structtagtracemgrpacketclose__struct>` :ref:`tracemgrpacketclose_struct <group___cmp_trace_mgr_itf_1ga20c454100a5b5e697bed34a709c3f010>`
+
+- typedef struct :ref:`tagtracemgrpacketcomplete_struct <structtagtracemgrpacketcomplete__struct>` :ref:`tracemgrpacketcomplete_struct <group___cmp_trace_mgr_itf_1ga65c347feef6c5b6cb0d15d2451db7fcd>`
+
+- typedef struct :ref:`tagtracemgrpacketcreate_struct <structtagtracemgrpacketcreate__struct>` :ref:`tracemgrpacketcreate_struct <group___cmp_trace_mgr_itf_1gaae5dc18707ca1d5185aa14b1cefbc917>`
+
+- typedef struct :ref:`tagtracemgrpacketdelete_struct <structtagtracemgrpacketdelete__struct>` :ref:`tracemgrpacketdelete_struct <group___cmp_trace_mgr_itf_1ga579dfbcda354a0363351dcfff6f528ca>`
+
+- typedef struct :ref:`tagtracemgrpacketdisable_struct <structtagtracemgrpacketdisable__struct>` :ref:`tracemgrpacketdisable_struct <group___cmp_trace_mgr_itf_1ga0a698ea9708c7ef510febbf785d505df>`
+
+- typedef struct :ref:`tagtracemgrpacketdisabletrigger_struct <structtagtracemgrpacketdisabletrigger__struct>` :ref:`tracemgrpacketdisabletrigger_struct <group___cmp_trace_mgr_itf_1ga754add830acd847c5639b1cf258f1096>`
+
+- typedef struct :ref:`tagtracemgrpacketenable_struct <structtagtracemgrpacketenable__struct>` :ref:`tracemgrpacketenable_struct <group___cmp_trace_mgr_itf_1ga188e1ee545f832210f663982b4ec9136>`
+
+- typedef struct :ref:`tagtracemgrpacketenabletrigger_struct <structtagtracemgrpacketenabletrigger__struct>` :ref:`tracemgrpacketenabletrigger_struct <group___cmp_trace_mgr_itf_1gae0afc40f084ebb4a3bd878a19296aae7>`
+
+- typedef struct :ref:`tagtracemgrpacketgetabsolutestarttime_struct <structtagtracemgrpacketgetabsolutestarttime__struct>` :ref:`tracemgrpacketgetabsolutestarttime_struct <group___cmp_trace_mgr_itf_1gaae52b9842b9dc91dabb29516136a8338>`
+
+- typedef struct :ref:`tagtracemgrpacketgetchangetimestamp_struct <structtagtracemgrpacketgetchangetimestamp__struct>` :ref:`tracemgrpacketgetchangetimestamp_struct <group___cmp_trace_mgr_itf_1ga9eaa7c7aeaf0187ce735eb015dd85a6f>`
+
+- typedef struct :ref:`tagtracemgrpacketgetconfig_struct <structtagtracemgrpacketgetconfig__struct>` :ref:`tracemgrpacketgetconfig_struct <group___cmp_trace_mgr_itf_1ga8ede2bc9d19879bcb652f877ffec0265>`
+
+- typedef struct :ref:`tagtracemgrpacketgetfirst_struct <structtagtracemgrpacketgetfirst__struct>` :ref:`tracemgrpacketgetfirst_struct <group___cmp_trace_mgr_itf_1ga9969a4e6873f8e6400f616f10372b868>`
+
+- typedef struct :ref:`tagtracemgrpacketgetnext_struct <structtagtracemgrpacketgetnext__struct>` :ref:`tracemgrpacketgetnext_struct <group___cmp_trace_mgr_itf_1gad7487cb3c606f862db5f6b8b2f9ade49>`
+
+- typedef struct :ref:`tagtracemgrpacketgetstarttime_struct <structtagtracemgrpacketgetstarttime__struct>` :ref:`tracemgrpacketgetstarttime_struct <group___cmp_trace_mgr_itf_1ga8cdf77b21d9ace7c7d86b8c28c35f3c2>`
+
+- typedef struct :ref:`tagtracemgrpacketgetstate_struct <structtagtracemgrpacketgetstate__struct>` :ref:`tracemgrpacketgetstate_struct <group___cmp_trace_mgr_itf_1gac7d38f287a7928ed97244ba7c28e2aef>`
+
+- typedef struct :ref:`tagtracemgrpacketopen_struct <structtagtracemgrpacketopen__struct>` :ref:`tracemgrpacketopen_struct <group___cmp_trace_mgr_itf_1ga9da3dfca521e59316f3c8756093767bc>`
+
+- typedef struct :ref:`tagtracemgrpacketreadbegin_struct <structtagtracemgrpacketreadbegin__struct>` :ref:`tracemgrpacketreadbegin_struct <group___cmp_trace_mgr_itf_1gaff669603dfc638487827ddc4363e9187>`
+
+- typedef struct :ref:`tagtracemgrpacketreadend_struct <structtagtracemgrpacketreadend__struct>` :ref:`tracemgrpacketreadend_struct <group___cmp_trace_mgr_itf_1ga806e4abd273b3aacbf5d53104b23a0f8>`
+
+- typedef struct :ref:`tagtracemgrpacketreadfirst_struct <structtagtracemgrpacketreadfirst__struct>` :ref:`tracemgrpacketreadfirst_struct <group___cmp_trace_mgr_itf_1gacee28a6ab4b1eb72e7ae23b2e77f336b>`
+
+- typedef struct :ref:`tagtracemgrpacketreadfirst2_struct <structtagtracemgrpacketreadfirst2__struct>` :ref:`tracemgrpacketreadfirst2_struct <group___cmp_trace_mgr_itf_1ga3219a168fbc43d5581855f2e07d6182c>`
+
+- typedef struct :ref:`tagtracemgrpacketreadnext_struct <structtagtracemgrpacketreadnext__struct>` :ref:`tracemgrpacketreadnext_struct <group___cmp_trace_mgr_itf_1ga91b412fdfa0b345309ec91c34d71a846>`
+
+- typedef struct :ref:`tagtracemgrpacketreadnext2_struct <structtagtracemgrpacketreadnext2__struct>` :ref:`tracemgrpacketreadnext2_struct <group___cmp_trace_mgr_itf_1ga3133f59f32b18617f25a95145b332bd2>`
+
+- typedef struct :ref:`tagtracemgrpacketresettrigger_struct <structtagtracemgrpacketresettrigger__struct>` :ref:`tracemgrpacketresettrigger_struct <group___cmp_trace_mgr_itf_1gaa832f88ff5175d3d6d3cfde86fe22851>`
+
+- typedef struct :ref:`tagtracemgrpacketrestart_struct <structtagtracemgrpacketrestart__struct>` :ref:`tracemgrpacketrestart_struct <group___cmp_trace_mgr_itf_1ga88187aaa1f93dab9d94df725b29620c6>`
+
+- typedef struct :ref:`tagtracemgrpacketrestore_struct <structtagtracemgrpacketrestore__struct>` :ref:`tracemgrpacketrestore_struct <group___cmp_trace_mgr_itf_1ga6ff86e2ea64a363ee00f59fdc1c68fa8>`
+
+- typedef struct :ref:`tagtracemgrpacketstart_struct <structtagtracemgrpacketstart__struct>` :ref:`tracemgrpacketstart_struct <group___cmp_trace_mgr_itf_1gaa18ebf59b3990e4684237dc7fa8deaa5>`
+
+- typedef struct :ref:`tagtracemgrpacketstop_struct <structtagtracemgrpacketstop__struct>` :ref:`tracemgrpacketstop_struct <group___cmp_trace_mgr_itf_1gaf851b41a5786f3621c9617a9be888118>`
+
+- typedef struct :ref:`tagtracemgrpacketstore_struct <structtagtracemgrpacketstore__struct>` :ref:`tracemgrpacketstore_struct <group___cmp_trace_mgr_itf_1ga6386bbcb7392c604ce3e4eb334c4d6e9>`
+
+- typedef struct :ref:`tagtracemgrrecordadd_struct <structtagtracemgrrecordadd__struct>` :ref:`tracemgrrecordadd_struct <group___cmp_trace_mgr_itf_1ga9c9a5c2a7ea5920ba8cad505597c339d>`
+
+- typedef struct :ref:`tagtracemgrrecordgetconfig_struct <structtagtracemgrrecordgetconfig__struct>` :ref:`tracemgrrecordgetconfig_struct <group___cmp_trace_mgr_itf_1gaa97435cf4fb7d50011dee67288ec65ac>`
+
+- typedef struct :ref:`tagtracemgrrecordgetfirst_struct <structtagtracemgrrecordgetfirst__struct>` :ref:`tracemgrrecordgetfirst_struct <group___cmp_trace_mgr_itf_1ga363ac4886fefa672e3593f6cce4ff6b5>`
+
+- typedef struct :ref:`tagtracemgrrecordgetnext_struct <structtagtracemgrrecordgetnext__struct>` :ref:`tracemgrrecordgetnext_struct <group___cmp_trace_mgr_itf_1gae2c364e4c006331fbd918f1bdb250e04>`
+
+- typedef struct :ref:`tagtracemgrrecordremove_struct <structtagtracemgrrecordremove__struct>` :ref:`tracemgrrecordremove_struct <group___cmp_trace_mgr_itf_1ga8dbdb90aafbd1a379f2144b33bd6283b>`
+
+- typedef struct :ref:`tagtracemgrrecordupdate_struct <structtagtracemgrrecordupdate__struct>` :ref:`tracemgrrecordupdate_struct <group___cmp_trace_mgr_itf_1gaae594e3c3d373ca992e764ed31f7de1f>`
+
+- typedef struct :ref:`tagtracemgrrecordupdate2_struct <structtagtracemgrrecordupdate2__struct>` :ref:`tracemgrrecordupdate2_struct <group___cmp_trace_mgr_itf_1ga48fc60a2538165b5f4776e2eb82c3cbe>`
+
+- typedef struct :ref:`tagtracemgrrecordupdate3_struct <structtagtracemgrrecordupdate3__struct>` :ref:`tracemgrrecordupdate3_struct <group___cmp_trace_mgr_itf_1ga1e5ccbb079b173d958c8da4ece430520>`
+
+- typedef struct :ref:`tagtracemgrrecordupdate4_struct <structtagtracemgrrecordupdate4__struct>` :ref:`tracemgrrecordupdate4_struct <group___cmp_trace_mgr_itf_1ga582c6247e8881d76430114cf5b9bc94d>`
+
+- typedef :ref:`ICmpTraceMgr_C <struct_i_cmp_trace_mgr___c>` :ref:`ICmpTraceMgr <group___cmp_trace_mgr_itf_1gaac1e08476367d1abfe1dad34c31eb38e>`
+
+Functions
+---------
+
+- void :ref:`tracemgrgetconfigfromfile <group___cmp_trace_mgr_itf_1ga4694dce5a91df59a0f5f4603393855a5>` (:ref:`tracemgrgetconfigfromfile_struct <group___cmp_trace_mgr_itf_1ga14811830cc8b32765e52e10d842e470a>` * p)
+
+- void :ref:`tracemgrgetconfigfromfilerelease <group___cmp_trace_mgr_itf_1ga5dd49dcd4fe9fe139a51e1eb73a38877>` (:ref:`tracemgrgetconfigfromfilerelease_struct <group___cmp_trace_mgr_itf_1ga416bab7da81952eda411f7a15a82b925>` * p)
+
+- void :ref:`tracemgrpacketchecktrigger <group___cmp_trace_mgr_itf_1gaf2a7439af67b79a1fe8b83a1c337164d>` (:ref:`tracemgrpacketchecktrigger_struct <group___cmp_trace_mgr_itf_1ga4e2016a336b939bfc7111711f8ac1c4c>` * p)
+
+- void :ref:`tracemgrpacketclose <group___cmp_trace_mgr_itf_1gad41f6d6473b7e8b33f50fb37411c7dae>` (:ref:`tracemgrpacketclose_struct <group___cmp_trace_mgr_itf_1ga20c454100a5b5e697bed34a709c3f010>` * p)
+
+- void :ref:`tracemgrpacketcomplete <group___cmp_trace_mgr_itf_1gaef979fa79faf57439b44b2ed771a6b4d>` (:ref:`tracemgrpacketcomplete_struct <group___cmp_trace_mgr_itf_1ga65c347feef6c5b6cb0d15d2451db7fcd>` * p)
+
+- void :ref:`tracemgrpacketcreate <group___cmp_trace_mgr_itf_1ga87c7e65891af835c80563a8623a65bb7>` (:ref:`tracemgrpacketcreate_struct <group___cmp_trace_mgr_itf_1gaae5dc18707ca1d5185aa14b1cefbc917>` * p)
+
+- void :ref:`tracemgrpacketdelete <group___cmp_trace_mgr_itf_1gacf4933b6a324823298c4c53a3cb1917a>` (:ref:`tracemgrpacketdelete_struct <group___cmp_trace_mgr_itf_1ga579dfbcda354a0363351dcfff6f528ca>` * p)
+
+- void :ref:`tracemgrpacketdisable <group___cmp_trace_mgr_itf_1ga145608ec7e417aa31651a42629097c9d>` (:ref:`tracemgrpacketdisable_struct <group___cmp_trace_mgr_itf_1ga0a698ea9708c7ef510febbf785d505df>` * p)
+
+- void :ref:`tracemgrpacketdisabletrigger <group___cmp_trace_mgr_itf_1ga2c804ce4abbbf5f003dcd1674e467158>` (:ref:`tracemgrpacketdisabletrigger_struct <group___cmp_trace_mgr_itf_1ga754add830acd847c5639b1cf258f1096>` * p)
+
+- void :ref:`tracemgrpacketenable <group___cmp_trace_mgr_itf_1gae6409c0f3335396236f93ab5e934a23a>` (:ref:`tracemgrpacketenable_struct <group___cmp_trace_mgr_itf_1ga188e1ee545f832210f663982b4ec9136>` * p)
+
+- void :ref:`tracemgrpacketenabletrigger <group___cmp_trace_mgr_itf_1gab48637e9c5a1981acee1100f0dfd58b0>` (:ref:`tracemgrpacketenabletrigger_struct <group___cmp_trace_mgr_itf_1gae0afc40f084ebb4a3bd878a19296aae7>` * p)
+
+- void :ref:`tracemgrpacketgetabsolutestarttime <group___cmp_trace_mgr_itf_1gaf1a45f1f29396500d745cf837fa18068>` (:ref:`tracemgrpacketgetabsolutestarttime_struct <group___cmp_trace_mgr_itf_1gaae52b9842b9dc91dabb29516136a8338>` * p)
+
+- void :ref:`tracemgrpacketgetchangetimestamp <group___cmp_trace_mgr_itf_1gad10841e792dc0cc08cd1c79f7776770f>` (:ref:`tracemgrpacketgetchangetimestamp_struct <group___cmp_trace_mgr_itf_1ga9eaa7c7aeaf0187ce735eb015dd85a6f>` * p)
+
+- void :ref:`tracemgrpacketgetconfig <group___cmp_trace_mgr_itf_1ga0a3535ab036bcbe43fb7c214718e27b5>` (:ref:`tracemgrpacketgetconfig_struct <group___cmp_trace_mgr_itf_1ga8ede2bc9d19879bcb652f877ffec0265>` * p)
+
+- void :ref:`tracemgrpacketgetfirst <group___cmp_trace_mgr_itf_1ga2c7a90c5dff7b684c929760948c6a5da>` (:ref:`tracemgrpacketgetfirst_struct <group___cmp_trace_mgr_itf_1ga9969a4e6873f8e6400f616f10372b868>` * p)
+
+- void :ref:`tracemgrpacketgetnext <group___cmp_trace_mgr_itf_1ga146a046ff741beebfbc6154c4b3a8943>` (:ref:`tracemgrpacketgetnext_struct <group___cmp_trace_mgr_itf_1gad7487cb3c606f862db5f6b8b2f9ade49>` * p)
+
+- void :ref:`tracemgrpacketgetstarttime <group___cmp_trace_mgr_itf_1ga88bdd39560de871fb12645295b24a09d>` (:ref:`tracemgrpacketgetstarttime_struct <group___cmp_trace_mgr_itf_1ga8cdf77b21d9ace7c7d86b8c28c35f3c2>` * p)
+
+- void :ref:`tracemgrpacketgetstate <group___cmp_trace_mgr_itf_1gac6b7ea078ab13785b35a8f8b0728721b>` (:ref:`tracemgrpacketgetstate_struct <group___cmp_trace_mgr_itf_1gac7d38f287a7928ed97244ba7c28e2aef>` * p)
+
+- void :ref:`tracemgrpacketopen <group___cmp_trace_mgr_itf_1ga9f4cf1260adae176af402b400d8857d8>` (:ref:`tracemgrpacketopen_struct <group___cmp_trace_mgr_itf_1ga9da3dfca521e59316f3c8756093767bc>` * p)
+
+- void :ref:`tracemgrpacketreadbegin <group___cmp_trace_mgr_itf_1ga9ddab02fc62e0dcf5b158909512475c0>` (:ref:`tracemgrpacketreadbegin_struct <group___cmp_trace_mgr_itf_1gaff669603dfc638487827ddc4363e9187>` * p)
+
+- void :ref:`tracemgrpacketreadend <group___cmp_trace_mgr_itf_1ga0fea82ae9095c2c4b6a14a66c26300cf>` (:ref:`tracemgrpacketreadend_struct <group___cmp_trace_mgr_itf_1ga806e4abd273b3aacbf5d53104b23a0f8>` * p)
+
+- void :ref:`tracemgrpacketreadfirst <group___cmp_trace_mgr_itf_1ga82ba807e416236a36744f050d637b0d8>` (:ref:`tracemgrpacketreadfirst_struct <group___cmp_trace_mgr_itf_1gacee28a6ab4b1eb72e7ae23b2e77f336b>` * p)
+
+- void :ref:`tracemgrpacketreadfirst2 <group___cmp_trace_mgr_itf_1gaba2b2e5033b4ef4905ff2bd7df77c4f2>` (:ref:`tracemgrpacketreadfirst2_struct <group___cmp_trace_mgr_itf_1ga3219a168fbc43d5581855f2e07d6182c>` * p)
+
+- void :ref:`tracemgrpacketreadnext <group___cmp_trace_mgr_itf_1ga672b12eaa4bcf329d0b1072fc0d7559b>` (:ref:`tracemgrpacketreadnext_struct <group___cmp_trace_mgr_itf_1ga91b412fdfa0b345309ec91c34d71a846>` * p)
+
+- void :ref:`tracemgrpacketreadnext2 <group___cmp_trace_mgr_itf_1gac4690ed346ea225b477751c8915d0043>` (:ref:`tracemgrpacketreadnext2_struct <group___cmp_trace_mgr_itf_1ga3133f59f32b18617f25a95145b332bd2>` * p)
+
+- void :ref:`tracemgrpacketresettrigger <group___cmp_trace_mgr_itf_1gae3527f54059a1e51a7e900c98c88ad61>` (:ref:`tracemgrpacketresettrigger_struct <group___cmp_trace_mgr_itf_1gaa832f88ff5175d3d6d3cfde86fe22851>` * p)
+
+- void :ref:`tracemgrpacketrestart <group___cmp_trace_mgr_itf_1ga8b069cd83d44b81c115794775300a45d>` (:ref:`tracemgrpacketrestart_struct <group___cmp_trace_mgr_itf_1ga88187aaa1f93dab9d94df725b29620c6>` * p)
+
+- void :ref:`tracemgrpacketrestore <group___cmp_trace_mgr_itf_1ga0875557de4264f9535072301d128d2f2>` (:ref:`tracemgrpacketrestore_struct <group___cmp_trace_mgr_itf_1ga6ff86e2ea64a363ee00f59fdc1c68fa8>` * p)
+
+- void :ref:`tracemgrpacketstart <group___cmp_trace_mgr_itf_1ga74edb2c1333ef4018df1391f403c8533>` (:ref:`tracemgrpacketstart_struct <group___cmp_trace_mgr_itf_1gaa18ebf59b3990e4684237dc7fa8deaa5>` * p)
+
+- void :ref:`tracemgrpacketstop <group___cmp_trace_mgr_itf_1gae7909446195ab5f4c259aa0c76bbb2fb>` (:ref:`tracemgrpacketstop_struct <group___cmp_trace_mgr_itf_1gaf851b41a5786f3621c9617a9be888118>` * p)
+
+- void :ref:`tracemgrpacketstore <group___cmp_trace_mgr_itf_1ga46931ed9c431f78f8533d08a64a7129d>` (:ref:`tracemgrpacketstore_struct <group___cmp_trace_mgr_itf_1ga6386bbcb7392c604ce3e4eb334c4d6e9>` * p)
+
+- void :ref:`tracemgrrecordadd <group___cmp_trace_mgr_itf_1ga4c6f7a768343b7c85c0b8cf288ae0dbb>` (:ref:`tracemgrrecordadd_struct <group___cmp_trace_mgr_itf_1ga9c9a5c2a7ea5920ba8cad505597c339d>` * p)
+
+- void :ref:`tracemgrrecordgetconfig <group___cmp_trace_mgr_itf_1ga932c727bb91f66cfd7d425bcb85ba325>` (:ref:`tracemgrrecordgetconfig_struct <group___cmp_trace_mgr_itf_1gaa97435cf4fb7d50011dee67288ec65ac>` * p)
+
+- void :ref:`tracemgrrecordgetfirst <group___cmp_trace_mgr_itf_1gaebfa6df7a510d09c8e449da8aa3119ba>` (:ref:`tracemgrrecordgetfirst_struct <group___cmp_trace_mgr_itf_1ga363ac4886fefa672e3593f6cce4ff6b5>` * p)
+
+- void :ref:`tracemgrrecordgetnext <group___cmp_trace_mgr_itf_1gadf5366a1c162fa395a0f84cc089aa266>` (:ref:`tracemgrrecordgetnext_struct <group___cmp_trace_mgr_itf_1gae2c364e4c006331fbd918f1bdb250e04>` * p)
+
+- void :ref:`tracemgrrecordremove <group___cmp_trace_mgr_itf_1gac4f4fc09c7dd8f9cb6333d642c5d7a0a>` (:ref:`tracemgrrecordremove_struct <group___cmp_trace_mgr_itf_1ga8dbdb90aafbd1a379f2144b33bd6283b>` * p)
+
+- void :ref:`tracemgrrecordupdate <group___cmp_trace_mgr_itf_1gae6d15de266d2aee71ea468aa1da1afdd>` (:ref:`tracemgrrecordupdate_struct <group___cmp_trace_mgr_itf_1gaae594e3c3d373ca992e764ed31f7de1f>` * p)
+
+- void :ref:`tracemgrrecordupdate2 <group___cmp_trace_mgr_itf_1gad3538e5aecd6c6911973c45de96948f7>` (:ref:`tracemgrrecordupdate2_struct <group___cmp_trace_mgr_itf_1ga48fc60a2538165b5f4776e2eb82c3cbe>` * p)
+
+- void :ref:`tracemgrrecordupdate3 <group___cmp_trace_mgr_itf_1ga3ed9d3f6c7995abab0dad1b1996df9c4>` (:ref:`tracemgrrecordupdate3_struct <group___cmp_trace_mgr_itf_1ga1e5ccbb079b173d958c8da4ece430520>` * p)
+
+- void :ref:`tracemgrrecordupdate4 <group___cmp_trace_mgr_itf_1ga8e64fc175f64e7b99ef661af00460663>` (:ref:`tracemgrrecordupdate4_struct <group___cmp_trace_mgr_itf_1ga582c6247e8881d76430114cf5b9bc94d>` * p)
+
+- RTS_HANDLE :ref:`TraceMgrPacketCreate <group___cmp_trace_mgr_itf_1ga9e40d78672ffc95ed104bdf1ccf34fec>` (:ref:`TracePacketConfiguration <group___cmp_trace_mgr_itf_1ga8b87d21b2badb4e18b4483d5875d0cae>` * pConfiguration, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`TraceMgrPacketDelete <group___cmp_trace_mgr_itf_1gaf433ba122b58af38c06e0e477b9bf91a>` (RTS_HANDLE hPacket)
+
+- RTS_HANDLE :ref:`TraceMgrPacketOpen <group___cmp_trace_mgr_itf_1gaabc36d27b7d5798540ce808d1add8a83>` (char * pszName, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`TraceMgrPacketClose <group___cmp_trace_mgr_itf_1ga834e51c764d3c274b573a9d81f5de9cf>` (RTS_HANDLE hPacket)
+
+- RTS_RESULT :ref:`TraceMgrPacketComplete <group___cmp_trace_mgr_itf_1ga074debd62312042d1951f83769ebf67e>` (RTS_HANDLE hPacket)
+
+- RTS_RESULT :ref:`TraceMgrPacketGetConfig <group___cmp_trace_mgr_itf_1gaa82e7c3d4854ad08f2ecf9fc00c9187b>` (RTS_HANDLE hPacket, :ref:`TracePacketConfiguration <group___cmp_trace_mgr_itf_1ga8b87d21b2badb4e18b4483d5875d0cae>` * pConfiguration)
+
+- RTS_RESULT :ref:`TraceMgrPacketGetStartTime <group___cmp_trace_mgr_itf_1gabdf25033aee369feca62b97fe79a8f46>` (RTS_HANDLE hPacket, :ref:`RTS_SYSTIME <group___sys_time_itf_1ga10c9d9a4c57129d83432fb02923858bf>` * pStartTime)
+
+- RTS_RESULT :ref:`TraceMgrPacketGetAbsoluteStartTime <group___cmp_trace_mgr_itf_1ga687248436716d502bbbba24b30c94dae>` (RTS_HANDLE hPacket, :ref:`RTS_SYSTIME <group___sys_time_itf_1ga10c9d9a4c57129d83432fb02923858bf>` * pStartTime)
+
+- RTS_RESULT :ref:`TraceMgrPacketGetChangeTimestamp <group___cmp_trace_mgr_itf_1gab35a4d04237b5b7f89b0e188073ca60e>` (RTS_HANDLE hPacket, RTS_UI32 * pdwTimestamp)
+
+- RTS_HANDLE :ref:`TraceMgrPacketGetFirst <group___cmp_trace_mgr_itf_1gabd47b0fbdba0e04bb5a3b3d09254a53c>` (RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`TraceMgrPacketGetNext <group___cmp_trace_mgr_itf_1gada2895ab74b8faa2b87ebcde0cfcd577>` (RTS_HANDLE hPrevPacket, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`TraceMgrPacketStart <group___cmp_trace_mgr_itf_1gae92cfc5dcd9d5aee78f785ae34e99bac>` (RTS_HANDLE hPacket)
+
+- RTS_RESULT :ref:`TraceMgrPacketStop <group___cmp_trace_mgr_itf_1ga8b1376bfd0adc5a37f39e1c09c34dd02>` (RTS_HANDLE hPacket)
+
+- RTS_RESULT :ref:`TraceMgrPacketRestart <group___cmp_trace_mgr_itf_1ga84321c9282a88c8a5177a9896ea1709a>` (RTS_HANDLE hPacket)
+
+- RTS_RESULT :ref:`TraceMgrPacketGetState <group___cmp_trace_mgr_itf_1ga6332c395ea218eb168bebaccd53559e1>` (RTS_HANDLE hPacket, :ref:`TraceState <group___cmp_trace_mgr_itf_1ga06f372e5f3cb8b13a5655466638eec98>` * pState)
+
+- RTS_RESULT :ref:`TraceMgrPacketSetTriggerState <group___cmp_trace_mgr_itf_1ga48180644cd16123c5f77ade60bf6ff76>` (RTS_HANDLE hPacket, :ref:`TriggerState <group___cmp_trace_mgr_itf_1ga31434e3633f02c9a0d0df1956f5abcb7>` * ptsTriggerState)
+
+- RTS_RESULT :ref:`TraceMgrPacketEnableTrigger <group___cmp_trace_mgr_itf_1gab4cd6e3b16055c2b076ea49aaddd0f5d>` (RTS_HANDLE hPacket)
+
+- RTS_RESULT :ref:`TraceMgrPacketDisableTrigger <group___cmp_trace_mgr_itf_1gacee9b76fecc79b7bfe8cff46d2588616>` (RTS_HANDLE hPacket)
+
+- RTS_RESULT :ref:`TraceMgrPacketResetTrigger <group___cmp_trace_mgr_itf_1gaae077174766b62003a0b33b9c099e21c>` (RTS_HANDLE hPacket)
+
+- RTS_RESULT :ref:`TraceMgrPacketEnable <group___cmp_trace_mgr_itf_1ga856d466db2a49bc98ae61267b3e97eaa>` (RTS_HANDLE hPacket)
+
+- RTS_RESULT :ref:`TraceMgrPacketDisable <group___cmp_trace_mgr_itf_1ga9ea72c079943d28e583d252702d76fe4>` (RTS_HANDLE hPacket)
+
+- RTS_RESULT :ref:`TraceMgrPacketReadBegin <group___cmp_trace_mgr_itf_1ga31cc247ee9e4778412a40cd0324e67aa>` (RTS_HANDLE hPacket)
+
+- RTS_HANDLE :ref:`TraceMgrPacketReadFirst <group___cmp_trace_mgr_itf_1ga2f6608d0bae0c789a9bfc3ab002dde5b>` (RTS_HANDLE hPacket, :ref:`TraceRecordEntry <group___cmp_trace_mgr_itf_1ga49b1553f6ac8b3f9685de54dd1f97836>` * pTraceBuffer, RTS_UI32 * pulReadBytes, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`TraceMgrPacketReadFirst2 <group___cmp_trace_mgr_itf_1ga9c9df36c391e1b2436b5e16f3affd81d>` (RTS_HANDLE hPacket, :ref:`TraceRecordEntry <group___cmp_trace_mgr_itf_1ga49b1553f6ac8b3f9685de54dd1f97836>` * pTraceBuffer, RTS_UI32 ulTimestamp, RTS_UI32 * pulReadBytes, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`TraceMgrPacketReadNext <group___cmp_trace_mgr_itf_1gab94f866a3456d32f7e37ae71da176078>` (RTS_HANDLE hPacket, RTS_HANDLE hPrevRecord, :ref:`TraceRecordEntry <group___cmp_trace_mgr_itf_1ga49b1553f6ac8b3f9685de54dd1f97836>` * pTraceBuffer, RTS_UI32 * pulReadBytes, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`TraceMgrPacketReadNext2 <group___cmp_trace_mgr_itf_1ga3f47b4b7c9b73b2ef57168e62480bc3b>` (RTS_HANDLE hPacket, RTS_HANDLE hPrevRecord, :ref:`TraceRecordEntry <group___cmp_trace_mgr_itf_1ga49b1553f6ac8b3f9685de54dd1f97836>` * pTraceBuffer, RTS_UI32 ulTimestamp, RTS_UI32 * pulReadBytes, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`TraceMgrPacketRead <group___cmp_trace_mgr_itf_1gae507835b9807b2237377edc7fb40dac8>` (RTS_HANDLE hPacket, RTS_HANDLE hRecord, :ref:`TraceRecordEntry <group___cmp_trace_mgr_itf_1ga49b1553f6ac8b3f9685de54dd1f97836>` * pTraceBuffer, RTS_UI32 * pulReadBytes)
+
+- RTS_RESULT :ref:`TraceMgrPacketRead2 <group___cmp_trace_mgr_itf_1gae74a84e0aeeef7187983effc51aa27d8>` (RTS_HANDLE hPacket, RTS_HANDLE hRecord, :ref:`TraceRecordEntry <group___cmp_trace_mgr_itf_1ga49b1553f6ac8b3f9685de54dd1f97836>` * pTraceBuffer, RTS_UI32 ulTimestamp, RTS_UI32 * pulReadBytes)
+
+- RTS_RESULT :ref:`TraceMgrPacketReadEnd <group___cmp_trace_mgr_itf_1gac8ed371a42d2f21220b8a11e4bf75165>` (RTS_HANDLE hPacket)
+
+- RTS_RESULT :ref:`TraceMgrPacketStore <group___cmp_trace_mgr_itf_1ga05cd0f721347992602a35e97e2b073f1>` (RTS_HANDLE hPacket, char * pszFileName)
+
+- RTS_HANDLE :ref:`TraceMgrPacketRestore <group___cmp_trace_mgr_itf_1gada8be8c1d456ef8ba38be995e0394b60>` (char * pszFileName, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`TraceMgrGetConfigFromFile <group___cmp_trace_mgr_itf_1ga7c2182b9b435633b9a3c5ff3caf7b5b7>` (char * pszFileName, :ref:`TracePacketConfiguration <group___cmp_trace_mgr_itf_1ga8b87d21b2badb4e18b4483d5875d0cae>` * pPacketConfiguration, :ref:`TraceRecordConfiguration <group___cmp_trace_mgr_itf_1gab8c4a4109443dc67723e68331b8d7200>` * pRecordConfiguration, RTS_I32 iMaxRecordCount, RTS_I32 * piEffectiveRecordCount)
+
+- RTS_RESULT :ref:`TraceMgrGetConfigFromFileRelease <group___cmp_trace_mgr_itf_1ga57c2d0d54d92edd8b6471b20d3f73e4e>` (:ref:`TracePacketConfiguration <group___cmp_trace_mgr_itf_1ga8b87d21b2badb4e18b4483d5875d0cae>` * pPacketConfiguration, :ref:`TraceRecordConfiguration <group___cmp_trace_mgr_itf_1gab8c4a4109443dc67723e68331b8d7200>` * pRecordConfiguration, RTS_I32 iRecordCount)
+
+- RTS_RESULT :ref:`TraceMgrPacketCheckTrigger <group___cmp_trace_mgr_itf_1gae8bebe0c8bf789ab3fa4b95419436f16>` (RTS_HANDLE hPacket)
+
+- RTS_HANDLE :ref:`TraceMgrRecordAdd <group___cmp_trace_mgr_itf_1gac0bbd39cb9a30802e5d43d4306696ff7>` (RTS_HANDLE hPacket, :ref:`TraceRecordConfiguration <group___cmp_trace_mgr_itf_1gab8c4a4109443dc67723e68331b8d7200>` * pConfiguration, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`TraceMgrRecordRemove <group___cmp_trace_mgr_itf_1ga6057b6cd3c788d22b4465a8efdf11352>` (RTS_HANDLE hPacket, RTS_HANDLE hRecord)
+
+- RTS_RESULT :ref:`TraceMgrRecordGetConfig <group___cmp_trace_mgr_itf_1gaa53f1d0b4143b56155d61fba1dd3f78c>` (RTS_HANDLE hPacket, RTS_HANDLE hRecord, :ref:`TraceRecordConfiguration <group___cmp_trace_mgr_itf_1gab8c4a4109443dc67723e68331b8d7200>` * pConfiguration)
+
+- RTS_HANDLE :ref:`TraceMgrRecordGetFirst <group___cmp_trace_mgr_itf_1ga9e234fc3ed8f1ee512397dcc481f705f>` (RTS_HANDLE hPacket, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`TraceMgrRecordGetNext <group___cmp_trace_mgr_itf_1ga906a3a028798461eede0d71930eaeb40>` (RTS_HANDLE hPacket, RTS_HANDLE hPrevRecord, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`TraceMgrRecordUpdate <group___cmp_trace_mgr_itf_1gac8058649570a17975dc302745d548f9d>` (RTS_HANDLE hPacket, RTS_HANDLE hRecord)
+
+- RTS_RESULT :ref:`TraceMgrRecordUpdate2 <group___cmp_trace_mgr_itf_1ga14a7ce1d2fa8942b16046ec33690c9bc>` (RTS_HANDLE hPacket, RTS_HANDLE hRecord, :ref:`TraceRecordEntry <group___cmp_trace_mgr_itf_1ga49b1553f6ac8b3f9685de54dd1f97836>` * pBuffer, RTS_UI32 ulLen)
+
+- RTS_RESULT :ref:`TraceMgrRecordUpdate3 <group___cmp_trace_mgr_itf_1ga178d0f27e7eef0463df579b4ee0e4ef2>` (RTS_HANDLE hPacket, RTS_HANDLE hRecord, void * pData, RTS_UI32 ulLen)
+
+- RTS_RESULT :ref:`TraceMgrRecordUpdate4 <group___cmp_trace_mgr_itf_1gaf6f4f188de1a622345c497af947801e9>` (RTS_HANDLE hPacket, RTS_HANDLE hRecord, RTS_UI32 * pTimestamps, void * pDataValues, RTS_UI32 ulEntries)
+
+- RTS_RESULT :ref:`TraceMgrDeviceTaskUpdate <group___cmp_trace_mgr_itf_1gafaf5299d5a90bae14917202770c5ae80>` (char * pszTaskName)
+
+- RTS_RESULT :ref:`TraceMgrHasFeature <group___cmp_trace_mgr_itf_1ga5dc3ae6ae19cb427fc029b116a4c635f>` (RTS_UI32 ulFeatures)
+
+.. _group___cmp_trace_mgr_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpTraceMgr.
+
+This is the interface of the trace manager. The trace manager handles trace packets, that are defined from:
+
+- Trace editor in CoDeSys
+
+- A runtime system component
+
+- An IEC program
+
+A trace packet is the container for trace variables, which are named as records. A trace packet is is always identified by its name. This must be unique! A trace record contains the trace of a single variable. So the record contains the trace buffer in which the trace values are stored.
+
+This is the sequence of typical handling of the trace manager: 1. Packet create (->event is sent) 2. Add records (->event is sent) 3. Complete packet (->event is sent) 4. Start trace (->event is sent) 5. Optional: Set trigger state: Extern/Intern (->event is sent) 6. Standard variables are recorded automatically. For system variables, the corresponding component or IEC program is responsible for recording! 7. Stop: Extern/Intern (->event is sent) 8. Restart / start / delete packet ...
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_trace_mgr_itf_1ga7b089a5625ac5edc0613b79b7ea5c876:
+
+#define ITF_CmpTraceMgr
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga3aa4728171d77e8651c4ac155ef05dee:
+
+#define EXTITF_CmpTraceMgr
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_trace_mgr_itf_1ga8b87d21b2badb4e18b4483d5875d0cae:
+
+typedef struct tagTracePacketConfiguration  TracePacketConfiguration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Configuration of a trace packet
+
+.. _group___cmp_trace_mgr_itf_1gae781d638707d3af6e50f0b876c1c18c7:
+
+typedef struct tagAddressArea  AddressArea
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION BEGIN
+
+Description of an IEC address
+
+.. _group___cmp_trace_mgr_itf_1gae62fd1329b66b5ecf7f0d436fbfa0114:
+
+typedef struct tagEVTPARAM_CmpTraceMgr_Packet  EVTPARAM_CmpTraceMgr_Packet
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Parameter type for trace manager packet events
+
+.. _group___cmp_trace_mgr_itf_1ga95505f6e486c0d09fc4031df0c492121:
+
+typedef struct tagEVTPARAM_CmpTraceMgr_Record  EVTPARAM_CmpTraceMgr_Record
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Parameter type for trace manager record events
+
+.. _group___cmp_trace_mgr_itf_1gad8ec343dd4b8c9e584568bfd8d02f531:
+
+typedef struct tagMonitoring2ByteCode  Monitoring2ByteCode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Monitoring2ByteCode
+
+.. _group___cmp_trace_mgr_itf_1ga2cc4025634acff84eefc06244c1f9623:
+
+typedef struct tagMonitoringService  MonitoringService
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+MonitoringService
+
+.. _group___cmp_trace_mgr_itf_1gaa1f3230491c54fe59fc890f946558f52:
+
+typedef struct tagPropertyLocation  PropertyLocation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+PropertyLocation
+
+.. _group___cmp_trace_mgr_itf_1ga40a57ff9b142248050f3c8d7fbc303db:
+
+typedef struct tagSymVarAccess  SymVarAccess
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SymVarAccess
+
+.. _group___cmp_trace_mgr_itf_1ga0465cab40bb0a63cba74cbc0fded6c10:
+
+typedef struct tagSystemParameter  SystemParameter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Description of an IO-config device parameter
+
+.. _group___cmp_trace_mgr_itf_1ga11d7020beeb318687e1a3f3b38e8d8c9:
+
+typedef struct tagTraceVariableAddress  TraceVariableAddress
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Address description of a single trace variable
+
+.. _group___cmp_trace_mgr_itf_1ga5ec637fbdc7d5da686a792072a69c736:
+
+typedef struct tagTraceVariable  TraceVariable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Definition of a single trace variable
+
+.. _group___cmp_trace_mgr_itf_1ga07cea81a2274f36e066fc0ced19ffaa7:
+
+typedef struct tagTraceTrigger  TraceTrigger
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Configuration of the trace trigger
+
+.. _group___cmp_trace_mgr_itf_1gab8c4a4109443dc67723e68331b8d7200:
+
+typedef struct tagTraceRecordConfiguration  TraceRecordConfiguration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Trace record configuration
+
+The colors (ulGraphColor, ulMinWarningColor, ulMaxWarningColor) and are encoded in UDINTs in the ARGB format: the most significand byte is the alpha value, the next byte the red value, followed by green and blue. Each color component takes a value between 0 and FF. So 0xFF000000 is white, 0xFFFFFFFF is black, 0xFFFF0000 is red, 0xFF00FF00 is green, and 0xFF0000FF is blue.
+
+.. _group___cmp_trace_mgr_itf_1ga49b1553f6ac8b3f9685de54dd1f97836:
+
+typedef struct tagTraceRecordEntry  TraceRecordEntry
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A single entry recorded for a trace variable consisting of a relative time stamp and a (variable-size) data part. The size of the data depends on the type class of the trace variable.
+
+.. _group___cmp_trace_mgr_itf_1ga31434e3633f02c9a0d0df1956f5abcb7:
+
+typedef struct tagTriggerState  TriggerState
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The state of the trigger
+
+.. _group___cmp_trace_mgr_itf_1ga06f372e5f3cb8b13a5655466638eec98:
+
+typedef struct tagTraceState  TraceState
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The state of a trace packet
+
+.. _group___cmp_trace_mgr_itf_1ga14811830cc8b32765e52e10d842e470a:
+
+typedef struct tagtracemgrgetconfigfromfile_struct  tracemgrgetconfigfromfile_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Loads a given trace file and returns the configuration it contains. After this function call a call to function |TraceMgrGetConfigFromFileRelease| is necessary to free the dynamically allocated memory.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if pszFileName is not a valid file path
+
+- ERR_NOMEMORY if the memory is not sufficient for opening the file
+
+- ERR_NOT_SUPPORTED if reading from files is not supported by the runtime system or if an addressing mode is not supported (e.g. symbolic access)
+
+- ERR_NO_OBJECT if opening the file failed
+
+- ERR_FAILED if opening the file failed
+
+- ERR_END_OF_OBJECT if either the packet configuration or the record configuration is incomplete
+
+- ERR_NO_CHANGE if a NULL pointer was passed to parameter
+
+- ERR_OUT_OF_LIMITS if the parameters ``pRecordConfiguration`` and ``iMaxRecordCount`` do not have enough memory to hold all the records from the file
+
+.. _group___cmp_trace_mgr_itf_1ga416bab7da81952eda411f7a15a82b925:
+
+typedef struct tagtracemgrgetconfigfromfilerelease_struct  tracemgrgetconfigfromfilerelease_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function has to be called after |TraceMgrGetConfigFromFile|. It frees the dynamically allocated memory for the strings of the packet resp. record configuration. :return: Returns the runtime system error code (see CmpErrors.library)
+
+.. _group___cmp_trace_mgr_itf_1ga4e2016a336b939bfc7111711f8ac1c4c:
+
+typedef struct tagtracemgrpacketchecktrigger_struct  tracemgrpacketchecktrigger_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Checks if the trigger fires this cycle and sets the trigger state accordingly.
+
+If the trigger is already reached, ERR_OK is returned.
+
+Note: this function is called cyclically by CmpTraceMgr and should normally not be called from an application. Use TraceMgrPacketGetState instead to query the current trigger state.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid trace packet
+
+- ERR_NOTINITIALIZED if no trigger is defined or if the trigger is disabled
+
+- ERR_FAILED if the check fails
+
+.. _group___cmp_trace_mgr_itf_1ga20c454100a5b5e697bed34a709c3f010:
+
+typedef struct tagtracemgrpacketclose_struct  tracemgrpacketclose_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Closes a handle opened by TraceMgrPacketOpen.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid handle
+
+.. _group___cmp_trace_mgr_itf_1ga65c347feef6c5b6cb0d15d2451db7fcd:
+
+typedef struct tagtracemgrpacketcomplete_struct  tracemgrpacketcomplete_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Completes a trace packet and finishes the configuration. This function must be called after all records have been added to the packet.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid handle
+
+.. _group___cmp_trace_mgr_itf_1gaae5dc18707ca1d5185aa14b1cefbc917:
+
+typedef struct tagtracemgrpacketcreate_struct  tracemgrpacketcreate_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creates a new trace packet. The returned handle must be deleted with TraceMgrPacketDelete when the packet is no longer needed.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if pConfiguration.pszName is 0
+
+- ERR_DUPLICATE if a packet with the given name already exists
+
+- ERR_NOMEMORY if the available memory is not sufficient to create the packet
+
+.. _group___cmp_trace_mgr_itf_1ga579dfbcda354a0363351dcfff6f528ca:
+
+typedef struct tagtracemgrpacketdelete_struct  tracemgrpacketdelete_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Deletes an existing handle. The handle must have been created with TraceMgrPacketCreate.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+.. _group___cmp_trace_mgr_itf_1ga0a698ea9708c7ef510febbf785d505df:
+
+typedef struct tagtracemgrpacketdisable_struct  tracemgrpacketdisable_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Disables a trace packet. Does nothing if the trace packet is disabled.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+.. _group___cmp_trace_mgr_itf_1ga754add830acd847c5639b1cf258f1096:
+
+typedef struct tagtracemgrpacketdisabletrigger_struct  tracemgrpacketdisabletrigger_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Disables the trigger of a trace packet.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+.. _group___cmp_trace_mgr_itf_1ga188e1ee545f832210f663982b4ec9136:
+
+typedef struct tagtracemgrpacketenable_struct  tracemgrpacketenable_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enables a trace packet. Does nothing if the trace packet is enabled.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+.. _group___cmp_trace_mgr_itf_1gae0afc40f084ebb4a3bd878a19296aae7:
+
+typedef struct tagtracemgrpacketenabletrigger_struct  tracemgrpacketenabletrigger_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enables the trigger of a trace packet.
+
+.. note:: This function should be called if the trigger is currently disabled. If the trigger has already fired, call |TraceMgrPacketResetTrigger| to reset the trigger, instead.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+.. _group___cmp_trace_mgr_itf_1gaae52b9842b9dc91dabb29516136a8338:
+
+typedef struct tagtracemgrpacketgetabsolutestarttime_struct  tracemgrpacketgetabsolutestarttime_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the absolute start time of a trace packet or 0 if trace packet has not been started yet.
+
+.. note:: The start time is the time when the packet was started for the first time.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid handle
+
+.. _group___cmp_trace_mgr_itf_1ga9eaa7c7aeaf0187ce735eb015dd85a6f:
+
+typedef struct tagtracemgrpacketgetchangetimestamp_struct  tracemgrpacketgetchangetimestamp_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the timestamp of a trace packet's last modification.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+.. _group___cmp_trace_mgr_itf_1ga8ede2bc9d19879bcb652f877ffec0265:
+
+typedef struct tagtracemgrpacketgetconfig_struct  tracemgrpacketgetconfig_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Queries the configuration of a trace packet.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid handle
+
+.. _group___cmp_trace_mgr_itf_1ga9969a4e6873f8e6400f616f10372b868:
+
+typedef struct tagtracemgrpacketgetfirst_struct  tracemgrpacketgetfirst_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the first trace packet. This function can be used together with |TraceMgrPacketGetNext| to iterate through all trace packets.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_NO_OBJECT if there is no trace packet
+
+.. _group___cmp_trace_mgr_itf_1gad7487cb3c606f862db5f6b8b2f9ade49:
+
+typedef struct tagtracemgrpacketgetnext_struct  tracemgrpacketgetnext_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the next trace packet. This function can be used together with |TraceMgrPacketGetFirst| to iterate through all trace packets.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPrevPacket is not a valid handle
+
+- ERR_NO_OBJECT if hPrevPacket is the last trace packet
+
+.. _group___cmp_trace_mgr_itf_1ga8cdf77b21d9ace7c7d86b8c28c35f3c2:
+
+typedef struct tagtracemgrpacketgetstarttime_struct  tracemgrpacketgetstarttime_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the start time of a trace packet or 0 if trace packet has not been started yet.
+
+.. note:: the start time is the time when the packet was started for the first time.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid handle
+
+.. _group___cmp_trace_mgr_itf_1gac7d38f287a7928ed97244ba7c28e2aef:
+
+typedef struct tagtracemgrpacketgetstate_struct  tracemgrpacketgetstate_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the state of a trace packet.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+.. _group___cmp_trace_mgr_itf_1ga9da3dfca521e59316f3c8756093767bc:
+
+typedef struct tagtracemgrpacketopen_struct  tracemgrpacketopen_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Opens a trace packet specified by name.
+
+.. note:: Comparison of packet names is case-insensitive.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_NO_OBJECT if no packet with the given name is found.
+
+.. _group___cmp_trace_mgr_itf_1gaff669603dfc638487827ddc4363e9187:
+
+typedef struct tagtracemgrpacketreadbegin_struct  tracemgrpacketreadbegin_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Start reading trace packet.
+
+The purpose of this function is to trigger the event EVT_TRACEMGR_PACKET_SAMPLE. In response to the event, any outstanding trace samples will be written by runtime system components and IEC applications that provide trace values for system parameters.
+
+.. note:: Normally, there is no need to call this function. It should be called before |TraceMgrPacketReadFirst| and |TraceMgrPacketReadFirst2| to make sure all trace values are present before reading. When finished with reading, TraceMgrPacketReadEnd should be called.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+- ERR_NOTINITIALIZED if hPacket is not complete and started
+
+.. _group___cmp_trace_mgr_itf_1ga806e4abd273b3aacbf5d53104b23a0f8:
+
+typedef struct tagtracemgrpacketreadend_struct  tracemgrpacketreadend_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+End reading trace packet.
+
+See description of function |TraceMgrPacketReadBegin|.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+- ERR_NOTINITIALIZED if hPacket is not complete and started
+
+.. _group___cmp_trace_mgr_itf_1gacee28a6ab4b1eb72e7ae23b2e77f336b:
+
+typedef struct tagtracemgrpacketreadfirst_struct  tracemgrpacketreadfirst_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Reads the contents of the first record.
+
+.. note:: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
+
+.. note:: You should call |TraceMgrPacketReadBegin| before calling this function, to make sure any outstanding trace values are written to the trace buffers.
+
+.. note:: Data is always returned in little endian byte order even if the device has big endian byte order.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+- ERR_NO_OBJECT if the packet does not have a single record
+
+- ERR_NOTINITIALIZED if the packet is not complete
+
+- ERR_TIMEOUT if reading took too long
+
+- ERR_ENTRIES_REMAINING if more data can be read by a subsequent call (this is not an error)
+
+.. _group___cmp_trace_mgr_itf_1ga3219a168fbc43d5581855f2e07d6182c:
+
+typedef struct tagtracemgrpacketreadfirst2_struct  tracemgrpacketreadfirst2_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Reads the contents of the first record, starting at a given time stamp.
+
+Only entries with a time stamp greater than or equal to ulTimestamp are copied. If the time stamp is zero, the function behaves like |TraceMgrPacketReadFirst|.
+
+.. note:: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
+
+.. note:: You should call |TraceMgrPacketReadBegin| before calling this function, to make sure any outstanding trace values are written to the trace buffers.
+
+.. note:: Data is always returned in little endian byte order even if the device has big endian byte order.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+- ERR_NO_OBJECT if the packet does not have a single record
+
+- ERR_NOTINITIALIZED if the packet is not complete
+
+- ERR_TIMEOUT if reading took too long
+
+- ERR_ENTRIES_REMAINING if more data can be read by a subsequent call (this is not an error)
+
+.. _group___cmp_trace_mgr_itf_1ga91b412fdfa0b345309ec91c34d71a846:
+
+typedef struct tagtracemgrpacketreadnext_struct  tracemgrpacketreadnext_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Reads the contents of the next record.
+
+.. note:: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
+
+.. note:: Data is always returned in little endian byte order even if the device has big endian byte order.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle or if hPrevRecord is not a valid record handle
+
+- ERR_NO_OBJECT if there is no next record
+
+- ERR_NOTINITIALIZED if the packet is not complete
+
+- ERR_TIMEOUT if reading took too long
+
+- ERR_ENTRIES_REMAINING if more data can be read by a subsequent call (this is not an error)
+
+.. _group___cmp_trace_mgr_itf_1ga3133f59f32b18617f25a95145b332bd2:
+
+typedef struct tagtracemgrpacketreadnext2_struct  tracemgrpacketreadnext2_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Reads the contents of the next record, starting at a given time stamp.
+
+Only entries with a time stamp greater than or equal to ulTimestamp are copied. If the time stamp is zero, the function behaves like |TraceMgrPacketReadNext|.
+
+.. note:: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
+
+.. note:: Data is always returned in little endian byte order even if the device has big endian byte order.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle or if hPrevRecord is not a valid record handle
+
+- ERR_NO_OBJECT if there is no next record
+
+- ERR_NOTINITIALIZED if the packet is not complete
+
+- ERR_TIMEOUT if reading took too long
+
+- ERR_ENTRIES_REMAINING if more data can be read by a subsequent call (this is not an error)
+
+.. _group___cmp_trace_mgr_itf_1gaa832f88ff5175d3d6d3cfde86fe22851:
+
+typedef struct tagtracemgrpacketresettrigger_struct  tracemgrpacketresettrigger_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Resets the trigger of a trace packet. The start time and date of of the trigger is reset to 0 and the trigger is set to state enabled (if it is not disabled).
+
+.. note: if the trigger is currently disabled, it stays disabled. To enable it, call TraceMgrPacketEnableTrigger.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+.. _group___cmp_trace_mgr_itf_1ga88187aaa1f93dab9d94df725b29620c6:
+
+typedef struct tagtracemgrpacketrestart_struct  tracemgrpacketrestart_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Restarts a trace packet and resets the start time and the trigger.
+
+In contrast to TraceMgrPacketStart, the trace is stopped and the start time is reset to the current time before it is started again.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+.. _group___cmp_trace_mgr_itf_1ga6ff86e2ea64a363ee00f59fdc1c68fa8:
+
+typedef struct tagtracemgrpacketrestore_struct  tracemgrpacketrestore_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Loads a trace packet from a trace file. Both the trace configuration and the current trace values are restored.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid handle, or if pszFileName is not a valid file path
+
+- ERR_NOMEMORY if the memory is not sufficient for opening the file
+
+- ERR_NOT_SUPPORTED if reading from files is not supported by the runtime system or if an addressing mode is not supported (e.g. symbolic access)
+
+- ERR_NO_OBJECT if opening the file failed
+
+- ERR_FAILED if opening the file failed
+
+.. _group___cmp_trace_mgr_itf_1gaa18ebf59b3990e4684237dc7fa8deaa5:
+
+typedef struct tagtracemgrpacketstart_struct  tracemgrpacketstart_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Starts a trace packet and resets the trigger.
+
+.. note:: if the packet is started for the first time, the start time of the packet is set to the current time. See: |TraceMgrPacketGetStartTime|.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+.. _group___cmp_trace_mgr_itf_1gaf851b41a5786f3621c9617a9be888118:
+
+typedef struct tagtracemgrpacketstop_struct  tracemgrpacketstop_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Stops a trace packet.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+.. _group___cmp_trace_mgr_itf_1ga6386bbcb7392c604ce3e4eb334c4d6e9:
+
+typedef struct tagtracemgrpacketstore_struct  tracemgrpacketstore_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Stores a trace packet to a trace file. Both the trace configuration and the current trace values are stored.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid handle, or if pszFileName is not a valid file path
+
+- ERR_NOMEMORY if the memory is not sufficient for opening the file
+
+- ERR_NOT_SUPPORTED if writing to files is not supported by the runtime system
+
+- ERR_NO_OBJECT if opening the file failed
+
+- ERR_FAILED if creating or writing to the file failed
+
+.. _group___cmp_trace_mgr_itf_1ga9c9a5c2a7ea5920ba8cad505597c339d:
+
+typedef struct tagtracemgrrecordadd_struct  tracemgrrecordadd_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Adds a new record to a trace packet
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle, if the variable name is not set, or if the variable type is not supported
+
+- ERR_NOMEMORY if there is not enough free memory to create the record
+
+.. _group___cmp_trace_mgr_itf_1gaa97435cf4fb7d50011dee67288ec65ac:
+
+typedef struct tagtracemgrrecordgetconfig_struct  tracemgrrecordgetconfig_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Queries the configuration of a trace record.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket or hRecord is not a valid handle
+
+.. _group___cmp_trace_mgr_itf_1ga363ac4886fefa672e3593f6cce4ff6b5:
+
+typedef struct tagtracemgrrecordgetfirst_struct  tracemgrrecordgetfirst_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the first trace record of a trace packet. This function can be used together with |TraceMgrRecordGetNext| to iterate through all trace records of a packet.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+- ERR_NO_OBJECT if the packet has no trace record
+
+.. _group___cmp_trace_mgr_itf_1gae2c364e4c006331fbd918f1bdb250e04:
+
+typedef struct tagtracemgrrecordgetnext_struct  tracemgrrecordgetnext_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the next trace record of a trace packet. This function can be used together with |TraceMgrRecordGetFirst| to iterate through all trace records of a packet.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle
+
+- ERR_NO_OBJECT if the packet has no next trace record
+
+.. _group___cmp_trace_mgr_itf_1ga8dbdb90aafbd1a379f2144b33bd6283b:
+
+typedef struct tagtracemgrrecordremove_struct  tracemgrrecordremove_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Removes a trace record from a trace packet.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if the packet handle or the record handle is invalid
+
+.. _group___cmp_trace_mgr_itf_1gaae594e3c3d373ca992e764ed31f7de1f:
+
+typedef struct tagtracemgrrecordupdate_struct  tracemgrrecordupdate_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Records the current value of the trace variable of a record together with the current time stamp.
+
+.. note:: This function is called cyclically by CmpTraceMgr. It should not be called by the application.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle
+
+- ERR_NOTINITIALIZED if the packet is not currently recording (not started, trigger reached, ...)
+
+- ERR_PENDING if no value is recorded for this cycle due to :ref:`TracePacketConfiguration.ulEveryNCycles <structtag_trace_packet_configuration_1a29112671b73a99708fc7be47c372ba08>`
+
+- ERR_FAILED if reading the value of the trace variable failed
+
+.. _group___cmp_trace_mgr_itf_1ga48fc60a2538165b5f4776e2eb82c3cbe:
+
+typedef struct tagtracemgrrecordupdate2_struct  tracemgrrecordupdate2_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Stores entries in the ring buffer of a trace record.
+
+This function can be used to provide the data for so called system parameters from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.) If only a single entry is to be added, consider using |TraceMgrRecordUpdate3| instead.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle
+
+- ERR_NOTINITIALIZED if the packet is not currently recording (not started, trigger reached, ...)
+
+- ERR_PENDING if no value is recorded for this cycle due to :ref:`TracePacketConfiguration.ulEveryNCycles <structtag_trace_packet_configuration_1a29112671b73a99708fc7be47c372ba08>`
+
+- ERR_FAILED if ulLen is not a multiple of the entry size (size of a time stamp plus a sample value)
+
+.. _group___cmp_trace_mgr_itf_1ga1e5ccbb079b173d958c8da4ece430520:
+
+typedef struct tagtracemgrrecordupdate3_struct  tracemgrrecordupdate3_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Stores one entry in the ring buffer of a trace record.
+
+This function can be used to provide the data for so called system parameters from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.) If more than one single entry is to be added, consider using |TraceMgrRecordUpdate2| instead.
+
+.. note:: in contrast to |TraceMgrRecordUpdate2|, the time stamp of the entry is not provided by the caller but set inside |TraceMgrRecordUpdate3|.
+
+.. note:: If pData is 0, the current value of the trace variable is read, i.e. the function behaves TraceMgrRecordUpdate.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle, or if ulLen differs from the size of the trace variable
+
+- ERR_NOTINITIALIZED if the packet is not currently recording (not started, trigger reached, ...)
+
+- ERR_PENDING if no value is recorded for this cycle due to :ref:`TracePacketConfiguration.ulEveryNCycles <structtag_trace_packet_configuration_1a29112671b73a99708fc7be47c372ba08>`
+
+- ERR_FAILED if pData is 0 and the current value of the trace variable cannot be read
+
+.. _group___cmp_trace_mgr_itf_1ga582c6247e8881d76430114cf5b9bc94d:
+
+typedef struct tagtracemgrrecordupdate4_struct  tracemgrrecordupdate4_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Stores multiple values with seperate timestamps in the ring buffer of a trace record.
+
+This function can be used to provide the data for so called system parameters from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.)
+
+.. note:: in contrast to |TraceMgrRecordUpdate2|, the timestamp of the values and the values itself are provided in seperate lists by the caller.
+
+.. note:: the number of timestamps must be the same as the number of data values. ulEntries must match to this number.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle
+
+- ERR_NOTINITIALIZED if the packet is not currently recording (not started, trigger reached, ...)
+
+- ERR_PENDING if no value is recorded for this cycle due to :ref:`TracePacketConfiguration.ulEveryNCycles <structtag_trace_packet_configuration_1a29112671b73a99708fc7be47c372ba08>`
+
+.. _group___cmp_trace_mgr_itf_1gaac1e08476367d1abfe1dad34c31eb38e:
+
+typedef ICmpTraceMgr_C ICmpTraceMgr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_trace_mgr_itf_1ga4694dce5a91df59a0f5f4603393855a5:
+
+void tracemgrgetconfigfromfile (tracemgrgetconfigfromfile_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga5dd49dcd4fe9fe139a51e1eb73a38877:
+
+void tracemgrgetconfigfromfilerelease (tracemgrgetconfigfromfilerelease_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gaf2a7439af67b79a1fe8b83a1c337164d:
+
+void tracemgrpacketchecktrigger (tracemgrpacketchecktrigger_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gad41f6d6473b7e8b33f50fb37411c7dae:
+
+void tracemgrpacketclose (tracemgrpacketclose_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gaef979fa79faf57439b44b2ed771a6b4d:
+
+void tracemgrpacketcomplete (tracemgrpacketcomplete_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga87c7e65891af835c80563a8623a65bb7:
+
+void tracemgrpacketcreate (tracemgrpacketcreate_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gacf4933b6a324823298c4c53a3cb1917a:
+
+void tracemgrpacketdelete (tracemgrpacketdelete_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga145608ec7e417aa31651a42629097c9d:
+
+void tracemgrpacketdisable (tracemgrpacketdisable_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga2c804ce4abbbf5f003dcd1674e467158:
+
+void tracemgrpacketdisabletrigger (tracemgrpacketdisabletrigger_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gae6409c0f3335396236f93ab5e934a23a:
+
+void tracemgrpacketenable (tracemgrpacketenable_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gab48637e9c5a1981acee1100f0dfd58b0:
+
+void tracemgrpacketenabletrigger (tracemgrpacketenabletrigger_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gaf1a45f1f29396500d745cf837fa18068:
+
+void tracemgrpacketgetabsolutestarttime (tracemgrpacketgetabsolutestarttime_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gad10841e792dc0cc08cd1c79f7776770f:
+
+void tracemgrpacketgetchangetimestamp (tracemgrpacketgetchangetimestamp_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga0a3535ab036bcbe43fb7c214718e27b5:
+
+void tracemgrpacketgetconfig (tracemgrpacketgetconfig_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga2c7a90c5dff7b684c929760948c6a5da:
+
+void tracemgrpacketgetfirst (tracemgrpacketgetfirst_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga146a046ff741beebfbc6154c4b3a8943:
+
+void tracemgrpacketgetnext (tracemgrpacketgetnext_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga88bdd39560de871fb12645295b24a09d:
+
+void tracemgrpacketgetstarttime (tracemgrpacketgetstarttime_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gac6b7ea078ab13785b35a8f8b0728721b:
+
+void tracemgrpacketgetstate (tracemgrpacketgetstate_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga9f4cf1260adae176af402b400d8857d8:
+
+void tracemgrpacketopen (tracemgrpacketopen_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga9ddab02fc62e0dcf5b158909512475c0:
+
+void tracemgrpacketreadbegin (tracemgrpacketreadbegin_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga0fea82ae9095c2c4b6a14a66c26300cf:
+
+void tracemgrpacketreadend (tracemgrpacketreadend_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga82ba807e416236a36744f050d637b0d8:
+
+void tracemgrpacketreadfirst (tracemgrpacketreadfirst_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gaba2b2e5033b4ef4905ff2bd7df77c4f2:
+
+void tracemgrpacketreadfirst2 (tracemgrpacketreadfirst2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga672b12eaa4bcf329d0b1072fc0d7559b:
+
+void tracemgrpacketreadnext (tracemgrpacketreadnext_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gac4690ed346ea225b477751c8915d0043:
+
+void tracemgrpacketreadnext2 (tracemgrpacketreadnext2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gae3527f54059a1e51a7e900c98c88ad61:
+
+void tracemgrpacketresettrigger (tracemgrpacketresettrigger_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga8b069cd83d44b81c115794775300a45d:
+
+void tracemgrpacketrestart (tracemgrpacketrestart_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga0875557de4264f9535072301d128d2f2:
+
+void tracemgrpacketrestore (tracemgrpacketrestore_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga74edb2c1333ef4018df1391f403c8533:
+
+void tracemgrpacketstart (tracemgrpacketstart_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gae7909446195ab5f4c259aa0c76bbb2fb:
+
+void tracemgrpacketstop (tracemgrpacketstop_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga46931ed9c431f78f8533d08a64a7129d:
+
+void tracemgrpacketstore (tracemgrpacketstore_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga4c6f7a768343b7c85c0b8cf288ae0dbb:
+
+void tracemgrrecordadd (tracemgrrecordadd_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga932c727bb91f66cfd7d425bcb85ba325:
+
+void tracemgrrecordgetconfig (tracemgrrecordgetconfig_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gaebfa6df7a510d09c8e449da8aa3119ba:
+
+void tracemgrrecordgetfirst (tracemgrrecordgetfirst_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gadf5366a1c162fa395a0f84cc089aa266:
+
+void tracemgrrecordgetnext (tracemgrrecordgetnext_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gac4f4fc09c7dd8f9cb6333d642c5d7a0a:
+
+void tracemgrrecordremove (tracemgrrecordremove_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gae6d15de266d2aee71ea468aa1da1afdd:
+
+void tracemgrrecordupdate (tracemgrrecordupdate_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1gad3538e5aecd6c6911973c45de96948f7:
+
+void tracemgrrecordupdate2 (tracemgrrecordupdate2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga3ed9d3f6c7995abab0dad1b1996df9c4:
+
+void tracemgrrecordupdate3 (tracemgrrecordupdate3_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga8e64fc175f64e7b99ef661af00460663:
+
+void tracemgrrecordupdate4 (tracemgrrecordupdate4_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_trace_mgr_itf_1ga9e40d78672ffc95ed104bdf1ccf34fec:
+
+RTS_HANDLE TraceMgrPacketCreate (TracePacketConfiguration *pConfiguration, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to create a new trace packet
+
+**Parameters**
+
++---------+----------------+-------------------------------------------------------------------------------------------------+
+| [in]    | pConfiguration | Pointer to the trace packet configuration. See category "TracePacketConfiguration" for details. |
++---------+----------------+-------------------------------------------------------------------------------------------------+
+| [out]   | pResult        | Pointer to error code                                                                           |
++---------+----------------+-------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the created trace packet
+
+.. _group___cmp_trace_mgr_itf_1gaf433ba122b58af38c06e0e477b9bf91a:
+
+RTS_RESULT TraceMgrPacketDelete (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to delete trace packet specified by handle
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gaabc36d27b7d5798540ce808d1add8a83:
+
+RTS_HANDLE TraceMgrPacketOpen (char *pszName, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Open a trace packet specified by name
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | pszName | Handle to the trace packet |
++---------+---------+----------------------------+
+| [out]   | pResult | Pointer to error code      |
++---------+---------+----------------------------+
+
+**Returns:**
+
+Handle to the trace packet
+
+.. _group___cmp_trace_mgr_itf_1ga834e51c764d3c274b573a9d81f5de9cf:
+
+RTS_RESULT TraceMgrPacketClose (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function closed a trace packet specified by handle
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga074debd62312042d1951f83769ebf67e:
+
+RTS_RESULT TraceMgrPacketComplete (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Complete a trace packet to finish configuration
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gaa82e7c3d4854ad08f2ecf9fc00c9187b:
+
+RTS_RESULT TraceMgrPacketGetConfig (RTS_HANDLE hPacket, TracePacketConfiguration *pConfiguration)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the configuration of a specified trace packet
+
+**Parameters**
+
++---------+----------------+-------------------------------------------+
+| [in]    | hPacket        | Handle to the trace packet                |
++---------+----------------+-------------------------------------------+
+| [out]   | pConfiguration | Pointer to the trace packet configuration |
++---------+----------------+-------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gabdf25033aee369feca62b97fe79a8f46:
+
+RTS_RESULT TraceMgrPacketGetStartTime (RTS_HANDLE hPacket, RTS_SYSTIME *pStartTime)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the start time of a trace packet. 0 if trace packet is not started.
+
+**Parameters**
+
++---------+------------+----------------------------+
+| [in]    | hPacket    | Handle to the trace packet |
++---------+------------+----------------------------+
+| [out]   | pStartTime | Pointer to start time      |
++---------+------------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga687248436716d502bbbba24b30c94dae:
+
+RTS_RESULT TraceMgrPacketGetAbsoluteStartTime (RTS_HANDLE hPacket, RTS_SYSTIME *pStartTime)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the absolute start time of a trace packet. 0 if trace packet is not started.
+
+**Parameters**
+
++---------+------------+----------------------------+
+| [in]    | hPacket    | Handle to the trace packet |
++---------+------------+----------------------------+
+| [out]   | pStartTime | Pointer to start time      |
++---------+------------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gab35a4d04237b5b7f89b0e188073ca60e:
+
+RTS_RESULT TraceMgrPacketGetChangeTimestamp (RTS_HANDLE hPacket, RTS_UI32 *pdwTimestamp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the timestamp of a trace packet's last modification.
+
+**Parameters**
+
++---------+--------------+----------------------------+
+| [in]    | hPacket      | Handle to the trace packet |
++---------+--------------+----------------------------+
+| [out]   | pdwTimestamp | Pointer to timestamp       |
++---------+--------------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gabd47b0fbdba0e04bb5a3b3d09254a53c:
+
+RTS_HANDLE TraceMgrPacketGetFirst (RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the first registered trace packet
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Returns:**
+
+Handle to the trace packet
+
+.. _group___cmp_trace_mgr_itf_1gada2895ab74b8faa2b87ebcde0cfcd577:
+
+RTS_HANDLE TraceMgrPacketGetNext (RTS_HANDLE hPrevPacket, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the next registered trace packet
+
+**Parameters**
+
++---------+-------------+-------------------------------------+
+| [in]    | hPrevPacket | Handle to the previous trace packet |
++---------+-------------+-------------------------------------+
+| [out]   | pResult     | Pointer to error code               |
++---------+-------------+-------------------------------------+
+
+**Returns:**
+
+Handle to the trace packet
+
+.. _group___cmp_trace_mgr_itf_1gae92cfc5dcd9d5aee78f785ae34e99bac:
+
+RTS_RESULT TraceMgrPacketStart (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Start the specified trace packet
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga8b1376bfd0adc5a37f39e1c09c34dd02:
+
+RTS_RESULT TraceMgrPacketStop (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Stop the specified trace packet
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga84321c9282a88c8a5177a9896ea1709a:
+
+RTS_RESULT TraceMgrPacketRestart (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Restart the specified trace packet
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga6332c395ea218eb168bebaccd53559e1:
+
+RTS_RESULT TraceMgrPacketGetState (RTS_HANDLE hPacket, TraceState *pState)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the state of the specified trace packet
+
+**Parameters**
+
++---------+---------+-------------------------------+
+| [in]    | hPacket | Handle to the trace packet    |
++---------+---------+-------------------------------+
+| [out]   | pState  | Pointer to trace packet state |
++---------+---------+-------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga48180644cd16123c5f77ade60bf6ff76:
+
+RTS_RESULT TraceMgrPacketSetTriggerState (RTS_HANDLE hPacket, TriggerState *ptsTriggerState)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the trigger state of the specified trace packet
+
+**Parameters**
+
++---------+-----------------+---------------------------------+
+| [in]    | hPacket         | Handle to the trace packet      |
++---------+-----------------+---------------------------------+
+| [in]    | ptsTriggerState | Pointer to trigger state to set |
++---------+-----------------+---------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gab4cd6e3b16055c2b076ea49aaddd0f5d:
+
+RTS_RESULT TraceMgrPacketEnableTrigger (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enable trigger of the specified trace packet
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gacee9b76fecc79b7bfe8cff46d2588616:
+
+RTS_RESULT TraceMgrPacketDisableTrigger (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Disable trigger of the specified trace packet
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gaae077174766b62003a0b33b9c099e21c:
+
+RTS_RESULT TraceMgrPacketResetTrigger (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Reset trigger of the specified trace packet
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga856d466db2a49bc98ae61267b3e97eaa:
+
+RTS_RESULT TraceMgrPacketEnable (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enable specified trace packet
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga9ea72c079943d28e583d252702d76fe4:
+
+RTS_RESULT TraceMgrPacketDisable (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Disable specified trace packet
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga31cc247ee9e4778412a40cd0324e67aa:
+
+RTS_RESULT TraceMgrPacketReadBegin (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function at start reading trace packet (is used for online access of the trace editor)
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga2f6608d0bae0c789a9bfc3ab002dde5b:
+
+RTS_HANDLE TraceMgrPacketReadFirst (RTS_HANDLE hPacket, TraceRecordEntry *pTraceBuffer, RTS_UI32 *pulReadBytes, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Read first record out of the specified trace packet
+
+**Parameters**
+
++---------+--------------+--------------------------------------------------------------------+
+| [in]    | hPacket      | Handle to the trace packet                                         |
++---------+--------------+--------------------------------------------------------------------+
+| [inout] | pTraceBuffer | Pointer to the trace buffer to copy the record values              |
++---------+--------------+--------------------------------------------------------------------+
+| [inout] | pulReadBytes | Max size of the trace buffer [IN] and number of bytes copied [OUT] |
++---------+--------------+--------------------------------------------------------------------+
+| [out]   | pResult      | Pointer to error code                                              |
++---------+--------------+--------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the actual read trace record
+
+.. _group___cmp_trace_mgr_itf_1ga9c9df36c391e1b2436b5e16f3affd81d:
+
+RTS_HANDLE TraceMgrPacketReadFirst2 (RTS_HANDLE hPacket, TraceRecordEntry *pTraceBuffer, RTS_UI32 ulTimestamp, RTS_UI32 *pulReadBytes, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Read first record out of the specified trace packet
+
+**Parameters**
+
++---------+--------------+--------------------------------------------------------------------+
+| [in]    | hPacket      | Handle to the trace packet                                         |
++---------+--------------+--------------------------------------------------------------------+
+| [inout] | pTraceBuffer | Pointer to the trace buffer to copy the record values              |
++---------+--------------+--------------------------------------------------------------------+
+| [in]    | ulTimestamp  | Timestamp to begin reading. Can be 0 [Reading from begin]          |
++---------+--------------+--------------------------------------------------------------------+
+| [inout] | pulReadBytes | Max size of the trace buffer [IN] and number of bytes copied [OUT] |
++---------+--------------+--------------------------------------------------------------------+
+| [out]   | pResult      | Pointer to error code                                              |
++---------+--------------+--------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the actual read trace record
+
+.. _group___cmp_trace_mgr_itf_1gab94f866a3456d32f7e37ae71da176078:
+
+RTS_HANDLE TraceMgrPacketReadNext (RTS_HANDLE hPacket, RTS_HANDLE hPrevRecord, TraceRecordEntry *pTraceBuffer, RTS_UI32 *pulReadBytes, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Read next record out of the specified trace packet
+
+**Parameters**
+
++---------+--------------+--------------------------------------------------------------------+
+| [in]    | hPacket      | Handle to the trace packet                                         |
++---------+--------------+--------------------------------------------------------------------+
+| [in]    | hPrevRecord  | Handle to the previous record                                      |
++---------+--------------+--------------------------------------------------------------------+
+| [inout] | pTraceBuffer | Pointer to the trace buffer to copy the record values              |
++---------+--------------+--------------------------------------------------------------------+
+| [inout] | pulReadBytes | Max size of the trace buffer [IN] and number of bytes copied [OUT] |
++---------+--------------+--------------------------------------------------------------------+
+| [out]   | pResult      | Pointer to error code                                              |
++---------+--------------+--------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the actual read trace record
+
+.. _group___cmp_trace_mgr_itf_1ga3f47b4b7c9b73b2ef57168e62480bc3b:
+
+RTS_HANDLE TraceMgrPacketReadNext2 (RTS_HANDLE hPacket, RTS_HANDLE hPrevRecord, TraceRecordEntry *pTraceBuffer, RTS_UI32 ulTimestamp, RTS_UI32 *pulReadBytes, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Read next record out of the specified trace packet
+
+**Parameters**
+
++---------+--------------+--------------------------------------------------------------------+
+| [in]    | hPacket      | Handle to the trace packet                                         |
++---------+--------------+--------------------------------------------------------------------+
+| [in]    | hPrevRecord  | Handle to the previous record                                      |
++---------+--------------+--------------------------------------------------------------------+
+| [inout] | pTraceBuffer | Pointer to the trace buffer to copy the record values              |
++---------+--------------+--------------------------------------------------------------------+
+| [in]    | ulTimestamp  | Timestamp to begin reading. Can be 0 [Reading from begin]          |
++---------+--------------+--------------------------------------------------------------------+
+| [inout] | pulReadBytes | Max size of the trace buffer [IN] and number of bytes copied [OUT] |
++---------+--------------+--------------------------------------------------------------------+
+| [out]   | pResult      | Pointer to error code                                              |
++---------+--------------+--------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the actual read trace record
+
+.. _group___cmp_trace_mgr_itf_1gae507835b9807b2237377edc7fb40dac8:
+
+RTS_RESULT TraceMgrPacketRead (RTS_HANDLE hPacket, RTS_HANDLE hRecord, TraceRecordEntry *pTraceBuffer, RTS_UI32 *pulReadBytes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Read specified record out of the specified trace packet
+
+**Parameters**
+
++---------+--------------+--------------------------------------------------------------------+
+| [in]    | hPacket      | Handle to the trace packet                                         |
++---------+--------------+--------------------------------------------------------------------+
+| [in]    | hRecord      | Handle to the previous record                                      |
++---------+--------------+--------------------------------------------------------------------+
+| [inout] | pTraceBuffer | Pointer to the trace buffer to copy the record values              |
++---------+--------------+--------------------------------------------------------------------+
+| [inout] | pulReadBytes | Max size of the trace buffer [IN] and number of bytes copied [OUT] |
++---------+--------------+--------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gae74a84e0aeeef7187983effc51aa27d8:
+
+RTS_RESULT TraceMgrPacketRead2 (RTS_HANDLE hPacket, RTS_HANDLE hRecord, TraceRecordEntry *pTraceBuffer, RTS_UI32 ulTimestamp, RTS_UI32 *pulReadBytes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Read specified record out of the specified trace packet
+
+**Parameters**
+
++---------+--------------+--------------------------------------------------------------------+
+| [in]    | hPacket      | Handle to the trace packet                                         |
++---------+--------------+--------------------------------------------------------------------+
+| [in]    | hRecord      | Handle to the previous record                                      |
++---------+--------------+--------------------------------------------------------------------+
+| [inout] | pTraceBuffer | Pointer to the trace buffer to copy the record values              |
++---------+--------------+--------------------------------------------------------------------+
+| [in]    | ulTimestamp  | Timestamp to begin reading. Can be 0 [Reading from begin]          |
++---------+--------------+--------------------------------------------------------------------+
+| [inout] | pulReadBytes | Max size of the trace buffer [IN] and number of bytes copied [OUT] |
++---------+--------------+--------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gac8ed371a42d2f21220b8a11e4bf75165:
+
+RTS_RESULT TraceMgrPacketReadEnd (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function at end reading trace packet (is used for online access of the trace editor)
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga05cd0f721347992602a35e97e2b073f1:
+
+RTS_RESULT TraceMgrPacketStore (RTS_HANDLE hPacket, char *pszFileName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to store the specified trace packet in a tracefile
+
+**Parameters**
+
++---------+-------------+---------------------------------+
+| [in]    | hPacket     | Handle to the trace packet      |
++---------+-------------+---------------------------------+
+| [in]    | pszFileName | File name to store trace packet |
++---------+-------------+---------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gada8be8c1d456ef8ba38be995e0394b60:
+
+RTS_HANDLE TraceMgrPacketRestore (char *pszFileName, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to restore a packet from a trace file
+
+**Parameters**
+
++---------+-------------+-----------------------------------+
+| [in]    | pszFileName | File name to restore trace packet |
++---------+-------------+-----------------------------------+
+| [out]   | pResult     | Pointer to error code             |
++---------+-------------+-----------------------------------+
+
+**Returns:**
+
+Handle to the trace packet
+
+.. _group___cmp_trace_mgr_itf_1ga7c2182b9b435633b9a3c5ff3caf7b5b7:
+
+RTS_RESULT TraceMgrGetConfigFromFile (char *pszFileName, TracePacketConfiguration *pPacketConfiguration, TraceRecordConfiguration *pRecordConfiguration, RTS_I32 iMaxRecordCount, RTS_I32 *piEffectiveRecordCount)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to load a given trace file and to return the configuration it contains
+
+**Parameters**
+
++---------+------------------------+------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszFileName            | File name to load                                                                                                |
++---------+------------------------+------------------------------------------------------------------------------------------------------------------+
+| [in]    | pPacketConfiguration   | Points to a TracePacketConfiguration variable, where the packet configuration will be returned                   |
++---------+------------------------+------------------------------------------------------------------------------------------------------------------+
+| [in]    | pRecordConfiguration   | Points to an array of TraceRecordConfiguration variables, where the trace record configuration will be returned. |
++---------+------------------------+------------------------------------------------------------------------------------------------------------------+
+| [in]    | iMaxRecordCount        | Contains the maximum number of records, that can be stored in the array pRecordConfiguration                     |
++---------+------------------------+------------------------------------------------------------------------------------------------------------------+
+| [out]   | piEffectiveRecordCount | Returns the effective number of records read                                                                     |
++---------+------------------------+------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+The error code
+
+.. _group___cmp_trace_mgr_itf_1ga57c2d0d54d92edd8b6471b20d3f73e4e:
+
+RTS_RESULT TraceMgrGetConfigFromFileRelease (TracePacketConfiguration *pPacketConfiguration, TraceRecordConfiguration *pRecordConfiguration, RTS_I32 iRecordCount)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to free memory allocated by function TraceMgrGetConfigFromFile
+
+**Parameters**
+
++---------+----------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | pPacketConfiguration | Points to a TracePacketConfiguration variable, where the packet configuration was stored                  |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | pRecordConfiguration | Points to an array of TraceRecordConfiguration variables, where the trace record configuration was stored |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | iRecordCount         | The real number of records                                                                                |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+The error code
+
+.. _group___cmp_trace_mgr_itf_1gae8bebe0c8bf789ab3fa4b95419436f16:
+
+RTS_RESULT TraceMgrPacketCheckTrigger (RTS_HANDLE hPacket)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check the trigger condition of the specified trace packet
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+
+**Returns:**
+
+Trigger state: ERR_OK=Trigger reached, ERR_FAILED=Trigger not reached
+
+.. _group___cmp_trace_mgr_itf_1gac0bbd39cb9a30802e5d43d4306696ff7:
+
+RTS_HANDLE TraceMgrRecordAdd (RTS_HANDLE hPacket, TraceRecordConfiguration *pConfiguration, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add a new record to a specified trace packet
+
+**Parameters**
+
++---------+----------------+-------------------------------------+
+| [in]    | hPacket        | Handle to the trace packet          |
++---------+----------------+-------------------------------------+
+| [in]    | pConfiguration | Pointer to the record configuration |
++---------+----------------+-------------------------------------+
+| [out]   | pResult        | Pointer to error code               |
++---------+----------------+-------------------------------------+
+
+**Returns:**
+
+Handle to the new added record
+
+.. _group___cmp_trace_mgr_itf_1ga6057b6cd3c788d22b4465a8efdf11352:
+
+RTS_RESULT TraceMgrRecordRemove (RTS_HANDLE hPacket, RTS_HANDLE hRecord)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove a record from a specified trace packet
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+| [in]    | hRecord | Handle to the trace record |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gaa53f1d0b4143b56155d61fba1dd3f78c:
+
+RTS_RESULT TraceMgrRecordGetConfig (RTS_HANDLE hPacket, RTS_HANDLE hRecord, TraceRecordConfiguration *pConfiguration)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the configuration of the specified trace record
+
+**Parameters**
+
++---------+----------------+-------------------------------------+
+| [in]    | hPacket        | Handle to the trace packet          |
++---------+----------------+-------------------------------------+
+| [in]    | hRecord        | Handle to the trace record          |
++---------+----------------+-------------------------------------+
+| [out]   | pConfiguration | Pointer to the record configuration |
++---------+----------------+-------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga9e234fc3ed8f1ee512397dcc481f705f:
+
+RTS_HANDLE TraceMgrRecordGetFirst (RTS_HANDLE hPacket, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the first record of the specified trace packet
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+| [out]   | pResult | Pointer to error code      |
++---------+---------+----------------------------+
+
+**Returns:**
+
+Handle to the first record
+
+.. _group___cmp_trace_mgr_itf_1ga906a3a028798461eede0d71930eaeb40:
+
+RTS_HANDLE TraceMgrRecordGetNext (RTS_HANDLE hPacket, RTS_HANDLE hPrevRecord, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the next record of the specified trace packet
+
+**Parameters**
+
++---------+-------------+-------------------------------------+
+| [in]    | hPacket     | Handle to the trace packet          |
++---------+-------------+-------------------------------------+
+| [in]    | hPrevRecord | Handle to the previous trace record |
++---------+-------------+-------------------------------------+
+| [out]   | pResult     | Pointer to error code               |
++---------+-------------+-------------------------------------+
+
+**Returns:**
+
+Handle to the next record
+
+.. _group___cmp_trace_mgr_itf_1gac8058649570a17975dc302745d548f9d:
+
+RTS_RESULT TraceMgrRecordUpdate (RTS_HANDLE hPacket, RTS_HANDLE hRecord)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Update values of a trace record (sample)
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | hPacket | Handle to the trace packet |
++---------+---------+----------------------------+
+| [in]    | hRecord | Handle to the trace record |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga14a7ce1d2fa8942b16046ec33690c9bc:
+
+RTS_RESULT TraceMgrRecordUpdate2 (RTS_HANDLE hPacket, RTS_HANDLE hRecord, TraceRecordEntry *pBuffer, RTS_UI32 ulLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Update values of a trace record with external stored trace values
+
+**Parameters**
+
++---------+---------+---------------------------------------------------------------------------------------------+
+| [in]    | hPacket | Handle to the trace packet                                                                  |
++---------+---------+---------------------------------------------------------------------------------------------+
+| [in]    | hRecord | Handle to the trace record                                                                  |
++---------+---------+---------------------------------------------------------------------------------------------+
+| [in]    | pBuffer | Pointer to the external trace buffer. NOTE: This is an array of structure TraceRecordEntry! |
++---------+---------+---------------------------------------------------------------------------------------------+
+| [in]    | ulLen   | Size in bytes of the specified pBuffer                                                      |
++---------+---------+---------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga178d0f27e7eef0463df579b4ee0e4ef2:
+
+RTS_RESULT TraceMgrRecordUpdate3 (RTS_HANDLE hPacket, RTS_HANDLE hRecord, void *pData, RTS_UI32 ulLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Update single value in the trace record
+
+**Parameters**
+
++---------+---------+--------------------------------------------------------------------------------------------+
+| [in]    | hPacket | Handle to the trace packet                                                                 |
++---------+---------+--------------------------------------------------------------------------------------------+
+| [in]    | hRecord | Handle to the trace record                                                                 |
++---------+---------+--------------------------------------------------------------------------------------------+
+| [in]    | pData   | Pointer to the single record value                                                         |
++---------+---------+--------------------------------------------------------------------------------------------+
+| [in]    | ulLen   | Size of the single record value. NOTE: Must fit with the real size of the record variable! |
++---------+---------+--------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gaf6f4f188de1a622345c497af947801e9:
+
+RTS_RESULT TraceMgrRecordUpdate4 (RTS_HANDLE hPacket, RTS_HANDLE hRecord, RTS_UI32 *pTimestamps, void *pDataValues, RTS_UI32 ulEntries)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Update multiple values with seperate timestamps in the trace record
+
+**Parameters**
+
++---------+-------------+---------------------------------------+
+| [in]    | hPacket     | Handle to the trace packet            |
++---------+-------------+---------------------------------------+
+| [in]    | hRecord     | Handle to the trace record            |
++---------+-------------+---------------------------------------+
+| [in]    | pTimestamps | Pointer to the array of timestamps    |
++---------+-------------+---------------------------------------+
+| [in]    | pDataValues | Pointer to the array of record values |
++---------+-------------+---------------------------------------+
+| [in]    | ulEntries   | Number of timestamp and value pairs   |
++---------+-------------+---------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1gafaf5299d5a90bae14917202770c5ae80:
+
+RTS_RESULT TraceMgrDeviceTaskUpdate (char *pszTaskName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Update all trace packets at the task specified by name
+
+**Parameters**
+
++---------+-------------+--------------------------+
+| [in]    | pszTaskName | Pointer to the task name |
++---------+-------------+--------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_trace_mgr_itf_1ga5dc3ae6ae19cb427fc029b116a4c635f:
+
+RTS_RESULT TraceMgrHasFeature (RTS_UI32 ulFeatures)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to check whether the trace manager component has the specified feature.
+
+**Parameters**
+
++---------+------------+-------------------------------------------------------+
+| [in]    | ulFeatures | Feature flags, See corresponding category "Features". |
++---------+------------+-------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK if the flags are supported, an error code otherwise
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

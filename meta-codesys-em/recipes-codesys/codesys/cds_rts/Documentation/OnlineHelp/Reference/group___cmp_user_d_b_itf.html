@@ -1,0 +1,1848 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpUserDBItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpUserDBObjectsItf" href="group___cmp_user_d_b_objects_itf.html" />
+    <link rel="prev" title="CmpTraceMgrItf" href="group___cmp_trace_mgr_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_user_d_b_objects_itf.html" title="CmpUserDBObjectsItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_trace_mgr_itf.html" title="CmpTraceMgrItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpUserDBItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-itf-cmpuserdb">#define ITF_CmpUserDB</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpuserdb">#define EXTITF_CmpUserDB</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-icmpuserdb-c-icmpuserdb">typedef ICmpUserDB_C ICmpUserDB</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-result-userdbisconfigurable-rts-ui32-pulpropertyusers-rts-ui32-pulpropertygroups">RTS_RESULT UserDBIsConfigurable (RTS_UI32 *pulPropertyUsers, RTS_UI32 *pulPropertyGroups)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbload-void">RTS_RESULT UserDBLoad (void)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbstore-void">RTS_RESULT UserDBStore (void)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbrelease-void">RTS_RESULT UserDBRelease (void)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbadd-char-pszuser-rts-result-presult">RTS_HANDLE UserDBAdd (char *pszUser, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbremove-rts-handle-huser">RTS_RESULT UserDBRemove (RTS_HANDLE hUser)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbsetpassword-rts-handle-huser-char-pszpassword">RTS_RESULT UserDBSetPassword (RTS_HANDLE hUser, char *pszPassword)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgetpasswordmd5-rts-handle-huser-unsigned-char-pbypasswordmd5-int-pimaxlen">RTS_RESULT UserDBGetPasswordMD5 (RTS_HANDLE hUser, unsigned char *pbyPasswordMD5, int *piMaxLen)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbsetpasswordmd5-rts-handle-huser-unsigned-char-pbypasswordmd5-int-pimaxlen">RTS_RESULT UserDBSetPasswordMD5 (RTS_HANDLE hUser, unsigned char *pbyPasswordMD5, int *piMaxLen)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbsetproperty-rts-handle-huser-rts-ui32-ulproperty">RTS_RESULT UserDBSetProperty (RTS_HANDLE hUser, RTS_UI32 ulProperty)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbgetfirst-rts-result-presult">RTS_HANDLE UserDBGetFirst (RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbgetnext-rts-handle-hprevuser-rts-result-presult">RTS_HANDLE UserDBGetNext (RTS_HANDLE hPrevUser, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbopen-char-pszuser-rts-result-presult">RTS_HANDLE UserDBOpen (char *pszUser, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbclose-rts-handle-huser">RTS_RESULT UserDBClose (RTS_HANDLE hUser)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgetname-rts-handle-huser-char-pszuser-int-pimaxlen">RTS_RESULT UserDBGetName (RTS_HANDLE hUser, char *pszUser, int *piMaxLen)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgetproperty-rts-handle-huser-rts-ui32-pulproperty">RTS_RESULT UserDBGetProperty (RTS_HANDLE hUser, RTS_UI32 *pulProperty)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbcheckpassword-rts-handle-huser-char-pszpassword">RTS_RESULT UserDBCheckPassword (RTS_HANDLE hUser, char *pszPassword)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbgetfirstgroup-rts-handle-huser-rts-result-presult">RTS_HANDLE UserDBGetFirstGroup (RTS_HANDLE hUser, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbgetnextgroup-rts-handle-huser-rts-handle-hprevgroup-rts-result-presult">RTS_HANDLE UserDBGetNextGroup (RTS_HANDLE hUser, RTS_HANDLE hPrevGroup, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbgroupadd-char-pszgroup-rts-result-presult">RTS_HANDLE UserDBGroupAdd (char *pszGroup, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgroupremove-rts-handle-hgroup">RTS_RESULT UserDBGroupRemove (RTS_HANDLE hGroup)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgroupadduser-rts-handle-hgroup-rts-handle-huser">RTS_RESULT UserDBGroupAddUser (RTS_HANDLE hGroup, RTS_HANDLE hUser)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgroupremoveuser-rts-handle-hgroup-rts-handle-huser">RTS_RESULT UserDBGroupRemoveUser (RTS_HANDLE hGroup, RTS_HANDLE hUser)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgroupsetproperty-rts-handle-hgroup-rts-ui32-ulproperty">RTS_RESULT UserDBGroupSetProperty (RTS_HANDLE hGroup, RTS_UI32 ulProperty)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgroupaddmember-rts-handle-hgroup-rts-handle-hgroupmember">RTS_RESULT UserDBGroupAddMember (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgroupremovemember-rts-handle-hgroup-rts-handle-hgroupmember">RTS_RESULT UserDBGroupRemoveMember (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbenforce-void">RTS_RESULT UserDBEnforce (void)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbgroupgetfirst-rts-result-presult">RTS_HANDLE UserDBGroupGetFirst (RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbgroupgetnext-rts-handle-hprevgroup-rts-result-presult">RTS_HANDLE UserDBGroupGetNext (RTS_HANDLE hPrevGroup, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbgroupopen-char-pszgroup-rts-result-presult">RTS_HANDLE UserDBGroupOpen (char *pszGroup, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgroupclose-rts-handle-hgroup">RTS_RESULT UserDBGroupClose (RTS_HANDLE hGroup)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgroupgetname-rts-handle-hgroup-char-pszgroup-int-pimaxlen">RTS_RESULT UserDBGroupGetName (RTS_HANDLE hGroup, char *pszGroup, int *piMaxLen)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgroupgetproperty-rts-handle-hgroup-rts-ui32-pulproperty">RTS_RESULT UserDBGroupGetProperty (RTS_HANDLE hGroup, RTS_UI32 *pulProperty)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgrouphasuser-rts-handle-hgroup-rts-handle-huser">RTS_RESULT UserDBGroupHasUser (RTS_HANDLE hGroup, RTS_HANDLE hUser)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbgroupgetfirstuser-rts-handle-hgroup-rts-result-presult">RTS_HANDLE UserDBGroupGetFirstUser (RTS_HANDLE hGroup, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbgroupgetnextuser-rts-handle-hgroup-rts-handle-hprevuser-rts-result-presult">RTS_HANDLE UserDBGroupGetNextUser (RTS_HANDLE hGroup, RTS_HANDLE hPrevUser, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-userdbgrouphasmember-rts-handle-hgroup-rts-handle-hgroupmember">RTS_RESULT UserDBGroupHasMember (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbgroupgetfirstmember-rts-handle-hgroup-rts-result-presult">RTS_HANDLE UserDBGroupGetFirstMember (RTS_HANDLE hGroup, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-userdbgroupgetnextmember-rts-handle-hgroup-rts-handle-hprevgroupmember-rts-result-presult">RTS_HANDLE UserDBGroupGetNextMember (RTS_HANDLE hGroup, RTS_HANDLE hPrevGroupMember, RTS_RESULT *pResult)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_trace_mgr_itf.html"
+                        title="previous chapter">CmpTraceMgrItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_user_d_b_objects_itf.html"
+                        title="next chapter">CmpUserDBObjectsItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_user_d_b_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpuserdbitf">
+<span id="group-cmp-user-d-b-itf"></span><h1>CmpUserDBItf<a class="headerlink" href="#cmpuserdbitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CmpUserDB. <a class="reference internal" href="#group-cmp-user-d-b-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___cmp_user_d_b_itf___eventparameter.html#group-cmp-user-d-b-itf-eventparameter"><span class="std std-ref">Event parameter</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_d_b_itf___events.html#group-cmp-user-d-b-itf-events"><span class="std std-ref">Events</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_d_b_itf___predefinedusergroups.html#group-cmp-user-d-b-itf-predefinedusergroups"><span class="std std-ref">Predefined user groups</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_d_b_itf___predefinedusers.html#group-cmp-user-d-b-itf-predefinedusers"><span class="std std-ref">Predefined users</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_d_b_itf___staticdefines.html#group-cmp-user-d-b-itf-staticdefines"><span class="std std-ref">Static defines</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_d_b_itf___uniontostorethecleartextpasswordorapasswordhashoptional.html#group-cmp-user-d-b-itf-uniontostorethecleartextpasswordorapasswordhashoptional"><span class="std std-ref">Union to store the cleartext password or a password hash optional</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_d_b_itf___userdatabaseentry.html#group-cmp-user-d-b-itf-userdatabaseentry"><span class="std std-ref">User database entry</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_d_b_itf___usergroupdatabaseentry.html#group-cmp-user-d-b-itf-usergroupdatabaseentry"><span class="std std-ref">User group database entry</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_d_b_itf___userrights.html#group-cmp-user-d-b-itf-userrights"><span class="std std-ref">User rights</span></a></li>
+<li><a class="reference internal" href="group___cmp_user_d_b_itf___user_d_bproperties.html#group-cmp-user-d-b-itf-user-d-bproperties"><span class="std std-ref">UserDB properties</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_i_cmp_user_d_b___c.html#struct-i-cmp-user-d-b-c"><span class="std std-ref">ICmpUserDB_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-user-d-b-itf-1gabb53395a6a984a913f911edb18b6ec1b"><span class="std std-ref">ITF_CmpUserDB</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga8b7950f1d381f98051d500246a570700"><span class="std std-ref">EXTITF_CmpUserDB</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef <a class="reference internal" href="struct_i_cmp_user_d_b___c.html#struct-i-cmp-user-d-b-c"><span class="std std-ref">ICmpUserDB_C</span></a> <a class="reference internal" href="#group-cmp-user-d-b-itf-1gacfbe54e170156b44b8a61ff41bfdb230"><span class="std std-ref">ICmpUserDB</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga4c9bb0711591572563938429d3765354"><span class="std std-ref">UserDBIsConfigurable</span></a> (RTS_UI32 * pulPropertyUsers, RTS_UI32 * pulPropertyGroups)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga42f257e1b934bdc47d2433ed1b332e15"><span class="std std-ref">UserDBLoad</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga18dde7305e7f9854825bfa986904df41"><span class="std std-ref">UserDBStore</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga1ee2c04f93ab8aaddb33ecc80c49cdf7"><span class="std std-ref">UserDBRelease</span></a> (void)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1gafea5dcd6b7a34019bf034eea04951808"><span class="std std-ref">UserDBAdd</span></a> (char * pszUser, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1gaa8d91d5c6560bf90c6eca398f3d50360"><span class="std std-ref">UserDBRemove</span></a> (RTS_HANDLE hUser)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga44ddbe364e7d74d7854acaf7f42ddc72"><span class="std std-ref">UserDBSetPassword</span></a> (RTS_HANDLE hUser, char * pszPassword)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga7e88c897cbf2fa1b99d3f251c5815a8c"><span class="std std-ref">UserDBGetPasswordMD5</span></a> (RTS_HANDLE hUser, unsigned char * pbyPasswordMD5, int * piMaxLen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga54f0191b2e375c6ad21f826f664c62c0"><span class="std std-ref">UserDBSetPasswordMD5</span></a> (RTS_HANDLE hUser, unsigned char * pbyPasswordMD5, int * piMaxLen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga9bad26c173acb05c79cd7fa80b05b14b"><span class="std std-ref">UserDBSetProperty</span></a> (RTS_HANDLE hUser, RTS_UI32 ulProperty)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1gad945d309b83a82294517242a8e7f3557"><span class="std std-ref">UserDBGetFirst</span></a> (RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1gac0d58351305afe299d1c6eea2533ca8b"><span class="std std-ref">UserDBGetNext</span></a> (RTS_HANDLE hPrevUser, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1gaa78bb481b3f3548dd2ffe5f91becf683"><span class="std std-ref">UserDBOpen</span></a> (char * pszUser, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1gae62c1d3f39df8506c441ae6a3106eb40"><span class="std std-ref">UserDBClose</span></a> (RTS_HANDLE hUser)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga621695714b63963d6f28a43ee598cfec"><span class="std std-ref">UserDBGetName</span></a> (RTS_HANDLE hUser, char * pszUser, int * piMaxLen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga47236fcee7c6865e762d7f70a54a6ac7"><span class="std std-ref">UserDBGetProperty</span></a> (RTS_HANDLE hUser, RTS_UI32 * pulProperty)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga97c12727fe2bc03b857aed0749c67ea7"><span class="std std-ref">UserDBCheckPassword</span></a> (RTS_HANDLE hUser, char * pszPassword)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1gaae875907da955eb486c104c6df2a5a8b"><span class="std std-ref">UserDBGetFirstGroup</span></a> (RTS_HANDLE hUser, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga7e9cd0425a047f653badde2dd1500db4"><span class="std std-ref">UserDBGetNextGroup</span></a> (RTS_HANDLE hUser, RTS_HANDLE hPrevGroup, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga310c3ae23d02c9ea8d072c2bb27fca34"><span class="std std-ref">UserDBGroupAdd</span></a> (char * pszGroup, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga53eb2ead2c70472e1aaedb46519fa899"><span class="std std-ref">UserDBGroupRemove</span></a> (RTS_HANDLE hGroup)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga592f6109f59dd2334bdea684bbed611e"><span class="std std-ref">UserDBGroupAddUser</span></a> (RTS_HANDLE hGroup, RTS_HANDLE hUser)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1gab2fafe4f1859e282428a8bd923f24c81"><span class="std std-ref">UserDBGroupRemoveUser</span></a> (RTS_HANDLE hGroup, RTS_HANDLE hUser)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga71b472bc0cd6c9b6b85160aa05860454"><span class="std std-ref">UserDBGroupSetProperty</span></a> (RTS_HANDLE hGroup, RTS_UI32 ulProperty)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga20afb4d486b5e13ed81c0ab99dd4a7a0"><span class="std std-ref">UserDBGroupAddMember</span></a> (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1gaf5075c4df9d39a576bf3a295f3098fe5"><span class="std std-ref">UserDBGroupRemoveMember</span></a> (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1gac4650a1183375bec8ab92f855a659e19"><span class="std std-ref">UserDBEnforce</span></a> (void)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1gadf2c07b5c0a8633f1d19631c674f31c7"><span class="std std-ref">UserDBGroupGetFirst</span></a> (RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga330560f782f1357476d13600beec6dfe"><span class="std std-ref">UserDBGroupGetNext</span></a> (RTS_HANDLE hPrevGroup, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1gaadc1b6e4555a5bdbc95a57e90793ce67"><span class="std std-ref">UserDBGroupOpen</span></a> (char * pszGroup, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga2bd36eb02e92b555783cb80dcddc03cd"><span class="std std-ref">UserDBGroupClose</span></a> (RTS_HANDLE hGroup)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1gaa369c57d9fbd1bb2e377b4a827559819"><span class="std std-ref">UserDBGroupGetName</span></a> (RTS_HANDLE hGroup, char * pszGroup, int * piMaxLen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga1fbd5d0a7d55623bbd65d073b31e3668"><span class="std std-ref">UserDBGroupGetProperty</span></a> (RTS_HANDLE hGroup, RTS_UI32 * pulProperty)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1gaf35118fab9a262b7b12e3d14e8c7dcea"><span class="std std-ref">UserDBGroupHasUser</span></a> (RTS_HANDLE hGroup, RTS_HANDLE hUser)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga8a833a1d5bdff8bb593a331a70da690b"><span class="std std-ref">UserDBGroupGetFirstUser</span></a> (RTS_HANDLE hGroup, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1gabea7ead32f191a299f9e9ff9dee71c3f"><span class="std std-ref">UserDBGroupGetNextUser</span></a> (RTS_HANDLE hGroup, RTS_HANDLE hPrevUser, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga9f4db2b4c2e026cfb3b40ca067a2b074"><span class="std std-ref">UserDBGroupHasMember</span></a> (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga14c27328dcfd923c2fd0848f3ab7e6d2"><span class="std std-ref">UserDBGroupGetFirstMember</span></a> (RTS_HANDLE hGroup, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-user-d-b-itf-1ga524e5d7e9db408eb950fbc5488f631ea"><span class="std std-ref">UserDBGroupGetNextMember</span></a> (RTS_HANDLE hGroup, RTS_HANDLE hPrevGroupMember, RTS_RESULT * pResult)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-user-d-b-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CmpUserDB.</p>
+<p>Interface for the user management database. Two different kinds of user management items must be stored:</p>
+<ol class="arabic simple">
+<li>Users + Groups: Here you have to store all users with their credentials and their property flags, additionally all user groups with all assigned users and the usergroup property flags.</li>
+</ol>
+<p>Example:</p>
+<ul class="simple">
+<li>User: Name = &#8220;MyUser&#8221;; Password = [password in a safe hash]; Property = 0x....</li>
+<li>UserGroup: Name = &#8220;Administrator&#8221;; UserMembers = &#8220;MyUser&#8221;, &#8221;...&#8221;; Property = 0x....</li>
+</ul>
+<ol class="arabic simple" start="2">
+<li>User Rights: Here you have to store the tree of all objects of the runtime system with their assigned usergroups and the configured rights on it.</li>
+</ol>
+<p>Example:</p>
+<ul class="simple">
+<li>Object: Name = &#8220;Device&#8221;; UserGroup = &#8220;Administator&#8221; | Rights = USERDB_RIGHT_ALL | DeniedRights = USERDB_RIGHT_NONE; UserGroup = &#8221;...&#8221; | Rights = ... | DeniedRights = ...; ...</li>
+<li>Object: Name = &#8220;Device.MyObject&#8221;; UserGroup = &#8220;Administator&#8221; | Rights = USERDB_RIGHT_ALL | DeniedRights = USERDB_RIGHT_NONE; UserGroup = &#8221;...&#8221; | Rights = ... | DeniedRights = ...; ...</li>
+</ul>
+<p>For details see <span class="xref std std-ref">CmpUserMgrItf.h</span> .</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. GmbH</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-itf-cmpuserdb">
+<span id="group-cmp-user-d-b-itf-1gabb53395a6a984a913f911edb18b6ec1b"></span><h3>#define ITF_CmpUserDB<a class="headerlink" href="#define-itf-cmpuserdb" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpuserdb">
+<span id="group-cmp-user-d-b-itf-1ga8b7950f1d381f98051d500246a570700"></span><h3>#define EXTITF_CmpUserDB<a class="headerlink" href="#define-extitf-cmpuserdb" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-icmpuserdb-c-icmpuserdb">
+<span id="group-cmp-user-d-b-itf-1gacfbe54e170156b44b8a61ff41bfdb230"></span><h3>typedef ICmpUserDB_C ICmpUserDB<a class="headerlink" href="#typedef-icmpuserdb-c-icmpuserdb" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-result-userdbisconfigurable-rts-ui32-pulpropertyusers-rts-ui32-pulpropertygroups">
+<span id="group-cmp-user-d-b-itf-1ga4c9bb0711591572563938429d3765354"></span><h3>RTS_RESULT UserDBIsConfigurable (RTS_UI32 <a href="#id1"><span class="problematic" id="id2">*</span></a>pulPropertyUsers, RTS_UI32 <a href="#id3"><span class="problematic" id="id4">*</span></a>pulPropertyGroups)<a class="headerlink" href="#rts-result-userdbisconfigurable-rts-ui32-pulpropertyusers-rts-ui32-pulpropertygroups" title="Permalink to this headline">¶</a></h3>
+<p>Function to check if users and usergroups database is configurable (not fix compiled)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="12%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pulPropertyUsers</td>
+<td>Pointer to get the users property: USERDB_PROP_ALL = Users are configurable, USERDB_PROP_NONE = Users are not configurable</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulPropertyGroups</td>
+<td>Pointer to get the user groups property: USERDB_PROP_ALL = Groups are configurable, USERDB_PROP_NONE = Groups are not configurable</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Succeeded</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Could not be retrieved</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbload-void">
+<span id="group-cmp-user-d-b-itf-1ga42f257e1b934bdc47d2433ed1b332e15"></span><h3>RTS_RESULT UserDBLoad (void)<a class="headerlink" href="#rts-result-userdbload-void" title="Permalink to this headline">¶</a></h3>
+<p>Load the user database into memory
+<strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Succeeded</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Error loading user database</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTIMPLEMENTED</td>
+<td>Is not implemented perhaps the UserDB is fix</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbstore-void">
+<span id="group-cmp-user-d-b-itf-1ga18dde7305e7f9854825bfa986904df41"></span><h3>RTS_RESULT UserDBStore (void)<a class="headerlink" href="#rts-result-userdbstore-void" title="Permalink to this headline">¶</a></h3>
+<p>Storing the current user management into permanent database file
+<strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Succeeded</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Error storing user database</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTIMPLEMENTED</td>
+<td>Is not implemented perhaps the UserDB is fix</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbrelease-void">
+<span id="group-cmp-user-d-b-itf-1ga1ee2c04f93ab8aaddb33ecc80c49cdf7"></span><h3>RTS_RESULT UserDBRelease (void)<a class="headerlink" href="#rts-result-userdbrelease-void" title="Permalink to this headline">¶</a></h3>
+<p>Release user management in memory. NOTE: The database file is not removed!
+<strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Succeeded</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Failed releasing user management</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTIMPLEMENTED</td>
+<td>Is not implemented perhaps the UserDB is fix</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-handle-userdbadd-char-pszuser-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1gafea5dcd6b7a34019bf034eea04951808"></span><h3>RTS_HANDLE UserDBAdd (char <a href="#id5"><span class="problematic" id="id6">*</span></a>pszUser, RTS_RESULT <a href="#id7"><span class="problematic" id="id8">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbadd-char-pszuser-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Add a new user to the user database</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszUser</td>
+<td>User name</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User could be added</td>
+</tr>
+<tr class="row-even"><td>ERR_DUPLICATE</td>
+<td>User already exists</td>
+</tr>
+<tr class="row-odd"><td>ERR_PARAMETER</td>
+<td>Invalid parameter. pszUser = NULL or empty</td>
+</tr>
+<tr class="row-even"><td>ERR_NOMEMORY</td>
+<td>No memory available to store new user</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>The user management is not initialized or it is not loaded yet</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the added user or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-result-userdbremove-rts-handle-huser">
+<span id="group-cmp-user-d-b-itf-1gaa8d91d5c6560bf90c6eca398f3d50360"></span><h3>RTS_RESULT UserDBRemove (RTS_HANDLE hUser)<a class="headerlink" href="#rts-result-userdbremove-rts-handle-huser" title="Permalink to this headline">¶</a></h3>
+<p>Remove user from the user database</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="19%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User could be removed</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user handle</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbsetpassword-rts-handle-huser-char-pszpassword">
+<span id="group-cmp-user-d-b-itf-1ga44ddbe364e7d74d7854acaf7f42ddc72"></span><h3>RTS_RESULT UserDBSetPassword (RTS_HANDLE hUser, char <a href="#id9"><span class="problematic" id="id10">*</span></a>pszPassword)<a class="headerlink" href="#rts-result-userdbsetpassword-rts-handle-huser-char-pszpassword" title="Permalink to this headline">¶</a></h3>
+<p>Set or overwrite the password credential of the user</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="23%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszPassword</td>
+<td>Pointer to password in cleartext</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Password could be set</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user handle or password = NULL</td>
+</tr>
+<tr class="row-odd"><td>ERR_DUPLICATE</td>
+<td>The new and the old password are the same</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbgetpasswordmd5-rts-handle-huser-unsigned-char-pbypasswordmd5-int-pimaxlen">
+<span id="group-cmp-user-d-b-itf-1ga7e88c897cbf2fa1b99d3f251c5815a8c"></span><h3>RTS_RESULT UserDBGetPasswordMD5 (RTS_HANDLE hUser, unsigned char <a href="#id11"><span class="problematic" id="id12">*</span></a>pbyPasswordMD5, int <a href="#id13"><span class="problematic" id="id14">*</span></a>piMaxLen)<a class="headerlink" href="#rts-result-userdbgetpasswordmd5-rts-handle-huser-unsigned-char-pbypasswordmd5-int-pimaxlen" title="Permalink to this headline">¶</a></h3>
+<p>Get the password credential of the user</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="11%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pbyPasswordMD5</td>
+<td>Pointer to MD5 hash of the password</td>
+</tr>
+<tr class="row-odd"><td>[inout]</td>
+<td>piMaxLen</td>
+<td>Pointer to password MD5 hash length. If it is too short, needed length is returned if error code is ERR_BUFFERSIZE</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Password could be set</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user handle or piMaxLen = NULL</td>
+</tr>
+<tr class="row-odd"><td>ERR_BUFFERSIZE</td>
+<td>If password buffer is too short. Needed length is returned inpiMaxLen</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbsetpasswordmd5-rts-handle-huser-unsigned-char-pbypasswordmd5-int-pimaxlen">
+<span id="group-cmp-user-d-b-itf-1ga54f0191b2e375c6ad21f826f664c62c0"></span><h3>RTS_RESULT UserDBSetPasswordMD5 (RTS_HANDLE hUser, unsigned char <a href="#id15"><span class="problematic" id="id16">*</span></a>pbyPasswordMD5, int <a href="#id17"><span class="problematic" id="id18">*</span></a>piMaxLen)<a class="headerlink" href="#rts-result-userdbsetpasswordmd5-rts-handle-huser-unsigned-char-pbypasswordmd5-int-pimaxlen" title="Permalink to this headline">¶</a></h3>
+<p>Set or overwrite the password credential of the user</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="11%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pbyPasswordMD5</td>
+<td>Pointer to MD5 hash of the password</td>
+</tr>
+<tr class="row-odd"><td>[inout]</td>
+<td>piMaxLen</td>
+<td>Pointer to password MD5 hash length. If it is too short, needed length is returned if error code is ERR_BUFFERSIZE</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Password could be set</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user handle or piMaxLen = NULL</td>
+</tr>
+<tr class="row-odd"><td>ERR_BUFFERSIZE</td>
+<td>If password is too short. Needed length is returned inpiMaxLen</td>
+</tr>
+<tr class="row-even"><td>ERR_DUPLICATE</td>
+<td>The new and the old password are the same</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbsetproperty-rts-handle-huser-rts-ui32-ulproperty">
+<span id="group-cmp-user-d-b-itf-1ga9bad26c173acb05c79cd7fa80b05b14b"></span><h3>RTS_RESULT UserDBSetProperty (RTS_HANDLE hUser, RTS_UI32 ulProperty)<a class="headerlink" href="#rts-result-userdbsetproperty-rts-handle-huser-rts-ui32-ulproperty" title="Permalink to this headline">¶</a></h3>
+<p>Set properties of a user</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="13%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pulProperty</td>
+<td>Pointer to set the properties. For details see category &#8220;UserDB properties&#8221;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Properties could be set</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user handle or property pointer = NULL</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Invalid combination of property flags (password change not allowed but password not up to date)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-handle-userdbgetfirst-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1gad945d309b83a82294517242a8e7f3557"></span><h3>RTS_HANDLE UserDBGetFirst (RTS_RESULT <a href="#id19"><span class="problematic" id="id20">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbgetfirst-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Iteration interface to get the first configured user</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="41%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>First user available</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_OBJECT</td>
+<td>No user configured</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the first user or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-handle-userdbgetnext-rts-handle-hprevuser-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1gac0d58351305afe299d1c6eea2533ca8b"></span><h3>RTS_HANDLE UserDBGetNext (RTS_HANDLE hPrevUser, RTS_RESULT <a href="#id21"><span class="problematic" id="id22">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbgetnext-rts-handle-hprevuser-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Iteration interface to get next configured user. Must be started with <span class="xref std std-ref">UserDBGetFirst()</span></p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="4%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hPrevUser</td>
+<td>Handle to the previous user retrieved via <span class="xref std std-ref">UserDBGetFirst()</span> or subsequent calls of <span class="xref std std-ref">UserDBGetNext()</span></td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Next user available</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_OBJECT</td>
+<td>No next user available</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the next user or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-handle-userdbopen-char-pszuser-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1gaa78bb481b3f3548dd2ffe5f91becf683"></span><h3>RTS_HANDLE UserDBOpen (char <a href="#id23"><span class="problematic" id="id24">*</span></a>pszUser, RTS_RESULT <a href="#id25"><span class="problematic" id="id26">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbopen-char-pszuser-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Open user specified by its name</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszUser</td>
+<td>User name</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User could be opened</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid parameter. pszUser = NULL or empty</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>The user management is not initialized or it is not loaded yet</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the user or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-result-userdbclose-rts-handle-huser">
+<span id="group-cmp-user-d-b-itf-1gae62c1d3f39df8506c441ae6a3106eb40"></span><h3>RTS_RESULT UserDBClose (RTS_HANDLE hUser)<a class="headerlink" href="#rts-result-userdbclose-rts-handle-huser" title="Permalink to this headline">¶</a></h3>
+<p>Close a user</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="19%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="41%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User could be closed</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user handle</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbgetname-rts-handle-huser-char-pszuser-int-pimaxlen">
+<span id="group-cmp-user-d-b-itf-1ga621695714b63963d6f28a43ee598cfec"></span><h3>RTS_RESULT UserDBGetName (RTS_HANDLE hUser, char <a href="#id27"><span class="problematic" id="id28">*</span></a>pszUser, int <a href="#id29"><span class="problematic" id="id30">*</span></a>piMaxLen)<a class="headerlink" href="#rts-result-userdbgetname-rts-handle-huser-char-pszuser-int-pimaxlen" title="Permalink to this headline">¶</a></h3>
+<p>Get user name</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="7%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pszUser</td>
+<td>Pointer to get user name</td>
+</tr>
+<tr class="row-odd"><td>[inout]</td>
+<td>piMaxLen</td>
+<td>Pointer to length of buffer in pszUser. If pszUser = NULL, only the length of the user name is returned inpiMaxLen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User name is returned</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user handle or pszUser = NULL and piMaxLen = NULL</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbgetproperty-rts-handle-huser-rts-ui32-pulproperty">
+<span id="group-cmp-user-d-b-itf-1ga47236fcee7c6865e762d7f70a54a6ac7"></span><h3>RTS_RESULT UserDBGetProperty (RTS_HANDLE hUser, RTS_UI32 <a href="#id31"><span class="problematic" id="id32">*</span></a>pulProperty)<a class="headerlink" href="#rts-result-userdbgetproperty-rts-handle-huser-rts-ui32-pulproperty" title="Permalink to this headline">¶</a></h3>
+<p>Get properties of a user</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="13%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulProperty</td>
+<td>Pointer to return the properties. For details see category &#8220;UserDB properties&#8221;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Properties could be retrieved</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user handle or property pointer = NULL</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbcheckpassword-rts-handle-huser-char-pszpassword">
+<span id="group-cmp-user-d-b-itf-1ga97c12727fe2bc03b857aed0749c67ea7"></span><h3>RTS_RESULT UserDBCheckPassword (RTS_HANDLE hUser, char <a href="#id33"><span class="problematic" id="id34">*</span></a>pszPassword)<a class="headerlink" href="#rts-result-userdbcheckpassword-rts-handle-huser-char-pszpassword" title="Permalink to this headline">¶</a></h3>
+<p>Check user credentials (authentication)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="23%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszPassword</td>
+<td>Pointer to password in cleartext</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Password credential matched!</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user handle or password = NULL so password credential does not match!</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Password credential does not match!</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-handle-userdbgetfirstgroup-rts-handle-huser-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1gaae875907da955eb486c104c6df2a5a8b"></span><h3>RTS_HANDLE UserDBGetFirstGroup (RTS_HANDLE hUser, RTS_RESULT <a href="#id35"><span class="problematic" id="id36">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbgetfirstgroup-rts-handle-huser-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Iteration interface to get the first group to which the user is assigned</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>First user group available</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user handle</td>
+</tr>
+<tr class="row-odd"><td>ERR_NO_OBJECT</td>
+<td>No user group configured</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the first user group or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-handle-userdbgetnextgroup-rts-handle-huser-rts-handle-hprevgroup-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1ga7e9cd0425a047f653badde2dd1500db4"></span><h3>RTS_HANDLE UserDBGetNextGroup (RTS_HANDLE hUser, RTS_HANDLE hPrevGroup, RTS_RESULT <a href="#id37"><span class="problematic" id="id38">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbgetnextgroup-rts-handle-huser-rts-handle-hprevgroup-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Iteration interface to get next configured user group to which the user is assigned. Must be started with <span class="xref std std-ref">UserDBGetFirstGroup()</span></p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="4%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hPrevGroup</td>
+<td>Handle to the previous user group retrieved via <span class="xref std std-ref">UserDBGetFirstGroup()</span> or subsequent calls of <span class="xref std std-ref">UserDBGetNextGroup()</span></td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Next user group available</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_OBJECT</td>
+<td>No next user group available</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the next user group or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-handle-userdbgroupadd-char-pszgroup-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1ga310c3ae23d02c9ea8d072c2bb27fca34"></span><h3>RTS_HANDLE UserDBGroupAdd (char <a href="#id39"><span class="problematic" id="id40">*</span></a>pszGroup, RTS_RESULT <a href="#id41"><span class="problematic" id="id42">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbgroupadd-char-pszgroup-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Add a new user group to the user database</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="24%" />
+<col width="55%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszGroup</td>
+<td>Group name</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Group could be added</td>
+</tr>
+<tr class="row-even"><td>ERR_DUPLICATE</td>
+<td>Group already exists</td>
+</tr>
+<tr class="row-odd"><td>ERR_PARAMETER</td>
+<td>Invalid parameter. pszGroup = NULL or empty</td>
+</tr>
+<tr class="row-even"><td>ERR_NOMEMORY</td>
+<td>No memory available to store new group</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>The user management is not initialized or it is not loaded yet</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the added group or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-result-userdbgroupremove-rts-handle-hgroup">
+<span id="group-cmp-user-d-b-itf-1ga53eb2ead2c70472e1aaedb46519fa899"></span><h3>RTS_RESULT UserDBGroupRemove (RTS_HANDLE hGroup)<a class="headerlink" href="#rts-result-userdbgroupremove-rts-handle-hgroup" title="Permalink to this headline">¶</a></h3>
+<p>Remove user group from the user database</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="21%" />
+<col width="55%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>Handle to the group</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Group could be removed</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid group handle</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbgroupadduser-rts-handle-hgroup-rts-handle-huser">
+<span id="group-cmp-user-d-b-itf-1ga592f6109f59dd2334bdea684bbed611e"></span><h3>RTS_RESULT UserDBGroupAddUser (RTS_HANDLE hGroup, RTS_HANDLE hUser)<a class="headerlink" href="#rts-result-userdbgroupadduser-rts-handle-hgroup-rts-handle-huser" title="Permalink to this headline">¶</a></h3>
+<p>Add a new user to a group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="21%" />
+<col width="55%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>Handle to the group</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User could be added or is already added</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid parameter. hGroup or hUser invalid</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOMEMORY</td>
+<td>No memory available to add user to group</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>The user management is not initialized or it is not loaded yet</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbgroupremoveuser-rts-handle-hgroup-rts-handle-huser">
+<span id="group-cmp-user-d-b-itf-1gab2fafe4f1859e282428a8bd923f24c81"></span><h3>RTS_RESULT UserDBGroupRemoveUser (RTS_HANDLE hGroup, RTS_HANDLE hUser)<a class="headerlink" href="#rts-result-userdbgroupremoveuser-rts-handle-hgroup-rts-handle-huser" title="Permalink to this headline">¶</a></h3>
+<p>Remove a user from a group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="21%" />
+<col width="55%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>Handle to the group</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User could be removed</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid parameter. hGroup or hUser invalid</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>The user management is not initialized or it is not loaded yet</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbgroupsetproperty-rts-handle-hgroup-rts-ui32-ulproperty">
+<span id="group-cmp-user-d-b-itf-1ga71b472bc0cd6c9b6b85160aa05860454"></span><h3>RTS_RESULT UserDBGroupSetProperty (RTS_HANDLE hGroup, RTS_UI32 ulProperty)<a class="headerlink" href="#rts-result-userdbgroupsetproperty-rts-handle-hgroup-rts-ui32-ulproperty" title="Permalink to this headline">¶</a></h3>
+<p>Set properties of a group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="13%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>Handle to the group</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pulProperty</td>
+<td>Pointer to set the properties. For details see category &#8220;UserDB properties&#8221;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Properties could be set</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user group or property pointer = NULL</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbgroupaddmember-rts-handle-hgroup-rts-handle-hgroupmember">
+<span id="group-cmp-user-d-b-itf-1ga20afb4d486b5e13ed81c0ab99dd4a7a0"></span><h3>RTS_RESULT UserDBGroupAddMember (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)<a class="headerlink" href="#rts-result-userdbgroupaddmember-rts-handle-hgroup-rts-handle-hgroupmember" title="Permalink to this headline">¶</a></h3>
+<p>Add a group as a member to another group. So that group is derived from the first one</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="13%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>First group to derive from</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hGroupMember</td>
+<td>New member group which is derived from the first group (hGroup) after this operation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Group could be added</td>
+</tr>
+<tr class="row-even"><td>ERR_DUPLICATE</td>
+<td>Group is already added</td>
+</tr>
+<tr class="row-odd"><td>ERR_PARAMETER</td>
+<td>Invalid parameter. hGroup or hGroupMember invalid</td>
+</tr>
+<tr class="row-even"><td>ERR_NOMEMORY</td>
+<td>No memory available to add group to another group</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>The user management is not initialized or it is not loaded yet</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbgroupremovemember-rts-handle-hgroup-rts-handle-hgroupmember">
+<span id="group-cmp-user-d-b-itf-1gaf5075c4df9d39a576bf3a295f3098fe5"></span><h3>RTS_RESULT UserDBGroupRemoveMember (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)<a class="headerlink" href="#rts-result-userdbgroupremovemember-rts-handle-hgroup-rts-handle-hgroupmember" title="Permalink to this headline">¶</a></h3>
+<p>Remove a group as a member from another group. So the group is no longer derived from the first one</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>First group to remove the derived group from</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hGroupMember</td>
+<td>Member group which is no longer derived from the first group (hGroup) after this operation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Group could be removed</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid parameter. hGroup or hGroupMember invalid</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>The user management is not initialized or it is not loaded yet</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbenforce-void">
+<span id="group-cmp-user-d-b-itf-1gac4650a1183375bec8ab92f855a659e19"></span><h3>RTS_RESULT UserDBEnforce (void)<a class="headerlink" href="#rts-result-userdbenforce-void" title="Permalink to this headline">¶</a></h3>
+<p>Explicitly enforce the usage of user authentication: no anonymous login is possible, login with user and password is required NOTE: The UserDB is enforced implicitly when a DB file is loaded or configured via CODESYS.</p>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User and password login is required</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Anonymous login is possible</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>The user management is not initialized or it is not loaded yet</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-handle-userdbgroupgetfirst-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1gadf2c07b5c0a8633f1d19631c674f31c7"></span><h3>RTS_HANDLE UserDBGroupGetFirst (RTS_RESULT <a href="#id43"><span class="problematic" id="id44">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbgroupgetfirst-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Iteration interface to get the first configured user group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>First user group available</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_OBJECT</td>
+<td>No user group configured</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the first user group or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-handle-userdbgroupgetnext-rts-handle-hprevgroup-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1ga330560f782f1357476d13600beec6dfe"></span><h3>RTS_HANDLE UserDBGroupGetNext (RTS_HANDLE hPrevGroup, RTS_RESULT <a href="#id45"><span class="problematic" id="id46">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbgroupgetnext-rts-handle-hprevgroup-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Iteration interface to get next configured user group. Must be started with <span class="xref std std-ref">UserDBGroupGetFirst()</span></p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="4%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hPrevGroup</td>
+<td>Handle to the previous user group retrieved via <span class="xref std std-ref">UserDBGroupGetFirst()</span> or subsequent calls of <span class="xref std std-ref">UserDBGroupGetNext()</span></td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Next user group available</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_OBJECT</td>
+<td>No next user group available</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the next user group or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-handle-userdbgroupopen-char-pszgroup-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1gaadc1b6e4555a5bdbc95a57e90793ce67"></span><h3>RTS_HANDLE UserDBGroupOpen (char <a href="#id47"><span class="problematic" id="id48">*</span></a>pszGroup, RTS_RESULT <a href="#id49"><span class="problematic" id="id50">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbgroupopen-char-pszgroup-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Open user group specified by its name</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="24%" />
+<col width="55%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszGroup</td>
+<td>User group name</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User group could be opened</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid parameter. pszGroup = NULL or empty</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>The user management is not initialized or it is not loaded yet</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the user group or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-result-userdbgroupclose-rts-handle-hgroup">
+<span id="group-cmp-user-d-b-itf-1ga2bd36eb02e92b555783cb80dcddc03cd"></span><h3>RTS_RESULT UserDBGroupClose (RTS_HANDLE hGroup)<a class="headerlink" href="#rts-result-userdbgroupclose-rts-handle-hgroup" title="Permalink to this headline">¶</a></h3>
+<p>Close a user group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="19%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>Handle to the user group</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User group could be closed</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user group handle</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbgroupgetname-rts-handle-hgroup-char-pszgroup-int-pimaxlen">
+<span id="group-cmp-user-d-b-itf-1gaa369c57d9fbd1bb2e377b4a827559819"></span><h3>RTS_RESULT UserDBGroupGetName (RTS_HANDLE hGroup, char <a href="#id51"><span class="problematic" id="id52">*</span></a>pszGroup, int <a href="#id53"><span class="problematic" id="id54">*</span></a>piMaxLen)<a class="headerlink" href="#rts-result-userdbgroupgetname-rts-handle-hgroup-char-pszgroup-int-pimaxlen" title="Permalink to this headline">¶</a></h3>
+<p>Get user group name</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="7%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>Handle to the user group</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pszGroup</td>
+<td>Pointer to get user group name</td>
+</tr>
+<tr class="row-odd"><td>[inout]</td>
+<td>piMaxLen</td>
+<td>Pointer to length of buffer in pszGroup. If pszGroup = NULL, only the length of the user group name is returned inpiMaxLen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User group name is returned</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user group handle or pszGroup = NULL and piMaxLen = NULL</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbgroupgetproperty-rts-handle-hgroup-rts-ui32-pulproperty">
+<span id="group-cmp-user-d-b-itf-1ga1fbd5d0a7d55623bbd65d073b31e3668"></span><h3>RTS_RESULT UserDBGroupGetProperty (RTS_HANDLE hGroup, RTS_UI32 <a href="#id55"><span class="problematic" id="id56">*</span></a>pulProperty)<a class="headerlink" href="#rts-result-userdbgroupgetproperty-rts-handle-hgroup-rts-ui32-pulproperty" title="Permalink to this headline">¶</a></h3>
+<p>Get properties of a group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="13%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>Handle to the group</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulProperty</td>
+<td>Pointer to return the properties. For details see category &#8220;UserDB properties&#8221;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Properties could be retrieved</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user group or property pointer = NULL</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-userdbgrouphasuser-rts-handle-hgroup-rts-handle-huser">
+<span id="group-cmp-user-d-b-itf-1gaf35118fab9a262b7b12e3d14e8c7dcea"></span><h3>RTS_RESULT UserDBGroupHasUser (RTS_HANDLE hGroup, RTS_HANDLE hUser)<a class="headerlink" href="#rts-result-userdbgrouphasuser-rts-handle-hgroup-rts-handle-huser" title="Permalink to this headline">¶</a></h3>
+<p>Check if the user is a member of the group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="19%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>Handle to the user group</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hUser</td>
+<td>Handle to the user</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User is a member of the group</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user or user group handle</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>User is no member of the specified user group</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-handle-userdbgroupgetfirstuser-rts-handle-hgroup-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1ga8a833a1d5bdff8bb593a331a70da690b"></span><h3>RTS_HANDLE UserDBGroupGetFirstUser (RTS_HANDLE hGroup, RTS_RESULT <a href="#id57"><span class="problematic" id="id58">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbgroupgetfirstuser-rts-handle-hgroup-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Iteration interface to get the first user of the user group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>Handle to the user group</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>First user in the group available</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_OBJECT</td>
+<td>No user configured in the user group</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the first user in the user group or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-handle-userdbgroupgetnextuser-rts-handle-hgroup-rts-handle-hprevuser-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1gabea7ead32f191a299f9e9ff9dee71c3f"></span><h3>RTS_HANDLE UserDBGroupGetNextUser (RTS_HANDLE hGroup, RTS_HANDLE hPrevUser, RTS_RESULT <a href="#id59"><span class="problematic" id="id60">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbgroupgetnextuser-rts-handle-hgroup-rts-handle-hprevuser-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Iteration interface to get next configured user of the user group. Must be started with <span class="xref std std-ref">UserDBGroupGetFirstUser()</span></p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="4%" />
+<col width="93%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>Handle to the user group</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hPrevUser</td>
+<td>Handle to the previous user retrieved via <span class="xref std std-ref">UserDBGroupGetFirstUser()</span> or subsequent calls of <span class="xref std std-ref">UserDBGroupGetNextUser()</span></td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Next user available</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid handles</td>
+</tr>
+<tr class="row-odd"><td>ERR_NO_OBJECT</td>
+<td>No next user available</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the next user or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-result-userdbgrouphasmember-rts-handle-hgroup-rts-handle-hgroupmember">
+<span id="group-cmp-user-d-b-itf-1ga9f4db2b4c2e026cfb3b40ca067a2b074"></span><h3>RTS_RESULT UserDBGroupHasMember (RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)<a class="headerlink" href="#rts-result-userdbgrouphasmember-rts-handle-hgroup-rts-handle-hgroupmember" title="Permalink to this headline">¶</a></h3>
+<p>Check if a user group is a member of the first specified group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="16%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>Handle to the first user group</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hGroupMember</td>
+<td>Handle to the user group to check if it is a member of hGroup</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>User group is a member of the first group</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user group handles</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>User group is no member of the specified user group</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-handle-userdbgroupgetfirstmember-rts-handle-hgroup-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1ga14c27328dcfd923c2fd0848f3ab7e6d2"></span><h3>RTS_HANDLE UserDBGroupGetFirstMember (RTS_HANDLE hGroup, RTS_RESULT <a href="#id61"><span class="problematic" id="id62">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbgroupgetfirstmember-rts-handle-hgroup-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Iteration interface to get the first user group as member of the specified group</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>Handle to the user group</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>First user group member available</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid user group handle</td>
+</tr>
+<tr class="row-odd"><td>ERR_NO_OBJECT</td>
+<td>No user group configured</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the first user group member or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-handle-userdbgroupgetnextmember-rts-handle-hgroup-rts-handle-hprevgroupmember-rts-result-presult">
+<span id="group-cmp-user-d-b-itf-1ga524e5d7e9db408eb950fbc5488f631ea"></span><h3>RTS_HANDLE UserDBGroupGetNextMember (RTS_HANDLE hGroup, RTS_HANDLE hPrevGroupMember, RTS_RESULT <a href="#id63"><span class="problematic" id="id64">*</span></a>pResult)<a class="headerlink" href="#rts-handle-userdbgroupgetnextmember-rts-handle-hgroup-rts-handle-hprevgroupmember-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Iteration interface to get next configured user group as member of the specified group. Must be started with <span class="xref std std-ref">UserDBGroupGetFirstMember()</span></p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="6%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hGroup</td>
+<td>Handle to the user group</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hPrevGroupMember</td>
+<td>Handle to the previous user group retrieved via <span class="xref std std-ref">UserDBGroupGetFirstMember()</span> or subsequent calls of <span class="xref std std-ref">UserDBGroupGetNextMember()</span></td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Next user group member available</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_OBJECT</td>
+<td>No next user group member available</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the next user group member or RTS_INVALID_HANDLE if failed</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_user_d_b_objects_itf.html" title="CmpUserDBObjectsItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_trace_mgr_itf.html" title="CmpTraceMgrItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

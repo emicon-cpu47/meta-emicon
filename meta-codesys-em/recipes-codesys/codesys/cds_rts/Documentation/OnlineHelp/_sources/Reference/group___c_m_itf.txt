@@ -1,0 +1,1557 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___c_m_itf:
+
+=====
+CMItf
+=====
+
+Interface of CmpMgr. :ref:`More... <group___c_m_itf-details>`
+
+Modules
+-------
+
+- :ref:`ApiResolveInfo <group___c_m_itf___api_resolve_info>`
+
+- :ref:`CMInit options <group___c_m_itf___c_m_initoptions>`
+
+- :ref:`COMM_CYCLE_HOOK types <group___c_m_itf___c_o_m_m___c_y_c_l_e___h_o_o_ktypes>`
+
+- :ref:`Compiler switch <group___c_m_itf___compilerswitch>`
+
+- :ref:`ComponentName <group___c_m_itf___component_name>`
+
+- :ref:`ComponentNameFlags <group___c_m_itf___component_name_flags>`
+
+- :ref:`ComponentState <group___c_m_itf___component_state>`
+
+- :ref:`ComponentType <group___c_m_itf___component_type>`
+
+- :ref:`Event parameter <group___c_m_itf___eventparameter>`
+
+- :ref:`Events <group___c_m_itf___events>`
+
+- :ref:`Profiler <group___c_m_itf___profiler>`
+
+- :ref:`Settings <group___c_m_itf___settings>`
+
+- :ref:`Static defines <group___c_m_itf___staticdefines>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagLicenseFunctions <structtag_license_functions>`
+
+- struct :ref:`tagcmaddcomponent_struct <structtagcmaddcomponent__struct>`
+
+- struct :ref:`tagcmaddcomponent2_struct <structtagcmaddcomponent2__struct>`
+
+- struct :ref:`tagcmexitcomponent_struct <structtagcmexitcomponent__struct>`
+
+- struct :ref:`tagcmgetcomponentbyname_struct <structtagcmgetcomponentbyname__struct>`
+
+- struct :ref:`tagcminitcomponent_struct <structtagcminitcomponent__struct>`
+
+- struct :ref:`tagcmregistergetuserlicensevalue_struct <structtagcmregistergetuserlicensevalue__struct>`
+
+- struct :ref:`tagcmregisterlicensefunctions_struct <structtagcmregisterlicensefunctions__struct>`
+
+- struct :ref:`tagcmremovecomponent_struct <structtagcmremovecomponent__struct>`
+
+- struct :ref:`tagcmshutdown_struct <structtagcmshutdown__struct>`
+
+- struct :ref:`tagcmunregistergetuserlicensevalue_struct <structtagcmunregistergetuserlicensevalue__struct>`
+
+- struct :ref:`tagcmunregisterlicensefunctions_struct <structtagcmunregisterlicensefunctions__struct>`
+
+- struct :ref:`tagcmutlcwstrcpy_struct <structtagcmutlcwstrcpy__struct>`
+
+- struct :ref:`tagcmutlsafestrcpy_struct <structtagcmutlsafestrcpy__struct>`
+
+- struct :ref:`tagcmutlstricmp_struct <structtagcmutlstricmp__struct>`
+
+- struct :ref:`tagcmutlutf8tow_struct <structtagcmutlutf8tow__struct>`
+
+- struct :ref:`tagcmutlwstrcpy_struct <structtagcmutlwstrcpy__struct>`
+
+- struct :ref:`tagcmutlwtoutf8_struct <structtagcmutlwtoutf8__struct>`
+
+- struct :ref:`cmloadcomponent_struct <structcmloadcomponent__struct>`
+
+- struct :ref:`cmunloadcomponent_struct <structcmunloadcomponent__struct>`
+
+- struct :ref:`getuserlicensevalue_struct <structgetuserlicensevalue__struct>`
+
+- struct :ref:`reqdynlicchallenge_struct <structreqdynlicchallenge__struct>`
+
+- struct :ref:`confdynlicchallenge_struct <structconfdynlicchallenge__struct>`
+
+- struct :ref:`ICM_C <struct_i_c_m___c>`
+
+Macros
+------
+
+- #define :ref:`EXTERNAL_LIB_PACKMODE <group___c_m_itf_1ga1e9adb1fbf79099ec5621be30f2f933e>` 8
+
+- #define :ref:`RTS_CHECKPOINT <group___c_m_itf_1gaefa62e45397392025071f338d11ec38f>`
+
+- #define :ref:`LICENSE_NOT_AVAILABLE <group___c_m_itf_1ga79901fe2535f1b7e289ce9f2dafdd2cc>` UINT32_C(0xffffffff)
+
+- #define :ref:`LICENSE_INVALID <group___c_m_itf_1gab9f2c214e3e4d686344abf8b0f7561fc>` UINT32_C(0x00000000)
+
+- #define :ref:`CM_PROFILING_ID_ADD_BEGIN <group___c_m_itf_1ga3be676907c448393b4ff703596a14116>` (ID | UINT32_C(0x40000000))
+
+- #define :ref:`CM_PROFILING_ID_ADD_END <group___c_m_itf_1gad357f2cd976ef2f1d176dc3fa53fffc8>` (ID | UINT32_C(0x80000000))
+
+- #define :ref:`CM_PROFILING_ID_ISBEGIN <group___c_m_itf_1ga79411b552918ea84f4b266fbb62764cc>` ((ID & UINT32_C(0x40000000)) != 0)
+
+- #define :ref:`CM_PROFILING_ID_ISEND <group___c_m_itf_1gaaf391414ed38c85cd1c5ac057106716a>` ((ID & UINT32_C(0x80000000)) != 0)
+
+- #define :ref:`CM_PROFILING_ID_GET <group___c_m_itf_1ga3e52ee3634493415129a44eb03e17592>` (ID & UINT32_C(0x3FFFFFFF))
+
+- #define :ref:`ITF_CM <group___c_m_itf_1ga61f0c0ead6bd2318dd35a91eb12b2520>`
+
+- #define :ref:`EXTITF_CM <group___c_m_itf_1ga580d932bcd6f727f2b3e250d39a76eac>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagLicenseFunctions <structtag_license_functions>` :ref:`LicenseFunctions <group___c_m_itf_1ga516a5ec5dd2e25ae6a6e316eceb17c8f>`
+
+- typedef struct :ref:`tagcmaddcomponent_struct <structtagcmaddcomponent__struct>` :ref:`cmaddcomponent_struct <group___c_m_itf_1gaf173983244f7843ed8c7642afd77d4c8>`
+
+- typedef struct :ref:`tagcmaddcomponent2_struct <structtagcmaddcomponent2__struct>` :ref:`cmaddcomponent2_struct <group___c_m_itf_1gafb5d0b67f9a1dba004415b612abc71d4>`
+
+- typedef struct :ref:`tagcmexitcomponent_struct <structtagcmexitcomponent__struct>` :ref:`cmexitcomponent_struct <group___c_m_itf_1ga4d6acacf3068e80a0768087490414914>`
+
+- typedef struct :ref:`tagcmgetcomponentbyname_struct <structtagcmgetcomponentbyname__struct>` :ref:`cmgetcomponentbyname_struct <group___c_m_itf_1gaf68e8771ff2f8b877bf270a026b22da7>`
+
+- typedef struct :ref:`tagcminitcomponent_struct <structtagcminitcomponent__struct>` :ref:`cminitcomponent_struct <group___c_m_itf_1ga8d62f811ee66b66e7ac2969d59d52239>`
+
+- typedef struct :ref:`tagcmregistergetuserlicensevalue_struct <structtagcmregistergetuserlicensevalue__struct>` :ref:`cmregistergetuserlicensevalue_struct <group___c_m_itf_1ga42d14c939cb295bd0470f0bcf60d9fa4>`
+
+- typedef struct :ref:`tagcmregisterlicensefunctions_struct <structtagcmregisterlicensefunctions__struct>` :ref:`cmregisterlicensefunctions_struct <group___c_m_itf_1gaf08dcdeb34004eb2111881d22e8ad36d>`
+
+- typedef struct :ref:`tagcmremovecomponent_struct <structtagcmremovecomponent__struct>` :ref:`cmremovecomponent_struct <group___c_m_itf_1gac53c7c626ca2db9c2f200bc93f19d432>`
+
+- typedef struct :ref:`tagcmshutdown_struct <structtagcmshutdown__struct>` :ref:`cmshutdown_struct <group___c_m_itf_1gadcdbcc3605ccb2cdcb4840b93f740d4f>`
+
+- typedef struct :ref:`tagcmunregistergetuserlicensevalue_struct <structtagcmunregistergetuserlicensevalue__struct>` :ref:`cmunregistergetuserlicensevalue_struct <group___c_m_itf_1gaaf003ce773259523210250fe7e8c569c>`
+
+- typedef struct :ref:`tagcmunregisterlicensefunctions_struct <structtagcmunregisterlicensefunctions__struct>` :ref:`cmunregisterlicensefunctions_struct <group___c_m_itf_1ga2d48d37133912d9f1b553d7c3207ad71>`
+
+- typedef struct :ref:`tagcmutlcwstrcpy_struct <structtagcmutlcwstrcpy__struct>` :ref:`cmutlcwstrcpy_struct <group___c_m_itf_1ga12605b097630b541abfc1ac5f47502d0>`
+
+- typedef struct :ref:`tagcmutlsafestrcpy_struct <structtagcmutlsafestrcpy__struct>` :ref:`cmutlsafestrcpy_struct <group___c_m_itf_1ga7a1c374304d8e00f19f395a9cb450e86>`
+
+- typedef struct :ref:`tagcmutlstricmp_struct <structtagcmutlstricmp__struct>` :ref:`cmutlstricmp_struct <group___c_m_itf_1ga6a3ff3d340c454787fa4fd2bfd996ddf>`
+
+- typedef struct :ref:`tagcmutlutf8tow_struct <structtagcmutlutf8tow__struct>` :ref:`cmutlutf8tow_struct <group___c_m_itf_1ga380e2b558872a047e981190d7eed9ae5>`
+
+- typedef struct :ref:`tagcmutlwstrcpy_struct <structtagcmutlwstrcpy__struct>` :ref:`cmutlwstrcpy_struct <group___c_m_itf_1gab62ab6abfd08ad9bcf1e5a9d6d642fc4>`
+
+- typedef struct :ref:`tagcmutlwtoutf8_struct <structtagcmutlwtoutf8__struct>` :ref:`cmutlwtoutf8_struct <group___c_m_itf_1ga1bab8f0a14c35188767bbd2d219c3a1b>`
+
+- typedef void(* :ref:`PFGETUSERLICENSEVALUE <group___c_m_itf_1ga045330029894373f707aa79633cb5cee>`)(getuserlicensevalue_struct)
+
+- typedef void(* :ref:`PFREQDYNLICCHALLENGE <group___c_m_itf_1ga0bde18f72f128e8190faa8ecc89479f6>`)(reqdynlicchallenge_struct)
+
+- typedef void(* :ref:`PFCONFDYNLICCHALLENGE <group___c_m_itf_1ga1a28e25ec712c38d96e1cba9a6f4a71f>`)(confdynlicchallenge_struct)
+
+- typedef :ref:`ICM_C <struct_i_c_m___c>` :ref:`ICM <group___c_m_itf_1ga983ab90df439c07d3dc899529c92aa61>`
+
+Functions
+---------
+
+- void :ref:`cmaddcomponent <group___c_m_itf_1gabb81474df9661e2bfa1da358d1064451>` (:ref:`cmaddcomponent_struct <group___c_m_itf_1gaf173983244f7843ed8c7642afd77d4c8>` * p)
+
+- void :ref:`cmaddcomponent2 <group___c_m_itf_1gae0051d6ba0279333c2c30c2659c548ed>` (:ref:`cmaddcomponent2_struct <group___c_m_itf_1gafb5d0b67f9a1dba004415b612abc71d4>` * p)
+
+- void :ref:`cmexitcomponent <group___c_m_itf_1ga14bbf2afca63011078fe8291db3e94c1>` (:ref:`cmexitcomponent_struct <group___c_m_itf_1ga4d6acacf3068e80a0768087490414914>` * p)
+
+- void :ref:`cmgetcomponentbyname <group___c_m_itf_1ga7eb48d82b85cf3fad645d3c2075631a4>` (:ref:`cmgetcomponentbyname_struct <group___c_m_itf_1gaf68e8771ff2f8b877bf270a026b22da7>` * p)
+
+- void :ref:`cminitcomponent <group___c_m_itf_1ga4e84f6d1cb599519214f8b3dd10d22eb>` (:ref:`cminitcomponent_struct <group___c_m_itf_1ga8d62f811ee66b66e7ac2969d59d52239>` * p)
+
+- void :ref:`cmregistergetuserlicensevalue <group___c_m_itf_1gaffe023b985245db5fc5d6dbbabb432c3>` (:ref:`cmregistergetuserlicensevalue_struct <group___c_m_itf_1ga42d14c939cb295bd0470f0bcf60d9fa4>` * p)
+
+- void :ref:`cmregisterlicensefunctions <group___c_m_itf_1gaaaac3b4d2130c2e9b47f07a85ee2d28f>` (:ref:`cmregisterlicensefunctions_struct <group___c_m_itf_1gaf08dcdeb34004eb2111881d22e8ad36d>` * p)
+
+- void :ref:`cmremovecomponent <group___c_m_itf_1gad8354c4a49a9aee85c25f59cc58f4e86>` (:ref:`cmremovecomponent_struct <group___c_m_itf_1gac53c7c626ca2db9c2f200bc93f19d432>` * p)
+
+- void :ref:`cmshutdown <group___c_m_itf_1ga4fc274121db40d8b4767c00b5bb5e817>` (:ref:`cmshutdown_struct <group___c_m_itf_1gadcdbcc3605ccb2cdcb4840b93f740d4f>` * p)
+
+- void :ref:`cmunregistergetuserlicensevalue <group___c_m_itf_1ga459d25c69f40ca03471825fb2bc53068>` (:ref:`cmunregistergetuserlicensevalue_struct <group___c_m_itf_1gaaf003ce773259523210250fe7e8c569c>` * p)
+
+- void :ref:`cmunregisterlicensefunctions <group___c_m_itf_1ga77c50280a4257d73399295ea5f2e4b5c>` (:ref:`cmunregisterlicensefunctions_struct <group___c_m_itf_1ga2d48d37133912d9f1b553d7c3207ad71>` * p)
+
+- void :ref:`cmutlcwstrcpy <group___c_m_itf_1gae93e54b4897dfd1d432a313f5d413ac5>` (:ref:`cmutlcwstrcpy_struct <group___c_m_itf_1ga12605b097630b541abfc1ac5f47502d0>` * p)
+
+- void :ref:`cmutlsafestrcpy <group___c_m_itf_1ga577b0d57c9bd6363be1827763d85d134>` (:ref:`cmutlsafestrcpy_struct <group___c_m_itf_1ga7a1c374304d8e00f19f395a9cb450e86>` * p)
+
+- void :ref:`cmutlstricmp <group___c_m_itf_1gabdc6ad1af9072e49dd5a8f9ad75e3ec7>` (:ref:`cmutlstricmp_struct <group___c_m_itf_1ga6a3ff3d340c454787fa4fd2bfd996ddf>` * p)
+
+- void :ref:`cmutlutf8tow <group___c_m_itf_1ga251b1c54a5f2ef6f7910548a477a612e>` (:ref:`cmutlutf8tow_struct <group___c_m_itf_1ga380e2b558872a047e981190d7eed9ae5>` * p)
+
+- void :ref:`cmutlwstrcpy <group___c_m_itf_1ga5261ce4e6d583a961193c1a457c592ab>` (:ref:`cmutlwstrcpy_struct <group___c_m_itf_1gab62ab6abfd08ad9bcf1e5a9d6d642fc4>` * p)
+
+- void :ref:`cmutlwtoutf8 <group___c_m_itf_1gabd597922379cc391d0ac5bf029871967>` (:ref:`cmutlwtoutf8_struct <group___c_m_itf_1ga1bab8f0a14c35188767bbd2d219c3a1b>` * p)
+
+- RTS_RESULT :ref:`CMInit <group___c_m_itf_1gaf05b74542b88e19cba42aaf6048429a4>` (char * pszSettingsFile, :ref:`StaticComponent <group___c_m_itf___component_name_1gaed4d46d17dc6b38cb3846e6db0938a6f>` * pStaticComponents)
+
+- RTS_RESULT :ref:`CMInit2 <group___c_m_itf_1gaf7a568446ffb81c4e3cf2f6352650ed8>` (char * pszSettingsFile, :ref:`StaticComponent <group___c_m_itf___component_name_1gaed4d46d17dc6b38cb3846e6db0938a6f>` * pStaticComponents, int bSettingsFileIsOptional)
+
+- RTS_RESULT :ref:`CMInit3 <group___c_m_itf_1gaaf5c89f9a32848417d795908bf3ef25a>` (char * pszSettingsFile, :ref:`StaticComponent <group___c_m_itf___component_name_1gaed4d46d17dc6b38cb3846e6db0938a6f>` * pStaticComponents, RTS_UI32 options)
+
+- RTS_RESULT :ref:`CMExit <group___c_m_itf_1ga0227148712c0fb5b69d49d921bef25a8>` (void)
+
+- RTS_RESULT :ref:`CMSetExit <group___c_m_itf_1gab1e82745a4395afe05533fe95c085b9e>` (void)
+
+- RTS_RESULT :ref:`CMGetExit <group___c_m_itf_1ga2ed25d4b792ca38fc99824a011778182>` (void)
+
+- RTS_RESULT :ref:`CMDebugOut <group___c_m_itf_1ga3929789cd6294dd00d39467f9c9ad843>` (const char * szFormat, ...)
+
+- RTS_RESULT :ref:`CMDebugOutArg <group___c_m_itf_1ga892619201567cc534245066361d416cd>` (const char * szFormat, va_list * pargList)
+
+- RTS_RESULT :ref:`CMRegisterAPI <group___c_m_itf_1gaeee866d8a9158daa4bef3e48aa0138b7>` (const CMP_EXT_FUNCTION_REF * pExpTable, RTS_UINTPTR dummy, int bExternalLibrary, RTS_UI32 cmpId)
+
+- RTS_RESULT :ref:`CMRegisterAPI2 <group___c_m_itf_1gad189ecacb244a5ea200dffe33b50860f>` (const char * pszAPIName, RTS_VOID_FCTPTR pfAPIFunction, int bExternalLibrary, RTS_UI32 ulSignatureID, RTS_UI32 ulVersion)
+
+- DLL_DECL RTS_RESULT :ref:`CMGetAPI <group___c_m_itf_1ga2e0bd13ddf81ffb69797adbb99eab9cb>` (char * pszAPIName, RTS_VOID_FCTPTR * ppfAPIFunction, RTS_UI32 ulSignatureID)
+
+- DLL_DECL RTS_RESULT :ref:`CMGetAPI2 <group___c_m_itf_1ga69f40399bfffe6c26c6eb86ba2b75da9>` (char * pszAPIName, RTS_VOID_FCTPTR * ppfAPIFunction, int importOptions, RTS_UI32 ulSignatureID, RTS_UI32 ulVersion)
+
+- RTS_RESULT :ref:`CMGetAPI3 <group___c_m_itf_1ga7f6aa70ceb418ca93363b451b3f9603a>` (char * pszAPIName, RTS_VOID_FCTPTR * ppfAPIFunction, int importOptions, RTS_UI32 * pulSignatureID, RTS_UI32 * pulVersion)
+
+- RTS_RESULT :ref:`CMGetAPIToResolve <group___c_m_itf_1gadb9b0f3c32342e12b227da2cd199623c>` (:ref:`API_RESOLVE_INFO <group___c_m_itf___api_resolve_info_1gab9565a2863d19785c9b52114ceafe72f>` * pApiResolveInfo)
+
+- RTS_RESULT :ref:`CMReleaseAPI <group___c_m_itf_1ga6be00dc8a3bdab64ff6647eaf79d7da1>` (RTS_VOID_FCTPTR pfAPIFunction)
+
+- RTS_HANDLE :ref:`CMLoadComponent <group___c_m_itf_1ga10b3d7a4a68c9228e16f774867750b6c>` (char * pszComponent, RTS_RESULT * pResult)
+
+- void :ref:`cmloadcomponent <group___c_m_itf_1ga99134d18ae67a7e21bd82174e95a2550>` (:ref:`cmloadcomponent_struct <structcmloadcomponent__struct>` * p)
+
+- RTS_HANDLE :ref:`CMLoadComponent2 <group___c_m_itf_1ga14bbd5aac99a653f32c1e580b2d0dd1c>` (char * pszComponent, RTS_UI16 iType, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`CMLoadComponent3 <group___c_m_itf_1ga4e0ebc4d7687a49310824347baaf070e>` (char * pszComponent, char * pszFilePath, RTS_UI16 iType, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CMInitComponent <group___c_m_itf_1ga56333a0d1cd19a000279e9e4d8081ed3>` (RTS_HANDLE hComponent)
+
+- RTS_RESULT :ref:`CMImportFunctions <group___c_m_itf_1ga350dd2e2f5d946935a49666022e0df99>` (void)
+
+- RTS_RESULT :ref:`CMExitComponent <group___c_m_itf_1gac805a13f2f77fe14a3858261363b5179>` (RTS_HANDLE hComponent)
+
+- RTS_RESULT :ref:`CMUnloadComponent <group___c_m_itf_1ga58c619b84d82b9ce60512082705b6025>` (RTS_HANDLE hComponent)
+
+- void :ref:`cmunloadcomponent <group___c_m_itf_1ga1e4bba7ccea19081b151c03ff55afd7f>` (:ref:`cmunloadcomponent_struct <structcmunloadcomponent__struct>` * p)
+
+- RTS_HANDLE :ref:`CMAddComponent <group___c_m_itf_1ga49cdd0da5019acc57a5ff9be80b98250>` (:ref:`COMPONENT_ENTRY <group___c_m_itf___component_name_1gaae03dae15a92a41cb9e05534ce94a576>` * pComponent, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CMRemoveComponent <group___c_m_itf_1gaa51ef04014cca8cf9b54cbbe9c6c4849>` (RTS_HANDLE hComponent)
+
+- RTS_HANDLE :ref:`CMGetComponentByName <group___c_m_itf_1gac68bf9a9cecc1fb28e80766e318f68da>` (char * pszCmpName, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CMGetCmpId <group___c_m_itf_1ga02299050371b37e830914f320d5c12dc>` (char * pszCmpName, CMPID * pCmpId)
+
+- RTS_RESULT :ref:`CMGetCmpName <group___c_m_itf_1ga719bb8ef97383d2b7356552709ae0a60>` (CMPID CmpId, char * pszCmpName, int iMaxCmpName)
+
+- :ref:`COMPONENT_ENTRY <group___c_m_itf___component_name_1gaae03dae15a92a41cb9e05534ce94a576>` * :ref:`CMGetComponent <group___c_m_itf_1gadc355a43dfbc02ac84969770f95db31a>` (CMPID CmpId)
+
+- int :ref:`CMGetNumOfComponents <group___c_m_itf_1ga11cc52ad88fde02914914c1aba94bd2d>` (void)
+
+- :ref:`COMPONENT_ENTRY <group___c_m_itf___component_name_1gaae03dae15a92a41cb9e05534ce94a576>` * :ref:`CMGetComponentByIndex <group___c_m_itf_1gac5e13736913420c13d9f40d5953bd7f7>` (int iIndex)
+
+- :ref:`COMPONENT_ENTRY <group___c_m_itf___component_name_1gaae03dae15a92a41cb9e05534ce94a576>` * :ref:`CMGetFirstComponent <group___c_m_itf_1ga057df3fc4357231700e3f7ae17929f06>` (RTS_RESULT * pResult)
+
+- :ref:`COMPONENT_ENTRY <group___c_m_itf___component_name_1gaae03dae15a92a41cb9e05534ce94a576>` * :ref:`CMGetNextComponent <group___c_m_itf_1ga970ace3d4a07bf7320d1456d2089bd89>` (:ref:`COMPONENT_ENTRY <group___c_m_itf___component_name_1gaae03dae15a92a41cb9e05534ce94a576>` * pCmp, RTS_RESULT * pResult)
+
+- IBase * :ref:`CMCreateInstance <group___c_m_itf_1gaa436c3a1c4beaa5d333373ee43e7a82d>` (CLASSID ClassId, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CMDeleteInstance <group___c_m_itf_1ga9742523d2433643388920756679c3237>` (IBase * pIBase)
+
+- RTS_RESULT :ref:`CMDeleteInstance2 <group___c_m_itf_1ga4f4651646362b7183d5e16975fbfabf8>` (CLASSID ClassId, IBase * pIBase)
+
+- IBase * :ref:`CMGetInstance <group___c_m_itf_1ga0ac13021662eda794e70c99c0a16a6bc>` (CLASSID ClassId, OBJID ObjId, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CMRegisterInstance <group___c_m_itf_1ga94ecbc39aa43368f6e8b348397ab2fd2>` (CLASSID ClassId, OBJID ObjId, IBase * pIBase)
+
+- RTS_RESULT :ref:`CMUnregisterInstance <group___c_m_itf_1ga8d66e0fb9a5b31201049092c3b71ca74>` (IBase * pIBase)
+
+- RTS_RESULT :ref:`CMGetInstanceList <group___c_m_itf_1ga84a11b1617c11fb3ce378354324b8363>` (ITFID ItfId, RTS_HANDLE hIBasePool)
+
+- RTS_RESULT :ref:`CMCallHook <group___c_m_itf_1gade57c65791c54884d36898bb8062cb41>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2, int bReverse)
+
+- RTS_RESULT :ref:`CMCallHook2 <group___c_m_itf_1ga7b331ee99c72c0ecb3ead290cfbd136b>` (RTS_UI16 usComponentTypeMask, RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- int :ref:`CMIsDemo <group___c_m_itf_1ga06b703bef3feaaffb8ba4cdb9cd74397>` (void)
+
+- RTS_RESULT :ref:`CMInitEnd <group___c_m_itf_1ga83b61cae6ab87284f41f66db8d1d76d0>` (void)
+
+- RTS_RESULT :ref:`CMCheckSysTargetSignature <group___c_m_itf_1gac0e6df0a0f013fcb877e42cf151e9de4>` (void)
+
+- RTS_UI32 :ref:`CMGetUserLicenseValue <group___c_m_itf_1ga71a6d1c1d634ba5674c749ab43cc2fd3>` (RTS_UI32 ulLicenseID, RTS_RESULT * pResult)
+
+- RTS_UI32 :ref:`CMReqDynLicChallenge <group___c_m_itf_1gaa10334cd8ee8526d53dd42ab106b8e2f>` (RTS_UI32 ulLicenseID, RTS_UI32 ulNewLicenseValue, RTS_RESULT * pResult)
+
+- int :ref:`CMConfDynLicChallenge <group___c_m_itf_1ga6f1f5d71e33840937959d2f2d0c166f3>` (RTS_UI32 ulLicenseID, RTS_UI32 ulNewLicenseValue, RTS_UI32 ulChallenge, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CMCallExtraCommCycleHook <group___c_m_itf_1ga0c684457436b2dd561191e8767817587>` (RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_UI32 :ref:`CMGetCurrentHook <group___c_m_itf_1ga95ab8e8b3a6ed2e8a67429e64eebf46e>` (void)
+
+- RTS_RESULT :ref:`CMIsOperationDisabled <group___c_m_itf_1gaca15661884ff93447533796c38f62c5f>` (CMPID cmpId, RTS_UI32 ulOperation, CMPID * pCmpIdDisabled)
+
+- RTS_RESULT :ref:`CMProfiling <group___c_m_itf_1ga8f596715677be928e9f97e05c72202b3>` (char * pszInfo, CMPID cmpId, char * pszComponentName, char * pszModuleName, RTS_I32 nLine, RTS_I32 iID)
+
+.. _group___c_m_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpMgr.
+
+Interface of the component manager
+
+The component manager component is the central component of the runtime system. The component manager is responsible for:
+
+- startup and shutdown of the runtime system
+
+- loading and unloading all components
+
+- intializing all components
+
+- linking all functions, including the external IEC library functions
+
+- checking the consistency of calling a function (matching function prototypes)
+
+The list of components that should be loaded can be specified in different ways.
+
+If the components are linked static, there are two different ways to specify the component list:
+
+- Static list: The list of static loaded components can be specified as a calling option for the :ref:`CMInit() <group___c_m_itf_1gaf05b74542b88e19cba42aaf6048429a4>` interface method. The name of the component on the entry funtion of each component must be specified. See the description of the :ref:`CMInit() <group___c_m_itf_1gaf05b74542b88e19cba42aaf6048429a4>` method for detailed information.
+
+- Settings: The settings component has a settings interface, where the component list can be specified. Here only the component name must be specified. In this case, the function MainLoadComponent() must be impleemnted in the Main module and here all static linked components must be added to the list. The advantage of this method is that in the settings you can specify, which static component can be loaded or not. This is quite flexible.
+
+For dynamically linked components, the component list can only be specified in the settings component.
+
+External IEC library functions are managed by the component manager too. Each interface have to specify, if it could be used for IEC code or not in the m4 Interface definition.
+
+An additional feature is the possibility to use all components with a C++ interface. Here you can implement your own component in C++ and can use all other runtime components object oriented with a C++ interface.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___c_m_itf_1ga1e9adb1fbf79099ec5621be30f2f933e:
+
+#define EXTERNAL_LIB_PACKMODE 8
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1gaefa62e45397392025071f338d11ec38f:
+
+#define RTS_CHECKPOINT
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga79901fe2535f1b7e289ce9f2dafdd2cc:
+
+#define LICENSE_NOT_AVAILABLE UINT32_C(0xffffffff)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1gab9f2c214e3e4d686344abf8b0f7561fc:
+
+#define LICENSE_INVALID UINT32_C(0x00000000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga3be676907c448393b4ff703596a14116:
+
+#define CM_PROFILING_ID_ADD_BEGIN (ID | UINT32_C(0x40000000))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1gad357f2cd976ef2f1d176dc3fa53fffc8:
+
+#define CM_PROFILING_ID_ADD_END (ID | UINT32_C(0x80000000))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga79411b552918ea84f4b266fbb62764cc:
+
+#define CM_PROFILING_ID_ISBEGIN ((ID & UINT32_C(0x40000000)) != 0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1gaaf391414ed38c85cd1c5ac057106716a:
+
+#define CM_PROFILING_ID_ISEND ((ID & UINT32_C(0x80000000)) != 0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga3e52ee3634493415129a44eb03e17592:
+
+#define CM_PROFILING_ID_GET (ID & UINT32_C(0x3FFFFFFF))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga61f0c0ead6bd2318dd35a91eb12b2520:
+
+#define ITF_CM
+^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga580d932bcd6f727f2b3e250d39a76eac:
+
+#define EXTITF_CM
+^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___c_m_itf_1ga516a5ec5dd2e25ae6a6e316eceb17c8f:
+
+typedef struct tagLicenseFunctions  LicenseFunctions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION BEGIN
+
+LicenseFunctions
+
+.. _group___c_m_itf_1gaf173983244f7843ed8c7642afd77d4c8:
+
+typedef struct tagcmaddcomponent_struct  cmaddcomponent_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmaddcomponent
+
+.. _group___c_m_itf_1gafb5d0b67f9a1dba004415b612abc71d4:
+
+typedef struct tagcmaddcomponent2_struct  cmaddcomponent2_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmaddcomponent2
+
+.. _group___c_m_itf_1ga4d6acacf3068e80a0768087490414914:
+
+typedef struct tagcmexitcomponent_struct  cmexitcomponent_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmexitcomponent
+
+.. _group___c_m_itf_1gaf68e8771ff2f8b877bf270a026b22da7:
+
+typedef struct tagcmgetcomponentbyname_struct  cmgetcomponentbyname_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmgetcomponentbyname
+
+.. _group___c_m_itf_1ga8d62f811ee66b66e7ac2969d59d52239:
+
+typedef struct tagcminitcomponent_struct  cminitcomponent_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cminitcomponent
+
+.. _group___c_m_itf_1ga42d14c939cb295bd0470f0bcf60d9fa4:
+
+typedef struct tagcmregistergetuserlicensevalue_struct  cmregistergetuserlicensevalue_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OBSOLETE FUNCTION: Use CMRegisterLicenseFunctions instead
+
+.. _group___c_m_itf_1gaf08dcdeb34004eb2111881d22e8ad36d:
+
+typedef struct tagcmregisterlicensefunctions_struct  cmregisterlicensefunctions_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmregisterlicensefunctions
+
+.. _group___c_m_itf_1gac53c7c626ca2db9c2f200bc93f19d432:
+
+typedef struct tagcmremovecomponent_struct  cmremovecomponent_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmremovecomponent
+
+.. _group___c_m_itf_1gadcdbcc3605ccb2cdcb4840b93f740d4f:
+
+typedef struct tagcmshutdown_struct  cmshutdown_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmshutdown
+
+.. _group___c_m_itf_1gaaf003ce773259523210250fe7e8c569c:
+
+typedef struct tagcmunregistergetuserlicensevalue_struct  cmunregistergetuserlicensevalue_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OBSOLETE FUNCTION: Use CMUnregisterLicenseFunctions instead
+
+.. _group___c_m_itf_1ga2d48d37133912d9f1b553d7c3207ad71:
+
+typedef struct tagcmunregisterlicensefunctions_struct  cmunregisterlicensefunctions_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmunregisterlicensefunctions
+
+.. _group___c_m_itf_1ga12605b097630b541abfc1ac5f47502d0:
+
+typedef struct tagcmutlcwstrcpy_struct  cmutlcwstrcpy_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmutlcwstrcpy
+
+.. _group___c_m_itf_1ga7a1c374304d8e00f19f395a9cb450e86:
+
+typedef struct tagcmutlsafestrcpy_struct  cmutlsafestrcpy_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmutlsafestrcpy
+
+.. _group___c_m_itf_1ga6a3ff3d340c454787fa4fd2bfd996ddf:
+
+typedef struct tagcmutlstricmp_struct  cmutlstricmp_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmutlstricmp
+
+.. _group___c_m_itf_1ga380e2b558872a047e981190d7eed9ae5:
+
+typedef struct tagcmutlutf8tow_struct  cmutlutf8tow_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmutlutf8tow
+
+.. _group___c_m_itf_1gab62ab6abfd08ad9bcf1e5a9d6d642fc4:
+
+typedef struct tagcmutlwstrcpy_struct  cmutlwstrcpy_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmutlwstrcpy
+
+.. _group___c_m_itf_1ga1bab8f0a14c35188767bbd2d219c3a1b:
+
+typedef struct tagcmutlwtoutf8_struct  cmutlwtoutf8_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+cmutlwtoutf8
+
+.. _group___c_m_itf_1ga045330029894373f707aa79633cb5cee:
+
+typedef void( * PFGETUSERLICENSEVALUE)(getuserlicensevalue_struct)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga0bde18f72f128e8190faa8ecc89479f6:
+
+typedef void( * PFREQDYNLICCHALLENGE)(reqdynlicchallenge_struct)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga1a28e25ec712c38d96e1cba9a6f4a71f:
+
+typedef void( * PFCONFDYNLICCHALLENGE)(confdynlicchallenge_struct)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga983ab90df439c07d3dc899529c92aa61:
+
+typedef ICM_C ICM
+^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___c_m_itf_1gabb81474df9661e2bfa1da358d1064451:
+
+void cmaddcomponent (cmaddcomponent_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1gae0051d6ba0279333c2c30c2659c548ed:
+
+void cmaddcomponent2 (cmaddcomponent2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga14bbf2afca63011078fe8291db3e94c1:
+
+void cmexitcomponent (cmexitcomponent_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga7eb48d82b85cf3fad645d3c2075631a4:
+
+void cmgetcomponentbyname (cmgetcomponentbyname_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga4e84f6d1cb599519214f8b3dd10d22eb:
+
+void cminitcomponent (cminitcomponent_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1gaffe023b985245db5fc5d6dbbabb432c3:
+
+void cmregistergetuserlicensevalue (cmregistergetuserlicensevalue_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1gaaaac3b4d2130c2e9b47f07a85ee2d28f:
+
+void cmregisterlicensefunctions (cmregisterlicensefunctions_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1gad8354c4a49a9aee85c25f59cc58f4e86:
+
+void cmremovecomponent (cmremovecomponent_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga4fc274121db40d8b4767c00b5bb5e817:
+
+void cmshutdown (cmshutdown_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga459d25c69f40ca03471825fb2bc53068:
+
+void cmunregistergetuserlicensevalue (cmunregistergetuserlicensevalue_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga77c50280a4257d73399295ea5f2e4b5c:
+
+void cmunregisterlicensefunctions (cmunregisterlicensefunctions_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1gae93e54b4897dfd1d432a313f5d413ac5:
+
+void cmutlcwstrcpy (cmutlcwstrcpy_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga577b0d57c9bd6363be1827763d85d134:
+
+void cmutlsafestrcpy (cmutlsafestrcpy_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1gabdc6ad1af9072e49dd5a8f9ad75e3ec7:
+
+void cmutlstricmp (cmutlstricmp_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga251b1c54a5f2ef6f7910548a477a612e:
+
+void cmutlutf8tow (cmutlutf8tow_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga5261ce4e6d583a961193c1a457c592ab:
+
+void cmutlwstrcpy (cmutlwstrcpy_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1gabd597922379cc391d0ac5bf029871967:
+
+void cmutlwtoutf8 (cmutlwtoutf8_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1gaf05b74542b88e19cba42aaf6048429a4:
+
+RTS_RESULT CMInit (char *pszSettingsFile, StaticComponent *pStaticComponents)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to initialize the component manager
+
+**Parameters**
+
++---------+-------------------+-----------------------------------------------------------------------------------------------+
+| [in]    | pszSettingsFile   | Pointer to name of the configuration file                                                     |
++---------+-------------------+-----------------------------------------------------------------------------------------------+
+| [in]    | pStaticComponents | Pointer to list of components with name and entry routine to initialize without configuration |
++---------+-------------------+-----------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code:
+
+- ERR_OK
+
+- ERR_FAILED: One or more components failed to load
+
+- ERR_ID_MISMATCH: Signature mismatch of the SysTargetIDs
+
+.. _group___c_m_itf_1gaf7a568446ffb81c4e3cf2f6352650ed8:
+
+RTS_RESULT CMInit2 (char *pszSettingsFile, StaticComponent *pStaticComponents, int bSettingsFileIsOptional)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to initialize the component manager
+
+**Parameters**
+
++---------+-------------------------+-----------------------------------------------------------------------------------------------+
+| [in]    | pszSettingsFile         | Pointer to name of the configuration file                                                     |
++---------+-------------------------+-----------------------------------------------------------------------------------------------+
+| [in]    | pStaticComponents       | Pointer to list of components with name and entry routine to initialize without configuration |
++---------+-------------------------+-----------------------------------------------------------------------------------------------+
+| [in]    | bSettingsFileIsOptional | Specifies, if the Settingsfile is only used optionally                                        |
++---------+-------------------------+-----------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1gaaf5c89f9a32848417d795908bf3ef25a:
+
+RTS_RESULT CMInit3 (char *pszSettingsFile, StaticComponent *pStaticComponents, RTS_UI32 options)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to initialize the component manager
+
+**Parameters**
+
++---------+-------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | pszSettingsFile   | Pointer to name of the configuration file                                                          |
++---------+-------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | pStaticComponents | Pointer to list of components with name and entry routine to initialize without configuration      |
++---------+-------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | options           | Options for the init sequence of the component manager. See category "CMInit options" for details. |
++---------+-------------------+----------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga0227148712c0fb5b69d49d921bef25a8:
+
+RTS_RESULT CMExit (void)
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to deinitialize the component manager
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1gab1e82745a4395afe05533fe95c085b9e:
+
+RTS_RESULT CMSetExit (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set a flag for main loop to exit
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga2ed25d4b792ca38fc99824a011778182:
+
+RTS_RESULT CMGetExit (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get a flag to exit main loop
+**Returns:**
+
+ERR_OK, if exit flag is set *ERR_FAILED else
+
+.. _group___c_m_itf_1ga3929789cd6294dd00d39467f9c9ad843:
+
+RTS_RESULT CMDebugOut (const char *szFormat,...)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Can be used for debug outputs on a console.
+**Returns:**
+
+ERR_OK or ERR_NOT_SUPPORTED, if SysOut component is not available
+
+.. _group___c_m_itf_1ga892619201567cc534245066361d416cd:
+
+RTS_RESULT CMDebugOutArg (const char *szFormat, va_list *pargList)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Can be used for debug outputs on a console.
+**Returns:**
+
+ERR_OK or ERR_NOT_SUPPORTED, if SysOut component is not available
+
+.. _group___c_m_itf_1gaeee866d8a9158daa4bef3e48aa0138b7:
+
+RTS_RESULT CMRegisterAPI (const CMP_EXT_FUNCTION_REF *pExpTable, RTS_UINTPTR dummy, int bExternalLibrary, RTS_UI32 cmpId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to register a list of component API functions at the component manager
+
+**Parameters**
+
++---------+------------------+----------------------------------------------------+
+| [in]    | pExpTable        | Table of functions to be registered                |
++---------+------------------+----------------------------------------------------+
+| [in]    | CmpId            | Component identifier                               |
++---------+------------------+----------------------------------------------------+
+| [in]    | bExternalLibrary | Can be used as external library in the plc program |
++---------+------------------+----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1gad189ecacb244a5ea200dffe33b50860f:
+
+RTS_RESULT CMRegisterAPI2 (const char *pszAPIName, RTS_VOID_FCTPTR pfAPIFunction, int bExternalLibrary, RTS_UI32 ulSignatureID, RTS_UI32 ulVersion)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to register a component API function at the component manager
+
+**Parameters**
+
++---------+------------------+----------------------------------------------------+
+| [in]    | pszAPIName       | Name of the API routine                            |
++---------+------------------+----------------------------------------------------+
+| [in]    | pfAPIFunction    | Function pointer of the API routine                |
++---------+------------------+----------------------------------------------------+
+| [in]    | bExternalLibrary | Can be used as external library in the plc program |
++---------+------------------+----------------------------------------------------+
+| [in]    | ulSignatureID    | SignatureID of the function prototype              |
++---------+------------------+----------------------------------------------------+
+| [in]    | ulVersion        | Actual supported implementation version            |
++---------+------------------+----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga2e0bd13ddf81ffb69797adbb99eab9cb:
+
+DLL_DECL RTS_RESULT CMGetAPI (char *pszAPIName, RTS_VOID_FCTPTR *ppfAPIFunction, RTS_UI32 ulSignatureID)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to get an API function of another component
+
+**Parameters**
+
++---------+----------------+---------------------------------------------------+
+| [in]    | pszAPIName     | Name of the API routine                           |
++---------+----------------+---------------------------------------------------+
+| [out]   | ppfAPIFunction | Returned the function pointer of the API routine  |
++---------+----------------+---------------------------------------------------+
+| [in]    | ulSignatureID  | SignatureID of the function prototype we expected |
++---------+----------------+---------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga69f40399bfffe6c26c6eb86ba2b75da9:
+
+DLL_DECL RTS_RESULT CMGetAPI2 (char *pszAPIName, RTS_VOID_FCTPTR *ppfAPIFunction, int importOptions, RTS_UI32 ulSignatureID, RTS_UI32 ulVersion)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to get an API function of another component
+
+**Parameters**
+
++---------+----------------+------------------------------------------------------------------+
+| [in]    | pszAPIName     | Name of the API routine                                          |
++---------+----------------+------------------------------------------------------------------+
+| [out]   | ppfAPIFunction | Returned the function pointer of the API routine                 |
++---------+----------------+------------------------------------------------------------------+
+| [in]    | ulSignatureID  | SignatureID of the function prototype we expected                |
++---------+----------------+------------------------------------------------------------------+
+| [in]    | ulVersion      | Actual implementation version requested                          |
++---------+----------------+------------------------------------------------------------------+
+| [in]    | importOptions  | Import options. See CM_IMPORT_xx defines in CmpStd.h for details |
++---------+----------------+------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga7f6aa70ceb418ca93363b451b3f9603a:
+
+RTS_RESULT CMGetAPI3 (char *pszAPIName, RTS_VOID_FCTPTR *ppfAPIFunction, int importOptions, RTS_UI32 *pulSignatureID, RTS_UI32 *pulVersion)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to get an API function of another component
+
+**Parameters**
+
++---------+----------------+----------------------------------------------------------------------------------------------+
+| [in]    | pszAPIName     | Name of the API routine                                                                      |
++---------+----------------+----------------------------------------------------------------------------------------------+
+| [out]   | ppfAPIFunction | Returned the function pointer of the API routine                                             |
++---------+----------------+----------------------------------------------------------------------------------------------+
+| [inout] | pulSignatureID | SignatureID of the function prototype requested and returns the actual signature implemented |
++---------+----------------+----------------------------------------------------------------------------------------------+
+| [inout] | pulVersion     | Implementation version requested and returns the actual version implemented                  |
++---------+----------------+----------------------------------------------------------------------------------------------+
+| [in]    | importOptions  | Import options. See CM_IMPORT_xx defines in CmpStd.h for details                             |
++---------+----------------+----------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1gadb9b0f3c32342e12b227da2cd199623c:
+
+RTS_RESULT CMGetAPIToResolve (API_RESOLVE_INFO *pApiResolveInfo)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the info of the current API function to resolve. Only valid during the run of CMGetAPIx. Otherwise the function returns ERR_NOT_INITIALIZED.
+
+**Parameters**
+
++---------+-----------------+-----------------------------------------------------+
+| [out]   | pApiResolveInfo | API function info to be filled. See ApiResolveInfo. |
++---------+-----------------+-----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga6be00dc8a3bdab64ff6647eaf79d7da1:
+
+RTS_RESULT CMReleaseAPI (RTS_VOID_FCTPTR pfAPIFunction)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to release an API function of another component
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga10b3d7a4a68c9228e16f774867750b6c:
+
+RTS_HANDLE CMLoadComponent (char *pszComponent, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to load a component. Can also be called during runtime. ATTENTION: If component has references to other components, referenced components must be loaded first!
+
+**Parameters**
+
++---------+--------------+-----------------------+
+| [in]    | pszComponent | Name of the component |
++---------+--------------+-----------------------+
+| [inout] | pResult      | Pointer to error code |
++---------+--------------+-----------------------+
+
+**Returns:**
+
+Component handle or RTS_INVALID_HANDLE, if an error is occured
+
+.. _group___c_m_itf_1ga99134d18ae67a7e21bd82174e95a2550:
+
+void cmloadcomponent (cmloadcomponent_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga14bbd5aac99a653f32c1e580b2d0dd1c:
+
+RTS_HANDLE CMLoadComponent2 (char *pszComponent, RTS_UI16 iType, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to load a component. Can also be called during runtime. ATTENTION: If component has references to other components, referenced components must be loaded first!
+
+**Parameters**
+
++---------+--------------+------------------------------------------------------------------+
+| [in]    | pszComponent | Name of the component                                            |
++---------+--------------+------------------------------------------------------------------+
+| [in]    | iType        | Type of the component. See category "ComponentType" for details. |
++---------+--------------+------------------------------------------------------------------+
+| [inout] | pResult      | Pointer to error code                                            |
++---------+--------------+------------------------------------------------------------------+
+
+**Returns:**
+
+Component handle or RTS_INVALID_HANDLE, if an error is occured
+
+.. _group___c_m_itf_1ga4e0ebc4d7687a49310824347baaf070e:
+
+RTS_HANDLE CMLoadComponent3 (char *pszComponent, char *pszFilePath, RTS_UI16 iType, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to load a component. Can also be called during runtime. ATTENTION: If component has references to other components, referenced components must be loaded first!
+
+**Parameters**
+
++---------+--------------+------------------------------------------------------------------+
+| [in]    | pszComponent | Name of the component                                            |
++---------+--------------+------------------------------------------------------------------+
+| [in]    | pszFilePath  | Complete file path of the component                              |
++---------+--------------+------------------------------------------------------------------+
+| [in]    | iType        | Type of the component. See category "ComponentType" for details. |
++---------+--------------+------------------------------------------------------------------+
+| [inout] | pResult      | Pointer to error code                                            |
++---------+--------------+------------------------------------------------------------------+
+
+**Returns:**
+
+Component handle or RTS_INVALID_HANDLE, if an error is occured
+
+.. _group___c_m_itf_1ga56333a0d1cd19a000279e9e4d8081ed3:
+
+RTS_RESULT CMInitComponent (RTS_HANDLE hComponent)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to initialize a component after it was loaded during runtime.
+
+**Parameters**
+
++---------+------------+-------------------------+
+| [in]    | hComponent | Handle of the component |
++---------+------------+-------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga350dd2e2f5d946935a49666022e0df99:
+
+RTS_RESULT CMImportFunctions (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to update the function pointers of the previous loaded components to let them point to the new added functions.
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1gac805a13f2f77fe14a3858261363b5179:
+
+RTS_RESULT CMExitComponent (RTS_HANDLE hComponent)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to exit a component after it was loaded during runtime. After this it can be unloaded, if no other components references this component
+
+**Parameters**
+
++---------+------------+-------------------------+
+| [in]    | hComponent | Handle of the component |
++---------+------------+-------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga58c619b84d82b9ce60512082705b6025:
+
+RTS_RESULT CMUnloadComponent (RTS_HANDLE hComponent)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to unload a component. Can also be called during runtime. ATTENTION: CMExitComponent must be called before unloading the component!
+
+**Parameters**
+
++---------+------------+-------------------------+
+| [in]    | hComponent | Handle of the component |
++---------+------------+-------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga1e4bba7ccea19081b151c03ff55afd7f:
+
+void cmunloadcomponent (cmunloadcomponent_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf_1ga49cdd0da5019acc57a5ff9be80b98250:
+
+RTS_HANDLE CMAddComponent (COMPONENT_ENTRY *pComponent, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add a component to the list
+
+**Parameters**
+
++---------+------------+----------------------------------+
+| [in]    | pComponent | Pointer to component description |
++---------+------------+----------------------------------+
+| [out]   | pResult    | Pointer to error code            |
++---------+------------+----------------------------------+
+
+**Returns:**
+
+returns a handle to the component
+
+.. _group___c_m_itf_1gaa51ef04014cca8cf9b54cbbe9c6c4849:
+
+RTS_RESULT CMRemoveComponent (RTS_HANDLE hComponent)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove a component from the list
+
+**Parameters**
+
++---------+------------+-------------------------+
+| [in]    | hComponent | Handle to the component |
++---------+------------+-------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1gac68bf9a9cecc1fb28e80766e318f68da:
+
+RTS_HANDLE CMGetComponentByName (char *pszCmpName, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the component handle of a component specified by name.
+
+**Parameters**
+
++---------+------------+-----------------------+
+| [in]    | pszCmpName | Name of the component |
++---------+------------+-----------------------+
+| [inout] | pResult    | Pointer to error code |
++---------+------------+-----------------------+
+
+**Returns:**
+
+Component handle or RTS_INVALID_HANDLE, if an error is occured
+
+.. _group___c_m_itf_1ga02299050371b37e830914f320d5c12dc:
+
+RTS_RESULT CMGetCmpId (char *pszCmpName, CMPID *pCmpId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the component id of a component specified by name. A component id always consists of the unique vendor id as high word and the specific component id as low word. So each component can be assigned to the specific vendor.
+
+**Parameters**
+
++---------+------------+-----------------------+
+| [in]    | pszCmpName | Name of the component |
++---------+------------+-----------------------+
+| [out]   | pCmpId     | Component id          |
++---------+------------+-----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga719bb8ef97383d2b7356552709ae0a60:
+
+RTS_RESULT CMGetCmpName (CMPID CmpId, char *pszCmpName, int iMaxCmpName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the component name of a component specified by the component id.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------+
+| [in]    | pCmpId      | Component id                            |
++---------+-------------+-----------------------------------------+
+| [out]   | pszCmpName  | Name of the component                   |
++---------+-------------+-----------------------------------------+
+| [in]    | iMaxCmpName | Max length of the component name buffer |
++---------+-------------+-----------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1gadc355a43dfbc02ac84969770f95db31a:
+
+COMPONENT_ENTRY* CMGetComponent (CMPID CmpId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the component description of a component specified by the component id.
+
+**Parameters**
+
++---------+--------+--------------+
+| [in]    | pCmpId | Component id |
++---------+--------+--------------+
+
+**Returns:**
+
+Pointer to COMPONENT_ENTRY
+
+.. _group___c_m_itf_1ga11cc52ad88fde02914914c1aba94bd2d:
+
+int CMGetNumOfComponents (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the number of registered components
+
+**Returns:**
+
+Number of components
+
+.. _group___c_m_itf_1gac5e13736913420c13d9f40d5953bd7f7:
+
+COMPONENT_ENTRY* CMGetComponentByIndex (int iIndex)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the registered component specified by index
+
+**Parameters**
+
++---------+--------+------------------------------------+
+| [in]    | iIndex | Index of the component in the list |
++---------+--------+------------------------------------+
+
+**Returns:**
+
+Pointer to component or NULL if index ist out of range
+
+.. _group___c_m_itf_1ga057df3fc4357231700e3f7ae17929f06:
+
+COMPONENT_ENTRY* CMGetFirstComponent (RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the first component entry
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [inout] | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Returns:**
+
+Pointer to component or NULL if no component available
+
+.. _group___c_m_itf_1ga970ace3d4a07bf7320d1456d2089bd89:
+
+COMPONENT_ENTRY* CMGetNextComponent (COMPONENT_ENTRY *pCmp, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the registered component specified by index
+
+**Parameters**
+
++---------+---------+-----------------------------------+
+| [in]    | pCmp    | Pointer to the previous component |
++---------+---------+-----------------------------------+
+| [inout] | pResult | Pointer to error code             |
++---------+---------+-----------------------------------+
+
+**Returns:**
+
+Pointer to component or NULL if end of list is reached
+
+.. _group___c_m_itf_1gaa436c3a1c4beaa5d333373ee43e7a82d:
+
+IBase* CMCreateInstance (CLASSID ClassId, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create an instance of a specified class.
+
+**Parameters**
+
++---------+---------+------------------------------------------+
+| [in]    | ClassId | ClassId of the class to create an object |
++---------+---------+------------------------------------------+
+| [out]   | pResult | Pointer to error code for result         |
++---------+---------+------------------------------------------+
+
+**Returns:**
+
+Pointer to IBase interface of the object
+
+.. _group___c_m_itf_1ga9742523d2433643388920756679c3237:
+
+RTS_RESULT CMDeleteInstance (IBase *pIBase)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete an instance.
+
+**Parameters**
+
++---------+--------+----------------------------+
+| [in]    | pIBase | Pointer to IBase interface |
++---------+--------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga4f4651646362b7183d5e16975fbfabf8:
+
+RTS_RESULT CMDeleteInstance2 (CLASSID ClassId, IBase *pIBase)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete an instance.
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | ClassId | ClassId of the instance    |
++---------+---------+----------------------------+
+| [in]    | pIBase  | Pointer to IBase interface |
++---------+---------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga0ac13021662eda794e70c99c0a16a6bc:
+
+IBase* CMGetInstance (CLASSID ClassId, OBJID ObjId, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get instance of a class.
+
+**Parameters**
+
++---------+---------+------------------------------------------+
+| [in]    | ClassId | ClassId of the class to create an object |
++---------+---------+------------------------------------------+
+| [in]    | ObjId   | Index number of the instance             |
++---------+---------+------------------------------------------+
+| [out]   | pResult | Pointer to error code for result         |
++---------+---------+------------------------------------------+
+
+**Returns:**
+
+Pointer to IBase interface of the object
+
+.. _group___c_m_itf_1ga94ecbc39aa43368f6e8b348397ab2fd2:
+
+RTS_RESULT CMRegisterInstance (CLASSID ClassId, OBJID ObjId, IBase *pIBase)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Register an exisiting instance to the component manager.
+
+**Parameters**
+
++---------+---------+------------------------------------------+
+| [in]    | ClassId | ClassId of the class to create an object |
++---------+---------+------------------------------------------+
+| [in]    | ObjId   | Index number of the instance             |
++---------+---------+------------------------------------------+
+| [out]   | pResult | Pointer to error code for result         |
++---------+---------+------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga8d66e0fb9a5b31201049092c3b71ca74:
+
+RTS_RESULT CMUnregisterInstance (IBase *pIBase)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unregister an existing instance from component manager.
+
+**Parameters**
+
++---------+--------+----------------------------+
+| [in]    | pIBase | Pointer to IBase interface |
++---------+--------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga84a11b1617c11fb3ce378354324b8363:
+
+RTS_RESULT CMGetInstanceList (ITFID ItfId, RTS_HANDLE hIBasePool)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get a list of instances, that implements the specified interface.
+
+**Parameters**
+
++---------+------------+----------------------------------------------------------------------------------------------------------+
+| [in]    | ItfId      | Id of the interface                                                                                      |
++---------+------------+----------------------------------------------------------------------------------------------------------+
+| [inout] | hIBasePool | Must be a MemPool handle. All instances that implements the interface are stored in this pool as result. |
++---------+------------+----------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1gade57c65791c54884d36898bb8062cb41:
+
+RTS_RESULT CMCallHook (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2, int bReverse)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to call all components with the specified hook
+
+**Parameters**
+
++---------+----------+-----------------------------------------------------------------+
+| [in]    | ulHook   | Hook (for definition, look into CmpItf.h)                       |
++---------+----------+-----------------------------------------------------------------+
+| [in]    | ulParam1 | First parameter. Hook dependant                                 |
++---------+----------+-----------------------------------------------------------------+
+| [in]    | ulParam2 | Second parameter. Hook dependant                                |
++---------+----------+-----------------------------------------------------------------+
+| [in]    | bReverse | Called the components in the opposite order as they were loaded |
++---------+----------+-----------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga7b331ee99c72c0ecb3ead290cfbd136b:
+
+RTS_RESULT CMCallHook2 (RTS_UI16 usComponentTypeMask, RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called to call all components with the specified type provided with the specified hook
+
+**Parameters**
+
++---------+---------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | usComponentTypeMask | ComponentType mask. See corresponding category RANGE=[CMPTYPE_ALL,CMPTYPE_SAFETY,CMPTYPE_STANDARD] |
++---------+---------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | ulHook              | Hook (for definition, look into CmpItf.h) RANGE=[CH_COMM_CYCLE,CMCALLHOOK_PSEUDOHOOK,RTS_UI32_MAX] |
++---------+---------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | ulParam1            | First parameter. Hook dependant RANGE=[0,CMCALLHOOK_TEST1]                                         |
++---------+---------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | ulParam2            | Second parameter. Hook dependant RANGE=[0,CMCALLHOOK_TEST2]                                        |
++---------+---------------------+----------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------+---------------------------------------------------------------------------+
+| ERR_OK      | Hookfunction successfully called                                          |
++-------------+---------------------------------------------------------------------------+
+| ERR_FAILED  | Component Pool not initialized or any Component responded with some error |
++-------------+---------------------------------------------------------------------------+
+| ERR_PENDING | Any Component responded with ERR_PENDING                                  |
++-------------+---------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga06b703bef3feaaffb8ba4cdb9cd74397:
+
+int CMIsDemo (void)
+^^^^^^^^^^^^^^^^^^^
+
+Routine to check, if runtime runs in demo mode
+**Returns:**
+
+1=Demo mode, 0=No demo
+
+.. _group___c_m_itf_1ga83b61cae6ab87284f41f66db8d1d76d0:
+
+RTS_RESULT CMInitEnd (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to complete the component manager initialization. Contains calling the hooks from CH_INIT2 to CH_INIT_COMM.
+**Returns:**
+
+- ERR_OK
+
+- ERR_DUPLICATE: If init end is still done, this error message will be returned
+
+.. _group___c_m_itf_1gac0e6df0a0f013fcb877e42cf151e9de4:
+
+RTS_RESULT CMCheckSysTargetSignature (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Functtion checks, if the SysTarget component is originally signed and was not modified.
+
+**Returns:**
+
+error code: ERR_OK: SysTarget is signed, ERR_FAILED: SysTarget was modified or is unsigned
+
+.. _group___c_m_itf_1ga71a6d1c1d634ba5674c749ab43cc2fd3:
+
+RTS_UI32 CMGetUserLicenseValue (RTS_UI32 ulLicenseID, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to check the license of a feature
+
+**Parameters**
+
++---------+-------------+----------------------------------------+
+| [in]    | ulLicenseID | HIGHWORD: VendorID, LOWWORD: FeatureID |
++---------+-------------+----------------------------------------+
+| [out]   | pResult     | Pointer to error code                  |
++---------+-------------+----------------------------------------+
+
+**Returns:**
+
+LICENSE_INVALID, LICENSE_NOT_AVAILABLE (Demo mode) or specific license code
+
+**Return values**
+
++-------------------+------------------------------------------------------------+
+| ERR_OK            | Specific license code or LICENSE_NOT_AVAILABLE (Demo mode) |
++-------------------+------------------------------------------------------------+
+| ERR_FAILED        | Not licensed                                               |
++-------------------+------------------------------------------------------------+
+| ERR_NOT_SUPPORTED | License library is not registered                          |
++-------------------+------------------------------------------------------------+
+
+.. _group___c_m_itf_1gaa10334cd8ee8526d53dd42ab106b8e2f:
+
+RTS_UI32 CMReqDynLicChallenge (RTS_UI32 ulLicenseID, RTS_UI32 ulNewLicenseValue, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Parameters**
+
++---------+-------------+----------------------------------------+
+| [in]    | ulLicenseID | HIGHWORD: VendorID, LOWWORD: FeatureID |
++---------+-------------+----------------------------------------+
+| [out]   | pResult     | Pointer to error code                  |
++---------+-------------+----------------------------------------+
+
+.. _group___c_m_itf_1ga6f1f5d71e33840937959d2f2d0c166f3:
+
+int CMConfDynLicChallenge (RTS_UI32 ulLicenseID, RTS_UI32 ulNewLicenseValue, RTS_UI32 ulChallenge, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Parameters**
+
++---------+-------------+----------------------------------------+
+| [in]    | ulLicenseID | HIGHWORD: VendorID, LOWWORD: FeatureID |
++---------+-------------+----------------------------------------+
+| [out]   | pResult     | Pointer to error code                  |
++---------+-------------+----------------------------------------+
+
+.. _group___c_m_itf_1ga0c684457436b2dd561191e8767817587:
+
+RTS_RESULT CMCallExtraCommCycleHook (RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to call the CommCycleHook of all components from outside the CM, if neccessary. This function is intended to be called on singletasking systems (with CmpScheduleTimer or CmpScheduleEmbedded) during long lasting operations. For example SysFlash calls this function to keep the communication alive during writing long memory areas. Before calling the CommCycleHook, the function internally checks the following conditions:
+
+- Is SysTask implemented?
+
+- Is the less then the configured time since the last call of the CommCycleHook elapsed? If one of this conditions is true, the hook is not called. This allows to use this function without doing these checks locally in the caller. On multitasking systems this function has no effect. Use AsyncServices instead.
+
+**Parameters**
+
++---------+----------+---------------------------------------------------------+
+| [in]    | ulParam1 | Type of the COMM_CYCLE_HOOK. See CM_HOOK_TYPE... types. |
++---------+----------+---------------------------------------------------------+
+| [in]    | ulParam2 | Second parameter. Hook dependant, typically 0           |
++---------+----------+---------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___c_m_itf_1ga95ab8e8b3a6ed2e8a67429e64eebf46e:
+
+RTS_UI32 CMGetCurrentHook (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function returns the current hook function, that is called by the component manager
+
+**Returns:**
+
+Current hook
+
+.. _group___c_m_itf_1gaca15661884ff93447533796c38f62c5f:
+
+RTS_RESULT CMIsOperationDisabled (CMPID cmpId, RTS_UI32 ulOperation, CMPID *pCmpIdDisabled)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function can be called from each component to disable single operations. If this function is called, the event EVT_CmpMgr_DisableOperation is sent to disable this operation from any component or IEC program.
+
+**Returns:**
+
+- ERR_OK: Operation is disabled
+
+- ERR_FAILED: Operation is enabled [default]
+
+- ERR_NOT_SUPPORTED: Cannot be retrieved, because the event is not available
+
+.. _group___c_m_itf_1ga8f596715677be928e9f97e05c72202b3:
+
+RTS_RESULT CMProfiling (char *pszInfo, CMPID cmpId, char *pszComponentName, char *pszModuleName, RTS_I32 nLine, RTS_I32 iID)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Central function for profiling
+
+**Returns:**
+
+Error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,64 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagcmptlsaccept__struct:
+
+=======================================
+tagcmptlsaccept_struct Struct Reference
+=======================================
+
+| #include ":ref:`CmpTlsItf.h <_cmp_tls_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_HANDLE :ref:`hTlsConn <structtagcmptlsaccept__struct_1aefd0152b4b8bb886f541d1700496a064>`
+- RTS_IEC_RESULT :ref:`CmpTlsAccept <structtagcmptlsaccept__struct_1a8cdc85bcfc3479c838690eb8f202f79f>`
+
+Detailed Description
+--------------------
+
+Starts handshaking on the server side. The client has to initiate the handshaking. This is the first function call on the serverside after establishing the unterlaying connection. Data has to be received first. This function will is likley to read and write data.
+
+:return: Result of this operation. May be one of these values:
+
+- ERR_OK: No error. Everything worked as expected.
+
+- ERR_NOTINITIALIZED: The TLS component was not initialized proberly.
+
+- ERR_TLS_CONNECTION_CLOSED: The TLS connection is closed. Use TlsShutdown to shutdown locally.
+
+- ERR_TLS_WANT_READ: The operation needs TO read data FROM the IO system. There is no data available.
+
+- ERR_TLS_WANT_WRITE: The operation needs to write data to the IO system. This is not possible.
+
+- ERR_TLS_RETRY_OPERATION: Something went wrong. Try the same function call again
+
+- ERR_TLS_IO_SYSTEM: An error in the unterlaying IO system.
+
+- ERR_TLS_INTERNAL: An internal Error of the TLS Component
+
+- ERR_FAILED: Unknown error.
+
+Field Documentation
+-------------------
+
+.. _structtagcmptlsaccept__struct_1aefd0152b4b8bb886f541d1700496a064:
+
+RTS_IEC_HANDLE tagcmptlsaccept_struct::hTlsConn
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagcmptlsaccept__struct_1a8cdc85bcfc3479c838690eb8f202f79f:
+
+RTS_IEC_RESULT tagcmptlsaccept_struct::CmpTlsAccept
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpTlsItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

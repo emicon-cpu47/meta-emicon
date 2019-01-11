@@ -1,0 +1,94 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtag_variable_information_struct4:
+
+==============================================
+tagVariableInformationStruct4 Struct Reference
+==============================================
+
+| #include ":ref:`IecVarAccess_ItfsItf.h <_iec_var_access___itfs_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_WORD :ref:`wStructSize <structtag_variable_information_struct4_1a2a1bc08c937359e16d8d4e3655f2fde7>`
+- RTS_IEC_WORD :ref:`wFlags <structtag_variable_information_struct4_1a3c144b41b03acf5205d24204f1615d84>`
+- RTS_IEC_XWORD :ref:`dwOffset <structtag_variable_information_struct4_1a43fc38f4d5d7cc0da2c361cb3483f445>`
+- RTS_IEC_BYTE :ref:`byBitOffset <structtag_variable_information_struct4_1a137c80cad9944d78db580a786ae3d6d6>`
+- RTS_IEC_WORD :ref:`wMethodMemberIndex <structtag_variable_information_struct4_1a992788630c5b5b68d7cd044ddb2074c0>`
+- RTS_IEC_XWORD :ref:`xwMonitoringOffset <structtag_variable_information_struct4_1a958fea4b9fae609dbaced5e45140057f>`
+- RTS_IEC_XWORD :ref:`xwMonitoringSize <structtag_variable_information_struct4_1a62d08526fc025aebc4a6ef203363021c>`
+- RTS_IEC_DWORD :ref:`dwArrayOfArrayNesting <structtag_variable_information_struct4_1a5ccf6ea56346a63d23282d6b290963e4>`
+- RTS_IEC_HANDLE :ref:`hBrowseInfo <structtag_variable_information_struct4_1a9e23f6aec689eb79c44c0d0718cbaa18>`
+- RTS_IEC_BYTE :ref:`aBrowseInfoPool <structtag_variable_information_struct4_1a9aee9c9c8fd7db05c7ad8923a97f186b>`[28]
+
+Detailed Description
+--------------------
+
+WARNING! If you pass this struct to the IecVarAccess or CmpIecVarAccess, it MUST be initialized with IIecVarAccess9.VarAccInitVarInfo() or :ref:`IecVarAccInitVarInfo() <group___cmp_iec_var_access_itf_1ga722faf6483e1c0cd61756b40902b2391>` before usage, and it MUST be cleaned up with IIecVarAccess9.VarAccExitVarInfo() or :ref:`IecVarAccExitVarInfo() <group___cmp_iec_var_access_itf_1ga97b0fe9ad9fd0abb7adb9011b834165f>` . Weird side effects including crashes and memory leaks will result if you do not adhere to this rule.
+
+The new member wMethodMemberIndex nicely fits into an existing gap within the VariableInformationStruct3 struct. Depending on the architecture and global pack mode settings, we either have 3 bytes or 7 bytes gap. wMethodMemberIndex uses 2 bytes, thus a further byte is available for further use. The resulting struct size, which is also stored in the member wStructSize, is unchanged compared to the VariableInformationStruct3 struct. This allows us to implement executables without dynamic allocation in the runtime. Access is additionally guarded by VIF_EXECUTABLE_MEMBER.
+
+Field Documentation
+-------------------
+
+.. _structtag_variable_information_struct4_1a2a1bc08c937359e16d8d4e3655f2fde7:
+
+RTS_IEC_WORD tagVariableInformationStruct4::wStructSize
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtag_variable_information_struct4_1a3c144b41b03acf5205d24204f1615d84:
+
+RTS_IEC_WORD tagVariableInformationStruct4::wFlags
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtag_variable_information_struct4_1a43fc38f4d5d7cc0da2c361cb3483f445:
+
+RTS_IEC_XWORD tagVariableInformationStruct4::dwOffset
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtag_variable_information_struct4_1a137c80cad9944d78db580a786ae3d6d6:
+
+RTS_IEC_BYTE tagVariableInformationStruct4::byBitOffset
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtag_variable_information_struct4_1a992788630c5b5b68d7cd044ddb2074c0:
+
+RTS_IEC_WORD tagVariableInformationStruct4::wMethodMemberIndex
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtag_variable_information_struct4_1a958fea4b9fae609dbaced5e45140057f:
+
+RTS_IEC_XWORD tagVariableInformationStruct4::xwMonitoringOffset
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtag_variable_information_struct4_1a62d08526fc025aebc4a6ef203363021c:
+
+RTS_IEC_XWORD tagVariableInformationStruct4::xwMonitoringSize
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtag_variable_information_struct4_1a5ccf6ea56346a63d23282d6b290963e4:
+
+RTS_IEC_DWORD tagVariableInformationStruct4::dwArrayOfArrayNesting
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtag_variable_information_struct4_1a9e23f6aec689eb79c44c0d0718cbaa18:
+
+RTS_IEC_HANDLE tagVariableInformationStruct4::hBrowseInfo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtag_variable_information_struct4_1a9aee9c9c8fd7db05c7ad8923a97f186b:
+
+RTS_IEC_BYTE tagVariableInformationStruct4::aBrowseInfoPool[28]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/IecVarAccess_ItfsItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

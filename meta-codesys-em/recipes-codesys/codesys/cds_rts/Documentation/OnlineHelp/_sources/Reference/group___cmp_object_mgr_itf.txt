@@ -1,0 +1,309 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_object_mgr_itf:
+
+===============
+CmpObjectMgrItf
+===============
+
+Interface of CmpObjectMgr
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. :ref:`More... <group___cmp_object_mgr_itf-details>`
+
+Modules
+-------
+
+- :ref:`Static defines <group___cmp_object_mgr_itf___staticdefines>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpObjectMgr_C <struct_i_cmp_object_mgr___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpObjectMgr <group___cmp_object_mgr_itf_1gade14686b2869db80787cbbd6308e7289>`
+
+- #define :ref:`EXTITF_CmpObjectMgr <group___cmp_object_mgr_itf_1gabab4fb0780f61e517a9652c65b7093ae>`
+
+Typedefs
+--------
+
+- typedef RTS_UI32 :ref:`IKKey <group___cmp_object_mgr_itf_1ga9734b08e685b07e8fcde602baae35c9d>`
+
+- typedef :ref:`ICmpObjectMgr_C <struct_i_cmp_object_mgr___c>` :ref:`ICmpObjectMgr <group___cmp_object_mgr_itf_1ga8b601bfc9cf1561cf1e520224476cd0c>`
+
+Functions
+---------
+
+- RTS_HANDLE :ref:`ObjManDictionaryOpen <group___cmp_object_mgr_itf_1ga416ba3763a2fb0cadebc59d99110e595>` (CMPID CmpId, RTS_SIZE capacity, RTS_BOOL bRequireSync)
+
+- RTS_RESULT :ref:`ObjManDictionaryClose <group___cmp_object_mgr_itf_1gac520cdddb0e1c9cef5b1378314eec8e4>` (RTS_HANDLE hDictionary)
+
+- :ref:`IKKey <group___cmp_object_mgr_itf_1ga9734b08e685b07e8fcde602baae35c9d>` :ref:`ObjManDictionaryAddObject <group___cmp_object_mgr_itf_1gafd62618b545760e9ee2df06db3f94aa1>` (RTS_HANDLE hDictionary, RTS_HANDLE hObject)
+
+- RTS_RESULT :ref:`ObjManDictionaryRemoveObject <group___cmp_object_mgr_itf_1gac83713b431a743182478c87a3934532f>` (RTS_HANDLE hDictionary, RTS_HANDLE hObject)
+
+- RTS_RESULT :ref:`ObjManDictionaryRemoveKey <group___cmp_object_mgr_itf_1gab278e22fc26dbf1356bbee04a275c347>` (RTS_HANDLE hDictionary, :ref:`IKKey <group___cmp_object_mgr_itf_1ga9734b08e685b07e8fcde602baae35c9d>`  key)
+
+- RTS_RESULT :ref:`ObjManDictionaryClear <group___cmp_object_mgr_itf_1gae0c0dceedd772082da98c5baad2cd9ab>` (RTS_HANDLE hDictionary)
+
+- RTS_RESULT :ref:`ObjManDictionaryGetSize <group___cmp_object_mgr_itf_1ga2c499c36955057f8a38762c2ffa85cf5>` (RTS_HANDLE hDictionary, RTS_SIZE * pSize)
+
+- :ref:`IKKey <group___cmp_object_mgr_itf_1ga9734b08e685b07e8fcde602baae35c9d>` :ref:`ObjManDictionaryGetKey <group___cmp_object_mgr_itf_1ga5733c2441d0556e113e4aab701819ae5>` (RTS_HANDLE hDictionary, RTS_HANDLE hObject)
+
+- RTS_HANDLE :ref:`ObjManDictionaryGetObject <group___cmp_object_mgr_itf_1gab91271660ea20b4e36d71983ac49d14c>` (RTS_HANDLE hDictionary, :ref:`IKKey <group___cmp_object_mgr_itf_1ga9734b08e685b07e8fcde602baae35c9d>`  key)
+
+.. _group___cmp_object_mgr_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpObjectMgr
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_object_mgr_itf_1gade14686b2869db80787cbbd6308e7289:
+
+#define ITF_CmpObjectMgr
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_object_mgr_itf_1gabab4fb0780f61e517a9652c65b7093ae:
+
+#define EXTITF_CmpObjectMgr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_object_mgr_itf_1ga9734b08e685b07e8fcde602baae35c9d:
+
+typedef RTS_UI32 IKKey
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_object_mgr_itf_1ga8b601bfc9cf1561cf1e520224476cd0c:
+
+typedef ICmpObjectMgr_C ICmpObjectMgr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_object_mgr_itf_1ga416ba3763a2fb0cadebc59d99110e595:
+
+RTS_HANDLE ObjManDictionaryOpen (CMPID CmpId, RTS_SIZE capacity, RTS_BOOL bRequireSync)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Opens an object dictionary for the component with CmpId.
+
+This routine should be called during one of the early phases of system initialization process.
+
+One component can open a single dictionary only.
+
+**Parameters**
+
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | CmpId        | Specifies a component ID                                                          |
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | capacity     | Supplies the size for the dictionary. The more capacity, the better performance.. |
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | bRequireSync | if TRUE, sets a requirement to create a thread-safe dictionary for this component |
++---------+--------------+-----------------------------------------------------------------------------------+
+
+**Returns:**
+
+Returns a handle to an object dictionary
+
+.. _group___cmp_object_mgr_itf_1gac520cdddb0e1c9cef5b1378314eec8e4:
+
+RTS_RESULT ObjManDictionaryClose (RTS_HANDLE hDictionary)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Closes an object dictionary.
+
+This routine should be called during one of the late phases of system shutdown process.
+
+**Parameters**
+
++---------+-------------+---------------------------------------------------------+
+| [in]    | hDictionary | Supplies a handle to a dictionary that has to be closed |
++---------+-------------+---------------------------------------------------------+
+
+**Returns:**
+
+Error code:
+
+- ERR_OK: Dictionary has been closed successfully
+
+- ERR_PARAMETER: Invalid handle passed as the routine parameter
+
+- ERR_FAILED: Failed to close a dictionary
+
+.. _group___cmp_object_mgr_itf_1gafd62618b545760e9ee2df06db3f94aa1:
+
+IKKey ObjManDictionaryAddObject (RTS_HANDLE hDictionary, RTS_HANDLE hObject)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Adds an object to a dictionary returning a 32-bit key.
+
+**Parameters**
+
++---------+-------------+---------------------------------------------------------------------+
+| [in]    | hDictionary | Supplies a handle to a dictionary                                   |
++---------+-------------+---------------------------------------------------------------------+
+| [in]    | hObject     | Supplies a handle to an object that has to be added to a dictionary |
++---------+-------------+---------------------------------------------------------------------+
+
+**Returns:**
+
+Returns a key to an object, or IKHS_NO_KEY in case of failure
+
+.. _group___cmp_object_mgr_itf_1gac83713b431a743182478c87a3934532f:
+
+RTS_RESULT ObjManDictionaryRemoveObject (RTS_HANDLE hDictionary, RTS_HANDLE hObject)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Removes an object from a dictionary.
+
+**Parameters**
+
++---------+-------------+-------------------------------------------------------------------------+
+| [in]    | hDictionary | Supplies a handle to a dictionary                                       |
++---------+-------------+-------------------------------------------------------------------------+
+| [in]    | hObject     | Supplies a handle to an object that has to be removed from a dictionary |
++---------+-------------+-------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code:
+
+- ERR_OK: Object has been removed successfully
+
+- ERR_PARAMETER: Invalid handle passed as the routine parameter
+
+- ERR_FAILED: Object not found
+
+.. _group___cmp_object_mgr_itf_1gab278e22fc26dbf1356bbee04a275c347:
+
+RTS_RESULT ObjManDictionaryRemoveKey (RTS_HANDLE hDictionary, IKKey key)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Removes an object from a dictionary by a key.
+
+**Parameters**
+
++---------+-------------+----------------------------------------------------------------------+
+| [in]    | hDictionary | Supplies a handle to a dictionary                                    |
++---------+-------------+----------------------------------------------------------------------+
+| [in]    | key         | Supplies a key to an object that has to be removed from a dictionary |
++---------+-------------+----------------------------------------------------------------------+
+
+**Returns:**
+
+Error code:
+
+- ERR_OK: Object has been removed successfully
+
+- ERR_PARAMETER: Invalid handle or key passed as the routine parameter
+
+- ERR_FAILED: Object not found
+
+.. _group___cmp_object_mgr_itf_1gae0c0dceedd772082da98c5baad2cd9ab:
+
+RTS_RESULT ObjManDictionaryClear (RTS_HANDLE hDictionary)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Clears a dictionary.
+
+**Parameters**
+
++---------+-------------+-----------------------------------+
+| [in]    | hDictionary | Supplies a handle to a dictionary |
++---------+-------------+-----------------------------------+
+
+**Returns:**
+
+Error code:
+
+- ERR_OK: Dictionary has been cleared successfully
+
+- ERR_PARAMETER: Invalid handle passed as the routine parameter
+
+- ERR_FAILED: Dictionary not found
+
+.. _group___cmp_object_mgr_itf_1ga2c499c36955057f8a38762c2ffa85cf5:
+
+RTS_RESULT ObjManDictionaryGetSize (RTS_HANDLE hDictionary, RTS_SIZE *pSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the number of elements in a dictionary.
+
+**Parameters**
+
++---------+-------------+-------------------------------------------------+
+| [in]    | hDictionary | Supplies a handle to a dictionary               |
++---------+-------------+-------------------------------------------------+
+| [out]   | pSize       | Contains the number of elements in a dictionary |
++---------+-------------+-------------------------------------------------+
+
+**Returns:**
+
+Error code:
+
+- ERR_OK: pSize contains some valid value
+
+- ERR_PARAMETER: Invalid handle or null pointer passed as the routine parameter
+
+- ERR_FAILED: Dictionary not found
+
+.. _group___cmp_object_mgr_itf_1ga5733c2441d0556e113e4aab701819ae5:
+
+IKKey ObjManDictionaryGetKey (RTS_HANDLE hDictionary, RTS_HANDLE hObject)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns a 32-bit key for an object previously added to a dictionary.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------+
+| [in]    | hDictionary | Supplies a handle to a dictionary                               |
++---------+-------------+-----------------------------------------------------------------+
+| [in]    | hObject     | Supplies a handle to an object previously added to a dictionary |
++---------+-------------+-----------------------------------------------------------------+
+
+**Returns:**
+
+Returns a key to an object, or IKHS_NO_KEY in case of failure
+
+.. _group___cmp_object_mgr_itf_1gab91271660ea20b4e36d71983ac49d14c:
+
+RTS_HANDLE ObjManDictionaryGetObject (RTS_HANDLE hDictionary, IKKey key)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns a handle to an object by a key.
+
+**Parameters**
+
++---------+-------------+--------------------------------------------------------------+
+| [in]    | hDictionary | Supplies a handle to a dictionary                            |
++---------+-------------+--------------------------------------------------------------+
+| [in]    | key         | Supplies a key to an object previously added to a dictionary |
++---------+-------------+--------------------------------------------------------------+
+
+**Returns:**
+
+Returns a handle to an object, or RTS_INVALID_HANDLE in case of failure
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

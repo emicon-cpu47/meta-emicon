@@ -1,0 +1,241 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Varlist flags &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Varlist flags</a><ul>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-vlf-motorola-byte-order-0x00000001">#define VLF_MOTOROLA_BYTE_ORDER 0x00000001</a></li>
+<li><a class="reference internal" href="#define-vlf-consistent-background-read-0x00000002">#define VLF_CONSISTENT_BACKGROUND_READ 0x00000002</a></li>
+<li><a class="reference internal" href="#define-vlf-consistent-vlf-consistent-background-read">#define VLF_CONSISTENT <code class="docutils literal"><span class="pre">VLF_CONSISTENT_BACKGROUND_READ</span></code></a></li>
+<li><a class="reference internal" href="#define-vlf-data-change-0x00000004">#define VLF_DATA_CHANGE 0x00000004</a></li>
+<li><a class="reference internal" href="#define-vlf-extendable-0x00000008">#define VLF_EXTENDABLE 0x00000008</a></li>
+<li><a class="reference internal" href="#define-vlf-extendable-supported-0x00000010">#define VLF_EXTENDABLE_SUPPORTED 0x00000010</a></li>
+<li><a class="reference internal" href="#define-vlf-access-by-varhandle-0x00000020">#define VLF_ACCESS_BY_VARHANDLE 0x00000020</a></li>
+<li><a class="reference internal" href="#define-vlf-split-huge-variables-0x00000040">#define VLF_SPLIT_HUGE_VARIABLES 0x00000040</a></li>
+<li><a class="reference internal" href="#define-vlf-consistent-synchronized-read-0x00000080">#define VLF_CONSISTENT_SYNCHRONIZED_READ 0x00000080</a></li>
+<li><a class="reference internal" href="#define-vlf-consistent-synchronized-write-0x00000100">#define VLF_CONSISTENT_SYNCHRONIZED_WRITE 0x00000100</a></li>
+<li><a class="reference internal" href="#define-vlf-consistency-supported-0x00000200">#define VLF_CONSISTENCY_SUPPORTED 0x00000200</a></li>
+<li><a class="reference internal" href="#define-vlf-execute-consistent-read-0x00000400">#define VLF_EXECUTE_CONSISTENT_READ 0x00000400</a></li>
+<li><a class="reference internal" href="#define-vlf-execute-consistent-write-0x00000800">#define VLF_EXECUTE_CONSISTENT_WRITE 0x00000800</a></li>
+<li><a class="reference internal" href="#define-vlf-return-varinfo-0x00001000">#define VLF_RETURN_VARINFO 0x00001000</a></li>
+<li><a class="reference internal" href="#define-vlf-timestamp-utc-0x00010000">#define VLF_TIMESTAMP_UTC 0x00010000</a></li>
+<li><a class="reference internal" href="#define-vlf-timestamp-timedate-0x00020000">#define VLF_TIMESTAMP_TIMEDATE 0x00020000</a></li>
+<li><a class="reference internal" href="#define-vlf-timestamp-ms-0x00040000">#define VLF_TIMESTAMP_MS 0x00040000</a></li>
+<li><a class="reference internal" href="#define-vlf-timestamp-us-0x00080000">#define VLF_TIMESTAMP_US 0x00080000</a></li>
+<li><a class="reference internal" href="#define-vlf-timestamp-ns-0x00100000">#define VLF_TIMESTAMP_NS 0x00100000</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_iec_var_access_itf___varlistflags.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="varlist-flags">
+<span id="group-cmp-iec-var-access-itf-varlistflags"></span><h1>Varlist flags<a class="headerlink" href="#varlist-flags" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_browse_branch_node.html#struct-browse-branch-node"><span class="std std-ref">BrowseBranchNode</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1gaf4a3de8ce339a2712f0948d61e5ee25c"><span class="std std-ref">VLF_MOTOROLA_BYTE_ORDER</span></a> 0x00000001</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1ga166b0ecae4c99fc33583f8accd271b51"><span class="std std-ref">VLF_CONSISTENT_BACKGROUND_READ</span></a> 0x00000002</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1ga86e1f0d61417a6e7a63e7658c030da91"><span class="std std-ref">VLF_CONSISTENT</span></a> <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1ga166b0ecae4c99fc33583f8accd271b51"><span class="std std-ref">VLF_CONSISTENT_BACKGROUND_READ</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1ga09387a6a0a69b52640bf512b347dca44"><span class="std std-ref">VLF_DATA_CHANGE</span></a> 0x00000004</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1ga1536583b71fe8775791fc69dfcb5b98a"><span class="std std-ref">VLF_EXTENDABLE</span></a> 0x00000008</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1gadde7d6408e9380f39735bec605e80259"><span class="std std-ref">VLF_EXTENDABLE_SUPPORTED</span></a> 0x00000010</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1ga1ed15b4fa97c5d03bb582664f1b9a41e"><span class="std std-ref">VLF_ACCESS_BY_VARHANDLE</span></a> 0x00000020</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1gacf2a1b407f21a211991e7ea88258bcb2"><span class="std std-ref">VLF_SPLIT_HUGE_VARIABLES</span></a> 0x00000040</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1ga43509272ebbfd00ac4a157d703905380"><span class="std std-ref">VLF_CONSISTENT_SYNCHRONIZED_READ</span></a> 0x00000080</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1gaa7450ccbed9656f8cd01a0fd6d117f9d"><span class="std std-ref">VLF_CONSISTENT_SYNCHRONIZED_WRITE</span></a> 0x00000100</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1gae02dced163d6f885359a33ceb11f414e"><span class="std std-ref">VLF_CONSISTENCY_SUPPORTED</span></a> 0x00000200</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1gad1785b28968292927a4dcc74ec2a854e"><span class="std std-ref">VLF_EXECUTE_CONSISTENT_READ</span></a> 0x00000400</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1ga1ff62cc06b799d2d992cd23e4a8dd309"><span class="std std-ref">VLF_EXECUTE_CONSISTENT_WRITE</span></a> 0x00000800</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1gab9111086a0d096539bd273bddf4c6b72"><span class="std std-ref">VLF_RETURN_VARINFO</span></a> 0x00001000</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1gab5c2e218167fd09827406540ba529105"><span class="std std-ref">VLF_TIMESTAMP_UTC</span></a> 0x00010000</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1gaa41325cf1cd9d3815bca1a363808ea70"><span class="std std-ref">VLF_TIMESTAMP_TIMEDATE</span></a> 0x00020000</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1ga79cf13ffce1acecfdc37dbdd9573956f"><span class="std std-ref">VLF_TIMESTAMP_MS</span></a> 0x00040000</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1ga40b04f20d29bb48116bb89e062f6fe3b"><span class="std std-ref">VLF_TIMESTAMP_US</span></a> 0x00080000</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1ga1fe09cf526e4c2e5ca2ceeffac6c5fc8"><span class="std std-ref">VLF_TIMESTAMP_NS</span></a> 0x00100000</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-iec-var-access-itf-varlistflags-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-vlf-motorola-byte-order-0x00000001">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1gaf4a3de8ce339a2712f0948d61e5ee25c"></span><h3>#define VLF_MOTOROLA_BYTE_ORDER 0x00000001<a class="headerlink" href="#define-vlf-motorola-byte-order-0x00000001" title="Permalink to this headline">¶</a></h3>
+<p>Motorola byte order (big endian)</p>
+</div>
+<div class="section" id="define-vlf-consistent-background-read-0x00000002">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1ga166b0ecae4c99fc33583f8accd271b51"></span><h3>#define VLF_CONSISTENT_BACKGROUND_READ 0x00000002<a class="headerlink" href="#define-vlf-consistent-background-read-0x00000002" title="Permalink to this headline">¶</a></h3>
+<p>Communication task tries to read the variables in the background. If it is not possible to read all variables without interruption of the IEC tasks during the consistancy timeout the read request is denied with an error result ERR_NO_CONSISTENCY!</p>
+</div>
+<div class="section" id="define-vlf-consistent-vlf-consistent-background-read">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1ga86e1f0d61417a6e7a63e7658c030da91"></span><h3>#define VLF_CONSISTENT <a class="reference internal" href="#group-cmp-iec-var-access-itf-varlistflags-1ga166b0ecae4c99fc33583f8accd271b51"><span class="std std-ref">VLF_CONSISTENT_BACKGROUND_READ</span></a><a class="headerlink" href="#define-vlf-consistent-vlf-consistent-background-read" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-vlf-data-change-0x00000004">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1ga09387a6a0a69b52640bf512b347dca44"></span><h3>#define VLF_DATA_CHANGE 0x00000004<a class="headerlink" href="#define-vlf-data-change-0x00000004" title="Permalink to this headline">¶</a></h3>
+<p>Only variables, which values changed, are transmitted</p>
+</div>
+<div class="section" id="define-vlf-extendable-0x00000008">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1ga1536583b71fe8775791fc69dfcb5b98a"></span><h3>#define VLF_EXTENDABLE 0x00000008<a class="headerlink" href="#define-vlf-extendable-0x00000008" title="Permalink to this headline">¶</a></h3>
+<p>Client requests to work with varlists, which can extend the comm buffer</p>
+</div>
+<div class="section" id="define-vlf-extendable-supported-0x00000010">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1gadde7d6408e9380f39735bec605e80259"></span><h3>#define VLF_EXTENDABLE_SUPPORTED 0x00000010<a class="headerlink" href="#define-vlf-extendable-supported-0x00000010" title="Permalink to this headline">¶</a></h3>
+<p>PLC supports varlists, which can extend the comm buffer</p>
+</div>
+<div class="section" id="define-vlf-access-by-varhandle-0x00000020">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1ga1ed15b4fa97c5d03bb582664f1b9a41e"></span><h3>#define VLF_ACCESS_BY_VARHANDLE 0x00000020<a class="headerlink" href="#define-vlf-access-by-varhandle-0x00000020" title="Permalink to this headline">¶</a></h3>
+<p>Client accesses not the complete list, but only the specified vars of the list</p>
+</div>
+<div class="section" id="define-vlf-split-huge-variables-0x00000040">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1gacf2a1b407f21a211991e7ea88258bcb2"></span><h3>#define VLF_SPLIT_HUGE_VARIABLES 0x00000040<a class="headerlink" href="#define-vlf-split-huge-variables-0x00000040" title="Permalink to this headline">¶</a></h3>
+<p>Client can also read variables, which are larger than the communication buffer</p>
+</div>
+<div class="section" id="define-vlf-consistent-synchronized-read-0x00000080">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1ga43509272ebbfd00ac4a157d703905380"></span><h3>#define VLF_CONSISTENT_SYNCHRONIZED_READ 0x00000080<a class="headerlink" href="#define-vlf-consistent-synchronized-read-0x00000080" title="Permalink to this headline">¶</a></h3>
+<p>Communication task waits for an IEC task gap and blocks the IEC tasks until the values are copied from the IEC variables to the cache</p>
+</div>
+<div class="section" id="define-vlf-consistent-synchronized-write-0x00000100">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1gaa7450ccbed9656f8cd01a0fd6d117f9d"></span><h3>#define VLF_CONSISTENT_SYNCHRONIZED_WRITE 0x00000100<a class="headerlink" href="#define-vlf-consistent-synchronized-write-0x00000100" title="Permalink to this headline">¶</a></h3>
+<p>Communication task waits for an IEC task gap and blocks the IEC tasks until the values are copied from the cache into the IEC variables</p>
+</div>
+<div class="section" id="define-vlf-consistency-supported-0x00000200">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1gae02dced163d6f885359a33ceb11f414e"></span><h3>#define VLF_CONSISTENCY_SUPPORTED 0x00000200<a class="headerlink" href="#define-vlf-consistency-supported-0x00000200" title="Permalink to this headline">¶</a></h3>
+<p>PLC supports the requested consistency (VLF_CONSISTENT_BACKGROUND_READ, VLF_CONSISTENT_SYNCHRONIZED_READ or VLF_CONSISTENT_SYNCHRONIZED_WRITE)</p>
+</div>
+<div class="section" id="define-vlf-execute-consistent-read-0x00000400">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1gad1785b28968292927a4dcc74ec2a854e"></span><h3>#define VLF_EXECUTE_CONSISTENT_READ 0x00000400<a class="headerlink" href="#define-vlf-execute-consistent-read-0x00000400" title="Permalink to this headline">¶</a></h3>
+<p>Flag to mark the first read service of a variable list to read in all values consistent in the cache</p>
+</div>
+<div class="section" id="define-vlf-execute-consistent-write-0x00000800">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1ga1ff62cc06b799d2d992cd23e4a8dd309"></span><h3>#define VLF_EXECUTE_CONSISTENT_WRITE 0x00000800<a class="headerlink" href="#define-vlf-execute-consistent-write-0x00000800" title="Permalink to this headline">¶</a></h3>
+<p>Flag to mark the last write service of a variable list to write out all values consistent from the cache into the IEC variables</p>
+</div>
+<div class="section" id="define-vlf-return-varinfo-0x00001000">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1gab9111086a0d096539bd273bddf4c6b72"></span><h3>#define VLF_RETURN_VARINFO 0x00001000<a class="headerlink" href="#define-vlf-return-varinfo-0x00001000" title="Permalink to this headline">¶</a></h3>
+<p>Return complete VarInfo to client, to let the client retrieve the variable the next time by varinfo instead of name</p>
+</div>
+<div class="section" id="define-vlf-timestamp-utc-0x00010000">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1gab5c2e218167fd09827406540ba529105"></span><h3>#define VLF_TIMESTAMP_UTC 0x00010000<a class="headerlink" href="#define-vlf-timestamp-utc-0x00010000" title="Permalink to this headline">¶</a></h3>
+<p>Timestamp in UTC (Universal Time Coordinated), at which the values are read</p>
+</div>
+<div class="section" id="define-vlf-timestamp-timedate-0x00020000">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1gaa41325cf1cd9d3815bca1a363808ea70"></span><h3>#define VLF_TIMESTAMP_TIMEDATE 0x00020000<a class="headerlink" href="#define-vlf-timestamp-timedate-0x00020000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-vlf-timestamp-ms-0x00040000">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1ga79cf13ffce1acecfdc37dbdd9573956f"></span><h3>#define VLF_TIMESTAMP_MS 0x00040000<a class="headerlink" href="#define-vlf-timestamp-ms-0x00040000" title="Permalink to this headline">¶</a></h3>
+<p>Timestamp in millisecond, at which the values are read</p>
+</div>
+<div class="section" id="define-vlf-timestamp-us-0x00080000">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1ga40b04f20d29bb48116bb89e062f6fe3b"></span><h3>#define VLF_TIMESTAMP_US 0x00080000<a class="headerlink" href="#define-vlf-timestamp-us-0x00080000" title="Permalink to this headline">¶</a></h3>
+<p>Timestamp in microseconds, at which the values are read</p>
+</div>
+<div class="section" id="define-vlf-timestamp-ns-0x00100000">
+<span id="group-cmp-iec-var-access-itf-varlistflags-1ga1fe09cf526e4c2e5ca2ceeffac6c5fc8"></span><h3>#define VLF_TIMESTAMP_NS 0x00100000<a class="headerlink" href="#define-vlf-timestamp-ns-0x00100000" title="Permalink to this headline">¶</a></h3>
+<p>Timestamp in nanoseconds, at which the values are read</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

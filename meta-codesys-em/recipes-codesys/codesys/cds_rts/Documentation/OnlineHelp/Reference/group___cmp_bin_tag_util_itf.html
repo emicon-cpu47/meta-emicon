@@ -1,0 +1,1090 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpBinTagUtilItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpBitmapPoolItf" href="group___cmp_bitmap_pool_itf.html" />
+    <link rel="prev" title="CmpBinTagUtilIecItf" href="group___cmp_bin_tag_util_iec_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_bitmap_pool_itf.html" title="CmpBitmapPoolItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_bin_tag_util_iec_itf.html" title="CmpBinTagUtilIecItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpBinTagUtilItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#enumerations">Enumerations</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-btag-max-nested-tags-10">#define BTAG_MAX_NESTED_TAGS 10</a></li>
+<li><a class="reference internal" href="#define-btag-max-static-filestream-buffer-netserver-buffersize-netserver-maxchannels-2">#define BTAG_MAX_STATIC_FILESTREAM_BUFFER (NETSERVER_BUFFERSIZE / (NETSERVER_MAXCHANNELS * 2))</a></li>
+<li><a class="reference internal" href="#define-bintagtype-stream-1">#define BINTAGTYPE_STREAM 1</a></li>
+<li><a class="reference internal" href="#define-bintagtype-file-2">#define BINTAGTYPE_FILE 2</a></li>
+<li><a class="reference internal" href="#define-bintagtype-filestream-3">#define BINTAGTYPE_FILESTREAM 3</a></li>
+<li><a class="reference internal" href="#define-itf-cmpbintagutil">#define ITF_CmpBinTagUtil</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpbintagutil">#define EXTITF_CmpBinTagUtil</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-btag-writertaginfo-btag-writertaginfo">typedef struct _BTAG_WriterTagInfo BTAG_WRITERTAGINFO</a></li>
+<li><a class="reference internal" href="#typedef-struct-btag-readertaginfo-btag-readertaginfo">typedef struct _BTAG_ReaderTagInfo BTAG_READERTAGINFO</a></li>
+<li><a class="reference internal" href="#typedef-void-pfupdatecrc-rts-ui8-pbydata-rts-ui32-uldatalen-void-pparameter">typedef void( * PFUPDATECRC)(RTS_UI8 *pbyData, RTS_UI32 ulDataLen, void *pParameter)</a></li>
+<li><a class="reference internal" href="#typedef-icmpbintagutil-c-icmpbintagutil">typedef ICmpBinTagUtil_C ICmpBinTagUtil</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#enumeration-type-documentation">Enumeration Type Documentation</a><ul>
+<li><a class="reference internal" href="#enum-3">enum &#64;3</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-result-btagswapheader-header-tag-ext-pheader-rts-i32-bswap">RTS_RESULT BTagSwapHeader (HEADER_TAG_EXT *pHeader, RTS_I32 bSwap)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterinit2-bintagwriter-pwriter-rts-ui8-pbuffer-rts-ui32-ulbuffersize-rts-i32-bswapheader">RTS_RESULT BTagWriterInit2 (BINTAGWRITER *pWriter, RTS_UI8 *pBuffer, RTS_UI32 ulBufferSize, RTS_I32 bSwapHeader)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterinit-bintagwriter-pwriter-rts-ui8-pbuffer-rts-ui32-ulbuffersize">RTS_RESULT BTagWriterInit (BINTAGWRITER *pWriter, RTS_UI8 *pBuffer, RTS_UI32 ulBufferSize)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterstartservice-bintagwriter-pwriter-rts-ui32-ulsessionid-rts-ui16-usheadertag-rts-ui32-ulservicegroup-rts-ui16-usservice">RTS_RESULT BTagWriterStartService (BINTAGWRITER *pWriter, RTS_UI32 ulSessionID, RTS_UI16 usHeaderTag, RTS_UI32 ulServiceGroup, RTS_UI16 usService)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterfinishservice-bintagwriter-pwriter-rts-ui8-ppbuffer-rts-ui32-pulsize">RTS_RESULT BTagWriterFinishService (BINTAGWRITER *pWriter, RTS_UI8 **ppBuffer, RTS_UI32 *pulSize)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterstarttag-bintagwriter-pwriter-rts-ui32-ultagid-btag-alignment-contentalignment-rts-ui32-ulminlengthsize">RTS_RESULT BTagWriterStartTag (BINTAGWRITER *pWriter, RTS_UI32 ulTagId, BTAG_ALIGNMENT contentAlignment, RTS_UI32 ulMinLengthSize)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterappendstring-bintagwriter-pwriter-const-char-pszstring">RTS_RESULT BTagWriterAppendString (BINTAGWRITER *pWriter, const char *pszString)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterappendwstring-bintagwriter-pwriter-const-rts-wchar-wszstring">RTS_RESULT BTagWriterAppendWString (BINTAGWRITER *pWriter, const RTS_WCHAR *wszString)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterappendblob-bintagwriter-pwriter-const-rts-ui8-pblob-rts-ui32-ulsize">RTS_RESULT BTagWriterAppendBlob (BINTAGWRITER *pWriter, const RTS_UI8 *pBlob, RTS_UI32 ulSize)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterappendraw-bintagwriter-pwriter-rts-ui8-ppbuffer-rts-ui32-ulsize">RTS_RESULT BTagWriterAppendRaw (BINTAGWRITER *pWriter, RTS_UI8 **ppBuffer, RTS_UI32 ulSize)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterappendfillbytes-bintagwriter-pwriter-rts-ui8-byfillbyte-btag-alignment-alignment">RTS_RESULT BTagWriterAppendFillBytes (BINTAGWRITER *pWriter, RTS_UI8 byFillByte, BTAG_ALIGNMENT alignment)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterappenddummybytes-bintagwriter-pwriter-rts-ui8-byfillbyte-rts-ui32-ulsize">RTS_RESULT BTagWriterAppendDummyBytes (BINTAGWRITER *pWriter, RTS_UI8 byFillByte, RTS_UI32 ulSize)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterendtag-bintagwriter-pwriter-rts-ui32-ultagid">RTS_RESULT BTagWriterEndTag (BINTAGWRITER *pWriter, RTS_UI32 ulTagId)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterswitchbuffer-bintagwriter-pwriter-rts-ui8-pnewbuffer-rts-ui32-ulnewsize-rts-ui8-ppoldbuffer">RTS_RESULT BTagWriterSwitchBuffer (BINTAGWRITER *pWriter, RTS_UI8 *pNewBuffer, RTS_UI32 ulNewSize, RTS_UI8 **ppOldBuffer)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwritercreatesavepoint-bintagwriter-pwriter-bintagsavepoint-psavepoint">RTS_RESULT BTagWriterCreateSavepoint (BINTAGWRITER *pWriter, BINTAGSAVEPOINT *pSavepoint)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterrestoresavepoint-bintagwriter-pwriter-bintagsavepoint-psavepoint">RTS_RESULT BTagWriterRestoreSavepoint (BINTAGWRITER *pWriter, BINTAGSAVEPOINT *pSavepoint)</a></li>
+<li><a class="reference internal" href="#rts-ui32-btagwritergetavailablebuffer-bintagwriter-pwriter">RTS_UI32 BTagWriterGetAvailableBuffer (BINTAGWRITER *pWriter)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterfinish-bintagwriter-pwriter-rts-ui8-ppbuffer-rts-ui32-pulsize">RTS_RESULT BTagWriterFinish (BINTAGWRITER *pWriter, RTS_UI8 **ppBuffer, RTS_UI32 *pulSize)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwritesingletag-bintagwriter-pwriter-rts-ui32-ultag-btag-alignment-align-rts-i32-bfillbytes-void-pcontent-rts-ui32-ulsize">RTS_RESULT BTagWriteSingleTag (BINTAGWRITER *pWriter, RTS_UI32 ulTag, BTAG_ALIGNMENT align, RTS_I32 bFillBytes, void *pContent, RTS_UI32 ulSize)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwritesingletag2-bintagwriter-pwriter-rts-ui32-ultag-btag-alignment-align-void-ppcontentlist-rts-ui32-paulsize">RTS_RESULT BTagWriteSingleTag2 (BINTAGWRITER *pWriter, RTS_UI32 ulTag, BTAG_ALIGNMENT align, void **ppContentList, RTS_UI32 *paulSize)</a></li>
+<li><a class="reference internal" href="#rts-result-btagreaderinit-bintagreader-preader-rts-ui8-pbuffer-rts-ui32-ulbuffersize">RTS_RESULT BTagReaderInit (BINTAGREADER *pReader, RTS_UI8 *pBuffer, RTS_UI32 ulBufferSize)</a></li>
+<li><a class="reference internal" href="#rts-result-btagreaderpeeknext-bintagreader-preader">RTS_RESULT BTagReaderPeekNext (BINTAGREADER *pReader)</a></li>
+<li><a class="reference internal" href="#rts-result-btagreadermovenext-bintagreader-preader-rts-i32-pnelementtype">RTS_RESULT BTagReaderMoveNext (BINTAGREADER *pReader, RTS_I32 *pnElementType)</a></li>
+<li><a class="reference internal" href="#rts-result-btagreaderskipcontent-bintagreader-preader">RTS_RESULT BTagReaderSkipContent (BINTAGREADER *pReader)</a></li>
+<li><a class="reference internal" href="#rts-result-btagreadergettagid-bintagreader-preader-rts-ui32-pultagid">RTS_RESULT BTagReaderGetTagId (BINTAGREADER *pReader, RTS_UI32 *pulTagId)</a></li>
+<li><a class="reference internal" href="#rts-result-btagreadergettaglen-bintagreader-preader-rts-ui32-pultaglen">RTS_RESULT BTagReaderGetTagLen (BINTAGREADER *pReader, RTS_UI32 *pulTagLen)</a></li>
+<li><a class="reference internal" href="#rts-result-btagreaderisdatatag-bintagreader-preader-rts-i32-pbisdatatag">RTS_RESULT BTagReaderIsDataTag (BINTAGREADER *pReader, RTS_I32 *pbIsDataTag)</a></li>
+<li><a class="reference internal" href="#rts-result-btagreadergetcomplexcontent-bintagreader-preader-rts-ui8-ppbuffer-rts-ui32-pulsize">RTS_RESULT BTagReaderGetComplexContent (BINTAGREADER *pReader, RTS_UI8 **ppBuffer, RTS_UI32 *pulSize)</a></li>
+<li><a class="reference internal" href="#rts-result-btagreadergetcontent-bintagreader-preader-rts-ui8-ppbuffer-rts-ui32-pulsize">RTS_RESULT BTagReaderGetContent (BINTAGREADER *pReader, RTS_UI8 **ppBuffer, RTS_UI32 *pulSize)</a></li>
+<li><a class="reference internal" href="#rts-result-btagreadergetstring-bintagreader-preader-char-ppstring-rts-ui32-pulsize-rts-i32-baddendofstring">RTS_RESULT BTagReaderGetString (BINTAGREADER *pReader, char **ppString, RTS_UI32 *pulSize, RTS_I32 bAddEndOfString)</a></li>
+<li><a class="reference internal" href="#rts-result-btagreadercreatesavepoint-bintagreader-preader-bintagreadersavepoint-psavepoint">RTS_RESULT BTagReaderCreateSavepoint (BINTAGREADER *pReader, BINTAGREADERSAVEPOINT *pSavepoint)</a></li>
+<li><a class="reference internal" href="#rts-result-btagreaderrestoresavepoint-bintagreader-preader-bintagreadersavepoint-psavepoint">RTS_RESULT BTagReaderRestoreSavepoint (BINTAGREADER *pReader, BINTAGREADERSAVEPOINT *pSavepoint)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterfileinit-bintagwriter-pwriter-rts-handle-hfile">RTS_RESULT BTagWriterFileInit (BINTAGWRITER *pWriter, RTS_HANDLE hFile)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterfileinit2-bintagwriter-pwriter-char-pszfilename">RTS_RESULT BTagWriterFileInit2 (BINTAGWRITER *pWriter, char *pszFileName)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterfilestreaminit-bintagwriter-pwriter-rts-handle-hfile">RTS_RESULT BTagWriterFileStreamInit (BINTAGWRITER *pWriter, RTS_HANDLE hFile)</a></li>
+<li><a class="reference internal" href="#rts-result-btagwriterfilestreaminit2-bintagwriter-pwriter-rts-handle-hfile-pfupdatecrc-pfupdatecrc-void-pparameterupdatecrc">RTS_RESULT BTagWriterFileStreamInit2 (BINTAGWRITER *pWriter, RTS_HANDLE hFile, PFUPDATECRC pfUpdateCRC, void *pParameterUpdateCRC)</a></li>
+<li><a class="reference internal" href="#rts-result-btagreaderfileinit-bintagreader-preader-rts-ui8-pbuffer-rts-ui32-ulbuffersize-rts-handle-hfile">RTS_RESULT BTagReaderFileInit (BINTAGREADER *pReader, RTS_UI8 *pBuffer, RTS_UI32 ulBufferSize, RTS_HANDLE hFile)</a></li>
+<li><a class="reference internal" href="#void-btagreadergetfirsttag-bintagreader-preader-rts-ui32-pultopleveltag-rts-ui32-pultag-rts-ui32-pulsize-rts-result-presult">void* BTagReaderGetFirstTag (BINTAGREADER *pReader, RTS_UI32 *pulToplevelTag, RTS_UI32 *pulTag, RTS_UI32 *pulSize, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#void-btagreadergetnexttag-bintagreader-preader-rts-ui32-pultopleveltag-rts-ui32-pultag-rts-ui32-pulsize-rts-result-presult">void* BTagReaderGetNextTag (BINTAGREADER *pReader, RTS_UI32 *pulToplevelTag, RTS_UI32 *pulTag, RTS_UI32 *pulSize, RTS_RESULT *pResult)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_bin_tag_util_iec_itf.html"
+                        title="previous chapter">CmpBinTagUtilIecItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_bitmap_pool_itf.html"
+                        title="next chapter">CmpBitmapPoolItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_bin_tag_util_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpbintagutilitf">
+<span id="group-cmp-bin-tag-util-itf"></span><h1>CmpBinTagUtilItf<a class="headerlink" href="#cmpbintagutilitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CmpBinTagUtil. <a class="reference internal" href="#group-cmp-bin-tag-util-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___cmp_bin_tag_util_itf___staticdefines.html#group-cmp-bin-tag-util-itf-staticdefines"><span class="std std-ref">Static defines</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_b_t_a_g___a_l_i_g_n_m_e_n_t.html#struct-b-t-a-g-a-l-i-g-n-m-e-n-t"><span class="std std-ref">BTAG_ALIGNMENT</span></a></li>
+<li>struct <a class="reference internal" href="struct_h_e_a_d_e_r___t_a_g.html#struct-h-e-a-d-e-r-t-a-g"><span class="std std-ref">HEADER_TAG</span></a></li>
+<li>struct <a class="reference internal" href="struct_h_e_a_d_e_r___t_a_g___e_x_t.html#struct-h-e-a-d-e-r-t-a-g-e-x-t"><span class="std std-ref">HEADER_TAG_EXT</span></a></li>
+<li>struct <a class="reference internal" href="struct___b_t_a_g___writer_tag_info.html#struct-b-t-a-g-writer-tag-info"><span class="std std-ref">_BTAG_WriterTagInfo</span></a></li>
+<li>struct <a class="reference internal" href="struct___b_t_a_g___reader_tag_info.html#struct-b-t-a-g-reader-tag-info"><span class="std std-ref">_BTAG_ReaderTagInfo</span></a></li>
+<li>struct <a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a></li>
+<li>struct <a class="reference internal" href="struct_b_i_n_t_a_g_s_a_v_e_p_o_i_n_t.html#struct-b-i-n-t-a-g-s-a-v-e-p-o-i-n-t"><span class="std std-ref">BINTAGSAVEPOINT</span></a></li>
+<li>struct <a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a></li>
+<li>struct <a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r_s_a_v_e_p_o_i_n_t.html#struct-b-i-n-t-a-g-r-e-a-d-e-r-s-a-v-e-p-o-i-n-t"><span class="std std-ref">BINTAGREADERSAVEPOINT</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_cmp_bin_tag_util___c.html#struct-i-cmp-bin-tag-util-c"><span class="std std-ref">ICmpBinTagUtil_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga7a8615d44a1c288fcfd7c007289d1b3c"><span class="std std-ref">BTAG_MAX_NESTED_TAGS</span></a> 10</li>
+<li>#define <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gab96c73af16b48025d888327e679272ff"><span class="std std-ref">BTAG_MAX_STATIC_FILESTREAM_BUFFER</span></a> (NETSERVER_BUFFERSIZE / (NETSERVER_MAXCHANNELS * 2))</li>
+<li>#define <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gac6bc300f2ebad3fb7653784a2e7d5d70"><span class="std std-ref">BINTAGTYPE_STREAM</span></a> 1</li>
+<li>#define <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gad23b28569dcc374fafaa3a1fdf0512a2"><span class="std std-ref">BINTAGTYPE_FILE</span></a> 2</li>
+<li>#define <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga34407060c86dc24efde9212377b52475"><span class="std std-ref">BINTAGTYPE_FILESTREAM</span></a> 3</li>
+<li>#define <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga80922c0a63754b7af9d2c87293174b35"><span class="std std-ref">ITF_CmpBinTagUtil</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga32b1d8a61e4d4a0568291115645116c5"><span class="std std-ref">EXTITF_CmpBinTagUtil</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="struct___b_t_a_g___writer_tag_info.html#struct-b-t-a-g-writer-tag-info"><span class="std std-ref">_BTAG_WriterTagInfo</span></a> <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga22e8de6ff1260f3b661e8484cb2bfd2e"><span class="std std-ref">BTAG_WRITERTAGINFO</span></a></li>
+<li>typedef struct <a class="reference internal" href="struct___b_t_a_g___reader_tag_info.html#struct-b-t-a-g-reader-tag-info"><span class="std std-ref">_BTAG_ReaderTagInfo</span></a> <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga8c4aa636215f9fecb692588a5c2d48ce"><span class="std std-ref">BTAG_READERTAGINFO</span></a></li>
+<li>typedef void(* <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gaa67d135c6f4ebd99d300daf575e1ebfc"><span class="std std-ref">PFUPDATECRC</span></a>)(RTS_UI8 <a href="#id1"><span class="problematic" id="id2">*</span></a>pbyData, RTS_UI32 ulDataLen, void <a href="#id3"><span class="problematic" id="id4">*</span></a>pParameter)</li>
+<li>typedef <a class="reference internal" href="struct_i_cmp_bin_tag_util___c.html#struct-i-cmp-bin-tag-util-c"><span class="std std-ref">ICmpBinTagUtil_C</span></a> <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga7450889f8d5f28947db45c6c57af276f"><span class="std std-ref">ICmpBinTagUtil</span></a></li>
+</ul>
+</div>
+<div class="section" id="enumerations">
+<h2>Enumerations<a class="headerlink" href="#enumerations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>enum <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gabc6126af1d45847bc59afa0aa3216b04"><span class="std std-ref">&#64;3</span></a> { <span class="xref std std-ref">BTAG_ET_STARTTAG</span>, <span class="xref std std-ref">BTAG_ET_ENDTAG</span>, <span class="xref std std-ref">BTAG_ET_EOF</span> }</li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga5f33422f0c7653c158bf99a42b2060da"><span class="std std-ref">BTagSwapHeader</span></a> (<a class="reference internal" href="struct_h_e_a_d_e_r___t_a_g___e_x_t.html#struct-h-e-a-d-e-r-t-a-g-e-x-t"><span class="std std-ref">HEADER_TAG_EXT</span></a> * pHeader, RTS_I32 bSwap)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gaa5930b1e6e5bf2e1dd1d0703f3b5d97a"><span class="std std-ref">BTagWriterInit2</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_UI8 * pBuffer, RTS_UI32 ulBufferSize, RTS_I32 bSwapHeader)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gac9e16abd6dbd5a37262a306a1d460b85"><span class="std std-ref">BTagWriterInit</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_UI8 * pBuffer, RTS_UI32 ulBufferSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga4fc0080da9819f83633704592488454b"><span class="std std-ref">BTagWriterStartService</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_UI32 ulSessionID, RTS_UI16 usHeaderTag, RTS_UI32 ulServiceGroup, RTS_UI16 usService)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga5ab533e932ba4664f24cfdd0f7a61bd9"><span class="std std-ref">BTagWriterFinishService</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_UI8 ** ppBuffer, RTS_UI32 * pulSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gafd29ce97b0bd5fe47d04ab6569f0b347"><span class="std std-ref">BTagWriterStartTag</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_UI32 ulTagId, <a class="reference internal" href="struct_b_t_a_g___a_l_i_g_n_m_e_n_t.html#struct-b-t-a-g-a-l-i-g-n-m-e-n-t"><span class="std std-ref">BTAG_ALIGNMENT</span></a>  contentAlignment, RTS_UI32 ulMinLengthSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gadb6f29df0b99c15140ec93b9c0f39bcb"><span class="std std-ref">BTagWriterAppendString</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, const char * pszString)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gae16657b7cad26c026cbc7ec0e13a8615"><span class="std std-ref">BTagWriterAppendWString</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, const RTS_WCHAR * wszString)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga81a67538ed2635420bf99734bb2d1da5"><span class="std std-ref">BTagWriterAppendBlob</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, const RTS_UI8 * pBlob, RTS_UI32 ulSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga80b65ebe1d633a55cb438f170bc115d9"><span class="std std-ref">BTagWriterAppendRaw</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_UI8 ** ppBuffer, RTS_UI32 ulSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gad4af6aeae70dfa84ebb272f169ccaab1"><span class="std std-ref">BTagWriterAppendFillBytes</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_UI8 byFillByte, <a class="reference internal" href="struct_b_t_a_g___a_l_i_g_n_m_e_n_t.html#struct-b-t-a-g-a-l-i-g-n-m-e-n-t"><span class="std std-ref">BTAG_ALIGNMENT</span></a>  alignment)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga8419cf900a699af68830237bd8da058f"><span class="std std-ref">BTagWriterAppendDummyBytes</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_UI8 byFillByte, RTS_UI32 ulSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga3f2cf456d540c6853a22bea26eef48f6"><span class="std std-ref">BTagWriterEndTag</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_UI32 ulTagId)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gac52c256bccff16361b398c6f5d54de55"><span class="std std-ref">BTagWriterSwitchBuffer</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_UI8 * pNewBuffer, RTS_UI32 ulNewSize, RTS_UI8 ** ppOldBuffer)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gaefefa23ce72f22006813faf84563b430"><span class="std std-ref">BTagWriterCreateSavepoint</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, <a class="reference internal" href="struct_b_i_n_t_a_g_s_a_v_e_p_o_i_n_t.html#struct-b-i-n-t-a-g-s-a-v-e-p-o-i-n-t"><span class="std std-ref">BINTAGSAVEPOINT</span></a> * pSavepoint)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gaa04b4387c7d5f8a056ab75f90e26707b"><span class="std std-ref">BTagWriterRestoreSavepoint</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, <a class="reference internal" href="struct_b_i_n_t_a_g_s_a_v_e_p_o_i_n_t.html#struct-b-i-n-t-a-g-s-a-v-e-p-o-i-n-t"><span class="std std-ref">BINTAGSAVEPOINT</span></a> * pSavepoint)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga35d4f0f00f99853e39013baeea99fa9b"><span class="std std-ref">BTagWriterGetAvailableBuffer</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga0af27850a6ee2f790c9ab443b5111cd4"><span class="std std-ref">BTagWriterFinish</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_UI8 ** ppBuffer, RTS_UI32 * pulSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gadf9ad720bb98e70354af29b25b01c8f3"><span class="std std-ref">BTagWriteSingleTag</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_UI32 ulTag, <a class="reference internal" href="struct_b_t_a_g___a_l_i_g_n_m_e_n_t.html#struct-b-t-a-g-a-l-i-g-n-m-e-n-t"><span class="std std-ref">BTAG_ALIGNMENT</span></a>  align, RTS_I32 bFillBytes, void * pContent, RTS_UI32 ulSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gaae1e438865f10164d966a05147bbd431"><span class="std std-ref">BTagWriteSingleTag2</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_UI32 ulTag, <a class="reference internal" href="struct_b_t_a_g___a_l_i_g_n_m_e_n_t.html#struct-b-t-a-g-a-l-i-g-n-m-e-n-t"><span class="std std-ref">BTAG_ALIGNMENT</span></a>  align, void ** ppContentList, RTS_UI32 * paulSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga4a580903a01c231f743462630a80c7b9"><span class="std std-ref">BTagReaderInit</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader, RTS_UI8 * pBuffer, RTS_UI32 ulBufferSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gae482e0ab148aefa5b40d3c14a715b431"><span class="std std-ref">BTagReaderPeekNext</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga64927ab05a3632b524df047861ebb7e5"><span class="std std-ref">BTagReaderMoveNext</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader, RTS_I32 * pnElementType)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga58b9b91e29f42a1a0ff442b1b97d1ee1"><span class="std std-ref">BTagReaderSkipContent</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gaac2ed0c282be75db6939d359810f7065"><span class="std std-ref">BTagReaderGetTagId</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader, RTS_UI32 * pulTagId)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga1444abd7c3c70f632a0a95d3a8daa16c"><span class="std std-ref">BTagReaderGetTagLen</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader, RTS_UI32 * pulTagLen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga022ddc2d95a50bcba1d5b7947ea33b6a"><span class="std std-ref">BTagReaderIsDataTag</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader, RTS_I32 * pbIsDataTag)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga580b67848e86db4dc311ad8cf4b07a9a"><span class="std std-ref">BTagReaderGetComplexContent</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader, RTS_UI8 ** ppBuffer, RTS_UI32 * pulSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga220c1fa43be4ba6dd3c6978dbcfcea4c"><span class="std std-ref">BTagReaderGetContent</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader, RTS_UI8 ** ppBuffer, RTS_UI32 * pulSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gadfd36a3cb8bf0fd8f66e2ca39057f63b"><span class="std std-ref">BTagReaderGetString</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader, char ** ppString, RTS_UI32 * pulSize, RTS_I32 bAddEndOfString)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gafe04ecee4c0c11d8c779492bfd100074"><span class="std std-ref">BTagReaderCreateSavepoint</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader, <a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r_s_a_v_e_p_o_i_n_t.html#struct-b-i-n-t-a-g-r-e-a-d-e-r-s-a-v-e-p-o-i-n-t"><span class="std std-ref">BINTAGREADERSAVEPOINT</span></a> * pSavepoint)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga198fa209b27d078688b8c743182bda9f"><span class="std std-ref">BTagReaderRestoreSavepoint</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader, <a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r_s_a_v_e_p_o_i_n_t.html#struct-b-i-n-t-a-g-r-e-a-d-e-r-s-a-v-e-p-o-i-n-t"><span class="std std-ref">BINTAGREADERSAVEPOINT</span></a> * pSavepoint)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gac475bb9ca185a3a6b732eebb934dd17d"><span class="std std-ref">BTagWriterFileInit</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_HANDLE hFile)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga98e1412e288d8dc6b36e6407dcefc241"><span class="std std-ref">BTagWriterFileInit2</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, char * pszFileName)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga54dc9940ffcc68387445d16fabe82501"><span class="std std-ref">BTagWriterFileStreamInit</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_HANDLE hFile)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gab1634634c5d807db718c3ea7fd1cfca6"><span class="std std-ref">BTagWriterFileStreamInit2</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> * pWriter, RTS_HANDLE hFile, <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gaa67d135c6f4ebd99d300daf575e1ebfc"><span class="std std-ref">PFUPDATECRC</span></a>  pfUpdateCRC, void * pParameterUpdateCRC)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga3aa9642dcd750b0c6d0bc1103514e88e"><span class="std std-ref">BTagReaderFileInit</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader, RTS_UI8 * pBuffer, RTS_UI32 ulBufferSize, RTS_HANDLE hFile)</li>
+<li>void * <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1ga2524a0e38a0f99cc88a243a762ac25bf"><span class="std std-ref">BTagReaderGetFirstTag</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader, RTS_UI32 * pulToplevelTag, RTS_UI32 * pulTag, RTS_UI32 * pulSize, RTS_RESULT * pResult)</li>
+<li>void * <a class="reference internal" href="#group-cmp-bin-tag-util-itf-1gaba78e97eeef7d4405a997a1c836872fd"><span class="std std-ref">BTagReaderGetNextTag</span></a> (<a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> * pReader, RTS_UI32 * pulToplevelTag, RTS_UI32 * pulTag, RTS_UI32 * pulSize, RTS_RESULT * pResult)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-bin-tag-util-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CmpBinTagUtil.</p>
+<p>Interface for the binary tag utility.</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-btag-max-nested-tags-10">
+<span id="group-cmp-bin-tag-util-itf-1ga7a8615d44a1c288fcfd7c007289d1b3c"></span><h3>#define BTAG_MAX_NESTED_TAGS 10<a class="headerlink" href="#define-btag-max-nested-tags-10" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-btag-max-static-filestream-buffer-netserver-buffersize-netserver-maxchannels-2">
+<span id="group-cmp-bin-tag-util-itf-1gab96c73af16b48025d888327e679272ff"></span><h3>#define BTAG_MAX_STATIC_FILESTREAM_BUFFER (NETSERVER_BUFFERSIZE / (NETSERVER_MAXCHANNELS * 2))<a class="headerlink" href="#define-btag-max-static-filestream-buffer-netserver-buffersize-netserver-maxchannels-2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-bintagtype-stream-1">
+<span id="group-cmp-bin-tag-util-itf-1gac6bc300f2ebad3fb7653784a2e7d5d70"></span><h3>#define BINTAGTYPE_STREAM 1<a class="headerlink" href="#define-bintagtype-stream-1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-bintagtype-file-2">
+<span id="group-cmp-bin-tag-util-itf-1gad23b28569dcc374fafaa3a1fdf0512a2"></span><h3>#define BINTAGTYPE_FILE 2<a class="headerlink" href="#define-bintagtype-file-2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-bintagtype-filestream-3">
+<span id="group-cmp-bin-tag-util-itf-1ga34407060c86dc24efde9212377b52475"></span><h3>#define BINTAGTYPE_FILESTREAM 3<a class="headerlink" href="#define-bintagtype-filestream-3" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-itf-cmpbintagutil">
+<span id="group-cmp-bin-tag-util-itf-1ga80922c0a63754b7af9d2c87293174b35"></span><h3>#define ITF_CmpBinTagUtil<a class="headerlink" href="#define-itf-cmpbintagutil" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpbintagutil">
+<span id="group-cmp-bin-tag-util-itf-1ga32b1d8a61e4d4a0568291115645116c5"></span><h3>#define EXTITF_CmpBinTagUtil<a class="headerlink" href="#define-extitf-cmpbintagutil" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-btag-writertaginfo-btag-writertaginfo">
+<span id="group-cmp-bin-tag-util-itf-1ga22e8de6ff1260f3b661e8484cb2bfd2e"></span><h3>typedef struct _BTAG_WriterTagInfo BTAG_WRITERTAGINFO<a class="headerlink" href="#typedef-struct-btag-writertaginfo-btag-writertaginfo" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-struct-btag-readertaginfo-btag-readertaginfo">
+<span id="group-cmp-bin-tag-util-itf-1ga8c4aa636215f9fecb692588a5c2d48ce"></span><h3>typedef struct _BTAG_ReaderTagInfo BTAG_READERTAGINFO<a class="headerlink" href="#typedef-struct-btag-readertaginfo-btag-readertaginfo" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-void-pfupdatecrc-rts-ui8-pbydata-rts-ui32-uldatalen-void-pparameter">
+<span id="group-cmp-bin-tag-util-itf-1gaa67d135c6f4ebd99d300daf575e1ebfc"></span><h3>typedef void( * PFUPDATECRC)(RTS_UI8 <a href="#id5"><span class="problematic" id="id6">*</span></a>pbyData, RTS_UI32 ulDataLen, void <a href="#id7"><span class="problematic" id="id8">*</span></a>pParameter)<a class="headerlink" href="#typedef-void-pfupdatecrc-rts-ui8-pbydata-rts-ui32-uldatalen-void-pparameter" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-icmpbintagutil-c-icmpbintagutil">
+<span id="group-cmp-bin-tag-util-itf-1ga7450889f8d5f28947db45c6c57af276f"></span><h3>typedef ICmpBinTagUtil_C ICmpBinTagUtil<a class="headerlink" href="#typedef-icmpbintagutil-c-icmpbintagutil" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="enumeration-type-documentation">
+<h2>Enumeration Type Documentation<a class="headerlink" href="#enumeration-type-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="enum-3">
+<span id="group-cmp-bin-tag-util-itf-1gabc6126af1d45847bc59afa0aa3216b04"></span><h3>enum &#64;3<a class="headerlink" href="#enum-3" title="Permalink to this headline">¶</a></h3>
+<p><strong>Enumerator:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>BTAG_ET_STARTTAG</td>
+</tr>
+<tr class="row-even"><td>BTAG_ET_ENDTAG</td>
+</tr>
+<tr class="row-odd"><td>BTAG_ET_EOF</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-result-btagswapheader-header-tag-ext-pheader-rts-i32-bswap">
+<span id="group-cmp-bin-tag-util-itf-1ga5f33422f0c7653c158bf99a42b2060da"></span><h3>RTS_RESULT BTagSwapHeader (HEADER_TAG_EXT <a href="#id9"><span class="problematic" id="id10">*</span></a>pHeader, RTS_I32 bSwap)<a class="headerlink" href="#rts-result-btagswapheader-header-tag-ext-pheader-rts-i32-bswap" title="Permalink to this headline">¶</a></h3>
+<p>Swap the header of a service.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[inout]</td>
+<td>pHeader</td>
+<td>Pass in a <a class="reference internal" href="struct_h_e_a_d_e_r___t_a_g___e_x_t.html#struct-h-e-a-d-e-r-t-a-g-e-x-t"><span class="std std-ref">HEADER_TAG_EXT</span></a> struct that should be swapped.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>bSwap</td>
+<td>Determines, if the header should be swapped (1) or not (0).</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagwriterinit2-bintagwriter-pwriter-rts-ui8-pbuffer-rts-ui32-ulbuffersize-rts-i32-bswapheader">
+<span id="group-cmp-bin-tag-util-itf-1gaa5930b1e6e5bf2e1dd1d0703f3b5d97a"></span><h3>RTS_RESULT BTagWriterInit2 (BINTAGWRITER <a href="#id11"><span class="problematic" id="id12">*</span></a>pWriter, RTS_UI8 <a href="#id13"><span class="problematic" id="id14">*</span></a>pBuffer, RTS_UI32 ulBufferSize, RTS_I32 bSwapHeader)<a class="headerlink" href="#rts-result-btagwriterinit2-bintagwriter-pwriter-rts-ui8-pbuffer-rts-ui32-ulbuffersize-rts-i32-bswapheader" title="Permalink to this headline">¶</a></h3>
+<p>Initialize a writer.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="7%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[inout]</td>
+<td>pWriter</td>
+<td>Pass in a <a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> struct that will be initialized to a empty writer.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pBuffer</td>
+<td>The buffer that the writer will write to. The buffer should not be altered until the writer has finished.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulBufferSize</td>
+<td>The size of the buffer. The writer will fail if a write operation would exceed the buffer.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>bSwapHeader</td>
+<td>Clients have to set this flag, if the addressed server has a different byte order. Must be always FALSE for server implementations or if the client has the same byte order as the server.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagwriterinit-bintagwriter-pwriter-rts-ui8-pbuffer-rts-ui32-ulbuffersize">
+<span id="group-cmp-bin-tag-util-itf-1gac9e16abd6dbd5a37262a306a1d460b85"></span><h3>RTS_RESULT BTagWriterInit (BINTAGWRITER <a href="#id15"><span class="problematic" id="id16">*</span></a>pWriter, RTS_UI8 <a href="#id17"><span class="problematic" id="id18">*</span></a>pBuffer, RTS_UI32 ulBufferSize)<a class="headerlink" href="#rts-result-btagwriterinit-bintagwriter-pwriter-rts-ui8-pbuffer-rts-ui32-ulbuffersize" title="Permalink to this headline">¶</a></h3>
+<p>Initialize a writer. Can be used by servers or if the client and the server have the same byte order.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="10%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[inout]</td>
+<td>pWriter</td>
+<td>Pass in a <a class="reference internal" href="struct_b_i_n_t_a_g_w_r_i_t_e_r.html#struct-b-i-n-t-a-g-w-r-i-t-e-r"><span class="std std-ref">BINTAGWRITER</span></a> struct that will be initialized to a empty writer.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pBuffer</td>
+<td>The buffer that the writer will write to. The buffer should not be altered until the writer has finished.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulBufferSize</td>
+<td>The size of the buffer. The writer will fail if a write operation would exceed the buffer.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagwriterstartservice-bintagwriter-pwriter-rts-ui32-ulsessionid-rts-ui16-usheadertag-rts-ui32-ulservicegroup-rts-ui16-usservice">
+<span id="group-cmp-bin-tag-util-itf-1ga4fc0080da9819f83633704592488454b"></span><h3>RTS_RESULT BTagWriterStartService (BINTAGWRITER <a href="#id19"><span class="problematic" id="id20">*</span></a>pWriter, RTS_UI32 ulSessionID, RTS_UI16 usHeaderTag, RTS_UI32 ulServiceGroup, RTS_UI16 usService)<a class="headerlink" href="#rts-result-btagwriterstartservice-bintagwriter-pwriter-rts-ui32-ulsessionid-rts-ui16-usheadertag-rts-ui32-ulservicegroup-rts-ui16-usservice" title="Permalink to this headline">¶</a></h3>
+<p>Start a new service. Must be called after BTagWriterInit.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="17%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[inout]</td>
+<td>pWriter</td>
+<td>The writer.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulSessionID</td>
+<td>SessionID of the current session</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>usHeaderTag</td>
+<td>HeaderTag to identify the protocol handler.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulServiceGroup</td>
+<td>ulServiceGroup = HIGHWORD: usCustomerId, LOWWORD: usServiceGroup;</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>usService</td>
+<td>Service</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagwriterfinishservice-bintagwriter-pwriter-rts-ui8-ppbuffer-rts-ui32-pulsize">
+<span id="group-cmp-bin-tag-util-itf-1ga5ab533e932ba4664f24cfdd0f7a61bd9"></span><h3>RTS_RESULT BTagWriterFinishService (BINTAGWRITER <a href="#id21"><span class="problematic" id="id22">*</span></a>pWriter, RTS_UI8 <a href="#id23"><span class="problematic" id="id24">**</span></a>ppBuffer, RTS_UI32 <a href="#id25"><span class="problematic" id="id26">*</span></a>pulSize)<a class="headerlink" href="#rts-result-btagwriterfinishservice-bintagwriter-pwriter-rts-ui8-ppbuffer-rts-ui32-pulsize" title="Permalink to this headline">¶</a></h3>
+<p>Finishes the service. It returns the buffer passed in to BTagWriterInit in ppBuffer and the number of bytes written to the buffer in pulSize;</p>
+</div>
+<div class="section" id="rts-result-btagwriterstarttag-bintagwriter-pwriter-rts-ui32-ultagid-btag-alignment-contentalignment-rts-ui32-ulminlengthsize">
+<span id="group-cmp-bin-tag-util-itf-1gafd29ce97b0bd5fe47d04ab6569f0b347"></span><h3>RTS_RESULT BTagWriterStartTag (BINTAGWRITER <a href="#id27"><span class="problematic" id="id28">*</span></a>pWriter, RTS_UI32 ulTagId, BTAG_ALIGNMENT contentAlignment, RTS_UI32 ulMinLengthSize)<a class="headerlink" href="#rts-result-btagwriterstarttag-bintagwriter-pwriter-rts-ui32-ultagid-btag-alignment-contentalignment-rts-ui32-ulminlengthsize" title="Permalink to this headline">¶</a></h3>
+<p>Start a new tag. A tag cannot be started within a data tag. Data tags are determined by the id of the tag: If bit 7 (that is the highest bit of the least significant byte of the tagid) is set then the tag contains only subtags, otherwise it contains no subtags but only content. Every call to BTagWriterStartTag must be matched with a call to BTagWriterEndTag. All subtags of a tag must be closed before the tag itself may be closed.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="6%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[inout]</td>
+<td>pWriter</td>
+<td>The writer must have been initialized with a call to BTagWriterInit.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulTagId</td>
+<td>The id of the tag.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>contentAlignment</td>
+<td>How the content should be aligned within this tag. If the tag is not a data tag then contentAlignment must always be (4,0). In any case in this version of the data format the nModulus member must always be 4 since all alignment is done in respect to 4 byte boundaries.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagwriterappendstring-bintagwriter-pwriter-const-char-pszstring">
+<span id="group-cmp-bin-tag-util-itf-1gadb6f29df0b99c15140ec93b9c0f39bcb"></span><h3>RTS_RESULT BTagWriterAppendString (BINTAGWRITER <a href="#id29"><span class="problematic" id="id30">*</span></a>pWriter, const char <a href="#id31"><span class="problematic" id="id32">*</span></a>pszString)<a class="headerlink" href="#rts-result-btagwriterappendstring-bintagwriter-pwriter-const-char-pszstring" title="Permalink to this headline">¶</a></h3>
+<p>Append a C-string to the current tag. The string is written including the trailing end of string char (NUL). The current tag must be a data tag.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="17%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pWriter</td>
+<td>Pointer to bintag writer</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszString</td>
+<td>Pointer to NUL terminated string to append</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>TRUE=succeeded, FALSE=failed</p>
+</div>
+<div class="section" id="rts-result-btagwriterappendwstring-bintagwriter-pwriter-const-rts-wchar-wszstring">
+<span id="group-cmp-bin-tag-util-itf-1gae16657b7cad26c026cbc7ec0e13a8615"></span><h3>RTS_RESULT BTagWriterAppendWString (BINTAGWRITER <a href="#id33"><span class="problematic" id="id34">*</span></a>pWriter, const RTS_WCHAR <a href="#id35"><span class="problematic" id="id36">*</span></a>wszString)<a class="headerlink" href="#rts-result-btagwriterappendwstring-bintagwriter-pwriter-const-rts-wchar-wszstring" title="Permalink to this headline">¶</a></h3>
+<p>Append a UTF-16 (widechar) string to the current tag. The string is written including the trailing end of string char (0x0000). The current tag must be a data tag.</p>
+</div>
+<div class="section" id="rts-result-btagwriterappendblob-bintagwriter-pwriter-const-rts-ui8-pblob-rts-ui32-ulsize">
+<span id="group-cmp-bin-tag-util-itf-1ga81a67538ed2635420bf99734bb2d1da5"></span><h3>RTS_RESULT BTagWriterAppendBlob (BINTAGWRITER <a href="#id37"><span class="problematic" id="id38">*</span></a>pWriter, const RTS_UI8 <a href="#id39"><span class="problematic" id="id40">*</span></a>pBlob, RTS_UI32 ulSize)<a class="headerlink" href="#rts-result-btagwriterappendblob-bintagwriter-pwriter-const-rts-ui8-pblob-rts-ui32-ulsize" title="Permalink to this headline">¶</a></h3>
+<p>Append ulSize bytes from the buffer pBlob to the current tag. The current tag must be a data tag.</p>
+</div>
+<div class="section" id="rts-result-btagwriterappendraw-bintagwriter-pwriter-rts-ui8-ppbuffer-rts-ui32-ulsize">
+<span id="group-cmp-bin-tag-util-itf-1ga80b65ebe1d633a55cb438f170bc115d9"></span><h3>RTS_RESULT BTagWriterAppendRaw (BINTAGWRITER <a href="#id41"><span class="problematic" id="id42">*</span></a>pWriter, RTS_UI8 <a href="#id43"><span class="problematic" id="id44">**</span></a>ppBuffer, RTS_UI32 ulSize)<a class="headerlink" href="#rts-result-btagwriterappendraw-bintagwriter-pwriter-rts-ui8-ppbuffer-rts-ui32-ulsize" title="Permalink to this headline">¶</a></h3>
+<p>Returns a pointer to the current content position and forwards the write position for ulSize bytes. This function provides a buffer of length ulSize within the content of the current tag, in effect giving the caller random access to this buffer. This function is especially usefull, if that buffer has to be passed to another function, that fills it. (see example). ATTENTION: The returned pointer is valid only until the next operation on the bintagwriter is executed. After that the pointer must not be used any more! Do not store that pointer permanently. The current tag must be a data tag.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="7%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>ppBuffer</td>
+<td><p class="first">Is set to point to the buffer, if the function succeeds</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span>   <span class="o">//</span> <span class="n">Store</span> <span class="n">a</span> <span class="n">number</span> <span class="k">as</span> <span class="n">hexadecimal</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">bintag</span> <span class="n">writer</span>
+<span class="o">*</span>   <span class="n">unsigned</span> <span class="n">charpBuffer</span><span class="p">;</span>
+<span class="o">*</span>   <span class="n">unsigned</span> <span class="n">char</span><span class="o">*</span><span class="n">ppBuffer</span><span class="p">;</span>
+<span class="o">*</span>   <span class="nb">int</span> <span class="n">nNumber</span> <span class="o">=</span> <span class="mi">1234</span><span class="p">;</span>
+<span class="o">*</span> <span class="n">ppBuffer</span> <span class="o">=</span> <span class="n">pBuffer</span><span class="p">;</span>
+<span class="o">*</span>   <span class="k">if</span> <span class="p">(</span><span class="n">ERR_OK</span> <span class="o">==</span> <span class="n">CAL_BTagWriterAppendRaw</span><span class="p">(</span><span class="n">pWriter</span><span class="p">,</span> <span class="n">ppBuffer</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="o">//</span> <span class="mi">4</span> <span class="n">digits</span> <span class="o">+</span> <span class="n">an</span> <span class="n">additional</span> <span class="n">byte</span> <span class="k">for</span> <span class="n">a</span> <span class="n">trailing</span> <span class="n">zero</span>
+<span class="o">*</span>     <span class="n">sprintf</span><span class="p">(</span><span class="n">pBuffer</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%04x</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">nNumber</span><span class="p">);</span>
+<span class="o">*</span>   <span class="n">pBuffer</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span> <span class="o">//</span> <span class="n">Avoid</span> <span class="n">accidentally</span> <span class="n">writing</span> <span class="n">on</span> <span class="n">that</span> <span class="n">buffer</span> <span class="n">again</span>
+<span class="o">*</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagwriterappendfillbytes-bintagwriter-pwriter-rts-ui8-byfillbyte-btag-alignment-alignment">
+<span id="group-cmp-bin-tag-util-itf-1gad4af6aeae70dfa84ebb272f169ccaab1"></span><h3>RTS_RESULT BTagWriterAppendFillBytes (BINTAGWRITER <a href="#id45"><span class="problematic" id="id46">*</span></a>pWriter, RTS_UI8 byFillByte, BTAG_ALIGNMENT alignment)<a class="headerlink" href="#rts-result-btagwriterappendfillbytes-bintagwriter-pwriter-rts-ui8-byfillbyte-btag-alignment-alignment" title="Permalink to this headline">¶</a></h3>
+<p>Add byFillByte to the content until the current content ends on a position that satifies the desired alignment. Eg. a tag must always be closed on a (4,0)-alignment, so after adding a variable length string one should call:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span>                                <span class="n">BTAG_ALIGNMENT</span> <span class="n">align</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+<span class="o">*</span>                                <span class="o">...</span>
+<span class="o">*</span>                                <span class="n">BTagWriterAppendFillBytes</span><span class="p">(</span><span class="n">pWriter</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">align</span><span class="p">);</span>
+<span class="o">*</span>                                <span class="n">BTagWriterEndTag</span><span class="p">(</span><span class="n">pWriter</span><span class="p">,</span> <span class="n">TAG_ID</span><span class="p">);</span>
+<span class="o">*</span>
+</pre></div>
+</div>
+<p>If the alignment property is already fullfilled nothing will be appended.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="16%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>byFillByte</td>
+<td>The byte to be appended until alignment is achieved.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>alignment</td>
+<td>The desired alignment of the next writer position.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagwriterappenddummybytes-bintagwriter-pwriter-rts-ui8-byfillbyte-rts-ui32-ulsize">
+<span id="group-cmp-bin-tag-util-itf-1ga8419cf900a699af68830237bd8da058f"></span><h3>RTS_RESULT BTagWriterAppendDummyBytes (BINTAGWRITER <a href="#id47"><span class="problematic" id="id48">*</span></a>pWriter, RTS_UI8 byFillByte, RTS_UI32 ulSize)<a class="headerlink" href="#rts-result-btagwriterappenddummybytes-bintagwriter-pwriter-rts-ui8-byfillbyte-rts-ui32-ulsize" title="Permalink to this headline">¶</a></h3>
+<p>Append byFillByte ulSize times.</p>
+</div>
+<div class="section" id="rts-result-btagwriterendtag-bintagwriter-pwriter-rts-ui32-ultagid">
+<span id="group-cmp-bin-tag-util-itf-1ga3f2cf456d540c6853a22bea26eef48f6"></span><h3>RTS_RESULT BTagWriterEndTag (BINTAGWRITER <a href="#id49"><span class="problematic" id="id50">*</span></a>pWriter, RTS_UI32 ulTagId)<a class="headerlink" href="#rts-result-btagwriterendtag-bintagwriter-pwriter-rts-ui32-ultagid" title="Permalink to this headline">¶</a></h3>
+<p>Close the current tag. The current tag must have been started with the given tag id. ulTagId is used only as an additional check that all tags are closed in the right order. Since the only element that follows a tag must be a tag again and a tag must always start on a 4 byte boundary the complete size of a tag (header + content) must be dividable by 4. Taking a contentalignment of (4,x) then &#8220;contentsize == 4 - x (MOD 4) &#8221; must hold. (eg. for (4,1): contentsize % 4 == 3) If this condition does not hold, the function will fail.</p>
+</div>
+<div class="section" id="rts-result-btagwriterswitchbuffer-bintagwriter-pwriter-rts-ui8-pnewbuffer-rts-ui32-ulnewsize-rts-ui8-ppoldbuffer">
+<span id="group-cmp-bin-tag-util-itf-1gac52c256bccff16361b398c6f5d54de55"></span><h3>RTS_RESULT BTagWriterSwitchBuffer (BINTAGWRITER <a href="#id51"><span class="problematic" id="id52">*</span></a>pWriter, RTS_UI8 <a href="#id53"><span class="problematic" id="id54">*</span></a>pNewBuffer, RTS_UI32 ulNewSize, RTS_UI8 <a href="#id55"><span class="problematic" id="id56">**</span></a>ppOldBuffer)<a class="headerlink" href="#rts-result-btagwriterswitchbuffer-bintagwriter-pwriter-rts-ui8-pnewbuffer-rts-ui32-ulnewsize-rts-ui8-ppoldbuffer" title="Permalink to this headline">¶</a></h3>
+<p>Replaces the current writer buffer with a new one. All content in the current buffer is copied to the new buffer. This also means that the size of the new buffer has to be at least the current position of the writer. The purpose of this function is to allow for extension of the buffer if an operation returned a buffer overflow. Then the caller may allocate a new buffer, call BTagWriterSwitchBuffer and retry the failed operation.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="11%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pNewBuffer</td>
+<td>The buffer that is to replace the original buffer.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulNewSize</td>
+<td>Size of the new buffer. Must be greater or at least equal to the current postion of the writer.</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>ppOldBuffer</td>
+<td>Is set to the previous buffer.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagwritercreatesavepoint-bintagwriter-pwriter-bintagsavepoint-psavepoint">
+<span id="group-cmp-bin-tag-util-itf-1gaefefa23ce72f22006813faf84563b430"></span><h3>RTS_RESULT BTagWriterCreateSavepoint (BINTAGWRITER <a href="#id57"><span class="problematic" id="id58">*</span></a>pWriter, BINTAGSAVEPOINT <a href="#id59"><span class="problematic" id="id60">*</span></a>pSavepoint)<a class="headerlink" href="#rts-result-btagwritercreatesavepoint-bintagwriter-pwriter-bintagsavepoint-psavepoint" title="Permalink to this headline">¶</a></h3>
+<p>Save the current state of the writer. A later call to BTagWriterRestoreSavepoint will reset the writer and its buffer to that state. Any number of savepoints may be created. The caller must use multiple savepoints in a stack-like fashion: If savepoints are created in the order 1,2,3,4 then they must be restored in opposite order only. Not every savepoint must be restored - but if one is restored all savepoints created after that one MUST NOT BE USED any more. Examples: (&#8220;sX&#8221;=&#8221;create savepoint X&#8221;, &#8220;rX&#8221;=&#8221;Restore savepoint X&#8221;, &#8220;(x,y,z)&#8221;=&#8221;stack of valid savepoints&#8221;) The following sequences are valid: () s1 (1) s2 (1,2) s3 (1,2,3) r2 (1) r1 () () s1 (1) s2 (1,2) s3 (1,2,3) r2 (1) s4 (1,4) r4 (1) whereas this one is invalid: () s1 (1) s2 (1,2) s3 (1,2,3) r2 (1) r3 [3 is not valid at this point]</p>
+<p>The writer does not track the stack of savepoints, therefore it cannot detect errors in the restore order. It&#8217;s the responsibility of the application to ensure the correct restore order. Failure in doing so will lead to an inconsistent state and may well corrupt the whole document. Besides the restore order savepoints are independent of each other. The application may delete/reuse a savepoint anytime it doesn&#8217;t need it anymore.</p>
+<p>Savepoints cannot be used to transfer the state of a writer to a second writer. Any attempt in doing so will lead to undefined behaviour.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="12%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pSavePoint</td>
+<td>Will receive all information needed to restore the current state of the writer.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagwriterrestoresavepoint-bintagwriter-pwriter-bintagsavepoint-psavepoint">
+<span id="group-cmp-bin-tag-util-itf-1gaa04b4387c7d5f8a056ab75f90e26707b"></span><h3>RTS_RESULT BTagWriterRestoreSavepoint (BINTAGWRITER <a href="#id61"><span class="problematic" id="id62">*</span></a>pWriter, BINTAGSAVEPOINT <a href="#id63"><span class="problematic" id="id64">*</span></a>pSavepoint)<a class="headerlink" href="#rts-result-btagwriterrestoresavepoint-bintagwriter-pwriter-bintagsavepoint-psavepoint" title="Permalink to this headline">¶</a></h3>
+<p>Restore the state of the writer to one previously saved using BTagWriterCreateSavepoint. See there for a detailed description on how to use these functions.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="15%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pWriter</td>
+<td>Must be the same writer that the savepoint was created on.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pSavepoint</td>
+<td>A previously created savepoint.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-ui32-btagwritergetavailablebuffer-bintagwriter-pwriter">
+<span id="group-cmp-bin-tag-util-itf-1ga35d4f0f00f99853e39013baeea99fa9b"></span><h3>RTS_UI32 BTagWriterGetAvailableBuffer (BINTAGWRITER <a href="#id65"><span class="problematic" id="id66">*</span></a>pWriter)<a class="headerlink" href="#rts-ui32-btagwritergetavailablebuffer-bintagwriter-pwriter" title="Permalink to this headline">¶</a></h3>
+<p>Reads the available bytes in writer buffer that can be used for data.</p>
+</div>
+<div class="section" id="rts-result-btagwriterfinish-bintagwriter-pwriter-rts-ui8-ppbuffer-rts-ui32-pulsize">
+<span id="group-cmp-bin-tag-util-itf-1ga0af27850a6ee2f790c9ab443b5111cd4"></span><h3>RTS_RESULT BTagWriterFinish (BINTAGWRITER <a href="#id67"><span class="problematic" id="id68">*</span></a>pWriter, RTS_UI8 <a href="#id69"><span class="problematic" id="id70">**</span></a>ppBuffer, RTS_UI32 <a href="#id71"><span class="problematic" id="id72">*</span></a>pulSize)<a class="headerlink" href="#rts-result-btagwriterfinish-bintagwriter-pwriter-rts-ui8-ppbuffer-rts-ui32-pulsize" title="Permalink to this headline">¶</a></h3>
+<p>Finishes the writer. If not all tags have been closed properly this function will fail. Otherwise it returns the buffer passed in to BTagWriterInit in ppBuffer and the number of bytes written to the buffer in pulSize;</p>
+</div>
+<div class="section" id="rts-result-btagwritesingletag-bintagwriter-pwriter-rts-ui32-ultag-btag-alignment-align-rts-i32-bfillbytes-void-pcontent-rts-ui32-ulsize">
+<span id="group-cmp-bin-tag-util-itf-1gadf9ad720bb98e70354af29b25b01c8f3"></span><h3>RTS_RESULT BTagWriteSingleTag (BINTAGWRITER <a href="#id73"><span class="problematic" id="id74">*</span></a>pWriter, RTS_UI32 ulTag, BTAG_ALIGNMENT align, RTS_I32 bFillBytes, void <a href="#id75"><span class="problematic" id="id76">*</span></a>pContent, RTS_UI32 ulSize)<a class="headerlink" href="#rts-result-btagwritesingletag-bintagwriter-pwriter-rts-ui32-ultag-btag-alignment-align-rts-i32-bfillbytes-void-pcontent-rts-ui32-ulsize" title="Permalink to this headline">¶</a></h3>
+<p>Write a single tag</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="20%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pWriter</td>
+<td>Pointer to the writer stream</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulTag</td>
+<td>Tag to write</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>align</td>
+<td>Alignment of the tag</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pContent</td>
+<td>Pointer to the tag data</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulSize</td>
+<td>Size in bytes of the tag data</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-btagwritesingletag2-bintagwriter-pwriter-rts-ui32-ultag-btag-alignment-align-void-ppcontentlist-rts-ui32-paulsize">
+<span id="group-cmp-bin-tag-util-itf-1gaae1e438865f10164d966a05147bbd431"></span><h3>RTS_RESULT BTagWriteSingleTag2 (BINTAGWRITER <a href="#id77"><span class="problematic" id="id78">*</span></a>pWriter, RTS_UI32 ulTag, BTAG_ALIGNMENT align, void <a href="#id79"><span class="problematic" id="id80">**</span></a>ppContentList, RTS_UI32 <a href="#id81"><span class="problematic" id="id82">*</span></a>paulSize)<a class="headerlink" href="#rts-result-btagwritesingletag2-bintagwriter-pwriter-rts-ui32-ultag-btag-alignment-align-void-ppcontentlist-rts-ui32-paulsize" title="Permalink to this headline">¶</a></h3>
+<p>Write a single tag with more than one content</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="20%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pWriter</td>
+<td>Pointer to the writer stream</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulTag</td>
+<td>Tag to write</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>align</td>
+<td>Alignment of the tag</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pContent</td>
+<td>Pointer to the tag data</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulSize</td>
+<td>Size in bytes of the tag data</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-btagreaderinit-bintagreader-preader-rts-ui8-pbuffer-rts-ui32-ulbuffersize">
+<span id="group-cmp-bin-tag-util-itf-1ga4a580903a01c231f743462630a80c7b9"></span><h3>RTS_RESULT BTagReaderInit (BINTAGREADER <a href="#id83"><span class="problematic" id="id84">*</span></a>pReader, RTS_UI8 <a href="#id85"><span class="problematic" id="id86">*</span></a>pBuffer, RTS_UI32 ulBufferSize)<a class="headerlink" href="#rts-result-btagreaderinit-bintagreader-preader-rts-ui8-pbuffer-rts-ui32-ulbuffersize" title="Permalink to this headline">¶</a></h3>
+<p>Initialize a reader.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="9%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[inout]</td>
+<td>pReader</td>
+<td>Pass in a <a class="reference internal" href="struct_b_i_n_t_a_g_r_e_a_d_e_r.html#struct-b-i-n-t-a-g-r-e-a-d-e-r"><span class="std std-ref">BINTAGREADER</span></a> structure that will be initialized to an empty reader.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pBuffer</td>
+<td>The buffer that contains the bintag structure to be read. Do not alter the buffer until the reader isn&#8217;t used any more.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulBufferSize</td>
+<td>The size of pBuffer. It is expected that the whole buffer is in the bintag structure, possibly containing multiple toplevel tags.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagreaderpeeknext-bintagreader-preader">
+<span id="group-cmp-bin-tag-util-itf-1gae482e0ab148aefa5b40d3c14a715b431"></span><h3>RTS_RESULT BTagReaderPeekNext (BINTAGREADER <a href="#id87"><span class="problematic" id="id88">*</span></a>pReader)<a class="headerlink" href="#rts-result-btagreaderpeeknext-bintagreader-preader" title="Permalink to this headline">¶</a></h3>
+<p>Peek at the type of the next element as it would be returned by a call to BTagReaderMoveNext, but do not actually move to it (ie. the readers state will not be changed).</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="13%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pReader</td>
+<td>An active reader.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pnElementType</td>
+<td><p class="first">Will be set to the type of the current element:</p>
+<ul class="last simple">
+<li>BTAG_ET_STARTTAG: Reader entered a new tag.</li>
+<li>BTAG_ET_ENDTAG: End of the current tag reached. New active tag is the surrounding tag</li>
+<li>BTAG_ET_EOF: End of the buffer reached. No more content/tags can be read</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagreadermovenext-bintagreader-preader-rts-i32-pnelementtype">
+<span id="group-cmp-bin-tag-util-itf-1ga64927ab05a3632b524df047861ebb7e5"></span><h3>RTS_RESULT BTagReaderMoveNext (BINTAGREADER <a href="#id89"><span class="problematic" id="id90">*</span></a>pReader, RTS_I32 <a href="#id91"><span class="problematic" id="id92">*</span></a>pnElementType)<a class="headerlink" href="#rts-result-btagreadermovenext-bintagreader-preader-rts-i32-pnelementtype" title="Permalink to this headline">¶</a></h3>
+<p>Let the reader move on to the next element.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="13%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pReader</td>
+<td>An active reader.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pnElementType</td>
+<td><p class="first">Will be set to the type of the current element:</p>
+<ul class="last simple">
+<li>BTAG_ET_STARTTAG: Reader entered a new tag.</li>
+<li>BTAG_ET_ENDTAG: End of the current tag reached. New active tag is the surrounding tag</li>
+<li>BTAG_ET_EOF: End of the buffer reached. No more content/tags can be read</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagreaderskipcontent-bintagreader-preader">
+<span id="group-cmp-bin-tag-util-itf-1ga58b9b91e29f42a1a0ff442b1b97d1ee1"></span><h3>RTS_RESULT BTagReaderSkipContent (BINTAGREADER <a href="#id93"><span class="problematic" id="id94">*</span></a>pReader)<a class="headerlink" href="#rts-result-btagreaderskipcontent-bintagreader-preader" title="Permalink to this headline">¶</a></h3>
+<p>Jump to the end of the current tag. The next element that will be read by BTagReaderMoveNext will be the ENDTAG of the current tag.</p>
+</div>
+<div class="section" id="rts-result-btagreadergettagid-bintagreader-preader-rts-ui32-pultagid">
+<span id="group-cmp-bin-tag-util-itf-1gaac2ed0c282be75db6939d359810f7065"></span><h3>RTS_RESULT BTagReaderGetTagId (BINTAGREADER <a href="#id95"><span class="problematic" id="id96">*</span></a>pReader, RTS_UI32 <a href="#id97"><span class="problematic" id="id98">*</span></a>pulTagId)<a class="headerlink" href="#rts-result-btagreadergettagid-bintagreader-preader-rts-ui32-pultagid" title="Permalink to this headline">¶</a></h3>
+<p>Get the id of the current tag. Will fail if the reader is positioned at the toplevel.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="16%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pulTagId</td>
+<td>Will be set to the id of the current tag.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagreadergettaglen-bintagreader-preader-rts-ui32-pultaglen">
+<span id="group-cmp-bin-tag-util-itf-1ga1444abd7c3c70f632a0a95d3a8daa16c"></span><h3>RTS_RESULT BTagReaderGetTagLen (BINTAGREADER <a href="#id99"><span class="problematic" id="id100">*</span></a>pReader, RTS_UI32 <a href="#id101"><span class="problematic" id="id102">*</span></a>pulTagLen)<a class="headerlink" href="#rts-result-btagreadergettaglen-bintagreader-preader-rts-ui32-pultaglen" title="Permalink to this headline">¶</a></h3>
+<p>Get the tag length of the current tag. Will fail if the reader is positioned at the toplevel.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="16%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pulTagLen</td>
+<td>Will be set to the length of the current tag.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagreaderisdatatag-bintagreader-preader-rts-i32-pbisdatatag">
+<span id="group-cmp-bin-tag-util-itf-1ga022ddc2d95a50bcba1d5b7947ea33b6a"></span><h3>RTS_RESULT BTagReaderIsDataTag (BINTAGREADER <a href="#id103"><span class="problematic" id="id104">*</span></a>pReader, RTS_I32 <a href="#id105"><span class="problematic" id="id106">*</span></a>pbIsDataTag)<a class="headerlink" href="#rts-result-btagreaderisdatatag-bintagreader-preader-rts-i32-pbisdatatag" title="Permalink to this headline">¶</a></h3>
+<p>Check if the current tag is a data tag (ie. contains raw content) or does contain subtags. Will return an error if the reader is not positioned on a tag (ie. is at the toplevel). However, in that case pbIsData will be set to FALSE.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="14%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pbIsDataTag</td>
+<td>Is set to TRUE, if the current tag is a data tag, FALSE otherwise.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagreadergetcomplexcontent-bintagreader-preader-rts-ui8-ppbuffer-rts-ui32-pulsize">
+<span id="group-cmp-bin-tag-util-itf-1ga580b67848e86db4dc311ad8cf4b07a9a"></span><h3>RTS_RESULT BTagReaderGetComplexContent (BINTAGREADER <a href="#id107"><span class="problematic" id="id108">*</span></a>pReader, RTS_UI8 <a href="#id109"><span class="problematic" id="id110">**</span></a>ppBuffer, RTS_UI32 <a href="#id111"><span class="problematic" id="id112">*</span></a>pulSize)<a class="headerlink" href="#rts-result-btagreadergetcomplexcontent-bintagreader-preader-rts-ui8-ppbuffer-rts-ui32-pulsize" title="Permalink to this headline">¶</a></h3>
+<p>Get a pointer on the content of the current tag.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="13%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>ppBuffer</td>
+<td>Will be set to point at the content of the current tag.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulSize</td>
+<td>Will contain the size of the content.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagreadergetcontent-bintagreader-preader-rts-ui8-ppbuffer-rts-ui32-pulsize">
+<span id="group-cmp-bin-tag-util-itf-1ga220c1fa43be4ba6dd3c6978dbcfcea4c"></span><h3>RTS_RESULT BTagReaderGetContent (BINTAGREADER <a href="#id113"><span class="problematic" id="id114">*</span></a>pReader, RTS_UI8 <a href="#id115"><span class="problematic" id="id116">**</span></a>ppBuffer, RTS_UI32 <a href="#id117"><span class="problematic" id="id118">*</span></a>pulSize)<a class="headerlink" href="#rts-result-btagreadergetcontent-bintagreader-preader-rts-ui8-ppbuffer-rts-ui32-pulsize" title="Permalink to this headline">¶</a></h3>
+<p>Get a pointer on the content of the current tag. Will fail if the reader is on the toplevel (no current tag) or the current tag is not a data tag.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="13%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>ppBuffer</td>
+<td>Will be set to point at the content of the current tag.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulSize</td>
+<td>Will contain the size of the content.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagreadergetstring-bintagreader-preader-char-ppstring-rts-ui32-pulsize-rts-i32-baddendofstring">
+<span id="group-cmp-bin-tag-util-itf-1gadfd36a3cb8bf0fd8f66e2ca39057f63b"></span><h3>RTS_RESULT BTagReaderGetString (BINTAGREADER <a href="#id119"><span class="problematic" id="id120">*</span></a>pReader, char <a href="#id121"><span class="problematic" id="id122">**</span></a>ppString, RTS_UI32 <a href="#id123"><span class="problematic" id="id124">*</span></a>pulSize, RTS_I32 bAddEndOfString)<a class="headerlink" href="#rts-result-btagreadergetstring-bintagreader-preader-char-ppstring-rts-ui32-pulsize-rts-i32-baddendofstring" title="Permalink to this headline">¶</a></h3>
+<p>Like BTagReaderGetContent but treats the content as a string. If a &#8216;0&#8217; is found before the end of the tag, pulSize is set to the length up to (and including) the zero. If bAddEndOfString is set, then &#8216;0&#8217; is written at the last byte, if &#8216;0&#8217; is not found.</p>
+<p><strong>Note:</strong></p>
+<p>If the length of the tag is 0 then no &#8216;0&#8217; can be written into the buffer without overwriting other content. In that case a reference to a static empty string is returned.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="8%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>ppString</td>
+<td>Will be set to the start of the string. Will not necessarily point into the readers buffer. (see note).</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pulSize</td>
+<td>The length of the string INCLUDING the trailing &#8216;0&#8217;, ie. &#8220;strlen(ppString)+1&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>bAddEndOfString</td>
+<td>Force a trailing zero byte to be added, if it doesn&#8217;t exist within the bounds of the tag. Will overwrite the last char of the string. Note: This option will alter the content of the buffer!</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagreadercreatesavepoint-bintagreader-preader-bintagreadersavepoint-psavepoint">
+<span id="group-cmp-bin-tag-util-itf-1gafe04ecee4c0c11d8c779492bfd100074"></span><h3>RTS_RESULT BTagReaderCreateSavepoint (BINTAGREADER <a href="#id125"><span class="problematic" id="id126">*</span></a>pReader, BINTAGREADERSAVEPOINT <a href="#id127"><span class="problematic" id="id128">*</span></a>pSavepoint)<a class="headerlink" href="#rts-result-btagreadercreatesavepoint-bintagreader-preader-bintagreadersavepoint-psavepoint" title="Permalink to this headline">¶</a></h3>
+<p>Save the current state of the reader. A later call to BTagReaderRestoreSavepoint will reset the reader and its buffer to that state. Any number of savepoints may be created. The caller must use multiple savepoints in a stack-like fashion: If savepoints are created in the order 1,2,3,4 then they must be restored in opposite order only. Not every savepoint must be restored - but if one is restored all savepoints created after that one MUST NOT BE USED any more. Examples: (&#8220;sX&#8221;=&#8221;create savepoint X&#8221;, &#8220;rX&#8221;=&#8221;Restore savepoint X&#8221;, &#8220;(x,y,z)&#8221;=&#8221;stack of valid savepoints&#8221;) The following sequences are valid: () s1 (1) s2 (1,2) s3 (1,2,3) r2 (1) r1 () () s1 (1) s2 (1,2) s3 (1,2,3) r2 (1) s4 (1,4) r4 (1) whereas this one is invalid: () s1 (1) s2 (1,2) s3 (1,2,3) r2 (1) r3 [3 is not valid at this point]</p>
+<p>The reader does not track the stack of savepoints, therefore it cannot detect errors in the restore order. It&#8217;s the responsibility of the application to ensure the correct restore order. Failure in doing so will lead to an inconsistent state and may well corrupt the whole document. Besides the restore order savepoints are independent of each other. The application may delete/reuse a savepoint anytime it doesn&#8217;t need it anymore.</p>
+<p>Savepoints cannot be used to transfer the state of a reader to a second reader. Any attempt in doing so will lead to undefined behaviour.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="12%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pSavePoint</td>
+<td>Will receive all information needed to restore the current state of the reader.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagreaderrestoresavepoint-bintagreader-preader-bintagreadersavepoint-psavepoint">
+<span id="group-cmp-bin-tag-util-itf-1ga198fa209b27d078688b8c743182bda9f"></span><h3>RTS_RESULT BTagReaderRestoreSavepoint (BINTAGREADER <a href="#id129"><span class="problematic" id="id130">*</span></a>pReader, BINTAGREADERSAVEPOINT <a href="#id131"><span class="problematic" id="id132">*</span></a>pSavepoint)<a class="headerlink" href="#rts-result-btagreaderrestoresavepoint-bintagreader-preader-bintagreadersavepoint-psavepoint" title="Permalink to this headline">¶</a></h3>
+<p>Restore the state of the reader to one previously saved using BTagReaderCreateSavepoint. See there for a detailed description on how to use these functions.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="15%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pReader</td>
+<td>Must be the same reader that the savepoint was created on.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pSavepoint</td>
+<td>A previously created savepoint.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-btagwriterfileinit-bintagwriter-pwriter-rts-handle-hfile">
+<span id="group-cmp-bin-tag-util-itf-1gac475bb9ca185a3a6b732eebb934dd17d"></span><h3>RTS_RESULT BTagWriterFileInit (BINTAGWRITER <a href="#id133"><span class="problematic" id="id134">*</span></a>pWriter, RTS_HANDLE hFile)<a class="headerlink" href="#rts-result-btagwriterfileinit-bintagwriter-pwriter-rts-handle-hfile" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-btagwriterfileinit2-bintagwriter-pwriter-char-pszfilename">
+<span id="group-cmp-bin-tag-util-itf-1ga98e1412e288d8dc6b36e6407dcefc241"></span><h3>RTS_RESULT BTagWriterFileInit2 (BINTAGWRITER <a href="#id135"><span class="problematic" id="id136">*</span></a>pWriter, char <a href="#id137"><span class="problematic" id="id138">*</span></a>pszFileName)<a class="headerlink" href="#rts-result-btagwriterfileinit2-bintagwriter-pwriter-char-pszfilename" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-btagwriterfilestreaminit-bintagwriter-pwriter-rts-handle-hfile">
+<span id="group-cmp-bin-tag-util-itf-1ga54dc9940ffcc68387445d16fabe82501"></span><h3>RTS_RESULT BTagWriterFileStreamInit (BINTAGWRITER <a href="#id139"><span class="problematic" id="id140">*</span></a>pWriter, RTS_HANDLE hFile)<a class="headerlink" href="#rts-result-btagwriterfilestreaminit-bintagwriter-pwriter-rts-handle-hfile" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-btagwriterfilestreaminit2-bintagwriter-pwriter-rts-handle-hfile-pfupdatecrc-pfupdatecrc-void-pparameterupdatecrc">
+<span id="group-cmp-bin-tag-util-itf-1gab1634634c5d807db718c3ea7fd1cfca6"></span><h3>RTS_RESULT BTagWriterFileStreamInit2 (BINTAGWRITER <a href="#id141"><span class="problematic" id="id142">*</span></a>pWriter, RTS_HANDLE hFile, PFUPDATECRC pfUpdateCRC, void <a href="#id143"><span class="problematic" id="id144">*</span></a>pParameterUpdateCRC)<a class="headerlink" href="#rts-result-btagwriterfilestreaminit2-bintagwriter-pwriter-rts-handle-hfile-pfupdatecrc-pfupdatecrc-void-pparameterupdatecrc" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-btagreaderfileinit-bintagreader-preader-rts-ui8-pbuffer-rts-ui32-ulbuffersize-rts-handle-hfile">
+<span id="group-cmp-bin-tag-util-itf-1ga3aa9642dcd750b0c6d0bc1103514e88e"></span><h3>RTS_RESULT BTagReaderFileInit (BINTAGREADER <a href="#id145"><span class="problematic" id="id146">*</span></a>pReader, RTS_UI8 <a href="#id147"><span class="problematic" id="id148">*</span></a>pBuffer, RTS_UI32 ulBufferSize, RTS_HANDLE hFile)<a class="headerlink" href="#rts-result-btagreaderfileinit-bintagreader-preader-rts-ui8-pbuffer-rts-ui32-ulbuffersize-rts-handle-hfile" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-btagreadergetfirsttag-bintagreader-preader-rts-ui32-pultopleveltag-rts-ui32-pultag-rts-ui32-pulsize-rts-result-presult">
+<span id="group-cmp-bin-tag-util-itf-1ga2524a0e38a0f99cc88a243a762ac25bf"></span><h3>void* BTagReaderGetFirstTag (BINTAGREADER <a href="#id149"><span class="problematic" id="id150">*</span></a>pReader, RTS_UI32 <a href="#id151"><span class="problematic" id="id152">*</span></a>pulToplevelTag, RTS_UI32 <a href="#id153"><span class="problematic" id="id154">*</span></a>pulTag, RTS_UI32 <a href="#id155"><span class="problematic" id="id156">*</span></a>pulSize, RTS_RESULT <a href="#id157"><span class="problematic" id="id158">*</span></a>pResult)<a class="headerlink" href="#void-btagreadergetfirsttag-bintagreader-preader-rts-ui32-pultopleveltag-rts-ui32-pultag-rts-ui32-pulsize-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get the first tag out of a stream</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="22%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pReader</td>
+<td>Pointer to the reader stream</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulToplevelTag</td>
+<td>Returns the toplevel tag. -1, if no complex tag</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pulTag</td>
+<td>Returns the tag</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulSize</td>
+<td>Size of the tag</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to the content</p>
+</div>
+<div class="section" id="void-btagreadergetnexttag-bintagreader-preader-rts-ui32-pultopleveltag-rts-ui32-pultag-rts-ui32-pulsize-rts-result-presult">
+<span id="group-cmp-bin-tag-util-itf-1gaba78e97eeef7d4405a997a1c836872fd"></span><h3>void* BTagReaderGetNextTag (BINTAGREADER <a href="#id159"><span class="problematic" id="id160">*</span></a>pReader, RTS_UI32 <a href="#id161"><span class="problematic" id="id162">*</span></a>pulToplevelTag, RTS_UI32 <a href="#id163"><span class="problematic" id="id164">*</span></a>pulTag, RTS_UI32 <a href="#id165"><span class="problematic" id="id166">*</span></a>pulSize, RTS_RESULT <a href="#id167"><span class="problematic" id="id168">*</span></a>pResult)<a class="headerlink" href="#void-btagreadergetnexttag-bintagreader-preader-rts-ui32-pultopleveltag-rts-ui32-pultag-rts-ui32-pulsize-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get the first tag out of a stream</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="22%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pReader</td>
+<td>Pointer to the reader stream</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulToplevelTag</td>
+<td>Returns the toplevel tag. -1, if no complex tag</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pulTag</td>
+<td>Returns the tag</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulSize</td>
+<td>Size of the tag</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to the content</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_bitmap_pool_itf.html" title="CmpBitmapPoolItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_bin_tag_util_iec_itf.html" title="CmpBinTagUtilIecItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

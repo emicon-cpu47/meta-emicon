@@ -1,0 +1,66 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagsysdirread__struct:
+
+=====================================
+tagsysdirread_struct Struct Reference
+=====================================
+
+| #include ":ref:`SysDirItf.h <_sys_dir_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_HANDLE :ref:`hDir <structtagsysdirread__struct_1a76932ee9c5bc22a306925c6354d8dec4>`
+- RTS_IEC_STRING * :ref:`szDirEntry <structtagsysdirread__struct_1aab4c47f28a54d828f66ac6688db53a9a>`
+- RTS_IEC_DINT :ref:`diMaxDirEntry <structtagsysdirread__struct_1acbaa099876db71222d498a948beda5aa>`
+- :ref:`DirInfo <struct_dir_info>` * :ref:`pDirInfo <structtagsysdirread__struct_1a2d33e74b0cf083b662235ac95570b3c9>`
+- RTS_IEC_RESULT :ref:`SysDirRead <structtagsysdirread__struct_1a45dc01c8023d887d11942080c519492b>`
+
+Detailed Description
+--------------------
+
+Read next directory entry. Writes the entry in pszDirEntry. :return: Returns the runtime system error code (see CmpErrors.library)
+
++ ERR_OK: Entry could be read + ERR_END_OF_OBJECT: If end of directory list was reached + ERR_PARAMETER: If one of the parameters is invalid + ERR_BUFFERSIZE: If iMaxDirEntry is too short to get the complete directory entry string
+
+.. note:: Typically after error ``ERR_BUFFERSIZE``, the dir-handle is set to the next entry, so this entry will be missed!
+
+Field Documentation
+-------------------
+
+.. _structtagsysdirread__struct_1a76932ee9c5bc22a306925c6354d8dec4:
+
+RTS_IEC_HANDLE tagsysdirread_struct::hDir
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagsysdirread__struct_1aab4c47f28a54d828f66ac6688db53a9a:
+
+RTS_IEC_STRING* tagsysdirread_struct::szDirEntry
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagsysdirread__struct_1acbaa099876db71222d498a948beda5aa:
+
+RTS_IEC_DINT tagsysdirread_struct::diMaxDirEntry
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagsysdirread__struct_1a2d33e74b0cf083b662235ac95570b3c9:
+
+DirInfo* tagsysdirread_struct::pDirInfo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagsysdirread__struct_1a45dc01c8023d887d11942080c519492b:
+
+RTS_IEC_RESULT tagsysdirread_struct::SysDirRead
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysDirItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

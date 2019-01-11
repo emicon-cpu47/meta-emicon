@@ -1,0 +1,409 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Priority ranges &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Priority ranges</a><ul>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-taskprio-range-255">#define TASKPRIO_RANGE 255</a></li>
+<li><a class="reference internal" href="#define-taskprio-segment-32">#define TASKPRIO_SEGMENT 32</a></li>
+<li><a class="reference internal" href="#define-taskprio-max-0">#define TASKPRIO_MAX 0</a></li>
+<li><a class="reference internal" href="#define-taskprio-system-base-0">#define TASKPRIO_SYSTEM_BASE 0</a></li>
+<li><a class="reference internal" href="#define-taskprio-system-end-31">#define TASKPRIO_SYSTEM_END 31</a></li>
+<li><a class="reference internal" href="#define-taskprio-realtime-base-32">#define TASKPRIO_REALTIME_BASE 32</a></li>
+<li><a class="reference internal" href="#define-taskprio-realtime-end-63">#define TASKPRIO_REALTIME_END 63</a></li>
+<li><a class="reference internal" href="#define-taskprio-high-base-64">#define TASKPRIO_HIGH_BASE 64</a></li>
+<li><a class="reference internal" href="#define-taskprio-high-end-95">#define TASKPRIO_HIGH_END 95</a></li>
+<li><a class="reference internal" href="#define-taskprio-abovenormal-base-96">#define TASKPRIO_ABOVENORMAL_BASE 96</a></li>
+<li><a class="reference internal" href="#define-taskprio-abovenormal-end-127">#define TASKPRIO_ABOVENORMAL_END 127</a></li>
+<li><a class="reference internal" href="#define-taskprio-normal-base-128">#define TASKPRIO_NORMAL_BASE 128</a></li>
+<li><a class="reference internal" href="#define-taskprio-normal-end-159">#define TASKPRIO_NORMAL_END 159</a></li>
+<li><a class="reference internal" href="#define-taskprio-belownormal-base-160">#define TASKPRIO_BELOWNORMAL_BASE 160</a></li>
+<li><a class="reference internal" href="#define-taskprio-belownormal-end-191">#define TASKPRIO_BELOWNORMAL_END 191</a></li>
+<li><a class="reference internal" href="#define-taskprio-low-base-192">#define TASKPRIO_LOW_BASE 192</a></li>
+<li><a class="reference internal" href="#define-taskprio-low-end-223">#define TASKPRIO_LOW_END 223</a></li>
+<li><a class="reference internal" href="#define-taskprio-lowest-base-224">#define TASKPRIO_LOWEST_BASE 224</a></li>
+<li><a class="reference internal" href="#define-taskprio-lowest-end-255">#define TASKPRIO_LOWEST_END 255</a></li>
+<li><a class="reference internal" href="#define-taskprio-idle-255">#define TASKPRIO_IDLE 255</a></li>
+<li><a class="reference internal" href="#define-taskprio-min-255">#define TASKPRIO_MIN 255</a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-system-base-ospriority-system-base">#define SYSTASKKEY_INT_PRIORITY_SYSTEM_BASE &#8220;OSPriority.System.Base&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-system-base-default-taskprio-system-base">#define SYSTASKVALUE_INT_PRIORITY_SYSTEM_BASE_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_SYSTEM_BASE</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-system-end-ospriority-system-end">#define SYSTASKKEY_INT_PRIORITY_SYSTEM_END &#8220;OSPriority.System.End&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-system-end-default-taskprio-system-end">#define SYSTASKVALUE_INT_PRIORITY_SYSTEM_END_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_SYSTEM_END</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-realtime-base-ospriority-realtime-base">#define SYSTASKKEY_INT_PRIORITY_REALTIME_BASE &#8220;OSPriority.Realtime.Base&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-realtime-base-default-taskprio-realtime-base">#define SYSTASKVALUE_INT_PRIORITY_REALTIME_BASE_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_REALTIME_BASE</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-realtime-end-ospriority-realtime-end">#define SYSTASKKEY_INT_PRIORITY_REALTIME_END &#8220;OSPriority.Realtime.End&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-realtime-end-default-taskprio-realtime-end">#define SYSTASKVALUE_INT_PRIORITY_REALTIME_END_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_REALTIME_END</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-high-base-ospriority-high-base">#define SYSTASKKEY_INT_PRIORITY_HIGH_BASE &#8220;OSPriority.High.Base&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-high-base-default-taskprio-high-base">#define SYSTASKVALUE_INT_PRIORITY_HIGH_BASE_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_HIGH_BASE</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-high-end-ospriority-high-end">#define SYSTASKKEY_INT_PRIORITY_HIGH_END &#8220;OSPriority.High.End&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-high-end-default-taskprio-high-end">#define SYSTASKVALUE_INT_PRIORITY_HIGH_END_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_HIGH_END</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-abovenormal-base-ospriority-abovenormal-base">#define SYSTASKKEY_INT_PRIORITY_ABOVENORMAL_BASE &#8220;OSPriority.AboveNormal.Base&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-abovenormal-base-default-taskprio-abovenormal-base">#define SYSTASKVALUE_INT_PRIORITY_ABOVENORMAL_BASE_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_ABOVENORMAL_BASE</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-abovenormal-end-ospriority-abovenormal-end">#define SYSTASKKEY_INT_PRIORITY_ABOVENORMAL_END &#8220;OSPriority.AboveNormal.End&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-abovenormal-end-default-taskprio-abovenormal-end">#define SYSTASKVALUE_INT_PRIORITY_ABOVENORMAL_END_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_ABOVENORMAL_END</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-normal-base-ospriority-normal-base">#define SYSTASKKEY_INT_PRIORITY_NORMAL_BASE &#8220;OSPriority.Normal.Base&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-normal-base-default-taskprio-normal-base">#define SYSTASKVALUE_INT_PRIORITY_NORMAL_BASE_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_NORMAL_BASE</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-normal-end-ospriority-normal-end">#define SYSTASKKEY_INT_PRIORITY_NORMAL_END &#8220;OSPriority.Normal.End&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-normal-end-default-taskprio-normal-end">#define SYSTASKVALUE_INT_PRIORITY_NORMAL_END_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_NORMAL_END</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-belownormal-base-ospriority-belownormal-base">#define SYSTASKKEY_INT_PRIORITY_BELOWNORMAL_BASE &#8220;OSPriority.BelowNormal.Base&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-belownormal-base-default-taskprio-belownormal-base">#define SYSTASKVALUE_INT_PRIORITY_BELOWNORMAL_BASE_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_BELOWNORMAL_BASE</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-belownormal-end-ospriority-belownormal-end">#define SYSTASKKEY_INT_PRIORITY_BELOWNORMAL_END &#8220;OSPriority.BelowNormal.End&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-belownormal-end-default-taskprio-belownormal-end">#define SYSTASKVALUE_INT_PRIORITY_BELOWNORMAL_END_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_BELOWNORMAL_END</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-low-base-ospriority-low-base">#define SYSTASKKEY_INT_PRIORITY_LOW_BASE &#8220;OSPriority.Low.Base&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-low-base-default-taskprio-low-base">#define SYSTASKVALUE_INT_PRIORITY_LOW_BASE_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_LOW_BASE</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-low-end-ospriority-low-end">#define SYSTASKKEY_INT_PRIORITY_LOW_END &#8220;OSPriority.Low.End&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-low-end-default-taskprio-low-end">#define SYSTASKVALUE_INT_PRIORITY_LOW_END_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_LOW_END</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-lowest-base-ospriority-lowest-base">#define SYSTASKKEY_INT_PRIORITY_LOWEST_BASE &#8220;OSPriority.Lowest.Base&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-lowest-base-default-taskprio-lowest-base">#define SYSTASKVALUE_INT_PRIORITY_LOWEST_BASE_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_LOWEST_BASE</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-priority-lowest-end-ospriority-lowest-end">#define SYSTASKKEY_INT_PRIORITY_LOWEST_END &#8220;OSPriority.Lowest.End&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-priority-lowest-end-default-taskprio-lowest-end">#define SYSTASKVALUE_INT_PRIORITY_LOWEST_END_DEFAULT <code class="docutils literal"><span class="pre">TASKPRIO_LOWEST_END</span></code></a></li>
+<li><a class="reference internal" href="#define-systaskkey-int-vxworks-cpu-vxworks-cpu">#define SYSTASKKEY_INT_VXWORKS_CPU &#8220;VxWorks.CPU&#8221;</a></li>
+<li><a class="reference internal" href="#define-systaskvalue-int-vxworks-cpu-default-0">#define SYSTASKVALUE_INT_VXWORKS_CPU_DEFAULT 0</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_task_itf___priorityranges.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="priority-ranges">
+<span id="group-sys-task-itf-priorityranges"></span><h1>Priority ranges<a class="headerlink" href="#priority-ranges" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-sys-task-itf-priorityranges-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga908b6d0f29094f261632a057a778ef54"><span class="std std-ref">TASKPRIO_RANGE</span></a> 255</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga49801bc96fe4e3415da88060a2145b42"><span class="std std-ref">TASKPRIO_SEGMENT</span></a> 32</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga23bbc69c7e5546dba7cb1725987d7378"><span class="std std-ref">TASKPRIO_MAX</span></a> 0</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga4b8c31dd85469ce66ed547ac0d79b05a"><span class="std std-ref">TASKPRIO_SYSTEM_BASE</span></a> 0</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga1d8fe46e7ccd9464317a853a7955d95a"><span class="std std-ref">TASKPRIO_SYSTEM_END</span></a> 31</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga7b25f02b48aeef6d28b42bae29fe9632"><span class="std std-ref">TASKPRIO_REALTIME_BASE</span></a> 32</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga41a92199c9b1b6fea84496f5cba70d9f"><span class="std std-ref">TASKPRIO_REALTIME_END</span></a> 63</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gaaebec44d4389b527765791eebe222ecd"><span class="std std-ref">TASKPRIO_HIGH_BASE</span></a> 64</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga01b6b431ab419f95eb0e3faf86ba88d5"><span class="std std-ref">TASKPRIO_HIGH_END</span></a> 95</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga8ec67f7115d1ad63bce939c679c1a3be"><span class="std std-ref">TASKPRIO_ABOVENORMAL_BASE</span></a> 96</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gaec971691601ad4a9ad387cb40521b4c6"><span class="std std-ref">TASKPRIO_ABOVENORMAL_END</span></a> 127</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gad3309945e422903c3631bd3703d99b13"><span class="std std-ref">TASKPRIO_NORMAL_BASE</span></a> 128</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gac444e7afb72999635bd2118c37e1ba96"><span class="std std-ref">TASKPRIO_NORMAL_END</span></a> 159</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gab32b3c86ea758c31840449d847f1ba43"><span class="std std-ref">TASKPRIO_BELOWNORMAL_BASE</span></a> 160</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga2532d4c49303609310cd4b0a274efc7e"><span class="std std-ref">TASKPRIO_BELOWNORMAL_END</span></a> 191</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga3c2d117cd52c91df5df1632cac005664"><span class="std std-ref">TASKPRIO_LOW_BASE</span></a> 192</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gad296f30e4104b82c832fe933fc8ffd69"><span class="std std-ref">TASKPRIO_LOW_END</span></a> 223</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga7135ecd099ebb786a2e704943ced77e5"><span class="std std-ref">TASKPRIO_LOWEST_BASE</span></a> 224</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gac9136e4f8a47da26c8a36748158168e4"><span class="std std-ref">TASKPRIO_LOWEST_END</span></a> 255</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga3b4df50386a0218e7f2a6d9bb24700c2"><span class="std std-ref">TASKPRIO_IDLE</span></a> 255</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga04512027f6cbebdb7599b585e4286ce7"><span class="std std-ref">TASKPRIO_MIN</span></a> 255</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga9ee9aceabddb67a6b5c3cf88ba9e6f74"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_SYSTEM_BASE</span></a> &#8220;OSPriority.System.Base&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gaf3b4bef0adb27279bd0474f2ab48874f"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_SYSTEM_BASE_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga4b8c31dd85469ce66ed547ac0d79b05a"><span class="std std-ref">TASKPRIO_SYSTEM_BASE</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga93b8e60a6212cc9b55767097b480bc27"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_SYSTEM_END</span></a> &#8220;OSPriority.System.End&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gaa62b1e6ef93c0e5e87db45140d760b43"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_SYSTEM_END_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga1d8fe46e7ccd9464317a853a7955d95a"><span class="std std-ref">TASKPRIO_SYSTEM_END</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga35697f13c10a15b9b2ebf6f67bb9df45"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_REALTIME_BASE</span></a> &#8220;OSPriority.Realtime.Base&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga4395d85a586b6acb4cb3dccad8fdee68"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_REALTIME_BASE_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga7b25f02b48aeef6d28b42bae29fe9632"><span class="std std-ref">TASKPRIO_REALTIME_BASE</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga2c9cd89ad2b122a0342b09093c4c7010"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_REALTIME_END</span></a> &#8220;OSPriority.Realtime.End&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gab3452287e9e20cf2187f533d20e16ff4"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_REALTIME_END_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga41a92199c9b1b6fea84496f5cba70d9f"><span class="std std-ref">TASKPRIO_REALTIME_END</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga0d14a766826b5e75207a0c182ff7fdd7"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_HIGH_BASE</span></a> &#8220;OSPriority.High.Base&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga595bdd41827797afab299e63d71c196a"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_HIGH_BASE_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gaaebec44d4389b527765791eebe222ecd"><span class="std std-ref">TASKPRIO_HIGH_BASE</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gaff3a337a5a26df27c30b0f22c0eb8140"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_HIGH_END</span></a> &#8220;OSPriority.High.End&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga2350a217e6088d4c180a95f1d7549d8f"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_HIGH_END_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga01b6b431ab419f95eb0e3faf86ba88d5"><span class="std std-ref">TASKPRIO_HIGH_END</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga6a05a56a81d3f4991684505638e6b9ff"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_ABOVENORMAL_BASE</span></a> &#8220;OSPriority.AboveNormal.Base&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga1ff629c50fe85a3ffe3192ae6953f5ce"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_ABOVENORMAL_BASE_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga8ec67f7115d1ad63bce939c679c1a3be"><span class="std std-ref">TASKPRIO_ABOVENORMAL_BASE</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga973fdf9c196d927c2215c585f242a58d"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_ABOVENORMAL_END</span></a> &#8220;OSPriority.AboveNormal.End&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga7053596b0c934b8b6f8bde0bf00f71c6"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_ABOVENORMAL_END_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gaec971691601ad4a9ad387cb40521b4c6"><span class="std std-ref">TASKPRIO_ABOVENORMAL_END</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga0a52a07f9ef6ca4f14d86fc0dac32123"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_NORMAL_BASE</span></a> &#8220;OSPriority.Normal.Base&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gaad822e97a60252350c51a9f116855aaa"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_NORMAL_BASE_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gad3309945e422903c3631bd3703d99b13"><span class="std std-ref">TASKPRIO_NORMAL_BASE</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gad844696b9a92d8b72bc3324764a8a5cf"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_NORMAL_END</span></a> &#8220;OSPriority.Normal.End&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga190e9fc6cf588144dda7dac95d8ad5d7"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_NORMAL_END_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gac444e7afb72999635bd2118c37e1ba96"><span class="std std-ref">TASKPRIO_NORMAL_END</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gacb4b5737bf17f9a7fd4cd05ee8083e8e"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_BELOWNORMAL_BASE</span></a> &#8220;OSPriority.BelowNormal.Base&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gae95a00fe3ea132b01b2875d1299d3ce9"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_BELOWNORMAL_BASE_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gab32b3c86ea758c31840449d847f1ba43"><span class="std std-ref">TASKPRIO_BELOWNORMAL_BASE</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga5df9aa35529f63ea26d10c7558beff55"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_BELOWNORMAL_END</span></a> &#8220;OSPriority.BelowNormal.End&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gac731cfddd80cacd4b07f2eece3af6e9a"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_BELOWNORMAL_END_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga2532d4c49303609310cd4b0a274efc7e"><span class="std std-ref">TASKPRIO_BELOWNORMAL_END</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga3348615c10e93ce0e38d9168d0c4243a"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_LOW_BASE</span></a> &#8220;OSPriority.Low.Base&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gaf66cd9fe06f8b2d6174cfe075d6f831d"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_LOW_BASE_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga3c2d117cd52c91df5df1632cac005664"><span class="std std-ref">TASKPRIO_LOW_BASE</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga41d4a6ac622919cd25f39136d64c3040"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_LOW_END</span></a> &#8220;OSPriority.Low.End&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gaa48d5a5fbed841bf3c533b6092be7f68"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_LOW_END_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gad296f30e4104b82c832fe933fc8ffd69"><span class="std std-ref">TASKPRIO_LOW_END</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gaf54530c25071fd6a84142215724768cf"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_LOWEST_BASE</span></a> &#8220;OSPriority.Lowest.Base&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga3d99d1cc101003b180dc7a70126e08d8"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_LOWEST_BASE_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga7135ecd099ebb786a2e704943ced77e5"><span class="std std-ref">TASKPRIO_LOWEST_BASE</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga56a32d3b50d9388051fca7b81a07579f"><span class="std std-ref">SYSTASKKEY_INT_PRIORITY_LOWEST_END</span></a> &#8220;OSPriority.Lowest.End&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga053a89055fb008c85f3e72d783b65a12"><span class="std std-ref">SYSTASKVALUE_INT_PRIORITY_LOWEST_END_DEFAULT</span></a> <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gac9136e4f8a47da26c8a36748158168e4"><span class="std std-ref">TASKPRIO_LOWEST_END</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga24e0d05fd25922e064608eac511b335d"><span class="std std-ref">SYSTASKKEY_INT_VXWORKS_CPU</span></a> &#8220;VxWorks.CPU&#8221;</li>
+<li>#define <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga9f2519017ad93d6d74b7fc369a9a9aea"><span class="std std-ref">SYSTASKVALUE_INT_VXWORKS_CPU_DEFAULT</span></a> 0</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-task-itf-priorityranges-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-taskprio-range-255">
+<span id="group-sys-task-itf-priorityranges-1ga908b6d0f29094f261632a057a778ef54"></span><h3>#define TASKPRIO_RANGE 255<a class="headerlink" href="#define-taskprio-range-255" title="Permalink to this headline">¶</a></h3>
+<p>Task priorities can be set between 0..255. Each task priority is assigned to one of the following range:</p>
+<ul class="simple">
+<li>TASKPRIO_SYSTEM: Runtime system management tasks, like scheduler</li>
+<li>TASKPRIO_REALTIME: Realtime tasks. Reserved for IEC-tasks</li>
+<li>TASKPRIO_HIGH: For tasks right below realtime tasks. Could be used e.g. for higher priority communication tasks</li>
+<li>TASKPRIO_ABOVENORMAL: For tasks below high tasks</li>
+<li>TASKPRIO_NORMAL: Normal tasks, like communication server tasks</li>
+<li>TASKPRIO_BELOWNORMAL: For tasks below normal tasks</li>
+<li>TASKPRIO_LOW: For tasks with low priority</li>
+<li>TASKPRIO_LOWEST: For tasks with lowest priority</li>
+<li>TASKPRIO_IDLE: For background or idle operations</li>
+</ul>
+</div>
+<div class="section" id="define-taskprio-segment-32">
+<span id="group-sys-task-itf-priorityranges-1ga49801bc96fe4e3415da88060a2145b42"></span><h3>#define TASKPRIO_SEGMENT 32<a class="headerlink" href="#define-taskprio-segment-32" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-max-0">
+<span id="group-sys-task-itf-priorityranges-1ga23bbc69c7e5546dba7cb1725987d7378"></span><h3>#define TASKPRIO_MAX 0<a class="headerlink" href="#define-taskprio-max-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-system-base-0">
+<span id="group-sys-task-itf-priorityranges-1ga4b8c31dd85469ce66ed547ac0d79b05a"></span><h3>#define TASKPRIO_SYSTEM_BASE 0<a class="headerlink" href="#define-taskprio-system-base-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-system-end-31">
+<span id="group-sys-task-itf-priorityranges-1ga1d8fe46e7ccd9464317a853a7955d95a"></span><h3>#define TASKPRIO_SYSTEM_END 31<a class="headerlink" href="#define-taskprio-system-end-31" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-realtime-base-32">
+<span id="group-sys-task-itf-priorityranges-1ga7b25f02b48aeef6d28b42bae29fe9632"></span><h3>#define TASKPRIO_REALTIME_BASE 32<a class="headerlink" href="#define-taskprio-realtime-base-32" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-realtime-end-63">
+<span id="group-sys-task-itf-priorityranges-1ga41a92199c9b1b6fea84496f5cba70d9f"></span><h3>#define TASKPRIO_REALTIME_END 63<a class="headerlink" href="#define-taskprio-realtime-end-63" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-high-base-64">
+<span id="group-sys-task-itf-priorityranges-1gaaebec44d4389b527765791eebe222ecd"></span><h3>#define TASKPRIO_HIGH_BASE 64<a class="headerlink" href="#define-taskprio-high-base-64" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-high-end-95">
+<span id="group-sys-task-itf-priorityranges-1ga01b6b431ab419f95eb0e3faf86ba88d5"></span><h3>#define TASKPRIO_HIGH_END 95<a class="headerlink" href="#define-taskprio-high-end-95" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-abovenormal-base-96">
+<span id="group-sys-task-itf-priorityranges-1ga8ec67f7115d1ad63bce939c679c1a3be"></span><h3>#define TASKPRIO_ABOVENORMAL_BASE 96<a class="headerlink" href="#define-taskprio-abovenormal-base-96" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-abovenormal-end-127">
+<span id="group-sys-task-itf-priorityranges-1gaec971691601ad4a9ad387cb40521b4c6"></span><h3>#define TASKPRIO_ABOVENORMAL_END 127<a class="headerlink" href="#define-taskprio-abovenormal-end-127" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-normal-base-128">
+<span id="group-sys-task-itf-priorityranges-1gad3309945e422903c3631bd3703d99b13"></span><h3>#define TASKPRIO_NORMAL_BASE 128<a class="headerlink" href="#define-taskprio-normal-base-128" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-normal-end-159">
+<span id="group-sys-task-itf-priorityranges-1gac444e7afb72999635bd2118c37e1ba96"></span><h3>#define TASKPRIO_NORMAL_END 159<a class="headerlink" href="#define-taskprio-normal-end-159" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-belownormal-base-160">
+<span id="group-sys-task-itf-priorityranges-1gab32b3c86ea758c31840449d847f1ba43"></span><h3>#define TASKPRIO_BELOWNORMAL_BASE 160<a class="headerlink" href="#define-taskprio-belownormal-base-160" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-belownormal-end-191">
+<span id="group-sys-task-itf-priorityranges-1ga2532d4c49303609310cd4b0a274efc7e"></span><h3>#define TASKPRIO_BELOWNORMAL_END 191<a class="headerlink" href="#define-taskprio-belownormal-end-191" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-low-base-192">
+<span id="group-sys-task-itf-priorityranges-1ga3c2d117cd52c91df5df1632cac005664"></span><h3>#define TASKPRIO_LOW_BASE 192<a class="headerlink" href="#define-taskprio-low-base-192" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-low-end-223">
+<span id="group-sys-task-itf-priorityranges-1gad296f30e4104b82c832fe933fc8ffd69"></span><h3>#define TASKPRIO_LOW_END 223<a class="headerlink" href="#define-taskprio-low-end-223" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-lowest-base-224">
+<span id="group-sys-task-itf-priorityranges-1ga7135ecd099ebb786a2e704943ced77e5"></span><h3>#define TASKPRIO_LOWEST_BASE 224<a class="headerlink" href="#define-taskprio-lowest-base-224" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-lowest-end-255">
+<span id="group-sys-task-itf-priorityranges-1gac9136e4f8a47da26c8a36748158168e4"></span><h3>#define TASKPRIO_LOWEST_END 255<a class="headerlink" href="#define-taskprio-lowest-end-255" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-idle-255">
+<span id="group-sys-task-itf-priorityranges-1ga3b4df50386a0218e7f2a6d9bb24700c2"></span><h3>#define TASKPRIO_IDLE 255<a class="headerlink" href="#define-taskprio-idle-255" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-taskprio-min-255">
+<span id="group-sys-task-itf-priorityranges-1ga04512027f6cbebdb7599b585e4286ce7"></span><h3>#define TASKPRIO_MIN 255<a class="headerlink" href="#define-taskprio-min-255" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-system-base-ospriority-system-base">
+<span id="group-sys-task-itf-priorityranges-1ga9ee9aceabddb67a6b5c3cf88ba9e6f74"></span><h3>#define SYSTASKKEY_INT_PRIORITY_SYSTEM_BASE &#8220;OSPriority.System.Base&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-system-base-ospriority-system-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-system-base-default-taskprio-system-base">
+<span id="group-sys-task-itf-priorityranges-1gaf3b4bef0adb27279bd0474f2ab48874f"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_SYSTEM_BASE_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga4b8c31dd85469ce66ed547ac0d79b05a"><span class="std std-ref">TASKPRIO_SYSTEM_BASE</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-system-base-default-taskprio-system-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-system-end-ospriority-system-end">
+<span id="group-sys-task-itf-priorityranges-1ga93b8e60a6212cc9b55767097b480bc27"></span><h3>#define SYSTASKKEY_INT_PRIORITY_SYSTEM_END &#8220;OSPriority.System.End&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-system-end-ospriority-system-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-system-end-default-taskprio-system-end">
+<span id="group-sys-task-itf-priorityranges-1gaa62b1e6ef93c0e5e87db45140d760b43"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_SYSTEM_END_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga1d8fe46e7ccd9464317a853a7955d95a"><span class="std std-ref">TASKPRIO_SYSTEM_END</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-system-end-default-taskprio-system-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-realtime-base-ospriority-realtime-base">
+<span id="group-sys-task-itf-priorityranges-1ga35697f13c10a15b9b2ebf6f67bb9df45"></span><h3>#define SYSTASKKEY_INT_PRIORITY_REALTIME_BASE &#8220;OSPriority.Realtime.Base&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-realtime-base-ospriority-realtime-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-realtime-base-default-taskprio-realtime-base">
+<span id="group-sys-task-itf-priorityranges-1ga4395d85a586b6acb4cb3dccad8fdee68"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_REALTIME_BASE_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga7b25f02b48aeef6d28b42bae29fe9632"><span class="std std-ref">TASKPRIO_REALTIME_BASE</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-realtime-base-default-taskprio-realtime-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-realtime-end-ospriority-realtime-end">
+<span id="group-sys-task-itf-priorityranges-1ga2c9cd89ad2b122a0342b09093c4c7010"></span><h3>#define SYSTASKKEY_INT_PRIORITY_REALTIME_END &#8220;OSPriority.Realtime.End&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-realtime-end-ospriority-realtime-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-realtime-end-default-taskprio-realtime-end">
+<span id="group-sys-task-itf-priorityranges-1gab3452287e9e20cf2187f533d20e16ff4"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_REALTIME_END_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga41a92199c9b1b6fea84496f5cba70d9f"><span class="std std-ref">TASKPRIO_REALTIME_END</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-realtime-end-default-taskprio-realtime-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-high-base-ospriority-high-base">
+<span id="group-sys-task-itf-priorityranges-1ga0d14a766826b5e75207a0c182ff7fdd7"></span><h3>#define SYSTASKKEY_INT_PRIORITY_HIGH_BASE &#8220;OSPriority.High.Base&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-high-base-ospriority-high-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-high-base-default-taskprio-high-base">
+<span id="group-sys-task-itf-priorityranges-1ga595bdd41827797afab299e63d71c196a"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_HIGH_BASE_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gaaebec44d4389b527765791eebe222ecd"><span class="std std-ref">TASKPRIO_HIGH_BASE</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-high-base-default-taskprio-high-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-high-end-ospriority-high-end">
+<span id="group-sys-task-itf-priorityranges-1gaff3a337a5a26df27c30b0f22c0eb8140"></span><h3>#define SYSTASKKEY_INT_PRIORITY_HIGH_END &#8220;OSPriority.High.End&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-high-end-ospriority-high-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-high-end-default-taskprio-high-end">
+<span id="group-sys-task-itf-priorityranges-1ga2350a217e6088d4c180a95f1d7549d8f"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_HIGH_END_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga01b6b431ab419f95eb0e3faf86ba88d5"><span class="std std-ref">TASKPRIO_HIGH_END</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-high-end-default-taskprio-high-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-abovenormal-base-ospriority-abovenormal-base">
+<span id="group-sys-task-itf-priorityranges-1ga6a05a56a81d3f4991684505638e6b9ff"></span><h3>#define SYSTASKKEY_INT_PRIORITY_ABOVENORMAL_BASE &#8220;OSPriority.AboveNormal.Base&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-abovenormal-base-ospriority-abovenormal-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-abovenormal-base-default-taskprio-abovenormal-base">
+<span id="group-sys-task-itf-priorityranges-1ga1ff629c50fe85a3ffe3192ae6953f5ce"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_ABOVENORMAL_BASE_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga8ec67f7115d1ad63bce939c679c1a3be"><span class="std std-ref">TASKPRIO_ABOVENORMAL_BASE</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-abovenormal-base-default-taskprio-abovenormal-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-abovenormal-end-ospriority-abovenormal-end">
+<span id="group-sys-task-itf-priorityranges-1ga973fdf9c196d927c2215c585f242a58d"></span><h3>#define SYSTASKKEY_INT_PRIORITY_ABOVENORMAL_END &#8220;OSPriority.AboveNormal.End&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-abovenormal-end-ospriority-abovenormal-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-abovenormal-end-default-taskprio-abovenormal-end">
+<span id="group-sys-task-itf-priorityranges-1ga7053596b0c934b8b6f8bde0bf00f71c6"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_ABOVENORMAL_END_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gaec971691601ad4a9ad387cb40521b4c6"><span class="std std-ref">TASKPRIO_ABOVENORMAL_END</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-abovenormal-end-default-taskprio-abovenormal-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-normal-base-ospriority-normal-base">
+<span id="group-sys-task-itf-priorityranges-1ga0a52a07f9ef6ca4f14d86fc0dac32123"></span><h3>#define SYSTASKKEY_INT_PRIORITY_NORMAL_BASE &#8220;OSPriority.Normal.Base&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-normal-base-ospriority-normal-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-normal-base-default-taskprio-normal-base">
+<span id="group-sys-task-itf-priorityranges-1gaad822e97a60252350c51a9f116855aaa"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_NORMAL_BASE_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gad3309945e422903c3631bd3703d99b13"><span class="std std-ref">TASKPRIO_NORMAL_BASE</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-normal-base-default-taskprio-normal-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-normal-end-ospriority-normal-end">
+<span id="group-sys-task-itf-priorityranges-1gad844696b9a92d8b72bc3324764a8a5cf"></span><h3>#define SYSTASKKEY_INT_PRIORITY_NORMAL_END &#8220;OSPriority.Normal.End&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-normal-end-ospriority-normal-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-normal-end-default-taskprio-normal-end">
+<span id="group-sys-task-itf-priorityranges-1ga190e9fc6cf588144dda7dac95d8ad5d7"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_NORMAL_END_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gac444e7afb72999635bd2118c37e1ba96"><span class="std std-ref">TASKPRIO_NORMAL_END</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-normal-end-default-taskprio-normal-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-belownormal-base-ospriority-belownormal-base">
+<span id="group-sys-task-itf-priorityranges-1gacb4b5737bf17f9a7fd4cd05ee8083e8e"></span><h3>#define SYSTASKKEY_INT_PRIORITY_BELOWNORMAL_BASE &#8220;OSPriority.BelowNormal.Base&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-belownormal-base-ospriority-belownormal-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-belownormal-base-default-taskprio-belownormal-base">
+<span id="group-sys-task-itf-priorityranges-1gae95a00fe3ea132b01b2875d1299d3ce9"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_BELOWNORMAL_BASE_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gab32b3c86ea758c31840449d847f1ba43"><span class="std std-ref">TASKPRIO_BELOWNORMAL_BASE</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-belownormal-base-default-taskprio-belownormal-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-belownormal-end-ospriority-belownormal-end">
+<span id="group-sys-task-itf-priorityranges-1ga5df9aa35529f63ea26d10c7558beff55"></span><h3>#define SYSTASKKEY_INT_PRIORITY_BELOWNORMAL_END &#8220;OSPriority.BelowNormal.End&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-belownormal-end-ospriority-belownormal-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-belownormal-end-default-taskprio-belownormal-end">
+<span id="group-sys-task-itf-priorityranges-1gac731cfddd80cacd4b07f2eece3af6e9a"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_BELOWNORMAL_END_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga2532d4c49303609310cd4b0a274efc7e"><span class="std std-ref">TASKPRIO_BELOWNORMAL_END</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-belownormal-end-default-taskprio-belownormal-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-low-base-ospriority-low-base">
+<span id="group-sys-task-itf-priorityranges-1ga3348615c10e93ce0e38d9168d0c4243a"></span><h3>#define SYSTASKKEY_INT_PRIORITY_LOW_BASE &#8220;OSPriority.Low.Base&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-low-base-ospriority-low-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-low-base-default-taskprio-low-base">
+<span id="group-sys-task-itf-priorityranges-1gaf66cd9fe06f8b2d6174cfe075d6f831d"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_LOW_BASE_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga3c2d117cd52c91df5df1632cac005664"><span class="std std-ref">TASKPRIO_LOW_BASE</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-low-base-default-taskprio-low-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-low-end-ospriority-low-end">
+<span id="group-sys-task-itf-priorityranges-1ga41d4a6ac622919cd25f39136d64c3040"></span><h3>#define SYSTASKKEY_INT_PRIORITY_LOW_END &#8220;OSPriority.Low.End&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-low-end-ospriority-low-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-low-end-default-taskprio-low-end">
+<span id="group-sys-task-itf-priorityranges-1gaa48d5a5fbed841bf3c533b6092be7f68"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_LOW_END_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gad296f30e4104b82c832fe933fc8ffd69"><span class="std std-ref">TASKPRIO_LOW_END</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-low-end-default-taskprio-low-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-lowest-base-ospriority-lowest-base">
+<span id="group-sys-task-itf-priorityranges-1gaf54530c25071fd6a84142215724768cf"></span><h3>#define SYSTASKKEY_INT_PRIORITY_LOWEST_BASE &#8220;OSPriority.Lowest.Base&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-lowest-base-ospriority-lowest-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-lowest-base-default-taskprio-lowest-base">
+<span id="group-sys-task-itf-priorityranges-1ga3d99d1cc101003b180dc7a70126e08d8"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_LOWEST_BASE_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1ga7135ecd099ebb786a2e704943ced77e5"><span class="std std-ref">TASKPRIO_LOWEST_BASE</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-lowest-base-default-taskprio-lowest-base" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-priority-lowest-end-ospriority-lowest-end">
+<span id="group-sys-task-itf-priorityranges-1ga56a32d3b50d9388051fca7b81a07579f"></span><h3>#define SYSTASKKEY_INT_PRIORITY_LOWEST_END &#8220;OSPriority.Lowest.End&#8221;<a class="headerlink" href="#define-systaskkey-int-priority-lowest-end-ospriority-lowest-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-priority-lowest-end-default-taskprio-lowest-end">
+<span id="group-sys-task-itf-priorityranges-1ga053a89055fb008c85f3e72d783b65a12"></span><h3>#define SYSTASKVALUE_INT_PRIORITY_LOWEST_END_DEFAULT <a class="reference internal" href="#group-sys-task-itf-priorityranges-1gac9136e4f8a47da26c8a36748158168e4"><span class="std std-ref">TASKPRIO_LOWEST_END</span></a><a class="headerlink" href="#define-systaskvalue-int-priority-lowest-end-default-taskprio-lowest-end" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskkey-int-vxworks-cpu-vxworks-cpu">
+<span id="group-sys-task-itf-priorityranges-1ga24e0d05fd25922e064608eac511b335d"></span><h3>#define SYSTASKKEY_INT_VXWORKS_CPU &#8220;VxWorks.CPU&#8221;<a class="headerlink" href="#define-systaskkey-int-vxworks-cpu-vxworks-cpu" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systaskvalue-int-vxworks-cpu-default-0">
+<span id="group-sys-task-itf-priorityranges-1ga9f2519017ad93d6d74b7fc369a9a9aea"></span><h3>#define SYSTASKVALUE_INT_VXWORKS_CPU_DEFAULT 0<a class="headerlink" href="#define-systaskvalue-int-vxworks-cpu-default-0" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

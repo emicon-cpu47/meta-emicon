@@ -1,0 +1,260 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_sem_process_itf:
+
+================
+SysSemProcessItf
+================
+
+Interface of SysSemProcess. :ref:`More... <group___sys_sem_process_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagsyssemprocesscreate_struct <structtagsyssemprocesscreate__struct>`
+
+- struct :ref:`tagsyssemprocessdelete_struct <structtagsyssemprocessdelete__struct>`
+
+- struct :ref:`tagsyssemprocessenter_struct <structtagsyssemprocessenter__struct>`
+
+- struct :ref:`tagsyssemprocessleave_struct <structtagsyssemprocessleave__struct>`
+
+- struct :ref:`ISysSemProcess_C <struct_i_sys_sem_process___c>`
+
+Macros
+------
+
+- #define :ref:`SYSSEMPROCESS_WAIT_INFINITE <group___sys_sem_process_itf_1gaf198444eb576b074f1d6908af7f76852>` ((unsigned long)-1)
+
+- #define :ref:`ITF_SysSemProcess <group___sys_sem_process_itf_1gaebad91f47f240d1df0bb125866cf6029>`
+
+- #define :ref:`EXTITF_SysSemProcess <group___sys_sem_process_itf_1gab4f1f8458bba5571bd344c03d38e3cfe>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagsyssemprocesscreate_struct <structtagsyssemprocesscreate__struct>` :ref:`syssemprocesscreate_struct <group___sys_sem_process_itf_1ga6617889ec3b294003df0056f347a1325>`
+
+- typedef struct :ref:`tagsyssemprocessdelete_struct <structtagsyssemprocessdelete__struct>` :ref:`syssemprocessdelete_struct <group___sys_sem_process_itf_1gabb3b911e1193f53d77f641a8ef645903>`
+
+- typedef struct :ref:`tagsyssemprocessenter_struct <structtagsyssemprocessenter__struct>` :ref:`syssemprocessenter_struct <group___sys_sem_process_itf_1gade871304acb8a8f089a60204773761df>`
+
+- typedef struct :ref:`tagsyssemprocessleave_struct <structtagsyssemprocessleave__struct>` :ref:`syssemprocessleave_struct <group___sys_sem_process_itf_1ga7245c2b8823e816a97abf55502698c95>`
+
+- typedef :ref:`ISysSemProcess_C <struct_i_sys_sem_process___c>` :ref:`ISysSemProcess <group___sys_sem_process_itf_1gaf603b82d852081355c44412866f8a444>`
+
+Functions
+---------
+
+- void :ref:`syssemprocesscreate <group___sys_sem_process_itf_1ga519279f6b3c77b36c9c8128b4b19d3d1>` (:ref:`syssemprocesscreate_struct <group___sys_sem_process_itf_1ga6617889ec3b294003df0056f347a1325>` * p)
+
+- void :ref:`syssemprocessdelete <group___sys_sem_process_itf_1ga3ac260081ac184636f5492dcd6c54183>` (:ref:`syssemprocessdelete_struct <group___sys_sem_process_itf_1gabb3b911e1193f53d77f641a8ef645903>` * p)
+
+- void :ref:`syssemprocessenter <group___sys_sem_process_itf_1ga1ae156dad1956b0dbc393d1572c6c1b8>` (:ref:`syssemprocessenter_struct <group___sys_sem_process_itf_1gade871304acb8a8f089a60204773761df>` * p)
+
+- void :ref:`syssemprocessleave <group___sys_sem_process_itf_1ga5a826a6ec7bf8479b57ad918681a1aa3>` (:ref:`syssemprocessleave_struct <group___sys_sem_process_itf_1ga7245c2b8823e816a97abf55502698c95>` * p)
+
+- RTS_RESULT :ref:`SysSemProcessOSInit <group___sys_sem_process_itf_1gaa4e9171ebcb3b91be97b690e70e7a41e>` (INIT_STRUCT * pInit)
+
+- RTS_RESULT :ref:`SysSemProcessOSHookFunction <group___sys_sem_process_itf_1ga612d39fa01f1060045fe337c43416e1b>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_HANDLE :ref:`SysSemProcessCreate <group___sys_sem_process_itf_1ga533f9da119219ce77a796206894f8a6d>` (char * pszName, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysSemProcessDelete <group___sys_sem_process_itf_1ga92704146193898f68e9b8204b3e83ae0>` (RTS_HANDLE hSem)
+
+- RTS_RESULT :ref:`SysSemProcessEnter <group___sys_sem_process_itf_1ga08f5723d1942f0e7b537e42ae2a7d45d>` (RTS_HANDLE hSem, unsigned long ulTimeoutMs)
+
+- RTS_RESULT :ref:`SysSemProcessLeave <group___sys_sem_process_itf_1ga255ec899cf363d733ee7b88d87f6c0db>` (RTS_HANDLE hSem)
+
+.. _group___sys_sem_process_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysSemProcess.
+
+The SysSemProcess interface is projected to handle synchonization objects for processes. The synchronization objects are called semaphores to synchronize concurrent access to single system global resources.
+
+For example:
+
+Process1: ... SysSemProcessEnter(hSem); [Here you can accessed the protected global resource] SysSemProcessLeave(hSem); [After :ref:`SysSemProcessLeave() <group___sys_sem_process_itf_1ga255ec899cf363d733ee7b88d87f6c0db>` you must not access the protected globale resource] ....
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_sem_process_itf_1gaf198444eb576b074f1d6908af7f76852:
+
+#define SYSSEMPROCESS_WAIT_INFINITE ((unsigned long)-1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION END
+
+.. _group___sys_sem_process_itf_1gaebad91f47f240d1df0bb125866cf6029:
+
+#define ITF_SysSemProcess
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_sem_process_itf_1gab4f1f8458bba5571bd344c03d38e3cfe:
+
+#define EXTITF_SysSemProcess
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_sem_process_itf_1ga6617889ec3b294003df0056f347a1325:
+
+typedef struct tagsyssemprocesscreate_struct  syssemprocesscreate_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION BEGIN
+
+Create a new semaphore object to synchronize processes (global semaphores)
+**Returns:**
+
+*RESULT: Handle to the sempahore object
+
+.. _group___sys_sem_process_itf_1gabb3b911e1193f53d77f641a8ef645903:
+
+typedef struct tagsyssemprocessdelete_struct  syssemprocessdelete_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete a semaphore object
+**Returns:**
+
+*RESULT: Returns the runtime system error code (see CmpErrors.library).
+
+.. _group___sys_sem_process_itf_1gade871304acb8a8f089a60204773761df:
+
+typedef struct tagsyssemprocessenter_struct  syssemprocessenter_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_sem_process_itf_1ga7245c2b8823e816a97abf55502698c95:
+
+typedef struct tagsyssemprocessleave_struct  syssemprocessleave_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Leave the given semaphore.
+**Returns:**
+
+*RESULT: Returns the runtime system error code (see CmpErrors.library).
+
+.. _group___sys_sem_process_itf_1gaf603b82d852081355c44412866f8a444:
+
+typedef ISysSemProcess_C ISysSemProcess
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_sem_process_itf_1ga519279f6b3c77b36c9c8128b4b19d3d1:
+
+void syssemprocesscreate (syssemprocesscreate_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_sem_process_itf_1ga3ac260081ac184636f5492dcd6c54183:
+
+void syssemprocessdelete (syssemprocessdelete_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_sem_process_itf_1ga1ae156dad1956b0dbc393d1572c6c1b8:
+
+void syssemprocessenter (syssemprocessenter_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_sem_process_itf_1ga5a826a6ec7bf8479b57ad918681a1aa3:
+
+void syssemprocessleave (syssemprocessleave_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_sem_process_itf_1gaa4e9171ebcb3b91be97b690e70e7a41e:
+
+RTS_RESULT SysSemProcessOSInit (INIT_STRUCT *pInit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_sem_process_itf_1ga612d39fa01f1060045fe337c43416e1b:
+
+RTS_RESULT SysSemProcessOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_sem_process_itf_1ga533f9da119219ce77a796206894f8a6d:
+
+RTS_HANDLE SysSemProcessCreate (char *pszName, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create a new semaphore object to synchronize processes (global semaphores)
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------+
+| [in]    | pszName | Name of the semaphore                               |
++---------+---------+-----------------------------------------------------+
+| [out]   | pResult | ERR_OK or ERR_DUPLICATE if semaphore already exists |
++---------+---------+-----------------------------------------------------+
+
+**Returns:**
+
+Handle to the sempahore object
+
+.. _group___sys_sem_process_itf_1ga92704146193898f68e9b8204b3e83ae0:
+
+RTS_RESULT SysSemProcessDelete (RTS_HANDLE hSem)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete a semaphore object
+
+**Parameters**
+
++---------+------+-------------------------+
+| [in]    | hSem | Handle to the semaphore |
++---------+------+-------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_sem_process_itf_1ga08f5723d1942f0e7b537e42ae2a7d45d:
+
+RTS_RESULT SysSemProcessEnter (RTS_HANDLE hSem, unsigned long ulTimeoutMs)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enter the given semaphore.
+
+**Parameters**
+
++---------+-------------+-------------------------------------------------------------------------------------------------------------+
+| [in]    | hSem        | Handle to the semaphore                                                                                     |
++---------+-------------+-------------------------------------------------------------------------------------------------------------+
+| [in]    | ulTimeoutMs | Timeout in milliseconds to wait to enter the semaphore or SYSSEMPROCESS_WAIT_INFINITE for an infinite wait. |
++---------+-------------+-------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK or ERR_TIMEOUT if timeout expires before enter the semaphore
+
+.. _group___sys_sem_process_itf_1ga255ec899cf363d733ee7b88d87f6c0db:
+
+RTS_RESULT SysSemProcessLeave (RTS_HANDLE hSem)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Leave the given semaphore.
+
+**Parameters**
+
++---------+------+-------------------------+
+| [in]    | hSem | Handle to the semaphore |
++---------+------+-------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

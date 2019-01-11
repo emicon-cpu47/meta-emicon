@@ -1,0 +1,54 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagtracemgrpacketreadbegin__struct:
+
+==================================================
+tagtracemgrpacketreadbegin_struct Struct Reference
+==================================================
+
+| #include ":ref:`CmpTraceMgrItf.h <_cmp_trace_mgr_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_HANDLE :ref:`hPacket <structtagtracemgrpacketreadbegin__struct_1adcf08e8da78a00ab0d3e05006df593d2>`
+- RTS_IEC_RESULT :ref:`TraceMgrPacketReadBegin <structtagtracemgrpacketreadbegin__struct_1a00ea768b51da923b15275ce832f0f199>`
+
+Detailed Description
+--------------------
+
+Start reading trace packet.
+
+The purpose of this function is to trigger the event EVT_TRACEMGR_PACKET_SAMPLE. In response to the event, any outstanding trace samples will be written by runtime system components and IEC applications that provide trace values for system parameters.
+
+.. note:: Normally, there is no need to call this function. It should be called before |TraceMgrPacketReadFirst| and |TraceMgrPacketReadFirst2| to make sure all trace values are present before reading. When finished with reading, TraceMgrPacketReadEnd should be called.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+- ERR_NOTINITIALIZED if hPacket is not complete and started
+
+Field Documentation
+-------------------
+
+.. _structtagtracemgrpacketreadbegin__struct_1adcf08e8da78a00ab0d3e05006df593d2:
+
+RTS_IEC_HANDLE tagtracemgrpacketreadbegin_struct::hPacket
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadbegin__struct_1a00ea768b51da923b15275ce832f0f199:
+
+RTS_IEC_RESULT tagtracemgrpacketreadbegin_struct::TraceMgrPacketReadBegin
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpTraceMgrItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

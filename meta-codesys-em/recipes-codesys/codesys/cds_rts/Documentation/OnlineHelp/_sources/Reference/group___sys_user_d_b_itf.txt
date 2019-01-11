@@ -1,0 +1,152 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_user_d_b_itf:
+
+============
+SysUserDBItf
+============
+
+Interface of SysUserDB. :ref:`More... <group___sys_user_d_b_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`ISysUserDB_C <struct_i_sys_user_d_b___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_SysUserDB <group___sys_user_d_b_itf_1gaa10496750ed7cce98ba97c44d131458d>`
+
+- #define :ref:`EXTITF_SysUserDB <group___sys_user_d_b_itf_1ga2a89cfccf9d393e77a3c67c1582964cd>`
+
+Typedefs
+--------
+
+- typedef :ref:`ISysUserDB_C <struct_i_sys_user_d_b___c>` :ref:`ISysUserDB <group___sys_user_d_b_itf_1gac7aff7917fdc40474c08179ce91dbb5b>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysUserDBOSInit <group___sys_user_d_b_itf_1ga6bf82bf1abc1753308fe041d1bffd126>` (INIT_STRUCT * pInit)
+
+- RTS_RESULT :ref:`SysUserDBOSHookFunction <group___sys_user_d_b_itf_1gabbcb029726ccf914af4d7e12199ae776>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_RESULT :ref:`SysUserDBSetPasswordMD5 <group___sys_user_d_b_itf_1ga7ae946847a2e245ccf10dca7eb4da66a>` (char * pszUser, unsigned char * pbyPasswordMD5, int * piMaxLen)
+
+- RTS_RESULT :ref:`SysUserDBGetPasswordMD5 <group___sys_user_d_b_itf_1ga685d695589dec0a3c33afe2b4e5f37f9>` (char * pszUser, unsigned char * pbyPasswordMD5, int * piMaxLen)
+
+.. _group___sys_user_d_b_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysUserDB.
+
+System specific part of the interface for the user management database. In the current implementation only 2 functions concerning the password are supported.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. GmbH
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_user_d_b_itf_1gaa10496750ed7cce98ba97c44d131458d:
+
+#define ITF_SysUserDB
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_user_d_b_itf_1ga2a89cfccf9d393e77a3c67c1582964cd:
+
+#define EXTITF_SysUserDB
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_user_d_b_itf_1gac7aff7917fdc40474c08179ce91dbb5b:
+
+typedef ISysUserDB_C ISysUserDB
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_user_d_b_itf_1ga6bf82bf1abc1753308fe041d1bffd126:
+
+RTS_RESULT SysUserDBOSInit (INIT_STRUCT *pInit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_user_d_b_itf_1gabbcb029726ccf914af4d7e12199ae776:
+
+RTS_RESULT SysUserDBOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_user_d_b_itf_1ga7ae946847a2e245ccf10dca7eb4da66a:
+
+RTS_RESULT SysUserDBSetPasswordMD5 (char *pszUser, unsigned char *pbyPasswordMD5, int *piMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set or overwrite the password credential of the user
+
+**Parameters**
+
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszUser        | User name                                                                                                          |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+| [in]    | pbyPasswordMD5 | Pointer to MD5 hash of the password                                                                                |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+| [inout] | piMaxLen       | Pointer to password MD5 hash length. If it is too short, needed length is returned if error code is ERR_BUFFERSIZE |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++----------------+----------------------------------------------------------------+
+| ERR_OK         | Password could be set                                          |
++----------------+----------------------------------------------------------------+
+| ERR_PARAMETER  | Invalid user handle or piMaxLen = NULL                         |
++----------------+----------------------------------------------------------------+
+| ERR_BUFFERSIZE | If password is too short. Needed length is returned inpiMaxLen |
++----------------+----------------------------------------------------------------+
+
+.. _group___sys_user_d_b_itf_1ga685d695589dec0a3c33afe2b4e5f37f9:
+
+RTS_RESULT SysUserDBGetPasswordMD5 (char *pszUser, unsigned char *pbyPasswordMD5, int *piMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the password credential of the user
+
+**Parameters**
+
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszUser        | User name                                                                                                          |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+| [in]    | pbyPasswordMD5 | Pointer to MD5 hash of the password                                                                                |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+| [inout] | piMaxLen       | Pointer to password MD5 hash length. If it is too short, needed length is returned if error code is ERR_BUFFERSIZE |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++----------------+-----------------------------------------------------------------------+
+| ERR_OK         | Password could be set                                                 |
++----------------+-----------------------------------------------------------------------+
+| ERR_PARAMETER  | Invalid user handle or piMaxLen = NULL                                |
++----------------+-----------------------------------------------------------------------+
+| ERR_BUFFERSIZE | If password buffer is too short. Needed length is returned inpiMaxLen |
++----------------+-----------------------------------------------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,1405 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpMemPoolItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpMonitor2Itf" href="group___cmp_monitor2_itf.html" />
+    <link rel="prev" title="CmpMemGCItf" href="group___cmp_mem_g_c_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_monitor2_itf.html" title="CmpMonitor2Itf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_mem_g_c_itf.html" title="CmpMemGCItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpMemPoolItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-u-containing-record-type-void-char-void-address-rts-size-lint-e413-type-0-field">#define U_CONTAINING_RECORD ((type <em>)(void</em>)((char*)(void*)(address) - (RTS_SIZE)(/*lint -e413 */&amp;((type *)0)-&gt;field)))</a></li>
+<li><a class="reference internal" href="#define-fba-min-block-sizeof-rts-size-2-2-sizeof-rts-uintptr">#define FBA_MIN_BLOCK ( (sizeof(RTS_SIZE) &lt;= 2) ? 2 : sizeof(RTS_UINTPTR) )</a></li>
+<li><a class="reference internal" href="#define-fba-align-size-sz-fba-min-block-1-fba-min-block-fba-min-block">#define ___FBA_ALIGN_SIZE___ ((((sz) + ( <code class="docutils literal"><span class="pre">FBA_MIN_BLOCK</span></code> - 1)) / <code class="docutils literal"><span class="pre">FBA_MIN_BLOCK</span></code> ) * <code class="docutils literal"><span class="pre">FBA_MIN_BLOCK</span></code> )</a></li>
+<li><a class="reference internal" href="#define-fba-align-size-fba-align-size-sz">#define FBA_ALIGN_SIZE <code class="docutils literal"><span class="pre">___FBA_ALIGN_SIZE___</span></code> (sz)</a></li>
+<li><a class="reference internal" href="#define-fba-align-mem-void-rts-uintptr-p-fba-min-block-1-fba-min-block-fba-min-block">#define FBA_ALIGN_MEM (void*)((((RTS_UINTPTR)(p) + ( <code class="docutils literal"><span class="pre">FBA_MIN_BLOCK</span></code> - 1)) / <code class="docutils literal"><span class="pre">FBA_MIN_BLOCK</span></code> ) * <code class="docutils literal"><span class="pre">FBA_MIN_BLOCK</span></code> )</a></li>
+<li><a class="reference internal" href="#define-fba-get-static-len-blk-num-fba-align-size-blk-sz-sizeof-fba-chunk-fba-min-block">#define FBA_GET_STATIC_LEN ( (blk_num) * <code class="docutils literal"><span class="pre">FBA_ALIGN_SIZE</span></code> ((blk_sz)) + sizeof( <code class="docutils literal"><span class="pre">FBA_CHUNK</span></code> ) + <code class="docutils literal"><span class="pre">FBA_MIN_BLOCK</span></code> )</a></li>
+<li><a class="reference internal" href="#define-mempool-init-value-0xaa">#define MEMPOOL_INIT_VALUE 0xAA</a></li>
+<li><a class="reference internal" href="#define-fba-flag-initialized-0x1">#define FBA_FLAG_INITIALIZED 0x1</a></li>
+<li><a class="reference internal" href="#define-fixedblockspoolisvalid-null-pfmp-0-pfmp-flags-fba-flag-initialized">#define FixedBlocksPoolIsValid (NULL != (pfmp) &amp;&amp; (0 != ((pfmp)-&gt;flags &amp; <code class="docutils literal"><span class="pre">FBA_FLAG_INITIALIZED</span></code> )))</a></li>
+<li><a class="reference internal" href="#define-mempool-align-modulo-sizeof-void">#define MEMPOOL_ALIGN_MODULO sizeof(void*)</a></li>
+<li><a class="reference internal" href="#define-mem-get-static-len-sizeof-rts-pcb-2-mempool-align-modulo-num-align-size-sizeof-struct-mempool-align-modulo-num-sizeof-rts-bcb">#define MEM_GET_STATIC_LEN (sizeof( <code class="docutils literal"><span class="pre">RTS_PCB</span></code> ) + 2 * <code class="docutils literal"><span class="pre">MEMPOOL_ALIGN_MODULO</span></code> + (Num) * ALIGN_SIZE(sizeof(Struct), <code class="docutils literal"><span class="pre">MEMPOOL_ALIGN_MODULO</span></code> ) + (Num) * sizeof( <code class="docutils literal"><span class="pre">RTS_BCB</span></code> ))</a></li>
+<li><a class="reference internal" href="#define-mem-get-static-len-sizeof-rts-pcb-2-mempool-align-modulo-num-align-size-size-mempool-align-modulo-num-sizeof-rts-bcb">#define MEM_GET_STATIC_LEN_ (sizeof( <code class="docutils literal"><span class="pre">RTS_PCB</span></code> ) + 2 * <code class="docutils literal"><span class="pre">MEMPOOL_ALIGN_MODULO</span></code> + (Num) * ALIGN_SIZE(Size, <code class="docutils literal"><span class="pre">MEMPOOL_ALIGN_MODULO</span></code> ) + (Num) * sizeof( <code class="docutils literal"><span class="pre">RTS_BCB</span></code> ))</a></li>
+<li><a class="reference internal" href="#define-mempool-is-not-empty-rts-pcb-ppool-pblocksinuse-null">#define MEMPOOL_IS_NOT_EMPTY (((( <code class="docutils literal"><span class="pre">RTS_PCB</span></code> *)pPool)-&gt;pBlocksInUse) != NULL)</a></li>
+<li><a class="reference internal" href="#define-mempool-is-empty-rts-pcb-ppool-pblocksinuse-null">#define MEMPOOL_IS_EMPTY (((( <code class="docutils literal"><span class="pre">RTS_PCB</span></code> *)pPool)-&gt;pBlocksInUse) == NULL)</a></li>
+<li><a class="reference internal" href="#define-mempool-has-free-blocks-rts-pcb-ppool-ppeb-null-rts-pcb-ppool-pbcb-null">#define MEMPOOL_HAS_FREE_BLOCKS ((( <code class="docutils literal"><span class="pre">RTS_PCB</span></code> *)pPool)-&gt;pPEB) != NULL || (( <code class="docutils literal"><span class="pre">RTS_PCB</span></code> *)pPool)-&gt;pBCB) != NULL)</a></li>
+<li><a class="reference internal" href="#define-mem-get-first-lint-e-506-522-memiterator-pit-phead-rts-pcb-ppool-pblocksinuse-null-memiterator-pit-pnext-null-null-0-1-memiterator-pit-pnext-null-null-1-0">#define MEM_GET_FIRST /*lint -e{506,522} */(((( <code class="docutils literal"><span class="pre">MemIterator</span></code> *)pIt)-&gt;pHead = (( <code class="docutils literal"><span class="pre">RTS_PCB</span></code> *)pPool)-&gt;pBlocksInUse) != NULL ? (((( <code class="docutils literal"><span class="pre">MemIterator</span></code> *)pIt)-&gt;pNext = NULL) != NULL ? 0 : 1) : (((( <code class="docutils literal"><span class="pre">MemIterator</span></code> *)pIt)-&gt;pNext = NULL) != NULL ? 1 : 0))</a></li>
+<li><a class="reference internal" href="#define-mem-get-next-lint-e-506-memiterator-pit-pnext-null-memiterator-pit-pnext-memiterator-pit-phead-memiterator-pit-pnext-memiterator-pit-pnext-pbcb">#define MEM_GET_NEXT /*lint -e{506} */(((( <code class="docutils literal"><span class="pre">MemIterator</span></code> *)pIt)-&gt;pNext == NULL) ? ((( <code class="docutils literal"><span class="pre">MemIterator</span></code> *)pIt)-&gt;pNext = (( <code class="docutils literal"><span class="pre">MemIterator</span></code> *)pIt)-&gt;pHead) : ((( <code class="docutils literal"><span class="pre">MemIterator</span></code> *)pIt)-&gt;pNext = (( <code class="docutils literal"><span class="pre">MemIterator</span></code> *)pIt)-&gt;pNext-&gt;pBCB))</a></li>
+<li><a class="reference internal" href="#define-mem-get-data-memiterator-pit-pnext-1">#define MEM_GET_DATA ((( <code class="docutils literal"><span class="pre">MemIterator</span></code> *)pIt)-&gt;pNext + 1)</a></li>
+<li><a class="reference internal" href="#define-mem-get-next-from-data-lint-e-506-rts-bcb-unsigned-char-pdata-sizeof-rts-bcb-pbcb-null-null-rts-bcb-unsigned-char-pdata-sizeof-rts-bcb-pbcb-1">#define MEM_GET_NEXT_FROM_DATA /*lint -e{506} */((( <code class="docutils literal"><span class="pre">RTS_BCB</span></code> *)((unsigned char *)pData - sizeof( <code class="docutils literal"><span class="pre">RTS_BCB</span></code> )))-&gt;pBCB == NULL ? NULL : (( <code class="docutils literal"><span class="pre">RTS_BCB</span></code> *)((unsigned char *)pData - sizeof( <code class="docutils literal"><span class="pre">RTS_BCB</span></code> )))-&gt;pBCB + 1)</a></li>
+<li><a class="reference internal" href="#define-itf-cmpmempool">#define ITF_CmpMemPool</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpmempool">#define EXTITF_CmpMemPool</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-tagfba-chunk-fba-chunk">typedef struct tagFBA_CHUNK FBA_CHUNK</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagrts-fixed-blocks-pool-rts-fixed-blocks-pool">typedef struct tagRTS_FIXED_BLOCKS_POOL RTS_FIXED_BLOCKS_POOL</a></li>
+<li><a class="reference internal" href="#typedef-struct-rts-bcbtag-rts-bcb">typedef struct RTS_BCBtag  RTS_BCB</a></li>
+<li><a class="reference internal" href="#typedef-struct-rts-pebtag-rts-peb">typedef struct RTS_PEBtag  RTS_PEB</a></li>
+<li><a class="reference internal" href="#typedef-struct-rts-pcbtag-rts-pcb">typedef struct RTS_PCBtag  RTS_PCB</a></li>
+<li><a class="reference internal" href="#typedef-icmpmempool-c-icmpmempool">typedef ICmpMemPool_C ICmpMemPool</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-handle-mempoolcreatedynamic-char-pszcomponentname-rts-size-ulnumblocks-rts-size-ulblocksize-rts-result-presult">RTS_HANDLE MemPoolCreateDynamic (char *pszComponentName, RTS_SIZE ulNumBlocks, RTS_SIZE ulBlockSize, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-mempoolcreatestatic-rts-size-ulblocksize-rts-size-ulmemsize-void-pmemory-rts-result-presult">RTS_HANDLE MemPoolCreateStatic (RTS_SIZE ulBlockSize, RTS_SIZE ulMemSize, void *pMemory, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoolextenddynamic-rts-handle-hmempool-char-pszcomponentname-rts-size-ulnumblocks">RTS_RESULT MemPoolExtendDynamic (RTS_HANDLE hMemPool, char *pszComponentName, RTS_SIZE ulNumBlocks)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoolextendstatic-rts-handle-hmempool-rts-size-ulmemsize-void-pmemory">RTS_RESULT MemPoolExtendStatic (RTS_HANDLE hMemPool, RTS_SIZE ulMemSize, void *pMemory)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoolcreatesyncobject-rts-handle-hmempool">RTS_RESULT MemPoolCreateSyncObject (RTS_HANDLE hMemPool)</a></li>
+<li><a class="reference internal" href="#rts-result-mempooldeletesyncobject-rts-handle-hmempool">RTS_RESULT MemPoolDeleteSyncObject (RTS_HANDLE hMemPool)</a></li>
+<li><a class="reference internal" href="#rts-result-mempooldelete-rts-handle-hmempool-char-pszcomponentname">RTS_RESULT MemPoolDelete (RTS_HANDLE hMemPool, char *pszComponentName)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoolcleanup-rts-handle-hmempool-char-pszcomponentname-int-breleasesemaphore">RTS_RESULT MemPoolCleanup (RTS_HANDLE hMemPool, char *pszComponentName, int bReleaseSemaphore)</a></li>
+<li><a class="reference internal" href="#void-mempoolgetblock-rts-handle-hmempool-rts-result-presult">void* MemPoolGetBlock (RTS_HANDLE hMemPool, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#void-mempoolgetblock2-rts-handle-hmempool-int-bdynamic-char-pszcomponentname-rts-result-presult">void* MemPoolGetBlock2 (RTS_HANDLE hMemPool, int bDynamic, char *pszComponentName, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-pcb-mempoolgetpcb-rts-handle-hmempool-rts-result-presult">RTS_PCB* MemPoolGetPCB (RTS_HANDLE hMemPool, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoolputblock-void-pblock">RTS_RESULT MemPoolPutBlock (void *pBlock)</a></li>
+<li><a class="reference internal" href="#rts-result-mempooladdusedblock-void-pblock">RTS_RESULT MemPoolAddUsedBlock (void *pBlock)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoolappendusedblock-void-pblock">RTS_RESULT MemPoolAppendUsedBlock (void *pBlock)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoolinsertusedblock-void-pprevblock-void-pblock">RTS_RESULT MemPoolInsertUsedBlock (void *pPrevBlock, void *pBlock)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoolremoveusedblock-void-pblock">RTS_RESULT MemPoolRemoveUsedBlock (void *pBlock)</a></li>
+<li><a class="reference internal" href="#rts-result-mempooladdusedblocktopool-void-pblock-rts-handle-hpool">RTS_RESULT MemPoolAddUsedBlockToPool (void *pBlock, RTS_HANDLE hPool)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoolappendusedblocktopool-void-pblock-rts-handle-hpool">RTS_RESULT MemPoolAppendUsedBlockToPool (void *pBlock, RTS_HANDLE hPool)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoolremoveusedblockfrompool-void-pblock-rts-handle-hpool">RTS_RESULT MemPoolRemoveUsedBlockFromPool (void *pBlock, RTS_HANDLE hPool)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoollockblock-void-pblock">RTS_RESULT MemPoolLockBlock (void *pBlock)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoolunlockblock-void-pblock">RTS_RESULT MemPoolUnlockBlock (void *pBlock)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoollock-rts-handle-hmempool">RTS_RESULT MemPoolLock (RTS_HANDLE hMemPool)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoolunlock-rts-handle-hmempool">RTS_RESULT MemPoolUnlock (RTS_HANDLE hMemPool)</a></li>
+<li><a class="reference internal" href="#void-mempoolfindblock-rts-handle-hmempool-rts-size-uloffset-rts-size-ulsize-void-ptofind-rts-result-presult">void* MemPoolFindBlock (RTS_HANDLE hMemPool, RTS_SIZE ulOffset, RTS_SIZE ulSize, void *pToFind, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-mempoolisvalidblock-rts-handle-hmempool-void-pblock">RTS_RESULT MemPoolIsValidBlock (RTS_HANDLE hMemPool, void *pBlock)</a></li>
+<li><a class="reference internal" href="#void-mempoolgetfirstblock-rts-handle-hmempool-rts-result-presult">void* MemPoolGetFirstBlock (RTS_HANDLE hMemPool, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#void-mempoolgetnextblock-rts-handle-hmempool-void-pprevblock-rts-result-presult">void* MemPoolGetNextBlock (RTS_HANDLE hMemPool, void *pPrevBlock, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-fixedblockspoolinit-rts-fixed-blocks-pool-ppool-rts-mem-region-pregion-rts-size-block-size-rts-size-blocks-number">RTS_RESULT FixedBlocksPoolInit (RTS_FIXED_BLOCKS_POOL *pPool, RTS_MEM_REGION *pRegion, RTS_SIZE block_size, RTS_SIZE blocks_number)</a></li>
+<li><a class="reference internal" href="#void-fixedblockspoolalloc-rts-fixed-blocks-pool-ppool-rts-size-size-rts-result-presult">void* FixedBlocksPoolAlloc (RTS_FIXED_BLOCKS_POOL *pPool, RTS_SIZE size, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-fixedblockspoolfree-rts-fixed-blocks-pool-ppool-void-pmem">RTS_RESULT FixedBlocksPoolFree (RTS_FIXED_BLOCKS_POOL *pPool, void *pMem)</a></li>
+<li><a class="reference internal" href="#rts-result-fixedblockspoolreclaim-rts-fixed-blocks-pool-ppool">RTS_RESULT FixedBlocksPoolReclaim (RTS_FIXED_BLOCKS_POOL *pPool)</a></li>
+<li><a class="reference internal" href="#rts-result-fixedblockspooldestroy-rts-fixed-blocks-pool-ppool">RTS_RESULT FixedBlocksPoolDestroy (RTS_FIXED_BLOCKS_POOL *pPool)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_mem_g_c_itf.html"
+                        title="previous chapter">CmpMemGCItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_monitor2_itf.html"
+                        title="next chapter">CmpMonitor2Itf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_mem_pool_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpmempoolitf">
+<span id="group-cmp-mem-pool-itf"></span><h1>CmpMemPoolItf<a class="headerlink" href="#cmpmempoolitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CmpMemPool. <a class="reference internal" href="#group-cmp-mem-pool-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___cmp_mem_pool_itf___compilerswitch.html#group-cmp-mem-pool-itf-compilerswitch"><span class="std std-ref">Compiler switch</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="structtag_f_b_a___c_h_u_n_k.html#structtag-f-b-a-c-h-u-n-k"><span class="std std-ref">tagFBA_CHUNK</span></a></li>
+<li>struct <a class="reference internal" href="structtag_r_t_s___f_i_x_e_d___b_l_o_c_k_s___p_o_o_l.html#structtag-r-t-s-f-i-x-e-d-b-l-o-c-k-s-p-o-o-l"><span class="std std-ref">tagRTS_FIXED_BLOCKS_POOL</span></a></li>
+<li>struct <a class="reference internal" href="struct_r_t_s___b_c_btag.html#struct-r-t-s-b-c-btag"><span class="std std-ref">RTS_BCBtag</span></a></li>
+<li>struct <a class="reference internal" href="struct_r_t_s___p_e_btag.html#struct-r-t-s-p-e-btag"><span class="std std-ref">RTS_PEBtag</span></a></li>
+<li>struct <a class="reference internal" href="struct_r_t_s___p_c_btag.html#struct-r-t-s-p-c-btag"><span class="std std-ref">RTS_PCBtag</span></a></li>
+<li>struct <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_cmp_mem_pool___c.html#struct-i-cmp-mem-pool-c"><span class="std std-ref">ICmpMemPool_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1gaeb276310831316dba22fc323f914fd97"><span class="std std-ref">U_CONTAINING_RECORD</span></a> ((type <em>)(void</em>)((char*)(void*)(address) - (RTS_SIZE)(/<a href="#id1"><span class="problematic" id="id2">*</span></a>lint -e413 <a href="#id3"><span class="problematic" id="id4">*</span></a>/&amp;((type <a href="#id5"><span class="problematic" id="id6">*</span></a>)0)-&gt;field)))</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> ( (sizeof(RTS_SIZE) &lt;= 2) ? 2 : sizeof(RTS_UINTPTR) )</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga5d2b6694166706b7f9ee92d9d863273b"><span class="std std-ref">___FBA_ALIGN_SIZE___</span></a> ((((sz) + ( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> - 1)) / <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> ) * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga68121c8e86574a77ec465e54bc9a2fe1"><span class="std std-ref">FBA_ALIGN_SIZE</span></a> <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga5d2b6694166706b7f9ee92d9d863273b"><span class="std std-ref">___FBA_ALIGN_SIZE___</span></a> (sz)</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1gabf089a69620cc8a0d0d10b07dd5ba392"><span class="std std-ref">FBA_ALIGN_MEM</span></a> (void*)((((RTS_UINTPTR)(p) + ( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> - 1)) / <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> ) * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga5eb11790545f05c008749fa7aa288dc8"><span class="std std-ref">FBA_GET_STATIC_LEN</span></a> ( (blk_num) * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga68121c8e86574a77ec465e54bc9a2fe1"><span class="std std-ref">FBA_ALIGN_SIZE</span></a> ((blk_sz)) + sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga1eac979e31a75e2a3af2ed78af8636f5"><span class="std std-ref">FBA_CHUNK</span></a> ) + <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga38167e2c4242cf6377af7f0ff7779b78"><span class="std std-ref">MEMPOOL_INIT_VALUE</span></a> 0xAA</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1gac8f789016354f9081e2d6d61f83569dd"><span class="std std-ref">FBA_FLAG_INITIALIZED</span></a> 0x1</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1gaebe93c5c0c5b532aeeab8eb9e32e7c6b"><span class="std std-ref">FixedBlocksPoolIsValid</span></a> (NULL != (pfmp) &amp;&amp; (0 != ((pfmp)-&gt;flags &amp; <a class="reference internal" href="#group-cmp-mem-pool-itf-1gac8f789016354f9081e2d6d61f83569dd"><span class="std std-ref">FBA_FLAG_INITIALIZED</span></a> )))</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga38f24b87e62cca8acbe7ba35ef3a2d7f"><span class="std std-ref">MEMPOOL_ALIGN_MODULO</span></a> sizeof(void*)</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga9efe7e35071c5ce0e0746f2a196320e1"><span class="std std-ref">MEM_GET_STATIC_LEN</span></a> (sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> ) + 2 * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga38f24b87e62cca8acbe7ba35ef3a2d7f"><span class="std std-ref">MEMPOOL_ALIGN_MODULO</span></a> + (Num) * ALIGN_SIZE(sizeof(Struct), <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga38f24b87e62cca8acbe7ba35ef3a2d7f"><span class="std std-ref">MEMPOOL_ALIGN_MODULO</span></a> ) + (Num) * sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"><span class="std std-ref">RTS_BCB</span></a> ))</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga6b1896ab349f829f058addddf1b3e960"><span class="std std-ref">MEM_GET_STATIC_LEN_</span></a> (sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> ) + 2 * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga38f24b87e62cca8acbe7ba35ef3a2d7f"><span class="std std-ref">MEMPOOL_ALIGN_MODULO</span></a> + (Num) * ALIGN_SIZE(Size, <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga38f24b87e62cca8acbe7ba35ef3a2d7f"><span class="std std-ref">MEMPOOL_ALIGN_MODULO</span></a> ) + (Num) * sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"><span class="std std-ref">RTS_BCB</span></a> ))</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga58e8d374cf132d6c716bc02b891e5816"><span class="std std-ref">MEMPOOL_IS_NOT_EMPTY</span></a> (((( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> <a href="#id7"><span class="problematic" id="id8">*</span></a>)pPool)-&gt;pBlocksInUse) != NULL)</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga71a4d39d875115c339b3edcb3973ca30"><span class="std std-ref">MEMPOOL_IS_EMPTY</span></a> (((( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> <a href="#id9"><span class="problematic" id="id10">*</span></a>)pPool)-&gt;pBlocksInUse) == NULL)</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1gaa5b0d1782f0ed05944df80b399e55ad6"><span class="std std-ref">MEMPOOL_HAS_FREE_BLOCKS</span></a> ((( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> <a href="#id11"><span class="problematic" id="id12">*</span></a>)pPool)-&gt;pPEB) != NULL || (( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> <a href="#id13"><span class="problematic" id="id14">*</span></a>)pPool)-&gt;pBCB) != NULL)</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga99d6003b63a5cf47c3e4a7a7ba0e50e6"><span class="std std-ref">MEM_GET_FIRST</span></a> /<a href="#id15"><span class="problematic" id="id16">*</span></a>lint -e{506,522} <a href="#id17"><span class="problematic" id="id18">*</span></a>/(((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id19"><span class="problematic" id="id20">*</span></a>)pIt)-&gt;pHead = (( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> <a href="#id21"><span class="problematic" id="id22">*</span></a>)pPool)-&gt;pBlocksInUse) != NULL ? (((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id23"><span class="problematic" id="id24">*</span></a>)pIt)-&gt;pNext = NULL) != NULL ? 0 : 1) : (((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id25"><span class="problematic" id="id26">*</span></a>)pIt)-&gt;pNext = NULL) != NULL ? 1 : 0))</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1gadc2f778a008df22e2fd70ea42ed93d2a"><span class="std std-ref">MEM_GET_NEXT</span></a> /<a href="#id27"><span class="problematic" id="id28">*</span></a>lint -e{506} <a href="#id29"><span class="problematic" id="id30">*</span></a>/(((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id31"><span class="problematic" id="id32">*</span></a>)pIt)-&gt;pNext == NULL) ? ((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id33"><span class="problematic" id="id34">*</span></a>)pIt)-&gt;pNext = (( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id35"><span class="problematic" id="id36">*</span></a>)pIt)-&gt;pHead) : ((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id37"><span class="problematic" id="id38">*</span></a>)pIt)-&gt;pNext = (( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id39"><span class="problematic" id="id40">*</span></a>)pIt)-&gt;pNext-&gt;pBCB))</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga86da779c54ce30942409ab03db605adb"><span class="std std-ref">MEM_GET_DATA</span></a> ((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id41"><span class="problematic" id="id42">*</span></a>)pIt)-&gt;pNext + 1)</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga3d9d246e559bc03f45e50d8c4f4130c0"><span class="std std-ref">MEM_GET_NEXT_FROM_DATA</span></a> /<a href="#id43"><span class="problematic" id="id44">*</span></a>lint -e{506} <a href="#id45"><span class="problematic" id="id46">*</span></a>/((( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"><span class="std std-ref">RTS_BCB</span></a> <a href="#id47"><span class="problematic" id="id48">*</span></a>)((unsigned char <a href="#id49"><span class="problematic" id="id50">*</span></a>)pData - sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"><span class="std std-ref">RTS_BCB</span></a> )))-&gt;pBCB == NULL ? NULL : (( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"><span class="std std-ref">RTS_BCB</span></a> <a href="#id51"><span class="problematic" id="id52">*</span></a>)((unsigned char <a href="#id53"><span class="problematic" id="id54">*</span></a>)pData - sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"><span class="std std-ref">RTS_BCB</span></a> )))-&gt;pBCB + 1)</li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1gaa80d1316dbc01bff4db96bd70287315b"><span class="std std-ref">ITF_CmpMemPool</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga42831a988d35ce443bfdc84129db6298"><span class="std std-ref">EXTITF_CmpMemPool</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="structtag_f_b_a___c_h_u_n_k.html#structtag-f-b-a-c-h-u-n-k"><span class="std std-ref">tagFBA_CHUNK</span></a> <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga1eac979e31a75e2a3af2ed78af8636f5"><span class="std std-ref">FBA_CHUNK</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_r_t_s___f_i_x_e_d___b_l_o_c_k_s___p_o_o_l.html#structtag-r-t-s-f-i-x-e-d-b-l-o-c-k-s-p-o-o-l"><span class="std std-ref">tagRTS_FIXED_BLOCKS_POOL</span></a> <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga45b525e3879cd8b875591586efc2e3e4"><span class="std std-ref">RTS_FIXED_BLOCKS_POOL</span></a></li>
+<li>typedef struct <a class="reference internal" href="struct_r_t_s___b_c_btag.html#struct-r-t-s-b-c-btag"><span class="std std-ref">RTS_BCBtag</span></a> <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"><span class="std std-ref">RTS_BCB</span></a></li>
+<li>typedef struct <a class="reference internal" href="struct_r_t_s___p_e_btag.html#struct-r-t-s-p-e-btag"><span class="std std-ref">RTS_PEBtag</span></a> <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga62d0adbf9dbf47c5115438fdeb38ebed"><span class="std std-ref">RTS_PEB</span></a></li>
+<li>typedef struct <a class="reference internal" href="struct_r_t_s___p_c_btag.html#struct-r-t-s-p-c-btag"><span class="std std-ref">RTS_PCBtag</span></a> <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_cmp_mem_pool___c.html#struct-i-cmp-mem-pool-c"><span class="std std-ref">ICmpMemPool_C</span></a> <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga73a0e5a30e14ae5145965196d738ef36"><span class="std std-ref">ICmpMemPool</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga4cf18fee38ec28c6a44bf88bad3ece77"><span class="std std-ref">MemPoolCreateDynamic</span></a> (char * pszComponentName, RTS_SIZE ulNumBlocks, RTS_SIZE ulBlockSize, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-mem-pool-itf-1gac616bb19229e35dd70011a1c22be5dcd"><span class="std std-ref">MemPoolCreateStatic</span></a> (RTS_SIZE ulBlockSize, RTS_SIZE ulMemSize, void * pMemory, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga730709e16a0dcce044b3141820c859a3"><span class="std std-ref">MemPoolExtendDynamic</span></a> (RTS_HANDLE hMemPool, char * pszComponentName, RTS_SIZE ulNumBlocks)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga83615fbc259d63de6087c8a4c27642f9"><span class="std std-ref">MemPoolExtendStatic</span></a> (RTS_HANDLE hMemPool, RTS_SIZE ulMemSize, void * pMemory)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga97c2637a4e3370fce26bc936d1a94235"><span class="std std-ref">MemPoolCreateSyncObject</span></a> (RTS_HANDLE hMemPool)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga5e83feecba72271bb2c380b19fd08e65"><span class="std std-ref">MemPoolDeleteSyncObject</span></a> (RTS_HANDLE hMemPool)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga2caf1bff79294e6c1a226b57c8932b06"><span class="std std-ref">MemPoolDelete</span></a> (RTS_HANDLE hMemPool, char * pszComponentName)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga4d590328837318435b623deb38619c3b"><span class="std std-ref">MemPoolCleanup</span></a> (RTS_HANDLE hMemPool, char * pszComponentName, int bReleaseSemaphore)</li>
+<li>void * <a class="reference internal" href="#group-cmp-mem-pool-itf-1gaf7866c3bcd3fdcd14fffd93db7de5db0"><span class="std std-ref">MemPoolGetBlock</span></a> (RTS_HANDLE hMemPool, RTS_RESULT * pResult)</li>
+<li>void * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga02d64406ebb343097b3698db3c92fd70"><span class="std std-ref">MemPoolGetBlock2</span></a> (RTS_HANDLE hMemPool, int bDynamic, char * pszComponentName, RTS_RESULT * pResult)</li>
+<li><a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga736973dcd8e693b7ce086ee2d3eb833c"><span class="std std-ref">MemPoolGetPCB</span></a> (RTS_HANDLE hMemPool, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1gad85943f33a536f0cb2443453753bd5cf"><span class="std std-ref">MemPoolPutBlock</span></a> (void * pBlock)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga51d677d8d5741c642d1fd391cfdf17a5"><span class="std std-ref">MemPoolAddUsedBlock</span></a> (void * pBlock)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1gaf0920d14ed91fdc2d75ef1734eb245a9"><span class="std std-ref">MemPoolAppendUsedBlock</span></a> (void * pBlock)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1gafe815b0b2f830758e150154d946aef21"><span class="std std-ref">MemPoolInsertUsedBlock</span></a> (void * pPrevBlock, void * pBlock)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1gafec6377691b72fba73aef04dfea3212f"><span class="std std-ref">MemPoolRemoveUsedBlock</span></a> (void * pBlock)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1gacea8c6de3e459fcedd6292bb2d57987f"><span class="std std-ref">MemPoolAddUsedBlockToPool</span></a> (void * pBlock, RTS_HANDLE hPool)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1gac0ad13055927fe23ada3622182b644f4"><span class="std std-ref">MemPoolAppendUsedBlockToPool</span></a> (void * pBlock, RTS_HANDLE hPool)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga8adfd806eb44a46890ea6479f8ba6034"><span class="std std-ref">MemPoolRemoveUsedBlockFromPool</span></a> (void * pBlock, RTS_HANDLE hPool)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1gab3dd8ca8f534f6eeab75b7269eb933e9"><span class="std std-ref">MemPoolLockBlock</span></a> (void * pBlock)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga7a497308890236f7330ee9614040d89f"><span class="std std-ref">MemPoolUnlockBlock</span></a> (void * pBlock)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga999519f4cfc0c36ab8f3b0ee8c9aaee6"><span class="std std-ref">MemPoolLock</span></a> (RTS_HANDLE hMemPool)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga7ade2961819aa341260089f3cb633383"><span class="std std-ref">MemPoolUnlock</span></a> (RTS_HANDLE hMemPool)</li>
+<li>void * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga5146bd5d77e6b326d14ca78b2935b0b5"><span class="std std-ref">MemPoolFindBlock</span></a> (RTS_HANDLE hMemPool, RTS_SIZE ulOffset, RTS_SIZE ulSize, void * pToFind, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1gaeb89f4809892cdf3882bc24b69801655"><span class="std std-ref">MemPoolIsValidBlock</span></a> (RTS_HANDLE hMemPool, void * pBlock)</li>
+<li>void * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga499bae494dcef421830732368e41b3fc"><span class="std std-ref">MemPoolGetFirstBlock</span></a> (RTS_HANDLE hMemPool, RTS_RESULT * pResult)</li>
+<li>void * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga8bf456fca1936f64fd7fd541d9c356c2"><span class="std std-ref">MemPoolGetNextBlock</span></a> (RTS_HANDLE hMemPool, void * pPrevBlock, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1gaee6dbd559e1d71d9022a0a4d03d568b6"><span class="std std-ref">FixedBlocksPoolInit</span></a> (<a class="reference internal" href="#group-cmp-mem-pool-itf-1ga45b525e3879cd8b875591586efc2e3e4"><span class="std std-ref">RTS_FIXED_BLOCKS_POOL</span></a> * pPool, <a class="reference internal" href="group___cmp_heap_pool_itf.html#group-cmp-heap-pool-itf-1ga0ff62f1256dec2350d8ecc38c4fc63e9"><span class="std std-ref">RTS_MEM_REGION</span></a> * pRegion, RTS_SIZE block_size, RTS_SIZE blocks_number)</li>
+<li>void * <a class="reference internal" href="#group-cmp-mem-pool-itf-1gaf5646684d87760f6aa7603017b0052b8"><span class="std std-ref">FixedBlocksPoolAlloc</span></a> (<a class="reference internal" href="#group-cmp-mem-pool-itf-1ga45b525e3879cd8b875591586efc2e3e4"><span class="std std-ref">RTS_FIXED_BLOCKS_POOL</span></a> * pPool, RTS_SIZE size, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga6aebb9570d6f9300f73d6c972080f969"><span class="std std-ref">FixedBlocksPoolFree</span></a> (<a class="reference internal" href="#group-cmp-mem-pool-itf-1ga45b525e3879cd8b875591586efc2e3e4"><span class="std std-ref">RTS_FIXED_BLOCKS_POOL</span></a> * pPool, void * pMem)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1gaca460dec0189b5de3a76a3a9f76a73b6"><span class="std std-ref">FixedBlocksPoolReclaim</span></a> (<a class="reference internal" href="#group-cmp-mem-pool-itf-1ga45b525e3879cd8b875591586efc2e3e4"><span class="std std-ref">RTS_FIXED_BLOCKS_POOL</span></a> * pPool)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-mem-pool-itf-1gafb97bf99a7b8c114939edcaf5ff821cc"><span class="std std-ref">FixedBlocksPoolDestroy</span></a> (<a class="reference internal" href="#group-cmp-mem-pool-itf-1ga45b525e3879cd8b875591586efc2e3e4"><span class="std std-ref">RTS_FIXED_BLOCKS_POOL</span></a> * pPool)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-mem-pool-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CmpMemPool.</p>
+<p>Interface of the memory pool manager to handle static and dynamic memory blocks</p>
+<p>A MemPool has the following structure:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span>                           <span class="o">.</span>
+<span class="o">*</span>                           <span class="o">.</span> <span class="o">--------------</span> <span class="n">Pool</span> <span class="n">Control</span> <span class="n">Block</span>                <span class="o">--------------</span> <span class="n">Block</span> <span class="n">Control</span> <span class="n">Block</span>
+<span class="o">*</span>                           <span class="o">.</span> <span class="o">|</span><span class="n">Blocksize</span>   <span class="o">|</span>  <span class="n">data</span> <span class="n">size</span> <span class="n">of</span> <span class="n">single</span> <span class="n">block</span>        <span class="o">|</span><span class="n">nRefCount</span>   <span class="o">|</span>  <span class="n">Reference</span> <span class="n">Counter</span>
+<span class="o">*</span>                           <span class="o">.</span> <span class="o">|</span><span class="n">pBlocksInUse</span><span class="o">|</span>  <span class="n">List</span> <span class="n">of</span> <span class="n">used</span> <span class="n">blocks</span>              <span class="o">|</span><span class="n">pBCB</span>        <span class="o">|</span>  <span class="n">Pointer</span> <span class="n">to</span> <span class="nb">next</span> <span class="n">BCB</span>
+<span class="o">*</span>                           <span class="o">.</span> <span class="o">|</span><span class="n">pBCB</span>        <span class="o">|</span>  <span class="n">List</span> <span class="n">of</span> <span class="n">free</span> <span class="n">blocks</span>              <span class="o">|</span><span class="n">pPCB</span>        <span class="o">|</span>  <span class="n">Pointer</span> <span class="n">to</span> <span class="n">PCB</span>
+<span class="o">*</span>                           <span class="o">.</span> <span class="o">|...</span>         <span class="o">|</span>                                   <span class="o">------------</span>
+<span class="o">*</span>                           <span class="o">.</span> <span class="o">-------------</span>
+<span class="o">*</span>                           <span class="o">.</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="n">provided</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="n">Memory</span> <span class="n">Area</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">.--------------------------.</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">|</span> <span class="n">PCB</span>                      <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>   <span class="n">List</span> <span class="n">of</span> <span class="n">free</span> <span class="n">Blocks</span><span class="o">|</span>  <span class="n">Blocksize</span>               <span class="o">|</span>      <span class="n">List</span> <span class="n">of</span> <span class="n">used</span> <span class="n">Blocks</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">|</span>  <span class="n">pBlocksInUse</span>            <span class="o">|===========.</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">.===========</span> <span class="o">|</span>  <span class="n">pBCB</span>                    <span class="o">|</span>           <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|.........................</span> <span class="o">|</span>           <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|</span> <span class="n">BCB</span>                      <span class="o">|</span> <span class="o">&lt;=========</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|</span>                          <span class="o">|</span> <span class="o">---.</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|.........................</span> <span class="o">|</span>    <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|</span> <span class="n">DATA</span>                     <span class="o">|</span>    <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|</span>                          <span class="o">|</span>    <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|.........................</span> <span class="o">|</span>    <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|</span> <span class="n">BCB</span>                      <span class="o">|</span> <span class="o">&lt;--</span><span class="s1">&#39;</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|</span>                          <span class="o">|</span> <span class="o">---.</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|.........................</span> <span class="o">|</span>    <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|</span> <span class="n">DATA</span>                     <span class="o">|</span>    <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|</span>                          <span class="o">|</span>    <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|.........................</span> <span class="o">|</span>    <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>            <span class="o">|</span>                          <span class="o">|</span> <span class="o">&lt;--</span><span class="s1">&#39;</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>           <span class="o">~~~</span>                        <span class="o">~~~</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="o">|</span>           <span class="o">~~~</span>                        <span class="o">~~~</span>
+<span class="o">*</span>                           <span class="o">.</span>         <span class="s1">&#39;=========&gt;  |......................... |</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">|</span> <span class="n">BCB</span>                      <span class="o">|</span> <span class="o">---.</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">|</span>                          <span class="o">|</span>    <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">|.........................</span> <span class="o">|</span>    <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">|</span> <span class="n">DATA</span>                     <span class="o">|</span>    <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">|</span>                          <span class="o">|</span>    <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">|.........................</span> <span class="o">|</span> <span class="o">&lt;--</span><span class="s1">&#39;</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">|</span> <span class="n">BCB</span>                      <span class="o">|</span> <span class="o">---.</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">|</span>                          <span class="o">|</span>    <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>                     <span class="o">~~~</span>                        <span class="o">~~</span>   <span class="o">~~~</span>
+<span class="o">*</span>                           <span class="o">.</span>
+<span class="o">*</span>                           <span class="o">.</span>                     <span class="o">~~~</span>                        <span class="o">~~~</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">|</span>                          <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">|</span>                          <span class="o">|</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="o">.--------------------------.</span>
+<span class="o">*</span>                           <span class="o">.</span>                      <span class="n">End</span> <span class="n">of</span> <span class="n">Memory</span> <span class="n">Area</span>
+<span class="o">*</span>                           <span class="o">.</span>
+<span class="o">*</span>                           <span class="o">.</span>
+<span class="o">*</span>
+</pre></div>
+</div>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-u-containing-record-type-void-char-void-address-rts-size-lint-e413-type-0-field">
+<span id="group-cmp-mem-pool-itf-1gaeb276310831316dba22fc323f914fd97"></span><h3>#define U_CONTAINING_RECORD ((type <em>)(void</em>)((char*)(void*)(address) - (RTS_SIZE)(/<a href="#id55"><span class="problematic" id="id56">*</span></a>lint -e413 <a href="#id57"><span class="problematic" id="id58">*</span></a>/&amp;((type <a href="#id59"><span class="problematic" id="id60">*</span></a>)0)-&gt;field)))<a class="headerlink" href="#define-u-containing-record-type-void-char-void-address-rts-size-lint-e413-type-0-field" title="Permalink to this headline">¶</a></h3>
+<p>Returns the address of an instance of a structure given the type of the structure and the address of the field within the containing structure.</p>
+</div>
+<div class="section" id="define-fba-min-block-sizeof-rts-size-2-2-sizeof-rts-uintptr">
+<span id="group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"></span><h3>#define FBA_MIN_BLOCK ( (sizeof(RTS_SIZE) &lt;= 2) ? 2 : sizeof(RTS_UINTPTR) )<a class="headerlink" href="#define-fba-min-block-sizeof-rts-size-2-2-sizeof-rts-uintptr" title="Permalink to this headline">¶</a></h3>
+<p>Block size should be not less than FBA_MIN_BLOCK,</p>
+</div>
+<div class="section" id="define-fba-align-size-sz-fba-min-block-1-fba-min-block-fba-min-block">
+<span id="group-cmp-mem-pool-itf-1ga5d2b6694166706b7f9ee92d9d863273b"></span><h3>#define ___FBA_ALIGN_SIZE___ ((((sz) + ( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> - 1)) / <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> ) * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> )<a class="headerlink" href="#define-fba-align-size-sz-fba-min-block-1-fba-min-block-fba-min-block" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fba-align-size-fba-align-size-sz">
+<span id="group-cmp-mem-pool-itf-1ga68121c8e86574a77ec465e54bc9a2fe1"></span><h3>#define FBA_ALIGN_SIZE <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga5d2b6694166706b7f9ee92d9d863273b"><span class="std std-ref">___FBA_ALIGN_SIZE___</span></a> (sz)<a class="headerlink" href="#define-fba-align-size-fba-align-size-sz" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fba-align-mem-void-rts-uintptr-p-fba-min-block-1-fba-min-block-fba-min-block">
+<span id="group-cmp-mem-pool-itf-1gabf089a69620cc8a0d0d10b07dd5ba392"></span><h3>#define FBA_ALIGN_MEM (void*)((((RTS_UINTPTR)(p) + ( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> - 1)) / <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> ) * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> )<a class="headerlink" href="#define-fba-align-mem-void-rts-uintptr-p-fba-min-block-1-fba-min-block-fba-min-block" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fba-get-static-len-blk-num-fba-align-size-blk-sz-sizeof-fba-chunk-fba-min-block">
+<span id="group-cmp-mem-pool-itf-1ga5eb11790545f05c008749fa7aa288dc8"></span><h3>#define FBA_GET_STATIC_LEN ( (blk_num) * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga68121c8e86574a77ec465e54bc9a2fe1"><span class="std std-ref">FBA_ALIGN_SIZE</span></a> ((blk_sz)) + sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga1eac979e31a75e2a3af2ed78af8636f5"><span class="std std-ref">FBA_CHUNK</span></a> ) + <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga0fa8e7240fdd4e1da3a6ab128b672d59"><span class="std std-ref">FBA_MIN_BLOCK</span></a> )<a class="headerlink" href="#define-fba-get-static-len-blk-num-fba-align-size-blk-sz-sizeof-fba-chunk-fba-min-block" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-mempool-init-value-0xaa">
+<span id="group-cmp-mem-pool-itf-1ga38167e2c4242cf6377af7f0ff7779b78"></span><h3>#define MEMPOOL_INIT_VALUE 0xAA<a class="headerlink" href="#define-mempool-init-value-0xaa" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fba-flag-initialized-0x1">
+<span id="group-cmp-mem-pool-itf-1gac8f789016354f9081e2d6d61f83569dd"></span><h3>#define FBA_FLAG_INITIALIZED 0x1<a class="headerlink" href="#define-fba-flag-initialized-0x1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-fixedblockspoolisvalid-null-pfmp-0-pfmp-flags-fba-flag-initialized">
+<span id="group-cmp-mem-pool-itf-1gaebe93c5c0c5b532aeeab8eb9e32e7c6b"></span><h3>#define FixedBlocksPoolIsValid (NULL != (pfmp) &amp;&amp; (0 != ((pfmp)-&gt;flags &amp; <a class="reference internal" href="#group-cmp-mem-pool-itf-1gac8f789016354f9081e2d6d61f83569dd"><span class="std std-ref">FBA_FLAG_INITIALIZED</span></a> )))<a class="headerlink" href="#define-fixedblockspoolisvalid-null-pfmp-0-pfmp-flags-fba-flag-initialized" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-mempool-align-modulo-sizeof-void">
+<span id="group-cmp-mem-pool-itf-1ga38f24b87e62cca8acbe7ba35ef3a2d7f"></span><h3>#define MEMPOOL_ALIGN_MODULO sizeof(void*)<a class="headerlink" href="#define-mempool-align-modulo-sizeof-void" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-mem-get-static-len-sizeof-rts-pcb-2-mempool-align-modulo-num-align-size-sizeof-struct-mempool-align-modulo-num-sizeof-rts-bcb">
+<span id="group-cmp-mem-pool-itf-1ga9efe7e35071c5ce0e0746f2a196320e1"></span><h3>#define MEM_GET_STATIC_LEN (sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> ) + 2 * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga38f24b87e62cca8acbe7ba35ef3a2d7f"><span class="std std-ref">MEMPOOL_ALIGN_MODULO</span></a> + (Num) * ALIGN_SIZE(sizeof(Struct), <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga38f24b87e62cca8acbe7ba35ef3a2d7f"><span class="std std-ref">MEMPOOL_ALIGN_MODULO</span></a> ) + (Num) * sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"><span class="std std-ref">RTS_BCB</span></a> ))<a class="headerlink" href="#define-mem-get-static-len-sizeof-rts-pcb-2-mempool-align-modulo-num-align-size-sizeof-struct-mempool-align-modulo-num-sizeof-rts-bcb" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-mem-get-static-len-sizeof-rts-pcb-2-mempool-align-modulo-num-align-size-size-mempool-align-modulo-num-sizeof-rts-bcb">
+<span id="group-cmp-mem-pool-itf-1ga6b1896ab349f829f058addddf1b3e960"></span><h3>#define <a href="#id183"><span class="problematic" id="id184">MEM_GET_STATIC_LEN_</span></a> (sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> ) + 2 * <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga38f24b87e62cca8acbe7ba35ef3a2d7f"><span class="std std-ref">MEMPOOL_ALIGN_MODULO</span></a> + (Num) * ALIGN_SIZE(Size, <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga38f24b87e62cca8acbe7ba35ef3a2d7f"><span class="std std-ref">MEMPOOL_ALIGN_MODULO</span></a> ) + (Num) * sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"><span class="std std-ref">RTS_BCB</span></a> ))<a class="headerlink" href="#define-mem-get-static-len-sizeof-rts-pcb-2-mempool-align-modulo-num-align-size-size-mempool-align-modulo-num-sizeof-rts-bcb" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-mempool-is-not-empty-rts-pcb-ppool-pblocksinuse-null">
+<span id="group-cmp-mem-pool-itf-1ga58e8d374cf132d6c716bc02b891e5816"></span><h3>#define MEMPOOL_IS_NOT_EMPTY (((( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> <a href="#id61"><span class="problematic" id="id62">*</span></a>)pPool)-&gt;pBlocksInUse) != NULL)<a class="headerlink" href="#define-mempool-is-not-empty-rts-pcb-ppool-pblocksinuse-null" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-mempool-is-empty-rts-pcb-ppool-pblocksinuse-null">
+<span id="group-cmp-mem-pool-itf-1ga71a4d39d875115c339b3edcb3973ca30"></span><h3>#define MEMPOOL_IS_EMPTY (((( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> <a href="#id63"><span class="problematic" id="id64">*</span></a>)pPool)-&gt;pBlocksInUse) == NULL)<a class="headerlink" href="#define-mempool-is-empty-rts-pcb-ppool-pblocksinuse-null" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-mempool-has-free-blocks-rts-pcb-ppool-ppeb-null-rts-pcb-ppool-pbcb-null">
+<span id="group-cmp-mem-pool-itf-1gaa5b0d1782f0ed05944df80b399e55ad6"></span><h3>#define MEMPOOL_HAS_FREE_BLOCKS ((( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> <a href="#id65"><span class="problematic" id="id66">*</span></a>)pPool)-&gt;pPEB) != NULL || (( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> <a href="#id67"><span class="problematic" id="id68">*</span></a>)pPool)-&gt;pBCB) != NULL)<a class="headerlink" href="#define-mempool-has-free-blocks-rts-pcb-ppool-ppeb-null-rts-pcb-ppool-pbcb-null" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-mem-get-first-lint-e-506-522-memiterator-pit-phead-rts-pcb-ppool-pblocksinuse-null-memiterator-pit-pnext-null-null-0-1-memiterator-pit-pnext-null-null-1-0">
+<span id="group-cmp-mem-pool-itf-1ga99d6003b63a5cf47c3e4a7a7ba0e50e6"></span><h3>#define MEM_GET_FIRST /<a href="#id69"><span class="problematic" id="id70">*</span></a>lint -e{506,522} <a href="#id71"><span class="problematic" id="id72">*</span></a>/(((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id73"><span class="problematic" id="id74">*</span></a>)pIt)-&gt;pHead = (( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"><span class="std std-ref">RTS_PCB</span></a> <a href="#id75"><span class="problematic" id="id76">*</span></a>)pPool)-&gt;pBlocksInUse) != NULL ? (((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id77"><span class="problematic" id="id78">*</span></a>)pIt)-&gt;pNext = NULL) != NULL ? 0 : 1) : (((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id79"><span class="problematic" id="id80">*</span></a>)pIt)-&gt;pNext = NULL) != NULL ? 1 : 0))<a class="headerlink" href="#define-mem-get-first-lint-e-506-522-memiterator-pit-phead-rts-pcb-ppool-pblocksinuse-null-memiterator-pit-pnext-null-null-0-1-memiterator-pit-pnext-null-null-1-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-mem-get-next-lint-e-506-memiterator-pit-pnext-null-memiterator-pit-pnext-memiterator-pit-phead-memiterator-pit-pnext-memiterator-pit-pnext-pbcb">
+<span id="group-cmp-mem-pool-itf-1gadc2f778a008df22e2fd70ea42ed93d2a"></span><h3>#define MEM_GET_NEXT /<a href="#id81"><span class="problematic" id="id82">*</span></a>lint -e{506} <a href="#id83"><span class="problematic" id="id84">*</span></a>/(((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id85"><span class="problematic" id="id86">*</span></a>)pIt)-&gt;pNext == NULL) ? ((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id87"><span class="problematic" id="id88">*</span></a>)pIt)-&gt;pNext = (( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id89"><span class="problematic" id="id90">*</span></a>)pIt)-&gt;pHead) : ((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id91"><span class="problematic" id="id92">*</span></a>)pIt)-&gt;pNext = (( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id93"><span class="problematic" id="id94">*</span></a>)pIt)-&gt;pNext-&gt;pBCB))<a class="headerlink" href="#define-mem-get-next-lint-e-506-memiterator-pit-pnext-null-memiterator-pit-pnext-memiterator-pit-phead-memiterator-pit-pnext-memiterator-pit-pnext-pbcb" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-mem-get-data-memiterator-pit-pnext-1">
+<span id="group-cmp-mem-pool-itf-1ga86da779c54ce30942409ab03db605adb"></span><h3>#define MEM_GET_DATA ((( <a class="reference internal" href="struct_mem_iterator.html#struct-mem-iterator"><span class="std std-ref">MemIterator</span></a> <a href="#id95"><span class="problematic" id="id96">*</span></a>)pIt)-&gt;pNext + 1)<a class="headerlink" href="#define-mem-get-data-memiterator-pit-pnext-1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-mem-get-next-from-data-lint-e-506-rts-bcb-unsigned-char-pdata-sizeof-rts-bcb-pbcb-null-null-rts-bcb-unsigned-char-pdata-sizeof-rts-bcb-pbcb-1">
+<span id="group-cmp-mem-pool-itf-1ga3d9d246e559bc03f45e50d8c4f4130c0"></span><h3>#define MEM_GET_NEXT_FROM_DATA /<a href="#id97"><span class="problematic" id="id98">*</span></a>lint -e{506} <a href="#id99"><span class="problematic" id="id100">*</span></a>/((( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"><span class="std std-ref">RTS_BCB</span></a> <a href="#id101"><span class="problematic" id="id102">*</span></a>)((unsigned char <a href="#id103"><span class="problematic" id="id104">*</span></a>)pData - sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"><span class="std std-ref">RTS_BCB</span></a> )))-&gt;pBCB == NULL ? NULL : (( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"><span class="std std-ref">RTS_BCB</span></a> <a href="#id105"><span class="problematic" id="id106">*</span></a>)((unsigned char <a href="#id107"><span class="problematic" id="id108">*</span></a>)pData - sizeof( <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"><span class="std std-ref">RTS_BCB</span></a> )))-&gt;pBCB + 1)<a class="headerlink" href="#define-mem-get-next-from-data-lint-e-506-rts-bcb-unsigned-char-pdata-sizeof-rts-bcb-pbcb-null-null-rts-bcb-unsigned-char-pdata-sizeof-rts-bcb-pbcb-1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-itf-cmpmempool">
+<span id="group-cmp-mem-pool-itf-1gaa80d1316dbc01bff4db96bd70287315b"></span><h3>#define ITF_CmpMemPool<a class="headerlink" href="#define-itf-cmpmempool" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpmempool">
+<span id="group-cmp-mem-pool-itf-1ga42831a988d35ce443bfdc84129db6298"></span><h3>#define EXTITF_CmpMemPool<a class="headerlink" href="#define-extitf-cmpmempool" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-tagfba-chunk-fba-chunk">
+<span id="group-cmp-mem-pool-itf-1ga1eac979e31a75e2a3af2ed78af8636f5"></span><h3>typedef struct tagFBA_CHUNK FBA_CHUNK<a class="headerlink" href="#typedef-struct-tagfba-chunk-fba-chunk" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-struct-tagrts-fixed-blocks-pool-rts-fixed-blocks-pool">
+<span id="group-cmp-mem-pool-itf-1ga45b525e3879cd8b875591586efc2e3e4"></span><h3>typedef struct tagRTS_FIXED_BLOCKS_POOL RTS_FIXED_BLOCKS_POOL<a class="headerlink" href="#typedef-struct-tagrts-fixed-blocks-pool-rts-fixed-blocks-pool" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-struct-rts-bcbtag-rts-bcb">
+<span id="group-cmp-mem-pool-itf-1ga21d2fc3558f05b1ed3e29c386f9a5492"></span><h3>typedef struct RTS_BCBtag  RTS_BCB<a class="headerlink" href="#typedef-struct-rts-bcbtag-rts-bcb" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-struct-rts-pebtag-rts-peb">
+<span id="group-cmp-mem-pool-itf-1ga62d0adbf9dbf47c5115438fdeb38ebed"></span><h3>typedef struct RTS_PEBtag  RTS_PEB<a class="headerlink" href="#typedef-struct-rts-pebtag-rts-peb" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-struct-rts-pcbtag-rts-pcb">
+<span id="group-cmp-mem-pool-itf-1ga76df38ce6d864c2169b39e23de750e6d"></span><h3>typedef struct RTS_PCBtag  RTS_PCB<a class="headerlink" href="#typedef-struct-rts-pcbtag-rts-pcb" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-icmpmempool-c-icmpmempool">
+<span id="group-cmp-mem-pool-itf-1ga73a0e5a30e14ae5145965196d738ef36"></span><h3>typedef ICmpMemPool_C ICmpMemPool<a class="headerlink" href="#typedef-icmpmempool-c-icmpmempool" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-handle-mempoolcreatedynamic-char-pszcomponentname-rts-size-ulnumblocks-rts-size-ulblocksize-rts-result-presult">
+<span id="group-cmp-mem-pool-itf-1ga4cf18fee38ec28c6a44bf88bad3ece77"></span><h3>RTS_HANDLE MemPoolCreateDynamic (char <a href="#id109"><span class="problematic" id="id110">*</span></a>pszComponentName, RTS_SIZE ulNumBlocks, RTS_SIZE ulBlockSize, RTS_RESULT <a href="#id111"><span class="problematic" id="id112">*</span></a>pResult)<a class="headerlink" href="#rts-handle-mempoolcreatedynamic-char-pszcomponentname-rts-size-ulnumblocks-rts-size-ulblocksize-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Create a dynamic pool (consists of heap memory)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="27%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszComponentName</td>
+<td>Component name</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulBlockSize</td>
+<td>Size of each memory block in the pool</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the memory pool</p>
+</div>
+<div class="section" id="rts-handle-mempoolcreatestatic-rts-size-ulblocksize-rts-size-ulmemsize-void-pmemory-rts-result-presult">
+<span id="group-cmp-mem-pool-itf-1gac616bb19229e35dd70011a1c22be5dcd"></span><h3>RTS_HANDLE MemPoolCreateStatic (RTS_SIZE ulBlockSize, RTS_SIZE ulMemSize, void <a href="#id113"><span class="problematic" id="id114">*</span></a>pMemory, RTS_RESULT <a href="#id115"><span class="problematic" id="id116">*</span></a>pResult)<a class="headerlink" href="#rts-handle-mempoolcreatestatic-rts-size-ulblocksize-rts-size-ulmemsize-void-pmemory-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Create a memory pool from a static memory buffer.</p>
+<p>The memory buffer don&#8217;t has to be aligned in a specific way. Therefore, not all of the memory in the buffer might be used. To get the appropriate additional buffer, the caller is recommended to use the macro <a class="reference internal" href="#group-cmp-mem-pool-itf-1ga9efe7e35071c5ce0e0746f2a196320e1"><span class="std std-ref">MEM_GET_STATIC_LEN(Num, Struct)</span></a> to get the size of the buffer</p>
+<p>For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span>                            <span class="n">typedef</span> <span class="n">struct</span>
+<span class="o">*</span>                            <span class="p">{</span>
+<span class="o">*</span>                                <span class="o">...</span>
+<span class="o">*</span>                            <span class="p">}</span> <span class="n">myStruct_s</span><span class="p">;</span>
+<span class="o">*</span>
+<span class="o">*</span>                            <span class="c1">#define NUM_OF_STATIC_ELEMENTS 0x100</span>
+<span class="o">*</span>
+<span class="o">*</span>                            <span class="n">RTS_UI8</span> <span class="n">s_byMyStaticPool</span><span class="p">[</span><span class="n">MEM_GET_STATIC_LEN</span><span class="p">(</span><span class="n">NUM_OF_STATIC_ELEMENTS</span><span class="p">,</span> <span class="n">myStruct_s</span><span class="p">);</span>
+<span class="o">*</span>
+</pre></div>
+</div>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="7%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulBlockSize</td>
+<td>Size of each memory block in the pool, misaligned to 1, 2, 4 or 8 bytes RANGE=[BLOCKSIZE_ALIGNED1,BLOCKSIZE_ALIGNED2,BLOCKSIZE_ALIGNED4,BLOCKSIZE_ALIGNED8]</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulMemSize</td>
+<td>Complete size of the static memory, misaligned to 1, 2, 4 or 8 bytes RANGE=[MEMSIZE_INVALID,MEMSIZE_ALIGNED1,MEMSIZE_ALIGNED2,MEMSIZE_ALIGNED4,MEMSIZE_ALIGNED8]</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pMemory</td>
+<td>Pointer to the static memory RANGE=[NULL,VALID_MEM]</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>MemPool created successfully</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>pMemory was NULL</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOMEMORY</td>
+<td>ulMemSize was not large enough, to hold at leaset one block</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the memory pool</p>
+</div>
+<div class="section" id="rts-result-mempoolextenddynamic-rts-handle-hmempool-char-pszcomponentname-rts-size-ulnumblocks">
+<span id="group-cmp-mem-pool-itf-1ga730709e16a0dcce044b3141820c859a3"></span><h3>RTS_RESULT MemPoolExtendDynamic (RTS_HANDLE hMemPool, char <a href="#id117"><span class="problematic" id="id118">*</span></a>pszComponentName, RTS_SIZE ulNumBlocks)<a class="headerlink" href="#rts-result-mempoolextenddynamic-rts-handle-hmempool-char-pszcomponentname-rts-size-ulnumblocks" title="Permalink to this headline">¶</a></h3>
+<p>Extend dynamic an existing pool</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="33%" />
+<col width="51%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the pool</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszComponentName</td>
+<td>Component name</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulNumBlocks</td>
+<td>Number of blocks to extend</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempoolextendstatic-rts-handle-hmempool-rts-size-ulmemsize-void-pmemory">
+<span id="group-cmp-mem-pool-itf-1ga83615fbc259d63de6087c8a4c27642f9"></span><h3>RTS_RESULT MemPoolExtendStatic (RTS_HANDLE hMemPool, RTS_SIZE ulMemSize, void <a href="#id119"><span class="problematic" id="id120">*</span></a>pMemory)<a class="headerlink" href="#rts-result-mempoolextendstatic-rts-handle-hmempool-rts-size-ulmemsize-void-pmemory" title="Permalink to this headline">¶</a></h3>
+<p>Extend an existing pool with a static array</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="20%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the pool</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulMemSize</td>
+<td>Complete size of the static memory</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pMemory</td>
+<td>Pointer to the static memory</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempoolcreatesyncobject-rts-handle-hmempool">
+<span id="group-cmp-mem-pool-itf-1ga97c2637a4e3370fce26bc936d1a94235"></span><h3>RTS_RESULT MemPoolCreateSyncObject (RTS_HANDLE hMemPool)<a class="headerlink" href="#rts-result-mempoolcreatesyncobject-rts-handle-hmempool" title="Permalink to this headline">¶</a></h3>
+<p>Create the internal sync object for synchronizing the pool.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="26%" />
+<col width="51%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the pool</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempooldeletesyncobject-rts-handle-hmempool">
+<span id="group-cmp-mem-pool-itf-1ga5e83feecba72271bb2c380b19fd08e65"></span><h3>RTS_RESULT MemPoolDeleteSyncObject (RTS_HANDLE hMemPool)<a class="headerlink" href="#rts-result-mempooldeletesyncobject-rts-handle-hmempool" title="Permalink to this headline">¶</a></h3>
+<p>Delete the internal sync object for synchronizing the pool.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="26%" />
+<col width="51%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the pool</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempooldelete-rts-handle-hmempool-char-pszcomponentname">
+<span id="group-cmp-mem-pool-itf-1ga2caf1bff79294e6c1a226b57c8932b06"></span><h3>RTS_RESULT MemPoolDelete (RTS_HANDLE hMemPool, char <a href="#id121"><span class="problematic" id="id122">*</span></a>pszComponentName)<a class="headerlink" href="#rts-result-mempooldelete-rts-handle-hmempool-char-pszcomponentname" title="Permalink to this headline">¶</a></h3>
+<p>Delete an existing pool</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="38%" />
+<col width="43%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the pool</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszComponentName</td>
+<td>Component name</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempoolcleanup-rts-handle-hmempool-char-pszcomponentname-int-breleasesemaphore">
+<span id="group-cmp-mem-pool-itf-1ga4d590328837318435b623deb38619c3b"></span><h3>RTS_RESULT MemPoolCleanup (RTS_HANDLE hMemPool, char <a href="#id123"><span class="problematic" id="id124">*</span></a>pszComponentName, int bReleaseSemaphore)<a class="headerlink" href="#rts-result-mempoolcleanup-rts-handle-hmempool-char-pszcomponentname-int-breleasesemaphore" title="Permalink to this headline">¶</a></h3>
+<p>Cleanup the pool (delete all allocated heap pool objects)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="26%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the pool</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszComponentName</td>
+<td>Component name</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>bReleaseSemaphore</td>
+<td>1=Pool semaphore is released, 0=Only cleanup</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="void-mempoolgetblock-rts-handle-hmempool-rts-result-presult">
+<span id="group-cmp-mem-pool-itf-1gaf7866c3bcd3fdcd14fffd93db7de5db0"></span><h3>void* MemPoolGetBlock (RTS_HANDLE hMemPool, RTS_RESULT <a href="#id125"><span class="problematic" id="id126">*</span></a>pResult)<a class="headerlink" href="#void-mempoolgetblock-rts-handle-hmempool-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get one memory block out of the pool.</p>
+<p>SIL2 Implementation: If pPCB is wrong, an Exception is generated!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="13%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the pool RANGE=[RTS_INVALID_HANDLE,VALID_MEMPOOLHANDLE,INVALID_MEMPOOLHANDLE]</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hMemPool.NumEntries</td>
+<td><strong>*PSEUDO*</strong> Number of already allocated entries from the pool RANGE=[0..NUM_OF_STATIC_ELEMENTS-1,NUM_OF_STATIC_ELEMENTS..INT_MAX]</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>bExceptionGenerated</td>
+<td><strong>*PSEUDO*</strong> specifies, if an exception was generated or not RANGE=[TRUE,FALSE]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Retrieved free block from MemPool</td>
+</tr>
+<tr class="row-even"><td>ERR_INVALID_HANDLE</td>
+<td>No free block found</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to the memory block</p>
+</div>
+<div class="section" id="void-mempoolgetblock2-rts-handle-hmempool-int-bdynamic-char-pszcomponentname-rts-result-presult">
+<span id="group-cmp-mem-pool-itf-1ga02d64406ebb343097b3698db3c92fd70"></span><h3>void* MemPoolGetBlock2 (RTS_HANDLE hMemPool, int bDynamic, char <a href="#id127"><span class="problematic" id="id128">*</span></a>pszComponentName, RTS_RESULT <a href="#id129"><span class="problematic" id="id130">*</span></a>pResult)<a class="headerlink" href="#void-mempoolgetblock2-rts-handle-hmempool-int-bdynamic-char-pszcomponentname-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get one memory block out of the pool</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="16%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the pool</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>bDynamic</td>
+<td>1=Block is created dynamically, if the pool is empty, 0=Only use of static pool memory</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pszComponentName</td>
+<td>Pointer to the component name for dynamic memory allocation</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to the memory block</p>
+</div>
+<div class="section" id="rts-pcb-mempoolgetpcb-rts-handle-hmempool-rts-result-presult">
+<span id="group-cmp-mem-pool-itf-1ga736973dcd8e693b7ce086ee2d3eb833c"></span><h3>RTS_PCB* MemPoolGetPCB (RTS_HANDLE hMemPool, RTS_RESULT <a href="#id131"><span class="problematic" id="id132">*</span></a>pResult)<a class="headerlink" href="#rts-pcb-mempoolgetpcb-rts-handle-hmempool-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get one the pool control block of a specified pool</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="24%" />
+<col width="55%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the pool</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to the pool control block</p>
+</div>
+<div class="section" id="rts-result-mempoolputblock-void-pblock">
+<span id="group-cmp-mem-pool-itf-1gad85943f33a536f0cb2443453753bd5cf"></span><h3>RTS_RESULT MemPoolPutBlock (void <a href="#id133"><span class="problematic" id="id134">*</span></a>pBlock)<a class="headerlink" href="#rts-result-mempoolputblock-void-pblock" title="Permalink to this headline">¶</a></h3>
+<p>Put a memory block back into the pool (release). Now, the block is in the chain list of free blocks again.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="9%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBlock</td>
+<td>Pointer to the memory block RANGE=[NULL,VALID_BLOCK,INVALID_BLOCK]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Successfully added Block to MemPool</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Could not add Block to MemPool, wrong pBlock</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempooladdusedblock-void-pblock">
+<span id="group-cmp-mem-pool-itf-1ga51d677d8d5741c642d1fd391cfdf17a5"></span><h3>RTS_RESULT MemPoolAddUsedBlock (void <a href="#id135"><span class="problematic" id="id136">*</span></a>pBlock)<a class="headerlink" href="#rts-result-mempooladdusedblock-void-pblock" title="Permalink to this headline">¶</a></h3>
+<p>Add used block at the beginning of the pool. Now, the block is in the chain list of used blocks.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="11%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBlock</td>
+<td>Pointer to the memory block RANGE=[NULL,VALID_BLOCK]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Successfully added Block to MemPool</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Could not add Block to MemPool, wrong pBlock</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempoolappendusedblock-void-pblock">
+<span id="group-cmp-mem-pool-itf-1gaf0920d14ed91fdc2d75ef1734eb245a9"></span><h3>RTS_RESULT MemPoolAppendUsedBlock (void <a href="#id137"><span class="problematic" id="id138">*</span></a>pBlock)<a class="headerlink" href="#rts-result-mempoolappendusedblock-void-pblock" title="Permalink to this headline">¶</a></h3>
+<p>Add used block at the end of the pool. Now, the block is in the chain list of used blocks.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="11%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBlock</td>
+<td>Pointer to the memory block RANGE=[NULL,VALID_BLOCK]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Successfully added Block to MemPool</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Could not add Block to MemPool, wrong pBlock</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempoolinsertusedblock-void-pprevblock-void-pblock">
+<span id="group-cmp-mem-pool-itf-1gafe815b0b2f830758e150154d946aef21"></span><h3>RTS_RESULT MemPoolInsertUsedBlock (void <a href="#id139"><span class="problematic" id="id140">*</span></a>pPrevBlock, void <a href="#id141"><span class="problematic" id="id142">*</span></a>pBlock)<a class="headerlink" href="#rts-result-mempoolinsertusedblock-void-pprevblock-void-pblock" title="Permalink to this headline">¶</a></h3>
+<p>Insert used block right after the specified block or as a head element of an internal used blocks list.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="12%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pPrevBlock</td>
+<td>Pointer to the predecessor block RANGE=[NULL,VALID_PREVBLOCK,INVALID_PREVBLOCK]</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pBlock</td>
+<td>Pointer to the memory block RANGE=[NULL,VALID_BLOCK]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Successfully inserted Block to MemPool</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Could not insert Block to MemPool because pBlock is NULL or pPrevBlock belongs to a different pool than pBlock</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempoolremoveusedblock-void-pblock">
+<span id="group-cmp-mem-pool-itf-1gafec6377691b72fba73aef04dfea3212f"></span><h3>RTS_RESULT MemPoolRemoveUsedBlock (void <a href="#id143"><span class="problematic" id="id144">*</span></a>pBlock)<a class="headerlink" href="#rts-result-mempoolremoveusedblock-void-pblock" title="Permalink to this headline">¶</a></h3>
+<p>Remove used block from the pool. Now, the block is removed from the chain list of used blocks.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="11%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBlock</td>
+<td>Pointer to the memory block RANGE=[NULL,VALID_BLOCK]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Successfully removed Block from MemPool</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Could not remove Block from MemPool, wrong pBlock</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempooladdusedblocktopool-void-pblock-rts-handle-hpool">
+<span id="group-cmp-mem-pool-itf-1gacea8c6de3e459fcedd6292bb2d57987f"></span><h3>RTS_RESULT MemPoolAddUsedBlockToPool (void <a href="#id145"><span class="problematic" id="id146">*</span></a>pBlock, RTS_HANDLE hPool)<a class="headerlink" href="#rts-result-mempooladdusedblocktopool-void-pblock-rts-handle-hpool" title="Permalink to this headline">¶</a></h3>
+<p>Add used block the beginning of the specified pool. Now, the block is in the chain list of used blocks.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="17%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBlock</td>
+<td>Pointer to the memory block</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hPool</td>
+<td>Handle to the pool</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempoolappendusedblocktopool-void-pblock-rts-handle-hpool">
+<span id="group-cmp-mem-pool-itf-1gac0ad13055927fe23ada3622182b644f4"></span><h3>RTS_RESULT MemPoolAppendUsedBlockToPool (void <a href="#id147"><span class="problematic" id="id148">*</span></a>pBlock, RTS_HANDLE hPool)<a class="headerlink" href="#rts-result-mempoolappendusedblocktopool-void-pblock-rts-handle-hpool" title="Permalink to this headline">¶</a></h3>
+<p>Add the block to the end of the used block list of hPool</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="17%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBlock</td>
+<td>Pointer to the memory block</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hPool</td>
+<td>Handle to the pool</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempoolremoveusedblockfrompool-void-pblock-rts-handle-hpool">
+<span id="group-cmp-mem-pool-itf-1ga8adfd806eb44a46890ea6479f8ba6034"></span><h3>RTS_RESULT MemPoolRemoveUsedBlockFromPool (void <a href="#id149"><span class="problematic" id="id150">*</span></a>pBlock, RTS_HANDLE hPool)<a class="headerlink" href="#rts-result-mempoolremoveusedblockfrompool-void-pblock-rts-handle-hpool" title="Permalink to this headline">¶</a></h3>
+<p>Remove used block from the specified pool. Now, the block is removed from the chain list of used blocks.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="17%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBlock</td>
+<td>Pointer to the memory block</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hPool</td>
+<td>Handle to the pool</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempoollockblock-void-pblock">
+<span id="group-cmp-mem-pool-itf-1gab3dd8ca8f534f6eeab75b7269eb933e9"></span><h3>RTS_RESULT MemPoolLockBlock (void <a href="#id151"><span class="problematic" id="id152">*</span></a>pBlock)<a class="headerlink" href="#rts-result-mempoollockblock-void-pblock" title="Permalink to this headline">¶</a></h3>
+<p>Lock the access to a pool to be threadsafe.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="17%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBlock</td>
+<td>Pointer to the memory block</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempoolunlockblock-void-pblock">
+<span id="group-cmp-mem-pool-itf-1ga7a497308890236f7330ee9614040d89f"></span><h3>RTS_RESULT MemPoolUnlockBlock (void <a href="#id153"><span class="problematic" id="id154">*</span></a>pBlock)<a class="headerlink" href="#rts-result-mempoolunlockblock-void-pblock" title="Permalink to this headline">¶</a></h3>
+<p>Unlock the access to a pool.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="17%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBlock</td>
+<td>Pointer to the memory block</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempoollock-rts-handle-hmempool">
+<span id="group-cmp-mem-pool-itf-1ga999519f4cfc0c36ab8f3b0ee8c9aaee6"></span><h3>RTS_RESULT MemPoolLock (RTS_HANDLE hMemPool)<a class="headerlink" href="#rts-result-mempoollock-rts-handle-hmempool" title="Permalink to this headline">¶</a></h3>
+<p>Lock the access to the complete pool. SIL2 Implementation is using INT Locks.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="13%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the memory pool RANGE=[VALID_MEMPOOLHANDLE,NULL]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Pool was sucessfully locked</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Parameter is wrong</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Pool could not be locked, SysInt or SysSem had problems</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTIMPLEMENTED</td>
+<td>SysInt or SysSem are not implemented</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>Lock cannot be done before CH_INIT_SYSTEM, not relevant for SIL2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-mempoolunlock-rts-handle-hmempool">
+<span id="group-cmp-mem-pool-itf-1ga7ade2961819aa341260089f3cb633383"></span><h3>RTS_RESULT MemPoolUnlock (RTS_HANDLE hMemPool)<a class="headerlink" href="#rts-result-mempoolunlock-rts-handle-hmempool" title="Permalink to this headline">¶</a></h3>
+<p>Unlock the access to the complete pool. SIL2 Implementation is using INT Locks.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="13%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the memory pool RANGE=[VALID_MEMPOOLHANDLE,NULL]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Pool was sucessfully unlocked</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Parameter is wrong</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Pool could not be unlocked, SysInt or SysSem had problems</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTIMPLEMENTED</td>
+<td>SysInt or SysSem are not implemented</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>Unlock cannot be done before CH_INIT_SYSTEM, not relevant for SIL2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+</div>
+<div class="section" id="void-mempoolfindblock-rts-handle-hmempool-rts-size-uloffset-rts-size-ulsize-void-ptofind-rts-result-presult">
+<span id="group-cmp-mem-pool-itf-1ga5146bd5d77e6b326d14ca78b2935b0b5"></span><h3>void* MemPoolFindBlock (RTS_HANDLE hMemPool, RTS_SIZE ulOffset, RTS_SIZE ulSize, void <a href="#id155"><span class="problematic" id="id156">*</span></a>pToFind, RTS_RESULT <a href="#id157"><span class="problematic" id="id158">*</span></a>pResult)<a class="headerlink" href="#void-mempoolfindblock-rts-handle-hmempool-rts-size-uloffset-rts-size-ulsize-void-ptofind-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Find a block specified by a value, that is stored in the block.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="15%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the memory pool</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulOffset</td>
+<td>Byte offset of the value in the block to find</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulSize</td>
+<td>Size in bytes of the value to find in the block</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pToFind</td>
+<td>Pointer to the value to find in the block</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to the memory block</p>
+</div>
+<div class="section" id="rts-result-mempoolisvalidblock-rts-handle-hmempool-void-pblock">
+<span id="group-cmp-mem-pool-itf-1gaeb89f4809892cdf3882bc24b69801655"></span><h3>RTS_RESULT MemPoolIsValidBlock (RTS_HANDLE hMemPool, void <a href="#id159"><span class="problematic" id="id160">*</span></a>pBlock)<a class="headerlink" href="#rts-result-mempoolisvalidblock-rts-handle-hmempool-void-pblock" title="Permalink to this headline">¶</a></h3>
+<p>Check a pool memory block, if it is still valid and is not released. NOTE: If the check is successful, a lock is done on this pool!!! So you have to unlock this reference at the end of the usage with <span class="xref std std-ref">MemPoolUnlock()</span> !</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="21%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the memory pool</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pBlock</td>
+<td>Pointer to the memory block</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+</div>
+<div class="section" id="void-mempoolgetfirstblock-rts-handle-hmempool-rts-result-presult">
+<span id="group-cmp-mem-pool-itf-1ga499bae494dcef421830732368e41b3fc"></span><h3>void* MemPoolGetFirstBlock (RTS_HANDLE hMemPool, RTS_RESULT <a href="#id161"><span class="problematic" id="id162">*</span></a>pResult)<a class="headerlink" href="#void-mempoolgetfirstblock-rts-handle-hmempool-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get the first memory block out of the pool. Can be used for explicite iteration routines.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="22%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the memory pool</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to first memory block</p>
+</div>
+<div class="section" id="void-mempoolgetnextblock-rts-handle-hmempool-void-pprevblock-rts-result-presult">
+<span id="group-cmp-mem-pool-itf-1ga8bf456fca1936f64fd7fd541d9c356c2"></span><h3>void* MemPoolGetNextBlock (RTS_HANDLE hMemPool, void <a href="#id163"><span class="problematic" id="id164">*</span></a>pPrevBlock, RTS_RESULT <a href="#id165"><span class="problematic" id="id166">*</span></a>pResult)<a class="headerlink" href="#void-mempoolgetnextblock-rts-handle-hmempool-void-pprevblock-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get the next memory block out of the pool. Can be used for explicite iteration routines.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="22%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hMemPool</td>
+<td>Handle to the memory pool</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pPrevBlock</td>
+<td>Pointer to previous memory block</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to next memory block</p>
+</div>
+<div class="section" id="rts-result-fixedblockspoolinit-rts-fixed-blocks-pool-ppool-rts-mem-region-pregion-rts-size-block-size-rts-size-blocks-number">
+<span id="group-cmp-mem-pool-itf-1gaee6dbd559e1d71d9022a0a4d03d568b6"></span><h3>RTS_RESULT FixedBlocksPoolInit (RTS_FIXED_BLOCKS_POOL <a href="#id167"><span class="problematic" id="id168">*</span></a>pPool, RTS_MEM_REGION <a href="#id169"><span class="problematic" id="id170">*</span></a>pRegion, RTS_SIZE block_size, RTS_SIZE blocks_number)<a class="headerlink" href="#rts-result-fixedblockspoolinit-rts-fixed-blocks-pool-ppool-rts-mem-region-pregion-rts-size-block-size-rts-size-blocks-number" title="Permalink to this headline">¶</a></h3>
+<p>Initializes a pool for allocating objects of fixed size</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="17%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pPool</td>
+<td>Pointer to a pool object</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pRegion</td>
+<td>Pointer to a region of memory that will be used for allocation</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>block_size</td>
+<td>Size (in bytes) of a memory block</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>blocks_number</td>
+<td>Number of blocks that should be located in a contiguous chunk</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+</div>
+<div class="section" id="void-fixedblockspoolalloc-rts-fixed-blocks-pool-ppool-rts-size-size-rts-result-presult">
+<span id="group-cmp-mem-pool-itf-1gaf5646684d87760f6aa7603017b0052b8"></span><h3>void* FixedBlocksPoolAlloc (RTS_FIXED_BLOCKS_POOL <a href="#id171"><span class="problematic" id="id172">*</span></a>pPool, RTS_SIZE size, RTS_RESULT <a href="#id173"><span class="problematic" id="id174">*</span></a>pResult)<a class="headerlink" href="#void-fixedblockspoolalloc-rts-fixed-blocks-pool-ppool-rts-size-size-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Allocates a memory block out of the pool</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="9%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pPool</td>
+<td>Pointer to a pool object</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>size</td>
+<td>Requested size of memory to be allocated. Should be less than the pPool block size</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to an error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to the allocated block of memory</p>
+</div>
+<div class="section" id="rts-result-fixedblockspoolfree-rts-fixed-blocks-pool-ppool-void-pmem">
+<span id="group-cmp-mem-pool-itf-1ga6aebb9570d6f9300f73d6c972080f969"></span><h3>RTS_RESULT FixedBlocksPoolFree (RTS_FIXED_BLOCKS_POOL <a href="#id175"><span class="problematic" id="id176">*</span></a>pPool, void <a href="#id177"><span class="problematic" id="id178">*</span></a>pMem)<a class="headerlink" href="#rts-result-fixedblockspoolfree-rts-fixed-blocks-pool-ppool-void-pmem" title="Permalink to this headline">¶</a></h3>
+<p>Puts a memory block back to the pool.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="10%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pPool</td>
+<td>Pointer to a pool object</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pMem</td>
+<td>Pointer to a memory block to be returned to the pool</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-fixedblockspoolreclaim-rts-fixed-blocks-pool-ppool">
+<span id="group-cmp-mem-pool-itf-1gaca460dec0189b5de3a76a3a9f76a73b6"></span><h3>RTS_RESULT FixedBlocksPoolReclaim (RTS_FIXED_BLOCKS_POOL <a href="#id179"><span class="problematic" id="id180">*</span></a>pPool)<a class="headerlink" href="#rts-result-fixedblockspoolreclaim-rts-fixed-blocks-pool-ppool" title="Permalink to this headline">¶</a></h3>
+<p>Puts all the previously allocated memory blocks back to the pool.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="17%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pPool</td>
+<td>Pointer to a pool object</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-fixedblockspooldestroy-rts-fixed-blocks-pool-ppool">
+<span id="group-cmp-mem-pool-itf-1gafb97bf99a7b8c114939edcaf5ff821cc"></span><h3>RTS_RESULT FixedBlocksPoolDestroy (RTS_FIXED_BLOCKS_POOL <a href="#id181"><span class="problematic" id="id182">*</span></a>pPool)<a class="headerlink" href="#rts-result-fixedblockspooldestroy-rts-fixed-blocks-pool-ppool" title="Permalink to this headline">¶</a></h3>
+<p>Destroys a pool object.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="17%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pPool</td>
+<td>Pointer to a pool object</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_monitor2_itf.html" title="CmpMonitor2Itf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_mem_g_c_itf.html" title="CmpMemGCItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

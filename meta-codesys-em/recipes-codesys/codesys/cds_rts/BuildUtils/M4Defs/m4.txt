@@ -1,0 +1,120 @@
+=======================================
+m4 Schnittstellen Definitionen (Itf.m4)
+=======================================
+
+Allgemein:
+----------
+DEF_API
+	Für C-Funktionen (externe Bibliotheken)
+
+DEF_STATIC_API
+	Für versteckte, daher statische C-Funktionen (externe Bibliotheken)
+
+DEF_ITF_API
+	Für singleton-Klassen
+
+Nur für C++ relevant:
+---------------------
+DEF_CREATEITF_API
+	Für instanziierbare Klassen: Konstruktor Methode
+
+DEF_DELETEITF_API
+	Für instanziierbare Klassen: Destruktor Methode
+
+DEF_HANDLEITF_API
+	Für instanziierbare Klassen-Methoden
+
+DEF_STATICITF_API
+	Für statische Klassen-Methoden
+
+
+=======================================
+m4 Implementierungs Definitionen (Dep.m4)
+=======================================
+IMPLEMENT_ITF(`I1_Itf.m4',`I2_Itf.m4')
+	Klasse implementiert mehrere Interfaces
+
+
+================================
+Implementierung einer C++ Klasse
+================================
+(??? muss nachfolgend durch den Komponentennamen ersetzt werden)
+
+Allgemein:
+----------
+In ComponentEntry():
+{
+	...
+	pInitStruct->pfCreateInstance = CreateInstance;
+	pInitStruct->pfDeleteInstance = DeleteInstance;
+	...
+
+	#ifdef CPLUSPLUS
+	    if (pInitStruct->pfCMRegisterClass != NULL)
+	    {
+	        RTS_HANDLE hClass = pInitStruct->pfCMRegisterClass(COMPONENT_ID, CLASSID_C???);
+	        if (hClass == RTS_INVALID_HANDLE)
+	            return ERR_FAILED;
+	    }
+	#endif
+}
+
+
+Singleton Klasse:
+-----------------
+
+Implementierung der Faktory Funktionen:
+(??? muss durch den Komponentennamen ersetzt werden)
+
+#ifdef CPLUSPLUS
+    static C??? *s_pC??? = NULL;
+#endif
+
+static IBase* CDECL CreateInstance(CLASSID cid, RTS_RESULT *pResult)
+{
+#ifdef CPLUSPLUS
+    if (cid == CLASSID_C???)
+    {
+        if (s_pC??? == NULL)
+            s_pC??? = static_cast<C??? *>(new C???());
+        return (IBase*)s_pC???->QueryInterface(s_pC???, ITFID_IBase, pResult);
+    }
+#endif
+    return NULL;
+}
+
+static RTS_RESULT CDECL DeleteInstance(IBase *pIBase)
+{
+#ifdef CPLUSPLUS
+    if (pIBase->Release() == 0)
+        s_pC??? = NULL;
+    return ERR_OK;
+#else
+    return ERR_NOTIMPLEMENTED;
+#endif
+}
+
+
+Instanzierbare Klasse:
+----------------------
+static IBase* CDECL CreateInstance(CLASSID cid, RTS_RESULT *pResult)
+{
+#ifdef CPLUSPLUS
+	if (cid == CLASSID_C???)
+	{
+		C??? *pC??? = static_cast<CSysCom *>(new C???());
+		return (IBase*)pC???->QueryInterface(pC???, ITFID_IBase, pResult);
+	}
+#endif
+	return NULL;
+}
+
+static RTS_RESULT CDECL DeleteInstance(IBase *pIBase)
+{
+#ifdef CPLUSPLUS
+	pIBase->Release();
+	return ERR_OK;
+#else
+	return ERR_NOTIMPLEMENTED;
+#endif
+}

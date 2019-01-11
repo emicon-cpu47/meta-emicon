@@ -1,0 +1,162 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Adapter information flags &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Adapter information flags</a><ul>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-sock-aif-none-uint32-c-0x00000000-no-flag-set">#define SOCK_AIF_NONE UINT32_C(0x00000000)      /* no flag set */</a></li>
+<li><a class="reference internal" href="#define-sock-aif-inactive-uint32-c-0x00000001-interface-not-ready-for-ip-communication-no-driver-no-ip-address-no-link">#define SOCK_AIF_INACTIVE UINT32_C(0x00000001)  /* interface not ready for ip communication (no driver, no ip address, no link, ...) */</a></li>
+<li><a class="reference internal" href="#define-sock-aif-alias-ip-uint32-c-0x00000002-further-ip-aka-alias-address-of-adapter">#define SOCK_AIF_ALIAS_IP UINT32_C(0x00000002)  /* further ip (aka alias address) of adapter */</a></li>
+<li><a class="reference internal" href="#define-sock-aif-dynamic-ip-uint32-c-0x00000004-dynamic-ip-address-provided-by-dhcp-bootp-etc-cannot-be-changed-by-syssocksetipaddressandnetmask">#define SOCK_AIF_DYNAMIC_IP UINT32_C(0x00000004)        /* dynamic ip address, provided by DHCP, BOOTP, etc. Cannot be changed by SysSockSetIpAddressAndNetMask() */</a></li>
+<li><a class="reference internal" href="#define-sock-aif-fix-ip-uint32-c-0x00000008-fix-e-g-hard-coded-ip-address-cannot-be-changed-by-syssocksetipaddressandnetmask">#define SOCK_AIF_FIX_IP UINT32_C(0x00000008)    /* fix (e. g. hard coded) ip address. Cannot be changed by SysSockSetIpAddressAndNetMask() */</a></li>
+<li><a class="reference internal" href="#define-sock-aif-ip-change-allowed-uint32-c-0x00000010-adapter-is-white-listed-to-allow-address-changes-ip-address-can-be-likely-changed-by-syssocksetipaddressandnetmask">#define SOCK_AIF_IP_CHANGE_ALLOWED UINT32_C(0x00000010) /* adapter is white listed to allow address changes. Ip address can be likely changed by SysSockSetIpAddressAndNetMask() */</a></li>
+<li><a class="reference internal" href="#define-sock-aif-gateway-info-valid-uint32-c-0x00000020-defaultgateway-address-is-valid-must-not-be-set-if-no-gateway-information-is-provided-by-the-system">#define SOCK_AIF_GATEWAY_INFO_VALID UINT32_C(0x00000020)        /* DefaultGateway address is valid. Must not be set, if no Gateway information is provided by the system. */</a></li>
+<li><a class="reference internal" href="#define-sock-aif-info-valid-uint32-c-0x00008000-adapter-is-valid-only-valid-adapters-are-returned-by-syssockgetfirstadapterinfo-or-syssockgetnextadapterinfo">#define SOCK_AIF_INFO_VALID UINT32_C(0x00008000)        /* Adapter is valid - only valid adapters are returned by SysSockGetFirstAdapterInfo() or SysSockGetNextAdapterInfo() */</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_socket_itf___adapterinformationflags.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="adapter-information-flags">
+<span id="group-sys-socket-itf-adapterinformationflags"></span><h1>Adapter information flags<a class="headerlink" href="#adapter-information-flags" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-sys-socket-itf-adapterinformationflags-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-adapterinformationflags-1ga54a573fb7efe1e80df1a8d799fe98fbb"><span class="std std-ref">SOCK_AIF_NONE</span></a> UINT32_C(0x00000000)      /* no flag set <a href="#id1"><span class="problematic" id="id2">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-adapterinformationflags-1gaae602e77e9ce485cb055460390ddb356"><span class="std std-ref">SOCK_AIF_INACTIVE</span></a> UINT32_C(0x00000001)  /* interface not ready for ip communication (no driver, no ip address, no link, ...) <a href="#id3"><span class="problematic" id="id4">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-adapterinformationflags-1gacf307d8d8f555aa61fb821dcad564700"><span class="std std-ref">SOCK_AIF_ALIAS_IP</span></a> UINT32_C(0x00000002)  /* further ip (aka alias address) of adapter <a href="#id5"><span class="problematic" id="id6">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-adapterinformationflags-1ga4556a7e7d097a93ad76bc1e2a7e7b50b"><span class="std std-ref">SOCK_AIF_DYNAMIC_IP</span></a> UINT32_C(0x00000004)        /* dynamic ip address, provided by DHCP, BOOTP, etc. Cannot be changed by SysSockSetIpAddressAndNetMask() <a href="#id7"><span class="problematic" id="id8">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-adapterinformationflags-1gacc2ffb5e81f4913318f382c3550b2fd4"><span class="std std-ref">SOCK_AIF_FIX_IP</span></a> UINT32_C(0x00000008)    /* fix (e. g. hard coded) ip address. Cannot be changed by SysSockSetIpAddressAndNetMask() <a href="#id9"><span class="problematic" id="id10">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-adapterinformationflags-1ga62d58d6650bf72c38d16c26af2f7458a"><span class="std std-ref">SOCK_AIF_IP_CHANGE_ALLOWED</span></a> UINT32_C(0x00000010) /* adapter is white listed to allow address changes. Ip address can be likely changed by SysSockSetIpAddressAndNetMask() <a href="#id11"><span class="problematic" id="id12">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-adapterinformationflags-1ga10f3b4512c537bdfb17b0746648f4e0b"><span class="std std-ref">SOCK_AIF_GATEWAY_INFO_VALID</span></a> UINT32_C(0x00000020)        /* DefaultGateway address is valid. Must not be set, if no Gateway information is provided by the system. <a href="#id13"><span class="problematic" id="id14">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-sys-socket-itf-adapterinformationflags-1ga3e44088feb9cd13175286ccf859f0010"><span class="std std-ref">SOCK_AIF_INFO_VALID</span></a> UINT32_C(0x00008000)        /* Adapter is valid - only valid adapters are returned by SysSockGetFirstAdapterInfo() or SysSockGetNextAdapterInfo() <a href="#id15"><span class="problematic" id="id16">*</span></a>/</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-socket-itf-adapterinformationflags-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-sock-aif-none-uint32-c-0x00000000-no-flag-set">
+<span id="group-sys-socket-itf-adapterinformationflags-1ga54a573fb7efe1e80df1a8d799fe98fbb"></span><h3>#define SOCK_AIF_NONE UINT32_C(0x00000000)      /* no flag set <a href="#id17"><span class="problematic" id="id18">*</span></a>/<a class="headerlink" href="#define-sock-aif-none-uint32-c-0x00000000-no-flag-set" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sock-aif-inactive-uint32-c-0x00000001-interface-not-ready-for-ip-communication-no-driver-no-ip-address-no-link">
+<span id="group-sys-socket-itf-adapterinformationflags-1gaae602e77e9ce485cb055460390ddb356"></span><h3>#define SOCK_AIF_INACTIVE UINT32_C(0x00000001)  /* interface not ready for ip communication (no driver, no ip address, no link, ...) <a href="#id19"><span class="problematic" id="id20">*</span></a>/<a class="headerlink" href="#define-sock-aif-inactive-uint32-c-0x00000001-interface-not-ready-for-ip-communication-no-driver-no-ip-address-no-link" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sock-aif-alias-ip-uint32-c-0x00000002-further-ip-aka-alias-address-of-adapter">
+<span id="group-sys-socket-itf-adapterinformationflags-1gacf307d8d8f555aa61fb821dcad564700"></span><h3>#define SOCK_AIF_ALIAS_IP UINT32_C(0x00000002)  /* further ip (aka alias address) of adapter <a href="#id21"><span class="problematic" id="id22">*</span></a>/<a class="headerlink" href="#define-sock-aif-alias-ip-uint32-c-0x00000002-further-ip-aka-alias-address-of-adapter" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sock-aif-dynamic-ip-uint32-c-0x00000004-dynamic-ip-address-provided-by-dhcp-bootp-etc-cannot-be-changed-by-syssocksetipaddressandnetmask">
+<span id="group-sys-socket-itf-adapterinformationflags-1ga4556a7e7d097a93ad76bc1e2a7e7b50b"></span><h3>#define SOCK_AIF_DYNAMIC_IP UINT32_C(0x00000004)        /* dynamic ip address, provided by DHCP, BOOTP, etc. Cannot be changed by SysSockSetIpAddressAndNetMask() <a href="#id23"><span class="problematic" id="id24">*</span></a>/<a class="headerlink" href="#define-sock-aif-dynamic-ip-uint32-c-0x00000004-dynamic-ip-address-provided-by-dhcp-bootp-etc-cannot-be-changed-by-syssocksetipaddressandnetmask" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sock-aif-fix-ip-uint32-c-0x00000008-fix-e-g-hard-coded-ip-address-cannot-be-changed-by-syssocksetipaddressandnetmask">
+<span id="group-sys-socket-itf-adapterinformationflags-1gacc2ffb5e81f4913318f382c3550b2fd4"></span><h3>#define SOCK_AIF_FIX_IP UINT32_C(0x00000008)    /* fix (e. g. hard coded) ip address. Cannot be changed by SysSockSetIpAddressAndNetMask() <a href="#id25"><span class="problematic" id="id26">*</span></a>/<a class="headerlink" href="#define-sock-aif-fix-ip-uint32-c-0x00000008-fix-e-g-hard-coded-ip-address-cannot-be-changed-by-syssocksetipaddressandnetmask" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sock-aif-ip-change-allowed-uint32-c-0x00000010-adapter-is-white-listed-to-allow-address-changes-ip-address-can-be-likely-changed-by-syssocksetipaddressandnetmask">
+<span id="group-sys-socket-itf-adapterinformationflags-1ga62d58d6650bf72c38d16c26af2f7458a"></span><h3>#define SOCK_AIF_IP_CHANGE_ALLOWED UINT32_C(0x00000010) /* adapter is white listed to allow address changes. Ip address can be likely changed by SysSockSetIpAddressAndNetMask() <a href="#id27"><span class="problematic" id="id28">*</span></a>/<a class="headerlink" href="#define-sock-aif-ip-change-allowed-uint32-c-0x00000010-adapter-is-white-listed-to-allow-address-changes-ip-address-can-be-likely-changed-by-syssocksetipaddressandnetmask" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sock-aif-gateway-info-valid-uint32-c-0x00000020-defaultgateway-address-is-valid-must-not-be-set-if-no-gateway-information-is-provided-by-the-system">
+<span id="group-sys-socket-itf-adapterinformationflags-1ga10f3b4512c537bdfb17b0746648f4e0b"></span><h3>#define SOCK_AIF_GATEWAY_INFO_VALID UINT32_C(0x00000020)        /* DefaultGateway address is valid. Must not be set, if no Gateway information is provided by the system. <a href="#id29"><span class="problematic" id="id30">*</span></a>/<a class="headerlink" href="#define-sock-aif-gateway-info-valid-uint32-c-0x00000020-defaultgateway-address-is-valid-must-not-be-set-if-no-gateway-information-is-provided-by-the-system" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sock-aif-info-valid-uint32-c-0x00008000-adapter-is-valid-only-valid-adapters-are-returned-by-syssockgetfirstadapterinfo-or-syssockgetnextadapterinfo">
+<span id="group-sys-socket-itf-adapterinformationflags-1ga3e44088feb9cd13175286ccf859f0010"></span><h3>#define SOCK_AIF_INFO_VALID UINT32_C(0x00008000)        /* Adapter is valid - only valid adapters are returned by SysSockGetFirstAdapterInfo() or SysSockGetNextAdapterInfo() <a href="#id31"><span class="problematic" id="id32">*</span></a>/<a class="headerlink" href="#define-sock-aif-info-valid-uint32-c-0x00008000-adapter-is-valid-only-valid-adapters-are-returned-by-syssockgetfirstadapterinfo-or-syssockgetnextadapterinfo" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

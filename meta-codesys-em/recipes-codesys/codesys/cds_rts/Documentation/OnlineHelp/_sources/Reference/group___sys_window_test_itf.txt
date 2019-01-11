@@ -1,0 +1,185 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_window_test_itf:
+
+================
+SysWindowTestItf
+================
+
+Interface of SysWindowTest. :ref:`More... <group___sys_window_test_itf-details>`
+
+Modules
+-------
+
+- :ref:`Color formats <group___sys_window_test_itf___colorformats>`
+
+- :ref:`Image formats <group___sys_window_test_itf___imageformats>`
+
+- :ref:`Key event types <group___sys_window_test_itf___keyeventtypes>`
+
+- :ref:`Key types <group___sys_window_test_itf___keytypes>`
+
+- :ref:`Mouse event types <group___sys_window_test_itf___mouseeventtypes>`
+
+Data Structures
+---------------
+
+- struct :ref:`ISysWindowTest_C <struct_i_sys_window_test___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_SysWindowTest <group___sys_window_test_itf_1ga2adae73ccc4a7798d29ebd05b1181adf>`
+
+- #define :ref:`EXTITF_SysWindowTest <group___sys_window_test_itf_1ga4fba101da13acb8fb368e963b67c9f4f>`
+
+Typedefs
+--------
+
+- typedef :ref:`ISysWindowTest_C <struct_i_sys_window_test___c>` :ref:`ISysWindowTest <group___sys_window_test_itf_1gaa3a22c31ae2bbe21c6bfb3eed61df424>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysWindowTestFindWindow <group___sys_window_test_itf_1gaadc3b391633dd7614ebdeceff83388eb>` (char * pszWindowClass, char * pszWindowTitle, RTS_HANDLE * phFoundWindow)
+
+- RTS_RESULT :ref:`SysWindowTestTakeScreenShot <group___sys_window_test_itf_1ga4a3d1b94e715764c060eb94f1a1825bb>` (RTS_HANDLE hWindow, char * pszDestinationFileName, :ref:`SysWindowTestScreenShotInfo <struct_sys_window_test_screen_shot_info>` * pScreenShotInfo)
+
+- RTS_RESULT :ref:`SysWindowTestRaiseMouseEvent <group___sys_window_test_itf_1ga0781c740605461340be6bb0d07b97d8e>` (RTS_HANDLE hWindow, RTS_I32 eventType, RTS_I32 xCoordinateInWindow, RTS_I32 yCoordinateInWindow)
+
+- RTS_RESULT :ref:`SysWindowTestRaiseKeyEvent <group___sys_window_test_itf_1gaa326fd1c356d8d7afda9b904390afb93>` (RTS_HANDLE hWindow, RTS_I32 keyType, RTS_I32 eventType, RTS_I32 keyCode)
+
+.. _group___sys_window_test_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysWindowTest.
+
+SysWindowTest interfaces is intended to allow access to operating system methods that are necessary for automatic testing of window components. If you do not intend to do such tests on a platform, an implementation of this interface is not necessary!
+
+Normally, components implementing this interface are bound very tightly to the implementation of the SysWindow-Interface.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_window_test_itf_1ga2adae73ccc4a7798d29ebd05b1181adf:
+
+#define ITF_SysWindowTest
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_test_itf_1ga4fba101da13acb8fb368e963b67c9f4f:
+
+#define EXTITF_SysWindowTest
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_window_test_itf_1gaa3a22c31ae2bbe21c6bfb3eed61df424:
+
+typedef ISysWindowTest_C ISysWindowTest
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_window_test_itf_1gaadc3b391633dd7614ebdeceff83388eb:
+
+RTS_RESULT SysWindowTestFindWindow (char *pszWindowClass, char *pszWindowTitle, RTS_HANDLE *phFoundWindow)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to search the operating system's window manager for a window by some criteria.
+
+**Parameters**
+
++---------+----------------+--------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszWindowClass | The name of the window class to search for                                                                               |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszWindowTitle | The name of the window title to search for. If the title of the window should be ignored, a value of NULL can be passed. |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phFoundWindow  | The window handle (if one was found)                                                                                     |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+The result code, ERR_OK if the search was successful and a window was found, another error code otherwise.
+
+.. _group___sys_window_test_itf_1ga4a3d1b94e715764c060eb94f1a1825bb:
+
+RTS_RESULT SysWindowTestTakeScreenShot (RTS_HANDLE hWindow, char *pszDestinationFileName, SysWindowTestScreenShotInfo *pScreenShotInfo)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to take a screenshot into a file from the passed window.
+
+**Parameters**
+
++---------+------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hWindow                | The window to take a screen shot from.                                                                                                                                                          |
++---------+------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszDestinationFileName | The file name of the screen shot that should be written.                                                                                                                                        |
++---------+------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pScreenShotInfo        | This pointer will be used to return information about the format of the screenshot. A pointer to a valid object must be passed; This object will then be filled with the necessary information. |
++---------+------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This method is optional (either by returnvalue ERR_NOTIMPLEMENTED or at compiletime) when the related SysGraphicimplementation implements the interface SysGraphicTestable
+
+**Returns:**
+
+The result code, ERR_OK if the screenshot was successful, another error code otherwise.
+
+.. _group___sys_window_test_itf_1ga0781c740605461340be6bb0d07b97d8e:
+
+RTS_RESULT SysWindowTestRaiseMouseEvent (RTS_HANDLE hWindow, RTS_I32 eventType, RTS_I32 xCoordinateInWindow, RTS_I32 yCoordinateInWindow)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to raise a mouse event on a given window.
+
+**Parameters**
+
++---------+---------------------+------------------------------------------------------------------------------------------------+
+| [in]    | hWindow             | The window where the mouse event should be raised                                              |
++---------+---------------------+------------------------------------------------------------------------------------------------+
+| [in]    | eventType           | Information about the mouse event, one of the values of the SYSWINDOWTEST_MOUSE_... constants. |
++---------+---------------------+------------------------------------------------------------------------------------------------+
+| [in]    | xCoordinateInWindow | The x coordinate in window relative positions where the event should be raised.                |
++---------+---------------------+------------------------------------------------------------------------------------------------+
+| [in]    | yCoordinateInWindow | The y coordinate in window relative positions where the event should be raised.                |
++---------+---------------------+------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+The result code, ERR_OK if successful, another error code otherwise.
+
+.. _group___sys_window_test_itf_1gaa326fd1c356d8d7afda9b904390afb93:
+
+RTS_RESULT SysWindowTestRaiseKeyEvent (RTS_HANDLE hWindow, RTS_I32 keyType, RTS_I32 eventType, RTS_I32 keyCode)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to raise a key event on a given window.
+
+**Parameters**
+
++---------+-----------+-------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hWindow   | The window where the key event should be raised                                                                         |
++---------+-----------+-------------------------------------------------------------------------------------------------------------------------+
+| [in]    | keyType   | Information about the what type the keycode is of. Can be one of the values of the SYSWINDOWTEST_KEYTYPE_... constants. |
++---------+-----------+-------------------------------------------------------------------------------------------------------------------------+
+| [in]    | eventType | Information about the key event, one of the values of the SYSWINDOWTEST_KEY_... constants.                              |
++---------+-----------+-------------------------------------------------------------------------------------------------------------------------+
+| [in]    | keyCode   | The keycode of the key that should be raised. Value range depends on the keyType                                        |
++---------+-----------+-------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+The result code, ERR_OK if successful, another error code otherwise.
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

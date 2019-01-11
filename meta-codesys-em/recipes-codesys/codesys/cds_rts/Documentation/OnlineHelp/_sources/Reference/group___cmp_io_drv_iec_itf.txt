@@ -1,0 +1,277 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_io_drv_iec_itf:
+
+==============
+CmpIoDrvIecItf
+==============
+
+Interface of CmpIoDrvIec. :ref:`More... <group___cmp_io_drv_iec_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`iodrviecregisterinstance_struct <structiodrviecregisterinstance__struct>`
+
+- struct :ref:`iodrviecregisterinstance2_struct <structiodrviecregisterinstance2__struct>`
+
+- struct :ref:`iodrviecunregisterinstance_struct <structiodrviecunregisterinstance__struct>`
+
+- struct :ref:`ICmpIoDrvIec_C <struct_i_cmp_io_drv_iec___c>`
+
+Macros
+------
+
+- #define :ref:`MAX_STATIC_IEC_DRIVER <group___cmp_io_drv_iec_itf_1ga681a5bb24dc1d6855abf8f35bddcd463>` 2
+
+- #define :ref:`ITF_CmpIoDrvIec <group___cmp_io_drv_iec_itf_1ga3197a80cfd15f58ec1277b1b377e6f81>`
+
+- #define :ref:`EXTITF_CmpIoDrvIec <group___cmp_io_drv_iec_itf_1ga32024949974657f4e70901b27ee4221a>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpIoDrvIec_C <struct_i_cmp_io_drv_iec___c>` :ref:`ICmpIoDrvIec <group___cmp_io_drv_iec_itf_1gaad775a88f1e1a475928865a8908f6c3d>`
+
+Functions
+---------
+
+- void * :ref:`BaseQueryInterface <group___cmp_io_drv_iec_itf_1ga585628c39a42b75cdacb2dc29bfba6fc>` (IBase * pIBase, ITFID iid, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IoDrvRegisterInstance <group___cmp_io_drv_iec_itf_1gadbf7ff9d8ae9b79eb3c0ad257c7f4d4d>` (:ref:`iodrviecregisterinstance_struct <structiodrviecregisterinstance__struct>` * p)
+
+- RTS_RESULT :ref:`IoDrvRegisterInstance2 <group___cmp_io_drv_iec_itf_1gafce80ad1c8d4bf68357149336c9e7ccb>` (:ref:`iodrviecregisterinstance2_struct <structiodrviecregisterinstance2__struct>` * p)
+
+- RTS_RESULT :ref:`IoDrvUnregisterInstance <group___cmp_io_drv_iec_itf_1gad673156c1f647de9b86958db5d403d5b>` (:ref:`iodrviecunregisterinstance_struct <structiodrviecunregisterinstance__struct>` * p)
+
+- IBase * :ref:`IoDrvGetIecInterface <group___cmp_io_drv_iec_itf_1ga1a62531a88b48f29f6084e1a06c36141>` (RTS_HANDLE hIoDrv, RTS_RESULT * pResult)
+
+.. _group___cmp_io_drv_iec_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpIoDrvIec.
+
+Wrapper to access the interface functions of an IEC driver from C.
+
+The registration of a new IEC driver instance is going like this:
+::
+    *				 .   +--------------+   +--------+   +-----------+
+    *				 .   |IEC Driver Lib|   |CmpIoMgr|   |CmpIoDrvIec|
+    *				 .   +--------------+   +--------+   +-----------+
+    *				 .          |               |              |
+    *				 .         +-+ Register     |              |
+    *				 .         | |   Instance   |              |
+    *				 .         | |-------------+-+ Register    |
+    *				 .         | |             | |   Instance  |
+    *				 .         | |             | |------------+-+
+    *				 .         | |             | |            | |
+    *				 .         | |             | |            | |
+    *				 .         | |             |+++-----------| |
+    *				 .         | |             || |           | |
+    *				 .         | |             || |           | |
+    *				 .         | |             || |           | |
+    *				 .         | |             || |           | |
+    *				 .         | |             |+++...........| |
+    *				 .         | |             | |            | |
+    *				 .         | |             | |            | |
+    *				 .         | |             | |............+-+
+    *				 .         | |.............+-+
+    *				 .         +-+
+    *
+
+The handle of the I/O driver wrapper looks like this:
+::
+    *				 .                +------------------------+
+    *				 .                |CCmpIoDrvIec            |
+    *				 .                +------------------------+
+    *				 .                |hInstance               | ----.
+    *				 .                +------------------------+     |
+    *				 .              . |IoDrvGetInfo            |     |
+    *				 .             /  |IoDrvGetModuleDiagnosis |     |
+    *				 .            /   |IoDrvIdentify           |     |
+    *				 .            |   |IoDrvReadInputs         |     |
+    *				 . C-Wrapper -'   |IoDrvScanModules        |     |
+    *				 .            |   |IoDrvStartBusCycle      |     |
+    *				 .            |   |IoDrvUpdateConfiguration|     |     +-------------+
+    *				 .            \   |IoDrvUpdateMapping      |     '---- |I/O Drv FB   |
+    *				 .             \  |IoDrvWatchdogTrigger    |           +-------------+
+    *				 .              ' |IoDrvWriteOutputs       |           |ITF_ICmpIoDrv|
+    *				 .                +------------------------+           +-------------+
+    *				 .                |IoDrvGetInfo            | .         |pvftable[4]  |
+    *				 .                |IoDrvGetModuleDiagnosis |  \        |pvftable[5]  |
+    *				 .                |IoDrvIdentify           |   \       |pvftable[6]  |
+    *				 .                |IoDrvReadInputs         |   |       |pvftable[7]  |
+    *				 .                |IoDrvScanModules        |   '------ |pvftable[8]  |
+    *				 .                |IoDrvStartBusCycle      |   |       |pvftable[9]  |
+    *				 .                |IoDrvUpdateConfiguration|   |       |pvftable[10] |
+    *				 .                |IoDrvUpdateMapping      |   /       |pvftable[11] |
+    *				 .                |IoDrvWatchdogTrigger    |  /        |pvftable[12] |
+    *				 .                |IoDrvWriteOutputs       | '         |pvftable[13] |
+    *				 .                +------------------------+           +-------------+
+    *
+
+The main difference between the registration with :ref:`IoDrvRegisterInstance() <group___cmp_io_drv_iec_itf_1gadbf7ff9d8ae9b79eb3c0ad257c7f4d4d>` vs. :ref:`IoDrvRegisterInstance2() <group___cmp_io_drv_iec_itf_1gafce80ad1c8d4bf68357149336c9e7ccb>` is, that the first one was initializing all IEC function pointers by itself and the second is using BaseUpdateConfiguration() for this purpose. IoDrvRegisterInstance is now depricated.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_io_drv_iec_itf_1ga681a5bb24dc1d6855abf8f35bddcd463:
+
+#define MAX_STATIC_IEC_DRIVER 2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_drv_iec_itf_1ga3197a80cfd15f58ec1277b1b377e6f81:
+
+#define ITF_CmpIoDrvIec
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_drv_iec_itf_1ga32024949974657f4e70901b27ee4221a:
+
+#define EXTITF_CmpIoDrvIec
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_io_drv_iec_itf_1gaad775a88f1e1a475928865a8908f6c3d:
+
+typedef ICmpIoDrvIec_C ICmpIoDrvIec
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_io_drv_iec_itf_1ga585628c39a42b75cdacb2dc29bfba6fc:
+
+void* BaseQueryInterface (IBase *pIBase, ITFID iid, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_drv_iec_itf_1gadbf7ff9d8ae9b79eb3c0ad257c7f4d4d:
+
+RTS_RESULT IoDrvRegisterInstance (iodrviecregisterinstance_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete! This interface is not used anymore.
+
+Note: On SIL2 Runtimes, this call leads to an exception.
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------------+-------------------------------------------------------------------------------+
+| ERR_NOTIMEPLEMENTED | The function is obsolete and not available anymore                            |
++---------------------+-------------------------------------------------------------------------------+
+| ERR_FAILED          | The function was called in a SIL2 runtime and the exception handling returned |
++---------------------+-------------------------------------------------------------------------------+
+
+.. _group___cmp_io_drv_iec_itf_1gafce80ad1c8d4bf68357149336c9e7ccb:
+
+RTS_RESULT IoDrvRegisterInstance2 (iodrviecregisterinstance2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Register an IEC I/O driver.
+
+A call to this function creates a new instance of the CmpIoDrvIec component, which acts as a wrapper for the registered IEC I/O driver. It will, by itself, call :ref:`IoMgrRegisterInstance2() <group___cmp_io_drv_iec_dep_1gaa20c76e7960e600c5c700a3dbbda4309>` to register the newly created C-Wrapper Interface at the I/O Manager.
+
+**Parameters**
+
++---------+--------------+------------------------------------------------------------------+
+| [in]    | p            | IEC Parameter structure RANGE=[VALID_REGISTERINSTANCE_PARAMETER] |
++---------+--------------+------------------------------------------------------------------+
+| [in]    | p.pInterface | ***PSEUDO*** IEC Interface Pointer RANGE=[NULL,VALID_INTERFACE]  |
++---------+--------------+------------------------------------------------------------------+
+| [in]    | p.pInterface | ***PSEUDO*** IEC Interface Pointer RANGE=[NULL,VALID_INTERFACE]  |
++---------+--------------+------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------+--------------------------------------------+
+| ERR_OK       | Registration was successfull               |
++--------------+--------------------------------------------+
+| ERR_NOMEMORY | Not enough memory to create a new instance |
++--------------+--------------------------------------------+
+| ERR_FAILED   | No valid Interface                         |
++--------------+--------------------------------------------+
+
+.. _group___cmp_io_drv_iec_itf_1gad673156c1f647de9b86958db5d403d5b:
+
+RTS_RESULT IoDrvUnregisterInstance (iodrviecunregisterinstance_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unregister an IEC I/O driver.
+
+Delete a driver instance and unregister it from the I/O Manager.
+
+Note: On SIL2 runtimes, this function is only allowed in debug mode. When it is called outside of the debug mode, it will throw an exception.
+
+**Parameters**
+
++---------+---------------------+-------------------------------------------------------------------------------------------+
+| [in]    | p                   | IEC Parameter structure RANGE=[VALID_UNREGISTERINSTANCE_PARAMETER]                        |
++---------+---------------------+-------------------------------------------------------------------------------------------+
+| [in]    | p.hInterface        | ***PSEUDO*** IEC Interface Pointer RANGE=[RTS_INVALID_HANDLE,NULL,VALID_INTERFACE_HANDLE] |
++---------+---------------------+-------------------------------------------------------------------------------------------+
+| [in]    | OperationMode       | ***PSEUDO*** Operation mode RANGE=[RTS_SIL2_OPMODE_SAFE,RTS_SIL2_OPMODE_DEBUG]            |
++---------+---------------------+-------------------------------------------------------------------------------------------+
+| [out]   | bExceptionGenerated | ***PSEUDO*** Indicates, if an exception was thrown or not RANGE=[TRUE,FALSE]              |
++---------+---------------------+-------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+---------------------------------------------+
+| ERR_OK        | Deregistration was successfull              |
++---------------+---------------------------------------------+
+| ERR_PARAMETER | pIBase was NULL                             |
++---------------+---------------------------------------------+
+| Internal      | error when trying to free the driver handle |
++---------------+---------------------------------------------+
+
+.. _group___cmp_io_drv_iec_itf_1ga1a62531a88b48f29f6084e1a06c36141:
+
+IBase* IoDrvGetIecInterface (RTS_HANDLE hIoDrv, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get an IEC I/O driver interface pointer, based on a handle to it's corresponding C-Wrapper.
+
+**Parameters**
+
++---------+--------+----------------------------------------------------------------------+
+| [in]    | hIoDrv | Handle of a C-Wrapper RANGE=[RTS_INVALID_HANDLE,NULL,VALID_IODRIVER] |
++---------+--------+----------------------------------------------------------------------+
+| [out]   | Result | Result of the function                                               |
++---------+--------+----------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to the IEC base interface
+
+**Return values**
+
++---------------+---------------------------------+
+| ERR_OK        | Interface returned successfully |
++---------------+---------------------------------+
+| ERR_PARAMETER | hIoDrv was NULL or invalid      |
++---------------+---------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

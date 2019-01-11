@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\ParamDevice.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>..\..\;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\Release\ParamDevice.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0407</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\ParamDevice.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>.\Release\ParamDevice.exe</OutputFile>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\..\;..\..\..\..\Components;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;STATIC_LINK;PATHS_RELATIVE;DEV_PARAM_DEVICE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\Debug\ParamDevice.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\Debug\ParamDevice.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0407</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\ParamDevice.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>.\Debug\ParamDevice.exe</OutputFile>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Winmm.lib;Ws2_32.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\Components\ComponentManager\CM.c" />
+    <ClCompile Include="..\..\..\..\Components\ComponentManager\CMBasicChecks.c" />
+    <ClCompile Include="..\..\..\..\Components\ComponentManager\CMUtils.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpLog\CmpLog.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpLog\CmpLogSrv.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpBinTagUtil\CmpBinTagUtil.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpChannelMgr\CmpChannelMgr.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpChannelServer\CmpChannelServer.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpChecksum\CmpChecksum.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpChecksum\CmpChecksumCrc16.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpChecksum\CmpChecksumCrc32.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpCommunicationLib\CmpCommunicationLib.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpDevice\CmpDevice.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpDevice\CmpDeviceSrv.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpEventMgr\CmpEventMgr.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpMemPool\CmpMemPool.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpNameServiceClient\CmpNameServiceClient.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpNameServiceServer\CmpNameServiceServer.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpRouter\CmpRouter.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpRouter\CmpRouterAddrSrvc.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpRouter\CmpRouterBlocksizeCache.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpSettingsEmbedded\CmpSettingsEmbedded.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpSettingsEmbedded\CmpSettingsEmbeddedSrv.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpSrv\CmpSrv.c" />
+    <ClCompile Include="..\..\..\..\Components\SysMem\SysMem.c" />
+    <ClCompile Include="..\..\..\..\Components\SysSem\SysSem.c" />
+    <ClCompile Include="..\..\..\..\Components\SysTarget\SysTarget.c" />
+    <ClCompile Include="..\..\..\..\Components\SysTime\SysTime.c" />
+    <ClCompile Include="..\..\..\..\Components\SysTask\SysTask.c" />
+    <ClCompile Include="..\..\..\..\Components\SysExcept\SysExcept.c" />
+    <ClCompile Include="..\..\..\..\Components\SysOut\SysOut.c" />
+    <ClCompile Include="..\..\..\..\Components\SysSocket\SysSocket.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpParamDevice\CmpParamDevice.c" />
+    <ClCompile Include="..\..\..\..\Components\SysCpuHandling\SysCpuHandling.c" />
+    <ClCompile Include="..\..\..\..\Platforms\Windows\Sys\SysExceptWin32.c" />
+    <ClCompile Include="..\..\..\..\Platforms\Windows\Sys\SysMemWin32.c" />
+    <ClCompile Include="..\..\..\..\Platforms\Windows\Sys\SysOutWin32.c" />
+    <ClCompile Include="..\..\..\..\Platforms\Windows\Sys\SysSemWin32.c" />
+    <ClCompile Include="..\..\..\..\Platforms\Windows\Sys\SysSocketWin32.c" />
+    <ClCompile Include="..\..\..\..\Platforms\Windows\Sys\SysTargetWin32.c" />
+    <ClCompile Include="..\..\..\..\Platforms\Windows\Sys\SysTaskWin32.c" />
+    <ClCompile Include="..\..\..\..\Platforms\Windows\Sys\SysTimeWin32.c" />
+    <ClCompile Include="..\..\MainDevice.c" />
+    <ClCompile Include="..\..\Sys\SysCpuHandlingWin32.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpBlkDrvUdp\CmpBlkDrvUdp.c" />
+    <ClCompile Include="..\..\..\..\Components\CmpBlkDrvTcp\CmpBlkDrvTcp.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Components\CmpLog\CmpLog.h" />
+    <ClInclude Include="..\..\..\..\Components\CmpChannelMgr\CmpChannelMgr.h" />
+    <ClInclude Include="..\..\..\..\Components\CmpNameServiceClient\CmpNameServiceClient.h" />
+    <ClInclude Include="..\..\..\..\Components\CmpRouter\CmpRouter.h" />
+    <ClInclude Include="..\..\..\..\Components\CmpRouter\CmpRouterAddrSrvc.h" />
+    <ClInclude Include="..\..\..\..\Components\CmpRouter\CmpRouterBlocksizeCache.h" />
+    <ClInclude Include="..\..\..\..\Components\CmpSettingsEmbedded\CmpSettingsEmbedded.h" />
+    <ClInclude Include="..\..\..\..\Components\SysTask\SysTask.h" />
+    <ClInclude Include="..\..\..\..\Components\SysExcept\SysExcept.h" />
+    <ClInclude Include="..\..\..\..\Components\CmpBlkDrvUdp\CmpBlkDrvUdp.h" />
+    <ClInclude Include="..\..\ParamDevice.h" />
+    <ClInclude Include="..\..\ParamDevice_NotImpl.h" />
+    <ClInclude Include="sysdefines.h" />
+    <ClInclude Include="sysspecific.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

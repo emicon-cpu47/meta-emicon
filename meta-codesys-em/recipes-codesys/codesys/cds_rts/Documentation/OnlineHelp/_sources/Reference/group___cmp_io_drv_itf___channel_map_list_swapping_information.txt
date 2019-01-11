@@ -1,0 +1,97 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_io_drv_itf___channel_map_list_swapping_information:
+
+=====================================
+Channel Map List Swapping Information
+=====================================
+
+ :ref:`More... <group___cmp_io_drv_itf___channel_map_list_swapping_information-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagIoDrvInfo <structtag_io_drv_info>`
+
+- struct :ref:`ieciodrvinstance_struct <structieciodrvinstance__struct>`
+
+- struct :ref:`iodrvgetinfo_struct <structiodrvgetinfo__struct>`
+
+- struct :ref:`iodrvupdateconfiguration_struct <structiodrvupdateconfiguration__struct>`
+
+- struct :ref:`iodrvupdatemapping_struct <structiodrvupdatemapping__struct>`
+
+- struct :ref:`iodrvreadinputs_struct <structiodrvreadinputs__struct>`
+
+- struct :ref:`iodrvwriteoutputs_struct <structiodrvwriteoutputs__struct>`
+
+- struct :ref:`iodrvstartbuscycle_struct <structiodrvstartbuscycle__struct>`
+
+- struct :ref:`iodrvscanmodules_struct <structiodrvscanmodules__struct>`
+
+- struct :ref:`iodrvgetmodulediagnosis_struct <structiodrvgetmodulediagnosis__struct>`
+
+- struct :ref:`iodrvidentify_struct <structiodrvidentify__struct>`
+
+- struct :ref:`iodrvwatchdogtrigger_struct <structiodrvwatchdogtrigger__struct>`
+
+Macros
+------
+
+- #define :ref:`CMLSI_BaseTypeMask <group___cmp_io_drv_itf___channel_map_list_swapping_information_1ga5c9f0f9de521797383ea8508a045651f>` 0x00FF
+
+- #define :ref:`CMLSI_BaseDataTypeIsSet <group___cmp_io_drv_itf___channel_map_list_swapping_information_1gaa4bd981053a73f857acb8ac68a6eee44>` 0x0100
+
+- #define :ref:`CMLSI_SwappingEnabled <group___cmp_io_drv_itf___channel_map_list_swapping_information_1gab8c1ec5c2f2d20cc04d5b2b7fea7f839>` 0x8000
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagIoDrvInfo <structtag_io_drv_info>` :ref:`IoDrvInfo <group___cmp_io_drv_itf___channel_map_list_swapping_information_1gac069193c4451dbf1c092751626ad262a>`
+
+.. _group___cmp_io_drv_itf___channel_map_list_swapping_information-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_io_drv_itf___channel_map_list_swapping_information_1ga5c9f0f9de521797383ea8508a045651f:
+
+#define CMLSI_BaseTypeMask 0x00FF
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Every Io driver needs information on the base data type of an io channel to perform a correct swapping operation.The basedata type and some additional swapping information can be found in the wDummy Byte of the ChannelMapList struct. This is the mask of the base type information
+
+.. _group___cmp_io_drv_itf___channel_map_list_swapping_information_1gaa4bd981053a73f857acb8ac68a6eee44:
+
+#define CMLSI_BaseDataTypeIsSet 0x0100
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If this bit is set, the low byte of the wDummy word contains the base type information. The base type is of type TypClass3 of component SysInternalLib.
+
+.. _group___cmp_io_drv_itf___channel_map_list_swapping_information_1gab8c1ec5c2f2d20cc04d5b2b7fea7f839:
+
+#define CMLSI_SwappingEnabled 0x8000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If this bit is set, the driver has to determine, if the io channel must be swapped.
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_io_drv_itf___channel_map_list_swapping_information_1gac069193c4451dbf1c092751626ad262a:
+
+typedef struct tagIoDrvInfo  IoDrvInfo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

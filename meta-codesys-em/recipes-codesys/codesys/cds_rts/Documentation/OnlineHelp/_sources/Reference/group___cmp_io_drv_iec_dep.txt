@@ -1,0 +1,54 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_io_drv_iec_dep:
+
+==============
+CmpIoDrvIecDep
+==============
+
+ :ref:`More... <group___cmp_io_drv_iec_dep-details>`
+
+Functions
+---------
+
+- :ref:`IMPLEMENT_QUERY_INTERFACE <group___cmp_io_drv_iec_dep_1gab7f7be84d6d84d62b6551666ab7f1236>` ()
+
+.. _group___cmp_io_drv_iec_dep-details:
+
+Detailed Description
+--------------------
+
+
+
+Wrapper component for an IEC driver
+
+Every IEC driver is encapsulated by this wrapper, because calling the IEC functions must be done with :ref:`SysCpuCallIecFuncWithParams() <group___cmp_app_dep___task_1gaf076e5dcece30707310c6bb13230e8d4>` .
+
+The IoMgr uses the wrapper interface. And internally the wrapper calls the FB interface methods.
+::
+    *				 o- IoDrvIec:
+    *				    Base.hInstance -> pIIoDrvIec
+    *
+    *				 o- IoDrvFB:
+    *				    hInterface -> pIBase
+    *				    BaseIec.hInstance -> pFBInstance
+    *
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Function Documentation
+----------------------
+
+.. _group___cmp_io_drv_iec_dep_1gab7f7be84d6d84d62b6551666ab7f1236:
+
+IMPLEMENT_QUERY_INTERFACE (virtual void *QueryInterface(IBase *pIBase, ITFID iid, RTS_RESULT *pResult){void *pItf;if(iid==ITFID_IBase) pItf=dynamic_cast< IBase * >((ICmpIoDrvIec *) this);else if(iid==ITFID_ICmpIoDrvIec) pItf=dynamic_cast< ICmpIoDrvIec * >(this);else if(iid==ITFID_ICmpIoDrv){if(hCmpIoDrvIec==RTS_INVALID_HANDLE) pItf=dynamic_cast< ICmpIoDrv * >(this);else{pItf=BaseQueryInterface((IBase *) hCmpIoDrvIec, iid, pResult);if(pItf==NULL){RTS_SETRESULT(pResult, ERR_FAILED);return NULL;}pItf=dynamic_cast< ICmpIoDrv * >(this);}}else if(iid==ITFID_ICmpIoDrvParameter){if(hCmpIoDrvIec==RTS_INVALID_HANDLE) pItf=dynamic_cast< ICmpIoDrvParameter * >(this);else{pItf=BaseQueryInterface((IBase *) hCmpIoDrvIec, iid, pResult);if(pItf==NULL){RTS_SETRESULT(pResult, ERR_FAILED);return NULL;}pItf=dynamic_cast< ICmpIoDrvParameter * >(this);}}else if(iid==ITFID_ICmpIoDrvParameter2){if(hCmpIoDrvIec==RTS_INVALID_HANDLE) pItf=dynamic_cast< ICmpIoDrvParameter2 * >(this);else{pItf=BaseQueryInterface((IBase *) hCmpIoDrvIec, iid, pResult);if(pItf==NULL){RTS_SETRESULT(pResult, ERR_FAILED);return NULL;}pItf=dynamic_cast< ICmpIoDrvParameter2 * >(this);}}else if(iid==ITFID_ICmpIoDrvProfinet){if(hCmpIoDrvIec==RTS_INVALID_HANDLE) pItf=dynamic_cast< ICmpIoDrvProfinet * >(this);else{pItf=BaseQueryInterface((IBase *) hCmpIoDrvIec, iid, pResult);if(pItf==NULL){RTS_SETRESULT(pResult, ERR_FAILED);return NULL;}pItf=dynamic_cast< ICmpIoDrvProfinet * >(this);}}else if(iid==ITFID_ICmpIoDrvDPV1C2Master){if(hCmpIoDrvIec==RTS_INVALID_HANDLE) pItf=dynamic_cast< ICmpIoDrvDPV1C2Master * >(this);else{pItf=BaseQueryInterface((IBase *) hCmpIoDrvIec, iid, pResult);if(pItf==NULL){RTS_SETRESULT(pResult, ERR_FAILED);return NULL;}pItf=dynamic_cast< ICmpIoDrvDPV1C2Master * >(this);}}else if(iid==ITFID_ICmpIoDrvDPV1C1Master){if(hCmpIoDrvIec==RTS_INVALID_HANDLE) pItf=dynamic_cast< ICmpIoDrvDPV1C1Master * >(this);else{pItf=BaseQueryInterface((IBase *) hCmpIoDrvIec, iid, pResult);if(pItf==NULL){RTS_SETRESULT(pResult, ERR_FAILED);return NULL;}pItf=dynamic_cast< ICmpIoDrvDPV1C1Master * >(this);}}else{if(pResult!=NULL)*pResult=ERR_NOTIMPLEMENTED;return NULL;}(reinterpret_cast< IBase * >(pItf))->AddRef();RTS_SETRESULT(pResult, ERR_OK);return pItf;}) OPTIONAL_IMPORTS(IoMgrRegisterInstance
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

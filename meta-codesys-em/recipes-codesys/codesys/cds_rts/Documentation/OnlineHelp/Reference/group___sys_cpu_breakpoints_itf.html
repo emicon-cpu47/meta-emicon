@@ -1,0 +1,308 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SysCpuBreakpointsItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="SysCpuHandlingItf" href="group___sys_cpu_handling_itf.html" />
+    <link rel="prev" title="SysComItf" href="group___sys_com_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___sys_cpu_handling_itf.html" title="SysCpuHandlingItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_com_itf.html" title="SysComItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SysCpuBreakpointsItf</a><ul>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-syscpubreakpoints-notimplemented">#define SYSCPUBREAKPOINTS_NOTIMPLEMENTED</a></li>
+<li><a class="reference internal" href="#define-itf-syscpubreakpoints">#define ITF_SysCpuBreakpoints</a></li>
+<li><a class="reference internal" href="#define-extitf-syscpubreakpoints">#define EXTITF_SysCpuBreakpoints</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-isyscpubreakpoints-c-isyscpubreakpoints">typedef ISysCpuBreakpoints_C ISysCpuBreakpoints</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-result-syscpubreakpointsosinit-init-struct-pinit">RTS_RESULT SysCpuBreakpointsOSInit (INIT_STRUCT *pInit)</a></li>
+<li><a class="reference internal" href="#rts-result-syscpubreakpointsoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">RTS_RESULT SysCpuBreakpointsOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</a></li>
+<li><a class="reference internal" href="#rts-result-syscpubreakpointset-rts-handle-happ-rts-ui32-ulbptype-void-paddress-rts-ui32-ulsize">RTS_RESULT SysCpuBreakpointSet (RTS_HANDLE hApp, RTS_UI32 ulBPType, void *pAddress, RTS_UI32 ulSize)</a></li>
+<li><a class="reference internal" href="#rts-result-syscpubreakpointdelete-rts-handle-happ-rts-ui32-ulbptype-void-paddress-rts-ui32-ulsize">RTS_RESULT SysCpuBreakpointDelete (RTS_HANDLE hApp, RTS_UI32 ulBPType, void *pAddress, RTS_UI32 ulSize)</a></li>
+<li><a class="reference internal" href="#rts-result-syscpubreakpointgetaddressbycontext-void-pcontext-rts-uintptr-paddress-rts-ui32-pulsize">RTS_RESULT SysCpuBreakpointGetAddressByContext (void *pContext, RTS_UINTPTR *pAddress, RTS_UI32 *pulSize)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___sys_com_itf.html"
+                        title="previous chapter">SysComItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___sys_cpu_handling_itf.html"
+                        title="next chapter">SysCpuHandlingItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_cpu_breakpoints_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="syscpubreakpointsitf">
+<span id="group-sys-cpu-breakpoints-itf"></span><h1>SysCpuBreakpointsItf<a class="headerlink" href="#syscpubreakpointsitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of SysCpuBreakpoints
+<strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. <a class="reference internal" href="#group-sys-cpu-breakpoints-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_i_sys_cpu_breakpoints___c.html#struct-i-sys-cpu-breakpoints-c"><span class="std std-ref">ISysCpuBreakpoints_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-cpu-breakpoints-itf-1gac6a25c3414d94b7c2d73524903adf0b9"><span class="std std-ref">SYSCPUBREAKPOINTS_NOTIMPLEMENTED</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-cpu-breakpoints-itf-1ga651fbb3a18543b3ef70326c21b4dc6c5"><span class="std std-ref">ITF_SysCpuBreakpoints</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-cpu-breakpoints-itf-1ga264689d5ccf3fbc01a1c332863d59e69"><span class="std std-ref">EXTITF_SysCpuBreakpoints</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef <a class="reference internal" href="struct_i_sys_cpu_breakpoints___c.html#struct-i-sys-cpu-breakpoints-c"><span class="std std-ref">ISysCpuBreakpoints_C</span></a> <a class="reference internal" href="#group-sys-cpu-breakpoints-itf-1gacf59bf9f60ee723d11c25453f3f58628"><span class="std std-ref">ISysCpuBreakpoints</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-breakpoints-itf-1gad4e9058501ffad42e531c3728a0325ab"><span class="std std-ref">SysCpuBreakpointsOSInit</span></a> (INIT_STRUCT * pInit)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-breakpoints-itf-1ga30d8ab9a18866d7d650222bd62f24ea1"><span class="std std-ref">SysCpuBreakpointsOSHookFunction</span></a> (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-breakpoints-itf-1ga55d1c3f15ac6d9260371de4763ee4700"><span class="std std-ref">SysCpuBreakpointSet</span></a> (RTS_HANDLE hApp, RTS_UI32 ulBPType, void * pAddress, RTS_UI32 ulSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-breakpoints-itf-1gac6c2a7ea7df75f5d0e5af9d9dfaee5c1"><span class="std std-ref">SysCpuBreakpointDelete</span></a> (RTS_HANDLE hApp, RTS_UI32 ulBPType, void * pAddress, RTS_UI32 ulSize)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-breakpoints-itf-1gac9580c05e72755f953bd29f825bd9c12"><span class="std std-ref">SysCpuBreakpointGetAddressByContext</span></a> (void * pContext, RTS_UINTPTR * pAddress, RTS_UI32 * pulSize)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-cpu-breakpoints-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of SysCpuBreakpoints
+<strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-syscpubreakpoints-notimplemented">
+<span id="group-sys-cpu-breakpoints-itf-1gac6a25c3414d94b7c2d73524903adf0b9"></span><h3>#define SYSCPUBREAKPOINTS_NOTIMPLEMENTED<a class="headerlink" href="#define-syscpubreakpoints-notimplemented" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-itf-syscpubreakpoints">
+<span id="group-sys-cpu-breakpoints-itf-1ga651fbb3a18543b3ef70326c21b4dc6c5"></span><h3>#define ITF_SysCpuBreakpoints<a class="headerlink" href="#define-itf-syscpubreakpoints" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-syscpubreakpoints">
+<span id="group-sys-cpu-breakpoints-itf-1ga264689d5ccf3fbc01a1c332863d59e69"></span><h3>#define EXTITF_SysCpuBreakpoints<a class="headerlink" href="#define-extitf-syscpubreakpoints" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-isyscpubreakpoints-c-isyscpubreakpoints">
+<span id="group-sys-cpu-breakpoints-itf-1gacf59bf9f60ee723d11c25453f3f58628"></span><h3>typedef ISysCpuBreakpoints_C ISysCpuBreakpoints<a class="headerlink" href="#typedef-isyscpubreakpoints-c-isyscpubreakpoints" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-result-syscpubreakpointsosinit-init-struct-pinit">
+<span id="group-sys-cpu-breakpoints-itf-1gad4e9058501ffad42e531c3728a0325ab"></span><h3>RTS_RESULT SysCpuBreakpointsOSInit (INIT_STRUCT <a href="#id1"><span class="problematic" id="id2">*</span></a>pInit)<a class="headerlink" href="#rts-result-syscpubreakpointsosinit-init-struct-pinit" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-syscpubreakpointsoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">
+<span id="group-sys-cpu-breakpoints-itf-1ga30d8ab9a18866d7d650222bd62f24ea1"></span><h3>RTS_RESULT SysCpuBreakpointsOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)<a class="headerlink" href="#rts-result-syscpubreakpointsoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-syscpubreakpointset-rts-handle-happ-rts-ui32-ulbptype-void-paddress-rts-ui32-ulsize">
+<span id="group-sys-cpu-breakpoints-itf-1ga55d1c3f15ac6d9260371de4763ee4700"></span><h3>RTS_RESULT SysCpuBreakpointSet (RTS_HANDLE hApp, RTS_UI32 ulBPType, void <a href="#id3"><span class="problematic" id="id4">*</span></a>pAddress, RTS_UI32 ulSize)<a class="headerlink" href="#rts-result-syscpubreakpointset-rts-handle-happ-rts-ui32-ulbptype-void-paddress-rts-ui32-ulsize" title="Permalink to this headline">¶</a></h3>
+<p>Function to set a hardware breakpoint (data breakpoint).</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="9%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hApp</td>
+<td>Handle to the application (see <span class="xref std std-ref">CmpAppItf.h</span> ) RANGE=[RTS_INVALID_HANDLE]</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulBPType</td>
+<td>The type of the breakpoint to set (BP_DATA) RANGE=[RTS_RANGE_OF_RTS_UI32]</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pAddress</td>
+<td>The address in the global data are to be observed</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulSize</td>
+<td>The size of data to be observed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns ERR_OK or ERR_FAILED</p>
+</div>
+<div class="section" id="rts-result-syscpubreakpointdelete-rts-handle-happ-rts-ui32-ulbptype-void-paddress-rts-ui32-ulsize">
+<span id="group-sys-cpu-breakpoints-itf-1gac6c2a7ea7df75f5d0e5af9d9dfaee5c1"></span><h3>RTS_RESULT SysCpuBreakpointDelete (RTS_HANDLE hApp, RTS_UI32 ulBPType, void <a href="#id5"><span class="problematic" id="id6">*</span></a>pAddress, RTS_UI32 ulSize)<a class="headerlink" href="#rts-result-syscpubreakpointdelete-rts-handle-happ-rts-ui32-ulbptype-void-paddress-rts-ui32-ulsize" title="Permalink to this headline">¶</a></h3>
+<p>Function to delete a hardware breakpoint (data breakpoint).</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="9%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hApp</td>
+<td>Handle to the application (see <span class="xref std std-ref">CmpAppItf.h</span> ) RANGE=[RTS_INVALID_HANDLE]</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulBPType</td>
+<td>The type of the breakpoint to set (BP_DATA) RANGE=[RTS_RANGE_OF_RTS_I32]</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pAddress</td>
+<td>The address in the global data area of the breakpoint to be deleted</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulSize</td>
+<td>The size of data of the breakpoint to be deleted</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns ERR_OK or ERR_FAILED</p>
+</div>
+<div class="section" id="rts-result-syscpubreakpointgetaddressbycontext-void-pcontext-rts-uintptr-paddress-rts-ui32-pulsize">
+<span id="group-sys-cpu-breakpoints-itf-1gac9580c05e72755f953bd29f825bd9c12"></span><h3>RTS_RESULT SysCpuBreakpointGetAddressByContext (void <a href="#id7"><span class="problematic" id="id8">*</span></a>pContext, RTS_UINTPTR <a href="#id9"><span class="problematic" id="id10">*</span></a>pAddress, RTS_UI32 <a href="#id11"><span class="problematic" id="id12">*</span></a>pulSize)<a class="headerlink" href="#rts-result-syscpubreakpointgetaddressbycontext-void-pcontext-rts-uintptr-paddress-rts-ui32-pulsize" title="Permalink to this headline">¶</a></h3>
+<p>Function to retrieve a breakpoint address by the context as produced in the breakpoint exception. This function is system specific and may only be called by other system components.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="4%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pContext</td>
+<td>pointer to the context. This parameter is system specific and is interpreted as a system specific type. (e.g: in Windows CONTEXT). It contains all information necessary to retrieve the active hardware breakpoint. RANGE=NULL</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>ppAddress</td>
+<td>The address in the global data area of the currently active breakpoint as retrieved according to the pContext.</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pulSize</td>
+<td>The size of data of the currently active breakpoint as retrieved according to the pContext</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns ERR_OK or ERR_FAILED</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___sys_cpu_handling_itf.html" title="SysCpuHandlingItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_com_itf.html" title="SysComItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,386 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_blk_drv_usb_itf:
+
+===============
+CmpBlkDrvUsbItf
+===============
+
+Interface of CmpBlkDrvUsb. :ref:`More... <group___cmp_blk_drv_usb_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagSendBuffer <structtag_send_buffer>`
+
+- struct :ref:`tagReceiveBuffer <structtag_receive_buffer>`
+
+- struct :ref:`tagUsbMpd <structtag_usb_mpd>`
+
+- struct :ref:`tagUsbMpd2 <structtag_usb_mpd2>`
+
+- struct :ref:`tagUSBDEVICE <structtag_u_s_b_d_e_v_i_c_e>`
+
+- struct :ref:`ICmpBlkDrvUsb_C <struct_i_cmp_blk_drv_usb___c>`
+
+Macros
+------
+
+- #define :ref:`MAX_USBBLK_DRV <group___cmp_blk_drv_usb_itf_1ga071e140d7b5a1f960ae4d02bf3ffb15e>` 2
+
+- #define :ref:`MAX_USB_DEVICES <group___cmp_blk_drv_usb_itf_1ga062bf64e497f39bd2e98dc55219b7522>` 2 /*Maximum number of devices per driver.*/
+
+- #define :ref:`MAX_PORT_NAME <group___cmp_blk_drv_usb_itf_1ga2fc09145a9331aa5a894d1f7893cfb66>` 32
+
+- #define :ref:`CMPBLKDRV_SEND_ADDRESS_REQUESTS_INTERVAL <group___cmp_blk_drv_usb_itf_1ga2442cb1bb9a7c01e8521cdb6110cadea>` 5000 /* ms */
+
+- #define :ref:`BLKDRVUSB_MAX_READSIZE <group___cmp_blk_drv_usb_itf_1ga9c1e7f9e6d8a35ffa97e9255551aad4f>` 64 /*Bulk Block size*/
+
+- #define :ref:`BLKDRVUSB_MAX_BLOCK_SIZE <group___cmp_blk_drv_usb_itf_1ga6e63a465dd4e7f7f9deca13bf4cc4bfb>` 512
+
+- #define :ref:`BLKDRVUSB_MAX_RX_SIZE <group___cmp_blk_drv_usb_itf_1gafacd61218565077f699a25d0aa6bd549>` ( :ref:`BLKDRVUSB_MAX_BLOCK_SIZE <group___cmp_blk_drv_usb_itf_1ga6e63a465dd4e7f7f9deca13bf4cc4bfb>` + 2)
+
+- #define :ref:`TYPE_NONE <group___cmp_blk_drv_usb_itf_1gaa47d3c2fa05e95455d76cf052f9cca68>` 0x00
+
+- #define :ref:`TYPE_AUTO_ADDR <group___cmp_blk_drv_usb_itf_1ga58548861ea35c4a57d5d942a2f5a8573>` 0x01
+
+- #define :ref:`TYPE_HALFDUPLEX <group___cmp_blk_drv_usb_itf_1gae3e3769e03fb8f3714bc21fe54edc3bd>` 0x02
+
+- #define :ref:`USB_HDX_NEGOTIATION_MIN_WAITTIME <group___cmp_blk_drv_usb_itf_1ga081e9ca5f9238e1c7840a0dc4fa1520b>` 500		/*HDX Init Wait time*/
+
+- #define :ref:`USB_HDX_NEGOTIATION_TIMEOUT <group___cmp_blk_drv_usb_itf_1ga327b1999dce6fea248c00ab7e869b87f>` 500		/*HDX Address Request/Answer Wait time*/
+
+- #define :ref:`USB_HDX_MASTER_TOKEN_TIMEOUT_1 <group___cmp_blk_drv_usb_itf_1ga53a1e441fdc9e076cb24177336b4cec5>` 100		/*HDX Receive Master Tocken Wait time (1. try)*/
+
+- #define :ref:`USB_HDX_MASTER_TOKEN_TIMEOUT_2 <group___cmp_blk_drv_usb_itf_1ga94a9e2745f44d50944c33d4be5fd3613>` 1000	/*HDX Receive Master Tocken Wait time (last try) */
+
+- #define :ref:`USB_HDX_SLAVE_TOKEN_TIMEOUT <group___cmp_blk_drv_usb_itf_1ga52d363e79e1bc95eb7140c36a1bc02f2>` 2000	/*HDX Receive Slave Tocken Wait time (1. try)*/
+
+- #define :ref:`USB_HDX_MASTER_TOKEN_DELAY_TIME <group___cmp_blk_drv_usb_itf_1ga1f07e7e2e7fdb9ae9a4ad89a82e7e192>` 40
+
+- #define :ref:`USB_HDX_DIRECTION_CHANGE_WAITTIME <group___cmp_blk_drv_usb_itf_1ga54b5409a591c03cb6eeb544548550262>` 3
+
+- #define :ref:`HDX_PROTOCOL_VERSION <group___cmp_blk_drv_usb_itf_1ga0884919a3d21268b4c535c4f86d7f89a>` 0x01
+
+- #define :ref:`HDX_INIT_REQUEST <group___cmp_blk_drv_usb_itf_1gacce929e226f07b6cf5d36c683d38719b>` 0x01
+
+- #define :ref:`HDX_INIT_ANSWER <group___cmp_blk_drv_usb_itf_1ga711a47b46cc787aac8068545b3daa63d>` 0x81
+
+- #define :ref:`HDX_ADDR_REQUEST <group___cmp_blk_drv_usb_itf_1ga4006dcf593c9a23af1dd8242dcd0efd8>` 0x02
+
+- #define :ref:`HDX_ADDR_ANSWER <group___cmp_blk_drv_usb_itf_1ga4666533170acb20d1785db46dff7d920>` 0x82
+
+- #define :ref:`HDX_MASTER_TOKEN <group___cmp_blk_drv_usb_itf_1ga8e00904d166f72cc3246760a023ad1f7>` 0x03
+
+- #define :ref:`HDX_SLAVE_TOKEN <group___cmp_blk_drv_usb_itf_1ga57d942892772d12fcef570618517ba8d>` 0x83
+
+- #define :ref:`HDX_ROLE_NONE <group___cmp_blk_drv_usb_itf_1ga0e30a5b3b5d937ec19603cbf06036e4e>` 0x00
+
+- #define :ref:`HDX_ROLE_MASTER <group___cmp_blk_drv_usb_itf_1ga4f4b666b9411f9a71f8e7efc7faba77e>` 0x01
+
+- #define :ref:`HDX_ROLE_SLAVE <group___cmp_blk_drv_usb_itf_1gafe6b3bd53e7f57e30937f0e94fa8cf56>` 0x02
+
+- #define :ref:`ITF_CmpBlkDrvUsb <group___cmp_blk_drv_usb_itf_1gab8f00a1675c86e1da34257b88ffc50f3>`
+
+- #define :ref:`EXTITF_CmpBlkDrvUsb <group___cmp_blk_drv_usb_itf_1ga732d94e6d79dd97ee746ccdab495ef49>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagSendBuffer <structtag_send_buffer>` :ref:`SENDBUFFER <group___cmp_blk_drv_usb_itf_1ga80d3367dfd8b61b0d329f7b917a112b4>`
+
+- typedef struct :ref:`tagReceiveBuffer <structtag_receive_buffer>` :ref:`RECBUFFER <group___cmp_blk_drv_usb_itf_1ga372d4c9e4d608e65eac038aedc7f4b75>`
+
+- typedef struct :ref:`tagUsbMpd <structtag_usb_mpd>` :ref:`MINIPORTDRVUSB <group___cmp_blk_drv_usb_itf_1ga6d3c0b33ab1e0f0ae9f8f7db6d69a400>`
+
+- typedef struct :ref:`tagUsbMpd2 <structtag_usb_mpd2>` :ref:`MINIPORTDRVUSB2 <group___cmp_blk_drv_usb_itf_1ga1808efd31df8b207c50cf16371d60fcf>`
+
+- typedef struct :ref:`tagUSBDEVICE <structtag_u_s_b_d_e_v_i_c_e>` :ref:`USBDEVICE <group___cmp_blk_drv_usb_itf_1ga99db51b3ece563598c9415bd1796b933>`
+
+- typedef :ref:`ICmpBlkDrvUsb_C <struct_i_cmp_blk_drv_usb___c>` :ref:`ICmpBlkDrvUsb <group___cmp_blk_drv_usb_itf_1gaf6a1f094d27ab8107725a3dca20ff27f>`
+
+Enumerations
+------------
+
+- enum :ref:`USBDEV_OPERATION <group___cmp_blk_drv_usb_itf_1ga54df9cfab5d6483124176355cac9336f>` { :ref:`USBOP_NONE <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa6ce001e0de966fd3cb7729ca4717719a>`, :ref:`USBOP_OPEN <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa784bd7c7c27fa377bb31eb1035b58d89>`, :ref:`USBOP_CLOSE <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa21cec47d3f69ecfea5e22c39b83f8d1a>`, :ref:`USBOP_REREGISTER <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa6732dd1fe8a423b76ea3ef39732967ef>`, :ref:`USBOP_ACTIVE <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa5fa42748b69a7d51988e2340bb27d446>`, :ref:`USBOP_HDX_INIT <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa6c5faa186bfe30a0cb2e179e1ad1e70c>`, :ref:`USBOP_HDX_WAIT_ADDR_REQ <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fac09441e730b87bf8066707ca8b687695>`, :ref:`USBOP_HDX_WAIT_ADDR_ANSW <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa7f7815d26bdb0f477e25e84a2f747b74>`, :ref:`USBOP_HDX_WAIT_SEND <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa5d4c4d3a887c1fccfb9d4df6b561a7f1>`, :ref:`USBOP_HDX_SEND <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa0b39b1b5f893f18878a374c587d7dc1b>`, :ref:`USBOP_HDX_RECEIVE <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fac7d2441351d26ca634879e372d2688ed>`, :ref:`USBOP_PORT_UNUSED <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa90878bef52c2956d8155907d35b58d31>` }
+
+Functions
+---------
+
+- RTS_RESULT :ref:`BlkDrvUsbRegisterDriver <group___cmp_blk_drv_usb_itf_1ga5b3d75fdf1ba1b3f4447ca7224739bc5>` (:ref:`MINIPORTDRVUSB <group___cmp_blk_drv_usb_itf_1ga6d3c0b33ab1e0f0ae9f8f7db6d69a400>` * pInterface)
+
+- RTS_RESULT :ref:`BlkDrvUsbRegisterDriver2 <group___cmp_blk_drv_usb_itf_1ga3146b8f653d17d5cc3f2284275ee1487>` (:ref:`MINIPORTDRVUSB2 <group___cmp_blk_drv_usb_itf_1ga1808efd31df8b207c50cf16371d60fcf>` * pInterface)
+
+.. _group___cmp_blk_drv_usb_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpBlkDrvUsb.
+
+Block driver interface. This interface could be implemented by different components.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_blk_drv_usb_itf_1ga071e140d7b5a1f960ae4d02bf3ffb15e:
+
+#define MAX_USBBLK_DRV 2
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga062bf64e497f39bd2e98dc55219b7522:
+
+#define MAX_USB_DEVICES 2 /*Maximum number of devices per driver.*/
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga2fc09145a9331aa5a894d1f7893cfb66:
+
+#define MAX_PORT_NAME 32
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga2442cb1bb9a7c01e8521cdb6110cadea:
+
+#define CMPBLKDRV_SEND_ADDRESS_REQUESTS_INTERVAL 5000 /* ms */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga9c1e7f9e6d8a35ffa97e9255551aad4f:
+
+#define BLKDRVUSB_MAX_READSIZE 64 /*Bulk Block size*/
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga6e63a465dd4e7f7f9deca13bf4cc4bfb:
+
+#define BLKDRVUSB_MAX_BLOCK_SIZE 512
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1gafacd61218565077f699a25d0aa6bd549:
+
+#define BLKDRVUSB_MAX_RX_SIZE ( :ref:`BLKDRVUSB_MAX_BLOCK_SIZE <group___cmp_blk_drv_usb_itf_1ga6e63a465dd4e7f7f9deca13bf4cc4bfb>` + 2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1gaa47d3c2fa05e95455d76cf052f9cca68:
+
+#define TYPE_NONE 0x00
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga58548861ea35c4a57d5d942a2f5a8573:
+
+#define TYPE_AUTO_ADDR 0x01
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1gae3e3769e03fb8f3714bc21fe54edc3bd:
+
+#define TYPE_HALFDUPLEX 0x02
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga081e9ca5f9238e1c7840a0dc4fa1520b:
+
+#define USB_HDX_NEGOTIATION_MIN_WAITTIME 500		/*HDX Init Wait time*/
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga327b1999dce6fea248c00ab7e869b87f:
+
+#define USB_HDX_NEGOTIATION_TIMEOUT 500		/*HDX Address Request/Answer Wait time*/
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga53a1e441fdc9e076cb24177336b4cec5:
+
+#define USB_HDX_MASTER_TOKEN_TIMEOUT_1 100		/*HDX Receive Master Tocken Wait time (1. try)*/
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga94a9e2745f44d50944c33d4be5fd3613:
+
+#define USB_HDX_MASTER_TOKEN_TIMEOUT_2 1000	/*HDX Receive Master Tocken Wait time (last try) */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga52d363e79e1bc95eb7140c36a1bc02f2:
+
+#define USB_HDX_SLAVE_TOKEN_TIMEOUT 2000	/*HDX Receive Slave Tocken Wait time (1. try)*/
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga1f07e7e2e7fdb9ae9a4ad89a82e7e192:
+
+#define USB_HDX_MASTER_TOKEN_DELAY_TIME 40
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga54b5409a591c03cb6eeb544548550262:
+
+#define USB_HDX_DIRECTION_CHANGE_WAITTIME 3
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga0884919a3d21268b4c535c4f86d7f89a:
+
+#define HDX_PROTOCOL_VERSION 0x01
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1gacce929e226f07b6cf5d36c683d38719b:
+
+#define HDX_INIT_REQUEST 0x01
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga711a47b46cc787aac8068545b3daa63d:
+
+#define HDX_INIT_ANSWER 0x81
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga4006dcf593c9a23af1dd8242dcd0efd8:
+
+#define HDX_ADDR_REQUEST 0x02
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga4666533170acb20d1785db46dff7d920:
+
+#define HDX_ADDR_ANSWER 0x82
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga8e00904d166f72cc3246760a023ad1f7:
+
+#define HDX_MASTER_TOKEN 0x03
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga57d942892772d12fcef570618517ba8d:
+
+#define HDX_SLAVE_TOKEN 0x83
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga0e30a5b3b5d937ec19603cbf06036e4e:
+
+#define HDX_ROLE_NONE 0x00
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga4f4b666b9411f9a71f8e7efc7faba77e:
+
+#define HDX_ROLE_MASTER 0x01
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1gafe6b3bd53e7f57e30937f0e94fa8cf56:
+
+#define HDX_ROLE_SLAVE 0x02
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1gab8f00a1675c86e1da34257b88ffc50f3:
+
+#define ITF_CmpBlkDrvUsb
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga732d94e6d79dd97ee746ccdab495ef49:
+
+#define EXTITF_CmpBlkDrvUsb
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_blk_drv_usb_itf_1ga80d3367dfd8b61b0d329f7b917a112b4:
+
+typedef struct tagSendBuffer SENDBUFFER
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga372d4c9e4d608e65eac038aedc7f4b75:
+
+typedef struct tagReceiveBuffer RECBUFFER
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga6d3c0b33ab1e0f0ae9f8f7db6d69a400:
+
+typedef struct tagUsbMpd MINIPORTDRVUSB
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga1808efd31df8b207c50cf16371d60fcf:
+
+typedef struct tagUsbMpd2 MINIPORTDRVUSB2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1ga99db51b3ece563598c9415bd1796b933:
+
+typedef struct tagUSBDEVICE USBDEVICE
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_blk_drv_usb_itf_1gaf6a1f094d27ab8107725a3dca20ff27f:
+
+typedef ICmpBlkDrvUsb_C ICmpBlkDrvUsb
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enumeration Type Documentation
+------------------------------
+
+.. _group___cmp_blk_drv_usb_itf_1ga54df9cfab5d6483124176355cac9336f:
+
+enum USBDEV_OPERATION
+^^^^^^^^^^^^^^^^^^^^^
+
+
+**Enumerator:**
+
++--------------------------+
+| USBOP_NONE               |
++--------------------------+
+| USBOP_OPEN               |
++--------------------------+
+| USBOP_CLOSE              |
++--------------------------+
+| USBOP_REREGISTER         |
++--------------------------+
+| USBOP_ACTIVE             |
++--------------------------+
+| USBOP_HDX_INIT           |
++--------------------------+
+| USBOP_HDX_WAIT_ADDR_REQ  |
++--------------------------+
+| USBOP_HDX_WAIT_ADDR_ANSW |
++--------------------------+
+| USBOP_HDX_WAIT_SEND      |
++--------------------------+
+| USBOP_HDX_SEND           |
++--------------------------+
+| USBOP_HDX_RECEIVE        |
++--------------------------+
+| USBOP_PORT_UNUSED        |
++--------------------------+
+
+Function Documentation
+----------------------
+
+.. _group___cmp_blk_drv_usb_itf_1ga5b3d75fdf1ba1b3f4447ca7224739bc5:
+
+RTS_RESULT BlkDrvUsbRegisterDriver (MINIPORTDRVUSB *pInterface)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Open a block driver
+
+**Parameters**
+
++---------+------------+-------------------------------------------+
+| [in]    | pInterface | Pointer to the mini port driver interface |
++---------+------------+-------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_blk_drv_usb_itf_1ga3146b8f653d17d5cc3f2284275ee1487:
+
+RTS_RESULT BlkDrvUsbRegisterDriver2 (MINIPORTDRVUSB2 *pInterface)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Open a block driver
+
+**Parameters**
+
++---------+------------+---------------------------------------------+
+| [in]    | pInterface | Pointer to the mini port driver interface 2 |
++---------+------------+---------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

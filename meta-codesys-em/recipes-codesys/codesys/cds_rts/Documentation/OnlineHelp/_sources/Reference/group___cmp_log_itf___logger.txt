@@ -1,0 +1,91 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_log_itf___logger:
+
+======
+Logger
+======
+
+ :ref:`More... <group___cmp_log_itf___logger-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagLogOptions <structtag_log_options>`
+
+- struct :ref:`LogTimestamp <union_log_timestamp>`
+
+- struct :ref:`tagLogEntry <structtag_log_entry>`
+
+- struct :ref:`LogItf <struct_log_itf>`
+
+- struct :ref:`Logger <struct_logger>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagLogOptions <structtag_log_options>` :ref:`LogOptions <group___cmp_log_itf___logger_1ga0327ffeedb0153418de81ea6cb995c84>`
+
+- typedef struct :ref:`tagLogEntry <structtag_log_entry>` :ref:`LogEntry <group___cmp_log_itf___logger_1ga160e4cd161c7cb4b77aa51764bbb4514>`
+
+- typedef RTS_RESULT(* :ref:`PFLOGADD2 <group___cmp_log_itf___logger_1gac13125f6b5c94e8a86518281cf5b94f3>`)(RTS_HANDLE hLog, CMPID CmpId, RTS_I32 iClassID, RTS_RESULT iErrorID, RTS_I32 iInfoID, char *pszInfo,...)
+
+.. _group___cmp_log_itf___logger-details:
+
+Detailed Description
+--------------------
+
+
+
+<SIL2>
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_log_itf___logger_1ga0327ffeedb0153418de81ea6cb995c84:
+
+typedef struct tagLogOptions  LogOptions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Options of a logger (part of the configuration).
+
+**Parameters**
+
++---------+--------------+----------------------------------------------------------------------------+
+| [in]    | szName       | Name of logger                                                             |
++---------+--------------+----------------------------------------------------------------------------+
+| [in]    | bEnable      | :ref:`Logger <struct_logger>` active/inactive                              |
++---------+--------------+----------------------------------------------------------------------------+
+| [in]    | iType        | :ref:`Logger <struct_logger>` type. See above log types.                   |
++---------+--------------+----------------------------------------------------------------------------+
+| [in]    | iFilter      | Filter for the logger entries to store. It is a combination of log classes |
++---------+--------------+----------------------------------------------------------------------------+
+| [in]    | iMaxEntries  | Max number of possible log entries                                         |
++---------+--------------+----------------------------------------------------------------------------+
+| [in]    | iMaxFileSize | Max file size, if logger content is stored in a file                       |
++---------+--------------+----------------------------------------------------------------------------+
+| [in]    | iMaxFiles    | Max number of files, if logger content is stored in a file                 |
++---------+--------------+----------------------------------------------------------------------------+
+| [in]    | pszPath      | Optional path for the logger file                                          |
++---------+--------------+----------------------------------------------------------------------------+
+
+.. _group___cmp_log_itf___logger_1ga160e4cd161c7cb4b77aa51764bbb4514:
+
+typedef struct tagLogEntry  LogEntry
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+<SIL2>
+
+One logger Entry, including the message.
+
+.. _group___cmp_log_itf___logger_1gac13125f6b5c94e8a86518281cf5b94f3:
+
+typedef RTS_RESULT( *  PFLOGADD2)(RTS_HANDLE hLog, CMPID CmpId, RTS_I32 iClassID, RTS_RESULT iErrorID, RTS_I32 iInfoID, char *pszInfo,...)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

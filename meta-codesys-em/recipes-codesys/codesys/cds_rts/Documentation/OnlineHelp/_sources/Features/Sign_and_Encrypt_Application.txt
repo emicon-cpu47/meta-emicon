@@ -1,0 +1,24 @@
+
+Sign and Encrypt Application
+============================
+
+This feature adds support for signed and encrypted applications.
+
+For encrypted applications an X509 certificate and key for Data Encipherment is necessary on the PLC.
+To download such an application the certificate must be available in CODESYS.
+
+To sign an application an X509 certificate and key for Digital Signature is required in CODESYS.
+To verify a signed application the X509 certificate for Digital Signature of the signer is required on the PLC.
+
+Security settings
+-----------------
+The application manager registers a number of security settings to change the security configuration. See: :ref:`group___cmp_app_itf___security_settings`
+
+Requirements
+------------
+
+The following runtime system components are necessary for this feature:
+
+- CmpSecurityManager: :ref:`group___cmp_security_manager_itf`                
+- `OpenSSL <tag_openssl_>`_ or equivalent crypto component
+

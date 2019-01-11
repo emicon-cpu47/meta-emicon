@@ -1,0 +1,182 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_module_itf:
+
+============
+SysModuleItf
+============
+
+Interface of SysModule. :ref:`More... <group___sys_module_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`ISysModule_C <struct_i_sys_module___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_SysModule <group___sys_module_itf_1gac28e4eb89cbb6210f0549e9595660bb9>`
+
+- #define :ref:`EXTITF_SysModule <group___sys_module_itf_1gac3a598dfdd8119e3b0244af72e179ff7>`
+
+Typedefs
+--------
+
+- typedef :ref:`ISysModule_C <struct_i_sys_module___c>` :ref:`ISysModule <group___sys_module_itf_1ga35db8e6b61dbeb6f07b2a87c5a9714e4>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysModuleOSInit <group___sys_module_itf_1gadee3d3ff3f9f6149a8e5d4d25fcc7b03>` (INIT_STRUCT * pInit)
+
+- RTS_RESULT :ref:`SysModuleOSHookFunction <group___sys_module_itf_1gabf01f17492fe70ed83ed1331b7434c02>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_HANDLE :ref:`SysModuleLoad <group___sys_module_itf_1gaa7e56a4380ca23b6c631d3599527b58e>` (char * pszModuleName, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`SysModuleLoad2 <group___sys_module_itf_1gae4a3e29c87f68ec2e67e49db37a7acba>` (char * pszModuleName, char * pszModuleFileName, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysModuleUnload <group___sys_module_itf_1gab394073bb22b0d80d47c8e81c0973b0e>` (RTS_HANDLE hModule)
+
+- RTS_RESULT :ref:`SysModuleGetFunctionPointer <group___sys_module_itf_1gaf766315ed24b2c0a4201e3a87bdb11a3>` (RTS_HANDLE hModule, char * pszFctName, void ** ppFunction)
+
+.. _group___sys_module_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysModule.
+
+The SysModule interface is projected to handle component modules. This interface is only available on systems, that supports dynamically loading and unloading modules.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_module_itf_1gac28e4eb89cbb6210f0549e9595660bb9:
+
+#define ITF_SysModule
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_module_itf_1gac3a598dfdd8119e3b0244af72e179ff7:
+
+#define EXTITF_SysModule
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_module_itf_1ga35db8e6b61dbeb6f07b2a87c5a9714e4:
+
+typedef ISysModule_C ISysModule
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_module_itf_1gadee3d3ff3f9f6149a8e5d4d25fcc7b03:
+
+RTS_RESULT SysModuleOSInit (INIT_STRUCT *pInit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_module_itf_1gabf01f17492fe70ed83ed1331b7434c02:
+
+RTS_RESULT SysModuleOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_module_itf_1gaa7e56a4380ca23b6c631d3599527b58e:
+
+RTS_HANDLE SysModuleLoad (char *pszModuleName, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Load a specified module
+
+**Parameters**
+
++---------+---------------+-------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszModuleName | Pointer to the module name. NOTE: Module names MUST NOT include operating system specific endings (e.g. .dll, .o, etc.) |
++---------+---------------+-------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult       | Pointer to error code                                                                                                   |
++---------+---------------+-------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the loaded module or RTS_INVALID_HANDLE if failed.
+
+.. _group___sys_module_itf_1gae4a3e29c87f68ec2e67e49db37a7acba:
+
+RTS_HANDLE SysModuleLoad2 (char *pszModuleName, char *pszModuleFileName, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Load a specified module
+
+**Parameters**
+
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszModuleName     | Pointer to the module name. NOTE: Module names must _NOT_ include operating system specific endings (e.g. .dll, .o, etc.)                                     |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszModuleFileName | Pointer to the module file name. NOTE: Module names _must_ include operating system specific endings (e.g. .dll, .o, etc.) and optional the path of the file! |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult           | Pointer to error code                                                                                                                                         |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+----------------------------------------------------------------------------------+
+| ERR_OK        | Module could be loaded                                                           |
++---------------+----------------------------------------------------------------------------------+
+| ERR_FAILED    | Failed to load module                                                            |
++---------------+----------------------------------------------------------------------------------+
+| ERR_PARAMETER | Invalid parameter (pszModuleName = NULL/empty or pszModuleFileName = NULL/empty) |
++---------------+----------------------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the loaded module or RTS_INVALID_HANDLE if failed
+
+.. _group___sys_module_itf_1gab394073bb22b0d80d47c8e81c0973b0e:
+
+RTS_RESULT SysModuleUnload (RTS_HANDLE hModule)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unload a module
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hModule | Handle to the module |
++---------+---------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_module_itf_1gaf766315ed24b2c0a4201e3a87bdb11a3:
+
+RTS_RESULT SysModuleGetFunctionPointer (RTS_HANDLE hModule, char *pszFctName, void **ppFunction)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns a function pointer of the routine in the module specified by name.
+
+**Parameters**
+
++---------+------------+-------------------------------------------------------------------------------------------+
+| [in]    | hModule    | Handle to the module                                                                      |
++---------+------------+-------------------------------------------------------------------------------------------+
+| [in]    | pszFctName | Pointer to the function name                                                              |
++---------+------------+-------------------------------------------------------------------------------------------+
+| [out]   | ppFunction | Pointer to function pointer or NULL, if function is not available in the specified module |
++---------+------------+-------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

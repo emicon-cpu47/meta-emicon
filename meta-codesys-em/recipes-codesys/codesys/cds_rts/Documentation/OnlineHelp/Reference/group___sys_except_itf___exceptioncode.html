@@ -1,0 +1,464 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exception code &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Exception code</a><ul>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-rtsexcpt-unknown-uint32-max-rtsexcpt-first-level">#define RTSEXCPT_UNKNOWN (UINT32_MAX &amp; ~ <code class="docutils literal"><span class="pre">RTSEXCPT_FIRST_LEVEL</span></code> )</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-noexception-0x00000000">#define RTSEXCPT_NOEXCEPTION 0x00000000</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-watchdog-0x00000010">#define RTSEXCPT_WATCHDOG 0x00000010</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-hardwarewatchdog-0x00000011">#define RTSEXCPT_HARDWAREWATCHDOG 0x00000011</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-io-config-error-0x00000012">#define RTSEXCPT_IO_CONFIG_ERROR 0x00000012</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-programchecksum-0x00000013">#define RTSEXCPT_PROGRAMCHECKSUM 0x00000013</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-fieldbus-error-0x00000014">#define RTSEXCPT_FIELDBUS_ERROR 0x00000014</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-ioupdate-error-0x00000015">#define RTSEXCPT_IOUPDATE_ERROR 0x00000015</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-cycle-time-exceed-0x00000016">#define RTSEXCPT_CYCLE_TIME_EXCEED 0x00000016</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-onlchange-program-exceeded-0x00000017">#define RTSEXCPT_ONLCHANGE_PROGRAM_EXCEEDED 0x00000017</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-unresolved-extrefs-0x00000018">#define RTSEXCPT_UNRESOLVED_EXTREFS 0x00000018</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-download-rejected-0x00000019">#define RTSEXCPT_DOWNLOAD_REJECTED 0x00000019</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-bootproject-rejected-due-retain-error-0x0000001a">#define RTSEXCPT_BOOTPROJECT_REJECTED_DUE_RETAIN_ERROR 0x0000001A</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-loadbootproject-failed-0x0000001b">#define RTSEXCPT_LOADBOOTPROJECT_FAILED 0x0000001B</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-out-of-memory-0x0000001c">#define RTSEXCPT_OUT_OF_MEMORY 0x0000001C</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-retain-memory-error-0x0000001d">#define RTSEXCPT_RETAIN_MEMORY_ERROR 0x0000001D</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-bootproject-crash-0x0000001e">#define RTSEXCPT_BOOTPROJECT_CRASH 0x0000001E</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-bootprojecttargetmismatch-0x00000021">#define RTSEXCPT_BOOTPROJECTTARGETMISMATCH 0x00000021</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-scheduleerror-0x00000022">#define RTSEXCPT_SCHEDULEERROR 0x00000022</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-file-checksum-err-0x00000023">#define RTSEXCPT_FILE_CHECKSUM_ERR 0x00000023</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-retain-identity-mismatch-0x00000024">#define RTSEXCPT_RETAIN_IDENTITY_MISMATCH 0x00000024</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-iec-task-config-error-0x00000025">#define RTSEXCPT_IEC_TASK_CONFIG_ERROR 0x00000025</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-app-target-mismatch-0x00000026">#define RTSEXCPT_APP_TARGET_MISMATCH 0x00000026</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-illegal-instruction-0x00000050">#define RTSEXCPT_ILLEGAL_INSTRUCTION 0x00000050</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-access-violation-0x00000051">#define RTSEXCPT_ACCESS_VIOLATION 0x00000051</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-priv-instruction-0x00000052">#define RTSEXCPT_PRIV_INSTRUCTION 0x00000052</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-in-page-error-0x00000053">#define RTSEXCPT_IN_PAGE_ERROR 0x00000053</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-stack-overflow-0x00000054">#define RTSEXCPT_STACK_OVERFLOW 0x00000054</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-invalid-disposition-0x00000055">#define RTSEXCPT_INVALID_DISPOSITION 0x00000055</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-invalid-handle-0x00000056">#define RTSEXCPT_INVALID_HANDLE 0x00000056</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-guard-page-0x00000057">#define RTSEXCPT_GUARD_PAGE 0x00000057</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-double-fault-0x00000058">#define RTSEXCPT_DOUBLE_FAULT 0x00000058</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-invalid-opcode-0x00000059">#define RTSEXCPT_INVALID_OPCODE 0x00000059</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-misalignment-0x00000100">#define RTSEXCPT_MISALIGNMENT 0x00000100</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-arraybounds-0x00000101">#define RTSEXCPT_ARRAYBOUNDS 0x00000101</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-dividebyzero-0x00000102">#define RTSEXCPT_DIVIDEBYZERO 0x00000102</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-overflow-0x00000103">#define RTSEXCPT_OVERFLOW 0x00000103</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-noncontinuable-0x00000104">#define RTSEXCPT_NONCONTINUABLE 0x00000104</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-processorload-watchdog-0x00000105">#define RTSEXCPT_PROCESSORLOAD_WATCHDOG 0x00000105</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-fpu-error-0x00000150">#define RTSEXCPT_FPU_ERROR 0x00000150</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-fpu-denormal-operand-0x00000151">#define RTSEXCPT_FPU_DENORMAL_OPERAND 0x00000151</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-fpu-dividebyzero-0x00000152">#define RTSEXCPT_FPU_DIVIDEBYZERO 0x00000152</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-fpu-inexact-result-0x00000153">#define RTSEXCPT_FPU_INEXACT_RESULT 0x00000153</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-fpu-invalid-operation-0x00000154">#define RTSEXCPT_FPU_INVALID_OPERATION 0x00000154</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-fpu-overflow-0x00000155">#define RTSEXCPT_FPU_OVERFLOW 0x00000155</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-fpu-stack-check-0x00000156">#define RTSEXCPT_FPU_STACK_CHECK 0x00000156</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-fpu-underflow-0x00000157">#define RTSEXCPT_FPU_UNDERFLOW 0x00000157</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-breakpoint-0x00000200">#define RTSEXCPT_BREAKPOINT 0x00000200</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-mask-0x00000fff">#define RTSEXCPT_MASK 0x00000fff</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-license-invalid-0x100d0001">#define RTSEXCPT_LICENSE_INVALID 0x100D0001</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-watchdog-omitted-cycle-0x00001000">#define RTSEXCPT_WATCHDOG_OMITTED_CYCLE 0x00001000</a></li>
+<li><a class="reference internal" href="#define-rtsexcpt-vendor-exception-base-0x00002000">#define RTSEXCPT_VENDOR_EXCEPTION_BASE 0x00002000</a></li>
+<li><a class="reference internal" href="#define-sysexcptisexception-e-rtsexcpt-mask-exception">#define SysExcptIsException ((e &amp; <code class="docutils literal"><span class="pre">RTSEXCPT_MASK</span></code> ) == exception)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-tagexceptioncode-exceptioncode">typedef struct tagExceptionCode  ExceptionCode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_except_itf___exceptioncode.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="exception-code">
+<span id="group-sys-except-itf-exceptioncode"></span><h1>Exception code<a class="headerlink" href="#exception-code" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-sys-except-itf-exceptioncode-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="structtag_exception_code.html#structtag-exception-code"><span class="std std-ref">tagExceptionCode</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gafaa7846a5ff9db997b5ac346557f25bb"><span class="std std-ref">RTSEXCPT_UNKNOWN</span></a> (UINT32_MAX &amp; ~ <a class="reference internal" href="group___sys_except_itf___exceptionpseudocode.html#group-sys-except-itf-exceptionpseudocode-1ga1e7c8a4abb8948126cf182241a6b0ccb"><span class="std std-ref">RTSEXCPT_FIRST_LEVEL</span></a> )</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gade57a8ea56476601c4f9fb6f63f643fd"><span class="std std-ref">RTSEXCPT_NOEXCEPTION</span></a> 0x00000000</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga7595c45dde4d5bac4f23096c6c8f2306"><span class="std std-ref">RTSEXCPT_WATCHDOG</span></a> 0x00000010</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga446b9d68a177cdec4ff1d257300fa5d5"><span class="std std-ref">RTSEXCPT_HARDWAREWATCHDOG</span></a> 0x00000011</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga58381fd16a431324a09056709150255d"><span class="std std-ref">RTSEXCPT_IO_CONFIG_ERROR</span></a> 0x00000012</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga1d9d213b60536ed71790f7edfe842dd6"><span class="std std-ref">RTSEXCPT_PROGRAMCHECKSUM</span></a> 0x00000013</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gaa0ede4ea7011d1a8816064b91a5e3c80"><span class="std std-ref">RTSEXCPT_FIELDBUS_ERROR</span></a> 0x00000014</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gaed7736c8c540a372ff7d38270dbe5ba8"><span class="std std-ref">RTSEXCPT_IOUPDATE_ERROR</span></a> 0x00000015</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga239e46063f608f02e9b7153bd5990914"><span class="std std-ref">RTSEXCPT_CYCLE_TIME_EXCEED</span></a> 0x00000016</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga53124bccd6226c64f9f41f8d9f6f9cbe"><span class="std std-ref">RTSEXCPT_ONLCHANGE_PROGRAM_EXCEEDED</span></a> 0x00000017</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gad57afe3e10c8f8a72cf29404c9682acf"><span class="std std-ref">RTSEXCPT_UNRESOLVED_EXTREFS</span></a> 0x00000018</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gab875acef6d1075be61d8656446a5b2f2"><span class="std std-ref">RTSEXCPT_DOWNLOAD_REJECTED</span></a> 0x00000019</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga98245d2d68d341f87d21e380c45a6879"><span class="std std-ref">RTSEXCPT_BOOTPROJECT_REJECTED_DUE_RETAIN_ERROR</span></a> 0x0000001A</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gafa774493328e1d120d691af9c53f1111"><span class="std std-ref">RTSEXCPT_LOADBOOTPROJECT_FAILED</span></a> 0x0000001B</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga457d9d989249174c0e85f6f5462a136a"><span class="std std-ref">RTSEXCPT_OUT_OF_MEMORY</span></a> 0x0000001C</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gaeacf3f424eee42855866ea602e91a580"><span class="std std-ref">RTSEXCPT_RETAIN_MEMORY_ERROR</span></a> 0x0000001D</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gae60921f5ca68f62337f542d096b45377"><span class="std std-ref">RTSEXCPT_BOOTPROJECT_CRASH</span></a> 0x0000001E</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gaee75dae4b7c420626ff1eaa5292a9276"><span class="std std-ref">RTSEXCPT_BOOTPROJECTTARGETMISMATCH</span></a> 0x00000021</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga73c2644e6e238424b3a5bb512d65eac4"><span class="std std-ref">RTSEXCPT_SCHEDULEERROR</span></a> 0x00000022</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gab639ea3d32d9f4df2998a8c57fd5a621"><span class="std std-ref">RTSEXCPT_FILE_CHECKSUM_ERR</span></a> 0x00000023</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga976b7f7b9e933b85937e9d98e53e7bc2"><span class="std std-ref">RTSEXCPT_RETAIN_IDENTITY_MISMATCH</span></a> 0x00000024</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gae55a9d31f1c214d5bb1b04a07d5a1b79"><span class="std std-ref">RTSEXCPT_IEC_TASK_CONFIG_ERROR</span></a> 0x00000025</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga88cb6187726bf31ed044458b3a26be32"><span class="std std-ref">RTSEXCPT_APP_TARGET_MISMATCH</span></a> 0x00000026</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gacffa1277e03983c5e7ca8bcb280630a0"><span class="std std-ref">RTSEXCPT_ILLEGAL_INSTRUCTION</span></a> 0x00000050</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gaa2f205c2750bdfabd11ab191c3ea5793"><span class="std std-ref">RTSEXCPT_ACCESS_VIOLATION</span></a> 0x00000051</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga9dd921a55777cd1ef56c5d3e1c425946"><span class="std std-ref">RTSEXCPT_PRIV_INSTRUCTION</span></a> 0x00000052</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gad07ddc7f7db7dabbba9ac60c2b10de3e"><span class="std std-ref">RTSEXCPT_IN_PAGE_ERROR</span></a> 0x00000053</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gaa656162fd36463a87791bd1cb14a2d7d"><span class="std std-ref">RTSEXCPT_STACK_OVERFLOW</span></a> 0x00000054</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga2bb05417d4b4e23d7cf1db661920d7f2"><span class="std std-ref">RTSEXCPT_INVALID_DISPOSITION</span></a> 0x00000055</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gab88536f8c612592a60ca62e370c9815c"><span class="std std-ref">RTSEXCPT_INVALID_HANDLE</span></a> 0x00000056</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga96ae649a7d2ed68d8a099f54b6c5739c"><span class="std std-ref">RTSEXCPT_GUARD_PAGE</span></a> 0x00000057</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gabbcc35f7cfcfa80d93292ba90b94ecc4"><span class="std std-ref">RTSEXCPT_DOUBLE_FAULT</span></a> 0x00000058</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gadfedcd8d524ba9a2ddcbe5fd449352f4"><span class="std std-ref">RTSEXCPT_INVALID_OPCODE</span></a> 0x00000059</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gabf9af76c3ad2055c0dda3ea34ae089d2"><span class="std std-ref">RTSEXCPT_MISALIGNMENT</span></a> 0x00000100</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga9e472b87ad822e342f2159420613ab63"><span class="std std-ref">RTSEXCPT_ARRAYBOUNDS</span></a> 0x00000101</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gaf6aed9436887a543f1612ca41b74c07b"><span class="std std-ref">RTSEXCPT_DIVIDEBYZERO</span></a> 0x00000102</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gae27cd03f531dd78f36fbd020d0b2ce31"><span class="std std-ref">RTSEXCPT_OVERFLOW</span></a> 0x00000103</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga72511a1e20beb780f78d8d70ef3f2ba7"><span class="std std-ref">RTSEXCPT_NONCONTINUABLE</span></a> 0x00000104</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gaf10cd6c2f8c5e9f7d4bdc2f1deb807bd"><span class="std std-ref">RTSEXCPT_PROCESSORLOAD_WATCHDOG</span></a> 0x00000105</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga1908e3408bae0ef82dfec305c2e6e83c"><span class="std std-ref">RTSEXCPT_FPU_ERROR</span></a> 0x00000150</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga7de4053d4a45b64b737a2ade27dd730b"><span class="std std-ref">RTSEXCPT_FPU_DENORMAL_OPERAND</span></a> 0x00000151</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga100a41d7d01e1f75e20748bc45fad282"><span class="std std-ref">RTSEXCPT_FPU_DIVIDEBYZERO</span></a> 0x00000152</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gac2f88b912731e5ab8e60d87e2b878719"><span class="std std-ref">RTSEXCPT_FPU_INEXACT_RESULT</span></a> 0x00000153</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gad9ccca0f2616dc38f1b5514d27fa50c5"><span class="std std-ref">RTSEXCPT_FPU_INVALID_OPERATION</span></a> 0x00000154</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga52c94cdc38ffacce0f1f11b9f476d445"><span class="std std-ref">RTSEXCPT_FPU_OVERFLOW</span></a> 0x00000155</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga1ba2f4b565f2c3e359f5168a2f05684f"><span class="std std-ref">RTSEXCPT_FPU_STACK_CHECK</span></a> 0x00000156</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga384a708d8288c981a3aacbfd5feb5741"><span class="std std-ref">RTSEXCPT_FPU_UNDERFLOW</span></a> 0x00000157</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga832455c1e4e7a941347b9d224e4a3939"><span class="std std-ref">RTSEXCPT_BREAKPOINT</span></a> 0x00000200</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga9bfc01e568526f76d4bb4839477961f6"><span class="std std-ref">RTSEXCPT_MASK</span></a> 0x00000fff</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga837ab16561b85e7786ecb6cf75943e0d"><span class="std std-ref">RTSEXCPT_LICENSE_INVALID</span></a> 0x100D0001</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga9c01f131bb6ed518313061df28836b8f"><span class="std std-ref">RTSEXCPT_WATCHDOG_OMITTED_CYCLE</span></a> 0x00001000</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga4cb9cd843a46fbdad0903d5b79a49745"><span class="std std-ref">RTSEXCPT_VENDOR_EXCEPTION_BASE</span></a> 0x00002000</li>
+<li>#define <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga7267a45c029f54865bf00f3c47f39536"><span class="std std-ref">SysExcptIsException</span></a> ((e &amp; <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga9bfc01e568526f76d4bb4839477961f6"><span class="std std-ref">RTSEXCPT_MASK</span></a> ) == exception)</li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="structtag_exception_code.html#structtag-exception-code"><span class="std std-ref">tagExceptionCode</span></a> <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1gabe2074073b7a6a06097f687be87c34cd"><span class="std std-ref">ExceptionCode</span></a></li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-except-itf-exceptioncode-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-rtsexcpt-unknown-uint32-max-rtsexcpt-first-level">
+<span id="group-sys-except-itf-exceptioncode-1gafaa7846a5ff9db997b5ac346557f25bb"></span><h3>#define RTSEXCPT_UNKNOWN (UINT32_MAX &amp; ~ <a class="reference internal" href="group___sys_except_itf___exceptionpseudocode.html#group-sys-except-itf-exceptionpseudocode-1ga1e7c8a4abb8948126cf182241a6b0ccb"><span class="std std-ref">RTSEXCPT_FIRST_LEVEL</span></a> )<a class="headerlink" href="#define-rtsexcpt-unknown-uint32-max-rtsexcpt-first-level" title="Permalink to this headline">¶</a></h3>
+<p>Invalid</p>
+</div>
+<div class="section" id="define-rtsexcpt-noexception-0x00000000">
+<span id="group-sys-except-itf-exceptioncode-1gade57a8ea56476601c4f9fb6f63f643fd"></span><h3>#define RTSEXCPT_NOEXCEPTION 0x00000000<a class="headerlink" href="#define-rtsexcpt-noexception-0x00000000" title="Permalink to this headline">¶</a></h3>
+<p>No exception</p>
+</div>
+<div class="section" id="define-rtsexcpt-watchdog-0x00000010">
+<span id="group-sys-except-itf-exceptioncode-1ga7595c45dde4d5bac4f23096c6c8f2306"></span><h3>#define RTSEXCPT_WATCHDOG 0x00000010<a class="headerlink" href="#define-rtsexcpt-watchdog-0x00000010" title="Permalink to this headline">¶</a></h3>
+<p>Software watchdog of IEC-task expired</p>
+</div>
+<div class="section" id="define-rtsexcpt-hardwarewatchdog-0x00000011">
+<span id="group-sys-except-itf-exceptioncode-1ga446b9d68a177cdec4ff1d257300fa5d5"></span><h3>#define RTSEXCPT_HARDWAREWATCHDOG 0x00000011<a class="headerlink" href="#define-rtsexcpt-hardwarewatchdog-0x00000011" title="Permalink to this headline">¶</a></h3>
+<p>Hardware watchdog expired. Global software error</p>
+</div>
+<div class="section" id="define-rtsexcpt-io-config-error-0x00000012">
+<span id="group-sys-except-itf-exceptioncode-1ga58381fd16a431324a09056709150255d"></span><h3>#define RTSEXCPT_IO_CONFIG_ERROR 0x00000012<a class="headerlink" href="#define-rtsexcpt-io-config-error-0x00000012" title="Permalink to this headline">¶</a></h3>
+<p>IO config error</p>
+</div>
+<div class="section" id="define-rtsexcpt-programchecksum-0x00000013">
+<span id="group-sys-except-itf-exceptioncode-1ga1d9d213b60536ed71790f7edfe842dd6"></span><h3>#define RTSEXCPT_PROGRAMCHECKSUM 0x00000013<a class="headerlink" href="#define-rtsexcpt-programchecksum-0x00000013" title="Permalink to this headline">¶</a></h3>
+<p>Checksum error after program download</p>
+</div>
+<div class="section" id="define-rtsexcpt-fieldbus-error-0x00000014">
+<span id="group-sys-except-itf-exceptioncode-1gaa0ede4ea7011d1a8816064b91a5e3c80"></span><h3>#define RTSEXCPT_FIELDBUS_ERROR 0x00000014<a class="headerlink" href="#define-rtsexcpt-fieldbus-error-0x00000014" title="Permalink to this headline">¶</a></h3>
+<p>Fieldbus error</p>
+</div>
+<div class="section" id="define-rtsexcpt-ioupdate-error-0x00000015">
+<span id="group-sys-except-itf-exceptioncode-1gaed7736c8c540a372ff7d38270dbe5ba8"></span><h3>#define RTSEXCPT_IOUPDATE_ERROR 0x00000015<a class="headerlink" href="#define-rtsexcpt-ioupdate-error-0x00000015" title="Permalink to this headline">¶</a></h3>
+<p>IO-update error</p>
+</div>
+<div class="section" id="define-rtsexcpt-cycle-time-exceed-0x00000016">
+<span id="group-sys-except-itf-exceptioncode-1ga239e46063f608f02e9b7153bd5990914"></span><h3>#define RTSEXCPT_CYCLE_TIME_EXCEED 0x00000016<a class="headerlink" href="#define-rtsexcpt-cycle-time-exceed-0x00000016" title="Permalink to this headline">¶</a></h3>
+<p>Cycle time exceed</p>
+</div>
+<div class="section" id="define-rtsexcpt-onlchange-program-exceeded-0x00000017">
+<span id="group-sys-except-itf-exceptioncode-1ga53124bccd6226c64f9f41f8d9f6f9cbe"></span><h3>#define RTSEXCPT_ONLCHANGE_PROGRAM_EXCEEDED 0x00000017<a class="headerlink" href="#define-rtsexcpt-onlchange-program-exceeded-0x00000017" title="Permalink to this headline">¶</a></h3>
+<p>Online change program too large</p>
+</div>
+<div class="section" id="define-rtsexcpt-unresolved-extrefs-0x00000018">
+<span id="group-sys-except-itf-exceptioncode-1gad57afe3e10c8f8a72cf29404c9682acf"></span><h3>#define RTSEXCPT_UNRESOLVED_EXTREFS 0x00000018<a class="headerlink" href="#define-rtsexcpt-unresolved-extrefs-0x00000018" title="Permalink to this headline">¶</a></h3>
+<p>Unresolved external references</p>
+</div>
+<div class="section" id="define-rtsexcpt-download-rejected-0x00000019">
+<span id="group-sys-except-itf-exceptioncode-1gab875acef6d1075be61d8656446a5b2f2"></span><h3>#define RTSEXCPT_DOWNLOAD_REJECTED 0x00000019<a class="headerlink" href="#define-rtsexcpt-download-rejected-0x00000019" title="Permalink to this headline">¶</a></h3>
+<p>Download was rejected</p>
+</div>
+<div class="section" id="define-rtsexcpt-bootproject-rejected-due-retain-error-0x0000001a">
+<span id="group-sys-except-itf-exceptioncode-1ga98245d2d68d341f87d21e380c45a6879"></span><h3>#define RTSEXCPT_BOOTPROJECT_REJECTED_DUE_RETAIN_ERROR 0x0000001A<a class="headerlink" href="#define-rtsexcpt-bootproject-rejected-due-retain-error-0x0000001a" title="Permalink to this headline">¶</a></h3>
+<p>Boot project not loaded because retain variables could not be relocated</p>
+</div>
+<div class="section" id="define-rtsexcpt-loadbootproject-failed-0x0000001b">
+<span id="group-sys-except-itf-exceptioncode-1gafa774493328e1d120d691af9c53f1111"></span><h3>#define RTSEXCPT_LOADBOOTPROJECT_FAILED 0x0000001B<a class="headerlink" href="#define-rtsexcpt-loadbootproject-failed-0x0000001b" title="Permalink to this headline">¶</a></h3>
+<p>Boot project not loaded and deleted</p>
+</div>
+<div class="section" id="define-rtsexcpt-out-of-memory-0x0000001c">
+<span id="group-sys-except-itf-exceptioncode-1ga457d9d989249174c0e85f6f5462a136a"></span><h3>#define RTSEXCPT_OUT_OF_MEMORY 0x0000001C<a class="headerlink" href="#define-rtsexcpt-out-of-memory-0x0000001c" title="Permalink to this headline">¶</a></h3>
+<p>Out of heap memory</p>
+</div>
+<div class="section" id="define-rtsexcpt-retain-memory-error-0x0000001d">
+<span id="group-sys-except-itf-exceptioncode-1gaeacf3f424eee42855866ea602e91a580"></span><h3>#define RTSEXCPT_RETAIN_MEMORY_ERROR 0x0000001D<a class="headerlink" href="#define-rtsexcpt-retain-memory-error-0x0000001d" title="Permalink to this headline">¶</a></h3>
+<p>Retain memory corrupt or cannot be mapped</p>
+</div>
+<div class="section" id="define-rtsexcpt-bootproject-crash-0x0000001e">
+<span id="group-sys-except-itf-exceptioncode-1gae60921f5ca68f62337f542d096b45377"></span><h3>#define RTSEXCPT_BOOTPROJECT_CRASH 0x0000001E<a class="headerlink" href="#define-rtsexcpt-bootproject-crash-0x0000001e" title="Permalink to this headline">¶</a></h3>
+<p>Boot project that could be loaded but caused a crash later</p>
+</div>
+<div class="section" id="define-rtsexcpt-bootprojecttargetmismatch-0x00000021">
+<span id="group-sys-except-itf-exceptioncode-1gaee75dae4b7c420626ff1eaa5292a9276"></span><h3>#define RTSEXCPT_BOOTPROJECTTARGETMISMATCH 0x00000021<a class="headerlink" href="#define-rtsexcpt-bootprojecttargetmismatch-0x00000021" title="Permalink to this headline">¶</a></h3>
+<p>Target of the bootproject doesn&#8217;t match the current target</p>
+</div>
+<div class="section" id="define-rtsexcpt-scheduleerror-0x00000022">
+<span id="group-sys-except-itf-exceptioncode-1ga73c2644e6e238424b3a5bb512d65eac4"></span><h3>#define RTSEXCPT_SCHEDULEERROR 0x00000022<a class="headerlink" href="#define-rtsexcpt-scheduleerror-0x00000022" title="Permalink to this headline">¶</a></h3>
+<p>Error at scheduling tasks</p>
+</div>
+<div class="section" id="define-rtsexcpt-file-checksum-err-0x00000023">
+<span id="group-sys-except-itf-exceptioncode-1gab639ea3d32d9f4df2998a8c57fd5a621"></span><h3>#define RTSEXCPT_FILE_CHECKSUM_ERR 0x00000023<a class="headerlink" href="#define-rtsexcpt-file-checksum-err-0x00000023" title="Permalink to this headline">¶</a></h3>
+<p>Checksum of downloaded file does not match</p>
+</div>
+<div class="section" id="define-rtsexcpt-retain-identity-mismatch-0x00000024">
+<span id="group-sys-except-itf-exceptioncode-1ga976b7f7b9e933b85937e9d98e53e7bc2"></span><h3>#define RTSEXCPT_RETAIN_IDENTITY_MISMATCH 0x00000024<a class="headerlink" href="#define-rtsexcpt-retain-identity-mismatch-0x00000024" title="Permalink to this headline">¶</a></h3>
+<p>Retain identity does not match to current bootproject program identity</p>
+</div>
+<div class="section" id="define-rtsexcpt-iec-task-config-error-0x00000025">
+<span id="group-sys-except-itf-exceptioncode-1gae55a9d31f1c214d5bb1b04a07d5a1b79"></span><h3>#define RTSEXCPT_IEC_TASK_CONFIG_ERROR 0x00000025<a class="headerlink" href="#define-rtsexcpt-iec-task-config-error-0x00000025" title="Permalink to this headline">¶</a></h3>
+<p>Iec task configuration failed</p>
+</div>
+<div class="section" id="define-rtsexcpt-app-target-mismatch-0x00000026">
+<span id="group-sys-except-itf-exceptioncode-1ga88cb6187726bf31ed044458b3a26be32"></span><h3>#define RTSEXCPT_APP_TARGET_MISMATCH 0x00000026<a class="headerlink" href="#define-rtsexcpt-app-target-mismatch-0x00000026" title="Permalink to this headline">¶</a></h3>
+<p>Application is running on wrong target. Can be used for library protection!</p>
+</div>
+<div class="section" id="define-rtsexcpt-illegal-instruction-0x00000050">
+<span id="group-sys-except-itf-exceptioncode-1gacffa1277e03983c5e7ca8bcb280630a0"></span><h3>#define RTSEXCPT_ILLEGAL_INSTRUCTION 0x00000050<a class="headerlink" href="#define-rtsexcpt-illegal-instruction-0x00000050" title="Permalink to this headline">¶</a></h3>
+<p>Illegal instruction</p>
+</div>
+<div class="section" id="define-rtsexcpt-access-violation-0x00000051">
+<span id="group-sys-except-itf-exceptioncode-1gaa2f205c2750bdfabd11ab191c3ea5793"></span><h3>#define RTSEXCPT_ACCESS_VIOLATION 0x00000051<a class="headerlink" href="#define-rtsexcpt-access-violation-0x00000051" title="Permalink to this headline">¶</a></h3>
+<p>Access violation</p>
+</div>
+<div class="section" id="define-rtsexcpt-priv-instruction-0x00000052">
+<span id="group-sys-except-itf-exceptioncode-1ga9dd921a55777cd1ef56c5d3e1c425946"></span><h3>#define RTSEXCPT_PRIV_INSTRUCTION 0x00000052<a class="headerlink" href="#define-rtsexcpt-priv-instruction-0x00000052" title="Permalink to this headline">¶</a></h3>
+<p>Privileged instruction</p>
+</div>
+<div class="section" id="define-rtsexcpt-in-page-error-0x00000053">
+<span id="group-sys-except-itf-exceptioncode-1gad07ddc7f7db7dabbba9ac60c2b10de3e"></span><h3>#define RTSEXCPT_IN_PAGE_ERROR 0x00000053<a class="headerlink" href="#define-rtsexcpt-in-page-error-0x00000053" title="Permalink to this headline">¶</a></h3>
+<p>Page fault</p>
+</div>
+<div class="section" id="define-rtsexcpt-stack-overflow-0x00000054">
+<span id="group-sys-except-itf-exceptioncode-1gaa656162fd36463a87791bd1cb14a2d7d"></span><h3>#define RTSEXCPT_STACK_OVERFLOW 0x00000054<a class="headerlink" href="#define-rtsexcpt-stack-overflow-0x00000054" title="Permalink to this headline">¶</a></h3>
+<p>Stack overflow</p>
+</div>
+<div class="section" id="define-rtsexcpt-invalid-disposition-0x00000055">
+<span id="group-sys-except-itf-exceptioncode-1ga2bb05417d4b4e23d7cf1db661920d7f2"></span><h3>#define RTSEXCPT_INVALID_DISPOSITION 0x00000055<a class="headerlink" href="#define-rtsexcpt-invalid-disposition-0x00000055" title="Permalink to this headline">¶</a></h3>
+<p>Invalid disposition</p>
+</div>
+<div class="section" id="define-rtsexcpt-invalid-handle-0x00000056">
+<span id="group-sys-except-itf-exceptioncode-1gab88536f8c612592a60ca62e370c9815c"></span><h3>#define RTSEXCPT_INVALID_HANDLE 0x00000056<a class="headerlink" href="#define-rtsexcpt-invalid-handle-0x00000056" title="Permalink to this headline">¶</a></h3>
+<p>Invalid handle</p>
+</div>
+<div class="section" id="define-rtsexcpt-guard-page-0x00000057">
+<span id="group-sys-except-itf-exceptioncode-1ga96ae649a7d2ed68d8a099f54b6c5739c"></span><h3>#define RTSEXCPT_GUARD_PAGE 0x00000057<a class="headerlink" href="#define-rtsexcpt-guard-page-0x00000057" title="Permalink to this headline">¶</a></h3>
+<p>Guard page</p>
+</div>
+<div class="section" id="define-rtsexcpt-double-fault-0x00000058">
+<span id="group-sys-except-itf-exceptioncode-1gabbcc35f7cfcfa80d93292ba90b94ecc4"></span><h3>#define RTSEXCPT_DOUBLE_FAULT 0x00000058<a class="headerlink" href="#define-rtsexcpt-double-fault-0x00000058" title="Permalink to this headline">¶</a></h3>
+<p>Double fault</p>
+</div>
+<div class="section" id="define-rtsexcpt-invalid-opcode-0x00000059">
+<span id="group-sys-except-itf-exceptioncode-1gadfedcd8d524ba9a2ddcbe5fd449352f4"></span><h3>#define RTSEXCPT_INVALID_OPCODE 0x00000059<a class="headerlink" href="#define-rtsexcpt-invalid-opcode-0x00000059" title="Permalink to this headline">¶</a></h3>
+<p>Invalid OpCode</p>
+</div>
+<div class="section" id="define-rtsexcpt-misalignment-0x00000100">
+<span id="group-sys-except-itf-exceptioncode-1gabf9af76c3ad2055c0dda3ea34ae089d2"></span><h3>#define RTSEXCPT_MISALIGNMENT 0x00000100<a class="headerlink" href="#define-rtsexcpt-misalignment-0x00000100" title="Permalink to this headline">¶</a></h3>
+<p>Datatype misalignment</p>
+</div>
+<div class="section" id="define-rtsexcpt-arraybounds-0x00000101">
+<span id="group-sys-except-itf-exceptioncode-1ga9e472b87ad822e342f2159420613ab63"></span><h3>#define RTSEXCPT_ARRAYBOUNDS 0x00000101<a class="headerlink" href="#define-rtsexcpt-arraybounds-0x00000101" title="Permalink to this headline">¶</a></h3>
+<p>Array bounds exceeded</p>
+</div>
+<div class="section" id="define-rtsexcpt-dividebyzero-0x00000102">
+<span id="group-sys-except-itf-exceptioncode-1gaf6aed9436887a543f1612ca41b74c07b"></span><h3>#define RTSEXCPT_DIVIDEBYZERO 0x00000102<a class="headerlink" href="#define-rtsexcpt-dividebyzero-0x00000102" title="Permalink to this headline">¶</a></h3>
+<p>Division by zero</p>
+</div>
+<div class="section" id="define-rtsexcpt-overflow-0x00000103">
+<span id="group-sys-except-itf-exceptioncode-1gae27cd03f531dd78f36fbd020d0b2ce31"></span><h3>#define RTSEXCPT_OVERFLOW 0x00000103<a class="headerlink" href="#define-rtsexcpt-overflow-0x00000103" title="Permalink to this headline">¶</a></h3>
+<p>Overflow</p>
+</div>
+<div class="section" id="define-rtsexcpt-noncontinuable-0x00000104">
+<span id="group-sys-except-itf-exceptioncode-1ga72511a1e20beb780f78d8d70ef3f2ba7"></span><h3>#define RTSEXCPT_NONCONTINUABLE 0x00000104<a class="headerlink" href="#define-rtsexcpt-noncontinuable-0x00000104" title="Permalink to this headline">¶</a></h3>
+<p>Non continuable</p>
+</div>
+<div class="section" id="define-rtsexcpt-processorload-watchdog-0x00000105">
+<span id="group-sys-except-itf-exceptioncode-1gaf10cd6c2f8c5e9f7d4bdc2f1deb807bd"></span><h3>#define RTSEXCPT_PROCESSORLOAD_WATCHDOG 0x00000105<a class="headerlink" href="#define-rtsexcpt-processorload-watchdog-0x00000105" title="Permalink to this headline">¶</a></h3>
+<p>Processor load watchdog of all IEC-tasks detected</p>
+</div>
+<div class="section" id="define-rtsexcpt-fpu-error-0x00000150">
+<span id="group-sys-except-itf-exceptioncode-1ga1908e3408bae0ef82dfec305c2e6e83c"></span><h3>#define RTSEXCPT_FPU_ERROR 0x00000150<a class="headerlink" href="#define-rtsexcpt-fpu-error-0x00000150" title="Permalink to this headline">¶</a></h3>
+<p>FPU: Unspecified error</p>
+</div>
+<div class="section" id="define-rtsexcpt-fpu-denormal-operand-0x00000151">
+<span id="group-sys-except-itf-exceptioncode-1ga7de4053d4a45b64b737a2ade27dd730b"></span><h3>#define RTSEXCPT_FPU_DENORMAL_OPERAND 0x00000151<a class="headerlink" href="#define-rtsexcpt-fpu-denormal-operand-0x00000151" title="Permalink to this headline">¶</a></h3>
+<p>FPU: Denormal operand</p>
+</div>
+<div class="section" id="define-rtsexcpt-fpu-dividebyzero-0x00000152">
+<span id="group-sys-except-itf-exceptioncode-1ga100a41d7d01e1f75e20748bc45fad282"></span><h3>#define RTSEXCPT_FPU_DIVIDEBYZERO 0x00000152<a class="headerlink" href="#define-rtsexcpt-fpu-dividebyzero-0x00000152" title="Permalink to this headline">¶</a></h3>
+<p>FPU: Division by zero</p>
+</div>
+<div class="section" id="define-rtsexcpt-fpu-inexact-result-0x00000153">
+<span id="group-sys-except-itf-exceptioncode-1gac2f88b912731e5ab8e60d87e2b878719"></span><h3>#define RTSEXCPT_FPU_INEXACT_RESULT 0x00000153<a class="headerlink" href="#define-rtsexcpt-fpu-inexact-result-0x00000153" title="Permalink to this headline">¶</a></h3>
+<p>FPU: Inexact result</p>
+</div>
+<div class="section" id="define-rtsexcpt-fpu-invalid-operation-0x00000154">
+<span id="group-sys-except-itf-exceptioncode-1gad9ccca0f2616dc38f1b5514d27fa50c5"></span><h3>#define RTSEXCPT_FPU_INVALID_OPERATION 0x00000154<a class="headerlink" href="#define-rtsexcpt-fpu-invalid-operation-0x00000154" title="Permalink to this headline">¶</a></h3>
+<p>FPU: Invalid operation</p>
+</div>
+<div class="section" id="define-rtsexcpt-fpu-overflow-0x00000155">
+<span id="group-sys-except-itf-exceptioncode-1ga52c94cdc38ffacce0f1f11b9f476d445"></span><h3>#define RTSEXCPT_FPU_OVERFLOW 0x00000155<a class="headerlink" href="#define-rtsexcpt-fpu-overflow-0x00000155" title="Permalink to this headline">¶</a></h3>
+<p>FPU: Overflow</p>
+</div>
+<div class="section" id="define-rtsexcpt-fpu-stack-check-0x00000156">
+<span id="group-sys-except-itf-exceptioncode-1ga1ba2f4b565f2c3e359f5168a2f05684f"></span><h3>#define RTSEXCPT_FPU_STACK_CHECK 0x00000156<a class="headerlink" href="#define-rtsexcpt-fpu-stack-check-0x00000156" title="Permalink to this headline">¶</a></h3>
+<p>FPU: Stack check</p>
+</div>
+<div class="section" id="define-rtsexcpt-fpu-underflow-0x00000157">
+<span id="group-sys-except-itf-exceptioncode-1ga384a708d8288c981a3aacbfd5feb5741"></span><h3>#define RTSEXCPT_FPU_UNDERFLOW 0x00000157<a class="headerlink" href="#define-rtsexcpt-fpu-underflow-0x00000157" title="Permalink to this headline">¶</a></h3>
+<p>FPU: Underflow</p>
+</div>
+<div class="section" id="define-rtsexcpt-breakpoint-0x00000200">
+<span id="group-sys-except-itf-exceptioncode-1ga832455c1e4e7a941347b9d224e4a3939"></span><h3>#define RTSEXCPT_BREAKPOINT 0x00000200<a class="headerlink" href="#define-rtsexcpt-breakpoint-0x00000200" title="Permalink to this headline">¶</a></h3>
+<p>Hardware breakpoint</p>
+</div>
+<div class="section" id="define-rtsexcpt-mask-0x00000fff">
+<span id="group-sys-except-itf-exceptioncode-1ga9bfc01e568526f76d4bb4839477961f6"></span><h3>#define RTSEXCPT_MASK 0x00000fff<a class="headerlink" href="#define-rtsexcpt-mask-0x00000fff" title="Permalink to this headline">¶</a></h3>
+<p>Masks all exeption codes so far</p>
+</div>
+<div class="section" id="define-rtsexcpt-license-invalid-0x100d0001">
+<span id="group-sys-except-itf-exceptioncode-1ga837ab16561b85e7786ecb6cf75943e0d"></span><h3>#define RTSEXCPT_LICENSE_INVALID 0x100D0001<a class="headerlink" href="#define-rtsexcpt-license-invalid-0x100d0001" title="Permalink to this headline">¶</a></h3>
+<p>3SLicense: License invalid</p>
+</div>
+<div class="section" id="define-rtsexcpt-watchdog-omitted-cycle-0x00001000">
+<span id="group-sys-except-itf-exceptioncode-1ga9c01f131bb6ed518313061df28836b8f"></span><h3>#define RTSEXCPT_WATCHDOG_OMITTED_CYCLE 0x00001000<a class="headerlink" href="#define-rtsexcpt-watchdog-omitted-cycle-0x00001000" title="Permalink to this headline">¶</a></h3>
+<p>In addition to RTSEXCPT_WATCHDOG in order to separate OmittedCycle watchdog from &#8220;normal&#8221; CycleExceed watchdog</p>
+</div>
+<div class="section" id="define-rtsexcpt-vendor-exception-base-0x00002000">
+<span id="group-sys-except-itf-exceptioncode-1ga4cb9cd843a46fbdad0903d5b79a49745"></span><h3>#define RTSEXCPT_VENDOR_EXCEPTION_BASE 0x00002000<a class="headerlink" href="#define-rtsexcpt-vendor-exception-base-0x00002000" title="Permalink to this headline">¶</a></h3>
+<p>Base number for vendor specific exception codes. VendorID must be specified as prefix inside the exception code: RTS_UI32 ulException = ADDVENDORID([VendorId], RTSEXCPT_VENDOR_EXCEPTION_BASE + [Exception]);</p>
+</div>
+<div class="section" id="define-sysexcptisexception-e-rtsexcpt-mask-exception">
+<span id="group-sys-except-itf-exceptioncode-1ga7267a45c029f54865bf00f3c47f39536"></span><h3>#define SysExcptIsException ((e &amp; <a class="reference internal" href="#group-sys-except-itf-exceptioncode-1ga9bfc01e568526f76d4bb4839477961f6"><span class="std std-ref">RTSEXCPT_MASK</span></a> ) == exception)<a class="headerlink" href="#define-sysexcptisexception-e-rtsexcpt-mask-exception" title="Permalink to this headline">¶</a></h3>
+<p>Makro to test masked exeption codes</p>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-tagexceptioncode-exceptioncode">
+<span id="group-sys-except-itf-exceptioncode-1gabe2074073b7a6a06097f687be87c34cd"></span><h3>typedef struct tagExceptionCode  ExceptionCode<a class="headerlink" href="#typedef-struct-tagexceptioncode-exceptioncode" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,208 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_monitor_itf:
+
+=============
+CmpMonitorItf
+=============
+
+Interface of CmpMonitor. :ref:`More... <group___cmp_monitor_itf-details>`
+
+Modules
+-------
+
+- :ref:`Event parameter <group___cmp_monitor_itf___eventparameter>`
+
+- :ref:`Events <group___cmp_monitor_itf___events>`
+
+- :ref:`Features <group___cmp_monitor_itf___features>`
+
+- :ref:`Online services <group___cmp_monitor_itf___onlineservices>`
+
+- :ref:`Settings <group___cmp_monitor_itf___settings>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpMonitor_C <struct_i_cmp_monitor___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpMonitor <group___cmp_monitor_itf_1ga32de8e5e21fd88506093ad6d4672e02c>`
+
+- #define :ref:`EXTITF_CmpMonitor <group___cmp_monitor_itf_1ga3b0f8fdbc6363527ed41ee795e0ecdb6>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpMonitor_C <struct_i_cmp_monitor___c>` :ref:`ICmpMonitor <group___cmp_monitor_itf_1ga458e4cd89ea038109f55261317e60fd1>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`MonitoringHasFeature <group___cmp_monitor_itf_1ga0656885c9ab8b763c43046baed0649ca>` (unsigned long ulFeatures)
+
+- RTS_RESULT :ref:`MonitoringReadValue <group___cmp_monitor_itf_1ga062955768afa92e7f1db2be8cd5ebf7d>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pappl, :ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * preader, RTS_UI8 * pbyValue, RTS_UI16 usSize)
+
+- RTS_RESULT :ref:`MonitoringReadValue2 <group___cmp_monitor_itf_1ga1b6b7e70c66a6173ddbc3f3d93cbb2e9>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pappl, :ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * preader, RTS_UI8 * pbyValue, RTS_UI16 usSize, int bIec)
+
+- RTS_RESULT :ref:`MonitoringWriteValue <group___cmp_monitor_itf_1ga7505a75a3288f1da7178999479b866e9>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pappl, :ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * preader, RTS_UI8 * pbyValue, RTS_UI16 usSize)
+
+- RTS_RESULT :ref:`MonitoringWriteValue2 <group___cmp_monitor_itf_1ga7988a37716aa163cfc00df480eb0e828>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pappl, :ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * preader, RTS_UI8 * pbyValue, RTS_UI16 usSize, int bIec)
+
+.. _group___cmp_monitor_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpMonitor.
+
+Interface of the monitoring component, that provides monitoring of IEC variables.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_monitor_itf_1ga32de8e5e21fd88506093ad6d4672e02c:
+
+#define ITF_CmpMonitor
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_monitor_itf_1ga3b0f8fdbc6363527ed41ee795e0ecdb6:
+
+#define EXTITF_CmpMonitor
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_monitor_itf_1ga458e4cd89ea038109f55261317e60fd1:
+
+typedef ICmpMonitor_C ICmpMonitor
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_monitor_itf_1ga0656885c9ab8b763c43046baed0649ca:
+
+RTS_RESULT MonitoringHasFeature (unsigned long ulFeatures)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to check, if a scheduler has the specified feature.
+
+**Parameters**
+
++---------+------------+-------------------------------------------------------+
+| [in]    | ulFeatures | Feature flags, See corresponding category "Features". |
++---------+------------+-------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK if the flags are supported, an error code otherwise
+
+.. _group___cmp_monitor_itf_1ga062955768afa92e7f1db2be8cd5ebf7d:
+
+RTS_RESULT MonitoringReadValue (APPLICATION *pappl, BINTAGREADER *preader, RTS_UI8 *pbyValue, RTS_UI16 usSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to read a value via a monitoring service. Note: this function is equivalent to calling MonitoringReadValue2 with bIec = 0.
+
+**Parameters**
+
++---------+----------+-------------------------------------------------------------------------+
+| [in]    | pappl    | Pointer to application.                                                 |
++---------+----------+-------------------------------------------------------------------------+
+| [in]    | preader  | the reader specifying the location of the value to monitor.             |
++---------+----------+-------------------------------------------------------------------------+
+| [in]    | pbyValue | pointer to the destination address were the retrieved value is written. |
++---------+----------+-------------------------------------------------------------------------+
+| [in]    | usSize   | size of value to read.                                                  |
++---------+----------+-------------------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK if the value could be retrieved successfully
+
+.. _group___cmp_monitor_itf_1ga1b6b7e70c66a6173ddbc3f3d93cbb2e9:
+
+RTS_RESULT MonitoringReadValue2 (APPLICATION *pappl, BINTAGREADER *preader, RTS_UI8 *pbyValue, RTS_UI16 usSize, int bIec)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to read a value via a monitoring service.
+
+**Parameters**
+
++---------+----------+-------------------------------------------------------------------------+
+| [in]    | pappl    | Pointer to application.                                                 |
++---------+----------+-------------------------------------------------------------------------+
+| [in]    | preader  | the reader specifying the location of the value to monitor.             |
++---------+----------+-------------------------------------------------------------------------+
+| [in]    | pbyValue | pointer to the destination address were the retrieved value is written. |
++---------+----------+-------------------------------------------------------------------------+
+| [in]    | usSize   | size of value to read.                                                  |
++---------+----------+-------------------------------------------------------------------------+
+| [in]    | bIec     | whether the call is done from an IEC task or not                        |
++---------+----------+-------------------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK if the value could be retrieved successfully
+
+.. _group___cmp_monitor_itf_1ga7505a75a3288f1da7178999479b866e9:
+
+RTS_RESULT MonitoringWriteValue (APPLICATION *pappl, BINTAGREADER *preader, RTS_UI8 *pbyValue, RTS_UI16 usSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to writa a value via a monitoring service. Note: this function is equivalent to calling MonitoringWriteValue2 with bIec = 0.
+
+**Parameters**
+
++---------+----------+-----------------------------------------------------------+
+| [in]    | pappl    | Pointer to application.                                   |
++---------+----------+-----------------------------------------------------------+
+| [in]    | preader  | the reader specifying the location of the value to write. |
++---------+----------+-----------------------------------------------------------+
+| [in]    | pbyValue | pointer to the source address of the value to write.      |
++---------+----------+-----------------------------------------------------------+
+| [in]    | usSize   | size of value to read.                                    |
++---------+----------+-----------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK if the value could be written successfully
+
+.. _group___cmp_monitor_itf_1ga7988a37716aa163cfc00df480eb0e828:
+
+RTS_RESULT MonitoringWriteValue2 (APPLICATION *pappl, BINTAGREADER *preader, RTS_UI8 *pbyValue, RTS_UI16 usSize, int bIec)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Routine to writa a value via a monitoring service.
+
+**Parameters**
+
++---------+----------+-----------------------------------------------------------+
+| [in]    | pappl    | Pointer to application.                                   |
++---------+----------+-----------------------------------------------------------+
+| [in]    | preader  | the reader specifying the location of the value to write. |
++---------+----------+-----------------------------------------------------------+
+| [in]    | pbyValue | pointer to the source address of the value to write.      |
++---------+----------+-----------------------------------------------------------+
+| [in]    | usSize   | size of value to read.                                    |
++---------+----------+-----------------------------------------------------------+
+| [in]    | bIec     | whether the call is done from an IEC task or not          |
++---------+----------+-----------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK if the value could be written successfully
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

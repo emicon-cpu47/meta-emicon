@@ -1,0 +1,195 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___io_drv_unsafe_bridge_dep:
+
+====================
+IoDrvUnsafeBridgeDep
+====================
+
+ :ref:`More... <group___io_drv_unsafe_bridge_dep-details>`
+
+.. _group___io_drv_unsafe_bridge_dep-details:
+
+Detailed Description
+--------------------
+
+
+
+Interface of IoDrvBridge, which links unsafe IO drivers to safe context.
+
+The IoDrvBridge is used to handle unsafe IO drivers. This is done by copying the whole IO configuration of the downloaded application to unsafe memory and to call the unsafe IO drivers with the CmpSIL2 interface function :ref:`SIL2OEMExecuteNonSafetyJob() <group___cmp_s_i_l2_itf_1gaa56ac50fb0426a44a8691acb560d6b31>`
+
+The following drawing illustrates how an IO configuration with IoDrvBridge looks like in CoDeSys. Safe IO drivers are placed directly underneath the device and unsafe IO drivers are placed underneath the IoDrvBridge. Both the safe IO drivers under the device and the unsafe IO drivers under IoDrvBridge may be C or IEC IO drivers.
+::
+    *				 . +--------+
+    *				 . | Device |
+    *				 . +--------+
+    *				 .     |
+    *				 .     |  +----------------+
+    *				 .     +--| Safe IO driver |
+    *				 .     |  +----------------+
+    *				 .     |  +----------------+
+    *				 .     +--|  IoDrvBridge   |
+    *				 .        +----------------+
+    *				 .                |
+    *				 .                |  +--------------------+
+    *				 .                +--| Unsafe IO driver 1 |
+    *				 .                |  +--------------------+
+    *				 .                |  +--------------------+
+    *				 .                +--| Unsafe IO driver n |
+    *				 .                   +--------------------+
+    *
+
+To handle the copied IO configuration and the supported IO drivers, the following mem pools and memory is used:
+
+Copied IO configuration: The copied IO configuration is stored in a static buffer, which is handled by the following local functions:
+
+- AllocatorBufferInit()
+
+- AllocatorAdd()
+
+- AllocatorSpaceLeft()
+
+These functions take care about the alignment, the current position and the available space left of the buffer. It is only possible to allocate and not to free memory blocks. The memory blocks to allocate may be of any size as long as it fits to the memory. The size of the static buffer is defined by COPIED_IO_CONFIG_SIZE. The alignment of an element depends on the size of the element as follows:
+
+- (size >= 8) > align 8
+
+- (size < 8 && >= 4) > align 4
+
+- (size < 4 && >= 2) > align 2
+
+- (size > 2) > align 1
+
+Example:
+::
+    *				 . s_byCopiedIoConfig
+    *				 . +---------------------------+
+    *				 . |        ElementA_1         |
+    *				 . |             +-------------+
+    *				 . |             |  ALIGNMENT  |
+    *				 . +---------------------------+
+    *				 . |        ElementA_n         |
+    *				 . |             +-------------+
+    *				 . |             |  ALIGNMENT  |
+    *				 . +-------------+-------------+
+    *				 . | ElementB_1  | ElementB_2  |
+    *				 . +-------------+-------------+
+    *				 . | ElementB_3  |  ALIGNMENT  |
+    *				 . +-------------+-------------+
+    *				 . |        ElementC_1         |
+    *				 . +---------------------------+
+    *				 . |        ElementC_n         |
+    *				 . +---------------------------+
+    *				 . |            ...            |
+    *				 . +---------------------------+
+    *
+
+Copied IO configuration elements: To be able to link original and copied IO configuration elements, this local mem pool stores a pointer to the original element list, a pointer to the copied element list and the number of elements in the list. There is no need to lock this mem pool for every access, because elements are only added/deleted in :ref:`IoDrvUpdateConfiguration() <group___cmp_io_drv_itf_1ga56a1f59dfd7963c606c8289edc2c3b8b>` and IoDrvUpdateMapping, which are called from communication context. This mem pool is handled by the following local functions:
+
+- MappingListAdd() - to add an element
+
+- MappingListGetCopiedElement() - to get the corresponding copied element to an original element
+
+- MappingListGetOriginalElement() - to get the corresponding original element to a copied element
+
+- MappingListDeleteAllElements() - to remove all elements from the pool
+
+The following drawing illustrates an example IO configuration
+::
+    *				 . Original IO config      ElementMappingPool       Copied IO config
+    *				 .
+    *				 . +---------------+      +------------------+      +---------------+
+    *				 . |  Connector_1  |<-----| pOriginalElement |   +->|  Connector_1  |
+    *				 . +---------------+      +------------------+   |  +---------------+
+    *				 . |  Connector_2  |      |  pCopiedElement  |---+  |  Connector_2  |
+    *				 . +---------------+      +------------------+      +---------------+
+    *				 . |  Connector_n  |      | NumOfElement = n |      |  Connector_n  |
+    *				 . +---------------+      +------------------+      +---------------+
+    *				 . +---------------+      +------------------+      +---------------+
+    *				 . |  Parameter_1  |<-----| pOriginalElement |   +->|  Parameter_1  |
+    *				 . +---------------+      +------------------+   |  +---------------+
+    *				 . |  Parameter_2  |      |  pCopiedElement  |---+  |  Parameter_2  |
+    *				 . +---------------+      +------------------+      +---------------+
+    *				 . |  Parameter_m  |      | NumOfElement = m |      |  Parameter_m  |
+    *				 . +---------------+      +------------------+      +---------------+
+    *
+
+Handled IO drivers: s_DriverMappingPool stores elements of DriverMapEntry, which contain the instance information of the IO driver. There is no need to lock this mem pool for every access, because elements are only added/deleted in :ref:`IoDrvUpdateConfiguration() <group___cmp_io_drv_itf_1ga56a1f59dfd7963c606c8289edc2c3b8b>` and IoDrvUpdateMapping, which are called from comm cycle.
+
+The IoDrvBridge is implementing the IoDrv interface and is using the IoMgr interface as all other IO drivers. The following points describe the handling of unsafe IO drivers in IoDrv interface function implementations of IoDrvBridge.
+
+:ref:`IoDrvCreate() <group___cmp_io_drv_itf_1ga47ade8ad65e79bc0200f687e84196fb6>`
+
+To be able to handle all unsafe IO drivers underneath this IO driver, the IoDrvBridge must be the first IO driver registered in the IoMgr. This is checked in the IoDrvCreate function of IoDrvBridge by calling the IoMgr interface function IoMgrGetFirstDriverInstance. If this function returns an instance of an IO driver, an exception is thrown. If no driver is registered yet, an instance of the IoDrvBridge is created. After that all other IO drivers may register in IoMgr as usual.
+
+:ref:`IoDrvUpdateConfiguration() <group___cmp_io_drv_itf_1ga56a1f59dfd7963c606c8289edc2c3b8b>`
+
+This is the first function, which is called by the IoMgr, after an application, containing an IO configuration was downloaded to the device. The complete connector list and the number of connectors are passed as parameters. As the IoDrvBridge is the first IO driver, which was registered in IoMgr, it is also the first IO driver, which is called by the IoMgr. This allows the IoDrvBridge to take care about the unsafe IO drivers before they are called by the IoMgr from safe context.
+
+First of all the whole connector list is copied to the copied IO configuration memory by using the AllocatorAdd() function and an element is added to the CopiedElementListMappingPool with the MappingListAdd() function. After that all parameter lists of all connectors are copied and mapping list elements are added similarly to the connector list. To make the copied connector list consistent, each parameter list pointer is updated to the copied parameter list.
+
+To get the IO driver instances the IoMgr functions :ref:`IoMgrGetFirstDriverInstance() <group___cmp_io_mgr_itf_1ga923f644e8b581abc5041f29619e091c4>` and :ref:`IoMgrGetNextDriverInstance() <group___cmp_io_mgr_itf_1ga8432d130d27f3f46be083b21241adc42>` are used. Those IO drivers, whose module ID is matching one of the module IDs SUPPORTED_UNSAFE_DRIVERS_LIST, are added to the DriverMappingPool. To avoid calls from IoMgr to IO drivers, which are handled by the IoDrvBridge, they are unregisters from IoMgr. The remaining registered IO drivers in IoMgr must be safe IO drivers.
+
+After that, :ref:`IoDrvUpdateConfiguration() <group___cmp_io_drv_itf_1ga56a1f59dfd7963c606c8289edc2c3b8b>` of every supported IO driver is called with the copied connector list. As every IO driver is registering to connectors in the copied connector list, the IoDrvBridge must register to all corresponding connectors in the original connector list and also copy the flags of the copied connectors to the original connectors.
+
+The following example shows an original and a copied connector list. As IoDrvTest is registered for Connector_1 in the copied connector list, IoDrvBridge must register for the same connector in the original connector list and copy the flags. When IoDrvBridge is called with an specific, connector for example to read inputs, it is possible to get the corresponding IO driver, which is registered for this connector.
+::
+    *				 .
+    *				 . Original connector list   ElementMappingPool      Copied connector list
+    *				 .
+    *				 . +------------------+     +------------------+      +------------------+
+    *				 . |   Connector_1    |<----| pOriginalElement |   +->|  Connector_1     |
+    *				 . |                  |     +------------------+   |  |                  |
+    *				 . |hIoDrv=IoDrvBridge|     |  pCopiedElement  |---+  |hIoDrv=IoDrvTest_1|
+    *				 . | dwFlags = 0x1234 |     +------------------+      | dwFlags = 0x1234 |
+    *				 . |                  |     | NumOfElement = n |      |                  |
+    *				 . |                  |     +------------------+      |                  |
+    *				 . +------------------+                               +------------------+
+    *				 . |   Connector_2    |                               |    Connector_2   |
+    *				 . |                  |                               |                  |
+    *				 . |hIoDrv=IoDrvBridge|                               |hIoDrv=IoDrvTest_2|
+    *				 . | dwFlags = 0x4321 |                               | dwFlags = 0x4321 |
+    *				 . |                  |                               |                  |
+    *				 . |                  |                               |                  |
+    *				 . +------------------+                               +------------------+
+    *				 . |   Connector_n    |                               |    Connector_n   |
+    *				 . |                  |                               |                  |
+    *				 . |hIoDrv=IoDrvBridge|                               |hIoDrv=IoDrvTest_x|
+    *				 . | dwFlags = 0xAA55 |                               | dwFlags = 0xAA55 |
+    *				 . |                  |                               |                  |
+    *				 . |                  |                               |                  |
+    *				 . +------------------+                               +------------------+
+    *
+
+When a reset is performed, :ref:`IoDrvUpdateConfiguration() <group___cmp_io_drv_itf_1ga56a1f59dfd7963c606c8289edc2c3b8b>` is called without a connector list to allow the IO driver to clean up the environment. In case of the IoDrvBridge the copied IO configuration buffer and all mem pools are cleared. Before the supported IO driver mem pool is cleared, the C IO drivers are registered in IoMgr again and the IEC driver instances are deleted.
+
+:ref:`IoDrvUpdateMapping() <group___cmp_io_drv_itf_1ga39e0e4790272987e84b31f6b5fb5d99f>`
+
+:ref:`IoDrvUpdateMapping() <group___cmp_io_drv_itf_1ga39e0e4790272987e84b31f6b5fb5d99f>` copies the IoConfigTaskMap, IoConfigConnectorMap and IoConfigChannelMap of the original IO configuration as described in IoDrvUpdateConfiguration. The connector pointers of the copied IoDrvConnectorMap list are updated to the copied connectors and the parameter pointers of the copied IoDrvChannelMap list are updated to the copied parameters. Additionally the memory of every IO channel is duplicated. This means that memory is allocated in the CopiedIoConfig buffer and the pointer to IEC address is set to this memory in the copied IoDrvChannelMap. The same thing is done for every parameter of IoConfigParameter, as the parameters may change. Therefore the pointer dwValue is set to the new memory in every copied IoConfigParameter. At the end all supported IO drivers are called with the copied IoConfigTaskMap.
+
+:ref:`IoDrvReadInputs() <group___cmp_io_drv_itf_1ga48f414affb4bb84e803e08b48eaa1ea1>`
+
+The :ref:`IoDrvReadInputs() <group___cmp_io_drv_itf_1ga48f414affb4bb84e803e08b48eaa1ea1>` function of IoDrvBridge gets the corresponding copied connector map, gets the registered supported IO driver as described in the example in :ref:`IoDrvUpdateConfiguration() <group___cmp_io_drv_itf_1ga56a1f59dfd7963c606c8289edc2c3b8b>` and calls the IO driver with the copied connector map. After the IO driver wrote the inputs to the copied memory, the IoDrvBridge copies this data to the real IEC memory.
+
+:ref:`IoDrvWriteOutputs() <group___cmp_io_drv_itf_1gae25ad6b1f53f6935b17125d9757aad45>`
+
+This function of the IoDrvBridge works similar to IoDrvReadInputs, but it copies the outputs to the copied IO memory before the IO driver is called.
+
+:ref:`IoDrvStartBusCycle() <group___cmp_io_drv_itf_1ga7712716bf87ce241c22958db3aa19bcc>`
+
+This function gets the corresponding copied connector to the original connector, which is passed as parameter. Then the unsafe IO driver, which is registered to the copied connector is called with the copied connector list.
+
+:ref:`IoDrvGetModuleDiagnosis() <group___cmp_io_drv_itf_1gaca801830078ea9485613f2491e35575d>`
+
+This function may be called from IoMgr and from IO driver context. Usually from IoDrvStartBusCycle. It sets the connector flags corresponding to the state of the IO driver. The :ref:`IoDrvGetModuleDiagnosis() <group___cmp_io_drv_itf_1gaca801830078ea9485613f2491e35575d>` implementation is never called by the supported IO drivers, because they always call their own implementation of this function and it is not possible to get the changed flags in IoDrvBridge. Because of this, all flags of the copied connector list are copied in the safe COMM_CYCLE_HOOK of IoDrvBridge. The period is defined by IODRVBRIDGE_CONNECTOR_FLAGS_UPDATE_PERIOD. When this function is called from IoMgr(the passed parameter p_IBase handle is equal to s_pIBase of IoDrvBridge) the corresponding IO driver implementation of :ref:`IoDrvGetModuleDiagnosis() <group___cmp_io_drv_itf_1gaca801830078ea9485613f2491e35575d>` is called with the corresponding copied connector.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

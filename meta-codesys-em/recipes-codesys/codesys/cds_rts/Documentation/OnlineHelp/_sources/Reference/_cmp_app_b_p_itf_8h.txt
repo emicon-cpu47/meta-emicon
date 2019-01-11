@@ -1,0 +1,200 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __cmp_app_b_p_itf_8h:
+
+============================
+CmpAppBPItf.h File Reference
+============================
+
+| #include ":ref:`CmpAppItf.h <_cmp_app_itf_8h>`"
+| #include ":ref:`CmpSrvItf.h <_cmp_srv_itf_8h>`"
+| #include ":ref:`CmpIecTaskItf.h <_cmp_iec_task_itf_8h>`"
+
+Data Structures
+---------------
+
+- struct :ref:`EVTPARAM_CmpAppBP_SavePatch <struct_e_v_t_p_a_r_a_m___cmp_app_b_p___save_patch>`
+
+- struct :ref:`EVTPARAM_CmpAppBP_CodePatch <struct_e_v_t_p_a_r_a_m___cmp_app_b_p___code_patch>`
+
+- struct :ref:`BreakpointDesc_ <struct_breakpoint_desc__>`
+
+- struct :ref:`BreakpointContext_ <struct_breakpoint_context__>`
+
+- struct :ref:`Breakpoint_ <struct_breakpoint__>`
+
+- struct :ref:`Flowpoint_ <struct_flowpoint__>`
+
+- struct :ref:`DebugContext_ <struct_debug_context__>`
+
+- struct :ref:`FLOW_BP_INFO <struct_f_l_o_w___b_p___i_n_f_o>`
+
+- struct :ref:`FLOW_INFO <struct_f_l_o_w___i_n_f_o>`
+
+- struct :ref:`tagCallstackEntry <structtag_callstack_entry>`
+
+- struct :ref:`tagappbpgetcallstack_struct <structtagappbpgetcallstack__struct>`
+
+- struct :ref:`ICmpAppBP_C <struct_i_cmp_app_b_p___c>`
+
+Macros
+------
+
+- #define :ref:`APP_STATIC_BP_ENTRIES <group___cmp_app_b_p_itf___staticdefines_1gaa69768715a9efe5e62183fb3f1144c4d>` 20
+
+- #define :ref:`APP_STATIC_FLOW_ENTRIES <group___cmp_app_b_p_itf___staticdefines_1gaf5b4b8e760c26225e4f61a4bf66fd38c>` 20
+
+- #define :ref:`APP_MAX_BP_OPCODE_SIZE <group___cmp_app_b_p_itf___staticdefines_1ga5aa694dfbbe5b6f907b3863746d7c7bd>` 8
+
+- #define :ref:`APP_MAX_BP_CONDITION_SIZE <group___cmp_app_b_p_itf___staticdefines_1ga0ddc3dc1a87740336d1fb8be9df9ce1d>` 300
+
+- #define :ref:`APP_MAX_BP_INTERP_CODE_SIZE <group___cmp_app_b_p_itf___staticdefines_1gad663b9cd7f224eb5586a69ec6f6da928>` 1000
+
+- #define :ref:`APPBP_MAX_FLOW_SERVICE_LEN <group___cmp_app_b_p_itf___staticdefines_1ga875d9ac88c492fb75f6c85669b91e363>` 10000
+
+- #define :ref:`EXECUTIONPOINT_STACK_SIZE <group___cmp_app_b_p_itf___staticdefines_1ga9fa55530d37d088161ff7ac4db658145>` 4096
+
+- #define :ref:`APPBP_FLAG_BEFORE_CODE_PATCH <group___cmp_app_b_p_itf___codepatcheventflags_1ga67dcfb07f56278afcc902a53e10260a9>` 0x00000001
+
+- #define :ref:`APPBP_FLAG_AFTER_CODE_PATCH <group___cmp_app_b_p_itf___codepatcheventflags_1ga55e501e62f5d25089dda1df7e76f1551>` 0x00000002
+
+- #define :ref:`APPBP_FLAG_CODE_PATCHED <group___cmp_app_b_p_itf___codepatcheventflags_1gaf6b28539114e5fe79ac246d73d64618d>` 0x00000004
+
+- #define :ref:`EVTPARAMID_CmpAppBP_SavePatch <group___cmp_app_b_p_itf___eventparameter_1gabbfcfd7082645475b0b1c0dee796eb04>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpAppBP_SavePatch <group___cmp_app_b_p_itf___eventparameter_1gab705916f41f2a4372c7e6505d6b5e228>` 0x0002
+
+- #define :ref:`EVTPARAMID_CmpAppBP_CodePatch <group___cmp_app_b_p_itf___eventparameter_1ga0432ac86d59611eff9d0924779759164>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpAppBP_CodePatch <group___cmp_app_b_p_itf___eventparameter_1gab23c107053a70ac1905292d8e92e7f6c>` 0x0001
+
+- #define :ref:`EVT_CmpAppBP_CodePatch <group___cmp_app_b_p_itf___events_1gaa6804545667f828b7e5b641b24d914d1>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`EVT_CmpAppBP_CodeSave <group___cmp_app_b_p_itf___events_1gaf2d5ba3e93d96c39b428ccdd98ba7639>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+
+- #define :ref:`BP_PERMANENT <group___cmp_app_b_p_itf___breakpointtypes_1gaad0e1b8888a9b1569127b5f9a15bacc3>` 1
+
+- #define :ref:`BP_TEMPORARY <group___cmp_app_b_p_itf___breakpointtypes_1ga8a9e82894aa3c3e718b9d9fd64f3bc4a>` 2
+
+- #define :ref:`BP_REPATCH <group___cmp_app_b_p_itf___breakpointtypes_1ga6a019cffb132940e0730007aea92e3aa>` 3
+
+- #define :ref:`BP_FLOWREAD <group___cmp_app_b_p_itf___breakpointtypes_1gace73971490dafed8ddeaa9843fee5ef1>` 4
+
+- #define :ref:`BP_FLOWWRITE <group___cmp_app_b_p_itf___breakpointtypes_1ga3b6afe29933015b8b0b89894e8a0170e>` 5
+
+- #define :ref:`BP_FLOWFORCE <group___cmp_app_b_p_itf___breakpointtypes_1ga122ca01e0008dc62ff2e8e02d7929b73>` 6
+
+- #define :ref:`BP_CODE_EXECUTIONPOINT <group___cmp_app_b_p_itf___breakpointtypes_1gaccd9af4fbf988e94177af2904a1adc42>` 7
+
+- #define :ref:`BP_SUSPEND_TASK <group___cmp_app_b_p_itf___breakpointtypes_1gaa8ae1c46da90970815bc0618f8f422c8>` 8
+
+- #define :ref:`BP_DATA_BREAKPOINT <group___cmp_app_b_p_itf___breakpointtypes_1ga198656fb0bdaadf5ebfe73c4d50379c4>` 9
+
+- #define :ref:`BP_DATA_EXECUTIONPOINT <group___cmp_app_b_p_itf___breakpointtypes_1ga202926e3b664812a5bcfb7f235f4f807>` 10
+
+- #define :ref:`BP_INVALID <group___cmp_app_b_p_itf___breakpointtypes_1ga2996b44a626c54e684dac35c8c747bfe>` 0xFFFFFFFF
+
+- #define :ref:`HIT_ALWAYS <group___cmp_app_b_p_itf___breakpointhitcountconditions_1gaea5656b988aed051471c10d5855d83d4>` 0
+
+- #define :ref:`HIT_EQUAL <group___cmp_app_b_p_itf___breakpointhitcountconditions_1gae5790e1137ab2206443b77ddc299121d>` 1
+
+- #define :ref:`HIT_MULTIPLEOF <group___cmp_app_b_p_itf___breakpointhitcountconditions_1ga2202e6ceb39f86193b5040430558a913>` 2
+
+- #define :ref:`HIT_GTOREQTO <group___cmp_app_b_p_itf___breakpointhitcountconditions_1ga55105d39912fd7d7311efdac4378584f>` 3
+
+- #define :ref:`BP_STATE_REACHED <group___cmp_app_b_p_itf___breakpointhitcountconditions_1gace1187f7b9d6fe1374b4ca7b7aae268f>` 1
+
+- #define :ref:`BP_STATE_EXECUTED <group___cmp_app_b_p_itf___breakpointhitcountconditions_1ga28b24e4ed1779d32bd8a264650e7e135>` 2
+
+- #define :ref:`BP_STATE_ACTIVE <group___cmp_app_b_p_itf___breakpointhitcountconditions_1gaaa9f3c545917cb3e98b465ab103a4bbd>` 4
+
+- #define :ref:`FLOW_READ <group___cmp_app_b_p_itf___breakpointcontext_1ga9ad046ecb0345777fc6392b428b7cc51>` 1
+
+- #define :ref:`FLOW_WRITE <group___cmp_app_b_p_itf___breakpointcontext_1ga1454d2159bb67d8f80c64d9a071dcd1b>` 2
+
+- #define :ref:`FLOW_FORCE <group___cmp_app_b_p_itf___breakpointcontext_1ga5c5f1138772d48ebb4c10250aea500f0>` 3
+
+- #define :ref:`ITF_CmpAppBP <group___cmp_app_b_p_itf_1ga2cc0bf9425b4e8a03769b6cf8eb869e9>`
+
+- #define :ref:`EXTITF_CmpAppBP <group___cmp_app_b_p_itf_1ga2087fc64d287123d044fc0f5e6d4b121>`
+
+Typedefs
+--------
+
+- typedef RTS_RESULT(* :ref:`APPBP_ENTER_BREAKPOINT_HANDLER <group___cmp_app_b_p_itf___breakpointhandler_1gacb16265546687527d4f95e5db52b7dda>`)(struct DebugContext_ *pDebugContext)
+
+- typedef RTS_RESULT(* :ref:`APPBP_LEAVE_BREAKPOINT_HANDLER <group___cmp_app_b_p_itf___breakpointhandler_1gacda157b246a79097a594086ff4a79ea3>`)(struct DebugContext_ *pDebugContext)
+
+- typedef struct :ref:`BreakpointDesc_ <struct_breakpoint_desc__>` :ref:`BreakpointDesc <group___cmp_app_b_p_itf___breakpointdescription_1gaf4fefc2caa0bfc32073d57d8dd84bf9b>`
+
+- typedef struct :ref:`BreakpointContext_ <struct_breakpoint_context__>` :ref:`BreakpointContext <group___cmp_app_b_p_itf___breakpointcontext_1ga70333501b2874834e9c68fca22a09c20>`
+
+- typedef struct :ref:`Breakpoint_ <struct_breakpoint__>` :ref:`Breakpoint <group___cmp_app_b_p_itf___breakpointcontext_1ga4f21dd07bf35c4e74f810dc1e1c9ab1b>`
+
+- typedef struct :ref:`Flowpoint_ <struct_flowpoint__>` :ref:`Flowpoint <group___cmp_app_b_p_itf___breakpointcontext_1ga9c63f570abc5d5d5ac69b343a65e4893>`
+
+- typedef struct :ref:`DebugContext_ <struct_debug_context__>` :ref:`DebugContext <group___cmp_app_b_p_itf___breakpointcontext_1ga15b1fef62e04d4261ea416858756c6b1>`
+
+- typedef struct :ref:`tagCallstackEntry <structtag_callstack_entry>` :ref:`CallstackEntry <group___cmp_app_b_p_itf_1gac5c1fd273011cee138d7581a983305c7>`
+
+- typedef struct :ref:`tagappbpgetcallstack_struct <structtagappbpgetcallstack__struct>` :ref:`appbpgetcallstack_struct <group___cmp_app_b_p_itf_1ga6b09d6cdea58d8257dcfcdcf78d97744>`
+
+- typedef :ref:`ICmpAppBP_C <struct_i_cmp_app_b_p___c>` :ref:`ICmpAppBP <group___cmp_app_b_p_itf_1gada6c257f18c24e966efe28f4da7de408>`
+
+Functions
+---------
+
+- void :ref:`appbpgetcallstack <group___cmp_app_b_p_itf_1gaa37770bbeece01afd1c6f5187c50c320>` (:ref:`appbpgetcallstack_struct <group___cmp_app_b_p_itf_1ga6b09d6cdea58d8257dcfcdcf78d97744>` * p)
+
+- RTS_RESULT :ref:`AppBPInit <group___cmp_app_b_p_itf_1gaf41157f21189cc6262e9eb9c917834df>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppBPExit <group___cmp_app_b_p_itf_1ga261acfbcb32c69dbd45b4946890ea1d1>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_UINTPTR :ref:`AppDebugHandler <group___cmp_app_b_p_itf_1ga6b17f465662ba51cf0832f8c2baf0dfd>` (RTS_UINTPTR IP, RTS_UINTPTR SP, RTS_UINTPTR BP)
+
+- RTS_UINTPTR :ref:`AppDebugHandler2 <group___cmp_app_b_p_itf_1gadc306395980c9fae234e95e8d7bdcdf1>` (:ref:`BreakpointContext <group___cmp_app_b_p_itf___breakpointcontext_1ga70333501b2874834e9c68fca22a09c20>` * pBPContext)
+
+- :ref:`Breakpoint <group___cmp_app_b_p_itf___breakpointcontext_1ga4f21dd07bf35c4e74f810dc1e1c9ab1b>` * :ref:`AppBPGetFirst <group___cmp_app_b_p_itf_1ga31dab43f80db08b619cc2b04249518ef>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- :ref:`Breakpoint <group___cmp_app_b_p_itf___breakpointcontext_1ga4f21dd07bf35c4e74f810dc1e1c9ab1b>` * :ref:`AppBPGetNext <group___cmp_app_b_p_itf_1ga05a447ac5ee8e6482aeced2dbb058761>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`Breakpoint <group___cmp_app_b_p_itf___breakpointcontext_1ga4f21dd07bf35c4e74f810dc1e1c9ab1b>` * pPrevBreakpoint, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppBPDeleteAll <group___cmp_app_b_p_itf_1gac10f981959313826a493d6443ab88fa4>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulSessionId)
+
+- RTS_RESULT :ref:`AppBPDeleteAllWithExecutionpoints <group___cmp_app_b_p_itf_1ga0ec5e0cc95b436933012dcc15ca3c9bc>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulSessionId)
+
+- RTS_RESULT :ref:`AppBPLeave <group___cmp_app_b_p_itf_1ga9bf950f11374b74593bbe5a19501cbd5>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppBPStep <group___cmp_app_b_p_itf_1ga6a946d4501dc1c6cd8be704b565ca27f>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppBPGetHitCount <group___cmp_app_b_p_itf_1ga515a682e0e3efb371daac5526eb13f51>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int * piHitCount)
+
+- RTS_RESULT :ref:`AppBPUpdate <group___cmp_app_b_p_itf_1gab7173ae79c940049c9c32423b5a47448>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_SIZE ulTypeIn)
+
+- RTS_RESULT :ref:`AppBPGetFirstCallstackEntry <group___cmp_app_b_p_itf_1ga3d830adf0b9e04c9772e7b5776d65fc1>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>` * pContext, :ref:`CallstackEntry <group___cmp_app_b_p_itf_1gac5c1fd273011cee138d7581a983305c7>` * pCallstackEntry)
+
+- RTS_RESULT :ref:`AppBPGetFirstCallstackEntry2 <group___cmp_app_b_p_itf_1ga1a7cd52a7364865bf3cc3887d3ec5ca6>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_HANDLE hIecTask, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>` * pContext, :ref:`CallstackEntry <group___cmp_app_b_p_itf_1gac5c1fd273011cee138d7581a983305c7>` * pCallstackEntry)
+
+- RTS_RESULT :ref:`AppBPGetNextCallstackEntry <group___cmp_app_b_p_itf_1gacfb1706256de396263af5acc11fc6536>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>` * pContext, :ref:`CallstackEntry <group___cmp_app_b_p_itf_1gac5c1fd273011cee138d7581a983305c7>` * pCallstackEntry)
+
+- RTS_RESULT :ref:`AppBPGetNextCallstackEntry2 <group___cmp_app_b_p_itf_1ga39c91fb9e55e9c85c241933360127ea2>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bIecCode, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>` * pContext, :ref:`CallstackEntry <group___cmp_app_b_p_itf_1gac5c1fd273011cee138d7581a983305c7>` * pCallstackEntry)
+
+- RTS_UI8 :ref:`AppBPGetCallStack <group___cmp_app_b_p_itf_1ga974fc162993b606d18a6578699c7b976>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_HANDLE hIecTask, :ref:`CallstackEntry <group___cmp_app_b_p_itf_1gac5c1fd273011cee138d7581a983305c7>` * pCallstackentries, RTS_UI8 byMaxEntries)
+
+- RTS_RESULT :ref:`AppBPServiceHandler2 <group___cmp_app_b_p_itf_1gacd7603f9c27be9787861ee67dd8ac034>` (RTS_UI32 ulChannelId, :ref:`HEADER_TAG <struct_h_e_a_d_e_r___t_a_g>` * pHeaderTag, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>` * pduSendBuffer)
+
+- RTS_RESULT :ref:`AppBPSet <group___cmp_app_b_p_itf_1ga3d1db256d194ff02f92517185968b118>` (:ref:`BreakpointDesc <group___cmp_app_b_p_itf___breakpointdescription_1gaf4fefc2caa0bfc32073d57d8dd84bf9b>` * pBpDesc, RTS_BOOL bPatchCode, :ref:`Breakpoint <group___cmp_app_b_p_itf___breakpointcontext_1ga4f21dd07bf35c4e74f810dc1e1c9ab1b>` ** ppbpOut)
+
+- RTS_RESULT :ref:`AppBPDelete <group___cmp_app_b_p_itf_1ga7edf589d6bf3beaa815adfd7ef8e3942>` (:ref:`Breakpoint <group___cmp_app_b_p_itf___breakpointcontext_1ga4f21dd07bf35c4e74f810dc1e1c9ab1b>` * pbp)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpAppBPItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

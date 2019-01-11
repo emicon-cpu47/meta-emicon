@@ -1,0 +1,89 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___rts_power_fail:
+
+============
+RtsPowerFail
+============
+
+ :ref:`More... <group___rts_power_fail-details>`
+
+Modules
+-------
+
+- :ref:`Static defines <group___rts_power_fail___staticdefines>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`InitPowerFail <group___rts_power_fail_1gadd9c2860c950eb3e55c5201de38aad31>` (void)
+
+- RTS_RESULT :ref:`ExitPowerFail <group___rts_power_fail_1ga69af677b1681d62a0c2084882f087c9e>` (void)
+
+- RTS_RESULT :ref:`CBHandlePowerFail <group___rts_power_fail_1gad428db51f6f146dff91ec3a27f25370e>` (RTS_UI32 shutdownOption)
+
+.. _group___rts_power_fail-details:
+
+Detailed Description
+--------------------
+
+
+
+Example to handle power fail conditions.
+
+USAGE:
+
+- InitPowerFail() must be called out of CH_INIT3 hook
+
+- ExitPowerFail() must be called out of CH_EXIT3 hook
+
+- :ref:`CBHandlePowerFail() <group___rts_power_fail_1gad428db51f6f146dff91ec3a27f25370e>` is the callback function to handle power fail condition
+
+**Copyright:**
+
+\(c) 2003-2016 3S-Smart Software Solutions
+
+Function Documentation
+----------------------
+
+.. _group___rts_power_fail_1gadd9c2860c950eb3e55c5201de38aad31:
+
+static RTS_RESULT InitPowerFail (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to register the callback function :ref:`CBHandlePowerFail() <group___rts_power_fail_1gad428db51f6f146dff91ec3a27f25370e>` at the power fail handler. USAGE:
+
+- Must be called in CH_INIT3 out of component HookFunction()!
+
+**Returns:**
+
+error code
+
+.. _group___rts_power_fail_1ga69af677b1681d62a0c2084882f087c9e:
+
+static RTS_RESULT ExitPowerFail (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_power_fail_1gad428db51f6f146dff91ec3a27f25370e:
+
+RTS_RESULT CBHandlePowerFail (RTS_UI32 shutdownOption)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Callback function to handle power fail signal
+
+**Parameters**
+
++---------+----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | shutdownOption | Shutdown option. Depends on the hold time of the power supply SHUTDOWN_FAST: This should be used, if the power supply only holds less time. SHUTDOWN_STANDARD: This should be used, if the power supply holds enough time to stop application and save retains. SHUTDOWN_FULL: This should be used, if the power enough supply holds enough time to fully shutdown the runtime. |
++---------+----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

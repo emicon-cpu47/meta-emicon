@@ -1,0 +1,111 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_task_itf___settings:
+
+========
+Settings
+========
+
+ :ref:`More... <group___sys_task_itf___settings-details>`
+
+Macros
+------
+
+- #define :ref:`SYSTASKKEY_INT_WIN32_DEBUG_DISABLE_EXCEPTIONHANDLER <group___sys_task_itf___settings_1ga54df903725c826995193effef2153a7a>` "Win32.DebuggingOnlyDisableExceptionHandler"
+
+- #define :ref:`SYSTASKKEY_INT_WIN32_DEBUG_DISABLE_EXCEPTIONHANDLER_DEFAULT <group___sys_task_itf___settings_1ga161d48a28463073155e4e89cf9ed5950>` 0
+
+- #define :ref:`SYSTASKKEY_INT_TASK_STACKSIZE <group___sys_task_itf___settings_1gaf3f4e9b276bf8dc6a13d0027f505911c>` "StackSize"
+
+- #define :ref:`SYSTASKVALUE_INT_TASK_STACKSIZE_DEFAULT <group___sys_task_itf___settings_1gac04ba49cdc3616978984f3c712eae00c>` 0
+
+- #define :ref:`SYSTASKKEY_INT_QNX_CLOCKPERIOD <group___sys_task_itf___settings_1ga9de461b46c688bb97a9099cc7ca2c028>` "QNX.ClockPeriod"
+
+- #define :ref:`SYSTASKVALUE_INT_QNX_CLOCKPERIOD_DEFAULT <group___sys_task_itf___settings_1gab881e98c3a30804d8f671b3103bb5160>` 0
+
+- #define :ref:`PFTASKEXCEPTIONHANDLER <group___sys_task_itf___settings_1ga292ffd009d5a17d2499c8a6e2b14669b>` :ref:`PFSYS_TASK_EXCEPTIONHANDLER <group___sys_task_itf___settings_1ga31aa6ad834f16cedb1c03889f5e7340a>`
+
+Typedefs
+--------
+
+- typedef RTS_RESULT(* :ref:`PFSYS_TASK_EXCEPTIONHANDLER <group___sys_task_itf___settings_1ga31aa6ad834f16cedb1c03889f5e7340a>`)(RTS_HANDLE hTask, RTS_UI32 ulException, RegContext Context)
+
+Functions
+---------
+
+- RTS_RESULT :ref:`TaskExceptionHandler <group___sys_task_itf___settings_1ga93074b9493638418e35baf05a4fcf2f2>` (RTS_HANDLE hTask, RTS_UI32 ulException, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>`  Context)
+
+.. _group___sys_task_itf___settings-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_task_itf___settings_1ga54df903725c826995193effef2153a7a:
+
+#define SYSTASKKEY_INT_WIN32_DEBUG_DISABLE_EXCEPTIONHANDLER "Win32.DebuggingOnlyDisableExceptionHandler"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ATTENTION!!! Only intended for very special debug purposes! Use this setting only, if this was requested by the 3S team! Use this setting only in non-productive test environments! When this is set, all task exceptions are unhandeled and the first exception will directly crash the runtime system!!!
+
+.. _group___sys_task_itf___settings_1ga161d48a28463073155e4e89cf9ed5950:
+
+#define SYSTASKKEY_INT_WIN32_DEBUG_DISABLE_EXCEPTIONHANDLER_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_task_itf___settings_1gaf3f4e9b276bf8dc6a13d0027f505911c:
+
+#define SYSTASKKEY_INT_TASK_STACKSIZE "StackSize"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to specify the OS specifiy task stacksize. For smaller embedded systems with tasks, this setting is necessary. NOTE: Actually this setting is only supported by Linux platforms!
+
+.. _group___sys_task_itf___settings_1gac04ba49cdc3616978984f3c712eae00c:
+
+#define SYSTASKVALUE_INT_TASK_STACKSIZE_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_task_itf___settings_1ga9de461b46c688bb97a9099cc7ca2c028:
+
+#define SYSTASKKEY_INT_QNX_CLOCKPERIOD "QNX.ClockPeriod"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default CODESYS doesn't change the clock period of the QNX system tick. To reduce the jitter of the tasks, or to support "distributed clocks", one might want to have a higher resolution of the timer. With this setting you can adjust the clock period at CODESYS startup. The period is defined in nanoseconds and is passed as is to the QNX neutrino function ClockPeriod().
+
+.. _group___sys_task_itf___settings_1gab881e98c3a30804d8f671b3103bb5160:
+
+#define SYSTASKVALUE_INT_QNX_CLOCKPERIOD_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_task_itf___settings_1ga292ffd009d5a17d2499c8a6e2b14669b:
+
+#define PFTASKEXCEPTIONHANDLER :ref:`PFSYS_TASK_EXCEPTIONHANDLER <group___sys_task_itf___settings_1ga31aa6ad834f16cedb1c03889f5e7340a>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_task_itf___settings_1ga31aa6ad834f16cedb1c03889f5e7340a:
+
+typedef RTS_RESULT( * PFSYS_TASK_EXCEPTIONHANDLER)(RTS_HANDLE hTask, RTS_UI32 ulException, RegContext Context)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_task_itf___settings_1ga93074b9493638418e35baf05a4fcf2f2:
+
+RTS_RESULT TaskExceptionHandler (RTS_HANDLE hTask, RTS_UI32 ulException, RegContext Context)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

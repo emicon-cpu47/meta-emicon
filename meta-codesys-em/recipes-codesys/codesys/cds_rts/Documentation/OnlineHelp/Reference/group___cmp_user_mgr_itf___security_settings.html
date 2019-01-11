@@ -1,0 +1,252 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SecuritySettings &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SecuritySettings</a><ul>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#enumerations">Enumerations</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-cmpusermgr-security-login">#define CMPUSERMGR_SECURITY_LOGIN</a></li>
+<li><a class="reference internal" href="#define-cmpusermgr-security-id-login-0">#define CMPUSERMGR_SECURITY_ID_LOGIN 0</a></li>
+<li><a class="reference internal" href="#define-cmpusermgr-security-maxretries-cmpsecman-flags-intsetting-cmpsecman-flags-editablesetting-usermgrloginerr-maxretries-maximal-number-of-failed-login-retries-usermgr-num-of-login-retries">#define CMPUSERMGR_SECURITY_MAXRETRIES { <code class="docutils literal"><span class="pre">CMPSECMAN_FLAGS_INTSETTING</span></code> | <code class="docutils literal"><span class="pre">CMPSECMAN_FLAGS_EDITABLESETTING</span></code> , &#8220;UserMgrLoginErr_MaxRetries&#8221;, &#8220;Maximal number of failed login retries&#8221;, { USERMGR_NUM_OF_LOGIN_RETRIES } }</a></li>
+<li><a class="reference internal" href="#define-cmpusermgr-security-id-maxretries-1">#define CMPUSERMGR_SECURITY_ID_MAXRETRIES 1</a></li>
+<li><a class="reference internal" href="#define-cmpusermgr-security-timeout-cmpsecman-flags-intsetting-cmpsecman-flags-editablesetting-usermgrloginerr-timeout-exclusion-timeout-s-usermgr-timeout-of-login-retries">#define CMPUSERMGR_SECURITY_TIMEOUT { <code class="docutils literal"><span class="pre">CMPSECMAN_FLAGS_INTSETTING</span></code> | <code class="docutils literal"><span class="pre">CMPSECMAN_FLAGS_EDITABLESETTING</span></code> , &#8220;UserMgrLoginErr_Timeout&#8221;, &#8220;Exclusion timeout [s]&#8221;, { USERMGR_TIMEOUT_OF_LOGIN_RETRIES } }</a></li>
+<li><a class="reference internal" href="#define-cmpusermgr-security-id-timeout-2">#define CMPUSERMGR_SECURITY_ID_TIMEOUT 2</a></li>
+<li><a class="reference internal" href="#define-cmpusermgr-security-enforce">#define CMPUSERMGR_SECURITY_ENFORCE</a></li>
+<li><a class="reference internal" href="#define-cmpusermgr-security-id-enforce-3">#define CMPUSERMGR_SECURITY_ID_ENFORCE 3</a></li>
+<li><a class="reference internal" href="#define-usermgr-us-none-uint32-c-0x00000000">#define USERMGR_US_NONE UINT32_C(0x00000000)</a></li>
+<li><a class="reference internal" href="#define-usermgr-us-loggedin-uint32-c-0x00000001">#define USERMGR_US_LOGGEDIN UINT32_C(0x00000001)</a></li>
+<li><a class="reference internal" href="#define-usermgr-us-authenticated-uint32-c-0x00000002">#define USERMGR_US_AUTHENTICATED UINT32_C(0x00000002)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#enumeration-type-documentation">Enumeration Type Documentation</a><ul>
+<li><a class="reference internal" href="#enum-securityusermgrloginerr">enum SecurityUserMgrLoginErr</a></li>
+<li><a class="reference internal" href="#enum-securityusermgrenforce">enum SecurityUserMgrEnforce</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_user_mgr_itf___security_settings.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="securitysettings">
+<span id="group-cmp-user-mgr-itf-security-settings"></span><h1>SecuritySettings<a class="headerlink" href="#securitysettings" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-1gae0da9b49d2d5cb29a1048dcbfb79b35d"><span class="std std-ref">CMPUSERMGR_SECURITY_LOGIN</span></a> { </li>
+</ul>
+<p>{(RTS_I32) <span class="xref std std-ref">UserMgrLoginErr_Exclusion</span> , <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga936df906a0b2f9bd74bd686c30d03a4f"><span class="std std-ref">CMPSECMAN_FLAGS_NONE</span></a> , &#8220;UserMgrLoginErr_Exclusion&#8221;, &#8220;User is excluded permanently [HIGHEST SECURITY LEVEL]&#8221;},{(RTS_I32) <span class="xref std std-ref">UserMgrLoginErr_Timeout</span> , <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1gaa5df6ddff07339e160fc0ae78770850c"><span class="std std-ref">CMPSECMAN_FLAGS_DEFAULT</span></a> , &#8220;UserMgrLoginErr_Timeout&#8221;, &#8220;User is excluded temporarily [DEFAULT]&#8221;},{(RTS_I32) <span class="xref std std-ref">UserMgrLoginErr_NoExclusion</span> , <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga936df906a0b2f9bd74bd686c30d03a4f"><span class="std std-ref">CMPSECMAN_FLAGS_NONE</span></a> , &#8220;UserMgrLoginErr_NoExclusion&#8221;, &#8220;No user exclusion&#8221;},}</p>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-1ga237ad1516a5ef631b0aa4cda092b74a5"><span class="std std-ref">CMPUSERMGR_SECURITY_ID_LOGIN</span></a> 0</li>
+<li>#define <a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-1ga1249f270e869d7aba93dfb7fdc9fd2ab"><span class="std std-ref">CMPUSERMGR_SECURITY_MAXRETRIES</span></a> { <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga4ce4770ea24bcfce902ad4f5d91b84ae"><span class="std std-ref">CMPSECMAN_FLAGS_INTSETTING</span></a> | <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga3c5f8affc49b9e0bb308e4eb3eb0f773"><span class="std std-ref">CMPSECMAN_FLAGS_EDITABLESETTING</span></a> , &#8220;UserMgrLoginErr_MaxRetries&#8221;, &#8220;Maximal number of failed login retries&#8221;, { USERMGR_NUM_OF_LOGIN_RETRIES } }</li>
+<li>#define <a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-1ga83a1dd68e486ece829979c4cb963b973"><span class="std std-ref">CMPUSERMGR_SECURITY_ID_MAXRETRIES</span></a> 1</li>
+<li>#define <a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-1ga56f0a6bf1cf44310d74c550c84568009"><span class="std std-ref">CMPUSERMGR_SECURITY_TIMEOUT</span></a> { <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga4ce4770ea24bcfce902ad4f5d91b84ae"><span class="std std-ref">CMPSECMAN_FLAGS_INTSETTING</span></a> | <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga3c5f8affc49b9e0bb308e4eb3eb0f773"><span class="std std-ref">CMPSECMAN_FLAGS_EDITABLESETTING</span></a> , &#8220;UserMgrLoginErr_Timeout&#8221;, &#8220;Exclusion timeout [s]&#8221;, { USERMGR_TIMEOUT_OF_LOGIN_RETRIES } }</li>
+<li>#define <a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-1ga0ac539e02e6fdfe1aa6d7f8b1f4364f1"><span class="std std-ref">CMPUSERMGR_SECURITY_ID_TIMEOUT</span></a> 2</li>
+<li>#define <a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-1gac9fdc883a6e32d4dd108d5c2155c3c13"><span class="std std-ref">CMPUSERMGR_SECURITY_ENFORCE</span></a> { </li>
+</ul>
+<p>{(RTS_I32) <span class="xref std std-ref">UserMgrEnforced</span> , <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga936df906a0b2f9bd74bd686c30d03a4f"><span class="std std-ref">CMPSECMAN_FLAGS_NONE</span></a> , &#8220;UserMgrEnforced&#8221;, &#8220;User management is enforced, i.e. no anonymous login possible [HIGHEST SECURITY LEVEL]&#8221;},{(RTS_I32) <span class="xref std std-ref">UserMgrOptional</span> , <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1gaa5df6ddff07339e160fc0ae78770850c"><span class="std std-ref">CMPSECMAN_FLAGS_DEFAULT</span></a> , &#8220;UserMgrOptional&#8221;, &#8220;User management is optional [DEFAULT]&#8221;}}</p>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-1gaf85f1b50f8047f3f05adbf1b32a4ba71"><span class="std std-ref">CMPUSERMGR_SECURITY_ID_ENFORCE</span></a> 3</li>
+<li>#define <a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-1ga92a48212f70ee2f6f18c11af3af1f5b8"><span class="std std-ref">USERMGR_US_NONE</span></a> UINT32_C(0x00000000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-1ga40c3435153136d0e473e09cf045f4e0f"><span class="std std-ref">USERMGR_US_LOGGEDIN</span></a> UINT32_C(0x00000001)</li>
+<li>#define <a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-1ga1b624ff1e8e0b2d2e74702b7e04e3290"><span class="std std-ref">USERMGR_US_AUTHENTICATED</span></a> UINT32_C(0x00000002)</li>
+</ul>
+</div>
+<div class="section" id="enumerations">
+<h2>Enumerations<a class="headerlink" href="#enumerations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>enum <a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-1ga27f322cdd3442b0f0683706e865e0ef9"><span class="std std-ref">SecurityUserMgrLoginErr</span></a> { <span class="xref std std-ref">UserMgrLoginErr_NoExclusion</span>, <span class="xref std std-ref">UserMgrLoginErr_Timeout</span>, <span class="xref std std-ref">UserMgrLoginErr_Exclusion</span> }</li>
+<li>enum <a class="reference internal" href="#group-cmp-user-mgr-itf-security-settings-1ga90d5d613a1676cb53d1f969a4913c99a"><span class="std std-ref">SecurityUserMgrEnforce</span></a> { <span class="xref std std-ref">UserMgrOptional</span>, <span class="xref std std-ref">UserMgrEnforced</span> }</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-user-mgr-itf-security-settings-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-cmpusermgr-security-login">
+<span id="group-cmp-user-mgr-itf-security-settings-1gae0da9b49d2d5cb29a1048dcbfb79b35d"></span><h3>#define CMPUSERMGR_SECURITY_LOGIN<a class="headerlink" href="#define-cmpusermgr-security-login" title="Permalink to this headline">¶</a></h3>
+<p><strong>Value:</strong></p>
+<pre class="literal-block">
+{ \
+{(RTS_I32) <span class="xref std std-ref">UserMgrLoginErr_Exclusion</span> , <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga936df906a0b2f9bd74bd686c30d03a4f"><span class="std std-ref">CMPSECMAN_FLAGS_NONE</span></a> , &quot;UserMgrLoginErr_Exclusion&quot;, &quot;User is excluded permanently [HIGHEST SECURITY LEVEL]&quot;},\
+{(RTS_I32) <span class="xref std std-ref">UserMgrLoginErr_Timeout</span> , <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1gaa5df6ddff07339e160fc0ae78770850c"><span class="std std-ref">CMPSECMAN_FLAGS_DEFAULT</span></a> , &quot;UserMgrLoginErr_Timeout&quot;, &quot;User is excluded temporarily [DEFAULT]&quot;},\
+{(RTS_I32) <span class="xref std std-ref">UserMgrLoginErr_NoExclusion</span> , <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga936df906a0b2f9bd74bd686c30d03a4f"><span class="std std-ref">CMPSECMAN_FLAGS_NONE</span></a> , &quot;UserMgrLoginErr_NoExclusion&quot;, &quot;No user exclusion&quot;},\
+}
+</pre>
+<p>Security settings of the behavior when login authentication fails. Can be selected in CmpSecurityManager. NOTE: Security modes must be ordered in an descending sorting, i.e. the setting with the highest security level is found at the beginning of the list!</p>
+</div>
+<div class="section" id="define-cmpusermgr-security-id-login-0">
+<span id="group-cmp-user-mgr-itf-security-settings-1ga237ad1516a5ef631b0aa4cda092b74a5"></span><h3>#define CMPUSERMGR_SECURITY_ID_LOGIN 0<a class="headerlink" href="#define-cmpusermgr-security-id-login-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-cmpusermgr-security-maxretries-cmpsecman-flags-intsetting-cmpsecman-flags-editablesetting-usermgrloginerr-maxretries-maximal-number-of-failed-login-retries-usermgr-num-of-login-retries">
+<span id="group-cmp-user-mgr-itf-security-settings-1ga1249f270e869d7aba93dfb7fdc9fd2ab"></span><h3>#define CMPUSERMGR_SECURITY_MAXRETRIES { <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga4ce4770ea24bcfce902ad4f5d91b84ae"><span class="std std-ref">CMPSECMAN_FLAGS_INTSETTING</span></a> | <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga3c5f8affc49b9e0bb308e4eb3eb0f773"><span class="std std-ref">CMPSECMAN_FLAGS_EDITABLESETTING</span></a> , &#8220;UserMgrLoginErr_MaxRetries&#8221;, &#8220;Maximal number of failed login retries&#8221;, { USERMGR_NUM_OF_LOGIN_RETRIES } }<a class="headerlink" href="#define-cmpusermgr-security-maxretries-cmpsecman-flags-intsetting-cmpsecman-flags-editablesetting-usermgrloginerr-maxretries-maximal-number-of-failed-login-retries-usermgr-num-of-login-retries" title="Permalink to this headline">¶</a></h3>
+<p>Editable security setting: Maximal number of failed login retries</p>
+</div>
+<div class="section" id="define-cmpusermgr-security-id-maxretries-1">
+<span id="group-cmp-user-mgr-itf-security-settings-1ga83a1dd68e486ece829979c4cb963b973"></span><h3>#define CMPUSERMGR_SECURITY_ID_MAXRETRIES 1<a class="headerlink" href="#define-cmpusermgr-security-id-maxretries-1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-cmpusermgr-security-timeout-cmpsecman-flags-intsetting-cmpsecman-flags-editablesetting-usermgrloginerr-timeout-exclusion-timeout-s-usermgr-timeout-of-login-retries">
+<span id="group-cmp-user-mgr-itf-security-settings-1ga56f0a6bf1cf44310d74c550c84568009"></span><h3>#define CMPUSERMGR_SECURITY_TIMEOUT { <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga4ce4770ea24bcfce902ad4f5d91b84ae"><span class="std std-ref">CMPSECMAN_FLAGS_INTSETTING</span></a> | <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga3c5f8affc49b9e0bb308e4eb3eb0f773"><span class="std std-ref">CMPSECMAN_FLAGS_EDITABLESETTING</span></a> , &#8220;UserMgrLoginErr_Timeout&#8221;, &#8220;Exclusion timeout [s]&#8221;, { USERMGR_TIMEOUT_OF_LOGIN_RETRIES } }<a class="headerlink" href="#define-cmpusermgr-security-timeout-cmpsecman-flags-intsetting-cmpsecman-flags-editablesetting-usermgrloginerr-timeout-exclusion-timeout-s-usermgr-timeout-of-login-retries" title="Permalink to this headline">¶</a></h3>
+<p>Editable security setting: Exclusion timeout in seconds in case the maximal number of failed login retries is reached</p>
+</div>
+<div class="section" id="define-cmpusermgr-security-id-timeout-2">
+<span id="group-cmp-user-mgr-itf-security-settings-1ga0ac539e02e6fdfe1aa6d7f8b1f4364f1"></span><h3>#define CMPUSERMGR_SECURITY_ID_TIMEOUT 2<a class="headerlink" href="#define-cmpusermgr-security-id-timeout-2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-cmpusermgr-security-enforce">
+<span id="group-cmp-user-mgr-itf-security-settings-1gac9fdc883a6e32d4dd108d5c2155c3c13"></span><h3>#define CMPUSERMGR_SECURITY_ENFORCE<a class="headerlink" href="#define-cmpusermgr-security-enforce" title="Permalink to this headline">¶</a></h3>
+<p><strong>Value:</strong></p>
+<pre class="literal-block">
+{ \
+{(RTS_I32) <span class="xref std std-ref">UserMgrEnforced</span> , <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1ga936df906a0b2f9bd74bd686c30d03a4f"><span class="std std-ref">CMPSECMAN_FLAGS_NONE</span></a> , &quot;UserMgrEnforced&quot;, &quot;User management is enforced, i.e. no anonymous login possible [HIGHEST SECURITY LEVEL]&quot;},\
+{(RTS_I32) <span class="xref std std-ref">UserMgrOptional</span> , <a class="reference internal" href="group___cmp_security_manager_itf___applicationflags.html#group-cmp-security-manager-itf-applicationflags-1gaa5df6ddff07339e160fc0ae78770850c"><span class="std std-ref">CMPSECMAN_FLAGS_DEFAULT</span></a> , &quot;UserMgrOptional&quot;, &quot;User management is optional [DEFAULT]&quot;}\
+}
+</pre>
+<p>Security settings to enforce the usage of the user management. NOTE: Security modes must be ordered in an descending sorting, i.e. the setting with the highest security level is found at the beginning of the list!</p>
+</div>
+<div class="section" id="define-cmpusermgr-security-id-enforce-3">
+<span id="group-cmp-user-mgr-itf-security-settings-1gaf85f1b50f8047f3f05adbf1b32a4ba71"></span><h3>#define CMPUSERMGR_SECURITY_ID_ENFORCE 3<a class="headerlink" href="#define-cmpusermgr-security-id-enforce-3" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-usermgr-us-none-uint32-c-0x00000000">
+<span id="group-cmp-user-mgr-itf-security-settings-1ga92a48212f70ee2f6f18c11af3af1f5b8"></span><h3>#define USERMGR_US_NONE UINT32_C(0x00000000)<a class="headerlink" href="#define-usermgr-us-none-uint32-c-0x00000000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-usermgr-us-loggedin-uint32-c-0x00000001">
+<span id="group-cmp-user-mgr-itf-security-settings-1ga40c3435153136d0e473e09cf045f4e0f"></span><h3>#define USERMGR_US_LOGGEDIN UINT32_C(0x00000001)<a class="headerlink" href="#define-usermgr-us-loggedin-uint32-c-0x00000001" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-usermgr-us-authenticated-uint32-c-0x00000002">
+<span id="group-cmp-user-mgr-itf-security-settings-1ga1b624ff1e8e0b2d2e74702b7e04e3290"></span><h3>#define USERMGR_US_AUTHENTICATED UINT32_C(0x00000002)<a class="headerlink" href="#define-usermgr-us-authenticated-uint32-c-0x00000002" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="enumeration-type-documentation">
+<h2>Enumeration Type Documentation<a class="headerlink" href="#enumeration-type-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="enum-securityusermgrloginerr">
+<span id="group-cmp-user-mgr-itf-security-settings-1ga27f322cdd3442b0f0683706e865e0ef9"></span><h3>enum SecurityUserMgrLoginErr<a class="headerlink" href="#enum-securityusermgrloginerr" title="Permalink to this headline">¶</a></h3>
+<p>Security settings of the behavior when login authentication fails.</p>
+<p><strong>Enumerator:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>UserMgrLoginErr_NoExclusion</td>
+</tr>
+<tr class="row-even"><td>UserMgrLoginErr_Timeout</td>
+</tr>
+<tr class="row-odd"><td>UserMgrLoginErr_Exclusion</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="enum-securityusermgrenforce">
+<span id="group-cmp-user-mgr-itf-security-settings-1ga90d5d613a1676cb53d1f969a4913c99a"></span><h3>enum SecurityUserMgrEnforce<a class="headerlink" href="#enum-securityusermgrenforce" title="Permalink to this headline">¶</a></h3>
+<p>Security settings to enforce the usage of the user management.</p>
+<p><strong>Enumerator:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>UserMgrOptional</td>
+</tr>
+<tr class="row-even"><td>UserMgrEnforced</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

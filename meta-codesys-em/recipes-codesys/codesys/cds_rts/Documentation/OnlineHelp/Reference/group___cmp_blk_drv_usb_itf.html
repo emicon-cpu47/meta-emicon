@@ -1,0 +1,452 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpBlkDrvUsbItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpCAAAsyncManItf" href="group___cmp_c_a_a_async_man_itf.html" />
+    <link rel="prev" title="CmpBlkDrvItf" href="group___cmp_blk_drv_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_c_a_a_async_man_itf.html" title="CmpCAAAsyncManItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_blk_drv_itf.html" title="CmpBlkDrvItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpBlkDrvUsbItf</a><ul>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#enumerations">Enumerations</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-max-usbblk-drv-2">#define MAX_USBBLK_DRV 2</a></li>
+<li><a class="reference internal" href="#define-max-usb-devices-2-maximum-number-of-devices-per-driver">#define MAX_USB_DEVICES 2 /<em>Maximum number of devices per driver.</em>/</a></li>
+<li><a class="reference internal" href="#define-max-port-name-32">#define MAX_PORT_NAME 32</a></li>
+<li><a class="reference internal" href="#define-cmpblkdrv-send-address-requests-interval-5000-ms">#define CMPBLKDRV_SEND_ADDRESS_REQUESTS_INTERVAL 5000 /* ms */</a></li>
+<li><a class="reference internal" href="#define-blkdrvusb-max-readsize-64-bulk-block-size">#define BLKDRVUSB_MAX_READSIZE 64 /<em>Bulk Block size</em>/</a></li>
+<li><a class="reference internal" href="#define-blkdrvusb-max-block-size-512">#define BLKDRVUSB_MAX_BLOCK_SIZE 512</a></li>
+<li><a class="reference internal" href="#define-blkdrvusb-max-rx-size-blkdrvusb-max-block-size-2">#define BLKDRVUSB_MAX_RX_SIZE ( <code class="docutils literal"><span class="pre">BLKDRVUSB_MAX_BLOCK_SIZE</span></code> + 2)</a></li>
+<li><a class="reference internal" href="#define-type-none-0x00">#define TYPE_NONE 0x00</a></li>
+<li><a class="reference internal" href="#define-type-auto-addr-0x01">#define TYPE_AUTO_ADDR 0x01</a></li>
+<li><a class="reference internal" href="#define-type-halfduplex-0x02">#define TYPE_HALFDUPLEX 0x02</a></li>
+<li><a class="reference internal" href="#define-usb-hdx-negotiation-min-waittime-500-hdx-init-wait-time">#define USB_HDX_NEGOTIATION_MIN_WAITTIME 500            /<em>HDX Init Wait time</em>/</a></li>
+<li><a class="reference internal" href="#define-usb-hdx-negotiation-timeout-500-hdx-address-request-answer-wait-time">#define USB_HDX_NEGOTIATION_TIMEOUT 500         /<em>HDX Address Request/Answer Wait time</em>/</a></li>
+<li><a class="reference internal" href="#define-usb-hdx-master-token-timeout-1-100-hdx-receive-master-tocken-wait-time-1-try">#define USB_HDX_MASTER_TOKEN_TIMEOUT_1 100              /<em>HDX Receive Master Tocken Wait time (1. try)</em>/</a></li>
+<li><a class="reference internal" href="#define-usb-hdx-master-token-timeout-2-1000-hdx-receive-master-tocken-wait-time-last-try">#define USB_HDX_MASTER_TOKEN_TIMEOUT_2 1000     /*HDX Receive Master Tocken Wait time (last try) */</a></li>
+<li><a class="reference internal" href="#define-usb-hdx-slave-token-timeout-2000-hdx-receive-slave-tocken-wait-time-1-try">#define USB_HDX_SLAVE_TOKEN_TIMEOUT 2000        /<em>HDX Receive Slave Tocken Wait time (1. try)</em>/</a></li>
+<li><a class="reference internal" href="#define-usb-hdx-master-token-delay-time-40">#define USB_HDX_MASTER_TOKEN_DELAY_TIME 40</a></li>
+<li><a class="reference internal" href="#define-usb-hdx-direction-change-waittime-3">#define USB_HDX_DIRECTION_CHANGE_WAITTIME 3</a></li>
+<li><a class="reference internal" href="#define-hdx-protocol-version-0x01">#define HDX_PROTOCOL_VERSION 0x01</a></li>
+<li><a class="reference internal" href="#define-hdx-init-request-0x01">#define HDX_INIT_REQUEST 0x01</a></li>
+<li><a class="reference internal" href="#define-hdx-init-answer-0x81">#define HDX_INIT_ANSWER 0x81</a></li>
+<li><a class="reference internal" href="#define-hdx-addr-request-0x02">#define HDX_ADDR_REQUEST 0x02</a></li>
+<li><a class="reference internal" href="#define-hdx-addr-answer-0x82">#define HDX_ADDR_ANSWER 0x82</a></li>
+<li><a class="reference internal" href="#define-hdx-master-token-0x03">#define HDX_MASTER_TOKEN 0x03</a></li>
+<li><a class="reference internal" href="#define-hdx-slave-token-0x83">#define HDX_SLAVE_TOKEN 0x83</a></li>
+<li><a class="reference internal" href="#define-hdx-role-none-0x00">#define HDX_ROLE_NONE 0x00</a></li>
+<li><a class="reference internal" href="#define-hdx-role-master-0x01">#define HDX_ROLE_MASTER 0x01</a></li>
+<li><a class="reference internal" href="#define-hdx-role-slave-0x02">#define HDX_ROLE_SLAVE 0x02</a></li>
+<li><a class="reference internal" href="#define-itf-cmpblkdrvusb">#define ITF_CmpBlkDrvUsb</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpblkdrvusb">#define EXTITF_CmpBlkDrvUsb</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-tagsendbuffer-sendbuffer">typedef struct tagSendBuffer SENDBUFFER</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagreceivebuffer-recbuffer">typedef struct tagReceiveBuffer RECBUFFER</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagusbmpd-miniportdrvusb">typedef struct tagUsbMpd MINIPORTDRVUSB</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagusbmpd2-miniportdrvusb2">typedef struct tagUsbMpd2 MINIPORTDRVUSB2</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagusbdevice-usbdevice">typedef struct tagUSBDEVICE USBDEVICE</a></li>
+<li><a class="reference internal" href="#typedef-icmpblkdrvusb-c-icmpblkdrvusb">typedef ICmpBlkDrvUsb_C ICmpBlkDrvUsb</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#enumeration-type-documentation">Enumeration Type Documentation</a><ul>
+<li><a class="reference internal" href="#enum-usbdev-operation">enum USBDEV_OPERATION</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-result-blkdrvusbregisterdriver-miniportdrvusb-pinterface">RTS_RESULT BlkDrvUsbRegisterDriver (MINIPORTDRVUSB *pInterface)</a></li>
+<li><a class="reference internal" href="#rts-result-blkdrvusbregisterdriver2-miniportdrvusb2-pinterface">RTS_RESULT BlkDrvUsbRegisterDriver2 (MINIPORTDRVUSB2 *pInterface)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_blk_drv_itf.html"
+                        title="previous chapter">CmpBlkDrvItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_c_a_a_async_man_itf.html"
+                        title="next chapter">CmpCAAAsyncManItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_blk_drv_usb_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpblkdrvusbitf">
+<span id="group-cmp-blk-drv-usb-itf"></span><h1>CmpBlkDrvUsbItf<a class="headerlink" href="#cmpblkdrvusbitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CmpBlkDrvUsb. <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="structtag_send_buffer.html#structtag-send-buffer"><span class="std std-ref">tagSendBuffer</span></a></li>
+<li>struct <a class="reference internal" href="structtag_receive_buffer.html#structtag-receive-buffer"><span class="std std-ref">tagReceiveBuffer</span></a></li>
+<li>struct <a class="reference internal" href="structtag_usb_mpd.html#structtag-usb-mpd"><span class="std std-ref">tagUsbMpd</span></a></li>
+<li>struct <a class="reference internal" href="structtag_usb_mpd2.html#structtag-usb-mpd2"><span class="std std-ref">tagUsbMpd2</span></a></li>
+<li>struct <a class="reference internal" href="structtag_u_s_b_d_e_v_i_c_e.html#structtag-u-s-b-d-e-v-i-c-e"><span class="std std-ref">tagUSBDEVICE</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_cmp_blk_drv_usb___c.html#struct-i-cmp-blk-drv-usb-c"><span class="std std-ref">ICmpBlkDrvUsb_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga071e140d7b5a1f960ae4d02bf3ffb15e"><span class="std std-ref">MAX_USBBLK_DRV</span></a> 2</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga062bf64e497f39bd2e98dc55219b7522"><span class="std std-ref">MAX_USB_DEVICES</span></a> 2 /<em>Maximum number of devices per driver.</em>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga2fc09145a9331aa5a894d1f7893cfb66"><span class="std std-ref">MAX_PORT_NAME</span></a> 32</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga2442cb1bb9a7c01e8521cdb6110cadea"><span class="std std-ref">CMPBLKDRV_SEND_ADDRESS_REQUESTS_INTERVAL</span></a> 5000 /* ms <a href="#id1"><span class="problematic" id="id2">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga9c1e7f9e6d8a35ffa97e9255551aad4f"><span class="std std-ref">BLKDRVUSB_MAX_READSIZE</span></a> 64 /<em>Bulk Block size</em>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga6e63a465dd4e7f7f9deca13bf4cc4bfb"><span class="std std-ref">BLKDRVUSB_MAX_BLOCK_SIZE</span></a> 512</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1gafacd61218565077f699a25d0aa6bd549"><span class="std std-ref">BLKDRVUSB_MAX_RX_SIZE</span></a> ( <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga6e63a465dd4e7f7f9deca13bf4cc4bfb"><span class="std std-ref">BLKDRVUSB_MAX_BLOCK_SIZE</span></a> + 2)</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1gaa47d3c2fa05e95455d76cf052f9cca68"><span class="std std-ref">TYPE_NONE</span></a> 0x00</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga58548861ea35c4a57d5d942a2f5a8573"><span class="std std-ref">TYPE_AUTO_ADDR</span></a> 0x01</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1gae3e3769e03fb8f3714bc21fe54edc3bd"><span class="std std-ref">TYPE_HALFDUPLEX</span></a> 0x02</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga081e9ca5f9238e1c7840a0dc4fa1520b"><span class="std std-ref">USB_HDX_NEGOTIATION_MIN_WAITTIME</span></a> 500         /<em>HDX Init Wait time</em>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga327b1999dce6fea248c00ab7e869b87f"><span class="std std-ref">USB_HDX_NEGOTIATION_TIMEOUT</span></a> 500              /<em>HDX Address Request/Answer Wait time</em>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga53a1e441fdc9e076cb24177336b4cec5"><span class="std std-ref">USB_HDX_MASTER_TOKEN_TIMEOUT_1</span></a> 100           /<em>HDX Receive Master Tocken Wait time (1. try)</em>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga94a9e2745f44d50944c33d4be5fd3613"><span class="std std-ref">USB_HDX_MASTER_TOKEN_TIMEOUT_2</span></a> 1000  /<a href="#id3"><span class="problematic" id="id4">*</span></a>HDX Receive Master Tocken Wait time (last try) <a href="#id5"><span class="problematic" id="id6">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga52d363e79e1bc95eb7140c36a1bc02f2"><span class="std std-ref">USB_HDX_SLAVE_TOKEN_TIMEOUT</span></a> 2000     /<em>HDX Receive Slave Tocken Wait time (1. try)</em>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga1f07e7e2e7fdb9ae9a4ad89a82e7e192"><span class="std std-ref">USB_HDX_MASTER_TOKEN_DELAY_TIME</span></a> 40</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga54b5409a591c03cb6eeb544548550262"><span class="std std-ref">USB_HDX_DIRECTION_CHANGE_WAITTIME</span></a> 3</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga0884919a3d21268b4c535c4f86d7f89a"><span class="std std-ref">HDX_PROTOCOL_VERSION</span></a> 0x01</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1gacce929e226f07b6cf5d36c683d38719b"><span class="std std-ref">HDX_INIT_REQUEST</span></a> 0x01</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga711a47b46cc787aac8068545b3daa63d"><span class="std std-ref">HDX_INIT_ANSWER</span></a> 0x81</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga4006dcf593c9a23af1dd8242dcd0efd8"><span class="std std-ref">HDX_ADDR_REQUEST</span></a> 0x02</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga4666533170acb20d1785db46dff7d920"><span class="std std-ref">HDX_ADDR_ANSWER</span></a> 0x82</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga8e00904d166f72cc3246760a023ad1f7"><span class="std std-ref">HDX_MASTER_TOKEN</span></a> 0x03</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga57d942892772d12fcef570618517ba8d"><span class="std std-ref">HDX_SLAVE_TOKEN</span></a> 0x83</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga0e30a5b3b5d937ec19603cbf06036e4e"><span class="std std-ref">HDX_ROLE_NONE</span></a> 0x00</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga4f4b666b9411f9a71f8e7efc7faba77e"><span class="std std-ref">HDX_ROLE_MASTER</span></a> 0x01</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1gafe6b3bd53e7f57e30937f0e94fa8cf56"><span class="std std-ref">HDX_ROLE_SLAVE</span></a> 0x02</li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1gab8f00a1675c86e1da34257b88ffc50f3"><span class="std std-ref">ITF_CmpBlkDrvUsb</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga732d94e6d79dd97ee746ccdab495ef49"><span class="std std-ref">EXTITF_CmpBlkDrvUsb</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="structtag_send_buffer.html#structtag-send-buffer"><span class="std std-ref">tagSendBuffer</span></a> <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga80d3367dfd8b61b0d329f7b917a112b4"><span class="std std-ref">SENDBUFFER</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_receive_buffer.html#structtag-receive-buffer"><span class="std std-ref">tagReceiveBuffer</span></a> <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga372d4c9e4d608e65eac038aedc7f4b75"><span class="std std-ref">RECBUFFER</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_usb_mpd.html#structtag-usb-mpd"><span class="std std-ref">tagUsbMpd</span></a> <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga6d3c0b33ab1e0f0ae9f8f7db6d69a400"><span class="std std-ref">MINIPORTDRVUSB</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_usb_mpd2.html#structtag-usb-mpd2"><span class="std std-ref">tagUsbMpd2</span></a> <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga1808efd31df8b207c50cf16371d60fcf"><span class="std std-ref">MINIPORTDRVUSB2</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_u_s_b_d_e_v_i_c_e.html#structtag-u-s-b-d-e-v-i-c-e"><span class="std std-ref">tagUSBDEVICE</span></a> <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga99db51b3ece563598c9415bd1796b933"><span class="std std-ref">USBDEVICE</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_cmp_blk_drv_usb___c.html#struct-i-cmp-blk-drv-usb-c"><span class="std std-ref">ICmpBlkDrvUsb_C</span></a> <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1gaf6a1f094d27ab8107725a3dca20ff27f"><span class="std std-ref">ICmpBlkDrvUsb</span></a></li>
+</ul>
+</div>
+<div class="section" id="enumerations">
+<h2>Enumerations<a class="headerlink" href="#enumerations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>enum <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga54df9cfab5d6483124176355cac9336f"><span class="std std-ref">USBDEV_OPERATION</span></a> { <span class="xref std std-ref">USBOP_NONE</span>, <span class="xref std std-ref">USBOP_OPEN</span>, <span class="xref std std-ref">USBOP_CLOSE</span>, <span class="xref std std-ref">USBOP_REREGISTER</span>, <span class="xref std std-ref">USBOP_ACTIVE</span>, <span class="xref std std-ref">USBOP_HDX_INIT</span>, <span class="xref std std-ref">USBOP_HDX_WAIT_ADDR_REQ</span>, <span class="xref std std-ref">USBOP_HDX_WAIT_ADDR_ANSW</span>, <span class="xref std std-ref">USBOP_HDX_WAIT_SEND</span>, <span class="xref std std-ref">USBOP_HDX_SEND</span>, <span class="xref std std-ref">USBOP_HDX_RECEIVE</span>, <span class="xref std std-ref">USBOP_PORT_UNUSED</span> }</li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga5b3d75fdf1ba1b3f4447ca7224739bc5"><span class="std std-ref">BlkDrvUsbRegisterDriver</span></a> (<a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga6d3c0b33ab1e0f0ae9f8f7db6d69a400"><span class="std std-ref">MINIPORTDRVUSB</span></a> * pInterface)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga3146b8f653d17d5cc3f2284275ee1487"><span class="std std-ref">BlkDrvUsbRegisterDriver2</span></a> (<a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga1808efd31df8b207c50cf16371d60fcf"><span class="std std-ref">MINIPORTDRVUSB2</span></a> * pInterface)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-blk-drv-usb-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CmpBlkDrvUsb.</p>
+<p>Block driver interface. This interface could be implemented by different components.</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-max-usbblk-drv-2">
+<span id="group-cmp-blk-drv-usb-itf-1ga071e140d7b5a1f960ae4d02bf3ffb15e"></span><h3>#define MAX_USBBLK_DRV 2<a class="headerlink" href="#define-max-usbblk-drv-2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-max-usb-devices-2-maximum-number-of-devices-per-driver">
+<span id="group-cmp-blk-drv-usb-itf-1ga062bf64e497f39bd2e98dc55219b7522"></span><h3>#define MAX_USB_DEVICES 2 /<em>Maximum number of devices per driver.</em>/<a class="headerlink" href="#define-max-usb-devices-2-maximum-number-of-devices-per-driver" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-max-port-name-32">
+<span id="group-cmp-blk-drv-usb-itf-1ga2fc09145a9331aa5a894d1f7893cfb66"></span><h3>#define MAX_PORT_NAME 32<a class="headerlink" href="#define-max-port-name-32" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-cmpblkdrv-send-address-requests-interval-5000-ms">
+<span id="group-cmp-blk-drv-usb-itf-1ga2442cb1bb9a7c01e8521cdb6110cadea"></span><h3>#define CMPBLKDRV_SEND_ADDRESS_REQUESTS_INTERVAL 5000 /* ms <a href="#id7"><span class="problematic" id="id8">*</span></a>/<a class="headerlink" href="#define-cmpblkdrv-send-address-requests-interval-5000-ms" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-blkdrvusb-max-readsize-64-bulk-block-size">
+<span id="group-cmp-blk-drv-usb-itf-1ga9c1e7f9e6d8a35ffa97e9255551aad4f"></span><h3>#define BLKDRVUSB_MAX_READSIZE 64 /<em>Bulk Block size</em>/<a class="headerlink" href="#define-blkdrvusb-max-readsize-64-bulk-block-size" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-blkdrvusb-max-block-size-512">
+<span id="group-cmp-blk-drv-usb-itf-1ga6e63a465dd4e7f7f9deca13bf4cc4bfb"></span><h3>#define BLKDRVUSB_MAX_BLOCK_SIZE 512<a class="headerlink" href="#define-blkdrvusb-max-block-size-512" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-blkdrvusb-max-rx-size-blkdrvusb-max-block-size-2">
+<span id="group-cmp-blk-drv-usb-itf-1gafacd61218565077f699a25d0aa6bd549"></span><h3>#define BLKDRVUSB_MAX_RX_SIZE ( <a class="reference internal" href="#group-cmp-blk-drv-usb-itf-1ga6e63a465dd4e7f7f9deca13bf4cc4bfb"><span class="std std-ref">BLKDRVUSB_MAX_BLOCK_SIZE</span></a> + 2)<a class="headerlink" href="#define-blkdrvusb-max-rx-size-blkdrvusb-max-block-size-2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-type-none-0x00">
+<span id="group-cmp-blk-drv-usb-itf-1gaa47d3c2fa05e95455d76cf052f9cca68"></span><h3>#define TYPE_NONE 0x00<a class="headerlink" href="#define-type-none-0x00" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-type-auto-addr-0x01">
+<span id="group-cmp-blk-drv-usb-itf-1ga58548861ea35c4a57d5d942a2f5a8573"></span><h3>#define TYPE_AUTO_ADDR 0x01<a class="headerlink" href="#define-type-auto-addr-0x01" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-type-halfduplex-0x02">
+<span id="group-cmp-blk-drv-usb-itf-1gae3e3769e03fb8f3714bc21fe54edc3bd"></span><h3>#define TYPE_HALFDUPLEX 0x02<a class="headerlink" href="#define-type-halfduplex-0x02" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-usb-hdx-negotiation-min-waittime-500-hdx-init-wait-time">
+<span id="group-cmp-blk-drv-usb-itf-1ga081e9ca5f9238e1c7840a0dc4fa1520b"></span><h3>#define USB_HDX_NEGOTIATION_MIN_WAITTIME 500            /<em>HDX Init Wait time</em>/<a class="headerlink" href="#define-usb-hdx-negotiation-min-waittime-500-hdx-init-wait-time" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-usb-hdx-negotiation-timeout-500-hdx-address-request-answer-wait-time">
+<span id="group-cmp-blk-drv-usb-itf-1ga327b1999dce6fea248c00ab7e869b87f"></span><h3>#define USB_HDX_NEGOTIATION_TIMEOUT 500         /<em>HDX Address Request/Answer Wait time</em>/<a class="headerlink" href="#define-usb-hdx-negotiation-timeout-500-hdx-address-request-answer-wait-time" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-usb-hdx-master-token-timeout-1-100-hdx-receive-master-tocken-wait-time-1-try">
+<span id="group-cmp-blk-drv-usb-itf-1ga53a1e441fdc9e076cb24177336b4cec5"></span><h3>#define USB_HDX_MASTER_TOKEN_TIMEOUT_1 100              /<em>HDX Receive Master Tocken Wait time (1. try)</em>/<a class="headerlink" href="#define-usb-hdx-master-token-timeout-1-100-hdx-receive-master-tocken-wait-time-1-try" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-usb-hdx-master-token-timeout-2-1000-hdx-receive-master-tocken-wait-time-last-try">
+<span id="group-cmp-blk-drv-usb-itf-1ga94a9e2745f44d50944c33d4be5fd3613"></span><h3>#define USB_HDX_MASTER_TOKEN_TIMEOUT_2 1000     /<a href="#id9"><span class="problematic" id="id10">*</span></a>HDX Receive Master Tocken Wait time (last try) <a href="#id11"><span class="problematic" id="id12">*</span></a>/<a class="headerlink" href="#define-usb-hdx-master-token-timeout-2-1000-hdx-receive-master-tocken-wait-time-last-try" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-usb-hdx-slave-token-timeout-2000-hdx-receive-slave-tocken-wait-time-1-try">
+<span id="group-cmp-blk-drv-usb-itf-1ga52d363e79e1bc95eb7140c36a1bc02f2"></span><h3>#define USB_HDX_SLAVE_TOKEN_TIMEOUT 2000        /<em>HDX Receive Slave Tocken Wait time (1. try)</em>/<a class="headerlink" href="#define-usb-hdx-slave-token-timeout-2000-hdx-receive-slave-tocken-wait-time-1-try" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-usb-hdx-master-token-delay-time-40">
+<span id="group-cmp-blk-drv-usb-itf-1ga1f07e7e2e7fdb9ae9a4ad89a82e7e192"></span><h3>#define USB_HDX_MASTER_TOKEN_DELAY_TIME 40<a class="headerlink" href="#define-usb-hdx-master-token-delay-time-40" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-usb-hdx-direction-change-waittime-3">
+<span id="group-cmp-blk-drv-usb-itf-1ga54b5409a591c03cb6eeb544548550262"></span><h3>#define USB_HDX_DIRECTION_CHANGE_WAITTIME 3<a class="headerlink" href="#define-usb-hdx-direction-change-waittime-3" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-hdx-protocol-version-0x01">
+<span id="group-cmp-blk-drv-usb-itf-1ga0884919a3d21268b4c535c4f86d7f89a"></span><h3>#define HDX_PROTOCOL_VERSION 0x01<a class="headerlink" href="#define-hdx-protocol-version-0x01" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-hdx-init-request-0x01">
+<span id="group-cmp-blk-drv-usb-itf-1gacce929e226f07b6cf5d36c683d38719b"></span><h3>#define HDX_INIT_REQUEST 0x01<a class="headerlink" href="#define-hdx-init-request-0x01" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-hdx-init-answer-0x81">
+<span id="group-cmp-blk-drv-usb-itf-1ga711a47b46cc787aac8068545b3daa63d"></span><h3>#define HDX_INIT_ANSWER 0x81<a class="headerlink" href="#define-hdx-init-answer-0x81" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-hdx-addr-request-0x02">
+<span id="group-cmp-blk-drv-usb-itf-1ga4006dcf593c9a23af1dd8242dcd0efd8"></span><h3>#define HDX_ADDR_REQUEST 0x02<a class="headerlink" href="#define-hdx-addr-request-0x02" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-hdx-addr-answer-0x82">
+<span id="group-cmp-blk-drv-usb-itf-1ga4666533170acb20d1785db46dff7d920"></span><h3>#define HDX_ADDR_ANSWER 0x82<a class="headerlink" href="#define-hdx-addr-answer-0x82" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-hdx-master-token-0x03">
+<span id="group-cmp-blk-drv-usb-itf-1ga8e00904d166f72cc3246760a023ad1f7"></span><h3>#define HDX_MASTER_TOKEN 0x03<a class="headerlink" href="#define-hdx-master-token-0x03" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-hdx-slave-token-0x83">
+<span id="group-cmp-blk-drv-usb-itf-1ga57d942892772d12fcef570618517ba8d"></span><h3>#define HDX_SLAVE_TOKEN 0x83<a class="headerlink" href="#define-hdx-slave-token-0x83" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-hdx-role-none-0x00">
+<span id="group-cmp-blk-drv-usb-itf-1ga0e30a5b3b5d937ec19603cbf06036e4e"></span><h3>#define HDX_ROLE_NONE 0x00<a class="headerlink" href="#define-hdx-role-none-0x00" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-hdx-role-master-0x01">
+<span id="group-cmp-blk-drv-usb-itf-1ga4f4b666b9411f9a71f8e7efc7faba77e"></span><h3>#define HDX_ROLE_MASTER 0x01<a class="headerlink" href="#define-hdx-role-master-0x01" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-hdx-role-slave-0x02">
+<span id="group-cmp-blk-drv-usb-itf-1gafe6b3bd53e7f57e30937f0e94fa8cf56"></span><h3>#define HDX_ROLE_SLAVE 0x02<a class="headerlink" href="#define-hdx-role-slave-0x02" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-itf-cmpblkdrvusb">
+<span id="group-cmp-blk-drv-usb-itf-1gab8f00a1675c86e1da34257b88ffc50f3"></span><h3>#define ITF_CmpBlkDrvUsb<a class="headerlink" href="#define-itf-cmpblkdrvusb" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpblkdrvusb">
+<span id="group-cmp-blk-drv-usb-itf-1ga732d94e6d79dd97ee746ccdab495ef49"></span><h3>#define EXTITF_CmpBlkDrvUsb<a class="headerlink" href="#define-extitf-cmpblkdrvusb" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-tagsendbuffer-sendbuffer">
+<span id="group-cmp-blk-drv-usb-itf-1ga80d3367dfd8b61b0d329f7b917a112b4"></span><h3>typedef struct tagSendBuffer SENDBUFFER<a class="headerlink" href="#typedef-struct-tagsendbuffer-sendbuffer" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-struct-tagreceivebuffer-recbuffer">
+<span id="group-cmp-blk-drv-usb-itf-1ga372d4c9e4d608e65eac038aedc7f4b75"></span><h3>typedef struct tagReceiveBuffer RECBUFFER<a class="headerlink" href="#typedef-struct-tagreceivebuffer-recbuffer" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-struct-tagusbmpd-miniportdrvusb">
+<span id="group-cmp-blk-drv-usb-itf-1ga6d3c0b33ab1e0f0ae9f8f7db6d69a400"></span><h3>typedef struct tagUsbMpd MINIPORTDRVUSB<a class="headerlink" href="#typedef-struct-tagusbmpd-miniportdrvusb" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-struct-tagusbmpd2-miniportdrvusb2">
+<span id="group-cmp-blk-drv-usb-itf-1ga1808efd31df8b207c50cf16371d60fcf"></span><h3>typedef struct tagUsbMpd2 MINIPORTDRVUSB2<a class="headerlink" href="#typedef-struct-tagusbmpd2-miniportdrvusb2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-struct-tagusbdevice-usbdevice">
+<span id="group-cmp-blk-drv-usb-itf-1ga99db51b3ece563598c9415bd1796b933"></span><h3>typedef struct tagUSBDEVICE USBDEVICE<a class="headerlink" href="#typedef-struct-tagusbdevice-usbdevice" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-icmpblkdrvusb-c-icmpblkdrvusb">
+<span id="group-cmp-blk-drv-usb-itf-1gaf6a1f094d27ab8107725a3dca20ff27f"></span><h3>typedef ICmpBlkDrvUsb_C ICmpBlkDrvUsb<a class="headerlink" href="#typedef-icmpblkdrvusb-c-icmpblkdrvusb" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="enumeration-type-documentation">
+<h2>Enumeration Type Documentation<a class="headerlink" href="#enumeration-type-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="enum-usbdev-operation">
+<span id="group-cmp-blk-drv-usb-itf-1ga54df9cfab5d6483124176355cac9336f"></span><h3>enum USBDEV_OPERATION<a class="headerlink" href="#enum-usbdev-operation" title="Permalink to this headline">¶</a></h3>
+<p><strong>Enumerator:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>USBOP_NONE</td>
+</tr>
+<tr class="row-even"><td>USBOP_OPEN</td>
+</tr>
+<tr class="row-odd"><td>USBOP_CLOSE</td>
+</tr>
+<tr class="row-even"><td>USBOP_REREGISTER</td>
+</tr>
+<tr class="row-odd"><td>USBOP_ACTIVE</td>
+</tr>
+<tr class="row-even"><td>USBOP_HDX_INIT</td>
+</tr>
+<tr class="row-odd"><td>USBOP_HDX_WAIT_ADDR_REQ</td>
+</tr>
+<tr class="row-even"><td>USBOP_HDX_WAIT_ADDR_ANSW</td>
+</tr>
+<tr class="row-odd"><td>USBOP_HDX_WAIT_SEND</td>
+</tr>
+<tr class="row-even"><td>USBOP_HDX_SEND</td>
+</tr>
+<tr class="row-odd"><td>USBOP_HDX_RECEIVE</td>
+</tr>
+<tr class="row-even"><td>USBOP_PORT_UNUSED</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-result-blkdrvusbregisterdriver-miniportdrvusb-pinterface">
+<span id="group-cmp-blk-drv-usb-itf-1ga5b3d75fdf1ba1b3f4447ca7224739bc5"></span><h3>RTS_RESULT BlkDrvUsbRegisterDriver (MINIPORTDRVUSB <a href="#id13"><span class="problematic" id="id14">*</span></a>pInterface)<a class="headerlink" href="#rts-result-blkdrvusbregisterdriver-miniportdrvusb-pinterface" title="Permalink to this headline">¶</a></h3>
+<p>Open a block driver</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="19%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pInterface</td>
+<td>Pointer to the mini port driver interface</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-blkdrvusbregisterdriver2-miniportdrvusb2-pinterface">
+<span id="group-cmp-blk-drv-usb-itf-1ga3146b8f653d17d5cc3f2284275ee1487"></span><h3>RTS_RESULT BlkDrvUsbRegisterDriver2 (MINIPORTDRVUSB2 <a href="#id15"><span class="problematic" id="id16">*</span></a>pInterface)<a class="headerlink" href="#rts-result-blkdrvusbregisterdriver2-miniportdrvusb2-pinterface" title="Permalink to this headline">¶</a></h3>
+<p>Open a block driver</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="18%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pInterface</td>
+<td>Pointer to the mini port driver interface 2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_c_a_a_async_man_itf.html" title="CmpCAAAsyncManItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_blk_drv_itf.html" title="CmpBlkDrvItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

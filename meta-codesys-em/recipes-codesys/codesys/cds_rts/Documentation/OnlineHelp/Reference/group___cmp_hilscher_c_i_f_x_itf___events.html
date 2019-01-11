@@ -1,0 +1,387 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Events &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Events</a><ul>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-evt-download-progress-make-eventid-evtclass-info-1">#define EVT_DOWNLOAD_PROGRESS <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 1)</a></li>
+<li><a class="reference internal" href="#define-evt-upload-progress-make-eventid-evtclass-info-2">#define EVT_UPLOAD_PROGRESS <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 2)</a></li>
+<li><a class="reference internal" href="#define-evt-packet-unhandled-make-eventid-evtclass-info-3">#define EVT_PACKET_UNHANDLED <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 3)</a></li>
+<li><a class="reference internal" href="#define-evt-packet-indication-make-eventid-evtclass-info-4">#define EVT_PACKET_INDICATION <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 4)</a></li>
+<li><a class="reference internal" href="#define-evt-cards-init-done-make-eventid-evtclass-info-5">#define EVT_CARDS_INIT_DONE <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 5)</a></li>
+<li><a class="reference internal" href="#define-evt-packet-confirmation-make-eventid-evtclass-info-6">#define EVT_PACKET_CONFIRMATION <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 6)</a></li>
+<li><a class="reference internal" href="#define-evt-cifx-interrupts-enable-make-eventid-evtclass-info-7">#define EVT_CIFX_INTERRUPTS_ENABLE <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 7)</a></li>
+<li><a class="reference internal" href="#define-evt-cifx-interrupts-disable-make-eventid-evtclass-info-8">#define EVT_CIFX_INTERRUPTS_DISABLE <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 8)</a></li>
+<li><a class="reference internal" href="#define-evt-cifx-configure-dpm-make-eventid-evtclass-info-9">#define EVT_CIFX_CONFIGURE_DPM <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 9)</a></li>
+<li><a class="reference internal" href="#define-evt-cifx-getfirmware-make-eventid-evtclass-info-10">#define EVT_CIFX_GETFIRMWARE <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 10)</a></li>
+<li><a class="reference internal" href="#define-evt-cifx-loadfirmware-make-eventid-evtclass-info-11">#define EVT_CIFX_LOADFIRMWARE <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 11)</a></li>
+<li><a class="reference internal" href="#define-evt-cifx-xchannel-open-make-eventid-evtclass-info-12">#define EVT_CIFX_XCHANNEL_OPEN <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 12)</a></li>
+<li><a class="reference internal" href="#define-evt-cifx-xchannel-close-make-eventid-evtclass-info-13">#define EVT_CIFX_XCHANNEL_CLOSE <code class="docutils literal"><span class="pre">MAKE_EVENTID</span></code> ( <code class="docutils literal"><span class="pre">EVTCLASS_INFO</span></code> , 13)</a></li>
+<li><a class="reference internal" href="#define-cifx-directory-entry-cifx-directoryentry">#define CIFX_DIRECTORY_ENTRY CIFX_DIRECTORYENTRY</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_hilscher_c_i_f_x_itf___events.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="events">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events"></span><h1>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1ga216a3c82b682f1f2d6cd18b51a93ead1"><span class="std std-ref">EVT_DOWNLOAD_PROGRESS</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 1)</li>
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1gad7d4fcf14d21c087dbca715f64c86b52"><span class="std std-ref">EVT_UPLOAD_PROGRESS</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 2)</li>
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1gaf1e71439b27044488ae02f4ca9e297cb"><span class="std std-ref">EVT_PACKET_UNHANDLED</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 3)</li>
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1gad27571477e88de3e0a8344db63cf1eca"><span class="std std-ref">EVT_PACKET_INDICATION</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 4)</li>
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1ga1c87466890f600527e12526e0afcabe2"><span class="std std-ref">EVT_CARDS_INIT_DONE</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 5)</li>
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1gaf23aa3928b9709bc5eb3a418a29c8e31"><span class="std std-ref">EVT_PACKET_CONFIRMATION</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 6)</li>
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1gac63164afe4a1bb70dfc87b0a7ec1fef0"><span class="std std-ref">EVT_CIFX_INTERRUPTS_ENABLE</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 7)</li>
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1ga8768cc71bd8cbbd78efa5c24d484a554"><span class="std std-ref">EVT_CIFX_INTERRUPTS_DISABLE</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 8)</li>
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1ga831ecf1a2cac321bec561efb53b2ff4a"><span class="std std-ref">EVT_CIFX_CONFIGURE_DPM</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 9)</li>
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1gaf0fcbcdd2f36622e7c5d961225f2799f"><span class="std std-ref">EVT_CIFX_GETFIRMWARE</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 10)</li>
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1ga9762b3aca111374f5ca23b81b2716886"><span class="std std-ref">EVT_CIFX_LOADFIRMWARE</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 11)</li>
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1ga706b565343a9396f79c2a8a4775c104c"><span class="std std-ref">EVT_CIFX_XCHANNEL_OPEN</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 12)</li>
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1ga3e3d46842f753c479fe09f37229a427a"><span class="std std-ref">EVT_CIFX_XCHANNEL_CLOSE</span></a> <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 13)</li>
+<li>#define <a class="reference internal" href="#group-cmp-hilscher-c-i-f-x-itf-events-1ga46bdb2c2f1fc8a24c325f9b106a86723"><span class="std std-ref">CIFX_DIRECTORY_ENTRY</span></a> CIFX_DIRECTORYENTRY</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-evt-download-progress-make-eventid-evtclass-info-1">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1ga216a3c82b682f1f2d6cd18b51a93ead1"></span><h3>#define EVT_DOWNLOAD_PROGRESS <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 1)<a class="headerlink" href="#define-evt-download-progress-make-eventid-evtclass-info-1" title="Permalink to this headline">¶</a></h3>
+<p>Event is sent on a file download to cifx, but only if no other callback is defined. (See cifx Device Driver Manual)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="14%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pEventParam</td>
+<td><a class="reference internal" href="struct_e_v_t_p_a_r_a_m___load_progress.html#struct-e-v-t-p-a-r-a-m-load-progress"><span class="std std-ref">EVTPARAM_LoadProgress</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-evt-upload-progress-make-eventid-evtclass-info-2">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1gad7d4fcf14d21c087dbca715f64c86b52"></span><h3>#define EVT_UPLOAD_PROGRESS <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 2)<a class="headerlink" href="#define-evt-upload-progress-make-eventid-evtclass-info-2" title="Permalink to this headline">¶</a></h3>
+<p>Event is sent on a file upload from cifx, but only if no other callback is defined. (See cifx Device Driver Manual)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="14%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pEventParam</td>
+<td><a class="reference internal" href="struct_e_v_t_p_a_r_a_m___load_progress.html#struct-e-v-t-p-a-r-a-m-load-progress"><span class="std std-ref">EVTPARAM_LoadProgress</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-evt-packet-unhandled-make-eventid-evtclass-info-3">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1gaf1e71439b27044488ae02f4ca9e297cb"></span><h3>#define EVT_PACKET_UNHANDLED <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 3)<a class="headerlink" href="#define-evt-packet-unhandled-make-eventid-evtclass-info-3" title="Permalink to this headline">¶</a></h3>
+<p>Event is sent if the cifx is bussy and cannot handle a packet, but only if no other callback is defined. (See cifx Device Driver Manual)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="13%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pEventParam</td>
+<td><a class="reference internal" href="struct_e_v_t_p_a_r_a_m___packet_unhandled.html#struct-e-v-t-p-a-r-a-m-packet-unhandled"><span class="std std-ref">EVTPARAM_PacketUnhandled</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-evt-packet-indication-make-eventid-evtclass-info-4">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1gad27571477e88de3e0a8344db63cf1eca"></span><h3>#define EVT_PACKET_INDICATION <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 4)<a class="headerlink" href="#define-evt-packet-indication-make-eventid-evtclass-info-4" title="Permalink to this headline">¶</a></h3>
+<p>Event is sent when an indication was passed to the runtime system (cifx application). The user can decide, what should happen with the Indication. On default it is stored in the Indication Queue and the user can get the packet with the ChannelGetPacket service (ulPutInQueue != 0). If ulPutInQueue is 0, the packet is not stored in a queue. If the user sets the parameter ulGenerateAsyncEvent to 1, a asynchronous CAA_CB event, set in parameter eAsyncEvent (Source: CB_DRIVER) is generated. As an parameter hMsg is passed to the callback. IMPORTANT: If the user wants to use the packet in an asynchronous event, he has to call MBM_MsgAddRef for hMsg in the EVT_PACKET_INDICATION callback. In addition to that the user has to call MBM_MsgRelease in the async event callback. Otherwise the hMsg is already released, when the async callback is called or there is a memory leak.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pEventParam</td>
+<td><a class="reference internal" href="struct_c_i_f_x___indication_param.html#struct-c-i-f-x-indication-param"><span class="std std-ref">CIFX_IndicationParam</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-evt-cards-init-done-make-eventid-evtclass-info-5">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1ga1c87466890f600527e12526e0afcabe2"></span><h3>#define EVT_CARDS_INIT_DONE <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 5)<a class="headerlink" href="#define-evt-cards-init-done-make-eventid-evtclass-info-5" title="Permalink to this headline">¶</a></h3>
+<p>Event is sent, when all cards are detected.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="24%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pEventParam</td>
+<td>No Parameters, pEventParam = 0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-evt-packet-confirmation-make-eventid-evtclass-info-6">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1gaf23aa3928b9709bc5eb3a418a29c8e31"></span><h3>#define EVT_PACKET_CONFIRMATION <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 6)<a class="headerlink" href="#define-evt-packet-confirmation-make-eventid-evtclass-info-6" title="Permalink to this headline">¶</a></h3>
+<p>Event is sent when an confirmation was passed to the runtime system (cifx application). The user can decide, what should happen with the Indication. On default it is stored in the confirmation Queue and the user can get the packet with the ChannelGetPacket service (ulPutInQueue != 0). If ulPutInQueue is 0, the packet is not stored in a queue. If the user sets the parameter ulGenerateAsyncEvent to 1, a asynchronous CAA_CB event, set in parameter eAsyncEvent (Source: CB_DRIVER) is generated. As an parameter hMsg is passed to the callback. IMPORTANT: If the user wants to use the packet in an asynchronous event, he has to call MBM_MsgAddRef for hMsg in the EVT_PACKET_INDICATION callback. In addition to that the user has to call MBM_MsgRelease in the async event callback. Otherwise the hMsg is already released, when the async callback is called or there is a memory leak.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="14%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pEventParam</td>
+<td><a class="reference internal" href="struct_c_i_f_x___confirmation_param.html#struct-c-i-f-x-confirmation-param"><span class="std std-ref">CIFX_ConfirmationParam</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-evt-cifx-interrupts-enable-make-eventid-evtclass-info-7">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1gac63164afe4a1bb70dfc87b0a7ec1fef0"></span><h3>#define EVT_CIFX_INTERRUPTS_ENABLE <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 7)<a class="headerlink" href="#define-evt-cifx-interrupts-enable-make-eventid-evtclass-info-7" title="Permalink to this headline">¶</a></h3>
+<p>Event is sent right before the interrupt for the specified card is enabled to do device or system specific stuff.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pEventParam</td>
+<td><a class="reference internal" href="struct_e_v_t_p_a_r_a_m___c_i_f_x___interrupt_info.html#struct-e-v-t-p-a-r-a-m-c-i-f-x-interrupt-info"><span class="std std-ref">EVTPARAM_CIFX_InterruptInfo</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-evt-cifx-interrupts-disable-make-eventid-evtclass-info-8">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1ga8768cc71bd8cbbd78efa5c24d484a554"></span><h3>#define EVT_CIFX_INTERRUPTS_DISABLE <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 8)<a class="headerlink" href="#define-evt-cifx-interrupts-disable-make-eventid-evtclass-info-8" title="Permalink to this headline">¶</a></h3>
+<p>Event is sent right before the interrupt for the specified card is disabled to do device or system specific stuff.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pEventParam</td>
+<td><a class="reference internal" href="struct_e_v_t_p_a_r_a_m___c_i_f_x___interrupt_info.html#struct-e-v-t-p-a-r-a-m-c-i-f-x-interrupt-info"><span class="std std-ref">EVTPARAM_CIFX_InterruptInfo</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-evt-cifx-configure-dpm-make-eventid-evtclass-info-9">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1ga831ecf1a2cac321bec561efb53b2ff4a"></span><h3>#define EVT_CIFX_CONFIGURE_DPM <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 9)<a class="headerlink" href="#define-evt-cifx-configure-dpm-make-eventid-evtclass-info-9" title="Permalink to this headline">¶</a></h3>
+<p>Event is sent to configure the DPM address of the card. In this case it is assumed, that it is no PCI card.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pEventParam</td>
+<td><a class="reference internal" href="struct_e_v_t_p_a_r_a_m___c_i_f_x___configure_d_p_m.html#struct-e-v-t-p-a-r-a-m-c-i-f-x-configure-d-p-m"><span class="std std-ref">EVTPARAM_CIFX_ConfigureDPM</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-evt-cifx-getfirmware-make-eventid-evtclass-info-10">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1gaf0fcbcdd2f36622e7c5d961225f2799f"></span><h3>#define EVT_CIFX_GETFIRMWARE <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 10)<a class="headerlink" href="#define-evt-cifx-getfirmware-make-eventid-evtclass-info-10" title="Permalink to this headline">¶</a></h3>
+<p>Event is sent to configure the correct firmware to the corresponding card. Optionally a firmware version can be returned to select from configured firmware files. See <a class="reference internal" href="struct_e_v_t_p_a_r_a_m___c_i_f_x___get_firmware.html#struct-e-v-t-p-a-r-a-m-c-i-f-x-get-firmware"><span class="std std-ref">EVTPARAM_CIFX_GetFirmware</span></a> .</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="12%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pEventParam</td>
+<td><a class="reference internal" href="struct_e_v_t_p_a_r_a_m___c_i_f_x___get_firmware.html#struct-e-v-t-p-a-r-a-m-c-i-f-x-get-firmware"><span class="std std-ref">EVTPARAM_CIFX_GetFirmware</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-evt-cifx-loadfirmware-make-eventid-evtclass-info-11">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1ga9762b3aca111374f5ca23b81b2716886"></span><h3>#define EVT_CIFX_LOADFIRMWARE <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 11)<a class="headerlink" href="#define-evt-cifx-loadfirmware-make-eventid-evtclass-info-11" title="Permalink to this headline">¶</a></h3>
+<p>Event is sent to (re)initialize the card and to load the firmware.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pEventParam</td>
+<td><a class="reference internal" href="struct_e_v_t_p_a_r_a_m___c_i_f_x___load_firmware.html#struct-e-v-t-p-a-r-a-m-c-i-f-x-load-firmware"><span class="std std-ref">EVTPARAM_CIFX_LoadFirmware</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-evt-cifx-xchannel-open-make-eventid-evtclass-info-12">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1ga706b565343a9396f79c2a8a4775c104c"></span><h3>#define EVT_CIFX_XCHANNEL_OPEN <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 12)<a class="headerlink" href="#define-evt-cifx-xchannel-open-make-eventid-evtclass-info-12" title="Permalink to this headline">¶</a></h3>
+<p>Event is sent to provide communication channel for other customer-specific components.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pEventParam</td>
+<td><a class="reference internal" href="struct_e_v_t_p_a_r_a_m___c_i_f_x__x_channel_open.html#struct-e-v-t-p-a-r-a-m-c-i-f-x-x-channel-open"><span class="std std-ref">EVTPARAM_CIFX_xChannelOpen</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-evt-cifx-xchannel-close-make-eventid-evtclass-info-13">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1ga3e3d46842f753c479fe09f37229a427a"></span><h3>#define EVT_CIFX_XCHANNEL_CLOSE <a class="reference internal" href="group___cmp_event_mgr_itf___convertmacro.html#group-cmp-event-mgr-itf-convertmacro-1ga8f45ad6798a634d4e00140c12039007e"><span class="std std-ref">MAKE_EVENTID</span></a> ( <a class="reference internal" href="group___cmp_event_mgr_itf___eventclasses.html#group-cmp-event-mgr-itf-eventclasses-1ga711863810010aec40693ca7c4643a025"><span class="std std-ref">EVTCLASS_INFO</span></a> , 13)<a class="headerlink" href="#define-evt-cifx-xchannel-close-make-eventid-evtclass-info-13" title="Permalink to this headline">¶</a></h3>
+<p>Event is sent to inform other customer-specific components that a communication channel will be closed now.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pEventParam</td>
+<td><a class="reference internal" href="struct_e_v_t_p_a_r_a_m___c_i_f_x__x_channel_close.html#struct-e-v-t-p-a-r-a-m-c-i-f-x-x-channel-close"><span class="std std-ref">EVTPARAM_CIFX_xChannelClose</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-cifx-directory-entry-cifx-directoryentry">
+<span id="group-cmp-hilscher-c-i-f-x-itf-events-1ga46bdb2c2f1fc8a24c325f9b106a86723"></span><h3>#define CIFX_DIRECTORY_ENTRY CIFX_DIRECTORYENTRY<a class="headerlink" href="#define-cifx-directory-entry-cifx-directoryentry" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

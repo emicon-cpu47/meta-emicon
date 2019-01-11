@@ -1,0 +1,208 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_file_itf___settings:
+
+========
+Settings
+========
+
+ :ref:`More... <group___sys_file_itf___settings-details>`
+
+Macros
+------
+
+- #define :ref:`SYSFILE_KEY_STRING_GET_FILEPATH <group___sys_file_itf___settings_1gab964f4cd30037f1f22bf3ca2528f3f80>` "FilePath"
+
+- #define :ref:`SYSFILE_VALUE_STRING_GET_FILEPATH_DEFAULT <group___sys_file_itf___settings_1ga454a4afad6b4bae27cc089b65aa1df05>` ""
+
+- #define :ref:`SYSFILE_KEY_INT_FORCE_FILEPATH <group___sys_file_itf___settings_1gaaaa0f8cf6edfd84a1d7b41432cde39d3>` "ForceFilePath"
+
+- #define :ref:`SYSFILE_VALUE_INT_FORCE_FILEPATH_DEFAULT <group___sys_file_itf___settings_1ga23a4c163fa68ef2a43ed1839cd088f6f>` 0
+
+- #define :ref:`SYSFILE_KEY_STRING_GET_IEC_FILEPATH <group___sys_file_itf___settings_1ga12bd283f6c537308ed94a12d054e08b1>` "IecFilePath"
+
+- #define :ref:`SYSFILE_VALUE_STRING_GET_IEC_FILEPATH_DEFAULT <group___sys_file_itf___settings_1ga14185066d9457894271fdae62e3d3019>` ""
+
+- #define :ref:`SYSFILE_KEY_INT_FORCE_IECFILEPATH <group___sys_file_itf___settings_1ga9343ad6923200c829ca0b8433e3653d4>` "ForceIecFilePath"
+
+- #define :ref:`SYSFILE_VALUE_INT_FORCE_IECFILEPATH_DEFAULT <group___sys_file_itf___settings_1ga6d6648b4f9d69e526af463e6c0f9f6de>` 0
+
+- #define :ref:`SYSFILE_KEY_INT_FORCE_ONLINEFILEPATH <group___sys_file_itf___settings_1gafacd78169364108cf231d8eaf221d9e1>` "ForceOnlineFilePath"
+
+- #define :ref:`SYSFILE_VALUE_INT_FORCE_ONLINEFILEPATH_DEFAULT <group___sys_file_itf___settings_1gab0d628df02f4a1a8d112f16b35ba8bbd>` 1
+
+- #define :ref:`SYSFILE_KEY_INT_DENYONLINEACCESSCFGFILE <group___sys_file_itf___settings_1gad112c7ce151819fc06d9ec932b7f097c>` "DenyOnlineAccessCfgFile"
+
+- #define :ref:`SYSFILE_VALUE_INT_DENYONLINEACCESSCFGFILE_DEFAULT <group___sys_file_itf___settings_1gaa196a30eb388ae691a050354a3848445>` 1
+
+- #define :ref:`SYSFILE_KEY_STRING_GET_PLACEHOLDER_FILEPATH <group___sys_file_itf___settings_1ga8aeb571e54bca9b69f34f8d40a908c05>` "PlaceholderFilePath"
+
+- #define :ref:`SYSFILE_VALUE_STRING_GET_PLACEHOLDER_FILEPATH_DEFAULT <group___sys_file_itf___settings_1ga1109dd2ae19480a77b56f8a9f02cdb5e>` ""
+
+- #define :ref:`SYSFILE_KEY_EXT_VIEW <group___sys_file_itf___settings_1ga9d46ee3d693eb06c816aa12beb524701>` ".View"
+
+- #define :ref:`SYSFILE_KEY_INT_PLACEHOLDER_FILEPATH_ALL_VIEW <group___sys_file_itf___settings_1ga55aa5c0b4a2d53fb1f8e568fffec1f4c>` "PlaceholderFilePath.All.View"
+
+- #define :ref:`SYSFILE_VALUE_INT_PLACEHOLDER_FILEPATH_ALL_VIEW_DEFAULT <group___sys_file_itf___settings_1ga937e54a363508c063d9f697ad0f8ecb6>` 0
+
+- #define :ref:`SYSFILE_KEY_EXT_VOLATILE <group___sys_file_itf___settings_1gaf3cfb926f591fc03b14cf5819103d8f8>` ".Volatile"
+
+- #define :ref:`SYSFILE_KEY_EXT_VPARENT <group___sys_file_itf___settings_1ga61e64969f7629e948674ada7768c478d>` ".VParent"
+
+- #define :ref:`SYSFILE_KEY_EXT_CREATEONWRITE <group___sys_file_itf___settings_1gae72a092a5cd09feaa05d0a38dbf44c58>` ".CreateOnWrite"
+
+.. _group___sys_file_itf___settings-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_file_itf___settings_1gab964f4cd30037f1f22bf3ca2528f3f80:
+
+#define SYSFILE_KEY_STRING_GET_FILEPATH "FilePath"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to configure the standard path for file access, for all filenames with no specified path or for directory access. Several file paths could be entered, if they were indexed, e.g.:
+
+FilePath=D:/Temp/Default FilePath.1=./Boot,.app,.ap_,.ret,.frc FilePath.2=D:/Temp/Wildcards,.txw
+
+In this case, files with special extensions could be separated into several directories. File extensions can be specified with the wildcards ''.
+
+If a file extension is not configured, the standard path (FilePath= or FilePath.1=) is used.
+
+NOTE: Indexing starts with .1
+
+.. _group___sys_file_itf___settings_1ga454a4afad6b4bae27cc089b65aa1df05:
+
+#define SYSFILE_VALUE_STRING_GET_FILEPATH_DEFAULT ""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf___settings_1gaaaa0f8cf6edfd84a1d7b41432cde39d3:
+
+#define SYSFILE_KEY_INT_FORCE_FILEPATH "ForceFilePath"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to put the PLC into a sandbox for file access, i.e. file access is only allowed inside the configured paths. If an absolute file path is requested, which is not a configured path, or a directory traversal path an error is returned at this operation (ERR_OPERATION_DENIED). NOTE: This setting controls all file access from C, from IEC and online.
+
+.. _group___sys_file_itf___settings_1ga23a4c163fa68ef2a43ed1839cd088f6f:
+
+#define SYSFILE_VALUE_INT_FORCE_FILEPATH_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf___settings_1ga12bd283f6c537308ed94a12d054e08b1:
+
+#define SYSFILE_KEY_STRING_GET_IEC_FILEPATH "IecFilePath"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to configure the standard IEC path for file access, for all filenames with no specified path or for directory access. NOTE: THIS IS USED ONLY FOR ALL FILE ACCESS ROUTINES OUT OF THE IEC PROGRAM! Several file paths could be entered, if they were indexed, e.g.:
+
+IecFilePath=D:/Temp/IEC IecFilePath.1=./Boot,.app,.ap_,.ret,.frc IecFilePath.2=D:/Temp/Wildcards,.txw
+
+In this case, files with special extensions could be separated into several directories. File extensions can be specified with the wildcards ''.
+
+If a file extension is not configured, the standard path (IecFilePath= or IecFilePath.1=) is used.
+
+NOTE: Indexing starts with .1
+
+.. _group___sys_file_itf___settings_1ga14185066d9457894271fdae62e3d3019:
+
+#define SYSFILE_VALUE_STRING_GET_IEC_FILEPATH_DEFAULT ""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf___settings_1ga9343ad6923200c829ca0b8433e3653d4:
+
+#define SYSFILE_KEY_INT_FORCE_IECFILEPATH "ForceIecFilePath"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to put the PLC into a sandbox for file access from IEC, i.e. file access is only allowed inside the configured paths. If an absolute file path is requested, which is not a configured path, or a directory traversal path an error is returned at this operation (ERR_OPERATION_DENIED). NOTE: This setting controls all file access from IEC but ForceFilePath (if set) dominates this setting.
+
+.. _group___sys_file_itf___settings_1ga6d6648b4f9d69e526af463e6c0f9f6de:
+
+#define SYSFILE_VALUE_INT_FORCE_IECFILEPATH_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf___settings_1gafacd78169364108cf231d8eaf221d9e1:
+
+#define SYSFILE_KEY_INT_FORCE_ONLINEFILEPATH "ForceOnlineFilePath"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to put the PLC into a sandbox for online file access, i.e. file access is only allowed inside the configured paths. If an absolute file path is requested, which is not a configured path, or a directory traversal path an error is returned at this operation (ERR_OPERATION_DENIED). NOTE: This setting controls all online file access but ForceFilePath (if set) dominates this setting.
+
+.. _group___sys_file_itf___settings_1gab0d628df02f4a1a8d112f16b35ba8bbd:
+
+#define SYSFILE_VALUE_INT_FORCE_ONLINEFILEPATH_DEFAULT 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf___settings_1gad112c7ce151819fc06d9ec932b7f097c:
+
+#define SYSFILE_KEY_INT_DENYONLINEACCESSCFGFILE "DenyOnlineAccessCfgFile"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to deny online access to all configuration files. If a configuration file is requested, an error is returned at this operation (ERR_OPERATION_DENIED). NOTE: This setting is independent of any Force settings.
+
+.. _group___sys_file_itf___settings_1gaa196a30eb388ae691a050354a3848445:
+
+#define SYSFILE_VALUE_INT_DENYONLINEACCESSCFGFILE_DEFAULT 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf___settings_1ga8aeb571e54bca9b69f34f8d40a908c05:
+
+#define SYSFILE_KEY_STRING_GET_PLACEHOLDER_FILEPATH "PlaceholderFilePath"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf___settings_1ga1109dd2ae19480a77b56f8a9f02cdb5e:
+
+#define SYSFILE_VALUE_STRING_GET_PLACEHOLDER_FILEPATH_DEFAULT ""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf___settings_1ga9d46ee3d693eb06c816aa12beb524701:
+
+#define SYSFILE_KEY_EXT_VIEW ".View"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to make a placeholder visible in the file transfer window. Example: PlaceholderFilePath.View=1
+
+.. _group___sys_file_itf___settings_1ga55aa5c0b4a2d53fb1f8e568fffec1f4c:
+
+#define SYSFILE_KEY_INT_PLACEHOLDER_FILEPATH_ALL_VIEW "PlaceholderFilePath.All.View"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to make all placeholders visible in the file transfer window. Example: PlaceholderFilePath.All.View=1
+
+.. _group___sys_file_itf___settings_1ga937e54a363508c063d9f697ad0f8ecb6:
+
+#define SYSFILE_VALUE_INT_PLACEHOLDER_FILEPATH_ALL_VIEW_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_file_itf___settings_1gaf3cfb926f591fc03b14cf5819103d8f8:
+
+#define SYSFILE_KEY_EXT_VOLATILE ".Volatile"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to mark a placeholder as volatile, i.e. the specified folder is not created automatically at startup and the placeholder is visible in the filetransfer windows only when the folder exists. This behavior is important for hot plug devices like usb sticks. Example: PlaceholderFilePath.2=/mnt/USBDevice, $USBDev$ PlaceholderFilePath.2.Volatile=1
+
+.. _group___sys_file_itf___settings_1ga61e64969f7629e948674ada7768c478d:
+
+#define SYSFILE_KEY_EXT_VPARENT ".VParent"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to connect a placeholder virtually with a parent placeholder, i.e. in the filetransfer window this placeholder is reachable via its virtual parent placeholder. Example: PlaceholderFilePath.1=/temp/oem, $oem$ PlaceholderFilePath.1.VParent=$PlcLogic$ The oem placeholder is virtually placed under $PlcLogic$ but physically at /temp/oem.
+
+.. _group___sys_file_itf___settings_1gae72a092a5cd09feaa05d0a38dbf44c58:
+
+#define SYSFILE_KEY_EXT_CREATEONWRITE ".CreateOnWrite"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to mark a placeholder so that the specified folder is created when a file is to be written in that folder, the folder is not created at startup, the placeholder is visible in the filetransfer windows only when the folder exists. Example: PlaceholderFilePath.2=/Temp, $Temp$ PlaceholderFilePath.2.CreateOnWrite=1
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

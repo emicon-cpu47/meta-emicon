@@ -1,0 +1,107 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __cmp_retain_itf_8h:
+
+=============================
+CmpRetainItf.h File Reference
+=============================
+
+Data Structures
+---------------
+
+- struct :ref:`EVTPARAM_CmpRetainSRAM <struct_e_v_t_p_a_r_a_m___cmp_retain_s_r_a_m>`
+
+- struct :ref:`RetainHeader <struct_retain_header>`
+
+- struct :ref:`ICmpRetain_C <struct_i_cmp_retain___c>`
+
+Macros
+------
+
+- #define :ref:`CMPRETAIN_NUM_OF_STATIC_RETAINS <group___cmp_retain_itf___staticdefines_1gaf305c513f9f6f4170612f096ba819859>` 8
+
+- #define :ref:`CMPRETAIN_RETAIN_FILE_EXTENSION <group___cmp_retain_itf___staticdefines_1ga639d122107992355a5a30763b36481cc>` ".ret"
+
+- #define :ref:`CMPRETAINKEY_INT_RETAIN_SRAM_ADDRESS <group___cmp_retain_itf___settings_1ga07df20bac6ffa59a2ec088423e41a68e>` "Retain.SRAM.Address"
+
+- #define :ref:`CMPRETAINKEY_INT_RETAIN_SRAM_ADDRESS_MAPPED <group___cmp_retain_itf___settings_1gadffb867a8c8bf4c264f2b5a28cb5063c>` "Retain.SRAM.AddressMapped"
+
+- #define :ref:`CMPRETAINKEY_INT_RETAIN_SRAM_SIZE <group___cmp_retain_itf___settings_1gae95369489bab14f0fa9bdc37036f0bf6>` "Retain.SRAM.Size"
+
+- #define :ref:`CMPRETAINKEY_INT_RETAIN_SIMULATE_SRAM <group___cmp_retain_itf___settings_1gaf5c374a032d8f558b4961567a2ac0781>` "SimulateSRAM"
+
+- #define :ref:`EVTPARAMID_CmpRetainSRAM <group___cmp_retain_itf___eventparameter_1ga0bf945242409396a0bde54b4f687ab6e>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpRetainSRAM <group___cmp_retain_itf___eventparameter_1gabee221f27e07e73cfc7321c4bdf555cf>` 0x0001
+
+- #define :ref:`EVT_RetainGetSRAM <group___cmp_retain_itf___events_1gac00cab83891644507bb16420c471e74c>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`TAG_RETAIN_USED <group___cmp_retain_itf___staticdefines_1gaf720ab04d76b1fa32695d1fb2c3499f6>` UINT32_C(0xABACADAE)
+
+- #define :ref:`TAG_RETAIN_PERSISTENT_USED <group___cmp_retain_itf___staticdefines_1ga9a5a248db6cffcbc0fe8d85277641928>` UINT32_C(0xABADAEAF)
+
+- #define :ref:`TAG_RETAIN_FREE <group___cmp_retain_itf___staticdefines_1ga8b2ef368738c33e6559004266bac3bb9>` UINT32_C(0xEBECEDEE)
+
+- #define :ref:`TAG_RETAIN_RESERVED <group___cmp_retain_itf___staticdefines_1ga9d72b547b2feac585b0d0bc241f976df>` UINT32_C(0xFBFCFDFE)
+
+- #define :ref:`TAG_RETAIN_PERSISTENT_RESERVED <group___cmp_retain_itf___staticdefines_1gaa8313f285b64cf538cd786b2a565e9a8>` UINT32_C(0xFBFDFEFF)
+
+- #define :ref:`TAG_RETAIN_SWAPPED <group___cmp_retain_itf___staticdefines_1gacfab87e557dadadec5b380ff8fb1c529>` UINT32_C(0xAEADACAB)	/* Only used for backward compatibility */
+
+- #define :ref:`CMPRETAIN_DELETEOPTION_REMOVE <group___cmp_retain_itf___deleteoption_1ga3a78dc5aabb84814bac91301d11b7c6d>` 0
+
+- #define :ref:`CMPRETAIN_DELETEOPTION_ALL <group___cmp_retain_itf___deleteoption_1gaeda2f74460c5d6f6a8fb4e4860b7968d>` 1
+
+- #define :ref:`CMPRETAIN_DELETEOPTION_REMOVE_AND_FREE <group___cmp_retain_itf___deleteoption_1gaf4a87d68ad10c1cb8415ec1040e9a673>` 2
+
+- #define :ref:`ITF_CmpRetain <group___cmp_retain_itf_1ga5d19d0f92a8c81d9fc204cf9f8e41651>`
+
+- #define :ref:`EXTITF_CmpRetain <group___cmp_retain_itf_1ga437e44e4cfcd9e4253a2228e536c37e7>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpRetain_C <struct_i_cmp_retain___c>` :ref:`ICmpRetain <group___cmp_retain_itf_1gadee45d8affc6e12f51aeaff43c2d2a0b>`
+
+Enumerations
+------------
+
+- enum :ref:`RetainType <group___cmp_retain_itf___retaintype_1ga6e45fc1e6bbb34dc2006aa7d299471a4>` { :ref:`RETAIN_NONE <group___cmp_retain_itf___retaintype_1gga6e45fc1e6bbb34dc2006aa7d299471a4a7c7478431a5f8df89fdaf6c56095b70c>`, :ref:`RETAIN_IN_SRAM <group___cmp_retain_itf___retaintype_1gga6e45fc1e6bbb34dc2006aa7d299471a4af4abeb7929b9c3093d54aa4a0e520477>`, :ref:`RETAIN_ON_POWERFAIL <group___cmp_retain_itf___retaintype_1gga6e45fc1e6bbb34dc2006aa7d299471a4a4718a119497505d2e89dfcba563f3774>` }
+
+Functions
+---------
+
+- RTS_RESULT :ref:`RetainAlloc <group___cmp_retain_itf_1ga9488af398ccccb9e7cb905c57a5a70b5>` (char * pszName, RTS_GUID * pDataGUID, :ref:`RetainType <group___cmp_retain_itf___retaintype_1ga6e45fc1e6bbb34dc2006aa7d299471a4>`  rtType, RTS_UI16 usAreaType, RTS_SIZE iSize, int bRestore, RTS_UI8 ** ppbyRetain)
+
+- RTS_RESULT :ref:`RetainFree <group___cmp_retain_itf_1ga41db1fb9c53c88c8dff916d99c0adb49>` (char * pszName, RTS_UI8 * pbyRetain, int nDeleteOption)
+
+- RTS_RESULT :ref:`RetainFreeAll <group___cmp_retain_itf_1ga54a0c084a3de1e56312b72038ba66354>` (void)
+
+- RTS_RESULT :ref:`RetainUpdateGuid <group___cmp_retain_itf_1ga0e5e09fc843d927d2cd6b8dfb15d2a69>` (char * pszName, RTS_UI8 * pbyRetain, RTS_GUID * pDataGuidOld, RTS_GUID * pDataGuidNew)
+
+- RTS_RESULT :ref:`RetainCheckGuid <group___cmp_retain_itf_1gab64263b24b17c8f7f26adc4ca08dffe9>` (char * pszName, RTS_UI8 * pbyRetain, RTS_GUID * pDataGuid, RTS_UI16 usAreaType)
+
+- RTS_RESULT :ref:`RetainUpdate <group___cmp_retain_itf_1ga5e4750cb069c93892ada509d08dea350>` (void)
+
+- RTS_RESULT :ref:`RetainStore <group___cmp_retain_itf_1gaef2547c0f31e99a30d940db47e8d06c4>` (char * pszName, RTS_UI8 * pbyRetain, RTS_SIZE iSize, RTS_GUID * pDataGUID, int bBackup)
+
+- RTS_RESULT :ref:`RetainStoreInFile <group___cmp_retain_itf_1ga9d949fa8a21dfae931ca58cfb045b328>` (char * pszFile, char * pszName, RTS_UI8 * pbyRetain, RTS_SIZE iSize, RTS_GUID * pDataGUID)
+
+- RTS_RESULT :ref:`RetainRestore <group___cmp_retain_itf_1gafca05ce675d98106a474a1ef82532d73>` (char * pszName, RTS_UI8 * pbyRetain, RTS_SIZE iSize, RTS_GUID * pDataGUID, RTS_UI16 usAreaType, int bBackup)
+
+- RTS_RESULT :ref:`RetainRestoreFromFile <group___cmp_retain_itf_1gab285d98c2e004226f9c6a50b17dbd397>` (char * pszFile, char * pszName, RTS_UI8 * pbyRetain, RTS_SIZE iSize, RTS_GUID * pDataGUID, RTS_UI16 usAreaType)
+
+- RTS_RESULT :ref:`RetainPrepareStore <group___cmp_retain_itf_1ga4ea6ee220f9993d42939be1c20f0fdd4>` (char * pszFile, char * pszName)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpRetainItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,52 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagiectaskenablewatchdog__struct:
+
+================================================
+tagiectaskenablewatchdog_struct Struct Reference
+================================================
+
+| #include ":ref:`CmpIecTaskItf.h <_cmp_iec_task_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_HANDLE :ref:`hIecTask <structtagiectaskenablewatchdog__struct_1af25cf49e9175dd19adb89b68b42eef44>`
+- RTS_IEC_RESULT :ref:`IecTaskEnableWatchdog <structtagiectaskenablewatchdog__struct_1aafde332c9d0b7b15a77b2105eef60869>`
+
+Detailed Description
+--------------------
+
+Enable watchdog for the specified task
+
+.. note::
+
+- You have to disable the watchdog of the task before with |IecTaskDisableWatchdog| and _not_ with |IecTaskDisableWatchdog2|, because they act on different task flags!
+
+- The watchdog is enabled only at the next IEC cycle and _not_ immediately after calling this function!
+
+- If you disable with |IecTaskDisableWatchdog| and forgot to enable it, at least at the next cycle, the watchdog is automatically enabled! :return: Returns the runtime system error code (see CmpErrors.library) + ERR_OK: The watchdog for the task was enabled + ERR_PARAMETER: The task handle was invalid
+
+Field Documentation
+-------------------
+
+.. _structtagiectaskenablewatchdog__struct_1af25cf49e9175dd19adb89b68b42eef44:
+
+RTS_IEC_HANDLE tagiectaskenablewatchdog_struct::hIecTask
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagiectaskenablewatchdog__struct_1aafde332c9d0b7b15a77b2105eef60869:
+
+RTS_IEC_RESULT tagiectaskenablewatchdog_struct::IecTaskEnableWatchdog
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpIecTaskItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

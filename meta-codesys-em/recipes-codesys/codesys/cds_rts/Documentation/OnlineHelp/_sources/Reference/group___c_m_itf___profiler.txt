@@ -1,0 +1,88 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___c_m_itf___profiler:
+
+========
+Profiler
+========
+
+ :ref:`More... <group___c_m_itf___profiler-details>`
+
+Macros
+------
+
+- #define :ref:`RTS_USE_PROFILING <group___c_m_itf___profiler_1gaf3010849fc9dc0c7bdc8aa5fa979b971>`
+
+- #define :ref:`RTS_PROFILING <group___c_m_itf___profiler_1ga59e234529db0f603ba53e041dad82389>`
+
+- #define :ref:`RTS_PROFILING_COMPONENTS <group___c_m_itf___profiler_1gad3f180a5bb1db8304b61183ad7ac74eb>`
+
+- #define :ref:`RTS_PROFILING_BEGIN <group___c_m_itf___profiler_1ga3c87640b9b61a460f65475af59258a9c>`
+
+- #define :ref:`RTS_PROFILING2 <group___c_m_itf___profiler_1gaf133017d427580409d6019b9b1d40690>`
+
+- #define :ref:`RTS_PROFILING_END <group___c_m_itf___profiler_1ga62bd560b7e8de56215bc0ee91bcd346f>`
+
+.. _group___c_m_itf___profiler-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___c_m_itf___profiler_1gaf3010849fc9dc0c7bdc8aa5fa979b971:
+
+#define RTS_USE_PROFILING
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- To use profiling, RTS_ENABLE_PROFILING must be set during compile. If it is not set, the code for profiling is empty.
+
+- To enable profile of single component hooks set RTS_ENABLE_PROFILING_COMPONENTS during compile time.
+
+- To use the profiler the SysTime component has to be linked statically to the runtime core.
+
+- All profiling information is stored in a separate logger with name "Profiler"
+
+- Profiling component can be specified in setting "Profiler.ComponentID" or during compile in CMPMGR_VALUE_INT_PROFILER_COMPONENTID_DEFAULT.
+
+- RTS_USE_PROFILING must be specified in the beginning of the file, in which profiling is used. Typically this can be specified right after USE_STMT.
+
+- RTS_PROFILING("") can be used to specify a profiling point. In the logger the absolute time and the time difference between two entries is stored.
+
+- With :ref:`RTS_PROFILING_BEGIN() <group___c_m_itf___profiler_1ga3c87640b9b61a460f65475af59258a9c>` , :ref:`RTS_PROFILING2() <group___c_m_itf___profiler_1gaf133017d427580409d6019b9b1d40690>` and :ref:`RTS_PROFILING_END() <group___c_m_itf___profiler_1ga62bd560b7e8de56215bc0ee91bcd346f>` a special sequence can be profiled that is marked with a unique ID. All time differences between two profiling points with the same ID are store in the profiler.
+
+.. _group___c_m_itf___profiler_1ga59e234529db0f603ba53e041dad82389:
+
+#define RTS_PROFILING
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf___profiler_1gad3f180a5bb1db8304b61183ad7ac74eb:
+
+#define RTS_PROFILING_COMPONENTS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf___profiler_1ga3c87640b9b61a460f65475af59258a9c:
+
+#define RTS_PROFILING_BEGIN
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf___profiler_1gaf133017d427580409d6019b9b1d40690:
+
+#define RTS_PROFILING2
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___c_m_itf___profiler_1ga62bd560b7e8de56215bc0ee91bcd346f:
+
+#define RTS_PROFILING_END
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

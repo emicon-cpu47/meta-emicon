@@ -1,0 +1,178 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_graphic_native_itf:
+
+===================
+SysGraphicNativeItf
+===================
+
+Interface of SysGraphicNative. :ref:`More... <group___sys_graphic_native_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`ISysGraphicNative_C <struct_i_sys_graphic_native___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_SysGraphicNative <group___sys_graphic_native_itf_1ga5b69bc2e4a74e501101443e3f92e26e7>`
+
+- #define :ref:`EXTITF_SysGraphicNative <group___sys_graphic_native_itf_1gad296f600954dd05355c404d14dae8c2f>`
+
+Typedefs
+--------
+
+- typedef :ref:`ISysGraphicNative_C <struct_i_sys_graphic_native___c>` :ref:`ISysGraphicNative <group___sys_graphic_native_itf_1gab35d325ac3dd40dbdac52b208c5feef5>`
+
+Functions
+---------
+
+- RTS_HANDLE :ref:`SysGraphicNativeGetDisplayDeviceContext <group___sys_graphic_native_itf_1gab338ed762e05c82bee690f3ea5d837c4>` (RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysGraphicNativeReleaseDisplayDeviceContext <group___sys_graphic_native_itf_1ga0c3c392d591013bdebb7583c722bf43c>` (RTS_HANDLE hDisplayContext)
+
+- RTS_RESULT :ref:`SysGraphicNativeGetDisplaySize <group___sys_graphic_native_itf_1ga7be28c9a4c9a354524558f718746044d>` (RTS_Size * pSize)
+
+- RTS_RESULT :ref:`SysGraphicNativeProcessInputs <group___sys_graphic_native_itf_1ga0318cbe09a62dbacd5300a6e53bbe9e4>` (void)
+
+- RTS_RESULT :ref:`SysGraphicNativeBufferWasUpdated <group___sys_graphic_native_itf_1ga38aaa04670acf9bbbe43054154fd3dd5>` (void)
+
+- RTS_RESULT :ref:`SysGraphicNativeGetPixel <group___sys_graphic_native_itf_1gade2290cb4629d910e95498b13f0e3a48>` (RTS_HANDLE hDC, short sX, short sY, unsigned long * pulColorValue)
+
+.. _group___sys_graphic_native_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysGraphicNative.
+
+The SysGraphicNative interface is projected to provide access to the graphic library routines implemented based on a native implementation. Such a native implementation could be a direct framebuffer access of the usage of a proprietary graphics chip/card. This is the system interface typically for the CoDeSys target visualization.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_graphic_native_itf_1ga5b69bc2e4a74e501101443e3f92e26e7:
+
+#define ITF_SysGraphicNative
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_graphic_native_itf_1gad296f600954dd05355c404d14dae8c2f:
+
+#define EXTITF_SysGraphicNative
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_graphic_native_itf_1gab35d325ac3dd40dbdac52b208c5feef5:
+
+typedef ISysGraphicNative_C ISysGraphicNative
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_graphic_native_itf_1gab338ed762e05c82bee690f3ea5d837c4:
+
+RTS_HANDLE SysGraphicNativeGetDisplayDeviceContext (RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Provides a handle to the native display context. If you do not use this handle any more, release it using SysGraphicNativeReleaseDisplayDeviceContext
+
+**Parameters**
+
++---------+---------+----------------------------------+
+| [out]   | pResult | Optionally returns an error code |
++---------+---------+----------------------------------+
+
+**Returns:**
+
+The handle to the native display context or RTS_INVALID_HANDLE in case of errors.
+
+.. _group___sys_graphic_native_itf_1ga0c3c392d591013bdebb7583c722bf43c:
+
+RTS_RESULT SysGraphicNativeReleaseDisplayDeviceContext (RTS_HANDLE hDisplayContext)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Releases a handle to the native display context that was returned by SysGraphicNativeGetDisplayDeviceContext.
+
+**Parameters**
+
++---------+-----------------+--------------------------------------+
+| [in]    | hDisplayContext | The native displaycontext to release |
++---------+-----------------+--------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_native_itf_1ga7be28c9a4c9a354524558f718746044d:
+
+RTS_RESULT SysGraphicNativeGetDisplaySize (RTS_Size *pSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the size of the native display.
+
+**Parameters**
+
++---------+-------+--------------------------------------------------------------------+
+| [out]   | pSize | This structure will be filled with the size of the native display. |
++---------+-------+--------------------------------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_native_itf_1ga0318cbe09a62dbacd5300a6e53bbe9e4:
+
+RTS_RESULT SysGraphicNativeProcessInputs (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This method will be called cyclically from the context of the IEC-Visualization-Task. The call is intended to check for user inputs (keyboard event, mouse event,...) and raise the according events in the SysWindowNative component using SysWindowNativeRaiseInput. If the method SysWindowNativeRaiseInput is called directly when the input is received (signal, interrupt,...), then this call can be ignored.
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_native_itf_1ga38aaa04670acf9bbbe43054154fd3dd5:
+
+RTS_RESULT SysGraphicNativeBufferWasUpdated (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This method will be called cyclically from the context of the IEC-Visualization-Task. The call is intended to pass the buffer to the video driver. Means display the content.
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_native_itf_1gade2290cb4629d910e95498b13f0e3a48:
+
+RTS_RESULT SysGraphicNativeGetPixel (RTS_HANDLE hDC, short sX, short sY, unsigned long *pulColorValue)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This method can be called for retrieving the color of a pixel in the given device context. An implementation of this method is optional, as it is used only for automatic testing of the visualization.
+
+**Parameters**
+
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC           | The displaycontext to get a color from                                                                                                         |
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | sX            | The x coordinate to get the color from                                                                                                         |
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | sY            | The y coordinate to get the color from                                                                                                         |
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pulColorValue | Pointer that will return the determined color. The color will be in the format used by the iec visualization ([ |RRRRRRRR|GGGGGGGG|BBBBBBBB]). |
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

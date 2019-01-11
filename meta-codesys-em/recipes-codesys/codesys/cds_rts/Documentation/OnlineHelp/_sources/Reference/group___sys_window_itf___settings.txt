@@ -1,0 +1,164 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_window_itf___settings:
+
+========
+Settings
+========
+
+ :ref:`More... <group___sys_window_itf___settings-details>`
+
+Macros
+------
+
+- #define :ref:`SYSWINDOW_INT_WINDOWS_SINGLETASKING <group___sys_window_itf___settings_1ga3c5a924d4444b80da080832bc818716a>` "Windows.SingleTaskingWindows"
+
+- #define :ref:`SYSWINDOW_INT_WINDOWS_SINGLETASKING_DEFAULT <group___sys_window_itf___settings_1gaee6f488c4543228b2492d9a371325563>` 0
+
+- #define :ref:`SYSWINDOW_INT_WINDOWS_ALLOWCLOSING_WITH_ALT_F4 <group___sys_window_itf___settings_1gaf8daa8991e86c95faf2f38147cb3e976>` "Windows.CloseOnAltF4"
+
+- #define :ref:`SYSWINDOW_INT_WINDOWS_ALLOWCLOSING_WITH_ALT_F4_DEFAULT <group___sys_window_itf___settings_1ga53945aefe51cc29251981d2284c9f831>` 1
+
+- #define :ref:`SYSWINDOW_INT_WINDOWS_ALLOWCLOSING_BY_WM_CLOSE <group___sys_window_itf___settings_1ga2e3511090548e35abe196600632b8b8e>` "Windows.CloseOnWM_CLOSE"
+
+- #define :ref:`SYSWINDOW_INT_WINDOWS_ALLOWCLOSING_BY_WM_CLOSE_DEFAULT <group___sys_window_itf___settings_1ga7f8a3cfc86a6b4b42ceedeb911d569ce>` 1
+
+- #define :ref:`SYSWINDOW_INT_WINDOWS_BRING_WINDOW_TO_FRONT <group___sys_window_itf___settings_1ga4b30c507ee1903871e2b93376b5e833d>` "Windows.BringWindowToFront"
+
+- #define :ref:`SYSWINDOW_INT_WINDOWS_BRING_WINDOW_TO_FRONT_DEFAULT <group___sys_window_itf___settings_1ga8b98ce49b5e564029f406e4579df261c>` -1
+
+- #define :ref:`SYSWINDOW_INT_WINDOWS_BRING_WINDOW_TO_FRONT_CYCLE_TIME <group___sys_window_itf___settings_1ga1883420a42bbe57b70029752b55a0aea>` "Windows.BringWindowToFrontCycleTime"
+
+- #define :ref:`SYSWINDOW_INT_WINDOWS_BRING_WINDOW_TO_FRONT_CYCLE_TIME_DEFAULT <group___sys_window_itf___settings_1ga4ad729a18b93d2b0029cf0418c71f246>` 1000
+
+- #define :ref:`SYSWINDOW_INT_WINCE_SETCARETBLINKTIME <group___sys_window_itf___settings_1ga016bdc514855e12777704414846791bd>` "WinCE.SetCaretBlinkTime"
+
+- #define :ref:`SYSWINDOW_INT_WINCE_SETCARETBLINKTIME_DEFAULT <group___sys_window_itf___settings_1gaf340a460b472679e85fbade13b806ae3>` 0
+
+- #define :ref:`SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN <group___sys_window_itf___settings_1gac53681ecfa8c814d332522995e80b0b6>` "Linux.KeepMainWindowOpen"
+
+- #define :ref:`SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_DEFAULT <group___sys_window_itf___settings_1gac9fd0aea606c49ddb9747ef0bee22e1a>` 0
+
+- #define :ref:`SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY <group___sys_window_itf___settings_1ga4d63e5d40517ebe946f232f44e1883cc>` "Linux.KeepMainWindowOpenShowImmediately"
+
+- #define :ref:`SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY_DEFAULT <group___sys_window_itf___settings_1gaecb1c17fe3e233a5d3fedca982789734>` 1
+
+.. _group___sys_window_itf___settings-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_window_itf___settings_1ga3c5a924d4444b80da080832bc818716a:
+
+#define SYSWINDOW_INT_WINDOWS_SINGLETASKING "Windows.SingleTaskingWindows"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Windows does support both modes of operation for the SysWindow Component (single- and multitasking). To decide which one should be used, this setting can be used. 0 => Mulitasking, 2 using an externally provided window task (communication using the CmpEventMgr), otherwise => Singletasking (Only for Windows). Setting the mode to 2 requires that a component handles the event EVT_OnInvokeInWindowTask.
+
+.. _group___sys_window_itf___settings_1gaee6f488c4543228b2492d9a371325563:
+
+#define SYSWINDOW_INT_WINDOWS_SINGLETASKING_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf___settings_1gaf8daa8991e86c95faf2f38147cb3e976:
+
+#define SYSWINDOW_INT_WINDOWS_ALLOWCLOSING_WITH_ALT_F4 "Windows.CloseOnAltF4"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+(Only for Windows) You can decide with this setting whether the window should be closed when Alt+F4 is pressed by the user or if this keycode should be ignored. When this setting is activated (it is by default!), then the keyboard handling of the codesys visualization will not react to the key combination of Alt+F4!
+
+.. _group___sys_window_itf___settings_1ga53945aefe51cc29251981d2284c9f831:
+
+#define SYSWINDOW_INT_WINDOWS_ALLOWCLOSING_WITH_ALT_F4_DEFAULT 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf___settings_1ga2e3511090548e35abe196600632b8b8e:
+
+#define SYSWINDOW_INT_WINDOWS_ALLOWCLOSING_BY_WM_CLOSE "Windows.CloseOnWM_CLOSE"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+(Only for Windows) You can decide with this setting whether the window should be closed when WM_CLOSE is called. When this setting is activated (it is by default!), then the window is closed
+
+.. _group___sys_window_itf___settings_1ga7f8a3cfc86a6b4b42ceedeb911d569ce:
+
+#define SYSWINDOW_INT_WINDOWS_ALLOWCLOSING_BY_WM_CLOSE_DEFAULT 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf___settings_1ga4b30c507ee1903871e2b93376b5e833d:
+
+#define SYSWINDOW_INT_WINDOWS_BRING_WINDOW_TO_FRONT "Windows.BringWindowToFront"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+(Only for Windows) This setting defines, whether a window should be cyclically set as the foreground window. The values have the following meaning:
+
+- a negative value: feature is disabled (the default!)
+
+- 0: The window will be always set as the foreground window (no time limit)
+
+- a positive value: feature will be executed n cycles.
+
+.. _group___sys_window_itf___settings_1ga8b98ce49b5e564029f406e4579df261c:
+
+#define SYSWINDOW_INT_WINDOWS_BRING_WINDOW_TO_FRONT_DEFAULT -1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf___settings_1ga1883420a42bbe57b70029752b55a0aea:
+
+#define SYSWINDOW_INT_WINDOWS_BRING_WINDOW_TO_FRONT_CYCLE_TIME "Windows.BringWindowToFrontCycleTime"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+(Only for Windows) This setting is used in conjunction with setting "Windows.BringWindowToFront". It defines the cycle time in milliseconds, when a window will be set as the foreground window.
+
+.. _group___sys_window_itf___settings_1ga4ad729a18b93d2b0029cf0418c71f246:
+
+#define SYSWINDOW_INT_WINDOWS_BRING_WINDOW_TO_FRONT_CYCLE_TIME_DEFAULT 1000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf___settings_1ga016bdc514855e12777704414846791bd:
+
+#define SYSWINDOW_INT_WINCE_SETCARETBLINKTIME "WinCE.SetCaretBlinkTime"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set Caret Blink Time in Visualization on WinCE in milliseconds. Set -1 to deactivate the Cursor Blink, 0 for default.
+
+.. _group___sys_window_itf___settings_1gaf340a460b472679e85fbade13b806ae3:
+
+#define SYSWINDOW_INT_WINCE_SETCARETBLINKTIME_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf___settings_1gac53681ecfa8c814d332522995e80b0b6:
+
+#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN "Linux.KeepMainWindowOpen"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Targetvisualization in Linux operating systems supports two different modes of operation. The classical mode (value == 0) opens a window only while the targetvisualization is running. After a deletion of an application or between reset and start of a targetvisu application, there is no open window. Additionally it is possible to keep the main window open until shutdown of the application (value == 1). This prevents problems on systems based on the Qt5 platform plugin "EGLFS" (for details see http://doc.qt.io/qt-5/embedded-linux.html for example). Nevertheless in this mode there is no possibility for opening several concurrent targetvisu windows as it is possible at least in X-server based installations using the classical mode (value == 0). It is not recommended to use a value != 0 together with X-server based installations as the resulting behaviour will not be the one that users of X-server based systems are expecting.
+
+.. _group___sys_window_itf___settings_1gac9fd0aea606c49ddb9747ef0bee22e1a:
+
+#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_window_itf___settings_1ga4d63e5d40517ebe946f232f44e1883cc:
+
+#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY "Linux.KeepMainWindowOpenShowImmediately"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Only relevant if Linux.KeepMainWindowOpen == 1. To reduce the number of states the targetvisualization window can be in (before showing the window, targetvisu displayed, targetvisu not displayed), this setting can be used to remove the state "before showing the window". If this setting has the value 1, then the window will be displayed immediately at startup without showing a targetvisualization yet. As this mode is recommended only for embedded devices (see SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN too) the initial window is opened in full screen mode.
+
+.. _group___sys_window_itf___settings_1gaecb1c17fe3e233a5d3fedca982789734:
+
+#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY_DEFAULT 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

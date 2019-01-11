@@ -1,0 +1,121 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___rts_supervisor_operation:
+
+======================
+RtsSupervisorOperation
+======================
+
+ :ref:`More... <group___rts_supervisor_operation-details>`
+
+Modules
+-------
+
+- :ref:`OperationID <group___rts_supervisor_operation___operation_i_d>`
+
+Macros
+------
+
+- #define :ref:`SUPERVISOR_OPERATION_TEST_ALIVE_TIMEOUT <group___rts_supervisor_operation_1ga6245474c3f84eedafc65f9ec58c34e5e>` 500000  /* set the timeout in us for the TestAlive operation. */
+
+- #define :ref:`SUPERVISOR_OPERATION_TEST_DEAD_TIMEOUT <group___rts_supervisor_operation_1ga9c97a7c31ce2dbb7cd90fc19d1fe50b8>` 30000  /* set the timeout for the dead signal in ms after the start of the supervision (0 to disable). */
+
+Functions
+---------
+
+- RTS_RESULT :ref:`RegisterSupervisor <group___rts_supervisor_operation_1gac61c50c07e0db49d711ac442fda8dcdd>` (void)
+
+- RTS_RESULT :ref:`DisableSupervisor <group___rts_supervisor_operation_1ga0943aea2a9165232ec3411f7f98b71eb>` (void)
+
+- RTS_RESULT :ref:`UnregisterSupervisor <group___rts_supervisor_operation_1ga24f6c320d9c4e78e2ec58c1d72e0357c>` (void)
+
+- RTS_RESULT :ref:`CyclicSupervisorOperations <group___rts_supervisor_operation_1gabcfc69853e4b0a70bf2873c22bf4ab70>` (void)
+
+.. _group___rts_supervisor_operation-details:
+
+Detailed Description
+--------------------
+
+
+
+Example for defining and registering supervisor operations.
+
+This example registers two vital operations to the Supervisor: 1) an operation that cyclically triggers the alive signal in the CH_COMM_CYCLE hook. 2) an operation sets the dead signal after a configured time after the start of the supervision.
+
+**Copyright:**
+
+\(c) 2003-2016 3S-Smart Software Solutions
+
+Macro Definition Documentation
+------------------------------
+.. _group___rts_supervisor_operation_1ga6245474c3f84eedafc65f9ec58c34e5e:
+
+#define SUPERVISOR_OPERATION_TEST_ALIVE_TIMEOUT 500000  /* set the timeout in us for the TestAlive operation. */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_supervisor_operation_1ga9c97a7c31ce2dbb7cd90fc19d1fe50b8:
+
+#define SUPERVISOR_OPERATION_TEST_DEAD_TIMEOUT 30000  /* set the timeout for the dead signal in ms after the start of the supervision (0 to disable). */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___rts_supervisor_operation_1gac61c50c07e0db49d711ac442fda8dcdd:
+
+static RTS_RESULT RegisterSupervisor (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to register the above operations to the supervisor. USAGE:
+
+- Must be called in CH_INIT3 out of component HookFunction()!
+
+**Returns:**
+
+error code
+
+.. _group___rts_supervisor_operation_1ga0943aea2a9165232ec3411f7f98b71eb:
+
+static RTS_RESULT DisableSupervisor (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to disable the above operations at the supervisor. USAGE:
+
+- Should be called as soon as the runtime starts the shutdown, here in CH_EXIT_COMM out of component HookFunction()!
+
+**Returns:**
+
+error code
+
+.. _group___rts_supervisor_operation_1ga24f6c320d9c4e78e2ec58c1d72e0357c:
+
+static RTS_RESULT UnregisterSupervisor (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to unregister the above operations from the supervisor. USAGE:
+
+- Must be called in CH_EXIT3 out of component HookFunction()!
+
+**Returns:**
+
+error code
+
+.. _group___rts_supervisor_operation_1gabcfc69853e4b0a70bf2873c22bf4ab70:
+
+static RTS_RESULT CyclicSupervisorOperations (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function for the cyclic handling of the registered supervisor operations. USAGE:
+
+- Must be called in CH_COMM_CYCLE out of component HookFunction()!
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

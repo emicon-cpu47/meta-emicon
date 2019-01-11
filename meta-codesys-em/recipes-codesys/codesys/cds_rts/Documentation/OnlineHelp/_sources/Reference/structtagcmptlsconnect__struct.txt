@@ -1,0 +1,64 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagcmptlsconnect__struct:
+
+========================================
+tagcmptlsconnect_struct Struct Reference
+========================================
+
+| #include ":ref:`CmpTlsItf.h <_cmp_tls_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_HANDLE :ref:`hTlsConn <structtagcmptlsconnect__struct_1a5bf36a0e1485fcbc7aa61e3f63c81da0>`
+- RTS_IEC_RESULT :ref:`CmpTlsConnect <structtagcmptlsconnect__struct_1aa4900a878f91c44436a21e5c76b18ca1>`
+
+Detailed Description
+--------------------
+
+Starts handshaking on the client side. This data is likley to read and write data.
+
+:return: Result of this operation. May be one of these values:
+
+- ERR_OK: No error. Everything worked as expected.
+
+- ERR_NOTINITIALIZED: The TLS component was not initialized proberly.
+
+- ERR_TLS_CONNECTION_CLOSED: The TLS connection is closed. Use TlsShutdown to shutdown locally.
+
+- ERR_TLS_WANT_READ: The operation needs TO read data FROM the IO system. There is no data available.
+
+- ERR_TLS_WANT_WRITE: The operation needs to write data to the IO system. This is not possible.
+
+- ERR_TLS_RETRY_OPERATION: Something went wrong. Try the same function call again
+
+- ERR_TLS_IO_SYSTEM: An error in the unterlaying IO system.
+
+- ERR_TLS_INTERNAL: An internal Error of the TLS Component
+
+- ERR_FAILED: Unknown error.
+
+Field Documentation
+-------------------
+
+.. _structtagcmptlsconnect__struct_1a5bf36a0e1485fcbc7aa61e3f63c81da0:
+
+RTS_IEC_HANDLE tagcmptlsconnect_struct::hTlsConn
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagcmptlsconnect__struct_1aa4900a878f91c44436a21e5c76b18ca1:
+
+RTS_IEC_RESULT tagcmptlsconnect_struct::CmpTlsConnect
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpTlsItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

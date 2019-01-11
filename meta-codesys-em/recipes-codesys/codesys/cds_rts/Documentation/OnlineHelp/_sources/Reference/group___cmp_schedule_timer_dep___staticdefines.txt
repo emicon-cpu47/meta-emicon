@@ -1,0 +1,187 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_schedule_timer_dep___staticdefines:
+
+==============
+Static defines
+==============
+
+ :ref:`More... <group___cmp_schedule_timer_dep___staticdefines-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`SchedTaskContextTag <struct_sched_task_context_tag>`
+
+- struct :ref:`SchedTaskTag <struct_sched_task_tag>`
+
+- struct :ref:`SchedEventTag <struct_sched_event_tag>`
+
+Macros
+------
+
+- #define :ref:`CMPSCHEDULE_IECTASKS_HIGH_PRIO <group___cmp_schedule_timer_dep___staticdefines_1ga92790aa53c6f40ad8452d56a924fc81b>` -1
+
+- #define :ref:`NUM_OF_HIGH_IEC_TASKS <group___cmp_schedule_timer_dep___staticdefines_1gaccdc0f396e073b4bde2da55052c4f41c>` 0
+
+- #define :ref:`CMPSCHEDULE_IECTASKS_STACK_HIGH_ATTRIBUTE <group___cmp_schedule_timer_dep___staticdefines_1gad3ae3f0b3a8778760088ef5640d00da3>`
+
+- #define :ref:`RTS_CPU_GET_STACK_BASE <group___cmp_schedule_timer_dep___staticdefines_1gab2af72454525e6baef27d5c327556647>` ((RTS_UINTPTR *)(((RTS_UINTPTR)pStack + stackSize) & ~( :ref:`SYSCPU_STACK_ALIGNMENT <group___sys_cpu_handling_itf___staticdefines_1ga392c04648b0d0e8e220903aa519719e9>` - 1)))
+
+- #define :ref:`RTS_CPU_CONTEXT_ATTRIBUTE <group___cmp_schedule_timer_dep___staticdefines_1ga40af995eeb740bd5c0d3b3523f1ed2c1>`
+
+- #define :ref:`RTS_CPU_CONTEXT_BUFFER <group___cmp_schedule_timer_dep___staticdefines_1gaf7c4e976a3f7ae5e038a116aeade98bf>` jmp_buf
+
+- #define :ref:`RTS_CPU_STORE_CONTEXT <group___cmp_schedule_timer_dep___staticdefines_1ga3fdb2b3b075c7ed2454fb41a55575ef3>` /*lint -e64 */(*((int*)piResult) = setjmp(context))
+
+- #define :ref:`RTS_CPU_RESTORE_CONTEXT <group___cmp_schedule_timer_dep___staticdefines_1gadf0392a88c61819c5a1bc6cddce55823>` longjmp(context, parameter)
+
+- #define :ref:`RTS_CPU_RESTORE_CONTEXT_EXCEPTION <group___cmp_schedule_timer_dep___staticdefines_1ga8527c6d2c3c1a87922ac714205a0a8e8>` longjmp(context, parameter)
+
+Typedefs
+--------
+
+- typedef enum :ref:`SchedTaskStateTag <group___cmp_schedule_timer_dep___staticdefines_1ga0cd5094b1e98e83993c02a5d8741dcf2>` :ref:`SchedTaskState <group___cmp_schedule_timer_dep___staticdefines_1ga3df4dd775f6acd06a16630e4c971f005>`
+
+- typedef struct :ref:`SchedTaskContextTag <struct_sched_task_context_tag>` :ref:`SchedTaskContext <group___cmp_schedule_timer_dep___staticdefines_1gae4f6cdf14cc3e900a9cf1da4c5ad20ff>`
+
+- typedef struct :ref:`SchedTaskTag <struct_sched_task_tag>` :ref:`SchedTask <group___cmp_schedule_timer_dep___staticdefines_1gad29231d5bb9bf69fb1c0de2f7e18eda1>`
+
+- typedef struct :ref:`SchedEventTag <struct_sched_event_tag>` :ref:`SchedEvent <group___cmp_schedule_timer_dep___staticdefines_1ga64a6e54d3772ffb1b7bf383d680a68c2>`
+
+Enumerations
+------------
+
+- enum :ref:`SchedTaskStateTag <group___cmp_schedule_timer_dep___staticdefines_1ga0cd5094b1e98e83993c02a5d8741dcf2>` { :ref:`RTS_SCHED_TASK_INIT <group___cmp_schedule_timer_dep___staticdefines_1gga0cd5094b1e98e83993c02a5d8741dcf2a63bf476ae6deee3b33f31e2b1e7e2926>`, :ref:`RTS_SCHED_TASK_PENDING <group___cmp_schedule_timer_dep___staticdefines_1gga0cd5094b1e98e83993c02a5d8741dcf2a3b03bd5178e579938fa8820107f0aedf>`, :ref:`RTS_SCHED_TASK_ACTIVE <group___cmp_schedule_timer_dep___staticdefines_1gga0cd5094b1e98e83993c02a5d8741dcf2af8e3476586960a3f4e8480da6416fc43>` }
+
+Functions
+---------
+
+- :ref:`OPTIONAL_IMPORTS <group___cmp_schedule_timer_dep___staticdefines_1ga92dede35b1c1caeaf1245c62ae42bece>` (:ref:`SIL2OEMGetOperationMode <group___cmp_s_i_l2_itf_1gadf5a291c36c5b17da4958b7f32710d7b>`, :ref:`SIL2CheckCallerContext <group___cmp_s_i_l2_itf_1gadfab76ab0d96e0384b79b59a6e52d1a5>`)
+
+.. _group___cmp_schedule_timer_dep___staticdefines-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_schedule_timer_dep___staticdefines_1ga92790aa53c6f40ad8452d56a924fc81b:
+
+#define CMPSCHEDULE_IECTASKS_HIGH_PRIO -1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is a soft barrier and is not mandatory for the scheduler. But the Timer Scheduler is using this to place the task stacks of tasks with a higher priority (<= CMPSCHEDULE_IECTASKS_HIGH_PRIO) into a different memory area than the others (e.g. internal RAM).
+
+The physical location of the stacks can be influenced with the two macros:
+
+- CMPSCHEDULE_IECTASK_STACK_STD_ATTRIBUTE
+
+- CMPSCHEDULE_IECTASK_STACK_HIGH_ATTRIBUTE
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1gaccdc0f396e073b4bde2da55052c4f41c:
+
+#define NUM_OF_HIGH_IEC_TASKS 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Number of high priority tasks, that are allowed below CMPSCHEDULE_IECTASKS_HIGH_PRIO.
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1gad3ae3f0b3a8778760088ef5640d00da3:
+
+#define CMPSCHEDULE_IECTASKS_STACK_HIGH_ATTRIBUTE
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Attribute to place the stack of the IEC tasks in a different location.
+
+Attribute to place the stack of high priority tasks in a different location (e.g. internal RAM).
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1gab2af72454525e6baef27d5c327556647:
+
+#define RTS_CPU_GET_STACK_BASE ((RTS_UINTPTR *)(((RTS_UINTPTR)pStack + stackSize) & ~( :ref:`SYSCPU_STACK_ALIGNMENT <group___sys_cpu_handling_itf___staticdefines_1ga392c04648b0d0e8e220903aa519719e9>` - 1)))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1ga40af995eeb740bd5c0d3b3523f1ed2c1:
+
+#define RTS_CPU_CONTEXT_ATTRIBUTE
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1gaf7c4e976a3f7ae5e038a116aeade98bf:
+
+#define RTS_CPU_CONTEXT_BUFFER jmp_buf
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1ga3fdb2b3b075c7ed2454fb41a55575ef3:
+
+#define RTS_CPU_STORE_CONTEXT /*lint -e64 */(*((int*)piResult) = setjmp(context))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1gadf0392a88c61819c5a1bc6cddce55823:
+
+#define RTS_CPU_RESTORE_CONTEXT longjmp(context, parameter)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1ga8527c6d2c3c1a87922ac714205a0a8e8:
+
+#define RTS_CPU_RESTORE_CONTEXT_EXCEPTION longjmp(context, parameter)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1ga3df4dd775f6acd06a16630e4c971f005:
+
+typedef enum SchedTaskStateTag  SchedTaskState
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1gae4f6cdf14cc3e900a9cf1da4c5ad20ff:
+
+typedef struct SchedTaskContextTag  SchedTaskContext
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1gad29231d5bb9bf69fb1c0de2f7e18eda1:
+
+typedef struct SchedTaskTag  SchedTask
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1ga64a6e54d3772ffb1b7bf383d680a68c2:
+
+typedef struct SchedEventTag  SchedEvent
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enumeration Type Documentation
+------------------------------
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1ga0cd5094b1e98e83993c02a5d8741dcf2:
+
+enum SchedTaskStateTag
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+**Enumerator:**
+
++------------------------+
+| RTS_SCHED_TASK_INIT    |
++------------------------+
+| RTS_SCHED_TASK_PENDING |
++------------------------+
+| RTS_SCHED_TASK_ACTIVE  |
++------------------------+
+
+Function Documentation
+----------------------
+
+.. _group___cmp_schedule_timer_dep___staticdefines_1ga92dede35b1c1caeaf1245c62ae42bece:
+
+OPTIONAL_IMPORTS (SIL2OEMGetOperationMode, SIL2CheckCallerContext) REQUIRED_IMPORTS(CMCallExtraCommCycleHook
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

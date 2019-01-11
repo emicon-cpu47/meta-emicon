@@ -1,0 +1,658 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpSoftingProfibusItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpSrvItf" href="group___cmp_srv_itf.html" />
+    <link rel="prev" title="CmpSocketCanDrvItf" href="group___cmp_socket_can_drv_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_srv_itf.html" title="CmpSrvItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_socket_can_drv_itf.html" title="CmpSocketCanDrvItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpSoftingProfibusItf</a><ul>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-itf-cmpsoftingprofibus">#define ITF_CmpSoftingProfibus</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpsoftingprofibus">#define EXTITF_CmpSoftingProfibus</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-init-master-con-softing-t-dp-init-master-con">typedef struct tagSOFTING_T_DP_INIT_MASTER_CON  SOFTING_T_DP_INIT_MASTER_CON</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-exit-master-con-softing-t-dp-exit-master-con">typedef struct tagSOFTING_T_DP_EXIT_MASTER_CON  SOFTING_T_DP_EXIT_MASTER_CON</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-slave-user-data-softing-t-dp-slave-user-data">typedef struct tagSOFTING_T_DP_SLAVE_USER_DATA  SOFTING_T_DP_SLAVE_USER_DATA</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-upload-res-con-softing-t-dp-upload-res-con">typedef struct tagSOFTING_T_DP_UPLOAD_RES_CON  SOFTING_T_DP_UPLOAD_RES_CON</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-set-busparameter-con-softing-t-dp-set-busparameter-con">typedef struct tagSOFTING_T_DP_SET_BUSPARAMETER_CON  SOFTING_T_DP_SET_BUSPARAMETER_CON</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-fmb-config-crl-softing-t-fmb-config-crl">typedef struct tagSOFTING_T_FMB_CONFIG_CRL  SOFTING_T_FMB_CONFIG_CRL</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-set-prm-con-softing-t-dp-set-prm-con">typedef struct tagSOFTING_T_DP_SET_PRM_CON  SOFTING_T_DP_SET_PRM_CON</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-set-busparameter-req-softing-t-dp-set-busparameter-req">typedef struct tagSOFTING_T_DP_SET_BUSPARAMETER_REQ  SOFTING_T_DP_SET_BUSPARAMETER_REQ</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-get-master-diag-req-softing-t-dp-get-master-diag-req">typedef struct tagSOFTING_T_DP_GET_MASTER_DIAG_REQ  SOFTING_T_DP_GET_MASTER_DIAG_REQ</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-act-param-req-softing-t-dp-act-param-req">typedef struct tagSOFTING_T_DP_ACT_PARAM_REQ  SOFTING_T_DP_ACT_PARAM_REQ</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-data-transfer-con-softing-t-dp-data-transfer-con">typedef struct tagSOFTING_T_DP_DATA_TRANSFER_CON  SOFTING_T_DP_DATA_TRANSFER_CON</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-diag-data-softing-t-dp-diag-data">typedef struct tagSOFTING_T_DP_DIAG_DATA  SOFTING_T_DP_DIAG_DATA</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-get-slave-diag-ind-softing-t-dp-get-slave-diag-ind">typedef struct tagSOFTING_T_DP_GET_SLAVE_DIAG_IND  SOFTING_T_DP_GET_SLAVE_DIAG_IND</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-download-res-con-softing-t-dp-download-res-con">typedef struct tagSOFTING_T_DP_DOWNLOAD_RES_CON  SOFTING_T_DP_DOWNLOAD_RES_CON</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-fmb-config-vfd-softing-t-fmb-config-vfd">typedef struct tagSOFTING_T_FMB_CONFIG_VFD  SOFTING_T_FMB_CONFIG_VFD</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-fmb-config-dp-softing-t-fmb-config-dp">typedef struct tagSOFTING_T_FMB_CONFIG_DP  SOFTING_T_FMB_CONFIG_DP</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-start-seq-ind-softing-t-dp-start-seq-ind">typedef struct tagSOFTING_T_DP_START_SEQ_IND  SOFTING_T_DP_START_SEQ_IND</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-end-seq-req-softing-t-dp-end-seq-req">typedef struct tagSOFTING_T_DP_END_SEQ_REQ  SOFTING_T_DP_END_SEQ_REQ</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-get-master-diag-res-con-softing-t-dp-get-master-diag-res-con">typedef struct tagSOFTING_T_DP_GET_MASTER_DIAG_RES_CON  SOFTING_T_DP_GET_MASTER_DIAG_RES_CON</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-cfg-data-softing-t-dp-cfg-data">typedef struct tagSOFTING_T_DP_CFG_DATA  SOFTING_T_DP_CFG_DATA</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-fmb-config-fdlif-softing-t-fmb-config-fdlif">typedef struct tagSOFTING_T_FMB_CONFIG_FDLIF  SOFTING_T_FMB_CONFIG_FDLIF</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-act-param-res-con-softing-t-dp-act-param-res-con">typedef struct tagSOFTING_T_DP_ACT_PARAM_RES_CON  SOFTING_T_DP_ACT_PARAM_RES_CON</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-get-slave-diag-con-softing-t-dp-get-slave-diag-con">typedef struct tagSOFTING_T_DP_GET_SLAVE_DIAG_CON  SOFTING_T_DP_GET_SLAVE_DIAG_CON</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-slave-param-slave-info-softing-t-dp-slave-param-slave-info">typedef struct tagSOFTING_T_DP_SLAVE_PARAM_SLAVE_INFO  SOFTING_T_DP_SLAVE_PARAM_SLAVE_INFO</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-upload-req-softing-t-dp-upload-req">typedef struct tagSOFTING_T_DP_UPLOAD_REQ  SOFTING_T_DP_UPLOAD_REQ</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-init-master-req-softing-t-dp-init-master-req">typedef struct tagSOFTING_T_DP_INIT_MASTER_REQ  SOFTING_T_DP_INIT_MASTER_REQ</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-slave-para-set-softing-t-dp-slave-para-set">typedef struct tagSOFTING_T_DP_SLAVE_PARA_SET  SOFTING_T_DP_SLAVE_PARA_SET</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-start-seq-res-con-softing-t-dp-start-seq-res-con">typedef struct tagSOFTING_T_DP_START_SEQ_RES_CON  SOFTING_T_DP_START_SEQ_RES_CON</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-slave-param-sys-info-softing-t-dp-slave-param-sys-info">typedef struct tagSOFTING_T_DP_SLAVE_PARAM_SYS_INFO  SOFTING_T_DP_SLAVE_PARAM_SYS_INFO</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-fmb-fm2-event-ind-softing-t-fmb-fm2-event-ind">typedef struct tagSOFTING_T_FMB_FM2_EVENT_IND  SOFTING_T_FMB_FM2_EVENT_IND</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-fmb-config-sm7-softing-t-fmb-config-sm7">typedef struct tagSOFTING_T_FMB_CONFIG_SM7  SOFTING_T_FMB_CONFIG_SM7</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-fmb-set-configuration-req-softing-t-fmb-set-configuration-req">typedef struct tagSOFTING_T_FMB_SET_CONFIGURATION_REQ  SOFTING_T_FMB_SET_CONFIGURATION_REQ</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-profi-service-descr-softing-t-profi-service-descr">typedef struct tagSOFTING_T_PROFI_SERVICE_DESCR  SOFTING_T_PROFI_SERVICE_DESCR</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-prm-data-softing-t-dp-prm-data">typedef struct tagSOFTING_T_DP_PRM_DATA  SOFTING_T_DP_PRM_DATA</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-set-prm-req-softing-t-dp-set-prm-req">typedef struct tagSOFTING_T_DP_SET_PRM_REQ  SOFTING_T_DP_SET_PRM_REQ</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-download-req-softing-t-dp-download-req">typedef struct tagSOFTING_T_DP_DOWNLOAD_REQ  SOFTING_T_DP_DOWNLOAD_REQ</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-bus-para-set-softing-t-dp-bus-para-set">typedef struct tagSOFTING_T_DP_BUS_PARA_SET  SOFTING_T_DP_BUS_PARA_SET</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-start-seq-req-softing-t-dp-start-seq-req">typedef struct tagSOFTING_T_DP_START_SEQ_REQ  SOFTING_T_DP_START_SEQ_REQ</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-end-seq-ind-softing-t-dp-end-seq-ind">typedef struct tagSOFTING_T_DP_END_SEQ_IND  SOFTING_T_DP_END_SEQ_IND</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-end-seq-res-con-softing-t-dp-end-seq-res-con">typedef struct tagSOFTING_T_DP_END_SEQ_RES_CON  SOFTING_T_DP_END_SEQ_RES_CON</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-aat-data-softing-t-dp-aat-data">typedef struct tagSOFTING_T_DP_AAT_DATA  SOFTING_T_DP_AAT_DATA</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-get-slave-param-con-softing-t-dp-get-slave-param-con">typedef struct tagSOFTING_T_DP_GET_SLAVE_PARAM_CON  SOFTING_T_DP_GET_SLAVE_PARAM_CON</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-get-slave-param-req-softing-t-dp-get-slave-param-req">typedef struct tagSOFTING_T_DP_GET_SLAVE_PARAM_REQ  SOFTING_T_DP_GET_SLAVE_PARAM_REQ</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-act-param-ind-softing-t-dp-act-param-ind">typedef struct tagSOFTING_T_DP_ACT_PARAM_IND  SOFTING_T_DP_ACT_PARAM_IND</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-get-prm-req-softing-t-dp-get-prm-req">typedef struct tagSOFTING_T_DP_GET_PRM_REQ  SOFTING_T_DP_GET_PRM_REQ</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-t-dp-download-ind-softing-t-dp-download-ind">typedef struct tagSOFTING_T_DP_DOWNLOAD_IND  SOFTING_T_DP_DOWNLOAD_IND</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-profi-get-last-errror-struct-softing-profi-get-last-errror-struct">typedef struct tagsofting_profi_get_last_errror_struct  softing_profi_get_last_errror_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-profi-get-dps-input-data-struct-softing-profi-get-dps-input-data-struct">typedef struct tagsofting_profi_get_dps_input_data_struct  softing_profi_get_dps_input_data_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-profi-set-data-struct-softing-profi-set-data-struct">typedef struct tagsofting_profi_set_data_struct  softing_profi_set_data_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-profi-get-versions-struct-softing-profi-get-versions-struct">typedef struct tagsofting_profi_get_versions_struct  softing_profi_get_versions_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-profi-end-struct-softing-profi-end-struct">typedef struct tagsofting_profi_end_struct  softing_profi_end_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-profi-set-dps-input-data-struct-softing-profi-set-dps-input-data-struct">typedef struct tagsofting_profi_set_dps_input_data_struct  softing_profi_set_dps_input_data_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-profi-get-serial-device-number-struct-softing-profi-get-serial-device-number-struct">typedef struct tagsofting_profi_get_serial_device_number_struct  softing_profi_get_serial_device_number_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-profi-rcv-con-ind-struct-softing-profi-rcv-con-ind-struct">typedef struct tagsofting_profi_rcv_con_ind_struct  softing_profi_rcv_con_ind_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-profi-snd-req-res-struct-softing-profi-snd-req-res-struct">typedef struct tagsofting_profi_snd_req_res_struct  softing_profi_snd_req_res_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-profi-init-struct-softing-profi-init-struct">typedef struct tagsofting_profi_init_struct  softing_profi_init_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-profi-get-dps-output-data-struct-softing-profi-get-dps-output-data-struct">typedef struct tagsofting_profi_get_dps_output_data_struct  softing_profi_get_dps_output_data_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsofting-profi-get-data-struct-softing-profi-get-data-struct">typedef struct tagsofting_profi_get_data_struct  softing_profi_get_data_struct</a></li>
+<li><a class="reference internal" href="#typedef-icmpsoftingprofibus-c-icmpsoftingprofibus">typedef ICmpSoftingProfibus_C ICmpSoftingProfibus</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#void-softing-profi-get-last-errror-softing-profi-get-last-errror-struct-p">void softing_profi_get_last_errror (softing_profi_get_last_errror_struct *p)</a></li>
+<li><a class="reference internal" href="#void-softing-profi-get-dps-input-data-softing-profi-get-dps-input-data-struct-p">void softing_profi_get_dps_input_data (softing_profi_get_dps_input_data_struct *p)</a></li>
+<li><a class="reference internal" href="#void-softing-profi-set-data-softing-profi-set-data-struct-p">void softing_profi_set_data (softing_profi_set_data_struct *p)</a></li>
+<li><a class="reference internal" href="#void-softing-profi-get-versions-softing-profi-get-versions-struct-p">void softing_profi_get_versions (softing_profi_get_versions_struct *p)</a></li>
+<li><a class="reference internal" href="#void-softing-profi-end-softing-profi-end-struct-p">void softing_profi_end (softing_profi_end_struct *p)</a></li>
+<li><a class="reference internal" href="#void-softing-profi-set-dps-input-data-softing-profi-set-dps-input-data-struct-p">void softing_profi_set_dps_input_data (softing_profi_set_dps_input_data_struct *p)</a></li>
+<li><a class="reference internal" href="#void-softing-profi-get-serial-device-number-softing-profi-get-serial-device-number-struct-p">void softing_profi_get_serial_device_number (softing_profi_get_serial_device_number_struct *p)</a></li>
+<li><a class="reference internal" href="#void-softing-profi-rcv-con-ind-softing-profi-rcv-con-ind-struct-p">void softing_profi_rcv_con_ind (softing_profi_rcv_con_ind_struct *p)</a></li>
+<li><a class="reference internal" href="#void-softing-profi-snd-req-res-softing-profi-snd-req-res-struct-p">void softing_profi_snd_req_res (softing_profi_snd_req_res_struct *p)</a></li>
+<li><a class="reference internal" href="#void-softing-profi-init-softing-profi-init-struct-p">void softing_profi_init (softing_profi_init_struct *p)</a></li>
+<li><a class="reference internal" href="#void-softing-profi-get-dps-output-data-softing-profi-get-dps-output-data-struct-p">void softing_profi_get_dps_output_data (softing_profi_get_dps_output_data_struct *p)</a></li>
+<li><a class="reference internal" href="#void-softing-profi-get-data-softing-profi-get-data-struct-p">void softing_profi_get_data (softing_profi_get_data_struct *p)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_socket_can_drv_itf.html"
+                        title="previous chapter">CmpSocketCanDrvItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_srv_itf.html"
+                        title="next chapter">CmpSrvItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_softing_profibus_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpsoftingprofibusitf">
+<span id="group-cmp-softing-profibus-itf"></span><h1>CmpSoftingProfibusItf<a class="headerlink" href="#cmpsoftingprofibusitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CmpSoftingProfibus. <a class="reference internal" href="#group-cmp-softing-profibus-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___i_n_i_t___m_a_s_t_e_r___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-i-n-i-t-m-a-s-t-e-r-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_INIT_MASTER_CON</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___e_x_i_t___m_a_s_t_e_r___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-e-x-i-t-m-a-s-t-e-r-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_EXIT_MASTER_CON</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_l_a_v_e___u_s_e_r___d_a_t_a.html#structtag-s-o-f-t-i-n-g-t-d-p-s-l-a-v-e-u-s-e-r-d-a-t-a"><span class="std std-ref">tagSOFTING_T_DP_SLAVE_USER_DATA</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___u_p_l_o_a_d___r_e_s___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-u-p-l-o-a-d-r-e-s-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_UPLOAD_RES_CON</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_e_t___b_u_s_p_a_r_a_m_e_t_e_r___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-s-e-t-b-u-s-p-a-r-a-m-e-t-e-r-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_SET_BUSPARAMETER_CON</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___c_o_n_f_i_g___c_r_l.html#structtag-s-o-f-t-i-n-g-t-f-m-b-c-o-n-f-i-g-c-r-l"><span class="std std-ref">tagSOFTING_T_FMB_CONFIG_CRL</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_e_t___p_r_m___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-s-e-t-p-r-m-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_SET_PRM_CON</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_e_t___b_u_s_p_a_r_a_m_e_t_e_r___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-s-e-t-b-u-s-p-a-r-a-m-e-t-e-r-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_SET_BUSPARAMETER_REQ</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___m_a_s_t_e_r___d_i_a_g___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-m-a-s-t-e-r-d-i-a-g-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_GET_MASTER_DIAG_REQ</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___a_c_t___p_a_r_a_m___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-a-c-t-p-a-r-a-m-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_ACT_PARAM_REQ</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___d_a_t_a___t_r_a_n_s_f_e_r___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-d-a-t-a-t-r-a-n-s-f-e-r-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_DATA_TRANSFER_CON</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___d_i_a_g___d_a_t_a.html#structtag-s-o-f-t-i-n-g-t-d-p-d-i-a-g-d-a-t-a"><span class="std std-ref">tagSOFTING_T_DP_DIAG_DATA</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___s_l_a_v_e___d_i_a_g___i_n_d.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-s-l-a-v-e-d-i-a-g-i-n-d"><span class="std std-ref">tagSOFTING_T_DP_GET_SLAVE_DIAG_IND</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___d_o_w_n_l_o_a_d___r_e_s___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-d-o-w-n-l-o-a-d-r-e-s-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_DOWNLOAD_RES_CON</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___c_o_n_f_i_g___v_f_d.html#structtag-s-o-f-t-i-n-g-t-f-m-b-c-o-n-f-i-g-v-f-d"><span class="std std-ref">tagSOFTING_T_FMB_CONFIG_VFD</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___c_o_n_f_i_g___d_p.html#structtag-s-o-f-t-i-n-g-t-f-m-b-c-o-n-f-i-g-d-p"><span class="std std-ref">tagSOFTING_T_FMB_CONFIG_DP</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_t_a_r_t___s_e_q___i_n_d.html#structtag-s-o-f-t-i-n-g-t-d-p-s-t-a-r-t-s-e-q-i-n-d"><span class="std std-ref">tagSOFTING_T_DP_START_SEQ_IND</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___e_n_d___s_e_q___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-e-n-d-s-e-q-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_END_SEQ_REQ</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___m_a_s_t_e_r___d_i_a_g___r_e_s___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-m-a-s-t-e-r-d-i-a-g-r-e-s-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_GET_MASTER_DIAG_RES_CON</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___c_f_g___d_a_t_a.html#structtag-s-o-f-t-i-n-g-t-d-p-c-f-g-d-a-t-a"><span class="std std-ref">tagSOFTING_T_DP_CFG_DATA</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___c_o_n_f_i_g___f_d_l_i_f.html#structtag-s-o-f-t-i-n-g-t-f-m-b-c-o-n-f-i-g-f-d-l-i-f"><span class="std std-ref">tagSOFTING_T_FMB_CONFIG_FDLIF</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___a_c_t___p_a_r_a_m___r_e_s___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-a-c-t-p-a-r-a-m-r-e-s-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_ACT_PARAM_RES_CON</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___s_l_a_v_e___d_i_a_g___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-s-l-a-v-e-d-i-a-g-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_GET_SLAVE_DIAG_CON</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_l_a_v_e___p_a_r_a_m___s_l_a_v_e___i_n_f_o.html#structtag-s-o-f-t-i-n-g-t-d-p-s-l-a-v-e-p-a-r-a-m-s-l-a-v-e-i-n-f-o"><span class="std std-ref">tagSOFTING_T_DP_SLAVE_PARAM_SLAVE_INFO</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___u_p_l_o_a_d___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-u-p-l-o-a-d-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_UPLOAD_REQ</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___i_n_i_t___m_a_s_t_e_r___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-i-n-i-t-m-a-s-t-e-r-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_INIT_MASTER_REQ</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_l_a_v_e___p_a_r_a___s_e_t.html#structtag-s-o-f-t-i-n-g-t-d-p-s-l-a-v-e-p-a-r-a-s-e-t"><span class="std std-ref">tagSOFTING_T_DP_SLAVE_PARA_SET</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_t_a_r_t___s_e_q___r_e_s___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-s-t-a-r-t-s-e-q-r-e-s-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_START_SEQ_RES_CON</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_l_a_v_e___p_a_r_a_m___s_y_s___i_n_f_o.html#structtag-s-o-f-t-i-n-g-t-d-p-s-l-a-v-e-p-a-r-a-m-s-y-s-i-n-f-o"><span class="std std-ref">tagSOFTING_T_DP_SLAVE_PARAM_SYS_INFO</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___f_m2___e_v_e_n_t___i_n_d.html#structtag-s-o-f-t-i-n-g-t-f-m-b-f-m2-e-v-e-n-t-i-n-d"><span class="std std-ref">tagSOFTING_T_FMB_FM2_EVENT_IND</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___c_o_n_f_i_g___s_m7.html#structtag-s-o-f-t-i-n-g-t-f-m-b-c-o-n-f-i-g-s-m7"><span class="std std-ref">tagSOFTING_T_FMB_CONFIG_SM7</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___s_e_t___c_o_n_f_i_g_u_r_a_t_i_o_n___r_e_q.html#structtag-s-o-f-t-i-n-g-t-f-m-b-s-e-t-c-o-n-f-i-g-u-r-a-t-i-o-n-r-e-q"><span class="std std-ref">tagSOFTING_T_FMB_SET_CONFIGURATION_REQ</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___p_r_o_f_i___s_e_r_v_i_c_e___d_e_s_c_r.html#structtag-s-o-f-t-i-n-g-t-p-r-o-f-i-s-e-r-v-i-c-e-d-e-s-c-r"><span class="std std-ref">tagSOFTING_T_PROFI_SERVICE_DESCR</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___p_r_m___d_a_t_a.html#structtag-s-o-f-t-i-n-g-t-d-p-p-r-m-d-a-t-a"><span class="std std-ref">tagSOFTING_T_DP_PRM_DATA</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_e_t___p_r_m___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-s-e-t-p-r-m-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_SET_PRM_REQ</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___d_o_w_n_l_o_a_d___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-d-o-w-n-l-o-a-d-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_DOWNLOAD_REQ</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___b_u_s___p_a_r_a___s_e_t.html#structtag-s-o-f-t-i-n-g-t-d-p-b-u-s-p-a-r-a-s-e-t"><span class="std std-ref">tagSOFTING_T_DP_BUS_PARA_SET</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_t_a_r_t___s_e_q___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-s-t-a-r-t-s-e-q-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_START_SEQ_REQ</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___e_n_d___s_e_q___i_n_d.html#structtag-s-o-f-t-i-n-g-t-d-p-e-n-d-s-e-q-i-n-d"><span class="std std-ref">tagSOFTING_T_DP_END_SEQ_IND</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___e_n_d___s_e_q___r_e_s___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-e-n-d-s-e-q-r-e-s-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_END_SEQ_RES_CON</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___a_a_t___d_a_t_a.html#structtag-s-o-f-t-i-n-g-t-d-p-a-a-t-d-a-t-a"><span class="std std-ref">tagSOFTING_T_DP_AAT_DATA</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___s_l_a_v_e___p_a_r_a_m___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-s-l-a-v-e-p-a-r-a-m-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_GET_SLAVE_PARAM_CON</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___s_l_a_v_e___p_a_r_a_m___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-s-l-a-v-e-p-a-r-a-m-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_GET_SLAVE_PARAM_REQ</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___a_c_t___p_a_r_a_m___i_n_d.html#structtag-s-o-f-t-i-n-g-t-d-p-a-c-t-p-a-r-a-m-i-n-d"><span class="std std-ref">tagSOFTING_T_DP_ACT_PARAM_IND</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___p_r_m___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-p-r-m-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_GET_PRM_REQ</span></a></li>
+<li>struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___d_o_w_n_l_o_a_d___i_n_d.html#structtag-s-o-f-t-i-n-g-t-d-p-d-o-w-n-l-o-a-d-i-n-d"><span class="std std-ref">tagSOFTING_T_DP_DOWNLOAD_IND</span></a></li>
+<li>struct <a class="reference internal" href="structtagsofting__profi__get__last__errror__struct.html#structtagsofting-profi-get-last-errror-struct"><span class="std std-ref">tagsofting_profi_get_last_errror_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsofting__profi__get__dps__input__data__struct.html#structtagsofting-profi-get-dps-input-data-struct"><span class="std std-ref">tagsofting_profi_get_dps_input_data_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsofting__profi__set__data__struct.html#structtagsofting-profi-set-data-struct"><span class="std std-ref">tagsofting_profi_set_data_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsofting__profi__get__versions__struct.html#structtagsofting-profi-get-versions-struct"><span class="std std-ref">tagsofting_profi_get_versions_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsofting__profi__end__struct.html#structtagsofting-profi-end-struct"><span class="std std-ref">tagsofting_profi_end_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsofting__profi__set__dps__input__data__struct.html#structtagsofting-profi-set-dps-input-data-struct"><span class="std std-ref">tagsofting_profi_set_dps_input_data_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsofting__profi__get__serial__device__number__struct.html#structtagsofting-profi-get-serial-device-number-struct"><span class="std std-ref">tagsofting_profi_get_serial_device_number_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsofting__profi__rcv__con__ind__struct.html#structtagsofting-profi-rcv-con-ind-struct"><span class="std std-ref">tagsofting_profi_rcv_con_ind_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsofting__profi__snd__req__res__struct.html#structtagsofting-profi-snd-req-res-struct"><span class="std std-ref">tagsofting_profi_snd_req_res_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsofting__profi__init__struct.html#structtagsofting-profi-init-struct"><span class="std std-ref">tagsofting_profi_init_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsofting__profi__get__dps__output__data__struct.html#structtagsofting-profi-get-dps-output-data-struct"><span class="std std-ref">tagsofting_profi_get_dps_output_data_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsofting__profi__get__data__struct.html#structtagsofting-profi-get-data-struct"><span class="std std-ref">tagsofting_profi_get_data_struct</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_cmp_softing_profibus___c.html#struct-i-cmp-softing-profibus-c"><span class="std std-ref">ICmpSoftingProfibus_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gabde812a8ab7fa7626d73f2d471f870b5"><span class="std std-ref">ITF_CmpSoftingProfibus</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga5a79fc864b59c433e218201dce06bdb4"><span class="std std-ref">EXTITF_CmpSoftingProfibus</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___i_n_i_t___m_a_s_t_e_r___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-i-n-i-t-m-a-s-t-e-r-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_INIT_MASTER_CON</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaf468c406ff1ebc76a9fbe557dfb022d3"><span class="std std-ref">SOFTING_T_DP_INIT_MASTER_CON</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___e_x_i_t___m_a_s_t_e_r___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-e-x-i-t-m-a-s-t-e-r-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_EXIT_MASTER_CON</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gac772d1daa727fa3dd9b2f39d189fae95"><span class="std std-ref">SOFTING_T_DP_EXIT_MASTER_CON</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_l_a_v_e___u_s_e_r___d_a_t_a.html#structtag-s-o-f-t-i-n-g-t-d-p-s-l-a-v-e-u-s-e-r-d-a-t-a"><span class="std std-ref">tagSOFTING_T_DP_SLAVE_USER_DATA</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga2b61b12a38c1aac9f220c0eaa1e94d96"><span class="std std-ref">SOFTING_T_DP_SLAVE_USER_DATA</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___u_p_l_o_a_d___r_e_s___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-u-p-l-o-a-d-r-e-s-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_UPLOAD_RES_CON</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gae745a7534f15628da9923705a3693fd2"><span class="std std-ref">SOFTING_T_DP_UPLOAD_RES_CON</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_e_t___b_u_s_p_a_r_a_m_e_t_e_r___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-s-e-t-b-u-s-p-a-r-a-m-e-t-e-r-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_SET_BUSPARAMETER_CON</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaff2ebc5110cc14af394f3886eccd3bd2"><span class="std std-ref">SOFTING_T_DP_SET_BUSPARAMETER_CON</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___c_o_n_f_i_g___c_r_l.html#structtag-s-o-f-t-i-n-g-t-f-m-b-c-o-n-f-i-g-c-r-l"><span class="std std-ref">tagSOFTING_T_FMB_CONFIG_CRL</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga823b9dad6186fbffe8e59765d9a70747"><span class="std std-ref">SOFTING_T_FMB_CONFIG_CRL</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_e_t___p_r_m___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-s-e-t-p-r-m-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_SET_PRM_CON</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gacff42c1458435d209597140dc2ed53f8"><span class="std std-ref">SOFTING_T_DP_SET_PRM_CON</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_e_t___b_u_s_p_a_r_a_m_e_t_e_r___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-s-e-t-b-u-s-p-a-r-a-m-e-t-e-r-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_SET_BUSPARAMETER_REQ</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaa64156e652ea96db79485ad2a1a16ace"><span class="std std-ref">SOFTING_T_DP_SET_BUSPARAMETER_REQ</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___m_a_s_t_e_r___d_i_a_g___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-m-a-s-t-e-r-d-i-a-g-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_GET_MASTER_DIAG_REQ</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga022ef0b3054a9524857a06dc62770478"><span class="std std-ref">SOFTING_T_DP_GET_MASTER_DIAG_REQ</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___a_c_t___p_a_r_a_m___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-a-c-t-p-a-r-a-m-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_ACT_PARAM_REQ</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga05146189abfe30a64941d893c8d76682"><span class="std std-ref">SOFTING_T_DP_ACT_PARAM_REQ</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___d_a_t_a___t_r_a_n_s_f_e_r___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-d-a-t-a-t-r-a-n-s-f-e-r-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_DATA_TRANSFER_CON</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga8f97e56c72bce7e8ca0f6dba15e587fe"><span class="std std-ref">SOFTING_T_DP_DATA_TRANSFER_CON</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___d_i_a_g___d_a_t_a.html#structtag-s-o-f-t-i-n-g-t-d-p-d-i-a-g-d-a-t-a"><span class="std std-ref">tagSOFTING_T_DP_DIAG_DATA</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga26bed43100f69bd4bd649f1ade6546e2"><span class="std std-ref">SOFTING_T_DP_DIAG_DATA</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___s_l_a_v_e___d_i_a_g___i_n_d.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-s-l-a-v-e-d-i-a-g-i-n-d"><span class="std std-ref">tagSOFTING_T_DP_GET_SLAVE_DIAG_IND</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga66b793b9825f8f28cf551011625a76dd"><span class="std std-ref">SOFTING_T_DP_GET_SLAVE_DIAG_IND</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___d_o_w_n_l_o_a_d___r_e_s___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-d-o-w-n-l-o-a-d-r-e-s-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_DOWNLOAD_RES_CON</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga4dcc2882a94bd8772e008db7d371f6b6"><span class="std std-ref">SOFTING_T_DP_DOWNLOAD_RES_CON</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___c_o_n_f_i_g___v_f_d.html#structtag-s-o-f-t-i-n-g-t-f-m-b-c-o-n-f-i-g-v-f-d"><span class="std std-ref">tagSOFTING_T_FMB_CONFIG_VFD</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaa2292e642db1fb9492916fd1621003ca"><span class="std std-ref">SOFTING_T_FMB_CONFIG_VFD</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___c_o_n_f_i_g___d_p.html#structtag-s-o-f-t-i-n-g-t-f-m-b-c-o-n-f-i-g-d-p"><span class="std std-ref">tagSOFTING_T_FMB_CONFIG_DP</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga86ec613a371c53a364fd0328b0feb2f3"><span class="std std-ref">SOFTING_T_FMB_CONFIG_DP</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_t_a_r_t___s_e_q___i_n_d.html#structtag-s-o-f-t-i-n-g-t-d-p-s-t-a-r-t-s-e-q-i-n-d"><span class="std std-ref">tagSOFTING_T_DP_START_SEQ_IND</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gacf352b99e7ee69a8556fb9b33b29beff"><span class="std std-ref">SOFTING_T_DP_START_SEQ_IND</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___e_n_d___s_e_q___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-e-n-d-s-e-q-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_END_SEQ_REQ</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gacba62d085fcf681a6020e8fb78ce2aba"><span class="std std-ref">SOFTING_T_DP_END_SEQ_REQ</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___m_a_s_t_e_r___d_i_a_g___r_e_s___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-m-a-s-t-e-r-d-i-a-g-r-e-s-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_GET_MASTER_DIAG_RES_CON</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gac7493c814213075eaa086a6ce0ed676a"><span class="std std-ref">SOFTING_T_DP_GET_MASTER_DIAG_RES_CON</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___c_f_g___d_a_t_a.html#structtag-s-o-f-t-i-n-g-t-d-p-c-f-g-d-a-t-a"><span class="std std-ref">tagSOFTING_T_DP_CFG_DATA</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga628b28d781d1103701159af09bc4b222"><span class="std std-ref">SOFTING_T_DP_CFG_DATA</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___c_o_n_f_i_g___f_d_l_i_f.html#structtag-s-o-f-t-i-n-g-t-f-m-b-c-o-n-f-i-g-f-d-l-i-f"><span class="std std-ref">tagSOFTING_T_FMB_CONFIG_FDLIF</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaebab7aaef84fee450fad6f9537c5e2eb"><span class="std std-ref">SOFTING_T_FMB_CONFIG_FDLIF</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___a_c_t___p_a_r_a_m___r_e_s___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-a-c-t-p-a-r-a-m-r-e-s-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_ACT_PARAM_RES_CON</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaa023468d9bd8f5e1282217482b8b6005"><span class="std std-ref">SOFTING_T_DP_ACT_PARAM_RES_CON</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___s_l_a_v_e___d_i_a_g___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-s-l-a-v-e-d-i-a-g-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_GET_SLAVE_DIAG_CON</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaa1450988a02848104af900f50c4421ec"><span class="std std-ref">SOFTING_T_DP_GET_SLAVE_DIAG_CON</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_l_a_v_e___p_a_r_a_m___s_l_a_v_e___i_n_f_o.html#structtag-s-o-f-t-i-n-g-t-d-p-s-l-a-v-e-p-a-r-a-m-s-l-a-v-e-i-n-f-o"><span class="std std-ref">tagSOFTING_T_DP_SLAVE_PARAM_SLAVE_INFO</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga9e567cf7bd21e77445e6d969c7a0c093"><span class="std std-ref">SOFTING_T_DP_SLAVE_PARAM_SLAVE_INFO</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___u_p_l_o_a_d___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-u-p-l-o-a-d-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_UPLOAD_REQ</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga2ebde7298d1d5b550af08d683758b2ae"><span class="std std-ref">SOFTING_T_DP_UPLOAD_REQ</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___i_n_i_t___m_a_s_t_e_r___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-i-n-i-t-m-a-s-t-e-r-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_INIT_MASTER_REQ</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaecc11f7d98344c510ca92381e30d3aae"><span class="std std-ref">SOFTING_T_DP_INIT_MASTER_REQ</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_l_a_v_e___p_a_r_a___s_e_t.html#structtag-s-o-f-t-i-n-g-t-d-p-s-l-a-v-e-p-a-r-a-s-e-t"><span class="std std-ref">tagSOFTING_T_DP_SLAVE_PARA_SET</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga6531f96a9c8f49b8b141b1a90d15dfb3"><span class="std std-ref">SOFTING_T_DP_SLAVE_PARA_SET</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_t_a_r_t___s_e_q___r_e_s___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-s-t-a-r-t-s-e-q-r-e-s-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_START_SEQ_RES_CON</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaf5cd6c930da1397dff802497fc0a0272"><span class="std std-ref">SOFTING_T_DP_START_SEQ_RES_CON</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_l_a_v_e___p_a_r_a_m___s_y_s___i_n_f_o.html#structtag-s-o-f-t-i-n-g-t-d-p-s-l-a-v-e-p-a-r-a-m-s-y-s-i-n-f-o"><span class="std std-ref">tagSOFTING_T_DP_SLAVE_PARAM_SYS_INFO</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga785ad87ceb2265cca80ef83516720b04"><span class="std std-ref">SOFTING_T_DP_SLAVE_PARAM_SYS_INFO</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___f_m2___e_v_e_n_t___i_n_d.html#structtag-s-o-f-t-i-n-g-t-f-m-b-f-m2-e-v-e-n-t-i-n-d"><span class="std std-ref">tagSOFTING_T_FMB_FM2_EVENT_IND</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gae9b02c6b021db18d7275487d6d6e52d5"><span class="std std-ref">SOFTING_T_FMB_FM2_EVENT_IND</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___c_o_n_f_i_g___s_m7.html#structtag-s-o-f-t-i-n-g-t-f-m-b-c-o-n-f-i-g-s-m7"><span class="std std-ref">tagSOFTING_T_FMB_CONFIG_SM7</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga51e8aa76c728e9a53d11012343164d5c"><span class="std std-ref">SOFTING_T_FMB_CONFIG_SM7</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___f_m_b___s_e_t___c_o_n_f_i_g_u_r_a_t_i_o_n___r_e_q.html#structtag-s-o-f-t-i-n-g-t-f-m-b-s-e-t-c-o-n-f-i-g-u-r-a-t-i-o-n-r-e-q"><span class="std std-ref">tagSOFTING_T_FMB_SET_CONFIGURATION_REQ</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaa77b7c68b696fa267f25a97d2976363d"><span class="std std-ref">SOFTING_T_FMB_SET_CONFIGURATION_REQ</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___p_r_o_f_i___s_e_r_v_i_c_e___d_e_s_c_r.html#structtag-s-o-f-t-i-n-g-t-p-r-o-f-i-s-e-r-v-i-c-e-d-e-s-c-r"><span class="std std-ref">tagSOFTING_T_PROFI_SERVICE_DESCR</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaff7b3df5401c835abed33ed0fef7f41d"><span class="std std-ref">SOFTING_T_PROFI_SERVICE_DESCR</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___p_r_m___d_a_t_a.html#structtag-s-o-f-t-i-n-g-t-d-p-p-r-m-d-a-t-a"><span class="std std-ref">tagSOFTING_T_DP_PRM_DATA</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga84b7a84bbd11b1ed617a88d508492ec1"><span class="std std-ref">SOFTING_T_DP_PRM_DATA</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_e_t___p_r_m___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-s-e-t-p-r-m-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_SET_PRM_REQ</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaf4305ba837aa2b5d5e800fbc48acfbb0"><span class="std std-ref">SOFTING_T_DP_SET_PRM_REQ</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___d_o_w_n_l_o_a_d___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-d-o-w-n-l-o-a-d-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_DOWNLOAD_REQ</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga63190da1fc1ac52bf58d42dea8c2d73d"><span class="std std-ref">SOFTING_T_DP_DOWNLOAD_REQ</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___b_u_s___p_a_r_a___s_e_t.html#structtag-s-o-f-t-i-n-g-t-d-p-b-u-s-p-a-r-a-s-e-t"><span class="std std-ref">tagSOFTING_T_DP_BUS_PARA_SET</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga3d536129ec56cfe82648e76cce1f251e"><span class="std std-ref">SOFTING_T_DP_BUS_PARA_SET</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___s_t_a_r_t___s_e_q___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-s-t-a-r-t-s-e-q-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_START_SEQ_REQ</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gadcf9e2476981ac5cbb8777bf3be40edf"><span class="std std-ref">SOFTING_T_DP_START_SEQ_REQ</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___e_n_d___s_e_q___i_n_d.html#structtag-s-o-f-t-i-n-g-t-d-p-e-n-d-s-e-q-i-n-d"><span class="std std-ref">tagSOFTING_T_DP_END_SEQ_IND</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga6cbf98a744fbc13640a2dedfed9b4c4a"><span class="std std-ref">SOFTING_T_DP_END_SEQ_IND</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___e_n_d___s_e_q___r_e_s___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-e-n-d-s-e-q-r-e-s-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_END_SEQ_RES_CON</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga1192cb1d6a8ef113be0855ae82396135"><span class="std std-ref">SOFTING_T_DP_END_SEQ_RES_CON</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___a_a_t___d_a_t_a.html#structtag-s-o-f-t-i-n-g-t-d-p-a-a-t-d-a-t-a"><span class="std std-ref">tagSOFTING_T_DP_AAT_DATA</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga30024f811803f4df0ccb09f911808bea"><span class="std std-ref">SOFTING_T_DP_AAT_DATA</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___s_l_a_v_e___p_a_r_a_m___c_o_n.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-s-l-a-v-e-p-a-r-a-m-c-o-n"><span class="std std-ref">tagSOFTING_T_DP_GET_SLAVE_PARAM_CON</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga52bd6c4f5b4a55577a76fea223998bc7"><span class="std std-ref">SOFTING_T_DP_GET_SLAVE_PARAM_CON</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___s_l_a_v_e___p_a_r_a_m___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-s-l-a-v-e-p-a-r-a-m-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_GET_SLAVE_PARAM_REQ</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga36ee9eb65b7286b781c5f9a47cd7825d"><span class="std std-ref">SOFTING_T_DP_GET_SLAVE_PARAM_REQ</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___a_c_t___p_a_r_a_m___i_n_d.html#structtag-s-o-f-t-i-n-g-t-d-p-a-c-t-p-a-r-a-m-i-n-d"><span class="std std-ref">tagSOFTING_T_DP_ACT_PARAM_IND</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaf82b006e283aeb60248470dae14cca04"><span class="std std-ref">SOFTING_T_DP_ACT_PARAM_IND</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___g_e_t___p_r_m___r_e_q.html#structtag-s-o-f-t-i-n-g-t-d-p-g-e-t-p-r-m-r-e-q"><span class="std std-ref">tagSOFTING_T_DP_GET_PRM_REQ</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gac9b19e516f02a575fd54295beb8c199c"><span class="std std-ref">SOFTING_T_DP_GET_PRM_REQ</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_s_o_f_t_i_n_g___t___d_p___d_o_w_n_l_o_a_d___i_n_d.html#structtag-s-o-f-t-i-n-g-t-d-p-d-o-w-n-l-o-a-d-i-n-d"><span class="std std-ref">tagSOFTING_T_DP_DOWNLOAD_IND</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga83e4e4169303a0b17ae6bd47455a8458"><span class="std std-ref">SOFTING_T_DP_DOWNLOAD_IND</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsofting__profi__get__last__errror__struct.html#structtagsofting-profi-get-last-errror-struct"><span class="std std-ref">tagsofting_profi_get_last_errror_struct</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gae69bd7ebb833485a6ffaffd1c93c1d80"><span class="std std-ref">softing_profi_get_last_errror_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsofting__profi__get__dps__input__data__struct.html#structtagsofting-profi-get-dps-input-data-struct"><span class="std std-ref">tagsofting_profi_get_dps_input_data_struct</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga232e82b2a6b8b8f172049f69a9c11fa7"><span class="std std-ref">softing_profi_get_dps_input_data_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsofting__profi__set__data__struct.html#structtagsofting-profi-set-data-struct"><span class="std std-ref">tagsofting_profi_set_data_struct</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga40746b9e8e041a9a325cd8747daf6f85"><span class="std std-ref">softing_profi_set_data_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsofting__profi__get__versions__struct.html#structtagsofting-profi-get-versions-struct"><span class="std std-ref">tagsofting_profi_get_versions_struct</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gab586d7a6d6120bf4e18bc4054b169db5"><span class="std std-ref">softing_profi_get_versions_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsofting__profi__end__struct.html#structtagsofting-profi-end-struct"><span class="std std-ref">tagsofting_profi_end_struct</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gac012f3e060a8061113e9e2eafa43ebbe"><span class="std std-ref">softing_profi_end_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsofting__profi__set__dps__input__data__struct.html#structtagsofting-profi-set-dps-input-data-struct"><span class="std std-ref">tagsofting_profi_set_dps_input_data_struct</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga7a519cf1ce18f9825a5d46a9f621298a"><span class="std std-ref">softing_profi_set_dps_input_data_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsofting__profi__get__serial__device__number__struct.html#structtagsofting-profi-get-serial-device-number-struct"><span class="std std-ref">tagsofting_profi_get_serial_device_number_struct</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaf770a682fb904691aa0c30e66ea6b319"><span class="std std-ref">softing_profi_get_serial_device_number_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsofting__profi__rcv__con__ind__struct.html#structtagsofting-profi-rcv-con-ind-struct"><span class="std std-ref">tagsofting_profi_rcv_con_ind_struct</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gab9b90681928880c34b05ccae77492010"><span class="std std-ref">softing_profi_rcv_con_ind_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsofting__profi__snd__req__res__struct.html#structtagsofting-profi-snd-req-res-struct"><span class="std std-ref">tagsofting_profi_snd_req_res_struct</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga0bda2644b3ef44ced9e81d1afb212c55"><span class="std std-ref">softing_profi_snd_req_res_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsofting__profi__init__struct.html#structtagsofting-profi-init-struct"><span class="std std-ref">tagsofting_profi_init_struct</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga7db58f8d29287eba121b789238018a73"><span class="std std-ref">softing_profi_init_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsofting__profi__get__dps__output__data__struct.html#structtagsofting-profi-get-dps-output-data-struct"><span class="std std-ref">tagsofting_profi_get_dps_output_data_struct</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gabcab27927cf1661fe578aba8a0f32e32"><span class="std std-ref">softing_profi_get_dps_output_data_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsofting__profi__get__data__struct.html#structtagsofting-profi-get-data-struct"><span class="std std-ref">tagsofting_profi_get_data_struct</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaa168f86584f40dc4f6fde8f36ad76ffb"><span class="std std-ref">softing_profi_get_data_struct</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_cmp_softing_profibus___c.html#struct-i-cmp-softing-profibus-c"><span class="std std-ref">ICmpSoftingProfibus_C</span></a> <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga7b006a0bd7663b5612768e3baf159e7c"><span class="std std-ref">ICmpSoftingProfibus</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>void <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga3ef8253862ad38f599c65a66d7f2d40d"><span class="std std-ref">softing_profi_get_last_errror</span></a> (<a class="reference internal" href="#group-cmp-softing-profibus-itf-1gae69bd7ebb833485a6ffaffd1c93c1d80"><span class="std std-ref">softing_profi_get_last_errror_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaf51cec09d97b73ad3650a5f592b36475"><span class="std std-ref">softing_profi_get_dps_input_data</span></a> (<a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga232e82b2a6b8b8f172049f69a9c11fa7"><span class="std std-ref">softing_profi_get_dps_input_data_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga4432e20b1e4b7cfc222518f3ff08c201"><span class="std std-ref">softing_profi_set_data</span></a> (<a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga40746b9e8e041a9a325cd8747daf6f85"><span class="std std-ref">softing_profi_set_data_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga35fece6e247847738736c0e45d63110b"><span class="std std-ref">softing_profi_get_versions</span></a> (<a class="reference internal" href="#group-cmp-softing-profibus-itf-1gab586d7a6d6120bf4e18bc4054b169db5"><span class="std std-ref">softing_profi_get_versions_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga1fb3d1dac51e57dedbad5cd0c49b1dec"><span class="std std-ref">softing_profi_end</span></a> (<a class="reference internal" href="#group-cmp-softing-profibus-itf-1gac012f3e060a8061113e9e2eafa43ebbe"><span class="std std-ref">softing_profi_end_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga5f19236d9730951ec0a6f4436477cca4"><span class="std std-ref">softing_profi_set_dps_input_data</span></a> (<a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga7a519cf1ce18f9825a5d46a9f621298a"><span class="std std-ref">softing_profi_set_dps_input_data_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga9d9b574ce2d5cb76c4306a9dae9260ab"><span class="std std-ref">softing_profi_get_serial_device_number</span></a> (<a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaf770a682fb904691aa0c30e66ea6b319"><span class="std std-ref">softing_profi_get_serial_device_number_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga1ea18fd32609e865e30d96c829f7e16b"><span class="std std-ref">softing_profi_rcv_con_ind</span></a> (<a class="reference internal" href="#group-cmp-softing-profibus-itf-1gab9b90681928880c34b05ccae77492010"><span class="std std-ref">softing_profi_rcv_con_ind_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaa46f49a1d9e0d436cdb5d3e10dcae3ed"><span class="std std-ref">softing_profi_snd_req_res</span></a> (<a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga0bda2644b3ef44ced9e81d1afb212c55"><span class="std std-ref">softing_profi_snd_req_res_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga621f09817f3ed4d47f93f7be1b94d345"><span class="std std-ref">softing_profi_init</span></a> (<a class="reference internal" href="#group-cmp-softing-profibus-itf-1ga7db58f8d29287eba121b789238018a73"><span class="std std-ref">softing_profi_init_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaddd17e075bc94983fb81fb22e9c53423"><span class="std std-ref">softing_profi_get_dps_output_data</span></a> (<a class="reference internal" href="#group-cmp-softing-profibus-itf-1gabcab27927cf1661fe578aba8a0f32e32"><span class="std std-ref">softing_profi_get_dps_output_data_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-softing-profibus-itf-1gae6b8e3c80bb5020342a82611c910864a"><span class="std std-ref">softing_profi_get_data</span></a> (<a class="reference internal" href="#group-cmp-softing-profibus-itf-1gaa168f86584f40dc4f6fde8f36ad76ffb"><span class="std std-ref">softing_profi_get_data_struct</span></a> * p)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-softing-profibus-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CmpSoftingProfibus.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-itf-cmpsoftingprofibus">
+<span id="group-cmp-softing-profibus-itf-1gabde812a8ab7fa7626d73f2d471f870b5"></span><h3>#define ITF_CmpSoftingProfibus<a class="headerlink" href="#define-itf-cmpsoftingprofibus" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpsoftingprofibus">
+<span id="group-cmp-softing-profibus-itf-1ga5a79fc864b59c433e218201dce06bdb4"></span><h3>#define EXTITF_CmpSoftingProfibus<a class="headerlink" href="#define-extitf-cmpsoftingprofibus" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-tagsofting-t-dp-init-master-con-softing-t-dp-init-master-con">
+<span id="group-cmp-softing-profibus-itf-1gaf468c406ff1ebc76a9fbe557dfb022d3"></span><h3>typedef struct tagSOFTING_T_DP_INIT_MASTER_CON  SOFTING_T_DP_INIT_MASTER_CON<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-init-master-con-softing-t-dp-init-master-con" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION BEGIN</p>
+<p>SOFTING_T_DP_INIT_MASTER_CON</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-exit-master-con-softing-t-dp-exit-master-con">
+<span id="group-cmp-softing-profibus-itf-1gac772d1daa727fa3dd9b2f39d189fae95"></span><h3>typedef struct tagSOFTING_T_DP_EXIT_MASTER_CON  SOFTING_T_DP_EXIT_MASTER_CON<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-exit-master-con-softing-t-dp-exit-master-con" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_EXIT_MASTER_CON</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-slave-user-data-softing-t-dp-slave-user-data">
+<span id="group-cmp-softing-profibus-itf-1ga2b61b12a38c1aac9f220c0eaa1e94d96"></span><h3>typedef struct tagSOFTING_T_DP_SLAVE_USER_DATA  SOFTING_T_DP_SLAVE_USER_DATA<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-slave-user-data-softing-t-dp-slave-user-data" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_SLAVE_USER_DATA</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-upload-res-con-softing-t-dp-upload-res-con">
+<span id="group-cmp-softing-profibus-itf-1gae745a7534f15628da9923705a3693fd2"></span><h3>typedef struct tagSOFTING_T_DP_UPLOAD_RES_CON  SOFTING_T_DP_UPLOAD_RES_CON<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-upload-res-con-softing-t-dp-upload-res-con" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_UPLOAD_RES_CON</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-set-busparameter-con-softing-t-dp-set-busparameter-con">
+<span id="group-cmp-softing-profibus-itf-1gaff2ebc5110cc14af394f3886eccd3bd2"></span><h3>typedef struct tagSOFTING_T_DP_SET_BUSPARAMETER_CON  SOFTING_T_DP_SET_BUSPARAMETER_CON<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-set-busparameter-con-softing-t-dp-set-busparameter-con" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_SET_BUSPARAMETER_CON</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-fmb-config-crl-softing-t-fmb-config-crl">
+<span id="group-cmp-softing-profibus-itf-1ga823b9dad6186fbffe8e59765d9a70747"></span><h3>typedef struct tagSOFTING_T_FMB_CONFIG_CRL  SOFTING_T_FMB_CONFIG_CRL<a class="headerlink" href="#typedef-struct-tagsofting-t-fmb-config-crl-softing-t-fmb-config-crl" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_FMB_CONFIG_CRL</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-set-prm-con-softing-t-dp-set-prm-con">
+<span id="group-cmp-softing-profibus-itf-1gacff42c1458435d209597140dc2ed53f8"></span><h3>typedef struct tagSOFTING_T_DP_SET_PRM_CON  SOFTING_T_DP_SET_PRM_CON<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-set-prm-con-softing-t-dp-set-prm-con" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_SET_PRM_CON</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-set-busparameter-req-softing-t-dp-set-busparameter-req">
+<span id="group-cmp-softing-profibus-itf-1gaa64156e652ea96db79485ad2a1a16ace"></span><h3>typedef struct tagSOFTING_T_DP_SET_BUSPARAMETER_REQ  SOFTING_T_DP_SET_BUSPARAMETER_REQ<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-set-busparameter-req-softing-t-dp-set-busparameter-req" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_SET_BUSPARAMETER_REQ</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-get-master-diag-req-softing-t-dp-get-master-diag-req">
+<span id="group-cmp-softing-profibus-itf-1ga022ef0b3054a9524857a06dc62770478"></span><h3>typedef struct tagSOFTING_T_DP_GET_MASTER_DIAG_REQ  SOFTING_T_DP_GET_MASTER_DIAG_REQ<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-get-master-diag-req-softing-t-dp-get-master-diag-req" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_GET_MASTER_DIAG_REQ</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-act-param-req-softing-t-dp-act-param-req">
+<span id="group-cmp-softing-profibus-itf-1ga05146189abfe30a64941d893c8d76682"></span><h3>typedef struct tagSOFTING_T_DP_ACT_PARAM_REQ  SOFTING_T_DP_ACT_PARAM_REQ<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-act-param-req-softing-t-dp-act-param-req" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_ACT_PARAM_REQ</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-data-transfer-con-softing-t-dp-data-transfer-con">
+<span id="group-cmp-softing-profibus-itf-1ga8f97e56c72bce7e8ca0f6dba15e587fe"></span><h3>typedef struct tagSOFTING_T_DP_DATA_TRANSFER_CON  SOFTING_T_DP_DATA_TRANSFER_CON<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-data-transfer-con-softing-t-dp-data-transfer-con" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_DATA_TRANSFER_CON</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-diag-data-softing-t-dp-diag-data">
+<span id="group-cmp-softing-profibus-itf-1ga26bed43100f69bd4bd649f1ade6546e2"></span><h3>typedef struct tagSOFTING_T_DP_DIAG_DATA  SOFTING_T_DP_DIAG_DATA<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-diag-data-softing-t-dp-diag-data" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_DIAG_DATA</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-get-slave-diag-ind-softing-t-dp-get-slave-diag-ind">
+<span id="group-cmp-softing-profibus-itf-1ga66b793b9825f8f28cf551011625a76dd"></span><h3>typedef struct tagSOFTING_T_DP_GET_SLAVE_DIAG_IND  SOFTING_T_DP_GET_SLAVE_DIAG_IND<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-get-slave-diag-ind-softing-t-dp-get-slave-diag-ind" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_GET_SLAVE_DIAG_IND</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-download-res-con-softing-t-dp-download-res-con">
+<span id="group-cmp-softing-profibus-itf-1ga4dcc2882a94bd8772e008db7d371f6b6"></span><h3>typedef struct tagSOFTING_T_DP_DOWNLOAD_RES_CON  SOFTING_T_DP_DOWNLOAD_RES_CON<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-download-res-con-softing-t-dp-download-res-con" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_DOWNLOAD_RES_CON</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-fmb-config-vfd-softing-t-fmb-config-vfd">
+<span id="group-cmp-softing-profibus-itf-1gaa2292e642db1fb9492916fd1621003ca"></span><h3>typedef struct tagSOFTING_T_FMB_CONFIG_VFD  SOFTING_T_FMB_CONFIG_VFD<a class="headerlink" href="#typedef-struct-tagsofting-t-fmb-config-vfd-softing-t-fmb-config-vfd" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_FMB_CONFIG_VFD</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-fmb-config-dp-softing-t-fmb-config-dp">
+<span id="group-cmp-softing-profibus-itf-1ga86ec613a371c53a364fd0328b0feb2f3"></span><h3>typedef struct tagSOFTING_T_FMB_CONFIG_DP  SOFTING_T_FMB_CONFIG_DP<a class="headerlink" href="#typedef-struct-tagsofting-t-fmb-config-dp-softing-t-fmb-config-dp" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_FMB_CONFIG_DP</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-start-seq-ind-softing-t-dp-start-seq-ind">
+<span id="group-cmp-softing-profibus-itf-1gacf352b99e7ee69a8556fb9b33b29beff"></span><h3>typedef struct tagSOFTING_T_DP_START_SEQ_IND  SOFTING_T_DP_START_SEQ_IND<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-start-seq-ind-softing-t-dp-start-seq-ind" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_START_SEQ_IND</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-end-seq-req-softing-t-dp-end-seq-req">
+<span id="group-cmp-softing-profibus-itf-1gacba62d085fcf681a6020e8fb78ce2aba"></span><h3>typedef struct tagSOFTING_T_DP_END_SEQ_REQ  SOFTING_T_DP_END_SEQ_REQ<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-end-seq-req-softing-t-dp-end-seq-req" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_END_SEQ_REQ</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-get-master-diag-res-con-softing-t-dp-get-master-diag-res-con">
+<span id="group-cmp-softing-profibus-itf-1gac7493c814213075eaa086a6ce0ed676a"></span><h3>typedef struct tagSOFTING_T_DP_GET_MASTER_DIAG_RES_CON  SOFTING_T_DP_GET_MASTER_DIAG_RES_CON<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-get-master-diag-res-con-softing-t-dp-get-master-diag-res-con" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_GET_MASTER_DIAG_RES_CON</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-cfg-data-softing-t-dp-cfg-data">
+<span id="group-cmp-softing-profibus-itf-1ga628b28d781d1103701159af09bc4b222"></span><h3>typedef struct tagSOFTING_T_DP_CFG_DATA  SOFTING_T_DP_CFG_DATA<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-cfg-data-softing-t-dp-cfg-data" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_CFG_DATA</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-fmb-config-fdlif-softing-t-fmb-config-fdlif">
+<span id="group-cmp-softing-profibus-itf-1gaebab7aaef84fee450fad6f9537c5e2eb"></span><h3>typedef struct tagSOFTING_T_FMB_CONFIG_FDLIF  SOFTING_T_FMB_CONFIG_FDLIF<a class="headerlink" href="#typedef-struct-tagsofting-t-fmb-config-fdlif-softing-t-fmb-config-fdlif" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_FMB_CONFIG_FDLIF</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-act-param-res-con-softing-t-dp-act-param-res-con">
+<span id="group-cmp-softing-profibus-itf-1gaa023468d9bd8f5e1282217482b8b6005"></span><h3>typedef struct tagSOFTING_T_DP_ACT_PARAM_RES_CON  SOFTING_T_DP_ACT_PARAM_RES_CON<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-act-param-res-con-softing-t-dp-act-param-res-con" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_ACT_PARAM_RES_CON</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-get-slave-diag-con-softing-t-dp-get-slave-diag-con">
+<span id="group-cmp-softing-profibus-itf-1gaa1450988a02848104af900f50c4421ec"></span><h3>typedef struct tagSOFTING_T_DP_GET_SLAVE_DIAG_CON  SOFTING_T_DP_GET_SLAVE_DIAG_CON<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-get-slave-diag-con-softing-t-dp-get-slave-diag-con" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_GET_SLAVE_DIAG_CON</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-slave-param-slave-info-softing-t-dp-slave-param-slave-info">
+<span id="group-cmp-softing-profibus-itf-1ga9e567cf7bd21e77445e6d969c7a0c093"></span><h3>typedef struct tagSOFTING_T_DP_SLAVE_PARAM_SLAVE_INFO  SOFTING_T_DP_SLAVE_PARAM_SLAVE_INFO<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-slave-param-slave-info-softing-t-dp-slave-param-slave-info" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_SLAVE_PARAM_SLAVE_INFO</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-upload-req-softing-t-dp-upload-req">
+<span id="group-cmp-softing-profibus-itf-1ga2ebde7298d1d5b550af08d683758b2ae"></span><h3>typedef struct tagSOFTING_T_DP_UPLOAD_REQ  SOFTING_T_DP_UPLOAD_REQ<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-upload-req-softing-t-dp-upload-req" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_UPLOAD_REQ</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-init-master-req-softing-t-dp-init-master-req">
+<span id="group-cmp-softing-profibus-itf-1gaecc11f7d98344c510ca92381e30d3aae"></span><h3>typedef struct tagSOFTING_T_DP_INIT_MASTER_REQ  SOFTING_T_DP_INIT_MASTER_REQ<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-init-master-req-softing-t-dp-init-master-req" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_INIT_MASTER_REQ</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-slave-para-set-softing-t-dp-slave-para-set">
+<span id="group-cmp-softing-profibus-itf-1ga6531f96a9c8f49b8b141b1a90d15dfb3"></span><h3>typedef struct tagSOFTING_T_DP_SLAVE_PARA_SET  SOFTING_T_DP_SLAVE_PARA_SET<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-slave-para-set-softing-t-dp-slave-para-set" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_SLAVE_PARA_SET</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-start-seq-res-con-softing-t-dp-start-seq-res-con">
+<span id="group-cmp-softing-profibus-itf-1gaf5cd6c930da1397dff802497fc0a0272"></span><h3>typedef struct tagSOFTING_T_DP_START_SEQ_RES_CON  SOFTING_T_DP_START_SEQ_RES_CON<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-start-seq-res-con-softing-t-dp-start-seq-res-con" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_START_SEQ_RES_CON</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-slave-param-sys-info-softing-t-dp-slave-param-sys-info">
+<span id="group-cmp-softing-profibus-itf-1ga785ad87ceb2265cca80ef83516720b04"></span><h3>typedef struct tagSOFTING_T_DP_SLAVE_PARAM_SYS_INFO  SOFTING_T_DP_SLAVE_PARAM_SYS_INFO<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-slave-param-sys-info-softing-t-dp-slave-param-sys-info" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_SLAVE_PARAM_SYS_INFO</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-fmb-fm2-event-ind-softing-t-fmb-fm2-event-ind">
+<span id="group-cmp-softing-profibus-itf-1gae9b02c6b021db18d7275487d6d6e52d5"></span><h3>typedef struct tagSOFTING_T_FMB_FM2_EVENT_IND  SOFTING_T_FMB_FM2_EVENT_IND<a class="headerlink" href="#typedef-struct-tagsofting-t-fmb-fm2-event-ind-softing-t-fmb-fm2-event-ind" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_FMB_FM2_EVENT_IND</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-fmb-config-sm7-softing-t-fmb-config-sm7">
+<span id="group-cmp-softing-profibus-itf-1ga51e8aa76c728e9a53d11012343164d5c"></span><h3>typedef struct tagSOFTING_T_FMB_CONFIG_SM7  SOFTING_T_FMB_CONFIG_SM7<a class="headerlink" href="#typedef-struct-tagsofting-t-fmb-config-sm7-softing-t-fmb-config-sm7" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_FMB_CONFIG_SM7</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-fmb-set-configuration-req-softing-t-fmb-set-configuration-req">
+<span id="group-cmp-softing-profibus-itf-1gaa77b7c68b696fa267f25a97d2976363d"></span><h3>typedef struct tagSOFTING_T_FMB_SET_CONFIGURATION_REQ  SOFTING_T_FMB_SET_CONFIGURATION_REQ<a class="headerlink" href="#typedef-struct-tagsofting-t-fmb-set-configuration-req-softing-t-fmb-set-configuration-req" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_FMB_SET_CONFIGURATION_REQ</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-profi-service-descr-softing-t-profi-service-descr">
+<span id="group-cmp-softing-profibus-itf-1gaff7b3df5401c835abed33ed0fef7f41d"></span><h3>typedef struct tagSOFTING_T_PROFI_SERVICE_DESCR  SOFTING_T_PROFI_SERVICE_DESCR<a class="headerlink" href="#typedef-struct-tagsofting-t-profi-service-descr-softing-t-profi-service-descr" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_PROFI_SERVICE_DESCR</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-prm-data-softing-t-dp-prm-data">
+<span id="group-cmp-softing-profibus-itf-1ga84b7a84bbd11b1ed617a88d508492ec1"></span><h3>typedef struct tagSOFTING_T_DP_PRM_DATA  SOFTING_T_DP_PRM_DATA<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-prm-data-softing-t-dp-prm-data" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_PRM_DATA</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-set-prm-req-softing-t-dp-set-prm-req">
+<span id="group-cmp-softing-profibus-itf-1gaf4305ba837aa2b5d5e800fbc48acfbb0"></span><h3>typedef struct tagSOFTING_T_DP_SET_PRM_REQ  SOFTING_T_DP_SET_PRM_REQ<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-set-prm-req-softing-t-dp-set-prm-req" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_SET_PRM_REQ</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-download-req-softing-t-dp-download-req">
+<span id="group-cmp-softing-profibus-itf-1ga63190da1fc1ac52bf58d42dea8c2d73d"></span><h3>typedef struct tagSOFTING_T_DP_DOWNLOAD_REQ  SOFTING_T_DP_DOWNLOAD_REQ<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-download-req-softing-t-dp-download-req" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_DOWNLOAD_REQ</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-bus-para-set-softing-t-dp-bus-para-set">
+<span id="group-cmp-softing-profibus-itf-1ga3d536129ec56cfe82648e76cce1f251e"></span><h3>typedef struct tagSOFTING_T_DP_BUS_PARA_SET  SOFTING_T_DP_BUS_PARA_SET<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-bus-para-set-softing-t-dp-bus-para-set" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_BUS_PARA_SET</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-start-seq-req-softing-t-dp-start-seq-req">
+<span id="group-cmp-softing-profibus-itf-1gadcf9e2476981ac5cbb8777bf3be40edf"></span><h3>typedef struct tagSOFTING_T_DP_START_SEQ_REQ  SOFTING_T_DP_START_SEQ_REQ<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-start-seq-req-softing-t-dp-start-seq-req" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_START_SEQ_REQ</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-end-seq-ind-softing-t-dp-end-seq-ind">
+<span id="group-cmp-softing-profibus-itf-1ga6cbf98a744fbc13640a2dedfed9b4c4a"></span><h3>typedef struct tagSOFTING_T_DP_END_SEQ_IND  SOFTING_T_DP_END_SEQ_IND<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-end-seq-ind-softing-t-dp-end-seq-ind" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_END_SEQ_IND</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-end-seq-res-con-softing-t-dp-end-seq-res-con">
+<span id="group-cmp-softing-profibus-itf-1ga1192cb1d6a8ef113be0855ae82396135"></span><h3>typedef struct tagSOFTING_T_DP_END_SEQ_RES_CON  SOFTING_T_DP_END_SEQ_RES_CON<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-end-seq-res-con-softing-t-dp-end-seq-res-con" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_END_SEQ_RES_CON</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-aat-data-softing-t-dp-aat-data">
+<span id="group-cmp-softing-profibus-itf-1ga30024f811803f4df0ccb09f911808bea"></span><h3>typedef struct tagSOFTING_T_DP_AAT_DATA  SOFTING_T_DP_AAT_DATA<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-aat-data-softing-t-dp-aat-data" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_AAT_DATA</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-get-slave-param-con-softing-t-dp-get-slave-param-con">
+<span id="group-cmp-softing-profibus-itf-1ga52bd6c4f5b4a55577a76fea223998bc7"></span><h3>typedef struct tagSOFTING_T_DP_GET_SLAVE_PARAM_CON  SOFTING_T_DP_GET_SLAVE_PARAM_CON<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-get-slave-param-con-softing-t-dp-get-slave-param-con" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_GET_SLAVE_PARAM_CON</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-get-slave-param-req-softing-t-dp-get-slave-param-req">
+<span id="group-cmp-softing-profibus-itf-1ga36ee9eb65b7286b781c5f9a47cd7825d"></span><h3>typedef struct tagSOFTING_T_DP_GET_SLAVE_PARAM_REQ  SOFTING_T_DP_GET_SLAVE_PARAM_REQ<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-get-slave-param-req-softing-t-dp-get-slave-param-req" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_GET_SLAVE_PARAM_REQ</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-act-param-ind-softing-t-dp-act-param-ind">
+<span id="group-cmp-softing-profibus-itf-1gaf82b006e283aeb60248470dae14cca04"></span><h3>typedef struct tagSOFTING_T_DP_ACT_PARAM_IND  SOFTING_T_DP_ACT_PARAM_IND<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-act-param-ind-softing-t-dp-act-param-ind" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_ACT_PARAM_IND</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-get-prm-req-softing-t-dp-get-prm-req">
+<span id="group-cmp-softing-profibus-itf-1gac9b19e516f02a575fd54295beb8c199c"></span><h3>typedef struct tagSOFTING_T_DP_GET_PRM_REQ  SOFTING_T_DP_GET_PRM_REQ<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-get-prm-req-softing-t-dp-get-prm-req" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_GET_PRM_REQ</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-t-dp-download-ind-softing-t-dp-download-ind">
+<span id="group-cmp-softing-profibus-itf-1ga83e4e4169303a0b17ae6bd47455a8458"></span><h3>typedef struct tagSOFTING_T_DP_DOWNLOAD_IND  SOFTING_T_DP_DOWNLOAD_IND<a class="headerlink" href="#typedef-struct-tagsofting-t-dp-download-ind-softing-t-dp-download-ind" title="Permalink to this headline">¶</a></h3>
+<p>SOFTING_T_DP_DOWNLOAD_IND</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-profi-get-last-errror-struct-softing-profi-get-last-errror-struct">
+<span id="group-cmp-softing-profibus-itf-1gae69bd7ebb833485a6ffaffd1c93c1d80"></span><h3>typedef struct tagsofting_profi_get_last_errror_struct  softing_profi_get_last_errror_struct<a class="headerlink" href="#typedef-struct-tagsofting-profi-get-last-errror-struct-softing-profi-get-last-errror-struct" title="Permalink to this headline">¶</a></h3>
+<p>softing_profi_get_last_errror</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-profi-get-dps-input-data-struct-softing-profi-get-dps-input-data-struct">
+<span id="group-cmp-softing-profibus-itf-1ga232e82b2a6b8b8f172049f69a9c11fa7"></span><h3>typedef struct tagsofting_profi_get_dps_input_data_struct  softing_profi_get_dps_input_data_struct<a class="headerlink" href="#typedef-struct-tagsofting-profi-get-dps-input-data-struct-softing-profi-get-dps-input-data-struct" title="Permalink to this headline">¶</a></h3>
+<p>softing_profi_get_dps_input_data</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-profi-set-data-struct-softing-profi-set-data-struct">
+<span id="group-cmp-softing-profibus-itf-1ga40746b9e8e041a9a325cd8747daf6f85"></span><h3>typedef struct tagsofting_profi_set_data_struct  softing_profi_set_data_struct<a class="headerlink" href="#typedef-struct-tagsofting-profi-set-data-struct-softing-profi-set-data-struct" title="Permalink to this headline">¶</a></h3>
+<p>softing_profi_set_data</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-profi-get-versions-struct-softing-profi-get-versions-struct">
+<span id="group-cmp-softing-profibus-itf-1gab586d7a6d6120bf4e18bc4054b169db5"></span><h3>typedef struct tagsofting_profi_get_versions_struct  softing_profi_get_versions_struct<a class="headerlink" href="#typedef-struct-tagsofting-profi-get-versions-struct-softing-profi-get-versions-struct" title="Permalink to this headline">¶</a></h3>
+<p>softing_profi_get_versions</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-profi-end-struct-softing-profi-end-struct">
+<span id="group-cmp-softing-profibus-itf-1gac012f3e060a8061113e9e2eafa43ebbe"></span><h3>typedef struct tagsofting_profi_end_struct  softing_profi_end_struct<a class="headerlink" href="#typedef-struct-tagsofting-profi-end-struct-softing-profi-end-struct" title="Permalink to this headline">¶</a></h3>
+<p>softing_profi_end</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-profi-set-dps-input-data-struct-softing-profi-set-dps-input-data-struct">
+<span id="group-cmp-softing-profibus-itf-1ga7a519cf1ce18f9825a5d46a9f621298a"></span><h3>typedef struct tagsofting_profi_set_dps_input_data_struct  softing_profi_set_dps_input_data_struct<a class="headerlink" href="#typedef-struct-tagsofting-profi-set-dps-input-data-struct-softing-profi-set-dps-input-data-struct" title="Permalink to this headline">¶</a></h3>
+<p>softing_profi_set_dps_input_data</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-profi-get-serial-device-number-struct-softing-profi-get-serial-device-number-struct">
+<span id="group-cmp-softing-profibus-itf-1gaf770a682fb904691aa0c30e66ea6b319"></span><h3>typedef struct tagsofting_profi_get_serial_device_number_struct  softing_profi_get_serial_device_number_struct<a class="headerlink" href="#typedef-struct-tagsofting-profi-get-serial-device-number-struct-softing-profi-get-serial-device-number-struct" title="Permalink to this headline">¶</a></h3>
+<p>softing_profi_get_serial_device_number</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-profi-rcv-con-ind-struct-softing-profi-rcv-con-ind-struct">
+<span id="group-cmp-softing-profibus-itf-1gab9b90681928880c34b05ccae77492010"></span><h3>typedef struct tagsofting_profi_rcv_con_ind_struct  softing_profi_rcv_con_ind_struct<a class="headerlink" href="#typedef-struct-tagsofting-profi-rcv-con-ind-struct-softing-profi-rcv-con-ind-struct" title="Permalink to this headline">¶</a></h3>
+<p>softing_profi_rcv_con_ind</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-profi-snd-req-res-struct-softing-profi-snd-req-res-struct">
+<span id="group-cmp-softing-profibus-itf-1ga0bda2644b3ef44ced9e81d1afb212c55"></span><h3>typedef struct tagsofting_profi_snd_req_res_struct  softing_profi_snd_req_res_struct<a class="headerlink" href="#typedef-struct-tagsofting-profi-snd-req-res-struct-softing-profi-snd-req-res-struct" title="Permalink to this headline">¶</a></h3>
+<p>softing_profi_snd_req_res</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-profi-init-struct-softing-profi-init-struct">
+<span id="group-cmp-softing-profibus-itf-1ga7db58f8d29287eba121b789238018a73"></span><h3>typedef struct tagsofting_profi_init_struct  softing_profi_init_struct<a class="headerlink" href="#typedef-struct-tagsofting-profi-init-struct-softing-profi-init-struct" title="Permalink to this headline">¶</a></h3>
+<p>softing_profi_init</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-profi-get-dps-output-data-struct-softing-profi-get-dps-output-data-struct">
+<span id="group-cmp-softing-profibus-itf-1gabcab27927cf1661fe578aba8a0f32e32"></span><h3>typedef struct tagsofting_profi_get_dps_output_data_struct  softing_profi_get_dps_output_data_struct<a class="headerlink" href="#typedef-struct-tagsofting-profi-get-dps-output-data-struct-softing-profi-get-dps-output-data-struct" title="Permalink to this headline">¶</a></h3>
+<p>softing_profi_get_dps_output_data</p>
+</div>
+<div class="section" id="typedef-struct-tagsofting-profi-get-data-struct-softing-profi-get-data-struct">
+<span id="group-cmp-softing-profibus-itf-1gaa168f86584f40dc4f6fde8f36ad76ffb"></span><h3>typedef struct tagsofting_profi_get_data_struct  softing_profi_get_data_struct<a class="headerlink" href="#typedef-struct-tagsofting-profi-get-data-struct-softing-profi-get-data-struct" title="Permalink to this headline">¶</a></h3>
+<p>softing_profi_get_data</p>
+</div>
+<div class="section" id="typedef-icmpsoftingprofibus-c-icmpsoftingprofibus">
+<span id="group-cmp-softing-profibus-itf-1ga7b006a0bd7663b5612768e3baf159e7c"></span><h3>typedef ICmpSoftingProfibus_C ICmpSoftingProfibus<a class="headerlink" href="#typedef-icmpsoftingprofibus-c-icmpsoftingprofibus" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="void-softing-profi-get-last-errror-softing-profi-get-last-errror-struct-p">
+<span id="group-cmp-softing-profibus-itf-1ga3ef8253862ad38f599c65a66d7f2d40d"></span><h3>void softing_profi_get_last_errror (softing_profi_get_last_errror_struct <a href="#id1"><span class="problematic" id="id2">*</span></a>p)<a class="headerlink" href="#void-softing-profi-get-last-errror-softing-profi-get-last-errror-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-softing-profi-get-dps-input-data-softing-profi-get-dps-input-data-struct-p">
+<span id="group-cmp-softing-profibus-itf-1gaf51cec09d97b73ad3650a5f592b36475"></span><h3>void softing_profi_get_dps_input_data (softing_profi_get_dps_input_data_struct <a href="#id3"><span class="problematic" id="id4">*</span></a>p)<a class="headerlink" href="#void-softing-profi-get-dps-input-data-softing-profi-get-dps-input-data-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-softing-profi-set-data-softing-profi-set-data-struct-p">
+<span id="group-cmp-softing-profibus-itf-1ga4432e20b1e4b7cfc222518f3ff08c201"></span><h3>void softing_profi_set_data (softing_profi_set_data_struct <a href="#id5"><span class="problematic" id="id6">*</span></a>p)<a class="headerlink" href="#void-softing-profi-set-data-softing-profi-set-data-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-softing-profi-get-versions-softing-profi-get-versions-struct-p">
+<span id="group-cmp-softing-profibus-itf-1ga35fece6e247847738736c0e45d63110b"></span><h3>void softing_profi_get_versions (softing_profi_get_versions_struct <a href="#id7"><span class="problematic" id="id8">*</span></a>p)<a class="headerlink" href="#void-softing-profi-get-versions-softing-profi-get-versions-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-softing-profi-end-softing-profi-end-struct-p">
+<span id="group-cmp-softing-profibus-itf-1ga1fb3d1dac51e57dedbad5cd0c49b1dec"></span><h3>void softing_profi_end (softing_profi_end_struct <a href="#id9"><span class="problematic" id="id10">*</span></a>p)<a class="headerlink" href="#void-softing-profi-end-softing-profi-end-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-softing-profi-set-dps-input-data-softing-profi-set-dps-input-data-struct-p">
+<span id="group-cmp-softing-profibus-itf-1ga5f19236d9730951ec0a6f4436477cca4"></span><h3>void softing_profi_set_dps_input_data (softing_profi_set_dps_input_data_struct <a href="#id11"><span class="problematic" id="id12">*</span></a>p)<a class="headerlink" href="#void-softing-profi-set-dps-input-data-softing-profi-set-dps-input-data-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-softing-profi-get-serial-device-number-softing-profi-get-serial-device-number-struct-p">
+<span id="group-cmp-softing-profibus-itf-1ga9d9b574ce2d5cb76c4306a9dae9260ab"></span><h3>void softing_profi_get_serial_device_number (softing_profi_get_serial_device_number_struct <a href="#id13"><span class="problematic" id="id14">*</span></a>p)<a class="headerlink" href="#void-softing-profi-get-serial-device-number-softing-profi-get-serial-device-number-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-softing-profi-rcv-con-ind-softing-profi-rcv-con-ind-struct-p">
+<span id="group-cmp-softing-profibus-itf-1ga1ea18fd32609e865e30d96c829f7e16b"></span><h3>void softing_profi_rcv_con_ind (softing_profi_rcv_con_ind_struct <a href="#id15"><span class="problematic" id="id16">*</span></a>p)<a class="headerlink" href="#void-softing-profi-rcv-con-ind-softing-profi-rcv-con-ind-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-softing-profi-snd-req-res-softing-profi-snd-req-res-struct-p">
+<span id="group-cmp-softing-profibus-itf-1gaa46f49a1d9e0d436cdb5d3e10dcae3ed"></span><h3>void softing_profi_snd_req_res (softing_profi_snd_req_res_struct <a href="#id17"><span class="problematic" id="id18">*</span></a>p)<a class="headerlink" href="#void-softing-profi-snd-req-res-softing-profi-snd-req-res-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-softing-profi-init-softing-profi-init-struct-p">
+<span id="group-cmp-softing-profibus-itf-1ga621f09817f3ed4d47f93f7be1b94d345"></span><h3>void softing_profi_init (softing_profi_init_struct <a href="#id19"><span class="problematic" id="id20">*</span></a>p)<a class="headerlink" href="#void-softing-profi-init-softing-profi-init-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-softing-profi-get-dps-output-data-softing-profi-get-dps-output-data-struct-p">
+<span id="group-cmp-softing-profibus-itf-1gaddd17e075bc94983fb81fb22e9c53423"></span><h3>void softing_profi_get_dps_output_data (softing_profi_get_dps_output_data_struct <a href="#id21"><span class="problematic" id="id22">*</span></a>p)<a class="headerlink" href="#void-softing-profi-get-dps-output-data-softing-profi-get-dps-output-data-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-softing-profi-get-data-softing-profi-get-data-struct-p">
+<span id="group-cmp-softing-profibus-itf-1gae6b8e3c80bb5020342a82611c910864a"></span><h3>void softing_profi_get_data (softing_profi_get_data_struct <a href="#id23"><span class="problematic" id="id24">*</span></a>p)<a class="headerlink" href="#void-softing-profi-get-data-softing-profi-get-data-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_srv_itf.html" title="CmpSrvItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_socket_can_drv_itf.html" title="CmpSocketCanDrvItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+
+====================
+_`MultiCore Support`
+====================
+
+General Information
+===================
+With this feature the support of a CPU with multiple cores is enabled (SMP -  Symmetrical Multi Processor system). This feature depends additionally on the operating system, 
+that supports multicore CPUs.
+For detailled information on the multicore solution please look into the `MultiCore-Tutorial`_.
+
+.. _`MultiCore-Tutorial`: ../_downloads/CODESYSControlV3_MultiCore.pdf    
+
+Prerequisites
+=============
+
+1. The multicore feature of the runtime system is only available for operating systems which has a fully built in SMP support! See the `MultiCore-Tutorial`_ for details.
+
+2. The runtime system component **SysCpuMultiCore** (interface :ref:`group___sys_cpu_multi_core_itf`) is required for the multicore support and is added by this feature to your runtime configuration!    
+
+   For additional information for the the component look into:
+
+   - :ref:`group___sys_cpu_multi_core_dep`
+
+TargetSettings
+==============
+
+All necessary target settings for multicore support are predefined correctly in this feature. This are the necessary target settings.
+
+1. To generally specify multicore support of a target, you have to specify:
+
+   - :ref:`runtime_features_support-multicore`
+
+2. To enable for an end user to change the cpu core binding of IEC-tasks via taskgrous in the taskconfiguration, you have to set the following setting in your device description:
+
+   - :ref:`taskconfiguration_taskgroups_taskgroups-editable`
+
+   Which goup bindings and cores are selectable in the IEC taskgroups can be specified in the following setting:
+
+   - :ref:`taskconfiguration_multicore-cores`
+
+3. To read/write 64bit datatypes consistent, the following settings is activated:
+
+   - :ref:`codegenerator_atomic-read-write-64-bit`
+
+4. The MemoryBarrier() Operator in IEC is enabled with the following setting:
+
+   - :ref:`codegenerator_memory-barrier`    
+

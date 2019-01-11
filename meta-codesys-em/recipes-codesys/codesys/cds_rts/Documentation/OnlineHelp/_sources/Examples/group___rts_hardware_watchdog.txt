@@ -1,0 +1,159 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___rts_hardware_watchdog:
+
+===================
+RtsHardwareWatchdog
+===================
+
+ :ref:`More... <group___rts_hardware_watchdog-details>`
+
+Modules
+-------
+
+- :ref:`OperationID <group___rts_hardware_watchdog___operation_i_d>`
+
+Macros
+------
+
+- #define :ref:`HARDWARE_WATCHTDOGTASK_CYCLE_TIME <group___rts_hardware_watchdog_1gaac3f6e5ddff71177d4c4f60c2c196a0b>` 500 /* set the cycle time in ms of the hardware watchdog trigger, typically half of desired expiration time */
+
+- #define :ref:`SYSTASK_COMPONENT_AVAILABLE <group___rts_hardware_watchdog_1ga6fe6c2d662ccb474115db35a60ed6755>` (CHK_SysTaskCreate && CHK_SysTaskResume && CHK_SysTaskWaitSleep && CHK_SysTaskEnd && CHK_SysTaskExit && CHK_SysTaskSetExit && CHK_SysTaskEnter && CHK_SysTaskLeave)
+
+Functions
+---------
+
+- RTS_RESULT :ref:`HardwareWatchdogInit <group___rts_hardware_watchdog_1ga163e9f507646cdd0a9f49cbf71231506>` (void)
+
+- RTS_RESULT :ref:`HardwareWatchdogExit <group___rts_hardware_watchdog_1gad7fd6f93867ce5adb0a1e3153c4a7a71>` (void)
+
+- RTS_RESULT :ref:`HardwareWatchdogTrigger <group___rts_hardware_watchdog_1ga5a140ca6a89ba41555e0aefc7d10deec>` (void)
+
+- void :ref:`HardwareWatchdogTask <group___rts_hardware_watchdog_1gaba3bfce5bb2908d5fac8ea5e599b3bc8>` (SYS_TASK_PARAM * ptp)
+
+- RTS_RESULT :ref:`StartHardwareWatchdog <group___rts_hardware_watchdog_1gadaaf28ec833e3bdc9ea9f031c00a048b>` (void)
+
+- RTS_RESULT :ref:`StopHardwareWatchdog <group___rts_hardware_watchdog_1gac5b953dbe7e9ef6f479b53dbc805a59f>` (void)
+
+.. _group___rts_hardware_watchdog-details:
+
+Detailed Description
+--------------------
+
+
+
+Example to handle hardware watchdog trigger.
+
+USAGE:
+
+- adjust the cycle time HARDWARE_WATCHTDOGTASK_CYCLE_TIME of the hardware watchdog trigger
+
+- Implement the activation of the hardware watchdog in HardwareWatchdogInit()
+
+- Implement the deactivation of the hardware watchdog in HardwareWatchdogExit()
+
+- Implement the trigger of the hardware watchdog in HardwareWatchdogTrigger()
+
+**Copyright:**
+
+\(c) 2003-2016 3S-Smart Software Solutions
+
+Macro Definition Documentation
+------------------------------
+.. _group___rts_hardware_watchdog_1gaac3f6e5ddff71177d4c4f60c2c196a0b:
+
+#define HARDWARE_WATCHTDOGTASK_CYCLE_TIME 500 /* set the cycle time in ms of the hardware watchdog trigger, typically half of desired expiration time */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___rts_hardware_watchdog_1ga6fe6c2d662ccb474115db35a60ed6755:
+
+#define SYSTASK_COMPONENT_AVAILABLE (CHK_SysTaskCreate && CHK_SysTaskResume && CHK_SysTaskWaitSleep && CHK_SysTaskEnd && CHK_SysTaskExit && CHK_SysTaskSetExit && CHK_SysTaskEnter && CHK_SysTaskLeave)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___rts_hardware_watchdog_1ga163e9f507646cdd0a9f49cbf71231506:
+
+static RTS_RESULT HardwareWatchdogInit (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to activate the hardware watchdog. USAGE:
+
+- Must be called in the watchdog task before the cyclic check of the supervisor operations.
+
+**Returns:**
+
+error code
+
+.. _group___rts_hardware_watchdog_1gad7fd6f93867ce5adb0a1e3153c4a7a71:
+
+static RTS_RESULT HardwareWatchdogExit (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to deactivate the hardware watchdog. USAGE:
+
+- Must be called before terminating the watchdog trigger task.
+
+**Returns:**
+
+error code
+
+.. _group___rts_hardware_watchdog_1ga5a140ca6a89ba41555e0aefc7d10deec:
+
+static RTS_RESULT HardwareWatchdogTrigger (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to trigger cyclically the hardware watchdog. USAGE:
+
+- Must be cyclically. Is called from a high priority task that polls the status of the supervisor operations.
+
+**Returns:**
+
+error code
+
+.. _group___rts_hardware_watchdog_1gaba3bfce5bb2908d5fac8ea5e599b3bc8:
+
+static void HardwareWatchdogTask (SYS_TASK_PARAM *ptp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function that is called in a seperate task. Here the supervision and the trigger of the hardware watchdog is called cyclically.
+
+**Parameters**
+
++---------+-----+--------------------------------+
+| [in]    | ptp | Pointer to task parameter set. |
++---------+-----+--------------------------------+
+
+.. _group___rts_hardware_watchdog_1gadaaf28ec833e3bdc9ea9f031c00a048b:
+
+static RTS_RESULT StartHardwareWatchdog (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to create and start the hardware watchdog task. USAGE:
+
+- Must be called in CH_INIT_TASKS out of component HookFunction()!
+
+**Returns:**
+
+error code
+
+.. _group___rts_hardware_watchdog_1gac5b953dbe7e9ef6f479b53dbc805a59f:
+
+static RTS_RESULT StopHardwareWatchdog (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to stop and terminate the hardware watchdog task. USAGE:
+
+- Must be called in CH_EXIT_TASKS out of component HookFunction()!
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,609 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CMUtilsHashItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CMUtilsItf" href="group___c_m_utils_itf.html" />
+    <link rel="prev" title="CMLockItf" href="group___c_m_lock_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___c_m_utils_itf.html" title="CMUtilsItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___c_m_lock_itf.html" title="CMLockItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CMUtilsHashItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-itf-cmutilshash">#define ITF_CMUtilsHash</a></li>
+<li><a class="reference internal" href="#define-extitf-cmutilshash">#define EXTITF_CMUtilsHash</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-icmutilshash-c-icmutilshash">typedef ICMUtilsHash_C ICMUtilsHash</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-result-cmutlhashcreate-cmutlhashtable-phashtable-rts-size-snumhashentries-char-pszcomponentname">RTS_RESULT CMUtlHashCreate (CMUtlHashTable *pHashTable, RTS_SIZE sNumHashEntries, char *pszComponentName)</a></li>
+<li><a class="reference internal" href="#rts-result-cmutlhashcreate2-cmutlhashtable-phashtable-rts-size-snumhashentries-rts-ui8-phashtablebuffer-char-pszcomponentname">RTS_RESULT CMUtlHashCreate2 (CMUtlHashTable *pHashTable, RTS_SIZE sNumHashEntries, RTS_UI8 *pHashTableBuffer, char *pszComponentName)</a></li>
+<li><a class="reference internal" href="#rts-result-cmutlhashdelete-cmutlhashtable-phashtable">RTS_RESULT CMUtlHashDelete (CMUtlHashTable *pHashTable)</a></li>
+<li><a class="reference internal" href="#rts-result-cmutlhashinsert-cmutlhashtable-phashtable-rts-ui8-pkey-rts-size-keylen-rts-bool-bcopykey-void-pdata">RTS_RESULT CMUtlHashInsert (CMUtlHashTable *pHashTable, RTS_UI8 *pKey, RTS_SIZE keyLen, RTS_BOOL bCopyKey, void *pData)</a></li>
+<li><a class="reference internal" href="#rts-result-cmutlhashinsert2-cmutlhashtable-phashtable-cmutlhashentry-pnewentry-rts-ui8-pkey-rts-size-keylen-rts-bool-bcopykey-void-pdata">RTS_RESULT CMUtlHashInsert2 (CMUtlHashTable *pHashTable, CMUtlHashEntry *pNewEntry, RTS_UI8 *pKey, RTS_SIZE keyLen, RTS_BOOL bCopyKey, void *pData)</a></li>
+<li><a class="reference internal" href="#rts-result-cmutlhashremove-cmutlhashtable-phashtable-cmutlhashentry-pentry">RTS_RESULT CMUtlHashRemove (CMUtlHashTable *pHashTable, CMUtlHashEntry *pEntry)</a></li>
+<li><a class="reference internal" href="#rts-result-cmutlhashremove2-cmutlhashtable-phashtable-rts-ui8-pkey-rts-size-keylen">RTS_RESULT CMUtlHashRemove2 (CMUtlHashTable *pHashTable, RTS_UI8 *pKey, RTS_SIZE keyLen)</a></li>
+<li><a class="reference internal" href="#cmutlhashentry-cmutlhashsearch-cmutlhashtable-phashtable-rts-ui8-pkey-rts-size-keylen-rts-result-presult">CMUtlHashEntry* CMUtlHashSearch (CMUtlHashTable *pHashTable, RTS_UI8 *pKey, RTS_SIZE keyLen, RTS_RESULT *pResult)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___c_m_lock_itf.html"
+                        title="previous chapter">CMLockItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___c_m_utils_itf.html"
+                        title="next chapter">CMUtilsItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___c_m_utils_hash_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmutilshashitf">
+<span id="group-c-m-utils-hash-itf"></span><h1>CMUtilsHashItf<a class="headerlink" href="#cmutilshashitf" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-c-m-utils-hash-itf-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___c_m_utils_hash_itf___hashentry.html#group-c-m-utils-hash-itf-hashentry"><span class="std std-ref">Hash entry</span></a></li>
+<li><a class="reference internal" href="group___c_m_utils_hash_itf___hashentryflags.html#group-c-m-utils-hash-itf-hashentryflags"><span class="std std-ref">Hash entry flags</span></a></li>
+<li><a class="reference internal" href="group___c_m_utils_hash_itf___hashflaghandlingmacros.html#group-c-m-utils-hash-itf-hashflaghandlingmacros"><span class="std std-ref">Hash flag handling macros</span></a></li>
+<li><a class="reference internal" href="group___c_m_utils_hash_itf___hashkey.html#group-c-m-utils-hash-itf-hashkey"><span class="std std-ref">Hash key</span></a></li>
+<li><a class="reference internal" href="group___c_m_utils_hash_itf___hashtable.html#group-c-m-utils-hash-itf-hashtable"><span class="std std-ref">Hash table</span></a></li>
+<li><a class="reference internal" href="group___c_m_utils_hash_itf___hashtableflags.html#group-c-m-utils-hash-itf-hashtableflags"><span class="std std-ref">Hash table flags</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_i_c_m_utils_hash___c.html#struct-i-c-m-utils-hash-c"><span class="std std-ref">ICMUtilsHash_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-c-m-utils-hash-itf-1gaf736cd5ad089830646080ab0350c6c26"><span class="std std-ref">ITF_CMUtilsHash</span></a></li>
+<li>#define <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga628cfe043b3f40cd710133dc4175a614"><span class="std std-ref">EXTITF_CMUtilsHash</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef <a class="reference internal" href="struct_i_c_m_utils_hash___c.html#struct-i-c-m-utils-hash-c"><span class="std std-ref">ICMUtilsHash_C</span></a> <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga77c6bf6dd622bf2555cfd3aca1f5ce00"><span class="std std-ref">ICMUtilsHash</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga375c42a276465738d3211280cfe43708"><span class="std std-ref">CMUtlHashCreate</span></a> (<a class="reference internal" href="group___c_m_utils_hash_itf___hashtable.html#group-c-m-utils-hash-itf-hashtable-1ga18c3802cb4ec26bec34e42874fd3b65d"><span class="std std-ref">CMUtlHashTable</span></a> * pHashTable, RTS_SIZE sNumHashEntries, char * pszComponentName)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga9af9fc49890a611ee125df7078d9ea3d"><span class="std std-ref">CMUtlHashCreate2</span></a> (<a class="reference internal" href="group___c_m_utils_hash_itf___hashtable.html#group-c-m-utils-hash-itf-hashtable-1ga18c3802cb4ec26bec34e42874fd3b65d"><span class="std std-ref">CMUtlHashTable</span></a> * pHashTable, RTS_SIZE sNumHashEntries, RTS_UI8 * pHashTableBuffer, char * pszComponentName)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga8ec3ddce056ee5f5291a2f3df5be91c6"><span class="std std-ref">CMUtlHashDelete</span></a> (<a class="reference internal" href="group___c_m_utils_hash_itf___hashtable.html#group-c-m-utils-hash-itf-hashtable-1ga18c3802cb4ec26bec34e42874fd3b65d"><span class="std std-ref">CMUtlHashTable</span></a> * pHashTable)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga0d34d9a12bb3b22a3e7f84f4cb6461bc"><span class="std std-ref">CMUtlHashInsert</span></a> (<a class="reference internal" href="group___c_m_utils_hash_itf___hashtable.html#group-c-m-utils-hash-itf-hashtable-1ga18c3802cb4ec26bec34e42874fd3b65d"><span class="std std-ref">CMUtlHashTable</span></a> * pHashTable, RTS_UI8 * pKey, RTS_SIZE keyLen, RTS_BOOL bCopyKey, void * pData)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga179a1e14b91e32416317b7424fec5824"><span class="std std-ref">CMUtlHashInsert2</span></a> (<a class="reference internal" href="group___c_m_utils_hash_itf___hashtable.html#group-c-m-utils-hash-itf-hashtable-1ga18c3802cb4ec26bec34e42874fd3b65d"><span class="std std-ref">CMUtlHashTable</span></a> * pHashTable, <a class="reference internal" href="group___c_m_utils_hash_itf___hashentry.html#group-c-m-utils-hash-itf-hashentry-1gadd57a73c7ff3d9e8bfb558347e689613"><span class="std std-ref">CMUtlHashEntry</span></a> * pNewEntry, RTS_UI8 * pKey, RTS_SIZE keyLen, RTS_BOOL bCopyKey, void * pData)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga4a666238a761ef007c69bf6ecf5c0bfa"><span class="std std-ref">CMUtlHashRemove</span></a> (<a class="reference internal" href="group___c_m_utils_hash_itf___hashtable.html#group-c-m-utils-hash-itf-hashtable-1ga18c3802cb4ec26bec34e42874fd3b65d"><span class="std std-ref">CMUtlHashTable</span></a> * pHashTable, <a class="reference internal" href="group___c_m_utils_hash_itf___hashentry.html#group-c-m-utils-hash-itf-hashentry-1gadd57a73c7ff3d9e8bfb558347e689613"><span class="std std-ref">CMUtlHashEntry</span></a> * pEntry)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga21dfba83a41eca5dd92864a1495bfad6"><span class="std std-ref">CMUtlHashRemove2</span></a> (<a class="reference internal" href="group___c_m_utils_hash_itf___hashtable.html#group-c-m-utils-hash-itf-hashtable-1ga18c3802cb4ec26bec34e42874fd3b65d"><span class="std std-ref">CMUtlHashTable</span></a> * pHashTable, RTS_UI8 * pKey, RTS_SIZE keyLen)</li>
+<li><a class="reference internal" href="group___c_m_utils_hash_itf___hashentry.html#group-c-m-utils-hash-itf-hashentry-1gadd57a73c7ff3d9e8bfb558347e689613"><span class="std std-ref">CMUtlHashEntry</span></a> * <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga80c5e7e19886459ca77c785c40835363"><span class="std std-ref">CMUtlHashSearch</span></a> (<a class="reference internal" href="group___c_m_utils_hash_itf___hashtable.html#group-c-m-utils-hash-itf-hashtable-1ga18c3802cb4ec26bec34e42874fd3b65d"><span class="std std-ref">CMUtlHashTable</span></a> * pHashTable, RTS_UI8 * pKey, RTS_SIZE keyLen, RTS_RESULT * pResult)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-c-m-utils-hash-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-itf-cmutilshash">
+<span id="group-c-m-utils-hash-itf-1gaf736cd5ad089830646080ab0350c6c26"></span><h3>#define ITF_CMUtilsHash<a class="headerlink" href="#define-itf-cmutilshash" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmutilshash">
+<span id="group-c-m-utils-hash-itf-1ga628cfe043b3f40cd710133dc4175a614"></span><h3>#define EXTITF_CMUtilsHash<a class="headerlink" href="#define-extitf-cmutilshash" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-icmutilshash-c-icmutilshash">
+<span id="group-c-m-utils-hash-itf-1ga77c6bf6dd622bf2555cfd3aca1f5ce00"></span><h3>typedef ICMUtilsHash_C ICMUtilsHash<a class="headerlink" href="#typedef-icmutilshash-c-icmutilshash" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-result-cmutlhashcreate-cmutlhashtable-phashtable-rts-size-snumhashentries-char-pszcomponentname">
+<span id="group-c-m-utils-hash-itf-1ga375c42a276465738d3211280cfe43708"></span><h3>RTS_RESULT CMUtlHashCreate (CMUtlHashTable <a href="#id1"><span class="problematic" id="id2">*</span></a>pHashTable, RTS_SIZE sNumHashEntries, char <a href="#id3"><span class="problematic" id="id4">*</span></a>pszComponentName)<a class="headerlink" href="#rts-result-cmutlhashcreate-cmutlhashtable-phashtable-rts-size-snumhashentries-char-pszcomponentname" title="Permalink to this headline">¶</a></h3>
+<p>Function to create a hash table.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="2%" />
+<col width="3%" />
+<col width="95%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[inout]</td>
+<td>pHashTable</td>
+<td>Pointer to a hash table object, which is filled by this function call!</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>sNumHashEntries</td>
+<td>Lenght of the hash table respectively the number of elements that can be stored in the hash table without any collision. NOTE: Hash table is allocated on heap via <span class="xref std std-ref">SysMemAllocData()</span> within this function. If you would like to provide a static memory for the hash table. Use <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga9af9fc49890a611ee125df7078d9ea3d"><span class="std std-ref">CMUtlHashCreate2()</span></a> instead! The number of available hash entries should be a prime number to get a nice spreading.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pszComponentName</td>
+<td>Pointer to component name of the caller (which is generated typically in the macro COMPONENT_NAME)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Hash table could be created</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid pointer or sHashTableLen is 0</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOMEMORY</td>
+<td>No memory to create the hash table</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmutlhashcreate2-cmutlhashtable-phashtable-rts-size-snumhashentries-rts-ui8-phashtablebuffer-char-pszcomponentname">
+<span id="group-c-m-utils-hash-itf-1ga9af9fc49890a611ee125df7078d9ea3d"></span><h3>RTS_RESULT CMUtlHashCreate2 (CMUtlHashTable <a href="#id5"><span class="problematic" id="id6">*</span></a>pHashTable, RTS_SIZE sNumHashEntries, RTS_UI8 <a href="#id7"><span class="problematic" id="id8">*</span></a>pHashTableBuffer, char <a href="#id9"><span class="problematic" id="id10">*</span></a>pszComponentName)<a class="headerlink" href="#rts-result-cmutlhashcreate2-cmutlhashtable-phashtable-rts-size-snumhashentries-rts-ui8-phashtablebuffer-char-pszcomponentname" title="Permalink to this headline">¶</a></h3>
+<p>Function to create a hash table with a specified hash buffer.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="2%" />
+<col width="4%" />
+<col width="93%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[inout]</td>
+<td>pHashTable</td>
+<td>Pointer to a hash table object, which is filled by this function</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>sNumHashEntries</td>
+<td>Lenght of the hash table respectively the number of elements that can be stored in the hash table without any collision</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pHashTableBuffer</td>
+<td>Pointer to the hash table (can be static memory). Length must be (sNumHashEntriessizeof(RTS_UI8))!. NOTE: If pHashTableBuffer = NULL. the hash table will be allocated on heap via <span class="xref std std-ref">SysMemAllocData()</span> within this function. The number of available hash entries should be a prime number to get a nice spreading.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszComponentName</td>
+<td>Pointer to component name of the caller (which is generated typically in the macro COMPONENT_NAME)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Hash table could be created</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid pointer or sHashTableLen is 0</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOMEMORY</td>
+<td>No memory to create the hash table</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmutlhashdelete-cmutlhashtable-phashtable">
+<span id="group-c-m-utils-hash-itf-1ga8ec3ddce056ee5f5291a2f3df5be91c6"></span><h3>RTS_RESULT CMUtlHashDelete (CMUtlHashTable <a href="#id11"><span class="problematic" id="id12">*</span></a>pHashTable)<a class="headerlink" href="#rts-result-cmutlhashdelete-cmutlhashtable-phashtable" title="Permalink to this headline">¶</a></h3>
+<p>Function to delete a hash table.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="5%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pHashTable</td>
+<td>Pointer to a hash table filled by <span class="xref std std-ref">CMUtlHashCreate()</span> or <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga9af9fc49890a611ee125df7078d9ea3d"><span class="std std-ref">CMUtlHashCreate2()</span></a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Hash table could be deleted</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid hash table pointer</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Hash table could not be deleted</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmutlhashinsert-cmutlhashtable-phashtable-rts-ui8-pkey-rts-size-keylen-rts-bool-bcopykey-void-pdata">
+<span id="group-c-m-utils-hash-itf-1ga0d34d9a12bb3b22a3e7f84f4cb6461bc"></span><h3>RTS_RESULT CMUtlHashInsert (CMUtlHashTable <a href="#id13"><span class="problematic" id="id14">*</span></a>pHashTable, RTS_UI8 <a href="#id15"><span class="problematic" id="id16">*</span></a>pKey, RTS_SIZE keyLen, RTS_BOOL bCopyKey, void <a href="#id17"><span class="problematic" id="id18">*</span></a>pData)<a class="headerlink" href="#rts-result-cmutlhashinsert-cmutlhashtable-phashtable-rts-ui8-pkey-rts-size-keylen-rts-bool-bcopykey-void-pdata" title="Permalink to this headline">¶</a></h3>
+<p>Function to insert a new hash entry. New hash entry (CMUtlHashEntry) is allocated from heap via <span class="xref std std-ref">SysMemAllocData()</span> . Note: If the size of the key is equal or lower the register size of the architecture the key is directly used as hash.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="5%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pHashTable</td>
+<td>Pointer to a hash table filled by <span class="xref std std-ref">CMUtlHashCreate()</span> or <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga9af9fc49890a611ee125df7078d9ea3d"><span class="std std-ref">CMUtlHashCreate2()</span></a></td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pKey</td>
+<td>Corresponding unique key. Can be an integer or string key.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>keyLen</td>
+<td>Key length in bytes</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>bCopyKey</td>
+<td>Is only relevant for String key: TRUE=Key is allocated and coppied, FALSE=Only a reference to the key is hold!</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pData</td>
+<td>Pointer to data to store in hash entry</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Hash entry could be inserted</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid hash table pointer</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOMEMORY</td>
+<td>Hash entry failed to insert because of insufficient memory</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Hash entry failed to insert</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmutlhashinsert2-cmutlhashtable-phashtable-cmutlhashentry-pnewentry-rts-ui8-pkey-rts-size-keylen-rts-bool-bcopykey-void-pdata">
+<span id="group-c-m-utils-hash-itf-1ga179a1e14b91e32416317b7424fec5824"></span><h3>RTS_RESULT CMUtlHashInsert2 (CMUtlHashTable <a href="#id19"><span class="problematic" id="id20">*</span></a>pHashTable, CMUtlHashEntry <a href="#id21"><span class="problematic" id="id22">*</span></a>pNewEntry, RTS_UI8 <a href="#id23"><span class="problematic" id="id24">*</span></a>pKey, RTS_SIZE keyLen, RTS_BOOL bCopyKey, void <a href="#id25"><span class="problematic" id="id26">*</span></a>pData)<a class="headerlink" href="#rts-result-cmutlhashinsert2-cmutlhashtable-phashtable-cmutlhashentry-pnewentry-rts-ui8-pkey-rts-size-keylen-rts-bool-bcopykey-void-pdata" title="Permalink to this headline">¶</a></h3>
+<p>Function to insert a new hash entry. Note: If the size of the key is equal or lower the register size of the architecture the key is directly used as hash.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="4%" />
+<col width="93%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pHashTable</td>
+<td>Pointer to a hash table filled by <span class="xref std std-ref">CMUtlHashCreate()</span> or <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga9af9fc49890a611ee125df7078d9ea3d"><span class="std std-ref">CMUtlHashCreate2()</span></a></td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pNewEntry</td>
+<td>Pointer to a new the hash entry memory object to be added in the hash table. Can be static memory. If the pointer is NULL, a new hash entry (CMUtlHashEntry) is allocated from heap via <span class="xref std std-ref">SysMemAllocData()</span> .</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pKey</td>
+<td>Corresponding unique key. Can be an integer or string key.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>keyLen</td>
+<td>Key length in bytes</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>bCopyKey</td>
+<td>Is only relevant for String key: TRUE=Key is allocated and coppied, FALSE=Only a reference to the key is hold!</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pData</td>
+<td>Pointer to data to store in hash entry</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Hash entry could be inserted</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid hash table pointer</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOMEMORY</td>
+<td>Hash entry failed to insert because of insufficient memory</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Hash entry failed to insert</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmutlhashremove-cmutlhashtable-phashtable-cmutlhashentry-pentry">
+<span id="group-c-m-utils-hash-itf-1ga4a666238a761ef007c69bf6ecf5c0bfa"></span><h3>RTS_RESULT CMUtlHashRemove (CMUtlHashTable <a href="#id27"><span class="problematic" id="id28">*</span></a>pHashTable, CMUtlHashEntry <a href="#id29"><span class="problematic" id="id30">*</span></a>pEntry)<a class="headerlink" href="#rts-result-cmutlhashremove-cmutlhashtable-phashtable-cmutlhashentry-pentry" title="Permalink to this headline">¶</a></h3>
+<p>Function to remove a hash entry specified by its entry pointer.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="5%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pHashTable</td>
+<td>Pointer to a hash table filled by <span class="xref std std-ref">CMUtlHashCreate()</span> or <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga9af9fc49890a611ee125df7078d9ea3d"><span class="std std-ref">CMUtlHashCreate2()</span></a></td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pEntry</td>
+<td>Pointer to the hash entry retrieved by CMUtlHashSearch</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Hash entry could be removed</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid hash table pointer or hash entry</td>
+</tr>
+<tr class="row-odd"><td>ERR_NO_OBJECT</td>
+<td>Unknown hash entry</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-cmutlhashremove2-cmutlhashtable-phashtable-rts-ui8-pkey-rts-size-keylen">
+<span id="group-c-m-utils-hash-itf-1ga21dfba83a41eca5dd92864a1495bfad6"></span><h3>RTS_RESULT CMUtlHashRemove2 (CMUtlHashTable <a href="#id31"><span class="problematic" id="id32">*</span></a>pHashTable, RTS_UI8 <a href="#id33"><span class="problematic" id="id34">*</span></a>pKey, RTS_SIZE keyLen)<a class="headerlink" href="#rts-result-cmutlhashremove2-cmutlhashtable-phashtable-rts-ui8-pkey-rts-size-keylen" title="Permalink to this headline">¶</a></h3>
+<p>Function to remove a hash entry specified by its key.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="5%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pHashTable</td>
+<td>Pointer to a hash table filled by <span class="xref std std-ref">CMUtlHashCreate()</span> or <a class="reference internal" href="#group-c-m-utils-hash-itf-1ga9af9fc49890a611ee125df7078d9ea3d"><span class="std std-ref">CMUtlHashCreate2()</span></a></td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pKey</td>
+<td>Corresponding unique key. Can be an integer or string key.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>keyLen</td>
+<td>Key length in bytes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Hash entry could be removed</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid hash table pointer or hash entry</td>
+</tr>
+<tr class="row-odd"><td>ERR_NO_OBJECT</td>
+<td>Unknown hash entry</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="cmutlhashentry-cmutlhashsearch-cmutlhashtable-phashtable-rts-ui8-pkey-rts-size-keylen-rts-result-presult">
+<span id="group-c-m-utils-hash-itf-1ga80c5e7e19886459ca77c785c40835363"></span><h3>CMUtlHashEntry* CMUtlHashSearch (CMUtlHashTable <a href="#id35"><span class="problematic" id="id36">*</span></a>pHashTable, RTS_UI8 <a href="#id37"><span class="problematic" id="id38">*</span></a>pKey, RTS_SIZE keyLen, RTS_RESULT <a href="#id39"><span class="problematic" id="id40">*</span></a>pResult)<a class="headerlink" href="#cmutlhashentry-cmutlhashsearch-cmutlhashtable-phashtable-rts-ui8-pkey-rts-size-keylen-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Function to search for an entry in the hash table. Note: If the size of the key is equal or lower the register size of the architecture the key is directly used as hash.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="8%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pHashTable</td>
+<td>Pointer to a hash table object, which is filled by this function</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pKey</td>
+<td>Pointer to the key value toi search for the entry</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>keyLen</td>
+<td>Lenght of the key. If the key is a string, additionally the NUL termination character must be _included_ in the keylen!</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Hash entry could be found</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Invalid hash table pointer or pointer to key</td>
+</tr>
+<tr class="row-odd"><td>ERR_NO_OBJECT</td>
+<td>No hash entry matching to the key found</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to the hash entry or NULL if not found</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___c_m_utils_itf.html" title="CMUtilsItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___c_m_lock_itf.html" title="CMLockItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

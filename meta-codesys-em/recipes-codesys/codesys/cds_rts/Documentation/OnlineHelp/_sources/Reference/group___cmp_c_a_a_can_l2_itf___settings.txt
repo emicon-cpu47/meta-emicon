@@ -1,0 +1,483 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_c_a_a_can_l2_itf___settings:
+
+========
+Settings
+========
+
+ :ref:`More... <group___cmp_c_a_a_can_l2_itf___settings-details>`
+
+Macros
+------
+
+- #define :ref:`CANL2KEY_INT_PERSISTENTBAUDRATE <group___cmp_c_a_a_can_l2_itf___settings_1ga03391af5a8d95e965777830f2904919d>` "PersistentBaudrate"
+
+- #define :ref:`CANL2KEY_INT_PERSISTENTBAUDRATE_DEFAULT <group___cmp_c_a_a_can_l2_itf___settings_1gaf150d4b862d36afdf456c768c4394ed7>` 0
+
+- #define :ref:`CANL2_STRING_NET <group___cmp_c_a_a_can_l2_itf___settings_1gadfbfadc556f215ac0d461f8f9761ee6d>` "Net"
+
+- #define :ref:`CANL2KEY_INT_BAUDRATE <group___cmp_c_a_a_can_l2_itf___settings_1gafb5151cddec9cb535bd9eddc639e5131>` "DefaultBaudrate"
+
+- #define :ref:`CANL2KEY_INT_BAUDRATE_DEFAULT <group___cmp_c_a_a_can_l2_itf___settings_1ga28e53ddd881a35df3132bdc3f069ccb9>` 0
+
+Functions
+---------
+
+- CAA_HANDLE :ref:`CL2_DriverOpenH <group___cmp_c_a_a_can_l2_itf___settings_1ga9bfc3bd13397bb87269625736793ba6a>` (unsigned char ucNetId, unsigned short usBaudrate, CAA_BOOL xSupport29Bit, CAA_COUNT ctMessages, CAA_ERROR * peError)
+
+- CAA_SIZE :ref:`CL2_DriverGetSize <group___cmp_c_a_a_can_l2_itf___settings_1ga0892e57e325c759b217fd437f12db7ee>` (unsigned char ucNetId, CAA_BOOL xSupport29Bit, CAA_COUNT ctMessages, CAA_ERROR * peError)
+
+- CAA_HANDLE :ref:`CL2_DriverOpenP <group___cmp_c_a_a_can_l2_itf___settings_1ga10e043a2cbabd93a81af829455fa15cc>` (unsigned char ucNetId, unsigned short usBaudrate, CAA_BOOL xSupport29Bit, CAA_SIZE szMemSize, CAA_PVOID pMemory, CAA_ERROR * peError)
+
+- CAA_ERROR :ref:`CL2_DriverClose <group___cmp_c_a_a_can_l2_itf___settings_1gadd09f358bfa9071b66377e84c500b596>` (CAA_HANDLE hDriver)
+
+- CAA_HANDLE :ref:`CL2_CreateMessage <group___cmp_c_a_a_can_l2_itf___settings_1ga8b1f77ba6a457eeadbb12af701516d6b>` (CAA_HANDLE hDriver, CL2I_COBID cobId, unsigned char ucLength, CAA_BOOL xRTR, CAA_BOOL x29BitId, CAA_ERROR * peError)
+
+- CAA_ERROR :ref:`CL2_FreeMessage <group___cmp_c_a_a_can_l2_itf___settings_1gaeddb7f4b949dd1695f81e6ad0a74e7c4>` (CAA_HANDLE hMessage)
+
+- CAA_HANDLE :ref:`CL2_CloneMessage <group___cmp_c_a_a_can_l2_itf___settings_1gae528c77d379654d3c097641fb8a8aad9>` (CAA_HANDLE hMessage, CAA_ERROR * peError)
+
+- CAA_HANDLE :ref:`CL2_CreateSingleIdReceiver <group___cmp_c_a_a_can_l2_itf___settings_1gaf5f416a19aa5ed01a216b93bfd03e23b>` (CAA_HANDLE hDriver, CL2I_COBID cobId, CAA_BOOL xRTR, CAA_BOOL x29BitId, CAA_BOOL xTransmit, CAA_BOOL xAlwaysNewest, CAA_ENUM eEvent, CAA_BOOL xEnableSyncWindow, CAA_ERROR * peError)
+
+- CAA_HANDLE :ref:`CL2_CreateIdAreaReceiver <group___cmp_c_a_a_can_l2_itf___settings_1ga3f82e47ec8ac1fef1d3e9177fa671c2d>` (CAA_HANDLE hDriver, CAA_BOOL xAlwaysNewest, CAA_ENUM eEvent, CAA_BOOL xEnableSyncWindow, CAA_ERROR * peError)
+
+- CAA_HANDLE :ref:`CL2_CreateIdAreaReceiverEx <group___cmp_c_a_a_can_l2_itf___settings_1gaa90f15f82e7671d4fbbc877afd6ce656>` (CAA_HANDLE hDriver, CAA_BOOL xAlwaysNewest, CAA_BOOL xReverse, CAA_ENUM eEvent, CAA_BOOL xEnableSyncWindow, CAA_ERROR * peError)
+
+- CAA_ERROR :ref:`CL2_RegisterIdArea <group___cmp_c_a_a_can_l2_itf___settings_1ga071c417025363fe03271f5b7b68de043>` (CAA_HANDLE hReceiverId, CL2I_COBID cobIdStart, CL2I_COBID cobIdEnd, CAA_BOOL xRTRValue, CAA_BOOL xRTRMask, CAA_BOOL x29BitIdValue, CAA_BOOL x29BitIdMask, CAA_BOOL xTransmitValue, CAA_BOOL xTransmitMask)
+
+- CAA_ERROR :ref:`CL2_UnregisterIdArea <group___cmp_c_a_a_can_l2_itf___settings_1ga942b7e6f93fe31fba224b0c04e1c32e4>` (CAA_HANDLE hReceiverId, CL2I_COBID cobIdStart, CL2I_COBID cobIdEnd, CAA_BOOL xRTRValue, CAA_BOOL xRTRMask, CAA_BOOL x29BitIdValue, CAA_BOOL x29BitIdMask, CAA_BOOL xTransmitValue, CAA_BOOL xTransmitMask)
+
+- CAA_HANDLE :ref:`CL2_CreateMaskReceiver <group___cmp_c_a_a_can_l2_itf___settings_1ga303184960c5710edcefe8f7fe90c478c>` (CAA_HANDLE hDriver, CL2I_COBID cobIdValue, CL2I_COBID cobIdMask, CAA_BOOL xRTRValue, CAA_BOOL xRTRMask, CAA_BOOL x29BitIdValue, CAA_BOOL x29BitIdMask, CAA_BOOL xTransmitValue, CAA_BOOL xTransmitMask, CAA_BOOL xAlwaysNewest, CAA_ENUM eEvent, CAA_BOOL xEnableSyncWindow, CAA_ERROR * peError)
+
+- CAA_HANDLE :ref:`CL2_CreateArrayReceiver <group___cmp_c_a_a_can_l2_itf___settings_1gae4e73169d95dadae9da1f54c82aa83a0>` (CAA_HANDLE hDriver, CL2I_ARRAYRECV_ENTRY * paSortedCOBIDs, CAA_COUNT ctCOBIDs, CAA_ENUM eEvent, CAA_BOOL xEnableSyncWindow, CAA_ERROR * peError)
+
+- CAA_ERROR :ref:`CL2_DeleteReceiver <group___cmp_c_a_a_can_l2_itf___settings_1gacdb02c2225f74ab5db63d04f74dcab43>` (CAA_HANDLE hReceiverId)
+
+- CAA_HANDLE :ref:`CL2_Read <group___cmp_c_a_a_can_l2_itf___settings_1ga9119ae406ee080bcb6e0a457c46ff671>` (CAA_HANDLE hReceiverId, CAA_COUNT * pctMsgLeft, CAA_ERROR * peError)
+
+- CAA_HANDLE :ref:`CL2_ReadArrayReceiver <group___cmp_c_a_a_can_l2_itf___settings_1gabdea446f2ae03dfb69164b09193957bd>` (CAA_HANDLE hArrayReceiver, CAA_COUNT ctIndex, CAA_COUNT * pctMsgLeft, CAA_ERROR * peError)
+
+- CAA_ERROR :ref:`CL2_Write <group___cmp_c_a_a_can_l2_itf___settings_1ga3217a6ffa4b9fe82ad5ce36ed33c0404>` (CAA_HANDLE hDriver, CAA_HANDLE hMessage, unsigned char ucPrio, CAA_BOOL xEnableSyncWindow)
+
+- CAA_HANDLE :ref:`CL2_CstCycleOpen <group___cmp_c_a_a_can_l2_itf___settings_1gaebb69511d6f7ff1c2ed689889b49f3ff>` (CAA_HANDLE hDriver, CAA_ENUM eCstEvent, unsigned short usPrio, CAA_BOOL xEnableSyncWindow, CAA_UDINT ulCstCycle, CAA_UDINT ulCstForewarnTime, CAA_ERROR * peError)
+
+- CAA_HANDLE :ref:`CL2_CstCycleUpdate <group___cmp_c_a_a_can_l2_itf___settings_1ga68f7ec558a9735b36532cc65abfceee0>` (CAA_HANDLE hCstCycle, CAA_HANDLE hMessage, CAA_ERROR * peError)
+
+- CAA_ERROR :ref:`CL2_CstCycleStart <group___cmp_c_a_a_can_l2_itf___settings_1gae55a6ef8442800206ff95b599ecbf221>` (CAA_HANDLE hCstCycle)
+
+- CAA_ERROR :ref:`CL2_CstCycleStop <group___cmp_c_a_a_can_l2_itf___settings_1ga01ba3aeee52e5e597438204fbbb1fce9>` (CAA_HANDLE hCstCycle)
+
+- CAA_HANDLE :ref:`CL2_CstCycleClose <group___cmp_c_a_a_can_l2_itf___settings_1ga43abb990158e0ecc05d5b0e18ab01017>` (CAA_HANDLE hCstCycle, CAA_ERROR * peError)
+
+- unsigned short :ref:`CL2_GetBaudrate <group___cmp_c_a_a_can_l2_itf___settings_1ga1f862a7f1a693de1d648372d3e54bfe3>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- unsigned short :ref:`CL2_GetBusload <group___cmp_c_a_a_can_l2_itf___settings_1gafda27eb114d0047327689de5ca56b8ad>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_ENUM :ref:`CL2_GetBusState <group___cmp_c_a_a_can_l2_itf___settings_1ga713b4b2f977d798f36b4f8136653d4d6>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_COUNT :ref:`CL2_GetReceiveCounter <group___cmp_c_a_a_can_l2_itf___settings_1ga48b5f4fa407e7970bc330ac2a2a6d978>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_COUNT :ref:`CL2_GetLostCounter <group___cmp_c_a_a_can_l2_itf___settings_1gac8e765db51783d413e766735398996e5>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_COUNT :ref:`CL2_GetTransmitCounter <group___cmp_c_a_a_can_l2_itf___settings_1gaa07dc607a6359cdfd642754587e7d7ad>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_COUNT :ref:`CL2_GetTransmitErrorCounter <group___cmp_c_a_a_can_l2_itf___settings_1gaad7bd9ee57101795b52a3f93a3811f1c>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_COUNT :ref:`CL2_GetReceiveErrorCounter <group___cmp_c_a_a_can_l2_itf___settings_1ga4ba35b29501886ab5c0fa4af00e2cdde>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_BOOL :ref:`CL2_IsSendingActive <group___cmp_c_a_a_can_l2_itf___settings_1gaf74b913736a1fdbc542ace849d0366a0>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_BOOL :ref:`CL2_GetBusAlarm <group___cmp_c_a_a_can_l2_itf___settings_1ga45f5b25cad4d65b99e20661b04b209e5>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_ERROR :ref:`CL2_ResetBusAlarm <group___cmp_c_a_a_can_l2_itf___settings_1gad5ca93330c9048ad7f95d89cec17e5e9>` (CAA_HANDLE hDriver)
+
+- CAA_COUNT :ref:`CL2_GetTransmitQueueLength <group___cmp_c_a_a_can_l2_itf___settings_1ga54e94ca7a811ee7a4bc3c3cf567dad55>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_COUNT :ref:`CL2_GetReceiveQueueLength <group___cmp_c_a_a_can_l2_itf___settings_1ga02863bb4ddb33ff37bad0d257d0bb668>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_COUNT :ref:`CL2_GetTransmitPoolSize <group___cmp_c_a_a_can_l2_itf___settings_1ga2106b68dd0763c99142159bd4ef1a5b0>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_COUNT :ref:`CL2_GetReceivePoolSize <group___cmp_c_a_a_can_l2_itf___settings_1ga7ec3bb079f910411460cd494efb88d34>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_ERROR :ref:`CL2_DisableSyncService <group___cmp_c_a_a_can_l2_itf___settings_1ga06fa0c662d2f478613576ec320ac9fd8>` (CAA_HANDLE hDriver)
+
+- CAA_ERROR :ref:`CL2_DisableTimeService <group___cmp_c_a_a_can_l2_itf___settings_1gada2549ade6de8a058b6fc455b230b885>` (CAA_HANDLE hDriver)
+
+- CAA_ERROR :ref:`CL2_EnableSyncService <group___cmp_c_a_a_can_l2_itf___settings_1ga3ef9a89c47573ece2b17286f635971f1>` (CAA_HANDLE hDriver, CL2I_COBID cobId, CAA_BOOL xSyncProducer, CAA_BOOL xEnableSyncEvent, CAA_UDINT ulSyncCycle, CAA_UDINT ulSyncWindowLength, CAA_UDINT ulSyncForewarnTime)
+
+- CAA_ERROR :ref:`CL2_EnableTimeService <group___cmp_c_a_a_can_l2_itf___settings_1ga4aac5d6bb6c751d1eb55062481c90fbb>` (CAA_HANDLE hDriver, CL2I_COBID cobId, CAA_BOOL xTimeProducer, CAA_BOOL xEnableTimeEvent, CAA_UDINT ulTimeCycle, CAA_UDINT ulTimeForewarnTime)
+
+- CAA_ERROR :ref:`CL2_UpdateTimeService <group___cmp_c_a_a_can_l2_itf___settings_1ga000f0506762dcade1995267c8181d1d0>` (CAA_HANDLE hDriver, CAA_UDINT ulTime, CAA_UDINT ulDate)
+
+- CL2I_DATA * :ref:`CL2_GetMessageDataPointer <group___cmp_c_a_a_can_l2_itf___settings_1ga30ff5b29117d5e31865a1825bbd7b5da>` (CAA_HANDLE hMessage, CAA_ERROR * peError)
+
+- CL2I_COBID :ref:`CL2_GetMessageId <group___cmp_c_a_a_can_l2_itf___settings_1ga6264ce0d1ece40218817149fda9e2d42>` (CAA_HANDLE hMessage, CAA_ERROR * peError)
+
+- unsigned char :ref:`CL2_GetMessageLength <group___cmp_c_a_a_can_l2_itf___settings_1gae68b77a188db1e2a9d4857502040e93e>` (CAA_HANDLE hMessage, CAA_ERROR * peError)
+
+- CAA_UDINT :ref:`CL2_GetTimeStamp <group___cmp_c_a_a_can_l2_itf___settings_1ga4895624b65c3de8b97595eae281a62af>` (CAA_HANDLE hMessage, CAA_ERROR * peError)
+
+- CAA_BOOL :ref:`CL2_Is29BitIdMessage <group___cmp_c_a_a_can_l2_itf___settings_1gab63fb5764d31bc735ec1eaa9077dcc97>` (CAA_HANDLE hMessage, CAA_ERROR * peError)
+
+- CAA_BOOL :ref:`CL2_IsRTRMessage <group___cmp_c_a_a_can_l2_itf___settings_1ga94309fe564ec8fe4cc61ee8398fadb54>` (CAA_HANDLE hMessage, CAA_ERROR * peError)
+
+- CAA_BOOL :ref:`CL2_IsTransmitMessage <group___cmp_c_a_a_can_l2_itf___settings_1ga0e2aac39cba3cbc9080116e83cddd093>` (CAA_HANDLE hMessage, CAA_ERROR * peError)
+
+- unsigned char :ref:`CL2_GetNetId <group___cmp_c_a_a_can_l2_itf___settings_1ga9dc531480f217263a011f08083ff4f01>` (CAA_HANDLE hMessage, CAA_ERROR * peError)
+
+- CAA_COUNT :ref:`CL2_LostMessages <group___cmp_c_a_a_can_l2_itf___settings_1gae66462f52169a3f26e6e47fbd723a334>` (CAA_HANDLE hReceiverId, CAA_ERROR * peError)
+
+- CAA_COUNT :ref:`CL2_GetMsgCount <group___cmp_c_a_a_can_l2_itf___settings_1ga301738a51c094a0d46201b403a0858b6>` (CAA_HANDLE hReceiverId, CAA_ERROR * peError)
+
+- unsigned char :ref:`CL2_GetCiAState <group___cmp_c_a_a_can_l2_itf___settings_1gafb439ec0741f59723bb25a34ae85092f>` (CAA_HANDLE hDriver, CAA_ERROR * peError)
+
+- CAA_ERROR :ref:`CL2_SetCiAState <group___cmp_c_a_a_can_l2_itf___settings_1gac2d3ccd107d1e6384c4b0b509890fd23>` (CAA_HANDLE hDriver, unsigned char byState)
+
+- CAA_UDINT :ref:`CL2_GetProperty <group___cmp_c_a_a_can_l2_itf___settings_1ga991013e716d13be120e13bcccc742780>` (unsigned short usPropery)
+
+- CAA_ERROR :ref:`CL2_CmdRegister <group___cmp_c_a_a_can_l2_itf___settings_1gae38c9e2fe87b99d94fc3072c4f355d08>` (unsigned char ucNetId, CMD_CMDRV * pCMDRV, CAA_COUNT ctMessages, CL2I_INFO ** ppInfo)
+
+- CAA_ERROR :ref:`CL2_CmdUnRegister <group___cmp_c_a_a_can_l2_itf___settings_1ga41a3d6064670f6ba7bf67df9ce4c3b0a>` (unsigned char ucNetId)
+
+.. _group___cmp_c_a_a_can_l2_itf___settings-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga03391af5a8d95e965777830f2904919d:
+
+#define CANL2KEY_INT_PERSISTENTBAUDRATE "PersistentBaudrate"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Global setting for all CAN Networks. If 1 Baudrate used in DriverOpen will be saved to Net.X.DefaultBaudrate.
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gaf150d4b862d36afdf456c768c4394ed7:
+
+#define CANL2KEY_INT_PERSISTENTBAUDRATE_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gadfbfadc556f215ac0d461f8f9761ee6d:
+
+#define CANL2_STRING_NET "Net"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting prefix for CANL2 Networks.
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gafb5151cddec9cb535bd9eddc639e5131:
+
+#define CANL2KEY_INT_BAUDRATE "DefaultBaudrate"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Default Baudrate in kbit/s which should be used if CAN interface will be opened with baudrate 0. Example: Net.0.Baudrate = 1000
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga28e53ddd881a35df3132bdc3f069ccb9:
+
+#define CANL2KEY_INT_BAUDRATE_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga9bfc3bd13397bb87269625736793ba6a:
+
+CAA_HANDLE CL2_DriverOpenH (unsigned char ucNetId, unsigned short usBaudrate, CAA_BOOL xSupport29Bit, CAA_COUNT ctMessages, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga0892e57e325c759b217fd437f12db7ee:
+
+CAA_SIZE CL2_DriverGetSize (unsigned char ucNetId, CAA_BOOL xSupport29Bit, CAA_COUNT ctMessages, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga10e043a2cbabd93a81af829455fa15cc:
+
+CAA_HANDLE CL2_DriverOpenP (unsigned char ucNetId, unsigned short usBaudrate, CAA_BOOL xSupport29Bit, CAA_SIZE szMemSize, CAA_PVOID pMemory, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gadd09f358bfa9071b66377e84c500b596:
+
+CAA_ERROR CL2_DriverClose (CAA_HANDLE hDriver)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga8b1f77ba6a457eeadbb12af701516d6b:
+
+CAA_HANDLE CL2_CreateMessage (CAA_HANDLE hDriver, CL2I_COBID cobId, unsigned char ucLength, CAA_BOOL xRTR, CAA_BOOL x29BitId, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gaeddb7f4b949dd1695f81e6ad0a74e7c4:
+
+CAA_ERROR CL2_FreeMessage (CAA_HANDLE hMessage)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gae528c77d379654d3c097641fb8a8aad9:
+
+CAA_HANDLE CL2_CloneMessage (CAA_HANDLE hMessage, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gaf5f416a19aa5ed01a216b93bfd03e23b:
+
+CAA_HANDLE CL2_CreateSingleIdReceiver (CAA_HANDLE hDriver, CL2I_COBID cobId, CAA_BOOL xRTR, CAA_BOOL x29BitId, CAA_BOOL xTransmit, CAA_BOOL xAlwaysNewest, CAA_ENUM eEvent, CAA_BOOL xEnableSyncWindow, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga3f82e47ec8ac1fef1d3e9177fa671c2d:
+
+CAA_HANDLE CL2_CreateIdAreaReceiver (CAA_HANDLE hDriver, CAA_BOOL xAlwaysNewest, CAA_ENUM eEvent, CAA_BOOL xEnableSyncWindow, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gaa90f15f82e7671d4fbbc877afd6ce656:
+
+CAA_HANDLE CL2_CreateIdAreaReceiverEx (CAA_HANDLE hDriver, CAA_BOOL xAlwaysNewest, CAA_BOOL xReverse, CAA_ENUM eEvent, CAA_BOOL xEnableSyncWindow, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga071c417025363fe03271f5b7b68de043:
+
+CAA_ERROR CL2_RegisterIdArea (CAA_HANDLE hReceiverId, CL2I_COBID cobIdStart, CL2I_COBID cobIdEnd, CAA_BOOL xRTRValue, CAA_BOOL xRTRMask, CAA_BOOL x29BitIdValue, CAA_BOOL x29BitIdMask, CAA_BOOL xTransmitValue, CAA_BOOL xTransmitMask)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga942b7e6f93fe31fba224b0c04e1c32e4:
+
+CAA_ERROR CL2_UnregisterIdArea (CAA_HANDLE hReceiverId, CL2I_COBID cobIdStart, CL2I_COBID cobIdEnd, CAA_BOOL xRTRValue, CAA_BOOL xRTRMask, CAA_BOOL x29BitIdValue, CAA_BOOL x29BitIdMask, CAA_BOOL xTransmitValue, CAA_BOOL xTransmitMask)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga303184960c5710edcefe8f7fe90c478c:
+
+CAA_HANDLE CL2_CreateMaskReceiver (CAA_HANDLE hDriver, CL2I_COBID cobIdValue, CL2I_COBID cobIdMask, CAA_BOOL xRTRValue, CAA_BOOL xRTRMask, CAA_BOOL x29BitIdValue, CAA_BOOL x29BitIdMask, CAA_BOOL xTransmitValue, CAA_BOOL xTransmitMask, CAA_BOOL xAlwaysNewest, CAA_ENUM eEvent, CAA_BOOL xEnableSyncWindow, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gae4e73169d95dadae9da1f54c82aa83a0:
+
+CAA_HANDLE CL2_CreateArrayReceiver (CAA_HANDLE hDriver, CL2I_ARRAYRECV_ENTRY *paSortedCOBIDs, CAA_COUNT ctCOBIDs, CAA_ENUM eEvent, CAA_BOOL xEnableSyncWindow, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gacdb02c2225f74ab5db63d04f74dcab43:
+
+CAA_ERROR CL2_DeleteReceiver (CAA_HANDLE hReceiverId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga9119ae406ee080bcb6e0a457c46ff671:
+
+CAA_HANDLE CL2_Read (CAA_HANDLE hReceiverId, CAA_COUNT *pctMsgLeft, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gabdea446f2ae03dfb69164b09193957bd:
+
+CAA_HANDLE CL2_ReadArrayReceiver (CAA_HANDLE hArrayReceiver, CAA_COUNT ctIndex, CAA_COUNT *pctMsgLeft, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga3217a6ffa4b9fe82ad5ce36ed33c0404:
+
+CAA_ERROR CL2_Write (CAA_HANDLE hDriver, CAA_HANDLE hMessage, unsigned char ucPrio, CAA_BOOL xEnableSyncWindow)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gaebb69511d6f7ff1c2ed689889b49f3ff:
+
+CAA_HANDLE CL2_CstCycleOpen (CAA_HANDLE hDriver, CAA_ENUM eCstEvent, unsigned short usPrio, CAA_BOOL xEnableSyncWindow, CAA_UDINT ulCstCycle, CAA_UDINT ulCstForewarnTime, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga68f7ec558a9735b36532cc65abfceee0:
+
+CAA_HANDLE CL2_CstCycleUpdate (CAA_HANDLE hCstCycle, CAA_HANDLE hMessage, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gae55a6ef8442800206ff95b599ecbf221:
+
+CAA_ERROR CL2_CstCycleStart (CAA_HANDLE hCstCycle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga01ba3aeee52e5e597438204fbbb1fce9:
+
+CAA_ERROR CL2_CstCycleStop (CAA_HANDLE hCstCycle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga43abb990158e0ecc05d5b0e18ab01017:
+
+CAA_HANDLE CL2_CstCycleClose (CAA_HANDLE hCstCycle, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga1f862a7f1a693de1d648372d3e54bfe3:
+
+unsigned short CL2_GetBaudrate (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gafda27eb114d0047327689de5ca56b8ad:
+
+unsigned short CL2_GetBusload (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga713b4b2f977d798f36b4f8136653d4d6:
+
+CAA_ENUM CL2_GetBusState (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga48b5f4fa407e7970bc330ac2a2a6d978:
+
+CAA_COUNT CL2_GetReceiveCounter (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gac8e765db51783d413e766735398996e5:
+
+CAA_COUNT CL2_GetLostCounter (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gaa07dc607a6359cdfd642754587e7d7ad:
+
+CAA_COUNT CL2_GetTransmitCounter (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gaad7bd9ee57101795b52a3f93a3811f1c:
+
+CAA_COUNT CL2_GetTransmitErrorCounter (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga4ba35b29501886ab5c0fa4af00e2cdde:
+
+CAA_COUNT CL2_GetReceiveErrorCounter (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gaf74b913736a1fdbc542ace849d0366a0:
+
+CAA_BOOL CL2_IsSendingActive (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga45f5b25cad4d65b99e20661b04b209e5:
+
+CAA_BOOL CL2_GetBusAlarm (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gad5ca93330c9048ad7f95d89cec17e5e9:
+
+CAA_ERROR CL2_ResetBusAlarm (CAA_HANDLE hDriver)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga54e94ca7a811ee7a4bc3c3cf567dad55:
+
+CAA_COUNT CL2_GetTransmitQueueLength (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga02863bb4ddb33ff37bad0d257d0bb668:
+
+CAA_COUNT CL2_GetReceiveQueueLength (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga2106b68dd0763c99142159bd4ef1a5b0:
+
+CAA_COUNT CL2_GetTransmitPoolSize (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga7ec3bb079f910411460cd494efb88d34:
+
+CAA_COUNT CL2_GetReceivePoolSize (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga06fa0c662d2f478613576ec320ac9fd8:
+
+CAA_ERROR CL2_DisableSyncService (CAA_HANDLE hDriver)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gada2549ade6de8a058b6fc455b230b885:
+
+CAA_ERROR CL2_DisableTimeService (CAA_HANDLE hDriver)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga3ef9a89c47573ece2b17286f635971f1:
+
+CAA_ERROR CL2_EnableSyncService (CAA_HANDLE hDriver, CL2I_COBID cobId, CAA_BOOL xSyncProducer, CAA_BOOL xEnableSyncEvent, CAA_UDINT ulSyncCycle, CAA_UDINT ulSyncWindowLength, CAA_UDINT ulSyncForewarnTime)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga4aac5d6bb6c751d1eb55062481c90fbb:
+
+CAA_ERROR CL2_EnableTimeService (CAA_HANDLE hDriver, CL2I_COBID cobId, CAA_BOOL xTimeProducer, CAA_BOOL xEnableTimeEvent, CAA_UDINT ulTimeCycle, CAA_UDINT ulTimeForewarnTime)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga000f0506762dcade1995267c8181d1d0:
+
+CAA_ERROR CL2_UpdateTimeService (CAA_HANDLE hDriver, CAA_UDINT ulTime, CAA_UDINT ulDate)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga30ff5b29117d5e31865a1825bbd7b5da:
+
+CL2I_DATA* CL2_GetMessageDataPointer (CAA_HANDLE hMessage, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga6264ce0d1ece40218817149fda9e2d42:
+
+CL2I_COBID CL2_GetMessageId (CAA_HANDLE hMessage, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gae68b77a188db1e2a9d4857502040e93e:
+
+unsigned char CL2_GetMessageLength (CAA_HANDLE hMessage, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga4895624b65c3de8b97595eae281a62af:
+
+CAA_UDINT CL2_GetTimeStamp (CAA_HANDLE hMessage, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gab63fb5764d31bc735ec1eaa9077dcc97:
+
+CAA_BOOL CL2_Is29BitIdMessage (CAA_HANDLE hMessage, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga94309fe564ec8fe4cc61ee8398fadb54:
+
+CAA_BOOL CL2_IsRTRMessage (CAA_HANDLE hMessage, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga0e2aac39cba3cbc9080116e83cddd093:
+
+CAA_BOOL CL2_IsTransmitMessage (CAA_HANDLE hMessage, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga9dc531480f217263a011f08083ff4f01:
+
+unsigned char CL2_GetNetId (CAA_HANDLE hMessage, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gae66462f52169a3f26e6e47fbd723a334:
+
+CAA_COUNT CL2_LostMessages (CAA_HANDLE hReceiverId, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga301738a51c094a0d46201b403a0858b6:
+
+CAA_COUNT CL2_GetMsgCount (CAA_HANDLE hReceiverId, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gafb439ec0741f59723bb25a34ae85092f:
+
+unsigned char CL2_GetCiAState (CAA_HANDLE hDriver, CAA_ERROR *peError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gac2d3ccd107d1e6384c4b0b509890fd23:
+
+CAA_ERROR CL2_SetCiAState (CAA_HANDLE hDriver, unsigned char byState)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga991013e716d13be120e13bcccc742780:
+
+CAA_UDINT CL2_GetProperty (unsigned short usPropery)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1gae38c9e2fe87b99d94fc3072c4f355d08:
+
+CAA_ERROR CL2_CmdRegister (unsigned char ucNetId, CMD_CMDRV *pCMDRV, CAA_COUNT ctMessages, CL2I_INFO **ppInfo)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_c_a_a_can_l2_itf___settings_1ga41a3d6064670f6ba7bf67df9ce4c3b0a:
+
+CAA_ERROR CL2_CmdUnRegister (unsigned char ucNetId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

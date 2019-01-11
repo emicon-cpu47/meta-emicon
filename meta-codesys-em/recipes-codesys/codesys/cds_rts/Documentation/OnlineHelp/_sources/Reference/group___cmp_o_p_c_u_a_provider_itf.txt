@@ -1,0 +1,116 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_o_p_c_u_a_provider_itf:
+
+===================
+CmpOPCUAProviderItf
+===================
+
+Interface of CmpOPCUAServer
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. :ref:`More... <group___cmp_o_p_c_u_a_provider_itf-details>`
+
+Modules
+-------
+
+- :ref:`Settings <group___cmp_o_p_c_u_a_provider_itf___settings>`
+
+- :ref:`attributeservices <group___cmp_o_p_c_u_a_provider_itf__attributeservices>`
+
+- :ref:`monitoreditemservices <group___cmp_o_p_c_u_a_provider_itf__monitoreditemservices>`
+
+- :ref:`viewservices <group___cmp_o_p_c_u_a_provider_itf__viewservices>`
+
+Functions
+---------
+
+- STATICITF_DEF RTS_HANDLE :ref:`OpcUaProviderCreate <group___cmp_o_p_c_u_a_provider_itf_1ga875f39e174a86459ca42672fe203dfd2>` (RTS_HANDLE hIOpcUaProvider, CLASSID ClassId, int iId, RTS_RESULT * pResult)
+
+- STATICITF_DEF RTS_RESULT :ref:`OpcUaProviderDelete <group___cmp_o_p_c_u_a_provider_itf_1ga56ea82957acf737dd40e83d61ad5ccda>` (RTS_HANDLE hOpcUaProvider)
+
+- STATICITF_DEF OpcUa_StatusCode :ref:`OpcUaProviderInitialize <group___cmp_o_p_c_u_a_provider_itf_1gae3472f26b23dce0fa1c322b256043fd9>` (RTS_HANDLE hProvider)
+
+- STATICITF_DEF OpcUa_StatusCode :ref:`OpcUaProviderCleanup <group___cmp_o_p_c_u_a_provider_itf_1gae92fc3defe26756884b5e6b3e13a8531>` (RTS_HANDLE hProvider)
+
+.. _group___cmp_o_p_c_u_a_provider_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpOPCUAServer
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+
+
+Function Documentation
+----------------------
+
+.. _group___cmp_o_p_c_u_a_provider_itf_1ga875f39e174a86459ca42672fe203dfd2:
+
+STATICITF_DEF RTS_HANDLE OpcUaProviderCreate (RTS_HANDLE hIOpcUaProvider, CLASSID ClassId, int iId, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create a new OPC UA provider instance. Is typically internally used by the provider itself
+
+**Parameters**
+
++---------+-----------------+-------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hIOpcUaProvider | Handle to the provider interface. Must be 0 and is filled automatically by calling the CAL_OpcUaProviderCreate() macro! |
++---------+-----------------+-------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ClassId         | ClassID of the driver. See "Class IDs" section in CmpItf.h or in the Dep.h file of the provider.                        |
++---------+-----------------+-------------------------------------------------------------------------------------------------------------------------+
+| [in]    | iId             | Instance number of the provider                                                                                         |
++---------+-----------------+-------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult         | Pointer to error code                                                                                                   |
++---------+-----------------+-------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Should return RTS_INVALID_HANDLE
+
+.. _group___cmp_o_p_c_u_a_provider_itf_1ga56ea82957acf737dd40e83d61ad5ccda:
+
+STATICITF_DEF RTS_RESULT OpcUaProviderDelete (RTS_HANDLE hOpcUaProvider)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete an OPC UA provider instance. Is typically internally used by the provider itself
+
+**Parameters**
+
++---------+----------------+---------------------------------+
+| [in]    | hOpcUaProvider | Handle to the provider instance |
++---------+----------------+---------------------------------+
+
+**Returns:**
+
+Should return ERR_NOTIMPLEMENTED
+
+.. _group___cmp_o_p_c_u_a_provider_itf_1gae3472f26b23dce0fa1c322b256043fd9:
+
+STATICITF_DEF OpcUa_StatusCode OpcUaProviderInitialize (RTS_HANDLE hProvider)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function is called by the OPC UA server to initialize the provider. After the call to this function the provider should be ready to be used.
+**Returns:**
+
+Function returns OpcUa_Good if everything went fine. Return OpcUa_Bad if an error occures.
+
+.. _group___cmp_o_p_c_u_a_provider_itf_1gae92fc3defe26756884b5e6b3e13a8531:
+
+STATICITF_DEF OpcUa_StatusCode OpcUaProviderCleanup (RTS_HANDLE hProvider)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function is called by the OPC UA server to cleanup the provider. Ressources schould be clean up.
+**Returns:**
+
+Function returns OpcUa_Good if everything went fine. Return OpcUa_Bad if an error occures.
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

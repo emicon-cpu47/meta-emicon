@@ -1,0 +1,236 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>RtsHardwareWatchdog &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">RtsHardwareWatchdog</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-hardware-watchtdogtask-cycle-time-500-set-the-cycle-time-in-ms-of-the-hardware-watchdog-trigger-typically-half-of-desired-expiration-time">#define HARDWARE_WATCHTDOGTASK_CYCLE_TIME 500 /* set the cycle time in ms of the hardware watchdog trigger, typically half of desired expiration time */</a></li>
+<li><a class="reference internal" href="#define-systask-component-available-chk-systaskcreate-chk-systaskresume-chk-systaskwaitsleep-chk-systaskend-chk-systaskexit-chk-systasksetexit-chk-systaskenter-chk-systaskleave">#define SYSTASK_COMPONENT_AVAILABLE (CHK_SysTaskCreate &amp;&amp; CHK_SysTaskResume &amp;&amp; CHK_SysTaskWaitSleep &amp;&amp; CHK_SysTaskEnd &amp;&amp; CHK_SysTaskExit &amp;&amp; CHK_SysTaskSetExit &amp;&amp; CHK_SysTaskEnter &amp;&amp; CHK_SysTaskLeave)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#static-rts-result-hardwarewatchdoginit-void">static RTS_RESULT HardwareWatchdogInit (void)</a></li>
+<li><a class="reference internal" href="#static-rts-result-hardwarewatchdogexit-void">static RTS_RESULT HardwareWatchdogExit (void)</a></li>
+<li><a class="reference internal" href="#static-rts-result-hardwarewatchdogtrigger-void">static RTS_RESULT HardwareWatchdogTrigger (void)</a></li>
+<li><a class="reference internal" href="#static-void-hardwarewatchdogtask-sys-task-param-ptp">static void HardwareWatchdogTask (SYS_TASK_PARAM *ptp)</a></li>
+<li><a class="reference internal" href="#static-rts-result-starthardwarewatchdog-void">static RTS_RESULT StartHardwareWatchdog (void)</a></li>
+<li><a class="reference internal" href="#static-rts-result-stophardwarewatchdog-void">static RTS_RESULT StopHardwareWatchdog (void)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Examples/group___rts_hardware_watchdog.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rtshardwarewatchdog">
+<span id="group-rts-hardware-watchdog"></span><h1>RtsHardwareWatchdog<a class="headerlink" href="#rtshardwarewatchdog" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-rts-hardware-watchdog-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___rts_hardware_watchdog___operation_i_d.html#group-rts-hardware-watchdog-operation-i-d"><span class="std std-ref">OperationID</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-rts-hardware-watchdog-1gaac3f6e5ddff71177d4c4f60c2c196a0b"><span class="std std-ref">HARDWARE_WATCHTDOGTASK_CYCLE_TIME</span></a> 500 /* set the cycle time in ms of the hardware watchdog trigger, typically half of desired expiration time <a href="#id1"><span class="problematic" id="id2">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-rts-hardware-watchdog-1ga6fe6c2d662ccb474115db35a60ed6755"><span class="std std-ref">SYSTASK_COMPONENT_AVAILABLE</span></a> (CHK_SysTaskCreate &amp;&amp; CHK_SysTaskResume &amp;&amp; CHK_SysTaskWaitSleep &amp;&amp; CHK_SysTaskEnd &amp;&amp; CHK_SysTaskExit &amp;&amp; CHK_SysTaskSetExit &amp;&amp; CHK_SysTaskEnter &amp;&amp; CHK_SysTaskLeave)</li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_RESULT <a class="reference internal" href="#group-rts-hardware-watchdog-1ga163e9f507646cdd0a9f49cbf71231506"><span class="std std-ref">HardwareWatchdogInit</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-rts-hardware-watchdog-1gad7fd6f93867ce5adb0a1e3153c4a7a71"><span class="std std-ref">HardwareWatchdogExit</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-rts-hardware-watchdog-1ga5a140ca6a89ba41555e0aefc7d10deec"><span class="std std-ref">HardwareWatchdogTrigger</span></a> (void)</li>
+<li>void <a class="reference internal" href="#group-rts-hardware-watchdog-1gaba3bfce5bb2908d5fac8ea5e599b3bc8"><span class="std std-ref">HardwareWatchdogTask</span></a> (SYS_TASK_PARAM * ptp)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-rts-hardware-watchdog-1gadaaf28ec833e3bdc9ea9f031c00a048b"><span class="std std-ref">StartHardwareWatchdog</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-rts-hardware-watchdog-1gac5b953dbe7e9ef6f479b53dbc805a59f"><span class="std std-ref">StopHardwareWatchdog</span></a> (void)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-rts-hardware-watchdog-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Example to handle hardware watchdog trigger.</p>
+<p>USAGE:</p>
+<ul class="simple">
+<li>adjust the cycle time HARDWARE_WATCHTDOGTASK_CYCLE_TIME of the hardware watchdog trigger</li>
+<li>Implement the activation of the hardware watchdog in HardwareWatchdogInit()</li>
+<li>Implement the deactivation of the hardware watchdog in HardwareWatchdogExit()</li>
+<li>Implement the trigger of the hardware watchdog in HardwareWatchdogTrigger()</li>
+</ul>
+<p><strong>Copyright:</strong></p>
+<p>(c) 2003-2016 3S-Smart Software Solutions</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-hardware-watchtdogtask-cycle-time-500-set-the-cycle-time-in-ms-of-the-hardware-watchdog-trigger-typically-half-of-desired-expiration-time">
+<span id="group-rts-hardware-watchdog-1gaac3f6e5ddff71177d4c4f60c2c196a0b"></span><h3>#define HARDWARE_WATCHTDOGTASK_CYCLE_TIME 500 /* set the cycle time in ms of the hardware watchdog trigger, typically half of desired expiration time <a href="#id3"><span class="problematic" id="id4">*</span></a>/<a class="headerlink" href="#define-hardware-watchtdogtask-cycle-time-500-set-the-cycle-time-in-ms-of-the-hardware-watchdog-trigger-typically-half-of-desired-expiration-time" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-systask-component-available-chk-systaskcreate-chk-systaskresume-chk-systaskwaitsleep-chk-systaskend-chk-systaskexit-chk-systasksetexit-chk-systaskenter-chk-systaskleave">
+<span id="group-rts-hardware-watchdog-1ga6fe6c2d662ccb474115db35a60ed6755"></span><h3>#define SYSTASK_COMPONENT_AVAILABLE (CHK_SysTaskCreate &amp;&amp; CHK_SysTaskResume &amp;&amp; CHK_SysTaskWaitSleep &amp;&amp; CHK_SysTaskEnd &amp;&amp; CHK_SysTaskExit &amp;&amp; CHK_SysTaskSetExit &amp;&amp; CHK_SysTaskEnter &amp;&amp; CHK_SysTaskLeave)<a class="headerlink" href="#define-systask-component-available-chk-systaskcreate-chk-systaskresume-chk-systaskwaitsleep-chk-systaskend-chk-systaskexit-chk-systasksetexit-chk-systaskenter-chk-systaskleave" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="static-rts-result-hardwarewatchdoginit-void">
+<span id="group-rts-hardware-watchdog-1ga163e9f507646cdd0a9f49cbf71231506"></span><h3>static RTS_RESULT HardwareWatchdogInit (void)<a class="headerlink" href="#static-rts-result-hardwarewatchdoginit-void" title="Permalink to this headline">¶</a></h3>
+<p>Function to activate the hardware watchdog. USAGE:</p>
+<ul class="simple">
+<li>Must be called in the watchdog task before the cyclic check of the supervisor operations.</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="static-rts-result-hardwarewatchdogexit-void">
+<span id="group-rts-hardware-watchdog-1gad7fd6f93867ce5adb0a1e3153c4a7a71"></span><h3>static RTS_RESULT HardwareWatchdogExit (void)<a class="headerlink" href="#static-rts-result-hardwarewatchdogexit-void" title="Permalink to this headline">¶</a></h3>
+<p>Function to deactivate the hardware watchdog. USAGE:</p>
+<ul class="simple">
+<li>Must be called before terminating the watchdog trigger task.</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="static-rts-result-hardwarewatchdogtrigger-void">
+<span id="group-rts-hardware-watchdog-1ga5a140ca6a89ba41555e0aefc7d10deec"></span><h3>static RTS_RESULT HardwareWatchdogTrigger (void)<a class="headerlink" href="#static-rts-result-hardwarewatchdogtrigger-void" title="Permalink to this headline">¶</a></h3>
+<p>Function to trigger cyclically the hardware watchdog. USAGE:</p>
+<ul class="simple">
+<li>Must be cyclically. Is called from a high priority task that polls the status of the supervisor operations.</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="static-void-hardwarewatchdogtask-sys-task-param-ptp">
+<span id="group-rts-hardware-watchdog-1gaba3bfce5bb2908d5fac8ea5e599b3bc8"></span><h3>static void HardwareWatchdogTask (SYS_TASK_PARAM <a href="#id5"><span class="problematic" id="id6">*</span></a>ptp)<a class="headerlink" href="#static-void-hardwarewatchdogtask-sys-task-param-ptp" title="Permalink to this headline">¶</a></h3>
+<p>Function that is called in a seperate task. Here the supervision and the trigger of the hardware watchdog is called cyclically.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="11%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ptp</td>
+<td>Pointer to task parameter set.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="static-rts-result-starthardwarewatchdog-void">
+<span id="group-rts-hardware-watchdog-1gadaaf28ec833e3bdc9ea9f031c00a048b"></span><h3>static RTS_RESULT StartHardwareWatchdog (void)<a class="headerlink" href="#static-rts-result-starthardwarewatchdog-void" title="Permalink to this headline">¶</a></h3>
+<p>Function to create and start the hardware watchdog task. USAGE:</p>
+<ul class="simple">
+<li>Must be called in CH_INIT_TASKS out of component HookFunction()!</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="static-rts-result-stophardwarewatchdog-void">
+<span id="group-rts-hardware-watchdog-1gac5b953dbe7e9ef6f479b53dbc805a59f"></span><h3>static RTS_RESULT StopHardwareWatchdog (void)<a class="headerlink" href="#static-rts-result-stophardwarewatchdog-void" title="Permalink to this headline">¶</a></h3>
+<p>Function to stop and terminate the hardware watchdog task. USAGE:</p>
+<ul class="simple">
+<li>Must be called in CH_EXIT_TASKS out of component HookFunction()!</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

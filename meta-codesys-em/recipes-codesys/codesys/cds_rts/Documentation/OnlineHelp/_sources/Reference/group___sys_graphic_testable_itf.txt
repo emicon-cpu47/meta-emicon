@@ -1,0 +1,154 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_graphic_testable_itf:
+
+=====================
+SysGraphicTestableItf
+=====================
+
+Interface of SysGraphicTestable. :ref:`More... <group___sys_graphic_testable_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`ISysGraphicTestable_C <struct_i_sys_graphic_testable___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_SysGraphicTestable <group___sys_graphic_testable_itf_1gac844a9d936c887892c9161e2a369d18f>`
+
+- #define :ref:`EXTITF_SysGraphicTestable <group___sys_graphic_testable_itf_1ga9842a12a4e604fca2245cb913c8a10eb>`
+
+Typedefs
+--------
+
+- typedef :ref:`ISysGraphicTestable_C <struct_i_sys_graphic_testable___c>` :ref:`ISysGraphicTestable <group___sys_graphic_testable_itf_1ga0600f9ac2994523dea86fec2958c6b1b>`
+
+Functions
+---------
+
+- RTS_HANDLE :ref:`SysGraphicTestableCreate <group___sys_graphic_testable_itf_1ga56c28b5d223904ae31e92adc70eb3608>` (RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysGraphicTestableDestroy <group___sys_graphic_testable_itf_1ga639ef0771afacaf2104dc9ae9da6ff83>` (RTS_HANDLE hTestable)
+
+- RTS_RESULT :ref:`SysGraphicTestableGetDisplaySize <group___sys_graphic_testable_itf_1ga12edb68dcb70eeb03df29161d5f1e763>` (RTS_HANDLE hTestable, RTS_Size * pSize)
+
+- RTS_RESULT :ref:`SysGraphicTestableGetDisplayPixel <group___sys_graphic_testable_itf_1gaa239673696a6400d2a81ffa4d2d70615>` (RTS_HANDLE hTestable, short sX, short sY, unsigned long * pulColorValue)
+
+.. _group___sys_graphic_testable_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysGraphicTestable.
+
+The interface SysGraphicTestable is intended for implementing automatic testability in a graphical component. Typically this interface can be implemented by components intended for embedded graphics (framebuffer, light visualization). It is primarily meant as a simplification of SysGraphicNative to support automated testing.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_graphic_testable_itf_1gac844a9d936c887892c9161e2a369d18f:
+
+#define ITF_SysGraphicTestable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_graphic_testable_itf_1ga9842a12a4e604fca2245cb913c8a10eb:
+
+#define EXTITF_SysGraphicTestable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_graphic_testable_itf_1ga0600f9ac2994523dea86fec2958c6b1b:
+
+typedef ISysGraphicTestable_C ISysGraphicTestable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_graphic_testable_itf_1ga56c28b5d223904ae31e92adc70eb3608:
+
+RTS_HANDLE SysGraphicTestableCreate (RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creates a handle to a test object that can be used in further calls. If you do not use this handle any more, release it using SysGraphicTestableDestroy
+
+**Parameters**
+
++---------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult | Optionally returns an error code For Implementers: In fact nothing has to be created; it's merely a way for getting calls to initialize and shutdown. |
++---------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+The handle to the test object or RTS_INVALID_HANDLE in case of errors.
+
+.. _group___sys_graphic_testable_itf_1ga639ef0771afacaf2104dc9ae9da6ff83:
+
+RTS_RESULT SysGraphicTestableDestroy (RTS_HANDLE hTestable)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Releases a handle to a test object that was returned by SysGraphicTestableCreate.
+
+**Parameters**
+
++---------+-----------------+--------------------------------------+
+| [in]    | hDisplayContext | The native displaycontext to release |
++---------+-----------------+--------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_testable_itf_1ga12edb68dcb70eeb03df29161d5f1e763:
+
+RTS_RESULT SysGraphicTestableGetDisplaySize (RTS_HANDLE hTestable, RTS_Size *pSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the size of the display.
+
+**Parameters**
+
++---------+-------+--------------------------------------------------------------------+
+| [out]   | pSize | This structure will be filled with the size of the native display. |
++---------+-------+--------------------------------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_testable_itf_1gaa239673696a6400d2a81ffa4d2d70615:
+
+RTS_RESULT SysGraphicTestableGetDisplayPixel (RTS_HANDLE hTestable, short sX, short sY, unsigned long *pulColorValue)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This method can be called for retrieving the color of a displayed pixel.
+
+**Parameters**
+
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC           | The testable object                                                                                                                            |
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | sX            | The x coordinate to get the color from                                                                                                         |
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | sY            | The y coordinate to get the color from                                                                                                         |
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pulColorValue | Pointer that will return the determined color. The color will be in the format used by the iec visualization ([ |RRRRRRRR|GGGGGGGG|BBBBBBBB]). |
++---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

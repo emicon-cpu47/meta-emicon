@@ -1,0 +1,208 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_visu_handler_remote_itf:
+
+=======================
+CmpVisuHandlerRemoteItf
+=======================
+
+Interface of CmpVisuHandlerRemote. :ref:`More... <group___cmp_visu_handler_remote_itf-details>`
+
+Modules
+-------
+
+- :ref:`.	Event parameter that is used before startup of the visualization. <group___cmp_visu_handler_remote_itf___eventparameterthatisusedbeforestartupofthevisualization>`
+
+- :ref:`Compiler switch <group___cmp_visu_handler_remote_itf___compilerswitch>`
+
+- :ref:`Event parameter <group___cmp_visu_handler_remote_itf___eventparameter>`
+
+- :ref:`Events <group___cmp_visu_handler_remote_itf___events>`
+
+- :ref:`Settings <group___cmp_visu_handler_remote_itf___settings>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpVisuHandlerRemote_C <struct_i_cmp_visu_handler_remote___c>`
+
+Macros
+------
+
+- #define :ref:`MAX_LEN_APPLNAME <group___cmp_visu_handler_remote_itf_1gaf34efb9c3bdeb79dc6006c59d76d9b6f>` 60
+
+- #define :ref:`MAX_LEN_USERNAME <group___cmp_visu_handler_remote_itf_1gaf3878f70fff7fb5ba6a3f4682a47b070>` 30
+
+- #define :ref:`MAX_LEN_PASSWORD <group___cmp_visu_handler_remote_itf_1ga61f5a1283e956e5528e56879ae0da56e>` 30
+
+- #define :ref:`MAX_LEN_PLCNAME <group___cmp_visu_handler_remote_itf_1gab0d1e29bd058970290414202531e2161>` 60
+
+- #define :ref:`MAX_LEN_TCPADDR <group___cmp_visu_handler_remote_itf_1ga1c5be3d4f810b35cd247241b49199521>` 60
+
+- #define :ref:`ITF_CmpVisuHandlerRemote <group___cmp_visu_handler_remote_itf_1gaa380cf3eecc0c2cb9c0240def6808db2>`
+
+- #define :ref:`EXTITF_CmpVisuHandlerRemote <group___cmp_visu_handler_remote_itf_1ga880eaaff1533e02c7364b11cd0ae232f>`
+
+Typedefs
+--------
+
+- typedef RTS_BOOL(* :ref:`PFVishRemoteProvideCredentials <group___cmp_visu_handler_remote_itf_1gacc2ca10c16d2b1f238db2d3a282dcf79>`)(RTS_HANDLE hCallerData, char *pszUserBuffer, RTS_SIZE userBufferSize, char *pszPasswordBuffer, RTS_SIZE passwordBufferSize)
+
+- typedef void(* :ref:`PFVishRemoteNotifyApplicationName <group___cmp_visu_handler_remote_itf_1ga371defa19a641c4c206d769fe4416a54>`)(RTS_HANDLE hCallerData, char *pszApplicationName)
+
+- typedef :ref:`ICmpVisuHandlerRemote_C <struct_i_cmp_visu_handler_remote___c>` :ref:`ICmpVisuHandlerRemote <group___cmp_visu_handler_remote_itf_1gaf3afc04f6cb5283b3ea8b03a41d95c67>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`VishRemoteConnect <group___cmp_visu_handler_remote_itf_1ga717571fa8ad0062d28fa1ed4683d1952>` (RTS_BOOL useTempSettings)
+
+- RTS_RESULT :ref:`VishRemoteReadApplications <group___cmp_visu_handler_remote_itf_1ga9ebf3f03d1644fd0318a107b190ac782>` (RTS_HANDLE hCallerData, :ref:`PFVishRemoteProvideCredentials <group___cmp_visu_handler_remote_itf_1gacc2ca10c16d2b1f238db2d3a282dcf79>`  pfProvideCredentials, :ref:`PFVishRemoteNotifyApplicationName <group___cmp_visu_handler_remote_itf_1ga371defa19a641c4c206d769fe4416a54>`  pfAppCallback, RTS_BOOL bReadTempSettings)
+
+.. _group___cmp_visu_handler_remote_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpVisuHandlerRemote.
+
+Interface for the remote visu handler.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_visu_handler_remote_itf_1gaf34efb9c3bdeb79dc6006c59d76d9b6f:
+
+#define MAX_LEN_APPLNAME 60
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_visu_handler_remote_itf_1gaf3878f70fff7fb5ba6a3f4682a47b070:
+
+#define MAX_LEN_USERNAME 30
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_visu_handler_remote_itf_1ga61f5a1283e956e5528e56879ae0da56e:
+
+#define MAX_LEN_PASSWORD 30
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_visu_handler_remote_itf_1gab0d1e29bd058970290414202531e2161:
+
+#define MAX_LEN_PLCNAME 60
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_visu_handler_remote_itf_1ga1c5be3d4f810b35cd247241b49199521:
+
+#define MAX_LEN_TCPADDR 60
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_visu_handler_remote_itf_1gaa380cf3eecc0c2cb9c0240def6808db2:
+
+#define ITF_CmpVisuHandlerRemote
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_visu_handler_remote_itf_1ga880eaaff1533e02c7364b11cd0ae232f:
+
+#define EXTITF_CmpVisuHandlerRemote
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_visu_handler_remote_itf_1gacc2ca10c16d2b1f238db2d3a282dcf79:
+
+typedef RTS_BOOL( * PFVishRemoteProvideCredentials)(RTS_HANDLE hCallerData, char *pszUserBuffer, RTS_SIZE userBufferSize, char *pszPasswordBuffer, RTS_SIZE passwordBufferSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function will be called if it is necessary to login to the plc or a previous login attempt failed.
+
+**Parameters**
+
++---------+--------------------+----------------------------------------------------------------------+
+| [in]    | hCallerData        | An arbitrary object that will be forwarded to the callback functions |
++---------+--------------------+----------------------------------------------------------------------+
+| [in]    | pszUserBuffer      | A buffer for the username. Will not be NULL.                         |
++---------+--------------------+----------------------------------------------------------------------+
+| [in]    | userBufferSize     | The size of pszUserBuffer in bytes.                                  |
++---------+--------------------+----------------------------------------------------------------------+
+| [in]    | pszPasswordBuffer  | A buffer for the password. Will not be NULL.                         |
++---------+--------------------+----------------------------------------------------------------------+
+| [in]    | passwordBufferSize | The size of pszPasswordBuffer in bytes.                              |
++---------+--------------------+----------------------------------------------------------------------+
+
+**Returns:**
+
+Return FALSE to use the credentials. Return TRUE to cancel the surrounding operation.
+
+.. _group___cmp_visu_handler_remote_itf_1ga371defa19a641c4c206d769fe4416a54:
+
+typedef void( * PFVishRemoteNotifyApplicationName)(RTS_HANDLE hCallerData, char *pszApplicationName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function will be called for each application on the PLC.
+
+**Parameters**
+
++---------+--------------------+----------------------------------------------------------------------+
+| [in]    | hCallerData        | An arbitrary object that will be forwarded to the callback functions |
++---------+--------------------+----------------------------------------------------------------------+
+| [in]    | pszApplicationName | The name of the application on the PLC. Will not be NULL.            |
++---------+--------------------+----------------------------------------------------------------------+
+
+.. _group___cmp_visu_handler_remote_itf_1gaf3afc04f6cb5283b3ea8b03a41d95c67:
+
+typedef ICmpVisuHandlerRemote_C ICmpVisuHandlerRemote
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_visu_handler_remote_itf_1ga717571fa8ad0062d28fa1ed4683d1952:
+
+RTS_RESULT VishRemoteConnect (RTS_BOOL useTempSettings)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function can be called to start the remote targetvisu in a delayed way. Typically this is done when the event EVT_CmpVisuHandlerRemote_CheckAutoStartup is handled to delay the initial startup.
+
+**Parameters**
+
++---------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | useTempSettings | The connection relevant settings like address or name will be taken from settings prefixed with the prefix "TEMP." instead of the original name if this value is TRUE. The idea is that temporary settings can be realized without overwriting possibly existing persistent settings. This call will fail if the remote targetvisu is already running. |
++---------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_visu_handler_remote_itf_1ga9ebf3f03d1644fd0318a107b190ac782:
+
+RTS_RESULT VishRemoteReadApplications (RTS_HANDLE hCallerData, PFVishRemoteProvideCredentials pfProvideCredentials, PFVishRemoteNotifyApplicationName pfAppCallback, RTS_BOOL bReadTempSettings)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function reads the available applications from the connected PLC and returns them using the configured callback functions.
+
+**Parameters**
+
++---------+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hCallerData          | An arbitrary object that will be forwarded to the callback functions                                                                                                                |
++---------+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfProvideCredentials | The callback function that will be called in case a login is required. Must not be NULL.                                                                                            |
++---------+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfAppCallback        | The callback function that will be called for each application on the connected PLC. Must not be NULL.                                                                              |
++---------+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bReadTempSettings    | If TRUE then temporaray settings (beginning with "Temp.") are read from the configuration file are read, otherwise the "normal" settings The callbacks will be called synchronously |
++---------+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

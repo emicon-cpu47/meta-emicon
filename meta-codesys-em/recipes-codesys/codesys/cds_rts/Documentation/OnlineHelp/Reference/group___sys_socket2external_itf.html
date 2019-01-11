@@ -1,0 +1,502 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SysSocket2externalItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="SysSocketItf" href="group___sys_socket_itf.html" />
+    <link rel="prev" title="SysSocket2Itf" href="group___sys_socket2_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___sys_socket_itf.html" title="SysSocketItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_socket2_itf.html" title="SysSocket2Itf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SysSocket2externalItf</a><ul>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-syssocket2-type-std-rts-iec-int-c-0x1">#define SYSSOCKET2_TYPE_STD RTS_IEC_INT_C(0x1)</a></li>
+<li><a class="reference internal" href="#define-syssocket2-type-tls-rts-iec-int-c-0x2">#define SYSSOCKET2_TYPE_TLS RTS_IEC_INT_C(0x2)</a></li>
+<li><a class="reference internal" href="#define-syssocket2-type-rts-iec-int">#define SYSSOCKET2_TYPE RTS_IEC_INT</a></li>
+<li><a class="reference internal" href="#define-itf-syssocket2external">#define ITF_SysSocket2external</a></li>
+<li><a class="reference internal" href="#define-extitf-syssocket2external">#define EXTITF_SysSocket2external</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-tagsyssocket2-stdsockets-syssocket2-stdsockets">typedef struct tagSysSocket2_StdSockets  SysSocket2_StdSockets</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssocket2-tlssockets-syssocket2-tlssockets">typedef struct tagSysSocket2_TlsSockets  SysSocket2_TlsSockets</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssocket2-parameter-syssocket2-parameter">typedef struct tagSysSocket2_Parameter  SysSocket2_Parameter</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2accept-struct-syssock2accept-struct">typedef struct tagsyssock2accept_struct  syssock2accept_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2bind-struct-syssock2bind-struct">typedef struct tagsyssock2bind_struct  syssock2bind_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2close-struct-syssock2close-struct">typedef struct tagsyssock2close_struct  syssock2close_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2connect-struct-syssock2connect-struct">typedef struct tagsyssock2connect_struct  syssock2connect_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2create-struct-syssock2create-struct">typedef struct tagsyssock2create_struct  syssock2create_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2fdinit-struct-syssock2fdinit-struct">typedef struct tagsyssock2fdinit_struct  syssock2fdinit_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2fdisset-struct-syssock2fdisset-struct">typedef struct tagsyssock2fdisset_struct  syssock2fdisset_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2getoption-struct-syssock2getoption-struct">typedef struct tagsyssock2getoption_struct  syssock2getoption_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2getpeername-struct-syssock2getpeername-struct">typedef struct tagsyssock2getpeername_struct  syssock2getpeername_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2getsockname-struct-syssock2getsockname-struct">typedef struct tagsyssock2getsockname_struct  syssock2getsockname_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2ioctl-struct-syssock2ioctl-struct">typedef struct tagsyssock2ioctl_struct  syssock2ioctl_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2listen-struct-syssock2listen-struct">typedef struct tagsyssock2listen_struct  syssock2listen_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2recv-struct-syssock2recv-struct">typedef struct tagsyssock2recv_struct  syssock2recv_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2recvfrom-struct-syssock2recvfrom-struct">typedef struct tagsyssock2recvfrom_struct  syssock2recvfrom_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2select-struct-syssock2select-struct">typedef struct tagsyssock2select_struct  syssock2select_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2send-struct-syssock2send-struct">typedef struct tagsyssock2send_struct  syssock2send_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2sendto-struct-syssock2sendto-struct">typedef struct tagsyssock2sendto_struct  syssock2sendto_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2setoption-struct-syssock2setoption-struct">typedef struct tagsyssock2setoption_struct  syssock2setoption_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyssock2shutdown-struct-syssock2shutdown-struct">typedef struct tagsyssock2shutdown_struct  syssock2shutdown_struct</a></li>
+<li><a class="reference internal" href="#typedef-isyssocket2external-c-isyssocket2external">typedef ISysSocket2external_C ISysSocket2external</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#void-syssock2accept-syssock2accept-struct-p">void syssock2accept (syssock2accept_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2bind-syssock2bind-struct-p">void syssock2bind (syssock2bind_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2close-syssock2close-struct-p">void syssock2close (syssock2close_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2connect-syssock2connect-struct-p">void syssock2connect (syssock2connect_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2create-syssock2create-struct-p">void syssock2create (syssock2create_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2fdinit-syssock2fdinit-struct-p">void syssock2fdinit (syssock2fdinit_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2fdisset-syssock2fdisset-struct-p">void syssock2fdisset (syssock2fdisset_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2getoption-syssock2getoption-struct-p">void syssock2getoption (syssock2getoption_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2getpeername-syssock2getpeername-struct-p">void syssock2getpeername (syssock2getpeername_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2getsockname-syssock2getsockname-struct-p">void syssock2getsockname (syssock2getsockname_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2ioctl-syssock2ioctl-struct-p">void syssock2ioctl (syssock2ioctl_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2listen-syssock2listen-struct-p">void syssock2listen (syssock2listen_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2recv-syssock2recv-struct-p">void syssock2recv (syssock2recv_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2recvfrom-syssock2recvfrom-struct-p">void syssock2recvfrom (syssock2recvfrom_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2select-syssock2select-struct-p">void syssock2select (syssock2select_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2send-syssock2send-struct-p">void syssock2send (syssock2send_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2sendto-syssock2sendto-struct-p">void syssock2sendto (syssock2sendto_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2setoption-syssock2setoption-struct-p">void syssock2setoption (syssock2setoption_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syssock2shutdown-syssock2shutdown-struct-p">void syssock2shutdown (syssock2shutdown_struct *p)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___sys_socket2_itf.html"
+                        title="previous chapter">SysSocket2Itf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___sys_socket_itf.html"
+                        title="next chapter">SysSocketItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_socket2external_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="syssocket2externalitf">
+<span id="group-sys-socket2external-itf"></span><h1>SysSocket2externalItf<a class="headerlink" href="#syssocket2externalitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of SysSocket2. <a class="reference internal" href="#group-sys-socket2external-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="structtag_sys_socket2___std_sockets.html#structtag-sys-socket2-std-sockets"><span class="std std-ref">tagSysSocket2_StdSockets</span></a></li>
+<li>struct <a class="reference internal" href="structtag_sys_socket2___tls_sockets.html#structtag-sys-socket2-tls-sockets"><span class="std std-ref">tagSysSocket2_TlsSockets</span></a></li>
+<li>struct <a class="reference internal" href="union_sys_socket2___specific_parameter.html#union-sys-socket2-specific-parameter"><span class="std std-ref">SysSocket2_SpecificParameter</span></a></li>
+<li>struct <a class="reference internal" href="structtag_sys_socket2___parameter.html#structtag-sys-socket2-parameter"><span class="std std-ref">tagSysSocket2_Parameter</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2accept__struct.html#structtagsyssock2accept-struct"><span class="std std-ref">tagsyssock2accept_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2bind__struct.html#structtagsyssock2bind-struct"><span class="std std-ref">tagsyssock2bind_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2close__struct.html#structtagsyssock2close-struct"><span class="std std-ref">tagsyssock2close_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2connect__struct.html#structtagsyssock2connect-struct"><span class="std std-ref">tagsyssock2connect_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2create__struct.html#structtagsyssock2create-struct"><span class="std std-ref">tagsyssock2create_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2fdinit__struct.html#structtagsyssock2fdinit-struct"><span class="std std-ref">tagsyssock2fdinit_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2fdisset__struct.html#structtagsyssock2fdisset-struct"><span class="std std-ref">tagsyssock2fdisset_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2getoption__struct.html#structtagsyssock2getoption-struct"><span class="std std-ref">tagsyssock2getoption_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2getpeername__struct.html#structtagsyssock2getpeername-struct"><span class="std std-ref">tagsyssock2getpeername_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2getsockname__struct.html#structtagsyssock2getsockname-struct"><span class="std std-ref">tagsyssock2getsockname_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2ioctl__struct.html#structtagsyssock2ioctl-struct"><span class="std std-ref">tagsyssock2ioctl_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2listen__struct.html#structtagsyssock2listen-struct"><span class="std std-ref">tagsyssock2listen_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2recv__struct.html#structtagsyssock2recv-struct"><span class="std std-ref">tagsyssock2recv_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2recvfrom__struct.html#structtagsyssock2recvfrom-struct"><span class="std std-ref">tagsyssock2recvfrom_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2select__struct.html#structtagsyssock2select-struct"><span class="std std-ref">tagsyssock2select_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2send__struct.html#structtagsyssock2send-struct"><span class="std std-ref">tagsyssock2send_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2sendto__struct.html#structtagsyssock2sendto-struct"><span class="std std-ref">tagsyssock2sendto_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2setoption__struct.html#structtagsyssock2setoption-struct"><span class="std std-ref">tagsyssock2setoption_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyssock2shutdown__struct.html#structtagsyssock2shutdown-struct"><span class="std std-ref">tagsyssock2shutdown_struct</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_sys_socket2external___c.html#struct-i-sys-socket2external-c"><span class="std std-ref">ISysSocket2external_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-socket2external-itf-1ga568014c109d2e4ff968a23488842aeea"><span class="std std-ref">SYSSOCKET2_TYPE_STD</span></a> RTS_IEC_INT_C(0x1)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket2external-itf-1gac67a57badc222a3e078ef7b7ba4af36d"><span class="std std-ref">SYSSOCKET2_TYPE_TLS</span></a> RTS_IEC_INT_C(0x2)</li>
+<li>#define <a class="reference internal" href="#group-sys-socket2external-itf-1ga75362bb7b0edfb1dae6efb77beae6ae6"><span class="std std-ref">SYSSOCKET2_TYPE</span></a> RTS_IEC_INT</li>
+<li>#define <a class="reference internal" href="#group-sys-socket2external-itf-1ga8508f588cfde55c44442a07082361587"><span class="std std-ref">ITF_SysSocket2external</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-socket2external-itf-1ga055571d1e1efd599747267f22aa3b348"><span class="std std-ref">EXTITF_SysSocket2external</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="structtag_sys_socket2___std_sockets.html#structtag-sys-socket2-std-sockets"><span class="std std-ref">tagSysSocket2_StdSockets</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga753355bb4bb3e319be0dfade7a973d7c"><span class="std std-ref">SysSocket2_StdSockets</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_sys_socket2___tls_sockets.html#structtag-sys-socket2-tls-sockets"><span class="std std-ref">tagSysSocket2_TlsSockets</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1gae99d864119428d12d86ae9e7544ac896"><span class="std std-ref">SysSocket2_TlsSockets</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_sys_socket2___parameter.html#structtag-sys-socket2-parameter"><span class="std std-ref">tagSysSocket2_Parameter</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1gae39af88f148ab8531f010db70aed500a"><span class="std std-ref">SysSocket2_Parameter</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2accept__struct.html#structtagsyssock2accept-struct"><span class="std std-ref">tagsyssock2accept_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1gaf95f5c2a604ca74d1eec3f192a12a274"><span class="std std-ref">syssock2accept_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2bind__struct.html#structtagsyssock2bind-struct"><span class="std std-ref">tagsyssock2bind_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga4eecaed1a0af584cee747c08709bbe80"><span class="std std-ref">syssock2bind_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2close__struct.html#structtagsyssock2close-struct"><span class="std std-ref">tagsyssock2close_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga7bbb5d1fb79ae014e34b498c99d23790"><span class="std std-ref">syssock2close_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2connect__struct.html#structtagsyssock2connect-struct"><span class="std std-ref">tagsyssock2connect_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1gaf23f69a7388d13650cdf1ca6020a7509"><span class="std std-ref">syssock2connect_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2create__struct.html#structtagsyssock2create-struct"><span class="std std-ref">tagsyssock2create_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga72ba042e1df04cf6d606f8f605b527db"><span class="std std-ref">syssock2create_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2fdinit__struct.html#structtagsyssock2fdinit-struct"><span class="std std-ref">tagsyssock2fdinit_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga2f6e518ed6c01405d77aeb0f14d0c91d"><span class="std std-ref">syssock2fdinit_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2fdisset__struct.html#structtagsyssock2fdisset-struct"><span class="std std-ref">tagsyssock2fdisset_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga87669945abbe0f49ffc6fcc6bd95184a"><span class="std std-ref">syssock2fdisset_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2getoption__struct.html#structtagsyssock2getoption-struct"><span class="std std-ref">tagsyssock2getoption_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga1ed468dd6fcf7673b82e93e2f6b52f85"><span class="std std-ref">syssock2getoption_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2getpeername__struct.html#structtagsyssock2getpeername-struct"><span class="std std-ref">tagsyssock2getpeername_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1gae4ba976a29ed8204461b07c533b68ff0"><span class="std std-ref">syssock2getpeername_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2getsockname__struct.html#structtagsyssock2getsockname-struct"><span class="std std-ref">tagsyssock2getsockname_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga4ed602ac59f1b08f5f761797304396bc"><span class="std std-ref">syssock2getsockname_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2ioctl__struct.html#structtagsyssock2ioctl-struct"><span class="std std-ref">tagsyssock2ioctl_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga789b4234e5249fc71a5b8560e3028be0"><span class="std std-ref">syssock2ioctl_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2listen__struct.html#structtagsyssock2listen-struct"><span class="std std-ref">tagsyssock2listen_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga7deb87971949abe1ec3270eb7a2db838"><span class="std std-ref">syssock2listen_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2recv__struct.html#structtagsyssock2recv-struct"><span class="std std-ref">tagsyssock2recv_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1gaa57f4b518e9f9f649644e6b2fd350c50"><span class="std std-ref">syssock2recv_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2recvfrom__struct.html#structtagsyssock2recvfrom-struct"><span class="std std-ref">tagsyssock2recvfrom_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga1543decd05083654be8280dc775f3504"><span class="std std-ref">syssock2recvfrom_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2select__struct.html#structtagsyssock2select-struct"><span class="std std-ref">tagsyssock2select_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga76a685d82fc34870080c5de467a5dd05"><span class="std std-ref">syssock2select_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2send__struct.html#structtagsyssock2send-struct"><span class="std std-ref">tagsyssock2send_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1gaee75d023df579d21dc0ac5bbc7b91e01"><span class="std std-ref">syssock2send_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2sendto__struct.html#structtagsyssock2sendto-struct"><span class="std std-ref">tagsyssock2sendto_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga1c93ce6bb478ae8c1642213e715cd9be"><span class="std std-ref">syssock2sendto_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2setoption__struct.html#structtagsyssock2setoption-struct"><span class="std std-ref">tagsyssock2setoption_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga195ef483b8b46c5f76b9a5b315dcd12f"><span class="std std-ref">syssock2setoption_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyssock2shutdown__struct.html#structtagsyssock2shutdown-struct"><span class="std std-ref">tagsyssock2shutdown_struct</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1gab118a1df8fe765e9685094fb59d2c28b"><span class="std std-ref">syssock2shutdown_struct</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_sys_socket2external___c.html#struct-i-sys-socket2external-c"><span class="std std-ref">ISysSocket2external_C</span></a> <a class="reference internal" href="#group-sys-socket2external-itf-1ga890787236f9228ba05473fc476f5d492"><span class="std std-ref">ISysSocket2external</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1gaccc3ad0a76dc03ed2f1eb24ba8c0ca65"><span class="std std-ref">syssock2accept</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1gaf95f5c2a604ca74d1eec3f192a12a274"><span class="std std-ref">syssock2accept_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1ga61c82abcf6ce8a7b03b5ec381ef9146d"><span class="std std-ref">syssock2bind</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1ga4eecaed1a0af584cee747c08709bbe80"><span class="std std-ref">syssock2bind_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1gaf656a7c839807bc9cc3a5300fe03d568"><span class="std std-ref">syssock2close</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1ga7bbb5d1fb79ae014e34b498c99d23790"><span class="std std-ref">syssock2close_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1ga7c29c9dcaa41f4dda4379408aee64aba"><span class="std std-ref">syssock2connect</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1gaf23f69a7388d13650cdf1ca6020a7509"><span class="std std-ref">syssock2connect_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1ga9bdd8aff926c6b66063ff933edac1cc1"><span class="std std-ref">syssock2create</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1ga72ba042e1df04cf6d606f8f605b527db"><span class="std std-ref">syssock2create_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1gacd6edf314497613c88baa5aa2b216b9b"><span class="std std-ref">syssock2fdinit</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1ga2f6e518ed6c01405d77aeb0f14d0c91d"><span class="std std-ref">syssock2fdinit_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1gaca95b5c9dc448ee6776790503bf7fdda"><span class="std std-ref">syssock2fdisset</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1ga87669945abbe0f49ffc6fcc6bd95184a"><span class="std std-ref">syssock2fdisset_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1ga18a2f77b0d73aed2f8f9031b90c83b99"><span class="std std-ref">syssock2getoption</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1ga1ed468dd6fcf7673b82e93e2f6b52f85"><span class="std std-ref">syssock2getoption_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1ga87ff7732b982024d69759fbba5ea9cf7"><span class="std std-ref">syssock2getpeername</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1gae4ba976a29ed8204461b07c533b68ff0"><span class="std std-ref">syssock2getpeername_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1gaa3d09046602386ab7b73536f10adb761"><span class="std std-ref">syssock2getsockname</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1ga4ed602ac59f1b08f5f761797304396bc"><span class="std std-ref">syssock2getsockname_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1ga890378f14cd8a031ab8aea2ef220e714"><span class="std std-ref">syssock2ioctl</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1ga789b4234e5249fc71a5b8560e3028be0"><span class="std std-ref">syssock2ioctl_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1ga4558d3ad0b122205e100ab728717697e"><span class="std std-ref">syssock2listen</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1ga7deb87971949abe1ec3270eb7a2db838"><span class="std std-ref">syssock2listen_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1gaf88048953eaa880f673f5e193a26ee4f"><span class="std std-ref">syssock2recv</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1gaa57f4b518e9f9f649644e6b2fd350c50"><span class="std std-ref">syssock2recv_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1ga2f3257da663d70967339faafa7425627"><span class="std std-ref">syssock2recvfrom</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1ga1543decd05083654be8280dc775f3504"><span class="std std-ref">syssock2recvfrom_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1ga7a82ec56c7b61067145b6afed8af4405"><span class="std std-ref">syssock2select</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1ga76a685d82fc34870080c5de467a5dd05"><span class="std std-ref">syssock2select_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1gae785d582e6f013e8016c16da020220d2"><span class="std std-ref">syssock2send</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1gaee75d023df579d21dc0ac5bbc7b91e01"><span class="std std-ref">syssock2send_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1ga28ab143f81910e515a9915f54aa24fc7"><span class="std std-ref">syssock2sendto</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1ga1c93ce6bb478ae8c1642213e715cd9be"><span class="std std-ref">syssock2sendto_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1gaf9ea37e9236fecaf7eaeaa5b6177d6b5"><span class="std std-ref">syssock2setoption</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1ga195ef483b8b46c5f76b9a5b315dcd12f"><span class="std std-ref">syssock2setoption_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-socket2external-itf-1ga597e9acc5b91f4cebb4ee919554237b9"><span class="std std-ref">syssock2shutdown</span></a> (<a class="reference internal" href="#group-sys-socket2external-itf-1gab118a1df8fe765e9685094fb59d2c28b"><span class="std std-ref">syssock2shutdown_struct</span></a> * p)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-socket2external-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of SysSocket2.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-syssocket2-type-std-rts-iec-int-c-0x1">
+<span id="group-sys-socket2external-itf-1ga568014c109d2e4ff968a23488842aeea"></span><h3>#define SYSSOCKET2_TYPE_STD RTS_IEC_INT_C(0x1)<a class="headerlink" href="#define-syssocket2-type-std-rts-iec-int-c-0x1" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION BEGIN</p>
+<p>Enum: SysSocket2_Type</p>
+</div>
+<div class="section" id="define-syssocket2-type-tls-rts-iec-int-c-0x2">
+<span id="group-sys-socket2external-itf-1gac67a57badc222a3e078ef7b7ba4af36d"></span><h3>#define SYSSOCKET2_TYPE_TLS RTS_IEC_INT_C(0x2)<a class="headerlink" href="#define-syssocket2-type-tls-rts-iec-int-c-0x2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-syssocket2-type-rts-iec-int">
+<span id="group-sys-socket2external-itf-1ga75362bb7b0edfb1dae6efb77beae6ae6"></span><h3>#define SYSSOCKET2_TYPE RTS_IEC_INT<a class="headerlink" href="#define-syssocket2-type-rts-iec-int" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-itf-syssocket2external">
+<span id="group-sys-socket2external-itf-1ga8508f588cfde55c44442a07082361587"></span><h3>#define ITF_SysSocket2external<a class="headerlink" href="#define-itf-syssocket2external" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-syssocket2external">
+<span id="group-sys-socket2external-itf-1ga055571d1e1efd599747267f22aa3b348"></span><h3>#define EXTITF_SysSocket2external<a class="headerlink" href="#define-extitf-syssocket2external" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-tagsyssocket2-stdsockets-syssocket2-stdsockets">
+<span id="group-sys-socket2external-itf-1ga753355bb4bb3e319be0dfade7a973d7c"></span><h3>typedef struct tagSysSocket2_StdSockets  SysSocket2_StdSockets<a class="headerlink" href="#typedef-struct-tagsyssocket2-stdsockets-syssocket2-stdsockets" title="Permalink to this headline">¶</a></h3>
+<p>SysSocket2_StdSockets</p>
+</div>
+<div class="section" id="typedef-struct-tagsyssocket2-tlssockets-syssocket2-tlssockets">
+<span id="group-sys-socket2external-itf-1gae99d864119428d12d86ae9e7544ac896"></span><h3>typedef struct tagSysSocket2_TlsSockets  SysSocket2_TlsSockets<a class="headerlink" href="#typedef-struct-tagsyssocket2-tlssockets-syssocket2-tlssockets" title="Permalink to this headline">¶</a></h3>
+<p>SysSocket2_TlsSockets</p>
+</div>
+<div class="section" id="typedef-struct-tagsyssocket2-parameter-syssocket2-parameter">
+<span id="group-sys-socket2external-itf-1gae39af88f148ab8531f010db70aed500a"></span><h3>typedef struct tagSysSocket2_Parameter  SysSocket2_Parameter<a class="headerlink" href="#typedef-struct-tagsyssocket2-parameter-syssocket2-parameter" title="Permalink to this headline">¶</a></h3>
+<p>This structure represents the parameters to create a specific socket type Set the parameterType to your desired socket type. By now Std or TLS sockets are available. The specifica member contains the parameters needed to create this socket type</p>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2accept-struct-syssock2accept-struct">
+<span id="group-sys-socket2external-itf-1gaf95f5c2a604ca74d1eec3f192a12a274"></span><h3>typedef struct tagsyssock2accept_struct  syssock2accept_struct<a class="headerlink" href="#typedef-struct-tagsyssock2accept-struct-syssock2accept-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Accept the next incoming TCP connection. | This functions calls the function accept of the operating system, which can accept a request to connect to a socket. A new descriptor (handle) for the socket is returned. The original socket is reset to the &#8220;listening&#8221; state (see SysSockListen).</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">return:</th><td class="field-body">Handle to the new accepted socket or RTS_INVALID_HANDLE if failed.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2bind-struct-syssock2bind-struct">
+<span id="group-sys-socket2external-itf-1ga4eecaed1a0af584cee747c08709bbe80"></span><h3>typedef struct tagsyssock2bind_struct  syssock2bind_struct<a class="headerlink" href="#typedef-struct-tagsyssock2bind-struct-syssock2bind-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Bind a socket to a socket address and port number. | This functions calls the function bind of the operating system, which will assign a local address to a socket that has already been allocated to an address by <a href="#id39"><span class="problematic" id="id40">|SysSock2Create|</span></a>, but not yet fixed uniquely. This is usually done previous to a call to functions like <a href="#id41"><span class="problematic" id="id42">|SysSock2Listen|</span></a> or <a href="#id43"><span class="problematic" id="id44">|SysSock2Accept|</span></a>. :return: Runtime system error code (see CmpErrors.library).</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2close-struct-syssock2close-struct">
+<span id="group-sys-socket2external-itf-1ga7bbb5d1fb79ae014e34b498c99d23790"></span><h3>typedef struct tagsyssock2close_struct  syssock2close_struct<a class="headerlink" href="#typedef-struct-tagsyssock2close-struct-syssock2close-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Close a socket. :return: Runtime system error code (see CmpErrors.library).</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2connect-struct-syssock2connect-struct">
+<span id="group-sys-socket2external-itf-1gaf23f69a7388d13650cdf1ca6020a7509"></span><h3>typedef struct tagsyssock2connect_struct  syssock2connect_struct<a class="headerlink" href="#typedef-struct-tagsyssock2connect-struct-syssock2connect-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Connect as a client to a TCP server. :return: Runtime system error code (see CmpErrors.library).</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2create-struct-syssock2create-struct">
+<span id="group-sys-socket2external-itf-1ga72ba042e1df04cf6d606f8f605b527db"></span><h3>typedef struct tagsyssock2create_struct  syssock2create_struct<a class="headerlink" href="#typedef-struct-tagsyssock2create-struct-syssock2create-struct" title="Permalink to this headline">¶</a></h3>
+<p>Create a new socket and return the socket handle. By now STD or TLS sockets are available. Using a STD socket results in the default socket behavior. Using the TLS socket results in a IPv4 TCP socket where the TLC protocol is used. Additional the handshaking until the connection is ready takes some time loger. By default these sockets are created asnonblocking. If a blocking behavior is needed thishas to be set explicitly. :return: A handle to the created socket or INVALID_HANDLE if something went wrong. The return is a descriptor (handle) of the new socket, which is required as input parameter by other library functions like <a href="#id45"><span class="problematic" id="id46">|SysSock2Bind|</span></a>, <a href="#id47"><span class="problematic" id="id48">|SysSock2Connect|</span></a> etc.</p>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2fdinit-struct-syssock2fdinit-struct">
+<span id="group-sys-socket2external-itf-1ga2f6e518ed6c01405d77aeb0f14d0c91d"></span><h3>typedef struct tagsyssock2fdinit_struct  syssock2fdinit_struct<a class="headerlink" href="#typedef-struct-tagsyssock2fdinit-struct-syssock2fdinit-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Add a socket to a socket set. :return: Runtime system error code (see CmpErrors.library).</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2fdisset-struct-syssock2fdisset-struct">
+<span id="group-sys-socket2external-itf-1ga87669945abbe0f49ffc6fcc6bd95184a"></span><h3>typedef struct tagsyssock2fdisset_struct  syssock2fdisset_struct<a class="headerlink" href="#typedef-struct-tagsyssock2fdisset-struct-syssock2fdisset-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Check if a socket is inside of a set. :return: TRUE if it is inside the set, FALSE if not.</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2getoption-struct-syssock2getoption-struct">
+<span id="group-sys-socket2external-itf-1ga1ed468dd6fcf7673b82e93e2f6b52f85"></span><h3>typedef struct tagsyssock2getoption_struct  syssock2getoption_struct<a class="headerlink" href="#typedef-struct-tagsyssock2getoption-struct-syssock2getoption-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Set options of a specified socket. :return: Runtime system error code (see CmpErrors.library).</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2getpeername-struct-syssock2getpeername-struct">
+<span id="group-sys-socket2external-itf-1gae4ba976a29ed8204461b07c533b68ff0"></span><h3>typedef struct tagsyssock2getpeername_struct  syssock2getpeername_struct<a class="headerlink" href="#typedef-struct-tagsyssock2getpeername-struct-syssock2getpeername-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Returns the socket address of the peer to which a socket is connected. | The SysSockGetPeerName function can be used only on a connected socket. :return: Runtime system error code (see CmpErrors.library).</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2getsockname-struct-syssock2getsockname-struct">
+<span id="group-sys-socket2external-itf-1ga4ed602ac59f1b08f5f761797304396bc"></span><h3>typedef struct tagsyssock2getsockname_struct  syssock2getsockname_struct<a class="headerlink" href="#typedef-struct-tagsyssock2getsockname-struct-syssock2getsockname-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Returns the socket address of the local socket. | Usally this function is called to retrieve the local socket address on multihomed hosts or to get the local port number in client implemntations. If the socket is neither connected nor locally bound to an address, the result of the function and the value stored in the object pointed to by pSockAddress is unspecified. :return: Runtime system error code (see CmpErrors.library).</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2ioctl-struct-syssock2ioctl-struct">
+<span id="group-sys-socket2external-itf-1ga789b4234e5249fc71a5b8560e3028be0"></span><h3>typedef struct tagsyssock2ioctl_struct  syssock2ioctl_struct<a class="headerlink" href="#typedef-struct-tagsyssock2ioctl-struct-syssock2ioctl-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Io-control of a socket. :return: Runtime system error code (see CmpErrors.library).</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2listen-struct-syssock2listen-struct">
+<span id="group-sys-socket2external-itf-1ga7deb87971949abe1ec3270eb7a2db838"></span><h3>typedef struct tagsyssock2listen_struct  syssock2listen_struct<a class="headerlink" href="#typedef-struct-tagsyssock2listen-struct-syssock2listen-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Listen on a TCP server socket for new connection. :return: Runtime system error code (see CmpErrors.library).</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2recv-struct-syssock2recv-struct">
+<span id="group-sys-socket2external-itf-1gaa57f4b518e9f9f649644e6b2fd350c50"></span><h3>typedef struct tagsyssock2recv_struct  syssock2recv_struct<a class="headerlink" href="#typedef-struct-tagsyssock2recv-struct-syssock2recv-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Receive data from a TCP socket. :return: Number of bytes received. 0 if failed.</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2recvfrom-struct-syssock2recvfrom-struct">
+<span id="group-sys-socket2external-itf-1ga1543decd05083654be8280dc775f3504"></span><h3>typedef struct tagsyssock2recvfrom_struct  syssock2recvfrom_struct<a class="headerlink" href="#typedef-struct-tagsyssock2recvfrom-struct-syssock2recvfrom-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Receive a message from a connectionless socket (UDP). :return: Number of bytes received</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2select-struct-syssock2select-struct">
+<span id="group-sys-socket2external-itf-1ga76a685d82fc34870080c5de467a5dd05"></span><h3>typedef struct tagsyssock2select_struct  syssock2select_struct<a class="headerlink" href="#typedef-struct-tagsyssock2select-struct-syssock2select-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Check a number of sockets for activity. All sockets added to the FD_SETs have to be of the same type (Standard or TLS) :return: Runtime system error code (see CmpErrors.library): | ERR_OK | ERR_SOCK_TIMEDOUT, if timeout expired</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2send-struct-syssock2send-struct">
+<span id="group-sys-socket2external-itf-1gaee75d023df579d21dc0ac5bbc7b91e01"></span><h3>typedef struct tagsyssock2send_struct  syssock2send_struct<a class="headerlink" href="#typedef-struct-tagsyssock2send-struct-syssock2send-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Sent data to a TCP socket. :return: Number of sent bytes. 0 if failed.</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2sendto-struct-syssock2sendto-struct">
+<span id="group-sys-socket2external-itf-1ga1c93ce6bb478ae8c1642213e715cd9be"></span><h3>typedef struct tagsyssock2sendto_struct  syssock2sendto_struct<a class="headerlink" href="#typedef-struct-tagsyssock2sendto-struct-syssock2sendto-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Send a message over a connectionless socket (UDP). :return: Number of bytes received.</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2setoption-struct-syssock2setoption-struct">
+<span id="group-sys-socket2external-itf-1ga195ef483b8b46c5f76b9a5b315dcd12f"></span><h3>typedef struct tagsyssock2setoption_struct  syssock2setoption_struct<a class="headerlink" href="#typedef-struct-tagsyssock2setoption-struct-syssock2setoption-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Set options of a specified socket. :return: Runtime system error code (see CmpErrors.library).</div>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsyssock2shutdown-struct-syssock2shutdown-struct">
+<span id="group-sys-socket2external-itf-1gab118a1df8fe765e9685094fb59d2c28b"></span><h3>typedef struct tagsyssock2shutdown_struct  syssock2shutdown_struct<a class="headerlink" href="#typedef-struct-tagsyssock2shutdown-struct-syssock2shutdown-struct" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Shutdown a socket. :return: Runtime system error code (see CmpErrors.library).</div>
+</div>
+</div>
+<div class="section" id="typedef-isyssocket2external-c-isyssocket2external">
+<span id="group-sys-socket2external-itf-1ga890787236f9228ba05473fc476f5d492"></span><h3>typedef ISysSocket2external_C ISysSocket2external<a class="headerlink" href="#typedef-isyssocket2external-c-isyssocket2external" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="void-syssock2accept-syssock2accept-struct-p">
+<span id="group-sys-socket2external-itf-1gaccc3ad0a76dc03ed2f1eb24ba8c0ca65"></span><h3>void syssock2accept (syssock2accept_struct <a href="#id1"><span class="problematic" id="id2">*</span></a>p)<a class="headerlink" href="#void-syssock2accept-syssock2accept-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2bind-syssock2bind-struct-p">
+<span id="group-sys-socket2external-itf-1ga61c82abcf6ce8a7b03b5ec381ef9146d"></span><h3>void syssock2bind (syssock2bind_struct <a href="#id3"><span class="problematic" id="id4">*</span></a>p)<a class="headerlink" href="#void-syssock2bind-syssock2bind-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2close-syssock2close-struct-p">
+<span id="group-sys-socket2external-itf-1gaf656a7c839807bc9cc3a5300fe03d568"></span><h3>void syssock2close (syssock2close_struct <a href="#id5"><span class="problematic" id="id6">*</span></a>p)<a class="headerlink" href="#void-syssock2close-syssock2close-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2connect-syssock2connect-struct-p">
+<span id="group-sys-socket2external-itf-1ga7c29c9dcaa41f4dda4379408aee64aba"></span><h3>void syssock2connect (syssock2connect_struct <a href="#id7"><span class="problematic" id="id8">*</span></a>p)<a class="headerlink" href="#void-syssock2connect-syssock2connect-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2create-syssock2create-struct-p">
+<span id="group-sys-socket2external-itf-1ga9bdd8aff926c6b66063ff933edac1cc1"></span><h3>void syssock2create (syssock2create_struct <a href="#id9"><span class="problematic" id="id10">*</span></a>p)<a class="headerlink" href="#void-syssock2create-syssock2create-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2fdinit-syssock2fdinit-struct-p">
+<span id="group-sys-socket2external-itf-1gacd6edf314497613c88baa5aa2b216b9b"></span><h3>void syssock2fdinit (syssock2fdinit_struct <a href="#id11"><span class="problematic" id="id12">*</span></a>p)<a class="headerlink" href="#void-syssock2fdinit-syssock2fdinit-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2fdisset-syssock2fdisset-struct-p">
+<span id="group-sys-socket2external-itf-1gaca95b5c9dc448ee6776790503bf7fdda"></span><h3>void syssock2fdisset (syssock2fdisset_struct <a href="#id13"><span class="problematic" id="id14">*</span></a>p)<a class="headerlink" href="#void-syssock2fdisset-syssock2fdisset-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2getoption-syssock2getoption-struct-p">
+<span id="group-sys-socket2external-itf-1ga18a2f77b0d73aed2f8f9031b90c83b99"></span><h3>void syssock2getoption (syssock2getoption_struct <a href="#id15"><span class="problematic" id="id16">*</span></a>p)<a class="headerlink" href="#void-syssock2getoption-syssock2getoption-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2getpeername-syssock2getpeername-struct-p">
+<span id="group-sys-socket2external-itf-1ga87ff7732b982024d69759fbba5ea9cf7"></span><h3>void syssock2getpeername (syssock2getpeername_struct <a href="#id17"><span class="problematic" id="id18">*</span></a>p)<a class="headerlink" href="#void-syssock2getpeername-syssock2getpeername-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2getsockname-syssock2getsockname-struct-p">
+<span id="group-sys-socket2external-itf-1gaa3d09046602386ab7b73536f10adb761"></span><h3>void syssock2getsockname (syssock2getsockname_struct <a href="#id19"><span class="problematic" id="id20">*</span></a>p)<a class="headerlink" href="#void-syssock2getsockname-syssock2getsockname-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2ioctl-syssock2ioctl-struct-p">
+<span id="group-sys-socket2external-itf-1ga890378f14cd8a031ab8aea2ef220e714"></span><h3>void syssock2ioctl (syssock2ioctl_struct <a href="#id21"><span class="problematic" id="id22">*</span></a>p)<a class="headerlink" href="#void-syssock2ioctl-syssock2ioctl-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2listen-syssock2listen-struct-p">
+<span id="group-sys-socket2external-itf-1ga4558d3ad0b122205e100ab728717697e"></span><h3>void syssock2listen (syssock2listen_struct <a href="#id23"><span class="problematic" id="id24">*</span></a>p)<a class="headerlink" href="#void-syssock2listen-syssock2listen-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2recv-syssock2recv-struct-p">
+<span id="group-sys-socket2external-itf-1gaf88048953eaa880f673f5e193a26ee4f"></span><h3>void syssock2recv (syssock2recv_struct <a href="#id25"><span class="problematic" id="id26">*</span></a>p)<a class="headerlink" href="#void-syssock2recv-syssock2recv-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2recvfrom-syssock2recvfrom-struct-p">
+<span id="group-sys-socket2external-itf-1ga2f3257da663d70967339faafa7425627"></span><h3>void syssock2recvfrom (syssock2recvfrom_struct <a href="#id27"><span class="problematic" id="id28">*</span></a>p)<a class="headerlink" href="#void-syssock2recvfrom-syssock2recvfrom-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2select-syssock2select-struct-p">
+<span id="group-sys-socket2external-itf-1ga7a82ec56c7b61067145b6afed8af4405"></span><h3>void syssock2select (syssock2select_struct <a href="#id29"><span class="problematic" id="id30">*</span></a>p)<a class="headerlink" href="#void-syssock2select-syssock2select-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2send-syssock2send-struct-p">
+<span id="group-sys-socket2external-itf-1gae785d582e6f013e8016c16da020220d2"></span><h3>void syssock2send (syssock2send_struct <a href="#id31"><span class="problematic" id="id32">*</span></a>p)<a class="headerlink" href="#void-syssock2send-syssock2send-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2sendto-syssock2sendto-struct-p">
+<span id="group-sys-socket2external-itf-1ga28ab143f81910e515a9915f54aa24fc7"></span><h3>void syssock2sendto (syssock2sendto_struct <a href="#id33"><span class="problematic" id="id34">*</span></a>p)<a class="headerlink" href="#void-syssock2sendto-syssock2sendto-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2setoption-syssock2setoption-struct-p">
+<span id="group-sys-socket2external-itf-1gaf9ea37e9236fecaf7eaeaa5b6177d6b5"></span><h3>void syssock2setoption (syssock2setoption_struct <a href="#id35"><span class="problematic" id="id36">*</span></a>p)<a class="headerlink" href="#void-syssock2setoption-syssock2setoption-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syssock2shutdown-syssock2shutdown-struct-p">
+<span id="group-sys-socket2external-itf-1ga597e9acc5b91f4cebb4ee919554237b9"></span><h3>void syssock2shutdown (syssock2shutdown_struct <a href="#id37"><span class="problematic" id="id38">*</span></a>p)<a class="headerlink" href="#void-syssock2shutdown-syssock2shutdown-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___sys_socket_itf.html" title="SysSocketItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_socket2_itf.html" title="SysSocket2Itf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

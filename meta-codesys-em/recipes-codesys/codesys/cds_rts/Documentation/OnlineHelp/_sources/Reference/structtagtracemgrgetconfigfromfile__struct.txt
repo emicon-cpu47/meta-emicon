@@ -1,0 +1,86 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagtracemgrgetconfigfromfile__struct:
+
+====================================================
+tagtracemgrgetconfigfromfile_struct Struct Reference
+====================================================
+
+| #include ":ref:`CmpTraceMgrItf.h <_cmp_trace_mgr_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_STRING * :ref:`pszFileName <structtagtracemgrgetconfigfromfile__struct_1a7c775a826a6844a12ff1f8c25e562564>`
+- :ref:`TracePacketConfiguration <group___cmp_trace_mgr_itf_1ga8b87d21b2badb4e18b4483d5875d0cae>` * :ref:`pPacketConfiguration <structtagtracemgrgetconfigfromfile__struct_1a12c2c0f65d974f4ae7ea1600fe2b62da>`
+- :ref:`TraceRecordConfiguration <group___cmp_trace_mgr_itf_1gab8c4a4109443dc67723e68331b8d7200>` * :ref:`pRecordConfiguration <structtagtracemgrgetconfigfromfile__struct_1aca1f8c6ac290f571d29e26e8e81d87c1>`
+- RTS_IEC_DINT :ref:`iMaxRecordCount <structtagtracemgrgetconfigfromfile__struct_1aebb9d997c365727c83f55f64c55b8134>`
+- RTS_IEC_DINT * :ref:`piEffectiveRecordCount <structtagtracemgrgetconfigfromfile__struct_1a01130ff09a48b27da1f3ff94da65bf90>`
+- RTS_IEC_RESULT :ref:`TraceMgrGetConfigFromFile <structtagtracemgrgetconfigfromfile__struct_1ab38f9fbcc223c52053a29bc20763c7ff>`
+
+Detailed Description
+--------------------
+
+Loads a given trace file and returns the configuration it contains. After this function call a call to function |TraceMgrGetConfigFromFileRelease| is necessary to free the dynamically allocated memory.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if pszFileName is not a valid file path
+
+- ERR_NOMEMORY if the memory is not sufficient for opening the file
+
+- ERR_NOT_SUPPORTED if reading from files is not supported by the runtime system or if an addressing mode is not supported (e.g. symbolic access)
+
+- ERR_NO_OBJECT if opening the file failed
+
+- ERR_FAILED if opening the file failed
+
+- ERR_END_OF_OBJECT if either the packet configuration or the record configuration is incomplete
+
+- ERR_NO_CHANGE if a NULL pointer was passed to parameter
+
+- ERR_OUT_OF_LIMITS if the parameters ``pRecordConfiguration`` and ``iMaxRecordCount`` do not have enough memory to hold all the records from the file
+
+Field Documentation
+-------------------
+
+.. _structtagtracemgrgetconfigfromfile__struct_1a7c775a826a6844a12ff1f8c25e562564:
+
+RTS_IEC_STRING* tagtracemgrgetconfigfromfile_struct::pszFileName
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrgetconfigfromfile__struct_1a12c2c0f65d974f4ae7ea1600fe2b62da:
+
+TracePacketConfiguration* tagtracemgrgetconfigfromfile_struct::pPacketConfiguration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrgetconfigfromfile__struct_1aca1f8c6ac290f571d29e26e8e81d87c1:
+
+TraceRecordConfiguration* tagtracemgrgetconfigfromfile_struct::pRecordConfiguration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrgetconfigfromfile__struct_1aebb9d997c365727c83f55f64c55b8134:
+
+RTS_IEC_DINT tagtracemgrgetconfigfromfile_struct::iMaxRecordCount
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrgetconfigfromfile__struct_1a01130ff09a48b27da1f3ff94da65bf90:
+
+RTS_IEC_DINT* tagtracemgrgetconfigfromfile_struct::piEffectiveRecordCount
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrgetconfigfromfile__struct_1ab38f9fbcc223c52053a29bc20763c7ff:
+
+RTS_IEC_RESULT tagtracemgrgetconfigfromfile_struct::TraceMgrGetConfigFromFile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpTraceMgrItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

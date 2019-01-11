@@ -1,0 +1,242 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_timer_itf___timertype:
+
+==========
+Timer type
+==========
+
+ :ref:`More... <group___sys_timer_itf___timertype-details>`
+
+Macros
+------
+
+- #define :ref:`RTS_TIMER_NONE <group___sys_timer_itf___timertype_1ga009e9dced5f6379ce6a8347b2764b715>` 0
+
+- #define :ref:`RTS_TIMER_PERIODIC <group___sys_timer_itf___timertype_1ga25c9b7776eca641709e65f41014a5b78>` 1
+
+- #define :ref:`RTS_TIMER_ONESHOT <group___sys_timer_itf___timertype_1ga0e89e846647f02369da158351d0c6d7a>` 2
+
+- #define :ref:`TI_STARTED <group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39>` 0x0001
+
+- #define :ref:`TI_ACTIVE <group___sys_timer_itf___timertype_1gaa25778cb9acc6237b0bf1dd019b2fceb>` 0x0002
+
+- #define :ref:`TI_RESETFOLLOW <group___sys_timer_itf___timertype_1ga7dcd301719f7002c19d5534acd54ceca>` 0x0004
+
+- #define :ref:`TI_INITIALIZED <group___sys_timer_itf___timertype_1gaa37e089d920f201db9d3482cdbdc9aad>` 0x0008
+
+- #define :ref:`TI_WATCHDOG <group___sys_timer_itf___timertype_1ga0599a4cc73400fbf96f2e51e58827915>` 0x0020
+
+- #define :ref:`TI_BREAKPOINT <group___sys_timer_itf___timertype_1ga68e06b72ea963c78a556ef9682d07f00>` 0x0040
+
+- #define :ref:`TimerIsWatchdog <group___sys_timer_itf___timertype_1ga80173d12de52122b4fbee1e7ba6f4c0c>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_WATCHDOG <group___sys_timer_itf___timertype_1ga0599a4cc73400fbf96f2e51e58827915>` )
+
+- #define :ref:`TimerSetWatchdog <group___sys_timer_itf___timertype_1ga273b93257c45b5955df67e74c85a8bfb>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_WATCHDOG <group___sys_timer_itf___timertype_1ga0599a4cc73400fbf96f2e51e58827915>` )
+
+- #define :ref:`TimerResetWatchdog <group___sys_timer_itf___timertype_1ga43865a7fd17ef9f2d3aa5ce2f590ab9e>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_WATCHDOG <group___sys_timer_itf___timertype_1ga0599a4cc73400fbf96f2e51e58827915>` )
+
+- #define :ref:`TimerResetFollow <group___sys_timer_itf___timertype_1ga8a4ee451540ede718d48cdc85622c73e>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_RESETFOLLOW <group___sys_timer_itf___timertype_1ga7dcd301719f7002c19d5534acd54ceca>` )
+
+- #define :ref:`TimerSetResetFollow <group___sys_timer_itf___timertype_1ga21d9a203344b2ca2f166c28c293d822f>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_RESETFOLLOW <group___sys_timer_itf___timertype_1ga7dcd301719f7002c19d5534acd54ceca>` )
+
+- #define :ref:`TimerResetResetFollow <group___sys_timer_itf___timertype_1gaeb2666e5f29e0b081296b1bbfe07cd38>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_RESETFOLLOW <group___sys_timer_itf___timertype_1ga7dcd301719f7002c19d5534acd54ceca>` )
+
+- #define :ref:`TimerIsActive <group___sys_timer_itf___timertype_1ga97c6a4d30bc8fddde0aee25957c49415>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_ACTIVE <group___sys_timer_itf___timertype_1gaa25778cb9acc6237b0bf1dd019b2fceb>` )
+
+- #define :ref:`TimerSetActive <group___sys_timer_itf___timertype_1ga3329dddadf0b110618f5a90d0ae06300>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_ACTIVE <group___sys_timer_itf___timertype_1gaa25778cb9acc6237b0bf1dd019b2fceb>` )
+
+- #define :ref:`TimerResetActive <group___sys_timer_itf___timertype_1ga15e78467768043d428a9c1366fed92fc>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_ACTIVE <group___sys_timer_itf___timertype_1gaa25778cb9acc6237b0bf1dd019b2fceb>` )
+
+- #define :ref:`TimerSetStarted <group___sys_timer_itf___timertype_1ga7a92be57c8a48447bb5058a36974cb14>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_STARTED <group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39>` )
+
+- #define :ref:`TimerResetStarted <group___sys_timer_itf___timertype_1ga3f672a8099c3973f36f4a72a5a268a6a>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_STARTED <group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39>` )
+
+- #define :ref:`TimerIsStarted <group___sys_timer_itf___timertype_1ga6c516c51a0cfc99fe1328c8720f9157d>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_STARTED <group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39>` )
+
+- #define :ref:`TimerSetStart <group___sys_timer_itf___timertype_1ga64292cb73539ba8e0db3574a23918a78>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_STARTED <group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39>` )
+
+- #define :ref:`TimerIsStopped <group___sys_timer_itf___timertype_1ga70b4f2b503a5307db24800169f251897>` (~((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_STARTED <group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39>` ))
+
+- #define :ref:`TimerSetStop <group___sys_timer_itf___timertype_1ga21d9f87afb6bbaa82bcf99cc2060dd39>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_STARTED <group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39>` )
+
+- #define :ref:`TimerOnBP <group___sys_timer_itf___timertype_1gaabc53cdd8fe6150fde56b94acc68a1f1>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_BREAKPOINT <group___sys_timer_itf___timertype_1ga68e06b72ea963c78a556ef9682d07f00>` )
+
+- #define :ref:`TimerSetOnBP <group___sys_timer_itf___timertype_1gaffc551105fa80460203cffa1b68a812a>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_BREAKPOINT <group___sys_timer_itf___timertype_1ga68e06b72ea963c78a556ef9682d07f00>` )
+
+- #define :ref:`TimerResetOnBP <group___sys_timer_itf___timertype_1ga014085e43f7a76a75775fc11c59edfcf>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_BREAKPOINT <group___sys_timer_itf___timertype_1ga68e06b72ea963c78a556ef9682d07f00>` )
+
+- #define :ref:`TimerIsInit <group___sys_timer_itf___timertype_1ga895470db05e9295c301a1fac1a281213>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_INITIALIZED <group___sys_timer_itf___timertype_1gaa37e089d920f201db9d3482cdbdc9aad>` )
+
+- #define :ref:`TimerSetInit <group___sys_timer_itf___timertype_1ga305f6eebab97e0c380d673fb00a18dc5>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_INITIALIZED <group___sys_timer_itf___timertype_1gaa37e089d920f201db9d3482cdbdc9aad>` )
+
+- #define :ref:`TimerResetInit <group___sys_timer_itf___timertype_1ga3b881276d669c5edf8e814777af4a930>` ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_INITIALIZED <group___sys_timer_itf___timertype_1gaa37e089d920f201db9d3482cdbdc9aad>` )
+
+.. _group___sys_timer_itf___timertype-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_timer_itf___timertype_1ga009e9dced5f6379ce6a8347b2764b715:
+
+#define RTS_TIMER_NONE 0
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Possible type of a Timer: RTS_TIMER_NONE: Not Defined RTS_TIMER_PERIODIC: Periodical timer RTS_TIMER_ONESHOT: Oneshot timer
+
+.. _group___sys_timer_itf___timertype_1ga25c9b7776eca641709e65f41014a5b78:
+
+#define RTS_TIMER_PERIODIC 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga0e89e846647f02369da158351d0c6d7a:
+
+#define RTS_TIMER_ONESHOT 2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39:
+
+#define TI_STARTED 0x0001
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1gaa25778cb9acc6237b0bf1dd019b2fceb:
+
+#define TI_ACTIVE 0x0002
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga7dcd301719f7002c19d5534acd54ceca:
+
+#define TI_RESETFOLLOW 0x0004
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1gaa37e089d920f201db9d3482cdbdc9aad:
+
+#define TI_INITIALIZED 0x0008
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga0599a4cc73400fbf96f2e51e58827915:
+
+#define TI_WATCHDOG 0x0020
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga68e06b72ea963c78a556ef9682d07f00:
+
+#define TI_BREAKPOINT 0x0040
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga80173d12de52122b4fbee1e7ba6f4c0c:
+
+#define TimerIsWatchdog ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_WATCHDOG <group___sys_timer_itf___timertype_1ga0599a4cc73400fbf96f2e51e58827915>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga273b93257c45b5955df67e74c85a8bfb:
+
+#define TimerSetWatchdog ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_WATCHDOG <group___sys_timer_itf___timertype_1ga0599a4cc73400fbf96f2e51e58827915>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga43865a7fd17ef9f2d3aa5ce2f590ab9e:
+
+#define TimerResetWatchdog ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_WATCHDOG <group___sys_timer_itf___timertype_1ga0599a4cc73400fbf96f2e51e58827915>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga8a4ee451540ede718d48cdc85622c73e:
+
+#define TimerResetFollow ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_RESETFOLLOW <group___sys_timer_itf___timertype_1ga7dcd301719f7002c19d5534acd54ceca>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga21d9a203344b2ca2f166c28c293d822f:
+
+#define TimerSetResetFollow ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_RESETFOLLOW <group___sys_timer_itf___timertype_1ga7dcd301719f7002c19d5534acd54ceca>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1gaeb2666e5f29e0b081296b1bbfe07cd38:
+
+#define TimerResetResetFollow ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_RESETFOLLOW <group___sys_timer_itf___timertype_1ga7dcd301719f7002c19d5534acd54ceca>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga97c6a4d30bc8fddde0aee25957c49415:
+
+#define TimerIsActive ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_ACTIVE <group___sys_timer_itf___timertype_1gaa25778cb9acc6237b0bf1dd019b2fceb>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga3329dddadf0b110618f5a90d0ae06300:
+
+#define TimerSetActive ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_ACTIVE <group___sys_timer_itf___timertype_1gaa25778cb9acc6237b0bf1dd019b2fceb>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga15e78467768043d428a9c1366fed92fc:
+
+#define TimerResetActive ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_ACTIVE <group___sys_timer_itf___timertype_1gaa25778cb9acc6237b0bf1dd019b2fceb>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga7a92be57c8a48447bb5058a36974cb14:
+
+#define TimerSetStarted ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_STARTED <group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga3f672a8099c3973f36f4a72a5a268a6a:
+
+#define TimerResetStarted ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_STARTED <group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga6c516c51a0cfc99fe1328c8720f9157d:
+
+#define TimerIsStarted ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_STARTED <group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga64292cb73539ba8e0db3574a23918a78:
+
+#define TimerSetStart ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_STARTED <group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga70b4f2b503a5307db24800169f251897:
+
+#define TimerIsStopped (~((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_STARTED <group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39>` ))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga21d9f87afb6bbaa82bcf99cc2060dd39:
+
+#define TimerSetStop ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_STARTED <group___sys_timer_itf___timertype_1ga68055504102d4df6f698de35a6aeaa39>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1gaabc53cdd8fe6150fde56b94acc68a1f1:
+
+#define TimerOnBP ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_BREAKPOINT <group___sys_timer_itf___timertype_1ga68e06b72ea963c78a556ef9682d07f00>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1gaffc551105fa80460203cffa1b68a812a:
+
+#define TimerSetOnBP ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_BREAKPOINT <group___sys_timer_itf___timertype_1ga68e06b72ea963c78a556ef9682d07f00>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga014085e43f7a76a75775fc11c59edfcf:
+
+#define TimerResetOnBP ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_BREAKPOINT <group___sys_timer_itf___timertype_1ga68e06b72ea963c78a556ef9682d07f00>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga895470db05e9295c301a1fac1a281213:
+
+#define TimerIsInit ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState & :ref:`TI_INITIALIZED <group___sys_timer_itf___timertype_1gaa37e089d920f201db9d3482cdbdc9aad>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga305f6eebab97e0c380d673fb00a18dc5:
+
+#define TimerSetInit ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState |= :ref:`TI_INITIALIZED <group___sys_timer_itf___timertype_1gaa37e089d920f201db9d3482cdbdc9aad>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_timer_itf___timertype_1ga3b881276d669c5edf8e814777af4a930:
+
+#define TimerResetInit ((( :ref:`SYS_TIMER_INFO <struct_s_y_s___t_i_m_e_r___i_n_f_o>` *)pTimerInfo)->iState &= ~ :ref:`TI_INITIALIZED <group___sys_timer_itf___timertype_1gaa37e089d920f201db9d3482cdbdc9aad>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

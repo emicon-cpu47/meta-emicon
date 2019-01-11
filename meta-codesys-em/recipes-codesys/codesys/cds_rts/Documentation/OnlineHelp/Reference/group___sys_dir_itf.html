@@ -1,0 +1,967 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SysDirItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="SysEthernet2Itf" href="group___sys_ethernet2_itf.html" />
+    <link rel="prev" title="SysCpuMultiCoreItf" href="group___sys_cpu_multi_core_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___sys_ethernet2_itf.html" title="SysEthernet2Itf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_cpu_multi_core_itf.html" title="SysCpuMultiCoreItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SysDirItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-itf-sysdir">#define ITF_SysDir</a></li>
+<li><a class="reference internal" href="#define-extitf-sysdir">#define EXTITF_SysDir</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-tagsysdirclose-struct-sysdirclose-struct">typedef struct tagsysdirclose_struct  sysdirclose_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysdircopy-struct-sysdircopy-struct">typedef struct tagsysdircopy_struct  sysdircopy_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysdircreate-struct-sysdircreate-struct">typedef struct tagsysdircreate_struct  sysdircreate_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysdircreate2-struct-sysdircreate2-struct">typedef struct tagsysdircreate2_struct  sysdircreate2_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysdirdelete-struct-sysdirdelete-struct">typedef struct tagsysdirdelete_struct  sysdirdelete_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysdirdelete2-struct-sysdirdelete2-struct">typedef struct tagsysdirdelete2_struct  sysdirdelete2_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysdirgetcurrent-struct-sysdirgetcurrent-struct">typedef struct tagsysdirgetcurrent_struct  sysdirgetcurrent_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysdiropen-struct-sysdiropen-struct">typedef struct tagsysdiropen_struct  sysdiropen_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysdirread-struct-sysdirread-struct">typedef struct tagsysdirread_struct  sysdirread_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysdirrename-struct-sysdirrename-struct">typedef struct tagsysdirrename_struct  sysdirrename_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysdirsetcurrent-struct-sysdirsetcurrent-struct">typedef struct tagsysdirsetcurrent_struct  sysdirsetcurrent_struct</a></li>
+<li><a class="reference internal" href="#typedef-isysdir-c-isysdir">typedef ISysDir_C ISysDir</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#void-sysdirclose-sysdirclose-struct-p">void sysdirclose (sysdirclose_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysdircopy-sysdircopy-struct-p">void sysdircopy (sysdircopy_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysdircreate-sysdircreate-struct-p">void sysdircreate (sysdircreate_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysdircreate2-sysdircreate2-struct-p">void sysdircreate2 (sysdircreate2_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysdirdelete-sysdirdelete-struct-p">void sysdirdelete (sysdirdelete_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysdirdelete2-sysdirdelete2-struct-p">void sysdirdelete2 (sysdirdelete2_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysdirgetcurrent-sysdirgetcurrent-struct-p">void sysdirgetcurrent (sysdirgetcurrent_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysdiropen-sysdiropen-struct-p">void sysdiropen (sysdiropen_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysdirread-sysdirread-struct-p">void sysdirread (sysdirread_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysdirrename-sysdirrename-struct-p">void sysdirrename (sysdirrename_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysdirsetcurrent-sysdirsetcurrent-struct-p">void sysdirsetcurrent (sysdirsetcurrent_struct *p)</a></li>
+<li><a class="reference internal" href="#rts-result-sysdirosinit-init-struct-pinit">RTS_RESULT SysDirOSInit (INIT_STRUCT *pInit)</a></li>
+<li><a class="reference internal" href="#rts-result-sysdiroshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">RTS_RESULT SysDirOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</a></li>
+<li><a class="reference internal" href="#rts-handle-sysdiropen-char-pszdir-char-pszdirentry-int-imaxdirentry-dirinfo-pdirinfo-rts-result-presult">RTS_HANDLE SysDirOpen (char *pszDir, char *pszDirEntry, int iMaxDirEntry, DirInfo *pDirInfo, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#group-sys-dir-itf-1ga52f8e5fc8d27d8c7f7f890cd0bc7c840">RTS_HANDLE SysDirOpen_ (char *pszDir, char *pszDirEntry, int iMaxDirEntry, DirInfo *pDirInfo, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-sysdirclose-rts-handle-hdir">RTS_RESULT SysDirClose (RTS_HANDLE hDir)</a></li>
+<li><a class="reference internal" href="#group-sys-dir-itf-1ga1710760b5ae70ab40988298e5387de78">RTS_RESULT SysDirClose_ (RTS_HANDLE hDir)</a></li>
+<li><a class="reference internal" href="#rts-result-sysdirread-rts-handle-hdir-char-pszdirentry-int-imaxdirentry-dirinfo-pdirinfo">RTS_RESULT SysDirRead (RTS_HANDLE hDir, char *pszDirEntry, int iMaxDirEntry, DirInfo *pDirInfo)</a></li>
+<li><a class="reference internal" href="#group-sys-dir-itf-1ga957873529ed52516626c9551c3fc1b95">RTS_RESULT SysDirRead_ (RTS_HANDLE hDir, char *pszDirEntry, int iMaxDirEntry, DirInfo *pDirInfo)</a></li>
+<li><a class="reference internal" href="#rts-result-sysdircreate-char-pszdir">RTS_RESULT SysDirCreate (char *pszDir)</a></li>
+<li><a class="reference internal" href="#rts-result-sysdircreate2-char-pszdir-rts-bool-brecursive">RTS_RESULT SysDirCreate2 (char *pszDir, RTS_BOOL bRecursive)</a></li>
+<li><a class="reference internal" href="#group-sys-dir-itf-1ga94530ed643a1ccd04f1a7a560f420c94">RTS_RESULT SysDirCreate_ (char *pszDir)</a></li>
+<li><a class="reference internal" href="#rts-result-sysdirdelete-char-pszdir">RTS_RESULT SysDirDelete (char *pszDir)</a></li>
+<li><a class="reference internal" href="#rts-result-sysdirdelete2-char-pszdir-rts-bool-brecursive-rts-bool-bkeepdir">RTS_RESULT SysDirDelete2 (char *pszDir, RTS_BOOL bRecursive, RTS_BOOL bKeepDir)</a></li>
+<li><a class="reference internal" href="#group-sys-dir-itf-1gacc03df6ff7ef0224d9d8f695a35ae18f">RTS_RESULT SysDirDelete_ (char *pszDir)</a></li>
+<li><a class="reference internal" href="#rts-result-sysdirrename-char-pszolddir-char-psznewdir">RTS_RESULT SysDirRename (char *pszOldDir, char *pszNewDir)</a></li>
+<li><a class="reference internal" href="#group-sys-dir-itf-1ga99606af2288a25ebae8387d07920e283">RTS_RESULT SysDirRename_ (char *pszOldDir, char *pszNewDir)</a></li>
+<li><a class="reference internal" href="#rts-result-sysdirgetcurrent-char-pszdir-int-imaxdirlen">RTS_RESULT SysDirGetCurrent (char *pszDir, int iMaxDirLen)</a></li>
+<li><a class="reference internal" href="#group-sys-dir-itf-1gac9bceac56abc6fc67ae11265ad14474d">RTS_RESULT SysDirGetCurrent_ (char *pszDir, int iMaxDirLen)</a></li>
+<li><a class="reference internal" href="#rts-result-sysdirsetcurrent-char-pszdir">RTS_RESULT SysDirSetCurrent (char *pszDir)</a></li>
+<li><a class="reference internal" href="#group-sys-dir-itf-1ga3b74804294898ea334a4f8f559aeef9e">RTS_RESULT SysDirSetCurrent_ (char *pszDir)</a></li>
+<li><a class="reference internal" href="#rts-result-sysdircopy-char-pszdestdir-char-pszsourcedir-rts-bool-brecursive-rts-bool-boverwrite">RTS_RESULT SysDirCopy (char *pszDestDir, char *pszSourceDir, RTS_BOOL bRecursive, RTS_BOOL bOverwrite)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___sys_cpu_multi_core_itf.html"
+                        title="previous chapter">SysCpuMultiCoreItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___sys_ethernet2_itf.html"
+                        title="next chapter">SysEthernet2Itf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_dir_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sysdiritf">
+<span id="group-sys-dir-itf"></span><h1>SysDirItf<a class="headerlink" href="#sysdiritf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of SysDir. <a class="reference internal" href="#group-sys-dir-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___sys_dir_itf___directoryfiletime.html#group-sys-dir-itf-directoryfiletime"><span class="std std-ref">Directory file time</span></a></li>
+<li><a class="reference internal" href="group___sys_dir_itf___directoryinfoentry.html#group-sys-dir-itf-directoryinfoentry"><span class="std std-ref">Directory info entry</span></a></li>
+<li><a class="reference internal" href="group___sys_dir_itf___directoryinfoflags.html#group-sys-dir-itf-directoryinfoflags"><span class="std std-ref">Directory info flags</span></a></li>
+<li><a class="reference internal" href="group___sys_dir_itf___settings.html#group-sys-dir-itf-settings"><span class="std std-ref">Settings</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="structtagsysdirclose__struct.html#structtagsysdirclose-struct"><span class="std std-ref">tagsysdirclose_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysdircopy__struct.html#structtagsysdircopy-struct"><span class="std std-ref">tagsysdircopy_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysdircreate__struct.html#structtagsysdircreate-struct"><span class="std std-ref">tagsysdircreate_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysdircreate2__struct.html#structtagsysdircreate2-struct"><span class="std std-ref">tagsysdircreate2_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysdirdelete__struct.html#structtagsysdirdelete-struct"><span class="std std-ref">tagsysdirdelete_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysdirdelete2__struct.html#structtagsysdirdelete2-struct"><span class="std std-ref">tagsysdirdelete2_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysdirgetcurrent__struct.html#structtagsysdirgetcurrent-struct"><span class="std std-ref">tagsysdirgetcurrent_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysdiropen__struct.html#structtagsysdiropen-struct"><span class="std std-ref">tagsysdiropen_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysdirread__struct.html#structtagsysdirread-struct"><span class="std std-ref">tagsysdirread_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysdirrename__struct.html#structtagsysdirrename-struct"><span class="std std-ref">tagsysdirrename_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysdirsetcurrent__struct.html#structtagsysdirsetcurrent-struct"><span class="std std-ref">tagsysdirsetcurrent_struct</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_sys_dir___c.html#struct-i-sys-dir-c"><span class="std std-ref">ISysDir_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-dir-itf-1ga4f3489368a1bd402fe474fd7e3bd0f45"><span class="std std-ref">ITF_SysDir</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-dir-itf-1ga72d4400792d9889450050e8242121c95"><span class="std std-ref">EXTITF_SysDir</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="structtagsysdirclose__struct.html#structtagsysdirclose-struct"><span class="std std-ref">tagsysdirclose_struct</span></a> <a class="reference internal" href="#group-sys-dir-itf-1gaabebaae09eb8d5e04436d571f4edf13b"><span class="std std-ref">sysdirclose_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysdircopy__struct.html#structtagsysdircopy-struct"><span class="std std-ref">tagsysdircopy_struct</span></a> <a class="reference internal" href="#group-sys-dir-itf-1ga7774c01f4c23e8b593401befb61e1941"><span class="std std-ref">sysdircopy_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysdircreate__struct.html#structtagsysdircreate-struct"><span class="std std-ref">tagsysdircreate_struct</span></a> <a class="reference internal" href="#group-sys-dir-itf-1ga35be8988026158db9fe6c600863161de"><span class="std std-ref">sysdircreate_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysdircreate2__struct.html#structtagsysdircreate2-struct"><span class="std std-ref">tagsysdircreate2_struct</span></a> <a class="reference internal" href="#group-sys-dir-itf-1ga67c9ff03fb1e5d8239ce2970c3db0bb5"><span class="std std-ref">sysdircreate2_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysdirdelete__struct.html#structtagsysdirdelete-struct"><span class="std std-ref">tagsysdirdelete_struct</span></a> <a class="reference internal" href="#group-sys-dir-itf-1gac86b4be28e214b8547da0bd7ac78fae9"><span class="std std-ref">sysdirdelete_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysdirdelete2__struct.html#structtagsysdirdelete2-struct"><span class="std std-ref">tagsysdirdelete2_struct</span></a> <a class="reference internal" href="#group-sys-dir-itf-1ga4c31d0b9b8ce3c95ce882d2ac2851148"><span class="std std-ref">sysdirdelete2_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysdirgetcurrent__struct.html#structtagsysdirgetcurrent-struct"><span class="std std-ref">tagsysdirgetcurrent_struct</span></a> <a class="reference internal" href="#group-sys-dir-itf-1gaa3fe72a76b64346053ce1f163ea4415a"><span class="std std-ref">sysdirgetcurrent_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysdiropen__struct.html#structtagsysdiropen-struct"><span class="std std-ref">tagsysdiropen_struct</span></a> <a class="reference internal" href="#group-sys-dir-itf-1gaa18ea62ad73f2586a371d70cfa35f31c"><span class="std std-ref">sysdiropen_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysdirread__struct.html#structtagsysdirread-struct"><span class="std std-ref">tagsysdirread_struct</span></a> <a class="reference internal" href="#group-sys-dir-itf-1gade4348a61b37e0c51dde752744f8172c"><span class="std std-ref">sysdirread_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysdirrename__struct.html#structtagsysdirrename-struct"><span class="std std-ref">tagsysdirrename_struct</span></a> <a class="reference internal" href="#group-sys-dir-itf-1ga361ba1ce5f2c274d10a41f91f9acf794"><span class="std std-ref">sysdirrename_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysdirsetcurrent__struct.html#structtagsysdirsetcurrent-struct"><span class="std std-ref">tagsysdirsetcurrent_struct</span></a> <a class="reference internal" href="#group-sys-dir-itf-1gaf227ad8e4b2c86d973084faacf5054ae"><span class="std std-ref">sysdirsetcurrent_struct</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_sys_dir___c.html#struct-i-sys-dir-c"><span class="std std-ref">ISysDir_C</span></a> <a class="reference internal" href="#group-sys-dir-itf-1ga6f7cbb2c4a5cd36bd405cef89ac887de"><span class="std std-ref">ISysDir</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>void <a class="reference internal" href="#group-sys-dir-itf-1gaae092283142eb314da9b6c8f78607419"><span class="std std-ref">sysdirclose</span></a> (<a class="reference internal" href="#group-sys-dir-itf-1gaabebaae09eb8d5e04436d571f4edf13b"><span class="std std-ref">sysdirclose_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-dir-itf-1gaef492051e21dd693289c1d50b9e56dfe"><span class="std std-ref">sysdircopy</span></a> (<a class="reference internal" href="#group-sys-dir-itf-1ga7774c01f4c23e8b593401befb61e1941"><span class="std std-ref">sysdircopy_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-dir-itf-1ga2acb5522ee2bdb6550f89a46e1883785"><span class="std std-ref">sysdircreate</span></a> (<a class="reference internal" href="#group-sys-dir-itf-1ga35be8988026158db9fe6c600863161de"><span class="std std-ref">sysdircreate_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-dir-itf-1gad7ca635af6d92d433cce6efa9603502e"><span class="std std-ref">sysdircreate2</span></a> (<a class="reference internal" href="#group-sys-dir-itf-1ga67c9ff03fb1e5d8239ce2970c3db0bb5"><span class="std std-ref">sysdircreate2_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-dir-itf-1ga14f00b62067b67038088a9f7746f3445"><span class="std std-ref">sysdirdelete</span></a> (<a class="reference internal" href="#group-sys-dir-itf-1gac86b4be28e214b8547da0bd7ac78fae9"><span class="std std-ref">sysdirdelete_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-dir-itf-1gab262293a919c7759937e3d02f7725e9d"><span class="std std-ref">sysdirdelete2</span></a> (<a class="reference internal" href="#group-sys-dir-itf-1ga4c31d0b9b8ce3c95ce882d2ac2851148"><span class="std std-ref">sysdirdelete2_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-dir-itf-1gad3c182bb5cf51ff1de2d43161abfeaf5"><span class="std std-ref">sysdirgetcurrent</span></a> (<a class="reference internal" href="#group-sys-dir-itf-1gaa3fe72a76b64346053ce1f163ea4415a"><span class="std std-ref">sysdirgetcurrent_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-dir-itf-1gacdaf4ed63ab1742ef2711befcfbac121"><span class="std std-ref">sysdiropen</span></a> (<a class="reference internal" href="#group-sys-dir-itf-1gaa18ea62ad73f2586a371d70cfa35f31c"><span class="std std-ref">sysdiropen_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-dir-itf-1ga3a5c1836f58d0eaf3977912688ec7426"><span class="std std-ref">sysdirread</span></a> (<a class="reference internal" href="#group-sys-dir-itf-1gade4348a61b37e0c51dde752744f8172c"><span class="std std-ref">sysdirread_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-dir-itf-1ga01443d0a0bd15a354a421b01dc649d47"><span class="std std-ref">sysdirrename</span></a> (<a class="reference internal" href="#group-sys-dir-itf-1ga361ba1ce5f2c274d10a41f91f9acf794"><span class="std std-ref">sysdirrename_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-dir-itf-1ga42bd9510889e435f2dcfbe2c1d94aa31"><span class="std std-ref">sysdirsetcurrent</span></a> (<a class="reference internal" href="#group-sys-dir-itf-1gaf227ad8e4b2c86d973084faacf5054ae"><span class="std std-ref">sysdirsetcurrent_struct</span></a> * p)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1ga56327e69d3db146f042d5d7026363961"><span class="std std-ref">SysDirOSInit</span></a> (INIT_STRUCT * pInit)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1ga4818ccaf3e2f97fce5271b7fb399f30e"><span class="std std-ref">SysDirOSHookFunction</span></a> (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-dir-itf-1ga3ab07b5c1fd2888b4aed1a66b169fa73"><span class="std std-ref">SysDirOpen</span></a> (char * pszDir, char * pszDirEntry, int iMaxDirEntry, <a class="reference internal" href="struct_dir_info.html#struct-dir-info"><span class="std std-ref">DirInfo</span></a> * pDirInfo, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-dir-itf-1ga52f8e5fc8d27d8c7f7f890cd0bc7c840"><span class="std std-ref">SysDirOpen_</span></a> (char * pszDir, char * pszDirEntry, int iMaxDirEntry, <a class="reference internal" href="struct_dir_info.html#struct-dir-info"><span class="std std-ref">DirInfo</span></a> * pDirInfo, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1ga9ffd65d2557513315a3f9879ae8a029d"><span class="std std-ref">SysDirClose</span></a> (RTS_HANDLE hDir)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1ga1710760b5ae70ab40988298e5387de78"><span class="std std-ref">SysDirClose_</span></a> (RTS_HANDLE hDir)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1gab22153a1fa4e3218a46c00becd80bccb"><span class="std std-ref">SysDirRead</span></a> (RTS_HANDLE hDir, char * pszDirEntry, int iMaxDirEntry, <a class="reference internal" href="struct_dir_info.html#struct-dir-info"><span class="std std-ref">DirInfo</span></a> * pDirInfo)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1ga957873529ed52516626c9551c3fc1b95"><span class="std std-ref">SysDirRead_</span></a> (RTS_HANDLE hDir, char * pszDirEntry, int iMaxDirEntry, <a class="reference internal" href="struct_dir_info.html#struct-dir-info"><span class="std std-ref">DirInfo</span></a> * pDirInfo)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1ga382b85aba7a92647808e18532b38287c"><span class="std std-ref">SysDirCreate</span></a> (char * pszDir)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1gaa6cfe429e3b16f4d6fa6c904317595dc"><span class="std std-ref">SysDirCreate2</span></a> (char * pszDir, RTS_BOOL bRecursive)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1ga94530ed643a1ccd04f1a7a560f420c94"><span class="std std-ref">SysDirCreate_</span></a> (char * pszDir)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1gab57b1051e92ae0659543a876461fde22"><span class="std std-ref">SysDirDelete</span></a> (char * pszDir)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1gad05203de99260e76da1659e386c795ef"><span class="std std-ref">SysDirDelete2</span></a> (char * pszDir, RTS_BOOL bRecursive, RTS_BOOL bKeepDir)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1gacc03df6ff7ef0224d9d8f695a35ae18f"><span class="std std-ref">SysDirDelete_</span></a> (char * pszDir)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1gaa595cbb76c27ab321a114e63d80a48e1"><span class="std std-ref">SysDirRename</span></a> (char * pszOldDir, char * pszNewDir)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1ga99606af2288a25ebae8387d07920e283"><span class="std std-ref">SysDirRename_</span></a> (char * pszOldDir, char * pszNewDir)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1ga5d0e2bbbb89d1c2ded2b88eeed24042e"><span class="std std-ref">SysDirGetCurrent</span></a> (char * pszDir, int iMaxDirLen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1gac9bceac56abc6fc67ae11265ad14474d"><span class="std std-ref">SysDirGetCurrent_</span></a> (char * pszDir, int iMaxDirLen)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1gac269cce0192c9269c10cc2b56a77eee1"><span class="std std-ref">SysDirSetCurrent</span></a> (char * pszDir)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1ga3b74804294898ea334a4f8f559aeef9e"><span class="std std-ref">SysDirSetCurrent_</span></a> (char * pszDir)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-dir-itf-1ga49ab0a528d1f9382b3729e2725284a36"><span class="std std-ref">SysDirCopy</span></a> (char * pszDestDir, char * pszSourceDir, RTS_BOOL bRecursive, RTS_BOOL bOverwrite)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-dir-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of SysDir.</p>
+<p>The SysDir interface is projected to handle all system dependant directory operations. If there is no filesystem on the target, the interface functions ERR_NOTIMPLEMENTED.</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-itf-sysdir">
+<span id="group-sys-dir-itf-1ga4f3489368a1bd402fe474fd7e3bd0f45"></span><h3>#define ITF_SysDir<a class="headerlink" href="#define-itf-sysdir" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-sysdir">
+<span id="group-sys-dir-itf-1ga72d4400792d9889450050e8242121c95"></span><h3>#define EXTITF_SysDir<a class="headerlink" href="#define-extitf-sysdir" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-tagsysdirclose-struct-sysdirclose-struct">
+<span id="group-sys-dir-itf-1gaabebaae09eb8d5e04436d571f4edf13b"></span><h3>typedef struct tagsysdirclose_struct  sysdirclose_struct<a class="headerlink" href="#typedef-struct-tagsysdirclose-struct-sysdirclose-struct" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION BEGIN</p>
+<p>Close an open directory :return: Returns the runtime system error code (see CmpErrors_Itf.library)</p>
+</div>
+<div class="section" id="typedef-struct-tagsysdircopy-struct-sysdircopy-struct">
+<span id="group-sys-dir-itf-1ga7774c01f4c23e8b593401befb61e1941"></span><h3>typedef struct tagsysdircopy_struct  sysdircopy_struct<a class="headerlink" href="#typedef-struct-tagsysdircopy-struct-sysdircopy-struct" title="Permalink to this headline">¶</a></h3>
+<p>Copies the contents of szSourceDir to szDestDir. Nonexisting destination path will be created. Depending of the parameters, all subdirectories and its content will be copied too, and existing files will be overwritten. NOTE: Empty direcories will be copied if xRecursive is TRUE. :return: Returns the runtime system error code (see CmpErrors_Itf.library)</p>
+</div>
+<div class="section" id="typedef-struct-tagsysdircreate-struct-sysdircreate-struct">
+<span id="group-sys-dir-itf-1ga35be8988026158db9fe6c600863161de"></span><h3>typedef struct tagsysdircreate_struct  sysdircreate_struct<a class="headerlink" href="#typedef-struct-tagsysdircreate-struct-sysdircreate-struct" title="Permalink to this headline">¶</a></h3>
+<p>Creates a new directory with the specified name :return: Returns the runtime system error code (see CmpErrors_Itf.library)</p>
+</div>
+<div class="section" id="typedef-struct-tagsysdircreate2-struct-sysdircreate2-struct">
+<span id="group-sys-dir-itf-1ga67c9ff03fb1e5d8239ce2970c3db0bb5"></span><h3>typedef struct tagsysdircreate2_struct  sysdircreate2_struct<a class="headerlink" href="#typedef-struct-tagsysdircreate2-struct-sysdircreate2-struct" title="Permalink to this headline">¶</a></h3>
+<p>Creates a new directory with the specified name. If xRecursive is set, a full path is created, i.e. all missing parent directories are created too. :return: Returns the runtime system error code (see CmpErrors_Itf.library)</p>
+</div>
+<div class="section" id="typedef-struct-tagsysdirdelete-struct-sysdirdelete-struct">
+<span id="group-sys-dir-itf-1gac86b4be28e214b8547da0bd7ac78fae9"></span><h3>typedef struct tagsysdirdelete_struct  sysdirdelete_struct<a class="headerlink" href="#typedef-struct-tagsysdirdelete-struct-sysdirdelete-struct" title="Permalink to this headline">¶</a></h3>
+<p>Deletes a directory with the specified name :return: Returns the runtime system error code (see CmpErrors_Itf.library)</p>
+</div>
+<div class="section" id="typedef-struct-tagsysdirdelete2-struct-sysdirdelete2-struct">
+<span id="group-sys-dir-itf-1ga4c31d0b9b8ce3c95ce882d2ac2851148"></span><h3>typedef struct tagsysdirdelete2_struct  sysdirdelete2_struct<a class="headerlink" href="#typedef-struct-tagsysdirdelete2-struct-sysdirdelete2-struct" title="Permalink to this headline">¶</a></h3>
+<p>Deletes a directory with the specified name</p>
+<p>If xRecursive is set, a whole folder tree can be deleted, i.e. all subfolders and files are deleted. If xRecursive and xKeepDir are set, the folder is kept but its contents is deleted. :return: Returns the runtime system error code (see CmpErrors_Itf.library)</p>
+</div>
+<div class="section" id="typedef-struct-tagsysdirgetcurrent-struct-sysdirgetcurrent-struct">
+<span id="group-sys-dir-itf-1gaa3fe72a76b64346053ce1f163ea4415a"></span><h3>typedef struct tagsysdirgetcurrent_struct  sysdirgetcurrent_struct<a class="headerlink" href="#typedef-struct-tagsysdirgetcurrent-struct-sysdirgetcurrent-struct" title="Permalink to this headline">¶</a></h3>
+<p>Get current working directory for IEC file access :return: Returns the runtime system error code (see CmpErrors_Itf.library)</p>
+</div>
+<div class="section" id="typedef-struct-tagsysdiropen-struct-sysdiropen-struct">
+<span id="group-sys-dir-itf-1gaa18ea62ad73f2586a371d70cfa35f31c"></span><h3>typedef struct tagsysdiropen_struct  sysdiropen_struct<a class="headerlink" href="#typedef-struct-tagsysdiropen-struct-sysdiropen-struct" title="Permalink to this headline">¶</a></h3>
+<p>Opens a specified directory and returns a handle and the first directory entry :return: Returns the runtime system error code (see CmpErrors.library)</p>
+</div>
+<div class="section" id="typedef-struct-tagsysdirread-struct-sysdirread-struct">
+<span id="group-sys-dir-itf-1gade4348a61b37e0c51dde752744f8172c"></span><h3>typedef struct tagsysdirread_struct  sysdirread_struct<a class="headerlink" href="#typedef-struct-tagsysdirread-struct-sysdirread-struct" title="Permalink to this headline">¶</a></h3>
+<p>Read next directory entry. Writes the entry in pszDirEntry. :return: Returns the runtime system error code (see CmpErrors.library)</p>
+<ul class="simple">
+<li>ERR_OK: Entry could be read + ERR_END_OF_OBJECT: If end of directory list was reached + ERR_PARAMETER: If one of the parameters is invalid + ERR_BUFFERSIZE: If iMaxDirEntry is too short to get the complete directory entry string</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Typically after error <code class="docutils literal"><span class="pre">ERR_BUFFERSIZE</span></code>, the dir-handle is set to the next entry, so this entry will be missed!</p>
+</div>
+</div>
+<div class="section" id="typedef-struct-tagsysdirrename-struct-sysdirrename-struct">
+<span id="group-sys-dir-itf-1ga361ba1ce5f2c274d10a41f91f9acf794"></span><h3>typedef struct tagsysdirrename_struct  sysdirrename_struct<a class="headerlink" href="#typedef-struct-tagsysdirrename-struct-sysdirrename-struct" title="Permalink to this headline">¶</a></h3>
+<p>Rename directory :return: Returns the runtime system error code (see CmpErrors.library)</p>
+</div>
+<div class="section" id="typedef-struct-tagsysdirsetcurrent-struct-sysdirsetcurrent-struct">
+<span id="group-sys-dir-itf-1gaf227ad8e4b2c86d973084faacf5054ae"></span><h3>typedef struct tagsysdirsetcurrent_struct  sysdirsetcurrent_struct<a class="headerlink" href="#typedef-struct-tagsysdirsetcurrent-struct-sysdirsetcurrent-struct" title="Permalink to this headline">¶</a></h3>
+<p>Set current working directory on the target. In this directory all following file function are operated. This setting applies to file access from IEC only. An empty string resets the working directory to its default. This function should not be used in parallel to any other file operation from IEC. :return: Returns the runtime system error code (see CmpErrors.library)</p>
+</div>
+<div class="section" id="typedef-isysdir-c-isysdir">
+<span id="group-sys-dir-itf-1ga6f7cbb2c4a5cd36bd405cef89ac887de"></span><h3>typedef ISysDir_C ISysDir<a class="headerlink" href="#typedef-isysdir-c-isysdir" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="void-sysdirclose-sysdirclose-struct-p">
+<span id="group-sys-dir-itf-1gaae092283142eb314da9b6c8f78607419"></span><h3>void sysdirclose (sysdirclose_struct <a href="#id1"><span class="problematic" id="id2">*</span></a>p)<a class="headerlink" href="#void-sysdirclose-sysdirclose-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysdircopy-sysdircopy-struct-p">
+<span id="group-sys-dir-itf-1gaef492051e21dd693289c1d50b9e56dfe"></span><h3>void sysdircopy (sysdircopy_struct <a href="#id3"><span class="problematic" id="id4">*</span></a>p)<a class="headerlink" href="#void-sysdircopy-sysdircopy-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysdircreate-sysdircreate-struct-p">
+<span id="group-sys-dir-itf-1ga2acb5522ee2bdb6550f89a46e1883785"></span><h3>void sysdircreate (sysdircreate_struct <a href="#id5"><span class="problematic" id="id6">*</span></a>p)<a class="headerlink" href="#void-sysdircreate-sysdircreate-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysdircreate2-sysdircreate2-struct-p">
+<span id="group-sys-dir-itf-1gad7ca635af6d92d433cce6efa9603502e"></span><h3>void sysdircreate2 (sysdircreate2_struct <a href="#id7"><span class="problematic" id="id8">*</span></a>p)<a class="headerlink" href="#void-sysdircreate2-sysdircreate2-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysdirdelete-sysdirdelete-struct-p">
+<span id="group-sys-dir-itf-1ga14f00b62067b67038088a9f7746f3445"></span><h3>void sysdirdelete (sysdirdelete_struct <a href="#id9"><span class="problematic" id="id10">*</span></a>p)<a class="headerlink" href="#void-sysdirdelete-sysdirdelete-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysdirdelete2-sysdirdelete2-struct-p">
+<span id="group-sys-dir-itf-1gab262293a919c7759937e3d02f7725e9d"></span><h3>void sysdirdelete2 (sysdirdelete2_struct <a href="#id11"><span class="problematic" id="id12">*</span></a>p)<a class="headerlink" href="#void-sysdirdelete2-sysdirdelete2-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysdirgetcurrent-sysdirgetcurrent-struct-p">
+<span id="group-sys-dir-itf-1gad3c182bb5cf51ff1de2d43161abfeaf5"></span><h3>void sysdirgetcurrent (sysdirgetcurrent_struct <a href="#id13"><span class="problematic" id="id14">*</span></a>p)<a class="headerlink" href="#void-sysdirgetcurrent-sysdirgetcurrent-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysdiropen-sysdiropen-struct-p">
+<span id="group-sys-dir-itf-1gacdaf4ed63ab1742ef2711befcfbac121"></span><h3>void sysdiropen (sysdiropen_struct <a href="#id15"><span class="problematic" id="id16">*</span></a>p)<a class="headerlink" href="#void-sysdiropen-sysdiropen-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysdirread-sysdirread-struct-p">
+<span id="group-sys-dir-itf-1ga3a5c1836f58d0eaf3977912688ec7426"></span><h3>void sysdirread (sysdirread_struct <a href="#id17"><span class="problematic" id="id18">*</span></a>p)<a class="headerlink" href="#void-sysdirread-sysdirread-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysdirrename-sysdirrename-struct-p">
+<span id="group-sys-dir-itf-1ga01443d0a0bd15a354a421b01dc649d47"></span><h3>void sysdirrename (sysdirrename_struct <a href="#id19"><span class="problematic" id="id20">*</span></a>p)<a class="headerlink" href="#void-sysdirrename-sysdirrename-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysdirsetcurrent-sysdirsetcurrent-struct-p">
+<span id="group-sys-dir-itf-1ga42bd9510889e435f2dcfbe2c1d94aa31"></span><h3>void sysdirsetcurrent (sysdirsetcurrent_struct <a href="#id21"><span class="problematic" id="id22">*</span></a>p)<a class="headerlink" href="#void-sysdirsetcurrent-sysdirsetcurrent-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-sysdirosinit-init-struct-pinit">
+<span id="group-sys-dir-itf-1ga56327e69d3db146f042d5d7026363961"></span><h3>RTS_RESULT SysDirOSInit (INIT_STRUCT <a href="#id23"><span class="problematic" id="id24">*</span></a>pInit)<a class="headerlink" href="#rts-result-sysdirosinit-init-struct-pinit" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION END</p>
+</div>
+<div class="section" id="rts-result-sysdiroshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">
+<span id="group-sys-dir-itf-1ga4818ccaf3e2f97fce5271b7fb399f30e"></span><h3>RTS_RESULT SysDirOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)<a class="headerlink" href="#rts-result-sysdiroshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-handle-sysdiropen-char-pszdir-char-pszdirentry-int-imaxdirentry-dirinfo-pdirinfo-rts-result-presult">
+<span id="group-sys-dir-itf-1ga3ab07b5c1fd2888b4aed1a66b169fa73"></span><h3>RTS_HANDLE SysDirOpen (char <a href="#id25"><span class="problematic" id="id26">*</span></a>pszDir, char <a href="#id27"><span class="problematic" id="id28">*</span></a>pszDirEntry, int iMaxDirEntry, DirInfo <a href="#id29"><span class="problematic" id="id30">*</span></a>pDirInfo, RTS_RESULT <a href="#id31"><span class="problematic" id="id32">*</span></a>pResult)<a class="headerlink" href="#rts-handle-sysdiropen-char-pszdir-char-pszdirentry-int-imaxdirentry-dirinfo-pdirinfo-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Opens a specified directory and returns a handle and the first directory entry</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="11%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszDir</td>
+<td>Name of directory. IMPLEMENTATION NOTE: Empty string (&#8220;&#8221;) is the request for the current working directory.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pszDirEntry</td>
+<td>Optional: Directory entry as string. Can be NULL.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>iMaxDirEntry</td>
+<td>Optional: Max number of bytes to write in pszDirEntry</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pDirInfo</td>
+<td>Directory information</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Directory can be opened and a directory info can be retrieved</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Directory cannot be opened. An invalid handle is returned.</td>
+</tr>
+<tr class="row-odd"><td>ERR_END_OF_OBJECT</td>
+<td>Directory can be opened, but _no_ pszDirEntry can be retrieved (direcory is empty or end reached)! NOTE: A valid handle is returned with this error and so the directory must be closed after usage!</td>
+</tr>
+<tr class="row-even"><td>ERR_OPERATION_DENIED</td>
+<td>Directory cannot be opened because access was denied. An invalid handle is returned.</td>
+</tr>
+<tr class="row-odd"><td>ERR_PARAMETER</td>
+<td>One of the parameters is invalid. An invalid handle is returned.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>RTS_HANDLE on directory</p>
+</div>
+<div class="section" id="group-sys-dir-itf-1ga52f8e5fc8d27d8c7f7f890cd0bc7c840">
+<span id="id41"></span><h3>RTS_HANDLE <a href="#id89"><span class="problematic" id="id90">SysDirOpen_</span></a> (char <a href="#id33"><span class="problematic" id="id34">*</span></a>pszDir, char <a href="#id35"><span class="problematic" id="id36">*</span></a>pszDirEntry, int iMaxDirEntry, DirInfo <a href="#id37"><span class="problematic" id="id38">*</span></a>pDirInfo, RTS_RESULT <a href="#id39"><span class="problematic" id="id40">*</span></a>pResult)<a class="headerlink" href="#group-sys-dir-itf-1ga52f8e5fc8d27d8c7f7f890cd0bc7c840" title="Permalink to this headline">¶</a></h3>
+<p>Opens a specified directory and returns a handle and the first directory entry. No standard path will be added. IMPLEMENTATION NOTE: This interface function is implemented operating system dependant! Optimizations can be done here.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="11%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszDir</td>
+<td>Name of directory. IMPLEMENTATION NOTE: Empty string (&#8220;&#8221;) is the request for the current working directory.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pszDirEntry</td>
+<td>Optional: Directory entry as string. Can be NULL.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>iMaxDirEntry</td>
+<td>Optional: Max number of bytes to write in pszDirEntry</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pDirInfo</td>
+<td>Directory information</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Directory can be opened and a directory info can be retrieved</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Directory cannot be opened. An invalid handle is returned.</td>
+</tr>
+<tr class="row-odd"><td>ERR_END_OF_OBJECT</td>
+<td>Directory can be opened, but _no_ pszDirEntry can be retrieved (direcory is empty or end reached)! NOTE: A valid handle is returned with this error and so the directory must be closed after usage!</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>One of the parameters is invalid. An invalid handle is returned.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>RTS_HANDLE on directory</p>
+</div>
+<div class="section" id="rts-result-sysdirclose-rts-handle-hdir">
+<span id="group-sys-dir-itf-1ga9ffd65d2557513315a3f9879ae8a029d"></span><h3>RTS_RESULT SysDirClose (RTS_HANDLE hDir)<a class="headerlink" href="#rts-result-sysdirclose-rts-handle-hdir" title="Permalink to this headline">¶</a></h3>
+<p>Close an open directory</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="8%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDir</td>
+<td>Handle to directory opened with SysDirOpen or with <a href="#id91"><span class="problematic" id="id92">SysDirOpen_</span></a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="group-sys-dir-itf-1ga1710760b5ae70ab40988298e5387de78">
+<span id="id42"></span><h3>RTS_RESULT <a href="#id93"><span class="problematic" id="id94">SysDirClose_</span></a> (RTS_HANDLE hDir)<a class="headerlink" href="#group-sys-dir-itf-1ga1710760b5ae70ab40988298e5387de78" title="Permalink to this headline">¶</a></h3>
+<p>Close an open directory. IMPLEMENTATION NOTE: This interface function is implemented operating system dependant! Optimizations can be done here.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="10%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDir</td>
+<td>Handle to directory opened with SysDirOpen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysdirread-rts-handle-hdir-char-pszdirentry-int-imaxdirentry-dirinfo-pdirinfo">
+<span id="group-sys-dir-itf-1gab22153a1fa4e3218a46c00becd80bccb"></span><h3>RTS_RESULT SysDirRead (RTS_HANDLE hDir, char <a href="#id43"><span class="problematic" id="id44">*</span></a>pszDirEntry, int iMaxDirEntry, DirInfo <a href="#id45"><span class="problematic" id="id46">*</span></a>pDirInfo)<a class="headerlink" href="#rts-result-sysdirread-rts-handle-hdir-char-pszdirentry-int-imaxdirentry-dirinfo-pdirinfo" title="Permalink to this headline">¶</a></h3>
+<p>Read next directory entry. Writes the entry in pszDirEntry.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="10%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDir</td>
+<td>Handle to directory opened with SysDirOpen</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pszDirEntry</td>
+<td>Directory entry as string</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>iMaxDirEntry</td>
+<td>Max number of bytes to write in pszDirEntry</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pDirInfo</td>
+<td>Pointer to directory information. IMPLEMENTATION NOTE: Can be NULL (so only directory name is provided in pszDirEntry)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li>ERR_OK: The directory string contains the next directory entry and is referenced by &#8220;pszDirEntry&#8221;, &#8220;pDirInfo&#8221; references the related directory information string.</li>
+<li>ERR_END_OF_OBJECT: If end of directory list was reached, the &#8220;pszDirEntry&#8221; referenced buffer stays empty.</li>
+<li>ERR_PARAMETER: If one of the parameters is invalid, the function returns without updating the directory iterator.</li>
+<li>ERR_BUFFERSIZE: If iMaxDirEntry is too short to get the complete directory entry string but not null. ATTENTION: Typically if this error occurs, the &#8220;pszDirEntry&#8221; contains the string to the incomplete next entry, the iterator is updated!</li>
+</ul>
+</div>
+<div class="section" id="group-sys-dir-itf-1ga957873529ed52516626c9551c3fc1b95">
+<span id="id51"></span><h3>RTS_RESULT <a href="#id95"><span class="problematic" id="id96">SysDirRead_</span></a> (RTS_HANDLE hDir, char <a href="#id47"><span class="problematic" id="id48">*</span></a>pszDirEntry, int iMaxDirEntry, DirInfo <a href="#id49"><span class="problematic" id="id50">*</span></a>pDirInfo)<a class="headerlink" href="#group-sys-dir-itf-1ga957873529ed52516626c9551c3fc1b95" title="Permalink to this headline">¶</a></h3>
+<p>Read next directory entry. Writes the entry in pszDirEntry. IMPLEMENTATION NOTE: This interface function is implemented operating system dependant! Optimizations can be done here.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="10%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hDir</td>
+<td>Handle to directory opened with SysDirOpen</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pszDirEntry</td>
+<td>Directory entry as string</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>iMaxDirEntry</td>
+<td>Max number of bytes to write in pszDirEntry</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pDirInfo</td>
+<td>Pointer to directory information. IMPLEMENTATION NOTE: Can be NULL (so only directory name is provided in pszDirEntry)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li>ERR_OK: The directory string contains the next directory entry and is referenced by &#8220;pszDirEntry&#8221;, &#8220;pDirInfo&#8221; references the related directory information string.</li>
+<li>ERR_END_OF_OBJECT: If end of directory list was reached, the &#8220;pszDirEntry&#8221; referenced buffer stays empty.</li>
+<li>ERR_PARAMETER: If one of the parameters is invalid, the function returns without updating the directory iterator.</li>
+<li>ERR_BUFFERSIZE: If iMaxDirEntry is too short to get the complete directory entry string but not null. ATTENTION: Typically if this error occurs, the &#8220;pszDirEntry&#8221; contains the string to the incomplete next entry, the iterator is updated!</li>
+</ul>
+</div>
+<div class="section" id="rts-result-sysdircreate-char-pszdir">
+<span id="group-sys-dir-itf-1ga382b85aba7a92647808e18532b38287c"></span><h3>RTS_RESULT SysDirCreate (char <a href="#id52"><span class="problematic" id="id53">*</span></a>pszDir)<a class="headerlink" href="#rts-result-sysdircreate-char-pszdir" title="Permalink to this headline">¶</a></h3>
+<p>Creates a new directory with the specified name</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="22%" />
+<col width="53%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszDir</td>
+<td>Name of directory</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysdircreate2-char-pszdir-rts-bool-brecursive">
+<span id="group-sys-dir-itf-1gaa6cfe429e3b16f4d6fa6c904317595dc"></span><h3>RTS_RESULT SysDirCreate2 (char <a href="#id54"><span class="problematic" id="id55">*</span></a>pszDir, RTS_BOOL bRecursive)<a class="headerlink" href="#rts-result-sysdircreate2-char-pszdir-rts-bool-brecursive" title="Permalink to this headline">¶</a></h3>
+<p>Creates a new directory with the specified name. If bRecursive is set, a full path is created, i.e. all missing parent directories are created too.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="29%" />
+<col width="49%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszDir</td>
+<td>Name of directory</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>bRecursive</td>
+<td>Create a full path</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="group-sys-dir-itf-1ga94530ed643a1ccd04f1a7a560f420c94">
+<span id="id58"></span><h3>RTS_RESULT <a href="#id97"><span class="problematic" id="id98">SysDirCreate_</span></a> (char <a href="#id56"><span class="problematic" id="id57">*</span></a>pszDir)<a class="headerlink" href="#group-sys-dir-itf-1ga94530ed643a1ccd04f1a7a560f420c94" title="Permalink to this headline">¶</a></h3>
+<p>Creates a new directory with the specified name. No standard path will be added. IMPLEMENTATION NOTE: This interface function is implemented operating system dependant! Optimizations can be done here.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="22%" />
+<col width="53%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszDir</td>
+<td>Name of directory</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Directory was created successfully</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Directory couldn&#8217;t be created for various reasons other than the following two</td>
+</tr>
+<tr class="row-odd"><td>ERR_NO_OBJECT</td>
+<td>The path to the directory to be created does not exist</td>
+</tr>
+<tr class="row-even"><td>ERR_DUPLICATE</td>
+<td>The directory already exists</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysdirdelete-char-pszdir">
+<span id="group-sys-dir-itf-1gab57b1051e92ae0659543a876461fde22"></span><h3>RTS_RESULT SysDirDelete (char <a href="#id59"><span class="problematic" id="id60">*</span></a>pszDir)<a class="headerlink" href="#rts-result-sysdirdelete-char-pszdir" title="Permalink to this headline">¶</a></h3>
+<p>Deletes a directory with the specified name</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="22%" />
+<col width="53%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszDir</td>
+<td>Name of directory</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysdirdelete2-char-pszdir-rts-bool-brecursive-rts-bool-bkeepdir">
+<span id="group-sys-dir-itf-1gad05203de99260e76da1659e386c795ef"></span><h3>RTS_RESULT SysDirDelete2 (char <a href="#id61"><span class="problematic" id="id62">*</span></a>pszDir, RTS_BOOL bRecursive, RTS_BOOL bKeepDir)<a class="headerlink" href="#rts-result-sysdirdelete2-char-pszdir-rts-bool-brecursive-rts-bool-bkeepdir" title="Permalink to this headline">¶</a></h3>
+<p>Deletes a directory with the specified name If bRecursive is set, a whole folder tree can be deleted, i.e. all subfolders and files are deleted. If bRecursive and bKeepDir are set, the folder is kept but its contents is deleted.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="24%" />
+<col width="57%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszDir</td>
+<td>Name of directory</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>bRecursive</td>
+<td>Delete a whole folder tree</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>bKeepDir</td>
+<td>Keep the starting folder</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="group-sys-dir-itf-1gacc03df6ff7ef0224d9d8f695a35ae18f">
+<span id="id65"></span><h3>RTS_RESULT <a href="#id99"><span class="problematic" id="id100">SysDirDelete_</span></a> (char <a href="#id63"><span class="problematic" id="id64">*</span></a>pszDir)<a class="headerlink" href="#group-sys-dir-itf-1gacc03df6ff7ef0224d9d8f695a35ae18f" title="Permalink to this headline">¶</a></h3>
+<p>Deletes a directory with the specified name. No standard path will be added. IMPLEMENTATION NOTE: This interface function is implemented operating system dependant! Optimizations can be done here.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="22%" />
+<col width="53%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszDir</td>
+<td>Name of directory</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysdirrename-char-pszolddir-char-psznewdir">
+<span id="group-sys-dir-itf-1gaa595cbb76c27ab321a114e63d80a48e1"></span><h3>RTS_RESULT SysDirRename (char <a href="#id66"><span class="problematic" id="id67">*</span></a>pszOldDir, char <a href="#id68"><span class="problematic" id="id69">*</span></a>pszNewDir)<a class="headerlink" href="#rts-result-sysdirrename-char-pszolddir-char-psznewdir" title="Permalink to this headline">¶</a></h3>
+<p>Rename directory</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="23%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszOldDir</td>
+<td>Name of existing directory</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszNewDir</td>
+<td>New name</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="group-sys-dir-itf-1ga99606af2288a25ebae8387d07920e283">
+<span id="id74"></span><h3>RTS_RESULT <a href="#id101"><span class="problematic" id="id102">SysDirRename_</span></a> (char <a href="#id70"><span class="problematic" id="id71">*</span></a>pszOldDir, char <a href="#id72"><span class="problematic" id="id73">*</span></a>pszNewDir)<a class="headerlink" href="#group-sys-dir-itf-1ga99606af2288a25ebae8387d07920e283" title="Permalink to this headline">¶</a></h3>
+<p>Rename directory. No standard path will be added. IMPLEMENTATION NOTE: This interface function is implemented operating system dependant! Optimizations can be done here.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="23%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszOldDir</td>
+<td>Name of existing directory</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszNewDir</td>
+<td>New name</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysdirgetcurrent-char-pszdir-int-imaxdirlen">
+<span id="group-sys-dir-itf-1ga5d0e2bbbb89d1c2ded2b88eeed24042e"></span><h3>RTS_RESULT SysDirGetCurrent (char <a href="#id75"><span class="problematic" id="id76">*</span></a>pszDir, int iMaxDirLen)<a class="headerlink" href="#rts-result-sysdirgetcurrent-char-pszdir-int-imaxdirlen" title="Permalink to this headline">¶</a></h3>
+<p>Get current working directory. If no FilePath is specified pzDir is empty (default). To obtain the working directory of the underlying file system use <a href="#id103"><span class="problematic" id="id104">SysDirGetCurrent_</span></a>.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="23%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pszDir</td>
+<td>Name of current directory</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>iMaxDirLen</td>
+<td>Max lenght of directory buffer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="group-sys-dir-itf-1gac9bceac56abc6fc67ae11265ad14474d">
+<span id="id79"></span><h3>RTS_RESULT <a href="#id105"><span class="problematic" id="id106">SysDirGetCurrent_</span></a> (char <a href="#id77"><span class="problematic" id="id78">*</span></a>pszDir, int iMaxDirLen)<a class="headerlink" href="#group-sys-dir-itf-1gac9bceac56abc6fc67ae11265ad14474d" title="Permalink to this headline">¶</a></h3>
+<p>Get current working directory of the underlying file system. No standard path will be added. IMPLEMENTATION NOTE: This interface function is implemented operating system dependant!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="23%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pszDir</td>
+<td>Name of current directory</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>iMaxDirLen</td>
+<td>Max lenght of directory buffer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysdirsetcurrent-char-pszdir">
+<span id="group-sys-dir-itf-1gac269cce0192c9269c10cc2b56a77eee1"></span><h3>RTS_RESULT SysDirSetCurrent (char <a href="#id80"><span class="problematic" id="id81">*</span></a>pszDir)<a class="headerlink" href="#rts-result-sysdirsetcurrent-char-pszdir" title="Permalink to this headline">¶</a></h3>
+<p>Former set current working directory. This function has been deprecated. It returns just ERR_NOTIMPLEMENTED. To really change the working directory of the whole runtime system use <a href="#id107"><span class="problematic" id="id108">SysDirSetCurrent_</span></a>.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="30%" />
+<col width="37%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszDir</td>
+<td>not used</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>ERR_NOTIMPLEMENTED</p>
+</div>
+<div class="section" id="group-sys-dir-itf-1ga3b74804294898ea334a4f8f559aeef9e">
+<span id="id84"></span><h3>RTS_RESULT <a href="#id109"><span class="problematic" id="id110">SysDirSetCurrent_</span></a> (char <a href="#id82"><span class="problematic" id="id83">*</span></a>pszDir)<a class="headerlink" href="#group-sys-dir-itf-1ga3b74804294898ea334a4f8f559aeef9e" title="Permalink to this headline">¶</a></h3>
+<p>Set current working directory of the underlying file system of the whole runtime system. No standard path will be added. It is not recommended to use this function! ATTENTION: Just in case it is strongly recommended to save the path with <a href="#id111"><span class="problematic" id="id112">SysDirGetCurrent_</span></a> prior to this call and restore the path as soon as possible. Otherwise the whole runtime system may not work any more! ATTENTION: Reset Origin does not affect this setting. The runtime system has to be restarted! IMPLEMENTATION NOTE: This interface function is implemented operating system dependant!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="18%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszDir</td>
+<td>Name of current directory</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-sysdircopy-char-pszdestdir-char-pszsourcedir-rts-bool-brecursive-rts-bool-boverwrite">
+<span id="group-sys-dir-itf-1ga49ab0a528d1f9382b3729e2725284a36"></span><h3>RTS_RESULT SysDirCopy (char <a href="#id85"><span class="problematic" id="id86">*</span></a>pszDestDir, char <a href="#id87"><span class="problematic" id="id88">*</span></a>pszSourceDir, RTS_BOOL bRecursive, RTS_BOOL bOverwrite)<a class="headerlink" href="#rts-result-sysdircopy-char-pszdestdir-char-pszsourcedir-rts-bool-brecursive-rts-bool-boverwrite" title="Permalink to this headline">¶</a></h3>
+<p>Copies the contents of pszSourceDir to pszDestDir. Depending of the parameters, all subdirectories and its content will be copied too, and existing files will be overwritten. NOTE: Empty direcories will be copied if bRecursive is TRUE.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszDestDir</td>
+<td>Name of destination directory</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszSourceDir</td>
+<td>Name of source directory</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>bRecursive</td>
+<td>TRUE: all subdirectories and their contents are copied, FALSE: subdirectories are omitted</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>bOverwrite</td>
+<td>TRUE: existing files are overwritten, FALSE: existing files are left untouched</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>The contents of the source direcory was successfully copied to the destination direcory</td>
+</tr>
+<tr class="row-even"><td>ERR_NO_OBJECT</td>
+<td>There were no files to copy, the destination directory is nevertheless created if need be</td>
+</tr>
+<tr class="row-odd"><td>ERR_OPERATION_DENIED</td>
+<td>Source or destination direcory is not accessible</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>System error</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___sys_ethernet2_itf.html" title="SysEthernet2Itf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_cpu_multi_core_itf.html" title="SysCpuMultiCoreItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,503 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_io_drv_itf:
+
+===========
+CmpIoDrvItf
+===========
+
+Interface of CmpIoDrv. :ref:`More... <group___cmp_io_drv_itf-details>`
+
+Modules
+-------
+
+- :ref:`Channel Map List Swapping Information <group___cmp_io_drv_itf___channel_map_list_swapping_information>`
+
+- :ref:`Connector flags <group___cmp_io_drv_itf___connectorflags>`
+
+- :ref:`Connector options <group___cmp_io_drv_itf___connectoroptions>`
+
+- :ref:`Connector types <group___cmp_io_drv_itf___connectortypes>`
+
+- :ref:`Driver property flags <group___cmp_io_drv_itf___driverpropertyflags>`
+
+- :ref:`Fieldbus independent parameters <group___cmp_io_drv_itf___fieldbusindependentparameters>`
+
+- :ref:`Parameter value flags <group___cmp_io_drv_itf___parametervalueflags>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpIoDrv_C <struct_i_cmp_io_drv___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpIoDrv <group___cmp_io_drv_itf_1gae60bebb04e3cc8f1209e2c974348f4f3>`
+
+- #define :ref:`EXTITF_CmpIoDrv <group___cmp_io_drv_itf_1ga040f11f7d7e580970fb2bf4fc2acf31e>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpIoDrv_C <struct_i_cmp_io_drv___c>` :ref:`ICmpIoDrv <group___cmp_io_drv_itf_1gab333e1e4293fb90f7b94e89a21c321bb>`
+
+Functions
+---------
+
+- STATICITF_DEF RTS_HANDLE :ref:`IoDrvCreate <group___cmp_io_drv_itf_1ga47ade8ad65e79bc0200f687e84196fb6>` (RTS_HANDLE hIIoDrv, CLASSID ClassId, int iId, RTS_RESULT * pResult)
+
+- STATICITF_DEF RTS_RESULT :ref:`IoDrvDelete <group___cmp_io_drv_itf_1ga52b68304d7f829d8f27b3260c5c7abb2>` (RTS_HANDLE hIoDrv, RTS_HANDLE hIIoDrv)
+
+- STATICITF_DEF RTS_RESULT :ref:`IoDrvGetInfo <group___cmp_io_drv_itf_1gafbdbce2d49f32eb49c51857c6dbd14b7>` (RTS_HANDLE hIoDrv, :ref:`IoDrvInfo <group___cmp_io_drv_itf___channel_map_list_swapping_information_1gac069193c4451dbf1c092751626ad262a>` ** ppIoDrv)
+
+- STATICITF_DEF RTS_RESULT :ref:`IoDrvGetModuleDiagnosis <group___cmp_io_drv_itf_1gaca801830078ea9485613f2491e35575d>` (RTS_HANDLE hIoDrv, :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector)
+
+- STATICITF_DEF RTS_RESULT :ref:`IoDrvIdentify <group___cmp_io_drv_itf_1ga9edcf3040059d39a18629fd4633fd650>` (RTS_HANDLE hIoDrv, :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector)
+
+- STATICITF_DEF RTS_RESULT :ref:`IoDrvReadInputs <group___cmp_io_drv_itf_1ga48f414affb4bb84e803e08b48eaa1ea1>` (RTS_HANDLE hIoDrv, :ref:`IoConfigConnectorMap <group___cmp_io_mgr_itf_1ga17d944e4f292a8b9c38e44328f586e33>` * pConnectorMapList, int nCount)
+
+- STATICITF_DEF RTS_RESULT :ref:`IoDrvScanModules <group___cmp_io_drv_itf_1ga5f1ba7a16dc1fa5b8f588f1978a47503>` (RTS_HANDLE hIoDrv, :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector, :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` ** ppConnectorList, int * pnCount)
+
+- STATICITF_DEF RTS_RESULT :ref:`IoDrvStartBusCycle <group___cmp_io_drv_itf_1ga7712716bf87ce241c22958db3aa19bcc>` (RTS_HANDLE hIoDrv, :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector)
+
+- STATICITF_DEF RTS_RESULT :ref:`IoDrvUpdateConfiguration <group___cmp_io_drv_itf_1ga56a1f59dfd7963c606c8289edc2c3b8b>` (RTS_HANDLE hIoDrv, :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnectorList, int nCount)
+
+- STATICITF_DEF RTS_RESULT :ref:`IoDrvUpdateMapping <group___cmp_io_drv_itf_1ga39e0e4790272987e84b31f6b5fb5d99f>` (RTS_HANDLE hIoDrv, :ref:`IoConfigTaskMap <group___cmp_io_mgr_itf_1ga24e1b19811629d55c3187dd61411df95>` * pTaskMapList, int nCount)
+
+- STATICITF_DEF RTS_RESULT :ref:`IoDrvWatchdogTrigger <group___cmp_io_drv_itf_1ga7abe6c7aa98b08694b5676deb5ff79ab>` (RTS_HANDLE hIoDrv, :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector)
+
+- STATICITF_DEF RTS_RESULT :ref:`IoDrvWriteOutputs <group___cmp_io_drv_itf_1gae25ad6b1f53f6935b17125d9757aad45>` (RTS_HANDLE hIoDrv, :ref:`IoConfigConnectorMap <group___cmp_io_mgr_itf_1ga17d944e4f292a8b9c38e44328f586e33>` * pConnectorMapList, int nCount)
+
+.. _group___cmp_io_drv_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpIoDrv.
+
+Standard IO-driver interface.
+
+THis interface is used for I/O drivers written in C as well as I/O drivers written in IEC. IEC I/O drivers are typically written as a function block, which implementes the IIoDrv Interface.
+
+To be able to access this IEC interface from C (which is for example necessary for the IoMgr), the component CmpIoDrvIec acts as a wrapper between C and IEC and implements exactly this interface.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_io_drv_itf_1gae60bebb04e3cc8f1209e2c974348f4f3:
+
+#define ITF_CmpIoDrv
+^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_drv_itf_1ga040f11f7d7e580970fb2bf4fc2acf31e:
+
+#define EXTITF_CmpIoDrv
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_io_drv_itf_1gab333e1e4293fb90f7b94e89a21c321bb:
+
+typedef ICmpIoDrv_C ICmpIoDrv
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_io_drv_itf_1ga47ade8ad65e79bc0200f687e84196fb6:
+
+STATICITF_DEF RTS_HANDLE IoDrvCreate (RTS_HANDLE hIIoDrv, CLASSID ClassId, int iId, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create a new I/O driver instance. Is typically internally used by the IO-driver itself
+
+**Parameters**
+
++---------+---------+------------------------------------------------------------------------------------------------------------------+
+| [in]    | hIIoDrv | Handle to the IO-driver interface. Must be 0 and is filled automatically by calling the CAL_IoDrvCreate() macro! |
++---------+---------+------------------------------------------------------------------------------------------------------------------+
+| [in]    | ClassId | ClassID of the driver. See "Class IDs" section in CmpItf.h or in the Dep.h file of the IO-driver.                |
++---------+---------+------------------------------------------------------------------------------------------------------------------+
+| [in]    | iId     | Instance number of the IO-driver                                                                                 |
++---------+---------+------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to error code                                                                                            |
++---------+---------+------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Should return RTS_INVALID_HANDLE
+
+.. _group___cmp_io_drv_itf_1ga52b68304d7f829d8f27b3260c5c7abb2:
+
+STATICITF_DEF RTS_RESULT IoDrvDelete (RTS_HANDLE hIoDrv, RTS_HANDLE hIIoDrv)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete an I/O driver instance. Is typically internally used by the IO-driver itself
+
+**Parameters**
+
++---------+---------+-----------------------------------------+
+| [in]    | hIoDrv  | Handle to the IO-driver instance        |
++---------+---------+-----------------------------------------+
+| [in]    | hIIoDrv | Handle of the ITFID_ICmpIoDrv interface |
++---------+---------+-----------------------------------------+
+
+**Returns:**
+
+Should return ERR_NOTIMPLEMENTED
+
+.. _group___cmp_io_drv_itf_1gafbdbce2d49f32eb49c51857c6dbd14b7:
+
+STATICITF_DEF RTS_RESULT IoDrvGetInfo (RTS_HANDLE hIoDrv, IoDrvInfo **ppIoDrv)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get a driver specific info structure.
+
+This structure contains IDs and names of the driver.
+
+**Parameters**
+
++---------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hIoDrv  | Handle to the IO-driver instance RANGE=[RTS_INVALID_HANDLE,VALID_IODRIVER]                                                                      |
++---------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | ppIoDrv | Pointer to pointer to the driver info. Pointer must be set by the driver to its internal driver info structure! RANGE=[NULL,VALID_IODRVIERINFO] |
++---------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+----------------------------------------------+
+| ERR_OK        | The info structure was returned successfully |
++---------------+----------------------------------------------+
+| ERR_PARAMETER | hIoDrv was invalid or ppIoDrv was NULL       |
++---------------+----------------------------------------------+
+| ERR_FAILED    | Internal Error                               |
++---------------+----------------------------------------------+
+
+.. _group___cmp_io_drv_itf_1gaca801830078ea9485613f2491e35575d:
+
+STATICITF_DEF RTS_RESULT IoDrvGetModuleDiagnosis (RTS_HANDLE hIoDrv, IoConfigConnector *pConnector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Update Connector Flags in the device tree.
+
+The driver should write the current diagnostic information (available, no driver, bus error,...) with the function IoDrvSetModuleDiagnosis() to the I/O connector.
+
+This function can be used by other components or from the IEC application to update the diagnostic flags of the connector. To update the status from the driver, it has to call this function manually.
+
+**Parameters**
+
++---------+------------+-----------------------------------------------------------------------+
+| [in]    | hIoDrv     | Handle to the IO-driver instance                                      |
++---------+------------+-----------------------------------------------------------------------+
+| [in]    | pConnector | Pointer to the connector, that the diagostic information is requested |
++---------+------------+-----------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-----+
+| ERR_PARAMETER | ... |
++---------------+-----+
+
+.. _group___cmp_io_drv_itf_1ga9edcf3040059d39a18629fd4633fd650:
+
+STATICITF_DEF RTS_RESULT IoDrvIdentify (RTS_HANDLE hIoDrv, IoConfigConnector *pConnector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Identify plugable I/O card or slave.
+
+If the configurator supports scanning of modules, this function can be used our of a communication service to identify a module on the bus or locally on the PLC. This This might be done by a blinking LED or whatever the hardware supports.
+
+**Parameters**
+
++---------+------------+------------------------------------------------------------------+
+| [in]    | hIoDrv     | Handle to the IO-driver instance                                 |
++---------+------------+------------------------------------------------------------------+
+| [in]    | pConnector | Pointer to the connector, that should identify itself physically |
++---------+------------+------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------+
+| ERR_OK             | Identification was sent                      |
++--------------------+----------------------------------------------+
+| ERR_PARAMETER      | hIoDrv was invalid or pConnector was NULL    |
++--------------------+----------------------------------------------+
+| ERR_FAILED         | Service not enabled (e.g. bus not connected) |
++--------------------+----------------------------------------------+
+| ERR_NOTIMPLEMENTED | Not provided by the driver                   |
++--------------------+----------------------------------------------+
+
+.. _group___cmp_io_drv_itf_1ga48f414affb4bb84e803e08b48eaa1ea1:
+
+STATICITF_DEF RTS_RESULT IoDrvReadInputs (RTS_HANDLE hIoDrv, IoConfigConnectorMap *pConnectorMapList, int nCount)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Read inputs for one task
+
+This function is called cyclically from every task that is using inputs. A part of the task map list, which contains only the data of one connector are passed to the driver (called connector map list).
+
+If a driver has registered one instance to more than one connector, it might get more than one call with a different subset of the task map list.
+
+The I/O driver should read the data from the local hardware or a buffer and write them to the corresponding IEC variables.
+
+**Parameters**
+
++---------+-------------------+---------------------------------------------+
+| [in]    | hIoDrv            | Handle to the IO-driver instance            |
++---------+-------------------+---------------------------------------------+
+| [in]    | pConnectorMapList | Pointer to the connector map list           |
++---------+-------------------+---------------------------------------------+
+| [in]    | nCount            | Number of entries in the connector map list |
++---------+-------------------+---------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------------+------------------------------------------------+
+| ERR_OK              | ReadInputs was executed successfully.          |
++---------------------+------------------------------------------------+
+| ERR_PARAMETER       | hIoDrv was invalid or pConnectorList was NULL. |
++---------------------+------------------------------------------------+
+| ERR_FAILED          | Internal error                                 |
++---------------------+------------------------------------------------+
+| ERR_LICENSE_MISSING | No License                                     |
++---------------------+------------------------------------------------+
+
+.. _group___cmp_io_drv_itf_1ga5f1ba7a16dc1fa5b8f588f1978a47503:
+
+STATICITF_DEF RTS_RESULT IoDrvScanModules (RTS_HANDLE hIoDrv, IoConfigConnector *pConnector, IoConfigConnector **ppConnectorList, int *pnCount)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Scan for submodules of a connector.
+
+This function is executed when the driver is downloaded. It is called over a communication service.
+
+The I/O driver should search for connected subumodules and return them via ppConnectorList.
+
+NOTE: This interface is called synchronously and the buffer for the connector list has to be allocated by the driver.
+
+The buffer might be freed at the next scan or at the next UpdateConfiguration.
+
+**Parameters**
+
++---------+-----------------+------------------------------------------------------------------+
+| [in]    | hIoDrv          | Handle to the IO-driver instance                                 |
++---------+-----------------+------------------------------------------------------------------+
+| [in]    | pConnector      | Pointer to the connector, which layout should be scanned         |
++---------+-----------------+------------------------------------------------------------------+
+| [in]    | ppConnectorList | Pointer to the scanned connectors (devices) to return            |
++---------+-----------------+------------------------------------------------------------------+
+| [in]    | pnCount         | Pointer to the number of entries in the connector list to return |
++---------+-----------------+------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+-----------------------------------------------------------------------------------------------------------------------+
+| ERR_OK             | Scan for modules finished                                                                                             |
++--------------------+-----------------------------------------------------------------------------------------------------------------------+
+| ERR_PARAMETER      | hIoDrv was invalid, pConnector, ppConnectorList or pnCount was NULL                                                   |
++--------------------+-----------------------------------------------------------------------------------------------------------------------+
+| ERR_FAILED         | Internal error                                                                                                        |
++--------------------+-----------------------------------------------------------------------------------------------------------------------+
+| ERR_NOTIMPLEMENTED | Scan feature is not implemented                                                                                       |
++--------------------+-----------------------------------------------------------------------------------------------------------------------+
+| ERR_PENDING        | Scan still in progress. Function will be called again. ppConnectorList and pnCount may contain a partial scan result. |
++--------------------+-----------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_io_drv_itf_1ga7712716bf87ce241c22958db3aa19bcc:
+
+STATICITF_DEF RTS_RESULT IoDrvStartBusCycle (RTS_HANDLE hIoDrv, IoConfigConnector *pConnector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Start bus cycle for a specific connector.
+
+The bus cycle task is defined globally for the whole PLC or locally for a specific I/O connector in the CoDeSys project. This call can be used by the I/O driver to flush the I/O data if it was cached before.
+
+This way we can get a better and consistent timing on the bus. d
+
+Note: This function is called for every connector which has a registered I/O driver and "needsbuscycle" set in the device description (this means that it might also be called for children of the connector).
+
+Depending on the device description, this function might be executed at the beginning or at the end of the task cycle.
+
+**Parameters**
+
++---------+------------+-------------------------------------------------------------------+
+| [in]    | hIoDrv     | Handle to the IO-driver instance                                  |
++---------+------------+-------------------------------------------------------------------+
+| [in]    | pConnector | Pointer to the connector, on which the buscycle must be triggered |
++---------+------------+-------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+---------------------------------------+
+| ERR_OK        | Bus cycle was triggered               |
++---------------+---------------------------------------+
+| ERR_PARAMETER | hIoDrv was invalid or pConnector NULL |
++---------------+---------------------------------------+
+| ERR_FAILED    | Internal Error                        |
++---------------+---------------------------------------+
+
+.. _group___cmp_io_drv_itf_1ga56a1f59dfd7963c606c8289edc2c3b8b:
+
+STATICITF_DEF RTS_RESULT IoDrvUpdateConfiguration (RTS_HANDLE hIoDrv, IoConfigConnector *pConnectorList, int nCount)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Propagate I/O configuration to the drivers.
+
+This call passes the I/O configuration (based on the configuration tree in the CoDeSys programming system) to all registered I/O drivers. Every driver has the chance to pass this tree and to register itself for a specific connector.
+
+The driver can use the I/O Manager Interface to iterate over the I/O Connectors and to read the I/O Parameters. If it decides to handle the I/Os of one of those connectors, it can register it's driver handle (IBase) to the connector in the member hIoDrv.
+
+This function is called when the application is initialized as well as when it is de- or reinitialized. In this case it is called with pConnectorList = NULL.
+
+**Parameters**
+
++---------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hIoDrv         | Handle to the IO-driver instance                                                                                                                                                                                                                 |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pConnectorList | Pointer to the complete connector list NOTE: The function is called with pConnectorList = NULL to signalize the driver, that the IO-configuration will be deleted! In this case, the driver can cleanup its configuration, can stop the bus etc. |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | nCount         | Number of entries in the connector list                                                                                                                                                                                                          |
++---------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++----------------+--------------------------------------------------------+
+| ERR_OK         | UpdateConfiguration was successfull and found a driver |
++----------------+--------------------------------------------------------+
+| ERR_NO_OBJECT  | No connector for this driver was found                 |
++----------------+--------------------------------------------------------+
+| ERR_NO_LICENSE | No license for this driver                             |
++----------------+--------------------------------------------------------+
+
+.. _group___cmp_io_drv_itf_1ga39e0e4790272987e84b31f6b5fb5d99f:
+
+STATICITF_DEF RTS_RESULT IoDrvUpdateMapping (RTS_HANDLE hIoDrv, IoConfigTaskMap *pTaskMapList, int nCount)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Propagate the task map lists to the drivers.
+
+This functions gives the drivers a chance to optimize their internal data structures based on the real task map lists. The function is called on every initialization of the application (download, bootproject,...).
+
+**Parameters**
+
++---------+--------------+------------------------------------------+
+| [in]    | hIoDrv       | Handle to the IO-driver instance         |
++---------+--------------+------------------------------------------+
+| [in]    | pTaskMapList | Pointer to the task map list of one task |
++---------+--------------+------------------------------------------+
+| [in]    | nCount       | Number of entries in the map list        |
++---------+--------------+------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------------------+
+| ERR_OK             | Default Result (mappings reorganized or nothing changed) |
++--------------------+----------------------------------------------------------+
+| ERR_NOTIMPLEMENTED | UpdateMapping is not implemented                         |
++--------------------+----------------------------------------------------------+
+
+.. _group___cmp_io_drv_itf_1ga7abe6c7aa98b08694b5676deb5ff79ab:
+
+STATICITF_DEF RTS_RESULT IoDrvWatchdogTrigger (RTS_HANDLE hIoDrv, IoConfigConnector *pConnector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Trigger the hardware watchdog of this fieldbus master / IO system.
+
+**Parameters**
+
++---------+------------+-----------------------------------------------------------------------+
+| [in]    | hIoDrv     | Handle to the IO-driver instance                                      |
++---------+------------+-----------------------------------------------------------------------+
+| [in]    | pConnector | Pointer to the connector, on which the watchdog should be retriggered |
++---------+------------+-----------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+------------------------------------+
+| ERR_OK             | Watchdog successfully retriggered  |
++--------------------+------------------------------------+
+| ERR_NOT_SUPPORTED  | Watchdog not available             |
++--------------------+------------------------------------+
+| ERR_NOTIMPLEMENTED | Watchdog interface not implemented |
++--------------------+------------------------------------+
+
+.. _group___cmp_io_drv_itf_1gae25ad6b1f53f6935b17125d9757aad45:
+
+STATICITF_DEF RTS_RESULT IoDrvWriteOutputs (RTS_HANDLE hIoDrv, IoConfigConnectorMap *pConnectorMapList, int nCount)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Write outputs for one task
+
+This function is called cyclically from every task that is using outputs. A part of the task map list, which contains only the data of one connector are passed to the driver (called connector map list).
+
+If a driver has registered one instance to more than one connector, it might get more than one call with a different subset of the task map list.
+
+The I/O driver should write out the data to the local hardware, a buffer or a fieldbus.
+
+**Parameters**
+
++---------+-------------------+---------------------------------------------+
+| [in]    | hIoDrv            | Handle to the IO-driver instance            |
++---------+-------------------+---------------------------------------------+
+| [in]    | pConnectorMapList | Pointer to the connector map list           |
++---------+-------------------+---------------------------------------------+
+| [in]    | nCount            | Number of entries in the connector map list |
++---------+-------------------+---------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------+------------------------------+
+| ERR_OK | Outputs successfully written |
++--------+------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

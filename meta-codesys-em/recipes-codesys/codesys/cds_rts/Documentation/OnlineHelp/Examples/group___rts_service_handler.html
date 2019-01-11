@@ -1,0 +1,247 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>RtsServiceHandler &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">RtsServiceHandler</a><ul>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-sg-temp-0x0100">#define SG_TEMP 0x0100</a></li>
+<li><a class="reference internal" href="#define-temp-get-rts-version-0x12">#define TEMP_GET_RTS_VERSION 0x12</a></li>
+<li><a class="reference internal" href="#define-tag-temp-version-type-0x10">#define TAG_TEMP_VERSION_TYPE 0x10</a></li>
+<li><a class="reference internal" href="#define-temp-command-read-ip-0x13">#define TEMP_COMMAND_READ_IP 0x13</a></li>
+<li><a class="reference internal" href="#define-temp-tag-ip-bytes-0x11">#define TEMP_TAG_IP_BYTES 0x11</a></li>
+<li><a class="reference internal" href="#define-temp-tag-subnet-bytes-0x12">#define TEMP_TAG_SUBNET_BYTES 0x12</a></li>
+<li><a class="reference internal" href="#define-temp-command-read-clock-0x14">#define TEMP_COMMAND_READ_CLOCK 0x14</a></li>
+<li><a class="reference internal" href="#define-temp-command-set-clock-0x15">#define TEMP_COMMAND_SET_CLOCK 0x15</a></li>
+<li><a class="reference internal" href="#define-temp-tag-rtc-time-0x11">#define TEMP_TAG_RTC_TIME 0x11</a></li>
+<li><a class="reference internal" href="#define-temp-tag-rtc-result-0x12">#define TEMP_TAG_RTC_RESULT 0x12</a></li>
+<li><a class="reference internal" href="#define-userdb-object-template-device-myobject">#define USERDB_OBJECT_TEMPLATE &#8220;Device.MyObject&#8221;</a></li>
+<li><a class="reference internal" href="#define-userdb-object-template-service1-userdb-object-template-get-rts-version">#define USERDB_OBJECT_TEMPLATE_SERVICE1 <code class="docutils literal"><span class="pre">USERDB_OBJECT_TEMPLATE</span></code> &#8221;.__GET_RTS_VERSION&#8221;</a></li>
+<li><a class="reference internal" href="#define-userdb-object-template-service2-userdb-object-template-command-read-ip">#define USERDB_OBJECT_TEMPLATE_SERVICE2 <code class="docutils literal"><span class="pre">USERDB_OBJECT_TEMPLATE</span></code> &#8221;.__COMMAND_READ_IP&#8221;</a></li>
+<li><a class="reference internal" href="#define-userdb-object-template-service3-userdb-object-template-command-read-clock">#define USERDB_OBJECT_TEMPLATE_SERVICE3 <code class="docutils literal"><span class="pre">USERDB_OBJECT_TEMPLATE</span></code> &#8221;.__COMMAND_READ_CLOCK&#8221;</a></li>
+<li><a class="reference internal" href="#define-userdb-object-template-service4-userdb-object-template-command-set-clock">#define USERDB_OBJECT_TEMPLATE_SERVICE4 <code class="docutils literal"><span class="pre">USERDB_OBJECT_TEMPLATE</span></code> &#8221;.__COMMAND_SET_CLOCK&#8221;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#static-rts-result-addmyobjects-void">static RTS_RESULT AddMyObjects (void)</a></li>
+<li><a class="reference internal" href="#static-rts-result-removemyobjects-void">static RTS_RESULT RemoveMyObjects (void)</a></li>
+<li><a class="reference internal" href="#static-rts-result-tempservicehandler-rts-ui32-ulchannelid-header-tag-pheadertag-protocol-data-unit-pdudata-protocol-data-unit-pdusendbuffer">static RTS_RESULT TempServiceHandler (RTS_UI32 ulChannelId, HEADER_TAG *pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)</a></li>
+<li><a class="reference internal" href="#static-rts-result-initservicehandler-void">static RTS_RESULT InitServiceHandler (void)</a></li>
+<li><a class="reference internal" href="#static-rts-result-exitservicehandler-void">static RTS_RESULT ExitServiceHandler (void)</a></li>
+<li><a class="reference internal" href="#static-rts-result-hasaccessrights-char-pszobject-rts-ui32-ulrequestedrights-rts-ui32-ulsessionid-bintagwriter-pwriter">static RTS_RESULT HasAccessRights (char *pszObject, RTS_UI32 ulRequestedRights, RTS_UI32 ulSessionId, BINTAGWRITER *pWriter)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Examples/group___rts_service_handler.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rtsservicehandler">
+<span id="group-rts-service-handler"></span><h1>RtsServiceHandler<a class="headerlink" href="#rtsservicehandler" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-rts-service-handler-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1gabe52beee1a7def1b8372d24f70ffbde8"><span class="std std-ref">SG_TEMP</span></a> 0x0100</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1gaf4176bb8db62e9ff333427a15206b092"><span class="std std-ref">TEMP_GET_RTS_VERSION</span></a> 0x12</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1ga9ddfa4441cb6cd7d87205cb35ca15acc"><span class="std std-ref">TAG_TEMP_VERSION_TYPE</span></a> 0x10</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1gafea7658307d935d3cb7849f683c94373"><span class="std std-ref">TEMP_COMMAND_READ_IP</span></a> 0x13</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1gac29fd72965aec5ee0bcaf7e0dabab2bf"><span class="std std-ref">TEMP_TAG_IP_BYTES</span></a> 0x11</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1gaa45bd0f48e5241cae4f8824908a4bbfe"><span class="std std-ref">TEMP_TAG_SUBNET_BYTES</span></a> 0x12</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1ga17dc533568712c47757e31b8008fa680"><span class="std std-ref">TEMP_COMMAND_READ_CLOCK</span></a> 0x14</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1ga3eb577e2cb06e31514077bfb49516cb5"><span class="std std-ref">TEMP_COMMAND_SET_CLOCK</span></a> 0x15</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1ga388710890778cef7d08c343adff0f5d1"><span class="std std-ref">TEMP_TAG_RTC_TIME</span></a> 0x11</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1ga48375614a69f186c10e97ea3839dea52"><span class="std std-ref">TEMP_TAG_RTC_RESULT</span></a> 0x12</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1gaaa2d352eebe05a85b3fd3328cad1005a"><span class="std std-ref">USERDB_OBJECT_TEMPLATE</span></a> &#8220;Device.MyObject&#8221;</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1ga87d2980720ce924d15d5ec929db85a84"><span class="std std-ref">USERDB_OBJECT_TEMPLATE_SERVICE1</span></a> <a class="reference internal" href="#group-rts-service-handler-1gaaa2d352eebe05a85b3fd3328cad1005a"><span class="std std-ref">USERDB_OBJECT_TEMPLATE</span></a> &#8221;.__GET_RTS_VERSION&#8221;</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1gaa523aa4736105d4dc89825f4431df1db"><span class="std std-ref">USERDB_OBJECT_TEMPLATE_SERVICE2</span></a> <a class="reference internal" href="#group-rts-service-handler-1gaaa2d352eebe05a85b3fd3328cad1005a"><span class="std std-ref">USERDB_OBJECT_TEMPLATE</span></a> &#8221;.__COMMAND_READ_IP&#8221;</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1ga8c9d9d63f35d87440e5f9dc69669723d"><span class="std std-ref">USERDB_OBJECT_TEMPLATE_SERVICE3</span></a> <a class="reference internal" href="#group-rts-service-handler-1gaaa2d352eebe05a85b3fd3328cad1005a"><span class="std std-ref">USERDB_OBJECT_TEMPLATE</span></a> &#8221;.__COMMAND_READ_CLOCK&#8221;</li>
+<li>#define <a class="reference internal" href="#group-rts-service-handler-1ga0c83315a3603333ece3f7c6cde4c25f2"><span class="std std-ref">USERDB_OBJECT_TEMPLATE_SERVICE4</span></a> <a class="reference internal" href="#group-rts-service-handler-1gaaa2d352eebe05a85b3fd3328cad1005a"><span class="std std-ref">USERDB_OBJECT_TEMPLATE</span></a> &#8221;.__COMMAND_SET_CLOCK&#8221;</li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_RESULT <a class="reference internal" href="#group-rts-service-handler-1gaf5ec8b9d4541fb0d1f568f5885c0abe6"><span class="std std-ref">AddMyObjects</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-rts-service-handler-1ga819aedebe13b807fb5fd53a60b5045ab"><span class="std std-ref">RemoveMyObjects</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-rts-service-handler-1gad69d5dc0b43efdb2051d2783e3e0537d"><span class="std std-ref">TempServiceHandler</span></a> (RTS_UI32 ulChannelId, HEADER_TAG * pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-rts-service-handler-1gab94a2e55b5a5c6238cde7eff991022ec"><span class="std std-ref">InitServiceHandler</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-rts-service-handler-1ga0990653b311caeaf55127229c80f7ca3"><span class="std std-ref">ExitServiceHandler</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-rts-service-handler-1gafec37409df48ff96c77889f810f1fc0a"><span class="std std-ref">HasAccessRights</span></a> (char * pszObject, RTS_UI32 ulRequestedRights, RTS_UI32 ulSessionId, BINTAGWRITER * pWriter)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-rts-service-handler-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Template component to handle layer7 services</p>
+<ul class="simple">
+<li>CH_INIT3: call InitServiceHandler() from your component hook function</li>
+<li>CH_EXIT3: call ExitServiceHandler() from your component hook function</li>
+<li>TempServiceHandler(): Implements service routines</li>
+</ul>
+<p><strong>Copyright:</strong></p>
+<p>(c) 2003-2016 3S-Smart Software Solutions</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-sg-temp-0x0100">
+<span id="group-rts-service-handler-1gabe52beee1a7def1b8372d24f70ffbde8"></span><h3>#define SG_TEMP 0x0100<a class="headerlink" href="#define-sg-temp-0x0100" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-temp-get-rts-version-0x12">
+<span id="group-rts-service-handler-1gaf4176bb8db62e9ff333427a15206b092"></span><h3>#define TEMP_GET_RTS_VERSION 0x12<a class="headerlink" href="#define-temp-get-rts-version-0x12" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-tag-temp-version-type-0x10">
+<span id="group-rts-service-handler-1ga9ddfa4441cb6cd7d87205cb35ca15acc"></span><h3>#define TAG_TEMP_VERSION_TYPE 0x10<a class="headerlink" href="#define-tag-temp-version-type-0x10" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-temp-command-read-ip-0x13">
+<span id="group-rts-service-handler-1gafea7658307d935d3cb7849f683c94373"></span><h3>#define TEMP_COMMAND_READ_IP 0x13<a class="headerlink" href="#define-temp-command-read-ip-0x13" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-temp-tag-ip-bytes-0x11">
+<span id="group-rts-service-handler-1gac29fd72965aec5ee0bcaf7e0dabab2bf"></span><h3>#define TEMP_TAG_IP_BYTES 0x11<a class="headerlink" href="#define-temp-tag-ip-bytes-0x11" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-temp-tag-subnet-bytes-0x12">
+<span id="group-rts-service-handler-1gaa45bd0f48e5241cae4f8824908a4bbfe"></span><h3>#define TEMP_TAG_SUBNET_BYTES 0x12<a class="headerlink" href="#define-temp-tag-subnet-bytes-0x12" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-temp-command-read-clock-0x14">
+<span id="group-rts-service-handler-1ga17dc533568712c47757e31b8008fa680"></span><h3>#define TEMP_COMMAND_READ_CLOCK 0x14<a class="headerlink" href="#define-temp-command-read-clock-0x14" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-temp-command-set-clock-0x15">
+<span id="group-rts-service-handler-1ga3eb577e2cb06e31514077bfb49516cb5"></span><h3>#define TEMP_COMMAND_SET_CLOCK 0x15<a class="headerlink" href="#define-temp-command-set-clock-0x15" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-temp-tag-rtc-time-0x11">
+<span id="group-rts-service-handler-1ga388710890778cef7d08c343adff0f5d1"></span><h3>#define TEMP_TAG_RTC_TIME 0x11<a class="headerlink" href="#define-temp-tag-rtc-time-0x11" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-temp-tag-rtc-result-0x12">
+<span id="group-rts-service-handler-1ga48375614a69f186c10e97ea3839dea52"></span><h3>#define TEMP_TAG_RTC_RESULT 0x12<a class="headerlink" href="#define-temp-tag-rtc-result-0x12" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-userdb-object-template-device-myobject">
+<span id="group-rts-service-handler-1gaaa2d352eebe05a85b3fd3328cad1005a"></span><h3>#define USERDB_OBJECT_TEMPLATE &#8220;Device.MyObject&#8221;<a class="headerlink" href="#define-userdb-object-template-device-myobject" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-userdb-object-template-service1-userdb-object-template-get-rts-version">
+<span id="group-rts-service-handler-1ga87d2980720ce924d15d5ec929db85a84"></span><h3>#define USERDB_OBJECT_TEMPLATE_SERVICE1 <a class="reference internal" href="#group-rts-service-handler-1gaaa2d352eebe05a85b3fd3328cad1005a"><span class="std std-ref">USERDB_OBJECT_TEMPLATE</span></a> &#8221;.__GET_RTS_VERSION&#8221;<a class="headerlink" href="#define-userdb-object-template-service1-userdb-object-template-get-rts-version" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-userdb-object-template-service2-userdb-object-template-command-read-ip">
+<span id="group-rts-service-handler-1gaa523aa4736105d4dc89825f4431df1db"></span><h3>#define USERDB_OBJECT_TEMPLATE_SERVICE2 <a class="reference internal" href="#group-rts-service-handler-1gaaa2d352eebe05a85b3fd3328cad1005a"><span class="std std-ref">USERDB_OBJECT_TEMPLATE</span></a> &#8221;.__COMMAND_READ_IP&#8221;<a class="headerlink" href="#define-userdb-object-template-service2-userdb-object-template-command-read-ip" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-userdb-object-template-service3-userdb-object-template-command-read-clock">
+<span id="group-rts-service-handler-1ga8c9d9d63f35d87440e5f9dc69669723d"></span><h3>#define USERDB_OBJECT_TEMPLATE_SERVICE3 <a class="reference internal" href="#group-rts-service-handler-1gaaa2d352eebe05a85b3fd3328cad1005a"><span class="std std-ref">USERDB_OBJECT_TEMPLATE</span></a> &#8221;.__COMMAND_READ_CLOCK&#8221;<a class="headerlink" href="#define-userdb-object-template-service3-userdb-object-template-command-read-clock" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-userdb-object-template-service4-userdb-object-template-command-set-clock">
+<span id="group-rts-service-handler-1ga0c83315a3603333ece3f7c6cde4c25f2"></span><h3>#define USERDB_OBJECT_TEMPLATE_SERVICE4 <a class="reference internal" href="#group-rts-service-handler-1gaaa2d352eebe05a85b3fd3328cad1005a"><span class="std std-ref">USERDB_OBJECT_TEMPLATE</span></a> &#8221;.__COMMAND_SET_CLOCK&#8221;<a class="headerlink" href="#define-userdb-object-template-service4-userdb-object-template-command-set-clock" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="static-rts-result-addmyobjects-void">
+<span id="group-rts-service-handler-1gaf5ec8b9d4541fb0d1f568f5885c0abe6"></span><h3>static RTS_RESULT AddMyObjects (void)<a class="headerlink" href="#static-rts-result-addmyobjects-void" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="static-rts-result-removemyobjects-void">
+<span id="group-rts-service-handler-1ga819aedebe13b807fb5fd53a60b5045ab"></span><h3>static RTS_RESULT RemoveMyObjects (void)<a class="headerlink" href="#static-rts-result-removemyobjects-void" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="static-rts-result-tempservicehandler-rts-ui32-ulchannelid-header-tag-pheadertag-protocol-data-unit-pdudata-protocol-data-unit-pdusendbuffer">
+<span id="group-rts-service-handler-1gad69d5dc0b43efdb2051d2783e3e0537d"></span><h3>static RTS_RESULT TempServiceHandler (RTS_UI32 ulChannelId, HEADER_TAG <a href="#id1"><span class="problematic" id="id2">*</span></a>pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)<a class="headerlink" href="#static-rts-result-tempservicehandler-rts-ui32-ulchannelid-header-tag-pheadertag-protocol-data-unit-pdudata-protocol-data-unit-pdusendbuffer" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="static-rts-result-initservicehandler-void">
+<span id="group-rts-service-handler-1gab94a2e55b5a5c6238cde7eff991022ec"></span><h3>static RTS_RESULT InitServiceHandler (void)<a class="headerlink" href="#static-rts-result-initservicehandler-void" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="static-rts-result-exitservicehandler-void">
+<span id="group-rts-service-handler-1ga0990653b311caeaf55127229c80f7ca3"></span><h3>static RTS_RESULT ExitServiceHandler (void)<a class="headerlink" href="#static-rts-result-exitservicehandler-void" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="static-rts-result-hasaccessrights-char-pszobject-rts-ui32-ulrequestedrights-rts-ui32-ulsessionid-bintagwriter-pwriter">
+<span id="group-rts-service-handler-1gafec37409df48ff96c77889f810f1fc0a"></span><h3>static RTS_RESULT HasAccessRights (char <a href="#id3"><span class="problematic" id="id4">*</span></a>pszObject, RTS_UI32 ulRequestedRights, RTS_UI32 ulSessionId, BINTAGWRITER <a href="#id5"><span class="problematic" id="id6">*</span></a>pWriter)<a class="headerlink" href="#static-rts-result-hasaccessrights-char-pszobject-rts-ui32-ulrequestedrights-rts-ui32-ulsessionid-bintagwriter-pwriter" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

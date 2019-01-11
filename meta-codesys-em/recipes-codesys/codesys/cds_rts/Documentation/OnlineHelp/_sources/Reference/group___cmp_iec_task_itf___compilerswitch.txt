@@ -1,0 +1,42 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_iec_task_itf___compilerswitch:
+
+===============
+Compiler switch
+===============
+
+ :ref:`More... <group___cmp_iec_task_itf___compilerswitch-details>`
+
+.. _group___cmp_iec_task_itf___compilerswitch-details:
+
+Detailed Description
+--------------------
+
+
+
+.. _group___cmp_iec_task_itf___compilerswitch_1CmpIecTaskItf_CompilerswitchSect0:
+
+1
+^
+
+Compiler switches to enable/disable single features in the component.
+
+- RTS_STRUCTURED_EXCEPTION_HANDLING: To enable the structured exception handling
+
+- RTS_IECTASK_STRUCTURED_EXCEPTION_HANDLING: To enable structured exception handling for all IecTasks. If RTS_STRUCTURED_EXCEPTION_HANDLING is enable and RTS_IECTASK_STRUCTURED_EXCEPTION_HANDLING is disabled, the structured exception handling out of the IEC program can be used via the SysExcept.library (unusual used feature).
+
+- RTS_IECTASK_ENABLE_TASK_TRACE: Enable IEC task trace feature. This feature creates a CODESYS system trace with all IEC-tasks to trace the timing. NOTES: 1. To really activate the task trace, you have to set the setting "EnableTaskTrace=1" in the configuration! 2. CmpSchedule must be built with the same compiler switch to activate additional tracing of the SchedulerTick and optional SchedulerTimeslicing!
+
+- CMPIECTASK_STACK_SIZE: Define to specify the stack size for all IEC tasks. Default size = 1MB.
+
+- CMPIECTASK_STACK_SIZE_ADDITIONAL: Define to specify the additional stack size for all IEC tasks (depends on the platform). Default: 0.
+
+- CMPIECTASK_SYNCHRONIZATION_USE_SYSSEM: Use semaphores (SysSem) instead of using SysReadWriteLock by default! This is because SysReadWriteLock could have priority inversion problems on some platforms and so we use SysSem as a better alternative by default!
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

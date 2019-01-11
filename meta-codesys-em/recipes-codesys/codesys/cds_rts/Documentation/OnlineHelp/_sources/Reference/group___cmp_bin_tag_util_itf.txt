@@ -1,0 +1,818 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_bin_tag_util_itf:
+
+================
+CmpBinTagUtilItf
+================
+
+Interface of CmpBinTagUtil. :ref:`More... <group___cmp_bin_tag_util_itf-details>`
+
+Modules
+-------
+
+- :ref:`Static defines <group___cmp_bin_tag_util_itf___staticdefines>`
+
+Data Structures
+---------------
+
+- struct :ref:`BTAG_ALIGNMENT <struct_b_t_a_g___a_l_i_g_n_m_e_n_t>`
+
+- struct :ref:`HEADER_TAG <struct_h_e_a_d_e_r___t_a_g>`
+
+- struct :ref:`HEADER_TAG_EXT <struct_h_e_a_d_e_r___t_a_g___e_x_t>`
+
+- struct :ref:`_BTAG_WriterTagInfo <struct___b_t_a_g___writer_tag_info>`
+
+- struct :ref:`_BTAG_ReaderTagInfo <struct___b_t_a_g___reader_tag_info>`
+
+- struct :ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>`
+
+- struct :ref:`BINTAGSAVEPOINT <struct_b_i_n_t_a_g_s_a_v_e_p_o_i_n_t>`
+
+- struct :ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>`
+
+- struct :ref:`BINTAGREADERSAVEPOINT <struct_b_i_n_t_a_g_r_e_a_d_e_r_s_a_v_e_p_o_i_n_t>`
+
+- struct :ref:`ICmpBinTagUtil_C <struct_i_cmp_bin_tag_util___c>`
+
+Macros
+------
+
+- #define :ref:`BTAG_MAX_NESTED_TAGS <group___cmp_bin_tag_util_itf_1ga7a8615d44a1c288fcfd7c007289d1b3c>` 10
+
+- #define :ref:`BTAG_MAX_STATIC_FILESTREAM_BUFFER <group___cmp_bin_tag_util_itf_1gab96c73af16b48025d888327e679272ff>` (NETSERVER_BUFFERSIZE / (NETSERVER_MAXCHANNELS * 2))
+
+- #define :ref:`BINTAGTYPE_STREAM <group___cmp_bin_tag_util_itf_1gac6bc300f2ebad3fb7653784a2e7d5d70>` 1
+
+- #define :ref:`BINTAGTYPE_FILE <group___cmp_bin_tag_util_itf_1gad23b28569dcc374fafaa3a1fdf0512a2>` 2
+
+- #define :ref:`BINTAGTYPE_FILESTREAM <group___cmp_bin_tag_util_itf_1ga34407060c86dc24efde9212377b52475>` 3
+
+- #define :ref:`ITF_CmpBinTagUtil <group___cmp_bin_tag_util_itf_1ga80922c0a63754b7af9d2c87293174b35>`
+
+- #define :ref:`EXTITF_CmpBinTagUtil <group___cmp_bin_tag_util_itf_1ga32b1d8a61e4d4a0568291115645116c5>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`_BTAG_WriterTagInfo <struct___b_t_a_g___writer_tag_info>` :ref:`BTAG_WRITERTAGINFO <group___cmp_bin_tag_util_itf_1ga22e8de6ff1260f3b661e8484cb2bfd2e>`
+
+- typedef struct :ref:`_BTAG_ReaderTagInfo <struct___b_t_a_g___reader_tag_info>` :ref:`BTAG_READERTAGINFO <group___cmp_bin_tag_util_itf_1ga8c4aa636215f9fecb692588a5c2d48ce>`
+
+- typedef void(* :ref:`PFUPDATECRC <group___cmp_bin_tag_util_itf_1gaa67d135c6f4ebd99d300daf575e1ebfc>`)(RTS_UI8 *pbyData, RTS_UI32 ulDataLen, void *pParameter)
+
+- typedef :ref:`ICmpBinTagUtil_C <struct_i_cmp_bin_tag_util___c>` :ref:`ICmpBinTagUtil <group___cmp_bin_tag_util_itf_1ga7450889f8d5f28947db45c6c57af276f>`
+
+Enumerations
+------------
+
+- enum :ref:`@3 <group___cmp_bin_tag_util_itf_1gabc6126af1d45847bc59afa0aa3216b04>` { :ref:`BTAG_ET_STARTTAG <group___cmp_bin_tag_util_itf_1ggabc6126af1d45847bc59afa0aa3216b04a64607f7c4f32534f0ca7cb58756ff4e5>`, :ref:`BTAG_ET_ENDTAG <group___cmp_bin_tag_util_itf_1ggabc6126af1d45847bc59afa0aa3216b04a8372b6ceac6526bc59262b6f99d7d7f5>`, :ref:`BTAG_ET_EOF <group___cmp_bin_tag_util_itf_1ggabc6126af1d45847bc59afa0aa3216b04a38d035a8b56ba63ec930edf7c2cecf2a>` }
+
+Functions
+---------
+
+- RTS_RESULT :ref:`BTagSwapHeader <group___cmp_bin_tag_util_itf_1ga5f33422f0c7653c158bf99a42b2060da>` (:ref:`HEADER_TAG_EXT <struct_h_e_a_d_e_r___t_a_g___e_x_t>` * pHeader, RTS_I32 bSwap)
+
+- RTS_RESULT :ref:`BTagWriterInit2 <group___cmp_bin_tag_util_itf_1gaa5930b1e6e5bf2e1dd1d0703f3b5d97a>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_UI8 * pBuffer, RTS_UI32 ulBufferSize, RTS_I32 bSwapHeader)
+
+- RTS_RESULT :ref:`BTagWriterInit <group___cmp_bin_tag_util_itf_1gac9e16abd6dbd5a37262a306a1d460b85>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_UI8 * pBuffer, RTS_UI32 ulBufferSize)
+
+- RTS_RESULT :ref:`BTagWriterStartService <group___cmp_bin_tag_util_itf_1ga4fc0080da9819f83633704592488454b>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_UI32 ulSessionID, RTS_UI16 usHeaderTag, RTS_UI32 ulServiceGroup, RTS_UI16 usService)
+
+- RTS_RESULT :ref:`BTagWriterFinishService <group___cmp_bin_tag_util_itf_1ga5ab533e932ba4664f24cfdd0f7a61bd9>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_UI8 ** ppBuffer, RTS_UI32 * pulSize)
+
+- RTS_RESULT :ref:`BTagWriterStartTag <group___cmp_bin_tag_util_itf_1gafd29ce97b0bd5fe47d04ab6569f0b347>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_UI32 ulTagId, :ref:`BTAG_ALIGNMENT <struct_b_t_a_g___a_l_i_g_n_m_e_n_t>`  contentAlignment, RTS_UI32 ulMinLengthSize)
+
+- RTS_RESULT :ref:`BTagWriterAppendString <group___cmp_bin_tag_util_itf_1gadb6f29df0b99c15140ec93b9c0f39bcb>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, const char * pszString)
+
+- RTS_RESULT :ref:`BTagWriterAppendWString <group___cmp_bin_tag_util_itf_1gae16657b7cad26c026cbc7ec0e13a8615>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, const RTS_WCHAR * wszString)
+
+- RTS_RESULT :ref:`BTagWriterAppendBlob <group___cmp_bin_tag_util_itf_1ga81a67538ed2635420bf99734bb2d1da5>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, const RTS_UI8 * pBlob, RTS_UI32 ulSize)
+
+- RTS_RESULT :ref:`BTagWriterAppendRaw <group___cmp_bin_tag_util_itf_1ga80b65ebe1d633a55cb438f170bc115d9>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_UI8 ** ppBuffer, RTS_UI32 ulSize)
+
+- RTS_RESULT :ref:`BTagWriterAppendFillBytes <group___cmp_bin_tag_util_itf_1gad4af6aeae70dfa84ebb272f169ccaab1>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_UI8 byFillByte, :ref:`BTAG_ALIGNMENT <struct_b_t_a_g___a_l_i_g_n_m_e_n_t>`  alignment)
+
+- RTS_RESULT :ref:`BTagWriterAppendDummyBytes <group___cmp_bin_tag_util_itf_1ga8419cf900a699af68830237bd8da058f>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_UI8 byFillByte, RTS_UI32 ulSize)
+
+- RTS_RESULT :ref:`BTagWriterEndTag <group___cmp_bin_tag_util_itf_1ga3f2cf456d540c6853a22bea26eef48f6>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_UI32 ulTagId)
+
+- RTS_RESULT :ref:`BTagWriterSwitchBuffer <group___cmp_bin_tag_util_itf_1gac52c256bccff16361b398c6f5d54de55>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_UI8 * pNewBuffer, RTS_UI32 ulNewSize, RTS_UI8 ** ppOldBuffer)
+
+- RTS_RESULT :ref:`BTagWriterCreateSavepoint <group___cmp_bin_tag_util_itf_1gaefefa23ce72f22006813faf84563b430>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, :ref:`BINTAGSAVEPOINT <struct_b_i_n_t_a_g_s_a_v_e_p_o_i_n_t>` * pSavepoint)
+
+- RTS_RESULT :ref:`BTagWriterRestoreSavepoint <group___cmp_bin_tag_util_itf_1gaa04b4387c7d5f8a056ab75f90e26707b>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, :ref:`BINTAGSAVEPOINT <struct_b_i_n_t_a_g_s_a_v_e_p_o_i_n_t>` * pSavepoint)
+
+- RTS_UI32 :ref:`BTagWriterGetAvailableBuffer <group___cmp_bin_tag_util_itf_1ga35d4f0f00f99853e39013baeea99fa9b>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter)
+
+- RTS_RESULT :ref:`BTagWriterFinish <group___cmp_bin_tag_util_itf_1ga0af27850a6ee2f790c9ab443b5111cd4>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_UI8 ** ppBuffer, RTS_UI32 * pulSize)
+
+- RTS_RESULT :ref:`BTagWriteSingleTag <group___cmp_bin_tag_util_itf_1gadf9ad720bb98e70354af29b25b01c8f3>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_UI32 ulTag, :ref:`BTAG_ALIGNMENT <struct_b_t_a_g___a_l_i_g_n_m_e_n_t>`  align, RTS_I32 bFillBytes, void * pContent, RTS_UI32 ulSize)
+
+- RTS_RESULT :ref:`BTagWriteSingleTag2 <group___cmp_bin_tag_util_itf_1gaae1e438865f10164d966a05147bbd431>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_UI32 ulTag, :ref:`BTAG_ALIGNMENT <struct_b_t_a_g___a_l_i_g_n_m_e_n_t>`  align, void ** ppContentList, RTS_UI32 * paulSize)
+
+- RTS_RESULT :ref:`BTagReaderInit <group___cmp_bin_tag_util_itf_1ga4a580903a01c231f743462630a80c7b9>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader, RTS_UI8 * pBuffer, RTS_UI32 ulBufferSize)
+
+- RTS_RESULT :ref:`BTagReaderPeekNext <group___cmp_bin_tag_util_itf_1gae482e0ab148aefa5b40d3c14a715b431>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader)
+
+- RTS_RESULT :ref:`BTagReaderMoveNext <group___cmp_bin_tag_util_itf_1ga64927ab05a3632b524df047861ebb7e5>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader, RTS_I32 * pnElementType)
+
+- RTS_RESULT :ref:`BTagReaderSkipContent <group___cmp_bin_tag_util_itf_1ga58b9b91e29f42a1a0ff442b1b97d1ee1>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader)
+
+- RTS_RESULT :ref:`BTagReaderGetTagId <group___cmp_bin_tag_util_itf_1gaac2ed0c282be75db6939d359810f7065>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader, RTS_UI32 * pulTagId)
+
+- RTS_RESULT :ref:`BTagReaderGetTagLen <group___cmp_bin_tag_util_itf_1ga1444abd7c3c70f632a0a95d3a8daa16c>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader, RTS_UI32 * pulTagLen)
+
+- RTS_RESULT :ref:`BTagReaderIsDataTag <group___cmp_bin_tag_util_itf_1ga022ddc2d95a50bcba1d5b7947ea33b6a>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader, RTS_I32 * pbIsDataTag)
+
+- RTS_RESULT :ref:`BTagReaderGetComplexContent <group___cmp_bin_tag_util_itf_1ga580b67848e86db4dc311ad8cf4b07a9a>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader, RTS_UI8 ** ppBuffer, RTS_UI32 * pulSize)
+
+- RTS_RESULT :ref:`BTagReaderGetContent <group___cmp_bin_tag_util_itf_1ga220c1fa43be4ba6dd3c6978dbcfcea4c>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader, RTS_UI8 ** ppBuffer, RTS_UI32 * pulSize)
+
+- RTS_RESULT :ref:`BTagReaderGetString <group___cmp_bin_tag_util_itf_1gadfd36a3cb8bf0fd8f66e2ca39057f63b>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader, char ** ppString, RTS_UI32 * pulSize, RTS_I32 bAddEndOfString)
+
+- RTS_RESULT :ref:`BTagReaderCreateSavepoint <group___cmp_bin_tag_util_itf_1gafe04ecee4c0c11d8c779492bfd100074>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader, :ref:`BINTAGREADERSAVEPOINT <struct_b_i_n_t_a_g_r_e_a_d_e_r_s_a_v_e_p_o_i_n_t>` * pSavepoint)
+
+- RTS_RESULT :ref:`BTagReaderRestoreSavepoint <group___cmp_bin_tag_util_itf_1ga198fa209b27d078688b8c743182bda9f>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader, :ref:`BINTAGREADERSAVEPOINT <struct_b_i_n_t_a_g_r_e_a_d_e_r_s_a_v_e_p_o_i_n_t>` * pSavepoint)
+
+- RTS_RESULT :ref:`BTagWriterFileInit <group___cmp_bin_tag_util_itf_1gac475bb9ca185a3a6b732eebb934dd17d>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_HANDLE hFile)
+
+- RTS_RESULT :ref:`BTagWriterFileInit2 <group___cmp_bin_tag_util_itf_1ga98e1412e288d8dc6b36e6407dcefc241>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, char * pszFileName)
+
+- RTS_RESULT :ref:`BTagWriterFileStreamInit <group___cmp_bin_tag_util_itf_1ga54dc9940ffcc68387445d16fabe82501>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_HANDLE hFile)
+
+- RTS_RESULT :ref:`BTagWriterFileStreamInit2 <group___cmp_bin_tag_util_itf_1gab1634634c5d807db718c3ea7fd1cfca6>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, RTS_HANDLE hFile, :ref:`PFUPDATECRC <group___cmp_bin_tag_util_itf_1gaa67d135c6f4ebd99d300daf575e1ebfc>`  pfUpdateCRC, void * pParameterUpdateCRC)
+
+- RTS_RESULT :ref:`BTagReaderFileInit <group___cmp_bin_tag_util_itf_1ga3aa9642dcd750b0c6d0bc1103514e88e>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader, RTS_UI8 * pBuffer, RTS_UI32 ulBufferSize, RTS_HANDLE hFile)
+
+- void * :ref:`BTagReaderGetFirstTag <group___cmp_bin_tag_util_itf_1ga2524a0e38a0f99cc88a243a762ac25bf>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader, RTS_UI32 * pulToplevelTag, RTS_UI32 * pulTag, RTS_UI32 * pulSize, RTS_RESULT * pResult)
+
+- void * :ref:`BTagReaderGetNextTag <group___cmp_bin_tag_util_itf_1gaba78e97eeef7d4405a997a1c836872fd>` (:ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * pReader, RTS_UI32 * pulToplevelTag, RTS_UI32 * pulTag, RTS_UI32 * pulSize, RTS_RESULT * pResult)
+
+.. _group___cmp_bin_tag_util_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpBinTagUtil.
+
+Interface for the binary tag utility.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_bin_tag_util_itf_1ga7a8615d44a1c288fcfd7c007289d1b3c:
+
+#define BTAG_MAX_NESTED_TAGS 10
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1gab96c73af16b48025d888327e679272ff:
+
+#define BTAG_MAX_STATIC_FILESTREAM_BUFFER (NETSERVER_BUFFERSIZE / (NETSERVER_MAXCHANNELS * 2))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1gac6bc300f2ebad3fb7653784a2e7d5d70:
+
+#define BINTAGTYPE_STREAM 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1gad23b28569dcc374fafaa3a1fdf0512a2:
+
+#define BINTAGTYPE_FILE 2
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1ga34407060c86dc24efde9212377b52475:
+
+#define BINTAGTYPE_FILESTREAM 3
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1ga80922c0a63754b7af9d2c87293174b35:
+
+#define ITF_CmpBinTagUtil
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1ga32b1d8a61e4d4a0568291115645116c5:
+
+#define EXTITF_CmpBinTagUtil
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_bin_tag_util_itf_1ga22e8de6ff1260f3b661e8484cb2bfd2e:
+
+typedef struct _BTAG_WriterTagInfo BTAG_WRITERTAGINFO
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1ga8c4aa636215f9fecb692588a5c2d48ce:
+
+typedef struct _BTAG_ReaderTagInfo BTAG_READERTAGINFO
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1gaa67d135c6f4ebd99d300daf575e1ebfc:
+
+typedef void( * PFUPDATECRC)(RTS_UI8 *pbyData, RTS_UI32 ulDataLen, void *pParameter)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1ga7450889f8d5f28947db45c6c57af276f:
+
+typedef ICmpBinTagUtil_C ICmpBinTagUtil
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enumeration Type Documentation
+------------------------------
+
+.. _group___cmp_bin_tag_util_itf_1gabc6126af1d45847bc59afa0aa3216b04:
+
+enum @3
+^^^^^^^
+
+
+**Enumerator:**
+
++------------------+
+| BTAG_ET_STARTTAG |
++------------------+
+| BTAG_ET_ENDTAG   |
++------------------+
+| BTAG_ET_EOF      |
++------------------+
+
+Function Documentation
+----------------------
+
+.. _group___cmp_bin_tag_util_itf_1ga5f33422f0c7653c158bf99a42b2060da:
+
+RTS_RESULT BTagSwapHeader (HEADER_TAG_EXT *pHeader, RTS_I32 bSwap)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Swap the header of a service.
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------------------------------------------+
+| [inout] | pHeader | Pass in a :ref:`HEADER_TAG_EXT <struct_h_e_a_d_e_r___t_a_g___e_x_t>` struct that should be swapped. |
++---------+---------+-----------------------------------------------------------------------------------------------------+
+| [in]    | bSwap   | Determines, if the header should be swapped (1) or not (0).                                         |
++---------+---------+-----------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1gaa5930b1e6e5bf2e1dd1d0703f3b5d97a:
+
+RTS_RESULT BTagWriterInit2 (BINTAGWRITER *pWriter, RTS_UI8 *pBuffer, RTS_UI32 ulBufferSize, RTS_I32 bSwapHeader)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Initialize a writer.
+
+**Parameters**
+
++---------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pWriter      | Pass in a :ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` struct that will be initialized to a empty writer.                                                                          |
++---------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pBuffer      | The buffer that the writer will write to. The buffer should not be altered until the writer has finished.                                                                                  |
++---------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulBufferSize | The size of the buffer. The writer will fail if a write operation would exceed the buffer.                                                                                                 |
++---------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bSwapHeader  | Clients have to set this flag, if the addressed server has a different byte order. Must be always FALSE for server implementations or if the client has the same byte order as the server. |
++---------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1gac9e16abd6dbd5a37262a306a1d460b85:
+
+RTS_RESULT BTagWriterInit (BINTAGWRITER *pWriter, RTS_UI8 *pBuffer, RTS_UI32 ulBufferSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Initialize a writer. Can be used by servers or if the client and the server have the same byte order.
+
+**Parameters**
+
++---------+--------------+-------------------------------------------------------------------------------------------------------------------+
+| [inout] | pWriter      | Pass in a :ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` struct that will be initialized to a empty writer. |
++---------+--------------+-------------------------------------------------------------------------------------------------------------------+
+| [in]    | pBuffer      | The buffer that the writer will write to. The buffer should not be altered until the writer has finished.         |
++---------+--------------+-------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulBufferSize | The size of the buffer. The writer will fail if a write operation would exceed the buffer.                        |
++---------+--------------+-------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1ga4fc0080da9819f83633704592488454b:
+
+RTS_RESULT BTagWriterStartService (BINTAGWRITER *pWriter, RTS_UI32 ulSessionID, RTS_UI16 usHeaderTag, RTS_UI32 ulServiceGroup, RTS_UI16 usService)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Start a new service. Must be called after BTagWriterInit.
+
+**Parameters**
+
++---------+----------------+-------------------------------------------------------------------+
+| [inout] | pWriter        | The writer.                                                       |
++---------+----------------+-------------------------------------------------------------------+
+| [in]    | ulSessionID    | SessionID of the current session                                  |
++---------+----------------+-------------------------------------------------------------------+
+| [in]    | usHeaderTag    | HeaderTag to identify the protocol handler.                       |
++---------+----------------+-------------------------------------------------------------------+
+| [in]    | ulServiceGroup | ulServiceGroup = HIGHWORD: usCustomerId, LOWWORD: usServiceGroup; |
++---------+----------------+-------------------------------------------------------------------+
+| [in]    | usService      | Service                                                           |
++---------+----------------+-------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1ga5ab533e932ba4664f24cfdd0f7a61bd9:
+
+RTS_RESULT BTagWriterFinishService (BINTAGWRITER *pWriter, RTS_UI8 **ppBuffer, RTS_UI32 *pulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Finishes the service. It returns the buffer passed in to BTagWriterInit in ppBuffer and the number of bytes written to the buffer in pulSize;
+
+.. _group___cmp_bin_tag_util_itf_1gafd29ce97b0bd5fe47d04ab6569f0b347:
+
+RTS_RESULT BTagWriterStartTag (BINTAGWRITER *pWriter, RTS_UI32 ulTagId, BTAG_ALIGNMENT contentAlignment, RTS_UI32 ulMinLengthSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Start a new tag. A tag cannot be started within a data tag. Data tags are determined by the id of the tag: If bit 7 (that is the highest bit of the least significant byte of the tagid) is set then the tag contains only subtags, otherwise it contains no subtags but only content. Every call to BTagWriterStartTag must be matched with a call to BTagWriterEndTag. All subtags of a tag must be closed before the tag itself may be closed.
+
+**Parameters**
+
++---------+------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pWriter          | The writer must have been initialized with a call to BTagWriterInit.                                                                                                                                                                                                         |
++---------+------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulTagId          | The id of the tag.                                                                                                                                                                                                                                                           |
++---------+------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | contentAlignment | How the content should be aligned within this tag. If the tag is not a data tag then contentAlignment must always be (4,0). In any case in this version of the data format the nModulus member must always be 4 since all alignment is done in respect to 4 byte boundaries. |
++---------+------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1gadb6f29df0b99c15140ec93b9c0f39bcb:
+
+RTS_RESULT BTagWriterAppendString (BINTAGWRITER *pWriter, const char *pszString)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Append a C-string to the current tag. The string is written including the trailing end of string char (NUL). The current tag must be a data tag.
+
+**Parameters**
+
++---------+-----------+--------------------------------------------+
+| [in]    | pWriter   | Pointer to bintag writer                   |
++---------+-----------+--------------------------------------------+
+| [in]    | pszString | Pointer to NUL terminated string to append |
++---------+-----------+--------------------------------------------+
+
+**Returns:**
+
+TRUE=succeeded, FALSE=failed
+
+.. _group___cmp_bin_tag_util_itf_1gae16657b7cad26c026cbc7ec0e13a8615:
+
+RTS_RESULT BTagWriterAppendWString (BINTAGWRITER *pWriter, const RTS_WCHAR *wszString)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Append a UTF-16 (widechar) string to the current tag. The string is written including the trailing end of string char (0x0000). The current tag must be a data tag.
+
+.. _group___cmp_bin_tag_util_itf_1ga81a67538ed2635420bf99734bb2d1da5:
+
+RTS_RESULT BTagWriterAppendBlob (BINTAGWRITER *pWriter, const RTS_UI8 *pBlob, RTS_UI32 ulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Append ulSize bytes from the buffer pBlob to the current tag. The current tag must be a data tag.
+
+.. _group___cmp_bin_tag_util_itf_1ga80b65ebe1d633a55cb438f170bc115d9:
+
+RTS_RESULT BTagWriterAppendRaw (BINTAGWRITER *pWriter, RTS_UI8 **ppBuffer, RTS_UI32 ulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns a pointer to the current content position and forwards the write position for ulSize bytes. This function provides a buffer of length ulSize within the content of the current tag, in effect giving the caller random access to this buffer. This function is especially usefull, if that buffer has to be passed to another function, that fills it. (see example). ATTENTION: The returned pointer is valid only until the next operation on the bintagwriter is executed. After that the pointer must not be used any more! Do not store that pointer permanently. The current tag must be a data tag.
+
+**Parameters**
+
++---------+----------+---------------------------------------------------------------------------------------------------------------------------+
+| [out]   | ppBuffer | Is set to point to the buffer, if the function succeeds                                                                   |
+|         |          | ::                                                                                                                        |
+|         |          |     *   // Store a number as hexadecimal string in a bintag writer                                                        |
+|         |          |     *   unsigned charpBuffer;                                                                                             |
+|         |          |     *   unsigned char*ppBuffer;                                                                                           |
+|         |          |     *   int nNumber = 1234;                                                                                               |
+|         |          |     * ppBuffer = pBuffer;                                                                                                 |
+|         |          |     *   if (ERR_OK == CAL_BTagWriterAppendRaw(pWriter, ppBuffer, 5)) // 4 digits + an additional byte for a trailing zero |
+|         |          |     *     sprintf(pBuffer, "%04x", nNumber);                                                                              |
+|         |          |     *   pBuffer = NULL; // Avoid accidentally writing on that buffer again                                                |
+|         |          |     *                                                                                                                     |
++---------+----------+---------------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1gad4af6aeae70dfa84ebb272f169ccaab1:
+
+RTS_RESULT BTagWriterAppendFillBytes (BINTAGWRITER *pWriter, RTS_UI8 byFillByte, BTAG_ALIGNMENT alignment)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add byFillByte to the content until the current content ends on a position that satifies the desired alignment. Eg. a tag must always be closed on a (4,0)-alignment, so after adding a variable length string one should call:
+::
+    *				     BTAG_ALIGNMENT align = {4,0};
+    *				     ...
+    *				     BTagWriterAppendFillBytes(pWriter, 0, align);
+    *				     BTagWriterEndTag(pWriter, TAG_ID);
+    *
+
+If the alignment property is already fullfilled nothing will be appended.
+
+**Parameters**
+
++---------+------------+------------------------------------------------------+
+| [in]    | byFillByte | The byte to be appended until alignment is achieved. |
++---------+------------+------------------------------------------------------+
+| [in]    | alignment  | The desired alignment of the next writer position.   |
++---------+------------+------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1ga8419cf900a699af68830237bd8da058f:
+
+RTS_RESULT BTagWriterAppendDummyBytes (BINTAGWRITER *pWriter, RTS_UI8 byFillByte, RTS_UI32 ulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Append byFillByte ulSize times.
+
+.. _group___cmp_bin_tag_util_itf_1ga3f2cf456d540c6853a22bea26eef48f6:
+
+RTS_RESULT BTagWriterEndTag (BINTAGWRITER *pWriter, RTS_UI32 ulTagId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Close the current tag. The current tag must have been started with the given tag id. ulTagId is used only as an additional check that all tags are closed in the right order. Since the only element that follows a tag must be a tag again and a tag must always start on a 4 byte boundary the complete size of a tag (header + content) must be dividable by 4. Taking a contentalignment of (4,x) then "contentsize == 4 - x (MOD 4) " must hold. (eg. for (4,1): contentsize % 4 == 3) If this condition does not hold, the function will fail.
+
+.. _group___cmp_bin_tag_util_itf_1gac52c256bccff16361b398c6f5d54de55:
+
+RTS_RESULT BTagWriterSwitchBuffer (BINTAGWRITER *pWriter, RTS_UI8 *pNewBuffer, RTS_UI32 ulNewSize, RTS_UI8 **ppOldBuffer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Replaces the current writer buffer with a new one. All content in the current buffer is copied to the new buffer. This also means that the size of the new buffer has to be at least the current position of the writer. The purpose of this function is to allow for extension of the buffer if an operation returned a buffer overflow. Then the caller may allocate a new buffer, call BTagWriterSwitchBuffer and retry the failed operation.
+
+**Parameters**
+
++---------+-------------+-------------------------------------------------------------------------------------------------+
+| [in]    | pNewBuffer  | The buffer that is to replace the original buffer.                                              |
++---------+-------------+-------------------------------------------------------------------------------------------------+
+| [in]    | ulNewSize   | Size of the new buffer. Must be greater or at least equal to the current postion of the writer. |
++---------+-------------+-------------------------------------------------------------------------------------------------+
+| [out]   | ppOldBuffer | Is set to the previous buffer.                                                                  |
++---------+-------------+-------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1gaefefa23ce72f22006813faf84563b430:
+
+RTS_RESULT BTagWriterCreateSavepoint (BINTAGWRITER *pWriter, BINTAGSAVEPOINT *pSavepoint)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Save the current state of the writer. A later call to BTagWriterRestoreSavepoint will reset the writer and its buffer to that state. Any number of savepoints may be created. The caller must use multiple savepoints in a stack-like fashion: If savepoints are created in the order 1,2,3,4 then they must be restored in opposite order only. Not every savepoint must be restored - but if one is restored all savepoints created after that one MUST NOT BE USED any more. Examples: ("sX"="create savepoint X", "rX"="Restore savepoint X", "(x,y,z)"="stack of valid savepoints") The following sequences are valid: () s1 (1) s2 (1,2) s3 (1,2,3) r2 (1) r1 () () s1 (1) s2 (1,2) s3 (1,2,3) r2 (1) s4 (1,4) r4 (1) whereas this one is invalid: () s1 (1) s2 (1,2) s3 (1,2,3) r2 (1) r3 [3 is not valid at this point]
+
+The writer does not track the stack of savepoints, therefore it cannot detect errors in the restore order. It's the responsibility of the application to ensure the correct restore order. Failure in doing so will lead to an inconsistent state and may well corrupt the whole document. Besides the restore order savepoints are independent of each other. The application may delete/reuse a savepoint anytime it doesn't need it anymore.
+
+Savepoints cannot be used to transfer the state of a writer to a second writer. Any attempt in doing so will lead to undefined behaviour.
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------------+
+| [out]   | pSavePoint | Will receive all information needed to restore the current state of the writer. |
++---------+------------+---------------------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1gaa04b4387c7d5f8a056ab75f90e26707b:
+
+RTS_RESULT BTagWriterRestoreSavepoint (BINTAGWRITER *pWriter, BINTAGSAVEPOINT *pSavepoint)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Restore the state of the writer to one previously saved using BTagWriterCreateSavepoint. See there for a detailed description on how to use these functions.
+
+**Parameters**
+
++---------+------------+------------------------------------------------------------+
+| [in]    | pWriter    | Must be the same writer that the savepoint was created on. |
++---------+------------+------------------------------------------------------------+
+| [in]    | pSavepoint | A previously created savepoint.                            |
++---------+------------+------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1ga35d4f0f00f99853e39013baeea99fa9b:
+
+RTS_UI32 BTagWriterGetAvailableBuffer (BINTAGWRITER *pWriter)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Reads the available bytes in writer buffer that can be used for data.
+
+.. _group___cmp_bin_tag_util_itf_1ga0af27850a6ee2f790c9ab443b5111cd4:
+
+RTS_RESULT BTagWriterFinish (BINTAGWRITER *pWriter, RTS_UI8 **ppBuffer, RTS_UI32 *pulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Finishes the writer. If not all tags have been closed properly this function will fail. Otherwise it returns the buffer passed in to BTagWriterInit in ppBuffer and the number of bytes written to the buffer in pulSize;
+
+.. _group___cmp_bin_tag_util_itf_1gadf9ad720bb98e70354af29b25b01c8f3:
+
+RTS_RESULT BTagWriteSingleTag (BINTAGWRITER *pWriter, RTS_UI32 ulTag, BTAG_ALIGNMENT align, RTS_I32 bFillBytes, void *pContent, RTS_UI32 ulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Write a single tag
+
+**Parameters**
+
++---------+----------+-------------------------------+
+| [in]    | pWriter  | Pointer to the writer stream  |
++---------+----------+-------------------------------+
+| [in]    | ulTag    | Tag to write                  |
++---------+----------+-------------------------------+
+| [in]    | align    | Alignment of the tag          |
++---------+----------+-------------------------------+
+| [in]    | pContent | Pointer to the tag data       |
++---------+----------+-------------------------------+
+| [in]    | ulSize   | Size in bytes of the tag data |
++---------+----------+-------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_bin_tag_util_itf_1gaae1e438865f10164d966a05147bbd431:
+
+RTS_RESULT BTagWriteSingleTag2 (BINTAGWRITER *pWriter, RTS_UI32 ulTag, BTAG_ALIGNMENT align, void **ppContentList, RTS_UI32 *paulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Write a single tag with more than one content
+
+**Parameters**
+
++---------+----------+-------------------------------+
+| [in]    | pWriter  | Pointer to the writer stream  |
++---------+----------+-------------------------------+
+| [in]    | ulTag    | Tag to write                  |
++---------+----------+-------------------------------+
+| [in]    | align    | Alignment of the tag          |
++---------+----------+-------------------------------+
+| [in]    | pContent | Pointer to the tag data       |
++---------+----------+-------------------------------+
+| [in]    | ulSize   | Size in bytes of the tag data |
++---------+----------+-------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_bin_tag_util_itf_1ga4a580903a01c231f743462630a80c7b9:
+
+RTS_RESULT BTagReaderInit (BINTAGREADER *pReader, RTS_UI8 *pBuffer, RTS_UI32 ulBufferSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Initialize a reader.
+
+**Parameters**
+
++---------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pReader      | Pass in a :ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` structure that will be initialized to an empty reader.             |
++---------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pBuffer      | The buffer that contains the bintag structure to be read. Do not alter the buffer until the reader isn't used any more.           |
++---------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulBufferSize | The size of pBuffer. It is expected that the whole buffer is in the bintag structure, possibly containing multiple toplevel tags. |
++---------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1gae482e0ab148aefa5b40d3c14a715b431:
+
+RTS_RESULT BTagReaderPeekNext (BINTAGREADER *pReader)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Peek at the type of the next element as it would be returned by a call to BTagReaderMoveNext, but do not actually move to it (ie. the readers state will not be changed).
+
+**Parameters**
+
++---------+---------------+------------------------------------------------------------------------------------------+
+| [in]    | pReader       | An active reader.                                                                        |
++---------+---------------+------------------------------------------------------------------------------------------+
+| [out]   | pnElementType | Will be set to the type of the current element:                                          |
+|         |               |                                                                                          |
+|         |               | - BTAG_ET_STARTTAG: Reader entered a new tag.                                            |
+|         |               |                                                                                          |
+|         |               | - BTAG_ET_ENDTAG: End of the current tag reached. New active tag is the surrounding tag  |
+|         |               |                                                                                          |
+|         |               | - BTAG_ET_EOF: End of the buffer reached. No more content/tags can be read               |
++---------+---------------+------------------------------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1ga64927ab05a3632b524df047861ebb7e5:
+
+RTS_RESULT BTagReaderMoveNext (BINTAGREADER *pReader, RTS_I32 *pnElementType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Let the reader move on to the next element.
+
+**Parameters**
+
++---------+---------------+------------------------------------------------------------------------------------------+
+| [in]    | pReader       | An active reader.                                                                        |
++---------+---------------+------------------------------------------------------------------------------------------+
+| [out]   | pnElementType | Will be set to the type of the current element:                                          |
+|         |               |                                                                                          |
+|         |               | - BTAG_ET_STARTTAG: Reader entered a new tag.                                            |
+|         |               |                                                                                          |
+|         |               | - BTAG_ET_ENDTAG: End of the current tag reached. New active tag is the surrounding tag  |
+|         |               |                                                                                          |
+|         |               | - BTAG_ET_EOF: End of the buffer reached. No more content/tags can be read               |
++---------+---------------+------------------------------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1ga58b9b91e29f42a1a0ff442b1b97d1ee1:
+
+RTS_RESULT BTagReaderSkipContent (BINTAGREADER *pReader)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Jump to the end of the current tag. The next element that will be read by BTagReaderMoveNext will be the ENDTAG of the current tag.
+
+.. _group___cmp_bin_tag_util_itf_1gaac2ed0c282be75db6939d359810f7065:
+
+RTS_RESULT BTagReaderGetTagId (BINTAGREADER *pReader, RTS_UI32 *pulTagId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the id of the current tag. Will fail if the reader is positioned at the toplevel.
+
+**Parameters**
+
++---------+----------+-------------------------------------------+
+| [out]   | pulTagId | Will be set to the id of the current tag. |
++---------+----------+-------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1ga1444abd7c3c70f632a0a95d3a8daa16c:
+
+RTS_RESULT BTagReaderGetTagLen (BINTAGREADER *pReader, RTS_UI32 *pulTagLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the tag length of the current tag. Will fail if the reader is positioned at the toplevel.
+
+**Parameters**
+
++---------+-----------+-----------------------------------------------+
+| [out]   | pulTagLen | Will be set to the length of the current tag. |
++---------+-----------+-----------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1ga022ddc2d95a50bcba1d5b7947ea33b6a:
+
+RTS_RESULT BTagReaderIsDataTag (BINTAGREADER *pReader, RTS_I32 *pbIsDataTag)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check if the current tag is a data tag (ie. contains raw content) or does contain subtags. Will return an error if the reader is not positioned on a tag (ie. is at the toplevel). However, in that case pbIsData will be set to FALSE.
+
+**Parameters**
+
++---------+-------------+--------------------------------------------------------------------+
+| [in]    | pbIsDataTag | Is set to TRUE, if the current tag is a data tag, FALSE otherwise. |
++---------+-------------+--------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1ga580b67848e86db4dc311ad8cf4b07a9a:
+
+RTS_RESULT BTagReaderGetComplexContent (BINTAGREADER *pReader, RTS_UI8 **ppBuffer, RTS_UI32 *pulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get a pointer on the content of the current tag.
+
+**Parameters**
+
++---------+----------+---------------------------------------------------------+
+| [out]   | ppBuffer | Will be set to point at the content of the current tag. |
++---------+----------+---------------------------------------------------------+
+| [out]   | pulSize  | Will contain the size of the content.                   |
++---------+----------+---------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1ga220c1fa43be4ba6dd3c6978dbcfcea4c:
+
+RTS_RESULT BTagReaderGetContent (BINTAGREADER *pReader, RTS_UI8 **ppBuffer, RTS_UI32 *pulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get a pointer on the content of the current tag. Will fail if the reader is on the toplevel (no current tag) or the current tag is not a data tag.
+
+**Parameters**
+
++---------+----------+---------------------------------------------------------+
+| [out]   | ppBuffer | Will be set to point at the content of the current tag. |
++---------+----------+---------------------------------------------------------+
+| [out]   | pulSize  | Will contain the size of the content.                   |
++---------+----------+---------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1gadfd36a3cb8bf0fd8f66e2ca39057f63b:
+
+RTS_RESULT BTagReaderGetString (BINTAGREADER *pReader, char **ppString, RTS_UI32 *pulSize, RTS_I32 bAddEndOfString)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Like BTagReaderGetContent but treats the content as a string. If a '\0' is found before the end of the tag, pulSize is set to the length up to (and including) the zero. If bAddEndOfString is set, then '\0' is written at the last byte, if '\0' is not found.
+
+**Note:**
+
+If the length of the tag is 0 then no '\0' can be written into the buffer without overwriting other content. In that case a reference to a static empty string is returned.
+
+**Parameters**
+
++---------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | ppString        | Will be set to the start of the string. Will not necessarily point into the readers buffer. (see note).                                                                                       |
++---------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pulSize         | The length of the string INCLUDING the trailing '\0', ie. "strlen(ppString)+1".                                                                                                               |
++---------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bAddEndOfString | Force a trailing zero byte to be added, if it doesn't exist within the bounds of the tag. Will overwrite the last char of the string. Note: This option will alter the content of the buffer! |
++---------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1gafe04ecee4c0c11d8c779492bfd100074:
+
+RTS_RESULT BTagReaderCreateSavepoint (BINTAGREADER *pReader, BINTAGREADERSAVEPOINT *pSavepoint)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Save the current state of the reader. A later call to BTagReaderRestoreSavepoint will reset the reader and its buffer to that state. Any number of savepoints may be created. The caller must use multiple savepoints in a stack-like fashion: If savepoints are created in the order 1,2,3,4 then they must be restored in opposite order only. Not every savepoint must be restored - but if one is restored all savepoints created after that one MUST NOT BE USED any more. Examples: ("sX"="create savepoint X", "rX"="Restore savepoint X", "(x,y,z)"="stack of valid savepoints") The following sequences are valid: () s1 (1) s2 (1,2) s3 (1,2,3) r2 (1) r1 () () s1 (1) s2 (1,2) s3 (1,2,3) r2 (1) s4 (1,4) r4 (1) whereas this one is invalid: () s1 (1) s2 (1,2) s3 (1,2,3) r2 (1) r3 [3 is not valid at this point]
+
+The reader does not track the stack of savepoints, therefore it cannot detect errors in the restore order. It's the responsibility of the application to ensure the correct restore order. Failure in doing so will lead to an inconsistent state and may well corrupt the whole document. Besides the restore order savepoints are independent of each other. The application may delete/reuse a savepoint anytime it doesn't need it anymore.
+
+Savepoints cannot be used to transfer the state of a reader to a second reader. Any attempt in doing so will lead to undefined behaviour.
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------------+
+| [out]   | pSavePoint | Will receive all information needed to restore the current state of the reader. |
++---------+------------+---------------------------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1ga198fa209b27d078688b8c743182bda9f:
+
+RTS_RESULT BTagReaderRestoreSavepoint (BINTAGREADER *pReader, BINTAGREADERSAVEPOINT *pSavepoint)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Restore the state of the reader to one previously saved using BTagReaderCreateSavepoint. See there for a detailed description on how to use these functions.
+
+**Parameters**
+
++---------+------------+------------------------------------------------------------+
+| [in]    | pReader    | Must be the same reader that the savepoint was created on. |
++---------+------------+------------------------------------------------------------+
+| [in]    | pSavepoint | A previously created savepoint.                            |
++---------+------------+------------------------------------------------------------+
+
+.. _group___cmp_bin_tag_util_itf_1gac475bb9ca185a3a6b732eebb934dd17d:
+
+RTS_RESULT BTagWriterFileInit (BINTAGWRITER *pWriter, RTS_HANDLE hFile)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1ga98e1412e288d8dc6b36e6407dcefc241:
+
+RTS_RESULT BTagWriterFileInit2 (BINTAGWRITER *pWriter, char *pszFileName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1ga54dc9940ffcc68387445d16fabe82501:
+
+RTS_RESULT BTagWriterFileStreamInit (BINTAGWRITER *pWriter, RTS_HANDLE hFile)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1gab1634634c5d807db718c3ea7fd1cfca6:
+
+RTS_RESULT BTagWriterFileStreamInit2 (BINTAGWRITER *pWriter, RTS_HANDLE hFile, PFUPDATECRC pfUpdateCRC, void *pParameterUpdateCRC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1ga3aa9642dcd750b0c6d0bc1103514e88e:
+
+RTS_RESULT BTagReaderFileInit (BINTAGREADER *pReader, RTS_UI8 *pBuffer, RTS_UI32 ulBufferSize, RTS_HANDLE hFile)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_bin_tag_util_itf_1ga2524a0e38a0f99cc88a243a762ac25bf:
+
+void* BTagReaderGetFirstTag (BINTAGREADER *pReader, RTS_UI32 *pulToplevelTag, RTS_UI32 *pulTag, RTS_UI32 *pulSize, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the first tag out of a stream
+
+**Parameters**
+
++---------+----------------+-------------------------------------------------+
+| [in]    | pReader        | Pointer to the reader stream                    |
++---------+----------------+-------------------------------------------------+
+| [out]   | pulToplevelTag | Returns the toplevel tag. -1, if no complex tag |
++---------+----------------+-------------------------------------------------+
+| [out]   | pulTag         | Returns the tag                                 |
++---------+----------------+-------------------------------------------------+
+| [out]   | pulSize        | Size of the tag                                 |
++---------+----------------+-------------------------------------------------+
+| [out]   | pResult        | Pointer to error code                           |
++---------+----------------+-------------------------------------------------+
+
+**Returns:**
+
+Pointer to the content
+
+.. _group___cmp_bin_tag_util_itf_1gaba78e97eeef7d4405a997a1c836872fd:
+
+void* BTagReaderGetNextTag (BINTAGREADER *pReader, RTS_UI32 *pulToplevelTag, RTS_UI32 *pulTag, RTS_UI32 *pulSize, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the first tag out of a stream
+
+**Parameters**
+
++---------+----------------+-------------------------------------------------+
+| [in]    | pReader        | Pointer to the reader stream                    |
++---------+----------------+-------------------------------------------------+
+| [out]   | pulToplevelTag | Returns the toplevel tag. -1, if no complex tag |
++---------+----------------+-------------------------------------------------+
+| [out]   | pulTag         | Returns the tag                                 |
++---------+----------------+-------------------------------------------------+
+| [out]   | pulSize        | Size of the tag                                 |
++---------+----------------+-------------------------------------------------+
+| [out]   | pResult        | Pointer to error code                           |
++---------+----------------+-------------------------------------------------+
+
+**Returns:**
+
+Pointer to the content
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

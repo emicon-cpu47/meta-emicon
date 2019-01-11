@@ -1,0 +1,126 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _struct_a_s_y_n_c_j_o_b___i_n_f_o2:
+
+===============================
+ASYNCJOB_INFO2 Struct Reference
+===============================
+
+| #include ":ref:`CmpAsyncMgrItf.h <_cmp_async_mgr_itf_8h>`"
+
+Data Fields
+-----------
+
+- :ref:`PFASYNCJOBFUNCTION <group___cmp_async_mgr_itf___settings_1ga74bf21ba5e09221f0dbbb97735a8f28a>` :ref:`pfJob <struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a75b0ee180f6dbfcc857ada6a9197290a>`
+- void * :ref:`pParam <struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a30bbbaa3fe217dcf0bc9bc2eb102ef06>`
+- void * :ref:`pInstance <struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a2f7cb1e24b2bdbec46ae93f46f02c84b>`
+- RTS_UI32 * :ref:`pulState <struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a28db6c67204e342835ccb3ee1926fc1e>`
+- int :ref:`bIecFunc <struct_a_s_y_n_c_j_o_b___i_n_f_o2_1ac673fe5e22238db26a2c3137c15aa4bb>`
+- RTS_UI32 :ref:`ulType <struct_a_s_y_n_c_j_o_b___i_n_f_o2_1acfcc0bda6d65a20a55db590b28f52a00>`
+- RTS_UI32 :ref:`ulTimeout <struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a5552a42b4f527e560401df00c8c3d054>`
+- :ref:`ASYNCJOB_PARAM <union_a_s_y_n_c_j_o_b___p_a_r_a_m>` * :ref:`pJobParam <struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a3ad61c2901de8e9e27bd30a70a0fbd17>`
+- RTS_UI32 :ref:`ulJobReturnVal <struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a58957b684f0568cf181cd1bf94df59d4>`
+- RTS_UI32 :ref:`ulStartTime <struct_a_s_y_n_c_j_o_b___i_n_f_o2_1ad037c95499c0042d6aa0294ce375f5bf>`
+- :ref:`PFTASKEXCEPTIONHANDLER <group___sys_task_itf___settings_1ga292ffd009d5a17d2499c8a6e2b14669b>` :ref:`pfExceptionHandler <struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a4f954228464a25e99f971757754d7b2e>`
+- RTS_HANDLE * :ref:`phJob <struct_a_s_y_n_c_j_o_b___i_n_f_o2_1ad93325247808dd20d74196f4709e7c52>`
+
+Detailed Description
+--------------------
+
+
+
+Field Documentation
+-------------------
+
+.. _struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a75b0ee180f6dbfcc857ada6a9197290a:
+
+PFASYNCJOBFUNCTION ASYNCJOB_INFO2::pfJob
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Pointer to the job function, which is executed asynchronously
+
+.. _struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a30bbbaa3fe217dcf0bc9bc2eb102ef06:
+
+void* ASYNCJOB_INFO2::pParam
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Pointer to the parameters for the function
+
+.. _struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a2f7cb1e24b2bdbec46ae93f46f02c84b:
+
+void* ASYNCJOB_INFO2::pInstance
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Optional pointer to the instance (IEC function block or class). Can be NULL.
+
+.. _struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a28db6c67204e342835ccb3ee1926fc1e:
+
+RTS_UI32* ASYNCJOB_INFO2::pulState
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Pointer to actual state of the async job. NOTE: Can be NULL for fire and forget jobs, which are released automatically at the end of job execution
+
+.. _struct_a_s_y_n_c_j_o_b___i_n_f_o2_1ac673fe5e22238db26a2c3137c15aa4bb:
+
+int ASYNCJOB_INFO2::bIecFunc
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _struct_a_s_y_n_c_j_o_b___i_n_f_o2_1acfcc0bda6d65a20a55db590b28f52a00:
+
+RTS_UI32 ASYNCJOB_INFO2::ulType
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Type of async job (task, event or hook driven)
+
+.. _struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a5552a42b4f527e560401df00c8c3d054:
+
+RTS_UI32 ASYNCJOB_INFO2::ulTimeout
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Timeout for executing the job
+
+.. _struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a3ad61c2901de8e9e27bd30a70a0fbd17:
+
+ASYNCJOB_PARAM* ASYNCJOB_INFO2::pJobParam
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Specific Parameters for the job types (task, event or hook driven)
+
+.. _struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a58957b684f0568cf181cd1bf94df59d4:
+
+RTS_UI32 ASYNCJOB_INFO2::ulJobReturnVal
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return code of the job if finished
+
+.. _struct_a_s_y_n_c_j_o_b___i_n_f_o2_1ad037c95499c0042d6aa0294ce375f5bf:
+
+RTS_UI32 ASYNCJOB_INFO2::ulStartTime
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Start time of the job (in ms by SysTimeGetMs)
+
+.. _struct_a_s_y_n_c_j_o_b___i_n_f_o2_1a4f954228464a25e99f971757754d7b2e:
+
+PFTASKEXCEPTIONHANDLER ASYNCJOB_INFO2::pfExceptionHandler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Optional exception handle which is called, if an exception occurred during asynchronous job execution.
+
+.. _struct_a_s_y_n_c_j_o_b___i_n_f_o2_1ad93325247808dd20d74196f4709e7c52:
+
+RTS_HANDLE* ASYNCJOB_INFO2::phJob
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Pointer to the handle of the job. Is returned in AsyncAdd2.
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpAsyncMgrItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

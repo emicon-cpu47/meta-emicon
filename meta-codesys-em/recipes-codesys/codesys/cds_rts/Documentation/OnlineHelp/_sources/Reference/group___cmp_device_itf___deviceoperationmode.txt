@@ -1,0 +1,78 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_device_itf___deviceoperationmode:
+
+=====================
+Device operation mode
+=====================
+
+ :ref:`More... <group___cmp_device_itf___deviceoperationmode-details>`
+
+Macros
+------
+
+- #define :ref:`DEV_OM_NONE <group___cmp_device_itf___deviceoperationmode_1ga91414beeb8b9ef6a2c0e4950e3f2e3e2>` UINT32_C(0x00000000)
+
+- #define :ref:`DEV_OM_DEBUG <group___cmp_device_itf___deviceoperationmode_1ga5e1b394c5d2125a0bbe43c9aeb82ed30>` UINT32_C(0x00000001)
+
+- #define :ref:`DEV_OM_LOCKED <group___cmp_device_itf___deviceoperationmode_1gaced3dea4bdd7e6f47e229472a4362d99>` UINT32_C(0x00000002)
+
+- #define :ref:`DEV_OM_OPERATIONAL <group___cmp_device_itf___deviceoperationmode_1ga4a2511a78890e6e2130e54e1d8f3d3d1>` UINT32_C(0x00000003)
+
+.. _group___cmp_device_itf___deviceoperationmode-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_device_itf___deviceoperationmode_1ga91414beeb8b9ef6a2c0e4950e3f2e3e2:
+
+#define DEV_OM_NONE UINT32_C(0x00000000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The operation mode describes the global operation mode of a PLC. By default a PLC is in debug mode. In this mode all online actions like download, debugging and so on are allowed. Other modes restrict some online services to prevent unintended changes by the user on a running machine.
+
+NOTE: This feature must be activated for each mode in the device description of the target with the following target settings:
+
+- "locked_mode_supported": for DEV_OM_LOCKED
+
+- "operational_mode_supported": for DEV_OM_OPERATIONAL in the section "runtime_features" (see description of the target settings in the runtiuem documentation). With this enabled target settings, the end user can specify the operation mode in the programming system with the menu commands "Online" / "Operating Mode".
+
+NOTE: To change the operation mode online on the controller, the onlineuser need the USERDB_RIGHT_MODIFY right on the device node (typically Administrator rights)!
+
+Here the available operation modes:
+
+- DEV_OM_NONE: Unspecified operation mode
+
+- DEV_OM_DEBUG: Device is in debug mode: All operations are allowed
+
+- DEV_OM_LOCKED: Device is locked: Previously set breakpoints and forced variables are further active, (file-)download and OnlineChange is blocked. NOTE: Target setting "locked_mode_supported" must be enabled in the device description of the target to use this feature!
+
+- DEV_OM_OPERATIONAL: Device is operational: Debug, force, (file-)download and OnlineChange actions are blocked. This should be the operation mode of a machine in the production process! NOTE: Target setting "operational_mode_supported" must be enabled in the device description of the target to use this feature!
+
+.. _group___cmp_device_itf___deviceoperationmode_1ga5e1b394c5d2125a0bbe43c9aeb82ed30:
+
+#define DEV_OM_DEBUG UINT32_C(0x00000001)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_device_itf___deviceoperationmode_1gaced3dea4bdd7e6f47e229472a4362d99:
+
+#define DEV_OM_LOCKED UINT32_C(0x00000002)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_device_itf___deviceoperationmode_1ga4a2511a78890e6e2130e54e1d8f3d3d1:
+
+#define DEV_OM_OPERATIONAL UINT32_C(0x00000003)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

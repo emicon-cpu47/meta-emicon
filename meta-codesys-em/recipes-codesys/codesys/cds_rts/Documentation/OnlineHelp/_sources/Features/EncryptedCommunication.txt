@@ -1,0 +1,36 @@
+
+
+Encrypted communication
+=======================
+
+This feature enables the encrypted online communication. The encryption is done using the TLS protocol within our CODESYS 
+communication protocol. All L7 services will be signed and encrypted before transmitting them. The implementation uses
+the existing channels to handle the TLS protocol. As a result the encryption will not affect the routing inside a CODESYS
+network. Additional the encrypted communication can be used with any supported transfer medium. There is some protocol
+overhead and the signing and decryption needs some time. So the effective transfer rate will be decreased.
+
+For encrypted communication an X509 certificate and key for the component "CmpSecureChannel" is necessary on the PLC.
+That is a certificate with the extended key usage "TLS Web Server Authentication".
+
+Security settings
+-----------------
+The secure channel registers a number of security settings to change the security configuration. See: :ref:`group___cmp_secure_channel_itf___security_settings`
+
+Diffie Hellman parameter
+------------------------
+
+For forward security, it is possible to use a DH (Diffie Hellman) parameter to securely exchange the keys used by the communication partners.
+The runtime is able to create such a DH parameter (is only necessary once per device), e.g. with the PLCShell command "cert-gendhparams".
+As soon as there is a DH parameter available, it will be used for the communication establishment.
+
+Remark: actually it is not mandatory to use a DH parameter for encrypted communication, since it may take a long time to create the parameter.
+This might be changed in future to ensure better security.
+
+Requirements
+------------
+
+The following runtime system components are necessary for this feature:
+
+- CmpSecureChannel: :ref:`group___cmp_secure_channel_itf`
+- CmpSecurityManager: :ref:`group___cmp_security_manager_itf`                
+- `OpenSSL <tag_openssl_>`_ or equivalent crypto component

@@ -1,0 +1,170 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>RtsHandleEvents.c File Reference &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Examples" href="index.html" />
+    <link rel="next" title="RtsHardwareWatchdog.c File Reference" href="_rts_hardware_watchdog_8c.html" />
+    <link rel="prev" title="RtsExternalLibs.c File Reference" href="_rts_external_libs_8c.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="_rts_hardware_watchdog_8c.html" title="RtsHardwareWatchdog.c File Reference"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="_rts_external_libs_8c.html" title="RtsExternalLibs.c File Reference"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Examples</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">RtsHandleEvents.c File Reference</a><ul>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="_rts_external_libs_8c.html"
+                        title="previous chapter">RtsExternalLibs.c File Reference</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="_rts_hardware_watchdog_8c.html"
+                        title="next chapter">RtsHardwareWatchdog.c File Reference</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Examples/_rts_handle_events_8c.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rtshandleevents-c-file-reference">
+<h1>RtsHandleEvents.c File Reference<a class="headerlink" href="#rtshandleevents-c-file-reference" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">#include &#8220;<span class="xref std std-ref">CmpStd.h</span>&#8220;</div>
+<div class="line">#include &#8220;<span class="xref std std-ref">CmpIecVarAccessItf.h</span>&#8220;</div>
+<div class="line">#include &#8220;<span class="xref std std-ref">CmpIoMgrItf.h</span>&#8220;</div>
+<div class="line">#include &#8220;<span class="xref std std-ref">CmpTemplateDep.h</span>&#8220;</div>
+<div class="line">#include &#8220;<span class="xref std std-ref">CmpChannelServerItf.h</span>&#8220;</div>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga55ab6de0a5c56a100c4d9a83d4688f99"><span class="std std-ref">EVTPARAMID_CmpTemplate</span></a> 0x0001</li>
+<li>#define <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1gac79beac0bfba396d2a5311a799b94a12"><span class="std std-ref">EVTVERSION_CmpTemplate</span></a> 0x0001</li>
+<li>#define <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga10c345b74194d0146a39ebcd67a6bed9"><span class="std std-ref">EVT_Test</span></a> MAKE_EVENTID(EVTCLASS_INFO, 1)</li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>void <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga86379629abe81ddb247d8e7f648490cf"><span class="std std-ref">CBApp</span></a> (EventParam * pEventParam)</li>
+<li>void <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga6e441713ec27fba242f317f1a388de3a"><span class="std std-ref">CBBreakpoints</span></a> (EventParam * pEventParam)</li>
+<li>void <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga22223ccbb5512935bd75de3a5adeb583"><span class="std std-ref">CBMonitoring</span></a> (EventParam * pEventParam)</li>
+<li>void <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga5c0842fdf9708c1c8ecbad7d37da7560"><span class="std std-ref">CBIecVarAccess</span></a> (EventParam * pEventParam)</li>
+<li>void <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1gad825ac971856f350910a6d7ba3e9a0cb"><span class="std std-ref">CBIoMgr</span></a> (EventParam * pEventParam)</li>
+<li>void <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga7fd7d47e28cd15a7e82aabf851b7e7f4"><span class="std std-ref">CBSysExcept</span></a> (EventParam * pEventParam)</li>
+<li>void <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga04083cf6efd4e61e905d3abf5dc2ce42"><span class="std std-ref">CBSysFile</span></a> (EventParam * pEventParam)</li>
+<li>void <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga797c4a362791b6f2abd026f95c73a69f"><span class="std std-ref">CBChannelServer</span></a> (EventParam * pEventParam)</li>
+<li>void <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1gad3dc102f3c71c8c1eeba068c32d657a0"><span class="std std-ref">CBSupervisor</span></a> (EventParam * pEventParam)</li>
+<li>void <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga23270570a3b963341d1d4e53c8017052"><span class="std std-ref">CBUserMgr</span></a> (EventParam * pEventParam)</li>
+<li>void <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1gac5d7c66441467c46a5463f6210ed97d9"><span class="std std-ref">CBLogger</span></a> (EventParam * pEventParam)</li>
+<li>RTS_RESULT <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1gab31135ae86e3564c53ae96ef68bf4100"><span class="std std-ref">CreateEvents</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga59d1195810996665f4c422ab303ec00e"><span class="std std-ref">DeleteEvents</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga9a499b70fad01d133873f9293a8310c1"><span class="std std-ref">RegisterEventHandler</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga5b4c0f4271407c139100570e2cd77539"><span class="std std-ref">UnregisterEventHandler</span></a> (void)</li>
+<li>STATICITF void <a class="reference internal" href="group___rts_handle_events.html#group-rts-handle-events-1ga34559a83bdc5f7ad62f85b295692fe5a"><span class="std std-ref">EventCallback</span></a> (RTS_HANDLE hTemplate, EventParam * pEventParam)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp-templates/RtsHandleEvents.c</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="_rts_hardware_watchdog_8c.html" title="RtsHardwareWatchdog.c File Reference"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="_rts_external_libs_8c.html" title="RtsExternalLibs.c File Reference"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Examples</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

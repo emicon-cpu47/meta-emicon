@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceDescription xmlns="http://www.3s-software.com/schemas/DeviceDescription-1.0.xsd" xmlns:ts="http://www.3s-software.com/schemas/TargetSettings-0.1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Types namespace="localTypes"/>
+	<Strings namespace="local">
+		<Language lang="en">
+			<String identifier="ModelName">Modul digital output x8 T2</String>
+			<String identifier="DeviceDescription">My description</String>
+			<String identifier="VendorName">My company</String>
+		</Language>
+	</Strings>
+	<Device hideInCatalogue="false">
+		<DeviceIdentification>
+			<Type>40103</Type>
+			<Id>1001 0002</Id>
+			<Version>3.5.9.0</Version>
+		</DeviceIdentification>
+		<DeviceInfo>
+			<Name name="local:ModelName">Modul digital output x8 T2</Name>
+			<Description name="local:DeviceDescription">My description</Description>
+			<Vendor name="local:VendorName">My company</Vendor>
+			<OrderNumber>0815</OrderNumber>
+		</DeviceInfo>
+		<Connector moduleType="40102" interface="Common.MasterExample_Slave" role="child" explicit="false" connectorId="1" hostpath="-1">
+			<InterfaceName name="local:PCI">PCI-Bus</InterfaceName>
+			<Slot count="1" allowEmpty="false"/>
+			<HostParameterSet>
+				<Parameter ParameterId="1" type="std:DWORD">
+					<Attributes download="true" offlineaccess="none" />
+					<Default>0</Default>
+					<Name name="local:Dummy1">FB-Instance pointer</Name>
+					<Description name="local:Dummy1">For internal use</Description>
+				</Parameter>
+				<Parameter ParameterId="256" type="std:BYTE">
+					<Attributes download="true" offlineaccess="readwrite" />
+					<Default>0</Default>
+					<Name name="local:ID">Module-ID</Name>
+					<Description name="local:ID">The unique identifier of the module in the slave</Description>
+				</Parameter>
+				<Parameter ParameterId="3000" type="std:BYTE">
+					<Attributes channel="output" />
+					<Default />
+					<Name name="local:Out1">Output 8Bit</Name>
+					<Description name="local:Out1Desc">Output description</Description>
+				</Parameter>
+				<Parameter ParameterId="3001" type="std:WORD">
+					<Attributes channel="output" />
+					<Default />
+					<Name name="local:Out1">Output 8Bit</Name>
+					<Description name="local:Out1Desc">Output description</Description>
+				</Parameter>
+			</HostParameterSet>
+			<DriverInfo needsBusCycle="true">
+				<RequiredLib libname="IoDrvMasterTemplateIEC" placeholderlib="IoDrvMasterTemplateIEC" vendor="MyCompany" version="*" identifier="IoDrvMasterTemplateIEC">
+					<FBInstance basename="$(DeviceName)" fbname="IoDrvTemplateModule" fbnamediag="IoDrvTemplateModuleDiag">
+						<Initialize methodName="Initialize"/>
+					</FBInstance>
+				</RequiredLib>
+				<Scan supported="false"/>
+			</DriverInfo>
+		</Connector>
+		<ExtendedSettings>
+			<ts:TargetSettings>
+				<ts:section name="deviceconfiguration">
+					<ts:setting name="createBitChannels" type="boolean" access="visible">
+						<ts:value>1</ts:value>
+					</ts:setting>
+				</ts:section>
+			</ts:TargetSettings>
+		</ExtendedSettings>
+		<CompatibleVersions>
+			<Version>3.5.*.*</Version>
+		</CompatibleVersions>
+	</Device>
+</DeviceDescription>

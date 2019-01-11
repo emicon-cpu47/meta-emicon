@@ -1,0 +1,99 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __cmp_security_manager_itf_8h:
+
+======================================
+CmpSecurityManagerItf.h File Reference
+======================================
+
+| #include ":ref:`CmpStd.h`"
+| #include ":ref:`CmpX509CertItf.h <_cmp_x509_cert_itf_8h>`"
+
+Data Structures
+---------------
+
+- struct :ref:`_SecuritySetting <struct___security_setting>`
+
+- struct :ref:`_SecuritySettingValue <union___security_setting_value>`
+
+- struct :ref:`_SecurityEditableSetting <struct___security_editable_setting>`
+
+- struct :ref:`ICmpSecurityManager_C <struct_i_cmp_security_manager___c>`
+
+Macros
+------
+
+- #define :ref:`RTS_SECMAN_NUMOF_STATIC_SETTINGS <group___cmp_security_manager_itf___staticdefines_1gad2b0a1dc9d94c0d02239a2e222646f36>` 10
+
+- #define :ref:`CMPSECMAN_FLAGS_NONE <group___cmp_security_manager_itf___applicationflags_1ga936df906a0b2f9bd74bd686c30d03a4f>` 0
+
+- #define :ref:`CMPSECMAN_FLAGS_DEFAULT <group___cmp_security_manager_itf___applicationflags_1gaa5df6ddff07339e160fc0ae78770850c>` 0x00000001
+
+- #define :ref:`CMPSECMAN_FLAGS_SELECTABLESETTING <group___cmp_security_manager_itf___applicationflags_1ga620fb61ed72daf5b0db87b9474d48805>` 0x00000002
+
+- #define :ref:`CMPSECMAN_FLAGS_EDITABLESETTING <group___cmp_security_manager_itf___applicationflags_1ga3c5f8affc49b9e0bb308e4eb3eb0f773>` 0x00000004
+
+- #define :ref:`CMPSECMAN_FLAGS_STRINGSETTING <group___cmp_security_manager_itf___applicationflags_1ga8058f6a78a367c3df762c589b89f095f>` 0x00000010
+
+- #define :ref:`CMPSECMAN_FLAGS_INTSETTING <group___cmp_security_manager_itf___applicationflags_1ga4ce4770ea24bcfce902ad4f5d91b84ae>` 0x00000020
+
+- #define :ref:`RTS_SECURITY_SETTINGS_SELFSIGNED_CERT <group___cmp_security_manager_itf___security_settings_1ga81314f1f76dd1151cfabd5eb1c252b68>` { \
+/** Create a selfsigned cert */
+
+- #define :ref:`RTS_SECURITY_ID_SELFSIGNEDCERT <_cmp_security_manager_itf_8h_1aba174e53acc672385fac7fb780beda2a>` 0x01FFFFFF
+
+- #define :ref:`SECURITYMANAGERKEY_INT_CREATE_ALL_ON_STARTUP <_cmp_security_manager_itf_8h_1abcde17ff5501b404e62348bdac5b3c2c>` "CreateAllOnStartup"
+
+- #define :ref:`SECURITYMANAGERVALUE_INT_CREATE_ALL_ON_STARTUP_DEFAULT <_cmp_security_manager_itf_8h_1a8700e00252e1551a15999c74b56ec2c8>` 0
+
+- #define :ref:`ITF_CmpSecurityManager <group___cmp_security_manager_itf_1gabb8559ed66b1ca13dd086babf0f2f536>`
+
+- #define :ref:`EXTITF_CmpSecurityManager <group___cmp_security_manager_itf_1gad28f8c197d677a8154c5311d6692743f>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`_SecuritySetting <struct___security_setting>` :ref:`SecuritySetting <group___cmp_security_manager_itf_1ga2f1b7f04346c3edc9ea7f6466034dde6>`
+
+- typedef union :ref:`_SecuritySettingValue <union___security_setting_value>` :ref:`SecuritySettingValue <group___cmp_security_manager_itf_1gac5532c61f8490e8516c74d9ecbdce621>`
+
+- typedef struct :ref:`_SecurityEditableSetting <struct___security_editable_setting>` :ref:`SecurityEditableSetting <group___cmp_security_manager_itf_1ga67af4a9d927839a7122ae38e56266cbb>`
+
+- typedef enum :ref:`RTS_SECURITYSETTINGS_SELFSIGNED_CERT <group___cmp_security_manager_itf_1ga5f4aec68439255f2197fa383fdfa3e29>` :ref:`RTS_SECURITYSETTINGS_SELFSIGNED_CERT <group___cmp_security_manager_itf_1ga90262c6c59120cd6d8a7a3bdcb92fd76>`
+
+- typedef :ref:`ICmpSecurityManager_C <struct_i_cmp_security_manager___c>` :ref:`ICmpSecurityManager <group___cmp_security_manager_itf_1gaa1fb4c1920957a44b230de3a550debee>`
+
+Enumerations
+------------
+
+- enum :ref:`RTS_SECURITYSETTINGS_SELFSIGNED_CERT <group___cmp_security_manager_itf_1ga5f4aec68439255f2197fa383fdfa3e29>` { :ref:`CREATE_SELFSIGNED_CERT <group___cmp_security_manager_itf_1gga5f4aec68439255f2197fa383fdfa3e29a136dd2ab28d9741b1170ed615ce4138a>`, :ref:`DONT_CREATE_SELFSIGNED_CERT <group___cmp_security_manager_itf_1gga5f4aec68439255f2197fa383fdfa3e29a5411f68893cf251d1ae23c913bbae220>` }
+
+Functions
+---------
+
+- RTS_HANDLE :ref:`SecManRegisterEditableSetting <group___cmp_security_manager_itf___security_settings_1ga6a6eadd48abde006dbcdaf7ffdec77fe>` (CMPID cmpId, RTS_UI32 ui32UsageID, :ref:`SecurityEditableSetting <group___cmp_security_manager_itf_1ga67af4a9d927839a7122ae38e56266cbb>` * pSetting, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SecManUnregisterSettings <group___cmp_security_manager_itf_1ga6ec3047643e0973b93434709a81774b2>` (RTS_HANDLE hSecuritySettings)
+
+- RTS_HANDLE :ref:`SecManFindSettings <group___cmp_security_manager_itf_1ga47e032026786eccc6261fc4fb1734281>` (CMPID cmpId, RTS_UI32 ui32UsageID, RTS_RESULT * pResult)
+
+- :ref:`SecuritySetting <group___cmp_security_manager_itf_1ga2f1b7f04346c3edc9ea7f6466034dde6>` * :ref:`SecManGetSetting <group___cmp_security_manager_itf_1gaf5af1774af165ab2c5a449532a76e4cb>` (RTS_HANDLE hSecuritySettings, RTS_RESULT * pResult)
+
+- :ref:`SecurityEditableSetting <group___cmp_security_manager_itf_1ga67af4a9d927839a7122ae38e56266cbb>` * :ref:`SecManGetEditableSetting <group___cmp_security_manager_itf_1gab9165ce5d1763563c40685875f9bf751>` (RTS_HANDLE hSecuritySettings, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SecManFillCertificateInfo <group___cmp_security_manager_itf_1ga9358c64f6efe1568056e2b031d01a091>` (CMPID cmpId, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo)
+
+- RTS_RESULT :ref:`SecManCheckTlsContext <group___cmp_security_manager_itf_1ga7c5a289e7d7c8a907da11f7480f5d72e>` (RTS_UI32 ui32TlsMethod, char * pszCipherList, RTS_I32 i32VerifyMode)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpSecurityManagerItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

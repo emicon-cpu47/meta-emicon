@@ -1,0 +1,1739 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_ethernet_itf:
+
+==============
+SysEthernetItf
+==============
+
+Interface of SysEthernet. :ref:`More... <group___sys_ethernet_itf-details>`
+
+Modules
+-------
+
+- :ref:`Event parameter <group___sys_ethernet_itf___eventparameter>`
+
+- :ref:`Events <group___sys_ethernet_itf___events>`
+
+- :ref:`Online service tags <group___sys_ethernet_itf___onlineservicetags>`
+
+- :ref:`Online services <group___sys_ethernet_itf___onlineservices>`
+
+- :ref:`Settings <group___sys_ethernet_itf___settings>`
+
+- :ref:`Static defines <group___sys_ethernet_itf___staticdefines>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagETCStructCommand <structtag_e_t_c_struct_command>`
+
+- struct :ref:`tagStructEthernetframe <structtag_struct_ethernetframe>`
+
+- struct :ref:`tagSysEthernetFrame <structtag_sys_ethernet_frame>`
+
+- struct :ref:`tagSysEthernetPortConfigAndStatus <structtag_sys_ethernet_port_config_and_status>`
+
+- struct :ref:`tagsysethernetadapterclose_struct <structtagsysethernetadapterclose__struct>`
+
+- struct :ref:`tagsysethernetadapteropen_struct <structtagsysethernetadapteropen__struct>`
+
+- struct :ref:`tagsysethernetethframereceive_struct <structtagsysethernetethframereceive__struct>`
+
+- struct :ref:`tagsysethernetethframesend_struct <structtagsysethernetethframesend__struct>`
+
+- struct :ref:`tagsysethernetframerelease_struct <structtagsysethernetframerelease__struct>`
+
+- struct :ref:`tagsysethernetgetportconfigandstatus_struct <structtagsysethernetgetportconfigandstatus__struct>`
+
+- struct :ref:`tagsysethernetipframereceive_struct <structtagsysethernetipframereceive__struct>`
+
+- struct :ref:`tagsysethernetipframesend_struct <structtagsysethernetipframesend__struct>`
+
+- struct :ref:`tagsysethernetsetautonegadvertisedcap_struct <structtagsysethernetsetautonegadvertisedcap__struct>`
+
+- struct :ref:`tagsysethernetsetautonegmode_struct <structtagsysethernetsetautonegmode__struct>`
+
+- struct :ref:`tagsysethernetsetmautype_struct <structtagsysethernetsetmautype__struct>`
+
+- struct :ref:`ISysEthernet_C <struct_i_sys_ethernet___c>`
+
+Macros
+------
+
+- #define :ref:`SYSETH_AUTONEGCAP_OTHERORUNKNOWN <group___sys_ethernet_itf_1gac4ac5fbc4dc756ed4100ee91e6122865>` RTS_IEC_ULINT_C(0x1)	/* other or unknown */
+
+- #define :ref:`SYSETH_AUTONEGCAP_10BASET <group___sys_ethernet_itf_1ga4cfda68b0d6acfe269970bb76782b2eb>` RTS_IEC_ULINT_C(0x2)	/* 10BASE-T  half duplex mode */
+
+- #define :ref:`SYSETH_AUTONEGCAP_10BASETFD <group___sys_ethernet_itf_1ga0e88255def202b450518587dddf5af4f>` RTS_IEC_ULINT_C(0x4)	/* 10BASE-T  full duplex mode */
+
+- #define :ref:`SYSETH_AUTONEGCAP_100BASET4 <group___sys_ethernet_itf_1ga97236127c071fdc0b672535562d79469>` RTS_IEC_ULINT_C(0x8)	/* 100BASE-T4 */
+
+- #define :ref:`SYSETH_AUTONEGCAP_100BASETX <group___sys_ethernet_itf_1ga0c562e932e88cee08e8d1f3d4ad06ff1>` RTS_IEC_ULINT_C(0x10)	/* 100BASE-TX half duplex mode */
+
+- #define :ref:`SYSETH_AUTONEGCAP_100BASETXFD <group___sys_ethernet_itf_1ga864539f1fbd6c6f81f4b8f67dfcc0f19>` RTS_IEC_ULINT_C(0x20)	/* 100BASE-TX full duplex mode */
+
+- #define :ref:`SYSETH_AUTONEGCAP_100BASET2 <group___sys_ethernet_itf_1gacefbfd17dbc982c3073e3edd0f149bb0>` RTS_IEC_ULINT_C(0x40)	/* 100BASE-T2 half duplex mode */
+
+- #define :ref:`SYSETH_AUTONEGCAP_100BASET2FD <group___sys_ethernet_itf_1ga4c617afef3b85ee41930817498daa5fc>` RTS_IEC_ULINT_C(0x80)	/* 100BASE-T2 full duplex mode */
+
+- #define :ref:`SYSETH_AUTONEGCAP_FDXPAUSE <group___sys_ethernet_itf_1ga93e51db9ca5a8c83b285375962dd0428>` RTS_IEC_ULINT_C(0x100)	/* PAUSE for full-duplex links */
+
+- #define :ref:`SYSETH_AUTONEGCAP_FDXAPAUSE <group___sys_ethernet_itf_1ga6acb3f1567975c49ac3237955e87e03b>` RTS_IEC_ULINT_C(0x200)	/* Asymmetric PAUSE for full-duplex links */
+
+- #define :ref:`SYSETH_AUTONEGCAP_FDXSPAUSE <group___sys_ethernet_itf_1gab8a4730edc8ef3a37e38b4b59fdccf16>` RTS_IEC_ULINT_C(0x400)	/* Symmetric PAUSE for full-duplex links */
+
+- #define :ref:`SYSETH_AUTONEGCAP_FDXBPAUSE <group___sys_ethernet_itf_1ga5e0a11fa9a9e01dbab1d1538417d3435>` RTS_IEC_ULINT_C(0x800)	/* Asymmetric and Symmetric PAUSE for full-duplex links */
+
+- #define :ref:`SYSETH_AUTONEGCAP_1000BASEX <group___sys_ethernet_itf_1gabd97d5dfc975aa17cd761a17b170d1e3>` RTS_IEC_ULINT_C(0x1000)	/* 1000BASE-X, -LX, -SX, -CX half duplex mode */
+
+- #define :ref:`SYSETH_AUTONEGCAP_1000BASEXFD <group___sys_ethernet_itf_1gad46f3e3ce9129381a72e6b9b2a4ed8cf>` RTS_IEC_ULINT_C(0x2000)	/* 1000BASE-X, -LX, -SX, -CX full duplex mode */
+
+- #define :ref:`SYSETH_AUTONEGCAP_1000BASET <group___sys_ethernet_itf_1ga4ea3ee1984cee937068ac450e3774984>` RTS_IEC_ULINT_C(0x4000)	/* 1000BASE-T half duplex mode */
+
+- #define :ref:`SYSETH_AUTONEGCAP_1000BASETFD <group___sys_ethernet_itf_1ga48f7564e98c2fb2c55a157082405f9fe>` RTS_IEC_ULINT_C(0x8000)	/* 1000BASE-T full duplex mode */
+
+- #define :ref:`SYSETH_AUTONEGCAP_10GBASET <group___sys_ethernet_itf_1ga3714ecadf9d01e93dad0e2c3837cfd1a>` RTS_IEC_ULINT_C(0x10000)	/* 10GBASE-T */
+
+- #define :ref:`SYSETH_AUTONEGCAP_1000BASEKX <group___sys_ethernet_itf_1gaeedf48aea306edbc03aa54328c574c4b>` RTS_IEC_ULINT_C(0x20000)	/* 1000BASE-KX */
+
+- #define :ref:`SYSETH_AUTONEGCAP_10GBASEKX4 <group___sys_ethernet_itf_1ga4070d065acda5d46a3697d44f936e227>` RTS_IEC_ULINT_C(0x40000)	/* 10GBASE-KX4 */
+
+- #define :ref:`SYSETH_AUTONEGCAP_10GBASEKR <group___sys_ethernet_itf_1gaace49ad9adc9fff7ae0c6b27484fabc6>` RTS_IEC_ULINT_C(0x80000)	/* 10GBASE-KR */
+
+- #define :ref:`SYSETH_AUTONEGCAP_40GBASEKR4 <group___sys_ethernet_itf_1ga56124215e7b1ef0c2d0b39e90787e28b>` RTS_IEC_ULINT_C(0x100000)	/* 40GBASE-KR4 */
+
+- #define :ref:`SYSETH_AUTONEGCAP_40GBASECR4 <group___sys_ethernet_itf_1ga825657a1c03969d6460e66dc0790e319>` RTS_IEC_ULINT_C(0x200000)	/* 40GBASE-CR4 */
+
+- #define :ref:`SYSETH_AUTONEGCAP_100GBASECR10 <group___sys_ethernet_itf_1ga31b3563cb816fcafbd519700fa84fd35>` RTS_IEC_ULINT_C(0x400000)	/* 100GBASE-CR10 */
+
+- #define :ref:`SYSETH_AUTONEGCAP_1000BASET1 <group___sys_ethernet_itf_1gad0d1d5a0a39b6fede93797b4a67d2cc3>` RTS_IEC_ULINT_C(0x800000)	/* 1000BASE-T1 */
+
+- #define :ref:`SYSETH_AUTONEGCAP_25GBASERS <group___sys_ethernet_itf_1gac0573b3219cfe08e2fa69898b0bf47b3>` RTS_IEC_ULINT_C(0x1000000)	/* 25GBASE-CR-S or 25GBASE-KR-S */
+
+- #define :ref:`SYSETH_AUTONEGCAP_25GBASER <group___sys_ethernet_itf_1gaa700a7e143d8353b4a2ce1858b756288>` RTS_IEC_ULINT_C(0x2000000)	/* 25GBASE-CR or 25GBASE-KR */
+
+- #define :ref:`SYSETH_AUTONEGCAP_RSFEC25GREQ <group___sys_ethernet_itf_1gae8fbe89c10cfa7b88c2f4d493d145f62>` RTS_IEC_ULINT_C(0x4000000)	/* 25Gb/s RS-FEC */
+
+- #define :ref:`SYSETH_AUTONEGCAP_BASEFEC25GREQ <group___sys_ethernet_itf_1ga2b69912ed85e9f33c9f7c0cd2f7c8936>` RTS_IEC_ULINT_C(0x8000000)	/* 25Gb/s BASE-R FEC */
+
+- #define :ref:`SYSETH_AUTONEGCAP_25GBASET <group___sys_ethernet_itf_1ga2a6d57f0ae14b855633a00a2641949aa>` RTS_IEC_ULINT_C(0x10000000)	/* 25GBASE-T */
+
+- #define :ref:`SYSETH_AUTONEGCAP_40GBASET <group___sys_ethernet_itf_1gae57e3f1c59734f7a8f806e57d8179d20>` RTS_IEC_ULINT_C(0x20000000)	/* 40GBASE-T */
+
+- #define :ref:`SYSETH_AUTONEGCAP_100GBASECR4 <group___sys_ethernet_itf_1ga726555629cff3f60d665beeb5d13551e>` RTS_IEC_ULINT_C(0x40000000)	/* 100GBASE-CR4 */
+
+- #define :ref:`SYSETH_AUTONEGCAP_100GBASEKR4 <group___sys_ethernet_itf_1ga10ddd84292a88890fc799715ca85f6a8>` RTS_IEC_ULINT_C(0x80000000)	/* 100GBASE-KR4 */
+
+- #define :ref:`SYSETH_AUTONEGCAP_100GBASEKP4 <group___sys_ethernet_itf_1ga6ab788ff76d6ece75ec455364af3d991>` RTS_IEC_ULINT_C(0x100000000)	/* 100GBASE-KP4 */
+
+- #define :ref:`SYSETH_AUTONEGCAP_FORCEMS <group___sys_ethernet_itf_1ga42a2766040a31f3570633131df0eea4c>` RTS_IEC_ULINT_C(0x200000000)	/* 1000BASE-T1 Force MS */
+
+- #define :ref:`SYSETH_AUTONEGMODE_DISABLED <group___sys_ethernet_itf_1ga5bb9cac15bb63731e4586ad2c0939a38>` RTS_IEC_USINT_C(0x0)
+
+- #define :ref:`SYSETH_AUTONEGMODE_ENABLED <group___sys_ethernet_itf_1gad251f578c9b5c97504a021fe7103a898>` RTS_IEC_USINT_C(0x1)
+
+- #define :ref:`SYSETH_AUTONEGMODE_UNKNOWN <group___sys_ethernet_itf_1ga9873df96d0ccac8832b364e5d72687f7>` RTS_IEC_USINT_C(0xFF)
+
+- #define :ref:`SYSETH_AUTONEGSUP_NOTSUPPORTED <group___sys_ethernet_itf_1gad7642378dbb469162b866504d66db77e>` RTS_IEC_USINT_C(0x0)
+
+- #define :ref:`SYSETH_AUTONEGSUP_SUPPORTED <group___sys_ethernet_itf_1gaf606412d30f6986ed78428343fdaabd6>` RTS_IEC_USINT_C(0x1)
+
+- #define :ref:`SYSETH_AUTONEGSUP_UNKNOWN <group___sys_ethernet_itf_1ga242e94eb7ddef825686869fc4fe8fd09>` RTS_IEC_USINT_C(0xFF)
+
+- #define :ref:`SYSETH_MAUTYPE_OTHERORUNKNOWN <group___sys_ethernet_itf_1gae27a804ce660f03760c9b27a5525418a>` RTS_IEC_UDINT_C(0x0)	/* other or unknown */
+
+- #define :ref:`SYSETH_MAUTYPE_AUI <group___sys_ethernet_itf_1ga888c84db669e280e6c69d08e0d44a58b>` RTS_IEC_UDINT_C(0x1)	/* AUI */
+
+- #define :ref:`SYSETH_MAUTYPE_10BASE5 <group___sys_ethernet_itf_1gabcf9549bf626f4bbeb457ad658bf0f5a>` RTS_IEC_UDINT_C(0x2)	/* 10BASE-5 */
+
+- #define :ref:`SYSETH_MAUTYPE_FOIRL <group___sys_ethernet_itf_1ga7489946cf43ec64d5e2c0b6ffbbdd465>` RTS_IEC_UDINT_C(0x3)	/* FOIRL */
+
+- #define :ref:`SYSETH_MAUTYPE_10BASE2 <group___sys_ethernet_itf_1ga4a2103819325323f0cb174ab122201dc>` RTS_IEC_UDINT_C(0x4)	/* 10BASE-2 */
+
+- #define :ref:`SYSETH_MAUTYPE_10BASET <group___sys_ethernet_itf_1ga194bc81bf02de76909a0cc26ad1e2dac>` RTS_IEC_UDINT_C(0x5)	/* 10BASE-T duplex mode unknown */
+
+- #define :ref:`SYSETH_MAUTYPE_10BASEFP <group___sys_ethernet_itf_1gaaf2a2ecb24a3736aba64f0e4a28dc31e>` RTS_IEC_UDINT_C(0x6)	/* 10BASE-FP */
+
+- #define :ref:`SYSETH_MAUTYPE_10BASEFB <group___sys_ethernet_itf_1ga163558c08940b802ffcb2a1afd95fe2c>` RTS_IEC_UDINT_C(0x7)	/* 10BASE-FB */
+
+- #define :ref:`SYSETH_MAUTYPE_10BASEFL <group___sys_ethernet_itf_1ga0971319eb2f6330b61dff52e2a1c978c>` RTS_IEC_UDINT_C(0x8)	/* 10BASE-FL duplex mode unknown */
+
+- #define :ref:`SYSETH_MAUTYPE_10BROAD36 <group___sys_ethernet_itf_1ga8ccded350a43801d061b63d382b7c861>` RTS_IEC_UDINT_C(0x9)	/* 10BROAD36 */
+
+- #define :ref:`SYSETH_MAUTYPE_10BASETHD <group___sys_ethernet_itf_1ga9e9b55c58be38e8119dd38c8ff861c54>` RTS_IEC_UDINT_C(0xA)	/* 10BASE-T  half duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_10BASETFD <group___sys_ethernet_itf_1ga97ac586dbb93de41fa77ea7ad7605c0c>` RTS_IEC_UDINT_C(0xB)	/* 10BASE-T  full duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_10BASEFLHD <group___sys_ethernet_itf_1ga7d9d3515d7f37046bafdf6e3be5b8a09>` RTS_IEC_UDINT_C(0xC)	/* 10BASE-FL half duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_10BASEFLFD <group___sys_ethernet_itf_1ga6d6903077e4d69e08c817416095c7b2d>` RTS_IEC_UDINT_C(0xD)	/* 10BASE-FL full duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_100BASET4 <group___sys_ethernet_itf_1ga3d85d7a74ecd9f2bb12d417af0c4bea8>` RTS_IEC_UDINT_C(0xE)	/* 100BASE-T4 */
+
+- #define :ref:`SYSETH_MAUTYPE_100BASETXHD <group___sys_ethernet_itf_1gab5662eff222b7c7102c1a15c8e119c04>` RTS_IEC_UDINT_C(0xF)	/* 100BASE-TX half duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_100BASETXFD <group___sys_ethernet_itf_1ga8ce3c1cb9cb99d86434512ae860b5502>` RTS_IEC_UDINT_C(0x10)	/* 100BASE-TX full duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_100BASEFXHD <group___sys_ethernet_itf_1ga331c4886e3744d9eafe31b80ae72a3b1>` RTS_IEC_UDINT_C(0x11)	/* 100BASE-FX half duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_100BASEFXFD <group___sys_ethernet_itf_1ga4e471524e70b60fe3cc56a7a60fa1674>` RTS_IEC_UDINT_C(0x12)	/* 100BASE-FX full duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_100BASET2HD <group___sys_ethernet_itf_1ga676aea060061b8606e05ecc8440bbe51>` RTS_IEC_UDINT_C(0x13)	/* 100BASE-T2 half duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_100BASET2FD <group___sys_ethernet_itf_1ga45ed95cd7ff61ffbc001aff88e490185>` RTS_IEC_UDINT_C(0x14)	/* 100BASE-T2 full duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASEXHD <group___sys_ethernet_itf_1ga4b158852c9c7cc9a8ce1b53b84c69ad3>` RTS_IEC_UDINT_C(0x15)	/* 1000BASE-X half duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASEXFD <group___sys_ethernet_itf_1ga187fe18d03c6fab3376dc74bdfc14822>` RTS_IEC_UDINT_C(0x16)	/* 1000BASE-X full duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASELXHD <group___sys_ethernet_itf_1ga385a417bd260f27e6cebe190ac82f81d>` RTS_IEC_UDINT_C(0x17)	/* 1000BASE-LX half duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASELXFD <group___sys_ethernet_itf_1ga9e0526106ab5945e023adaa54cacdca3>` RTS_IEC_UDINT_C(0x18)	/* 1000BASE-LX full duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASESXHD <group___sys_ethernet_itf_1ga9cf19f1814200967633b9a39f9cba134>` RTS_IEC_UDINT_C(0x19)	/* 1000BASE-SX half duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASESXFD <group___sys_ethernet_itf_1ga6e859f4eda30bec8cfb065b249366581>` RTS_IEC_UDINT_C(0x1A)	/* 1000BASE-SX full duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASECXHD <group___sys_ethernet_itf_1gaa9647b2e5f9b8bcaeddf884a0767f72f>` RTS_IEC_UDINT_C(0x1B)	/* 1000BASE-CX half duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASECXFD <group___sys_ethernet_itf_1ga496730a72f0906ff9724a2efa285d2f9>` RTS_IEC_UDINT_C(0x1C)	/* 1000BASE-CX full duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASETHD <group___sys_ethernet_itf_1ga2291f9765ace9367a27d5f3f4cc5191f>` RTS_IEC_UDINT_C(0x1D)	/* 1000BASE-T half duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASETFD <group___sys_ethernet_itf_1ga50d23df3be87093a8535a7c6cef64f25>` RTS_IEC_UDINT_C(0x1E)	/* 1000BASE-T full duplex mode */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASEX <group___sys_ethernet_itf_1gae982a9d4e874c5a5173054539ee12ffd>` RTS_IEC_UDINT_C(0x1F)	/* 10GBASE-X */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASELX4 <group___sys_ethernet_itf_1gaa8e81defe106910d45e2d0768e540aa3>` RTS_IEC_UDINT_C(0x20)	/* 10GBASE-LX4 */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASER <group___sys_ethernet_itf_1gaa215e5342239466f6c06d489bf3a0b6c>` RTS_IEC_UDINT_C(0x21)	/* 10GBASE-R */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASEER <group___sys_ethernet_itf_1ga447ab2fc22c899d8aa1ede975ef41945>` RTS_IEC_UDINT_C(0x22)	/* 10GBASE-ER */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASELR <group___sys_ethernet_itf_1ga98e387ebca2c1ddee6014fc9eb3db9f7>` RTS_IEC_UDINT_C(0x23)	/* 10GBASE-LR */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASESR <group___sys_ethernet_itf_1gab27837594efa8e3f32b56da7c00328b9>` RTS_IEC_UDINT_C(0x24)	/* 10GBASE-SR */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASEW <group___sys_ethernet_itf_1ga68ff19dc015d0f28b17ca470056b857c>` RTS_IEC_UDINT_C(0x25)	/* 10GBASE-W */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASEEW <group___sys_ethernet_itf_1ga8ac2fd4f7c77f598da29098df24eb670>` RTS_IEC_UDINT_C(0x26)	/* 10GBASE-EW */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASELW <group___sys_ethernet_itf_1ga101568062a6d59a6cab1c1cae834fa51>` RTS_IEC_UDINT_C(0x27)	/* 10GBASE-LW */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASESW <group___sys_ethernet_itf_1ga6a8f59d8373ce9747f1c735e81176f0f>` RTS_IEC_UDINT_C(0x28)	/* 10GBASE-SW */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASECX4 <group___sys_ethernet_itf_1ga994faae6a3f6e57152b979f4e11f7482>` RTS_IEC_UDINT_C(0x29)	/* 10GBASE-CX4 */
+
+- #define :ref:`SYSETH_MAUTYPE_2BASETL <group___sys_ethernet_itf_1gaa2c5c3301ca79bd3d23f199cd71d74f3>` RTS_IEC_UDINT_C(0x2A)	/* 2BASE-TL */
+
+- #define :ref:`SYSETH_MAUTYPE_10PASSTS <group___sys_ethernet_itf_1ga650f518aa6350909fb0d37a9611bf203>` RTS_IEC_UDINT_C(0x2B)	/* 10PASS-TS */
+
+- #define :ref:`SYSETH_MAUTYPE_100BASEBX10D <group___sys_ethernet_itf_1ga90b7c6b8e6a98fd3b14e82d8b4fe16a8>` RTS_IEC_UDINT_C(0x2C)	/* 100BASE-BX10D */
+
+- #define :ref:`SYSETH_MAUTYPE_100BASEBX10U <group___sys_ethernet_itf_1ga787211084a45996d40f2683e77be9994>` RTS_IEC_UDINT_C(0x2D)	/* 100BASE-BX10U */
+
+- #define :ref:`SYSETH_MAUTYPE_100BASELX10 <group___sys_ethernet_itf_1ga9a45aefe56cbfeeea453d35d59d97714>` RTS_IEC_UDINT_C(0x2E)	/* 100BASE-LX10 */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASEBX10D <group___sys_ethernet_itf_1gaa722be12e252d942859c0393de28adc4>` RTS_IEC_UDINT_C(0x2F)	/* 1000BASE-BX10D */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASEBX10U <group___sys_ethernet_itf_1gabaef0ff9ad47de6e00a2063b7e10c0fb>` RTS_IEC_UDINT_C(0x30)	/* 1000BASE-BX10U */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASELX10 <group___sys_ethernet_itf_1gaf331987fb3dd0ed905577ac61b80e1cc>` RTS_IEC_UDINT_C(0x31)	/* 1000BASE-LX10 */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASEPX10D <group___sys_ethernet_itf_1ga3277663371b266486ddd107a51eb6f45>` RTS_IEC_UDINT_C(0x32)	/* 1000BASE-PX10D */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASEPX10U <group___sys_ethernet_itf_1ga426df8d235afd683baf606359146a4ae>` RTS_IEC_UDINT_C(0x33)	/* 1000BASE-PX10U */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASEPX20D <group___sys_ethernet_itf_1ga668f96775a5be216115c24a81f6e0de3>` RTS_IEC_UDINT_C(0x34)	/* 1000BASE-PX20D */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASEPX20U <group___sys_ethernet_itf_1ga0777cbb695405d07a0ac67de209697b8>` RTS_IEC_UDINT_C(0x35)	/* 1000BASE-PX20U */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASET <group___sys_ethernet_itf_1ga5c5c9bcafc7b5998e34e60b25ffbba75>` RTS_IEC_UDINT_C(0x36)	/* 10GBASE-T */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASELRM <group___sys_ethernet_itf_1ga446311dc71e529228aa8d5d9cce59ae7>` RTS_IEC_UDINT_C(0x37)	/* 10GBASE-LRM */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASEKX <group___sys_ethernet_itf_1ga2785c96a8ac16c5766d32b9976925de5>` RTS_IEC_UDINT_C(0x38)	/* 1000BASE-KX */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASEKX4 <group___sys_ethernet_itf_1ga67ad0dfb9b76aa4559cf57aaa3763446>` RTS_IEC_UDINT_C(0x39)	/* 10GBASE-KX4 */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASEKR <group___sys_ethernet_itf_1ga756c0055a4d92f076c40dd7adb378915>` RTS_IEC_UDINT_C(0x3A)	/* 10GBASE-KR */
+
+- #define :ref:`SYSETH_MAUTYPE_10G1GBASEPRXD1 <group___sys_ethernet_itf_1ga9c9bf26c3111bf0bf5a4269f5f48c4f5>` RTS_IEC_UDINT_C(0x3B)	/* 10/1GBASE-PRX-D1 */
+
+- #define :ref:`SYSETH_MAUTYPE_10G1GBASEPRXD2 <group___sys_ethernet_itf_1ga9a19c3eaa12b8912bba3b9dc3e57a2f4>` RTS_IEC_UDINT_C(0x3C)	/* 10/1GBASE-PRX-D2 */
+
+- #define :ref:`SYSETH_MAUTYPE_10G1GBASEPRXD3 <group___sys_ethernet_itf_1ga19d0635674744eab960e7af97bc373e8>` RTS_IEC_UDINT_C(0x3D)	/* 10/1GBASE-PRX-D3 */
+
+- #define :ref:`SYSETH_MAUTYPE_10G1GBASEPRXU1 <group___sys_ethernet_itf_1ga1b45f5c9ce4f9b1d39577ef20bfe2615>` RTS_IEC_UDINT_C(0x3E)	/* 10/1GBASE-PRX-U1 */
+
+- #define :ref:`SYSETH_MAUTYPE_10G1GBASEPRXU2 <group___sys_ethernet_itf_1ga1dbf1df37212672f23be5a4ccd1abb7b>` RTS_IEC_UDINT_C(0x3F)	/* 10/1GBASE-PRX-U2 */
+
+- #define :ref:`SYSETH_MAUTYPE_10G1GBASEPRXU3 <group___sys_ethernet_itf_1gab1165d6bbc04177e58ac1fee73f900b7>` RTS_IEC_UDINT_C(0x40)	/* 10/1GBASE-PRX-U3 */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASEPRD1 <group___sys_ethernet_itf_1ga47559256517ad74a7e3aff37701fd7a0>` RTS_IEC_UDINT_C(0x41)	/* 10GBASE-PR-D1 */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASEPRD2 <group___sys_ethernet_itf_1ga7721f9ca08e7ea0d305d4e332376fa85>` RTS_IEC_UDINT_C(0x42)	/* 10GBASE-PR-D2 */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASEPRD3 <group___sys_ethernet_itf_1ga71d2e63a6d336e54cf4593fc967b0c49>` RTS_IEC_UDINT_C(0x43)	/* 10GBASE-PR-D3 */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASEPRU1 <group___sys_ethernet_itf_1ga69fae080ca6056b9afd01e4e83bf9189>` RTS_IEC_UDINT_C(0x44)	/* 10GBASE-PR-U1 */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASEPRU3 <group___sys_ethernet_itf_1ga0eca1e74206ba96e29e0d3bb5aade271>` RTS_IEC_UDINT_C(0x45)	/* 10GBASE-PR-U3 */
+
+- #define :ref:`SYSETH_MAUTYPE_40GBASEKR4 <group___sys_ethernet_itf_1ga2793e0d61a896b969093ff53bb481885>` RTS_IEC_UDINT_C(0x46)	/* 40GBASE-KR4 */
+
+- #define :ref:`SYSETH_MAUTYPE_40GBASECR4 <group___sys_ethernet_itf_1ga21b19792dd131f9b24f859f22b5cdadb>` RTS_IEC_UDINT_C(0x47)	/* 40GBASE-CR4 */
+
+- #define :ref:`SYSETH_MAUTYPE_40GBASESR4 <group___sys_ethernet_itf_1ga56c152ebd42ee201f1d31d31d80989c1>` RTS_IEC_UDINT_C(0x48)	/* 40GBASE-SR4 */
+
+- #define :ref:`SYSETH_MAUTYPE_40GBASEFR <group___sys_ethernet_itf_1ga0f22684371aadfd3432e759531629cb9>` RTS_IEC_UDINT_C(0x49)	/* 40GBASE-FR */
+
+- #define :ref:`SYSETH_MAUTYPE_40GBASELR4 <group___sys_ethernet_itf_1ga1c02b51ae7546c700d9699501337dc16>` RTS_IEC_UDINT_C(0x4A)	/* 40GBASE-LR4 */
+
+- #define :ref:`SYSETH_MAUTYPE_100GBASECR10 <group___sys_ethernet_itf_1ga0a5a7b2dca3ebc7d2bb876415cc2208d>` RTS_IEC_UDINT_C(0x4B)	/* 100GBASE-CR10 */
+
+- #define :ref:`SYSETH_MAUTYPE_100GBASESR10 <group___sys_ethernet_itf_1gae79411d9371b949eb5cea977944d01a4>` RTS_IEC_UDINT_C(0x4C)	/* 100GBASE-SR10 */
+
+- #define :ref:`SYSETH_MAUTYPE_100GBASELR4 <group___sys_ethernet_itf_1ga6188dfaed1b2dab0c432f7cde7b640c1>` RTS_IEC_UDINT_C(0x4D)	/* 100GBASE-LR4 */
+
+- #define :ref:`SYSETH_MAUTYPE_100GBASEER4 <group___sys_ethernet_itf_1ga1f5851cdcbf31e5d1303a5e00e3bc749>` RTS_IEC_UDINT_C(0x4E)	/* 100GBASE-ER4 */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASET1 <group___sys_ethernet_itf_1ga2db94c858d68aacb8b00e1202a373f8b>` RTS_IEC_UDINT_C(0x4F)	/* 1000BASE-T1 */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASEPX30D <group___sys_ethernet_itf_1gae11b036539e32739a42bcba8c4241beb>` RTS_IEC_UDINT_C(0x50)	/* 1000BASE-PX30D */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASEPX30U <group___sys_ethernet_itf_1ga38c2addb4e00b4f7c6a8e84dd0096ab1>` RTS_IEC_UDINT_C(0x51)	/* 1000BASE-PX30U */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASEPX40D <group___sys_ethernet_itf_1ga3e2f3cbc180702ea5f96dd1c2aa7ac6b>` RTS_IEC_UDINT_C(0x52)	/* 1000BASE-PX40D */
+
+- #define :ref:`SYSETH_MAUTYPE_1000BASEPX40U <group___sys_ethernet_itf_1gaab289d2ef4fca492fcc057f0e9e22337>` RTS_IEC_UDINT_C(0x53)	/* 1000BASE-PX40U */
+
+- #define :ref:`SYSETH_MAUTYPE_10G1GBASEPRXD4 <group___sys_ethernet_itf_1gab3d8ec606bd93824efa7390093af29c3>` RTS_IEC_UDINT_C(0x54)	/* 10/1GBASE-PRX-D4 */
+
+- #define :ref:`SYSETH_MAUTYPE_10G1GBASEPRXU4 <group___sys_ethernet_itf_1ga8cb316c9a414eca4f1e5c6d0a882a99b>` RTS_IEC_UDINT_C(0x55)	/* 10/1GBASE-PRX-U4 */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASEPRD4 <group___sys_ethernet_itf_1ga26f0b76f1bd7a589a0bf70ae8951309c>` RTS_IEC_UDINT_C(0x56)	/* 10GBASE-PRD4 */
+
+- #define :ref:`SYSETH_MAUTYPE_10GBASEPRU4 <group___sys_ethernet_itf_1ga1c535c1e051b5fd22546c55854575a80>` RTS_IEC_UDINT_C(0x57)	/* 10GBASE-PRU4 */
+
+- #define :ref:`SYSETH_MAUTYPE_25GBASECR <group___sys_ethernet_itf_1ga9190a5f0246d0c3d739dcbaf14d1c876>` RTS_IEC_UDINT_C(0x58)	/* 25GBASE-CR */
+
+- #define :ref:`SYSETH_MAUTYPE_25GBASECRS <group___sys_ethernet_itf_1gac468efb08c3d694c307c16cc78d1e2e1>` RTS_IEC_UDINT_C(0x59)	/* 25GBASE-CR-S */
+
+- #define :ref:`SYSETH_MAUTYPE_25GBASEKR <group___sys_ethernet_itf_1ga539dbeaeaa9a7eb032c2f5ab035b2c2b>` RTS_IEC_UDINT_C(0x5A)	/* 25GBASE-KR */
+
+- #define :ref:`SYSETH_MAUTYPE_25GBASEKRS <group___sys_ethernet_itf_1gaf2a5d14b94b7075f4204c10dade1ff50>` RTS_IEC_UDINT_C(0x5B)	/* 25GBASE-KR-S */
+
+- #define :ref:`SYSETH_MAUTYPE_25GBASER <group___sys_ethernet_itf_1ga08cc18a9a28baef8500eb41adbfd70af>` RTS_IEC_UDINT_C(0x5C)	/* 25GBASE-R */
+
+- #define :ref:`SYSETH_MAUTYPE_25GBASESR <group___sys_ethernet_itf_1gacccef7bc10eb4a7cb28175c43c6b9ced>` RTS_IEC_UDINT_C(0x5D)	/* 25GBASE-SR */
+
+- #define :ref:`SYSETH_MAUTYPE_25GBASET <group___sys_ethernet_itf_1gae95ea5fe0c34f7fd79b9c43437a28330>` RTS_IEC_UDINT_C(0x5E)	/* 25GBASE-T */
+
+- #define :ref:`SYSETH_MAUTYPE_40GBASEER4 <group___sys_ethernet_itf_1ga9a01341d288113fd9bbec82f30117fa7>` RTS_IEC_UDINT_C(0x5F)	/* 40GBASE-ER4 */
+
+- #define :ref:`SYSETH_MAUTYPE_40GBASER <group___sys_ethernet_itf_1gafcb1abe9e2311414e8f69a1254c2cab0>` RTS_IEC_UDINT_C(0x60)	/* 40GBASE-R */
+
+- #define :ref:`SYSETH_MAUTYPE_40GBASET <group___sys_ethernet_itf_1ga2b97bfd932655c0a0a911a329d7acf03>` RTS_IEC_UDINT_C(0x61)	/* 40GBASE-T */
+
+- #define :ref:`SYSETH_MAUTYPE_100GBASECR4 <group___sys_ethernet_itf_1ga8a7e831f8861afc55286b40c2f8a0651>` RTS_IEC_UDINT_C(0x62)	/* 100GBASE-CR4 */
+
+- #define :ref:`SYSETH_MAUTYPE_100GBASEKR4 <group___sys_ethernet_itf_1ga896059c25f5b8c314abcbbe995a8985b>` RTS_IEC_UDINT_C(0x63)	/* 100GBASE-KR4 */
+
+- #define :ref:`SYSETH_MAUTYPE_100GBASEKP4 <group___sys_ethernet_itf_1gadfe84f545f9f241929c27974a852cb5c>` RTS_IEC_UDINT_C(0x64)	/* 100GBASE-KP4 */
+
+- #define :ref:`SYSETH_MAUTYPE_100GBASER <group___sys_ethernet_itf_1gaf78301e3083b63bc3e87321a4d92729d>` RTS_IEC_UDINT_C(0x65)	/* 100GBASE-R */
+
+- #define :ref:`SYSETH_MAUTYPE_100GBASESR4 <group___sys_ethernet_itf_1gaa14ac68b12b7293197803bcd55b09f32>` RTS_IEC_UDINT_C(0x66)	/* 100GBASE-SR4 */
+
+- #define :ref:`SYSETH_OPERSTAT_UP <group___sys_ethernet_itf_1gacc14e6d7a1c02975817f2ff37339f44f>` RTS_IEC_UINT_C(0x1)	/* ready to pass packets */
+
+- #define :ref:`SYSETH_OPERSTAT_DOWN <group___sys_ethernet_itf_1gaef28b7a8861d854753626e24d1049fb9>` RTS_IEC_UINT_C(0x2)	/* down and not in a condition to pass packets */
+
+- #define :ref:`SYSETH_OPERSTAT_TESTING <group___sys_ethernet_itf_1ga937967f18a607589c79bb98bc399c4c1>` RTS_IEC_UINT_C(0x3)	/* in some test mode */
+
+- #define :ref:`SYSETH_OPERSTAT_UNKNOWN <group___sys_ethernet_itf_1ga4dca3e3537c342e5ba839c23fd73303a>` RTS_IEC_UINT_C(0x4)	/* status can not be determined for some reason */
+
+- #define :ref:`SYSETH_OPERSTAT_DORMANT <group___sys_ethernet_itf_1gab2f90d78a520882e450b06ce240f1c8b>` RTS_IEC_UINT_C(0x5)	/* not up, pending state */
+
+- #define :ref:`SYSETH_OPERSTAT_NOTPRESENT <group___sys_ethernet_itf_1ga75293c41751e07bd26610829002ad508>` RTS_IEC_UINT_C(0x6)	/* some component e. g. a hardware device is missing */
+
+- #define :ref:`SYSETH_OPERSTAT_LOWERLAYERDOWN <group___sys_ethernet_itf_1ga8cdd34855aaf5191af47a814692e27bd>` RTS_IEC_UINT_C(0x7)	/* down due to state of lower-layer interface(s) */
+
+- #define :ref:`SYSETH_CONFIG_AND_STATUS_STRUCT_VERSION <group___sys_ethernet_itf_1ga923fe9de6a9d9c4b9e9002ceadcca1db>` 1	/* version number of structure, to be increased on changes */
+
+- #define :ref:`ITF_SysEthernet <group___sys_ethernet_itf_1ga13b42db9cb5965009eb3a09e84a09b3e>`
+
+- #define :ref:`EXTITF_SysEthernet <group___sys_ethernet_itf_1ga1df3e332d29c7ccea5febc0971d8d0e4>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagETCStructCommand <structtag_e_t_c_struct_command>` :ref:`ETCStructCommand <group___sys_ethernet_itf_1ga2ae24116d8934954655bf1fc85857119>`
+
+- typedef struct :ref:`tagStructEthernetframe <structtag_struct_ethernetframe>` :ref:`StructEthernetframe <group___sys_ethernet_itf_1ga8613c7754e77927b3e6414c0b4dc332c>`
+
+- typedef struct :ref:`tagSysEthernetFrame <structtag_sys_ethernet_frame>` :ref:`SysEthernetFrame <group___sys_ethernet_itf_1ga45418cb65cf4069ce50332a58063ebcf>`
+
+- typedef struct :ref:`tagSysEthernetPortConfigAndStatus <structtag_sys_ethernet_port_config_and_status>` :ref:`SysEthernetPortConfigAndStatus <group___sys_ethernet_itf_1ga0ff4ccda4ff00bc0bb800e9be1efaa57>`
+
+- typedef struct :ref:`tagsysethernetadapterclose_struct <structtagsysethernetadapterclose__struct>` :ref:`sysethernetadapterclose_struct <group___sys_ethernet_itf_1ga1c15a4b88f45539b5b28493ff088142a>`
+
+- typedef struct :ref:`tagsysethernetadapteropen_struct <structtagsysethernetadapteropen__struct>` :ref:`sysethernetadapteropen_struct <group___sys_ethernet_itf_1ga4e6d371bfbad5012301f87d5a4633811>`
+
+- typedef struct :ref:`tagsysethernetethframereceive_struct <structtagsysethernetethframereceive__struct>` :ref:`sysethernetethframereceive_struct <group___sys_ethernet_itf_1ga6355a3dda32793457d19e1021ba0b730>`
+
+- typedef struct :ref:`tagsysethernetethframesend_struct <structtagsysethernetethframesend__struct>` :ref:`sysethernetethframesend_struct <group___sys_ethernet_itf_1gae57fba257f1bd2210ba6afb019f069b5>`
+
+- typedef struct :ref:`tagsysethernetframerelease_struct <structtagsysethernetframerelease__struct>` :ref:`sysethernetframerelease_struct <group___sys_ethernet_itf_1gababedcde3f6af3d67b4070c45401632b>`
+
+- typedef struct :ref:`tagsysethernetgetportconfigandstatus_struct <structtagsysethernetgetportconfigandstatus__struct>` :ref:`sysethernetgetportconfigandstatus_struct <group___sys_ethernet_itf_1ga22325dea90dfbdce871cfe989596656e>`
+
+- typedef struct :ref:`tagsysethernetipframereceive_struct <structtagsysethernetipframereceive__struct>` :ref:`sysethernetipframereceive_struct <group___sys_ethernet_itf_1gaee87e2c09e4eff3c3018e7fefffb2e27>`
+
+- typedef struct :ref:`tagsysethernetipframesend_struct <structtagsysethernetipframesend__struct>` :ref:`sysethernetipframesend_struct <group___sys_ethernet_itf_1ga20dfff1711ec7ff881d46573aeca04e8>`
+
+- typedef struct :ref:`tagsysethernetsetautonegadvertisedcap_struct <structtagsysethernetsetautonegadvertisedcap__struct>` :ref:`sysethernetsetautonegadvertisedcap_struct <group___sys_ethernet_itf_1ga0a913e4de548217c3f44421c11c99698>`
+
+- typedef struct :ref:`tagsysethernetsetautonegmode_struct <structtagsysethernetsetautonegmode__struct>` :ref:`sysethernetsetautonegmode_struct <group___sys_ethernet_itf_1ga54778649b02613352a65855ecbe5f7d9>`
+
+- typedef struct :ref:`tagsysethernetsetmautype_struct <structtagsysethernetsetmautype__struct>` :ref:`sysethernetsetmautype_struct <group___sys_ethernet_itf_1gae8c7437753b2cac76edb9779a6c5a88c>`
+
+- typedef :ref:`ISysEthernet_C <struct_i_sys_ethernet___c>` :ref:`ISysEthernet <group___sys_ethernet_itf_1gac515054cfefeb07eff56d38551fc4b1e>`
+
+Functions
+---------
+
+- void :ref:`openethernet <group___sys_ethernet_itf_1ga625592b000d97284334b2dae00c31e4b>` (:ref:`OpenEthernetInterface <struct_open_ethernet_interface>` * poei)
+
+- void :ref:`sendethframe <group___sys_ethernet_itf_1ga1615b689d82775bd76f897cf1bababef>` (:ref:`SendEthernetInterface <struct_send_ethernet_interface>` * psfi)
+
+- void :ref:`getethframe <group___sys_ethernet_itf_1gaa6036c9ea77765d18bdc95ab39778544>` (:ref:`GetEthernetInterface <struct_get_ethernet_interface>` * pgei)
+
+- void :ref:`closeethernet <group___sys_ethernet_itf_1ga0d5385a68d015709fe2791bd795b50d8>` (:ref:`CloseEthernetInterface <struct_close_ethernet_interface>` * pcei)
+
+- void :ref:`getnumberofadapters <group___sys_ethernet_itf_1ga5ee33836c4aed6d6d3f09b0cade9bdfa>` (:ref:`GetNumberOfEthernetInterface <struct_get_number_of_ethernet_interface>` * pnoei)
+
+- void :ref:`getadapterinfo <group___sys_ethernet_itf_1ga7d10d3d0a27870410cf5877ecf155eec>` (:ref:`GetAdapterInfoEthernetInterface <struct_get_adapter_info_ethernet_interface>` * paiei)
+
+- void :ref:`sendIPethframe <group___sys_ethernet_itf_1ga4ff02af4906c9ea71a1f4904cf2f83e6>` (:ref:`SendIPEthernetInterface <struct_send_i_p_ethernet_interface>` * psfi)
+
+- void :ref:`getIPethframe <group___sys_ethernet_itf_1gac33b3614255c4b65323751fb35e2e84d>` (:ref:`GetIPEthernetInterface <struct_get_i_p_ethernet_interface>` * pgei)
+
+- void :ref:`sysethernetadapterclose <group___sys_ethernet_itf_1ga61e47f6f03dc9cfc4cf4a48d952a6238>` (:ref:`sysethernetadapterclose_struct <group___sys_ethernet_itf_1ga1c15a4b88f45539b5b28493ff088142a>` * p)
+
+- void :ref:`sysethernetadapteropen <group___sys_ethernet_itf_1ga6ee07559aaf069246dc3807ee634d801>` (:ref:`sysethernetadapteropen_struct <group___sys_ethernet_itf_1ga4e6d371bfbad5012301f87d5a4633811>` * p)
+
+- void :ref:`sysethernetethframereceive <group___sys_ethernet_itf_1ga3e8fa44d9c999c22dcd93f9f251f89da>` (:ref:`sysethernetethframereceive_struct <group___sys_ethernet_itf_1ga6355a3dda32793457d19e1021ba0b730>` * p)
+
+- void :ref:`sysethernetethframesend <group___sys_ethernet_itf_1ga548dcdca0bc96c1348c8b8e64458a532>` (:ref:`sysethernetethframesend_struct <group___sys_ethernet_itf_1gae57fba257f1bd2210ba6afb019f069b5>` * p)
+
+- void :ref:`sysethernetframerelease <group___sys_ethernet_itf_1ga7cf88a48aa449880b19bd4d2211b9f2d>` (:ref:`sysethernetframerelease_struct <group___sys_ethernet_itf_1gababedcde3f6af3d67b4070c45401632b>` * p)
+
+- void :ref:`sysethernetgetportconfigandstatus <group___sys_ethernet_itf_1ga68d7ef585e361c44cf72370757d79c50>` (:ref:`sysethernetgetportconfigandstatus_struct <group___sys_ethernet_itf_1ga22325dea90dfbdce871cfe989596656e>` * p)
+
+- void :ref:`sysethernetipframereceive <group___sys_ethernet_itf_1ga81bc04202953da439d3dadcfbc2ca244>` (:ref:`sysethernetipframereceive_struct <group___sys_ethernet_itf_1gaee87e2c09e4eff3c3018e7fefffb2e27>` * p)
+
+- void :ref:`sysethernetipframesend <group___sys_ethernet_itf_1ga911d89e4bbef852d309f1f5ecbabc236>` (:ref:`sysethernetipframesend_struct <group___sys_ethernet_itf_1ga20dfff1711ec7ff881d46573aeca04e8>` * p)
+
+- void :ref:`sysethernetsetautonegadvertisedcap <group___sys_ethernet_itf_1gae034ab42bbab43e2e351c71345a72383>` (:ref:`sysethernetsetautonegadvertisedcap_struct <group___sys_ethernet_itf_1ga0a913e4de548217c3f44421c11c99698>` * p)
+
+- void :ref:`sysethernetsetautonegmode <group___sys_ethernet_itf_1ga7f49b0fe3ba2f554eb982bb67b984fb1>` (:ref:`sysethernetsetautonegmode_struct <group___sys_ethernet_itf_1ga54778649b02613352a65855ecbe5f7d9>` * p)
+
+- void :ref:`sysethernetsetmautype <group___sys_ethernet_itf_1gac62c8fc6ac322f021cb170993fc1fb07>` (:ref:`sysethernetsetmautype_struct <group___sys_ethernet_itf_1gae8c7437753b2cac76edb9779a6c5a88c>` * p)
+
+- RTS_HANDLE :ref:`SysEthernetAdapterOpen <group___sys_ethernet_itf_1ga0d16593c37380fce8a78b4e91f5b198f>` (RTS_UI8 * pMacAddress, RTS_SIZE macSize, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysEthernetAdapterClose <group___sys_ethernet_itf_1gaf2a5292be58f4d505be01122e6958580>` (RTS_HANDLE hAdapter)
+
+- RTS_RESULT :ref:`SysEthernetEthFrameSend <group___sys_ethernet_itf_1ga03c080dd3d3ec7d204ded283e698be34>` (RTS_HANDLE hAdapter, :ref:`SysEthernetFrame <group___sys_ethernet_itf_1ga45418cb65cf4069ce50332a58063ebcf>` * pFrame)
+
+- :ref:`SysEthernetFrame <group___sys_ethernet_itf_1ga45418cb65cf4069ce50332a58063ebcf>` * :ref:`SysEthernetEthFrameReceive <group___sys_ethernet_itf_1ga63cbad201a8c6eabe4375bb27947ee0b>` (RTS_HANDLE hAdapter, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysEthernetIpFrameSend <group___sys_ethernet_itf_1ga874246ce45a9acdde5a69f424e3a7175>` (RTS_HANDLE hAdapter, :ref:`SysEthernetFrame <group___sys_ethernet_itf_1ga45418cb65cf4069ce50332a58063ebcf>` * pFrame)
+
+- :ref:`SysEthernetFrame <group___sys_ethernet_itf_1ga45418cb65cf4069ce50332a58063ebcf>` * :ref:`SysEthernetIpFrameReceive <group___sys_ethernet_itf_1gae3877363bcc043644092b41989afa561>` (RTS_HANDLE hAdapter, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysEthernetFrameRelease <group___sys_ethernet_itf_1gaca05e886dfebb3d268cbbc4855a79465>` (:ref:`SysEthernetFrame <group___sys_ethernet_itf_1ga45418cb65cf4069ce50332a58063ebcf>` * pFrame)
+
+- RTS_RESULT :ref:`SysEthernetGetPortConfigAndStatus <group___sys_ethernet_itf_1ga7c394f56da5ae4bd0e18ee5e69b68dd2>` (RTS_UI8 * pMacAddress, RTS_SIZE macSize, :ref:`SysEthernetPortConfigAndStatus <group___sys_ethernet_itf_1ga0ff4ccda4ff00bc0bb800e9be1efaa57>` * pPortConfigAndStatus)
+
+- RTS_RESULT :ref:`SysEthernetSetAutoNegAdvertisedCap <group___sys_ethernet_itf_1ga46efe067e6e4a22e01d4f83ba4e374cd>` (RTS_UI8 * pMacAddress, RTS_SIZE macSize, RTS_UI64 ui64AutoNegAdvertisedCap)
+
+- RTS_RESULT :ref:`SysEthernetSetAutoNegMode <group___sys_ethernet_itf_1gad4aaf1aca3c3751a7d8157468147441c>` (RTS_UI8 * pMacAddress, RTS_SIZE macSize, RTS_UI8 ui8AutoNegMode)
+
+- RTS_RESULT :ref:`SysEthernetSetMauType <group___sys_ethernet_itf_1ga2be8913b9018a158539ec257a28d2beb>` (RTS_UI8 * pMacAddress, RTS_SIZE macSize, RTS_UI32 ui32MauType)
+
+.. _group___sys_ethernet_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysEthernet.
+
+The SysEthernet interface contains low level routines for a direct access to an ethernet controller. This interface is typically used by an EtherCAT driver.
+
+All other ethernet communciation components use higher level routines (see SysSocket interface).
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_ethernet_itf_1gac4ac5fbc4dc756ed4100ee91e6122865:
+
+#define SYSETH_AUTONEGCAP_OTHERORUNKNOWN RTS_IEC_ULINT_C(0x1)	/* other or unknown */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION BEGIN
+
+AutoNegCaps
+
+.. _group___sys_ethernet_itf_1ga4cfda68b0d6acfe269970bb76782b2eb:
+
+#define SYSETH_AUTONEGCAP_10BASET RTS_IEC_ULINT_C(0x2)	/* 10BASE-T  half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga0e88255def202b450518587dddf5af4f:
+
+#define SYSETH_AUTONEGCAP_10BASETFD RTS_IEC_ULINT_C(0x4)	/* 10BASE-T  full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga97236127c071fdc0b672535562d79469:
+
+#define SYSETH_AUTONEGCAP_100BASET4 RTS_IEC_ULINT_C(0x8)	/* 100BASE-T4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga0c562e932e88cee08e8d1f3d4ad06ff1:
+
+#define SYSETH_AUTONEGCAP_100BASETX RTS_IEC_ULINT_C(0x10)	/* 100BASE-TX half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga864539f1fbd6c6f81f4b8f67dfcc0f19:
+
+#define SYSETH_AUTONEGCAP_100BASETXFD RTS_IEC_ULINT_C(0x20)	/* 100BASE-TX full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gacefbfd17dbc982c3073e3edd0f149bb0:
+
+#define SYSETH_AUTONEGCAP_100BASET2 RTS_IEC_ULINT_C(0x40)	/* 100BASE-T2 half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga4c617afef3b85ee41930817498daa5fc:
+
+#define SYSETH_AUTONEGCAP_100BASET2FD RTS_IEC_ULINT_C(0x80)	/* 100BASE-T2 full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga93e51db9ca5a8c83b285375962dd0428:
+
+#define SYSETH_AUTONEGCAP_FDXPAUSE RTS_IEC_ULINT_C(0x100)	/* PAUSE for full-duplex links */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga6acb3f1567975c49ac3237955e87e03b:
+
+#define SYSETH_AUTONEGCAP_FDXAPAUSE RTS_IEC_ULINT_C(0x200)	/* Asymmetric PAUSE for full-duplex links */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gab8a4730edc8ef3a37e38b4b59fdccf16:
+
+#define SYSETH_AUTONEGCAP_FDXSPAUSE RTS_IEC_ULINT_C(0x400)	/* Symmetric PAUSE for full-duplex links */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga5e0a11fa9a9e01dbab1d1538417d3435:
+
+#define SYSETH_AUTONEGCAP_FDXBPAUSE RTS_IEC_ULINT_C(0x800)	/* Asymmetric and Symmetric PAUSE for full-duplex links */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gabd97d5dfc975aa17cd761a17b170d1e3:
+
+#define SYSETH_AUTONEGCAP_1000BASEX RTS_IEC_ULINT_C(0x1000)	/* 1000BASE-X, -LX, -SX, -CX half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gad46f3e3ce9129381a72e6b9b2a4ed8cf:
+
+#define SYSETH_AUTONEGCAP_1000BASEXFD RTS_IEC_ULINT_C(0x2000)	/* 1000BASE-X, -LX, -SX, -CX full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga4ea3ee1984cee937068ac450e3774984:
+
+#define SYSETH_AUTONEGCAP_1000BASET RTS_IEC_ULINT_C(0x4000)	/* 1000BASE-T half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga48f7564e98c2fb2c55a157082405f9fe:
+
+#define SYSETH_AUTONEGCAP_1000BASETFD RTS_IEC_ULINT_C(0x8000)	/* 1000BASE-T full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga3714ecadf9d01e93dad0e2c3837cfd1a:
+
+#define SYSETH_AUTONEGCAP_10GBASET RTS_IEC_ULINT_C(0x10000)	/* 10GBASE-T */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaeedf48aea306edbc03aa54328c574c4b:
+
+#define SYSETH_AUTONEGCAP_1000BASEKX RTS_IEC_ULINT_C(0x20000)	/* 1000BASE-KX */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga4070d065acda5d46a3697d44f936e227:
+
+#define SYSETH_AUTONEGCAP_10GBASEKX4 RTS_IEC_ULINT_C(0x40000)	/* 10GBASE-KX4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaace49ad9adc9fff7ae0c6b27484fabc6:
+
+#define SYSETH_AUTONEGCAP_10GBASEKR RTS_IEC_ULINT_C(0x80000)	/* 10GBASE-KR */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga56124215e7b1ef0c2d0b39e90787e28b:
+
+#define SYSETH_AUTONEGCAP_40GBASEKR4 RTS_IEC_ULINT_C(0x100000)	/* 40GBASE-KR4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga825657a1c03969d6460e66dc0790e319:
+
+#define SYSETH_AUTONEGCAP_40GBASECR4 RTS_IEC_ULINT_C(0x200000)	/* 40GBASE-CR4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga31b3563cb816fcafbd519700fa84fd35:
+
+#define SYSETH_AUTONEGCAP_100GBASECR10 RTS_IEC_ULINT_C(0x400000)	/* 100GBASE-CR10 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gad0d1d5a0a39b6fede93797b4a67d2cc3:
+
+#define SYSETH_AUTONEGCAP_1000BASET1 RTS_IEC_ULINT_C(0x800000)	/* 1000BASE-T1 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gac0573b3219cfe08e2fa69898b0bf47b3:
+
+#define SYSETH_AUTONEGCAP_25GBASERS RTS_IEC_ULINT_C(0x1000000)	/* 25GBASE-CR-S or 25GBASE-KR-S */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaa700a7e143d8353b4a2ce1858b756288:
+
+#define SYSETH_AUTONEGCAP_25GBASER RTS_IEC_ULINT_C(0x2000000)	/* 25GBASE-CR or 25GBASE-KR */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gae8fbe89c10cfa7b88c2f4d493d145f62:
+
+#define SYSETH_AUTONEGCAP_RSFEC25GREQ RTS_IEC_ULINT_C(0x4000000)	/* 25Gb/s RS-FEC */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga2b69912ed85e9f33c9f7c0cd2f7c8936:
+
+#define SYSETH_AUTONEGCAP_BASEFEC25GREQ RTS_IEC_ULINT_C(0x8000000)	/* 25Gb/s BASE-R FEC */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga2a6d57f0ae14b855633a00a2641949aa:
+
+#define SYSETH_AUTONEGCAP_25GBASET RTS_IEC_ULINT_C(0x10000000)	/* 25GBASE-T */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gae57e3f1c59734f7a8f806e57d8179d20:
+
+#define SYSETH_AUTONEGCAP_40GBASET RTS_IEC_ULINT_C(0x20000000)	/* 40GBASE-T */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga726555629cff3f60d665beeb5d13551e:
+
+#define SYSETH_AUTONEGCAP_100GBASECR4 RTS_IEC_ULINT_C(0x40000000)	/* 100GBASE-CR4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga10ddd84292a88890fc799715ca85f6a8:
+
+#define SYSETH_AUTONEGCAP_100GBASEKR4 RTS_IEC_ULINT_C(0x80000000)	/* 100GBASE-KR4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga6ab788ff76d6ece75ec455364af3d991:
+
+#define SYSETH_AUTONEGCAP_100GBASEKP4 RTS_IEC_ULINT_C(0x100000000)	/* 100GBASE-KP4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga42a2766040a31f3570633131df0eea4c:
+
+#define SYSETH_AUTONEGCAP_FORCEMS RTS_IEC_ULINT_C(0x200000000)	/* 1000BASE-T1 Force MS */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga5bb9cac15bb63731e4586ad2c0939a38:
+
+#define SYSETH_AUTONEGMODE_DISABLED RTS_IEC_USINT_C(0x0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+AutoNegMode
+
+.. _group___sys_ethernet_itf_1gad251f578c9b5c97504a021fe7103a898:
+
+#define SYSETH_AUTONEGMODE_ENABLED RTS_IEC_USINT_C(0x1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga9873df96d0ccac8832b364e5d72687f7:
+
+#define SYSETH_AUTONEGMODE_UNKNOWN RTS_IEC_USINT_C(0xFF)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gad7642378dbb469162b866504d66db77e:
+
+#define SYSETH_AUTONEGSUP_NOTSUPPORTED RTS_IEC_USINT_C(0x0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+AutoNegSupport
+
+.. _group___sys_ethernet_itf_1gaf606412d30f6986ed78428343fdaabd6:
+
+#define SYSETH_AUTONEGSUP_SUPPORTED RTS_IEC_USINT_C(0x1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga242e94eb7ddef825686869fc4fe8fd09:
+
+#define SYSETH_AUTONEGSUP_UNKNOWN RTS_IEC_USINT_C(0xFF)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gae27a804ce660f03760c9b27a5525418a:
+
+#define SYSETH_MAUTYPE_OTHERORUNKNOWN RTS_IEC_UDINT_C(0x0)	/* other or unknown */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+MauType
+
+.. _group___sys_ethernet_itf_1ga888c84db669e280e6c69d08e0d44a58b:
+
+#define SYSETH_MAUTYPE_AUI RTS_IEC_UDINT_C(0x1)	/* AUI */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gabcf9549bf626f4bbeb457ad658bf0f5a:
+
+#define SYSETH_MAUTYPE_10BASE5 RTS_IEC_UDINT_C(0x2)	/* 10BASE-5 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga7489946cf43ec64d5e2c0b6ffbbdd465:
+
+#define SYSETH_MAUTYPE_FOIRL RTS_IEC_UDINT_C(0x3)	/* FOIRL */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga4a2103819325323f0cb174ab122201dc:
+
+#define SYSETH_MAUTYPE_10BASE2 RTS_IEC_UDINT_C(0x4)	/* 10BASE-2 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga194bc81bf02de76909a0cc26ad1e2dac:
+
+#define SYSETH_MAUTYPE_10BASET RTS_IEC_UDINT_C(0x5)	/* 10BASE-T duplex mode unknown */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaaf2a2ecb24a3736aba64f0e4a28dc31e:
+
+#define SYSETH_MAUTYPE_10BASEFP RTS_IEC_UDINT_C(0x6)	/* 10BASE-FP */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga163558c08940b802ffcb2a1afd95fe2c:
+
+#define SYSETH_MAUTYPE_10BASEFB RTS_IEC_UDINT_C(0x7)	/* 10BASE-FB */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga0971319eb2f6330b61dff52e2a1c978c:
+
+#define SYSETH_MAUTYPE_10BASEFL RTS_IEC_UDINT_C(0x8)	/* 10BASE-FL duplex mode unknown */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga8ccded350a43801d061b63d382b7c861:
+
+#define SYSETH_MAUTYPE_10BROAD36 RTS_IEC_UDINT_C(0x9)	/* 10BROAD36 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga9e9b55c58be38e8119dd38c8ff861c54:
+
+#define SYSETH_MAUTYPE_10BASETHD RTS_IEC_UDINT_C(0xA)	/* 10BASE-T  half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga97ac586dbb93de41fa77ea7ad7605c0c:
+
+#define SYSETH_MAUTYPE_10BASETFD RTS_IEC_UDINT_C(0xB)	/* 10BASE-T  full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga7d9d3515d7f37046bafdf6e3be5b8a09:
+
+#define SYSETH_MAUTYPE_10BASEFLHD RTS_IEC_UDINT_C(0xC)	/* 10BASE-FL half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga6d6903077e4d69e08c817416095c7b2d:
+
+#define SYSETH_MAUTYPE_10BASEFLFD RTS_IEC_UDINT_C(0xD)	/* 10BASE-FL full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga3d85d7a74ecd9f2bb12d417af0c4bea8:
+
+#define SYSETH_MAUTYPE_100BASET4 RTS_IEC_UDINT_C(0xE)	/* 100BASE-T4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gab5662eff222b7c7102c1a15c8e119c04:
+
+#define SYSETH_MAUTYPE_100BASETXHD RTS_IEC_UDINT_C(0xF)	/* 100BASE-TX half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga8ce3c1cb9cb99d86434512ae860b5502:
+
+#define SYSETH_MAUTYPE_100BASETXFD RTS_IEC_UDINT_C(0x10)	/* 100BASE-TX full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga331c4886e3744d9eafe31b80ae72a3b1:
+
+#define SYSETH_MAUTYPE_100BASEFXHD RTS_IEC_UDINT_C(0x11)	/* 100BASE-FX half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga4e471524e70b60fe3cc56a7a60fa1674:
+
+#define SYSETH_MAUTYPE_100BASEFXFD RTS_IEC_UDINT_C(0x12)	/* 100BASE-FX full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga676aea060061b8606e05ecc8440bbe51:
+
+#define SYSETH_MAUTYPE_100BASET2HD RTS_IEC_UDINT_C(0x13)	/* 100BASE-T2 half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga45ed95cd7ff61ffbc001aff88e490185:
+
+#define SYSETH_MAUTYPE_100BASET2FD RTS_IEC_UDINT_C(0x14)	/* 100BASE-T2 full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga4b158852c9c7cc9a8ce1b53b84c69ad3:
+
+#define SYSETH_MAUTYPE_1000BASEXHD RTS_IEC_UDINT_C(0x15)	/* 1000BASE-X half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga187fe18d03c6fab3376dc74bdfc14822:
+
+#define SYSETH_MAUTYPE_1000BASEXFD RTS_IEC_UDINT_C(0x16)	/* 1000BASE-X full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga385a417bd260f27e6cebe190ac82f81d:
+
+#define SYSETH_MAUTYPE_1000BASELXHD RTS_IEC_UDINT_C(0x17)	/* 1000BASE-LX half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga9e0526106ab5945e023adaa54cacdca3:
+
+#define SYSETH_MAUTYPE_1000BASELXFD RTS_IEC_UDINT_C(0x18)	/* 1000BASE-LX full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga9cf19f1814200967633b9a39f9cba134:
+
+#define SYSETH_MAUTYPE_1000BASESXHD RTS_IEC_UDINT_C(0x19)	/* 1000BASE-SX half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga6e859f4eda30bec8cfb065b249366581:
+
+#define SYSETH_MAUTYPE_1000BASESXFD RTS_IEC_UDINT_C(0x1A)	/* 1000BASE-SX full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaa9647b2e5f9b8bcaeddf884a0767f72f:
+
+#define SYSETH_MAUTYPE_1000BASECXHD RTS_IEC_UDINT_C(0x1B)	/* 1000BASE-CX half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga496730a72f0906ff9724a2efa285d2f9:
+
+#define SYSETH_MAUTYPE_1000BASECXFD RTS_IEC_UDINT_C(0x1C)	/* 1000BASE-CX full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga2291f9765ace9367a27d5f3f4cc5191f:
+
+#define SYSETH_MAUTYPE_1000BASETHD RTS_IEC_UDINT_C(0x1D)	/* 1000BASE-T half duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga50d23df3be87093a8535a7c6cef64f25:
+
+#define SYSETH_MAUTYPE_1000BASETFD RTS_IEC_UDINT_C(0x1E)	/* 1000BASE-T full duplex mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gae982a9d4e874c5a5173054539ee12ffd:
+
+#define SYSETH_MAUTYPE_10GBASEX RTS_IEC_UDINT_C(0x1F)	/* 10GBASE-X */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaa8e81defe106910d45e2d0768e540aa3:
+
+#define SYSETH_MAUTYPE_10GBASELX4 RTS_IEC_UDINT_C(0x20)	/* 10GBASE-LX4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaa215e5342239466f6c06d489bf3a0b6c:
+
+#define SYSETH_MAUTYPE_10GBASER RTS_IEC_UDINT_C(0x21)	/* 10GBASE-R */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga447ab2fc22c899d8aa1ede975ef41945:
+
+#define SYSETH_MAUTYPE_10GBASEER RTS_IEC_UDINT_C(0x22)	/* 10GBASE-ER */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga98e387ebca2c1ddee6014fc9eb3db9f7:
+
+#define SYSETH_MAUTYPE_10GBASELR RTS_IEC_UDINT_C(0x23)	/* 10GBASE-LR */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gab27837594efa8e3f32b56da7c00328b9:
+
+#define SYSETH_MAUTYPE_10GBASESR RTS_IEC_UDINT_C(0x24)	/* 10GBASE-SR */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga68ff19dc015d0f28b17ca470056b857c:
+
+#define SYSETH_MAUTYPE_10GBASEW RTS_IEC_UDINT_C(0x25)	/* 10GBASE-W */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga8ac2fd4f7c77f598da29098df24eb670:
+
+#define SYSETH_MAUTYPE_10GBASEEW RTS_IEC_UDINT_C(0x26)	/* 10GBASE-EW */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga101568062a6d59a6cab1c1cae834fa51:
+
+#define SYSETH_MAUTYPE_10GBASELW RTS_IEC_UDINT_C(0x27)	/* 10GBASE-LW */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga6a8f59d8373ce9747f1c735e81176f0f:
+
+#define SYSETH_MAUTYPE_10GBASESW RTS_IEC_UDINT_C(0x28)	/* 10GBASE-SW */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga994faae6a3f6e57152b979f4e11f7482:
+
+#define SYSETH_MAUTYPE_10GBASECX4 RTS_IEC_UDINT_C(0x29)	/* 10GBASE-CX4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaa2c5c3301ca79bd3d23f199cd71d74f3:
+
+#define SYSETH_MAUTYPE_2BASETL RTS_IEC_UDINT_C(0x2A)	/* 2BASE-TL */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga650f518aa6350909fb0d37a9611bf203:
+
+#define SYSETH_MAUTYPE_10PASSTS RTS_IEC_UDINT_C(0x2B)	/* 10PASS-TS */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga90b7c6b8e6a98fd3b14e82d8b4fe16a8:
+
+#define SYSETH_MAUTYPE_100BASEBX10D RTS_IEC_UDINT_C(0x2C)	/* 100BASE-BX10D */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga787211084a45996d40f2683e77be9994:
+
+#define SYSETH_MAUTYPE_100BASEBX10U RTS_IEC_UDINT_C(0x2D)	/* 100BASE-BX10U */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga9a45aefe56cbfeeea453d35d59d97714:
+
+#define SYSETH_MAUTYPE_100BASELX10 RTS_IEC_UDINT_C(0x2E)	/* 100BASE-LX10 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaa722be12e252d942859c0393de28adc4:
+
+#define SYSETH_MAUTYPE_1000BASEBX10D RTS_IEC_UDINT_C(0x2F)	/* 1000BASE-BX10D */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gabaef0ff9ad47de6e00a2063b7e10c0fb:
+
+#define SYSETH_MAUTYPE_1000BASEBX10U RTS_IEC_UDINT_C(0x30)	/* 1000BASE-BX10U */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaf331987fb3dd0ed905577ac61b80e1cc:
+
+#define SYSETH_MAUTYPE_1000BASELX10 RTS_IEC_UDINT_C(0x31)	/* 1000BASE-LX10 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga3277663371b266486ddd107a51eb6f45:
+
+#define SYSETH_MAUTYPE_1000BASEPX10D RTS_IEC_UDINT_C(0x32)	/* 1000BASE-PX10D */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga426df8d235afd683baf606359146a4ae:
+
+#define SYSETH_MAUTYPE_1000BASEPX10U RTS_IEC_UDINT_C(0x33)	/* 1000BASE-PX10U */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga668f96775a5be216115c24a81f6e0de3:
+
+#define SYSETH_MAUTYPE_1000BASEPX20D RTS_IEC_UDINT_C(0x34)	/* 1000BASE-PX20D */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga0777cbb695405d07a0ac67de209697b8:
+
+#define SYSETH_MAUTYPE_1000BASEPX20U RTS_IEC_UDINT_C(0x35)	/* 1000BASE-PX20U */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga5c5c9bcafc7b5998e34e60b25ffbba75:
+
+#define SYSETH_MAUTYPE_10GBASET RTS_IEC_UDINT_C(0x36)	/* 10GBASE-T */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga446311dc71e529228aa8d5d9cce59ae7:
+
+#define SYSETH_MAUTYPE_10GBASELRM RTS_IEC_UDINT_C(0x37)	/* 10GBASE-LRM */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga2785c96a8ac16c5766d32b9976925de5:
+
+#define SYSETH_MAUTYPE_1000BASEKX RTS_IEC_UDINT_C(0x38)	/* 1000BASE-KX */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga67ad0dfb9b76aa4559cf57aaa3763446:
+
+#define SYSETH_MAUTYPE_10GBASEKX4 RTS_IEC_UDINT_C(0x39)	/* 10GBASE-KX4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga756c0055a4d92f076c40dd7adb378915:
+
+#define SYSETH_MAUTYPE_10GBASEKR RTS_IEC_UDINT_C(0x3A)	/* 10GBASE-KR */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga9c9bf26c3111bf0bf5a4269f5f48c4f5:
+
+#define SYSETH_MAUTYPE_10G1GBASEPRXD1 RTS_IEC_UDINT_C(0x3B)	/* 10/1GBASE-PRX-D1 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga9a19c3eaa12b8912bba3b9dc3e57a2f4:
+
+#define SYSETH_MAUTYPE_10G1GBASEPRXD2 RTS_IEC_UDINT_C(0x3C)	/* 10/1GBASE-PRX-D2 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga19d0635674744eab960e7af97bc373e8:
+
+#define SYSETH_MAUTYPE_10G1GBASEPRXD3 RTS_IEC_UDINT_C(0x3D)	/* 10/1GBASE-PRX-D3 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga1b45f5c9ce4f9b1d39577ef20bfe2615:
+
+#define SYSETH_MAUTYPE_10G1GBASEPRXU1 RTS_IEC_UDINT_C(0x3E)	/* 10/1GBASE-PRX-U1 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga1dbf1df37212672f23be5a4ccd1abb7b:
+
+#define SYSETH_MAUTYPE_10G1GBASEPRXU2 RTS_IEC_UDINT_C(0x3F)	/* 10/1GBASE-PRX-U2 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gab1165d6bbc04177e58ac1fee73f900b7:
+
+#define SYSETH_MAUTYPE_10G1GBASEPRXU3 RTS_IEC_UDINT_C(0x40)	/* 10/1GBASE-PRX-U3 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga47559256517ad74a7e3aff37701fd7a0:
+
+#define SYSETH_MAUTYPE_10GBASEPRD1 RTS_IEC_UDINT_C(0x41)	/* 10GBASE-PR-D1 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga7721f9ca08e7ea0d305d4e332376fa85:
+
+#define SYSETH_MAUTYPE_10GBASEPRD2 RTS_IEC_UDINT_C(0x42)	/* 10GBASE-PR-D2 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga71d2e63a6d336e54cf4593fc967b0c49:
+
+#define SYSETH_MAUTYPE_10GBASEPRD3 RTS_IEC_UDINT_C(0x43)	/* 10GBASE-PR-D3 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga69fae080ca6056b9afd01e4e83bf9189:
+
+#define SYSETH_MAUTYPE_10GBASEPRU1 RTS_IEC_UDINT_C(0x44)	/* 10GBASE-PR-U1 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga0eca1e74206ba96e29e0d3bb5aade271:
+
+#define SYSETH_MAUTYPE_10GBASEPRU3 RTS_IEC_UDINT_C(0x45)	/* 10GBASE-PR-U3 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga2793e0d61a896b969093ff53bb481885:
+
+#define SYSETH_MAUTYPE_40GBASEKR4 RTS_IEC_UDINT_C(0x46)	/* 40GBASE-KR4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga21b19792dd131f9b24f859f22b5cdadb:
+
+#define SYSETH_MAUTYPE_40GBASECR4 RTS_IEC_UDINT_C(0x47)	/* 40GBASE-CR4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga56c152ebd42ee201f1d31d31d80989c1:
+
+#define SYSETH_MAUTYPE_40GBASESR4 RTS_IEC_UDINT_C(0x48)	/* 40GBASE-SR4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga0f22684371aadfd3432e759531629cb9:
+
+#define SYSETH_MAUTYPE_40GBASEFR RTS_IEC_UDINT_C(0x49)	/* 40GBASE-FR */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga1c02b51ae7546c700d9699501337dc16:
+
+#define SYSETH_MAUTYPE_40GBASELR4 RTS_IEC_UDINT_C(0x4A)	/* 40GBASE-LR4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga0a5a7b2dca3ebc7d2bb876415cc2208d:
+
+#define SYSETH_MAUTYPE_100GBASECR10 RTS_IEC_UDINT_C(0x4B)	/* 100GBASE-CR10 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gae79411d9371b949eb5cea977944d01a4:
+
+#define SYSETH_MAUTYPE_100GBASESR10 RTS_IEC_UDINT_C(0x4C)	/* 100GBASE-SR10 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga6188dfaed1b2dab0c432f7cde7b640c1:
+
+#define SYSETH_MAUTYPE_100GBASELR4 RTS_IEC_UDINT_C(0x4D)	/* 100GBASE-LR4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga1f5851cdcbf31e5d1303a5e00e3bc749:
+
+#define SYSETH_MAUTYPE_100GBASEER4 RTS_IEC_UDINT_C(0x4E)	/* 100GBASE-ER4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga2db94c858d68aacb8b00e1202a373f8b:
+
+#define SYSETH_MAUTYPE_1000BASET1 RTS_IEC_UDINT_C(0x4F)	/* 1000BASE-T1 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gae11b036539e32739a42bcba8c4241beb:
+
+#define SYSETH_MAUTYPE_1000BASEPX30D RTS_IEC_UDINT_C(0x50)	/* 1000BASE-PX30D */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga38c2addb4e00b4f7c6a8e84dd0096ab1:
+
+#define SYSETH_MAUTYPE_1000BASEPX30U RTS_IEC_UDINT_C(0x51)	/* 1000BASE-PX30U */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga3e2f3cbc180702ea5f96dd1c2aa7ac6b:
+
+#define SYSETH_MAUTYPE_1000BASEPX40D RTS_IEC_UDINT_C(0x52)	/* 1000BASE-PX40D */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaab289d2ef4fca492fcc057f0e9e22337:
+
+#define SYSETH_MAUTYPE_1000BASEPX40U RTS_IEC_UDINT_C(0x53)	/* 1000BASE-PX40U */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gab3d8ec606bd93824efa7390093af29c3:
+
+#define SYSETH_MAUTYPE_10G1GBASEPRXD4 RTS_IEC_UDINT_C(0x54)	/* 10/1GBASE-PRX-D4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga8cb316c9a414eca4f1e5c6d0a882a99b:
+
+#define SYSETH_MAUTYPE_10G1GBASEPRXU4 RTS_IEC_UDINT_C(0x55)	/* 10/1GBASE-PRX-U4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga26f0b76f1bd7a589a0bf70ae8951309c:
+
+#define SYSETH_MAUTYPE_10GBASEPRD4 RTS_IEC_UDINT_C(0x56)	/* 10GBASE-PRD4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga1c535c1e051b5fd22546c55854575a80:
+
+#define SYSETH_MAUTYPE_10GBASEPRU4 RTS_IEC_UDINT_C(0x57)	/* 10GBASE-PRU4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga9190a5f0246d0c3d739dcbaf14d1c876:
+
+#define SYSETH_MAUTYPE_25GBASECR RTS_IEC_UDINT_C(0x58)	/* 25GBASE-CR */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gac468efb08c3d694c307c16cc78d1e2e1:
+
+#define SYSETH_MAUTYPE_25GBASECRS RTS_IEC_UDINT_C(0x59)	/* 25GBASE-CR-S */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga539dbeaeaa9a7eb032c2f5ab035b2c2b:
+
+#define SYSETH_MAUTYPE_25GBASEKR RTS_IEC_UDINT_C(0x5A)	/* 25GBASE-KR */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaf2a5d14b94b7075f4204c10dade1ff50:
+
+#define SYSETH_MAUTYPE_25GBASEKRS RTS_IEC_UDINT_C(0x5B)	/* 25GBASE-KR-S */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga08cc18a9a28baef8500eb41adbfd70af:
+
+#define SYSETH_MAUTYPE_25GBASER RTS_IEC_UDINT_C(0x5C)	/* 25GBASE-R */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gacccef7bc10eb4a7cb28175c43c6b9ced:
+
+#define SYSETH_MAUTYPE_25GBASESR RTS_IEC_UDINT_C(0x5D)	/* 25GBASE-SR */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gae95ea5fe0c34f7fd79b9c43437a28330:
+
+#define SYSETH_MAUTYPE_25GBASET RTS_IEC_UDINT_C(0x5E)	/* 25GBASE-T */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga9a01341d288113fd9bbec82f30117fa7:
+
+#define SYSETH_MAUTYPE_40GBASEER4 RTS_IEC_UDINT_C(0x5F)	/* 40GBASE-ER4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gafcb1abe9e2311414e8f69a1254c2cab0:
+
+#define SYSETH_MAUTYPE_40GBASER RTS_IEC_UDINT_C(0x60)	/* 40GBASE-R */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga2b97bfd932655c0a0a911a329d7acf03:
+
+#define SYSETH_MAUTYPE_40GBASET RTS_IEC_UDINT_C(0x61)	/* 40GBASE-T */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga8a7e831f8861afc55286b40c2f8a0651:
+
+#define SYSETH_MAUTYPE_100GBASECR4 RTS_IEC_UDINT_C(0x62)	/* 100GBASE-CR4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga896059c25f5b8c314abcbbe995a8985b:
+
+#define SYSETH_MAUTYPE_100GBASEKR4 RTS_IEC_UDINT_C(0x63)	/* 100GBASE-KR4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gadfe84f545f9f241929c27974a852cb5c:
+
+#define SYSETH_MAUTYPE_100GBASEKP4 RTS_IEC_UDINT_C(0x64)	/* 100GBASE-KP4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaf78301e3083b63bc3e87321a4d92729d:
+
+#define SYSETH_MAUTYPE_100GBASER RTS_IEC_UDINT_C(0x65)	/* 100GBASE-R */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gaa14ac68b12b7293197803bcd55b09f32:
+
+#define SYSETH_MAUTYPE_100GBASESR4 RTS_IEC_UDINT_C(0x66)	/* 100GBASE-SR4 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gacc14e6d7a1c02975817f2ff37339f44f:
+
+#define SYSETH_OPERSTAT_UP RTS_IEC_UINT_C(0x1)	/* ready to pass packets */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OperStatus
+
+.. _group___sys_ethernet_itf_1gaef28b7a8861d854753626e24d1049fb9:
+
+#define SYSETH_OPERSTAT_DOWN RTS_IEC_UINT_C(0x2)	/* down and not in a condition to pass packets */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga937967f18a607589c79bb98bc399c4c1:
+
+#define SYSETH_OPERSTAT_TESTING RTS_IEC_UINT_C(0x3)	/* in some test mode */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga4dca3e3537c342e5ba839c23fd73303a:
+
+#define SYSETH_OPERSTAT_UNKNOWN RTS_IEC_UINT_C(0x4)	/* status can not be determined for some reason */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gab2f90d78a520882e450b06ce240f1c8b:
+
+#define SYSETH_OPERSTAT_DORMANT RTS_IEC_UINT_C(0x5)	/* not up, pending state */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga75293c41751e07bd26610829002ad508:
+
+#define SYSETH_OPERSTAT_NOTPRESENT RTS_IEC_UINT_C(0x6)	/* some component e. g. a hardware device is missing */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga8cdd34855aaf5191af47a814692e27bd:
+
+#define SYSETH_OPERSTAT_LOWERLAYERDOWN RTS_IEC_UINT_C(0x7)	/* down due to state of lower-layer interface(s) */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga923fe9de6a9d9c4b9e9002ceadcca1db:
+
+#define SYSETH_CONFIG_AND_STATUS_STRUCT_VERSION 1	/* version number of structure, to be increased on changes */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga13b42db9cb5965009eb3a09e84a09b3e:
+
+#define ITF_SysEthernet
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga1df3e332d29c7ccea5febc0971d8d0e4:
+
+#define EXTITF_SysEthernet
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_ethernet_itf_1ga2ae24116d8934954655bf1fc85857119:
+
+typedef struct tagETCStructCommand  ETCStructCommand
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ETCStructCommand
+
+.. _group___sys_ethernet_itf_1ga8613c7754e77927b3e6414c0b4dc332c:
+
+typedef struct tagStructEthernetframe  StructEthernetframe
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+StructEthernetframe
+
+.. _group___sys_ethernet_itf_1ga45418cb65cf4069ce50332a58063ebcf:
+
+typedef struct tagSysEthernetFrame  SysEthernetFrame
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SysEthernetFrame
+
+.. _group___sys_ethernet_itf_1ga0ff4ccda4ff00bc0bb800e9be1efaa57:
+
+typedef struct tagSysEthernetPortConfigAndStatus  SysEthernetPortConfigAndStatus
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Structure containing the ethernet port configuration and status
+
+.. _group___sys_ethernet_itf_1ga1c15a4b88f45539b5b28493ff088142a:
+
+typedef struct tagsysethernetadapterclose_struct  sysethernetadapterclose_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Close a ethernet adapter.
+
+.. _group___sys_ethernet_itf_1ga4e6d371bfbad5012301f87d5a4633811:
+
+typedef struct tagsysethernetadapteropen_struct  sysethernetadapteropen_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Open an ethernet adapter by its MAC address. .. note:: Each adapter can only be opened once. :return: Returns a handle to the opened adapter. SysTypes.RTS_INVALID_HANDLE is returned if the operation failed.
+
+.. _group___sys_ethernet_itf_1ga6355a3dda32793457d19e1021ba0b730:
+
+typedef struct tagsysethernetethframereceive_struct  sysethernetethframereceive_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function receives the next ethernet frame from the ethernet adapter. A pointer to this frame is returned. ..note:: The frame returned has to be released using the SysEthernetEthFrameRelease() function. The frame will only be overwritten if the frame is released. As frames are reused when released pay attention to call this function if processing of the frame has finished. :return: Pointer to the ethernet frame
+
+.. _group___sys_ethernet_itf_1gae57fba257f1bd2210ba6afb019f069b5:
+
+typedef struct tagsysethernetethframesend_struct  sysethernetethframesend_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function sends an ethernetframe to the given adapter. The data of the frame is copied to the adapter. When this function returns the frame can be overwritten without any problems.
+
+.. _group___sys_ethernet_itf_1gababedcde3f6af3d67b4070c45401632b:
+
+typedef struct tagsysethernetframerelease_struct  sysethernetframerelease_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Release a received frame to indicate that the frame can be reused.
+
+.. _group___sys_ethernet_itf_1ga22325dea90dfbdce871cfe989596656e:
+
+typedef struct tagsysethernetgetportconfigandstatus_struct  sysethernetgetportconfigandstatus_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get ethernet port configuration and status of an adapter identified by its MAC address. :return: Runtime system error code (see CmpErrors.library).
+
+.. _group___sys_ethernet_itf_1gaee87e2c09e4eff3c3018e7fefffb2e27:
+
+typedef struct tagsysethernetipframereceive_struct  sysethernetipframereceive_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function receives an IP frame from the systems IP Stack. This frame has to be packed into an Ethercat frame and sent to this adapter. ..note:: Special function for Ethernet over Ethercat (EoE)
+
+.. _group___sys_ethernet_itf_1ga20dfff1711ec7ff881d46573aeca04e8:
+
+typedef struct tagsysethernetipframesend_struct  sysethernetipframesend_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This functions sends an ethernet frame to the local IP Stack for processing. The frame can be safely reused when this function has returned. ..note:: Special function for Ethernet over Ethercat (EoE)
+
+.. _group___sys_ethernet_itf_1ga0a913e4de548217c3f44421c11c99698:
+
+typedef struct tagsysethernetsetautonegadvertisedcap_struct  sysethernetsetautonegadvertisedcap_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set advertised autonegotiation capabilities for an adapter identified by its MAC address. :return: Runtime system error code (see CmpErrors.library).
+
+.. _group___sys_ethernet_itf_1ga54778649b02613352a65855ecbe5f7d9:
+
+typedef struct tagsysethernetsetautonegmode_struct  sysethernetsetautonegmode_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set autonegotiation mode for an adapter identified by its MAC address. :return: Runtime system error code (see CmpErrors.library).
+
+.. _group___sys_ethernet_itf_1gae8c7437753b2cac76edb9779a6c5a88c:
+
+typedef struct tagsysethernetsetmautype_struct  sysethernetsetmautype_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set Media Access Unit (MAU) type for an adapter identified by its MAC address. :return: Runtime system error code (see CmpErrors.library).
+
+.. _group___sys_ethernet_itf_1gac515054cfefeb07eff56d38551fc4b1e:
+
+typedef ISysEthernet_C ISysEthernet
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_ethernet_itf_1ga625592b000d97284334b2dae00c31e4b:
+
+void openethernet (OpenEthernetInterface *poei)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Open a network adapter
+
+**Parameters**
+
++---------+------+-----------------------+
+| [in]    | poei | pointer to parameters |
++---------+------+-----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_ethernet_itf_1ga1615b689d82775bd76f897cf1bababef:
+
+void sendethframe (SendEthernetInterface *psfi)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Send etherpacket
+
+**Parameters**
+
++---------+------+-----------------------+
+| [in]    | psfi | Pointer to parameters |
++---------+------+-----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_ethernet_itf_1gaa6036c9ea77765d18bdc95ab39778544:
+
+void getethframe (GetEthernetInterface *pgei)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get ethernet packet
+
+**Parameters**
+
++---------+------+-----------------------+
+| [in]    | pgei | Pointer to parameters |
++---------+------+-----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_ethernet_itf_1ga0d5385a68d015709fe2791bd795b50d8:
+
+void closeethernet (CloseEthernetInterface *pcei)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Close network adapter
+
+**Parameters**
+
++---------+------+-----------------------+
+| [in]    | pcei | Pointer to parameters |
++---------+------+-----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_ethernet_itf_1ga5ee33836c4aed6d6d3f09b0cade9bdfa:
+
+void getnumberofadapters (GetNumberOfEthernetInterface *pnoei)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get number of network adapters
+
+**Parameters**
+
++---------+-------+-----------------------+
+| [in]    | pnoei | Pointer to parameters |
++---------+-------+-----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_ethernet_itf_1ga7d10d3d0a27870410cf5877ecf155eec:
+
+void getadapterinfo (GetAdapterInfoEthernetInterface *paiei)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get info about specified network adapters
+
+**Parameters**
+
++---------+-------+-----------------------+
+| [in]    | paiei | Pointer to parameters |
++---------+-------+-----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_ethernet_itf_1ga4ff02af4906c9ea71a1f4904cf2f83e6:
+
+void sendIPethframe (SendIPEthernetInterface *psfi)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Send IP etherpacket (EoE)
+
+**Parameters**
+
++---------+------+-----------------------+
+| [in]    | psfi | Pointer to parameters |
++---------+------+-----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_ethernet_itf_1gac33b3614255c4b65323751fb35e2e84d:
+
+void getIPethframe (GetIPEthernetInterface *pgei)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get IP ethernet packet
+
+**Parameters**
+
++---------+------+-----------------------+
+| [in]    | pgei | Pointer to parameters |
++---------+------+-----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_ethernet_itf_1ga61e47f6f03dc9cfc4cf4a48d952a6238:
+
+void sysethernetadapterclose (sysethernetadapterclose_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga6ee07559aaf069246dc3807ee634d801:
+
+void sysethernetadapteropen (sysethernetadapteropen_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga3e8fa44d9c999c22dcd93f9f251f89da:
+
+void sysethernetethframereceive (sysethernetethframereceive_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga548dcdca0bc96c1348c8b8e64458a532:
+
+void sysethernetethframesend (sysethernetethframesend_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga7cf88a48aa449880b19bd4d2211b9f2d:
+
+void sysethernetframerelease (sysethernetframerelease_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga68d7ef585e361c44cf72370757d79c50:
+
+void sysethernetgetportconfigandstatus (sysethernetgetportconfigandstatus_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga81bc04202953da439d3dadcfbc2ca244:
+
+void sysethernetipframereceive (sysethernetipframereceive_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga911d89e4bbef852d309f1f5ecbabc236:
+
+void sysethernetipframesend (sysethernetipframesend_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gae034ab42bbab43e2e351c71345a72383:
+
+void sysethernetsetautonegadvertisedcap (sysethernetsetautonegadvertisedcap_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga7f49b0fe3ba2f554eb982bb67b984fb1:
+
+void sysethernetsetautonegmode (sysethernetsetautonegmode_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1gac62c8fc6ac322f021cb170993fc1fb07:
+
+void sysethernetsetmautype (sysethernetsetmautype_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga0d16593c37380fce8a78b4e91f5b198f:
+
+RTS_HANDLE SysEthernetAdapterOpen (RTS_UI8 *pMacAddress, RTS_SIZE macSize, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION END
+
+Open an ethernet adapter by its MAC address. Note: Each adapter can only be opened once.
+
+<return>Returns a handle to the opened adapter. SysTypes.RTS_INVALID_HANDLE is returned if the operation failed.</return>
+
+**Parameters**
+
++---------+-------------+---------------------------------------------------------+
+| [in]    | pMacAddress | Pointer to the MAC address of the adapter to be opened. |
++---------+-------------+---------------------------------------------------------+
+| [in]    | macSize     | Size of the MAC address. This is usually 6 bytes.       |
++---------+-------------+---------------------------------------------------------+
+| [out]   | pResult     | Result of the operation. On of ERR_FAILED or ERR_OK     |
++---------+-------------+---------------------------------------------------------+
+
+.. _group___sys_ethernet_itf_1gaf2a5292be58f4d505be01122e6958580:
+
+RTS_RESULT SysEthernetAdapterClose (RTS_HANDLE hAdapter)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Close an ethernet adapter. <return>Result of the operation. ERR_INVALID_HANDLE if the handle was invalid. ERR_OK if operation was successful.</return>
+
+**Parameters**
+
++---------+----------+-------------------+
+| [in]    | hAdapter | Adapter to close. |
++---------+----------+-------------------+
+
+.. _group___sys_ethernet_itf_1ga03c080dd3d3ec7d204ded283e698be34:
+
+RTS_RESULT SysEthernetEthFrameSend (RTS_HANDLE hAdapter, SysEthernetFrame *pFrame)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga63cbad201a8c6eabe4375bb27947ee0b:
+
+SysEthernetFrame* SysEthernetEthFrameReceive (RTS_HANDLE hAdapter, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Receive an ethernet frame for the ethernet adapter. Note: The frame returned has to be released using the SysEthernetEthFrameRelease() function. The frame will only be overwritten if the frame is released. As frames are reused when released pay attention to call this function if processing of the frame has finished. <return>Pointer to the received frame. NULL if failed.</return>
+
+**Parameters**
+
++---------+----------+---------------------------+
+| [in]    | hAdapter | Adapter where to receive. |
++---------+----------+---------------------------+
+| [out]   | pResult  | Result of the operation.  |
++---------+----------+---------------------------+
+
+.. _group___sys_ethernet_itf_1ga874246ce45a9acdde5a69f424e3a7175:
+
+RTS_RESULT SysEthernetIpFrameSend (RTS_HANDLE hAdapter, SysEthernetFrame *pFrame)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This functions sends an ethernet frame to the local IP Stack for processing. The frame can be safely reused when this function has returned. Note: Special function for Ethernet over Ethercat (EoE) <return>Pointer to the received frame. NULL if failed.</return>
+
+**Parameters**
+
++---------+----------+-------------------------------------+
+| [in]    | hAdapter | Adapter where to send the IP Frame. |
++---------+----------+-------------------------------------+
+| [out]   | pResult  | Result of the operation.            |
++---------+----------+-------------------------------------+
+
+.. _group___sys_ethernet_itf_1gae3877363bcc043644092b41989afa561:
+
+SysEthernetFrame* SysEthernetIpFrameReceive (RTS_HANDLE hAdapter, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function receives an IP frame from the systems IP Stack. This frame has to be packed into an Ethercat frame and sent to this adapter. Note: Special function for Ethernet over Ethercat (EoE) <return>Pointer to the received frame. NULL if failed.</return>
+
+**Parameters**
+
++---------+----------+----------------------------------------+
+| [in]    | hAdapter | Adapter where to receive the IP Frame. |
++---------+----------+----------------------------------------+
+| [out]   | pResult  | Result of the operation.               |
++---------+----------+----------------------------------------+
+
+.. _group___sys_ethernet_itf_1gaca05e886dfebb3d268cbbc4855a79465:
+
+RTS_RESULT SysEthernetFrameRelease (SysEthernetFrame *pFrame)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Release a received frame to indicate that the frame can be reused.
+
+**Parameters**
+
++---------+--------+---------------------------------+
+| [in]    | pFrame | Pointer to the frame to release |
++---------+--------+---------------------------------+
+
+.. _group___sys_ethernet_itf_1ga7c394f56da5ae4bd0e18ee5e69b68dd2:
+
+RTS_RESULT SysEthernetGetPortConfigAndStatus (RTS_UI8 *pMacAddress, RTS_SIZE macSize, SysEthernetPortConfigAndStatus *pPortConfigAndStatus)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet_itf_1ga46efe067e6e4a22e01d4f83ba4e374cd:
+
+RTS_RESULT SysEthernetSetAutoNegAdvertisedCap (RTS_UI8 *pMacAddress, RTS_SIZE macSize, RTS_UI64 ui64AutoNegAdvertisedCap)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set advertised autonegotiation capabilities for an adapter identified by its MAC address.
+
+**Parameters**
+
++---------+--------------------------+-------------------------------------------------------------------------------------------------+
+| [in]    | pMacAddress              | Pointer to the MAC address of the adapter.                                                      |
++---------+--------------------------+-------------------------------------------------------------------------------------------------+
+| [in]    | macSize                  | Size of the MAC address. This is usually 6 bytes.                                               |
++---------+--------------------------+-------------------------------------------------------------------------------------------------+
+| [in]    | ui64AutoNegAdvertisedCap | Advertised autonegotiation capabilities of MAU, see AutoNegCaps constants SYSETH_AUTONEGCAP_... |
++---------+--------------------------+-------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Runtime system error code
+
+.. _group___sys_ethernet_itf_1gad4aaf1aca3c3751a7d8157468147441c:
+
+RTS_RESULT SysEthernetSetAutoNegMode (RTS_UI8 *pMacAddress, RTS_SIZE macSize, RTS_UI8 ui8AutoNegMode)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set autonegotiation mode for an adapter identified by its MAC address.
+
+**Parameters**
+
++---------+----------------+-------------------------------------------------------------------------------+
+| [in]    | pMacAddress    | Pointer to the MAC address of the adapter.                                    |
++---------+----------------+-------------------------------------------------------------------------------+
+| [in]    | macSize        | Size of the MAC address. This is usually 6 bytes.                             |
++---------+----------------+-------------------------------------------------------------------------------+
+| [in]    | ui8AutoNegMode | Autonegotiation mode of MAU, see AutoNegMode constants SYSETH_AUTONEGMODE_... |
++---------+----------------+-------------------------------------------------------------------------------+
+
+**Returns:**
+
+Runtime system error code
+
+.. _group___sys_ethernet_itf_1ga2be8913b9018a158539ec257a28d2beb:
+
+RTS_RESULT SysEthernetSetMauType (RTS_UI8 *pMacAddress, RTS_SIZE macSize, RTS_UI32 ui32MauType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set Media Access Unit (MAU) type for an adapter identified by its MAC address.
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------+
+| [in]    | pMacAddress | Pointer to the MAC address of the adapter.                             |
++---------+-------------+------------------------------------------------------------------------+
+| [in]    | macSize     | Size of the MAC address. This is usually 6 bytes.                      |
++---------+-------------+------------------------------------------------------------------------+
+| [in]    | ui32MauType | Media Access Unit (MAU) type, see MauType constants SYSETH_MAUTYPE_... |
++---------+-------------+------------------------------------------------------------------------+
+
+**Returns:**
+
+Runtime system error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

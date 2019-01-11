@@ -1,0 +1,93 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_io_drv_itf___driverpropertyflags:
+
+=====================
+Driver property flags
+=====================
+
+ :ref:`More... <group___cmp_io_drv_itf___driverpropertyflags-details>`
+
+Macros
+------
+
+- #define :ref:`DRVPROP_CONSISTENCY <group___cmp_io_drv_itf___driverpropertyflags_1gaa3e04ff36d2a2cf6aea62fad77e24c07>` 0x0001
+
+- #define :ref:`DRVPROP_WATCHTDOG <group___cmp_io_drv_itf___driverpropertyflags_1gaff712cbe129f82c1bd771045505ef39e>` 0x0002
+
+- #define :ref:`DRVPROP_REDUNDANCY <group___cmp_io_drv_itf___driverpropertyflags_1ga46846c30e617154a238e40719d0f1df0>` 0x0004
+
+- #define :ref:`DRVPROP_ACTIVE <group___cmp_io_drv_itf___driverpropertyflags_1gac5b514c81b24eae88ac081c4b8a48548>` 0x0008
+
+- #define :ref:`DRVPROP_ERROR_ACTIVE <group___cmp_io_drv_itf___driverpropertyflags_1ga53bfdaf1086be80f8c6421b3707f3d1b>` 0x0010
+
+- #define :ref:`DRVPROP_ERROR_PASSIVE <group___cmp_io_drv_itf___driverpropertyflags_1gaf368665a0d4ce9c74095e9823b601ec2>` 0x0020
+
+- #define :ref:`DRVPROP_BACKGROUND_GETDIAG <group___cmp_io_drv_itf___driverpropertyflags_1ga9a0b5e607e510b0eccae6c975af5420e>` 0x0040
+
+.. _group___cmp_io_drv_itf___driverpropertyflags-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_io_drv_itf___driverpropertyflags_1gaa3e04ff36d2a2cf6aea62fad77e24c07:
+
+#define DRVPROP_CONSISTENCY 0x0001
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The io driver realizes bit-consistency by its own (atomar bit access). If this flag is 0, the I/O Manager takes care about the consistency.
+
+.. _group___cmp_io_drv_itf___driverpropertyflags_1gaff712cbe129f82c1bd771045505ef39e:
+
+#define DRVPROP_WATCHTDOG 0x0002
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The io driver needs a cyclic call to the IoDrvWatchdogTrigger interface function. This property is deprecated.
+
+.. _group___cmp_io_drv_itf___driverpropertyflags_1ga46846c30e617154a238e40719d0f1df0:
+
+#define DRVPROP_REDUNDANCY 0x0004
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The I/O driver is running in redundancy mode (passive)
+
+.. _group___cmp_io_drv_itf___driverpropertyflags_1gac5b514c81b24eae88ac081c4b8a48548:
+
+#define DRVPROP_ACTIVE 0x0008
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The I/O driver is running in redundancy mode (active).
+
+.. _group___cmp_io_drv_itf___driverpropertyflags_1ga53bfdaf1086be80f8c6421b3707f3d1b:
+
+#define DRVPROP_ERROR_ACTIVE 0x0010
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Inform the 3S redundancy Manager about an error of an active driver. This will lead to a switch between active and passive PLC.
+
+.. _group___cmp_io_drv_itf___driverpropertyflags_1gaf368665a0d4ce9c74095e9823b601ec2:
+
+#define DRVPROP_ERROR_PASSIVE 0x0020
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Inform the 3S redundancy Manager about an error of a passive driver.
+
+.. _group___cmp_io_drv_itf___driverpropertyflags_1ga9a0b5e607e510b0eccae6c975af5420e:
+
+#define DRVPROP_BACKGROUND_GETDIAG 0x0040
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If this property is set, the interface function :ref:`IoDrvGetModuleDiagnosis() <group___cmp_io_drv_itf_1gaca801830078ea9485613f2491e35575d>` of the driver is called cyclically from a background task. NOTE: In this case, IoDrvGetModuleDiagnosis is called with: IoDrvGetModuleDiagnosis(hIoDrv, NULL); This must be handled correctly in the IO-driver!
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

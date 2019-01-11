@@ -1,0 +1,195 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_gw_diagnostic_itf:
+
+==================
+CmpGwDiagnosticItf
+==================
+
+Interface of CmpGwDiagnostic. :ref:`More... <group___cmp_gw_diagnostic_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`GWDPROPERTY <struct_g_w_d_p_r_o_p_e_r_t_y>`
+
+- struct :ref:`GWDOBJECTINFO <struct_g_w_d_o_b_j_e_c_t_i_n_f_o>`
+
+- struct :ref:`GWDCOMMDRVINFO <struct_g_w_d_c_o_m_m_d_r_v_i_n_f_o>`
+
+- struct :ref:`GWDCLIENTINFO <struct_g_w_d_c_l_i_e_n_t_i_n_f_o>`
+
+- struct :ref:`GWDCHANNELINFO <struct_g_w_d_c_h_a_n_n_e_l_i_n_f_o>`
+
+- struct :ref:`GWDVIRTUALCHANNELINFO <struct_g_w_d_v_i_r_t_u_a_l_c_h_a_n_n_e_l_i_n_f_o>`
+
+- struct :ref:`GWDVIRTUALCHANNELREFINFO <struct_g_w_d_v_i_r_t_u_a_l_c_h_a_n_n_e_l_r_e_f_i_n_f_o>`
+
+- struct :ref:`GWDCHANNELSTATE <struct_g_w_d_c_h_a_n_n_e_l_s_t_a_t_e>`
+
+- struct :ref:`GWDLISTENERCALLBACKS <struct_g_w_d_l_i_s_t_e_n_e_r_c_a_l_l_b_a_c_k_s>`
+
+- struct :ref:`ICmpGwDiagnostic_C <struct_i_cmp_gw_diagnostic___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpGwDiagnostic <group___cmp_gw_diagnostic_itf_1gafc3f4fe9d1620fdb8e2a056d88855bec>`
+
+- #define :ref:`EXTITF_CmpGwDiagnostic <group___cmp_gw_diagnostic_itf_1gaff8266092a2d725639c7ed4323fc65c8>`
+
+Typedefs
+--------
+
+- typedef void(* :ref:`PFOBJECTADDED <group___cmp_gw_diagnostic_itf_1ga3e414c8c7e3eafc115a878a265fcb2ec>`)(RTS_HANDLE hListenerId, RTS_INT nObjType, GWDOBJECTINFO *pInfo)
+
+- typedef void(* :ref:`PFOBJECTREMOVED <group___cmp_gw_diagnostic_itf_1gaca68b483f6522a52c12acd68bb2e850b>`)(RTS_HANDLE hListenerId, RTS_INT nObjType, RTS_HANDLE hObjectId)
+
+- typedef :ref:`ICmpGwDiagnostic_C <struct_i_cmp_gw_diagnostic___c>` :ref:`ICmpGwDiagnostic <group___cmp_gw_diagnostic_itf_1ga0d77245ab77a822a0ceba13fcdf37106>`
+
+Enumerations
+------------
+
+- enum :ref:`@8 <group___cmp_gw_diagnostic_itf_1gabed82baf7f470b522273a3e37c24c600>` { :ref:`GWDOT_COMMDRV <group___cmp_gw_diagnostic_itf_1ggabed82baf7f470b522273a3e37c24c600a58f49be68877808d36622266532c270d>`, :ref:`GWDOT_CLIENT <group___cmp_gw_diagnostic_itf_1ggabed82baf7f470b522273a3e37c24c600ae405764c5d91a6aec5c633fcd019736b>`, :ref:`GWDOT_CHANNEL <group___cmp_gw_diagnostic_itf_1ggabed82baf7f470b522273a3e37c24c600a1f46590f8104375ac705be7725d5791d>`, :ref:`GWDOT_VIRTUALCHANNEL <group___cmp_gw_diagnostic_itf_1ggabed82baf7f470b522273a3e37c24c600a6b09311f2e98a9b8f73eca7373962beb>`, :ref:`GWDOT_VIRTUALCHANNELREF <group___cmp_gw_diagnostic_itf_1ggabed82baf7f470b522273a3e37c24c600acb08be00172c3f9d51a0f1c6096a6553>` }
+
+Functions
+---------
+
+- RTS_RESULT :ref:`GWDRegisterListener <group___cmp_gw_diagnostic_itf_1gaf28e953694e5387b92746b18ca97ebc2>` (:ref:`GWDLISTENERCALLBACKS <struct_g_w_d_l_i_s_t_e_n_e_r_c_a_l_l_b_a_c_k_s>`  callbacks, RTS_HANDLE * phListenerId)
+
+- RTS_RESULT :ref:`GWDUnregisterListener <group___cmp_gw_diagnostic_itf_1ga253d1e45e741d28d60231d25f62a46c3>` (RTS_HANDLE hListenerId)
+
+- RTS_RESULT :ref:`GWDGetChannelState <group___cmp_gw_diagnostic_itf_1gaa88b449e569ebf3396ec003830eb6f02>` (RTS_UI32 ulChannelId, :ref:`GWDCHANNELSTATE <struct_g_w_d_c_h_a_n_n_e_l_s_t_a_t_e>` * pState)
+
+.. _group___cmp_gw_diagnostic_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpGwDiagnostic.
+
+This interface provides diagnostic access to the gateway. It allows other components to register as a listener. After that they will be informed about activities in the gateway like addition of new channels, closing of channels, connected clients, etc. It also allows the client to query the state of several objects. The state of a channel for example includes the number of open requests or the current quality (error rate, round-trip-time).
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_gw_diagnostic_itf_1gafc3f4fe9d1620fdb8e2a056d88855bec:
+
+#define ITF_CmpGwDiagnostic
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gw_diagnostic_itf_1gaff8266092a2d725639c7ed4323fc65c8:
+
+#define EXTITF_CmpGwDiagnostic
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_gw_diagnostic_itf_1ga3e414c8c7e3eafc115a878a265fcb2ec:
+
+typedef void( * PFOBJECTADDED)(RTS_HANDLE hListenerId, RTS_INT nObjType, GWDOBJECTINFO *pInfo)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Is called every time an object is added in the gateway.
+
+**Parameters**
+
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hListenerId | The id returned by the GWDRegisterListener                                                                                                                                                |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | nObjType    | The type of the object which is added. One of the GWDOT_xxx constants. Since new object types may be added in the future, implementations should handle unknown objects types gracefully. |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pInfo       | Additional information about the added object. Depending on the object type an extension of the GWOBJECTINFO struct will be passed.                                                       |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_gw_diagnostic_itf_1gaca68b483f6522a52c12acd68bb2e850b:
+
+typedef void( * PFOBJECTREMOVED)(RTS_HANDLE hListenerId, RTS_INT nObjType, RTS_HANDLE hObjectId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called by the gateway when an object is removed.
+
+**Parameters**
+
++---------+-------------+----------------------------------------------------------------------------------+
+| [in]    | hListenerId | The id returned by the GWDRegisterListener                                       |
++---------+-------------+----------------------------------------------------------------------------------+
+| [in]    | nObjType    | Same as in PFOBJECTADDED. hObjectId is not unique across different object types! |
++---------+-------------+----------------------------------------------------------------------------------+
+| [in]    | hObjectId   | Refers to the object id passed in the ObjectAdded routines pInfo parameter.      |
++---------+-------------+----------------------------------------------------------------------------------+
+
+.. _group___cmp_gw_diagnostic_itf_1ga0d77245ab77a822a0ceba13fcdf37106:
+
+typedef ICmpGwDiagnostic_C ICmpGwDiagnostic
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enumeration Type Documentation
+------------------------------
+
+.. _group___cmp_gw_diagnostic_itf_1gabed82baf7f470b522273a3e37c24c600:
+
+enum @8
+^^^^^^^
+
+
+**Enumerator:**
+
++-------------------------+
+| GWDOT_COMMDRV           |
++-------------------------+
+| GWDOT_CLIENT            |
++-------------------------+
+| GWDOT_CHANNEL           |
++-------------------------+
+| GWDOT_VIRTUALCHANNEL    |
++-------------------------+
+| GWDOT_VIRTUALCHANNELREF |
++-------------------------+
+
+Function Documentation
+----------------------
+
+.. _group___cmp_gw_diagnostic_itf_1gaf28e953694e5387b92746b18ca97ebc2:
+
+RTS_RESULT GWDRegisterListener (GWDLISTENERCALLBACKS callbacks, RTS_HANDLE *phListenerId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Register a listener for the gateway diagnostics interface. The listener will be informed about activities within the gateway using the provided callbacks. When calling this function, the listener is expected to be in an initial state. Therefore the pfObjectAdded function will be called for each object that exists in the gateway in order to synchronize the listener with the gateway.
+
+**Parameters**
+
++---------+--------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | callbacks    | callback functions of the listener                                                                    |
++---------+--------------+-------------------------------------------------------------------------------------------------------+
+| [out]   | phListenerId | Will be set to a unique number that identifies the listener. Use this value in a call to unsubscribe. |
++---------+--------------+-------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_gw_diagnostic_itf_1ga253d1e45e741d28d60231d25f62a46c3:
+
+RTS_RESULT GWDUnregisterListener (RTS_HANDLE hListenerId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Stop informing the specified listener about activities in the gateway.
+
+**Parameters**
+
++---------+-------------+--------------------------------------------+
+| [in]    | hListenerId | The id returned by the GWDRegisterListener |
++---------+-------------+--------------------------------------------+
+
+.. _group___cmp_gw_diagnostic_itf_1gaa88b449e569ebf3396ec003830eb6f02:
+
+RTS_RESULT GWDGetChannelState (RTS_UI32 ulChannelId, GWDCHANNELSTATE *pState)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

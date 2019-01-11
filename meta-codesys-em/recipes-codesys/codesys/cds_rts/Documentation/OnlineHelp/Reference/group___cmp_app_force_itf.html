@@ -1,0 +1,485 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpAppForceItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpAppItf" href="group___cmp_app_itf.html" />
+    <link rel="prev" title="CmpAppBPItf" href="group___cmp_app_b_p_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_app_itf.html" title="CmpAppItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_app_b_p_itf.html" title="CmpAppBPItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpAppForceItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-itf-cmpappforce">#define ITF_CmpAppForce</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpappforce">#define EXTITF_CmpAppForce</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-icmpappforce-c-icmpappforce">typedef ICmpAppForce_C ICmpAppForce</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-result-appforceinit-application-papp">RTS_RESULT AppForceInit (APPLICATION *pApp)</a></li>
+<li><a class="reference internal" href="#rts-result-appforceexit-application-papp-int-bshutdown">RTS_RESULT AppForceExit (APPLICATION *pApp, int bShutdown)</a></li>
+<li><a class="reference internal" href="#rts-result-appaddforcevalue-application-papp-vardataref-pdataref-varvalue-pvalue">RTS_RESULT AppAddForceValue (APPLICATION *pApp, VarDataRef *pDataRef, VarValue *pValue)</a></li>
+<li><a class="reference internal" href="#rts-result-appreleaseforcevalue-application-papp-vardataref-pdataref-int-brestorevalue">RTS_RESULT AppReleaseForceValue (APPLICATION *pApp, VarDataRef *pDataRef, int bRestoreValue)</a></li>
+<li><a class="reference internal" href="#forcevardesc-appgetfirstforce-application-papp-rts-result-presult">ForceVarDesc* AppGetFirstForce (APPLICATION *pApp, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#forcevardesc-appgetnextforce-application-papp-forcevardesc-pprevforce-rts-result-presult">ForceVarDesc* AppGetNextForce (APPLICATION *pApp, ForceVarDesc *pPrevForce, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-appreleaseallforcevalues-application-papp-int-bshutdown">RTS_RESULT AppReleaseAllForceValues (APPLICATION *pApp, int bShutdown)</a></li>
+<li><a class="reference internal" href="#rts-result-apploadpersistentforce-application-papp">RTS_RESULT AppLoadPersistentForce (APPLICATION *pApp)</a></li>
+<li><a class="reference internal" href="#rts-result-appcreatepersistentforce-application-papp">RTS_RESULT AppCreatePersistentForce (APPLICATION *pApp)</a></li>
+<li><a class="reference internal" href="#rts-result-appdeletepersistentforce-application-papp">RTS_RESULT AppDeletePersistentForce (APPLICATION *pApp)</a></li>
+<li><a class="reference internal" href="#rts-result-appforceservicehandler2-rts-ui32-ulchannelid-header-tag-pheadertag-protocol-data-unit-pdudata-protocol-data-unit-pdusendbuffer">RTS_RESULT AppForceServiceHandler2 (RTS_UI32 ulChannelId, HEADER_TAG *pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT *pduSendBuffer)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_app_b_p_itf.html"
+                        title="previous chapter">CmpAppBPItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_app_itf.html"
+                        title="next chapter">CmpAppItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_app_force_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpappforceitf">
+<span id="group-cmp-app-force-itf"></span><h1>CmpAppForceItf<a class="headerlink" href="#cmpappforceitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CmpAppForce. <a class="reference internal" href="#group-cmp-app-force-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___cmp_app_force_itf___compilerswitch.html#group-cmp-app-force-itf-compilerswitch"><span class="std std-ref">Compiler switch</span></a></li>
+<li><a class="reference internal" href="group___cmp_app_force_itf___settings.html#group-cmp-app-force-itf-settings"><span class="std std-ref">Settings</span></a></li>
+<li><a class="reference internal" href="group___cmp_app_force_itf___staticdefines.html#group-cmp-app-force-itf-staticdefines"><span class="std std-ref">Static defines</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_i_cmp_app_force___c.html#struct-i-cmp-app-force-c"><span class="std std-ref">ICmpAppForce_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-app-force-itf-1gafa0024e16afe36a26f75724c26e2364b"><span class="std std-ref">ITF_CmpAppForce</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-app-force-itf-1ga834205acd7224bd87b49706607bb0186"><span class="std std-ref">EXTITF_CmpAppForce</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef <a class="reference internal" href="struct_i_cmp_app_force___c.html#struct-i-cmp-app-force-c"><span class="std std-ref">ICmpAppForce_C</span></a> <a class="reference internal" href="#group-cmp-app-force-itf-1ga54a6f1be99f6dfd941411c438523199a"><span class="std std-ref">ICmpAppForce</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-app-force-itf-1gae246c9ef57f3f6559c8412216831bbde"><span class="std std-ref">AppForceInit</span></a> (<a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> * pApp)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-app-force-itf-1ga1b933ba01700b00a089950b006d298f2"><span class="std std-ref">AppForceExit</span></a> (<a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> * pApp, int bShutdown)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-app-force-itf-1gae57ee365d68d6b09cad4338e1631af03"><span class="std std-ref">AppAddForceValue</span></a> (<a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> * pApp, <a class="reference internal" href="group___cmp_app_itf.html#group-cmp-app-itf-1ga51361a0fdd7ac8b491d32e18f15b5ba2"><span class="std std-ref">VarDataRef</span></a> * pDataRef, <a class="reference internal" href="group___cmp_app_itf.html#group-cmp-app-itf-1gabad6f24dff9cb81dfa4a5f0ca92ef522"><span class="std std-ref">VarValue</span></a> * pValue)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-app-force-itf-1ga7c48dc3d1bc8ea87a13e40515febabe6"><span class="std std-ref">AppReleaseForceValue</span></a> (<a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> * pApp, <a class="reference internal" href="group___cmp_app_itf.html#group-cmp-app-itf-1ga51361a0fdd7ac8b491d32e18f15b5ba2"><span class="std std-ref">VarDataRef</span></a> * pDataRef, int bRestoreValue)</li>
+<li><a class="reference internal" href="group___cmp_app_force_itf___settings.html#group-cmp-app-force-itf-settings-1ga177d30545bdc0e439e640466188d23b0"><span class="std std-ref">ForceVarDesc</span></a> * <a class="reference internal" href="#group-cmp-app-force-itf-1ga6a1f7cdb9f655ce9ffb204c0cebe4961"><span class="std std-ref">AppGetFirstForce</span></a> (<a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> * pApp, RTS_RESULT * pResult)</li>
+<li><a class="reference internal" href="group___cmp_app_force_itf___settings.html#group-cmp-app-force-itf-settings-1ga177d30545bdc0e439e640466188d23b0"><span class="std std-ref">ForceVarDesc</span></a> * <a class="reference internal" href="#group-cmp-app-force-itf-1ga9e33fd11584189ba5fae6561c5ef257a"><span class="std std-ref">AppGetNextForce</span></a> (<a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> * pApp, <a class="reference internal" href="group___cmp_app_force_itf___settings.html#group-cmp-app-force-itf-settings-1ga177d30545bdc0e439e640466188d23b0"><span class="std std-ref">ForceVarDesc</span></a> * pPrevForce, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-app-force-itf-1ga6faabff4065941c309e45af74d20285d"><span class="std std-ref">AppReleaseAllForceValues</span></a> (<a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> * pApp, int bShutdown)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-app-force-itf-1ga04743604219f5407c12af22729dfcb79"><span class="std std-ref">AppLoadPersistentForce</span></a> (<a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> * pApp)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-app-force-itf-1gaf243de2829be678b0b04786bf769046b"><span class="std std-ref">AppCreatePersistentForce</span></a> (<a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> * pApp)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-app-force-itf-1ga9a0d1804daf655d8cde1e3bb2f379947"><span class="std std-ref">AppDeletePersistentForce</span></a> (<a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> * pApp)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-app-force-itf-1gaf09bb31a03c43da06c30bf9645a90956"><span class="std std-ref">AppForceServiceHandler2</span></a> (RTS_UI32 ulChannelId, <a class="reference internal" href="struct_h_e_a_d_e_r___t_a_g.html#struct-h-e-a-d-e-r-t-a-g"><span class="std std-ref">HEADER_TAG</span></a> * pHeaderTag, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a>  pduData, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><span class="std std-ref">PROTOCOL_DATA_UNIT</span></a> * pduSendBuffer)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-app-force-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CmpAppForce.</p>
+<p>This is the interface of the IEC application manager to handle forcing variables.</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-itf-cmpappforce">
+<span id="group-cmp-app-force-itf-1gafa0024e16afe36a26f75724c26e2364b"></span><h3>#define ITF_CmpAppForce<a class="headerlink" href="#define-itf-cmpappforce" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpappforce">
+<span id="group-cmp-app-force-itf-1ga834205acd7224bd87b49706607bb0186"></span><h3>#define EXTITF_CmpAppForce<a class="headerlink" href="#define-extitf-cmpappforce" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-icmpappforce-c-icmpappforce">
+<span id="group-cmp-app-force-itf-1ga54a6f1be99f6dfd941411c438523199a"></span><h3>typedef ICmpAppForce_C ICmpAppForce<a class="headerlink" href="#typedef-icmpappforce-c-icmpappforce" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-result-appforceinit-application-papp">
+<span id="group-cmp-app-force-itf-1gae246c9ef57f3f6559c8412216831bbde"></span><h3>RTS_RESULT AppForceInit (APPLICATION <a href="#id1"><span class="problematic" id="id2">*</span></a>pApp)<a class="headerlink" href="#rts-result-appforceinit-application-papp" title="Permalink to this headline">¶</a></h3>
+<p>Init force list on the specified application</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="9%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pApp</td>
+<td>Pointer to the specified application description</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-appforceexit-application-papp-int-bshutdown">
+<span id="group-cmp-app-force-itf-1ga1b933ba01700b00a089950b006d298f2"></span><h3>RTS_RESULT AppForceExit (APPLICATION <a href="#id3"><span class="problematic" id="id4">*</span></a>pApp, int bShutdown)<a class="headerlink" href="#rts-result-appforceexit-application-papp-int-bshutdown" title="Permalink to this headline">¶</a></h3>
+<p>Exit force list on the specified application</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="9%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pApp</td>
+<td>Pointer to the specified application description</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code 1=Runtime exits the application and so the force during shutdown, 0=else</p>
+</div>
+<div class="section" id="rts-result-appaddforcevalue-application-papp-vardataref-pdataref-varvalue-pvalue">
+<span id="group-cmp-app-force-itf-1gae57ee365d68d6b09cad4338e1631af03"></span><h3>RTS_RESULT AppAddForceValue (APPLICATION <a href="#id5"><span class="problematic" id="id6">*</span></a>pApp, VarDataRef <a href="#id7"><span class="problematic" id="id8">*</span></a>pDataRef, VarValue <a href="#id9"><span class="problematic" id="id10">*</span></a>pValue)<a class="headerlink" href="#rts-result-appaddforcevalue-application-papp-vardataref-pdataref-varvalue-pvalue" title="Permalink to this headline">¶</a></h3>
+<p>Add a new force value, that is forced in every task of the application</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="13%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pApp</td>
+<td>Pointer to the specified application description</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pDataRef</td>
+<td>Pointer to decription of the force variable</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pValue</td>
+<td>Pointer to value of the force variable that will be hold</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-appreleaseforcevalue-application-papp-vardataref-pdataref-int-brestorevalue">
+<span id="group-cmp-app-force-itf-1ga7c48dc3d1bc8ea87a13e40515febabe6"></span><h3>RTS_RESULT AppReleaseForceValue (APPLICATION <a href="#id11"><span class="problematic" id="id12">*</span></a>pApp, VarDataRef <a href="#id13"><span class="problematic" id="id14">*</span></a>pDataRef, int bRestoreValue)<a class="headerlink" href="#rts-result-appreleaseforcevalue-application-papp-vardataref-pdataref-int-brestorevalue" title="Permalink to this headline">¶</a></h3>
+<p>Remove a single force value</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="15%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pApp</td>
+<td>Pointer to the specified application description</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pDataRef</td>
+<td>Pointer to decription of the force variable</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>bRestoreValue</td>
+<td>1=Restore old value before force. 0=Actual force value will not be modified</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="forcevardesc-appgetfirstforce-application-papp-rts-result-presult">
+<span id="group-cmp-app-force-itf-1ga6a1f7cdb9f655ce9ffb204c0cebe4961"></span><h3>ForceVarDesc* AppGetFirstForce (APPLICATION <a href="#id15"><span class="problematic" id="id16">*</span></a>pApp, RTS_RESULT <a href="#id17"><span class="problematic" id="id18">*</span></a>pResult)<a class="headerlink" href="#forcevardesc-appgetfirstforce-application-papp-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get first force entry</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pApp</td>
+<td>Pointer to the specified application description</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to force value</p>
+</div>
+<div class="section" id="forcevardesc-appgetnextforce-application-papp-forcevardesc-pprevforce-rts-result-presult">
+<span id="group-cmp-app-force-itf-1ga9e33fd11584189ba5fae6561c5ef257a"></span><h3>ForceVarDesc* AppGetNextForce (APPLICATION <a href="#id19"><span class="problematic" id="id20">*</span></a>pApp, ForceVarDesc <a href="#id21"><span class="problematic" id="id22">*</span></a>pPrevForce, RTS_RESULT <a href="#id23"><span class="problematic" id="id24">*</span></a>pResult)<a class="headerlink" href="#forcevardesc-appgetnextforce-application-papp-forcevardesc-pprevforce-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get next force entry</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="17%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pApp</td>
+<td>Pointer to the specified application description</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pPrevForce</td>
+<td>Pointer to previous force entry</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to force value</p>
+</div>
+<div class="section" id="rts-result-appreleaseallforcevalues-application-papp-int-bshutdown">
+<span id="group-cmp-app-force-itf-1ga6faabff4065941c309e45af74d20285d"></span><h3>RTS_RESULT AppReleaseAllForceValues (APPLICATION <a href="#id25"><span class="problematic" id="id26">*</span></a>pApp, int bShutdown)<a class="headerlink" href="#rts-result-appreleaseallforcevalues-application-papp-int-bshutdown" title="Permalink to this headline">¶</a></h3>
+<p>Release all force values of the specified application</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="9%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pApp</td>
+<td>Pointer to the specified application description</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code 1=Runtime exits the application and so the force during shutdown, 0=else</p>
+</div>
+<div class="section" id="rts-result-apploadpersistentforce-application-papp">
+<span id="group-cmp-app-force-itf-1ga04743604219f5407c12af22729dfcb79"></span><h3>RTS_RESULT AppLoadPersistentForce (APPLICATION <a href="#id27"><span class="problematic" id="id28">*</span></a>pApp)<a class="headerlink" href="#rts-result-apploadpersistentforce-application-papp" title="Permalink to this headline">¶</a></h3>
+<p>Load persistent force list, if available</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="9%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pApp</td>
+<td>Pointer to the specified application description</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-appcreatepersistentforce-application-papp">
+<span id="group-cmp-app-force-itf-1gaf243de2829be678b0b04786bf769046b"></span><h3>RTS_RESULT AppCreatePersistentForce (APPLICATION <a href="#id29"><span class="problematic" id="id30">*</span></a>pApp)<a class="headerlink" href="#rts-result-appcreatepersistentforce-application-papp" title="Permalink to this headline">¶</a></h3>
+<p>Create persistent force list. This is used to force values right after a reboot of the controller</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="9%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pApp</td>
+<td>Pointer to the specified application description</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-appdeletepersistentforce-application-papp">
+<span id="group-cmp-app-force-itf-1ga9a0d1804daf655d8cde1e3bb2f379947"></span><h3>RTS_RESULT AppDeletePersistentForce (APPLICATION <a href="#id31"><span class="problematic" id="id32">*</span></a>pApp)<a class="headerlink" href="#rts-result-appdeletepersistentforce-application-papp" title="Permalink to this headline">¶</a></h3>
+<p>Delete persistent force list of the specified application</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="9%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pApp</td>
+<td>Pointer to the specified application description</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-appforceservicehandler2-rts-ui32-ulchannelid-header-tag-pheadertag-protocol-data-unit-pdudata-protocol-data-unit-pdusendbuffer">
+<span id="group-cmp-app-force-itf-1gaf09bb31a03c43da06c30bf9645a90956"></span><h3>RTS_RESULT AppForceServiceHandler2 (RTS_UI32 ulChannelId, HEADER_TAG <a href="#id33"><span class="problematic" id="id34">*</span></a>pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT <a href="#id35"><span class="problematic" id="id36">*</span></a>pduSendBuffer)<a class="headerlink" href="#rts-result-appforceservicehandler2-rts-ui32-ulchannelid-header-tag-pheadertag-protocol-data-unit-pdudata-protocol-data-unit-pdusendbuffer" title="Permalink to this headline">¶</a></h3>
+<p>Handler for all force services</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="23%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulChannelId</td>
+<td>ChannelID of the communication channel</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pHeaderTag</td>
+<td>Pointer to the service header</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pduData</td>
+<td>Data unit of the received service</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pduSendBuffer</td>
+<td>Data unit for the service reply</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: <a href="#id37"><span class="problematic" id="id38">*</span></a>ERR_OK: Service could be executed successfully. <a href="#id39"><span class="problematic" id="id40">*</span></a>ERR_NOT_SUPPORTED: Service is not supported <a href="#id41"><span class="problematic" id="id42">*</span></a>ERR_FAILED: Error during executing service</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_app_itf.html" title="CmpAppItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_app_b_p_itf.html" title="CmpAppBPItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

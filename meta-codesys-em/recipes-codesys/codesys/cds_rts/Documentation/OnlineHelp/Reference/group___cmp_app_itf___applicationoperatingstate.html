@@ -1,0 +1,269 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Application operating state &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Application operating state</a><ul>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-os-none-uint32-c-0x00000000">#define OS_NONE UINT32_C(0x00000000)</a></li>
+<li><a class="reference internal" href="#define-os-program-loaded-uint32-c-0x00000001">#define OS_PROGRAM_LOADED UINT32_C(0x00000001)</a></li>
+<li><a class="reference internal" href="#define-os-download-uint32-c-0x00000002">#define OS_DOWNLOAD UINT32_C(0x00000002)</a></li>
+<li><a class="reference internal" href="#define-os-online-change-uint32-c-0x00000004">#define OS_ONLINE_CHANGE UINT32_C(0x00000004)</a></li>
+<li><a class="reference internal" href="#define-os-store-bootproject-uint32-c-0x00000008">#define OS_STORE_BOOTPROJECT UINT32_C(0x00000008)</a></li>
+<li><a class="reference internal" href="#define-os-force-active-uint32-c-0x00000010">#define OS_FORCE_ACTIVE UINT32_C(0x00000010)</a></li>
+<li><a class="reference internal" href="#define-os-exception-uint32-c-0x00000020">#define OS_EXCEPTION UINT32_C(0x00000020)</a></li>
+<li><a class="reference internal" href="#define-os-run-after-download-uint32-c-0x00000040">#define OS_RUN_AFTER_DOWNLOAD UINT32_C(0x00000040)</a></li>
+<li><a class="reference internal" href="#define-os-store-bootproject-only-uint32-c-0x00000080">#define OS_STORE_BOOTPROJECT_ONLY UINT32_C(0x00000080)</a></li>
+<li><a class="reference internal" href="#define-os-exit-uint32-c-0x00000100">#define OS_EXIT UINT32_C(0x00000100)</a></li>
+<li><a class="reference internal" href="#define-os-delete-uint32-c-0x00000200">#define OS_DELETE UINT32_C(0x00000200)</a></li>
+<li><a class="reference internal" href="#define-os-reset-uint32-c-0x00000400">#define OS_RESET UINT32_C(0x00000400)</a></li>
+<li><a class="reference internal" href="#define-os-retain-mismatch-uint32-c-0x00000800">#define OS_RETAIN_MISMATCH UINT32_C(0x00000800)</a></li>
+<li><a class="reference internal" href="#define-os-bootproject-valid-uint32-c-0x00001000">#define OS_BOOTPROJECT_VALID UINT32_C(0x00001000)</a></li>
+<li><a class="reference internal" href="#define-os-load-bootproject-uint32-c-0x00002000">#define OS_LOAD_BOOTPROJECT UINT32_C(0x00002000)</a></li>
+<li><a class="reference internal" href="#define-os-flow-active-uint32-c-0x00004000">#define OS_FLOW_ACTIVE UINT32_C(0x00004000)</a></li>
+<li><a class="reference internal" href="#define-os-reset-outputs-uint32-c-0x00010000">#define OS_RESET_OUTPUTS UINT32_C(0x00010000)</a></li>
+<li><a class="reference internal" href="#define-os-coredump-loaded-uint32-c-0x00020000">#define OS_COREDUMP_LOADED UINT32_C(0x00020000)</a></li>
+<li><a class="reference internal" href="#define-os-executionpoints-active-uint32-c-0x00040000">#define OS_EXECUTIONPOINTS_ACTIVE UINT32_C(0x00040000)</a></li>
+<li><a class="reference internal" href="#define-os-coredump-creating-uint32-c-0x00080000">#define OS_COREDUMP_CREATING UINT32_C(0x00080000)</a></li>
+<li><a class="reference internal" href="#define-os-single-cycle-active-uint32-c-0x00100000">#define OS_SINGLE_CYCLE_ACTIVE UINT32_C(0x00100000)</a></li>
+<li><a class="reference internal" href="#define-os-disable-reset-uint32-c-0x00200000">#define OS_DISABLE_RESET UINT32_C(0x00200000)</a></li>
+<li><a class="reference internal" href="#define-app-set-op-state-application-papp-ulopstate-opstate">#define APP_SET_OP_STATE ((( <code class="docutils literal"><span class="pre">APPLICATION</span></code> *)pApp)-&gt;ulOpState |= OpState)</a></li>
+<li><a class="reference internal" href="#define-app-reset-op-state-application-papp-ulopstate-opstate">#define APP_RESET_OP_STATE ((( <code class="docutils literal"><span class="pre">APPLICATION</span></code> *)pApp)-&gt;ulOpState &amp;= ~OpState)</a></li>
+<li><a class="reference internal" href="#define-app-has-op-state-application-papp-ulopstate-opstate">#define APP_HAS_OP_STATE ((( <code class="docutils literal"><span class="pre">APPLICATION</span></code> *)pApp)-&gt;ulOpState &amp; OpState)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_app_itf___applicationoperatingstate.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="application-operating-state">
+<span id="group-cmp-app-itf-applicationoperatingstate"></span><h1>Application operating state<a class="headerlink" href="#application-operating-state" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1gaee70138f33aba6d0a7f273d869a705e9"><span class="std std-ref">OS_NONE</span></a> UINT32_C(0x00000000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1gae8042fbdb41a3a7aafdfbd827227b205"><span class="std std-ref">OS_PROGRAM_LOADED</span></a> UINT32_C(0x00000001)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1gab1d4992482bf16efea800d738236016e"><span class="std std-ref">OS_DOWNLOAD</span></a> UINT32_C(0x00000002)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga401c0d8e6eba732ae5780280c6deddd4"><span class="std std-ref">OS_ONLINE_CHANGE</span></a> UINT32_C(0x00000004)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1gafdb7f7aeb9d1e17467474b6c96714a58"><span class="std std-ref">OS_STORE_BOOTPROJECT</span></a> UINT32_C(0x00000008)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1gae6023b149e306ac41b94a142ead7dd87"><span class="std std-ref">OS_FORCE_ACTIVE</span></a> UINT32_C(0x00000010)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga4fedc57453743bedcf7ad12aceb1db4b"><span class="std std-ref">OS_EXCEPTION</span></a> UINT32_C(0x00000020)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1gafa62f78cf588c571213f4f233d5f149f"><span class="std std-ref">OS_RUN_AFTER_DOWNLOAD</span></a> UINT32_C(0x00000040)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga40c9c6730e05485b735fb0d60503315f"><span class="std std-ref">OS_STORE_BOOTPROJECT_ONLY</span></a> UINT32_C(0x00000080)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga952ba7e99de3c68be4e0a461256bbd8d"><span class="std std-ref">OS_EXIT</span></a> UINT32_C(0x00000100)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga2ec48d5ed2d28260f026a03d01c2dc7a"><span class="std std-ref">OS_DELETE</span></a> UINT32_C(0x00000200)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga273709541907be15e97590d992c97e69"><span class="std std-ref">OS_RESET</span></a> UINT32_C(0x00000400)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga1b0faf8ea18162b51b8917170fa1dc93"><span class="std std-ref">OS_RETAIN_MISMATCH</span></a> UINT32_C(0x00000800)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga1136bfe2f9bcd9180faf13807ed878a3"><span class="std std-ref">OS_BOOTPROJECT_VALID</span></a> UINT32_C(0x00001000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga8e24889c2922bc273b574f16a9337e41"><span class="std std-ref">OS_LOAD_BOOTPROJECT</span></a> UINT32_C(0x00002000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga21f78bc0b2434b20ab0915fdd98fb840"><span class="std std-ref">OS_FLOW_ACTIVE</span></a> UINT32_C(0x00004000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1gaf91910259016d652b2867f332bf7f2e8"><span class="std std-ref">OS_RESET_OUTPUTS</span></a> UINT32_C(0x00010000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga395d491b98afc52154f8ace1c953cb8b"><span class="std std-ref">OS_COREDUMP_LOADED</span></a> UINT32_C(0x00020000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga1aee4117b2f51e5fe8073d2ba3215a11"><span class="std std-ref">OS_EXECUTIONPOINTS_ACTIVE</span></a> UINT32_C(0x00040000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga6edba42142d1672bbaf9f347d5fbd472"><span class="std std-ref">OS_COREDUMP_CREATING</span></a> UINT32_C(0x00080000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga905866e8832e33ffbb0a6bfbc8643043"><span class="std std-ref">OS_SINGLE_CYCLE_ACTIVE</span></a> UINT32_C(0x00100000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga92aa9e1f0b08f27f8f8e6017a939df4c"><span class="std std-ref">OS_DISABLE_RESET</span></a> UINT32_C(0x00200000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1gac6a48e89d8459ed0dea826ee5839ed67"><span class="std std-ref">APP_SET_OP_STATE</span></a> ((( <a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> <a href="#id1"><span class="problematic" id="id2">*</span></a>)pApp)-&gt;ulOpState <a href="#id3"><span class="problematic" id="id4">|</span></a>= OpState)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga5e0ca8698284a7a1ea1b25d9b4cde7e2"><span class="std std-ref">APP_RESET_OP_STATE</span></a> ((( <a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> <a href="#id5"><span class="problematic" id="id6">*</span></a>)pApp)-&gt;ulOpState &amp;= ~OpState)</li>
+<li>#define <a class="reference internal" href="#group-cmp-app-itf-applicationoperatingstate-1ga74ac88951509bdd669f093816dafa4a6"><span class="std std-ref">APP_HAS_OP_STATE</span></a> ((( <a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> <a href="#id7"><span class="problematic" id="id8">*</span></a>)pApp)-&gt;ulOpState &amp; OpState)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-app-itf-applicationoperatingstate-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-os-none-uint32-c-0x00000000">
+<span id="group-cmp-app-itf-applicationoperatingstate-1gaee70138f33aba6d0a7f273d869a705e9"></span><h3>#define OS_NONE UINT32_C(0x00000000)<a class="headerlink" href="#define-os-none-uint32-c-0x00000000" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>OS_NONE: Unspecified state (init state)</li>
+<li>OS_PROGRAM_LOADED: Application is completely loaded</li>
+<li>OS_DOWNLOAD: Application download in progress</li>
+<li>OS_ONLINE_CHANGE: Application online-change in progress</li>
+<li>OS_STORE_BOOTPROJECT: Store bootproject in progress</li>
+<li>OS_FORCE_ACTIVE: Force values is active on the application</li>
+<li>OS_EXCEPTION: Application is in exception state (an exception occurred in this application)</li>
+<li>OS_RUN_AFTER_DOWNLOAD: Download code at the end of download is in progress (initialization of the application)</li>
+<li>OS_STORE_BOOTPROJECT_ONLY: Only the bootproject is stored at download</li>
+<li>OS_EXIT: Application exit is still executed (application is no longer active)</li>
+<li>OS_DELETE: Application is deleted (object is available, but the content is stil deleted)</li>
+<li>OS_RESET: Application reset is in progress</li>
+<li>OS_RETAIN_MISMATCH: Retain mismatch occurred during loading the bootproject (retain data does not match to the application)</li>
+<li>OS_BOOTPROJECT_VALID: Bootproject available (bootproject matched to running application in RAM)</li>
+<li>OS_LOAD_BOOTPROJECT: Loading bootproject in progress</li>
+<li>OS_FLOW_ACTIVE: Flow control active</li>
+<li>OS_RESET_OUTPUTS: Forcing reset outputs if task cycle is called</li>
+<li>OS_COREDUMP_LOADED: This is never used in the runtime, but in the fake online app in CODESYS. So this is flag is included here to reserve its usage.</li>
+<li>OS_EXECUTIONPOINTS_ACTIVE: Executionpoints are active currently</li>
+<li>OS_COREDUMP_CREATING: A core dump is being created currently after the app crashed</li>
+</ul>
+</div>
+<div class="section" id="define-os-program-loaded-uint32-c-0x00000001">
+<span id="group-cmp-app-itf-applicationoperatingstate-1gae8042fbdb41a3a7aafdfbd827227b205"></span><h3>#define OS_PROGRAM_LOADED UINT32_C(0x00000001)<a class="headerlink" href="#define-os-program-loaded-uint32-c-0x00000001" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-download-uint32-c-0x00000002">
+<span id="group-cmp-app-itf-applicationoperatingstate-1gab1d4992482bf16efea800d738236016e"></span><h3>#define OS_DOWNLOAD UINT32_C(0x00000002)<a class="headerlink" href="#define-os-download-uint32-c-0x00000002" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-online-change-uint32-c-0x00000004">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga401c0d8e6eba732ae5780280c6deddd4"></span><h3>#define OS_ONLINE_CHANGE UINT32_C(0x00000004)<a class="headerlink" href="#define-os-online-change-uint32-c-0x00000004" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-store-bootproject-uint32-c-0x00000008">
+<span id="group-cmp-app-itf-applicationoperatingstate-1gafdb7f7aeb9d1e17467474b6c96714a58"></span><h3>#define OS_STORE_BOOTPROJECT UINT32_C(0x00000008)<a class="headerlink" href="#define-os-store-bootproject-uint32-c-0x00000008" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-force-active-uint32-c-0x00000010">
+<span id="group-cmp-app-itf-applicationoperatingstate-1gae6023b149e306ac41b94a142ead7dd87"></span><h3>#define OS_FORCE_ACTIVE UINT32_C(0x00000010)<a class="headerlink" href="#define-os-force-active-uint32-c-0x00000010" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-exception-uint32-c-0x00000020">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga4fedc57453743bedcf7ad12aceb1db4b"></span><h3>#define OS_EXCEPTION UINT32_C(0x00000020)<a class="headerlink" href="#define-os-exception-uint32-c-0x00000020" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-run-after-download-uint32-c-0x00000040">
+<span id="group-cmp-app-itf-applicationoperatingstate-1gafa62f78cf588c571213f4f233d5f149f"></span><h3>#define OS_RUN_AFTER_DOWNLOAD UINT32_C(0x00000040)<a class="headerlink" href="#define-os-run-after-download-uint32-c-0x00000040" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-store-bootproject-only-uint32-c-0x00000080">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga40c9c6730e05485b735fb0d60503315f"></span><h3>#define OS_STORE_BOOTPROJECT_ONLY UINT32_C(0x00000080)<a class="headerlink" href="#define-os-store-bootproject-only-uint32-c-0x00000080" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-exit-uint32-c-0x00000100">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga952ba7e99de3c68be4e0a461256bbd8d"></span><h3>#define OS_EXIT UINT32_C(0x00000100)<a class="headerlink" href="#define-os-exit-uint32-c-0x00000100" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-delete-uint32-c-0x00000200">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga2ec48d5ed2d28260f026a03d01c2dc7a"></span><h3>#define OS_DELETE UINT32_C(0x00000200)<a class="headerlink" href="#define-os-delete-uint32-c-0x00000200" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-reset-uint32-c-0x00000400">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga273709541907be15e97590d992c97e69"></span><h3>#define OS_RESET UINT32_C(0x00000400)<a class="headerlink" href="#define-os-reset-uint32-c-0x00000400" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-retain-mismatch-uint32-c-0x00000800">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga1b0faf8ea18162b51b8917170fa1dc93"></span><h3>#define OS_RETAIN_MISMATCH UINT32_C(0x00000800)<a class="headerlink" href="#define-os-retain-mismatch-uint32-c-0x00000800" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-bootproject-valid-uint32-c-0x00001000">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga1136bfe2f9bcd9180faf13807ed878a3"></span><h3>#define OS_BOOTPROJECT_VALID UINT32_C(0x00001000)<a class="headerlink" href="#define-os-bootproject-valid-uint32-c-0x00001000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-load-bootproject-uint32-c-0x00002000">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga8e24889c2922bc273b574f16a9337e41"></span><h3>#define OS_LOAD_BOOTPROJECT UINT32_C(0x00002000)<a class="headerlink" href="#define-os-load-bootproject-uint32-c-0x00002000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-flow-active-uint32-c-0x00004000">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga21f78bc0b2434b20ab0915fdd98fb840"></span><h3>#define OS_FLOW_ACTIVE UINT32_C(0x00004000)<a class="headerlink" href="#define-os-flow-active-uint32-c-0x00004000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-reset-outputs-uint32-c-0x00010000">
+<span id="group-cmp-app-itf-applicationoperatingstate-1gaf91910259016d652b2867f332bf7f2e8"></span><h3>#define OS_RESET_OUTPUTS UINT32_C(0x00010000)<a class="headerlink" href="#define-os-reset-outputs-uint32-c-0x00010000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-coredump-loaded-uint32-c-0x00020000">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga395d491b98afc52154f8ace1c953cb8b"></span><h3>#define OS_COREDUMP_LOADED UINT32_C(0x00020000)<a class="headerlink" href="#define-os-coredump-loaded-uint32-c-0x00020000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-executionpoints-active-uint32-c-0x00040000">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga1aee4117b2f51e5fe8073d2ba3215a11"></span><h3>#define OS_EXECUTIONPOINTS_ACTIVE UINT32_C(0x00040000)<a class="headerlink" href="#define-os-executionpoints-active-uint32-c-0x00040000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-coredump-creating-uint32-c-0x00080000">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga6edba42142d1672bbaf9f347d5fbd472"></span><h3>#define OS_COREDUMP_CREATING UINT32_C(0x00080000)<a class="headerlink" href="#define-os-coredump-creating-uint32-c-0x00080000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-single-cycle-active-uint32-c-0x00100000">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga905866e8832e33ffbb0a6bfbc8643043"></span><h3>#define OS_SINGLE_CYCLE_ACTIVE UINT32_C(0x00100000)<a class="headerlink" href="#define-os-single-cycle-active-uint32-c-0x00100000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-os-disable-reset-uint32-c-0x00200000">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga92aa9e1f0b08f27f8f8e6017a939df4c"></span><h3>#define OS_DISABLE_RESET UINT32_C(0x00200000)<a class="headerlink" href="#define-os-disable-reset-uint32-c-0x00200000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-app-set-op-state-application-papp-ulopstate-opstate">
+<span id="group-cmp-app-itf-applicationoperatingstate-1gac6a48e89d8459ed0dea826ee5839ed67"></span><h3>#define APP_SET_OP_STATE ((( <a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> <a href="#id9"><span class="problematic" id="id10">*</span></a>)pApp)-&gt;ulOpState <a href="#id11"><span class="problematic" id="id12">|</span></a>= OpState)<a class="headerlink" href="#define-app-set-op-state-application-papp-ulopstate-opstate" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-app-reset-op-state-application-papp-ulopstate-opstate">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga5e0ca8698284a7a1ea1b25d9b4cde7e2"></span><h3>#define APP_RESET_OP_STATE ((( <a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> <a href="#id13"><span class="problematic" id="id14">*</span></a>)pApp)-&gt;ulOpState &amp;= ~OpState)<a class="headerlink" href="#define-app-reset-op-state-application-papp-ulopstate-opstate" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-app-has-op-state-application-papp-ulopstate-opstate">
+<span id="group-cmp-app-itf-applicationoperatingstate-1ga74ac88951509bdd669f093816dafa4a6"></span><h3>#define APP_HAS_OP_STATE ((( <a class="reference internal" href="group___cmp_app_itf___applicationdescription.html#group-cmp-app-itf-applicationdescription-1gac7bd19d792c2ff88bf331821dd1978b7"><span class="std std-ref">APPLICATION</span></a> <a href="#id15"><span class="problematic" id="id16">*</span></a>)pApp)-&gt;ulOpState &amp; OpState)<a class="headerlink" href="#define-app-has-op-state-application-papp-ulopstate-opstate" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

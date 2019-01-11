@@ -1,0 +1,664 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SysProcessItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="SysReadWriteLockItf" href="group___sys_read_write_lock_itf.html" />
+    <link rel="prev" title="SysPortItf" href="group___sys_port_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___sys_read_write_lock_itf.html" title="SysReadWriteLockItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_port_itf.html" title="SysPortItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SysProcessItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-itf-sysprocess">#define ITF_SysProcess</a></li>
+<li><a class="reference internal" href="#define-extitf-sysprocess">#define EXTITF_SysProcess</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-tagsysprocesscreate-struct-sysprocesscreate-struct">typedef struct tagsysprocesscreate_struct  sysprocesscreate_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysprocesscreate2-struct-sysprocesscreate2-struct">typedef struct tagsysprocesscreate2_struct  sysprocesscreate2_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysprocessexecutecommand-struct-sysprocessexecutecommand-struct">typedef struct tagsysprocessexecutecommand_struct  sysprocessexecutecommand_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysprocessexecutecommand2-struct-sysprocessexecutecommand2-struct">typedef struct tagsysprocessexecutecommand2_struct  sysprocessexecutecommand2_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysprocessfreehandle-struct-sysprocessfreehandle-struct">typedef struct tagsysprocessfreehandle_struct  sysprocessfreehandle_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysprocessgetcurrenthandle-struct-sysprocessgetcurrenthandle-struct">typedef struct tagsysprocessgetcurrenthandle_struct  sysprocessgetcurrenthandle_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysprocessgetosid-struct-sysprocessgetosid-struct">typedef struct tagsysprocessgetosid_struct  sysprocessgetosid_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysprocessgetpriority-struct-sysprocessgetpriority-struct">typedef struct tagsysprocessgetpriority_struct  sysprocessgetpriority_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysprocessgetstate-struct-sysprocessgetstate-struct">typedef struct tagsysprocessgetstate_struct  sysprocessgetstate_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysprocessresume-struct-sysprocessresume-struct">typedef struct tagsysprocessresume_struct  sysprocessresume_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysprocesssetpriority-struct-sysprocesssetpriority-struct">typedef struct tagsysprocesssetpriority_struct  sysprocesssetpriority_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysprocessterminate-struct-sysprocessterminate-struct">typedef struct tagsysprocessterminate_struct  sysprocessterminate_struct</a></li>
+<li><a class="reference internal" href="#typedef-isysprocess-c-isysprocess">typedef ISysProcess_C ISysProcess</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#void-sysprocesscreate-sysprocesscreate-struct-p">void sysprocesscreate (sysprocesscreate_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysprocesscreate2-sysprocesscreate2-struct-p">void sysprocesscreate2 (sysprocesscreate2_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysprocessexecutecommand-sysprocessexecutecommand-struct-p">void sysprocessexecutecommand (sysprocessexecutecommand_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysprocessexecutecommand2-sysprocessexecutecommand2-struct-p">void sysprocessexecutecommand2 (sysprocessexecutecommand2_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysprocessfreehandle-sysprocessfreehandle-struct-p">void sysprocessfreehandle (sysprocessfreehandle_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysprocessgetcurrenthandle-sysprocessgetcurrenthandle-struct-p">void sysprocessgetcurrenthandle (sysprocessgetcurrenthandle_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysprocessgetosid-sysprocessgetosid-struct-p">void sysprocessgetosid (sysprocessgetosid_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysprocessgetpriority-sysprocessgetpriority-struct-p">void sysprocessgetpriority (sysprocessgetpriority_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysprocessgetstate-sysprocessgetstate-struct-p">void sysprocessgetstate (sysprocessgetstate_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysprocessresume-sysprocessresume-struct-p">void sysprocessresume (sysprocessresume_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysprocesssetpriority-sysprocesssetpriority-struct-p">void sysprocesssetpriority (sysprocesssetpriority_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysprocessterminate-sysprocessterminate-struct-p">void sysprocessterminate (sysprocessterminate_struct *p)</a></li>
+<li><a class="reference internal" href="#rts-result-sysprocessosinit-init-struct-pinit">RTS_RESULT SysProcessOSInit (INIT_STRUCT *pInit)</a></li>
+<li><a class="reference internal" href="#rts-result-sysprocessoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">RTS_RESULT SysProcessOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</a></li>
+<li><a class="reference internal" href="#rts-i32-sysprocessexecutecommand-char-pszcommand-rts-result-presult">RTS_I32 SysProcessExecuteCommand (char *pszCommand, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-i32-sysprocessexecutecommand2-char-pszcommand-char-pszstdout-rts-ui32-udistdoutlen-rts-result-presult">RTS_I32 SysProcessExecuteCommand2 (char *pszCommand, char *pszStdOut, RTS_UI32 udiStdOutLen, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-sysprocesscreate-char-pszapplication-char-pszcommandline-rts-ui32-ulflags-rts-result-presult">RTS_HANDLE SysProcessCreate (char *pszApplication, char *pszCommandLine, RTS_UI32 ulFlags, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-sysprocessresume-rts-handle-hprocess">RTS_RESULT SysProcessResume (RTS_HANDLE hProcess)</a></li>
+<li><a class="reference internal" href="#rts-result-sysprocessterminate-rts-handle-hprocess">RTS_RESULT SysProcessTerminate (RTS_HANDLE hProcess)</a></li>
+<li><a class="reference internal" href="#rts-handle-sysprocessgetcurrenthandle-rts-result-presult">RTS_HANDLE SysProcessGetCurrentHandle (RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-sysprocessfreehandle-rts-handle-hprocess">RTS_RESULT SysProcessFreeHandle (RTS_HANDLE hProcess)</a></li>
+<li><a class="reference internal" href="#rts-result-sysprocessgetstate-rts-handle-hprocess-rts-i32-pistate">RTS_RESULT SysProcessGetState (RTS_HANDLE hProcess, RTS_I32 *piState)</a></li>
+<li><a class="reference internal" href="#rts-result-sysprocesssetpriority-rts-handle-hprocess-rts-ui32-ulpriority">RTS_RESULT SysProcessSetPriority (RTS_HANDLE hProcess, RTS_UI32 ulPriority)</a></li>
+<li><a class="reference internal" href="#rts-result-sysprocessgetpriority-rts-handle-hprocess-rts-ui32-pulpriority">RTS_RESULT SysProcessGetPriority (RTS_HANDLE hProcess, RTS_UI32 *pulPriority)</a></li>
+<li><a class="reference internal" href="#rts-ui32-sysprocessgetosid-rts-handle-hprocess-rts-result-presult">RTS_UI32 SysProcessGetOSId (RTS_HANDLE hProcess, RTS_RESULT *pResult)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___sys_port_itf.html"
+                        title="previous chapter">SysPortItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___sys_read_write_lock_itf.html"
+                        title="next chapter">SysReadWriteLockItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_process_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sysprocessitf">
+<span id="group-sys-process-itf"></span><h1>SysProcessItf<a class="headerlink" href="#sysprocessitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of SysProcess. <a class="reference internal" href="#group-sys-process-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___sys_process_itf___priorityranges.html#group-sys-process-itf-priorityranges"><span class="std std-ref">Priority ranges</span></a></li>
+<li><a class="reference internal" href="group___sys_process_itf___processcreationflags.html#group-sys-process-itf-processcreationflags"><span class="std std-ref">Process creation flags</span></a></li>
+<li><a class="reference internal" href="group___sys_process_itf___processstatus.html#group-sys-process-itf-processstatus"><span class="std std-ref">Process status</span></a></li>
+<li><a class="reference internal" href="group___sys_process_itf___settings.html#group-sys-process-itf-settings"><span class="std std-ref">Settings</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="structtagsysprocesscreate__struct.html#structtagsysprocesscreate-struct"><span class="std std-ref">tagsysprocesscreate_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysprocesscreate2__struct.html#structtagsysprocesscreate2-struct"><span class="std std-ref">tagsysprocesscreate2_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysprocessexecutecommand__struct.html#structtagsysprocessexecutecommand-struct"><span class="std std-ref">tagsysprocessexecutecommand_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysprocessexecutecommand2__struct.html#structtagsysprocessexecutecommand2-struct"><span class="std std-ref">tagsysprocessexecutecommand2_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysprocessfreehandle__struct.html#structtagsysprocessfreehandle-struct"><span class="std std-ref">tagsysprocessfreehandle_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysprocessgetcurrenthandle__struct.html#structtagsysprocessgetcurrenthandle-struct"><span class="std std-ref">tagsysprocessgetcurrenthandle_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysprocessgetosid__struct.html#structtagsysprocessgetosid-struct"><span class="std std-ref">tagsysprocessgetosid_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysprocessgetpriority__struct.html#structtagsysprocessgetpriority-struct"><span class="std std-ref">tagsysprocessgetpriority_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysprocessgetstate__struct.html#structtagsysprocessgetstate-struct"><span class="std std-ref">tagsysprocessgetstate_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysprocessresume__struct.html#structtagsysprocessresume-struct"><span class="std std-ref">tagsysprocessresume_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysprocesssetpriority__struct.html#structtagsysprocesssetpriority-struct"><span class="std std-ref">tagsysprocesssetpriority_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysprocessterminate__struct.html#structtagsysprocessterminate-struct"><span class="std std-ref">tagsysprocessterminate_struct</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_sys_process___c.html#struct-i-sys-process-c"><span class="std std-ref">ISysProcess_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-process-itf-1gafad50e7d4478a70754cd430c193f4a1b"><span class="std std-ref">ITF_SysProcess</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-process-itf-1ga0dee55e0aa198716038467389ff4be97"><span class="std std-ref">EXTITF_SysProcess</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="structtagsysprocesscreate__struct.html#structtagsysprocesscreate-struct"><span class="std std-ref">tagsysprocesscreate_struct</span></a> <a class="reference internal" href="#group-sys-process-itf-1gabc89740423b5a30cf27e7c6ea309b0a1"><span class="std std-ref">sysprocesscreate_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysprocesscreate2__struct.html#structtagsysprocesscreate2-struct"><span class="std std-ref">tagsysprocesscreate2_struct</span></a> <a class="reference internal" href="#group-sys-process-itf-1ga62517b84811d742c9a7f08cc3adf6f4a"><span class="std std-ref">sysprocesscreate2_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysprocessexecutecommand__struct.html#structtagsysprocessexecutecommand-struct"><span class="std std-ref">tagsysprocessexecutecommand_struct</span></a> <a class="reference internal" href="#group-sys-process-itf-1gafbbb5b6728d58905dcfc683c5c34cdc8"><span class="std std-ref">sysprocessexecutecommand_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysprocessexecutecommand2__struct.html#structtagsysprocessexecutecommand2-struct"><span class="std std-ref">tagsysprocessexecutecommand2_struct</span></a> <a class="reference internal" href="#group-sys-process-itf-1ga46d30d4d0b4a68a801f684fa64280cd1"><span class="std std-ref">sysprocessexecutecommand2_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysprocessfreehandle__struct.html#structtagsysprocessfreehandle-struct"><span class="std std-ref">tagsysprocessfreehandle_struct</span></a> <a class="reference internal" href="#group-sys-process-itf-1ga3badf59c5abb843aafab5a1b5e974ad0"><span class="std std-ref">sysprocessfreehandle_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysprocessgetcurrenthandle__struct.html#structtagsysprocessgetcurrenthandle-struct"><span class="std std-ref">tagsysprocessgetcurrenthandle_struct</span></a> <a class="reference internal" href="#group-sys-process-itf-1ga9d145db06f3559b9bc53fe8cee39efce"><span class="std std-ref">sysprocessgetcurrenthandle_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysprocessgetosid__struct.html#structtagsysprocessgetosid-struct"><span class="std std-ref">tagsysprocessgetosid_struct</span></a> <a class="reference internal" href="#group-sys-process-itf-1gad2cf95d6c7b6abd4c845bb896f6be58b"><span class="std std-ref">sysprocessgetosid_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysprocessgetpriority__struct.html#structtagsysprocessgetpriority-struct"><span class="std std-ref">tagsysprocessgetpriority_struct</span></a> <a class="reference internal" href="#group-sys-process-itf-1ga3592455356f4506f3e569a7058e1d003"><span class="std std-ref">sysprocessgetpriority_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysprocessgetstate__struct.html#structtagsysprocessgetstate-struct"><span class="std std-ref">tagsysprocessgetstate_struct</span></a> <a class="reference internal" href="#group-sys-process-itf-1ga238603aa908aa190844f8970e76435f2"><span class="std std-ref">sysprocessgetstate_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysprocessresume__struct.html#structtagsysprocessresume-struct"><span class="std std-ref">tagsysprocessresume_struct</span></a> <a class="reference internal" href="#group-sys-process-itf-1ga8eeb15701e615c3f8e5d8a5ed21ccfbe"><span class="std std-ref">sysprocessresume_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysprocesssetpriority__struct.html#structtagsysprocesssetpriority-struct"><span class="std std-ref">tagsysprocesssetpriority_struct</span></a> <a class="reference internal" href="#group-sys-process-itf-1gace210acb7625f41ee778399c898cf57e"><span class="std std-ref">sysprocesssetpriority_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysprocessterminate__struct.html#structtagsysprocessterminate-struct"><span class="std std-ref">tagsysprocessterminate_struct</span></a> <a class="reference internal" href="#group-sys-process-itf-1gadc48a21f0f8dabb555597d9b49077d21"><span class="std std-ref">sysprocessterminate_struct</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_sys_process___c.html#struct-i-sys-process-c"><span class="std std-ref">ISysProcess_C</span></a> <a class="reference internal" href="#group-sys-process-itf-1gaed7ca8a26d1743d1df4e7cdc43637100"><span class="std std-ref">ISysProcess</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>void <a class="reference internal" href="#group-sys-process-itf-1ga3e413f1bc7efa3fc2a43ea7d04892d09"><span class="std std-ref">sysprocesscreate</span></a> (<a class="reference internal" href="#group-sys-process-itf-1gabc89740423b5a30cf27e7c6ea309b0a1"><span class="std std-ref">sysprocesscreate_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-process-itf-1ga7977ec4184ff95e6abf11aa9fa69cb54"><span class="std std-ref">sysprocesscreate2</span></a> (<a class="reference internal" href="#group-sys-process-itf-1ga62517b84811d742c9a7f08cc3adf6f4a"><span class="std std-ref">sysprocesscreate2_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-process-itf-1ga5ec85e2ce1080dee03c7ad95f69f35a3"><span class="std std-ref">sysprocessexecutecommand</span></a> (<a class="reference internal" href="#group-sys-process-itf-1gafbbb5b6728d58905dcfc683c5c34cdc8"><span class="std std-ref">sysprocessexecutecommand_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-process-itf-1ga4a4a82f23850af0a2788dbbfcbd62d21"><span class="std std-ref">sysprocessexecutecommand2</span></a> (<a class="reference internal" href="#group-sys-process-itf-1ga46d30d4d0b4a68a801f684fa64280cd1"><span class="std std-ref">sysprocessexecutecommand2_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-process-itf-1gafe8b0ba66e53e1e9a304d1991dc2f306"><span class="std std-ref">sysprocessfreehandle</span></a> (<a class="reference internal" href="#group-sys-process-itf-1ga3badf59c5abb843aafab5a1b5e974ad0"><span class="std std-ref">sysprocessfreehandle_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-process-itf-1ga6a369f55ad376ca33fd12c9267fd2795"><span class="std std-ref">sysprocessgetcurrenthandle</span></a> (<a class="reference internal" href="#group-sys-process-itf-1ga9d145db06f3559b9bc53fe8cee39efce"><span class="std std-ref">sysprocessgetcurrenthandle_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-process-itf-1ga3a53124ed88a1b0686d649f28b700cb2"><span class="std std-ref">sysprocessgetosid</span></a> (<a class="reference internal" href="#group-sys-process-itf-1gad2cf95d6c7b6abd4c845bb896f6be58b"><span class="std std-ref">sysprocessgetosid_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-process-itf-1gac044e803dc85a21f4e152720f6da8707"><span class="std std-ref">sysprocessgetpriority</span></a> (<a class="reference internal" href="#group-sys-process-itf-1ga3592455356f4506f3e569a7058e1d003"><span class="std std-ref">sysprocessgetpriority_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-process-itf-1ga3859c93231343178a5e0c00b918d713d"><span class="std std-ref">sysprocessgetstate</span></a> (<a class="reference internal" href="#group-sys-process-itf-1ga238603aa908aa190844f8970e76435f2"><span class="std std-ref">sysprocessgetstate_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-process-itf-1gad12a28cf4c59d879ad6bfdbce4fc5958"><span class="std std-ref">sysprocessresume</span></a> (<a class="reference internal" href="#group-sys-process-itf-1ga8eeb15701e615c3f8e5d8a5ed21ccfbe"><span class="std std-ref">sysprocessresume_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-process-itf-1ga8a421a21e126c0bafeae5ae4813a985f"><span class="std std-ref">sysprocesssetpriority</span></a> (<a class="reference internal" href="#group-sys-process-itf-1gace210acb7625f41ee778399c898cf57e"><span class="std std-ref">sysprocesssetpriority_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-process-itf-1gab92d828fdb7f5027978da60b08de00a1"><span class="std std-ref">sysprocessterminate</span></a> (<a class="reference internal" href="#group-sys-process-itf-1gadc48a21f0f8dabb555597d9b49077d21"><span class="std std-ref">sysprocessterminate_struct</span></a> * p)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-process-itf-1ga3f6363782cc38bc0065281a9295dcb42"><span class="std std-ref">SysProcessOSInit</span></a> (INIT_STRUCT * pInit)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-process-itf-1gac1b5d1d6da197e8bad882d75b835d2a0"><span class="std std-ref">SysProcessOSHookFunction</span></a> (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</li>
+<li>RTS_I32 <a class="reference internal" href="#group-sys-process-itf-1ga2647fafe7e14deb8882ae00cfa150069"><span class="std std-ref">SysProcessExecuteCommand</span></a> (char * pszCommand, RTS_RESULT * pResult)</li>
+<li>RTS_I32 <a class="reference internal" href="#group-sys-process-itf-1ga2e1e04882fc4a9bb5666189bab2fa5d9"><span class="std std-ref">SysProcessExecuteCommand2</span></a> (char * pszCommand, char * pszStdOut, RTS_UI32 udiStdOutLen, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-process-itf-1gaaeb32d7f8b4c5bba415db9a4c0b57ad1"><span class="std std-ref">SysProcessCreate</span></a> (char * pszApplication, char * pszCommandLine, RTS_UI32 ulFlags, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-process-itf-1ga590aac9ac0786cd3fb57641c4e855845"><span class="std std-ref">SysProcessResume</span></a> (RTS_HANDLE hProcess)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-process-itf-1ga78af11a909d89197a9e754da79916f8f"><span class="std std-ref">SysProcessTerminate</span></a> (RTS_HANDLE hProcess)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-process-itf-1gaaf18eed1893fcd37092e2ac2f3d737ed"><span class="std std-ref">SysProcessGetCurrentHandle</span></a> (RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-process-itf-1gacb2ef6005625e3e522f83a5fdf11a7d6"><span class="std std-ref">SysProcessFreeHandle</span></a> (RTS_HANDLE hProcess)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-process-itf-1gada567f3b57b55bd10c67de880ed35c74"><span class="std std-ref">SysProcessGetState</span></a> (RTS_HANDLE hProcess, RTS_I32 * piState)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-process-itf-1gaeae869c1cd6e43fcb8121d8893f9fe79"><span class="std std-ref">SysProcessSetPriority</span></a> (RTS_HANDLE hProcess, RTS_UI32 ulPriority)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-process-itf-1gae2f261e1a2c1ff516c63e63bd2e0e9c6"><span class="std std-ref">SysProcessGetPriority</span></a> (RTS_HANDLE hProcess, RTS_UI32 * pulPriority)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-process-itf-1ga41ac619c030f4cf2e253bc0dd759b95c"><span class="std std-ref">SysProcessGetOSId</span></a> (RTS_HANDLE hProcess, RTS_RESULT * pResult)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-process-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of SysProcess.</p>
+<p>The SysProcess interface is projected to handle operating system processes. This can be implemented only on targets with an operating system with processes.</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-itf-sysprocess">
+<span id="group-sys-process-itf-1gafad50e7d4478a70754cd430c193f4a1b"></span><h3>#define ITF_SysProcess<a class="headerlink" href="#define-itf-sysprocess" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-sysprocess">
+<span id="group-sys-process-itf-1ga0dee55e0aa198716038467389ff4be97"></span><h3>#define EXTITF_SysProcess<a class="headerlink" href="#define-extitf-sysprocess" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-tagsysprocesscreate-struct-sysprocesscreate-struct">
+<span id="group-sys-process-itf-1gabc89740423b5a30cf27e7c6ea309b0a1"></span><h3>typedef struct tagsysprocesscreate_struct  sysprocesscreate_struct<a class="headerlink" href="#typedef-struct-tagsysprocesscreate-struct-sysprocesscreate-struct" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION BEGIN</p>
+<p>Function to create a process. NOTE: Is only available on systems with processes! This function starts the specified application as new process, optionally either in the fore- or in the background.</p>
+<p><strong>Returns:</strong></p>
+<p><a href="#id1"><span class="problematic" id="id2">*</span></a>RESULT: Handle to the created process or RTS_INVALID_HANDLE if failed.</p>
+</div>
+<div class="section" id="typedef-struct-tagsysprocesscreate2-struct-sysprocesscreate2-struct">
+<span id="group-sys-process-itf-1ga62517b84811d742c9a7f08cc3adf6f4a"></span><h3>typedef struct tagsysprocesscreate2_struct  sysprocesscreate2_struct<a class="headerlink" href="#typedef-struct-tagsysprocesscreate2-struct-sysprocesscreate2-struct" title="Permalink to this headline">¶</a></h3>
+<p>Function to create a process. NOTE: Is only available on systems with processes! This functions creates and eventually starts a new process for the specified application. The properties of the created process can be defined by appropriate flags.
+<strong>Returns:</strong></p>
+<p><a href="#id3"><span class="problematic" id="id4">*</span></a>RESULT: Handle to the created process or RTS_INVALID_HANDLE if failed.</p>
+</div>
+<div class="section" id="typedef-struct-tagsysprocessexecutecommand-struct-sysprocessexecutecommand-struct">
+<span id="group-sys-process-itf-1gafbbb5b6728d58905dcfc683c5c34cdc8"></span><h3>typedef struct tagsysprocessexecutecommand_struct  sysprocessexecutecommand_struct<a class="headerlink" href="#typedef-struct-tagsysprocessexecutecommand-struct-sysprocessexecutecommand-struct" title="Permalink to this headline">¶</a></h3>
+<p>Function to start a system command. The command is operating system dependant!
+<strong>Returns:</strong></p>
+<p><a href="#id5"><span class="problematic" id="id6">*</span></a>RESULT: Result of command after execution</p>
+</div>
+<div class="section" id="typedef-struct-tagsysprocessexecutecommand2-struct-sysprocessexecutecommand2-struct">
+<span id="group-sys-process-itf-1ga46d30d4d0b4a68a801f684fa64280cd1"></span><h3>typedef struct tagsysprocessexecutecommand2_struct  sysprocessexecutecommand2_struct<a class="headerlink" href="#typedef-struct-tagsysprocessexecutecommand2-struct-sysprocessexecutecommand2-struct" title="Permalink to this headline">¶</a></h3>
+<p>Function to start a system command. The command is operating system dependant! Command will be executed, only if allowed (see settings for details). Output of the executed command will be filled into pszStdOut.</p>
+<p><strong>Returns:</strong></p>
+<p><a href="#id7"><span class="problematic" id="id8">*</span></a>RESULT: Number of bytes, read from the commands output.</p>
+</div>
+<div class="section" id="typedef-struct-tagsysprocessfreehandle-struct-sysprocessfreehandle-struct">
+<span id="group-sys-process-itf-1ga3badf59c5abb843aafab5a1b5e974ad0"></span><h3>typedef struct tagsysprocessfreehandle_struct  sysprocessfreehandle_struct<a class="headerlink" href="#typedef-struct-tagsysprocessfreehandle-struct-sysprocessfreehandle-struct" title="Permalink to this headline">¶</a></h3>
+<p>Function to release the process handle that is returned by SysProcessCreate or SysProcessGetCurrentHandle.
+<strong>Returns:</strong></p>
+<p><a href="#id9"><span class="problematic" id="id10">*</span></a>RESULT: Returns the runtime system error code (see CmpErrors.library).</p>
+</div>
+<div class="section" id="typedef-struct-tagsysprocessgetcurrenthandle-struct-sysprocessgetcurrenthandle-struct">
+<span id="group-sys-process-itf-1ga9d145db06f3559b9bc53fe8cee39efce"></span><h3>typedef struct tagsysprocessgetcurrenthandle_struct  sysprocessgetcurrenthandle_struct<a class="headerlink" href="#typedef-struct-tagsysprocessgetcurrenthandle-struct-sysprocessgetcurrenthandle-struct" title="Permalink to this headline">¶</a></h3>
+<p>Function to get a handle to the current process
+<strong>Returns:</strong></p>
+<p><a href="#id11"><span class="problematic" id="id12">*</span></a>RESULT: Returns the handle of the process actually running by the processor or RTS_INVALID_HANDLE if failed.</p>
+</div>
+<div class="section" id="typedef-struct-tagsysprocessgetosid-struct-sysprocessgetosid-struct">
+<span id="group-sys-process-itf-1gad2cf95d6c7b6abd4c845bb896f6be58b"></span><h3>typedef struct tagsysprocessgetosid_struct  sysprocessgetosid_struct<a class="headerlink" href="#typedef-struct-tagsysprocessgetosid-struct-sysprocessgetosid-struct" title="Permalink to this headline">¶</a></h3>
+<p>Function to determine an operatingsystem dependant identification of a process. This identification must be unique in the system at a defined time! SysProcessGetOSId can only applied to the process actually executed or to processes having been generated by SysProcessCreate.
+<strong>Returns:</strong></p>
+<p><a href="#id13"><span class="problematic" id="id14">*</span></a>RESULT: Returns the operating system specific identification of the process</p>
+</div>
+<div class="section" id="typedef-struct-tagsysprocessgetpriority-struct-sysprocessgetpriority-struct">
+<span id="group-sys-process-itf-1ga3592455356f4506f3e569a7058e1d003"></span><h3>typedef struct tagsysprocessgetpriority_struct  sysprocessgetpriority_struct<a class="headerlink" href="#typedef-struct-tagsysprocessgetpriority-struct-sysprocessgetpriority-struct" title="Permalink to this headline">¶</a></h3>
+<p>This function retrieves the priority of the process specified by its handle.
+<strong>Returns:</strong></p>
+<p><a href="#id15"><span class="problematic" id="id16">*</span></a>RESULT: Returns the runtime system error code (see CmpErrors.library).</p>
+</div>
+<div class="section" id="typedef-struct-tagsysprocessgetstate-struct-sysprocessgetstate-struct">
+<span id="group-sys-process-itf-1ga238603aa908aa190844f8970e76435f2"></span><h3>typedef struct tagsysprocessgetstate_struct  sysprocessgetstate_struct<a class="headerlink" href="#typedef-struct-tagsysprocessgetstate-struct-sysprocessgetstate-struct" title="Permalink to this headline">¶</a></h3>
+<p>This function retrieves the status of the process specified by its handle.
+<strong>Returns:</strong></p>
+<p><a href="#id17"><span class="problematic" id="id18">*</span></a>RESULT: Returns the runtime system error code (see CmpErrors.library).</p>
+</div>
+<div class="section" id="typedef-struct-tagsysprocessresume-struct-sysprocessresume-struct">
+<span id="group-sys-process-itf-1ga8eeb15701e615c3f8e5d8a5ed21ccfbe"></span><h3>typedef struct tagsysprocessresume_struct  sysprocessresume_struct<a class="headerlink" href="#typedef-struct-tagsysprocessresume-struct-sysprocessresume-struct" title="Permalink to this headline">¶</a></h3>
+<p>This function starts the process specified by its handle. For example, the function can be used for processes having been created in suspended mode by use of the flag SYSPROCESS_CREATEFLAG_CREATESUSPENDED.
+<strong>Returns:</strong></p>
+<p><a href="#id19"><span class="problematic" id="id20">*</span></a>RESULT: Returns the runtime system error code (see CmpErrors.library).</p>
+</div>
+<div class="section" id="typedef-struct-tagsysprocesssetpriority-struct-sysprocesssetpriority-struct">
+<span id="group-sys-process-itf-1gace210acb7625f41ee778399c898cf57e"></span><h3>typedef struct tagsysprocesssetpriority_struct  sysprocesssetpriority_struct<a class="headerlink" href="#typedef-struct-tagsysprocesssetpriority-struct-sysprocesssetpriority-struct" title="Permalink to this headline">¶</a></h3>
+<p>This function sets the priority of the process specified by its handle.
+<strong>Returns:</strong></p>
+<p><a href="#id21"><span class="problematic" id="id22">*</span></a>RESULT: Returns the runtime system error code (see CmpErrors.library).</p>
+</div>
+<div class="section" id="typedef-struct-tagsysprocessterminate-struct-sysprocessterminate-struct">
+<span id="group-sys-process-itf-1gadc48a21f0f8dabb555597d9b49077d21"></span><h3>typedef struct tagsysprocessterminate_struct  sysprocessterminate_struct<a class="headerlink" href="#typedef-struct-tagsysprocessterminate-struct-sysprocessterminate-struct" title="Permalink to this headline">¶</a></h3>
+<p>This function terminates the process specified by its handle.
+<strong>Returns:</strong></p>
+<p><a href="#id23"><span class="problematic" id="id24">*</span></a>RESULT: Returns the runtime system error code (see CmpErrors.library).</p>
+</div>
+<div class="section" id="typedef-isysprocess-c-isysprocess">
+<span id="group-sys-process-itf-1gaed7ca8a26d1743d1df4e7cdc43637100"></span><h3>typedef ISysProcess_C ISysProcess<a class="headerlink" href="#typedef-isysprocess-c-isysprocess" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="void-sysprocesscreate-sysprocesscreate-struct-p">
+<span id="group-sys-process-itf-1ga3e413f1bc7efa3fc2a43ea7d04892d09"></span><h3>void sysprocesscreate (sysprocesscreate_struct <a href="#id25"><span class="problematic" id="id26">*</span></a>p)<a class="headerlink" href="#void-sysprocesscreate-sysprocesscreate-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysprocesscreate2-sysprocesscreate2-struct-p">
+<span id="group-sys-process-itf-1ga7977ec4184ff95e6abf11aa9fa69cb54"></span><h3>void sysprocesscreate2 (sysprocesscreate2_struct <a href="#id27"><span class="problematic" id="id28">*</span></a>p)<a class="headerlink" href="#void-sysprocesscreate2-sysprocesscreate2-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysprocessexecutecommand-sysprocessexecutecommand-struct-p">
+<span id="group-sys-process-itf-1ga5ec85e2ce1080dee03c7ad95f69f35a3"></span><h3>void sysprocessexecutecommand (sysprocessexecutecommand_struct <a href="#id29"><span class="problematic" id="id30">*</span></a>p)<a class="headerlink" href="#void-sysprocessexecutecommand-sysprocessexecutecommand-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysprocessexecutecommand2-sysprocessexecutecommand2-struct-p">
+<span id="group-sys-process-itf-1ga4a4a82f23850af0a2788dbbfcbd62d21"></span><h3>void sysprocessexecutecommand2 (sysprocessexecutecommand2_struct <a href="#id31"><span class="problematic" id="id32">*</span></a>p)<a class="headerlink" href="#void-sysprocessexecutecommand2-sysprocessexecutecommand2-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysprocessfreehandle-sysprocessfreehandle-struct-p">
+<span id="group-sys-process-itf-1gafe8b0ba66e53e1e9a304d1991dc2f306"></span><h3>void sysprocessfreehandle (sysprocessfreehandle_struct <a href="#id33"><span class="problematic" id="id34">*</span></a>p)<a class="headerlink" href="#void-sysprocessfreehandle-sysprocessfreehandle-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysprocessgetcurrenthandle-sysprocessgetcurrenthandle-struct-p">
+<span id="group-sys-process-itf-1ga6a369f55ad376ca33fd12c9267fd2795"></span><h3>void sysprocessgetcurrenthandle (sysprocessgetcurrenthandle_struct <a href="#id35"><span class="problematic" id="id36">*</span></a>p)<a class="headerlink" href="#void-sysprocessgetcurrenthandle-sysprocessgetcurrenthandle-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysprocessgetosid-sysprocessgetosid-struct-p">
+<span id="group-sys-process-itf-1ga3a53124ed88a1b0686d649f28b700cb2"></span><h3>void sysprocessgetosid (sysprocessgetosid_struct <a href="#id37"><span class="problematic" id="id38">*</span></a>p)<a class="headerlink" href="#void-sysprocessgetosid-sysprocessgetosid-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysprocessgetpriority-sysprocessgetpriority-struct-p">
+<span id="group-sys-process-itf-1gac044e803dc85a21f4e152720f6da8707"></span><h3>void sysprocessgetpriority (sysprocessgetpriority_struct <a href="#id39"><span class="problematic" id="id40">*</span></a>p)<a class="headerlink" href="#void-sysprocessgetpriority-sysprocessgetpriority-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysprocessgetstate-sysprocessgetstate-struct-p">
+<span id="group-sys-process-itf-1ga3859c93231343178a5e0c00b918d713d"></span><h3>void sysprocessgetstate (sysprocessgetstate_struct <a href="#id41"><span class="problematic" id="id42">*</span></a>p)<a class="headerlink" href="#void-sysprocessgetstate-sysprocessgetstate-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysprocessresume-sysprocessresume-struct-p">
+<span id="group-sys-process-itf-1gad12a28cf4c59d879ad6bfdbce4fc5958"></span><h3>void sysprocessresume (sysprocessresume_struct <a href="#id43"><span class="problematic" id="id44">*</span></a>p)<a class="headerlink" href="#void-sysprocessresume-sysprocessresume-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysprocesssetpriority-sysprocesssetpriority-struct-p">
+<span id="group-sys-process-itf-1ga8a421a21e126c0bafeae5ae4813a985f"></span><h3>void sysprocesssetpriority (sysprocesssetpriority_struct <a href="#id45"><span class="problematic" id="id46">*</span></a>p)<a class="headerlink" href="#void-sysprocesssetpriority-sysprocesssetpriority-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysprocessterminate-sysprocessterminate-struct-p">
+<span id="group-sys-process-itf-1gab92d828fdb7f5027978da60b08de00a1"></span><h3>void sysprocessterminate (sysprocessterminate_struct <a href="#id47"><span class="problematic" id="id48">*</span></a>p)<a class="headerlink" href="#void-sysprocessterminate-sysprocessterminate-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-sysprocessosinit-init-struct-pinit">
+<span id="group-sys-process-itf-1ga3f6363782cc38bc0065281a9295dcb42"></span><h3>RTS_RESULT SysProcessOSInit (INIT_STRUCT <a href="#id49"><span class="problematic" id="id50">*</span></a>pInit)<a class="headerlink" href="#rts-result-sysprocessosinit-init-struct-pinit" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION END</p>
+</div>
+<div class="section" id="rts-result-sysprocessoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">
+<span id="group-sys-process-itf-1gac1b5d1d6da197e8bad882d75b835d2a0"></span><h3>RTS_RESULT SysProcessOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)<a class="headerlink" href="#rts-result-sysprocessoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-i32-sysprocessexecutecommand-char-pszcommand-rts-result-presult">
+<span id="group-sys-process-itf-1ga2647fafe7e14deb8882ae00cfa150069"></span><h3>RTS_I32 SysProcessExecuteCommand (char <a href="#id51"><span class="problematic" id="id52">*</span></a>pszCommand, RTS_RESULT <a href="#id53"><span class="problematic" id="id54">*</span></a>pResult)<a class="headerlink" href="#rts-i32-sysprocessexecutecommand-char-pszcommand-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Function to start a system command. The command is operating system dependant!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="24%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszCommand</td>
+<td>String with the command line</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Result after command execution</p>
+</div>
+<div class="section" id="rts-i32-sysprocessexecutecommand2-char-pszcommand-char-pszstdout-rts-ui32-udistdoutlen-rts-result-presult">
+<span id="group-sys-process-itf-1ga2e1e04882fc4a9bb5666189bab2fa5d9"></span><h3>RTS_I32 SysProcessExecuteCommand2 (char <a href="#id55"><span class="problematic" id="id56">*</span></a>pszCommand, char <a href="#id57"><span class="problematic" id="id58">*</span></a>pszStdOut, RTS_UI32 udiStdOutLen, RTS_RESULT <a href="#id59"><span class="problematic" id="id60">*</span></a>pResult)<a class="headerlink" href="#rts-i32-sysprocessexecutecommand2-char-pszcommand-char-pszstdout-rts-ui32-udistdoutlen-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Function to start a system command. The command is operating system dependant! If Pointer to buffer is not null for StdOut or StdErr the buffer will be filled.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="16%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszCommand</td>
+<td>String with the command line</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszStdOut</td>
+<td>Buffer for StdOut string</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>udiStdOutLen</td>
+<td>Buffersize for StdOut string buffer</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to runtime system error code (see CmpErrors.library)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-handle-sysprocesscreate-char-pszapplication-char-pszcommandline-rts-ui32-ulflags-rts-result-presult">
+<span id="group-sys-process-itf-1gaaeb32d7f8b4c5bba415db9a4c0b57ad1"></span><h3>RTS_HANDLE SysProcessCreate (char <a href="#id61"><span class="problematic" id="id62">*</span></a>pszApplication, char <a href="#id63"><span class="problematic" id="id64">*</span></a>pszCommandLine, RTS_UI32 ulFlags, RTS_RESULT <a href="#id65"><span class="problematic" id="id66">*</span></a>pResult)<a class="headerlink" href="#rts-handle-sysprocesscreate-char-pszapplication-char-pszcommandline-rts-ui32-ulflags-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Function to create a process. Is only valid on systems with processes!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="17%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszApplication</td>
+<td>Name of application to start as a separate process</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pszCommandLine</td>
+<td>String with the command line</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulFlags</td>
+<td>A combination of flags like PROCESS_CREATEFLAG_HIDDEN for example.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to the result</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the process</p>
+</div>
+<div class="section" id="rts-result-sysprocessresume-rts-handle-hprocess">
+<span id="group-sys-process-itf-1ga590aac9ac0786cd3fb57641c4e855845"></span><h3>RTS_RESULT SysProcessResume (RTS_HANDLE hProcess)<a class="headerlink" href="#rts-result-sysprocessresume-rts-handle-hprocess" title="Permalink to this headline">¶</a></h3>
+<p>Function to resume a process specified by handle. This can be used, if a process is created with PROCESS_CREATEFLAG_CREATESUSPENDED flag.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="24%" />
+<col width="55%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hProcess</td>
+<td>Handle to the process</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: ERR_OK or ERR_FAILED</p>
+</div>
+<div class="section" id="rts-result-sysprocessterminate-rts-handle-hprocess">
+<span id="group-sys-process-itf-1ga78af11a909d89197a9e754da79916f8f"></span><h3>RTS_RESULT SysProcessTerminate (RTS_HANDLE hProcess)<a class="headerlink" href="#rts-result-sysprocessterminate-rts-handle-hprocess" title="Permalink to this headline">¶</a></h3>
+<p>Function to terminate a process specified by handle</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="24%" />
+<col width="55%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hProcess</td>
+<td>Handle to the process</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: ERR_OK or ERR_FAILED</p>
+</div>
+<div class="section" id="rts-handle-sysprocessgetcurrenthandle-rts-result-presult">
+<span id="group-sys-process-itf-1gaaf18eed1893fcd37092e2ac2f3d737ed"></span><h3>RTS_HANDLE SysProcessGetCurrentHandle (RTS_RESULT <a href="#id67"><span class="problematic" id="id68">*</span></a>pResult)<a class="headerlink" href="#rts-handle-sysprocessgetcurrenthandle-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Function to get a handle to the current process</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to the result</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>The handle of the topical process</p>
+</div>
+<div class="section" id="rts-result-sysprocessfreehandle-rts-handle-hprocess">
+<span id="group-sys-process-itf-1gacb2ef6005625e3e522f83a5fdf11a7d6"></span><h3>RTS_RESULT SysProcessFreeHandle (RTS_HANDLE hProcess)<a class="headerlink" href="#rts-result-sysprocessfreehandle-rts-handle-hprocess" title="Permalink to this headline">¶</a></h3>
+<p>Function to free the process handle that is returned by SysProcessCreate or SysProcessGetCurrentHandle</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="24%" />
+<col width="55%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hProcess</td>
+<td>Handle to the process</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: ERR_OK or ERR_PARAMETER if handle is invalid</p>
+</div>
+<div class="section" id="rts-result-sysprocessgetstate-rts-handle-hprocess-rts-i32-pistate">
+<span id="group-sys-process-itf-1gada567f3b57b55bd10c67de880ed35c74"></span><h3>RTS_RESULT SysProcessGetState (RTS_HANDLE hProcess, RTS_I32 <a href="#id69"><span class="problematic" id="id70">*</span></a>piState)<a class="headerlink" href="#rts-result-sysprocessgetstate-rts-handle-hprocess-rts-i32-pistate" title="Permalink to this headline">¶</a></h3>
+<p>Function to get the actual state of a process</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="13%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hProcess</td>
+<td>Handle to the process</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>piState</td>
+<td>Pointer to state of the process, see the definitions above</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: ERR_OK or ERR_PARAMETER if handle is invalid</p>
+</div>
+<div class="section" id="rts-result-sysprocesssetpriority-rts-handle-hprocess-rts-ui32-ulpriority">
+<span id="group-sys-process-itf-1gaeae869c1cd6e43fcb8121d8893f9fe79"></span><h3>RTS_RESULT SysProcessSetPriority (RTS_HANDLE hProcess, RTS_UI32 ulPriority)<a class="headerlink" href="#rts-result-sysprocesssetpriority-rts-handle-hprocess-rts-ui32-ulpriority" title="Permalink to this headline">¶</a></h3>
+<p>Function to set the process priority</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="27%" />
+<col width="52%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hProcess</td>
+<td>Handle to the process</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulPriority</td>
+<td>Process priority</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: ERR_OK or ERR_FAILED</p>
+</div>
+<div class="section" id="rts-result-sysprocessgetpriority-rts-handle-hprocess-rts-ui32-pulpriority">
+<span id="group-sys-process-itf-1gae2f261e1a2c1ff516c63e63bd2e0e9c6"></span><h3>RTS_RESULT SysProcessGetPriority (RTS_HANDLE hProcess, RTS_UI32 <a href="#id71"><span class="problematic" id="id72">*</span></a>pulPriority)<a class="headerlink" href="#rts-result-sysprocessgetpriority-rts-handle-hprocess-rts-ui32-pulpriority" title="Permalink to this headline">¶</a></h3>
+<p>Function to get the process priority</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="29%" />
+<col width="51%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hProcess</td>
+<td>Handle to the process</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pulPriority</td>
+<td>Pointer to priority</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: ERR_OK or ERR_FAILED</p>
+</div>
+<div class="section" id="rts-ui32-sysprocessgetosid-rts-handle-hprocess-rts-result-presult">
+<span id="group-sys-process-itf-1ga41ac619c030f4cf2e253bc0dd759b95c"></span><h3>RTS_UI32 SysProcessGetOSId (RTS_HANDLE hProcess, RTS_RESULT <a href="#id73"><span class="problematic" id="id74">*</span></a>pResult)<a class="headerlink" href="#rts-ui32-sysprocessgetosid-rts-handle-hprocess-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Function to determine an operatingsystem dependant identification of a process. This identification must be unique in the system at a defined time! This function will only work on processes created with SysProcessCreate or on the current process</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="24%" />
+<col width="55%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hProcess</td>
+<td>Handle to the process</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to the result</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>The OS dependant id as a DWORD</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___sys_read_write_lock_itf.html" title="SysReadWriteLockItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_port_itf.html" title="SysPortItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

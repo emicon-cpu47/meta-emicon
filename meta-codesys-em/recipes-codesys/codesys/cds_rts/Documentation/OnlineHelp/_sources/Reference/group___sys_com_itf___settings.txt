@@ -1,0 +1,126 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_com_itf___settings:
+
+========
+Settings
+========
+
+ :ref:`More... <group___sys_com_itf___settings-details>`
+
+Macros
+------
+
+- #define :ref:`SYSCOMKEY_INT_WINDOWS_PORT_TO_CHECK <group___sys_com_itf___settings_1ga2b3d78f768b42ba795237072c7e85e8c>` "Windows.PortToCheck"
+
+- #define :ref:`SYSTIMERVALUE_INT_WINDOWS_PORT_TO_CHECK_DEFAULT <group___sys_com_itf___settings_1ga59aa5cce852108b08b885b953fc143d9>` 0
+
+- #define :ref:`SYSCOMKEY_STRING_WINDOWS_PORTNAME_CHECK_WITH <group___sys_com_itf___settings_1gab1f8fc3608f9163146dfb617d570d882>` "Windows.CheckWithPortname"
+
+- #define :ref:`SYSTIMERVALUE_STRING_WINDOWS_PORTNAME_CHECK_WITH_DEFAULT <group___sys_com_itf___settings_1ga773162a40d40b770c177e9b729be7f71>` ""
+
+- #define :ref:`SYSCOMKEY_STRING_LINUX_DEVICEFILE <group___sys_com_itf___settings_1gad32da7e93e5ce777f2cecb3378febb1d>` "Linux.Devicefile"
+
+- #define :ref:`SYSCOMKEY_STRING_LINUX_DEVICEFILE_DEFAULT <group___sys_com_itf___settings_1gab8395d42a3371b8e7b3815b38b454224>` "/dev/ttyS"
+
+- #define :ref:`SYSCOMKEY_INT_LINUX_EXCLUSIVE_ACCESS <group___sys_com_itf___settings_1ga4c73e4206c2b5dc05e8db523b948e2f6>` "Linux.ExclusiveAccess"
+
+- #define :ref:`SYSCOMKEY_INT_LINUX_EXCLUSIVE_ACCESS_DEFAULT <group___sys_com_itf___settings_1ga796b3f6d3074b03c3d3a2a4ae42f667a>` 0
+
+- #define :ref:`SYSCOMKEY_STRING_LINUX_PHYSICAL_LAYER <group___sys_com_itf___settings_1ga2d63af39865514ad7baca15790f1009c>` "Linux.PhysicalLayer"
+
+- #define :ref:`SYSCOMKEY_STRING_LINUX_PHYSICAL_LAYER_DEFAULT <group___sys_com_itf___settings_1ga121a3973e975d0c04a6c718089fb1e37>` "rs232"
+
+- #define :ref:`SYSCOMKEY_STRING_LINUX_RS485_RTS_PIN <group___sys_com_itf___settings_1gaa50fbcb545506bd6ffd48bb982a7b8e3>` "Linux.rs485.RTSPin"
+
+- #define :ref:`SYSCOMKEY_STRING_LINUX_RS485_RTS_PIN_DEFAULT <group___sys_com_itf___settings_1gaf176fb3a5e3b2e4bb84a286958ac308c>` "on_send"
+
+.. _group___sys_com_itf___settings-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_com_itf___settings_1ga2b3d78f768b42ba795237072c7e85e8c:
+
+#define SYSCOMKEY_INT_WINDOWS_PORT_TO_CHECK "Windows.PortToCheck"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Allows to specify a serial port by its Microsoft Windows friendly name instead of the COM port number. The friendly name of the COM port is for example shown by the Microsoft Windows Device Manager. This feature is useful, if the port number is somehow dynamic, but if the adapter has a well defined friendly name. Typically it's used for USB devices, which provide a virtual COM port driver. If the (by SysComOpen) requested COM port number is found in the list of the configured "Windows.PortToCheck" settings, then the port is opened, which matches to the name specified by "Windows.CheckWithPortName", instead of the requested port number. (Only for Windows). Example: Windows.PortToCheck.0=99 Windows.CheckWithPortName.0=My USB serial device Windows.PortToCheck.1=98 Windows.CheckWithPortName.1=PLC USB interface
+
+.. _group___sys_com_itf___settings_1ga59aa5cce852108b08b885b953fc143d9:
+
+#define SYSTIMERVALUE_INT_WINDOWS_PORT_TO_CHECK_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_com_itf___settings_1gab1f8fc3608f9163146dfb617d570d882:
+
+#define SYSCOMKEY_STRING_WINDOWS_PORTNAME_CHECK_WITH "Windows.CheckWithPortname"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Specifies a string, which is compared to the Microsoft Windows friendly name of the available COM ports. The name matches, if it starts with the provided string. See also setting PortToCheck. (Only for Windows).
+
+.. _group___sys_com_itf___settings_1ga773162a40d40b770c177e9b729be7f71:
+
+#define SYSTIMERVALUE_STRING_WINDOWS_PORTNAME_CHECK_WITH_DEFAULT ""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_com_itf___settings_1gad32da7e93e5ce777f2cecb3378febb1d:
+
+#define SYSCOMKEY_STRING_LINUX_DEVICEFILE "Linux.Devicefile"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Devicefile for serial interface (Only for Linux).
+
+.. _group___sys_com_itf___settings_1gab8395d42a3371b8e7b3815b38b454224:
+
+#define SYSCOMKEY_STRING_LINUX_DEVICEFILE_DEFAULT "/dev/ttyS"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_com_itf___settings_1ga4c73e4206c2b5dc05e8db523b948e2f6:
+
+#define SYSCOMKEY_INT_LINUX_EXCLUSIVE_ACCESS "Linux.ExclusiveAccess"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Activate exclusive access to the devicefile (Only for Linux).
+
+.. _group___sys_com_itf___settings_1ga796b3f6d3074b03c3d3a2a4ae42f667a:
+
+#define SYSCOMKEY_INT_LINUX_EXCLUSIVE_ACCESS_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_com_itf___settings_1ga2d63af39865514ad7baca15790f1009c:
+
+#define SYSCOMKEY_STRING_LINUX_PHYSICAL_LAYER "Linux.PhysicalLayer"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Physical layer of the serial interface. Valid values are "rs232" and "rs485". (Only for Linux).
+
+.. _group___sys_com_itf___settings_1ga121a3973e975d0c04a6c718089fb1e37:
+
+#define SYSCOMKEY_STRING_LINUX_PHYSICAL_LAYER_DEFAULT "rs232"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_com_itf___settings_1gaa50fbcb545506bd6ffd48bb982a7b8e3:
+
+#define SYSCOMKEY_STRING_LINUX_RS485_RTS_PIN "Linux.rs485.RTSPin"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+on_send: RTS pin is high on send, and low all other times. after_send: RTS pin is low on send. (Only for Linux).
+
+.. _group___sys_com_itf___settings_1gaf176fb3a5e3b2e4bb84a286958ac308c:
+
+#define SYSCOMKEY_STRING_LINUX_RS485_RTS_PIN_DEFAULT "on_send"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

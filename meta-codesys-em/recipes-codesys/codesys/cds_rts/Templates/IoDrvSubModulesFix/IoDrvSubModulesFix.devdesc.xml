@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DeviceDescription xmlns="http://www.3s-software.com/schemas/DeviceDescription-1.0.xsd" xmlns:ts="http://www.3s-software.com/schemas/TargetSettings-0.1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Strings namespace="local">
+    <Language lang="en">
+      <String identifier="ModelName">IoDrvSubModulesFix</String>
+      <String identifier="DeviceDescription">Description of the Device</String>
+      <String identifier="VendorName">MyCompany</String>
+      <String identifier="PCI">PCI-Bus</String>
+      <String identifier="myInternalModuleConnector">Internal</String>
+      <String identifier="Id393220">DwordParameterOfTopModule</String>
+      <String identifier="Id393220.Desc">Test parameter</String>
+      <String identifier="SubModelName1">SubModuleAsLocalModule</String>
+      <String identifier="DeviceDescription1">Description of the first SubModule</String>
+      <String identifier="myLocalBus">myLocalBus</String>
+      <String identifier="InterfaceName1">MyInterface1</String>
+      <String identifier="Id393221">DwordParameterOfSubModule1</String>
+      <String identifier="Id393220.Desc">Test parameter 1</String>
+      <String identifier="in1">in1</String>
+      <String identifier="in2">in2</String>
+    </Language>
+  </Strings>
+<Device hideInCatalogue="false">
+    <DeviceIdentification>
+      <!-- The information of this section is used for management in the device repository. It is not downloaded -->
+      <Type>40104</Type>
+      <!-- Id is a unsigned long in hex formnat. First part (unsigned short) of Id is vendor id. 0001 is reserved for template devices. Must be replaced with your vendor id! Second part is vendor specific. -->
+      <Id>0001 abcd</Id>
+      <Version>3.5.9.0</Version>
+    </DeviceIdentification>
+    <DeviceInfo>
+      <Name name="local:ModelName">IoDrvSubModulesFix</Name>
+      <Description name="local:DeviceDescription">Description of the Device</Description>
+      <Vendor name="local:VendorName">MyCompany</Vendor>
+      <OrderNumber>4711</OrderNumber>
+    </DeviceInfo>
+    <!-- Child connector. The moduleType of the connector is evaluated by the IO driver. The interface must be of the same name as in the parent connector -->
+    <Connector moduleType="257" interface="Common.PCI" role="child" explicit="false" connectorId="1" hostpath="-1">
+      <Slot count="1" allowEmpty="false"></Slot>
+    </Connector>
+    <!-- Parent connector. The moduleType is downloaded and can be evaluated by the IO driver, e.g. with CAL_IoMgrConfigGetFirstConnector .
+          The interface must be of the same name as in the child connector of the submodules-->
+    <Connector moduleType="40100" interface="MyCompany:FixConnectorInterface" role="parent" explicit="false" connectorId="2" hostpath="1">
+      <!-- The interface name is used in for the tabs shown in CoDeSys (for example I/O mapping).  The given name is used as a prefix to the specific tab page. -->
+      <InterfaceName name="local:myInternalModuleConnector">Internal</InterfaceName>
+      <Fixed>
+        <!-- This is an example of a fixed module specified by LocalModuleId. The defininition of this module is in this file, and installed automatically. -->
+        <Module>
+          <LocalModuleId>12345</LocalModuleId>
+        </Module>
+        <!-- This is an example of a fixed module specified by DeviceIdentification. The defininition of this module is in another file (SubModule.devdesc.xml), that is installed separately. -->
+        <Module>
+          <DeviceIdentification deviceType="40107" deviceId="0001 bcde" version="3.5.9.0"/>
+        </Module>
+      </Fixed>
+      <DriverInfo needsBusCycle="true"></DriverInfo>
+      <HostParameterSet>
+        <Parameter ParameterId="393220" type="std:DWORD">
+          <Attributes channel="none" download="true" functional="false" offlineaccess="write" onlineaccess="readwrite" />
+          <Default>1234</Default>
+          <Name name="local:Id393220">DwordParameterOfTopModule</Name>
+          <Description name="local:Id393220.Desc">Test parameter</Description>
+        </Parameter>
+      </HostParameterSet>
+    </Connector>
+</Device>
+<Modules>
+  <Module>
+    <ModuleId>12345</ModuleId>
+    <DeviceInfo>
+      <Name name="local:SubModelName1">SubModuleAsLocalModule</Name>
+      <Description name="local:DeviceDescription1">Description of the first SubModule</Description>
+      <Vendor name="local:VendorName">MyCompany</Vendor>
+      <OrderNumber>abc</OrderNumber>
+    </DeviceInfo>
+    <!-- Child connector. The moduleType of the connector is evaluated by the IO driver. The interface must be of the same name as in the parent connector -->
+    <Connector moduleType="40105" interface="MyCompany:FixConnectorInterface" role="child" explicit="false" connectorId="1" hostpath="-1">
+      <Slot count="1" allowEmpty="false"></Slot>
+    </Connector>
+    <Connector moduleType="40102" interface="MyCompany:Internal" role="parent" explicit="false" connectorId="2" hostpath="1">
+      <!-- The interface name is used in for the tabs shown in CoDeSys (for example I/O mapping).  The given name is used as a prefix to the specific tab page. -->
+      <InterfaceName name="local:InterfaceName1">MyInterface1</InterfaceName>
+      <Var max="125"></Var>
+      <DriverInfo needsBusCycle="true"></DriverInfo>
+      <HostParameterSet>
+	    <Parameter ParameterId="1000" type="std:DWORD">
+          <Attributes channel="input" download="true" functional="false" offlineaccess="readwrite" onlineaccess="readwrite" />
+          <Default>0</Default>
+          <Name name="local:in1">in1</Name>
+        </Parameter>
+        <Parameter ParameterId="1001" type="std:DWORD">
+          <Attributes channel="input" download="true" functional="false" offlineaccess="readwrite" onlineaccess="readwrite" />
+          <Default>8</Default>
+          <Name name="local:in2">in2</Name>
+        </Parameter>
+        <Parameter ParameterId="393221" type="std:DWORD">
+          <Attributes channel="none" download="true" functional="false" offlineaccess="write" onlineaccess="readwrite" />
+          <Default>1234</Default>
+          <Name name="local:Id393221">DwordParameterOfSubModule1</Name>
+          <Description name="local:Id393220.Desc">Test parameter 1</Description>
+        </Parameter>
+      </HostParameterSet>
+    </Connector>
+  </Module>
+</Modules>
+</DeviceDescription>

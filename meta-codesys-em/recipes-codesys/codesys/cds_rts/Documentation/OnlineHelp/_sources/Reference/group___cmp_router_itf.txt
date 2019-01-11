@@ -1,0 +1,706 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_router_itf:
+
+============
+CmpRouterItf
+============
+
+Interface of CmpRouter. :ref:`More... <group___cmp_router_itf-details>`
+
+Modules
+-------
+
+- :ref:`Settings <group___cmp_router_itf___settings>`
+
+Data Structures
+---------------
+
+- struct :ref:`NETWORKINTERFACEINFO <struct_n_e_t_w_o_r_k_i_n_t_e_r_f_a_c_e_i_n_f_o>`
+
+- struct :ref:`NETWORKINTERFACEINFO2 <struct_n_e_t_w_o_r_k_i_n_t_e_r_f_a_c_e_i_n_f_o2>`
+
+- struct :ref:`ONDEMANDNETWORKINTERFACE <struct_o_n_d_e_m_a_n_d_n_e_t_w_o_r_k_i_n_t_e_r_f_a_c_e>`
+
+- struct :ref:`tagRTR_AddrComponent <structtag_r_t_r___addr_component>`
+
+- struct :ref:`tagRTR_NodeAddress <structtag_r_t_r___node_address>`
+
+- struct :ref:`tagroutergetinstancebyname_struct <structtagroutergetinstancebyname__struct>`
+
+- struct :ref:`tagroutergetname_struct <structtagroutergetname__struct>`
+
+- struct :ref:`tagroutergethostaddress_struct <structtagroutergethostaddress__struct>`
+
+- struct :ref:`tagroutergetparentaddress_struct <structtagroutergetparentaddress__struct>`
+
+- struct :ref:`ICmpRouter_C <struct_i_cmp_router___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpRouter <group___cmp_router_itf_1gaa4605dcfddd506a26c8a51041bbaf4fd>`
+
+- #define :ref:`EXTITF_CmpRouter <group___cmp_router_itf_1ga71db5af2b668c51769d15d1e59eee093>`
+
+Typedefs
+--------
+
+- typedef RTS_RESULT(* :ref:`PFBDOPEN <group___cmp_router_itf_1gae53d916de5e12a06ecb8530976cea378>`)(RTS_HANDLE hInterface)
+
+- typedef RTS_RESULT(* :ref:`PFBDCLOSE <group___cmp_router_itf_1gadb5a8c5fde3044ddf0b23febe73bd620>`)(RTS_HANDLE hInterface)
+
+- typedef RTS_RESULT(* :ref:`PFBDSEND <group___cmp_router_itf_1ga903e1b17798a0f5c6418e46590fa6e12>`)(RTS_HANDLE hInterface, NETWORKADDRESS addrReceiver, PROTOCOL_DATA_UNIT pduData)
+
+- typedef RTS_RESULT(* :ref:`PFPHHandleData <group___cmp_router_itf_1gac35b3b4d6c846f5611d37fb33867ae40>`)(RTS_HANDLE hRouter, int nServiceId, PEERADDRESS addrSender, PEERADDRESS addrReceiver, PROTOCOL_DATA_UNIT pduData, RTS_UI8 nMessageId, RTS_RESULT nRouterError)
+
+- typedef struct :ref:`tagRTR_AddrComponent <structtag_r_t_r___addr_component>` :ref:`RTR_AddrComponent <group___cmp_router_itf_1ga21d085846ffe3ac32f900ac3dded920a>`
+
+- typedef struct :ref:`tagRTR_NodeAddress <structtag_r_t_r___node_address>` :ref:`RTR_NodeAddress <group___cmp_router_itf_1ga5026bc2e3e07ff4fd7bc45e0ca4fa06e>`
+
+- typedef struct :ref:`tagroutergetinstancebyname_struct <structtagroutergetinstancebyname__struct>` :ref:`routergetinstancebyname_struct <group___cmp_router_itf_1gadcaf591e55ac1a50d2e4f2eb39feb414>`
+
+- typedef struct :ref:`tagroutergetname_struct <structtagroutergetname__struct>` :ref:`routergetname_struct <group___cmp_router_itf_1ga518e5bd131b0d2a9bb0c338c86f9e90a>`
+
+- typedef struct :ref:`tagroutergethostaddress_struct <structtagroutergethostaddress__struct>` :ref:`routergethostaddress_struct <group___cmp_router_itf_1ga26124f56c7513fe26f28e7b71a87712e>`
+
+- typedef struct :ref:`tagroutergetparentaddress_struct <structtagroutergetparentaddress__struct>` :ref:`routergetparentaddress_struct <group___cmp_router_itf_1ga3b60af7efc2cba426a50219b3bb60a4f>`
+
+- typedef :ref:`ICmpRouter_C <struct_i_cmp_router___c>` :ref:`ICmpRouter <group___cmp_router_itf_1ga7f5ed3065055e63eff147a8f187ae172>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`RouterRegisterNetworkInterface2 <group___cmp_router_itf_1ga4a8e0dbd5259cd81f3efaaf50c1d350f>` (:ref:`NETWORKINTERFACEINFO2 <struct_n_e_t_w_o_r_k_i_n_t_e_r_f_a_c_e_i_n_f_o2>` * pInterfaceInfo, RTS_HANDLE * phSubnet)
+
+- RTS_RESULT :ref:`RouterRegisterNetworkInterface <group___cmp_router_itf_1gaed00cb57cc02243dbbdd65d8eaafcfc9>` (:ref:`NETWORKINTERFACEINFO <struct_n_e_t_w_o_r_k_i_n_t_e_r_f_a_c_e_i_n_f_o>` * pInterfaceInfo, RTS_HANDLE * phSubnet)
+
+- RTS_RESULT :ref:`RouterRegisterOnDemandNWInterface <group___cmp_router_itf_1gaf367a287b41041b9e981299ad2fb5c46>` (:ref:`NETWORKINTERFACEINFO <struct_n_e_t_w_o_r_k_i_n_t_e_r_f_a_c_e_i_n_f_o>` * pInterfaceInfo, :ref:`ONDEMANDNETWORKINTERFACE <struct_o_n_d_e_m_a_n_d_n_e_t_w_o_r_k_i_n_t_e_r_f_a_c_e>` * pOnDemandInfo, RTS_HANDLE * phSubnet)
+
+- RTS_RESULT :ref:`RouterUnregisterNetworkInterface <group___cmp_router_itf_1gaf1867009769a6a83e21f67967531c4ad>` (RTS_HANDLE hSubnet)
+
+- RTS_RESULT :ref:`RouterHandleData <group___cmp_router_itf_1ga099f9f21ad583d8759ee3bd8d496dcde>` (RTS_HANDLE phSubnet, :ref:`NETWORKADDRESS <struct_n_e_t_w_o_r_k_a_d_d_r_e_s_s>`  sender, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData, int bIsBroadcast)
+
+- RTS_RESULT :ref:`RouterGetBlkAddresses <group___cmp_router_itf_1gaad6754b5857bcf8626e64d1c13b1b531>` (:ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>` * pAddrReceiver, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>` * pAddrSender, RTS_I32 * piDataOffset)
+
+- RTS_BOOL :ref:`RouterCompareAddresses <group___cmp_router_itf_1ga503d0632be2c141e13d69f7a3f495179>` (:ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>` * pAddr1, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>` * pAddr2)
+
+- RTS_RESULT :ref:`RouterRegisterProtocolHandler <group___cmp_router_itf_1gad09d8ff21768774ca1440e86d109387f>` (int nProtocolId, :ref:`PFPHHandleData <group___cmp_router_itf_1gac35b3b4d6c846f5611d37fb33867ae40>`  pfPHHandleData)
+
+- RTS_RESULT :ref:`RouterCalculateNodeAddr <group___cmp_router_itf_1gab7988c68d4446055047ce15744a0bd4d>` (RTS_UI16 usBlkDrvType, RTS_UI8 byNetworkAddressBitSize, :ref:`NETWORKADDRESS <struct_n_e_t_w_o_r_k_a_d_d_r_e_s_s>` * pNetworkAddr, :ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>` * pNodeAddr)
+
+- RTS_RESULT :ref:`RouterGetInstanceByName <group___cmp_router_itf_1gaf71b2c18122a019f4a4d23d9b23ba9e5>` (char * szName, RTS_HANDLE * phRouter)
+
+- RTS_RESULT :ref:`RouterGetName <group___cmp_router_itf_1gade98256448bfe1371568ddb8935695c8>` (RTS_HANDLE hRouter, char * pszName, int nMaxLen)
+
+- RTS_RESULT :ref:`RouterGetMaxMessageSize <group___cmp_router_itf_1ga9bde54e07d9eae770cb4f9c13898ac79>` (RTS_HANDLE hRouter, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrPeer, RTS_UI16 * usMaxSize)
+
+- RTS_RESULT :ref:`RouterGetMaxMessageSizeByAddressLength <group___cmp_router_itf_1gaddc7ba220e4caaddd5177bc3e32ed53a>` (RTS_HANDLE hRouter, RTS_UI16 usSumAddrLen, RTS_UI16 * usMaxSize)
+
+- RTS_RESULT :ref:`RouterGetMaxAddressSize <group___cmp_router_itf_1gaf54771d2e3ff481f501361a0d12f6aed>` (RTS_HANDLE hRouter, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrPeer, RTS_UI8 * byMaxSize)
+
+- RTS_RESULT :ref:`RouterSend2 <group___cmp_router_itf_1ga6f543b372ca4ad0cc6a6d38254bab6b9>` (RTS_HANDLE hRouter, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrReceiver, int nProtocolId, RTS_UI8 byMessageId, :ref:`ROUTERPRIORITY <group___cmp_router_itf___settings_1ga6e7ba8bc86d3fb033fc474be5723bfa6>`  prio, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData, RTS_BOOL bUseQueue)
+
+- RTS_RESULT :ref:`RouterSend <group___cmp_router_itf_1ga1b733fb7e989710a3a61619bf9ab849f>` (RTS_HANDLE hRouter, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrReceiver, int nProtocolId, RTS_UI8 byMessageId, :ref:`ROUTERPRIORITY <group___cmp_router_itf___settings_1ga6e7ba8bc86d3fb033fc474be5723bfa6>`  prio, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData)
+
+- RTS_RESULT :ref:`RouterGetHostAddress <group___cmp_router_itf_1ga586919e072bddc98b592c67d7e17e503>` (RTS_HANDLE hRouter, :ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>` * pAddrRouter)
+
+- RTS_RESULT :ref:`RouterGetParentAddress <group___cmp_router_itf_1ga30cdc9f76f6d9304fcbfb56f285afdc6>` (RTS_HANDLE hRouter, :ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>` * pAddrParent)
+
+- RTS_RESULT :ref:`RouterGetBlkDrvType <group___cmp_router_itf_1ga9420a2b0e387f3d0b31572d80fe8e907>` (RTS_HANDLE hNetworkInterface, RTS_UI8 * pbyBlkDrvType)
+
+- void :ref:`routergetinstancebyname <group___cmp_router_itf_1ga5160f6953c94d7d5f31fe03025d7bc15>` (:ref:`routergetinstancebyname_struct <group___cmp_router_itf_1gadcaf591e55ac1a50d2e4f2eb39feb414>` * p)
+
+- void :ref:`routergetname <group___cmp_router_itf_1ga24e4d57e7ce2546fea1f7db8fdcbe316>` (:ref:`routergetname_struct <group___cmp_router_itf_1ga518e5bd131b0d2a9bb0c338c86f9e90a>` * p)
+
+- void :ref:`routergethostaddress <group___cmp_router_itf_1ga84ff57890fd3b39ec80f002e5a3822a0>` (:ref:`routergethostaddress_struct <group___cmp_router_itf_1ga26124f56c7513fe26f28e7b71a87712e>` * p)
+
+- void :ref:`routergetparentaddress <group___cmp_router_itf_1gaad8d0c638b16b4db841acd0f269c07b6>` (:ref:`routergetparentaddress_struct <group___cmp_router_itf_1ga3b60af7efc2cba426a50219b3bb60a4f>` * p)
+
+.. _group___cmp_router_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpRouter.
+
+Interface for the communication router component.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_router_itf_1gaa4605dcfddd506a26c8a51041bbaf4fd:
+
+#define ITF_CmpRouter
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_router_itf_1ga71db5af2b668c51769d15d1e59eee093:
+
+#define EXTITF_CmpRouter
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_router_itf_1gae53d916de5e12a06ecb8530976cea378:
+
+typedef RTS_RESULT( *  PFBDOPEN)(RTS_HANDLE hInterface)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Open a block driver
+
+**Parameters**
+
++---------+------------+-------------------------+
+| [in]    | hInterface | Handle to the interface |
++---------+------------+-------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1gadb5a8c5fde3044ddf0b23febe73bd620:
+
+typedef RTS_RESULT( *  PFBDCLOSE)(RTS_HANDLE hInterface)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Close a block driver
+
+**Parameters**
+
++---------+------------+-------------------------+
+| [in]    | hInterface | Handle to the interface |
++---------+------------+-------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1ga903e1b17798a0f5c6418e46590fa6e12:
+
+typedef RTS_RESULT( *  PFBDSEND)(RTS_HANDLE hInterface, NETWORKADDRESS addrReceiver, PROTOCOL_DATA_UNIT pduData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Send data over a blockdriver. Received reply is sent directly to the router
+
+**Parameters**
+
++---------+--------------+-----------------------------+
+| [in]    | hInterface   | Handle to the interface     |
++---------+--------------+-----------------------------+
+| [in]    | addrReceiver | Logical address of receiver |
++---------+--------------+-----------------------------+
+| [in]    | pduData      | Pointer to block to sent    |
++---------+--------------+-----------------------------+
+
+**Returns:**
+
+error code. ERR_NOBUFFER, if the blockdriver can temporary not send. In this case *the higher layers try to send the same block again.
+
+.. _group___cmp_router_itf_1gac35b3b4d6c846f5611d37fb33867ae40:
+
+typedef RTS_RESULT(* PFPHHandleData)(RTS_HANDLE hRouter, int nServiceId, PEERADDRESS addrSender, PEERADDRESS addrReceiver, PROTOCOL_DATA_UNIT pduData, RTS_UI8 nMessageId, RTS_RESULT nRouterError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Inform a protocol handler about an incoming data package
+
+**Parameters**
+
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hRouter      | Handle to the router                                                                                                                                                                                                                                                                                                      |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | nServiceId   | The protocol id of the package                                                                                                                                                                                                                                                                                            |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | addrSender   | Sender address. If the protocol handler wants to store the address, it must copy the addrSender.address array. The pointer will not be valid after this function returns.                                                                                                                                                 |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | addrReceiver | Receiver address (either the address of this node or a broadcast address) Please read the remarks in addrSender before storing this address.                                                                                                                                                                              |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pduData      | The received data. If a protocol handler wants to use the data after returning from this call, it must copy the data. The data pointer will not be valid after this function returns.                                                                                                                                     |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | nRouterError | If this value is not ERR_OK, then this message has been generated by an intermediate node in response to a message previously sent by this node, that could not be delivered. nRouterError identifies the kind of error that happened. pduData then contains a detailed error description depending on the kind of error. |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1ga21d085846ffe3ac32f900ac3dded920a:
+
+typedef struct tagRTR_AddrComponent  RTR_AddrComponent
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+RTR_AddrComponent
+
+.. _group___cmp_router_itf_1ga5026bc2e3e07ff4fd7bc45e0ca4fa06e:
+
+typedef struct tagRTR_NodeAddress  RTR_NodeAddress
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+RTR_NodeAddress
+
+.. _group___cmp_router_itf_1gadcaf591e55ac1a50d2e4f2eb39feb414:
+
+typedef struct tagroutergetinstancebyname_struct  routergetinstancebyname_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+routergetinstancebyname
+
+.. _group___cmp_router_itf_1ga518e5bd131b0d2a9bb0c338c86f9e90a:
+
+typedef struct tagroutergetname_struct  routergetname_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+routergetname
+
+.. _group___cmp_router_itf_1ga26124f56c7513fe26f28e7b71a87712e:
+
+typedef struct tagroutergethostaddress_struct  routergethostaddress_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+routergethostaddress
+
+.. _group___cmp_router_itf_1ga3b60af7efc2cba426a50219b3bb60a4f:
+
+typedef struct tagroutergetparentaddress_struct  routergetparentaddress_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+routergetparentaddress
+
+.. _group___cmp_router_itf_1ga7f5ed3065055e63eff147a8f187ae172:
+
+typedef ICmpRouter_C ICmpRouter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_router_itf_1ga4a8e0dbd5259cd81f3efaaf50c1d350f:
+
+RTS_RESULT RouterRegisterNetworkInterface2 (NETWORKINTERFACEINFO2 *pInterfaceInfo, RTS_HANDLE *phSubnet)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called by a blockdriver to register one of it's devices with the router. Allows also to provide some block driver typ specific information.
+
+**Parameters**
+
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pDeviceInfo | Describes the device to register                                                                                                                                         |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phSubnet    | Is set to the subnet handle that refers to this interface. The blockdriver must provide this value in each call to RouterHandleData or RouterUnregisterNetworkInterface. |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1gaed00cb57cc02243dbbdd65d8eaafcfc9:
+
+RTS_RESULT RouterRegisterNetworkInterface (NETWORKINTERFACEINFO *pInterfaceInfo, RTS_HANDLE *phSubnet)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called by a blockdriver to register one of it's devices with the router.
+
+**Parameters**
+
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pDeviceInfo | Describes the device to register                                                                                                                                         |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phSubnet    | Is set to the subnet handle that refers to this interface. The blockdriver must provide this value in each call to RouterHandleData or RouterUnregisterNetworkInterface. |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1gaf367a287b41041b9e981299ad2fb5c46:
+
+RTS_RESULT RouterRegisterOnDemandNWInterface (NETWORKINTERFACEINFO *pInterfaceInfo, ONDEMANDNETWORKINTERFACE *pOnDemandInfo, RTS_HANDLE *phSubnet)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+At the moment pOnDemandInfo IS NOT USED by the CmpRouter!
+
+Called by an on-demand blockdriver to register one of it's devices with the router. An on-demand blockdriver is a blockdriver that is able to shutdown/open its connection on demand. Eg. for serial blockdrivers, so they can release their hardware interface as long as it isn't needed and open it only, when their is data to be sent. The blockdriver is supposed to be initially closed.
+
+**Parameters**
+
++---------+---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pDeviceInfo   | Describes the device to register                                                                                                                                         |
++---------+---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pOnDemandInfo | Contains additional functions, that allow for opening and closing of the interface.                                                                                      |
++---------+---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phSubnet      | Is set to the subnet handle that refers to this interface. The blockdriver must provide this value in each call to RouterHandleData or RouterUnregisterNetworkInterface. |
++---------+---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1gaf1867009769a6a83e21f67967531c4ad:
+
+RTS_RESULT RouterUnregisterNetworkInterface (RTS_HANDLE hSubnet)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called by a blockdriver to unregister one of it's devices
+
+**Parameters**
+
++---------+---------+---------------------------------------------------------------+
+| [in]    | hSubnet | Subnet handle of the interface, which should be unregistered. |
++---------+---------+---------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1ga099f9f21ad583d8759ee3bd8d496dcde:
+
+RTS_RESULT RouterHandleData (RTS_HANDLE phSubnet, NETWORKADDRESS sender, PROTOCOL_DATA_UNIT pduData, int bIsBroadcast)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called whenever the blockdriver receives a valid data package
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------+
+| [in]    | phSubnet   | The subnetid assigned to the receiving device during RouterRegisterDevice |
++---------+------------+---------------------------------------------------------------------------+
+| [in]    | addrSender | The device address of the sender within the subnet                        |
++---------+------------+---------------------------------------------------------------------------+
+| [in]    | pduData    | The received data package                                                 |
++---------+------------+---------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1gaad6754b5857bcf8626e64d1c13b1b531:
+
+RTS_RESULT RouterGetBlkAddresses (PROTOCOL_DATA_UNIT pduData, PEERADDRESS *pAddrReceiver, PEERADDRESS *pAddrSender, RTS_I32 *piDataOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called by a blockdriver to get the addresses of a data package.
+
+**Parameters**
+
++---------+---------------+------------------------------------------------------------------------------+
+| [in]    | pduData       | Data package, from which the addresses should be read.                       |
++---------+---------------+------------------------------------------------------------------------------+
+| [out]   | pAddrReceiver | The function returns here the address of the receiver.                       |
++---------+---------------+------------------------------------------------------------------------------+
+| [out]   | pAddrSender   | The function returns here the address of the sender.                         |
++---------+---------------+------------------------------------------------------------------------------+
+| [out]   | piDataOffset  | If not NULL, the function returns here the offset (start) of the pay load. . |
++---------+---------------+------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1ga503d0632be2c141e13d69f7a3f495179:
+
+RTS_BOOL RouterCompareAddresses (PEERADDRESS *pAddr1, PEERADDRESS *pAddr2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called by a blockdriver to compare two peer addresses.
+
+**Parameters**
+
++---------+--------+---------------------------+
+| [in]    | pAddr1 | First address to compare  |
++---------+--------+---------------------------+
+| [in]    | pAddr2 | Second address to compare |
++---------+--------+---------------------------+
+
+**Returns:**
+
+TRUE if the addresses are equal, else FALSE
+
+.. _group___cmp_router_itf_1gad09d8ff21768774ca1440e86d109387f:
+
+RTS_RESULT RouterRegisterProtocolHandler (int nProtocolId, PFPHHandleData pfPHHandleData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete: Register the protocol/service handler on CmpSrv instead. Will be removed in future versions!
+
+Layer 4 protocol handlers calls this function to register itself at the CmpRouter during startup of the RTS. Is not used anymore. The known L4 handlers are called directly by the CmpRouter.
+
+**Parameters**
+
++---------+----------------+-------------------------------------------------------------------------------+
+| [in]    | protocolId     | The id of the protocol assigned to this handler                               |
++---------+----------------+-------------------------------------------------------------------------------+
+| [in]    | pfPHHandleData | Pointer to the function to be called by the router whenever a package arrives |
++---------+----------------+-------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1gab7988c68d4446055047ce15744a0bd4d:
+
+RTS_RESULT RouterCalculateNodeAddr (RTS_UI16 usBlkDrvType, RTS_UI8 byNetworkAddressBitSize, NETWORKADDRESS *pNetworkAddr, NODEADDRESS *pNodeAddr)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Let the router calculate the CoDeSys peer address of a node. This works only for block drivers, which have a unique instance, e. g. the BlkDrvTcp. The given network address conains in this case the ip-address and the port of the node, in the block driver specific format. Additionally this function can be used to get the address of the first router instance of the own runtime system.
+
+**Parameters**
+
++---------+-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | usBlkDrvType            | Type of the block driver, see :ref:`CmpCommunicationLibItf.h <_cmp_communication_lib_itf_8h>` . If set to RTS_BLK_DRV_TYPE_NONE, the address of the first router instance is returned. In this case the next two parameters are ignored. |
++---------+-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | byNetworkAddressBitSize | Length of the specified network address in bits. Must match to the setting in the blockdriver. Should be 0, if RTS_BLK_DRV_TYPE_NONE is used to get the own router address.                                                              |
++---------+-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pNetworkAddr            | Networkaddress of the node, for which the peer address should be calcualted. Should be NULL, if RTS_BLK_DRV_TYPE_NONE is used to get the own router address.                                                                             |
++---------+-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pNodeAddr               | The function returns here the calculated node address.                                                                                                                                                                                   |
++---------+-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1gaf71b2c18122a019f4a4d23d9b23ba9e5:
+
+RTS_RESULT RouterGetInstanceByName (char *szName, RTS_HANDLE *phRouter)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the handle to the routerinstance with the provided name.
+
+**Parameters**
+
++---------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | szName   | Name of the router. This parameter may be NULL to request a handle to the default router.                                                            |
++---------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phRouter | If a router exists with the specified name, then the handle of the router is written into this parameter. Otherwise it is set to RTS_INVALID_HANDLE. |
++---------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1gade98256448bfe1371568ddb8935695c8:
+
+RTS_RESULT RouterGetName (RTS_HANDLE hRouter, char *pszName, int nMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the name of a router specified by handle
+
+**Parameters**
+
++---------+---------+----------------------------------+
+| [in]    | hRouter | Handle to router                 |
++---------+---------+----------------------------------+
+| [out]   | pszName | Pointer to get router name       |
++---------+---------+----------------------------------+
+| [in]    | nMaxLen | Maximum buffer length of pszName |
++---------+---------+----------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1ga9bde54e07d9eae770cb4f9c13898ac79:
+
+RTS_RESULT RouterGetMaxMessageSize (RTS_HANDLE hRouter, PEERADDRESS addrPeer, RTS_UI16 *usMaxSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the max. size of messages, which can be sent by higher layers to this peer address
+
+**Parameters**
+
++---------+-----------+------------------------------------------------------------------------------------+
+| [in]    | hRouter   | Handle to router. If set to RTS_INVALID_HANDLE, the first router instance is used. |
++---------+-----------+------------------------------------------------------------------------------------+
+| [in]    | addrPeer  | Address to check                                                                   |
++---------+-----------+------------------------------------------------------------------------------------+
+| [out]   | byMaxSize | Max payload of the router message.                                                 |
++---------+-----------+------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1gaddc7ba220e4caaddd5177bc3e32ed53a:
+
+RTS_RESULT RouterGetMaxMessageSizeByAddressLength (RTS_HANDLE hRouter, RTS_UI16 usSumAddrLen, RTS_UI16 *usMaxSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the max. size of messages, which can be sent by higher layers to this peer address
+
+**Parameters**
+
++---------+--------------+-------------------------------------------+
+| [in]    | hRouter      | Handle to router                          |
++---------+--------------+-------------------------------------------+
+| [in]    | usSumAddrLen | Sum of sender and receiver address length |
++---------+--------------+-------------------------------------------+
+| [out]   | byMaxSize    | Max payload of the router message.        |
++---------+--------------+-------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1gaf54771d2e3ff481f501361a0d12f6aed:
+
+RTS_RESULT RouterGetMaxAddressSize (RTS_HANDLE hRouter, PEERADDRESS addrPeer, RTS_UI8 *byMaxSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the sum of the address lengths of the current router and the addrPeer.
+
+**Parameters**
+
++---------+-----------+------------------------------------------------------------------------------------+
+| [in]    | hRouter   | Handle to router. If set to RTS_INVALID_HANDLE, the first router instance is used. |
++---------+-----------+------------------------------------------------------------------------------------+
+| [in]    | addrPeer  | Address to check                                                                   |
++---------+-----------+------------------------------------------------------------------------------------+
+| [out]   | byMaxSize | Sum of router address and addrPeer length                                          |
++---------+-----------+------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1ga6f543b372ca4ad0cc6a6d38254bab6b9:
+
+RTS_RESULT RouterSend2 (RTS_HANDLE hRouter, PEERADDRESS addrReceiver, int nProtocolId, RTS_UI8 byMessageId, ROUTERPRIORITY prio, PROTOCOL_DATA_UNIT pduData, RTS_BOOL bUseQueue)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Protocol handlers call this function to send a data package.
+
+**Parameters**
+
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | hRouter      | Handle to the router                                                              |
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | addrReceiver | Address of the receiver. Relative addresses are allowed as well as absolute ones. |
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | nProtocolId  | Identifies the protocol handler on the receiving host.                            |
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | byMessageId  | typically 0                                                                       |
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | prio         | Priority of the message.                                                          |
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | pduData      | The data to be sent.                                                              |
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | bUseQueue    | Defines if the message should be queued, if it can not be send at once.           |
++---------+--------------+-----------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1ga1b733fb7e989710a3a61619bf9ab849f:
+
+RTS_RESULT RouterSend (RTS_HANDLE hRouter, PEERADDRESS addrReceiver, int nProtocolId, RTS_UI8 byMessageId, ROUTERPRIORITY prio, PROTOCOL_DATA_UNIT pduData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Protocol handlers call this function to send a data package.
+
+**Parameters**
+
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | hRouter      | Handle to the router                                                              |
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | addrReceiver | Address of the receiver. Relative addresses are allowed as well as absolute ones. |
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | nProtocolId  | Identifies the protocol handler on the receiving host.                            |
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | byMessageId  | typically 0                                                                       |
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | prio         | Priority of the message.                                                          |
++---------+--------------+-----------------------------------------------------------------------------------+
+| [in]    | pduData      | The data to be sent.                                                              |
++---------+--------------+-----------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1ga586919e072bddc98b592c67d7e17e503:
+
+RTS_RESULT RouterGetHostAddress (RTS_HANDLE hRouter, NODEADDRESS *pAddrRouter)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the routers nodeaddress.
+
+Handle to router. If set to RTS_INVALID_HANDLE, the first router instance is used.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------+
+| [out]   | pAddrRouter | Is set to the nodeaddress of the router |
++---------+-------------+-----------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1ga30cdc9f76f6d9304fcbfb56f285afdc6:
+
+RTS_RESULT RouterGetParentAddress (RTS_HANDLE hRouter, NODEADDRESS *pAddrParent)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the nodeaddress of the parent node.
+
+Handle to router. If set to RTS_INVALID_HANDLE, the first router instance is used.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------+
+| [out]   | pAddrParent | Is set to the nodeaddress of the router |
++---------+-------------+-----------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1ga9420a2b0e387f3d0b31572d80fe8e907:
+
+RTS_RESULT RouterGetBlkDrvType (RTS_HANDLE hNetworkInterface, RTS_UI8 *pbyBlkDrvType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the block driver type RTS_BLK_DRV_TYPE_xxx of the refered network interface. See CmpCommunicationLibItf.
+
+Handle of network instance.
+
+**Parameters**
+
++---------+---------------+---------------------------------------------------------------+
+| [out]   | pbyBlkDrvType | Pointer to return block driver type of the network interface. |
++---------+---------------+---------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_router_itf_1ga5160f6953c94d7d5f31fe03025d7bc15:
+
+void routergetinstancebyname (routergetinstancebyname_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_router_itf_1ga24e4d57e7ce2546fea1f7db8fdcbe316:
+
+void routergetname (routergetname_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_router_itf_1ga84ff57890fd3b39ec80f002e5a3822a0:
+
+void routergethostaddress (routergethostaddress_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_router_itf_1gaad8d0c638b16b4db841acd0f269c07b6:
+
+void routergetparentaddress (routergetparentaddress_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

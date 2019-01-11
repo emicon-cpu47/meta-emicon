@@ -1,0 +1,332 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_channel_client_itf:
+
+===================
+CmpChannelClientItf
+===================
+
+Interface of CmpChannelClient. :ref:`More... <group___cmp_channel_client_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpChannelClient_C <struct_i_cmp_channel_client___c>`
+
+Macros
+------
+
+- #define :ref:`__EXTERNAL_DECL <group___cmp_channel_client_itf_1ga64f4ed6d0199763ae09623ec61623b61>`
+
+- #define :ref:`ITF_CmpChannelClient <group___cmp_channel_client_itf_1ga285ec741943189deab9f7ef94f30c1c3>`
+
+- #define :ref:`EXTITF_CmpChannelClient <group___cmp_channel_client_itf_1ga4d0559a2ff51701989c3862591f68d65>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpChannelClient_C <struct_i_cmp_channel_client___c>` :ref:`ICmpChannelClient <group___cmp_channel_client_itf_1gaee641198e12a3ff2354ce1c213212cb6>`
+
+Functions
+---------
+
+- int :ref:`NetClientOpenChannel <group___cmp_channel_client_itf_1gab2aead3da2368d469348afeb5c46035e>` (:ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrReceiver, RTS_UI32 dwCommBufferSize, RTS_UI32 * pdwReqId)
+
+- int :ref:`NetClientOpenChannelResult <group___cmp_channel_client_itf_1ga52c68deb60b2e7f8894aa1dbf2003a5f>` (RTS_UI32 dwRequestId, unsigned short * pwChannelHandle, RTS_UI32 * pdwCommBufferSize, RTS_BOOL * pbBigEndianByteOrder)
+
+- int :ref:`NetClientCloseChannel <group___cmp_channel_client_itf_1gabda2f025fe5ace90a3671692198e2e80>` (unsigned short wChannelHandle)
+
+- int :ref:`NetClientSend <group___cmp_channel_client_itf_1gaa72b2cdeaa16f9c6d0e9224ab80cfd65>` (unsigned short wChannelHandle, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData)
+
+- RTS_RESULT :ref:`NetClientGetStatus <group___cmp_channel_client_itf_1gad1e54850f18ac1f5202d2b43cf386230>` (unsigned short wChannelHandle, RTS_UI16 * pusStatus, RTS_UI8 * pbyScalingFactor, RTS_I32 * pnItemsComplete, RTS_I32 * pnTotalItems)
+
+- int :ref:`NetClientGetChannel <group___cmp_channel_client_itf_1gad10cc3debf1828a0c443ffd0d248cb3d>` (:ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrPeer, unsigned short wChannelId, :ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` ** ppChBuffer)
+
+- int :ref:`NetClientReleaseChannel <group___cmp_channel_client_itf_1gae6c6377b671c1bf17cbd4c8891f821ee>` (:ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChBuffer)
+
+- int :ref:`NetClientHandleMetaResponse <group___cmp_channel_client_itf_1ga20a4b4b14d10a20c0f16d35c3d7c6411>` (RTS_HANDLE hRouter, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrSender, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData)
+
+- void :ref:`NetClientForEachChannel <group___cmp_channel_client_itf_1ga7c50783fe2fdaa41225be6767539123c>` (:ref:`PFCHANNELHANDLER <group___cmp_channel_mgr_itf_1gaa6bb7106c459aa8702f58da0df9919c2>`  pfChannelHandler, void * pParam)
+
+- int :ref:`NetClientMessageReceived <group___cmp_channel_client_itf_1gae8dfed35445ca89fc1a42993cd1de03a>` (:ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChBuffer, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData)
+
+- int :ref:`NetClientChannelError <group___cmp_channel_client_itf_1ga36f2231e1baa39e5b195754f6ebb4387>` (:ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChBuffer, int nError)
+
+- RTS_RESULT :ref:`NetClientRegisterAppInterface <group___cmp_channel_client_itf_1ga05555228373562e05a8fd458171bcea2>` (unsigned short wChannelHandle, :ref:`ICmpChannelClientApp <group___cmp_channel_client_app_itf_1ga2ede08f9cd29e5620f0901e49fa96f42>` * pIChannelClientApp)
+
+- RTS_RESULT :ref:`NetClientUnregisterAppInterface <group___cmp_channel_client_itf_1ga22c1658c69a4ea5520f627b68a2c80e4>` (unsigned short wChannelHandle, :ref:`ICmpChannelClientApp <group___cmp_channel_client_app_itf_1ga2ede08f9cd29e5620f0901e49fa96f42>` * pIChannelClientApp)
+
+.. _group___cmp_channel_client_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpChannelClient.
+
+Interface for the channel client.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_channel_client_itf_1ga64f4ed6d0199763ae09623ec61623b61:
+
+#define __EXTERNAL_DECL
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_client_itf_1ga285ec741943189deab9f7ef94f30c1c3:
+
+#define ITF_CmpChannelClient
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_client_itf_1ga4d0559a2ff51701989c3862591f68d65:
+
+#define EXTITF_CmpChannelClient
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_channel_client_itf_1gaee641198e12a3ff2354ce1c213212cb6:
+
+typedef ICmpChannelClient_C ICmpChannelClient
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_channel_client_itf_1gab2aead3da2368d469348afeb5c46035e:
+
+int NetClientOpenChannel (PEERADDRESS addrReceiver, RTS_UI32 dwCommBufferSize, RTS_UI32 *pdwReqId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Request a new channel to node addrReceiver . This function is executed asynchronously. To get the result of this call use NetClientOpenChannelResult.
+
+**Parameters**
+
++---------+------------------+-------------------------------------------------------------------------------------------------------------+
+| [in]    | addrReceiver     | Open a channel to this node                                                                                 |
++---------+------------------+-------------------------------------------------------------------------------------------------------------+
+| [in]    | dwCommBufferSize | Requested size of the communication buffer                                                                  |
++---------+------------------+-------------------------------------------------------------------------------------------------------------+
+| [out]   | pdwReqId         | Set to a unique request id. Use this id in NetClientOpenChannelResult to determine the result of this call. |
++---------+------------------+-------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+- ERR_OK, if the channel has been established
+
+- ERR_PENDING, if the function hasn't completed yet.
+
+- ERR_NOBUFFER, if we're low on memory.
+
+- ERR_CHC_NUMCHANNELS, if buffers for an additional channel are not available. Possibly a smaller communication buffer could work. Also, this error condition might be temporarily and could change if memory is freed elsewhere.
+
+.. _group___cmp_channel_client_itf_1ga52c68deb60b2e7f8894aa1dbf2003a5f:
+
+int NetClientOpenChannelResult (RTS_UI32 dwRequestId, unsigned short *pwChannelHandle, RTS_UI32 *pdwCommBufferSize, RTS_BOOL *pbBigEndianByteOrder)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the result of a NetClientOpenChannel request.
+
+**Parameters**
+
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwRequestId          | The request id assigned by the NetClientOpenChannel request.                                                                                                                       |
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pwChannelHandle      | Identifies the newly created channel.                                                                                                                                              |
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pdwCommBufferSize    | The communication buffer used for this channel.                                                                                                                                    |
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pbBigEndianByteOrder | True if the target system uses big endian byte order. Since that is typically used by motorola processors (PowerPC etc.), it sometimes is also referred to as "Motorola Byteorder" |
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+*ERR_OK, channel has been established *ERR_PENDING, is still in progress *ERR_FAILED, channel could not be created
+
+.. _group___cmp_channel_client_itf_1gabda2f025fe5ace90a3671692198e2e80:
+
+int NetClientCloseChannel (unsigned short wChannelHandle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Close a channel. This function is executed synchronously
+
+**Parameters**
+
++---------+----------------+-----------------------+
+| [in]    | wChannelHandle | Handle to the channel |
++---------+----------------+-----------------------+
+
+**Returns:**
+
+*An error code, if the handle could not be closed.
+
+.. _group___cmp_channel_client_itf_1gaa72b2cdeaa16f9c6d0e9224ab80cfd65:
+
+int NetClientSend (unsigned short wChannelHandle, PROTOCOL_DATA_UNIT pduData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Send a message. This call will fail, if
+
+- the channel is not in send mode
+
+- the channel is already sending
+
+- the size of the data is greater then the commbuffersize returned by NetClientOpenChannel
+
+**Parameters**
+
++---------+----------------+----------------------------------------------------------------------------------------------------------------------+
+| [in]    | wChannelHandle | Handle to a channel as returned by NetClientOpenChannel                                                              |
++---------+----------------+----------------------------------------------------------------------------------------------------------------------+
+| [in]    | pduData        | The data to be sent. The buffer pointed to by pduData may not be changed until the package has been sent completely. |
++---------+----------------+----------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_channel_client_itf_1gad1e54850f18ac1f5202d2b43cf386230:
+
+RTS_RESULT NetClientGetStatus (unsigned short wChannelHandle, RTS_UI16 *pusStatus, RTS_UI8 *pbyScalingFactor, RTS_I32 *pnItemsComplete, RTS_I32 *pnTotalItems)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the current status of an active channel.
+
+**Parameters**
+
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | wChannelHandle   | Handle to a channel as returned by NetClientOpenChannel                                                                                                                                                  |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pusStatus        | Is set to the current progress state. The PROGRESS_xxx constants define valied values.                                                                                                                   |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pbyScalingFactor | Provides the scaling factor for pnItemsComplete and pnTotalItems. These values have been scaled down by dividing them through 2^ScalingFactor (i.e. they have been right shifted by ScalingFactor bits). |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pnItemsComplete  | Number of items completed (eg. the number of bytes transfered).                                                                                                                                          |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pnTotalItems     | Total number of item. Is set to -1 if unknown.                                                                                                                                                           |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_channel_client_itf_1gad10cc3debf1828a0c443ffd0d248cb3d:
+
+int NetClientGetChannel (PEERADDRESS addrPeer, unsigned short wChannelId, CHANNELBUFFER **ppChBuffer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_channel_client_itf_1gae6c6377b671c1bf17cbd4c8891f821ee:
+
+int NetClientReleaseChannel (CHANNELBUFFER *pChBuffer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Release a channel buffer returned by NetServerGetChannel. This buffer may not be used after calling this function. Use NetServerGetChannel to acquire access to this channel again.
+
+**Parameters**
+
++---------+-----------+-------------------------------+
+| [in]    | pChBuffer | The channel buffer to release |
++---------+-----------+-------------------------------+
+
+.. _group___cmp_channel_client_itf_1ga20a4b4b14d10a20c0f16d35c3d7c6411:
+
+int NetClientHandleMetaResponse (RTS_HANDLE hRouter, PEERADDRESS addrSender, PROTOCOL_DATA_UNIT pduData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called by the L4Base component each time a meta-response arrives.
+
+**Parameters**
+
++---------+------------+----------------------------+
+| [in]    | addrSender | The sender of the response |
++---------+------------+----------------------------+
+| [in]    | pduData    | The response itself        |
++---------+------------+----------------------------+
+
+.. _group___cmp_channel_client_itf_1ga7c50783fe2fdaa41225be6767539123c:
+
+void NetClientForEachChannel (PFCHANNELHANDLER pfChannelHandler, void *pParam)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Calls the pfChannelHandler once for each active server channel
+
+**Parameters**
+
++---------+------------------+-------------------------------------------+
+| [in]    | pfChannelHandler | Function to be called for each channel    |
++---------+------------------+-------------------------------------------+
+| [inout] | pParam           | This param is passed to pfChannelHandler. |
++---------+------------------+-------------------------------------------+
+
+.. _group___cmp_channel_client_itf_1gae8dfed35445ca89fc1a42993cd1de03a:
+
+int NetClientMessageReceived (CHANNELBUFFER *pChBuffer, PROTOCOL_DATA_UNIT pduData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called by the L4Base component whenever a complete L7 message arrived on a client channel
+
+**Parameters**
+
++---------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | addrSender | Sender of the message                                                                                                                                                                                                          |
++---------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pduData    | Content of the message. The client must copy the contents of the message before sending the next message, since the data pointed to by pData will be valid only until the next message has been sent or the channel is closed. |
++---------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_channel_client_itf_1ga36f2231e1baa39e5b195754f6ebb4387:
+
+int NetClientChannelError (CHANNELBUFFER *pChBuffer, int nError)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Called when a unrecoverable error occurs for pfChBuffer, eg. ERR_CHANNEL_BROKEN. The channel must be closed by the net client.
+
+**Parameters**
+
++---------+--------+-----------+
+| [in]    | nError | The error |
++---------+--------+-----------+
+
+.. _group___cmp_channel_client_itf_1ga05555228373562e05a8fd458171bcea2:
+
+RTS_RESULT NetClientRegisterAppInterface (unsigned short wChannelHandle, ICmpChannelClientApp *pIChannelClientApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to register a handler interface
+
+**Parameters**
+
++---------+--------------------+-----------------------------------------------------------+
+| [in]    | wChannelHandle     | Channel handle that was retrieved by NetClientOpenChannel |
++---------+--------------------+-----------------------------------------------------------+
+| [in]    | pIChannelClientApp | Interface pointer                                         |
++---------+--------------------+-----------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_channel_client_itf_1ga22c1658c69a4ea5520f627b68a2c80e4:
+
+RTS_RESULT NetClientUnregisterAppInterface (unsigned short wChannelHandle, ICmpChannelClientApp *pIChannelClientApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to register a handler interface
+
+**Parameters**
+
++---------+--------------------+-----------------------------------------------------------+
+| [in]    | wChannelHandle     | Channel handle that was retrieved by NetClientOpenChannel |
++---------+--------------------+-----------------------------------------------------------+
+| [in]    | pIChannelClientApp | Interface pointer                                         |
++---------+--------------------+-----------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

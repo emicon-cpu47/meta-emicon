@@ -1,0 +1,234 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_ethernet2_itf:
+
+===============
+SysEthernet2Itf
+===============
+
+Interface of SysEthernet. :ref:`More... <group___sys_ethernet2_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`EthernetframeAddInfo <struct_ethernetframe_add_info>`
+
+- struct :ref:`GetEthernetInterfaceEx <struct_get_ethernet_interface_ex>`
+
+- struct :ref:`ResetAdapter <struct_reset_adapter>`
+
+- struct :ref:`EthernetAdapterDesc <struct_ethernet_adapter_desc>`
+
+- struct :ref:`GetAdapterDescription <struct_get_adapter_description>`
+
+- struct :ref:`GetIPEthernetInterface2 <struct_get_i_p_ethernet_interface2>`
+
+- struct :ref:`SendIPEthernetInterface2 <struct_send_i_p_ethernet_interface2>`
+
+- struct :ref:`_EthernetAdapterDescription <struct___ethernet_adapter_description>`
+
+- struct :ref:`ISysEthernet2_C <struct_i_sys_ethernet2___c>`
+
+Macros
+------
+
+- #define :ref:`EAI_FLG_QUALITY_GOOD <group___sys_ethernet2_itf_1ga16e7eeaba3dfd111f6b8cf6f6a0ae66e>` 0x00000001
+
+- #define :ref:`EAI_FLG_CRC_ERROR <group___sys_ethernet2_itf_1gab860999ba0eac666c7ff62bc3711b22b>` 0x00000002
+
+- #define :ref:`EAI_FLG_ALIGNMENT_ERROR <group___sys_ethernet2_itf_1ga47ebbc22bf1aa05d9b7b0bde37dcedbb>` 0x00000004
+
+- #define :ref:`EAI_FLG_OTHER_ERROR <group___sys_ethernet2_itf_1ga291154bfddda8f19d33fa73cc361663e>` 0x00000008
+
+- #define :ref:`ITF_SysEthernet2 <group___sys_ethernet2_itf_1gade86045f9294f16a3a33f8fcefaa6920>`
+
+- #define :ref:`EXTITF_SysEthernet2 <group___sys_ethernet2_itf_1gae518c439dca3ff56c5c102c40a72db75>`
+
+Typedefs
+--------
+
+- typedef void(* :ref:`PFETHFRAMERECEIVED <group___sys_ethernet2_itf_1ga8c1b206bc84b919e922a2c1d83c8bad8>`)(void)
+
+- typedef struct :ref:`_EthernetAdapterDescription <struct___ethernet_adapter_description>` :ref:`EthernetAdapterDescription <group___sys_ethernet2_itf_1ga3318b2a20e7219c4ceef994fec36154c>`
+
+- typedef :ref:`ISysEthernet2_C <struct_i_sys_ethernet2___c>` :ref:`ISysEthernet2 <group___sys_ethernet2_itf_1gae54007a187b33bcb47f224b01accb2d8>`
+
+Functions
+---------
+
+- void :ref:`resetadapter <group___sys_ethernet2_itf_1ga996176df5551aa6643ae8e7a31847cb1>` (:ref:`ResetAdapter <struct_reset_adapter>` * pra)
+
+- void :ref:`getethframeex <group___sys_ethernet2_itf_1ga18761913ec41351cd6ec21f9f706a09d>` (:ref:`GetEthernetInterfaceEx <struct_get_ethernet_interface_ex>` * pgeiex)
+
+- void :ref:`getadapterdescription <group___sys_ethernet2_itf_1gae9b27eab8f1c725860cddffcdbd6824a>` (:ref:`GetAdapterDescription <struct_get_adapter_description>` * pgad)
+
+- void :ref:`sendIPethframe2 <group___sys_ethernet2_itf_1gad5a1652f43c9f24ac7bf437ec81dd926>` (:ref:`SendIPEthernetInterface2 <struct_send_i_p_ethernet_interface2>` * psfi)
+
+- void :ref:`getIPethframe2 <group___sys_ethernet2_itf_1ga22ac64f91f350f6aede3d08f13eb7878>` (:ref:`GetIPEthernetInterface2 <struct_get_i_p_ethernet_interface2>` * pgei)
+
+- RTS_RESULT :ref:`SysEthernetRegisterEthernetAdapter <group___sys_ethernet2_itf_1ga52b40e7b2de43aeb3128c06cd64f1228>` (:ref:`EthernetAdapterDescription <group___sys_ethernet2_itf_1ga3318b2a20e7219c4ceef994fec36154c>` * pAdapterDesc, int bUnregister)
+
+.. _group___sys_ethernet2_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysEthernet.
+
+The SysEthernet interface contains low level routines for a direct access to an ethernet controller. This interface is typically used by an EtherCAT driver.
+
+All other ethernet communciation components use higher level routines (see SysSocket interface).
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_ethernet2_itf_1ga16e7eeaba3dfd111f6b8cf6f6a0ae66e:
+
+#define EAI_FLG_QUALITY_GOOD 0x00000001
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet2_itf_1gab860999ba0eac666c7ff62bc3711b22b:
+
+#define EAI_FLG_CRC_ERROR 0x00000002
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet2_itf_1ga47ebbc22bf1aa05d9b7b0bde37dcedbb:
+
+#define EAI_FLG_ALIGNMENT_ERROR 0x00000004
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet2_itf_1ga291154bfddda8f19d33fa73cc361663e:
+
+#define EAI_FLG_OTHER_ERROR 0x00000008
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet2_itf_1gade86045f9294f16a3a33f8fcefaa6920:
+
+#define ITF_SysEthernet2
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet2_itf_1gae518c439dca3ff56c5c102c40a72db75:
+
+#define EXTITF_SysEthernet2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_ethernet2_itf_1ga8c1b206bc84b919e922a2c1d83c8bad8:
+
+typedef void( *  PFETHFRAMERECEIVED)(void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet2_itf_1ga3318b2a20e7219c4ceef994fec36154c:
+
+typedef struct _EthernetAdapterDescription EthernetAdapterDescription
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_ethernet2_itf_1gae54007a187b33bcb47f224b01accb2d8:
+
+typedef ISysEthernet2_C ISysEthernet2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_ethernet2_itf_1ga996176df5551aa6643ae8e7a31847cb1:
+
+void resetadapter (ResetAdapter *pra)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get info about specified network adapters
+
+**Parameters**
+
++---------+-------+-----------------------+
+| [in]    | paiei | Pointer to parameters |
++---------+-------+-----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_ethernet2_itf_1ga18761913ec41351cd6ec21f9f706a09d:
+
+void getethframeex (GetEthernetInterfaceEx *pgeiex)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+same as getethernet, but with additional info.
+
+**Parameters**
+
++---------+--------+-----------------------+
+| [in]    | pgeiex | Pointer to parameters |
++---------+--------+-----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_ethernet2_itf_1gae9b27eab8f1c725860cddffcdbd6824a:
+
+void getadapterdescription (GetAdapterDescription *pgad)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+An interface function to get some information about the NIC's hardware.
+
+**Parameters**
+
++---------+------+---------------------------------------------------------------------------------------+
+| [in]    | pgad | Pointer to a :ref:`GetAdapterDescription <struct_get_adapter_description>` structure. |
++---------+------+---------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_ethernet2_itf_1gad5a1652f43c9f24ac7bf437ec81dd926:
+
+void sendIPethframe2 (SendIPEthernetInterface2 *psfi)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Send IP etherpacket (EoE)
+
+**Parameters**
+
++---------+------+-----------------------+
+| [in]    | psfi | Pointer to parameters |
++---------+------+-----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_ethernet2_itf_1ga22ac64f91f350f6aede3d08f13eb7878:
+
+void getIPethframe2 (GetIPEthernetInterface2 *pgei)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get IP ethernet packet
+
+**Parameters**
+
++---------+------+-----------------------+
+| [in]    | pgei | Pointer to parameters |
++---------+------+-----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_ethernet2_itf_1ga52b40e7b2de43aeb3128c06cd64f1228:
+
+RTS_RESULT SysEthernetRegisterEthernetAdapter (EthernetAdapterDescription *pAdapterDesc, int bUnregister)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

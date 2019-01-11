@@ -1,0 +1,75 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_file_itf___events:
+
+======
+Events
+======
+
+ :ref:`More... <group___sys_file_itf___events-details>`
+
+Macros
+------
+
+- #define :ref:`EVT_SysFileOpen <group___sys_file_itf___events_1gad8048696d86b8cb0d46413fb2df179c1>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`EVT_SysFileClose <group___sys_file_itf___events_1ga04799f413701b17d8d01ce6d94fc3d16>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+
+- #define :ref:`EVT_SysFileFlashGetFileMapIndex <group___sys_file_itf___events_1ga2418e6f8698b3604c2be2c3060fddd80>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
+
+.. _group___sys_file_itf___events-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_file_itf___events_1gad8048696d86b8cb0d46413fb2df179c1:
+
+#define EVT_SysFileOpen :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Event is sent when a file is opened. It is sent directly after the file was opened. Note: The event is set only with SysFile, it is not set with SysFileFlash. Note: Event set after CH_INIT2. There is no notification of opening a file before this hook.
+
+**Parameters**
+
++---------+-------------+----------------------------------------------------------------------+
+| [in]    | pEventParam | :ref:`EVTPARAM_SysFileOpen <struct_e_v_t_p_a_r_a_m___sys_file_open>` |
++---------+-------------+----------------------------------------------------------------------+
+
+.. _group___sys_file_itf___events_1ga04799f413701b17d8d01ce6d94fc3d16:
+
+#define EVT_SysFileClose :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Event is sent when a file is closed. It is send directly before the file is closed (file handle still valid). Note: The event is set only with SysFile, it is not set with SysFileFlash. Note: Event set after CH_INIT2. There is no notification of opening a file before this hook.
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------+
+| [in]    | pEventParam | :ref:`EVTPARAM_SysFileClose <struct_e_v_t_p_a_r_a_m___sys_file_close>` |
++---------+-------------+------------------------------------------------------------------------+
+
+.. _group___sys_file_itf___events_1ga2418e6f8698b3604c2be2c3060fddd80:
+
+#define EVT_SysFileFlashGetFileMapIndex :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The event is sent if the function GetFileMapIndex is called NOTE: This event is fired for every call and every loop call of count of files
+
+**Parameters**
+
++---+-----+----------------------------------------------------------------------------------------------------------------+
+| ] | pEventParam :ref:`EVTPARAM_SysFileFlashGetFileMapIndex <struct_e_v_t_p_a_r_a_m___sys_file_flash_get_file_map_index>` |
++---+-----+----------------------------------------------------------------------------------------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

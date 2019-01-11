@@ -1,0 +1,1549 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __cmp_app_itf_8h:
+
+==========================
+CmpAppItf.h File Reference
+==========================
+
+| #include ":ref:`SysTaskItf.h <_sys_task_itf_8h>`"
+| #include ":ref:`SysMemItf.h <_sys_mem_itf_8h>`"
+| #include ":ref:`SysFileItf.h <_sys_file_itf_8h>`"
+| #include ":ref:`SysCpuHandlingItf.h <_sys_cpu_handling_itf_8h>`"
+| #include ":ref:`CmpMemPoolItf.h <_cmp_mem_pool_itf_8h>`"
+| #include ":ref:`CmpEventMgrItf.h <_cmp_event_mgr_itf_8h>`"
+| #include ":ref:`CmpCommunicationLibItf.h <_cmp_communication_lib_itf_8h>`"
+| #include ":ref:`CmpRetainItf.h <_cmp_retain_itf_8h>`"
+| #include ":ref:`CmpSrvItf.h <_cmp_srv_itf_8h>`"
+
+Data Structures
+---------------
+
+- struct :ref:`EVTPARAM_CmpApp <struct_e_v_t_p_a_r_a_m___cmp_app>`
+
+- struct :ref:`EVTPARAM_CmpApp_Reset <struct_e_v_t_p_a_r_a_m___cmp_app___reset>`
+
+- struct :ref:`EVTPARAM_CmpAppConfig <struct_e_v_t_p_a_r_a_m___cmp_app_config>`
+
+- struct :ref:`EVTPARAM_CmpAppStop <struct_e_v_t_p_a_r_a_m___cmp_app_stop>`
+
+- struct :ref:`EVTPARAM_CmpAppExit <struct_e_v_t_p_a_r_a_m___cmp_app_exit>`
+
+- struct :ref:`EVTPARAM_CmpAppDelete <struct_e_v_t_p_a_r_a_m___cmp_app_delete>`
+
+- struct :ref:`EVTPARAM_CmpAppDenyStart <struct_e_v_t_p_a_r_a_m___cmp_app_deny_start>`
+
+- struct :ref:`EVTPARAM_CmpAppDenyStop <struct_e_v_t_p_a_r_a_m___cmp_app_deny_stop>`
+
+- struct :ref:`EVTPARAM_CmpAppAllBootAppsLoaded <struct_e_v_t_p_a_r_a_m___cmp_app_all_boot_apps_loaded>`
+
+- struct :ref:`EVTPARAM_CmpAppDenyLoadBootproject <struct_e_v_t_p_a_r_a_m___cmp_app_deny_load_bootproject>`
+
+- struct :ref:`EVTPARAM_CmpAppPrepareLoadBootproject <struct_e_v_t_p_a_r_a_m___cmp_app_prepare_load_bootproject>`
+
+- struct :ref:`EVTPARAM_CmpAppException <struct_e_v_t_p_a_r_a_m___cmp_app_exception>`
+
+- struct :ref:`EVTPARAM_CmpAppRegisterBootproject <struct_e_v_t_p_a_r_a_m___cmp_app_register_bootproject>`
+
+- struct :ref:`EVTPARAM_CmpAppOperatingStateChanged <struct_e_v_t_p_a_r_a_m___cmp_app_operating_state_changed>`
+
+- struct :ref:`EVTPARAM_CmpAppSourceDownload <struct_e_v_t_p_a_r_a_m___cmp_app_source_download>`
+
+- struct :ref:`EVTPARAM_CmpAppComm <struct_e_v_t_p_a_r_a_m___cmp_app_comm>`
+
+- struct :ref:`EVTPARAM_CmpAppDeny <struct_e_v_t_p_a_r_a_m___cmp_app_deny>`
+
+- struct :ref:`EVTPARAM_CmpAppDenyDelete <struct_e_v_t_p_a_r_a_m___cmp_app_deny_delete>`
+
+- struct :ref:`EVTPARAM_CmpApp_OEMServiceTag <struct_e_v_t_p_a_r_a_m___cmp_app___o_e_m_service_tag>`
+
+- struct :ref:`EVTPARAM_CmpApp_OEMRegisteredIecFunction <struct_e_v_t_p_a_r_a_m___cmp_app___o_e_m_registered_iec_function>`
+
+- struct :ref:`EVTPARAM_CmpApp_POUTable_Create <struct_e_v_t_p_a_r_a_m___cmp_app___p_o_u_table___create>`
+
+- struct :ref:`EVTPARAM_CmpApp_POUTable_Build <struct_e_v_t_p_a_r_a_m___cmp_app___p_o_u_table___build>`
+
+- struct :ref:`EVTPARAM_CmpApp_POUTable_Clear <struct_e_v_t_p_a_r_a_m___cmp_app___p_o_u_table___clear>`
+
+- struct :ref:`EVTPARAM_CmpApp_POUTable_Remove <struct_e_v_t_p_a_r_a_m___cmp_app___p_o_u_table___remove>`
+
+- struct :ref:`EVTPARAM_CmpApp_POUTable_AddElement <struct_e_v_t_p_a_r_a_m___cmp_app___p_o_u_table___add_element>`
+
+- struct :ref:`EVTPARAM_CmpApp_POUTable_RemoveElement <struct_e_v_t_p_a_r_a_m___cmp_app___p_o_u_table___remove_element>`
+
+- struct :ref:`EVTPARAM_CmpApp_CommCycle <struct_e_v_t_p_a_r_a_m___cmp_app___comm_cycle>`
+
+- struct :ref:`EVTPARAM_CmpApp_StateChanged <struct_e_v_t_p_a_r_a_m___cmp_app___state_changed>`
+
+- struct :ref:`EVTPARAM_CmpApp_OnlineChangeExecution <struct_e_v_t_p_a_r_a_m___cmp_app___online_change_execution>`
+
+- struct :ref:`EVTPARAM_CmpAppEmbedded_CDBlob <struct_e_v_t_p_a_r_a_m___cmp_app_embedded___c_d_blob>`
+
+- struct :ref:`EVTPARAM_CmpAppRetainBackupState <struct_e_v_t_p_a_r_a_m___cmp_app_retain_backup_state>`
+
+- struct :ref:`EVTPARAM_CmpAppResetAllApplications <struct_e_v_t_p_a_r_a_m___cmp_app_reset_all_applications>`
+
+- struct :ref:`EVTPARAM_CmpAppPrepareCodeInit <struct_e_v_t_p_a_r_a_m___cmp_app_prepare_code_init>`
+
+- struct :ref:`EVTPARAM_CmpAppArea <struct_e_v_t_p_a_r_a_m___cmp_app_area>`
+
+- struct :ref:`_APPLICATION_DOWNLOAD_INFO <struct___a_p_p_l_i_c_a_t_i_o_n___d_o_w_n_l_o_a_d___i_n_f_o>`
+
+- struct :ref:`_EXT_REF_INFO <struct___e_x_t___r_e_f___i_n_f_o>`
+
+- struct :ref:`GLOBALINIT_STRUCT <struct_g_l_o_b_a_l_i_n_i_t___s_t_r_u_c_t>`
+
+- struct :ref:`RELOCATECODE_STRUCT2 <struct_r_e_l_o_c_a_t_e_c_o_d_e___s_t_r_u_c_t2>`
+
+- struct :ref:`DOWNLOAD_HEADER <struct_d_o_w_n_l_o_a_d___h_e_a_d_e_r>`
+
+- struct :ref:`AREA_INFO <struct_a_r_e_a___i_n_f_o>`
+
+- struct :ref:`POU_INFO <struct_p_o_u___i_n_f_o>`
+
+- struct :ref:`CODE_INFO <struct_c_o_d_e___i_n_f_o>`
+
+- struct :ref:`FUNCTION_INFO_OLD <struct_f_u_n_c_t_i_o_n___i_n_f_o___o_l_d>`
+
+- struct :ref:`T_FUNCTION_INFO <struct_t___f_u_n_c_t_i_o_n___i_n_f_o>`
+
+- struct :ref:`POU_REF <struct_p_o_u___r_e_f>`
+
+- struct :ref:`tagPOU_DESCRIPTOR <structtag_p_o_u___d_e_s_c_r_i_p_t_o_r>`
+
+- struct :ref:`tagPOU_CALL_ENTRY <structtag_p_o_u___c_a_l_l___e_n_t_r_y>`
+
+- struct :ref:`tagAREA_CALL_ENTRIES_TABLE <structtag_a_r_e_a___c_a_l_l___e_n_t_r_i_e_s___t_a_b_l_e>`
+
+- struct :ref:`tagAreaOffsetDataRef <structtag_area_offset_data_ref>`
+
+- struct :ref:`tagAreaOffsetBitDataRef <structtag_area_offset_bit_data_ref>`
+
+- struct :ref:`tagPropertyDataRef <structtag_property_data_ref>`
+
+- struct :ref:`tagVarDataRef <structtag_var_data_ref>`
+
+- struct :ref:`tagVarValue <structtag_var_value>`
+
+- struct :ref:`tagVarDesc <structtag_var_desc>`
+
+- struct :ref:`_RTS_VERSION_STRUCT <struct___r_t_s___v_e_r_s_i_o_n___s_t_r_u_c_t>`
+
+- struct :ref:`PROJECT_INFO <struct_p_r_o_j_e_c_t___i_n_f_o>`
+
+- struct :ref:`APPLICATION_INFO <struct_a_p_p_l_i_c_a_t_i_o_n___i_n_f_o>`
+
+- struct :ref:`APPLICATION_INFO_WCHAR <struct_a_p_p_l_i_c_a_t_i_o_n___i_n_f_o___w_c_h_a_r>`
+
+- struct :ref:`BOOLEANPROPERTY <struct_b_o_o_l_e_a_n_p_r_o_p_e_r_t_y>`
+
+- struct :ref:`TEXTPROPERTY <struct_t_e_x_t_p_r_o_p_e_r_t_y>`
+
+- struct :ref:`NUMBERPROPERTY <struct_n_u_m_b_e_r_p_r_o_p_e_r_t_y>`
+
+- struct :ref:`VERSIONPROPERTY <struct_v_e_r_s_i_o_n_p_r_o_p_e_r_t_y>`
+
+- struct :ref:`FlowControl <struct_flow_control>`
+
+- struct :ref:`EncryptionInfo <struct_encryption_info>`
+
+- struct :ref:`AppEncryptionInfo <struct_app_encryption_info>`
+
+- struct :ref:`tagAPPLICATION <structtag_a_p_p_l_i_c_a_t_i_o_n>`
+
+- struct :ref:`_COMPACT_CODE_HEADER <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r>`
+
+- struct :ref:`_COMPACT_BLOB_HEADER <struct___c_o_m_p_a_c_t___b_l_o_b___h_e_a_d_e_r>`
+
+- struct :ref:`DownloadedRtsModule <struct_downloaded_rts_module>`
+
+- struct :ref:`tagAPP_MEMORY_SEGMENT <structtag_a_p_p___m_e_m_o_r_y___s_e_g_m_e_n_t>`
+
+- struct :ref:`tagappcallgetproperty_struct <structtagappcallgetproperty__struct>`
+
+- struct :ref:`tagappcallgetproperty2_struct <structtagappcallgetproperty2__struct>`
+
+- struct :ref:`tagappcallgetproperty2release_struct <structtagappcallgetproperty2release__struct>`
+
+- struct :ref:`tagappcallsetproperty_struct <structtagappcallsetproperty__struct>`
+
+- struct :ref:`tagappfindapplicationbyname_struct <structtagappfindapplicationbyname__struct>`
+
+- struct :ref:`tagappgenerateexception_struct <structtagappgenerateexception__struct>`
+
+- struct :ref:`tagappgetapplicationbyareaaddress_struct <structtagappgetapplicationbyareaaddress__struct>`
+
+- struct :ref:`tagappgetapplicationinfo_struct <structtagappgetapplicationinfo__struct>`
+
+- struct :ref:`tagappgetareaaddress_struct <structtagappgetareaaddress__struct>`
+
+- struct :ref:`tagappgetareaoffsetbyaddress_struct <structtagappgetareaoffsetbyaddress__struct>`
+
+- struct :ref:`tagappgetareapointer_struct <structtagappgetareapointer__struct>`
+
+- struct :ref:`tagappgetareasize_struct <structtagappgetareasize__struct>`
+
+- struct :ref:`tagappgetcurrent_struct <structtagappgetcurrent__struct>`
+
+- struct :ref:`tagappgetfirstapp_struct <structtagappgetfirstapp__struct>`
+
+- struct :ref:`tagappgetnextapp_struct <structtagappgetnextapp__struct>`
+
+- struct :ref:`tagappgetprojectinformation_struct <structtagappgetprojectinformation__struct>`
+
+- struct :ref:`tagappgetsegment_struct <structtagappgetsegment__struct>`
+
+- struct :ref:`tagappgetsegmentaddress_struct <structtagappgetsegmentaddress__struct>`
+
+- struct :ref:`tagappgetsegmentsize_struct <structtagappgetsegmentsize__struct>`
+
+- struct :ref:`tagappnumofactivesessions_struct <structtagappnumofactivesessions__struct>`
+
+- struct :ref:`tagappregisterpropaccessfunctions_struct <structtagappregisterpropaccessfunctions__struct>`
+
+- struct :ref:`tagappreset_struct <structtagappreset__struct>`
+
+- struct :ref:`tagapprestoreretainsfromfile_struct <structtagapprestoreretainsfromfile__struct>`
+
+- struct :ref:`tagappstartapplication_struct <structtagappstartapplication__struct>`
+
+- struct :ref:`tagappstopapplication_struct <structtagappstopapplication__struct>`
+
+- struct :ref:`tagappstoreretainsinfile_struct <structtagappstoreretainsinfile__struct>`
+
+- struct :ref:`_APP_MEMORY_SEGMENT_INFO <struct___a_p_p___m_e_m_o_r_y___s_e_g_m_e_n_t___i_n_f_o>`
+
+- struct :ref:`appcheckfileconsistency_struct <structappcheckfileconsistency__struct>`
+
+- struct :ref:`ICmpApp_C <struct_i_cmp_app___c>`
+
+Macros
+------
+
+- #define :ref:`MAX_LEN_APPLNAME <group___cmp_app_itf___staticdefines_1gaf34efb9c3bdeb79dc6006c59d76d9b6f>` 60
+
+- #define :ref:`APPL_NUM_OF_STATIC_APPLS <group___cmp_app_itf___staticdefines_1ga40afaa21f38a6ce9a0253b3bf6107a7f>` 8
+
+- #define :ref:`APPL_NUM_OF_STATIC_SESSIONIDS <group___cmp_app_itf___staticdefines_1ga8918af07ea59cf8fd6845c4e658116e7>` 5
+
+- #define :ref:`APPL_NUM_OF_STATIC_AREAS <group___cmp_app_itf___staticdefines_1gae47a127320566bc7ddd46c49f8d3dc7c>` 10
+
+- #define :ref:`APP_NUM_OF_STATIC_ASYNC_SERVICES <group___cmp_app_itf___staticdefines_1ga545cc55f3c938e0eccdb6bd87626166f>` 8
+
+- #define :ref:`APP_UDINT_COMPILERVERSION_DEFAULT <group___cmp_app_itf___staticdefines_1ga1a7cfd7f07fe240a4a8200e6dd71ef77>` 0x03000000
+
+- #define :ref:`PROJECT_ARCHIVE <group___cmp_app_itf___filenamedefinitions_1gaa181dc2a55b77ded2a5389151598e825>` "Archive.prj"
+
+- #define :ref:`PROJECT_ARCHIVE_INFO <group___cmp_app_itf___filenamedefinitions_1gac1d16f6d3defb60abf1760ccabc068e3>` "Archive.inf"
+
+- #define :ref:`APP_BOOTPROJECT_FILE_EXTENSION <group___cmp_app_itf___staticdefines_1ga27e8324474f1dc5074c6c76bfa8d213e>` ".app"
+
+- #define :ref:`APP_BOOTPROJECT_FILE_EXTENSION_INVALID <group___cmp_app_itf___staticdefines_1ga4f3aa267d6039ae7f538650371bde86b>` ".ap_"
+
+- #define :ref:`APP_BOOTPROJECT_FILE_EXTENSION_ERROR <group___cmp_app_itf___staticdefines_1ga5840d76e48f63eaf9333da7110c907d4>` ".err"
+
+- #define :ref:`APP_BOOTPROJECT_FILE_EXTENSION_CRC <group___cmp_app_itf___staticdefines_1ga418725ed907e61a0f8feb3f26590c32e>` ".crc"
+
+- #define :ref:`APP_FILE_EXTENSION_SYMBOLS <group___cmp_app_itf___staticdefines_1gad43e304ef70165582bef5153dfa27e24>` ".xml"
+
+- #define :ref:`APP_BOOTPROJECT_FILE_EXTENSION_SYMBOLS <group___cmp_app_itf___staticdefines_1ga9f5ebc25bbb3f342364ad5d645fd3ea3>` ".boot.xml"
+
+- #define :ref:`APPKEY_INT_CREATE_BOOTPROJECT_ON_DOWNLOAD <group___cmp_app_itf___settings_1gabafc95c94d286ba60b7179c320232816>` "Bootproject.CreateOnDownload"
+
+- #define :ref:`APPVALUE_INT_CREATE_BOOTPROJECT_ON_DOWNLOAD_DEFAULT <group___cmp_app_itf___settings_1ga5268df6aea954b1a698d7fbd23469856>` 1
+
+- #define :ref:`APPKEY_INT_STORE_BOOTPROJECT_ONLY_ON_DOWNLOAD <group___cmp_app_itf___settings_1gaedc643714fc8f97af0cf42da5ba0f4ef>` "Bootproject.StoreOnlyOnDownload"
+
+- #define :ref:`APPVALUE_INT_STORE_BOOTPROJECT_ONLY_ON_DOWNLOAD_DEFAULT <group___cmp_app_itf___settings_1gad9f20534648d4d4d5056cc292d3d9e1c>` 0
+
+- #define :ref:`APPKEY_INT_BOOTPROJECT_INVALIDATE_BY_RENAME <group___cmp_app_itf___settings_1gacd43c87e899adbb43d76d19bcb2b1020>` "Bootproject.InvalidateByRename"
+
+- #define :ref:`APPKEY_INT_BOOTPROJECT_INVALIDATE_BY_RENAME_DEFAULT <group___cmp_app_itf___settings_1ga0d008d5dc8c1345e6994d25ac1cebebe>` 0
+
+- #define :ref:`APPKEY_INT_BOOTPROJECT_INVALIDATE_BY_SETTING <group___cmp_app_itf___settings_1gadd5fcaf281445abe14747ee0bc1bff67>` "Bootproject.InvalidateBySetting"
+
+- #define :ref:`APPKEY_INT_BOOTPROJECT_INVALIDATE_BY_SETTING_DEFAULT <group___cmp_app_itf___settings_1ga26b4d28fe7b36bbeed1ffe55da51365a>` 0
+
+- #define :ref:`APPKEY_INT_BOOTPROJECT_INVALIDATE_NEVER <group___cmp_app_itf___settings_1gaab4db5ef1b4a7dcfcfd159d4d8a23830>` "Bootproject.InvalidateNever"
+
+- #define :ref:`APPKEY_INT_BOOTPROJECT_INVALIDATE_NEVER_DEFAULT <group___cmp_app_itf___settings_1ga39f4a264fbc9410a38c1753c8ff1a3e8>` 1
+
+- #define :ref:`APPKEY_INT_BOOTPROJECT_RUN_IN_FLASH <group___cmp_app_itf___settings_1gaddf63a10bce0a9d46ff32a9a5f9b77d0>` "Bootproject.RunInFlash"
+
+- #define :ref:`APPKEY_INT_BOOTPROJECT_RUN_IN_FLASH_DEFAULT <group___cmp_app_itf___settings_1ga8791730342503f5e4f42365107350944>` 0
+
+- #define :ref:`APPKEY_INT_LOAD_BOOTPROJECT <group___cmp_app_itf___settings_1gac4bd7a41442c9549f58eb7e91208fe64>` ".Load"
+
+- #define :ref:`APPKEY_INT_LOAD_BOOTPROJECT_DEFAULT <group___cmp_app_itf___settings_1gaccbcf07447344c8fa600c2668c685133>` 1
+
+- #define :ref:`APPKEY_INT_START_BOOTPROJECT <group___cmp_app_itf___settings_1ga9812cff6a21acf7ad72a7a515d4e6410>` ".Start"
+
+- #define :ref:`APPKEY_INT_START_BOOTPROJECT_DEFAULT <group___cmp_app_itf___settings_1ga2d35ea9f4a21bfad0e0eac7bdc462980>` 1
+
+- #define :ref:`APPKEY_INT_FIRST_LOAD_INIT_RETAINS <group___cmp_app_itf___settings_1ga8e16a752a29fd793fd601b8bb1b50567>` ".FirstLoadInitRetains"
+
+- #define :ref:`APPKEY_INT_FIRST_LOAD_INIT_RETAINS_DEFAULT <group___cmp_app_itf___settings_1ga7c6ff92b5a4ff1bb0f8d99d02957a522>` 0
+
+- #define :ref:`APPKEY_STRING_BOOTPROJECT_NAME <group___cmp_app_itf___settings_1ga74b3080b2bee5104616d0fe16af204c0>` ".Bootproject"
+
+- #define :ref:`APPKEY_STRING_RETAIN_TYPE_APPLICATIONS <group___cmp_app_itf___settings_1ga4b91153ca358ab76bba9cadad95d3414>` "RetainType.Applications"
+
+- #define :ref:`APPVALUE_STRING_RETAIN_TYPE_ONPOWERFAIL <group___cmp_app_itf___settings_1gad74248a91f030716da3e874030b2e489>` "OnPowerfail"
+
+- #define :ref:`APPVALUE_STRING_RETAIN_TYPE_INSRAM <group___cmp_app_itf___settings_1ga7cb1f148d30d659494c9a16107e26b64>` "InSRAM"
+
+- #define :ref:`APPVALUE_STRING_RETAIN_TYPE_NONE <group___cmp_app_itf___settings_1ga34fac4bb01cf481cc692185458e4c34b>` "None"
+
+- #define :ref:`APPVALUE_STRING_RETAIN_TYPE_DEFAULT <group___cmp_app_itf___settings_1ga463d6eec7ef4c0f7d7e8e485e7f54bda>` :ref:`APPVALUE_STRING_RETAIN_TYPE_ONPOWERFAIL <group___cmp_app_itf___settings_1gad74248a91f030716da3e874030b2e489>`
+
+- #define :ref:`APPKEY_INT_LOAD_WITH_RETAIN_MISMATCH <group___cmp_app_itf___settings_1ga0920784aa7d8cba898619972c2172ef0>` "Bootproject.LoadWithRetainMismatch"
+
+- #define :ref:`APPVALUE_INT_LOAD_WITH_RETAIN_MISMATCH_DEFAULT <group___cmp_app_itf___settings_1ga43664dead907af46d6ac9d1d431de686>` 0
+
+- #define :ref:`APPKEY_INT_BOOTPROJECT_RETAIN_MISMATCH_INIT <group___cmp_app_itf___settings_1ga9da88108d861eafeb857813afe405813>` "Bootproject.RetainMismatch.Init"
+
+- #define :ref:`APPVALUE_INT_BOOTPROJECT_RETAIN_MISMATCH_INIT_DEFAULT <group___cmp_app_itf___settings_1ga9fe9cd4b22b73894a5c7a40dbb9b9d0c>` 0
+
+- #define :ref:`APPKEY_INT_BOOTPROJECT_RETAIN_MISMATCH_EXCEPTION <group___cmp_app_itf___settings_1ga8f38512fadecdbf307deb7373ec08a88>` "Bootproject.RetainMismatch.Exception"
+
+- #define :ref:`APPVALUE_INT_BOOTPROJECT_RETAIN_MISMATCH_EXCEPTION_DEFAULT <group___cmp_app_itf___settings_1ga2a96b7826f496fbe8e14b12917b4c919>` 0
+
+- #define :ref:`APPKEY_INT_ASYNC_SERVICES <group___cmp_app_itf___settings_1gada0ac9807d901cbc2bf6c56e9b948256>` "AsyncServices"
+
+- #define :ref:`APPVALUE_INT_ASYNC_SERVICES_DEFAULT <group___cmp_app_itf___settings_1ga56a76df3c647f7b0cbf166d729d7e0d5>` 0
+
+- #define :ref:`APPKEY_INT_WAIT_FOR_TASK_GAP <group___cmp_app_itf___settings_1gadfd2db69418a2e25e4581bc5dae9c197>` "WaitForTaskGapTimeout"
+
+- #define :ref:`APPVALUE_INT_WAIT_FOR_TASK_GAP_DEFAULT <group___cmp_app_itf___settings_1ga03b5624bc9e2b7fa324bca7898203894>` INT32_C(10000)
+
+- #define :ref:`APPKEY_INT_GLOBAL_STOP_ON_HARDWARE_EXCEPTION <group___cmp_app_itf___settings_1gafa94febbe7ce1b1a67e7d62c652ec616>` "Exception.Hardware.GlobalStop"
+
+- #define :ref:`APPVALUE_INT_GLOBAL_STOP_ON_HARDWARE_EXCEPTION_DEFAULT <group___cmp_app_itf___settings_1gaa4273e53fcd65c8713d2e389803262c4>` 0
+
+- #define :ref:`APPKEY_INT_RUN_STOP_TIMEOUT <group___cmp_app_itf___settings_1ga2371a65b83ba1dd45be03f12e0723ecd>` "RunStopTimeoutMs"
+
+- #define :ref:`APPVALUE_INT_RUN_STOP_TIMEOUT_DEFAULT <group___cmp_app_itf___settings_1gadbb9f837f3cdd38284de1c66cf2a9421>` INT32_C(10000)
+
+- #define :ref:`CCO_SEMAPHORE <group___cmp_app_itf___staticdefines_1ga1290ab1b47873829579aabec2ad5f2c5>` 1
+
+- #define :ref:`CCO_TASK_GAP <group___cmp_app_itf___staticdefines_1ga54c520fa1b90b26bb4b4e53c12c3445d>` 2
+
+- #define :ref:`CCO_INTERRUPT_LOCK <group___cmp_app_itf___staticdefines_1ga5ccb4616d530457e4644b2fc131e4ffd>` 3
+
+- #define :ref:`CCO_TASK_GAP_SEMAPHORE <group___cmp_app_itf___staticdefines_1gad780d2939449e797548844a95d0c099c>` 4
+
+- #define :ref:`CCO_DEFAULT <group___cmp_app_itf___staticdefines_1gaf780ac5d24cc42bc08a71e98558af433>` :ref:`CCO_TASK_GAP_SEMAPHORE <group___cmp_app_itf___staticdefines_1gad780d2939449e797548844a95d0c099c>`
+
+- #define :ref:`OP_APP_STOP <group___cmp_app_itf___operations_1gaad4dca5748c329c8404a4fe5ddf2313a>` 1
+
+- #define :ref:`OP_APP_DOWNLOAD <group___cmp_app_itf___operations_1gac04327958d59d4a044bdd5436c9dea03>` 2
+
+- #define :ref:`OP_APP_ONLINECHANGE <group___cmp_app_itf___operations_1ga4138a9e2ab01ced87230759c3f6311fa>` 3
+
+- #define :ref:`OP_APP_WRITE_VARIABLES <group___cmp_app_itf___operations_1gafa5307f79980fbc0691f46dbf4c7703d>` 4
+
+- #define :ref:`OP_APP_FORCE_VARIABLES <group___cmp_app_itf___operations_1ga6258ed2272bd42a88a2d9822460b791a>` 5
+
+- #define :ref:`OP_APP_SET_BREAKPOINT <group___cmp_app_itf___operations_1ga71bf3323adb22c2ffdcfed0d16504603>` 6
+
+- #define :ref:`OP_APP_RESET <group___cmp_app_itf___operations_1ga1b11cb5eb34d2476203e698a5d179b22>` 7
+
+- #define :ref:`OP_APP_START <group___cmp_app_itf___operations_1ga609d62b230f0b5e8b9dbf1925f9b48cd>` 8
+
+- #define :ref:`OP_APP_DELETE_APPLICATION <group___cmp_app_itf___operations_1gadd1e7ce2743466de2970d720cdbb2177>` 9
+
+- #define :ref:`OP_APP_RESET_ORIGIN <group___cmp_app_itf___operations_1gaf4e7bdaaee141a6eb34227c7a0133f7c>` 10
+
+- #define :ref:`SECURITY_SETTINGS_CMPAPP <group___cmp_app_itf___security_settings_1gabbefbaffee17214ddd1003d8a63f8ae2>` { \
+{(RTS_I32) :ref:`DownloadMode_SIGNED_AND_ENCRYPTED <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4a0b3052ed5f773995b213e4ba22a92bec>` , 0, "DownloadMode_SIGNED_AND_ENCRYPTED", "Application code must be signed and encrypted [HIGHEST SECURITY LEVEL]"},\
+{(RTS_I32) :ref:`DownloadMode_MIN_ENCRYPTED <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4a064b98b6498467f57e29b109020d7f1e>` , 0, "DownloadMode_MIN_ENCRYPTED", "At least encrypted application code accepted (prevention to transmit application code in plain text)"},\
+{(RTS_I32) :ref:`DownloadMode_MIN_SIGNED <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4a251525ffbba73c65b99991cabce3a4bc>` , 0, "DownloadMode_MIN_SIGNED", "At least signed application code accepted (prevention of loading application out of untrusted sources)"},\
+{(RTS_I32) :ref:`DownloadMode_ALL <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4a9588bf20429b2dd406eb64b5d776330f>` , :ref:`CMPSECMAN_FLAGS_DEFAULT <group___cmp_security_manager_itf___applicationflags_1gaa5df6ddff07339e160fc0ae78770850c>` , "DownloadMode_ALL", "All types of application code accepted"},\
+{(RTS_I32) :ref:`DownloadMode_NoSecurity <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4ac57261d28236c2bb5724414333f2b45b>` , 0, "DownloadMode_NoSecurity", "No support of signed and/or encrypted code"}\
+}
+
+- #define :ref:`RTS_CMPAPP_SECURITY_ID_CODE <group___cmp_app_itf___security_settings_1ga62923c903addad0b1a8e513f6f27ae59>` 0
+
+- #define :ref:`EVTPARAMID_CmpApp <group___cmp_app_itf___eventparameter_1ga6214578df6f4bb60824fa532c5fe815b>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpApp <group___cmp_app_itf___eventparameter_1ga84882088ae633eb9ee5686a615ddf94b>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpApp_Reset <group___cmp_app_itf___eventparameter_1ga1d8eefbae2a9644b2111a4d126174d09>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpApp_Reset <group___cmp_app_itf___eventparameter_1ga1f1322adbc5dfa4e5f4fc96a693d9fba>` 0x0002
+
+- #define :ref:`EVTPARAMID_CmpAppConfig <group___cmp_app_itf___eventparameter_1gad4f487cf4a82b833635473754a924199>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpAppConfig <group___cmp_app_itf___eventparameter_1ga8b9968f0f61a5930caec111656296194>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppStop <group___cmp_app_itf___eventparameter_1gaf296b0b183c728cfc1dbc35519073e9f>` 0x0002
+
+- #define :ref:`EVTVERSION_CmpAppStop <group___cmp_app_itf___eventparameter_1ga6d1d324a7bc2b83a162abeb9617670bb>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppExit <group___cmp_app_itf___eventparameter_1ga9adfc57594d2687389696cd0ba1365f9>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpAppExit <group___cmp_app_itf___eventparameter_1ga27007fad9f2c802a77cbd7d955b2d118>` 0x0002
+
+- #define :ref:`EVTPARAMID_CmpAppDelete <group___cmp_app_itf___eventparameter_1gaf6eacadbdc4f955a5157cd173c8f47fc>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpAppDelete <group___cmp_app_itf___eventparameter_1ga7380e9290212002f64661200546d7a2f>` 0x0002
+
+- #define :ref:`EVTPARAMID_CmpAppDenyStart <group___cmp_app_itf___eventparameter_1ga0b9642c10426b9149dde3f03d6965bf9>` 0x0003
+
+- #define :ref:`EVTVERSION_CmpAppDenyStart <group___cmp_app_itf___eventparameter_1ga2671546be602f95be2faf32583d9d2ca>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppDenyStop <group___cmp_app_itf___eventparameter_1gaf532f70bc50d2aaa37fcc241695fed26>` 0x0004
+
+- #define :ref:`EVTVERSION_CmpAppDenyStop <group___cmp_app_itf___eventparameter_1ga5c87eeaeccf304d730db51df403b889c>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppAllBootAppsLoaded <group___cmp_app_itf___eventparameter_1gac0cd78d94619e794654b6b9283b1065d>` 0x0005
+
+- #define :ref:`EVTVERSION_CmpAppAllBootAppsLoaded <group___cmp_app_itf___eventparameter_1ga0fc75740b2fabe6ff9c72d24a465b5a0>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppDenyLoadBootproject <group___cmp_app_itf___eventparameter_1ga7c1d91fdf84edf92ecbec285c842f0a6>` 0x0006
+
+- #define :ref:`EVTVERSION_CmpAppDenyLoadBootproject <group___cmp_app_itf___eventparameter_1ga64bdbc13c96b59c8dd45f479500533e5>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppPrepareLoadBootproject <group___cmp_app_itf___eventparameter_1gacc56dab2582be85947a26d74e840f492>` 0x0007
+
+- #define :ref:`EVTVERSION_CmpAppPrepareLoadBootproject <group___cmp_app_itf___eventparameter_1ga88806fc4c3c1812ab8381c5e2da91ce2>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppException <group___cmp_app_itf___eventparameter_1ga0e11f58848ce1618a22c8acec2326ee3>` 0x0008
+
+- #define :ref:`EVTVERSION_CmpAppException <group___cmp_app_itf___eventparameter_1gad944bcf44859b31e86c27f7e30ef63bc>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppRegisterBootproject <group___cmp_app_itf___eventparameter_1gaee98532613f442b7def318ee031346c2>` 0x0009
+
+- #define :ref:`EVTVERSION_CmpAppRegisterBootproject <group___cmp_app_itf___eventparameter_1gabcbe310b587c3e55822568086f20906f>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppOperatingStateChanged <group___cmp_app_itf___eventparameter_1gae3be4bac3fdc5bd96cddef20f5a06f9c>` 0x000A
+
+- #define :ref:`EVTVERSION_CmpAppOperatingStateChanged <group___cmp_app_itf___eventparameter_1gab64600cc33f1ab92e1fc12343fe1f5ae>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppSourceDownload <group___cmp_app_itf___eventparameter_1gacb1d00919f604eb9072169f4092eda64>` 0x000B
+
+- #define :ref:`EVTVERSION_CmpAppSourceDownload <group___cmp_app_itf___eventparameter_1gab562d739fd4cc0a0ab8a3ac715fc448f>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppComm <group___cmp_app_itf___eventparameter_1ga5bd0464398f2629fe708da538bba57d1>` 0x000C
+
+- #define :ref:`EVTVERSION_CmpAppComm <group___cmp_app_itf___eventparameter_1ga339ee80f735de2048177abb0defdff26>` 0x0002
+
+- #define :ref:`EVTPARAMID_CmpAppDeny <group___cmp_app_itf___eventparameter_1ga61862f0ea6c10cbda62c5674a7d70b80>` 0x000D
+
+- #define :ref:`EVTVERSION_CmpAppDeny <group___cmp_app_itf___eventparameter_1ga32771ac2346bc844938feee7192acb51>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppDenyDelete <group___cmp_app_itf___eventparameter_1gab18c62e0034bf435e86b723748f15446>` 0x000E
+
+- #define :ref:`EVTVERSION_CmpAppDenyDelete <group___cmp_app_itf___eventparameter_1ga167b4db5e3368d2bd70b04b652dfdee7>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpApp_OEMServiceTag <group___cmp_app_itf___eventparameter_1ga8312b029a5ee18e477c8a64f33748b56>` 0x000F
+
+- #define :ref:`EVTVERSION_CmpApp_OEMServiceTag <group___cmp_app_itf___eventparameter_1gad61d6cf76d5e9fb883b4b820c8c12a37>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpApp_OEMRegisteredIecFunction <group___cmp_app_itf___eventparameter_1gadb8f23e7aeec33d61b9df61d6677c705>` 0x0010
+
+- #define :ref:`EVTVERSION_CmpApp_OEMRegisteredIecFunction <group___cmp_app_itf___eventparameter_1ga44869c0d8849ab2063638e7ac1aff945>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpApp_POUTable_Create <group___cmp_app_itf___eventparameter_1ga204229255ea3b66839c31f70d0c2e442>` 0x0011
+
+- #define :ref:`EVTVERSION_CmpApp_POUTable_Create <group___cmp_app_itf___eventparameter_1gad9b5deffff9ad09a78defc3df34fd289>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpApp_POUTable_Build <group___cmp_app_itf___eventparameter_1ga0b678e30329d08b4009929bb811f4da4>` 0x0012
+
+- #define :ref:`EVTVERSION_CmpApp_POUTable_Build <group___cmp_app_itf___eventparameter_1ga08e7b771bbd8773311598da6132f42c1>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpApp_POUTable_Clear <group___cmp_app_itf___eventparameter_1ga47a94c953e9cc2113591aef4b8d613ae>` 0x0013
+
+- #define :ref:`EVTVERSION_CmpApp_POUTable_Clear <group___cmp_app_itf___eventparameter_1gadd9a053bba9997c191f96d656bd99e58>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpApp_POUTable_Remove <group___cmp_app_itf___eventparameter_1ga374c01e47435fdaa0d629c2fa8a11b8e>` 0x0014
+
+- #define :ref:`EVTVERSION_CmpApp_POUTable_Remove <group___cmp_app_itf___eventparameter_1ga5a58bb2acee0de2bdc29be9622f472e3>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpApp_POUTable_AddElement <group___cmp_app_itf___eventparameter_1ga865dc2f52b0f748629974a3f8d279300>` 0x0015
+
+- #define :ref:`EVTVERSION_CmpApp_POUTable_AddElement <group___cmp_app_itf___eventparameter_1ga50b0ea76ee180dfef98e84d68b33edb3>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpApp_POUTable_RemoveElement <group___cmp_app_itf___eventparameter_1ga946b3357b81b2d65264562e36616fd68>` 0x0016
+
+- #define :ref:`EVTVERSION_CmpApp_POUTable_RemoveElement <group___cmp_app_itf___eventparameter_1gaafd3793a4706c52867aaf6d32c6937c2>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpApp_CommCycle <group___cmp_app_itf___eventparameter_1gabb7686d0afd08f4cba986fdf249e2db7>` 0x0017
+
+- #define :ref:`EVTVERSION_CmpApp_CommCycle <group___cmp_app_itf___eventparameter_1ga31477d424e576365fb3f13af811f701f>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpApp_StateChanged <group___cmp_app_itf___eventparameter_1ga565ee7dd426e2831c2a85e1b46f8163e>` 0x0018
+
+- #define :ref:`EVTVERSION_CmpApp_StateChanged <group___cmp_app_itf___eventparameter_1gae713f693e9d655164beacf410958ca54>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpApp_OnlineChangeExecution <group___cmp_app_itf___eventparameter_1gafa8abb11e71ea3d6d0b7d812a3342905>` 0x0019
+
+- #define :ref:`EVTVERSION_CmpApp_OnlineChangeExecution <group___cmp_app_itf___eventparameter_1ga2afdaf93c4a2c2012f92db2fba27408e>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppEmbedded_CDBlob <group___cmp_app_itf___eventparameter_1gaf7df5c6d5984f1002c05b1b2fd8f392f>` 0x001A
+
+- #define :ref:`EVTVERSION_CmpAppEmbedded_CDBlob <group___cmp_app_itf___eventparameter_1gaf794567cfd2734dc19c1be8fb8b6ea3f>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppRetainBackupState <group___cmp_app_itf___eventparameter_1gabfcddacbcaa18bef64db2084cb74b646>` 0x001B
+
+- #define :ref:`EVTVERSION_CmpAppRetainBackupState <group___cmp_app_itf___eventparameter_1ga62227d7597b9f987cea910f5d9007a9e>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppResetAllApplications <group___cmp_app_itf___eventparameter_1gabb9d58dc4641e7980ea88f203be04189>` 0x001C
+
+- #define :ref:`EVTVERSION_CmpAppResetAllApplications <group___cmp_app_itf___eventparameter_1ga17c3c28bb5050fa779991b840f8d32e1>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpAppPrepareCodeInit <group___cmp_app_itf___eventparameter_1ga9842b7e9dfb672ce800bb400f153a073>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpAppPrepareCodeInit <group___cmp_app_itf___eventparameter_1ga1b5d3d43d5a8c8a6165c73f960f357e7>` 0x0002
+
+- #define :ref:`EVTPARAMID_CmpAppArea <group___cmp_app_itf___eventparameter_1gabcaeb8998fa00d7621c0fcc298f3b5f9>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpAppArea <group___cmp_app_itf___eventparameter_1ga06aec41b7f9eeb866a233c82b77d0ba1>` 0x0002
+
+- #define :ref:`EVT_PrepareStart <group___cmp_app_itf___events_1ga621961d88ea894c5daac0c26dd4e4e07>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`EVT_StartDone <group___cmp_app_itf___events_1gac53d04bdc308a03f69fbc8842bd6bb63>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+
+- #define :ref:`EVT_PrepareStop <group___cmp_app_itf___events_1ga712271d2b5511bd81ca55d7e732a9416>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
+
+- #define :ref:`EVT_StopDone <group___cmp_app_itf___events_1gac8f91fb341fe4e1a3dd5e21aa6655e33>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 4)
+
+- #define :ref:`EVT_PrepareReset <group___cmp_app_itf___events_1ga09abf438df3be9bc1f548c0d1a217421>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 5)
+
+- #define :ref:`EVT_ResetDone <group___cmp_app_itf___events_1ga1d9eed1a7e44fde0e8104ef35fde423f>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 6)
+
+- #define :ref:`EVT_PrepareOnlineChange <group___cmp_app_itf___events_1gadfd4f55ad1a580102cb095bae9412e07>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 7)
+
+- #define :ref:`EVT_OnlineChangeDone <group___cmp_app_itf___events_1ga27967ad477b64783ea80d4789af011f4>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 8)
+
+- #define :ref:`EVT_PrepareDownload <group___cmp_app_itf___events_1ga7e75b7a0d7987be2cd674629844fcbcd>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 9)
+
+- #define :ref:`EVT_DownloadDone <group___cmp_app_itf___events_1ga03358269a1cd20f88dd3fe9b87a89eeb>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 10)
+
+- #define :ref:`EVT_CodeInitDone <group___cmp_app_itf___events_1gaa0885f7b404c1f916088191f52b0ef15>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 11)
+
+- #define :ref:`EVT_PrepareDelete <group___cmp_app_itf___events_1ga2457f013f09c753edcce09d3f1fa7ea7>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 12)
+
+- #define :ref:`EVT_DeleteDone <group___cmp_app_itf___events_1ga49d0a1a3b22ea5a11a247ce6d9533275>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 13)
+
+- #define :ref:`EVT_PrepareExit <group___cmp_app_itf___events_1ga07a9c48eddd5a97a13fcc4f91f53b050>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 14)
+
+- #define :ref:`EVT_ExitDone <group___cmp_app_itf___events_1ga8b28c1e33ddfef8d18a2f6af10ddab39>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 15)
+
+- #define :ref:`EVT_CreateBootprojectDone <group___cmp_app_itf___events_1gaefcd9b31185a56c550d879d99f41b2f2>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 16)
+
+- #define :ref:`EVT_DenyLoadBootproject <group___cmp_app_itf___events_1ga15966feb5b6bd65913d051ba507fb61a>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 18)
+
+- #define :ref:`EVT_PrepareLoadBootproject <group___cmp_app_itf___events_1gab0078c82888d899e4bd66cc0bd7f7d22>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 19)
+
+- #define :ref:`EVT_LoadBootprojectDone <group___cmp_app_itf___events_1gad299bd446def824282ea9f88250a8520>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 17)
+
+- #define :ref:`EVT_DenyStartBootproject <group___cmp_app_itf___events_1ga8f96ccb23ff36e490100005f799b4830>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 20)
+
+- #define :ref:`EVT_PrepareStartBootproject <group___cmp_app_itf___events_1ga096b4e79c24e5bfef2faf9ad5dac5738>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 21)
+
+- #define :ref:`EVT_StartBootprojectDone <group___cmp_app_itf___events_1ga723cd9f02ca81d122b189daf54e44fd7>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 22)
+
+- #define :ref:`EVT_DenyStart <group___cmp_app_itf___events_1gafff23ea2d1fcf8862f6c06b13dfd85d7>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 23)
+
+- #define :ref:`EVT_DenyStop <group___cmp_app_itf___events_1ga862ece5be725e4b043db3118db4d0e9e>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 24)
+
+- #define :ref:`EVT_AllBootprojectsLoaded <group___cmp_app_itf___events_1gacadbe483d13741b3f92e2cf6da893203>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 25)
+
+- #define :ref:`EVT_GlobalExitOnResetDone <group___cmp_app_itf___events_1gafe12065c0956413662efe0319749b21f>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 26)
+
+- #define :ref:`EVT_ExitDoneWithConfigAppInfo <group___cmp_app_itf___events_1ga72d6cf5caf2bc1396a14c622e8d494fd>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 27)
+
+- #define :ref:`EVT_CmpApp_Exception <group___cmp_app_itf___events_1gaa8cac0363791e03d448989d24c2b19ca>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_EXCEPTION <group___cmp_event_mgr_itf___eventclasses_1ga1f5b32c2ac26993295bbf1e8d55f7d34>` , 28)
+
+- #define :ref:`EVT_RegisterBootproject <group___cmp_app_itf___events_1ga4751586a63ed2ecf9a6053cbe1065e2c>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 29)
+
+- #define :ref:`EVT_CreateBootprojectFileFailed <group___cmp_app_itf___events_1gac123b4e8adcf870ed2004b08e788707d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_ERROR <group___cmp_event_mgr_itf___eventclasses_1gacb4c61d801556263d732c9b8ddfa451f>` , 30)
+
+- #define :ref:`EVT_CreateBootprojectFailed <group___cmp_app_itf___events_1ga4c3c61ad804db2620af539d855db0e78>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_ERROR <group___cmp_event_mgr_itf___eventclasses_1gacb4c61d801556263d732c9b8ddfa451f>` , 31)
+
+- #define :ref:`EVT_OperatingStateChanged <group___cmp_app_itf___events_1gab99602d716b5bd71dc08a18ac454e42d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 32)
+
+- #define :ref:`EVT_SourceDownload <group___cmp_app_itf___events_1ga3642710d0a897dbc76fd9565252c4dc9>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 33)
+
+- #define :ref:`EVT_Login <group___cmp_app_itf___events_1ga59fe16ce46869cba4c85d0416c54fd9e>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 34)
+
+- #define :ref:`EVT_Logout <group___cmp_app_itf___events_1ga509a36798ee98dbbb72b0b2ec0d3368a>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 35)
+
+- #define :ref:`EVT_DenyDelete <group___cmp_app_itf___events_1ga1e1ae1100c69943a6fe155f9c8e7422c>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 36)
+
+- #define :ref:`EVT_DenyDeleteBootproject <group___cmp_app_itf___events_1ga1746c05b2be81d463537ec9e4e72aa49>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 37)
+
+- #define :ref:`EVT_OEMDownloadServiceTag <group___cmp_app_itf___events_1ga6d8f2d746b426d87cfcd175c8e187634>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 39)
+
+- #define :ref:`EVT_OEMRegisteredIecFunction <group___cmp_app_itf___events_1ga665d020dc933206d7b0725061e503824>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 40)
+
+- #define :ref:`EVT_POUTable_Changed <group___cmp_app_itf___events_1ga35062429ef580a0a7fc3525c66414cd2>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 41)
+
+- #define :ref:`EVT_CommCycle <group___cmp_app_itf___events_1gad575e08611a07da18b4d1f332126e8c0>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 42)
+
+- #define :ref:`EVT_StateChanged <group___cmp_app_itf___events_1ga40eb210ef4b29882da8e1d16aac1a111>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 43)
+
+- #define :ref:`EVT_OnlineChangeExecution <group___cmp_app_itf___events_1gab06bb791a8366d9a87210dfb6f76a6b3>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 44)
+
+- #define :ref:`EVT_PrepareCodeInit <group___cmp_app_itf___events_1ga496e1b26e62ddabf46f3f92909acf8e6>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 45)
+
+- #define :ref:`EVT_CDBlob <group___cmp_app_itf___events_1gafdb2569eba95ae27aacf03f6e6e0303a>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 46)
+
+- #define :ref:`EVT_RetainBackupState <group___cmp_app_itf___events_1gae96262e7180e075713d14974c228a51d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 47)
+
+- #define :ref:`EVT_ResetAllApplications_Prepare <group___cmp_app_itf___events_1ga41533fafdfec9fc367efe4b0ac965576>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 48)
+
+- #define :ref:`EVT_ResetAllApplications_Done <group___cmp_app_itf___events_1ga7a4f24518ec912974cc3984b034edaa3>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 49)
+
+- #define :ref:`EVT_AllocArea <group___cmp_app_itf___events_1gafac87d87339e3acc5942b46c2b1af8cc>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 50)
+
+- #define :ref:`RTS_OPID_Application_RunStop <group___cmp_app_itf___operation_i_d_1ga7ac2aa106f80de641132d1e172dca223>` -1
+
+- #define :ref:`RTS_OPID_Application_RunStop_Description <group___cmp_app_itf___operation_i_d_1ga8f2fae42d913c860d692b2abb5374e8a>` "Supervision of the RUN to STOP transition of an application. OperationID is the ID of the application (see :ref:`APPLICATION.iId <structtag_a_p_p_l_i_c_a_t_i_o_n_1ad917952ba1b9ae0ac59fe2bace14f6b6>` for details)"
+
+- #define :ref:`AS_NONE <group___cmp_app_itf___applicationstate_1ga4f3dac9c2d67c60dc425a33563cfbed8>` UINT32_C(0x00000000)
+
+- #define :ref:`AS_RUN <group___cmp_app_itf___applicationstate_1ga11fca91bfe73a7cb54d371d531d3df33>` UINT32_C(0x00000001)
+
+- #define :ref:`AS_STOP <group___cmp_app_itf___applicationstate_1gae2b8a17bc44ae99e2ff4deb910954388>` UINT32_C(0x00000002)
+
+- #define :ref:`AS_DEBUG_HALT_ON_BP <group___cmp_app_itf___applicationstate_1ga071b27022c3550cde95afe7574872d10>` UINT32_C(0x00000003)
+
+- #define :ref:`AS_DEBUG_STEP <group___cmp_app_itf___applicationstate_1gaa822809df7d70f22ceab0065f4257582>` UINT32_C(0x00000004)
+
+- #define :ref:`AS_SINGLE_CYCLE <group___cmp_app_itf___applicationstate_1gab454085e5b1278b88aa05b0c7cb0557c>` UINT32_C(0x00000005)
+
+- #define :ref:`AS_SYSTEM_APPLICATION <group___cmp_app_itf___applicationstate_1gaffe24442862adeeeb985652617338ec4>` UINT32_C(0xFFFFFFFF)
+
+- #define :ref:`OS_NONE <group___cmp_app_itf___applicationoperatingstate_1gaee70138f33aba6d0a7f273d869a705e9>` UINT32_C(0x00000000)
+
+- #define :ref:`OS_PROGRAM_LOADED <group___cmp_app_itf___applicationoperatingstate_1gae8042fbdb41a3a7aafdfbd827227b205>` UINT32_C(0x00000001)
+
+- #define :ref:`OS_DOWNLOAD <group___cmp_app_itf___applicationoperatingstate_1gab1d4992482bf16efea800d738236016e>` UINT32_C(0x00000002)
+
+- #define :ref:`OS_ONLINE_CHANGE <group___cmp_app_itf___applicationoperatingstate_1ga401c0d8e6eba732ae5780280c6deddd4>` UINT32_C(0x00000004)
+
+- #define :ref:`OS_STORE_BOOTPROJECT <group___cmp_app_itf___applicationoperatingstate_1gafdb7f7aeb9d1e17467474b6c96714a58>` UINT32_C(0x00000008)
+
+- #define :ref:`OS_FORCE_ACTIVE <group___cmp_app_itf___applicationoperatingstate_1gae6023b149e306ac41b94a142ead7dd87>` UINT32_C(0x00000010)
+
+- #define :ref:`OS_EXCEPTION <group___cmp_app_itf___applicationoperatingstate_1ga4fedc57453743bedcf7ad12aceb1db4b>` UINT32_C(0x00000020)
+
+- #define :ref:`OS_RUN_AFTER_DOWNLOAD <group___cmp_app_itf___applicationoperatingstate_1gafa62f78cf588c571213f4f233d5f149f>` UINT32_C(0x00000040)
+
+- #define :ref:`OS_STORE_BOOTPROJECT_ONLY <group___cmp_app_itf___applicationoperatingstate_1ga40c9c6730e05485b735fb0d60503315f>` UINT32_C(0x00000080)
+
+- #define :ref:`OS_EXIT <group___cmp_app_itf___applicationoperatingstate_1ga952ba7e99de3c68be4e0a461256bbd8d>` UINT32_C(0x00000100)
+
+- #define :ref:`OS_DELETE <group___cmp_app_itf___applicationoperatingstate_1ga2ec48d5ed2d28260f026a03d01c2dc7a>` UINT32_C(0x00000200)
+
+- #define :ref:`OS_RESET <group___cmp_app_itf___applicationoperatingstate_1ga273709541907be15e97590d992c97e69>` UINT32_C(0x00000400)
+
+- #define :ref:`OS_RETAIN_MISMATCH <group___cmp_app_itf___applicationoperatingstate_1ga1b0faf8ea18162b51b8917170fa1dc93>` UINT32_C(0x00000800)
+
+- #define :ref:`OS_BOOTPROJECT_VALID <group___cmp_app_itf___applicationoperatingstate_1ga1136bfe2f9bcd9180faf13807ed878a3>` UINT32_C(0x00001000)
+
+- #define :ref:`OS_LOAD_BOOTPROJECT <group___cmp_app_itf___applicationoperatingstate_1ga8e24889c2922bc273b574f16a9337e41>` UINT32_C(0x00002000)
+
+- #define :ref:`OS_FLOW_ACTIVE <group___cmp_app_itf___applicationoperatingstate_1ga21f78bc0b2434b20ab0915fdd98fb840>` UINT32_C(0x00004000)
+
+- #define :ref:`OS_RESET_OUTPUTS <group___cmp_app_itf___applicationoperatingstate_1gaf91910259016d652b2867f332bf7f2e8>` UINT32_C(0x00010000)
+
+- #define :ref:`OS_COREDUMP_LOADED <group___cmp_app_itf___applicationoperatingstate_1ga395d491b98afc52154f8ace1c953cb8b>` UINT32_C(0x00020000)
+
+- #define :ref:`OS_EXECUTIONPOINTS_ACTIVE <group___cmp_app_itf___applicationoperatingstate_1ga1aee4117b2f51e5fe8073d2ba3215a11>` UINT32_C(0x00040000)
+
+- #define :ref:`OS_COREDUMP_CREATING <group___cmp_app_itf___applicationoperatingstate_1ga6edba42142d1672bbaf9f347d5fbd472>` UINT32_C(0x00080000)
+
+- #define :ref:`OS_SINGLE_CYCLE_ACTIVE <group___cmp_app_itf___applicationoperatingstate_1ga905866e8832e33ffbb0a6bfbc8643043>` UINT32_C(0x00100000)
+
+- #define :ref:`OS_DISABLE_RESET <group___cmp_app_itf___applicationoperatingstate_1ga92aa9e1f0b08f27f8f8e6017a939df4c>` UINT32_C(0x00200000)
+
+- #define :ref:`APP_SET_OP_STATE <group___cmp_app_itf___applicationoperatingstate_1gac6a48e89d8459ed0dea826ee5839ed67>` ((( :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState |= OpState)
+
+- #define :ref:`APP_RESET_OP_STATE <group___cmp_app_itf___applicationoperatingstate_1ga5e0ca8698284a7a1ea1b25d9b4cde7e2>` ((( :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState &= ~OpState)
+
+- #define :ref:`APP_HAS_OP_STATE <group___cmp_app_itf___applicationoperatingstate_1ga74ac88951509bdd669f093816dafa4a6>` ((( :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState & OpState)
+
+- #define :ref:`APP_REASON_UNKNOWN <group___cmp_app_itf___operationreason_1gad1c79a8c5859f2fb4872b5c40fccc5af>` 0
+
+- #define :ref:`APP_REASON_SHUTDOWN <group___cmp_app_itf___operationreason_1ga62510df4f0b5cad400089e3df27cf378>` 1
+
+- #define :ref:`APP_REASON_RESET <group___cmp_app_itf___operationreason_1ga591164812f4e8bba681a7ba40d10b824>` 2
+
+- #define :ref:`APP_REASON_EXCEPTION <group___cmp_app_itf___operationreason_1ga53a7948de063daedf018dbb790cdb0ff>` 3
+
+- #define :ref:`APP_REASON_USER <group___cmp_app_itf___operationreason_1gaa328aa930bbe38a4f2affe344e167583>` 4
+
+- #define :ref:`APP_REASON_IECPROGRAM <group___cmp_app_itf___operationreason_1gac648a55b49cff2bfce48a637e65eee12>` 5
+
+- #define :ref:`APP_REASON_DELETE <group___cmp_app_itf___operationreason_1gaf3bc699a8b08e46a3466c79a82ab81c0>` 6
+
+- #define :ref:`APP_REASON_DEBUGGING <group___cmp_app_itf___operationreason_1ga161831045dc0044156170a3db2afbb95>` 7
+
+- #define :ref:`APP_REASON_RUNSTOP_SWITCH <group___cmp_app_itf___operationreason_1gaa4b36b8fdd12302aaaf39da5f853ca0c>` 8
+
+- #define :ref:`APP_REASON_REDUNDANCY_SYNC <group___cmp_app_itf___operationreason_1ga57931db9a68fda03791325c7303d6ff8>` 9
+
+- #define :ref:`APP_START_REASON_UNKNOWN <group___cmp_app_itf___startreason_1ga218e08c5dd7be7d722d2dad2924486c6>` :ref:`APP_REASON_UNKNOWN <group___cmp_app_itf___operationreason_1gad1c79a8c5859f2fb4872b5c40fccc5af>`
+
+- #define :ref:`APP_START_REASON_USER <group___cmp_app_itf___startreason_1ga8e7d74d54dfe38e60beeff5f357fb8cb>` :ref:`APP_REASON_USER <group___cmp_app_itf___operationreason_1gaa328aa930bbe38a4f2affe344e167583>`
+
+- #define :ref:`APP_START_REASON_RUNSTOP_SWITCH <group___cmp_app_itf___startreason_1ga3eb7819d112bd876b740efd2a4bd57df>` :ref:`APP_REASON_RUNSTOP_SWITCH <group___cmp_app_itf___operationreason_1gaa4b36b8fdd12302aaaf39da5f853ca0c>`
+
+- #define :ref:`APP_START_REASON_REDUNDANCY_SYNC <group___cmp_app_itf___startreason_1ga10c705d12c59cdb256e769fd3bbdd8bb>` :ref:`APP_REASON_REDUNDANCY_SYNC <group___cmp_app_itf___operationreason_1ga57931db9a68fda03791325c7303d6ff8>`
+
+- #define :ref:`APP_STOP_REASON_UNKNOWN <group___cmp_app_itf___stopreason_1ga348690822005d5012e48b416326a20c8>` :ref:`APP_REASON_UNKNOWN <group___cmp_app_itf___operationreason_1gad1c79a8c5859f2fb4872b5c40fccc5af>`
+
+- #define :ref:`APP_STOP_REASON_SHUTDOWN <group___cmp_app_itf___stopreason_1gaabe58f70ce8f34de324ad7b5a32f166e>` :ref:`APP_REASON_SHUTDOWN <group___cmp_app_itf___operationreason_1ga62510df4f0b5cad400089e3df27cf378>`
+
+- #define :ref:`APP_STOP_REASON_RESET <group___cmp_app_itf___stopreason_1ga02bffb089affe0c1ebbfdbbe4d16c0eb>` :ref:`APP_REASON_RESET <group___cmp_app_itf___operationreason_1ga591164812f4e8bba681a7ba40d10b824>`
+
+- #define :ref:`APP_STOP_REASON_EXCEPTION <group___cmp_app_itf___stopreason_1ga70afded395e667677a5e95b69edcf657>` :ref:`APP_REASON_EXCEPTION <group___cmp_app_itf___operationreason_1ga53a7948de063daedf018dbb790cdb0ff>`
+
+- #define :ref:`APP_STOP_REASON_USER <group___cmp_app_itf___stopreason_1ga08564dfba97b870c0f989b54b7d11c61>` :ref:`APP_REASON_USER <group___cmp_app_itf___operationreason_1gaa328aa930bbe38a4f2affe344e167583>`
+
+- #define :ref:`APP_STOP_REASON_IECPROGRAM <group___cmp_app_itf___stopreason_1gacb8d4d1ced3e06783b5a96d3b87afe0a>` :ref:`APP_REASON_IECPROGRAM <group___cmp_app_itf___operationreason_1gac648a55b49cff2bfce48a637e65eee12>`
+
+- #define :ref:`APP_STOP_REASON_DELETE <group___cmp_app_itf___stopreason_1ga9e3a0b44f6e405cae5af669275ad78d0>` :ref:`APP_REASON_DELETE <group___cmp_app_itf___operationreason_1gaf3bc699a8b08e46a3466c79a82ab81c0>`
+
+- #define :ref:`APP_STOP_REASON_DEBUGGING <group___cmp_app_itf___stopreason_1ga54d70c1a1c0e4623149f9a65d693131f>` :ref:`APP_REASON_DEBUGGING <group___cmp_app_itf___operationreason_1ga161831045dc0044156170a3db2afbb95>`
+
+- #define :ref:`APP_STOP_REASON_RUNSTOP_SWITCH <group___cmp_app_itf___stopreason_1gadb03f7be15250e2119a221c145c756b0>` :ref:`APP_REASON_RUNSTOP_SWITCH <group___cmp_app_itf___operationreason_1gaa4b36b8fdd12302aaaf39da5f853ca0c>`
+
+- #define :ref:`APP_STOP_REASON_REDUNDANCY_SYNC <group___cmp_app_itf___stopreason_1ga5720f90fc04cad6a6ce5820b4d75c1ed>` :ref:`APP_REASON_REDUNDANCY_SYNC <group___cmp_app_itf___operationreason_1ga57931db9a68fda03791325c7303d6ff8>`
+
+- #define :ref:`APP_EXIT_REASON_UNKNOWN <group___cmp_app_itf___exitreason_1ga489e51060f0b80ac37125a452ad46f41>` :ref:`APP_REASON_UNKNOWN <group___cmp_app_itf___operationreason_1gad1c79a8c5859f2fb4872b5c40fccc5af>`
+
+- #define :ref:`APP_EXIT_REASON_SHUTDOWN <group___cmp_app_itf___exitreason_1ga86375338da451b00c38e66e189777544>` :ref:`APP_REASON_SHUTDOWN <group___cmp_app_itf___operationreason_1ga62510df4f0b5cad400089e3df27cf378>`
+
+- #define :ref:`APP_EXIT_REASON_RESET <group___cmp_app_itf___exitreason_1ga19315bc0c8f796546955bb1684ea6142>` :ref:`APP_REASON_RESET <group___cmp_app_itf___operationreason_1ga591164812f4e8bba681a7ba40d10b824>`
+
+- #define :ref:`APP_EXIT_REASON_EXCEPTION <group___cmp_app_itf___exitreason_1ga649ebb50634893cd18753179ca80cea5>` :ref:`APP_REASON_EXCEPTION <group___cmp_app_itf___operationreason_1ga53a7948de063daedf018dbb790cdb0ff>`
+
+- #define :ref:`APP_EXIT_REASON_DELETE <group___cmp_app_itf___exitreason_1ga3f3f6903f07df783cf88335fb74a415b>` :ref:`APP_REASON_DELETE <group___cmp_app_itf___operationreason_1gaf3bc699a8b08e46a3466c79a82ab81c0>`
+
+- #define :ref:`APP_EXIT_REASON_RUNSTOP_SWITCH <group___cmp_app_itf___exitreason_1gaa483eeb249cb06857366a5cfab991b69>` :ref:`APP_REASON_RUNSTOP_SWITCH <group___cmp_app_itf___operationreason_1gaa4b36b8fdd12302aaaf39da5f853ca0c>`
+
+- #define :ref:`APP_EXIT_REASON_REDUNDANCY_SYNC <group___cmp_app_itf___exitreason_1ga1ce4dfc242626de535ab4beb361e3c8f>` :ref:`APP_REASON_REDUNDANCY_SYNC <group___cmp_app_itf___operationreason_1ga57931db9a68fda03791325c7303d6ff8>`
+
+- #define :ref:`APP_RBS_UNKNOWN <group___cmp_app_itf___retainbackupstate_1gad63b278623c661a9f9dbb108f66393de>` 0
+
+- #define :ref:`APP_RBS_BACKUP_PREPARE <group___cmp_app_itf___retainbackupstate_1ga03ed876634f559dc019e960d3e79e604>` 1
+
+- #define :ref:`APP_RBS_BACKUP_BEGIN <group___cmp_app_itf___retainbackupstate_1gaba312b57bf3aab7aa4ecd77f74bfa109>` 2
+
+- #define :ref:`APP_RBS_BACKUP_END <group___cmp_app_itf___retainbackupstate_1ga724dab4463c8fdb6dbae11d97245a817>` 3
+
+- #define :ref:`APP_RBS_RESTORE <group___cmp_app_itf___retainbackupstate_1ga9f68472aac53e1d8898404a8c42bac1a>` 4
+
+- #define :ref:`USERDB_OBJECT_PLCLOGIC <group___cmp_app_itf___staticdefines_1ga5ed17c2a1b61f3b4b732905741fa1361>` "Device.PlcLogic"
+
+- #define :ref:`USERDB_OBJECT_PLCLOGIC_BACKUPRESTORE <group___cmp_app_itf___staticdefines_1ga41e6d128c64d4dc5efd22e77d13f0e15>` "Device.PlcLogic.__Backup&Restore"
+
+- #define :ref:`USERDB_OBJECT_CMODULE_INTEGRATION <group___cmp_app_itf___staticdefines_1ga1c6d682772614a7461eab7790375653d>` "__C-ModuleIntegration__"
+
+- #define :ref:`APP_RELOC_CODE_VERSION2 <group___cmp_app_itf___staticdefines_1ga89805e36f85ad932b18d78b111f59e56>` 0x03010000
+
+- #define :ref:`APP_CALL_ENTRIES_POOL_COUNT <group___cmp_app_itf_1gafcd67547317dc0c5d29a93d66101021a>` 16384
+
+- #define :ref:`ACET_STATE_UNCERTAIN <group___cmp_app_itf_1ga4e20757e0e8d152407bd9ff3999d6642>` 0x0
+
+- #define :ref:`ACET_STATE_READY <group___cmp_app_itf_1ga5ae328cb07303134c1b8f0d8fd109beb>` ((RTS_SIZE)0x1)
+
+- #define :ref:`ACET_IS_READY <group___cmp_app_itf_1gaa7ffd2ca3be6087658ee9e71e91fe3f7>` (0 != ((pt)->flags & CET_STATE_READY))
+
+- #define :ref:`ACET_IS_UNCERTAIN <group___cmp_app_itf_1ga4f86cd63a18bf0fd3971f38e3b2ef8f2>` (0 == ((pt)->flags & CET_STATE_READY))
+
+- #define :ref:`ACET_SET_READY <group___cmp_app_itf_1gaac4a0fc3b929a37122137e588d8e081f>` (pt)->flags |= CET_STATE_READY
+
+- #define :ref:`ACET_RESET_READY <group___cmp_app_itf_1ga32c62034faf19b738d43dee11ad5a742>` (pt)->flags &= ~CET_STATE_READY
+
+- #define :ref:`TEXT_PROPERTY_PROJECT <group___cmp_app_itf___propertykeys_1ga815fe50cb6bf15723125516035866bed>` "Project"
+
+- #define :ref:`TEXT_PROPERTY_TITLE <group___cmp_app_itf___propertykeys_1ga37c570d10af22933af36da160817f56b>` "Title"
+
+- #define :ref:`TEXT_PROPERTY_AUTHOR <group___cmp_app_itf___propertykeys_1gab01e0d14a8b760e491691dea741b2ad2>` "Author"
+
+- #define :ref:`TEXT_PROPERTY_DESCRIPTION <group___cmp_app_itf___propertykeys_1gadca10b1eb6898e5c27cf644d664c2857>` "Description"
+
+- #define :ref:`VERSION_PROPERTY_PROJECTVERSION <group___cmp_app_itf___propertykeys_1gadd4869fc1a53ce10b807844a606d0414>` "Version"
+
+- #define :ref:`FCF_DO <group___cmp_app_itf___applicationinformation_1ga0b23dd08345b8b72069dd83e33524d51>` 0x01
+
+- #define :ref:`FCF_DOATBREAK <group___cmp_app_itf___applicationinformation_1gaf462ab9e76a25f92e26c1d24dbd1631a>` 0x02
+
+- #define :ref:`AF_SYSTEM_APPLICATION <group___cmp_app_itf___applicationflags_1ga72577eac71222bbc0bbc3afb80109c06>` UINT32_C(0x00010000)
+
+- #define :ref:`AF_IOCONFIG_BYTE_ADDRESSING <group___cmp_app_itf___applicationflags_1gaf327c4263d374aa00fb9afb2eb5c5aec>` UINT32_C(0x00020000)
+
+- #define :ref:`AF_IOCONFIG_BIT_WORD_ADDRESSING <group___cmp_app_itf___applicationflags_1gafb8958747de2acce0efc2d21abb39369>` UINT32_C(0x00040000)
+
+- #define :ref:`AF_KEEP_AT_PARENT_ONLINE_CHANGE <group___cmp_app_itf___applicationflags_1gae0032ea667548aaf5faf49e219a9ccfc>` UINT32_C(0x00080000)
+
+- #define :ref:`AF_ALLOW_SYMBOLIC_VARIABLE_ACCESS_IN_SYNC_WITH_IEC_TASK <group___cmp_app_itf___applicationflags_1ga3b895ec995eced59615e478adfdf6793>` UINT32_C(0x00100000)
+
+- #define :ref:`AF_SIGNED_APPLICATION <group___cmp_app_itf___applicationflags_1ga4de07aa02b6f697c97840e2ec7ba13da>` UINT32_C(0x00200000)
+
+- #define :ref:`AF_ENCRYPTED_APPLICATION <group___cmp_app_itf___applicationflags_1ga4120588e0420b1617f353e5f6210eb2f>` UINT32_C(0x00400000)
+
+- #define :ref:`AF_DEVICE_APPLICATION <group___cmp_app_itf___applicationflags_1gad317325902d2608bb95f38570f68daab>` UINT32_C(0x00800000)
+
+- #define :ref:`AF_APPLICATION_STOP_PARENT_APPS_ON_EXCEPTION <group___cmp_app_itf___applicationflags_1ga8cdf4ec0e7026714e36044bc37eeb4ab>` UINT32_C(0x01000000)
+
+- #define :ref:`DLF_CONTINUEDOWNLOAD <group___cmp_app_itf___downloadflags_1ga6167f5d6136112a89beab49d01fde591>` UINT32_C(0x00000001)
+
+- #define :ref:`DLF_USEBOOTAPPFROMDOWNLOAD <group___cmp_app_itf___downloadflags_1ga08de142d029077d6a5b1534d533cf103>` UINT32_C(0x00000002)
+
+- #define :ref:`DLF_WRITEBOOTAPPLICATION <group___cmp_app_itf___downloadflags_1ga5a8952ff4d35c3591c5890fc4473d545>` UINT32_C(0x00000004)
+
+- #define :ref:`COMPACT_DOWNLOAD_HEADER_TAG <group___cmp_app_itf___applicationdescription_1gad3583571a9bddbaf374dcd6ca96fb7ed>` UINT32_C(0x1234ABCD)
+
+- #define :ref:`COMPACT_DOWNLOAD_HEADER_VERSION <group___cmp_app_itf___applicationdescription_1ga80fcfed5c95868f16367807335a4afb5>` UINT32_C(0x00000001)
+
+- #define :ref:`BLOB_MAGIC <group___cmp_app_itf___compactdownloadheader_1ga5d5973c42ca751bcc720f680cc22803f>` 0xB70BC0DE
+
+- #define :ref:`DEFAULT_CINTGR_POOL_SIZE <group___cmp_app_itf___compactdownloadheader_1ga767cef0e8604affdd68a6300cafe7fc3>` 5
+
+- #define :ref:`RTS_RESET <group___cmp_app_itf___resetoptions_1ga28999c8825551c663d7af383ffabae84>` 0
+
+- #define :ref:`RTS_RESET_COLD <group___cmp_app_itf___resetoptions_1gafc41a6ad9f2c1de8528201e8448cde7f>` 1
+
+- #define :ref:`RTS_RESET_ORIGIN <group___cmp_app_itf___resetoptions_1gabbd2c3a826e88c0e2d23e57a5a9860a4>` 2
+
+- #define :ref:`RTS_RESET_ORIGIN_DEVICE <group___cmp_app_itf___resetoptions_1ga71a5184e7090ca4ec8d6609ef4c09d57>` 3
+
+- #define :ref:`SRV_LOGIN_APP <group___cmp_app_itf___onlineservices_1gaedbb4a31391fb75a2dcb1e837ac49867>` 0x01
+
+- #define :ref:`SRV_LOGOUT_APP <group___cmp_app_itf___onlineservices_1ga62ff061c9536d0380f47567b54f534a1>` 0x02
+
+- #define :ref:`SRV_CREATEAPP <group___cmp_app_itf___onlineservices_1ga6ad0e7fbc5286ef870e78f1c44197ef3>` 0x03
+
+- #define :ref:`SRV_DELETEAPP <group___cmp_app_itf___onlineservices_1gaf4d10f3582a2e538b633471f0a6c71b3>` 0x04
+
+- #define :ref:`SRV_DOWNLOAD <group___cmp_app_itf___onlineservices_1ga38c2c143663a9c9731f685e88b08d807>` 0x05
+
+- #define :ref:`SRV_ONLINECHANGE <group___cmp_app_itf___onlineservices_1gab5e696e2b85e12469adf297f8bbfc75c>` 0x06
+
+- #define :ref:`SRV_DEVICEDOWNLOAD <group___cmp_app_itf___onlineservices_1ga28c5f2717b6addcb262c2ef9e3aa5379>` 0x07
+
+- #define :ref:`SRV_CREATEDEVAPP <group___cmp_app_itf___onlineservices_1ga9bd0fbf00e4728c4c383778d1223325c>` 0x08
+
+- #define :ref:`SRV_START <group___cmp_app_itf___onlineservices_1ga92aed2ed86ea645320796a95927bd6c1>` 0x10
+
+- #define :ref:`SRV_STOP <group___cmp_app_itf___onlineservices_1gaa9b8ece42fb66546aaf1abea390f3d4c>` 0x11
+
+- #define :ref:`SRV_RESET <group___cmp_app_itf___onlineservices_1ga0b2ec1ee0d69589f76ffe61b42a3f780>` 0x12
+
+- #define :ref:`SRV_SETBP <group___cmp_app_itf___onlineservices_1ga34300e8062457b6289fa80e39a4c6fe8>` 0x13
+
+- #define :ref:`SRV_READ_STATUS <group___cmp_app_itf___onlineservices_1ga46320f6294c1adc35ba5823661890338>` 0x14
+
+- #define :ref:`SRV_DELETEBP <group___cmp_app_itf___onlineservices_1ga7d20531d111d39685550b61c7e2ff722>` 0x15
+
+- #define :ref:`SRV_READ_CALLSTACK <group___cmp_app_itf___onlineservices_1ga6475806c6e6682faafb5dfbb03a15518>` 0x16
+
+- #define :ref:`SRV_GET_AREAOFFSET <group___cmp_app_itf___onlineservices_1ga4bb9b86fb53749c345a33d3d9a48b694>` 0x17
+
+- #define :ref:`SRV_READ_APPLICATION_LIST <group___cmp_app_itf___onlineservices_1ga74d183636632365a4776ccd202236203>` 0x18
+
+- #define :ref:`SRV_SETNEXTSTATEMENT <group___cmp_app_itf___onlineservices_1gaaf5df4cbc75c4e6d55df22ea3099ab17>` 0x19
+
+- #define :ref:`SRV_RELEASE_FORCELIST <group___cmp_app_itf___onlineservices_1gaac08179acc2958040e454052c58f5c41>` 0x20
+
+- #define :ref:`SRV_UPLOAD_FORCELIST <group___cmp_app_itf___onlineservices_1ga7b461f2a82ee71a42e4927d9cdf887a1>` 0x21
+
+- #define :ref:`SRV_SINGLE_CYCLE <group___cmp_app_itf___onlineservices_1gadc32bd10aab32d3c43da8337050e9ac2>` 0x22
+
+- #define :ref:`SRV_CREATE_BOOTPROJECT <group___cmp_app_itf___onlineservices_1gacfa361feeae11362655889113ff34d6c>` 0x23
+
+- #define :ref:`SRV_REINITAPP <group___cmp_app_itf___onlineservices_1ga81110bdce49ea382fa8d8fa77ceb30f9>` 0x24
+
+- #define :ref:`SRV_READ_APPL_STATE_LIST <group___cmp_app_itf___onlineservices_1ga4b8c4fafb7e7ace8db012bf9f18a4db0>` 0x25
+
+- #define :ref:`SRV_LOAD_BOOTAPPLICATION <group___cmp_app_itf___onlineservices_1ga9277ae5dce2521453de15f6b0468a00a>` 0x26
+
+- #define :ref:`SRV_REGISTER_BOOTAPPLICATION <group___cmp_app_itf___onlineservices_1gac7bfe6dabee9d11b5222e5a424fae046>` 0x27
+
+- #define :ref:`SRV_APP_CHECK_FILE_CONSISTENCY <group___cmp_app_itf___onlineservices_1ga1114fa9c8f98ab22a0aec7cd1d2d1785>` 0x28
+
+- #define :ref:`SRV_READ_APPLICATION_INFO <group___cmp_app_itf___onlineservices_1ga082e024db7f68110347084ff848c87c3>` 0x29
+
+- #define :ref:`SRV_DOWNLOAD_COMPACT <group___cmp_app_itf___onlineservices_1ga5e339ac9ae62000a7f8cd0bcb7862126>` 0x30
+
+- #define :ref:`SRV_READ_PROJECT_INFO <group___cmp_app_itf___onlineservices_1ga8cb61bf0b0b2a4f446d346c1bc162a73>` 0x31
+
+- #define :ref:`SRV_DEFINE_FLOW <group___cmp_app_itf___onlineservices_1gab2519eaf1c5ac1375c088a71769c9898>` 0x32
+
+- #define :ref:`SRV_READ_FLOW_VALUES <group___cmp_app_itf___onlineservices_1ga44755b094b942682e9d29b4ab7a0e7ab>` 0x33
+
+- #define :ref:`SRV_DOWNLOADENCRYPTED <group___cmp_app_itf___onlineservices_1ga0605e3f610c365f71e4e0b424c9d2cf3>` 0x34
+
+- #define :ref:`SRV_READ_APPLICATION_CONTENT <group___cmp_app_itf___onlineservices_1ga86dd28605c0e0e953622fde912320bc3>` 0x35
+
+- #define :ref:`SRV_SAVE_RETAINS <group___cmp_app_itf___onlineservices_1ga96b8a0db51606e1f921b56f44ecacadc>` 0x36
+
+- #define :ref:`SRV_RESTORE_RETAINS <group___cmp_app_itf___onlineservices_1ga78b246fd26593e2305edf77bb532e6f2>` 0x37
+
+- #define :ref:`SRV_GET_AREA_ADDRESS <group___cmp_app_itf___onlineservices_1ga2de29557e31e70306fe0ec60005683d1>` 0x38
+
+- #define :ref:`SRV_LEAVE_EXECPOINTS_ACTIVE <group___cmp_app_itf___onlineservices_1gaca05ebb91bf6b99428c9970b8c033948>` 0x39
+
+- #define :ref:`SRV_CLAIM_EXECPOINTS_FOR_APP <group___cmp_app_itf___onlineservices_1ga9e84ed8e85d245533b4b3fd1917167d2>` 0x40
+
+- #define :ref:`TAG_DATA_AREA <group___cmp_app_itf___onlinetags_1gaa83df84da6e2d83f8e30239b5c9229e5>` 0x01
+
+- #define :ref:`TAG_CODE <group___cmp_app_itf___onlinetags_1ga5993dc9783204441284dd26a3aebba0c>` 0x02
+
+- #define :ref:`TAG_CODE_SUBT <group___cmp_app_itf___onlinetags_1ga1314ef1ea5d878ae271cd7964fb24dff>` 0x82
+
+- #define :ref:`TAG_TASK_INFO <group___cmp_app_itf___onlinetags_1ga61e932712e6f729e91fc07afd8ce5415>` 0x03
+
+- #define :ref:`TAG_TASK_INFO_SUBT <group___cmp_app_itf___onlinetags_1ga5269a4760aefc256a1dbe6dda9c91e8d>` 0x83
+
+- #define :ref:`TAG_USED_IO <group___cmp_app_itf___onlinetags_1ga0df33a2ccd850a75b9d875a52d2ec09b>` 0x04
+
+- #define :ref:`TAG_EXT_REF <group___cmp_app_itf___onlinetags_1ga87dcb51627bf501c63429e01d77362a9>` 0x85
+
+- #define :ref:`TAG_EXT_REF_SUBT <group___cmp_app_itf___onlinetags_1ga121fde52f0a65e171776849113c657a7>` 0x85
+
+- #define :ref:`TAG_END_DL <group___cmp_app_itf___onlinetags_1gad91704895f1a1aed4ea104339e857c63>` 0x06
+
+- #define :ref:`TAG_END_DL_SUBT <group___cmp_app_itf___onlinetags_1ga9de3139223264e3a196aa407279c7fe6>` 0x86
+
+- #define :ref:`TAG_APPLICATION_INFO <group___cmp_app_itf___onlinetags_1ga0360e4e6ab7ad7c3f730d2f5b0835bf8>` 0x87
+
+- #define :ref:`TAG_APPLICATION_INFO_SUBT <group___cmp_app_itf___onlinetags_1ga9af3522b321a47cb62c353e69fcaa047>` 0x87
+
+- #define :ref:`TAG_PROJECT_INFO <group___cmp_app_itf___onlinetags_1gae691da1a08e80d8987fae03fe92612c9>` 0x88
+
+- #define :ref:`TAG_CUSTOM_DOWNLOAD <group___cmp_app_itf___onlinetags_1gaf3af6d862a90e2a17f93b8740f5cb5fc>` 0x89
+
+- #define :ref:`TAG_RESULT_CUSTOM_DOWNLOAD <group___cmp_app_itf___onlinetags_1gaceb2b3d6019338bdea859bea2098e882>` 0x07
+
+- #define :ref:`TAG_SEQUENZNUMBER <group___cmp_app_itf___onlinetags_1ga607c7230deb5178fa65263726731d74f>` 0x09
+
+- #define :ref:`TAG_POU <group___cmp_app_itf___onlinetags_1gaee692630307590e3460dcedd5268df3b>` 0xA0
+
+- #define :ref:`TAG_POU_INFO <group___cmp_app_itf___onlinetags_1gafa60a50a373f8ce4c678275082af45c1>` 0x21
+
+- #define :ref:`TAG_POU_CODE <group___cmp_app_itf___onlinetags_1gaa229097b50b545cd30160292f84fd0ac>` 0x22
+
+- #define :ref:`TAG_POU_DESC <group___cmp_app_itf___onlinetags_1gaec8b9d0b8a09b7484b1653114a0ce3d9>` 0x23
+
+- #define :ref:`TAG_CODE_INFO <group___cmp_app_itf___onlinetags_1ga3f35b81f4b503c031685ba6147dec83e>` 0x24
+
+- #define :ref:`TAG_PERIODIC_TASK <group___cmp_app_itf___onlinetags_1ga4360a6e505d2cae54f013f7249a50677>` 0x30
+
+- #define :ref:`TAG_FUNCTION_REF_OLD <group___cmp_app_itf___onlinetags_1gaa9ea93825be7c605fc58496e13f7c15f>` 0x50
+
+- #define :ref:`TAG_FUNCTION_REF <group___cmp_app_itf___onlinetags_1ga3ea3395e8ad3d6f41679124c53651dce>` 0x80
+
+- #define :ref:`TAG_FUNCTION_REF_HEADER <group___cmp_app_itf___onlinetags_1gad49cd3fc03564a65ee6c00c3b6b92d7b>` 0x01
+
+- #define :ref:`TAG_FUNCTION_REF_NAME <group___cmp_app_itf___onlinetags_1ga8c94b96132a0edabf85cf2c0f2e51ef5>` 0x02
+
+- #define :ref:`TAG_SYS_APPLICATION_REF_NAME <group___cmp_app_itf___onlinetags_1gad13445ff1883ac1a99ffaac9d172d8b9>` 0x03
+
+- #define :ref:`TAG_CODE_INIT <group___cmp_app_itf___onlinetags_1ga5b0fde506d4e3450732fe4e8a494f8a1>` 0x60
+
+- #define :ref:`TAG_GLOBAL_INIT <group___cmp_app_itf___onlinetags_1ga92c3fbd37d3d01e9e84bc7908a87c901>` 0x61
+
+- #define :ref:`TAG_RELOC <group___cmp_app_itf___onlinetags_1gaec9197265c7d9db22e35a15a0d41e0e7>` 0x62
+
+- #define :ref:`TAG_DOWNLOAD_POU <group___cmp_app_itf___onlinetags_1ga7061309ef82c964acfd2cc2292d3658d>` 0x63
+
+- #define :ref:`TAG_GLOBAL_EXIT <group___cmp_app_itf___onlinetags_1gadf92bcc0c2acd7a9af47db2ad54f2695>` 0x64
+
+- #define :ref:`TAG_TARGET_INFO <group___cmp_app_itf___onlinetags_1ga87302c62ba77c181fbe509f2fef9d3a8>` 0x65
+
+- #define :ref:`TAG_PS_VERSION <group___cmp_app_itf___onlinetags_1ga1ed02129de461acb9125ac60f84cab52>` 0x66
+
+- #define :ref:`TAG_TARGET_SETTING_VERSION <group___cmp_app_itf___onlinetags_1gad3fa37c56e0cd4409b84b376970b5668>` 0x67
+
+- #define :ref:`TAG_TARGET_PREV_AREA <group___cmp_app_itf___onlinetags_1gaaec79b46967b0e74c35608fe92b2d358>` 0x68
+
+- #define :ref:`TAG_TARGET_FUNC_REF_RES <group___cmp_app_itf___onlinetags_1gadcc1a7c4bf2fcc56c494324455fec49b>` 0x69
+
+- #define :ref:`TAG_DOWNLOAD_CODE <group___cmp_app_itf___onlinetags_1ga770f9c8bdbecd9771525505c9d9f7295>` 0x6A
+
+- #define :ref:`TAG_MEMORY_SEGMENT_INFO <group___cmp_app_itf___onlinetags_1ga9792939df86d5a466407bfcb8d5b9ab9>` 0x6B
+
+- #define :ref:`TAG_OC_CONCURRENT_BEFORE <group___cmp_app_itf___onlinetags_1ga0438184fd48d67cfff9373a79431832e>` 0x6C
+
+- #define :ref:`TAG_OC2_REPEATABLE <group___cmp_app_itf___onlinetags_1gae67c485a1dbd8f5419a71352d1933930>` 0x6D
+
+- #define :ref:`TAG_APPLICATION_FLAGS <group___cmp_app_itf___onlinetags_1ga0950a99ce7433995cc8bf0f5844951c7>` 0x6E
+
+- #define :ref:`TAG_APPLICATION_CONTENT <group___cmp_app_itf___onlinetags_1ga8317bee70cb446bec2f727336df6ae8f>` 0x6F
+
+- #define :ref:`TAG_OC_CONCURRENT_AFTER <group___cmp_app_itf___onlinetags_1ga9d9e0650f40af00ba44b5fbb8e4f557f>` 0x70
+
+- #define :ref:`TAG_CODE_LOCATION_INFO <group___cmp_app_itf___onlinetags_1ga7d39b197518254526e340571543a2db8>` 0x71
+
+- #define :ref:`TAG_APPLICATION_DOWNLOAD_CRC <group___cmp_app_itf___onlinetags_1ga8ccf93f7a72d8a7a2fb3f236010a8468>` 0x72
+
+- #define :ref:`TAG_CPL_VERSION <group___cmp_app_itf___onlinetags_1ga819ada7726d13d0b05455ddb0c1b11a6>` 0x73
+
+- #define :ref:`TAG_ENCRYPTIONINFO <group___cmp_app_itf___onlinetags_1gaf0cd5f9195cd42b3b3d9a7e8fc8806e3>` 0x08
+
+- #define :ref:`TAG_FUNCTION_IEC_SUBT <group___cmp_app_itf___onlinetags_1gafbae3da09f6372e2a14c9bd995edc1e9>` 0x88
+
+- #define :ref:`TAG_FUNCTION_IEC <group___cmp_app_itf___onlinetags_1ga305070b1486cde4644aea8192e5a81f3>` 0x88
+
+- #define :ref:`TAG_FUNCTION_INFO <group___cmp_app_itf___onlinetags_1gaed44bef10c0c1ae437b3168a1bec66ae>` 0x01
+
+- #define :ref:`TAG_FUNCTION_NAME <group___cmp_app_itf___onlinetags_1ga83a17616f4773c78e5e43eb5f4730ac1>` 0x02
+
+- #define :ref:`TAG_DYNMOD_SUBT <group___cmp_app_itf___onlinetags_1ga27cbf77122433abefb2edc220b46e977>` 0xB0
+
+- #define :ref:`TAG_DYNMOD <group___cmp_app_itf___onlinetags_1ga512fb31e344db7ebe907ee59b3049bf3>` 0xB0
+
+- #define :ref:`TAG_DYNMOD_CMD <group___cmp_app_itf___onlinetags_1ga86571e60fc96b857468732b4228c300e>` 0x01
+
+- #define :ref:`TAG_DYNMOD_CODE <group___cmp_app_itf___onlinetags_1gaef535e3aaf813ad3944ead578abe1b65>` 0x02
+
+- #define :ref:`TAG_DYNMOD_NAME <group___cmp_app_itf___onlinetags_1ga0b694ebdbd8556f73561ad0a02cbbe98>` 0x04
+
+- #define :ref:`TAG_DYNMOD_TYPE <group___cmp_app_itf___onlinetags_1ga0404e955cc2d178bab5a74bdee218b80>` 0x05
+
+- #define :ref:`TAG_DYNMOD_LIBID <group___cmp_app_itf___onlinetags_1gaea2cf23d83e83f7a2384d0a71271bcf7>` 0x06
+
+- #define :ref:`TAG_DYNMOD_CMNAME <group___cmp_app_itf___onlinetags_1gae3a827cb8be6b4b97e822532cfcada06>` 0x07
+
+- #define :ref:`TAG_APPENCRYPTIONINFO <group___cmp_app_itf___onlinetags_1ga0a086cb1d903af9a337a130e2bf476b1>` 0x8A
+
+- #define :ref:`TAG_APPENCRYPTIONINFO_DATA <group___cmp_app_itf___onlinetags_1ga4098895558487d0400c7b4fd5c245a95>` 0x01
+
+- #define :ref:`TAG_APPENCRYPTIONINFO_SIGNATURE <group___cmp_app_itf___onlinetags_1ga204dc26309610f4e4af74b01dd059bf4>` 0x02
+
+- #define :ref:`TAG_APPL_BPINFO <group___cmp_app_itf___onlinetags_1ga6b22a93170b92cd85a9010adf27bde5c>` 0x12
+
+- #define :ref:`TAG_APPL_CONDITION <group___cmp_app_itf___onlinetags_1gaaa274325059351c9468fe36fb4fc5aa4>` 0x13
+
+- #define :ref:`TAG_APPL_FLOW_CONDITION_EXT <group___cmp_app_itf___onlinetags_1ga9d5d06696e12ccd27cdfae2437059529>` 0x14
+
+- #define :ref:`TAG_APPL_CONDITION_EXT <group___cmp_app_itf___onlinetags_1gae41a3a603a186407eb1f0233e02c847a>` 0x15
+
+- #define :ref:`TAG_APPL_INTERP_CODE <group___cmp_app_itf___onlinetags_1ga34b4d350272c4d65a7274ed6f8bb0824>` 0x16
+
+- #define :ref:`TAG_APPL_EXECUTIONPOINT <group___cmp_app_itf___onlinetags_1ga1735b705f31c2190f53a9a497654c565>` 0x17
+
+- #define :ref:`TAG_APPL_EP_ACTIVE_STNG <group___cmp_app_itf___onlinetags_1ga9c29742e5ba8bed8b24b516574cae1b4>` 0x18
+
+- #define :ref:`TAG_APPL_EP_CRC <group___cmp_app_itf___onlinetags_1gae6e573583adb2e17a217270196450c07>` 0x19
+
+- #define :ref:`TAG_APPL_BPDATAINFO <group___cmp_app_itf___onlinetags_1gac0284e2f04cfeb7aadd0330c7e17c1f2>` 0x1A
+
+- #define :ref:`TAG_APPL_FLOWINFO <group___cmp_app_itf___onlinetags_1ga5db02f2470d852de97f6d121e0354fcb>` 0x82
+
+- #define :ref:`TAG_MON_VARS <group___cmp_app_itf___onlinetags_1ga5fba9362c6ef08578b9d7ee5ca513cad>` 0x15
+
+- #define :ref:`TAG_FLOW_POSITION <group___cmp_app_itf___onlinetags_1ga1a951df5addbfd662520388b45b01dfd>` 0x16
+
+- #define :ref:`TAG_FLOW_VALUE <group___cmp_app_itf___onlinetags_1ga2869a4182d41fc03c1aa33b176f58bcb>` 0x83
+
+- #define :ref:`TAG_FLOW_VALUE_INFO <group___cmp_app_itf___onlinetags_1ga8158f1a6af5483af908d563d3bdc08f9>` 0x13
+
+- #define :ref:`READ_FLOW_REPLY <group___cmp_app_itf___onlinetags_1ga36a1bec06755258123c9626323b8766f>` 0x17
+
+- #define :ref:`TAG_EMBEDDED_MONITORING2_EXP <group___cmp_app_itf___onlinetags_1gad24b65d3afbb2e65f71737b2dddf4019>` 0x18
+
+- #define :ref:`TAG_BOOTPROJECT <group___cmp_app_itf___onlinetags_1gab858c4dab0e36e082e0d1bd60ca1d2ec>` 0xB30
+
+- #define :ref:`TAG_BOOTPROJECT2 <group___cmp_app_itf___onlinetags_1gab2d12575a14c3e12e90bb5458f3fb8dc>` 0x81
+
+- #define :ref:`TAG_BOOTPROJECT_APP_NAME <group___cmp_app_itf___onlinetags_1gac031d3b39c0be6272df4989af06d3789>` 0x70
+
+- #define :ref:`TAG_BOOTPROJECT_APP_GUIDS <group___cmp_app_itf___onlinetags_1ga5e93f70a812394af6bde3fec18a81ff5>` 0x71
+
+- #define :ref:`TAG_BOOTPROJECT_PARENT_NAME <group___cmp_app_itf___onlinetags_1ga91d2dbff577ca7c541d3443146c8e3e4>` 0x72
+
+- #define :ref:`TAG_BOOTPROJECT_PARENT_GUIDS <group___cmp_app_itf___onlinetags_1gab52e1fc3d480730bcad7b458fa70a7bf>` 0x73
+
+- #define :ref:`TAG_BOOTPROJECT_SESSIONID <group___cmp_app_itf___onlinetags_1gae83de367b11684acafbca58d97aa1a29>` 0x74
+
+- #define :ref:`TAG_BOOTPROJECT_TARGETID <group___cmp_app_itf___onlinetags_1ga3f71e20fd72856d8b01ee402e02243c1>` 0x75
+
+- #define :ref:`TAG_BOOTPROJECT_TARGETVERSION <group___cmp_app_itf___onlinetags_1ga307b1174125eae3529af39400c3e41ba>` 0x76
+
+- #define :ref:`TAG_BOOTPROJECT_TARGETTYPE <group___cmp_app_itf___onlinetags_1ga7c2a8c934eb5e90d85b3a774f783835b>` 0x77
+
+- #define :ref:`TAG_APPLICATION_NOT_CREATED <group___cmp_app_itf___onlinetags_1ga73abb3762dabd91c6a1c89a9565eb42b>` 0x75
+
+- #define :ref:`TAG_ARCHIVE_INFO <group___cmp_app_itf___onlinetags_1ga0bd1228e82409df1c91d6e47c63557e1>` 0x87
+
+- #define :ref:`TAG_CHECK_SINGLE_CYCLE <group___cmp_app_itf___onlinetags_1gadc73297a58bd41a7f049f05a7aa5ac09>` 0x01
+
+- #define :ref:`TAG_APPL_LOGINTOAPP <group___cmp_app_itf___onlinetags_1ga53a377312fd7d627fbe56dbbcf85e42c>` 0x01
+
+- #define :ref:`TAG_APPL_LOGINTOAPP_SUBT <group___cmp_app_itf___onlinetags_1ga8a2fcde1ed874d54de2f2ff0eaf245e6>` 0x81
+
+- #define :ref:`TAG_APPL_APPLICATIONDESC <group___cmp_app_itf___onlinetags_1gaf38c8d1a197dc432053ed97df47ebb84>` 0x81
+
+- #define :ref:`TAG_APPL_APPLNAME <group___cmp_app_itf___onlinetags_1ga619ed1888d1ea73cfac2b1c0152c40b0>` 0x10
+
+- #define :ref:`TAG_APPL_RIGHTS <group___cmp_app_itf___onlinetags_1ga51c7dce3d8afcd30ca7624cba594dd70>` 0x11
+
+- #define :ref:`TAG_APPL_PARENT_APPLNAME <group___cmp_app_itf___onlinetags_1gaee040107b56755987a4c1908cea8bc51>` 0x12
+
+- #define :ref:`TAG_APPL_RETAIN_FILENAME <group___cmp_app_itf___onlinetags_1gadc801e4698a20cab49ce25bb01c6591a>` 0x13
+
+- #define :ref:`TAG_APPL_RETAIN_STATE <group___cmp_app_itf___onlinetags_1ga3835e3bf9fb7751068c89ed953918e21>` 0x14
+
+- #define :ref:`TAG_PROJECT_NAME <group___cmp_app_itf___onlinetags_1ga8c999d53332af12624a55a8a146a6404>` 0x01
+
+- #define :ref:`TAG_VERSION <group___cmp_app_itf___onlinetags_1ga94284b8fe423ea9882a11e8879d26389>` 0x02
+
+- #define :ref:`TAG_DATE_OF_LAST_MODIFICATION <group___cmp_app_itf___onlinetags_1ga3bda54f65de28bfcaf4566b2451bf535>` 0x03
+
+- #define :ref:`TAG_AUTHOR <group___cmp_app_itf___onlinetags_1ga0e86dded70a29a89a4b57cadf72eae94>` 0x04
+
+- #define :ref:`TAG_DESCRIPTION <group___cmp_app_itf___onlinetags_1ga4d6618e9813d05a46d674c7b3277b912>` 0x05
+
+- #define :ref:`TAG_PROFILE <group___cmp_app_itf___onlinetags_1ga438fe4e849bf9abc0ef7db8d73b684d9>` 0x06
+
+- #define :ref:`TAG_TITLE <group___cmp_app_itf___onlinetags_1ga9bf0c6c65d0b01d956c54f1194b42120>` 0x07
+
+- #define :ref:`TAG_COMPILER_VERSION <group___cmp_app_itf___onlinetags_1gaa8bdf11d1dec10d248296e2b11e0eb14>` 0x08
+
+- #define :ref:`TAG_APPL_SESSION_ID <group___cmp_app_itf___onlinetags_1ga26ee123e13ee951a4a04cdea8889e510>` 0x00
+
+- #define :ref:`TAG_APPL_RESET_OPTION <group___cmp_app_itf___onlinetags_1gad9fbaf70e8420e0ea62613338a5dd8ba>` 0x10
+
+- #define :ref:`TAG_APPL_ID <group___cmp_app_itf___onlinetags_1gae45ca671ea2bcee3220673f206407b1c>` 0x11
+
+- #define :ref:`TAG_APPL_APPLPERSISTENTINFO <group___cmp_app_itf___onlinetags_1gabc6f108e0c818b1244ea270e0f055888>` 0x12
+
+- #define :ref:`TAG_APPL_AREA_INDEX <group___cmp_app_itf___onlinetags_1gaaf9053906eb2137cc2406c88cebf4923>` 0x13
+
+- #define :ref:`TAG_APPL_AREA_ADDRESS <group___cmp_app_itf___onlinetags_1ga8767421178098ab15c9892f9d041c4e2>` 0x14
+
+- #define :ref:`TAG_APPLIST <group___cmp_app_itf___onlinetags_1ga1be6509e134737a2bcade2467032e831>` 0x01
+
+- #define :ref:`TAG_APPLIST_WITHINFO <group___cmp_app_itf___onlinetags_1ga01cf831d49da6a947d0883b31046b84c>` 0x06
+
+- #define :ref:`TAG_APPLIST_RESPONSE_SUBT <group___cmp_app_itf___onlinetags_1gae34cf008ba1a1e1d6d3fcbeb28bf8a21>` 0x81
+
+- #define :ref:`TAG_APPLIST_RESPONSE_STARTINDEX <group___cmp_app_itf___onlinetags_1gab0faba402d61331770cd531ab6180dab>` 0x02
+
+- #define :ref:`TAG_APPLIST_RESPONSE_NAME <group___cmp_app_itf___onlinetags_1ga8944abbdb7f71943ee3ff8ee799e230a>` 0x03
+
+- #define :ref:`TAG_APPLIST_RESPONSE_STATEANDNAME <group___cmp_app_itf___onlinetags_1gaddfe5ad4ba772cad937542ea8838181f>` 0x04
+
+- #define :ref:`TAG_FORCELIST_RESPONSE <group___cmp_app_itf___onlinetags_1ga177c1f045ba3d3b4cd94ff5b3ac0ca14>` 0x81
+
+- #define :ref:`TAG_ERROR_RESPONSE <group___cmp_app_itf___onlinetags_1ga05672e3a7ceb2243a195989e2adc5dbf>` 0x01
+
+- #define :ref:`TAG_APP_FILE_CONSISTENCY <group___cmp_app_itf___onlinetags_1ga421d58165dd6a9181d85040c176db51d>` 0x02
+
+- #define :ref:`READ_STATUS_REPLY <group___cmp_app_itf___onlinetags_1gad1c789d22e69fc5e8439813a06f92d13>` 0x82
+
+- #define :ref:`READ_STATUS_RESULT <group___cmp_app_itf___onlinetags_1ga5522b89ca4bea279fc04543503c47f6d>` 0x13
+
+- #define :ref:`READ_STATUS_EXECUTIONPOSITION <group___cmp_app_itf___onlinetags_1ga4470753f7946ea612b323b0e5997f003>` 0x14
+
+- #define :ref:`READ_STATUS_BPHITCOUNT <group___cmp_app_itf___onlinetags_1ga97447c74756df1603a5b846e768a558a>` 0x15
+
+- #define :ref:`READ_STATUS_INSTANCEPOSITION <group___cmp_app_itf___onlinetags_1ga33f2d522ae30061d1bc10fbaa24a2d3d>` 0x16
+
+- #define :ref:`READ_STATUS_DEBUGTASK <group___cmp_app_itf___onlinetags_1ga8ffc7401a148b722b9bb4db99f10977e>` 0x17
+
+- #define :ref:`READ_STATUS_VERSION <group___cmp_app_itf___onlinetags_1ga2a0c707cc0d32ec9494a79d49eb9ef7a>` 0x18
+
+- #define :ref:`READ_USER_NOTIFY <group___cmp_app_itf___onlinetags_1ga26073512cdda09cd03ad170d1403542b>` 0x19
+
+- #define :ref:`TAG_APPL_TASK_INDEX <group___cmp_app_itf___onlinetags_1gac9a26f8efefa52e701dc22046532aeb1>` 0x1A
+
+- #define :ref:`READ_STATUS_LAST_CHANGE <group___cmp_app_itf___onlinetags_1gac12179c401d8349ed61c6cc154f7a2f1>` 0x1B
+
+- #define :ref:`READ_STATUS_DATABP_POSITION <group___cmp_app_itf___onlinetags_1ga4fb722be6b8f77f610b15d900deb0eab>` 0x1C
+
+- #define :ref:`READ_STATUS_BPHITCOUNTEX <group___cmp_app_itf___onlinetags_1gab464c5a24af14f6db3e8dfcec869824b>` 0x20
+
+- #define :ref:`READ_STATUS_STACKPOINTER <group___cmp_app_itf___onlinetags_1ga3c75b10fda5fb596946c35b543b2d715>` 0x21
+
+- #define :ref:`TAG_OPERATION_MODE <group___cmp_app_itf___onlinetags_1gadd89f3f0c49392032578c5c2ff238e21>` 0x32
+
+- #define :ref:`SRV_SETNEXT_INFO <group___cmp_app_itf___onlinetags_1gaaf0389d79890b0a2e8a7f0caf1313d0f>` 0x81
+
+- #define :ref:`SRV_SETNEXT_APPLICATION <group___cmp_app_itf___onlinetags_1ga21201d5a9af72578acb21ef6f30ff3a8>` 0x11
+
+- #define :ref:`SRV_SETNEXT_POSITION <group___cmp_app_itf___onlinetags_1ga53aa606792a8afac7143e82bfd058dc3>` 0x12
+
+- #define :ref:`SRV_SETNEXT_REGISTERINFO <group___cmp_app_itf___onlinetags_1ga45e5c8177f87f8910e7490290aa76996>` 0x13
+
+- #define :ref:`TAG_REPLY_EXTERNAL_REFERENCE_ERROR_LIST <group___cmp_app_itf___onlinereplytags_1gac70ddd10d91e45810a5520a5593acf42>` 0x01
+
+- #define :ref:`TAG_REPLY_EXTERNAL_REFERENCE_RESULT <group___cmp_app_itf___onlinereplytags_1ga9ce6076b069638328fddd34c4bd97874>` 0x02
+
+- #define :ref:`TAG_REPLY_SYS_APP_ERROR_LIST <group___cmp_app_itf___onlinereplytags_1gab3aa10c8dc9211dc65d6c590c83d9b8a>` 0x03
+
+- #define :ref:`ITF_CmpApp <group___cmp_app_itf_1gae41825dc12d0de804c0adc65d69603c5>`
+
+- #define :ref:`EXTITF_CmpApp <group___cmp_app_itf_1ga37344f702c57b66cee7ebbe2a7ecf2a0>`
+
+Typedefs
+--------
+
+- typedef void HUGEPTR(* :ref:`PF_GLOBAL_INIT <group___cmp_app_itf___applicationfunctionpointerdefinitions_1ga50f06ce3bff95736c1ff705fa91edac9>`)(RTS_IEC_BOOL)
+
+- typedef void HUGEPTR(* :ref:`PF_GLOBAL_EXIT <group___cmp_app_itf___applicationfunctionpointerdefinitions_1ga906d0460ffafb0991e39d425d6a42251>`)(void)
+
+- typedef void HUGEPTR(* :ref:`PF_DOWNLOAD_POU <group___cmp_app_itf___applicationfunctionpointerdefinitions_1ga5c22f439c3e35df63ebdbffab2d5c28b>`)(void)
+
+- typedef void HUGEPTR(* :ref:`PF_RELOC <group___cmp_app_itf___applicationfunctionpointerdefinitions_1ga1b2c6876a037a1ab6ba2994596bdfe05>`)(RTS_UI8 **)
+
+- typedef void HUGEPTR(* :ref:`PF_CODE_INIT <group___cmp_app_itf___applicationfunctionpointerdefinitions_1gad2a617c51953223d00397085586c70bb>`)(void)
+
+- typedef void HUGEPTR(* :ref:`PF_PROPERTY_CALL <group___cmp_app_itf___applicationfunctionpointerdefinitions_1ga8a727584ad376d944d060575e17357dc>`)(void *)
+
+- typedef struct :ref:`_APPLICATION_DOWNLOAD_INFO <struct___a_p_p_l_i_c_a_t_i_o_n___d_o_w_n_l_o_a_d___i_n_f_o>` :ref:`APPLICATION_DOWNLOAD_INFO <group___cmp_app_itf___staticdefines_1gaacbf5aa630b9ef51e61e3bfa95237c53>`
+
+- typedef struct :ref:`_EXT_REF_INFO <struct___e_x_t___r_e_f___i_n_f_o>` :ref:`EXT_REF_INFO <group___cmp_app_itf___staticdefines_1ga7e0486dd2f5f3da8d09f2c28d134bdae>`
+
+- typedef struct :ref:`T_FUNCTION_INFO <struct_t___f_u_n_c_t_i_o_n___i_n_f_o>` :ref:`FUNCTION_INFO <group___cmp_app_itf___staticdefines_1gadab27635e448baf786ccbb6fc3a01327>`
+
+- typedef struct :ref:`tagPOU_DESCRIPTOR <structtag_p_o_u___d_e_s_c_r_i_p_t_o_r>` :ref:`POU_DESCRIPTOR <group___cmp_app_itf_1ga9716fdb931167fdab84ed610b1de1cdf>`
+
+- typedef struct :ref:`tagPOU_CALL_ENTRY <structtag_p_o_u___c_a_l_l___e_n_t_r_y>` :ref:`POU_CALL_ENTRY <group___cmp_app_itf_1gaac37553b55a342f757624cfebc87f57b>`
+
+- typedef struct :ref:`tagAREA_CALL_ENTRIES_TABLE <structtag_a_r_e_a___c_a_l_l___e_n_t_r_i_e_s___t_a_b_l_e>` :ref:`AREA_CALL_ENTRIES_TABLE <group___cmp_app_itf_1ga61d119b0ce1901973fc2596216b58ad9>`
+
+- typedef struct :ref:`tagAreaOffsetDataRef <structtag_area_offset_data_ref>` :ref:`AreaOffsetDataRef <group___cmp_app_itf_1ga659a8e9a2095de6884dcde3b6415d8d2>`
+
+- typedef struct :ref:`tagAreaOffsetBitDataRef <structtag_area_offset_bit_data_ref>` :ref:`AreaOffsetBitDataRef <group___cmp_app_itf_1ga64b2e79a252c2fd6bdc414dab2852a9b>`
+
+- typedef struct :ref:`tagPropertyDataRef <structtag_property_data_ref>` :ref:`PropertyDataRef <group___cmp_app_itf_1ga49280ec40503a5b3e3b59f7fec4f2160>`
+
+- typedef struct :ref:`tagVarDataRef <structtag_var_data_ref>` :ref:`VarDataRef <group___cmp_app_itf_1ga51361a0fdd7ac8b491d32e18f15b5ba2>`
+
+- typedef struct :ref:`tagVarValue <structtag_var_value>` :ref:`VarValue <group___cmp_app_itf_1gabad6f24dff9cb81dfa4a5f0ca92ef522>`
+
+- typedef struct :ref:`tagVarDesc <structtag_var_desc>` :ref:`VarDesc <group___cmp_app_itf_1ga5a7780c49c39f922d55fb6e051c3f1c8>`
+
+- typedef struct :ref:`_RTS_VERSION_STRUCT <struct___r_t_s___v_e_r_s_i_o_n___s_t_r_u_c_t>` :ref:`RTS_VERSION_STRUCT <group___cmp_app_itf_1ga38ede9349c2fa917bc55855ed77b9b40>`
+
+- typedef struct :ref:`tagAPPLICATION <structtag_a_p_p_l_i_c_a_t_i_o_n>` :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>`
+
+- typedef struct :ref:`_COMPACT_CODE_HEADER <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r>` :ref:`COMPACT_CODE_HEADER <group___cmp_app_itf___compactdownloadheader_1ga8574961f17d47d200c0d7dc9164badfb>`
+
+- typedef struct :ref:`_COMPACT_BLOB_HEADER <struct___c_o_m_p_a_c_t___b_l_o_b___h_e_a_d_e_r>` :ref:`COMPACT_BLOB_HEADER <group___cmp_app_itf___compactdownloadheader_1gad5b575ee18095d785bdce1ad58caad1b>`
+
+- typedef struct :ref:`tagAPP_MEMORY_SEGMENT <structtag_a_p_p___m_e_m_o_r_y___s_e_g_m_e_n_t>` :ref:`APP_MEMORY_SEGMENT <group___cmp_app_itf___applicationmemorysegment_1ga15634c23ece2d9f1319e8abf895b38f5>`
+
+- typedef struct :ref:`tagappcallgetproperty_struct <structtagappcallgetproperty__struct>` :ref:`appcallgetproperty_struct <group___cmp_app_itf_1gacef6e5980cd73b38df5ec5970fd45319>`
+
+- typedef struct :ref:`tagappcallgetproperty2_struct <structtagappcallgetproperty2__struct>` :ref:`appcallgetproperty2_struct <group___cmp_app_itf_1ga42bfedb64a5902481dc448e78770328c>`
+
+- typedef struct :ref:`tagappcallgetproperty2release_struct <structtagappcallgetproperty2release__struct>` :ref:`appcallgetproperty2release_struct <group___cmp_app_itf_1ga8e8849de9df2d7f18b13189c6a3ec1a6>`
+
+- typedef struct :ref:`tagappcallsetproperty_struct <structtagappcallsetproperty__struct>` :ref:`appcallsetproperty_struct <group___cmp_app_itf_1gae1cb5a5f77ad4bceea2076ff62bb36ba>`
+
+- typedef struct :ref:`tagappfindapplicationbyname_struct <structtagappfindapplicationbyname__struct>` :ref:`appfindapplicationbyname_struct <group___cmp_app_itf_1gaf23bee9bb590b39cc75b42d330472443>`
+
+- typedef struct :ref:`tagappgenerateexception_struct <structtagappgenerateexception__struct>` :ref:`appgenerateexception_struct <group___cmp_app_itf_1ga0ac80e643215123ca3bc7cebeaf86221>`
+
+- typedef struct :ref:`tagappgetapplicationbyareaaddress_struct <structtagappgetapplicationbyareaaddress__struct>` :ref:`appgetapplicationbyareaaddress_struct <group___cmp_app_itf_1ga7f28dca06c5892098ac96fe687f45064>`
+
+- typedef struct :ref:`tagappgetapplicationinfo_struct <structtagappgetapplicationinfo__struct>` :ref:`appgetapplicationinfo_struct <group___cmp_app_itf_1ga327058d960d281ab82f87aed0f2aad01>`
+
+- typedef struct :ref:`tagappgetareaaddress_struct <structtagappgetareaaddress__struct>` :ref:`appgetareaaddress_struct <group___cmp_app_itf_1gae0e567104104ed85794080ba7f1c7ae8>`
+
+- typedef struct :ref:`tagappgetareaoffsetbyaddress_struct <structtagappgetareaoffsetbyaddress__struct>` :ref:`appgetareaoffsetbyaddress_struct <group___cmp_app_itf_1ga45c002ec65b28408dddec7a85b797852>`
+
+- typedef struct :ref:`tagappgetareapointer_struct <structtagappgetareapointer__struct>` :ref:`appgetareapointer_struct <group___cmp_app_itf_1gaaa6e1fdef52114932470f8b695e98f00>`
+
+- typedef struct :ref:`tagappgetareasize_struct <structtagappgetareasize__struct>` :ref:`appgetareasize_struct <group___cmp_app_itf_1gae44e1c4b3046a05961b0ec63b8f9eb8d>`
+
+- typedef struct :ref:`tagappgetcurrent_struct <structtagappgetcurrent__struct>` :ref:`appgetcurrent_struct <group___cmp_app_itf_1gac59f1bf9460e6939f50d5944a419a05d>`
+
+- typedef struct :ref:`tagappgetfirstapp_struct <structtagappgetfirstapp__struct>` :ref:`appgetfirstapp_struct <group___cmp_app_itf_1gaf0e6d37aed8e14fef91c2d3726cd3ac5>`
+
+- typedef struct :ref:`tagappgetnextapp_struct <structtagappgetnextapp__struct>` :ref:`appgetnextapp_struct <group___cmp_app_itf_1gac84d93a28f133c309aa08c2eb627a05b>`
+
+- typedef struct :ref:`tagappgetprojectinformation_struct <structtagappgetprojectinformation__struct>` :ref:`appgetprojectinformation_struct <group___cmp_app_itf_1gab7029936118f68d523d86502a9d00dfa>`
+
+- typedef struct :ref:`tagappgetsegment_struct <structtagappgetsegment__struct>` :ref:`appgetsegment_struct <group___cmp_app_itf_1ga025dc9a89abbaa94bd12db4fc9364589>`
+
+- typedef struct :ref:`tagappgetsegmentaddress_struct <structtagappgetsegmentaddress__struct>` :ref:`appgetsegmentaddress_struct <group___cmp_app_itf_1ga9e73a99daf27c628131e00f4f3983cac>`
+
+- typedef struct :ref:`tagappgetsegmentsize_struct <structtagappgetsegmentsize__struct>` :ref:`appgetsegmentsize_struct <group___cmp_app_itf_1gab889eb40bd5f1400424b8c8341a968d0>`
+
+- typedef struct :ref:`tagappnumofactivesessions_struct <structtagappnumofactivesessions__struct>` :ref:`appnumofactivesessions_struct <group___cmp_app_itf_1gadc61e40173b0bce1c3fb1bfbc632d825>`
+
+- typedef struct :ref:`tagappregisterpropaccessfunctions_struct <structtagappregisterpropaccessfunctions__struct>` :ref:`appregisterpropaccessfunctions_struct <group___cmp_app_itf_1ga4a3d296f6cd30813af8d978462fbc8c1>`
+
+- typedef struct :ref:`tagappreset_struct <structtagappreset__struct>` :ref:`appreset_struct <group___cmp_app_itf_1ga58654bd3e6e1b701a220818518c33638>`
+
+- typedef struct :ref:`tagapprestoreretainsfromfile_struct <structtagapprestoreretainsfromfile__struct>` :ref:`apprestoreretainsfromfile_struct <group___cmp_app_itf_1ga366a66be64e7e3f8e578eebfd4e154c1>`
+
+- typedef struct :ref:`tagappstartapplication_struct <structtagappstartapplication__struct>` :ref:`appstartapplication_struct <group___cmp_app_itf_1ga3f47609a962022ba757448e722ee3fc6>`
+
+- typedef struct :ref:`tagappstopapplication_struct <structtagappstopapplication__struct>` :ref:`appstopapplication_struct <group___cmp_app_itf_1ga742c9d352a710e4fd7550063e6cbbf86>`
+
+- typedef struct :ref:`tagappstoreretainsinfile_struct <structtagappstoreretainsinfile__struct>` :ref:`appstoreretainsinfile_struct <group___cmp_app_itf_1gacac0c4b53f72206a5a435dd16d77c7fe>`
+
+- typedef struct :ref:`_APP_MEMORY_SEGMENT_INFO <struct___a_p_p___m_e_m_o_r_y___s_e_g_m_e_n_t___i_n_f_o>` :ref:`APP_MEMORY_SEGMENT_INFO <group___cmp_app_itf___applicationmemorysegmentinformation_1ga8991311802c92ebdb9392440ae1a2ff9>`
+
+- typedef :ref:`ICmpApp_C <struct_i_cmp_app___c>` :ref:`ICmpApp <group___cmp_app_itf_1ga0f55546a1fe4a6e7e41354b8c2fd6c3f>`
+
+Enumerations
+------------
+
+- enum :ref:`SecurityAppDownloadMode <group___cmp_app_itf_1ga28793086d624a1c83e4e5b51779c6bd4>` { :ref:`DownloadMode_NoSecurity <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4ac57261d28236c2bb5724414333f2b45b>`, :ref:`DownloadMode_ALL <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4a9588bf20429b2dd406eb64b5d776330f>`, :ref:`DownloadMode_MIN_ENCRYPTED <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4a064b98b6498467f57e29b109020d7f1e>`, :ref:`DownloadMode_MIN_SIGNED <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4a251525ffbba73c65b99991cabce3a4bc>`, :ref:`DownloadMode_SIGNED_AND_ENCRYPTED <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4a0b3052ed5f773995b213e4ba22a92bec>` }
+
+- enum :ref:`DRT_DATAREFTYPE <group___cmp_app_itf_1ga19a704cc12b4713160417e496c5e343c>` { :ref:`DRT_AREA_OFFSET <group___cmp_app_itf_1gga19a704cc12b4713160417e496c5e343ca10568544905a6b154ebd265a53c886ed>`, :ref:`DRT_PROPERTY <group___cmp_app_itf_1gga19a704cc12b4713160417e496c5e343cae1c9d9a06baa4222d7ad968bb33894f0>`, :ref:`DRT_AREA_OFFSET_BIT <group___cmp_app_itf_1gga19a704cc12b4713160417e496c5e343caef47d5bde162eae01245f1adb10a787f>` }
+
+- enum :ref:`AreaAllocationType <group___cmp_app_itf___downloadflags_1ga362ded93ca6584a4c3e3945601f1b4c3>` { :ref:`AAT_NONE <group___cmp_app_itf___downloadflags_1gga362ded93ca6584a4c3e3945601f1b4c3a75f0a5fbd097d4b8443c3dbb89b9fd4c>`, :ref:`AAT_EVENT <group___cmp_app_itf___downloadflags_1gga362ded93ca6584a4c3e3945601f1b4c3a9030fe94729bf6a7665413ab13dfee23>`, :ref:`AAT_ALLOCAREA <group___cmp_app_itf___downloadflags_1gga362ded93ca6584a4c3e3945601f1b4c3a43ab41bf9c6f4b72dd1b6c41a183adb3>`, :ref:`AAT_ALLOCDATA <group___cmp_app_itf___downloadflags_1gga362ded93ca6584a4c3e3945601f1b4c3aa01555eefb491245338a6219a431f5cd>`, :ref:`AAT_ALLOCCODE <group___cmp_app_itf___downloadflags_1gga362ded93ca6584a4c3e3945601f1b4c3abc137157c2cddb36bf4fbc8260e24b64>`, :ref:`AAT_ALLOCRETAIN <group___cmp_app_itf___downloadflags_1gga362ded93ca6584a4c3e3945601f1b4c3aa5c357ddac14310a65e7b6e62a4bfc85>` }
+
+- enum :ref:`DynamicRTSModuleCmd <group___cmp_app_itf___compactdownloadheader_1ga11fd1bbad20846d061a7490c7d40c4ae>` { :ref:`DRMC_Append <group___cmp_app_itf___compactdownloadheader_1gga11fd1bbad20846d061a7490c7d40c4aeada2cca86e8d6e7388951af63a2929ae1>`, :ref:`DRMC_Create <group___cmp_app_itf___compactdownloadheader_1gga11fd1bbad20846d061a7490c7d40c4aeadb3f1f40d86eb2e32068bc8eba6112d6>`, :ref:`DRMC_Load <group___cmp_app_itf___compactdownloadheader_1gga11fd1bbad20846d061a7490c7d40c4aea5f14b08838f3ddc186d2be30ade10ebc>` }
+
+- enum :ref:`DynamicRTSModuleType <group___cmp_app_itf___compactdownloadheader_1ga4733c11723cce50e5aab41258eebaa0c>` { :ref:`DRMT_SourceModule <group___cmp_app_itf___compactdownloadheader_1gga4733c11723cce50e5aab41258eebaa0ca2b4cf476cdc442ed398357536e58a303>`, :ref:`DRMT_LibraryModule <group___cmp_app_itf___compactdownloadheader_1gga4733c11723cce50e5aab41258eebaa0ca2c893d200e258dd6f0118a375ef904dd>` }
+
+Functions
+---------
+
+- void :ref:`appcallgetproperty <group___cmp_app_itf_1ga37d39d297807176634764b9ba2c19d4b>` (:ref:`appcallgetproperty_struct <group___cmp_app_itf_1gacef6e5980cd73b38df5ec5970fd45319>` * p)
+
+- void :ref:`appcallgetproperty2 <group___cmp_app_itf_1ga2e7f0f42a3a8523f8855a9f1920314f8>` (:ref:`appcallgetproperty2_struct <group___cmp_app_itf_1ga42bfedb64a5902481dc448e78770328c>` * p)
+
+- void :ref:`appcallgetproperty2release <group___cmp_app_itf_1ga6eba224c20f810cb1048aae336bfb128>` (:ref:`appcallgetproperty2release_struct <group___cmp_app_itf_1ga8e8849de9df2d7f18b13189c6a3ec1a6>` * p)
+
+- void :ref:`appcallsetproperty <group___cmp_app_itf_1ga3e5e5fd14bb01c9eab6dd5a5ba653c40>` (:ref:`appcallsetproperty_struct <group___cmp_app_itf_1gae1cb5a5f77ad4bceea2076ff62bb36ba>` * p)
+
+- void :ref:`appfindapplicationbyname <group___cmp_app_itf_1ga53866ebb972d4c68ab36ae99e5af9d5a>` (:ref:`appfindapplicationbyname_struct <group___cmp_app_itf_1gaf23bee9bb590b39cc75b42d330472443>` * p)
+
+- void :ref:`appgenerateexception <group___cmp_app_itf_1gae55f4b1789c330250f732fa1b66ff5c2>` (:ref:`appgenerateexception_struct <group___cmp_app_itf_1ga0ac80e643215123ca3bc7cebeaf86221>` * p)
+
+- void :ref:`appgetapplicationbyareaaddress <group___cmp_app_itf_1ga0122e2221a2f93fe107ba0c466a9a887>` (:ref:`appgetapplicationbyareaaddress_struct <group___cmp_app_itf_1ga7f28dca06c5892098ac96fe687f45064>` * p)
+
+- void :ref:`appgetapplicationinfo <group___cmp_app_itf_1ga258d7b558d14c06ce7c8aff5e736221b>` (:ref:`appgetapplicationinfo_struct <group___cmp_app_itf_1ga327058d960d281ab82f87aed0f2aad01>` * p)
+
+- void :ref:`appgetareaaddress <group___cmp_app_itf_1ga5ff918e2a90bc7cf562d431d91a71b4d>` (:ref:`appgetareaaddress_struct <group___cmp_app_itf_1gae0e567104104ed85794080ba7f1c7ae8>` * p)
+
+- void :ref:`appgetareaoffsetbyaddress <group___cmp_app_itf_1gae44ed95ac6437df0f87178cbb11452da>` (:ref:`appgetareaoffsetbyaddress_struct <group___cmp_app_itf_1ga45c002ec65b28408dddec7a85b797852>` * p)
+
+- void :ref:`appgetareapointer <group___cmp_app_itf_1ga3f2e130c64d3d5bd7ec0636ed6406e8c>` (:ref:`appgetareapointer_struct <group___cmp_app_itf_1gaaa6e1fdef52114932470f8b695e98f00>` * p)
+
+- void :ref:`appgetareasize <group___cmp_app_itf_1gab247e25821182541af1b7e5075a6134f>` (:ref:`appgetareasize_struct <group___cmp_app_itf_1gae44e1c4b3046a05961b0ec63b8f9eb8d>` * p)
+
+- void :ref:`appgetcurrent <group___cmp_app_itf_1gacda31989bd22719f8d1531554e0516b4>` (:ref:`appgetcurrent_struct <group___cmp_app_itf_1gac59f1bf9460e6939f50d5944a419a05d>` * p)
+
+- void :ref:`appgetfirstapp <group___cmp_app_itf_1ga94d24fbfabf645cc9d0db3cfd2aceae4>` (:ref:`appgetfirstapp_struct <group___cmp_app_itf_1gaf0e6d37aed8e14fef91c2d3726cd3ac5>` * p)
+
+- void :ref:`appgetnextapp <group___cmp_app_itf_1ga0223d02d98a97a7677fe55ef1d23b458>` (:ref:`appgetnextapp_struct <group___cmp_app_itf_1gac84d93a28f133c309aa08c2eb627a05b>` * p)
+
+- void :ref:`appgetprojectinformation <group___cmp_app_itf_1ga3e831eba840a949037fcad6f81a4df7b>` (:ref:`appgetprojectinformation_struct <group___cmp_app_itf_1gab7029936118f68d523d86502a9d00dfa>` * p)
+
+- void :ref:`appgetsegment <group___cmp_app_itf_1gac2bf4762168f52f416f31a7d8b7d9b1d>` (:ref:`appgetsegment_struct <group___cmp_app_itf_1ga025dc9a89abbaa94bd12db4fc9364589>` * p)
+
+- void :ref:`appgetsegmentaddress <group___cmp_app_itf_1gab7af680773f447939c46f31accc3c221>` (:ref:`appgetsegmentaddress_struct <group___cmp_app_itf_1ga9e73a99daf27c628131e00f4f3983cac>` * p)
+
+- void :ref:`appgetsegmentsize <group___cmp_app_itf_1gaecc20a92e3271b2961f285ce1384d497>` (:ref:`appgetsegmentsize_struct <group___cmp_app_itf_1gab889eb40bd5f1400424b8c8341a968d0>` * p)
+
+- void :ref:`appnumofactivesessions <group___cmp_app_itf_1ga61cff74d26b9778b00ebeef88429a04f>` (:ref:`appnumofactivesessions_struct <group___cmp_app_itf_1gadc61e40173b0bce1c3fb1bfbc632d825>` * p)
+
+- void :ref:`appregisterpropaccessfunctions <group___cmp_app_itf_1gae155395e982119d1bab53a0924a71a3f>` (:ref:`appregisterpropaccessfunctions_struct <group___cmp_app_itf_1ga4a3d296f6cd30813af8d978462fbc8c1>` * p)
+
+- void :ref:`appreset <group___cmp_app_itf_1gaa74e19b51e3eafd3aedc72dbc2b8f3a5>` (:ref:`appreset_struct <group___cmp_app_itf_1ga58654bd3e6e1b701a220818518c33638>` * p)
+
+- void :ref:`apprestoreretainsfromfile <group___cmp_app_itf_1ga618f3d44e9fe0dee8146a69845b4f11c>` (:ref:`apprestoreretainsfromfile_struct <group___cmp_app_itf_1ga366a66be64e7e3f8e578eebfd4e154c1>` * p)
+
+- void :ref:`appstartapplication <group___cmp_app_itf_1gaaa9ba3388257a837b2bf2cc4b6b0e7fc>` (:ref:`appstartapplication_struct <group___cmp_app_itf_1ga3f47609a962022ba757448e722ee3fc6>` * p)
+
+- void :ref:`appstopapplication <group___cmp_app_itf_1ga334bacdfae5d5e45113852af77c4c3a7>` (:ref:`appstopapplication_struct <group___cmp_app_itf_1ga742c9d352a710e4fd7550063e6cbbf86>` * p)
+
+- void :ref:`appstoreretainsinfile <group___cmp_app_itf_1ga113c478d9611dc014f9a412a60eb9393>` (:ref:`appstoreretainsinfile_struct <group___cmp_app_itf_1gacac0c4b53f72206a5a435dd16d77c7fe>` * p)
+
+- void :ref:`appcheckfileconsistency <group___cmp_app_itf___applicationmemorysegmentinformation_1gacc1926ea3fe4edbd19e9850e8710a2a6>` (:ref:`appcheckfileconsistency_struct <structappcheckfileconsistency__struct>` * p)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppCreateApplication <group___cmp_app_itf_1ga07319c8fc1225782ffc6699b6ffd57ab>` (char * pszAppName, char * pszAppParentName, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppPrepareDownload <group___cmp_app_itf_1gaeefe3e296c83e3ad66951597889573e1>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bOnlineChange, int bCreateBootproject)
+
+- RTS_RESULT :ref:`AppAppendCode <group___cmp_app_itf_1ga124ee30203d80b8f90ae157313076c84>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI8 * pbyCode, RTS_SIZE ulCodeLen, RTS_SIZE ulCodeOffset, int bLoadBootproject)
+
+- RTS_RESULT :ref:`AppCompleteDownload <group___cmp_app_itf_1gaf8c06285d56052fc9892d78a8670384d>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bOnlineChange, :ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppFindApplicationByName <group___cmp_app_itf_1ga790c11ea67896a28aee3fbb6d98727ed>` (char * pszAppName, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppNumOfActiveSessions <group___cmp_app_itf_1ga394eea744ec7e3ebece50262e0b852dc>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 * pulNumSessions)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppFindApplicationByBootproject <group___cmp_app_itf_1ga1b60c3fee056b9f4a9f92f744d52f902>` (char * pszBootprojectName, RTS_RESULT * pResult)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppFindApplicationBySessionId <group___cmp_app_itf_1ga38c0ff434e841e1395ef8d95927ae7b9>` (RTS_UI32 ulSessionId, RTS_RESULT * pResult)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppFindApplicationById <group___cmp_app_itf_1gaf79da17992ac29ce0bebed88aba39d34>` (int iId, RTS_RESULT * pResult)
+
+- int :ref:`AppGetNumOfApplications <group___cmp_app_itf_1gacea683c66fcd9a43c07770f40e361131>` (void)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppGetApplicationByIndex <group___cmp_app_itf_1gad93b8a30f51d2ec81b8c81d7cd0d31e1>` (int iIndex, RTS_RESULT * pResult)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppGetApplicationByAreaAddress <group___cmp_app_itf_1gab59884b394d05fa3ccb04eaddd382f69>` (void * pAddress, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppGetAreaPointer <group___cmp_app_itf_1gab0748b6547fd5e33f990baba7227279d>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int iArea, unsigned char ** ppucArea)
+
+- RTS_RESULT :ref:`AppGetAreaPointer2 <group___cmp_app_itf_1ga0e27aa797e2e6aa5985eb6ce5dff8552>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_I32 iArea, RTS_UI8 ** ppbyArea, RTS_SIZE * pulSize)
+
+- RTS_RESULT :ref:`AppGetAreaPointerByType <group___cmp_app_itf_1ga1814999425e07714e968044f1304a315>` (char * pszAppName, int iArea, RTS_UI16 usType, unsigned char ** ppucArea)
+
+- RTS_RESULT :ref:`AppHasAddress <group___cmp_app_itf_1ga218c57bd97ba470a169ced36beefaaa5>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_VOID_FCTPTR pAddress)
+
+- RTS_RESULT :ref:`AppIsProgramLoaded <group___cmp_app_itf_1gafa7d59e3f336dfee7851a168500c9284>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int * pbProgramLoaded)
+
+- RTS_RESULT :ref:`AppSetProgramLoaded <group___cmp_app_itf_1ga79c35ede156b155dffe582dd1e089e97>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bProgramLoaded)
+
+- RTS_RESULT :ref:`AppSingleCycle <group___cmp_app_itf_1ga9afd46bbc077eb28cf5345bdc27450d7>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppSetState <group___cmp_app_itf_1ga4cf27836de970f58d8d135588034876c>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, unsigned long ulState)
+
+- unsigned long :ref:`AppGetState <group___cmp_app_itf_1ga63c3ceccc79262cd3cea02ee1987ac69>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppSetOperatingState <group___cmp_app_itf_1gae45a9a7071c8d2314c1c1dcdf972b98b>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, unsigned long ulOpState)
+
+- RTS_RESULT :ref:`AppResetOperatingState <group___cmp_app_itf_1gacdd4cc78e01795a52cf685b3c55c702b>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, unsigned long ulOpState)
+
+- unsigned long :ref:`AppGetOperatingState <group___cmp_app_itf_1ga605713f5b8a7be474c12b715642b7af2>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppSetCodeGuid <group___cmp_app_itf_1ga98f34b2b59e7a1c3f3d774de144b3f0a>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_GUID * pCodeGuid)
+
+- RTS_RESULT :ref:`AppGetCodeGuid <group___cmp_app_itf_1gaa2e8cad1bd2e1b3a5c4ca9a6e43806dc>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_GUID * pCodeGuid)
+
+- RTS_RESULT :ref:`AppSetDataGuid <group___cmp_app_itf_1ga08a97ec5d0c323a8304dd65705b317f9>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_GUID * pDataGuid)
+
+- RTS_RESULT :ref:`AppGetDataGuid <group___cmp_app_itf_1ga0a2fb91d09c4da070acdd18aa99817c4>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_GUID * pDataGuid)
+
+- RTS_RESULT :ref:`AppGetBootprojectGuids <group___cmp_app_itf_1gab9e60aff8ec67fadde77449376c33228>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_GUID * pCodeGuid, RTS_GUID * pDataGuid)
+
+- RTS_RESULT :ref:`AppExceptionHandler <group___cmp_app_itf_1gabc8c14ab64a7097b3966096610b02916>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulException, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>`  Context)
+
+- RTS_RESULT :ref:`AppReset <group___cmp_app_itf_1ga7eba62589bee4d1eb16d2fda20daab39>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI16 usResetOption, RTS_UI32 ulSessionId)
+
+- RTS_RESULT :ref:`AppResetAllApplications <group___cmp_app_itf_1gadc1f6465974e2c4d964dfb7209c3ce60>` (RTS_UI16 usResetOption)
+
+- RTS_RESULT :ref:`AppLoadBootprojects <group___cmp_app_itf_1gaf992e305b1f9888700444c41b9843c6a>` (void)
+
+- RTS_RESULT :ref:`AppStartBootprojects <group___cmp_app_itf_1ga5ba4e1a0c80286f62a94a7e66f5262b0>` (void)
+
+- RTS_RESULT :ref:`AppLoadBootproject <group___cmp_app_itf_1gac2b4a73230de9a57147c77394476e155>` (char * pszAppName, char * pszFilePath)
+
+- RTS_RESULT :ref:`AppStartApplications <group___cmp_app_itf_1gac6dc1230eac449366c1449683dcc9ae1>` (void)
+
+- RTS_RESULT :ref:`AppStartApplication2 <group___cmp_app_itf_1ga74651dd307709d730362b0fb95313da5>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulStartReason)
+
+- RTS_RESULT :ref:`AppStartApplication <group___cmp_app_itf_1gae527b32e0b7180faedf39ea81e821fcf>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppStopApplications <group___cmp_app_itf_1ga52fc198412091fa59364799189f77751>` (RTS_UI32 ulTimeoutMs, RTS_UI32 ulStopReason)
+
+- RTS_RESULT :ref:`AppStopApplication <group___cmp_app_itf_1ga328a89d02adfd171ea0be0c4c6c0cc89>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulTimeoutMs, RTS_UI32 ulStopReason)
+
+- RTS_RESULT :ref:`AppExitApplication <group___cmp_app_itf_1ga14f08356ce3b8d041f4d668758e8c2da>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulExitReason)
+
+- RTS_RESULT :ref:`AppExitApplication2 <group___cmp_app_itf_1ga0928d03c0b72234d532c3d7083162f03>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulExitReason, RTS_UI32 ulTimeoutMs)
+
+- RTS_RESULT :ref:`AppExitApplications <group___cmp_app_itf_1ga10c9b955f06ed25c9b9e01aa650b3e0a>` (RTS_UI32 ulExitReason, RTS_UI32 ulTimeoutMs)
+
+- RTS_RESULT :ref:`AppDeleteApplication <group___cmp_app_itf_1gaf4906e81741ce6cd5ba62301aa7980ce>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulDeleteReason)
+
+- RTS_RESULT :ref:`AppDeleteApplications <group___cmp_app_itf_1gaff280fc480115d7905736dce2e0ba815>` (RTS_UI32 ulDeleteReason)
+
+- RTS_RESULT :ref:`AppDeleteBootproject <group___cmp_app_itf_1gaca05189b98a1f0663311e02f8eb16ea4>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppAddAddrDataSrv <group___cmp_app_itf_1gab28ac2db7f0ff3821522534636d83045>` (RTS_UI32 ulSessionId, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>` * pPeerAddr)
+
+- RTS_RESULT :ref:`AppRemoveAddrDataSrv <group___cmp_app_itf_1ga9a37fe1e779a427df1b4d2c769256fac>` (RTS_UI32 ulSessionId)
+
+- RTS_HANDLE :ref:`AppGetFirstAddrDataSrv <group___cmp_app_itf_1gae87a4e166bdfb50618cae36b2d820bc5>` (:ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>` ** ppPeerAddr, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`AppGetNextAddrDataSrv <group___cmp_app_itf_1gac7ea258c0964017abb13957eb666979c>` (RTS_HANDLE hAddr, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>` ** ppPeerAddr, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`AppConsistencyCheckBegin <group___cmp_app_itf_1gaedfe141f230ca8ad832aac09e4e0a92d>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppConsistencyCheckEnd <group___cmp_app_itf_1gada89122fff08ca42a6566fa8403365ca>` (RTS_HANDLE hConsistency)
+
+- RTS_RESULT :ref:`AppConsistencyCheckAll <group___cmp_app_itf_1gad4b08a6a4eaa396500f0a7ce5648c34e>` (void)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppGetFirstApp <group___cmp_app_itf_1ga807f5fe5306511f44f0608ab70d94c47>` (RTS_RESULT * pResult)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppGetNextApp <group___cmp_app_itf_1ga361487324f3177942a2897219b0b7a5d>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pAppPrev, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppStoreRetainsInFile <group___cmp_app_itf_1gad0745ee97fba28e903e85d7352d5a285>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_IEC_STRING * pszFileName)
+
+- RTS_RESULT :ref:`AppRestoreRetainsFromFile <group___cmp_app_itf_1gab1e5b46da46514f6010cec20ab806f1a>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_IEC_STRING * pszFileName)
+
+- RTS_RESULT :ref:`AppRestoreRetainsFromFile2 <group___cmp_app_itf_1ga677a47788fe4f555f6e61d552b72bc0e>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_IEC_STRING * pszFileName, int bGenerateException)
+
+- RTS_RESULT :ref:`AppSaveRetainAreas <group___cmp_app_itf_1ga1b74c0acc67ffb254c1983d4b3ff2ddd>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppSaveAllRetainAreas <group___cmp_app_itf_1ga2eb2a46fe02416a7f0cac065e551ac3f>` (void)
+
+- RTS_RESULT :ref:`AppRestoreRetainAreas <group___cmp_app_itf_1ga7cb68208644309f7082802d799890614>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_SIZE :ref:`AppGetAreaSize <group___cmp_app_itf_1ga508a3a8d1ef4516bf1d859225da5a0c7>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI16 usType, RTS_RESULT * pResult)
+
+- RTS_UI8 * :ref:`AppGetAreaAddress <group___cmp_app_itf_1ga7a2e9459247a8e090fddbe538a7b428d>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI16 usType, RTS_RESULT * pResult)
+
+- :ref:`APP_MEMORY_SEGMENT <group___cmp_app_itf___applicationmemorysegment_1ga15634c23ece2d9f1319e8abf895b38f5>` * :ref:`AppGetSegment <group___cmp_app_itf_1ga49bf629c82668f6b482c68d24e47a50a>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI16 usType, RTS_RESULT * pResult)
+
+- :ref:`APP_MEMORY_SEGMENT <group___cmp_app_itf___applicationmemorysegment_1ga15634c23ece2d9f1319e8abf895b38f5>` * :ref:`AppGetSegmentByAddress <group___cmp_app_itf_1ga35c24bdcd62a94241189537fe0c6d256>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, void * pAddress, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`AppGetSegmentSize <group___cmp_app_itf_1ga091e365ffff851885225ca05a4a1535a>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI16 usType, RTS_RESULT * pResult)
+
+- RTS_UI8 HUGEPTR * :ref:`AppGetSegmentAddress <group___cmp_app_itf_1gabc9cae3d9bb79852b954a9d084a06974>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI16 usType, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppRegisterPropAccessFunctions <group___cmp_app_itf_1ga573171757ba499f5a3af5a8c20d6e41c>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_VOID_FCTPTR * ppfGetBooleanProperty, RTS_VOID_FCTPTR * ppfGetTextProperty, RTS_VOID_FCTPTR * ppfGetNumberProperty, RTS_VOID_FCTPTR * ppfGetVersionProperty)
+
+- RTS_RESULT :ref:`AppGetProjectInformation <group___cmp_app_itf_1ga45cb1a6c8170816f749c06594f4e48f6>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`PROJECT_INFO <struct_p_r_o_j_e_c_t___i_n_f_o>` * pInfo)
+
+- RTS_RESULT :ref:`AppGetBooleanProperty <group___cmp_app_itf_1gaef539f47866c25b355f8f2830b26d8be>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`BOOLEANPROPERTY <struct_b_o_o_l_e_a_n_p_r_o_p_e_r_t_y>` * pBooleanProperty)
+
+- RTS_RESULT :ref:`AppGetTextProperty <group___cmp_app_itf_1ga09d54c33fa58447501d285eb59da520c>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`TEXTPROPERTY <struct_t_e_x_t_p_r_o_p_e_r_t_y>` * pTextProperty)
+
+- RTS_RESULT :ref:`AppGetNumberProperty <group___cmp_app_itf_1gaa878edd5441a5738dcc836957e10fcf8>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`NUMBERPROPERTY <struct_n_u_m_b_e_r_p_r_o_p_e_r_t_y>` * pNumberProperty)
+
+- RTS_RESULT :ref:`AppGetVersionProperty <group___cmp_app_itf_1ga82658b227c45f0ee119d477cee0370a1>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`VERSIONPROPERTY <struct_v_e_r_s_i_o_n_p_r_o_p_e_r_t_y>` * pVersionProperty)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppGetCurrent <group___cmp_app_itf_1ga504180af0da7a62dbb54a340d50f00ea>` (RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppCheckFileConsistency <group___cmp_app_itf_1ga39ca972b66b8285ed8ba6281909040c8>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pBootprojectConsistency, RTS_RESULT * pArchiveConsistency)
+
+- RTS_RESULT :ref:`AppGenerateException <group___cmp_app_itf_1ga67cb5326913a73fc9fc8523ce529c09f>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulException)
+
+- RTS_RESULT :ref:`AppRegisterBootproject <group___cmp_app_itf_1ga7d10072adf86e7ce52b955fb99607cfa>` (char * pszBootproject)
+
+- RTS_RESULT :ref:`AppUnregisterBootproject <group___cmp_app_itf_1ga3217a429e253a815f42604b356b2ffbe>` (char * pszBootproject)
+
+- RTS_RESULT :ref:`AppCallGetProperty <group___cmp_app_itf_1ga8cacc877aef322ba2bb31eb3861d2b0c>` (void * pInstance, RTS_VOID_FCTPTR * ppGetMethod, RTS_UI8 * pbyValue, RTS_SIZE ulSize)
+
+- RTS_RESULT :ref:`AppCallGetProperty2 <group___cmp_app_itf_1ga8e8ffc3a1dd3e5ff4ea7a9082d56350f>` (void * pInstance, RTS_VOID_FCTPTR * ppGetMethod, RTS_UI8 ** ppbyValue, RTS_SIZE ulSize)
+
+- RTS_RESULT :ref:`AppCallGetProperty2Release <group___cmp_app_itf_1gadb551cb1dbc667e84439bdec4a7c06ec>` (RTS_UI8 * pbyValue)
+
+- RTS_RESULT :ref:`AppCallSetProperty <group___cmp_app_itf_1ga3723abdf0ab60dcd9665b54c9fb14a89>` (void * pInstance, RTS_VOID_FCTPTR * ppSetMethod, RTS_UI8 * pbyValue, RTS_SIZE ulSize)
+
+- RTS_RESULT :ref:`AppGetAreaOffsetByAddress <group___cmp_app_itf_1gaa3b60d4d2783cea62c0664f7ec1ac862>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UINTPTR ulAddress, RTS_UI16 * pusArea, RTS_SIZE * pulOffset)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppSrvGetApplication <group___cmp_app_itf_1ga02b3b1b50a2c13bb63eb3ca39e9d418c>` (:ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>` * pduSendBuffer, :ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * preader, :ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pwriter, RTS_UI32 ulSessionId)
+
+- RTS_RESULT :ref:`AppHasAccessRights <group___cmp_app_itf_1ga40b34455a3aa87ec9d7476a32a2cbf8c>` (char * pszApplication, char * pszObject, RTS_UI32 ulRequestedRights, RTS_UI32 ulSessionId, :ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter)
+
+- :ref:`APPLICATION_INFO <struct_a_p_p_l_i_c_a_t_i_o_n___i_n_f_o>` * :ref:`AppGetApplicationInfo <group___cmp_app_itf_1gafcd9b4f983d30713dcbc18b3d9055300>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`AppGetFirstConfiguredBootproject <group___cmp_app_itf_1gac53f60507bc3c0837f4cdc787a01e580>` (char * pszAppName, RTS_I32 nMaxAppName, RTS_BOOL bCheckFile, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`AppGetNextConfiguredBootproject <group___cmp_app_itf_1gad8855b4c95f7e244136f051acd56e2b5>` (RTS_HANDLE hPrev, char * pszAppName, RTS_I32 nMaxAppName, RTS_BOOL bCheckFile, RTS_RESULT * pResult)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpAppItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

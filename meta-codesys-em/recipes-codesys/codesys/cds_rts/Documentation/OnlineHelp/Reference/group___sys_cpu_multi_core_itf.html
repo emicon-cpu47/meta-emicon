@@ -1,0 +1,1884 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SysCpuMultiCoreItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="SysDirItf" href="group___sys_dir_itf.html" />
+    <link rel="prev" title="SysCpuHandlingItf" href="group___sys_cpu_handling_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___sys_dir_itf.html" title="SysDirItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_cpu_handling_itf.html" title="SysCpuHandlingItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SysCpuMultiCoreItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-itf-syscpumulticore">#define ITF_SysCpuMultiCore</a></li>
+<li><a class="reference internal" href="#define-extitf-syscpumulticore">#define EXTITF_SysCpuMultiCore</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-tagcpucorebindingdesc-cpucorebindingdesc">typedef struct tagCpuCoreBindingDesc  CpuCoreBindingDesc</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysmcbdalloc-struct-sysmcbdalloc-struct">typedef struct tagsysmcbdalloc_struct  sysmcbdalloc_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysmcbdcount-struct-sysmcbdcount-struct">typedef struct tagsysmcbdcount_struct  sysmcbdcount_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysmcbdfree-struct-sysmcbdfree-struct">typedef struct tagsysmcbdfree_struct  sysmcbdfree_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysmcbdgetfirstid-struct-sysmcbdgetfirstid-struct">typedef struct tagsysmcbdgetfirstid_struct  sysmcbdgetfirstid_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysmcbdgetnextid-struct-sysmcbdgetnextid-struct">typedef struct tagsysmcbdgetnextid_struct  sysmcbdgetnextid_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysmcbdisset-struct-sysmcbdisset-struct">typedef struct tagsysmcbdisset_struct  sysmcbdisset_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysmcgetload-struct-sysmcgetload-struct">typedef struct tagsysmcgetload_struct  sysmcgetload_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysmcgetnumofcores-struct-sysmcgetnumofcores-struct">typedef struct tagsysmcgetnumofcores_struct  sysmcgetnumofcores_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysmcgetprocessbinding-struct-sysmcgetprocessbinding-struct">typedef struct tagsysmcgetprocessbinding_struct  sysmcgetprocessbinding_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsysmcgettaskbinding-struct-sysmcgettaskbinding-struct">typedef struct tagsysmcgettaskbinding_struct  sysmcgettaskbinding_struct</a></li>
+<li><a class="reference internal" href="#typedef-isyscpumulticore-c-isyscpumulticore">typedef ISysCpuMultiCore_C ISysCpuMultiCore</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#void-sysmcbdalloc-sysmcbdalloc-struct-p">void sysmcbdalloc (sysmcbdalloc_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysmcbdcount-sysmcbdcount-struct-p">void sysmcbdcount (sysmcbdcount_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysmcbdfree-sysmcbdfree-struct-p">void sysmcbdfree (sysmcbdfree_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysmcbdgetfirstid-sysmcbdgetfirstid-struct-p">void sysmcbdgetfirstid (sysmcbdgetfirstid_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysmcbdgetnextid-sysmcbdgetnextid-struct-p">void sysmcbdgetnextid (sysmcbdgetnextid_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysmcbdisset-sysmcbdisset-struct-p">void sysmcbdisset (sysmcbdisset_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysmcgetload-sysmcgetload-struct-p">void sysmcgetload (sysmcgetload_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysmcgetnumofcores-sysmcgetnumofcores-struct-p">void sysmcgetnumofcores (sysmcgetnumofcores_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysmcgetprocessbinding-sysmcgetprocessbinding-struct-p">void sysmcgetprocessbinding (sysmcgetprocessbinding_struct *p)</a></li>
+<li><a class="reference internal" href="#void-sysmcgettaskbinding-sysmcgettaskbinding-struct-p">void sysmcgettaskbinding (sysmcgettaskbinding_struct *p)</a></li>
+<li><a class="reference internal" href="#rts-result-syscpumulticoreosinit-init-struct-pinit">RTS_RESULT SysCpuMultiCoreOSInit (INIT_STRUCT *pInit)</a></li>
+<li><a class="reference internal" href="#rts-result-syscpumulticoreoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">RTS_RESULT SysCpuMultiCoreOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</a></li>
+<li><a class="reference internal" href="#rts-handle-sysmcaddtaskgroup-char-psztaskgroup-rts-ui32-taskgroupoptions-rts-result-presult">RTS_HANDLE SysMCAddTaskGroup (char *pszTaskGroup, RTS_UI32 taskGroupOptions, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcremovetaskgroup-rts-handle-htaskgroup">RTS_RESULT SysMCRemoveTaskGroup (RTS_HANDLE hTaskGroup)</a></li>
+<li><a class="reference internal" href="#rts-handle-sysmcfindtaskgroup-char-psztaskgroup-rts-i32-biectaskgroup-rts-result-presult">RTS_HANDLE SysMCFindTaskGroup (char *pszTaskGroup, RTS_I32 bIecTaskGroup, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-sysmcgetfirsttaskgroup-rts-result-presult">RTS_HANDLE SysMCGetFirstTaskGroup (RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-sysmcgetnexttaskgroup-rts-handle-hprevtaskgroup-rts-result-presult">RTS_HANDLE SysMCGetNextTaskGroup (RTS_HANDLE hPrevTaskGroup, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#char-sysmcgettaskgroupname-rts-handle-htaskgroup-rts-result-presult">char* SysMCGetTaskGroupName (RTS_HANDLE hTaskGroup, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#cpucorebindingdesc-sysmcgettaskgroupbinding-rts-handle-htaskgroup-rts-result-presult">CpuCoreBindingDesc* SysMCGetTaskGroupBinding (RTS_HANDLE hTaskGroup, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-ui32-sysmcgettaskgroupoptions-rts-handle-htaskgroup-rts-result-presult">RTS_UI32 SysMCGetTaskGroupOptions (RTS_HANDLE hTaskGroup, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcchangetaskgroupstrategy-rts-handle-htaskgroup-rts-ui32-taskgroupstrategy">RTS_RESULT SysMCChangeTaskGroupStrategy (RTS_HANDLE hTaskGroup, RTS_UI32 taskGroupStrategy)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcsettaskgroupbinding-rts-handle-htaskgroup-cpucorebindingdesc-pbindingdesc">RTS_RESULT SysMCSetTaskGroupBinding (RTS_HANDLE hTaskGroup, CpuCoreBindingDesc *pBindingDesc)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcaddtotaskgroup-rts-handle-hsystask-rts-handle-htaskgroup">RTS_RESULT SysMCAddToTaskGroup (RTS_HANDLE hSysTask, RTS_HANDLE hTaskGroup)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcremovefromtaskgroup-rts-handle-hsystask-rts-handle-htaskgroup">RTS_RESULT SysMCRemoveFromTaskGroup (RTS_HANDLE hSysTask, RTS_HANDLE hTaskGroup)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcbegintaskgroupconf-rts-handle-htaskgroup">RTS_RESULT SysMCBeginTaskGroupConf (RTS_HANDLE hTaskGroup)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcendtaskgroupconf-rts-handle-htaskgroup">RTS_RESULT SysMCEndTaskGroupConf (RTS_HANDLE hTaskGroup)</a></li>
+<li><a class="reference internal" href="#cpucorebindingdesc-sysmcbdalloc-rts-result-presult">CpuCoreBindingDesc* SysMCBDAlloc (RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcbdfree-cpucorebindingdesc-pbindingdesc">RTS_RESULT SysMCBDFree (CpuCoreBindingDesc *pBindingDesc)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcbdzero-cpucorebindingdesc-pbindingdesc">RTS_RESULT SysMCBDZero (CpuCoreBindingDesc *pBindingDesc)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcbdset-cpucorebindingdesc-pbindingdesc-rts-ui32-ucoreid">RTS_RESULT SysMCBDSet (CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uCoreId)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcbdreset-cpucorebindingdesc-pbindingdesc-rts-ui32-ucoreid">RTS_RESULT SysMCBDReset (CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uCoreId)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcbdisset-cpucorebindingdesc-pbindingdesc-rts-ui32-ucoreid">RTS_RESULT SysMCBDIsSet (CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uCoreId)</a></li>
+<li><a class="reference internal" href="#rts-ui32-sysmcbdcount-cpucorebindingdesc-pbindingdesc-rts-result-presult">RTS_UI32 SysMCBDCount (CpuCoreBindingDesc *pBindingDesc, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-ui32-sysmcbdgetfirstid-cpucorebindingdesc-pbindingdesc-rts-result-presult">RTS_UI32 SysMCBDGetFirstID (CpuCoreBindingDesc *pBindingDesc, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-ui32-sysmcbdgetnextid-cpucorebindingdesc-pbindingdesc-rts-ui32-uprevcoreid-rts-result-presult">RTS_UI32 SysMCBDGetNextID (CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uPrevCoreID, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcbindprocess-cpucorebindingdesc-pbindingdesc-rts-iec-handle-hprocess">RTS_RESULT SysMCBindProcess (CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hProcess)</a></li>
+<li><a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gad2a081e193f037befa9272979b986f35">RTS_RESULT SysMCBindProcess_ (CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hProcess)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcbindtask-cpucorebindingdesc-pbindingdesc-rts-iec-handle-htask">RTS_RESULT SysMCBindTask (CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hTask)</a></li>
+<li><a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga25fad5b42431683bc9123e7a47808ed6">RTS_RESULT SysMCBindTask_ (CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hTask)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcunbindprocess-rts-iec-handle-hprocess">RTS_RESULT SysMCUnbindProcess (RTS_IEC_HANDLE hProcess)</a></li>
+<li><a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gaaabfb963dafcd85e1b1ef1b35c16a565">RTS_RESULT SysMCUnbindProcess_ (RTS_IEC_HANDLE hProcess)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcunbindtask-rts-iec-handle-htask">RTS_RESULT SysMCUnbindTask (RTS_IEC_HANDLE hTask)</a></li>
+<li><a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gaa30487d7d6674b2cfac6bff166e59975">RTS_RESULT SysMCUnbindTask_ (RTS_IEC_HANDLE hTask)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcgetload-rts-ui32-ucoreid-rts-ui8-ppercent">RTS_RESULT SysMCGetLoad (RTS_UI32 uCoreID, RTS_UI8 *pPercent)</a></li>
+<li><a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga41bebadc1868cd428caeb2debf2ff40d">RTS_RESULT SysMCGetLoad_ (RTS_UI32 uCoreID, RTS_UI8 *pPercent)</a></li>
+<li><a class="reference internal" href="#rts-ui32-sysmcgetnumofcores-rts-result-presult">RTS_UI32 SysMCGetNumOfCores (RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga157b4dcefc157c8ff096a52de5ef8701">RTS_UI32 SysMCGetNumOfCores_ (RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcgetprocessbinding-rts-iec-handle-hprocess-cpucorebindingdesc-pbindingdesc">RTS_RESULT SysMCGetProcessBinding (RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pBindingDesc)</a></li>
+<li><a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gadd050f9b966798c186b9814924aade0a">RTS_RESULT SysMCGetProcessBinding_ (RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pBindingDesc)</a></li>
+<li><a class="reference internal" href="#rts-result-sysmcgettaskbinding-rts-iec-handle-htask-cpucorebindingdesc-pbindingdesc">RTS_RESULT SysMCGetTaskBinding (RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pBindingDesc)</a></li>
+<li><a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gaa7fc872c7df6386652f4d931701256e1">RTS_RESULT SysMCGetTaskBinding_ (RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pBindingDesc)</a></li>
+<li><a class="reference internal" href="#rts-ui32-sysmcgetcurrentcoreid-rts-result-presult">RTS_UI32 SysMCGetCurrentCoreID (RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga9df4a7641181a251554db824306e29e3">RTS_UI32 SysMCGetCurrentCoreID_ (RTS_RESULT *pResult)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___sys_cpu_handling_itf.html"
+                        title="previous chapter">SysCpuHandlingItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___sys_dir_itf.html"
+                        title="next chapter">SysDirItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_cpu_multi_core_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="syscpumulticoreitf">
+<span id="group-sys-cpu-multi-core-itf"></span><h1>SysCpuMultiCoreItf<a class="headerlink" href="#syscpumulticoreitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of SysCpuMultiCore. <a class="reference internal" href="#group-sys-cpu-multi-core-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___sys_cpu_multi_core_itf___eventparameter.html#group-sys-cpu-multi-core-itf-eventparameter"><span class="std std-ref">Event parameter</span></a></li>
+<li><a class="reference internal" href="group___sys_cpu_multi_core_itf___events.html#group-sys-cpu-multi-core-itf-events"><span class="std std-ref">Events</span></a></li>
+<li><a class="reference internal" href="group___sys_cpu_multi_core_itf___settings.html#group-sys-cpu-multi-core-itf-settings"><span class="std std-ref">Settings</span></a></li>
+<li><a class="reference internal" href="group___sys_cpu_multi_core_itf___staticdefines.html#group-sys-cpu-multi-core-itf-staticdefines"><span class="std std-ref">Static defines</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="union_cpu_core_bits.html#union-cpu-core-bits"><span class="std std-ref">CpuCoreBits</span></a></li>
+<li>struct <a class="reference internal" href="structtag_cpu_core_binding_desc.html#structtag-cpu-core-binding-desc"><span class="std std-ref">tagCpuCoreBindingDesc</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysmcbdalloc__struct.html#structtagsysmcbdalloc-struct"><span class="std std-ref">tagsysmcbdalloc_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysmcbdcount__struct.html#structtagsysmcbdcount-struct"><span class="std std-ref">tagsysmcbdcount_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysmcbdfree__struct.html#structtagsysmcbdfree-struct"><span class="std std-ref">tagsysmcbdfree_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysmcbdgetfirstid__struct.html#structtagsysmcbdgetfirstid-struct"><span class="std std-ref">tagsysmcbdgetfirstid_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysmcbdgetnextid__struct.html#structtagsysmcbdgetnextid-struct"><span class="std std-ref">tagsysmcbdgetnextid_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysmcbdisset__struct.html#structtagsysmcbdisset-struct"><span class="std std-ref">tagsysmcbdisset_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysmcgetload__struct.html#structtagsysmcgetload-struct"><span class="std std-ref">tagsysmcgetload_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysmcgetnumofcores__struct.html#structtagsysmcgetnumofcores-struct"><span class="std std-ref">tagsysmcgetnumofcores_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysmcgetprocessbinding__struct.html#structtagsysmcgetprocessbinding-struct"><span class="std std-ref">tagsysmcgetprocessbinding_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsysmcgettaskbinding__struct.html#structtagsysmcgettaskbinding-struct"><span class="std std-ref">tagsysmcgettaskbinding_struct</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_sys_cpu_multi_core___c.html#struct-i-sys-cpu-multi-core-c"><span class="std std-ref">ISysCpuMultiCore_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gaff9baa213d2b63faa34678aaa4053336"><span class="std std-ref">ITF_SysCpuMultiCore</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gab19e913d3e1ba1faf919f2e3a8f97864"><span class="std std-ref">EXTITF_SysCpuMultiCore</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="structtag_cpu_core_binding_desc.html#structtag-cpu-core-binding-desc"><span class="std std-ref">tagCpuCoreBindingDesc</span></a> <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysmcbdalloc__struct.html#structtagsysmcbdalloc-struct"><span class="std std-ref">tagsysmcbdalloc_struct</span></a> <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga34643d390e7c496e237aa2f48b69cad2"><span class="std std-ref">sysmcbdalloc_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysmcbdcount__struct.html#structtagsysmcbdcount-struct"><span class="std std-ref">tagsysmcbdcount_struct</span></a> <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga4583f3d1ecfe6e2e0af3e6e8a1d8a38c"><span class="std std-ref">sysmcbdcount_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysmcbdfree__struct.html#structtagsysmcbdfree-struct"><span class="std std-ref">tagsysmcbdfree_struct</span></a> <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga031ba83dcde009a9ad49adfa8275d3fd"><span class="std std-ref">sysmcbdfree_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysmcbdgetfirstid__struct.html#structtagsysmcbdgetfirstid-struct"><span class="std std-ref">tagsysmcbdgetfirstid_struct</span></a> <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga0bf77a388434f729531593940ae02948"><span class="std std-ref">sysmcbdgetfirstid_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysmcbdgetnextid__struct.html#structtagsysmcbdgetnextid-struct"><span class="std std-ref">tagsysmcbdgetnextid_struct</span></a> <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga485711ed9f75659861167cf0127c990d"><span class="std std-ref">sysmcbdgetnextid_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysmcbdisset__struct.html#structtagsysmcbdisset-struct"><span class="std std-ref">tagsysmcbdisset_struct</span></a> <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga89bf7bb33713d1b419ed35ed7bea8c92"><span class="std std-ref">sysmcbdisset_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysmcgetload__struct.html#structtagsysmcgetload-struct"><span class="std std-ref">tagsysmcgetload_struct</span></a> <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga8ffb5973137cf357da8ab98aed5fd458"><span class="std std-ref">sysmcgetload_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysmcgetnumofcores__struct.html#structtagsysmcgetnumofcores-struct"><span class="std std-ref">tagsysmcgetnumofcores_struct</span></a> <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga820422a5f5531dc7c128bf0584ba04d8"><span class="std std-ref">sysmcgetnumofcores_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysmcgetprocessbinding__struct.html#structtagsysmcgetprocessbinding-struct"><span class="std std-ref">tagsysmcgetprocessbinding_struct</span></a> <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga0b64fad5640e611ee4038bfddd8da1a8"><span class="std std-ref">sysmcgetprocessbinding_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsysmcgettaskbinding__struct.html#structtagsysmcgettaskbinding-struct"><span class="std std-ref">tagsysmcgettaskbinding_struct</span></a> <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga7a525de72f4e1ece481a4bdedaa45251"><span class="std std-ref">sysmcgettaskbinding_struct</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_sys_cpu_multi_core___c.html#struct-i-sys-cpu-multi-core-c"><span class="std std-ref">ISysCpuMultiCore_C</span></a> <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gabca52eac9b2d0f93af38c09a39fbfa98"><span class="std std-ref">ISysCpuMultiCore</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>void <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gac4f508901816a0262f9a75a753ebbed4"><span class="std std-ref">sysmcbdalloc</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga34643d390e7c496e237aa2f48b69cad2"><span class="std std-ref">sysmcbdalloc_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga0496bf9ce955cf88bfbec84b3d98509c"><span class="std std-ref">sysmcbdcount</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga4583f3d1ecfe6e2e0af3e6e8a1d8a38c"><span class="std std-ref">sysmcbdcount_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga62fc58f3ff6b0a9b5fdca9ac905a49ef"><span class="std std-ref">sysmcbdfree</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga031ba83dcde009a9ad49adfa8275d3fd"><span class="std std-ref">sysmcbdfree_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga7109aeeab758e7f40dde58e84087c9c3"><span class="std std-ref">sysmcbdgetfirstid</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga0bf77a388434f729531593940ae02948"><span class="std std-ref">sysmcbdgetfirstid_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga0c799e18991fb2bcd5dfddc28d2bdf77"><span class="std std-ref">sysmcbdgetnextid</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga485711ed9f75659861167cf0127c990d"><span class="std std-ref">sysmcbdgetnextid_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga0142ed1a70c983b1c9797f8edcf7a553"><span class="std std-ref">sysmcbdisset</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga89bf7bb33713d1b419ed35ed7bea8c92"><span class="std std-ref">sysmcbdisset_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gab30bcd94c9ed65ee5205031654f6178c"><span class="std std-ref">sysmcgetload</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga8ffb5973137cf357da8ab98aed5fd458"><span class="std std-ref">sysmcgetload_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gaa44a3fb76bc604fc96e32a8664bdba92"><span class="std std-ref">sysmcgetnumofcores</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga820422a5f5531dc7c128bf0584ba04d8"><span class="std std-ref">sysmcgetnumofcores_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gabc46aa562c75ff628b9f0a70db6afd61"><span class="std std-ref">sysmcgetprocessbinding</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga0b64fad5640e611ee4038bfddd8da1a8"><span class="std std-ref">sysmcgetprocessbinding_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga913176bec64ab3bddaa69c60cfa1dbac"><span class="std std-ref">sysmcgettaskbinding</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga7a525de72f4e1ece481a4bdedaa45251"><span class="std std-ref">sysmcgettaskbinding_struct</span></a> * p)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga6608c8cd3da78bbf5b65e2b63d4fc46e"><span class="std std-ref">SysCpuMultiCoreOSInit</span></a> (INIT_STRUCT * pInit)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga61a0a2d508898c4f903779980b58e870"><span class="std std-ref">SysCpuMultiCoreOSHookFunction</span></a> (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga3e7226a3e5850ff12b21afc0cc357afe"><span class="std std-ref">SysMCAddTaskGroup</span></a> (char * pszTaskGroup, RTS_UI32 taskGroupOptions, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga14ebbd6a5e82a7fea5038a1224fbf20e"><span class="std std-ref">SysMCRemoveTaskGroup</span></a> (RTS_HANDLE hTaskGroup)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga90cedc6b143396cc5040a8d60355da06"><span class="std std-ref">SysMCFindTaskGroup</span></a> (char * pszTaskGroup, RTS_I32 bIecTaskGroup, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga5b2ad8115ed6541c1bddf2499125fa31"><span class="std std-ref">SysMCGetFirstTaskGroup</span></a> (RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gae8dd16f4dd503e41179ac5af684a957c"><span class="std std-ref">SysMCGetNextTaskGroup</span></a> (RTS_HANDLE hPrevTaskGroup, RTS_RESULT * pResult)</li>
+<li>char * <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gab7a5dc75e3ddf495f6521c9a3746b043"><span class="std std-ref">SysMCGetTaskGroupName</span></a> (RTS_HANDLE hTaskGroup, RTS_RESULT * pResult)</li>
+<li><a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga8e6466c59085cd67a619e49d2cb28de5"><span class="std std-ref">SysMCGetTaskGroupBinding</span></a> (RTS_HANDLE hTaskGroup, RTS_RESULT * pResult)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga199e91c3e0eb5724b40f1f56461937e6"><span class="std std-ref">SysMCGetTaskGroupOptions</span></a> (RTS_HANDLE hTaskGroup, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga7accb4ae53fe0b6374bd719eda626578"><span class="std std-ref">SysMCChangeTaskGroupStrategy</span></a> (RTS_HANDLE hTaskGroup, RTS_UI32 taskGroupStrategy)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga0c34f39b422fa76f399d49f1b3f3e35e"><span class="std std-ref">SysMCSetTaskGroupBinding</span></a> (RTS_HANDLE hTaskGroup, <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gad11a4ecca49ea9a1a9aed3314553c269"><span class="std std-ref">SysMCAddToTaskGroup</span></a> (RTS_HANDLE hSysTask, RTS_HANDLE hTaskGroup)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga65eb376a169af515e537a94c8c593299"><span class="std std-ref">SysMCRemoveFromTaskGroup</span></a> (RTS_HANDLE hSysTask, RTS_HANDLE hTaskGroup)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga87eb95c838a43dbb3c2a8f1aa4274a84"><span class="std std-ref">SysMCBeginTaskGroupConf</span></a> (RTS_HANDLE hTaskGroup)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga85d810d30e53ba1698443cc4fd0d5896"><span class="std std-ref">SysMCEndTaskGroupConf</span></a> (RTS_HANDLE hTaskGroup)</li>
+<li><a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga37d02f00277ccf1ea8921eb243d9edf1"><span class="std std-ref">SysMCBDAlloc</span></a> (RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga67b4af553e2fc0838ac31c538813b143"><span class="std std-ref">SysMCBDFree</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga74f1ef1820f7040ab8a6fc4d06adf90e"><span class="std std-ref">SysMCBDZero</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga4d694d700fde30f78a8e6c6d56ae6953"><span class="std std-ref">SysMCBDSet</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc, RTS_UI32 uCoreId)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga81c37f56c8162e9cf6798e81692d43f5"><span class="std std-ref">SysMCBDReset</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc, RTS_UI32 uCoreId)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga31996614ae2b8ad82fa65ff647e87025"><span class="std std-ref">SysMCBDIsSet</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc, RTS_UI32 uCoreId)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga1bd02aa285cb33b49355e102a444a5a5"><span class="std std-ref">SysMCBDCount</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc, RTS_RESULT * pResult)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gaa0407c35494b8c8a53a26c8c7b24d621"><span class="std std-ref">SysMCBDGetFirstID</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc, RTS_RESULT * pResult)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gaf7ac85cc51905025e4f7aaa512bb58ba"><span class="std std-ref">SysMCBDGetNextID</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc, RTS_UI32 uPrevCoreID, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga87a4c7e4fc4cbc1742e0db7cc9b89db7"><span class="std std-ref">SysMCBindProcess</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc, RTS_IEC_HANDLE hProcess)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gad2a081e193f037befa9272979b986f35"><span class="std std-ref">SysMCBindProcess_</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc, RTS_IEC_HANDLE hProcess)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga61c9583a7b245940d42f4ee58e96f310"><span class="std std-ref">SysMCBindTask</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc, RTS_IEC_HANDLE hTask)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga25fad5b42431683bc9123e7a47808ed6"><span class="std std-ref">SysMCBindTask_</span></a> (<a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc, RTS_IEC_HANDLE hTask)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gadb909c872b5a787ebf42c6d368cc90e0"><span class="std std-ref">SysMCUnbindProcess</span></a> (RTS_IEC_HANDLE hProcess)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gaaabfb963dafcd85e1b1ef1b35c16a565"><span class="std std-ref">SysMCUnbindProcess_</span></a> (RTS_IEC_HANDLE hProcess)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga8c502c9779d3c49788cc47018b1407b4"><span class="std std-ref">SysMCUnbindTask</span></a> (RTS_IEC_HANDLE hTask)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gaa30487d7d6674b2cfac6bff166e59975"><span class="std std-ref">SysMCUnbindTask_</span></a> (RTS_IEC_HANDLE hTask)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga1be2430e917d710b3f6d242944434592"><span class="std std-ref">SysMCGetLoad</span></a> (RTS_UI32 uCoreID, RTS_UI8 * pPercent)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga41bebadc1868cd428caeb2debf2ff40d"><span class="std std-ref">SysMCGetLoad_</span></a> (RTS_UI32 uCoreID, RTS_UI8 * pPercent)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gadf9130c00eee49dd86fb4dfd55ef0c8a"><span class="std std-ref">SysMCGetNumOfCores</span></a> (RTS_RESULT * pResult)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga157b4dcefc157c8ff096a52de5ef8701"><span class="std std-ref">SysMCGetNumOfCores_</span></a> (RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga77d577955203eb463a31afbc4112f472"><span class="std std-ref">SysMCGetProcessBinding</span></a> (RTS_IEC_HANDLE hProcess, <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gadd050f9b966798c186b9814924aade0a"><span class="std std-ref">SysMCGetProcessBinding_</span></a> (RTS_IEC_HANDLE hProcess, <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga9929613cee047235c7e4bab785978bd6"><span class="std std-ref">SysMCGetTaskBinding</span></a> (RTS_IEC_HANDLE hTask, <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1gaa7fc872c7df6386652f4d931701256e1"><span class="std std-ref">SysMCGetTaskBinding_</span></a> (RTS_IEC_HANDLE hTask, <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"><span class="std std-ref">CpuCoreBindingDesc</span></a> * pBindingDesc)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga9161f12f86827eab55b7c5c100745638"><span class="std std-ref">SysMCGetCurrentCoreID</span></a> (RTS_RESULT * pResult)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-cpu-multi-core-itf-1ga9df4a7641181a251554db824306e29e3"><span class="std std-ref">SysMCGetCurrentCoreID_</span></a> (RTS_RESULT * pResult)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-cpu-multi-core-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of SysCpuMultiCore.</p>
+<p>This interface provides functions to manage multi core cpu system.</p>
+<p>Naming convention: In this interface a core describes a logical processor, a logical CPU, independent of the physical hardware. A CoreId is a zero based number of a core, corresponding to the position of a bit in the CoreBits bitfield. E.g., a dual core processor with hyperthreading supplies four logical processors, SysMCGetNumOfCores returns 4 cores and they are numbered from 0 to 3.</p>
+<p>The bitfield is placed in a processor word (XWORD ulCoreBits) inside the <a class="reference internal" href="union_cpu_core_bits.html#union-cpu-core-bits"><span class="std std-ref">CpuCoreBits</span></a> union in case the number of cores fits there in, i.e. up to 32 cores on a 32 bit system, up to 64 cores on a 64 bit system. In case the number of cores exceed these values (i.e. nNumOfCores &gt; SYSMCBITSPERXWORD), an allocated array of XWORDs is used (pulCoreBits) and this is where the functions SysMCBDAlloc and SysMCBDFree come in handy.</p>
+<p>NOTE: SysMCBDAlloc also initializes the member nNumOfCores of the CpuCoreBindingDesc structure. In case a local declared variable of CpuCoreBindingDesc is used, this member nNumOfCores should be initialized manually.</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-itf-syscpumulticore">
+<span id="group-sys-cpu-multi-core-itf-1gaff9baa213d2b63faa34678aaa4053336"></span><h3>#define ITF_SysCpuMultiCore<a class="headerlink" href="#define-itf-syscpumulticore" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-syscpumulticore">
+<span id="group-sys-cpu-multi-core-itf-1gab19e913d3e1ba1faf919f2e3a8f97864"></span><h3>#define EXTITF_SysCpuMultiCore<a class="headerlink" href="#define-extitf-syscpumulticore" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-tagcpucorebindingdesc-cpucorebindingdesc">
+<span id="group-sys-cpu-multi-core-itf-1ga990300d712bbd8dd872389e4a57380bc"></span><h3>typedef struct tagCpuCoreBindingDesc  CpuCoreBindingDesc<a class="headerlink" href="#typedef-struct-tagcpucorebindingdesc-cpucorebindingdesc" title="Permalink to this headline">¶</a></h3>
+<p>CpuCoreBindingDesc</p>
+</div>
+<div class="section" id="typedef-struct-tagsysmcbdalloc-struct-sysmcbdalloc-struct">
+<span id="group-sys-cpu-multi-core-itf-1ga34643d390e7c496e237aa2f48b69cad2"></span><h3>typedef struct tagsysmcbdalloc_struct  sysmcbdalloc_struct<a class="headerlink" href="#typedef-struct-tagsysmcbdalloc-struct-sysmcbdalloc-struct" title="Permalink to this headline">¶</a></h3>
+<p>sysmcbdalloc</p>
+</div>
+<div class="section" id="typedef-struct-tagsysmcbdcount-struct-sysmcbdcount-struct">
+<span id="group-sys-cpu-multi-core-itf-1ga4583f3d1ecfe6e2e0af3e6e8a1d8a38c"></span><h3>typedef struct tagsysmcbdcount_struct  sysmcbdcount_struct<a class="headerlink" href="#typedef-struct-tagsysmcbdcount-struct-sysmcbdcount-struct" title="Permalink to this headline">¶</a></h3>
+<p>sysmcbdcount</p>
+</div>
+<div class="section" id="typedef-struct-tagsysmcbdfree-struct-sysmcbdfree-struct">
+<span id="group-sys-cpu-multi-core-itf-1ga031ba83dcde009a9ad49adfa8275d3fd"></span><h3>typedef struct tagsysmcbdfree_struct  sysmcbdfree_struct<a class="headerlink" href="#typedef-struct-tagsysmcbdfree-struct-sysmcbdfree-struct" title="Permalink to this headline">¶</a></h3>
+<p>sysmcbdfree</p>
+</div>
+<div class="section" id="typedef-struct-tagsysmcbdgetfirstid-struct-sysmcbdgetfirstid-struct">
+<span id="group-sys-cpu-multi-core-itf-1ga0bf77a388434f729531593940ae02948"></span><h3>typedef struct tagsysmcbdgetfirstid_struct  sysmcbdgetfirstid_struct<a class="headerlink" href="#typedef-struct-tagsysmcbdgetfirstid-struct-sysmcbdgetfirstid-struct" title="Permalink to this headline">¶</a></h3>
+<p>sysmcbdgetfirstid</p>
+</div>
+<div class="section" id="typedef-struct-tagsysmcbdgetnextid-struct-sysmcbdgetnextid-struct">
+<span id="group-sys-cpu-multi-core-itf-1ga485711ed9f75659861167cf0127c990d"></span><h3>typedef struct tagsysmcbdgetnextid_struct  sysmcbdgetnextid_struct<a class="headerlink" href="#typedef-struct-tagsysmcbdgetnextid-struct-sysmcbdgetnextid-struct" title="Permalink to this headline">¶</a></h3>
+<p>sysmcbdgetnextid</p>
+</div>
+<div class="section" id="typedef-struct-tagsysmcbdisset-struct-sysmcbdisset-struct">
+<span id="group-sys-cpu-multi-core-itf-1ga89bf7bb33713d1b419ed35ed7bea8c92"></span><h3>typedef struct tagsysmcbdisset_struct  sysmcbdisset_struct<a class="headerlink" href="#typedef-struct-tagsysmcbdisset-struct-sysmcbdisset-struct" title="Permalink to this headline">¶</a></h3>
+<p>sysmcbdisset</p>
+</div>
+<div class="section" id="typedef-struct-tagsysmcgetload-struct-sysmcgetload-struct">
+<span id="group-sys-cpu-multi-core-itf-1ga8ffb5973137cf357da8ab98aed5fd458"></span><h3>typedef struct tagsysmcgetload_struct  sysmcgetload_struct<a class="headerlink" href="#typedef-struct-tagsysmcgetload-struct-sysmcgetload-struct" title="Permalink to this headline">¶</a></h3>
+<p>sysmcgetload</p>
+</div>
+<div class="section" id="typedef-struct-tagsysmcgetnumofcores-struct-sysmcgetnumofcores-struct">
+<span id="group-sys-cpu-multi-core-itf-1ga820422a5f5531dc7c128bf0584ba04d8"></span><h3>typedef struct tagsysmcgetnumofcores_struct  sysmcgetnumofcores_struct<a class="headerlink" href="#typedef-struct-tagsysmcgetnumofcores-struct-sysmcgetnumofcores-struct" title="Permalink to this headline">¶</a></h3>
+<p>Returns the number of available cores. Available means: Available to be used by runtime system.</p>
+</div>
+<div class="section" id="typedef-struct-tagsysmcgetprocessbinding-struct-sysmcgetprocessbinding-struct">
+<span id="group-sys-cpu-multi-core-itf-1ga0b64fad5640e611ee4038bfddd8da1a8"></span><h3>typedef struct tagsysmcgetprocessbinding_struct  sysmcgetprocessbinding_struct<a class="headerlink" href="#typedef-struct-tagsysmcgetprocessbinding-struct-sysmcgetprocessbinding-struct" title="Permalink to this headline">¶</a></h3>
+<p>Read the binding description of a process.</p>
+</div>
+<div class="section" id="typedef-struct-tagsysmcgettaskbinding-struct-sysmcgettaskbinding-struct">
+<span id="group-sys-cpu-multi-core-itf-1ga7a525de72f4e1ece481a4bdedaa45251"></span><h3>typedef struct tagsysmcgettaskbinding_struct  sysmcgettaskbinding_struct<a class="headerlink" href="#typedef-struct-tagsysmcgettaskbinding-struct-sysmcgettaskbinding-struct" title="Permalink to this headline">¶</a></h3>
+<p>Read the binding description of a task.</p>
+</div>
+<div class="section" id="typedef-isyscpumulticore-c-isyscpumulticore">
+<span id="group-sys-cpu-multi-core-itf-1gabca52eac9b2d0f93af38c09a39fbfa98"></span><h3>typedef ISysCpuMultiCore_C ISysCpuMultiCore<a class="headerlink" href="#typedef-isyscpumulticore-c-isyscpumulticore" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="void-sysmcbdalloc-sysmcbdalloc-struct-p">
+<span id="group-sys-cpu-multi-core-itf-1gac4f508901816a0262f9a75a753ebbed4"></span><h3>void sysmcbdalloc (sysmcbdalloc_struct <a href="#id1"><span class="problematic" id="id2">*</span></a>p)<a class="headerlink" href="#void-sysmcbdalloc-sysmcbdalloc-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysmcbdcount-sysmcbdcount-struct-p">
+<span id="group-sys-cpu-multi-core-itf-1ga0496bf9ce955cf88bfbec84b3d98509c"></span><h3>void sysmcbdcount (sysmcbdcount_struct <a href="#id3"><span class="problematic" id="id4">*</span></a>p)<a class="headerlink" href="#void-sysmcbdcount-sysmcbdcount-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysmcbdfree-sysmcbdfree-struct-p">
+<span id="group-sys-cpu-multi-core-itf-1ga62fc58f3ff6b0a9b5fdca9ac905a49ef"></span><h3>void sysmcbdfree (sysmcbdfree_struct <a href="#id5"><span class="problematic" id="id6">*</span></a>p)<a class="headerlink" href="#void-sysmcbdfree-sysmcbdfree-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysmcbdgetfirstid-sysmcbdgetfirstid-struct-p">
+<span id="group-sys-cpu-multi-core-itf-1ga7109aeeab758e7f40dde58e84087c9c3"></span><h3>void sysmcbdgetfirstid (sysmcbdgetfirstid_struct <a href="#id7"><span class="problematic" id="id8">*</span></a>p)<a class="headerlink" href="#void-sysmcbdgetfirstid-sysmcbdgetfirstid-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysmcbdgetnextid-sysmcbdgetnextid-struct-p">
+<span id="group-sys-cpu-multi-core-itf-1ga0c799e18991fb2bcd5dfddc28d2bdf77"></span><h3>void sysmcbdgetnextid (sysmcbdgetnextid_struct <a href="#id9"><span class="problematic" id="id10">*</span></a>p)<a class="headerlink" href="#void-sysmcbdgetnextid-sysmcbdgetnextid-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysmcbdisset-sysmcbdisset-struct-p">
+<span id="group-sys-cpu-multi-core-itf-1ga0142ed1a70c983b1c9797f8edcf7a553"></span><h3>void sysmcbdisset (sysmcbdisset_struct <a href="#id11"><span class="problematic" id="id12">*</span></a>p)<a class="headerlink" href="#void-sysmcbdisset-sysmcbdisset-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysmcgetload-sysmcgetload-struct-p">
+<span id="group-sys-cpu-multi-core-itf-1gab30bcd94c9ed65ee5205031654f6178c"></span><h3>void sysmcgetload (sysmcgetload_struct <a href="#id13"><span class="problematic" id="id14">*</span></a>p)<a class="headerlink" href="#void-sysmcgetload-sysmcgetload-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysmcgetnumofcores-sysmcgetnumofcores-struct-p">
+<span id="group-sys-cpu-multi-core-itf-1gaa44a3fb76bc604fc96e32a8664bdba92"></span><h3>void sysmcgetnumofcores (sysmcgetnumofcores_struct <a href="#id15"><span class="problematic" id="id16">*</span></a>p)<a class="headerlink" href="#void-sysmcgetnumofcores-sysmcgetnumofcores-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysmcgetprocessbinding-sysmcgetprocessbinding-struct-p">
+<span id="group-sys-cpu-multi-core-itf-1gabc46aa562c75ff628b9f0a70db6afd61"></span><h3>void sysmcgetprocessbinding (sysmcgetprocessbinding_struct <a href="#id17"><span class="problematic" id="id18">*</span></a>p)<a class="headerlink" href="#void-sysmcgetprocessbinding-sysmcgetprocessbinding-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-sysmcgettaskbinding-sysmcgettaskbinding-struct-p">
+<span id="group-sys-cpu-multi-core-itf-1ga913176bec64ab3bddaa69c60cfa1dbac"></span><h3>void sysmcgettaskbinding (sysmcgettaskbinding_struct <a href="#id19"><span class="problematic" id="id20">*</span></a>p)<a class="headerlink" href="#void-sysmcgettaskbinding-sysmcgettaskbinding-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-syscpumulticoreosinit-init-struct-pinit">
+<span id="group-sys-cpu-multi-core-itf-1ga6608c8cd3da78bbf5b65e2b63d4fc46e"></span><h3>RTS_RESULT SysCpuMultiCoreOSInit (INIT_STRUCT <a href="#id21"><span class="problematic" id="id22">*</span></a>pInit)<a class="headerlink" href="#rts-result-syscpumulticoreosinit-init-struct-pinit" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION END</p>
+</div>
+<div class="section" id="rts-result-syscpumulticoreoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">
+<span id="group-sys-cpu-multi-core-itf-1ga61a0a2d508898c4f903779980b58e870"></span><h3>RTS_RESULT SysCpuMultiCoreOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)<a class="headerlink" href="#rts-result-syscpumulticoreoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-handle-sysmcaddtaskgroup-char-psztaskgroup-rts-ui32-taskgroupoptions-rts-result-presult">
+<span id="group-sys-cpu-multi-core-itf-1ga3e7226a3e5850ff12b21afc0cc357afe"></span><h3>RTS_HANDLE SysMCAddTaskGroup (char <a href="#id23"><span class="problematic" id="id24">*</span></a>pszTaskGroup, RTS_UI32 taskGroupOptions, RTS_RESULT <a href="#id25"><span class="problematic" id="id26">*</span></a>pResult)<a class="headerlink" href="#rts-handle-sysmcaddtaskgroup-char-psztaskgroup-rts-ui32-taskgroupoptions-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function adds a task group. In case the task group is already present, the handle is returned anyway but an internal reference counter is incremented.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="21%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszTaskGroup</td>
+<td>The name of the task group to add</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>taskGroupOptions</td>
+<td>See &#8216;Task group options&#8217;</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to a variable to return an errorcode (optional)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the handle to the newly added task group or RTS_INVALID_HANDLE.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>The required memory pool was not initialized.</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOMEMORY</td>
+<td>Not enough memory to allocate.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysmcremovetaskgroup-rts-handle-htaskgroup">
+<span id="group-sys-cpu-multi-core-itf-1ga14ebbd6a5e82a7fea5038a1224fbf20e"></span><h3>RTS_RESULT SysMCRemoveTaskGroup (RTS_HANDLE hTaskGroup)<a class="headerlink" href="#rts-result-sysmcremovetaskgroup-rts-handle-htaskgroup" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function removes a task group. The group is not deleted until the internal reference counter reaches zero.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="19%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTaskGroup</td>
+<td>The handle to a previous added task group</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns an errorcode.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_INVALID_HANDLE</td>
+<td>The given handle is invalid.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-handle-sysmcfindtaskgroup-char-psztaskgroup-rts-i32-biectaskgroup-rts-result-presult">
+<span id="group-sys-cpu-multi-core-itf-1ga90cedc6b143396cc5040a8d60355da06"></span><h3>RTS_HANDLE SysMCFindTaskGroup (char <a href="#id27"><span class="problematic" id="id28">*</span></a>pszTaskGroup, RTS_I32 bIecTaskGroup, RTS_RESULT <a href="#id29"><span class="problematic" id="id30">*</span></a>pResult)<a class="headerlink" href="#rts-handle-sysmcfindtaskgroup-char-psztaskgroup-rts-i32-biectaskgroup-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function searches for a task group and returns its handle on success.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="16%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pszTaskGroup</td>
+<td>The name of the task group to search for</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>bIecTaskGroup</td>
+<td>Search IEC task groups only (TRUE), search all task groups (FALSE)</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to a variable to return an errorcode (optional)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the handle to the searched task group or RTS_INVALID_HANDLE.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>The required memory pool was not initialized.</td>
+</tr>
+<tr class="row-odd"><td>ERR_NO_OBJECT</td>
+<td>The task group was not found.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-handle-sysmcgetfirsttaskgroup-rts-result-presult">
+<span id="group-sys-cpu-multi-core-itf-1ga5b2ad8115ed6541c1bddf2499125fa31"></span><h3>RTS_HANDLE SysMCGetFirstTaskGroup (RTS_RESULT <a href="#id31"><span class="problematic" id="id32">*</span></a>pResult)<a class="headerlink" href="#rts-handle-sysmcgetfirsttaskgroup-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function returns the first found task group. The returned handle may be used for SysMCGetNextTaskGroup.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to a variable to return an errorcode</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the handle to the searched task group or RTS_INVALID_HANDLE.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>The required memory pool was not initialized.</td>
+</tr>
+<tr class="row-odd"><td>ERR_NO_OBJECT</td>
+<td>The task group was not found.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-handle-sysmcgetnexttaskgroup-rts-handle-hprevtaskgroup-rts-result-presult">
+<span id="group-sys-cpu-multi-core-itf-1gae8dd16f4dd503e41179ac5af684a957c"></span><h3>RTS_HANDLE SysMCGetNextTaskGroup (RTS_HANDLE hPrevTaskGroup, RTS_RESULT <a href="#id33"><span class="problematic" id="id34">*</span></a>pResult)<a class="headerlink" href="#rts-handle-sysmcgetnexttaskgroup-rts-handle-hprevtaskgroup-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function returns the next found task group and is used to iterate through all task groups until the result is ERR_END_OF_OBJECT.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="23%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hPrevTaskGroup</td>
+<td>The handle to a previous found task group</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to a variable to return an errorcode</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the handle to the searched task group or RTS_INVALID_HANDLE.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>The required memory pool was not initialized.</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>The given handle is invalid.</td>
+</tr>
+<tr class="row-even"><td>ERR_END_OF_OBJECT</td>
+<td>There are no more task groups to find.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="char-sysmcgettaskgroupname-rts-handle-htaskgroup-rts-result-presult">
+<span id="group-sys-cpu-multi-core-itf-1gab7a5dc75e3ddf495f6521c9a3746b043"></span><h3>char* SysMCGetTaskGroupName (RTS_HANDLE hTaskGroup, RTS_RESULT <a href="#id35"><span class="problematic" id="id36">*</span></a>pResult)<a class="headerlink" href="#char-sysmcgettaskgroupname-rts-handle-htaskgroup-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function returns the name of a task group with the given handle.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="18%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTaskGroup</td>
+<td>The handle to a task group</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to a variable to return an errorcode</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns a pointer to the name of the task group or NULL.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>The required memory pool was not initialized.</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>The given handle is invalid.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="cpucorebindingdesc-sysmcgettaskgroupbinding-rts-handle-htaskgroup-rts-result-presult">
+<span id="group-sys-cpu-multi-core-itf-1ga8e6466c59085cd67a619e49d2cb28de5"></span><h3>CpuCoreBindingDesc* SysMCGetTaskGroupBinding (RTS_HANDLE hTaskGroup, RTS_RESULT <a href="#id37"><span class="problematic" id="id38">*</span></a>pResult)<a class="headerlink" href="#cpucorebindingdesc-sysmcgettaskgroupbinding-rts-handle-htaskgroup-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function returns the binding description of a task group with the given handle.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="18%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTaskGroup</td>
+<td>The handle to a task group</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to a variable to return an errorcode</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns a pointer to binding description of the task group or NULL.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>The required memory pool was not initialized.</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>The given handle is invalid.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-ui32-sysmcgettaskgroupoptions-rts-handle-htaskgroup-rts-result-presult">
+<span id="group-sys-cpu-multi-core-itf-1ga199e91c3e0eb5724b40f1f56461937e6"></span><h3>RTS_UI32 SysMCGetTaskGroupOptions (RTS_HANDLE hTaskGroup, RTS_RESULT <a href="#id39"><span class="problematic" id="id40">*</span></a>pResult)<a class="headerlink" href="#rts-ui32-sysmcgettaskgroupoptions-rts-handle-htaskgroup-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function returns the options of a task group with the given handle.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="18%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTaskGroup</td>
+<td>The handle to a task group</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to a variable to return an errorcode</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the options of the task group (see &#8216;Task group options&#8217;).</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>The required memory pool was not initialized.</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>The given handle is invalid.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysmcchangetaskgroupstrategy-rts-handle-htaskgroup-rts-ui32-taskgroupstrategy">
+<span id="group-sys-cpu-multi-core-itf-1ga7accb4ae53fe0b6374bd719eda626578"></span><h3>RTS_RESULT SysMCChangeTaskGroupStrategy (RTS_HANDLE hTaskGroup, RTS_UI32 taskGroupStrategy)<a class="headerlink" href="#rts-result-sysmcchangetaskgroupstrategy-rts-handle-htaskgroup-rts-ui32-taskgroupstrategy" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function overwrites the strategy part of the options of a task group with the given handle. A following SysMCSetTaskGroupBinding is recommended.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="33%" />
+<col width="51%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTaskGroup</td>
+<td>The handle to a task group</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>taskGroupOptions</td>
+<td>See &#8216;Task group options&#8217;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns an errorcode.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>The required memory pool was not initialized.</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>The given handle is invalid.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysmcsettaskgroupbinding-rts-handle-htaskgroup-cpucorebindingdesc-pbindingdesc">
+<span id="group-sys-cpu-multi-core-itf-1ga0c34f39b422fa76f399d49f1b3f3e35e"></span><h3>RTS_RESULT SysMCSetTaskGroupBinding (RTS_HANDLE hTaskGroup, CpuCoreBindingDesc <a href="#id41"><span class="problematic" id="id42">*</span></a>pBindingDesc)<a class="headerlink" href="#rts-result-sysmcsettaskgroupbinding-rts-handle-htaskgroup-cpucorebindingdesc-pbindingdesc" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function sets the binding description of a task group with the given handle and checks the license. NOTE: Free floating groups for IEC are only possible if at least the number of physical cores is licensed.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="19%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTaskGroup</td>
+<td>The handle to a task group</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pBindingDesc</td>
+<td>Pointer to the description of the core binding.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns an errorcode.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>The required memory pool was not initialized.</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>The given handle is invalid.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>The given binding description is invalid.</td>
+</tr>
+<tr class="row-odd"><td>ERR_LICENSE_MISSING</td>
+<td>The given binding is not licensed.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysmcaddtotaskgroup-rts-handle-hsystask-rts-handle-htaskgroup">
+<span id="group-sys-cpu-multi-core-itf-1gad11a4ecca49ea9a1a9aed3314553c269"></span><h3>RTS_RESULT SysMCAddToTaskGroup (RTS_HANDLE hSysTask, RTS_HANDLE hTaskGroup)<a class="headerlink" href="#rts-result-sysmcaddtotaskgroup-rts-handle-hsystask-rts-handle-htaskgroup" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function adds a task to a task group and checks the license. After that it binds the tasks of the group if not in configuration mode (see SysMCBeginTaskGroupConf/SysMCEndTaskGroupConf). NOTE: Free floating groups for IEC are only possible if at least the number of physical cores is licensed. NOTE: In case the process is bound to one core, no task binding is possible at all, but the function returns ERR_OK anyway.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="24%" />
+<col width="57%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hSysTask</td>
+<td>The handle to a SysTask</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hTaskGroup</td>
+<td>The handle to a task group</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns an errorcode.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>The required memory pool was not initialized.</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>The given handle is invalid.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>The given SysTask handle is invalid.</td>
+</tr>
+<tr class="row-odd"><td>ERR_DUPLICATE</td>
+<td>The given SysTask handle is already added.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOMEMORY</td>
+<td>Not enough memory to allocate.</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>The binding configuration is invalid.</td>
+</tr>
+<tr class="row-even"><td>ERR_LICENSE_MISSING</td>
+<td>The binding of the task group is not licensed.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysmcremovefromtaskgroup-rts-handle-hsystask-rts-handle-htaskgroup">
+<span id="group-sys-cpu-multi-core-itf-1ga65eb376a169af515e537a94c8c593299"></span><h3>RTS_RESULT SysMCRemoveFromTaskGroup (RTS_HANDLE hSysTask, RTS_HANDLE hTaskGroup)<a class="headerlink" href="#rts-result-sysmcremovefromtaskgroup-rts-handle-hsystask-rts-handle-htaskgroup" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function removes a task from a task group.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="24%" />
+<col width="57%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hSysTask</td>
+<td>The handle to a SysTask</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hTaskGroup</td>
+<td>The handle to a task group</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns an errorcode.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTINITIALIZED</td>
+<td>The required memory pool was not initialized.</td>
+</tr>
+<tr class="row-odd"><td>ERR_INVALID_HANDLE</td>
+<td>The given handle is invalid.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>The given SysTask handle is invalid.</td>
+</tr>
+<tr class="row-odd"><td>ERR_NO_OBJECT</td>
+<td>The given SysTask handle was not found.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysmcbegintaskgroupconf-rts-handle-htaskgroup">
+<span id="group-sys-cpu-multi-core-itf-1ga87eb95c838a43dbb3c2a8f1aa4274a84"></span><h3>RTS_RESULT SysMCBeginTaskGroupConf (RTS_HANDLE hTaskGroup)<a class="headerlink" href="#rts-result-sysmcbegintaskgroupconf-rts-handle-htaskgroup" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function starts the configuration mode of task groups.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="24%" />
+<col width="57%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTaskGroup</td>
+<td>The handle to a task group</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns an errorcode.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_INVALID_HANDLE</td>
+<td>The given handle is invalid.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysmcendtaskgroupconf-rts-handle-htaskgroup">
+<span id="group-sys-cpu-multi-core-itf-1ga85d810d30e53ba1698443cc4fd0d5896"></span><h3>RTS_RESULT SysMCEndTaskGroupConf (RTS_HANDLE hTaskGroup)<a class="headerlink" href="#rts-result-sysmcendtaskgroupconf-rts-handle-htaskgroup" title="Permalink to this headline">¶</a></h3>
+<p>Task group maintenance</p>
+<p>This function ends the configuration mode of task groups and than binds the tasks of all groups as configured. NOTE: In case the process is bound to one core, no task binding is possible at all, but the function returns ERR_OK anyway.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="24%" />
+<col width="57%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTaskGroup</td>
+<td>The handle to a task group</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns an errorcode.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_INVALID_HANDLE</td>
+<td>The given handle is invalid.</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>The binding configuration is invalid.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="cpucorebindingdesc-sysmcbdalloc-rts-result-presult">
+<span id="group-sys-cpu-multi-core-itf-1ga37d02f00277ccf1ea8921eb243d9edf1"></span><h3>CpuCoreBindingDesc* SysMCBDAlloc (RTS_RESULT <a href="#id43"><span class="problematic" id="id44">*</span></a>pResult)<a class="headerlink" href="#cpucorebindingdesc-sysmcbdalloc-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>CpuCoreBindingDesc helper function</p>
+<p>SysMCBDAlloc allocates a CpuCoreBindingDesc which should be freed with SysMCBDFree after usage. Initializes the nNumOfCores member. In case nNumOfCores &gt; SYSMCBITSPERXWORD an array of appropriate XWORDs is allocated to pulCoreBits.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to a variable to return an errorcode (optional)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns a pointer to CpuCoreBindingDesc or NULL if no memory is available.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>A valid pointer is returned.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOMEMORY</td>
+<td>Not enough memory is available.</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>Component is not yet initialized.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysmcbdfree-cpucorebindingdesc-pbindingdesc">
+<span id="group-sys-cpu-multi-core-itf-1ga67b4af553e2fc0838ac31c538813b143"></span><h3>RTS_RESULT SysMCBDFree (CpuCoreBindingDesc <a href="#id45"><span class="problematic" id="id46">*</span></a>pBindingDesc)<a class="headerlink" href="#rts-result-sysmcbdfree-cpucorebindingdesc-pbindingdesc" title="Permalink to this headline">¶</a></h3>
+<p>CpuCoreBindingDesc helper function</p>
+<p>SysMCBDFree frees an CpuCoreBindingDesc which should be allocated with SysMCBDAlloc before usage.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="19%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBindingDesc</td>
+<td>Pointer to the description of the core binding.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns an errorcode.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Memory is sucessfully freed.</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>No appropriate memory block was found.</td>
+</tr>
+<tr class="row-odd"><td>ERR_PARAMETER</td>
+<td>CpuCoreBindingDesc is invalid pointer.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysmcbdzero-cpucorebindingdesc-pbindingdesc">
+<span id="group-sys-cpu-multi-core-itf-1ga74f1ef1820f7040ab8a6fc4d06adf90e"></span><h3>RTS_RESULT SysMCBDZero (CpuCoreBindingDesc <a href="#id47"><span class="problematic" id="id48">*</span></a>pBindingDesc)<a class="headerlink" href="#rts-result-sysmcbdzero-cpucorebindingdesc-pbindingdesc" title="Permalink to this headline">¶</a></h3>
+<p>CpuCoreBindingDesc helper function</p>
+<p>SysMCBDZero clears all the <a class="reference internal" href="union_cpu_core_bits.html#union-cpu-core-bits"><span class="std std-ref">CpuCoreBits</span></a> of the given CpuCoreBindingDesc. SysMCBDZero should be called prior to any call of SysMCBDSet.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="19%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBindingDesc</td>
+<td>Pointer to the description of the core binding.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns an errorcode.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Operation sucessfully finished.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>CpuCoreBindingDesc is invalid pointer.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysmcbdset-cpucorebindingdesc-pbindingdesc-rts-ui32-ucoreid">
+<span id="group-sys-cpu-multi-core-itf-1ga4d694d700fde30f78a8e6c6d56ae6953"></span><h3>RTS_RESULT SysMCBDSet (CpuCoreBindingDesc <a href="#id49"><span class="problematic" id="id50">*</span></a>pBindingDesc, RTS_UI32 uCoreId)<a class="headerlink" href="#rts-result-sysmcbdset-cpucorebindingdesc-pbindingdesc-rts-ui32-ucoreid" title="Permalink to this headline">¶</a></h3>
+<p>CpuCoreBindingDesc helper function</p>
+<p>Set the appropriate bit for uCoreId in the CpuCoreBindingDesc.CpuCoreBits. SysMCBDZero should be called prior to any call of SysMCBDSet.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="18%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBindingDesc</td>
+<td>Pointer to the description of the core binding.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>uCoreId</td>
+<td>Identifies the core ID. Starting with 0=first core, ...</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns an errorcode.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Operation sucessfully finished.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>CpuCoreBindingDesc is invalid pointer or uCoreId is invalid.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysmcbdreset-cpucorebindingdesc-pbindingdesc-rts-ui32-ucoreid">
+<span id="group-sys-cpu-multi-core-itf-1ga81c37f56c8162e9cf6798e81692d43f5"></span><h3>RTS_RESULT SysMCBDReset (CpuCoreBindingDesc <a href="#id51"><span class="problematic" id="id52">*</span></a>pBindingDesc, RTS_UI32 uCoreId)<a class="headerlink" href="#rts-result-sysmcbdreset-cpucorebindingdesc-pbindingdesc-rts-ui32-ucoreid" title="Permalink to this headline">¶</a></h3>
+<p>CpuCoreBindingDesc helper function</p>
+<p>SysMCBDReset resets the appropriate bit for uCoreId in the CpuCoreBindingDesc.CpuCoreBits, i.e. clears it.</p>
+<p><strong>Returns:</strong></p>
+<p>Returns an errorcode.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="18%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBindingDesc</td>
+<td>Pointer to the description of the core binding.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>uCoreId</td>
+<td>Identifies the core ID. Starting with 0=first core, ...</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Operation sucessfully finished.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>CpuCoreBindingDesc is invalid pointer or uCoreId is invalid.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysmcbdisset-cpucorebindingdesc-pbindingdesc-rts-ui32-ucoreid">
+<span id="group-sys-cpu-multi-core-itf-1ga31996614ae2b8ad82fa65ff647e87025"></span><h3>RTS_RESULT SysMCBDIsSet (CpuCoreBindingDesc <a href="#id53"><span class="problematic" id="id54">*</span></a>pBindingDesc, RTS_UI32 uCoreId)<a class="headerlink" href="#rts-result-sysmcbdisset-cpucorebindingdesc-pbindingdesc-rts-ui32-ucoreid" title="Permalink to this headline">¶</a></h3>
+<p>CpuCoreBindingDesc helper function</p>
+<p>SysMCBDIsSet tests the appropriate bit for uCoreId in CpuCoreBindingDesc.CpuCoreBits: see errorcode</p>
+<p><strong>Returns:</strong></p>
+<p>Returns an errorcode.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="18%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBindingDesc</td>
+<td>Pointer to the description of the core binding.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>uCoreId</td>
+<td>Identifies the core ID. Starting with 0=first core, ...</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Bit is set.</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Bit is not set.</td>
+</tr>
+<tr class="row-odd"><td>ERR_PARAMETER</td>
+<td>CpuCoreBindingDesc is invalid pointer or uCoreId is invalid.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-ui32-sysmcbdcount-cpucorebindingdesc-pbindingdesc-rts-result-presult">
+<span id="group-sys-cpu-multi-core-itf-1ga1bd02aa285cb33b49355e102a444a5a5"></span><h3>RTS_UI32 SysMCBDCount (CpuCoreBindingDesc <a href="#id55"><span class="problematic" id="id56">*</span></a>pBindingDesc, RTS_RESULT <a href="#id57"><span class="problematic" id="id58">*</span></a>pResult)<a class="headerlink" href="#rts-ui32-sysmcbdcount-cpucorebindingdesc-pbindingdesc-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>CpuCoreBindingDesc helper function</p>
+<p>SysMCBDCount counts the set bits in CpuCoreBindingDesc.CpuCoreBits.</p>
+<p><strong>Returns:</strong></p>
+<p>Returns the number of the bits set.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="18%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBindingDesc</td>
+<td>Pointer to the description of the core binding.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to a variable to return an errorcode (optional)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Operation sucessfully finished.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>CpuCoreBindingDesc is invalid pointer.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-ui32-sysmcbdgetfirstid-cpucorebindingdesc-pbindingdesc-rts-result-presult">
+<span id="group-sys-cpu-multi-core-itf-1gaa0407c35494b8c8a53a26c8c7b24d621"></span><h3>RTS_UI32 SysMCBDGetFirstID (CpuCoreBindingDesc <a href="#id59"><span class="problematic" id="id60">*</span></a>pBindingDesc, RTS_RESULT <a href="#id61"><span class="problematic" id="id62">*</span></a>pResult)<a class="headerlink" href="#rts-ui32-sysmcbdgetfirstid-cpucorebindingdesc-pbindingdesc-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>CpuCoreBindingDesc helper function</p>
+<p>SysMCBDGetFirstID returns the CoreId (i.e. the position) of the first set bit in CpuCoreBindingDesc.CpuCoreBits.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="19%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBindingDesc</td>
+<td>Pointer to the description of the core binding.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to a variable to return an errorcode.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns a valid CoreId if ERR_OK, otherwise the result is undefined.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>First found CoreId is returned.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>CpuCoreBindingDesc is invalid pointer.</td>
+</tr>
+<tr class="row-odd"><td>ERR_END_OF_OBJECT</td>
+<td>No core was set.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-ui32-sysmcbdgetnextid-cpucorebindingdesc-pbindingdesc-rts-ui32-uprevcoreid-rts-result-presult">
+<span id="group-sys-cpu-multi-core-itf-1gaf7ac85cc51905025e4f7aaa512bb58ba"></span><h3>RTS_UI32 SysMCBDGetNextID (CpuCoreBindingDesc <a href="#id63"><span class="problematic" id="id64">*</span></a>pBindingDesc, RTS_UI32 uPrevCoreID, RTS_RESULT <a href="#id65"><span class="problematic" id="id66">*</span></a>pResult)<a class="headerlink" href="#rts-ui32-sysmcbdgetnextid-cpucorebindingdesc-pbindingdesc-rts-ui32-uprevcoreid-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>CpuCoreBindingDesc helper function</p>
+<p>SysMCBDGetNextID returns the CoreId (i.e. the position) of the next set bit in CpuCoreBindingDesc.CpuCoreBits.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="14%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBindingDesc</td>
+<td>Pointer to the description of the core binding.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>uPrevCoreID</td>
+<td>CoreId found by SysMCBDGetFirstID or a previous call of SysMCBDGetNextID.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to a variable to return an errorcode.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns a valid CoreId if ERR_OK, otherwise the result is undefined.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Next found CoreId is returned.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>CpuCoreBindingDesc is invalid pointer.</td>
+</tr>
+<tr class="row-odd"><td>ERR_END_OF_OBJECT</td>
+<td>No more cores were set.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-sysmcbindprocess-cpucorebindingdesc-pbindingdesc-rts-iec-handle-hprocess">
+<span id="group-sys-cpu-multi-core-itf-1ga87a4c7e4fc4cbc1742e0db7cc9b89db7"></span><h3>RTS_RESULT SysMCBindProcess (CpuCoreBindingDesc <a href="#id67"><span class="problematic" id="id68">*</span></a>pBindingDesc, RTS_IEC_HANDLE hProcess)<a class="headerlink" href="#rts-result-sysmcbindprocess-cpucorebindingdesc-pbindingdesc-rts-iec-handle-hprocess" title="Permalink to this headline">¶</a></h3>
+<p>Function to bind a process to a core or a set of cores.</p>
+<p>To set the corresponding bit(s) in CpuCoreBindingDesc.CpuCoreBits use SysMCBDSet.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="16%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBindingDesc</td>
+<td>Pointer to the binding description for the new core binding.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hProcess</td>
+<td>Handle of the process to bind.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the result.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Parameter is invalid, e.g. core does not exist.</td>
+</tr>
+<tr class="row-odd"><td>ERR_OPERATION_DENIED</td>
+<td>Operation is denied on OS level.</td>
+</tr>
+<tr class="row-even"><td>ERR_INVALID_HANDLE</td>
+<td>Handle is invalid.</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Function failed for any reason on OS level.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTIMPLEMENTED</td>
+<td>Function is not implemented.</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOT_SUPPORTED</td>
+<td>Function is not supported.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="group-sys-cpu-multi-core-itf-1gad2a081e193f037befa9272979b986f35">
+<span id="id71"></span><h3>RTS_RESULT <a href="#id104"><span class="problematic" id="id105">SysMCBindProcess_</span></a> (CpuCoreBindingDesc <a href="#id69"><span class="problematic" id="id70">*</span></a>pBindingDesc, RTS_IEC_HANDLE hProcess)<a class="headerlink" href="#group-sys-cpu-multi-core-itf-1gad2a081e193f037befa9272979b986f35" title="Permalink to this headline">¶</a></h3>
+<p>The OS implementation of SysMCBindProcess</p>
+</div>
+<div class="section" id="rts-result-sysmcbindtask-cpucorebindingdesc-pbindingdesc-rts-iec-handle-htask">
+<span id="group-sys-cpu-multi-core-itf-1ga61c9583a7b245940d42f4ee58e96f310"></span><h3>RTS_RESULT SysMCBindTask (CpuCoreBindingDesc <a href="#id72"><span class="problematic" id="id73">*</span></a>pBindingDesc, RTS_IEC_HANDLE hTask)<a class="headerlink" href="#rts-result-sysmcbindtask-cpucorebindingdesc-pbindingdesc-rts-iec-handle-htask" title="Permalink to this headline">¶</a></h3>
+<p>Function to bind a task to a core or a set of cores.</p>
+<p>To set the corresponding bit(s) in CpuCoreBindingDesc.CpuCoreBits use SysMCBDSet.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="16%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pBindingDesc</td>
+<td>Pointer to the binding description for the new core binding.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hTask</td>
+<td>Handle of the task to bind.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the result.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Parameter is invalid, e.g. core does not exist.</td>
+</tr>
+<tr class="row-odd"><td>ERR_OPERATION_DENIED</td>
+<td>Operation is denied on OS level.</td>
+</tr>
+<tr class="row-even"><td>ERR_INVALID_HANDLE</td>
+<td>Handle is invalid.</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Function failed for any reason on OS level.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTIMPLEMENTED</td>
+<td>Function is not implemented.</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOT_SUPPORTED</td>
+<td>Function is not supported.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="group-sys-cpu-multi-core-itf-1ga25fad5b42431683bc9123e7a47808ed6">
+<span id="id76"></span><h3>RTS_RESULT <a href="#id106"><span class="problematic" id="id107">SysMCBindTask_</span></a> (CpuCoreBindingDesc <a href="#id74"><span class="problematic" id="id75">*</span></a>pBindingDesc, RTS_IEC_HANDLE hTask)<a class="headerlink" href="#group-sys-cpu-multi-core-itf-1ga25fad5b42431683bc9123e7a47808ed6" title="Permalink to this headline">¶</a></h3>
+<p>The OS implementation of SysMCBindTask</p>
+</div>
+<div class="section" id="rts-result-sysmcunbindprocess-rts-iec-handle-hprocess">
+<span id="group-sys-cpu-multi-core-itf-1gadb909c872b5a787ebf42c6d368cc90e0"></span><h3>RTS_RESULT SysMCUnbindProcess (RTS_IEC_HANDLE hProcess)<a class="headerlink" href="#rts-result-sysmcunbindprocess-rts-iec-handle-hprocess" title="Permalink to this headline">¶</a></h3>
+<p>Function to remove the binding to a core or a set of cores of a process.</p>
+<p>This means the OS is again responsible on which core(s) the process is allowed to run on.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="19%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hProcess</td>
+<td>Handle of the process to unbind.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the result.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Parameter is invalid.</td>
+</tr>
+<tr class="row-odd"><td>ERR_OPERATION_DENIED</td>
+<td>Operation is denied on OS level.</td>
+</tr>
+<tr class="row-even"><td>ERR_INVALID_HANDLE</td>
+<td>Handle is invalid.</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Function failed for any reason on OS level.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTIMPLEMENTED</td>
+<td>Function is not implemented.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="group-sys-cpu-multi-core-itf-1gaaabfb963dafcd85e1b1ef1b35c16a565">
+<span id="id77"></span><h3>RTS_RESULT <a href="#id108"><span class="problematic" id="id109">SysMCUnbindProcess_</span></a> (RTS_IEC_HANDLE hProcess)<a class="headerlink" href="#group-sys-cpu-multi-core-itf-1gaaabfb963dafcd85e1b1ef1b35c16a565" title="Permalink to this headline">¶</a></h3>
+<p>The OS implementation of SysMCUnbindProcess</p>
+</div>
+<div class="section" id="rts-result-sysmcunbindtask-rts-iec-handle-htask">
+<span id="group-sys-cpu-multi-core-itf-1ga8c502c9779d3c49788cc47018b1407b4"></span><h3>RTS_RESULT SysMCUnbindTask (RTS_IEC_HANDLE hTask)<a class="headerlink" href="#rts-result-sysmcunbindtask-rts-iec-handle-htask" title="Permalink to this headline">¶</a></h3>
+<p>Function to remove the binding to a core or a group of cores of a task.</p>
+<p>This means the OS is again responsible on which core(s) the task is allowed to run on.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="15%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTask</td>
+<td>Handle of the task to unbind.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the result.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Parameter is invalid.</td>
+</tr>
+<tr class="row-odd"><td>ERR_OPERATION_DENIED</td>
+<td>Operation is denied on OS level.</td>
+</tr>
+<tr class="row-even"><td>ERR_INVALID_HANDLE</td>
+<td>Handle is invalid.</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Function failed for any reason on OS level.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTIMPLEMENTED</td>
+<td>Function is not implemented.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="group-sys-cpu-multi-core-itf-1gaa30487d7d6674b2cfac6bff166e59975">
+<span id="id78"></span><h3>RTS_RESULT <a href="#id110"><span class="problematic" id="id111">SysMCUnbindTask_</span></a> (RTS_IEC_HANDLE hTask)<a class="headerlink" href="#group-sys-cpu-multi-core-itf-1gaa30487d7d6674b2cfac6bff166e59975" title="Permalink to this headline">¶</a></h3>
+<p>The OS implementation of SysMCUnbindTask</p>
+</div>
+<div class="section" id="rts-result-sysmcgetload-rts-ui32-ucoreid-rts-ui8-ppercent">
+<span id="group-sys-cpu-multi-core-itf-1ga1be2430e917d710b3f6d242944434592"></span><h3>RTS_RESULT SysMCGetLoad (RTS_UI32 uCoreID, RTS_UI8 <a href="#id79"><span class="problematic" id="id80">*</span></a>pPercent)<a class="headerlink" href="#rts-result-sysmcgetload-rts-ui32-ucoreid-rts-ui8-ppercent" title="Permalink to this headline">¶</a></h3>
+<p>OPTIONAL FUNCTION:</p>
+<p>Function to get the current average workload of a dedicated core, identified by the input parameter. NOTE: This function may not be supported by every operating system!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>uCoreID</td>
+<td>Identifies the core whose load has to be returned. Starting with 0=first core, ... NOTE: If uCoreID=RTS_UI32_MAX, average CPU load over all cores in percent is returned!</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pPercent</td>
+<td>CPU-Core load in percent.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the result.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Parameter is invalid, e.g. core does not exist.</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTINITIALIZED</td>
+<td>Function is not initialized.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOBUFFER</td>
+<td>Not enough memory for the performance counters</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Function failed for any reason on OS level.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTIMPLEMENTED</td>
+<td>Function is not implemented.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="group-sys-cpu-multi-core-itf-1ga41bebadc1868cd428caeb2debf2ff40d">
+<span id="id83"></span><h3>RTS_RESULT <a href="#id112"><span class="problematic" id="id113">SysMCGetLoad_</span></a> (RTS_UI32 uCoreID, RTS_UI8 <a href="#id81"><span class="problematic" id="id82">*</span></a>pPercent)<a class="headerlink" href="#group-sys-cpu-multi-core-itf-1ga41bebadc1868cd428caeb2debf2ff40d" title="Permalink to this headline">¶</a></h3>
+<p>The OS implementation of SysMCGetLoad</p>
+</div>
+<div class="section" id="rts-ui32-sysmcgetnumofcores-rts-result-presult">
+<span id="group-sys-cpu-multi-core-itf-1gadf9130c00eee49dd86fb4dfd55ef0c8a"></span><h3>RTS_UI32 SysMCGetNumOfCores (RTS_RESULT <a href="#id84"><span class="problematic" id="id85">*</span></a>pResult)<a class="headerlink" href="#rts-ui32-sysmcgetnumofcores-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Function to get the number of cores available for use by the runtime system.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to a variable to return an errorcode (optional)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the number of cores.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Function failed for any reason on OS level.</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTIMPLEMENTED</td>
+<td>Function is not implemented.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="group-sys-cpu-multi-core-itf-1ga157b4dcefc157c8ff096a52de5ef8701">
+<span id="id88"></span><h3>RTS_UI32 <a href="#id114"><span class="problematic" id="id115">SysMCGetNumOfCores_</span></a> (RTS_RESULT <a href="#id86"><span class="problematic" id="id87">*</span></a>pResult)<a class="headerlink" href="#group-sys-cpu-multi-core-itf-1ga157b4dcefc157c8ff096a52de5ef8701" title="Permalink to this headline">¶</a></h3>
+<p>The OS implementation of SysMCGetNumOfCores</p>
+</div>
+<div class="section" id="rts-result-sysmcgetprocessbinding-rts-iec-handle-hprocess-cpucorebindingdesc-pbindingdesc">
+<span id="group-sys-cpu-multi-core-itf-1ga77d577955203eb463a31afbc4112f472"></span><h3>RTS_RESULT SysMCGetProcessBinding (RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc <a href="#id89"><span class="problematic" id="id90">*</span></a>pBindingDesc)<a class="headerlink" href="#rts-result-sysmcgetprocessbinding-rts-iec-handle-hprocess-cpucorebindingdesc-pbindingdesc" title="Permalink to this headline">¶</a></h3>
+<p>Function to read the binding of a process to core(s).</p>
+<p>NOTE: To obtain the binding of the current process hProcess may be RTS_INVALID_HANDLE. NOTE: To obtain the CoreIds set in CpuCoreBindingDesc use SysMCBDGetFirstID and SysMCBDGetNextID.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="16%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hProcess</td>
+<td>Handle of the process or RTS_INVALID_HANDLE for current process.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pBindingDesc</td>
+<td>Pointer to the binding description for the core binding.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the result.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Parameter is invalid.</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Function failed for any reason on OS level.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTIMPLEMENTED</td>
+<td>Function is not implemented.</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOT_SUPPORTED</td>
+<td>Function is not supported.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="group-sys-cpu-multi-core-itf-1gadd050f9b966798c186b9814924aade0a">
+<span id="id93"></span><h3>RTS_RESULT <a href="#id116"><span class="problematic" id="id117">SysMCGetProcessBinding_</span></a> (RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc <a href="#id91"><span class="problematic" id="id92">*</span></a>pBindingDesc)<a class="headerlink" href="#group-sys-cpu-multi-core-itf-1gadd050f9b966798c186b9814924aade0a" title="Permalink to this headline">¶</a></h3>
+<p>The OS implementation of SysMCGetProcessBinding</p>
+</div>
+<div class="section" id="rts-result-sysmcgettaskbinding-rts-iec-handle-htask-cpucorebindingdesc-pbindingdesc">
+<span id="group-sys-cpu-multi-core-itf-1ga9929613cee047235c7e4bab785978bd6"></span><h3>RTS_RESULT SysMCGetTaskBinding (RTS_IEC_HANDLE hTask, CpuCoreBindingDesc <a href="#id94"><span class="problematic" id="id95">*</span></a>pBindingDesc)<a class="headerlink" href="#rts-result-sysmcgettaskbinding-rts-iec-handle-htask-cpucorebindingdesc-pbindingdesc" title="Permalink to this headline">¶</a></h3>
+<p>Function to read the binding of a task to core(s).</p>
+<p>NOTE: To obtain the binding of the current task hTask may be RTS_INVALID_HANDLE. NOTE: Operating system dependent this function may support only the current task. NOTE: To obtain the CoreIds set in CpuCoreBindingDesc use SysMCBDGetFirstID and SysMCBDGetNextID.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="17%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hTask</td>
+<td>Handle of the task or RTS_INVALID_HANDLE for current task.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pBindingDesc</td>
+<td>Pointer to the binding description for the core binding.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the result.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>Parameter is invalid.</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Function failed for any reason on OS level.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOTIMPLEMENTED</td>
+<td>Function is not implemented.</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOT_SUPPORTED</td>
+<td>Function is not supported.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="group-sys-cpu-multi-core-itf-1gaa7fc872c7df6386652f4d931701256e1">
+<span id="id98"></span><h3>RTS_RESULT <a href="#id118"><span class="problematic" id="id119">SysMCGetTaskBinding_</span></a> (RTS_IEC_HANDLE hTask, CpuCoreBindingDesc <a href="#id96"><span class="problematic" id="id97">*</span></a>pBindingDesc)<a class="headerlink" href="#group-sys-cpu-multi-core-itf-1gaa7fc872c7df6386652f4d931701256e1" title="Permalink to this headline">¶</a></h3>
+<p>The OS implementation of SysMCGetTaskBinding</p>
+</div>
+<div class="section" id="rts-ui32-sysmcgetcurrentcoreid-rts-result-presult">
+<span id="group-sys-cpu-multi-core-itf-1ga9161f12f86827eab55b7c5c100745638"></span><h3>RTS_UI32 SysMCGetCurrentCoreID (RTS_RESULT <a href="#id99"><span class="problematic" id="id100">*</span></a>pResult)<a class="headerlink" href="#rts-ui32-sysmcgetcurrentcoreid-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Function to read current CoreId the calling process or task is running on.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to a variable to return an errorcode (optional)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Returns the current CoreId.</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Call was sucessfull.</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Function failed for any reason on OS level.</td>
+</tr>
+<tr class="row-odd"><td>ERR_NOTIMPLEMENTED</td>
+<td>Function is not implemented.</td>
+</tr>
+<tr class="row-even"><td>ERR_NOT_SUPPORTED</td>
+<td>Function is not supported.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="group-sys-cpu-multi-core-itf-1ga9df4a7641181a251554db824306e29e3">
+<span id="id103"></span><h3>RTS_UI32 <a href="#id120"><span class="problematic" id="id121">SysMCGetCurrentCoreID_</span></a> (RTS_RESULT <a href="#id101"><span class="problematic" id="id102">*</span></a>pResult)<a class="headerlink" href="#group-sys-cpu-multi-core-itf-1ga9df4a7641181a251554db824306e29e3" title="Permalink to this headline">¶</a></h3>
+<p>The OS implementation of SysMCGetCurrentCoreID</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___sys_dir_itf.html" title="SysDirItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_cpu_handling_itf.html" title="SysCpuHandlingItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

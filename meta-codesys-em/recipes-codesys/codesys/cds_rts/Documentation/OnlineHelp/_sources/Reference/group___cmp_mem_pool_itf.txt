@@ -1,0 +1,1099 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_mem_pool_itf:
+
+=============
+CmpMemPoolItf
+=============
+
+Interface of CmpMemPool. :ref:`More... <group___cmp_mem_pool_itf-details>`
+
+Modules
+-------
+
+- :ref:`Compiler switch <group___cmp_mem_pool_itf___compilerswitch>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagFBA_CHUNK <structtag_f_b_a___c_h_u_n_k>`
+
+- struct :ref:`tagRTS_FIXED_BLOCKS_POOL <structtag_r_t_s___f_i_x_e_d___b_l_o_c_k_s___p_o_o_l>`
+
+- struct :ref:`RTS_BCBtag <struct_r_t_s___b_c_btag>`
+
+- struct :ref:`RTS_PEBtag <struct_r_t_s___p_e_btag>`
+
+- struct :ref:`RTS_PCBtag <struct_r_t_s___p_c_btag>`
+
+- struct :ref:`MemIterator <struct_mem_iterator>`
+
+- struct :ref:`ICmpMemPool_C <struct_i_cmp_mem_pool___c>`
+
+Macros
+------
+
+- #define :ref:`U_CONTAINING_RECORD <group___cmp_mem_pool_itf_1gaeb276310831316dba22fc323f914fd97>` ((type *)(void*)((char*)(void*)(address) - (RTS_SIZE)(/*lint -e413 */&((type *)0)->field)))
+
+- #define :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` ( (sizeof(RTS_SIZE) <= 2) ? 2 : sizeof(RTS_UINTPTR) )
+
+- #define :ref:`___FBA_ALIGN_SIZE___ <group___cmp_mem_pool_itf_1ga5d2b6694166706b7f9ee92d9d863273b>` ((((sz) + ( :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` - 1)) / :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` ) * :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` )
+
+- #define :ref:`FBA_ALIGN_SIZE <group___cmp_mem_pool_itf_1ga68121c8e86574a77ec465e54bc9a2fe1>` :ref:`___FBA_ALIGN_SIZE___ <group___cmp_mem_pool_itf_1ga5d2b6694166706b7f9ee92d9d863273b>` (sz)
+
+- #define :ref:`FBA_ALIGN_MEM <group___cmp_mem_pool_itf_1gabf089a69620cc8a0d0d10b07dd5ba392>` (void*)((((RTS_UINTPTR)(p) + ( :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` - 1)) / :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` ) * :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` )
+
+- #define :ref:`FBA_GET_STATIC_LEN <group___cmp_mem_pool_itf_1ga5eb11790545f05c008749fa7aa288dc8>` ( (blk_num) * :ref:`FBA_ALIGN_SIZE <group___cmp_mem_pool_itf_1ga68121c8e86574a77ec465e54bc9a2fe1>` ((blk_sz)) + sizeof( :ref:`FBA_CHUNK <group___cmp_mem_pool_itf_1ga1eac979e31a75e2a3af2ed78af8636f5>` ) + :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` )
+
+- #define :ref:`MEMPOOL_INIT_VALUE <group___cmp_mem_pool_itf_1ga38167e2c4242cf6377af7f0ff7779b78>` 0xAA
+
+- #define :ref:`FBA_FLAG_INITIALIZED <group___cmp_mem_pool_itf_1gac8f789016354f9081e2d6d61f83569dd>` 0x1
+
+- #define :ref:`FixedBlocksPoolIsValid <group___cmp_mem_pool_itf_1gaebe93c5c0c5b532aeeab8eb9e32e7c6b>` (NULL != (pfmp) && (0 != ((pfmp)->flags & :ref:`FBA_FLAG_INITIALIZED <group___cmp_mem_pool_itf_1gac8f789016354f9081e2d6d61f83569dd>` )))
+
+- #define :ref:`MEMPOOL_ALIGN_MODULO <group___cmp_mem_pool_itf_1ga38f24b87e62cca8acbe7ba35ef3a2d7f>` sizeof(void*)
+
+- #define :ref:`MEM_GET_STATIC_LEN <group___cmp_mem_pool_itf_1ga9efe7e35071c5ce0e0746f2a196320e1>` (sizeof( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` ) + 2 * :ref:`MEMPOOL_ALIGN_MODULO <group___cmp_mem_pool_itf_1ga38f24b87e62cca8acbe7ba35ef3a2d7f>` + (Num) * ALIGN_SIZE(sizeof(Struct), :ref:`MEMPOOL_ALIGN_MODULO <group___cmp_mem_pool_itf_1ga38f24b87e62cca8acbe7ba35ef3a2d7f>` ) + (Num) * sizeof( :ref:`RTS_BCB <group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492>` ))
+
+- #define :ref:`MEM_GET_STATIC_LEN_ <group___cmp_mem_pool_itf_1ga6b1896ab349f829f058addddf1b3e960>` (sizeof( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` ) + 2 * :ref:`MEMPOOL_ALIGN_MODULO <group___cmp_mem_pool_itf_1ga38f24b87e62cca8acbe7ba35ef3a2d7f>` + (Num) * ALIGN_SIZE(Size, :ref:`MEMPOOL_ALIGN_MODULO <group___cmp_mem_pool_itf_1ga38f24b87e62cca8acbe7ba35ef3a2d7f>` ) + (Num) * sizeof( :ref:`RTS_BCB <group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492>` ))
+
+- #define :ref:`MEMPOOL_IS_NOT_EMPTY <group___cmp_mem_pool_itf_1ga58e8d374cf132d6c716bc02b891e5816>` (((( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` *)pPool)->pBlocksInUse) != NULL)
+
+- #define :ref:`MEMPOOL_IS_EMPTY <group___cmp_mem_pool_itf_1ga71a4d39d875115c339b3edcb3973ca30>` (((( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` *)pPool)->pBlocksInUse) == NULL)
+
+- #define :ref:`MEMPOOL_HAS_FREE_BLOCKS <group___cmp_mem_pool_itf_1gaa5b0d1782f0ed05944df80b399e55ad6>` ((( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` *)pPool)->pPEB) != NULL || (( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` *)pPool)->pBCB) != NULL)
+
+- #define :ref:`MEM_GET_FIRST <group___cmp_mem_pool_itf_1ga99d6003b63a5cf47c3e4a7a7ba0e50e6>` /*lint -e{506,522} */(((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pHead = (( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` *)pPool)->pBlocksInUse) != NULL ? (((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext = NULL) != NULL ? 0 : 1) : (((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext = NULL) != NULL ? 1 : 0))
+
+- #define :ref:`MEM_GET_NEXT <group___cmp_mem_pool_itf_1gadc2f778a008df22e2fd70ea42ed93d2a>` /*lint -e{506} */(((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext == NULL) ? ((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext = (( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pHead) : ((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext = (( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext->pBCB))
+
+- #define :ref:`MEM_GET_DATA <group___cmp_mem_pool_itf_1ga86da779c54ce30942409ab03db605adb>` ((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext + 1)
+
+- #define :ref:`MEM_GET_NEXT_FROM_DATA <group___cmp_mem_pool_itf_1ga3d9d246e559bc03f45e50d8c4f4130c0>` /*lint -e{506} */((( :ref:`RTS_BCB <group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492>` *)((unsigned char *)pData - sizeof( :ref:`RTS_BCB <group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492>` )))->pBCB == NULL ? NULL : (( :ref:`RTS_BCB <group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492>` *)((unsigned char *)pData - sizeof( :ref:`RTS_BCB <group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492>` )))->pBCB + 1)
+
+- #define :ref:`ITF_CmpMemPool <group___cmp_mem_pool_itf_1gaa80d1316dbc01bff4db96bd70287315b>`
+
+- #define :ref:`EXTITF_CmpMemPool <group___cmp_mem_pool_itf_1ga42831a988d35ce443bfdc84129db6298>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagFBA_CHUNK <structtag_f_b_a___c_h_u_n_k>` :ref:`FBA_CHUNK <group___cmp_mem_pool_itf_1ga1eac979e31a75e2a3af2ed78af8636f5>`
+
+- typedef struct :ref:`tagRTS_FIXED_BLOCKS_POOL <structtag_r_t_s___f_i_x_e_d___b_l_o_c_k_s___p_o_o_l>` :ref:`RTS_FIXED_BLOCKS_POOL <group___cmp_mem_pool_itf_1ga45b525e3879cd8b875591586efc2e3e4>`
+
+- typedef struct :ref:`RTS_BCBtag <struct_r_t_s___b_c_btag>` :ref:`RTS_BCB <group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492>`
+
+- typedef struct :ref:`RTS_PEBtag <struct_r_t_s___p_e_btag>` :ref:`RTS_PEB <group___cmp_mem_pool_itf_1ga62d0adbf9dbf47c5115438fdeb38ebed>`
+
+- typedef struct :ref:`RTS_PCBtag <struct_r_t_s___p_c_btag>` :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>`
+
+- typedef :ref:`ICmpMemPool_C <struct_i_cmp_mem_pool___c>` :ref:`ICmpMemPool <group___cmp_mem_pool_itf_1ga73a0e5a30e14ae5145965196d738ef36>`
+
+Functions
+---------
+
+- RTS_HANDLE :ref:`MemPoolCreateDynamic <group___cmp_mem_pool_itf_1ga4cf18fee38ec28c6a44bf88bad3ece77>` (char * pszComponentName, RTS_SIZE ulNumBlocks, RTS_SIZE ulBlockSize, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`MemPoolCreateStatic <group___cmp_mem_pool_itf_1gac616bb19229e35dd70011a1c22be5dcd>` (RTS_SIZE ulBlockSize, RTS_SIZE ulMemSize, void * pMemory, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`MemPoolExtendDynamic <group___cmp_mem_pool_itf_1ga730709e16a0dcce044b3141820c859a3>` (RTS_HANDLE hMemPool, char * pszComponentName, RTS_SIZE ulNumBlocks)
+
+- RTS_RESULT :ref:`MemPoolExtendStatic <group___cmp_mem_pool_itf_1ga83615fbc259d63de6087c8a4c27642f9>` (RTS_HANDLE hMemPool, RTS_SIZE ulMemSize, void * pMemory)
+
+- RTS_RESULT :ref:`MemPoolCreateSyncObject <group___cmp_mem_pool_itf_1ga97c2637a4e3370fce26bc936d1a94235>` (RTS_HANDLE hMemPool)
+
+- RTS_RESULT :ref:`MemPoolDeleteSyncObject <group___cmp_mem_pool_itf_1ga5e83feecba72271bb2c380b19fd08e65>` (RTS_HANDLE hMemPool)
+
+- RTS_RESULT :ref:`MemPoolDelete <group___cmp_mem_pool_itf_1ga2caf1bff79294e6c1a226b57c8932b06>` (RTS_HANDLE hMemPool, char * pszComponentName)
+
+- RTS_RESULT :ref:`MemPoolCleanup <group___cmp_mem_pool_itf_1ga4d590328837318435b623deb38619c3b>` (RTS_HANDLE hMemPool, char * pszComponentName, int bReleaseSemaphore)
+
+- void * :ref:`MemPoolGetBlock <group___cmp_mem_pool_itf_1gaf7866c3bcd3fdcd14fffd93db7de5db0>` (RTS_HANDLE hMemPool, RTS_RESULT * pResult)
+
+- void * :ref:`MemPoolGetBlock2 <group___cmp_mem_pool_itf_1ga02d64406ebb343097b3698db3c92fd70>` (RTS_HANDLE hMemPool, int bDynamic, char * pszComponentName, RTS_RESULT * pResult)
+
+- :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` * :ref:`MemPoolGetPCB <group___cmp_mem_pool_itf_1ga736973dcd8e693b7ce086ee2d3eb833c>` (RTS_HANDLE hMemPool, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`MemPoolPutBlock <group___cmp_mem_pool_itf_1gad85943f33a536f0cb2443453753bd5cf>` (void * pBlock)
+
+- RTS_RESULT :ref:`MemPoolAddUsedBlock <group___cmp_mem_pool_itf_1ga51d677d8d5741c642d1fd391cfdf17a5>` (void * pBlock)
+
+- RTS_RESULT :ref:`MemPoolAppendUsedBlock <group___cmp_mem_pool_itf_1gaf0920d14ed91fdc2d75ef1734eb245a9>` (void * pBlock)
+
+- RTS_RESULT :ref:`MemPoolInsertUsedBlock <group___cmp_mem_pool_itf_1gafe815b0b2f830758e150154d946aef21>` (void * pPrevBlock, void * pBlock)
+
+- RTS_RESULT :ref:`MemPoolRemoveUsedBlock <group___cmp_mem_pool_itf_1gafec6377691b72fba73aef04dfea3212f>` (void * pBlock)
+
+- RTS_RESULT :ref:`MemPoolAddUsedBlockToPool <group___cmp_mem_pool_itf_1gacea8c6de3e459fcedd6292bb2d57987f>` (void * pBlock, RTS_HANDLE hPool)
+
+- RTS_RESULT :ref:`MemPoolAppendUsedBlockToPool <group___cmp_mem_pool_itf_1gac0ad13055927fe23ada3622182b644f4>` (void * pBlock, RTS_HANDLE hPool)
+
+- RTS_RESULT :ref:`MemPoolRemoveUsedBlockFromPool <group___cmp_mem_pool_itf_1ga8adfd806eb44a46890ea6479f8ba6034>` (void * pBlock, RTS_HANDLE hPool)
+
+- RTS_RESULT :ref:`MemPoolLockBlock <group___cmp_mem_pool_itf_1gab3dd8ca8f534f6eeab75b7269eb933e9>` (void * pBlock)
+
+- RTS_RESULT :ref:`MemPoolUnlockBlock <group___cmp_mem_pool_itf_1ga7a497308890236f7330ee9614040d89f>` (void * pBlock)
+
+- RTS_RESULT :ref:`MemPoolLock <group___cmp_mem_pool_itf_1ga999519f4cfc0c36ab8f3b0ee8c9aaee6>` (RTS_HANDLE hMemPool)
+
+- RTS_RESULT :ref:`MemPoolUnlock <group___cmp_mem_pool_itf_1ga7ade2961819aa341260089f3cb633383>` (RTS_HANDLE hMemPool)
+
+- void * :ref:`MemPoolFindBlock <group___cmp_mem_pool_itf_1ga5146bd5d77e6b326d14ca78b2935b0b5>` (RTS_HANDLE hMemPool, RTS_SIZE ulOffset, RTS_SIZE ulSize, void * pToFind, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`MemPoolIsValidBlock <group___cmp_mem_pool_itf_1gaeb89f4809892cdf3882bc24b69801655>` (RTS_HANDLE hMemPool, void * pBlock)
+
+- void * :ref:`MemPoolGetFirstBlock <group___cmp_mem_pool_itf_1ga499bae494dcef421830732368e41b3fc>` (RTS_HANDLE hMemPool, RTS_RESULT * pResult)
+
+- void * :ref:`MemPoolGetNextBlock <group___cmp_mem_pool_itf_1ga8bf456fca1936f64fd7fd541d9c356c2>` (RTS_HANDLE hMemPool, void * pPrevBlock, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`FixedBlocksPoolInit <group___cmp_mem_pool_itf_1gaee6dbd559e1d71d9022a0a4d03d568b6>` (:ref:`RTS_FIXED_BLOCKS_POOL <group___cmp_mem_pool_itf_1ga45b525e3879cd8b875591586efc2e3e4>` * pPool, :ref:`RTS_MEM_REGION <group___cmp_heap_pool_itf_1ga0ff62f1256dec2350d8ecc38c4fc63e9>` * pRegion, RTS_SIZE block_size, RTS_SIZE blocks_number)
+
+- void * :ref:`FixedBlocksPoolAlloc <group___cmp_mem_pool_itf_1gaf5646684d87760f6aa7603017b0052b8>` (:ref:`RTS_FIXED_BLOCKS_POOL <group___cmp_mem_pool_itf_1ga45b525e3879cd8b875591586efc2e3e4>` * pPool, RTS_SIZE size, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`FixedBlocksPoolFree <group___cmp_mem_pool_itf_1ga6aebb9570d6f9300f73d6c972080f969>` (:ref:`RTS_FIXED_BLOCKS_POOL <group___cmp_mem_pool_itf_1ga45b525e3879cd8b875591586efc2e3e4>` * pPool, void * pMem)
+
+- RTS_RESULT :ref:`FixedBlocksPoolReclaim <group___cmp_mem_pool_itf_1gaca460dec0189b5de3a76a3a9f76a73b6>` (:ref:`RTS_FIXED_BLOCKS_POOL <group___cmp_mem_pool_itf_1ga45b525e3879cd8b875591586efc2e3e4>` * pPool)
+
+- RTS_RESULT :ref:`FixedBlocksPoolDestroy <group___cmp_mem_pool_itf_1gafb97bf99a7b8c114939edcaf5ff821cc>` (:ref:`RTS_FIXED_BLOCKS_POOL <group___cmp_mem_pool_itf_1ga45b525e3879cd8b875591586efc2e3e4>` * pPool)
+
+.. _group___cmp_mem_pool_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpMemPool.
+
+Interface of the memory pool manager to handle static and dynamic memory blocks
+
+A MemPool has the following structure:
+::
+    *				.
+    *				. -------------- Pool Control Block                -------------- Block Control Block
+    *				. |Blocksize   |  data size of single block        |nRefCount   |  Reference Counter
+    *				. |pBlocksInUse|  List of used blocks              |pBCB        |  Pointer to next BCB
+    *				. |pBCB        |  List of free blocks              |pPCB        |  Pointer to PCB
+    *				. |...         |                                   ------------
+    *				. -------------
+    *				.
+    *				.                      provided
+    *				.                      Memory Area
+    *				.                      .--------------------------.
+    *				.                      | PCB                      |
+    *				.   List of free Blocks|  Blocksize               |      List of used Blocks
+    *				.                      |  pBlocksInUse            |===========.
+    *				.         .=========== |  pBCB                    |           |
+    *				.         |            |......................... |           |
+    *				.         |            | BCB                      | <=========
+    *				.         |            |                          | ---.
+    *				.         |            |......................... |    |
+    *				.         |            | DATA                     |    |
+    *				.         |            |                          |    |
+    *				.         |            |......................... |    |
+    *				.         |            | BCB                      | <--'
+    *				.         |            |                          | ---.
+    *				.         |            |......................... |    |
+    *				.         |            | DATA                     |    |
+    *				.         |            |                          |    |
+    *				.         |            |......................... |    |
+    *				.         |            |                          | <--'
+    *				.         |           ~~~                        ~~~
+    *				.         |
+    *				.         |           ~~~                        ~~~
+    *				.         '=========>  |......................... |
+    *				.                      | BCB                      | ---.
+    *				.                      |                          |    |
+    *				.                      |......................... |    |
+    *				.                      | DATA                     |    |
+    *				.                      |                          |    |
+    *				.                      |......................... | <--'
+    *				.                      | BCB                      | ---.
+    *				.                      |                          |    |
+    *				.                     ~~~                        ~~   ~~~
+    *				.
+    *				.                     ~~~                        ~~~
+    *				.                      |                          |
+    *				.                      |                          |
+    *				.                      .--------------------------.
+    *				.                      End of Memory Area
+    *				.
+    *				.
+    *
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_mem_pool_itf_1gaeb276310831316dba22fc323f914fd97:
+
+#define U_CONTAINING_RECORD ((type *)(void*)((char*)(void*)(address) - (RTS_SIZE)(/*lint -e413 */&((type *)0)->field)))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the address of an instance of a structure given the type of the structure and the address of the field within the containing structure.
+
+.. _group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59:
+
+#define FBA_MIN_BLOCK ( (sizeof(RTS_SIZE) <= 2) ? 2 : sizeof(RTS_UINTPTR) )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Block size should be not less than FBA_MIN_BLOCK,
+
+.. _group___cmp_mem_pool_itf_1ga5d2b6694166706b7f9ee92d9d863273b:
+
+#define ___FBA_ALIGN_SIZE___ ((((sz) + ( :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` - 1)) / :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` ) * :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga68121c8e86574a77ec465e54bc9a2fe1:
+
+#define FBA_ALIGN_SIZE :ref:`___FBA_ALIGN_SIZE___ <group___cmp_mem_pool_itf_1ga5d2b6694166706b7f9ee92d9d863273b>` (sz)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1gabf089a69620cc8a0d0d10b07dd5ba392:
+
+#define FBA_ALIGN_MEM (void*)((((RTS_UINTPTR)(p) + ( :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` - 1)) / :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` ) * :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga5eb11790545f05c008749fa7aa288dc8:
+
+#define FBA_GET_STATIC_LEN ( (blk_num) * :ref:`FBA_ALIGN_SIZE <group___cmp_mem_pool_itf_1ga68121c8e86574a77ec465e54bc9a2fe1>` ((blk_sz)) + sizeof( :ref:`FBA_CHUNK <group___cmp_mem_pool_itf_1ga1eac979e31a75e2a3af2ed78af8636f5>` ) + :ref:`FBA_MIN_BLOCK <group___cmp_mem_pool_itf_1ga0fa8e7240fdd4e1da3a6ab128b672d59>` )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga38167e2c4242cf6377af7f0ff7779b78:
+
+#define MEMPOOL_INIT_VALUE 0xAA
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1gac8f789016354f9081e2d6d61f83569dd:
+
+#define FBA_FLAG_INITIALIZED 0x1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1gaebe93c5c0c5b532aeeab8eb9e32e7c6b:
+
+#define FixedBlocksPoolIsValid (NULL != (pfmp) && (0 != ((pfmp)->flags & :ref:`FBA_FLAG_INITIALIZED <group___cmp_mem_pool_itf_1gac8f789016354f9081e2d6d61f83569dd>` )))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga38f24b87e62cca8acbe7ba35ef3a2d7f:
+
+#define MEMPOOL_ALIGN_MODULO sizeof(void*)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga9efe7e35071c5ce0e0746f2a196320e1:
+
+#define MEM_GET_STATIC_LEN (sizeof( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` ) + 2 * :ref:`MEMPOOL_ALIGN_MODULO <group___cmp_mem_pool_itf_1ga38f24b87e62cca8acbe7ba35ef3a2d7f>` + (Num) * ALIGN_SIZE(sizeof(Struct), :ref:`MEMPOOL_ALIGN_MODULO <group___cmp_mem_pool_itf_1ga38f24b87e62cca8acbe7ba35ef3a2d7f>` ) + (Num) * sizeof( :ref:`RTS_BCB <group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492>` ))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga6b1896ab349f829f058addddf1b3e960:
+
+#define MEM_GET_STATIC_LEN_ (sizeof( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` ) + 2 * :ref:`MEMPOOL_ALIGN_MODULO <group___cmp_mem_pool_itf_1ga38f24b87e62cca8acbe7ba35ef3a2d7f>` + (Num) * ALIGN_SIZE(Size, :ref:`MEMPOOL_ALIGN_MODULO <group___cmp_mem_pool_itf_1ga38f24b87e62cca8acbe7ba35ef3a2d7f>` ) + (Num) * sizeof( :ref:`RTS_BCB <group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492>` ))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga58e8d374cf132d6c716bc02b891e5816:
+
+#define MEMPOOL_IS_NOT_EMPTY (((( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` *)pPool)->pBlocksInUse) != NULL)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga71a4d39d875115c339b3edcb3973ca30:
+
+#define MEMPOOL_IS_EMPTY (((( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` *)pPool)->pBlocksInUse) == NULL)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1gaa5b0d1782f0ed05944df80b399e55ad6:
+
+#define MEMPOOL_HAS_FREE_BLOCKS ((( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` *)pPool)->pPEB) != NULL || (( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` *)pPool)->pBCB) != NULL)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga99d6003b63a5cf47c3e4a7a7ba0e50e6:
+
+#define MEM_GET_FIRST /*lint -e{506,522} */(((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pHead = (( :ref:`RTS_PCB <group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d>` *)pPool)->pBlocksInUse) != NULL ? (((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext = NULL) != NULL ? 0 : 1) : (((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext = NULL) != NULL ? 1 : 0))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1gadc2f778a008df22e2fd70ea42ed93d2a:
+
+#define MEM_GET_NEXT /*lint -e{506} */(((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext == NULL) ? ((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext = (( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pHead) : ((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext = (( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext->pBCB))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga86da779c54ce30942409ab03db605adb:
+
+#define MEM_GET_DATA ((( :ref:`MemIterator <struct_mem_iterator>` *)pIt)->pNext + 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga3d9d246e559bc03f45e50d8c4f4130c0:
+
+#define MEM_GET_NEXT_FROM_DATA /*lint -e{506} */((( :ref:`RTS_BCB <group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492>` *)((unsigned char *)pData - sizeof( :ref:`RTS_BCB <group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492>` )))->pBCB == NULL ? NULL : (( :ref:`RTS_BCB <group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492>` *)((unsigned char *)pData - sizeof( :ref:`RTS_BCB <group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492>` )))->pBCB + 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1gaa80d1316dbc01bff4db96bd70287315b:
+
+#define ITF_CmpMemPool
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga42831a988d35ce443bfdc84129db6298:
+
+#define EXTITF_CmpMemPool
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_mem_pool_itf_1ga1eac979e31a75e2a3af2ed78af8636f5:
+
+typedef struct tagFBA_CHUNK FBA_CHUNK
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga45b525e3879cd8b875591586efc2e3e4:
+
+typedef struct tagRTS_FIXED_BLOCKS_POOL RTS_FIXED_BLOCKS_POOL
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga21d2fc3558f05b1ed3e29c386f9a5492:
+
+typedef struct RTS_BCBtag  RTS_BCB
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga62d0adbf9dbf47c5115438fdeb38ebed:
+
+typedef struct RTS_PEBtag  RTS_PEB
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga76df38ce6d864c2169b39e23de750e6d:
+
+typedef struct RTS_PCBtag  RTS_PCB
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_mem_pool_itf_1ga73a0e5a30e14ae5145965196d738ef36:
+
+typedef ICmpMemPool_C ICmpMemPool
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_mem_pool_itf_1ga4cf18fee38ec28c6a44bf88bad3ece77:
+
+RTS_HANDLE MemPoolCreateDynamic (char *pszComponentName, RTS_SIZE ulNumBlocks, RTS_SIZE ulBlockSize, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create a dynamic pool (consists of heap memory)
+
+**Parameters**
+
++---------+------------------+---------------------------------------+
+| [in]    | pszComponentName | Component name                        |
++---------+------------------+---------------------------------------+
+| [in]    | ulBlockSize      | Size of each memory block in the pool |
++---------+------------------+---------------------------------------+
+| [out]   | pResult          | Pointer to error code                 |
++---------+------------------+---------------------------------------+
+
+**Returns:**
+
+Handle to the memory pool
+
+.. _group___cmp_mem_pool_itf_1gac616bb19229e35dd70011a1c22be5dcd:
+
+RTS_HANDLE MemPoolCreateStatic (RTS_SIZE ulBlockSize, RTS_SIZE ulMemSize, void *pMemory, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create a memory pool from a static memory buffer.
+
+The memory buffer don't has to be aligned in a specific way. Therefore, not all of the memory in the buffer might be used. To get the appropriate additional buffer, the caller is recommended to use the macro :ref:`MEM_GET_STATIC_LEN(Num, Struct) <group___cmp_mem_pool_itf_1ga9efe7e35071c5ce0e0746f2a196320e1>` to get the size of the buffer
+
+For example:
+::
+    *				 typedef struct
+    *				 {
+    *				     ...
+    *				 } myStruct_s;
+    *
+    *				 #define NUM_OF_STATIC_ELEMENTS 0x100
+    *
+    *				 RTS_UI8 s_byMyStaticPool[MEM_GET_STATIC_LEN(NUM_OF_STATIC_ELEMENTS, myStruct_s);
+    *
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulBlockSize | Size of each memory block in the pool, misaligned to 1, 2, 4 or 8 bytes RANGE=[BLOCKSIZE_ALIGNED1,BLOCKSIZE_ALIGNED2,BLOCKSIZE_ALIGNED4,BLOCKSIZE_ALIGNED8]      |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulMemSize   | Complete size of the static memory, misaligned to 1, 2, 4 or 8 bytes RANGE=[MEMSIZE_INVALID,MEMSIZE_ALIGNED1,MEMSIZE_ALIGNED2,MEMSIZE_ALIGNED4,MEMSIZE_ALIGNED8] |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pMemory     | Pointer to the static memory RANGE=[NULL,VALID_MEM]                                                                                                              |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult     | Pointer to error code                                                                                                                                            |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+-------------------------------------------------------------+
+| ERR_OK        | MemPool created successfully                                |
++---------------+-------------------------------------------------------------+
+| ERR_PARAMETER | pMemory was NULL                                            |
++---------------+-------------------------------------------------------------+
+| ERR_NOMEMORY  | ulMemSize was not large enough, to hold at leaset one block |
++---------------+-------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the memory pool
+
+.. _group___cmp_mem_pool_itf_1ga730709e16a0dcce044b3141820c859a3:
+
+RTS_RESULT MemPoolExtendDynamic (RTS_HANDLE hMemPool, char *pszComponentName, RTS_SIZE ulNumBlocks)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Extend dynamic an existing pool
+
+**Parameters**
+
++---------+------------------+----------------------------+
+| [in]    | hMemPool         | Handle to the pool         |
++---------+------------------+----------------------------+
+| [in]    | pszComponentName | Component name             |
++---------+------------------+----------------------------+
+| [in]    | ulNumBlocks      | Number of blocks to extend |
++---------+------------------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1ga83615fbc259d63de6087c8a4c27642f9:
+
+RTS_RESULT MemPoolExtendStatic (RTS_HANDLE hMemPool, RTS_SIZE ulMemSize, void *pMemory)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Extend an existing pool with a static array
+
+**Parameters**
+
++---------+-----------+------------------------------------+
+| [in]    | hMemPool  | Handle to the pool                 |
++---------+-----------+------------------------------------+
+| [in]    | ulMemSize | Complete size of the static memory |
++---------+-----------+------------------------------------+
+| [in]    | pMemory   | Pointer to the static memory       |
++---------+-----------+------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1ga97c2637a4e3370fce26bc936d1a94235:
+
+RTS_RESULT MemPoolCreateSyncObject (RTS_HANDLE hMemPool)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create the internal sync object for synchronizing the pool.
+
+**Parameters**
+
++---------+----------+--------------------+
+| [in]    | hMemPool | Handle to the pool |
++---------+----------+--------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1ga5e83feecba72271bb2c380b19fd08e65:
+
+RTS_RESULT MemPoolDeleteSyncObject (RTS_HANDLE hMemPool)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete the internal sync object for synchronizing the pool.
+
+**Parameters**
+
++---------+----------+--------------------+
+| [in]    | hMemPool | Handle to the pool |
++---------+----------+--------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1ga2caf1bff79294e6c1a226b57c8932b06:
+
+RTS_RESULT MemPoolDelete (RTS_HANDLE hMemPool, char *pszComponentName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete an existing pool
+
+**Parameters**
+
++---------+------------------+--------------------+
+| [in]    | hMemPool         | Handle to the pool |
++---------+------------------+--------------------+
+| [in]    | pszComponentName | Component name     |
++---------+------------------+--------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1ga4d590328837318435b623deb38619c3b:
+
+RTS_RESULT MemPoolCleanup (RTS_HANDLE hMemPool, char *pszComponentName, int bReleaseSemaphore)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Cleanup the pool (delete all allocated heap pool objects)
+
+**Parameters**
+
++---------+-------------------+----------------------------------------------+
+| [in]    | hMemPool          | Handle to the pool                           |
++---------+-------------------+----------------------------------------------+
+| [in]    | pszComponentName  | Component name                               |
++---------+-------------------+----------------------------------------------+
+| [in]    | bReleaseSemaphore | 1=Pool semaphore is released, 0=Only cleanup |
++---------+-------------------+----------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1gaf7866c3bcd3fdcd14fffd93db7de5db0:
+
+void* MemPoolGetBlock (RTS_HANDLE hMemPool, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get one memory block out of the pool.
+
+SIL2 Implementation: If pPCB is wrong, an Exception is generated!
+
+**Parameters**
+
++---------+---------------------+------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hMemPool            | Handle to the pool RANGE=[RTS_INVALID_HANDLE,VALID_MEMPOOLHANDLE,INVALID_MEMPOOLHANDLE]                                            |
++---------+---------------------+------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hMemPool.NumEntries | ***PSEUDO*** Number of already allocated entries from the pool RANGE=[0..NUM_OF_STATIC_ELEMENTS-1,NUM_OF_STATIC_ELEMENTS..INT_MAX] |
++---------+---------------------+------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult             | Pointer to error code                                                                                                              |
++---------+---------------------+------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | bExceptionGenerated | ***PSEUDO*** specifies, if an exception was generated or not RANGE=[TRUE,FALSE]                                                    |
++---------+---------------------+------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++--------------------+-----------------------------------+
+| ERR_OK             | Retrieved free block from MemPool |
++--------------------+-----------------------------------+
+| ERR_INVALID_HANDLE | No free block found               |
++--------------------+-----------------------------------+
+
+**Returns:**
+
+Pointer to the memory block
+
+.. _group___cmp_mem_pool_itf_1ga02d64406ebb343097b3698db3c92fd70:
+
+void* MemPoolGetBlock2 (RTS_HANDLE hMemPool, int bDynamic, char *pszComponentName, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get one memory block out of the pool
+
+**Parameters**
+
++---------+------------------+----------------------------------------------------------------------------------------+
+| [in]    | hMemPool         | Handle to the pool                                                                     |
++---------+------------------+----------------------------------------------------------------------------------------+
+| [in]    | bDynamic         | 1=Block is created dynamically, if the pool is empty, 0=Only use of static pool memory |
++---------+------------------+----------------------------------------------------------------------------------------+
+| [in]    | pszComponentName | Pointer to the component name for dynamic memory allocation                            |
++---------+------------------+----------------------------------------------------------------------------------------+
+| [out]   | pResult          | Pointer to error code                                                                  |
++---------+------------------+----------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to the memory block
+
+.. _group___cmp_mem_pool_itf_1ga736973dcd8e693b7ce086ee2d3eb833c:
+
+RTS_PCB* MemPoolGetPCB (RTS_HANDLE hMemPool, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get one the pool control block of a specified pool
+
+**Parameters**
+
++---------+----------+-----------------------+
+| [in]    | hMemPool | Handle to the pool    |
++---------+----------+-----------------------+
+| [out]   | pResult  | Pointer to error code |
++---------+----------+-----------------------+
+
+**Returns:**
+
+Pointer to the pool control block
+
+.. _group___cmp_mem_pool_itf_1gad85943f33a536f0cb2443453753bd5cf:
+
+RTS_RESULT MemPoolPutBlock (void *pBlock)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Put a memory block back into the pool (release). Now, the block is in the chain list of free blocks again.
+
+**Parameters**
+
++---------+--------+--------------------------------------------------------------------+
+| [in]    | pBlock | Pointer to the memory block RANGE=[NULL,VALID_BLOCK,INVALID_BLOCK] |
++---------+--------+--------------------------------------------------------------------+
+
+**Return values**
+
++---------------+----------------------------------------------+
+| ERR_OK        | Successfully added Block to MemPool          |
++---------------+----------------------------------------------+
+| ERR_PARAMETER | Could not add Block to MemPool, wrong pBlock |
++---------------+----------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1ga51d677d8d5741c642d1fd391cfdf17a5:
+
+RTS_RESULT MemPoolAddUsedBlock (void *pBlock)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add used block at the beginning of the pool. Now, the block is in the chain list of used blocks.
+
+**Parameters**
+
++---------+--------+------------------------------------------------------+
+| [in]    | pBlock | Pointer to the memory block RANGE=[NULL,VALID_BLOCK] |
++---------+--------+------------------------------------------------------+
+
+**Return values**
+
++---------------+----------------------------------------------+
+| ERR_OK        | Successfully added Block to MemPool          |
++---------------+----------------------------------------------+
+| ERR_PARAMETER | Could not add Block to MemPool, wrong pBlock |
++---------------+----------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1gaf0920d14ed91fdc2d75ef1734eb245a9:
+
+RTS_RESULT MemPoolAppendUsedBlock (void *pBlock)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add used block at the end of the pool. Now, the block is in the chain list of used blocks.
+
+**Parameters**
+
++---------+--------+------------------------------------------------------+
+| [in]    | pBlock | Pointer to the memory block RANGE=[NULL,VALID_BLOCK] |
++---------+--------+------------------------------------------------------+
+
+**Return values**
+
++---------------+----------------------------------------------+
+| ERR_OK        | Successfully added Block to MemPool          |
++---------------+----------------------------------------------+
+| ERR_PARAMETER | Could not add Block to MemPool, wrong pBlock |
++---------------+----------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1gafe815b0b2f830758e150154d946aef21:
+
+RTS_RESULT MemPoolInsertUsedBlock (void *pPrevBlock, void *pBlock)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Insert used block right after the specified block or as a head element of an internal used blocks list.
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------------+
+| [in]    | pPrevBlock | Pointer to the predecessor block RANGE=[NULL,VALID_PREVBLOCK,INVALID_PREVBLOCK] |
++---------+------------+---------------------------------------------------------------------------------+
+| [in]    | pBlock     | Pointer to the memory block RANGE=[NULL,VALID_BLOCK]                            |
++---------+------------+---------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+----------------------------------------------------------------------------------------------------------------+
+| ERR_OK        | Successfully inserted Block to MemPool                                                                         |
++---------------+----------------------------------------------------------------------------------------------------------------+
+| ERR_PARAMETER | Could not insert Block to MemPool because pBlock is NULL or pPrevBlock belongs to a different pool than pBlock |
++---------------+----------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1gafec6377691b72fba73aef04dfea3212f:
+
+RTS_RESULT MemPoolRemoveUsedBlock (void *pBlock)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove used block from the pool. Now, the block is removed from the chain list of used blocks.
+
+**Parameters**
+
++---------+--------+------------------------------------------------------+
+| [in]    | pBlock | Pointer to the memory block RANGE=[NULL,VALID_BLOCK] |
++---------+--------+------------------------------------------------------+
+
+**Return values**
+
++---------------+---------------------------------------------------+
+| ERR_OK        | Successfully removed Block from MemPool           |
++---------------+---------------------------------------------------+
+| ERR_PARAMETER | Could not remove Block from MemPool, wrong pBlock |
++---------------+---------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1gacea8c6de3e459fcedd6292bb2d57987f:
+
+RTS_RESULT MemPoolAddUsedBlockToPool (void *pBlock, RTS_HANDLE hPool)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add used block the beginning of the specified pool. Now, the block is in the chain list of used blocks.
+
+**Parameters**
+
++---------+--------+-----------------------------+
+| [in]    | pBlock | Pointer to the memory block |
++---------+--------+-----------------------------+
+| [in]    | hPool  | Handle to the pool          |
++---------+--------+-----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1gac0ad13055927fe23ada3622182b644f4:
+
+RTS_RESULT MemPoolAppendUsedBlockToPool (void *pBlock, RTS_HANDLE hPool)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add the block to the end of the used block list of hPool
+
+**Parameters**
+
++---------+--------+-----------------------------+
+| [in]    | pBlock | Pointer to the memory block |
++---------+--------+-----------------------------+
+| [in]    | hPool  | Handle to the pool          |
++---------+--------+-----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1ga8adfd806eb44a46890ea6479f8ba6034:
+
+RTS_RESULT MemPoolRemoveUsedBlockFromPool (void *pBlock, RTS_HANDLE hPool)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove used block from the specified pool. Now, the block is removed from the chain list of used blocks.
+
+**Parameters**
+
++---------+--------+-----------------------------+
+| [in]    | pBlock | Pointer to the memory block |
++---------+--------+-----------------------------+
+| [in]    | hPool  | Handle to the pool          |
++---------+--------+-----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1gab3dd8ca8f534f6eeab75b7269eb933e9:
+
+RTS_RESULT MemPoolLockBlock (void *pBlock)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Lock the access to a pool to be threadsafe.
+
+**Parameters**
+
++---------+--------+-----------------------------+
+| [in]    | pBlock | Pointer to the memory block |
++---------+--------+-----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1ga7a497308890236f7330ee9614040d89f:
+
+RTS_RESULT MemPoolUnlockBlock (void *pBlock)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unlock the access to a pool.
+
+**Parameters**
+
++---------+--------+-----------------------------+
+| [in]    | pBlock | Pointer to the memory block |
++---------+--------+-----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1ga999519f4cfc0c36ab8f3b0ee8c9aaee6:
+
+RTS_RESULT MemPoolLock (RTS_HANDLE hMemPool)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Lock the access to the complete pool. SIL2 Implementation is using INT Locks.
+
+**Parameters**
+
++---------+----------+------------------------------------------------------------+
+| [in]    | hMemPool | Handle to the memory pool RANGE=[VALID_MEMPOOLHANDLE,NULL] |
++---------+----------+------------------------------------------------------------+
+
+**Return values**
+
++--------------------+------------------------------------------------------------------+
+| ERR_OK             | Pool was sucessfully locked                                      |
++--------------------+------------------------------------------------------------------+
+| ERR_PARAMETER      | Parameter is wrong                                               |
++--------------------+------------------------------------------------------------------+
+| ERR_FAILED         | Pool could not be locked, SysInt or SysSem had problems          |
++--------------------+------------------------------------------------------------------+
+| ERR_NOTIMPLEMENTED | SysInt or SysSem are not implemented                             |
++--------------------+------------------------------------------------------------------+
+| ERR_NOTINITIALIZED | Lock cannot be done before CH_INIT_SYSTEM, not relevant for SIL2 |
++--------------------+------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1ga7ade2961819aa341260089f3cb633383:
+
+RTS_RESULT MemPoolUnlock (RTS_HANDLE hMemPool)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unlock the access to the complete pool. SIL2 Implementation is using INT Locks.
+
+**Parameters**
+
++---------+----------+------------------------------------------------------------+
+| [in]    | hMemPool | Handle to the memory pool RANGE=[VALID_MEMPOOLHANDLE,NULL] |
++---------+----------+------------------------------------------------------------+
+
+**Return values**
+
++--------------------+--------------------------------------------------------------------+
+| ERR_OK             | Pool was sucessfully unlocked                                      |
++--------------------+--------------------------------------------------------------------+
+| ERR_PARAMETER      | Parameter is wrong                                                 |
++--------------------+--------------------------------------------------------------------+
+| ERR_FAILED         | Pool could not be unlocked, SysInt or SysSem had problems          |
++--------------------+--------------------------------------------------------------------+
+| ERR_NOTIMPLEMENTED | SysInt or SysSem are not implemented                               |
++--------------------+--------------------------------------------------------------------+
+| ERR_NOTINITIALIZED | Unlock cannot be done before CH_INIT_SYSTEM, not relevant for SIL2 |
++--------------------+--------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_mem_pool_itf_1ga5146bd5d77e6b326d14ca78b2935b0b5:
+
+void* MemPoolFindBlock (RTS_HANDLE hMemPool, RTS_SIZE ulOffset, RTS_SIZE ulSize, void *pToFind, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Find a block specified by a value, that is stored in the block.
+
+**Parameters**
+
++---------+----------+-------------------------------------------------+
+| [in]    | hMemPool | Handle to the memory pool                       |
++---------+----------+-------------------------------------------------+
+| [in]    | ulOffset | Byte offset of the value in the block to find   |
++---------+----------+-------------------------------------------------+
+| [in]    | ulSize   | Size in bytes of the value to find in the block |
++---------+----------+-------------------------------------------------+
+| [in]    | pToFind  | Pointer to the value to find in the block       |
++---------+----------+-------------------------------------------------+
+| [out]   | pResult  | Pointer to error code                           |
++---------+----------+-------------------------------------------------+
+
+**Returns:**
+
+Pointer to the memory block
+
+.. _group___cmp_mem_pool_itf_1gaeb89f4809892cdf3882bc24b69801655:
+
+RTS_RESULT MemPoolIsValidBlock (RTS_HANDLE hMemPool, void *pBlock)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check a pool memory block, if it is still valid and is not released. NOTE: If the check is successful, a lock is done on this pool!!! So you have to unlock this reference at the end of the usage with :ref:`MemPoolUnlock() <group___cmp_app_b_p_dep_1ga8f046fe35592f0e663228503cd604640>` !
+
+**Parameters**
+
++---------+----------+-----------------------------+
+| [in]    | hMemPool | Handle to the memory pool   |
++---------+----------+-----------------------------+
+| [in]    | pBlock   | Pointer to the memory block |
++---------+----------+-----------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_mem_pool_itf_1ga499bae494dcef421830732368e41b3fc:
+
+void* MemPoolGetFirstBlock (RTS_HANDLE hMemPool, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the first memory block out of the pool. Can be used for explicite iteration routines.
+
+**Parameters**
+
++---------+----------+---------------------------+
+| [in]    | hMemPool | Handle to the memory pool |
++---------+----------+---------------------------+
+| [out]   | pResult  | Pointer to error code     |
++---------+----------+---------------------------+
+
+**Returns:**
+
+Pointer to first memory block
+
+.. _group___cmp_mem_pool_itf_1ga8bf456fca1936f64fd7fd541d9c356c2:
+
+void* MemPoolGetNextBlock (RTS_HANDLE hMemPool, void *pPrevBlock, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the next memory block out of the pool. Can be used for explicite iteration routines.
+
+**Parameters**
+
++---------+------------+----------------------------------+
+| [in]    | hMemPool   | Handle to the memory pool        |
++---------+------------+----------------------------------+
+| [in]    | pPrevBlock | Pointer to previous memory block |
++---------+------------+----------------------------------+
+| [out]   | pResult    | Pointer to error code            |
++---------+------------+----------------------------------+
+
+**Returns:**
+
+Pointer to next memory block
+
+.. _group___cmp_mem_pool_itf_1gaee6dbd559e1d71d9022a0a4d03d568b6:
+
+RTS_RESULT FixedBlocksPoolInit (RTS_FIXED_BLOCKS_POOL *pPool, RTS_MEM_REGION *pRegion, RTS_SIZE block_size, RTS_SIZE blocks_number)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Initializes a pool for allocating objects of fixed size
+
+**Parameters**
+
++---------+---------------+----------------------------------------------------------------+
+| [in]    | pPool         | Pointer to a pool object                                       |
++---------+---------------+----------------------------------------------------------------+
+| [in]    | pRegion       | Pointer to a region of memory that will be used for allocation |
++---------+---------------+----------------------------------------------------------------+
+| [in]    | block_size    | Size (in bytes) of a memory block                              |
++---------+---------------+----------------------------------------------------------------+
+| [in]    | blocks_number | Number of blocks that should be located in a contiguous chunk  |
++---------+---------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_mem_pool_itf_1gaf5646684d87760f6aa7603017b0052b8:
+
+void* FixedBlocksPoolAlloc (RTS_FIXED_BLOCKS_POOL *pPool, RTS_SIZE size, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Allocates a memory block out of the pool
+
+**Parameters**
+
++---------+---------+------------------------------------------------------------------------------------+
+| [in]    | pPool   | Pointer to a pool object                                                           |
++---------+---------+------------------------------------------------------------------------------------+
+| [in]    | size    | Requested size of memory to be allocated. Should be less than the pPool block size |
++---------+---------+------------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to an error code                                                           |
++---------+---------+------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to the allocated block of memory
+
+.. _group___cmp_mem_pool_itf_1ga6aebb9570d6f9300f73d6c972080f969:
+
+RTS_RESULT FixedBlocksPoolFree (RTS_FIXED_BLOCKS_POOL *pPool, void *pMem)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Puts a memory block back to the pool.
+
+**Parameters**
+
++---------+-------+------------------------------------------------------+
+| [in]    | pPool | Pointer to a pool object                             |
++---------+-------+------------------------------------------------------+
+| [in]    | pMem  | Pointer to a memory block to be returned to the pool |
++---------+-------+------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1gaca460dec0189b5de3a76a3a9f76a73b6:
+
+RTS_RESULT FixedBlocksPoolReclaim (RTS_FIXED_BLOCKS_POOL *pPool)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Puts all the previously allocated memory blocks back to the pool.
+
+**Parameters**
+
++---------+-------+--------------------------+
+| [in]    | pPool | Pointer to a pool object |
++---------+-------+--------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_mem_pool_itf_1gafb97bf99a7b8c114939edcaf5ff821cc:
+
+RTS_RESULT FixedBlocksPoolDestroy (RTS_FIXED_BLOCKS_POOL *pPool)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Destroys a pool object.
+
+**Parameters**
+
++---------+-------+--------------------------+
+| [in]    | pPool | Pointer to a pool object |
++---------+-------+--------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

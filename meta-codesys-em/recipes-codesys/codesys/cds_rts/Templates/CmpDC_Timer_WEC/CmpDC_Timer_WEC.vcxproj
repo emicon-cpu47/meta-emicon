@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|CE8_ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>CE8_ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|SEW MSC BT OS SDK">
+      <Configuration>Debug</Configuration>
+      <Platform>SEW MSC BT OS SDK</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|CE8_ARM">
+      <Configuration>Release</Configuration>
+      <Platform>CE8_ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|SEW MSC BT OS SDK">
+      <Configuration>Release</Configuration>
+      <Platform>SEW MSC BT OS SDK</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CmpDC_Timer_WEC.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CmpDC_Timer_WECDep.h" />
+    <ClInclude Include="CmpDC_Timer_WECItf.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{182EF996-9170-4763-8AAF-6063F16984EC}</ProjectGuid>
+    <RootNamespace>CmpDC_Timer_WEC</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <EnableRedirectPlatform>true</EnableRedirectPlatform>
+    <RedirectPlatformValue>CE8_ARM</RedirectPlatformValue>
+    <PlatformToolset>CE800</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|CE8_ARM'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>CE800</PlatformToolset>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|SEW MSC BT OS SDK'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|CE8_ARM'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>CE800</PlatformToolset>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|SEW MSC BT OS SDK'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|CE8_ARM'">
+    <GenerateManifest>false</GenerateManifest>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|SEW MSC BT OS SDK'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|SEW MSC BT OS SDK'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|CE8_ARM'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|CE8_ARM'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>DEBUG;_WIN32_WCE=0x800;UNDER_CE=0x800;UNICODE;_USRDLL;ARM;_ARM_</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Components;..\..\Platforms\Windows</AdditionalIncludeDirectories>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <PrecompiledHeaderFile />
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <OutputFile>$(OutDir)CmpDC_Timer_WEC.dll</OutputFile>
+      <SubSystem>NotSet</SubSystem>
+      <AdditionalOptions>/subsystem:windowsce,8.00 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32_RESOURCES;_UNICODE;UNICODE;_WIN32_WCE=0x800;UNDER_CE=0x800</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../;../../../../Components;../../../../Platforms/Windows</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>copy "$(OutDir)\CmpDC_Timer_WEC.dll" ..\..\Platforms\Windows\Bin_WinCE\WEC2013ARM$(ConfigurationName)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|SEW MSC BT OS SDK'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>DEBUG;_WIN32_WCE=0x800;UNDER_CE=0x800;UNICODE;_USRDLL;MYCmpDC_Timer_WEC_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Components;..\..\Platforms\Windows</AdditionalIncludeDirectories>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <PrecompiledHeaderFile />
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <OutputFile>$(OutDir)CmpDC_Timer_WEC.dll</OutputFile>
+      <SubSystem>NotSet</SubSystem>
+      <AdditionalOptions>/subsystem:windowsce,8.00 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32_RESOURCES;_UNICODE;UNICODE;_WIN32_WCE=0x800;UNDER_CE=0x800</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../;../../../../Components;../../../../Platforms/Windows</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>copy "$(OutDir)\CmpDC_Timer_WEC.dll" ..\..\Platforms\Windows\Bin_WinCE\WEC2013x86$(ConfigurationName)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|CE8_ARM'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>DEBUG;_WIN32_WCE=0x800;_ARM_;UNDER_CE=0x800;UNICODE;_USRDLL;MYCmpDC_Timer_WEC_EXPORTS</PreprocessorDefinitions>
+      <AdditionalOptions>/D "STANDARDSHELL_UI_MODEL" %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|SEW MSC BT OS SDK'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>DEBUG;_WIN32_WCE=0x800;_x86_;UNDER_CE=0x800;UNICODE;_USRDLL;MYCmpDC_Timer_WEC_EXPORTS</PreprocessorDefinitions>
+      <AdditionalOptions>/D "STANDARDSHELL_UI_MODEL" %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|CE8_ARM'">
+    <ClCompile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>DEBUG;_WIN32_WCE=0x800;UNDER_CE=0x800;UNICODE;_USRDLL;MYCmpDC_Timer_WEC_EXPORTS;ARM;_ARM_</PreprocessorDefinitions>
+      <AdditionalOptions>/D "STANDARDSHELL_UI_MODEL" %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>..\..\Components;..\..\Platforms\Windows</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile />
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <OutputFile>$(OutDir)CmpDC_Timer_WEC.dll</OutputFile>
+      <AdditionalOptions>/subsystem:windowsce,8.00 %(AdditionalOptions)</AdditionalOptions>
+      <SubSystem>NotSet</SubSystem>
+      <NoEntryPoint>false</NoEntryPoint>
+    </Link>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32_RESOURCES;_UNICODE;UNICODE;_WIN32_WCE=0x800;UNDER_CE=0x800</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../;../../../../Components;../../../../Platforms/Windows</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>copy "$(OutDir)\CmpDC_Timer_WEC.dll" ..\..\Platforms\Windows\Bin_WinCE\WEC2013ARM$(ConfigurationName)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|SEW MSC BT OS SDK'">
+    <ClCompile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>DEBUG;_WIN32_WCE=0x800;_x86_;UNDER_CE=0x800;UNICODE;_USRDLL;MYCmpDC_Timer_WEC_EXPORTS</PreprocessorDefinitions>
+      <AdditionalOptions>/D "STANDARDSHELL_UI_MODEL" %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <OutputFile>$(OutDir)CmpDC_Timer_WEC.dll</OutputFile>
+    </Link>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32_RESOURCES;_UNICODE;UNICODE;_WIN32_WCE=0x800;UNDER_CE=0x800</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../;../../../../Components;../../../../Platforms/Windows</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>copy "$(OutDir)\CmpDC_Timer_WEC.dll" ..\..\..\..\Platforms\Windows\Bin_WinCE\WEC2013x86$(ConfigurationName)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|SEW MSC BT OS SDK'">
+    <ClCompile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>DEBUG;_WIN32_WCE=0x800;_x86_;UNDER_CE=0x800;UNICODE;_USRDLL;MYCmpDC_Timer_WEC_EXPORTS</PreprocessorDefinitions>
+      <AdditionalOptions>/D "STANDARDSHELL_UI_MODEL" %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <OutputFile>$(OutDir)CmpDC_Timer_WEC.dll</OutputFile>
+    </Link>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32_RESOURCES;_UNICODE;UNICODE;_WIN32_WCE=0x800;UNDER_CE=0x800</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../;../../../../Components;../../../../Platforms/Windows</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>copy "$(OutDir)\CmpDC_Timer_WEC.dll" ..\..\..\..\Platforms\Windows\Bin_WinCE\WEC2013ARM$(ConfigurationName)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|SEW MSC BT OS SDK'">
+    <ClCompile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>DEBUG;_WIN32_WCE=0x800;UNDER_CE=0x800;UNICODE;_USRDLL;MYCmpDC_Timer_WEC_EXPORTS;x86;_X86_</PreprocessorDefinitions>
+      <AdditionalOptions>/D "STANDARDSHELL_UI_MODEL" %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>..\..\Components;..\..\Platforms\Windows</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile />
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <OutputFile>$(OutDir)CmpDC_Timer_WEC.dll</OutputFile>
+      <AdditionalOptions>/subsystem:windowsce,8.00 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32_RESOURCES;_UNICODE;UNICODE;_WIN32_WCE=0x800;UNDER_CE=0x800</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../;../../../../Components;../../../../Platforms/Windows</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>copy "$(OutDir)\CmpDC_Timer_WEC.dll" ..\..\Platforms\Windows\Bin_WinCE\WEC2013ARM$(ConfigurationName)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

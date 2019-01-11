@@ -1,0 +1,2733 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_io_mgr_itf:
+
+===========
+CmpIoMgrItf
+===========
+
+Interface of CmpIoMgr. :ref:`More... <group___cmp_io_mgr_itf-details>`
+
+Modules
+-------
+
+- :ref:`Bus Cycle Type <group___cmp_io_mgr_itf___bus_cycle_type>`
+
+- :ref:`Compiler switch <group___cmp_io_mgr_itf___compilerswitch>`
+
+- :ref:`Event parameter <group___cmp_io_mgr_itf___eventparameter>`
+
+- :ref:`Events <group___cmp_io_mgr_itf___events>`
+
+- :ref:`File name definitions <group___cmp_io_mgr_itf___filenamedefinitions>`
+
+- :ref:`Online services <group___cmp_io_mgr_itf___onlineservices>`
+
+- :ref:`Online tags <group___cmp_io_mgr_itf___onlinetags>`
+
+- :ref:`Settings <group___cmp_io_mgr_itf___settings>`
+
+- :ref:`Static defines <group___cmp_io_mgr_itf___staticdefines>`
+
+- :ref:`Task map types <group___cmp_io_mgr_itf___taskmaptypes>`
+
+- :ref:`Watchdog definitions <group___cmp_io_mgr_itf___watchdogdefinitions>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagIoConfigParameter <structtag_io_config_parameter>`
+
+- struct :ref:`tagIoConfigConnector <structtag_io_config_connector>`
+
+- struct :ref:`tagIoConfigChannelMap <structtag_io_config_channel_map>`
+
+- struct :ref:`tagIoConfigConnectorMap <structtag_io_config_connector_map>`
+
+- struct :ref:`tagIoConfigTaskMap <structtag_io_config_task_map>`
+
+- struct :ref:`tagiomgrconfiggetconnector_struct <structtagiomgrconfiggetconnector__struct>`
+
+- struct :ref:`tagiomgrconfiggetconnectorbydriver_struct <structtagiomgrconfiggetconnectorbydriver__struct>`
+
+- struct :ref:`tagiomgrconfiggetconnectorlist_struct <structtagiomgrconfiggetconnectorlist__struct>`
+
+- struct :ref:`tagiomgrconfiggetdriver_struct <structtagiomgrconfiggetdriver__struct>`
+
+- struct :ref:`tagiomgrconfiggetfirstchild_struct <structtagiomgrconfiggetfirstchild__struct>`
+
+- struct :ref:`tagiomgrconfiggetfirstconnector_struct <structtagiomgrconfiggetfirstconnector__struct>`
+
+- struct :ref:`tagiomgrconfiggetnextchild_struct <structtagiomgrconfiggetnextchild__struct>`
+
+- struct :ref:`tagiomgrconfiggetnextconnector_struct <structtagiomgrconfiggetnextconnector__struct>`
+
+- struct :ref:`tagiomgrconfiggetparameter_struct <structtagiomgrconfiggetparameter__struct>`
+
+- struct :ref:`tagiomgrconfiggetparametervaluebyte_struct <structtagiomgrconfiggetparametervaluebyte__struct>`
+
+- struct :ref:`tagiomgrconfiggetparametervaluedword_struct <structtagiomgrconfiggetparametervaluedword__struct>`
+
+- struct :ref:`tagiomgrconfiggetparametervaluepointer_struct <structtagiomgrconfiggetparametervaluepointer__struct>`
+
+- struct :ref:`tagiomgrconfiggetparametervalueword_struct <structtagiomgrconfiggetparametervalueword__struct>`
+
+- struct :ref:`tagiomgrconfigresetdiagnosis_struct <structtagiomgrconfigresetdiagnosis__struct>`
+
+- struct :ref:`tagiomgrconfigsetdiagnosis_struct <structtagiomgrconfigsetdiagnosis__struct>`
+
+- struct :ref:`tagiomgrcopyinputbe_struct <structtagiomgrcopyinputbe__struct>`
+
+- struct :ref:`tagiomgrcopyinputle_struct <structtagiomgrcopyinputle__struct>`
+
+- struct :ref:`tagiomgrcopyoutputbe_struct <structtagiomgrcopyoutputbe__struct>`
+
+- struct :ref:`tagiomgrcopyoutputle_struct <structtagiomgrcopyoutputle__struct>`
+
+- struct :ref:`tagiomgrgetbuscycletype_struct <structtagiomgrgetbuscycletype__struct>`
+
+- struct :ref:`tagiomgrgetconfigapplication_struct <structtagiomgrgetconfigapplication__struct>`
+
+- struct :ref:`tagiomgrgetdriverproperties_struct <structtagiomgrgetdriverproperties__struct>`
+
+- struct :ref:`tagiomgrgetfirstdriverinstance_struct <structtagiomgrgetfirstdriverinstance__struct>`
+
+- struct :ref:`tagiomgrgetmodulediagnosis_struct <structtagiomgrgetmodulediagnosis__struct>`
+
+- struct :ref:`tagiomgrgetnextdriverinstance_struct <structtagiomgrgetnextdriverinstance__struct>`
+
+- struct :ref:`tagiomgridentify_struct <structtagiomgridentify__struct>`
+
+- struct :ref:`tagiomgrreadinputs_struct <structtagiomgrreadinputs__struct>`
+
+- struct :ref:`tagiomgrreadparameter_struct <structtagiomgrreadparameter__struct>`
+
+- struct :ref:`tagiomgrreconfigure_struct <structtagiomgrreconfigure__struct>`
+
+- struct :ref:`tagiomgrregisterconfigapplication_struct <structtagiomgrregisterconfigapplication__struct>`
+
+- struct :ref:`tagiomgrregisterinstance2_struct <structtagiomgrregisterinstance2__struct>`
+
+- struct :ref:`tagiomgrscanmodules_struct <structtagiomgrscanmodules__struct>`
+
+- struct :ref:`tagiomgrsetdriverproperties_struct <structtagiomgrsetdriverproperties__struct>`
+
+- struct :ref:`tagiomgrsetdriverproperty_struct <structtagiomgrsetdriverproperty__struct>`
+
+- struct :ref:`tagiomgrstartbuscycle_struct <structtagiomgrstartbuscycle__struct>`
+
+- struct :ref:`tagiomgrstartbuscycle2_struct <structtagiomgrstartbuscycle2__struct>`
+
+- struct :ref:`tagiomgrunregisterconfigapplication_struct <structtagiomgrunregisterconfigapplication__struct>`
+
+- struct :ref:`tagiomgrunregisterinstance_struct <structtagiomgrunregisterinstance__struct>`
+
+- struct :ref:`tagiomgrupdateconfiguration_struct <structtagiomgrupdateconfiguration__struct>`
+
+- struct :ref:`tagiomgrupdateconfiguration2_struct <structtagiomgrupdateconfiguration2__struct>`
+
+- struct :ref:`tagiomgrupdatemapping_struct <structtagiomgrupdatemapping__struct>`
+
+- struct :ref:`tagiomgrupdatemapping2_struct <structtagiomgrupdatemapping2__struct>`
+
+- struct :ref:`tagiomgrwatchdogtrigger_struct <structtagiomgrwatchdogtrigger__struct>`
+
+- struct :ref:`tagiomgrwriteoutputs_struct <structtagiomgrwriteoutputs__struct>`
+
+- struct :ref:`tagiomgrwriteparameter_struct <structtagiomgrwriteparameter__struct>`
+
+- struct :ref:`tagiomgrconfiggetiodriver_struct <structtagiomgrconfiggetiodriver__struct>`
+
+- struct :ref:`ICmpIoMgr_C <struct_i_cmp_io_mgr___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpIoMgr <group___cmp_io_mgr_itf_1gae2215da8094001bdb4684704e54be84e>`
+
+- #define :ref:`EXTITF_CmpIoMgr <group___cmp_io_mgr_itf_1ga154a5fe294ba44f7a236c86352d7fe69>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagIoConfigParameter <structtag_io_config_parameter>` :ref:`IoConfigParameter <group___cmp_io_mgr_itf_1gaa43db625c1bf83b11bac9f91dbf72a38>`
+
+- typedef struct :ref:`tagIoConfigConnector <structtag_io_config_connector>` :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>`
+
+- typedef struct :ref:`tagIoConfigChannelMap <structtag_io_config_channel_map>` :ref:`IoConfigChannelMap <group___cmp_io_mgr_itf_1ga97e12dcaabb186080c0a3377a091edfb>`
+
+- typedef struct :ref:`tagIoConfigConnectorMap <structtag_io_config_connector_map>` :ref:`IoConfigConnectorMap <group___cmp_io_mgr_itf_1ga17d944e4f292a8b9c38e44328f586e33>`
+
+- typedef struct :ref:`tagIoConfigTaskMap <structtag_io_config_task_map>` :ref:`IoConfigTaskMap <group___cmp_io_mgr_itf_1ga24e1b19811629d55c3187dd61411df95>`
+
+- typedef struct :ref:`tagiomgrconfiggetconnector_struct <structtagiomgrconfiggetconnector__struct>` :ref:`iomgrconfiggetconnector_struct <group___cmp_io_mgr_itf_1ga252155e5af330f205041f35dc0ff8018>`
+
+- typedef struct :ref:`tagiomgrconfiggetconnectorbydriver_struct <structtagiomgrconfiggetconnectorbydriver__struct>` :ref:`iomgrconfiggetconnectorbydriver_struct <group___cmp_io_mgr_itf_1gab45c220640d4534e106dd6c08ebefd58>`
+
+- typedef struct :ref:`tagiomgrconfiggetconnectorlist_struct <structtagiomgrconfiggetconnectorlist__struct>` :ref:`iomgrconfiggetconnectorlist_struct <group___cmp_io_mgr_itf_1ga3767d353d79d30ab39353cd6a463f8f1>`
+
+- typedef struct :ref:`tagiomgrconfiggetdriver_struct <structtagiomgrconfiggetdriver__struct>` :ref:`iomgrconfiggetdriver_struct <group___cmp_io_mgr_itf_1ga158a598900a841fd2260391780cd5b50>`
+
+- typedef struct :ref:`tagiomgrconfiggetfirstchild_struct <structtagiomgrconfiggetfirstchild__struct>` :ref:`iomgrconfiggetfirstchild_struct <group___cmp_io_mgr_itf_1gae6566bc8702cd087147ed38c758b6acc>`
+
+- typedef struct :ref:`tagiomgrconfiggetfirstconnector_struct <structtagiomgrconfiggetfirstconnector__struct>` :ref:`iomgrconfiggetfirstconnector_struct <group___cmp_io_mgr_itf_1gad9236facfa463e66d14d482f78663e6a>`
+
+- typedef struct :ref:`tagiomgrconfiggetnextchild_struct <structtagiomgrconfiggetnextchild__struct>` :ref:`iomgrconfiggetnextchild_struct <group___cmp_io_mgr_itf_1ga4340a2a164c5deccf84f7eb9bec56908>`
+
+- typedef struct :ref:`tagiomgrconfiggetnextconnector_struct <structtagiomgrconfiggetnextconnector__struct>` :ref:`iomgrconfiggetnextconnector_struct <group___cmp_io_mgr_itf_1ga3f719180f2a218f8c95971b0485eae7f>`
+
+- typedef struct :ref:`tagiomgrconfiggetparameter_struct <structtagiomgrconfiggetparameter__struct>` :ref:`iomgrconfiggetparameter_struct <group___cmp_io_mgr_itf_1ga5db5a50c2e7b9afa87145d64bbeeefbc>`
+
+- typedef struct :ref:`tagiomgrconfiggetparametervaluebyte_struct <structtagiomgrconfiggetparametervaluebyte__struct>` :ref:`iomgrconfiggetparametervaluebyte_struct <group___cmp_io_mgr_itf_1ga2b3cbc9324db235af9149e2137ff065a>`
+
+- typedef struct :ref:`tagiomgrconfiggetparametervaluedword_struct <structtagiomgrconfiggetparametervaluedword__struct>` :ref:`iomgrconfiggetparametervaluedword_struct <group___cmp_io_mgr_itf_1gad824a812c38f75b490df9d7227e77a38>`
+
+- typedef struct :ref:`tagiomgrconfiggetparametervaluepointer_struct <structtagiomgrconfiggetparametervaluepointer__struct>` :ref:`iomgrconfiggetparametervaluepointer_struct <group___cmp_io_mgr_itf_1ga7ae17299ebce3b56d71a0a78c9e02e1a>`
+
+- typedef struct :ref:`tagiomgrconfiggetparametervalueword_struct <structtagiomgrconfiggetparametervalueword__struct>` :ref:`iomgrconfiggetparametervalueword_struct <group___cmp_io_mgr_itf_1ga7987547e537295753775afb62dd12d37>`
+
+- typedef struct :ref:`tagiomgrconfigresetdiagnosis_struct <structtagiomgrconfigresetdiagnosis__struct>` :ref:`iomgrconfigresetdiagnosis_struct <group___cmp_io_mgr_itf_1ga8aed6967639f06e4d667399a9981d723>`
+
+- typedef struct :ref:`tagiomgrconfigsetdiagnosis_struct <structtagiomgrconfigsetdiagnosis__struct>` :ref:`iomgrconfigsetdiagnosis_struct <group___cmp_io_mgr_itf_1ga6bca7944d6ff4dbb076ce6cf3d35d30f>`
+
+- typedef struct :ref:`tagiomgrcopyinputbe_struct <structtagiomgrcopyinputbe__struct>` :ref:`iomgrcopyinputbe_struct <group___cmp_io_mgr_itf_1ga5c27d4fba75ae34e4c404337a0d62efc>`
+
+- typedef struct :ref:`tagiomgrcopyinputle_struct <structtagiomgrcopyinputle__struct>` :ref:`iomgrcopyinputle_struct <group___cmp_io_mgr_itf_1ga635f1173754cde74ac773202aa9b7ed8>`
+
+- typedef struct :ref:`tagiomgrcopyoutputbe_struct <structtagiomgrcopyoutputbe__struct>` :ref:`iomgrcopyoutputbe_struct <group___cmp_io_mgr_itf_1ga52a928a4b59d76e597792592caf64327>`
+
+- typedef struct :ref:`tagiomgrcopyoutputle_struct <structtagiomgrcopyoutputle__struct>` :ref:`iomgrcopyoutputle_struct <group___cmp_io_mgr_itf_1ga0b8e09f2438a3cca4a6fa3a6b152f10e>`
+
+- typedef struct :ref:`tagiomgrgetbuscycletype_struct <structtagiomgrgetbuscycletype__struct>` :ref:`iomgrgetbuscycletype_struct <group___cmp_io_mgr_itf_1ga01543621c57a3a7a53cbec8cc3646442>`
+
+- typedef struct :ref:`tagiomgrgetconfigapplication_struct <structtagiomgrgetconfigapplication__struct>` :ref:`iomgrgetconfigapplication_struct <group___cmp_io_mgr_itf_1ga579221d162815b6e4c487fcd4132232f>`
+
+- typedef struct :ref:`tagiomgrgetdriverproperties_struct <structtagiomgrgetdriverproperties__struct>` :ref:`iomgrgetdriverproperties_struct <group___cmp_io_mgr_itf_1ga6dd8ca4943a7b913585bbb12d4e5200c>`
+
+- typedef struct :ref:`tagiomgrgetfirstdriverinstance_struct <structtagiomgrgetfirstdriverinstance__struct>` :ref:`iomgrgetfirstdriverinstance_struct <group___cmp_io_mgr_itf_1ga631144f83e9648467ad5b6ecb473b336>`
+
+- typedef struct :ref:`tagiomgrgetmodulediagnosis_struct <structtagiomgrgetmodulediagnosis__struct>` :ref:`iomgrgetmodulediagnosis_struct <group___cmp_io_mgr_itf_1ga81dea743c8232975735e3be29e6bffe5>`
+
+- typedef struct :ref:`tagiomgrgetnextdriverinstance_struct <structtagiomgrgetnextdriverinstance__struct>` :ref:`iomgrgetnextdriverinstance_struct <group___cmp_io_mgr_itf_1ga80d79b64aadeba26d765e0c10bf9a7aa>`
+
+- typedef struct :ref:`tagiomgridentify_struct <structtagiomgridentify__struct>` :ref:`iomgridentify_struct <group___cmp_io_mgr_itf_1gabac6aa69f90a7a9e7b4022a0719c5c16>`
+
+- typedef struct :ref:`tagiomgrreadinputs_struct <structtagiomgrreadinputs__struct>` :ref:`iomgrreadinputs_struct <group___cmp_io_mgr_itf_1ga2cb350ed9fe42d99686a15ace7bcec16>`
+
+- typedef struct :ref:`tagiomgrreadparameter_struct <structtagiomgrreadparameter__struct>` :ref:`iomgrreadparameter_struct <group___cmp_io_mgr_itf_1ga45c820ae9aec9b17bebbe9242461ec3e>`
+
+- typedef struct :ref:`tagiomgrreconfigure_struct <structtagiomgrreconfigure__struct>` :ref:`iomgrreconfigure_struct <group___cmp_io_mgr_itf_1ga892a1c83fa6e0417c3a8363137666227>`
+
+- typedef struct :ref:`tagiomgrregisterconfigapplication_struct <structtagiomgrregisterconfigapplication__struct>` :ref:`iomgrregisterconfigapplication_struct <group___cmp_io_mgr_itf_1gaa1593f6a6db29ad3bc63b59447cfcc87>`
+
+- typedef struct :ref:`tagiomgrregisterinstance2_struct <structtagiomgrregisterinstance2__struct>` :ref:`iomgrregisterinstance2_struct <group___cmp_io_mgr_itf_1ga5d60691679f687ade1d0ea3ffa6dfecd>`
+
+- typedef struct :ref:`tagiomgrscanmodules_struct <structtagiomgrscanmodules__struct>` :ref:`iomgrscanmodules_struct <group___cmp_io_mgr_itf_1gac6294dbb71d1196ec748d832e2e5b358>`
+
+- typedef struct :ref:`tagiomgrsetdriverproperties_struct <structtagiomgrsetdriverproperties__struct>` :ref:`iomgrsetdriverproperties_struct <group___cmp_io_mgr_itf_1ga76f29a550d00e0ba551e5ee3d2526506>`
+
+- typedef struct :ref:`tagiomgrsetdriverproperty_struct <structtagiomgrsetdriverproperty__struct>` :ref:`iomgrsetdriverproperty_struct <group___cmp_io_mgr_itf_1gadca6af55e59a9faf0403a135a6e6c067>`
+
+- typedef struct :ref:`tagiomgrstartbuscycle_struct <structtagiomgrstartbuscycle__struct>` :ref:`iomgrstartbuscycle_struct <group___cmp_io_mgr_itf_1ga3022b514d5b6090162942a950ed79d55>`
+
+- typedef struct :ref:`tagiomgrstartbuscycle2_struct <structtagiomgrstartbuscycle2__struct>` :ref:`iomgrstartbuscycle2_struct <group___cmp_io_mgr_itf_1ga8f291dc8b2cafb8a90820c2896944f46>`
+
+- typedef struct :ref:`tagiomgrunregisterconfigapplication_struct <structtagiomgrunregisterconfigapplication__struct>` :ref:`iomgrunregisterconfigapplication_struct <group___cmp_io_mgr_itf_1gaedc605e628f459af02bd0919aa4afe9c>`
+
+- typedef struct :ref:`tagiomgrunregisterinstance_struct <structtagiomgrunregisterinstance__struct>` :ref:`iomgrunregisterinstance_struct <group___cmp_io_mgr_itf_1ga98600a6fe072429c9253b9b249a5a2b4>`
+
+- typedef struct :ref:`tagiomgrupdateconfiguration_struct <structtagiomgrupdateconfiguration__struct>` :ref:`iomgrupdateconfiguration_struct <group___cmp_io_mgr_itf_1ga47a41fc2f63449b3c1e97d9cfdc16b07>`
+
+- typedef struct :ref:`tagiomgrupdateconfiguration2_struct <structtagiomgrupdateconfiguration2__struct>` :ref:`iomgrupdateconfiguration2_struct <group___cmp_io_mgr_itf_1ga46e6f10b8a5a690e63cd20fd53af5601>`
+
+- typedef struct :ref:`tagiomgrupdatemapping_struct <structtagiomgrupdatemapping__struct>` :ref:`iomgrupdatemapping_struct <group___cmp_io_mgr_itf_1gab0fb507a16a1d8a15f7f767604be57f6>`
+
+- typedef struct :ref:`tagiomgrupdatemapping2_struct <structtagiomgrupdatemapping2__struct>` :ref:`iomgrupdatemapping2_struct <group___cmp_io_mgr_itf_1ga5af233e12791b5e15e08271a2d09d6fb>`
+
+- typedef struct :ref:`tagiomgrwatchdogtrigger_struct <structtagiomgrwatchdogtrigger__struct>` :ref:`iomgrwatchdogtrigger_struct <group___cmp_io_mgr_itf_1gad2c176b831e3efc877b0ef9ef99674e6>`
+
+- typedef struct :ref:`tagiomgrwriteoutputs_struct <structtagiomgrwriteoutputs__struct>` :ref:`iomgrwriteoutputs_struct <group___cmp_io_mgr_itf_1gafd97373b7666143a34f2ed3e9e7ee8ef>`
+
+- typedef struct :ref:`tagiomgrwriteparameter_struct <structtagiomgrwriteparameter__struct>` :ref:`iomgrwriteparameter_struct <group___cmp_io_mgr_itf_1gae8c0055b7a4c604529d3f56ee1c33492>`
+
+- typedef struct :ref:`tagiomgrconfiggetiodriver_struct <structtagiomgrconfiggetiodriver__struct>` :ref:`iomgrconfiggetiodriver_struct <group___cmp_io_mgr_itf_1ga2b63211986af610a6f92ae81bfa66fcb>`
+
+- typedef :ref:`ICmpIoMgr_C <struct_i_cmp_io_mgr___c>` :ref:`ICmpIoMgr <group___cmp_io_mgr_itf_1ga36ca02436950284b1351b5c516f1a0e1>`
+
+Functions
+---------
+
+- void :ref:`iomgrconfiggetconnector <group___cmp_io_mgr_itf_1gad50f435d027c0910a283a19b0c428ed9>` (:ref:`iomgrconfiggetconnector_struct <group___cmp_io_mgr_itf_1ga252155e5af330f205041f35dc0ff8018>` * p)
+
+- void :ref:`iomgrconfiggetconnectorbydriver <group___cmp_io_mgr_itf_1gab439d771ca5ac1fb7982b0702e3664fa>` (:ref:`iomgrconfiggetconnectorbydriver_struct <group___cmp_io_mgr_itf_1gab45c220640d4534e106dd6c08ebefd58>` * p)
+
+- void :ref:`iomgrconfiggetconnectorlist <group___cmp_io_mgr_itf_1ga9e06a3ed4f55c14dddca1b20788dd745>` (:ref:`iomgrconfiggetconnectorlist_struct <group___cmp_io_mgr_itf_1ga3767d353d79d30ab39353cd6a463f8f1>` * p)
+
+- void :ref:`iomgrconfiggetdriver <group___cmp_io_mgr_itf_1ga0664c3b282a93c17d7dd42bc6ba15356>` (:ref:`iomgrconfiggetdriver_struct <group___cmp_io_mgr_itf_1ga158a598900a841fd2260391780cd5b50>` * p)
+
+- void :ref:`iomgrconfiggetfirstchild <group___cmp_io_mgr_itf_1ga3ca783abe9811b6077be617e1214c0dd>` (:ref:`iomgrconfiggetfirstchild_struct <group___cmp_io_mgr_itf_1gae6566bc8702cd087147ed38c758b6acc>` * p)
+
+- void :ref:`iomgrconfiggetfirstconnector <group___cmp_io_mgr_itf_1ga4f4ac441af0526860e074b48514678b6>` (:ref:`iomgrconfiggetfirstconnector_struct <group___cmp_io_mgr_itf_1gad9236facfa463e66d14d482f78663e6a>` * p)
+
+- void :ref:`iomgrconfiggetnextchild <group___cmp_io_mgr_itf_1gadbdc45bcfa1e15a113c74161c1988f5d>` (:ref:`iomgrconfiggetnextchild_struct <group___cmp_io_mgr_itf_1ga4340a2a164c5deccf84f7eb9bec56908>` * p)
+
+- void :ref:`iomgrconfiggetnextconnector <group___cmp_io_mgr_itf_1ga470fe117448e1bcdbdfd191b0b5a7c90>` (:ref:`iomgrconfiggetnextconnector_struct <group___cmp_io_mgr_itf_1ga3f719180f2a218f8c95971b0485eae7f>` * p)
+
+- void :ref:`iomgrconfiggetparameter <group___cmp_io_mgr_itf_1ga56577edfe1bfeb0f601145757a591c40>` (:ref:`iomgrconfiggetparameter_struct <group___cmp_io_mgr_itf_1ga5db5a50c2e7b9afa87145d64bbeeefbc>` * p)
+
+- void :ref:`iomgrconfiggetparametervaluebyte <group___cmp_io_mgr_itf_1gaac4368f47a0efbef3746efbba9ce7db1>` (:ref:`iomgrconfiggetparametervaluebyte_struct <group___cmp_io_mgr_itf_1ga2b3cbc9324db235af9149e2137ff065a>` * p)
+
+- void :ref:`iomgrconfiggetparametervaluedword <group___cmp_io_mgr_itf_1ga0646beed50c757c5497f2847c70269a6>` (:ref:`iomgrconfiggetparametervaluedword_struct <group___cmp_io_mgr_itf_1gad824a812c38f75b490df9d7227e77a38>` * p)
+
+- void :ref:`iomgrconfiggetparametervaluepointer <group___cmp_io_mgr_itf_1ga5ae11c69538ad707162a4aad68bc40bc>` (:ref:`iomgrconfiggetparametervaluepointer_struct <group___cmp_io_mgr_itf_1ga7ae17299ebce3b56d71a0a78c9e02e1a>` * p)
+
+- void :ref:`iomgrconfiggetparametervalueword <group___cmp_io_mgr_itf_1ga386b89236a541775b874bc7e7f4a6802>` (:ref:`iomgrconfiggetparametervalueword_struct <group___cmp_io_mgr_itf_1ga7987547e537295753775afb62dd12d37>` * p)
+
+- void :ref:`iomgrconfigresetdiagnosis <group___cmp_io_mgr_itf_1ga8338410be4e1a7abe95961987f8248d5>` (:ref:`iomgrconfigresetdiagnosis_struct <group___cmp_io_mgr_itf_1ga8aed6967639f06e4d667399a9981d723>` * p)
+
+- void :ref:`iomgrconfigsetdiagnosis <group___cmp_io_mgr_itf_1ga59830b66e698ca5c54e52f2fc5dfa6c5>` (:ref:`iomgrconfigsetdiagnosis_struct <group___cmp_io_mgr_itf_1ga6bca7944d6ff4dbb076ce6cf3d35d30f>` * p)
+
+- void :ref:`iomgrcopyinputbe <group___cmp_io_mgr_itf_1ga78549b1dcd08a81cac74a019d0fa0791>` (:ref:`iomgrcopyinputbe_struct <group___cmp_io_mgr_itf_1ga5c27d4fba75ae34e4c404337a0d62efc>` * p)
+
+- void :ref:`iomgrcopyinputle <group___cmp_io_mgr_itf_1gafebabaa5714d57fff4b921f3d7ff029c>` (:ref:`iomgrcopyinputle_struct <group___cmp_io_mgr_itf_1ga635f1173754cde74ac773202aa9b7ed8>` * p)
+
+- void :ref:`iomgrcopyoutputbe <group___cmp_io_mgr_itf_1ga61ff71af831863bcc1a9dd407998a2ad>` (:ref:`iomgrcopyoutputbe_struct <group___cmp_io_mgr_itf_1ga52a928a4b59d76e597792592caf64327>` * p)
+
+- void :ref:`iomgrcopyoutputle <group___cmp_io_mgr_itf_1ga13d903458f6b18ba7ad91d3bcfe9b4c7>` (:ref:`iomgrcopyoutputle_struct <group___cmp_io_mgr_itf_1ga0b8e09f2438a3cca4a6fa3a6b152f10e>` * p)
+
+- void :ref:`iomgrgetbuscycletype <group___cmp_io_mgr_itf_1gadcda5326b25bd240e5dbfec7f0ebc231>` (:ref:`iomgrgetbuscycletype_struct <group___cmp_io_mgr_itf_1ga01543621c57a3a7a53cbec8cc3646442>` * p)
+
+- void :ref:`iomgrgetconfigapplication <group___cmp_io_mgr_itf_1gac9c47aa9df6b95db215d5f3cce2d31cf>` (:ref:`iomgrgetconfigapplication_struct <group___cmp_io_mgr_itf_1ga579221d162815b6e4c487fcd4132232f>` * p)
+
+- void :ref:`iomgrgetdriverproperties <group___cmp_io_mgr_itf_1gac4e72c3ed2e2e649219e5b36316fea7e>` (:ref:`iomgrgetdriverproperties_struct <group___cmp_io_mgr_itf_1ga6dd8ca4943a7b913585bbb12d4e5200c>` * p)
+
+- void :ref:`iomgrgetfirstdriverinstance <group___cmp_io_mgr_itf_1gad6031a1577b16bfc6bea4d198e3679f9>` (:ref:`iomgrgetfirstdriverinstance_struct <group___cmp_io_mgr_itf_1ga631144f83e9648467ad5b6ecb473b336>` * p)
+
+- void :ref:`iomgrgetmodulediagnosis <group___cmp_io_mgr_itf_1ga47a9a69fb3b6b5313cceb17566439222>` (:ref:`iomgrgetmodulediagnosis_struct <group___cmp_io_mgr_itf_1ga81dea743c8232975735e3be29e6bffe5>` * p)
+
+- void :ref:`iomgrgetnextdriverinstance <group___cmp_io_mgr_itf_1ga4425135afcdd553e620b895be49c5203>` (:ref:`iomgrgetnextdriverinstance_struct <group___cmp_io_mgr_itf_1ga80d79b64aadeba26d765e0c10bf9a7aa>` * p)
+
+- void :ref:`iomgridentify <group___cmp_io_mgr_itf_1ga57d40ef137aa57e7456c81128dc79637>` (:ref:`iomgridentify_struct <group___cmp_io_mgr_itf_1gabac6aa69f90a7a9e7b4022a0719c5c16>` * p)
+
+- void :ref:`iomgrreadinputs <group___cmp_io_mgr_itf_1ga3cf235465e10f51fd1de0d818921e054>` (:ref:`iomgrreadinputs_struct <group___cmp_io_mgr_itf_1ga2cb350ed9fe42d99686a15ace7bcec16>` * p)
+
+- void :ref:`iomgrreadparameter <group___cmp_io_mgr_itf_1ga3ef3b7b701395611b909a776c9c191e4>` (:ref:`iomgrreadparameter_struct <group___cmp_io_mgr_itf_1ga45c820ae9aec9b17bebbe9242461ec3e>` * p)
+
+- void :ref:`iomgrreconfigure <group___cmp_io_mgr_itf_1gadd72c5b67988881d89387c19c795277f>` (:ref:`iomgrreconfigure_struct <group___cmp_io_mgr_itf_1ga892a1c83fa6e0417c3a8363137666227>` * p)
+
+- void :ref:`iomgrregisterconfigapplication <group___cmp_io_mgr_itf_1ga1a8d9af9fbf2522697cded41c1cc10b7>` (:ref:`iomgrregisterconfigapplication_struct <group___cmp_io_mgr_itf_1gaa1593f6a6db29ad3bc63b59447cfcc87>` * p)
+
+- void :ref:`iomgrregisterinstance2 <group___cmp_io_mgr_itf_1gaac24c99e288f3cd04de8def0f7971ecf>` (:ref:`iomgrregisterinstance2_struct <group___cmp_io_mgr_itf_1ga5d60691679f687ade1d0ea3ffa6dfecd>` * p)
+
+- void :ref:`iomgrscanmodules <group___cmp_io_mgr_itf_1ga4c4d3f075cf730876a4b2497f656b6ab>` (:ref:`iomgrscanmodules_struct <group___cmp_io_mgr_itf_1gac6294dbb71d1196ec748d832e2e5b358>` * p)
+
+- void :ref:`iomgrsetdriverproperties <group___cmp_io_mgr_itf_1gac2cdc0ddd6e70fdcdaf97bc2359d3ac6>` (:ref:`iomgrsetdriverproperties_struct <group___cmp_io_mgr_itf_1ga76f29a550d00e0ba551e5ee3d2526506>` * p)
+
+- void :ref:`iomgrsetdriverproperty <group___cmp_io_mgr_itf_1ga21dec95bc9b38c0c12b4048cfe32e0c0>` (:ref:`iomgrsetdriverproperty_struct <group___cmp_io_mgr_itf_1gadca6af55e59a9faf0403a135a6e6c067>` * p)
+
+- void :ref:`iomgrstartbuscycle <group___cmp_io_mgr_itf_1ga133048b6498681f8ea3d9f9598c78774>` (:ref:`iomgrstartbuscycle_struct <group___cmp_io_mgr_itf_1ga3022b514d5b6090162942a950ed79d55>` * p)
+
+- void :ref:`iomgrstartbuscycle2 <group___cmp_io_mgr_itf_1gab3f4d82da77081de00f6f75acc696f21>` (:ref:`iomgrstartbuscycle2_struct <group___cmp_io_mgr_itf_1ga8f291dc8b2cafb8a90820c2896944f46>` * p)
+
+- void :ref:`iomgrunregisterconfigapplication <group___cmp_io_mgr_itf_1gaf0e9176f115e6741b2cd696493df4324>` (:ref:`iomgrunregisterconfigapplication_struct <group___cmp_io_mgr_itf_1gaedc605e628f459af02bd0919aa4afe9c>` * p)
+
+- void :ref:`iomgrunregisterinstance <group___cmp_io_mgr_itf_1ga5989ed0b2ba9358ebd7f61af340421be>` (:ref:`iomgrunregisterinstance_struct <group___cmp_io_mgr_itf_1ga98600a6fe072429c9253b9b249a5a2b4>` * p)
+
+- void :ref:`iomgrupdateconfiguration <group___cmp_io_mgr_itf_1ga5d09138e346a8891ae36be67b0a9d4f8>` (:ref:`iomgrupdateconfiguration_struct <group___cmp_io_mgr_itf_1ga47a41fc2f63449b3c1e97d9cfdc16b07>` * p)
+
+- void :ref:`iomgrupdateconfiguration2 <group___cmp_io_mgr_itf_1ga62607bda8f6caefd6f4ad76c4b2bd0c6>` (:ref:`iomgrupdateconfiguration2_struct <group___cmp_io_mgr_itf_1ga46e6f10b8a5a690e63cd20fd53af5601>` * p)
+
+- void :ref:`iomgrupdatemapping <group___cmp_io_mgr_itf_1ga6a550655b2a0d744191d24cd67f44e21>` (:ref:`iomgrupdatemapping_struct <group___cmp_io_mgr_itf_1gab0fb507a16a1d8a15f7f767604be57f6>` * p)
+
+- void :ref:`iomgrupdatemapping2 <group___cmp_io_mgr_itf_1gaedaee6c80ce85e5cf43f24fab6a781f5>` (:ref:`iomgrupdatemapping2_struct <group___cmp_io_mgr_itf_1ga5af233e12791b5e15e08271a2d09d6fb>` * p)
+
+- void :ref:`iomgrwatchdogtrigger <group___cmp_io_mgr_itf_1ga81b668b35002606d690f9b3f7b115677>` (:ref:`iomgrwatchdogtrigger_struct <group___cmp_io_mgr_itf_1gad2c176b831e3efc877b0ef9ef99674e6>` * p)
+
+- void :ref:`iomgrwriteoutputs <group___cmp_io_mgr_itf_1ga859942d5af55fa95fc01dc7bf516d3b6>` (:ref:`iomgrwriteoutputs_struct <group___cmp_io_mgr_itf_1gafd97373b7666143a34f2ed3e9e7ee8ef>` * p)
+
+- void :ref:`iomgrwriteparameter <group___cmp_io_mgr_itf_1ga3404bd6fc96396e778ee210b3a0ff238>` (:ref:`iomgrwriteparameter_struct <group___cmp_io_mgr_itf_1gae8c0055b7a4c604529d3f56ee1c33492>` * p)
+
+- void :ref:`iomgrconfiggetiodriver <group___cmp_io_mgr_itf_1ga6fa5fba56ed27b59c30b79fcfeaaa226>` (:ref:`iomgrconfiggetiodriver_struct <group___cmp_io_mgr_itf_1ga2b63211986af610a6f92ae81bfa66fcb>` * p)
+
+- RTS_RESULT :ref:`IoMgrExceptionHandler <group___cmp_io_mgr_itf_1gadf1c10dfedd202702207b7b135ee0b09>` (char * pszApplication, RTS_UI32 ulException)
+
+- RTS_HANDLE :ref:`IoMgrRegisterInstance <group___cmp_io_mgr_itf_1ga7f4845def6c90b5aeb6f72797dc34b99>` (IBase * pIBase, RTS_RESULT * pResult)
+
+- void :ref:`iomgrregisterinstance <group___cmp_io_mgr_itf_1gaaa9e65b5164f2eb31270a969746ef0ec>` (:ref:`iomgrregisterinstance_struct <structiomgrregisterinstance__struct>` * p)
+
+- RTS_HANDLE :ref:`IoMgrRegisterInstance2 <group___cmp_io_mgr_itf_1ga719300d430f19ba50e795fd1ed0e658a>` (IBase * pIBase, int bIecDriver, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IoMgrUnregisterInstance <group___cmp_io_mgr_itf_1ga1ee3ebcd32d449d0633bd565fbd8ba18>` (IBase * pIBase)
+
+- IBase * :ref:`IoMgrGetFirstDriverInstance <group___cmp_io_mgr_itf_1ga923f644e8b581abc5041f29619e091c4>` (int * pbIecDriver, RTS_RESULT * pResult)
+
+- IBase * :ref:`IoMgrGetNextDriverInstance <group___cmp_io_mgr_itf_1ga8432d130d27f3f46be083b21241adc42>` (IBase * pIBasePrev, int * pbIecDriver, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IoMgrSetDriverProperties <group___cmp_io_mgr_itf_1ga3f3911853fe06d5bf6f4d7ee93fd8194>` (IBase * pIBase, RTS_UI32 ulProperties)
+
+- RTS_RESULT :ref:`IoMgrGetDriverProperties <group___cmp_io_mgr_itf_1ga0d79639950faf4680a80eaefd51db2b6>` (IBase * pIBase, RTS_UI32 ** ppulProperty)
+
+- RTS_RESULT :ref:`IoMgrSetDriverProperty <group___cmp_io_mgr_itf_1gafa6600451cacd8da5adaccd8ca630043>` (IBase * pIBase, RTS_UI32 ulProperty, int bValue)
+
+- RTS_RESULT :ref:`IoMgrRegisterConfigApplication <group___cmp_io_mgr_itf_1ga2f494c3e6255b21161292b85005993b5>` (char * pszConfigApplication)
+
+- RTS_RESULT :ref:`IoMgrUnregisterConfigApplication <group___cmp_io_mgr_itf_1ga0a9e00c03a768867101baa5edf1766da>` (char * pszConfigApplication)
+
+- RTS_RESULT :ref:`IoMgrGetConfigApplication <group___cmp_io_mgr_itf_1ga2419f80312cd0b8123a6266c201ac69d>` (char * pszConfigApplication, int * pnMaxLen)
+
+- RTS_RESULT :ref:`IoMgrUpdateConfiguration <group___cmp_io_mgr_itf_1gaac5134bcf3af83f69d665ccf351c6808>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnectorList, int nCount)
+
+- RTS_RESULT :ref:`IoMgrUpdateConfiguration2 <group___cmp_io_mgr_itf_1ga278aa08c80039e36be4bbdddd709dec3>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnectorList, int nCount, char * pszConfigApplication)
+
+- RTS_BOOL :ref:`IoMgrHasTaskIOs <group___cmp_io_mgr_itf_1ga7f7627a9d5bc801bbba82ad81b122ab0>` (RTS_UI32 dwTaskId, RTS_UI16 taskMapType, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IoMgrUpdateMapping <group___cmp_io_mgr_itf_1ga7f0beba106a4d9079ca733e89a9185cd>` (:ref:`IoConfigTaskMap <group___cmp_io_mgr_itf_1ga24e1b19811629d55c3187dd61411df95>` * pTaskMapList, int nCount)
+
+- RTS_RESULT :ref:`IoMgrUpdateMapping2 <group___cmp_io_mgr_itf_1gacd1c1a4be544d4fce0593b3d8ec235d1>` (:ref:`IoConfigTaskMap <group___cmp_io_mgr_itf_1ga24e1b19811629d55c3187dd61411df95>` * pTaskMapList, int nCount, char * pszConfigApplication)
+
+- RTS_RESULT :ref:`IoMgrReconfigure <group___cmp_io_mgr_itf_1ga1ea2d3f2068ed2402838b7d837b40f15>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector, RTS_UI32 * pui32State)
+
+- RTS_RESULT :ref:`IoMgrReadInputs <group___cmp_io_mgr_itf_1ga7d31e5a336dda3e4462ba1beb701eccb>` (:ref:`IoConfigTaskMap <group___cmp_io_mgr_itf_1ga24e1b19811629d55c3187dd61411df95>` * pTaskMap)
+
+- RTS_RESULT :ref:`IoMgrWriteOutputs <group___cmp_io_mgr_itf_1ga646633f43bf2fd76972ee4f06c599945>` (:ref:`IoConfigTaskMap <group___cmp_io_mgr_itf_1ga24e1b19811629d55c3187dd61411df95>` * pTaskMap)
+
+- RTS_RESULT :ref:`IoMgrStartBusCycle <group___cmp_io_mgr_itf_1ga8ec4b101dd6b76923ed886a862006ef5>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector)
+
+- RTS_RESULT :ref:`IoMgrStartBusCycle2 <group___cmp_io_mgr_itf_1ga2222a82556e347dc06f0b71f663d6f97>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector, RTS_UI32 dwType)
+
+- RTS_RESULT :ref:`IoMgrGetBusCycleType <group___cmp_io_mgr_itf_1gaae57922ed9b0ac992fcab741ed5621fe>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IoMgrScanModules <group___cmp_io_mgr_itf_1gae6146e5baf71c8788c0f8e3cdec6f37c>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector, :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` ** ppConnectorList, int * pnCount)
+
+- RTS_RESULT :ref:`IoMgrGetModuleDiagnosis <group___cmp_io_mgr_itf_1gaa9c4f7c311ac00275842f7afca605d3b>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector)
+
+- RTS_RESULT :ref:`IoMgrIdentify <group___cmp_io_mgr_itf_1gaff6c5d3186e7442e5b94a44693cf7cae>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector)
+
+- RTS_RESULT :ref:`IoMgrNominate <group___cmp_io_mgr_itf_1gae0e4c14296caeed79979eb565e3d8ca1>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector)
+
+- RTS_RESULT :ref:`IoMgrWatchdogTrigger <group___cmp_io_mgr_itf_1ga3969d58e31016ec11e49dbbcd901a3c1>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector)
+
+- :ref:`IoConfigParameter <group___cmp_io_mgr_itf_1gaa43db625c1bf83b11bac9f91dbf72a38>` * :ref:`IoMgrConfigGetParameter <group___cmp_io_mgr_itf_1gaee465abb37729caec8b021b52335c183>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector, RTS_UI32 dwParameterId)
+
+- RTS_UI32 :ref:`IoMgrConfigGetParameterValueDword <group___cmp_io_mgr_itf_1gafbf56b9a663b1450b7785438b16f7fb8>` (:ref:`IoConfigParameter <group___cmp_io_mgr_itf_1gaa43db625c1bf83b11bac9f91dbf72a38>` * pParameter, RTS_RESULT * pResult)
+
+- unsigned short :ref:`IoMgrConfigGetParameterValueWord <group___cmp_io_mgr_itf_1ga5766ed5c4c766697dd4a5e769e2dd12c>` (:ref:`IoConfigParameter <group___cmp_io_mgr_itf_1gaa43db625c1bf83b11bac9f91dbf72a38>` * pParameter, RTS_RESULT * pResult)
+
+- unsigned char :ref:`IoMgrConfigGetParameterValueByte <group___cmp_io_mgr_itf_1gad9f4407697b7e857339ed95b3d3ddc19>` (:ref:`IoConfigParameter <group___cmp_io_mgr_itf_1gaa43db625c1bf83b11bac9f91dbf72a38>` * pParameter, RTS_RESULT * pResult)
+
+- void * :ref:`IoMgrConfigGetParameterValuePointer <group___cmp_io_mgr_itf_1ga150c4e381985e07f48404429c7ff9c66>` (:ref:`IoConfigParameter <group___cmp_io_mgr_itf_1gaa43db625c1bf83b11bac9f91dbf72a38>` * pParameter, RTS_RESULT * pResult)
+
+- :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * :ref:`IoMgrConfigGetFirstConnector <group___cmp_io_mgr_itf_1ga0ffb9dc8c35a6d56a00be5ee5781635a>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnectorList, int * pnCount, unsigned short wType)
+
+- :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * :ref:`IoMgrConfigGetNextConnector <group___cmp_io_mgr_itf_1ga9b84117c1c46922d21db6a773b456867>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnectorList, int * pnCount, unsigned short wType)
+
+- :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * :ref:`IoMgrConfigGetFirstChild <group___cmp_io_mgr_itf_1ga8463139c7b7b5cbbca9b3fe794750017>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnectorList, int * pnCount, :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pFather)
+
+- :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * :ref:`IoMgrConfigGetNextChild <group___cmp_io_mgr_itf_1ga870a8e4daf107b3d7405a513114fc6e3>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnectorList, int * pnCount, :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pFather)
+
+- RTS_RESULT :ref:`IoMgrConfigGetConnectorList <group___cmp_io_mgr_itf_1ga8c155d2488bc299bd26669db28113992>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` ** ppConnectorList, int * pnCount)
+
+- :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * :ref:`IoMgrConfigGetConnector <group___cmp_io_mgr_itf_1ga21ca16fe1ca18fb6ffdcf8e6d5a4e1aa>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnectorList, int * pnCount, RTS_UI32 ulModuleType, RTS_UI32 ulInstance)
+
+- RTS_RESULT :ref:`IoMgrConfigSetDiagnosis <group___cmp_io_mgr_itf_1ga00e1fdda9440f6ec635633580ee77694>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector, RTS_UI32 ulFlags)
+
+- RTS_RESULT :ref:`IoMgrConfigResetDiagnosis <group___cmp_io_mgr_itf_1gabaa8e0e127a2f5ac577c7562c9d54409>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector, RTS_UI32 ulFlags)
+
+- RTS_RESULT :ref:`IoMgrReadParameter <group___cmp_io_mgr_itf_1ga0ddbc7337dd3ab8d1800a86f2caf96a5>` (RTS_UI32 ulModuleType, RTS_UI32 ulInstance, RTS_UI32 ulParameterId, void * pData, RTS_SIZE ulBitSize, RTS_SIZE ulBitOffset)
+
+- RTS_RESULT :ref:`IoMgrWriteParameter <group___cmp_io_mgr_itf_1ga0963eb931c70b86462411694377d477e>` (RTS_UI32 ulModuleType, RTS_UI32 ulInstance, RTS_UI32 ulParameterId, void * pData, RTS_SIZE ulBitSize, RTS_SIZE ulBitOffset)
+
+- IBase * :ref:`IoMgrConfigGetDriver <group___cmp_io_mgr_itf_1ga1da13cef1b8fe3c99076df420dbe3305>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector, RTS_RESULT * pResult)
+
+- :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * :ref:`IoMgrConfigGetConnectorByDriver <group___cmp_io_mgr_itf_1ga38a047dbbc3467caff6929b7ee34ae65>` (IBase * pIBase, int nIndex, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`IoMgrCopyInputLE <group___cmp_io_mgr_itf_1gac10669112162c5b5ccb9acfa1dedf996>` (:ref:`IoConfigChannelMap <group___cmp_io_mgr_itf_1ga97e12dcaabb186080c0a3377a091edfb>` * pChannel, char * pAddress)
+
+- RTS_RESULT :ref:`IoMgrCopyInputBE <group___cmp_io_mgr_itf_1ga731a703cc5c1a2051d109bdda3eaa04e>` (:ref:`IoConfigChannelMap <group___cmp_io_mgr_itf_1ga97e12dcaabb186080c0a3377a091edfb>` * pChannel, char * pAddress)
+
+- RTS_RESULT :ref:`IoMgrCopyOutputLE <group___cmp_io_mgr_itf_1gaa054fa1597b65f72c4e298fed4c4d414>` (:ref:`IoConfigChannelMap <group___cmp_io_mgr_itf_1ga97e12dcaabb186080c0a3377a091edfb>` * pChannel, char * pAddress)
+
+- RTS_RESULT :ref:`IoMgrCopyOutputBE <group___cmp_io_mgr_itf_1ga7b4d7207f30a5bc8e096b8fce3d70877>` (:ref:`IoConfigChannelMap <group___cmp_io_mgr_itf_1ga97e12dcaabb186080c0a3377a091edfb>` * pChannel, char * pAddress)
+
+.. _group___cmp_io_mgr_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpIoMgr.
+
+Interface of the IO-manager, which manages all IO-driver instances in the runtime system.
+
+There are several data structures involved in the I/O update. All of them are registered in or passed to the I/O Manager. The following is an overview over the most essential structures and how they are passed to the I/O Manager:
+::
+    *				 .    +------------------+ UpdateConfiguration()
+    *				 .  +------------------+ |
+    *				 . +-----------------+ |-+
+    *				 . | IoConfigTaskMap |-+
+    *				 . +-------+---------+ ReadInputs() / WriteOutputs()
+    *				 .         | 1                                  UpdateConfiguration()
+    *				 .         |                       +--------------------+
+    *				 .         | n                   +--------------------+ |
+    *				 . +-------+--------------+     +-------------------+ |-+
+    *				 . | IoConfigConnectorMap |     | IoConfigConnector |-+
+    *				 . +-------+--------------+     +--------+----------+ StartBusCycle()
+    *				 .         | 1                           | 1
+    *				 .         |                             |
+    *				 .         | n                           | n
+    *				 . +-------+------------+ n   1 +--------+----------+
+    *				 . | IoConfigChannelMap +-------+ IoConfigParameter |
+    *				 . +--------------------+       +-------------------+
+    *
+
+Most calls to the I/O Manager are just passed directly through to the drivers. Depending on the kind of driver, this may passed through CmpIoDrvIEC or directly to it.
+
+The following drawing illustrates how a call to e.g. ReadInputs() is passed to the drivers if there is a C and an IEC driver registered and used in one task:
+::
+    *				 . +--------+    +--------+    +--------+   +-----------+   +--------+
+    *				 . |IEC Task|    |CmpIoMgr|    |IoDrvInC|   |CmpIoDrvIEC|   |IoDrvLib|
+    *				 . +--------+    +---+----+    +---+----+   +----+------+   +---+----+
+    *				 .     |             |             |             |              |
+    *				 .    +++            |             |             |              |
+    *				 .    | |-----------+++            |             |              |
+    *				 .    | |           | |-----------+++            |              |
+    *				 .    | |           | |           | |            |              |
+    *				 .    | |           | |           | |            |              |
+    *				 .    | |           | |           | |            |              |
+    *				 .    | |           | |...........+++            |              |
+    *				 .    | |           | |            |             |              |
+    *				 .    | |           | |------------+------------+++             |
+    *				 .    | |           | |            |            | |             |
+    *				 .    | |           | |            |            | |             |
+    *				 .    | |           | |            |            | |------------+++
+    *				 .    | |           | |            |            | |            | |
+    *				 .    | |           | |            |            | |            | |
+    *				 .    | |           | |            |            | |............+++
+    *				 .    | |           | |.........................+++             |
+    *				 .    | |...........+++            |             |              |
+    *				 .    | |            |             |             |              |
+    *				 .    | |            |             |             |              |
+    *				 .    +++            |             |             |              |
+    *				 .     |             |             |             |              |
+    *				 .     |             |             |             |              |
+    *
+
+The devices, which are configured in the CoDeSys programming system are downloaded in form of connector lists. All connectors, specified for the devices are downloaded in form of a list.
+
+Beside neighbours, this list has although a parent role, that means, that every list member can point to it's parent.
+
+For example:
+::
+    *				 .                      _____
+    *				 .             _,.--''''     ''--..__
+    *				 .          ,,          ___            --.._
+    *				 .       _,i__       ,-ii_  `'--.._         `-..
+    *				 .     ,;'   -._,;''   -._      `-.._       `-._
+    *				 .  +----+      +----+      +----+      +----+      +-'--+
+    *				 .  | A  |------+ B  |------| C  |------| D  |------+ E  |-----
+    *				 .  +----+      +----+      +----+      +----+      +----+
+    *
+
+This list represents the following tree:
+::
+    *				 .                 ,-.
+    *				 .                ( A )
+    *				 .                /`-'\
+    *				 .              .'     |
+    *				 .          ,-./       \,-.
+    *				 .         ( B )       ( E )
+    *				 .         /`-'\        `-'
+    *				 .       .     |
+    *				 .   ,-./       \,-.
+    *				 .  ( C )       ( D )
+    *				 .   -         -
+    *
+
+The API functions within this component await always a pointer to one of these connectors, when the input is a "Connecto List". The count doesn't essentially need to specify the absolut size of the list, but the size, starting at the connector that we passed to the function.
+
+For example, if we want to iterate over the connector list above (in pseudo code):
+::
+    *				 GetFirst(A, 5) => A (count: 5)
+    *				 GetNext(A,5) => B (count: 4)
+    *				 GetNextChild(B, 4, B) => C (Count: 3)
+    *				 GetNextChild(B, 4, C) => D (count: 2)
+    *				 GetNextChild(B, 4, D) => NULL
+    *				 GetNext(D, 2) => E (count: 1)
+    *				 GetNext(E, 1) => NULL
+    *
+
+Note: Because the parameter pnCount is an INOUT, you need to save the size of the list in a different variable when you use for example GetNextChild(). Because this value will be overwritten with the number of remaining entries in the list, starting at the connector that was returned.
+
+There are two different kinds of driver handles, that the I/O Manager needs to differenciate:
+
+- C Drivers
+
+- IEC Drivers
+
+The I/O Manager provides a common function interface for C Components and for IEC Applications. But while the Connectors and Paramter structures are completely the same for both sides, the driver handles are significantly different. Internally the I/O manager works with C driver handles. The abstraction to provide an IEC interface, which is based on Function Blocks, is done by the two components CmpIoDrvC and CmpIoDrvIec.
+
+The component CmpIoDrvC manages all C drivers and CmpIoDrvIec manages all IEC drivers.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_io_mgr_itf_1gae2215da8094001bdb4684704e54be84e:
+
+#define ITF_CmpIoMgr
+^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga154a5fe294ba44f7a236c86352d7fe69:
+
+#define EXTITF_CmpIoMgr
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_io_mgr_itf_1gaa43db625c1bf83b11bac9f91dbf72a38:
+
+typedef struct tagIoConfigParameter  IoConfigParameter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION BEGIN
+
+Parameter description. This entry describes completely a parameter of an connector.
+
+**Parameters**
+
++---------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwParameterId    | ID of the parameter. This ID is specified in the device description.                                                                                                  |
++---------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwValue          | Value (if is valud < 4 bytes) or a pointer to the value of the parameter                                                                                              |
++---------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | wType            | Type class of the parameter. See category "Type class" an here the enum TypeClass3 in :ref:`SysInternalLibItf.h <_sys_internal_lib_itf_8h>` for detailed information. |
++---------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | wLen             | Length of the parameter in bits                                                                                                                                       |
++---------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwFlags          | Parameter value flags. See category "Parameter value flags" in :ref:`CmpIoDrvItf.h <_cmp_io_drv_itf_8h>` for detailed information.                                    |
++---------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwDriverSpecific | Driver specific entry. Reserved for the usage in the driver.                                                                                                          |
++---------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be:
+
+typedef struct tagIoConfigConnector  IoConfigConnector
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+<SIL2>
+
+Connector information. Each device is described completely as a set of one input- and one or more output-conenctors.
+
+**Parameters**
+
++---------+-------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | wType             | Type of the connector. See category "Connector types" for detailed information.                    |
++---------+-------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | wOptions          | Connector options. See category "Connector options" for detailed information.                      |
++---------+-------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | dwFlags           | Connector flags. See category "Connector flags" for detailed information.                          |
++---------+-------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | hIoDrv            | Registered instance handle of the IO-driver, that operates this device respectively this connector |
++---------+-------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | dwNumOfParameters | Number of parameters in the parameter list                                                         |
++---------+-------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | pParameterList    | Pointer to the parameter list, that contains all parameters of this connector                      |
++---------+-------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | pFather           | Pointer to the father connector to describe the device tree                                        |
++---------+-------------------+----------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga97e12dcaabb186080c0a3377a091edfb:
+
+typedef struct tagIoConfigChannelMap  IoConfigChannelMap
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+<SIL2>
+
+Mapping information for a single channel. Every I/O-channel is described as a parameter, but with special meanings. The datatype of a channel can be simple (BOOL, BYTE, WORD, etc.) or array of simple types.
+
+**Parameters**
+
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pParameter           | Pointer to the parameter description                                                                                                          |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pbyIecAddress        | Pointer to the parameter in the process image on the IEC side                                                                                 |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | wParameterBitOffset  | Bitoffset of the device                                                                                                                       |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | wIecAddressBitOffset | Bitoffset of pbyIecAddress in the IEC process image                                                                                           |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | wSize                | Size in bits of the channel                                                                                                                   |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | wBaseTypeInformation | If this field is unequal zero, it is used for the base type information. With this information, a correct swapping operation can be executed. |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwDriverSpecific     | Driver specific entry. Reserved for the usage in the driver.                                                                                  |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga17d944e4f292a8b9c38e44328f586e33:
+
+typedef struct tagIoConfigConnectorMap  IoConfigConnectorMap
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+<SIL2>
+
+Connector map to describe all IO-channels of one connector
+
+**Parameters**
+
++---------+-----------------+--------------------------------------------+
+| [in]    | pConnector      | Pointer to the corresponding connector     |
++---------+-----------------+--------------------------------------------+
+| [in]    | dwIoMgrSpecific | IO-manager specific entry                  |
++---------+-----------------+--------------------------------------------+
+| [in]    | dwNumOfChannels | Number of channels in the channel map list |
++---------+-----------------+--------------------------------------------+
+| [in]    | pChannelMapList | Pointer to channel map list                |
++---------+-----------------+--------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga24e1b19811629d55c3187dd61411df95:
+
+typedef struct tagIoConfigTaskMap  IoConfigTaskMap
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+<SIL2>
+
+Mapping description for each task.
+
+**Parameters**
+
++---------+--------------------+-------------------------------------------------------------------------------+
+| [in]    | dwTaskId           | Index of the IEC task                                                         |
++---------+--------------------+-------------------------------------------------------------------------------+
+| [in]    | wType              | Input or output type. See category "Task map types" for detailed information. |
++---------+--------------------+-------------------------------------------------------------------------------+
+| [in]    | wNumOfConnectorMap | Number of connector maps int the connector map list                           |
++---------+--------------------+-------------------------------------------------------------------------------+
+| [in]    | pConnectorMapList  | Pointer to the connector map list                                             |
++---------+--------------------+-------------------------------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga252155e5af330f205041f35dc0ff8018:
+
+typedef struct tagiomgrconfiggetconnector_struct  iomgrconfiggetconnector_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfiggetconnector
+
+.. _group___cmp_io_mgr_itf_1gab45c220640d4534e106dd6c08ebefd58:
+
+typedef struct tagiomgrconfiggetconnectorbydriver_struct  iomgrconfiggetconnectorbydriver_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfiggetconnectorbydriver
+
+.. _group___cmp_io_mgr_itf_1ga3767d353d79d30ab39353cd6a463f8f1:
+
+typedef struct tagiomgrconfiggetconnectorlist_struct  iomgrconfiggetconnectorlist_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfiggetconnectorlist
+
+.. _group___cmp_io_mgr_itf_1ga158a598900a841fd2260391780cd5b50:
+
+typedef struct tagiomgrconfiggetdriver_struct  iomgrconfiggetdriver_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfiggetdriver
+
+.. _group___cmp_io_mgr_itf_1gae6566bc8702cd087147ed38c758b6acc:
+
+typedef struct tagiomgrconfiggetfirstchild_struct  iomgrconfiggetfirstchild_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfiggetfirstchild
+
+.. _group___cmp_io_mgr_itf_1gad9236facfa463e66d14d482f78663e6a:
+
+typedef struct tagiomgrconfiggetfirstconnector_struct  iomgrconfiggetfirstconnector_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfiggetfirstconnector
+
+.. _group___cmp_io_mgr_itf_1ga4340a2a164c5deccf84f7eb9bec56908:
+
+typedef struct tagiomgrconfiggetnextchild_struct  iomgrconfiggetnextchild_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfiggetnextchild
+
+.. _group___cmp_io_mgr_itf_1ga3f719180f2a218f8c95971b0485eae7f:
+
+typedef struct tagiomgrconfiggetnextconnector_struct  iomgrconfiggetnextconnector_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfiggetnextconnector
+
+.. _group___cmp_io_mgr_itf_1ga5db5a50c2e7b9afa87145d64bbeeefbc:
+
+typedef struct tagiomgrconfiggetparameter_struct  iomgrconfiggetparameter_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfiggetparameter
+
+.. _group___cmp_io_mgr_itf_1ga2b3cbc9324db235af9149e2137ff065a:
+
+typedef struct tagiomgrconfiggetparametervaluebyte_struct  iomgrconfiggetparametervaluebyte_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfiggetparametervaluebyte
+
+.. _group___cmp_io_mgr_itf_1gad824a812c38f75b490df9d7227e77a38:
+
+typedef struct tagiomgrconfiggetparametervaluedword_struct  iomgrconfiggetparametervaluedword_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfiggetparametervaluedword
+
+.. _group___cmp_io_mgr_itf_1ga7ae17299ebce3b56d71a0a78c9e02e1a:
+
+typedef struct tagiomgrconfiggetparametervaluepointer_struct  iomgrconfiggetparametervaluepointer_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfiggetparametervaluepointer
+
+.. _group___cmp_io_mgr_itf_1ga7987547e537295753775afb62dd12d37:
+
+typedef struct tagiomgrconfiggetparametervalueword_struct  iomgrconfiggetparametervalueword_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfiggetparametervalueword
+
+.. _group___cmp_io_mgr_itf_1ga8aed6967639f06e4d667399a9981d723:
+
+typedef struct tagiomgrconfigresetdiagnosis_struct  iomgrconfigresetdiagnosis_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfigresetdiagnosis
+
+.. _group___cmp_io_mgr_itf_1ga6bca7944d6ff4dbb076ce6cf3d35d30f:
+
+typedef struct tagiomgrconfigsetdiagnosis_struct  iomgrconfigsetdiagnosis_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrconfigsetdiagnosis
+
+.. _group___cmp_io_mgr_itf_1ga5c27d4fba75ae34e4c404337a0d62efc:
+
+typedef struct tagiomgrcopyinputbe_struct  iomgrcopyinputbe_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrcopyinputbe
+
+.. _group___cmp_io_mgr_itf_1ga635f1173754cde74ac773202aa9b7ed8:
+
+typedef struct tagiomgrcopyinputle_struct  iomgrcopyinputle_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrcopyinputle
+
+.. _group___cmp_io_mgr_itf_1ga52a928a4b59d76e597792592caf64327:
+
+typedef struct tagiomgrcopyoutputbe_struct  iomgrcopyoutputbe_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrcopyoutputbe
+
+.. _group___cmp_io_mgr_itf_1ga0b8e09f2438a3cca4a6fa3a6b152f10e:
+
+typedef struct tagiomgrcopyoutputle_struct  iomgrcopyoutputle_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrcopyoutputle
+
+.. _group___cmp_io_mgr_itf_1ga01543621c57a3a7a53cbec8cc3646442:
+
+typedef struct tagiomgrgetbuscycletype_struct  iomgrgetbuscycletype_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrgetbuscycletype
+
+.. _group___cmp_io_mgr_itf_1ga579221d162815b6e4c487fcd4132232f:
+
+typedef struct tagiomgrgetconfigapplication_struct  iomgrgetconfigapplication_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrgetconfigapplication
+
+.. _group___cmp_io_mgr_itf_1ga6dd8ca4943a7b913585bbb12d4e5200c:
+
+typedef struct tagiomgrgetdriverproperties_struct  iomgrgetdriverproperties_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrgetdriverproperties
+
+.. _group___cmp_io_mgr_itf_1ga631144f83e9648467ad5b6ecb473b336:
+
+typedef struct tagiomgrgetfirstdriverinstance_struct  iomgrgetfirstdriverinstance_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrgetfirstdriverinstance
+
+.. _group___cmp_io_mgr_itf_1ga81dea743c8232975735e3be29e6bffe5:
+
+typedef struct tagiomgrgetmodulediagnosis_struct  iomgrgetmodulediagnosis_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrgetmodulediagnosis
+
+.. _group___cmp_io_mgr_itf_1ga80d79b64aadeba26d765e0c10bf9a7aa:
+
+typedef struct tagiomgrgetnextdriverinstance_struct  iomgrgetnextdriverinstance_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrgetnextdriverinstance
+
+.. _group___cmp_io_mgr_itf_1gabac6aa69f90a7a9e7b4022a0719c5c16:
+
+typedef struct tagiomgridentify_struct  iomgridentify_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgridentify
+
+.. _group___cmp_io_mgr_itf_1ga2cb350ed9fe42d99686a15ace7bcec16:
+
+typedef struct tagiomgrreadinputs_struct  iomgrreadinputs_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrreadinputs
+
+.. _group___cmp_io_mgr_itf_1ga45c820ae9aec9b17bebbe9242461ec3e:
+
+typedef struct tagiomgrreadparameter_struct  iomgrreadparameter_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrreadparameter
+
+.. _group___cmp_io_mgr_itf_1ga892a1c83fa6e0417c3a8363137666227:
+
+typedef struct tagiomgrreconfigure_struct  iomgrreconfigure_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| Reconfigure a single connector respectively the corresponding master. | In the reconfigure sequence we call the corresponding IO-driver at the connector the following way: | 1. disable the IO-configuration | 2. enable the IO-configuration | 3. update the mapping | This sequence is called asynchronously so the asynchronous state is transported in the parameter pudiState. :return: The runtime system error code (see CmpErrors.library)
+
+.. _group___cmp_io_mgr_itf_1gaa1593f6a6db29ad3bc63b59447cfcc87:
+
+typedef struct tagiomgrregisterconfigapplication_struct  iomgrregisterconfigapplication_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrregisterconfigapplication
+
+.. _group___cmp_io_mgr_itf_1ga5d60691679f687ade1d0ea3ffa6dfecd:
+
+typedef struct tagiomgrregisterinstance2_struct  iomgrregisterinstance2_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrregisterinstance2
+
+.. _group___cmp_io_mgr_itf_1gac6294dbb71d1196ec748d832e2e5b358:
+
+typedef struct tagiomgrscanmodules_struct  iomgrscanmodules_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrscanmodules
+
+.. _group___cmp_io_mgr_itf_1ga76f29a550d00e0ba551e5ee3d2526506:
+
+typedef struct tagiomgrsetdriverproperties_struct  iomgrsetdriverproperties_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrsetdriverproperties
+
+.. _group___cmp_io_mgr_itf_1gadca6af55e59a9faf0403a135a6e6c067:
+
+typedef struct tagiomgrsetdriverproperty_struct  iomgrsetdriverproperty_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrsetdriverproperty
+
+.. _group___cmp_io_mgr_itf_1ga3022b514d5b6090162942a950ed79d55:
+
+typedef struct tagiomgrstartbuscycle_struct  iomgrstartbuscycle_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrstartbuscycle
+
+.. _group___cmp_io_mgr_itf_1ga8f291dc8b2cafb8a90820c2896944f46:
+
+typedef struct tagiomgrstartbuscycle2_struct  iomgrstartbuscycle2_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+start the bus cycle for a specific connector, and pass the type of this call as an additional option. This way, the driver knows in which conditions (see BusCycleType) was called, by calling :ref:`IoMgrGetBusCycleType() <group___cmp_io_mgr_itf_1gaae57922ed9b0ac992fcab741ed5621fe>` .
+
+.. _group___cmp_io_mgr_itf_1gaedc605e628f459af02bd0919aa4afe9c:
+
+typedef struct tagiomgrunregisterconfigapplication_struct  iomgrunregisterconfigapplication_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrunregisterconfigapplication
+
+.. _group___cmp_io_mgr_itf_1ga98600a6fe072429c9253b9b249a5a2b4:
+
+typedef struct tagiomgrunregisterinstance_struct  iomgrunregisterinstance_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrunregisterinstance
+
+.. _group___cmp_io_mgr_itf_1ga47a41fc2f63449b3c1e97d9cfdc16b07:
+
+typedef struct tagiomgrupdateconfiguration_struct  iomgrupdateconfiguration_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrupdateconfiguration
+
+.. _group___cmp_io_mgr_itf_1ga46e6f10b8a5a690e63cd20fd53af5601:
+
+typedef struct tagiomgrupdateconfiguration2_struct  iomgrupdateconfiguration2_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrupdateconfiguration2
+
+.. _group___cmp_io_mgr_itf_1gab0fb507a16a1d8a15f7f767604be57f6:
+
+typedef struct tagiomgrupdatemapping_struct  iomgrupdatemapping_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrupdatemapping
+
+.. _group___cmp_io_mgr_itf_1ga5af233e12791b5e15e08271a2d09d6fb:
+
+typedef struct tagiomgrupdatemapping2_struct  iomgrupdatemapping2_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrupdatemapping2
+
+.. _group___cmp_io_mgr_itf_1gad2c176b831e3efc877b0ef9ef99674e6:
+
+typedef struct tagiomgrwatchdogtrigger_struct  iomgrwatchdogtrigger_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrwatchdogtrigger
+
+.. _group___cmp_io_mgr_itf_1gafd97373b7666143a34f2ed3e9e7ee8ef:
+
+typedef struct tagiomgrwriteoutputs_struct  iomgrwriteoutputs_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrwriteoutputs
+
+.. _group___cmp_io_mgr_itf_1gae8c0055b7a4c604529d3f56ee1c33492:
+
+typedef struct tagiomgrwriteparameter_struct  iomgrwriteparameter_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+iomgrwriteparameter
+
+.. _group___cmp_io_mgr_itf_1ga2b63211986af610a6f92ae81bfa66fcb:
+
+typedef struct tagiomgrconfiggetiodriver_struct  iomgrconfiggetiodriver_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION END
+
+iomgrconfiggetiodriver
+
+.. _group___cmp_io_mgr_itf_1ga36ca02436950284b1351b5c516f1a0e1:
+
+typedef ICmpIoMgr_C ICmpIoMgr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_io_mgr_itf_1gad50f435d027c0910a283a19b0c428ed9:
+
+void iomgrconfiggetconnector (iomgrconfiggetconnector_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gab439d771ca5ac1fb7982b0702e3664fa:
+
+void iomgrconfiggetconnectorbydriver (iomgrconfiggetconnectorbydriver_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga9e06a3ed4f55c14dddca1b20788dd745:
+
+void iomgrconfiggetconnectorlist (iomgrconfiggetconnectorlist_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga0664c3b282a93c17d7dd42bc6ba15356:
+
+void iomgrconfiggetdriver (iomgrconfiggetdriver_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga3ca783abe9811b6077be617e1214c0dd:
+
+void iomgrconfiggetfirstchild (iomgrconfiggetfirstchild_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga4f4ac441af0526860e074b48514678b6:
+
+void iomgrconfiggetfirstconnector (iomgrconfiggetfirstconnector_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gadbdc45bcfa1e15a113c74161c1988f5d:
+
+void iomgrconfiggetnextchild (iomgrconfiggetnextchild_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga470fe117448e1bcdbdfd191b0b5a7c90:
+
+void iomgrconfiggetnextconnector (iomgrconfiggetnextconnector_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga56577edfe1bfeb0f601145757a591c40:
+
+void iomgrconfiggetparameter (iomgrconfiggetparameter_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gaac4368f47a0efbef3746efbba9ce7db1:
+
+void iomgrconfiggetparametervaluebyte (iomgrconfiggetparametervaluebyte_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga0646beed50c757c5497f2847c70269a6:
+
+void iomgrconfiggetparametervaluedword (iomgrconfiggetparametervaluedword_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga5ae11c69538ad707162a4aad68bc40bc:
+
+void iomgrconfiggetparametervaluepointer (iomgrconfiggetparametervaluepointer_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga386b89236a541775b874bc7e7f4a6802:
+
+void iomgrconfiggetparametervalueword (iomgrconfiggetparametervalueword_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga8338410be4e1a7abe95961987f8248d5:
+
+void iomgrconfigresetdiagnosis (iomgrconfigresetdiagnosis_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga59830b66e698ca5c54e52f2fc5dfa6c5:
+
+void iomgrconfigsetdiagnosis (iomgrconfigsetdiagnosis_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga78549b1dcd08a81cac74a019d0fa0791:
+
+void iomgrcopyinputbe (iomgrcopyinputbe_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gafebabaa5714d57fff4b921f3d7ff029c:
+
+void iomgrcopyinputle (iomgrcopyinputle_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga61ff71af831863bcc1a9dd407998a2ad:
+
+void iomgrcopyoutputbe (iomgrcopyoutputbe_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga13d903458f6b18ba7ad91d3bcfe9b4c7:
+
+void iomgrcopyoutputle (iomgrcopyoutputle_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gadcda5326b25bd240e5dbfec7f0ebc231:
+
+void iomgrgetbuscycletype (iomgrgetbuscycletype_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gac9c47aa9df6b95db215d5f3cce2d31cf:
+
+void iomgrgetconfigapplication (iomgrgetconfigapplication_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gac4e72c3ed2e2e649219e5b36316fea7e:
+
+void iomgrgetdriverproperties (iomgrgetdriverproperties_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gad6031a1577b16bfc6bea4d198e3679f9:
+
+void iomgrgetfirstdriverinstance (iomgrgetfirstdriverinstance_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga47a9a69fb3b6b5313cceb17566439222:
+
+void iomgrgetmodulediagnosis (iomgrgetmodulediagnosis_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga4425135afcdd553e620b895be49c5203:
+
+void iomgrgetnextdriverinstance (iomgrgetnextdriverinstance_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga57d40ef137aa57e7456c81128dc79637:
+
+void iomgridentify (iomgridentify_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga3cf235465e10f51fd1de0d818921e054:
+
+void iomgrreadinputs (iomgrreadinputs_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga3ef3b7b701395611b909a776c9c191e4:
+
+void iomgrreadparameter (iomgrreadparameter_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gadd72c5b67988881d89387c19c795277f:
+
+void iomgrreconfigure (iomgrreconfigure_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga1a8d9af9fbf2522697cded41c1cc10b7:
+
+void iomgrregisterconfigapplication (iomgrregisterconfigapplication_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gaac24c99e288f3cd04de8def0f7971ecf:
+
+void iomgrregisterinstance2 (iomgrregisterinstance2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga4c4d3f075cf730876a4b2497f656b6ab:
+
+void iomgrscanmodules (iomgrscanmodules_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gac2cdc0ddd6e70fdcdaf97bc2359d3ac6:
+
+void iomgrsetdriverproperties (iomgrsetdriverproperties_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga21dec95bc9b38c0c12b4048cfe32e0c0:
+
+void iomgrsetdriverproperty (iomgrsetdriverproperty_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga133048b6498681f8ea3d9f9598c78774:
+
+void iomgrstartbuscycle (iomgrstartbuscycle_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gab3f4d82da77081de00f6f75acc696f21:
+
+void iomgrstartbuscycle2 (iomgrstartbuscycle2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gaf0e9176f115e6741b2cd696493df4324:
+
+void iomgrunregisterconfigapplication (iomgrunregisterconfigapplication_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga5989ed0b2ba9358ebd7f61af340421be:
+
+void iomgrunregisterinstance (iomgrunregisterinstance_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga5d09138e346a8891ae36be67b0a9d4f8:
+
+void iomgrupdateconfiguration (iomgrupdateconfiguration_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga62607bda8f6caefd6f4ad76c4b2bd0c6:
+
+void iomgrupdateconfiguration2 (iomgrupdateconfiguration2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga6a550655b2a0d744191d24cd67f44e21:
+
+void iomgrupdatemapping (iomgrupdatemapping_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1gaedaee6c80ce85e5cf43f24fab6a781f5:
+
+void iomgrupdatemapping2 (iomgrupdatemapping2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga81b668b35002606d690f9b3f7b115677:
+
+void iomgrwatchdogtrigger (iomgrwatchdogtrigger_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga859942d5af55fa95fc01dc7bf516d3b6:
+
+void iomgrwriteoutputs (iomgrwriteoutputs_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga3404bd6fc96396e778ee210b3a0ff238:
+
+void iomgrwriteparameter (iomgrwriteparameter_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga6fa5fba56ed27b59c30b79fcfeaaa226:
+
+void iomgrconfiggetiodriver (iomgrconfiggetiodriver_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+IEC Interface for the function IoMgrConfigGetIoDriver()
+
+.. _group___cmp_io_mgr_itf_1gadf1c10dfedd202702207b7b135ee0b09:
+
+RTS_RESULT IoMgrExceptionHandler (char *pszApplication, RTS_UI32 ulException)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Exception handler of the IO-manager
+
+**Parameters**
+
++---------+----------------+------------------------------------------------------------------------------------------------+
+| [in]    | pszApplication | Pointer to the specified application name, in which the exception was generated                |
++---------+----------------+------------------------------------------------------------------------------------------------+
+| [in]    | ulException    | Exception number of the exception. See :ref:`SysExceptItf.h <_sys_except_itf_8h>` for details. |
++---------+----------------+------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++--------+---------------------------+
+| ERR_OK | This function never fails |
++--------+---------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_io_mgr_itf_1ga7f4845def6c90b5aeb6f72797dc34b99:
+
+RTS_HANDLE IoMgrRegisterInstance (IBase *pIBase, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function has the same behavior as :ref:`IoMgrRegisterInstance2() <group___cmp_io_drv_iec_dep_1gaa20c76e7960e600c5c700a3dbbda4309>` but is not able to handle IEC drivers
+
+**Parameters**
+
++---------+---------+----------------------------------+
+| [in]    | pIBase  | IBase interface of the IO-driver |
++---------+---------+----------------------------------+
+| [out]   | pResult | Pointer to error code            |
++---------+---------+----------------------------------+
+
+**Return values**
+
++--------------------+---------------------------------------------------------+
+| ERR_OK             | Driver was successfully registered                      |
++--------------------+---------------------------------------------------------+
+| ERR_NOTINITIALIZED | No driver pool was found                                |
++--------------------+---------------------------------------------------------+
+| ERR_PARAMETER      | pIBase was NULL or bIecDriver was set but not supported |
++--------------------+---------------------------------------------------------+
+| ERR_NOMEMORY       | There was no space left in the device pool              |
++--------------------+---------------------------------------------------------+
+
+**Returns:**
+
+Handle to the registered instance
+
+.. _group___cmp_io_mgr_itf_1gaaa9e65b5164f2eb31270a969746ef0ec:
+
+void iomgrregisterinstance (iomgrregisterinstance_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_mgr_itf_1ga719300d430f19ba50e795fd1ed0e658a:
+
+RTS_HANDLE IoMgrRegisterInstance2 (IBase *pIBase, int bIecDriver, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Register an instance of an IO-driver.
+
+This function registers C as well as IEC drivers in a common device pool.
+
+**Parameters**
+
++---------+------------+------------------------------------------------------------------+
+| [in]    | pIBase     | IBase interface of the IO-driver RANGE=[NULL,VALID_IBASE]        |
++---------+------------+------------------------------------------------------------------+
+| [in]    | bIecDriver | Specifies if IBase describes a C or an IEC driver RANGE=[0,1]    |
++---------+------------+------------------------------------------------------------------+
+| [out]   | pResult    | Pointer to error code                                            |
++---------+------------+------------------------------------------------------------------+
+| [out]   | bException | ***PSEUDO*** Exception occured, because MemPool is full          |
++---------+------------+------------------------------------------------------------------+
+| [in]    | DevicePool | ***PSEUDO*** State of MemPool RANGE=[VALID_MEMPOOL,FULL_MEMPOOL] |
++---------+------------+------------------------------------------------------------------+
+
+**Return values**
+
++--------------------+---------------------------------------------------------+
+| ERR_OK             | Driver was successfully registered                      |
++--------------------+---------------------------------------------------------+
+| ERR_NOTINITIALIZED | No driver pool was found                                |
++--------------------+---------------------------------------------------------+
+| ERR_PARAMETER      | pIBase was NULL or bIecDriver was set but not supported |
++--------------------+---------------------------------------------------------+
+| ERR_NOMEMORY       | There was no space left in the device pool              |
++--------------------+---------------------------------------------------------+
+
+**Returns:**
+
+Handle to the registered driver instance
+
+.. _group___cmp_io_mgr_itf_1ga1ee3ebcd32d449d0633bd565fbd8ba18:
+
+RTS_RESULT IoMgrUnregisterInstance (IBase *pIBase)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unregister an instance of an IO-driver
+
+Note: For SIL2, this function is only allowed in debug mode, or from a safe context in safety mode.
+
+**Parameters**
+
++---------+---------------+-------------------------------------------------------------------------+
+| [in]    | pIBase        | IBase interface of the IO-driver RANGE=[NULL,VALID_IBASE,INVALID_IBASE] |
++---------+---------------+-------------------------------------------------------------------------+
+| [in]    | SIL2ModeDebug | ***PSEUDO*** SIL2 safety mode RANGE=[0,1]                               |
++---------+---------------+-------------------------------------------------------------------------+
+| [out]   | bException    | ***PSEUDO*** Exception occured, not allowed in safety mode              |
++---------+---------------+-------------------------------------------------------------------------+
+
+**Return values**
+
++--------------------+---------------------------------------------------------+
+| ERR_OK             | Driver unregistered successfully                        |
++--------------------+---------------------------------------------------------+
+| ERR_PARAMETER      | Parameter invalid or driver not found                   |
++--------------------+---------------------------------------------------------+
+| ERR_NOTINITIALIZED | The I/O Manager component was not correctly initialized |
++--------------------+---------------------------------------------------------+
+| ERR_FAILED         | Internal error                                          |
++--------------------+---------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_io_mgr_itf_1ga923f644e8b581abc5041f29619e091c4:
+
+IBase* IoMgrGetFirstDriverInstance (int *pbIecDriver, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get first registered driver instance
+
+**Parameters**
+
++---------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pbIecDriver | Pointer to return, if the instance is an IEC- or C-driver: 1= pIBase is an interface of an IEC-driver, 0= C-driver RANGE=[NULL,VALID_PBIECDRIVER] |
++---------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bIecDriver  | ***PSEUDO*** If the instance is an IEC- or C-driver RANGE=[0,1]                                                                                   |
++---------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult     | Pointer to error code                                                                                                                             |
++---------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+-------------------------------+
+| ERR_OK        | Driver retrieved successfully |
++---------------+-------------------------------+
+| ERR_PARAMETER | Parameter invalid             |
++---------------+-------------------------------+
+| ERR_NO_OBJECT | Driver could not be found     |
++---------------+-------------------------------+
+
+**Returns:**
+
+Handle to the first instance
+
+.. _group___cmp_io_mgr_itf_1ga8432d130d27f3f46be083b21241adc42:
+
+IBase* IoMgrGetNextDriverInstance (IBase *pIBasePrev, int *pbIecDriver, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the next registered driver instance
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pIBasePrev  | Pointer to IBase of the previous interface RANGE=[NULL,VALID_PIBASEPREV,INVALID_PIBASEPREV]                                                                            |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pbIecDriver | Pointer to return, if the instance is an IEC- or C-driver: <parampseudo name="bIecDriver" range="[0,1]" type="IN">If the instance is an IEC- or C-driver</parampseudo> |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+1= pIBase is an interface of an IEC-driver, 0= C-driver RANGE=[NULL,VALID_PBIECDRIVER]
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Return values**
+
++---------------+-------------------------------+
+| ERR_OK        | Driver retrieved successfully |
++---------------+-------------------------------+
+| ERR_PARAMETER | Parameter invalid             |
++---------------+-------------------------------+
+| ERR_NO_OBJECT | Driver could not be found     |
++---------------+-------------------------------+
+
+**Returns:**
+
+Handle to the first instance
+
+.. _group___cmp_io_mgr_itf_1ga3f3911853fe06d5bf6f4d7ee93fd8194:
+
+RTS_RESULT IoMgrSetDriverProperties (IBase *pIBase, RTS_UI32 ulProperties)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the properties of a driver.
+
+This function overwrites all existing properties of the driver.
+
+**Parameters**
+
++---------+--------------+---------------------------------------------------------------------------------------------------------------------+
+| [in]    | pIBase       | Pointer to IBase interface of the driver RANGE=[NULL,VALID_IBASE]                                                   |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulProperties | Properties of the driver. See category "Driver property flags" for detailed information. RANGE=[0,VALID_PROPERTIES] |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++------------+-------------------------------------------+
+| ERR_OK     | Properties where successfully overwritten |
++------------+-------------------------------------------+
+| ERR_FAILED | Driver could not be found                 |
++------------+-------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga0d79639950faf4680a80eaefd51db2b6:
+
+RTS_RESULT IoMgrGetDriverProperties (IBase *pIBase, RTS_UI32 **ppulProperty)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get a pointer to the properties of a driver.
+
+**Parameters**
+
++---------+--------------+-----------------------------------------------------------------------------------------+
+| [in]    | pIBase       | Pointer to IBase interface of the driver RANGE=[NULL,VALID_IBASE]                       |
++---------+--------------+-----------------------------------------------------------------------------------------+
+| [inout] | ppulProperty | Pointer will point to the properties of the driver. RANGE=[NULL,VALID_PROPERTY_POINTER] |
++---------+--------------+-----------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+-------------------------------------------------+
+| ERR_OK        | Pointer to properties was returned successfully |
++---------------+-------------------------------------------------+
+| ERR_PARAMETER | pIBase or ppulProperty was NULL                 |
++---------------+-------------------------------------------------+
+| ERR_NO_OBJECT | No driver found                                 |
++---------------+-------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1gafa6600451cacd8da5adaccd8ca630043:
+
+RTS_RESULT IoMgrSetDriverProperty (IBase *pIBase, RTS_UI32 ulProperty, int bValue)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Modify a Property Bitfield of a driver.
+
+The bits in the mask ulProperty are set or reset, depending on the value of bValue.
+
+**Parameters**
+
++---------+------------+-----------------------------------------------------------------------------------------------------------------+
+| [in]    | pIBase     | Pointer to IBase interface of the driver RANGE=[NULL,VALID_IBASE]                                               |
++---------+------------+-----------------------------------------------------------------------------------------------------------------+
+| [in]    | bValue     | Value to set. RANGE=[0,1]                                                                                       |
++---------+------------+-----------------------------------------------------------------------------------------------------------------+
+| [in]    | ulProperty | Property of the driver. See category "Driver property flags" for detailed information. RANGE=[0,VALID_PROPERTY] |
++---------+------------+-----------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++------------+-----------------------------------+
+| ERR_OK     | The Property was successfully set |
++------------+-----------------------------------+
+| ERR_FAILED | Driver could not be found         |
++------------+-----------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga2f494c3e6255b21161292b85005993b5:
+
+RTS_RESULT IoMgrRegisterConfigApplication (char *pszConfigApplication)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Register the name of the application that contains the IO-configuration.
+
+**Parameters**
+
++---------+--------------------------------+-----------------------------------------------------------------------------------------------------+
+| [in]    | pszConfigApplication           | Pointer to the name of the IO-config application RANGE=[NULL,VALID_CONFIGAPP_NAME]                  |
++---------+--------------------------------+-----------------------------------------------------------------------------------------------------+
+| [in]    | pszRegisteredConfigApplication | ***PSEUDO*** Registered Config Application RANGE=[NULL,VALID_CONFIGAPP_NAME,INVALID_CONFIGAPP_NAME] |
++---------+--------------------------------+-----------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+-------------------------------------------+
+| ERR_OK        | The config application was registered     |
++---------------+-------------------------------------------+
+| ERR_DUPLICATE | Another application is already registered |
++---------------+-------------------------------------------+
+| ERR_PARAMETER | pszConfigApplication was NULL             |
++---------------+-------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga0a9e00c03a768867101baa5edf1766da:
+
+RTS_RESULT IoMgrUnregisterConfigApplication (char *pszConfigApplication)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unregister the name of the application that contains the IO-configuration.
+
+**Parameters**
+
++---------+----------------------+-------------------------------------------------------------------------------+
+| [in]    | pszConfigApplication | Pointer to the name of the IO-config application RANGE=[NULL,VALID_CONFIGAPP] |
++---------+----------------------+-------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+----------------------------------------------------------+
+| ERR_OK        | The config application was unregistered                  |
++---------------+----------------------------------------------------------+
+| ERR_FAILED    | The application is not the registered config application |
++---------------+----------------------------------------------------------+
+| ERR_PARAMETER | pszConfigApplication was NULL                            |
++---------------+----------------------------------------------------------+
+
+**Parameters**
+
++---------+--------------------------------+------------------------------------------------------------------------------------+
+| [in]    | pszRegisteredConfigApplication | ***PSEUDO*** Registered Config Application RANGE=[NULL,VALID_REGISTERED_CONFIGAPP] |
++---------+--------------------------------+------------------------------------------------------------------------------------+
+| [out]   | bException                     | ***PSEUDO*** SIL2 Runtime: Exception if not in Debug Mode                          |
++---------+--------------------------------+------------------------------------------------------------------------------------+
+| [in]    | bSIL2SafeMode                  | ***PSEUDO*** SIL2 Runtime: SIL2 OpMode RANGE=[0,1]                                 |
++---------+--------------------------------+------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_io_mgr_itf_1ga2419f80312cd0b8123a6266c201ac69d:
+
+RTS_RESULT IoMgrGetConfigApplication (char *pszConfigApplication, int *pnMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return the name of the application that contains the I/O configuration.
+
+If the parameter pszConfigApplication is NULL, only the size of the string is returned.
+
+**Parameters**
+
++---------+--------------------------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | pszConfigApplication           | Pointer to get the name of the IO-config application RANGE=[NULL,VALID_CONFIGAPP]                            |
++---------+--------------------------------+--------------------------------------------------------------------------------------------------------------+
+| [inout] | pnMaxLen                       | IN: size of pszConfigApplication, OUT: Size of config application if psz RANGE=[NULL,VALID_CONFIGAPP_LENGTH] |
++---------+--------------------------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | pszRegisteredConfigApplication | ***PSEUDO*** Registered Config Application RANGE=[NULL,VALID_REGISTERED_CONFIGAPP]                           |
++---------+--------------------------------+--------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+---------------------------------------------------+
+| ERR_OK        | The config application was retrieved successfully |
++---------------+---------------------------------------------------+
+| ERR_NO_OBJECT | No config application registered                  |
++---------------+---------------------------------------------------+
+| ERR_PARAMETER | pnMaxLen was NULL                                 |
++---------------+---------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_io_mgr_itf_1gaac5134bcf3af83f69d665ccf351c6808:
+
+RTS_RESULT IoMgrUpdateConfiguration (IoConfigConnector *pConnectorList, int nCount)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to inform all IO-drivers about a new IO-configuration.
+
+On initialization, the parameter pConnectorList describes the whole I/O configuration of the IEC application.
+
+On Reset or deletion of the application, this function is called, too, but then with the parameter pConnectorList set to NULL.
+
+Note: When an I/O driver returns ERR_EXCEPTION, the I/O Manager puts the application into an exception state. All other errors are just, logged.
+
+Note2: On SIL2 runtimes, any error code that is returned by the I/O driver, leads to an exception.
+
+**Parameters**
+
++---------+----------------+-------------------------------------------------------------------------------------------------+
+| [in]    | pConnectorList | Pointer to the complete connector list of the IO-configuration RANGE=[NULL,VALID_CONNECTORLIST] |
++---------+----------------+-------------------------------------------------------------------------------------------------+
+| [inout] | nCount         | Number of connectors in the connector list RANGE=[0,VALID_CONNECTORCOUNT]                       |
++---------+----------------+-------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++--------+-----------------------------------------------------+
+| ERR_OK | Update Configuration of all drivers was successfull |
++--------+-----------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga278aa08c80039e36be4bbdddd709dec3:
+
+RTS_RESULT IoMgrUpdateConfiguration2 (IoConfigConnector *pConnectorList, int nCount, char *pszConfigApplication)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to inform all IO-drivers about a new IO-configuration.
+
+On initialization, the parameter pConnectorList describes the whole I/O configuration of the IEC application.
+
+On Reset or deletion of the application, this function is called, too, but then with the parameter pConnectorList set to NULL.
+
+Note: When an I/O driver returns ERR_EXCEPTION, the I/O Manager puts the application into an exception state. All other errors are just, logged.
+
+Note2: On SIL2 runtimes, any error code that is returned by the I/O driver, leads to an exception.
+
+**Parameters**
+
++---------+----------------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pConnectorList       | Pointer to the complete connector list of the IO-configuration RANGE=[NULL,VALID_CONNECTORLIST]       |
++---------+----------------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | nCount               | Number of connectors in the connector list RANGE=[0,VALID_CONNECTORCOUNT]                             |
++---------+----------------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pszConfigApplication | Pointer to the application name in which context this function is called RANGE=[NULL,VALID_CONFIGAPP] |
++---------+----------------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | bUpdateConfigFailed  | ***PSEUDO*** Pointer to the application name in which context this function is called RANGE=[0,1]     |
++---------+----------------------+-------------------------------------------------------------------------------------------------------+
+| [out]   | bException           | ***PSEUDO*** Exception is thrown as UpdateConfiguration failed                                        |
++---------+----------------------+-------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++------------+-----------------------------------------------------+
+| ERR_OK     | Update Configuration of all drivers was successfull |
++------------+-----------------------------------------------------+
+| ERR_FAILED | Update Configuration of at least one driver failed  |
++------------+-----------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga7f7627a9d5bc801bbba82ad81b122ab0:
+
+RTS_BOOL IoMgrHasTaskIOs (RTS_UI32 dwTaskId, RTS_UI16 taskMapType, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to check, if specified IEC task has mapped inputs or outputs.
+
+**Parameters**
+
++---------+-------------+-------------------------------------------------------------------------------+
+| [in]    | dwTaskId    | Index of the IEC task                                                         |
++---------+-------------+-------------------------------------------------------------------------------+
+| [in]    | taskMapType | Input or output type. See category "Task map types" for detailed information. |
++---------+-------------+-------------------------------------------------------------------------------+
+| [out]   | pResult     | Pointer to the error code                                                     |
++---------+-------------+-------------------------------------------------------------------------------+
+
+**Return values**
+
++--------------------+------------------------------------+
+| ERR_OK             | TaskID could be verified           |
++--------------------+------------------------------------+
+| ERR_PARAMETER      | Invalid taskid or maptype          |
++--------------------+------------------------------------+
+| ERR_NOTIMPLEMENTED | Interface function not implemented |
++--------------------+------------------------------------+
+
+**Returns:**
+
+TRUE=Task has mapped requested IO types; FALSE=Task has _no_ mapped requested IO types
+
+.. _group___cmp_io_mgr_itf_1ga7f0beba106a4d9079ca733e89a9185cd:
+
+RTS_RESULT IoMgrUpdateMapping (IoConfigTaskMap *pTaskMapList, int nCount)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to inform all IO-drivers about a new IO-mapping.
+
+**Parameters**
+
++---------+--------------+------------------------------------------------------------------------------------------+
+| [in]    | pTaskMapList | Pointer to the complete task map list RANGE=[NULL,VALID_TASKMAPLIST,INVALID_TASKMAPLIST] |
++---------+--------------+------------------------------------------------------------------------------------------+
+| [inout] | nCount       | Number of task map entries in the list RANGE=[0,VALID_TASKMAPCOUNT,INVALID_TASKMAPCOUNT] |
++---------+--------------+------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+--------------------------------------------------------+
+| ERR_OK        | All registered drivers where informed about the change |
++---------------+--------------------------------------------------------+
+| ERR_PARAMETER | pTaskMapList may not be NULL                           |
++---------------+--------------------------------------------------------+
+| ERR_FAILED    | Update Mapping of at least one driver failed           |
++---------------+--------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1gacd1c1a4be544d4fce0593b3d8ec235d1:
+
+RTS_RESULT IoMgrUpdateMapping2 (IoConfigTaskMap *pTaskMapList, int nCount, char *pszConfigApplication)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to inform all IO-drivers about a new IO-mapping.
+
+Note: When an I/O driver returns ERR_EXCEPTION, the I/O Manager puts the application into an exception state. All other errors are just, logged.
+
+Note2: On SIL2 runtimes, any error code that is returned by the I/O driver, leads to an exception.
+
+**Parameters**
+
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------+
+| [in]    | pTaskMapList         | Pointer to the complete task map list RANGE=[NULL,VALID_TASKMAPLIST,INVALID_TASKMAPLIST]                        |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------+
+| [in]    | nCount               | Number of task map entries in the list RANGE=[0,VALID_TASKMAPCOUNT]                                             |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------+
+| [in]    | pszConfigApplication | Pointer to the application name in which context this function is called RANGE=[NULL,VALID_CONFIGAPP]           |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------+
+| [in]    | dwTaskId             | ***PSEUDO*** Exception is thrown if Taskmap is corrupted, or TaskId invalid RANGE=[0,1,NUM_OF_STATIC_IEC_TASKS] |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------+
+| [out]   | bException           | ***PSEUDO*** Exception is thrown if Taskmap is corrupted, or TaskId invalid                                     |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------+
+| [in]    | bUpdateMappingFailed | ***PSEUDO*** UpdateMapping Failed in IoDriver RANGE=[0,1]                                                       |
++---------+----------------------+-----------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+--------------------------------------------------------+
+| ERR_OK        | All registered drivers where informed about the change |
++---------------+--------------------------------------------------------+
+| ERR_PARAMETER | pTaskMapList may not be NULL                           |
++---------------+--------------------------------------------------------+
+| ERR_FAILED    | Update Mapping of at least one driver failed           |
++---------------+--------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga1ea2d3f2068ed2402838b7d837b40f15:
+
+RTS_RESULT IoMgrReconfigure (IoConfigConnector *pConnector, RTS_UI32 *pui32State)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to reconfigure a single connector respectively the corresponding master.
+
+In the reconfigure sequence we call the corresponding IO-driver at the connector the following way: 1. disable the IO-configuration 2. enable the IO-configuration 3. update the mapping This sequence is called asynchronously so the asynchronous state is transported in pudi
+
+NOTE: If the CmpAsyncMgr ist not available, the reconfiguration is done synchronously!
+
+**Parameters**
+
++---------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pConnector     | Pointer to the connector to reconfigure RANGE=[NULL,VALID_CONNECTOR_1,INVALID_CONNECTOR]                                                        |
++---------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pui32State     | Pointer to get the asynchronous status of the reconfigure operation. See States in :ref:`CmpAsyncMgrItf.h <_cmp_async_mgr_itf_8h>` for details. |
++---------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | SIL2OpModeSafe | ***PSEUDO*** Is not allowed in SIL2 Mode RANGE=[0,1]                                                                                            |
++---------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | bException     | ***PSEUDO*** Exception if in Safe Mode                                                                                                          |
++---------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++-------------------+-----------------------------------------+
+| ERR_OK            | Asynchronous reconfigure can be startet |
++-------------------+-----------------------------------------+
+| ERR_PARAMETER     | One of the parameter is NULL            |
++-------------------+-----------------------------------------+
+| ERR_NOT_SUPPORTED | CmpAsyncMgr is not available            |
++-------------------+-----------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga7d31e5a336dda3e4462ba1beb701eccb:
+
+RTS_RESULT IoMgrReadInputs (IoConfigTaskMap *pTaskMap)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to perform an update of all inputs of one task.
+
+This function is called once out of each IEC-task, in which inputs are referenced. This call is passed to every I/O driver that is used by this task.
+
+Throws Exception if dwDriverSpecific is 0.
+
+**Parameters**
+
++---------+-----------------+---------------------------------------------------------------------------------------------------------------------+
+| [in]    | pTaskMap        | Pointer to the task map, which references all input channels of the task RANGE=[NULL,VALID_TASKMAP,INVALID_TASKMAP] |
++---------+-----------------+---------------------------------------------------------------------------------------------------------------------+
+| [in]    | hIoDrv          | ***PSEUDO*** hIoDrv May be NULL RANGE=[NULL,VALID_TASKMAP_IBASE]                                                    |
++---------+-----------------+---------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwIoMgrSpecific | ***PSEUDO*** dwIoMgrSpecific contains a valid cound or not RANGE=[0,1]                                              |
++---------+-----------------+---------------------------------------------------------------------------------------------------------------------+
+| [out]   | IsCalled        | ***PSEUDO*** Is Testdriver called or not                                                                            |
++---------+-----------------+---------------------------------------------------------------------------------------------------------------------+
+| [out]   | bException      | ***PSEUDO*** Exception thrown                                                                                       |
++---------+-----------------+---------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+-------------------------------------+
+| ERR_OK        | All registered drivers where called |
++---------------+-------------------------------------+
+| ERR_PARAMETER | TaskMap may not be null             |
++---------------+-------------------------------------+
+| ERR_FAILED    | dwDriverSpecific may not be 0       |
++---------------+-------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga646633f43bf2fd76972ee4f06c599945:
+
+RTS_RESULT IoMgrWriteOutputs (IoConfigTaskMap *pTaskMap)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to perform an update of all outputs of one task.
+
+This function is called once out of each IEC-task, in which outputs are referenced. This call is passed to every I/O driver that is used by this task.
+
+Throws Exception if dwDriverSpecific is 0.
+
+**Parameters**
+
++---------+-------------------+----------------------------------------------------------------------------------------------------------------------+
+| [in]    | pTaskMap          | Pointer to the task map, which references all output channels of the task RANGE=[NULL,VALID_TASKMAP,INVALID_TASKMAP] |
++---------+-------------------+----------------------------------------------------------------------------------------------------------------------+
+| [in]    | hIoDrv            | ***PSEUDO*** hIoDrv May be NULL RANGE=[NULL,VALID_TASKMAP_IBASE]                                                     |
++---------+-------------------+----------------------------------------------------------------------------------------------------------------------+
+| [in]    | dwIoMgrSpecific   | ***PSEUDO*** dwIoMgrSpecific contains a valid cound or not RANGE=[0,1]                                               |
++---------+-------------------+----------------------------------------------------------------------------------------------------------------------+
+| [in]    | bFlowControlError | ***PSEUDO*** Error in :ref:`FlowControl <struct_flow_control>` RANGE=[0,1]                                           |
++---------+-------------------+----------------------------------------------------------------------------------------------------------------------+
+| [out]   | IsCalled          | ***PSEUDO*** Is Testdriver called or not                                                                             |
++---------+-------------------+----------------------------------------------------------------------------------------------------------------------+
+| [out]   | bException        | ***PSEUDO*** Exception thrown                                                                                        |
++---------+-------------------+----------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+-------------------------------------+
+| ERR_OK        | All registered drivers where called |
++---------------+-------------------------------------+
+| ERR_PARAMETER | TaskMap may not be null             |
++---------------+-------------------------------------+
+| ERR_FAILED    | dwDriverSpecific may not be 0       |
++---------------+-------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga8ec4b101dd6b76923ed886a862006ef5:
+
+RTS_RESULT IoMgrStartBusCycle (IoConfigConnector *pConnector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function is deprecated. Newer versions of the iostandard library, are using IoMgrStartBusCycle2.
+
+**Parameters**
+
++---------+------------+--------------------------------------------------------------------------------------------------+
+| [in]    | pConnector | Pointer to the connector that needs a bus cycle RANGE=[NULL,VALID_CONNECTOR_1,INVALID_CONNECTOR] |
++---------+------------+--------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+-------------------------------------+
+| ERR_OK        | All registered drivers where called |
++---------------+-------------------------------------+
+| ERR_PARAMETER | pConnector may not be null          |
++---------------+-------------------------------------+
+| ERR_FAILED    | No Driver found                     |
++---------------+-------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_io_mgr_itf_1ga2222a82556e347dc06f0b71f663d6f97:
+
+RTS_RESULT IoMgrStartBusCycle2 (IoConfigConnector *pConnector, RTS_UI32 dwType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function is called for every connector that has the setting "needs bus cycle" in the device description. It is only called once and only from the context of the so called "buscycle task". This task can be specified globally (= default for all drivers), or specifically for every driver.
+
+The parameter dwType defines if the function was calle at the beginning or at the end of the IEC task cycle. This value, can actively be requested by the driver, by calling :ref:`IoMgrGetBusCycleType() <group___cmp_io_mgr_itf_1gaae57922ed9b0ac992fcab741ed5621fe>` .
+
+**Parameters**
+
++---------+------------+--------------------------------------------------------------------------------------------------+
+| [in]    | pConnector | Pointer to the connector that needs a bus cycle RANGE=[NULL,VALID_CONNECTOR_1,INVALID_CONNECTOR] |
++---------+------------+--------------------------------------------------------------------------------------------------+
+| [in]    | dwType     | Type of the bus cycle RANGE=[BCT_START,BCT_END]                                                  |
++---------+------------+--------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+-------------------------------------+
+| ERR_OK        | All registered drivers where called |
++---------------+-------------------------------------+
+| ERR_PARAMETER | pConnector may not be null          |
++---------------+-------------------------------------+
+| ERR_FAILED    | No Driver found                     |
++---------------+-------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_io_mgr_itf_1gaae57922ed9b0ac992fcab741ed5621fe:
+
+RTS_RESULT IoMgrGetBusCycleType (IoConfigConnector *pConnector, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function can be called by the I/O driver, within the function IoDrvStartBusCycle, to determine if this bus cycle was called at the beginning or at the end of a task cycle.
+
+Note: When this function is called when an application is loaded, that uses an older version of the iostandard library, the function will return ERR_FAILED, as the caller context can't be determined.
+
+**Parameters**
+
++---------+------------+--------------------------------------------------------------------------------------------------+
+| [in]    | pConnector | Pointer to the connector that got the bus cycle RANGE=[NULL,VALID_CONNECTOR_1,INVALID_CONNECTOR] |
++---------+------------+--------------------------------------------------------------------------------------------------+
+| [out]   | pResult    | Pointer to the error code                                                                        |
++---------+------------+--------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+---------------------------------------------------------------------------------------------+
+| ERR_OK        | The current type was returned successfully                                                  |
++---------------+---------------------------------------------------------------------------------------------+
+| ERR_PARAMETER | pConnector was null, or didn't contain a valid driver handle                                |
++---------------+---------------------------------------------------------------------------------------------+
+| ERR_FAILED    | The function was called outside of IoDrvStartBuscycle or the iostandard library was too old |
++---------------+---------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_io_mgr_itf_1gae6146e5baf71c8788c0f8e3cdec6f37c:
+
+RTS_RESULT IoMgrScanModules (IoConfigConnector *pConnector, IoConfigConnector **ppConnectorList, int *pnCount)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to scan submodule on the specified connector.
+
+This interface is optional and may not be implemented by the runtime system.
+
+**Parameters**
+
++---------+-----------------+-------------------------------------------------------------------------------+
+| [in]    | pConnector      | Pointer to connector RANGE=[NULL,VALID_CONNECTOR]                             |
++---------+-----------------+-------------------------------------------------------------------------------+
+| [out]   | ppConnectorList | List of submodule connectors RANGE=[NULL,VALID_SCAN_CONNECTORLIST]            |
++---------+-----------------+-------------------------------------------------------------------------------+
+| [out]   | pnCount         | Pointer to elements in the connector list RANGE=[NULL,VALID_CONNECTORCOUNT_P] |
++---------+-----------------+-------------------------------------------------------------------------------+
+| [in]    | SIL2OpModeSafe  | ***PSEUDO*** Is not allowed in SIL2 Mode RANGE=[0,1]                          |
++---------+-----------------+-------------------------------------------------------------------------------+
+| [in]    | bScanSuccessful | ***PSEUDO*** IoDrvStub return value for the scan RANGE=[0,1]                  |
++---------+-----------------+-------------------------------------------------------------------------------+
+| [out]   | bException      | ***PSEUDO*** Exception if in Safe Mode                                        |
++---------+-----------------+-------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+-----------------------------------------------------------------------------------------------------------------------+
+| ERR_OK        | Scan was executed successfully.                                                                                       |
++---------------+-----------------------------------------------------------------------------------------------------------------------+
+| ERR_PARAMETER | hIoDrv was invalid or one of the other parameters was NULL.                                                           |
++---------------+-----------------------------------------------------------------------------------------------------------------------+
+| ERR_FAILED    | Internal error                                                                                                        |
++---------------+-----------------------------------------------------------------------------------------------------------------------+
+| ERR_PENDING   | Scan still in progress. Function will be called again. ppConnectorList and pnCount may contain a partial scan result. |
++---------------+-----------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1gaa9c4f7c311ac00275842f7afca605d3b:
+
+RTS_RESULT IoMgrGetModuleDiagnosis (IoConfigConnector *pConnector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get diagnostic flags of specified connector.
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------+
+| [in]    | pConnector | Pointer to connector RANGE=[NULL,VALID_CONNECTOR,INVALID_CONNECTOR] |
++---------+------------+---------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+-----------------------------------+
+| ERR_OK        | Diagnostic flags could be read    |
++---------------+-----------------------------------+
+| ERR_FAILED    | Diagnostic info could not be read |
++---------------+-----------------------------------+
+| ERR_PARAMETER | pConnector may not be null        |
++---------------+-----------------------------------+
+
+.. _group___cmp_io_mgr_itf_1gaff6c5d3186e7442e5b94a44693cf7cae:
+
+RTS_RESULT IoMgrIdentify (IoConfigConnector *pConnector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to identify a device specified by connector.
+
+This can be used for example to blink a LED on the device to identify it physically.
+
+**Parameters**
+
++---------+----------------+---------------------------------------------------------------------+
+| [in]    | pConnector     | Pointer to connector RANGE=[NULL,VALID_CONNECTOR,INVALID_CONNECTOR] |
++---------+----------------+---------------------------------------------------------------------+
+| [in]    | SIL2OpModeSafe | ***PSEUDO*** Is not allowed in SIL2 Mode RANGE=[0,1]                |
++---------+----------------+---------------------------------------------------------------------+
+| [out]   | bException     | ***PSEUDO*** Exception if in Safe Mode                              |
++---------+----------------+---------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+-----------------------------------------------------+
+| ERR_OK        | This error code is passed directly from the driver. |
++---------------+-----------------------------------------------------+
+| ERR_PARAMETER | pConnector may not be null.                         |
++---------------+-----------------------------------------------------+
+| ERR_FAILED    | Driver returned ERR_FAILED or driver not found      |
++---------------+-----------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1gae0e4c14296caeed79979eb565e3d8ca1:
+
+RTS_RESULT IoMgrNominate (IoConfigConnector *pConnector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to nominate a device specified by connector. Nomination can be used for example for ProfiNET devices to configure their IP-addresses.
+
+**Parameters**
+
++---------+------------+----------------------+
+| [in]    | pConnector | Pointer to connector |
++---------+------------+----------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_io_mgr_itf_1ga3969d58e31016ec11e49dbbcd901a3c1:
+
+RTS_RESULT IoMgrWatchdogTrigger (IoConfigConnector *pConnector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If enabled in the device description, this function is called periodically to trigger some kind of hardware watchdog.
+
+**Parameters**
+
++---------+------------+-----------------------------------------------------------------------+
+| [in]    | pConnector | Pointer to the connector of the device RANGE=[NULL,VALID_CONNECTOR_1] |
++---------+------------+-----------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+--------------------------------------------+
+| ERR_OK            | Watchdog triggered successfully            |
++-------------------+--------------------------------------------+
+| ERR_NOT_SUPPORTED | Function is not implemented on this target |
++-------------------+--------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_io_mgr_itf_1gaee465abb37729caec8b021b52335c183:
+
+IoConfigParameter* IoMgrConfigGetParameter (IoConfigConnector *pConnector, RTS_UI32 dwParameterId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to get a parameter on a specified connector specified by ID
+
+**Parameters**
+
++---------+---------------+----------------------------------------------------------------------------------------------------------+
+| [in]    | pConnector    | Pointer to connector RANGE=[NULL,VALID_CONNECTOR,INVALID_CONNECTOR]                                      |
++---------+---------------+----------------------------------------------------------------------------------------------------------+
+| [in]    | dwParameterId | ID of the parameter. Is defined in the device description. RANGE=[VALID_PARAMETERID,INVALID_PARAMETERID] |
++---------+---------------+----------------------------------------------------------------------------------------------------------+
+| [out]   | bException    | ***PSEUDO*** Exception occured for Invalid Connector                                                     |
++---------+---------------+----------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Parameter or NULL if failed
+
+.. _group___cmp_io_mgr_itf_1gafbf56b9a663b1450b7785438b16f7fb8:
+
+RTS_UI32 IoMgrConfigGetParameterValueDword (IoConfigParameter *pParameter, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to get the DWORD value out of the specified parameter
+
+**Parameters**
+
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pParameter | Pointer to the parameter RANGE=[NULL,VALID_PARAMETER_BYTE,VALID_PARAMETER_WORD,VALID_PARAMETER_DWORD,INVALID_PARAMETER_DWORD_LEN,INVALID_PARAMETER_DWORD] |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult    | Pointer to error code                                                                                                                                     |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | bException | ***PSEUDO*** Exception occured for Invalid Parameter                                                                                                      |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Value of the parameter or 0 if failed. Please check always pResult additionally!
+
+**Return values**
+
++---------------+---------------------------------------------------------+
+| ERR_OK        | Value was read successfully                             |
++---------------+---------------------------------------------------------+
+| ERR_PARAMETER | pParameter was NULL or Parameter has not the value flag |
++---------------+---------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga5766ed5c4c766697dd4a5e769e2dd12c:
+
+unsigned short IoMgrConfigGetParameterValueWord (IoConfigParameter *pParameter, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to get the WORD value out of the specified parameter
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pParameter | Pointer to the parameter RANGE=[NULL,VALID_PARAMETER_BYTE,VALID_PARAMETER_WORD,VALID_PARAMETER_DWORD,INVALID_PARAMETER_WORD_LEN,INVALID_PARAMETER_WORD] |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult    | Pointer to error code                                                                                                                                   |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | bException | ***PSEUDO*** Exception occured for Invalid Parameter                                                                                                    |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Value of the parameter or 0 if failed. Please check always pResult additionally!
+
+**Return values**
+
++---------------+---------------------------------------------------------+
+| ERR_OK        | Value was read successfully                             |
++---------------+---------------------------------------------------------+
+| ERR_PARAMETER | pParameter was NULL or Parameter has not the value flag |
++---------------+---------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1gad9f4407697b7e857339ed95b3d3ddc19:
+
+unsigned char IoMgrConfigGetParameterValueByte (IoConfigParameter *pParameter, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to get the BYTE value out of the specified parameter
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pParameter | Pointer to the parameter RANGE=[NULL,VALID_PARAMETER_BYTE,VALID_PARAMETER_WORD,VALID_PARAMETER_DWORD,INVALID_PARAMETER_BYTE_LEN,INVALID_PARAMETER_BYTE] |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult    | Pointer to error code                                                                                                                                   |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | bException | ***PSEUDO*** Exception occured for Invalid Parameter                                                                                                    |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Value of the parameter or 0 if failed. Please check always pResult additionally!
+
+**Return values**
+
++---------------+---------------------------------------------------------+
+| ERR_OK        | Value was read successfully                             |
++---------------+---------------------------------------------------------+
+| ERR_PARAMETER | pParameter was NULL or Parameter has not the value flag |
++---------------+---------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga150c4e381985e07f48404429c7ff9c66:
+
+void* IoMgrConfigGetParameterValuePointer (IoConfigParameter *pParameter, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to get the POINTER to the value out of the specified parameter
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------------+
+| [in]    | pParameter | Pointer to the parameter RANGE=[NULL,VALID_PARAMETER_POINTER,INVALID_PARAMETER] |
++---------+------------+---------------------------------------------------------------------------------+
+| [out]   | pResult    | Pointer to error code                                                           |
++---------+------------+---------------------------------------------------------------------------------+
+| [out]   | bException | ***PSEUDO*** Exception occured for Invalid Parameter                            |
++---------+------------+---------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to the value or NULL if failed. Please check always pResult additionally!
+
+**Return values**
+
++---------------+---------------------------------------------------------+
+| ERR_OK        | Value was read successfully                             |
++---------------+---------------------------------------------------------+
+| ERR_PARAMETER | pParameter was NULL or Parameter has not the value flag |
++---------------+---------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga0ffb9dc8c35a6d56a00be5ee5781635a:
+
+IoConfigConnector* IoMgrConfigGetFirstConnector (IoConfigConnector *pConnectorList, int *pnCount, unsigned short wType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the first connector with the specified wType in the connector list.
+
+pnCount is decreased and contains the rest of elements still remaining in list.
+
+**Parameters**
+
++---------+----------------+----------------------------------------------------------------------------------+
+| [in]    | pConnectorList | Pointer to connector list RANGE=[NULL,VALID_CONNECTORLIST,INVALID_CONNECTORLIST] |
++---------+----------------+----------------------------------------------------------------------------------+
+| [inout] | pnCount        | Pointer to number of elements in list RANGE=[NULL,VALID_CONNECTORCOUNT_P]        |
++---------+----------------+----------------------------------------------------------------------------------+
+| [in]    | wType          | Type of the connector RANGE=[0,VALID_MODULE_TYPE]                                |
++---------+----------------+----------------------------------------------------------------------------------+
+| [out]   | bException     | ***PSEUDO*** Exception if Connectorlist is invalid                               |
++---------+----------------+----------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to the connector or NULL if not found
+
+.. _group___cmp_io_mgr_itf_1ga9b84117c1c46922d21db6a773b456867:
+
+IoConfigConnector* IoMgrConfigGetNextConnector (IoConfigConnector *pConnectorList, int *pnCount, unsigned short wType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the next connector with the specified wType in the connector list.
+
+pnCount is decreased and contains the rest of elements still remaining in list.
+
+**Parameters**
+
++---------+----------------+----------------------------------------------------------------------------------+
+| [in]    | pConnectorList | Pointer to connector list RANGE=[NULL,VALID_CONNECTORLIST,INVALID_CONNECTORLIST] |
++---------+----------------+----------------------------------------------------------------------------------+
+| [inout] | pnCount        | Pointer to number of elements in list RANGE=[NULL,VALID_CONNECTORCOUNT_P]        |
++---------+----------------+----------------------------------------------------------------------------------+
+| [in]    | wType          | Type of the connector RANGE=[0,VALID_MODULE_TYPE]                                |
++---------+----------------+----------------------------------------------------------------------------------+
+| [out]   | bException     | ***PSEUDO*** Exception if Connectorlist is invalid                               |
++---------+----------------+----------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to the connector or NULL if not found
+
+.. _group___cmp_io_mgr_itf_1ga8463139c7b7b5cbbca9b3fe794750017:
+
+IoConfigConnector* IoMgrConfigGetFirstChild (IoConfigConnector *pConnectorList, int *pnCount, IoConfigConnector *pFather)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the first child connector of the specified father connector.
+
+pnCount is decreased and contains the rest of elements still remaining in list.
+
+**Parameters**
+
++---------+----------------+--------------------------------------------------------------------------------------------+
+| [in]    | pConnectorList | Pointer to connector list RANGE=[NULL,VALID_CONNECTORLIST,INVALID_CONNECTORLIST]           |
++---------+----------------+--------------------------------------------------------------------------------------------+
+| [inout] | pnCount        | Pointer to number of elements in list RANGE=[NULL,VALID_CONNECTORCOUNT_P]                  |
++---------+----------------+--------------------------------------------------------------------------------------------+
+| [in]    | pFather        | Pointer to the father connector RANGE=[NULL,VALID_PARENTCONNECTOR,INVALID_PARENTCONNECTOR] |
++---------+----------------+--------------------------------------------------------------------------------------------+
+| [out]   | bException     | ***PSEUDO*** Exception at Connectorlist check                                              |
++---------+----------------+--------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to the child connector or NULL if not found
+
+.. _group___cmp_io_mgr_itf_1ga870a8e4daf107b3d7405a513114fc6e3:
+
+IoConfigConnector* IoMgrConfigGetNextChild (IoConfigConnector *pConnectorList, int *pnCount, IoConfigConnector *pFather)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the next child connector of the specified father connector.
+
+pnCount is decreased and contains the rest of elements still remaining in list.
+
+**Parameters**
+
++---------+----------------+--------------------------------------------------------------------------------------------+
+| [in]    | pConnectorList | Pointer to connector list RANGE=[NULL,VALID_CONNECTORLIST,INVALID_CONNECTORLIST]           |
++---------+----------------+--------------------------------------------------------------------------------------------+
+| [inout] | pnCount        | Pointer to number of elements in list RANGE=[NULL,VALID_CONNECTORCOUNT_P]                  |
++---------+----------------+--------------------------------------------------------------------------------------------+
+| [in]    | pFather        | Pointer to the father connector RANGE=[NULL,VALID_PARENTCONNECTOR,INVALID_PARENTCONNECTOR] |
++---------+----------------+--------------------------------------------------------------------------------------------+
+| [out]   | bException     | ***PSEUDO*** Exception at Connectorlist check                                              |
++---------+----------------+--------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to the child connector or NULL if not found
+
+.. _group___cmp_io_mgr_itf_1ga8c155d2488bc299bd26669db28113992:
+
+RTS_RESULT IoMgrConfigGetConnectorList (IoConfigConnector **ppConnectorList, int *pnCount)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the actual IO-configuration in form of the connector list.
+
+If the parameter ppConnectorList is NULL, only the size of the list will be returned.
+
+**Parameters**
+
++---------+-------------------------+----------------------------------------------------------------------------------------------------------+
+| [in]    | RegisteredConnectorList | ***PSEUDO*** Registered Pointer to connector list RANGE=[NULL,VALID_CONNECTORLIST,INVALID_CONNECTORLIST] |
++---------+-------------------------+----------------------------------------------------------------------------------------------------------+
+| [out]   | ppConnectorList         | Pointer to connector list                                                                                |
++---------+-------------------------+----------------------------------------------------------------------------------------------------------+
+| [out]   | bException              | ***PSEUDO*** Exception if Connectorlist is invalid                                                       |
++---------+-------------------------+----------------------------------------------------------------------------------------------------------+
+| [inout] | pnCount                 | Number of elements in the list RANGE=[NULL,VALID_CONNECTORCOUNT_P]                                       |
++---------+-------------------------+----------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+---------------------------------------------------------------------+
+| ERR_OK        | There was a list registered and at least the size could be returned |
++---------------+---------------------------------------------------------------------+
+| ERR_FAILED    | Registered list was corrupted                                       |
++---------------+---------------------------------------------------------------------+
+| ERR_NO_OBJECT | No list was registered, yet                                         |
++---------------+---------------------------------------------------------------------+
+| ERR_PARAMETER | pnCount was NULL                                                    |
++---------------+---------------------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga21ca16fe1ca18fb6ffdcf8e6d5a4e1aa:
+
+IoConfigConnector* IoMgrConfigGetConnector (IoConfigConnector *pConnectorList, int *pnCount, RTS_UI32 ulModuleType, RTS_UI32 ulInstance)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the connector specified by ModuleType and ModuleInstance number
+
+pnCount is decreased and contains the rest of elements, still remaining in list!
+
+Might be called with NULL as Connectorlist, then the Connectorlist and pnCount from the last call to UpdateConfiguration is used
+
+Returns NULL if pnCount is NULL, if ulInstance is greater than nCount, no fitting Connector with given Instance and Type is found or (if pConnectorList is Null, the last stored ConnectorList is also NULL)
+
+**Parameters**
+
++---------+----------------+-------------------------------------------------------------------------------------------------+
+| [in]    | pConnectorList | Pointer to connector list RANGE=[NULL,VALID_CONNECTORLIST,INVALID_CONNECTORLIST]                |
++---------+----------------+-------------------------------------------------------------------------------------------------+
+| [inout] | pnCount        | Number of elements in the list RANGE=[NULL,VALID_CONNECTORCOUNT_P_P,INVALID_CONNECTORCOUNT_P_P] |
++---------+----------------+-------------------------------------------------------------------------------------------------+
+| [in]    | ulModuleType   | Module type RANGE=[0,VALID_MODULE_TYPE]                                                         |
++---------+----------------+-------------------------------------------------------------------------------------------------+
+| [in]    | ulInstance     | Instance number RANGE=[0,VALID_INSTANCE_COUNT,INVALID_INSTANCE_COUNT]                           |
++---------+----------------+-------------------------------------------------------------------------------------------------+
+| [out]   | Exception      | ***PSEUDO*** Exception may be thrown if problem occurs while checking Connectorlist             |
++---------+----------------+-------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to found connector or NULL
+
+.. _group___cmp_io_mgr_itf_1ga00e1fdda9440f6ec635633580ee77694:
+
+RTS_RESULT IoMgrConfigSetDiagnosis (IoConfigConnector *pConnector, RTS_UI32 ulFlags)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to set the diagnostic flags in the connector.
+
+Only the bits that are specified with 1 in the passed ulFlags parameter will be set.
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------------------+
+| [in]    | pConnector | Pointer to connector RANGE=[NULL,VALID_CONNECTOR,INVALID_CONNECTOR]                   |
++---------+------------+---------------------------------------------------------------------------------------+
+| [in]    | ulFlags    | Flags to write RANGE=[0x0001,0x0010,0x0020,0x0040,0x0080,0x0100,0x0200,0x0400,0x0800] |
++---------+------------+---------------------------------------------------------------------------------------+
+| [out]   | bException | ***PSEUDO*** Exception caused by INVALID_CONNECTOR                                    |
++---------+------------+---------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_io_mgr_itf_1gabaa8e0e127a2f5ac577c7562c9d54409:
+
+RTS_RESULT IoMgrConfigResetDiagnosis (IoConfigConnector *pConnector, RTS_UI32 ulFlags)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to reset the diagnostic flags in the connector.
+
+Only the bits that are specified with 1 in the passed ulFlags parameter will be resetted.
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------------------+
+| [in]    | pConnector | Pointer to connector RANGE=[NULL,VALID_CONNECTOR,INVALID_CONNECTOR]                   |
++---------+------------+---------------------------------------------------------------------------------------+
+| [in]    | ulFlags    | Flags to write RANGE=[0x0001,0x0010,0x0020,0x0040,0x0080,0x0100,0x0200,0x0400,0x0800] |
++---------+------------+---------------------------------------------------------------------------------------+
+| [out]   | bException | ***PSEUDO*** Exception caused by INVALID_CONNECTOR                                    |
++---------+------------+---------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+---------------------------------------+
+| ERR_OK        | Diagnostic flags set successfully     |
++---------------+---------------------------------------+
+| ERR_PARAMETER | pConnector was NULL or not consistent |
++---------------+---------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga0ddbc7337dd3ab8d1800a86f2caf96a5:
+
+RTS_RESULT IoMgrReadParameter (RTS_UI32 ulModuleType, RTS_UI32 ulInstance, RTS_UI32 ulParameterId, void *pData, RTS_SIZE ulBitSize, RTS_SIZE ulBitOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to read a specified parameter.
+
+This interface is optional and may not be implemented by the runtime system.
+
+**Parameters**
+
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | ulModuleType  | Module type RANGE=[0,VALID_MODULE_TYPE]                                                                      |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | ulInstance    | Instance number RANGE=[0,VALID_INSTANCE_COUNT,INVALID_INSTANCE_COUNT]                                        |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | ulParameterId | ID of the parameter. Is defined in the device description. RANGE=[VALID_PARAMETERID_1,INVALID_PARAMETERID_1] |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | pData         | Pointer to read in the parameter value RANGE=[NULL,VALID_PDATA]                                              |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | ulBitSize     | Bits to read RANGE=[0,VALID_BITSIZE]                                                                         |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | ulBitOffset   | Bitoffset of the parameter value RANGE=[0,VALID_BITOFFSET]                                                   |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | bSafetyMode   | ***PSEUDO*** According to SIL2 operation mode this function may not be called RANGE=[0,1]                    |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_io_mgr_itf_1ga0963eb931c70b86462411694377d477e:
+
+RTS_RESULT IoMgrWriteParameter (RTS_UI32 ulModuleType, RTS_UI32 ulInstance, RTS_UI32 ulParameterId, void *pData, RTS_SIZE ulBitSize, RTS_SIZE ulBitOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to write a specified parameter.
+
+This interface is optional and may not be implemented by the runtime system.
+
+**Parameters**
+
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | ulModuleType  | Module type RANGE=[0,VALID_MODULE_TYPE]                                                                      |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | ulInstance    | Instance number RANGE=[0,VALID_INSTANCE_COUNT,INVALID_INSTANCE_COUNT]                                        |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | ulParameterId | ID of the parameter. Is defined in the device description. RANGE=[VALID_PARAMETERID_1,INVALID_PARAMETERID_1] |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | pData         | Pointer to the parameter write value RANGE=[NULL,VALID_PDATA]                                                |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | ulBitSize     | Bits to write RANGE=[0,VALID_BITSIZE]                                                                        |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | ulBitOffset   | Bitoffset of the parameter value RANGE=[0,VALID_BITOFFSET]                                                   |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [in]    | bSafetyMode   | ***PSEUDO*** According to SIL2 operation mode this function may not be called RANGE=[0,1]                    |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+| [out]   | bException    | ***PSEUDO*** SIL2 Runtime: Exception is thrown if not in DebugMode                                           |
++---------+---------------+--------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_io_mgr_itf_1ga1da13cef1b8fe3c99076df420dbe3305:
+
+IBase* IoMgrConfigGetDriver (IoConfigConnector *pConnector, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return the registered driver interface of a connector
+
+**Parameters**
+
++---------+----------------+--------------------------------------------------------------------------------------+
+| [in]    | pConnector     | Pointer to connector RANGE=[NULL,VALID_CONNECTOR_CDRIVER, VALID_CONNECTOR_IECDRIVER] |
++---------+----------------+--------------------------------------------------------------------------------------+
+| [out]   | bIecDriver_out | ***PSEUDO*** For ext function: If the instance is an IEC or C driver                 |
++---------+----------------+--------------------------------------------------------------------------------------+
+| [out]   | pResult        | Pointer to error code                                                                |
++---------+----------------+--------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to IBase interface
+
+**Return values**
+
++---------------+-----------------------------------------+
+| ERR_OK        | driver interface successfully retrieved |
++---------------+-----------------------------------------+
+| ERR_PARAMETER | driver interface not retrieved          |
++---------------+-----------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga38a047dbbc3467caff6929b7ee34ae65:
+
+IoConfigConnector* IoMgrConfigGetConnectorByDriver (IBase *pIBase, int nIndex, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interface to get the connector of the driver specified by IBase interface
+
+Note: This function is optional and not supported by CmpIoMgrEmbedded!
+
+**Parameters**
+
++---------+---------+-------------------------------------------------------------------+
+| [in]    | pIBase  | Pointer to IBase interface of the driver RANGE=[NULL,VALID_IBASE] |
++---------+---------+-------------------------------------------------------------------+
+| [in]    | nIndex  | Index of the connector RANGE=[RTS_RANGE_OF_INT]                   |
++---------+---------+-------------------------------------------------------------------+
+| [out]   | pResult | Pointer to error code                                             |
++---------+---------+-------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to connector
+
+.. _group___cmp_io_mgr_itf_1gac10669112162c5b5ccb9acfa1dedf996:
+
+RTS_RESULT IoMgrCopyInputLE (IoConfigChannelMap *pChannel, char *pAddress)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Copy an Input from the Device to some local memory and swap to little endian if necessary.
+
+**Parameters**
+
++---------+----------+-----------------------------------------------------------------------------------------------------+
+| [in]    | pChannel | Pointer to one Channel Mapping RANGE=[NULL,VALID_COPINPUT_CHANNELMAP_1,VALID_COPINPUT_CHANNELMAP_2] |
++---------+----------+-----------------------------------------------------------------------------------------------------+
+| [in]    | pAddress | Pointer to the Source Address RANGE=[NULL,VALID_COPYINPUT_SRC]                                      |
++---------+----------+-----------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga731a703cc5c1a2051d109bdda3eaa04e:
+
+RTS_RESULT IoMgrCopyInputBE (IoConfigChannelMap *pChannel, char *pAddress)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Copy an Input from the Device to some local memory and swap to big endian if necessary
+
+**Parameters**
+
++---------+----------+-----------------------------------------------------------------------------------------------------+
+| [in]    | pChannel | Pointer to one Channel Mapping RANGE=[NULL,VALID_COPINPUT_CHANNELMAP_1,VALID_COPINPUT_CHANNELMAP_2] |
++---------+----------+-----------------------------------------------------------------------------------------------------+
+| [in]    | pAddress | Pointer to the Source Address RANGE=[NULL,VALID_COPYINPUT_SRC]                                      |
++---------+----------+-----------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1gaa054fa1597b65f72c4e298fed4c4d414:
+
+RTS_RESULT IoMgrCopyOutputLE (IoConfigChannelMap *pChannel, char *pAddress)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Copy an Output from local memory to the Device and swap to little endian if necessary
+
+**Parameters**
+
++---------+----------+-----------------------------------------------------------------------------------------------------+
+| [in]    | pChannel | Pointer to one Channel Mapping RANGE=[NULL,VALID_COPINPUT_CHANNELMAP_1,VALID_COPINPUT_CHANNELMAP_2] |
++---------+----------+-----------------------------------------------------------------------------------------------------+
+| [in]    | pAddress | Pointer to the Destination Address RANGE=[NULL,VALID_COPYOUTPUT_DST]                                |
++---------+----------+-----------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_io_mgr_itf_1ga7b4d7207f30a5bc8e096b8fce3d70877:
+
+RTS_RESULT IoMgrCopyOutputBE (IoConfigChannelMap *pChannel, char *pAddress)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Copy an Output from local memory to the Device and swap to big endian if necessary
+
+**Parameters**
+
++---------+----------+-----------------------------------------------------------------------------------------------------+
+| [in]    | pChannel | Pointer to one Channel Mapping RANGE=[NULL,VALID_COPINPUT_CHANNELMAP_1,VALID_COPINPUT_CHANNELMAP_2] |
++---------+----------+-----------------------------------------------------------------------------------------------------+
+| [in]    | pAddress | Pointer to the DestinationAddress RANGE=[NULL,VALID_COPYOUTPUT_DST]                                 |
++---------+----------+-----------------------------------------------------------------------------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

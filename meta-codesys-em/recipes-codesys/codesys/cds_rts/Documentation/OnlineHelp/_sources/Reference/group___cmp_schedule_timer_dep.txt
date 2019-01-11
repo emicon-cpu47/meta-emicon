@@ -1,0 +1,192 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_schedule_timer_dep:
+
+===================
+CmpScheduleTimerDep
+===================
+
+ :ref:`More... <group___cmp_schedule_timer_dep-details>`
+
+Modules
+-------
+
+- :ref:`Static defines <group___cmp_schedule_timer_dep___staticdefines>`
+
+.. _group___cmp_schedule_timer_dep-details:
+
+Detailed Description
+--------------------
+
+
+
+The so called "Timer Scheduler" is in fact a mixture between the "Embedded Scheduler" and the full "Multitasking Scheduler" of CoDeSys Control.
+
+It supports the following task types:
+
+- Freewheeling Tasks
+
+- Cyclic Tasks
+
+- Event Tasks
+
+External Events are currently not supported.
+
+Freewheeling- and Event Tasks are scheduled in the same way as with the "Embedded Scheduler" - they are called within the context of the Comm-Cycle in the Background loop.
+
+Contrary to this, the Cyclic Tasks are set up on hardware Timers, using the Interface of the component "SysTimer".
+
+The "SysTimer" component just needs to provide some kind of cyclic callback. It don't essentially needs to be a real hardware timer, but can also be emulated by software. The only prerequisit that the cyclic callback from SysTimer needs to fullfill is that the callbacks can only be preempted in a priorized way and that they don't block in between a cycle. This is necessary, because the locking scheme of the "Timer Scheduler" relys on this behavior.
+
+The simplest solution to implement those cyclic tasks, would be, to call the task code directly out of the ISR of the hardware timer, and that's it. But this solution reaches it's limits, when we want to do debugging in one task. To do this, we need to jump actively out of the task code and resume later at the same position.
+::
+    *				 .           prio
+    *				 .             ^
+    *				 .             |
+    *				 .         ISR |      XXXXXXXXX
+    *				 .             |      |       |
+    *				 .             |      |       |
+    *				 .  Comm Cycle |XXXXXX:::::::::XXXXXX
+    *				 .             |
+    *				 .             '----------------------> t
+    *
+
+This debugging scenario can be solved easily with the standard calls setjump and longjump.
+
+This is the first IEC cycle, where we set up the Task context:
+::
+    *				 .                               _,._
+    *				 .                              /    '-.
+    *				 .                             /        '-.
+    *				 .                            |            '
+    *				 .                            | [2]        (1)
+    *				 .    IEC Task |              | XXXXXXXXXXXXX
+    *				 .             |              v |           |
+    *				 .             |             [1]|           |
+    *				 .         ISR |             XXX:::::::::::::XXX
+    *				 .             |             |                 |
+    *				 .             |             |                 |
+    *				 .  Comm Cycle |XXXXXXXXXXXXX:::::::::::::::::::XXXXXXXXXXXXXXXX
+    *				 .             |
+    *				 .             '------------------------------------------------> t
+    *				 .
+    *				 .  Index:
+    *				 .  [1] setjump ContextFrame
+    *				 .  [2] setjump ContextIecTask
+    *				 .  (1) longjump ContextFrame
+    *
+
+On the first switch between the ISR context and the IEC task context, we have to switch the task stack. We do this with a call to the macro RTS_CPU_CALL_ON_STACK(), which needs to be implemented platform specifically.
+
+On every next call of the ISR, we don't switch the stack anymore, but simply make a longjump into the saved context number two (ContextIecTask).
+::
+    *				 .                             _,._
+    *				 .                           ,'    '-.
+    *				 .                          /         '.
+    *				 .                         /   -.       '.
+    *				 .                        /   /  \        \
+    *				 .                       |   |   v         '.
+    *				 .                      |   |   [2]        (1)
+    *				 .    IEC Task |        .   |   XXXXXXXXXXXXX
+    *				 .             |        v   |   |           |
+    *				 .             |       [1] (2)  |           |
+    *				 .         ISR |       XXXXXXXXX:::::::::::::XXX
+    *				 .             |       |                       |
+    *				 .             |       |                       |
+    *				 .  Comm Cycle |XXXXXXX:::::::::::::::::::::::::XXXXXXXXXXXXXXXX
+    *				 .             |
+    *				 .             '------------------------------------------------> t
+    *				 .
+    *				 .  Index:
+    *				 .  [1] setjump ContextFrame
+    *				 .  [2] setjump ContextIecTask
+    *				 .  (1) longjump ContextFrame
+    *				 .  (2) longjump ContextIecTask
+    *
+
+The reason, why we have to jump in and out of the IEC task context every time is, that later in the debug case, our calling context may have changed when we leave the task.
+
+When we are running on a breakpoint, our IEC task saves the breakpoint context and jumps out of the task.
+::
+    *				 .                            __
+    *				 .                          ,'  '-.
+    *				 .                         /   -.  '.
+    *				 .                        |   /  \   \
+    *				 .                       |   |   v    '.
+    *				 .                       |   |  [2][3](1)
+    *				 .    IEC Task |        |   |   XXXXXXXXXXXXX
+    *				 .             |        v   |   |           |
+    *				 .             |       [1] (2)  |           |
+    *				 .         ISR |       XXXXXXXXX:::::::::::::XXX
+    *				 .             |       |                       |
+    *				 .             |       |                       |
+    *				 .  Comm Cycle |XXXXXXXX::::::::::::::::::::::::XXXXXXXXXXXXXXXX
+    *				 .             |
+    *				 .             '------------------------------------------------> t
+    *				 .
+    *				 .  Index:
+    *				 .  [1] setjump ContextFrame
+    *				 .  [2] setjump ContextIecTask
+    *				 .  [3] setjump ContextIecTaskBP
+    *				 .  (1) longjump ContextFrame
+    *				 .  (2) longjump ContextIecTask
+    *
+
+As long as the task is waiting on the breakpoint, we are jumping into the stored breakpoint context. The breakpoint handling code there is checking by it's own, if it has to continue the task execution or if it has to jump back to the ContextFrame again.
+::
+    *				 .                            __
+    *				 .                          ,'  '-.
+    *				 .                         /   ,.. '.
+    *				 .                        |   /   '. \
+    *				 .                       |   /      v '.
+    *				 .                       |  |   [2][3](1)
+    *				 .    IEC Task |        |   |   XXXXXXXXXXXXX
+    *				 .             |        v   |   |           |
+    *				 .             |       [1] (3)  |           |
+    *				 .         ISR |       XXXXXXXXX:::::::::::::XXX
+    *				 .             |       |                       |
+    *				 .             |       |                       |
+    *				 .  Comm Cycle |XXXXXXXX::::::::::::::::::::::::XXXXXXXXXXXXXXXX
+    *				 .             |
+    *				 .             '------------------------------------------------> t
+    *				 .
+    *				 .  Index:
+    *				 .  [1] setjump ContextFrame
+    *				 .  [2] setjump ContextIecTask
+    *				 .  [3] setjump ContextIecTaskBP
+    *				 .  (1) longjump ContextFrame
+    *				 .  (2) longjump ContextIecTask
+    *				 .  (3) longjump ContextIecTaskBP
+    *
+
+The command CMD_TICK checks itself if the period in which it was called matches the configured period, which is set by the define SCHEDULEKEY_INT_SCHEDULER_INTERVAL_DEFAULT. If it missed one tick, it imediately generates an exception.
+
+This implies, that SysTimer and SysTime are synchronized or are based on the same timer source.
+
+This is a design pattern for the synchronization in pseudocode:
+::
+    *				 static variable s_Time
+    *
+    *				 TIMER_ISR()
+    *				   IF s_LastTime = 0
+    *				     s_LastTime = current time
+    *
+    *				   WHILE (current time - s_LastTime) > Period
+    *				     CALL Schedule( CMD_TICK )
+    *				     s_LastTime += Period
+    *
+
+This design pattern will base the call on the frequency of the hardware timer, but synchronizes it with another timer. This might lead to a jitter when the algorithm regulates a timer drift, but it takes care that no tick is missed. What is important when doing a watchdog check.
+
+If the both components SysTime and SysTimer are based on the same hardware frequency, it is not necessary to synchronize.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

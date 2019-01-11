@@ -1,0 +1,167 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_native_control_itf___events:
+
+======
+Events
+======
+
+ :ref:`More... <group___sys_native_control_itf___events-details>`
+
+Macros
+------
+
+- #define :ref:`EVT_SysNativeControlCreate <group___sys_native_control_itf___events_1ga37f2f53595786b12c974983236b38da6>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`EVT_SysNativeControlCreate2 <group___sys_native_control_itf___events_1gac106a059cc345a848512a1a14890b265>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 6)
+
+- #define :ref:`EVTPARAMID_SysNativeControlCreate2 <group___sys_native_control_itf___events_1ga88eb58572e79b41d887fa8d982112bd7>` 0x0006
+
+- #define :ref:`EVTVERSION_SysNativeControlCreate2 <group___sys_native_control_itf___events_1ga1eb48d509a140c5766010d62b5b4db98>` 0x0001
+
+- #define :ref:`EVT_SysNativeControlDestroy <group___sys_native_control_itf___events_1ga39847b1fd6c1207fbf33d263a5301d2b>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+
+- #define :ref:`EVT_SysNativeControlCallMethod <group___sys_native_control_itf___events_1gacb2e181e73f8c0cce8508e3f1c86b3a4>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
+
+- #define :ref:`EVT_SysNativeControlMove <group___sys_native_control_itf___events_1gac9a574dfde8d5805cf76441ee3cea573>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 4)
+
+- #define :ref:`EVT_SysNativeControlShow <group___sys_native_control_itf___events_1gaca04d33f0ae07df193c303b410dd8504>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 5)
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagSysNativeControlCustom <structtag_sys_native_control_custom>` :ref:`SysNativeControlCustom <group___sys_native_control_itf___events_1ga72dec154e1ac674216eda0d99a1eb4d3>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysNativeControlOSInit <group___sys_native_control_itf___events_1ga783691d6568953ee20aacdcb544d58c0>` (INIT_STRUCT * pInit)
+
+- int :ref:`SysNativeControlOSHookFunction <group___sys_native_control_itf___events_1ga3f7b19df39cce34ef704ea37ce443a64>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+.. _group___sys_native_control_itf___events-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_native_control_itf___events_1ga37f2f53595786b12c974983236b38da6:
+
+#define EVT_SysNativeControlCreate :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Event is sent when the method SysNativeControlCreate is called.
+
+**Parameters**
+
++---------+-------------+-----------------------------------+
+| [in]    | pEventParam | EVTPARAMID_SysNativeControlCreate |
++---------+-------------+-----------------------------------+
+
+.. _group___sys_native_control_itf___events_1gac106a059cc345a848512a1a14890b265:
+
+#define EVT_SysNativeControlCreate2 :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 6)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This additional event is sent when the method SysNativeControlCreate is called. It returns instead of an operation system handle to a native control a pointer to a SysNativeControlCustom structure.
+
+**Parameters**
+
++---------+-------------+-----------------------------------+
+| [in]    | pEventParam | EVTPARAMID_SysNativeControlCreate |
++---------+-------------+-----------------------------------+
+
+.. _group___sys_native_control_itf___events_1ga88eb58572e79b41d887fa8d982112bd7:
+
+#define EVTPARAMID_SysNativeControlCreate2 0x0006
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_native_control_itf___events_1ga1eb48d509a140c5766010d62b5b4db98:
+
+#define EVTVERSION_SysNativeControlCreate2 0x0001
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_native_control_itf___events_1ga39847b1fd6c1207fbf33d263a5301d2b:
+
+#define EVT_SysNativeControlDestroy :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Event is sent when the method SysNativeControlDestroy is called.
+
+**Parameters**
+
++---------+-------------+------------------------------------+
+| [in]    | pEventParam | EVTPARAMID_SysNativeControlDestroy |
++---------+-------------+------------------------------------+
+
+.. _group___sys_native_control_itf___events_1gacb2e181e73f8c0cce8508e3f1c86b3a4:
+
+#define EVT_SysNativeControlCallMethod :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Event is sent when the method SysNativeControlCallMethod is called.
+
+**Parameters**
+
++---------+-------------+---------------------------------------+
+| [in]    | pEventParam | EVTPARAMID_SysNativeControlCallMethod |
++---------+-------------+---------------------------------------+
+
+.. _group___sys_native_control_itf___events_1gac9a574dfde8d5805cf76441ee3cea573:
+
+#define EVT_SysNativeControlMove :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 4)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Event is sent when the method SysNativeControlMove is called.
+
+**Parameters**
+
++---------+-------------+---------------------------------+
+| [in]    | pEventParam | EVTPARAMID_SysNativeControlMove |
++---------+-------------+---------------------------------+
+
+.. _group___sys_native_control_itf___events_1gaca04d33f0ae07df193c303b410dd8504:
+
+#define EVT_SysNativeControlShow :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 5)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Event is sent when the method SysNativeControlShow is called.
+
+**Parameters**
+
++---------+-------------+---------------------------------+
+| [in]    | pEventParam | EVTPARAMID_SysNativeControlShow |
++---------+-------------+---------------------------------+
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_native_control_itf___events_1ga72dec154e1ac674216eda0d99a1eb4d3:
+
+typedef struct tagSysNativeControlCustom SysNativeControlCustom
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_native_control_itf___events_1ga783691d6568953ee20aacdcb544d58c0:
+
+RTS_RESULT SysNativeControlOSInit (INIT_STRUCT *pInit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_native_control_itf___events_1ga3f7b19df39cce34ef704ea37ce443a64:
+
+int SysNativeControlOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,130 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_socket_itf___settings:
+
+========
+Settings
+========
+
+ :ref:`More... <group___sys_socket_itf___settings-details>`
+
+Macros
+------
+
+- #define :ref:`SYSSOCKET_ADAPTER_PREFIX <group___sys_socket_itf___settings_1ga2ced40a6a3486ce2056d3b4f8eae2b01>` "Adapter"
+
+- #define :ref:`SYSSOCKETKEY_WSTRING_NAME_UNICODE <group___sys_socket_itf___settings_1ga7c2bd56b2fa2f237dc0cef91fc413cb1>` "NameUnicode"
+
+- #define :ref:`SYSSOCKETKEY_STRING_NAME <group___sys_socket_itf___settings_1gaf70423df6d051558ba0cc45d4b14ebc9>` "Name"
+
+- #define :ref:`SYSSOCKETKEY_INT_ENABLE_SETIPANDMASK <group___sys_socket_itf___settings_1ga820af6f0e30e50b47b6bd901e1862fa8>` "EnableSetIpAndMask"
+
+- #define :ref:`SYSSOCKETVALUE_INT_ENABLE_SETIPANDMASK_DEFAULT <group___sys_socket_itf___settings_1gae94f2930413e146cc3b0dfa12e1b9df0>` 0
+
+- #define :ref:`SYSSOCKETKEY_STRING_QNX_ITFNAME <group___sys_socket_itf___settings_1gac7104e1e883f2e2ad54d100837299f6b>` "QNX.ItfName"
+
+- #define :ref:`SYSSOCKETKEY_STRING_IPADDRESS <group___sys_socket_itf___settings_1ga6e9662f49ec8392e220c296c6113e663>` "ipaddress"
+
+- #define :ref:`SYSSOCKETKEY_STRING_SUBNETMASK <group___sys_socket_itf___settings_1ga2422e7764035e656ba004fb894672103>` "subnetmask"
+
+- #define :ref:`SYSSOCKETKEY_STRING_SYSLOG_IPADDRESS <group___sys_socket_itf___settings_1gae80d374eb33295660c9c5b622acd9dd2>` "sysLog.IPAddress"
+
+- #define :ref:`SYSSOCKETVALUE_STRING_SYSLOG_IPADDRESS_DEFAULT <group___sys_socket_itf___settings_1ga030c22bd0a6395ab7fbc9d5481983eec>` "127.0.0.1"
+
+- #define :ref:`SYSSOCKETKEY_INT_SYSLOG_PORT <group___sys_socket_itf___settings_1ga25d8eeb383b100b9c5f8ba4902831b94>` "sysLog.Port"
+
+- #define :ref:`SYSSOCKETVALUE_INT_SYSLOG_PORT_DEFAULT <group___sys_socket_itf___settings_1ga99d0f78e7b6faeb27ba85405af7b2bfa>` 514
+
+.. _group___sys_socket_itf___settings-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_socket_itf___settings_1ga2ced40a6a3486ce2056d3b4f8eae2b01:
+
+#define SYSSOCKET_ADAPTER_PREFIX "Adapter"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Settings prefix for network adapter list. Has to be used for all list settings. The index number, separated by dots, have to be increased by one for each configured adapter name. Adapter names can be configured by an ASCII name oder by an unicode name. If for a index number was found a "NameUnicode" setting, the "Name" setting is ignored. Example: Adapter.0.Name=Lan1 Adapter.1.Name=Lan2 Adapter.2.NameUnicode="L\00a\00n\003\00"
+
+.. _group___sys_socket_itf___settings_1ga7c2bd56b2fa2f237dc0cef91fc413cb1:
+
+#define SYSSOCKETKEY_WSTRING_NAME_UNICODE "NameUnicode"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting for network adapter list. Adapter name in Unicode. Example: Adapter.0.NameUnicode="L\00a\00n\001\00"
+
+.. _group___sys_socket_itf___settings_1gaf70423df6d051558ba0cc45d4b14ebc9:
+
+#define SYSSOCKETKEY_STRING_NAME "Name"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting for network adapter list. Adapter name in ASCII. Only evaluted, if no "NameUnicode" setting for the same adapter index exists. Example: Adapter.0.Name="Lan1"
+
+.. _group___sys_socket_itf___settings_1ga820af6f0e30e50b47b6bd901e1862fa8:
+
+#define SYSSOCKETKEY_INT_ENABLE_SETIPANDMASK "EnableSetIpAndMask"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting for network adapter list to specify, if it is allowed to set the ip address and subnet mask for this adapter. If enabled (1) the ip address and subnet mask can be set by :ref:`SysSockSetIpAddressAndNetMask() <group___sys_socket_itf_1ga96779e5ea363ffe3eb12e8c196f50348>` . Example: Adapter.0.Name="Lan1" Adapter.0.EnableSetIpAndMask=1
+
+.. _group___sys_socket_itf___settings_1gae94f2930413e146cc3b0dfa12e1b9df0:
+
+#define SYSSOCKETVALUE_INT_ENABLE_SETIPANDMASK_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_socket_itf___settings_1gac7104e1e883f2e2ad54d100837299f6b:
+
+#define SYSSOCKETKEY_STRING_QNX_ITFNAME "QNX.ItfName"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to specify the socket interface name to be used by the runtime. Only for QNX. The default is "tsec0".
+
+.. _group___sys_socket_itf___settings_1ga6e9662f49ec8392e220c296c6113e663:
+
+#define SYSSOCKETKEY_STRING_IPADDRESS "ipaddress"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_socket_itf___settings_1ga2422e7764035e656ba004fb894672103:
+
+#define SYSSOCKETKEY_STRING_SUBNETMASK "subnetmask"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to specify the subnet mask of the target. See setting ipaddress for details.
+
+.. _group___sys_socket_itf___settings_1gae80d374eb33295660c9c5b622acd9dd2:
+
+#define SYSSOCKETKEY_STRING_SYSLOG_IPADDRESS "sysLog.IPAddress"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to specify the send IP address (destination) of the syslog messages. NOTE: "255.255.255.255" is the broadcast address to send the syslog message to all network members!
+
+.. _group___sys_socket_itf___settings_1ga030c22bd0a6395ab7fbc9d5481983eec:
+
+#define SYSSOCKETVALUE_STRING_SYSLOG_IPADDRESS_DEFAULT "127.0.0.1"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_socket_itf___settings_1ga25d8eeb383b100b9c5f8ba4902831b94:
+
+#define SYSSOCKETKEY_INT_SYSLOG_PORT "sysLog.Port"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to specify the UDP send port of the syslog messages
+
+.. _group___sys_socket_itf___settings_1ga99d0f78e7b6faeb27ba85405af7b2bfa:
+
+#define SYSSOCKETVALUE_INT_SYSLOG_PORT_DEFAULT 514
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,137 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __sys_native_control_itf_8h:
+
+====================================
+SysNativeControlItf.h File Reference
+====================================
+
+| #include ":ref:`CmpItf.h`"
+| #include ":ref:`SysGraphicBase.h`"
+
+Data Structures
+---------------
+
+- struct :ref:`tagNativeControlParam <structtag_native_control_param>`
+
+- struct :ref:`SysNativeControlCreate_Struct <struct_sys_native_control_create___struct>`
+
+- struct :ref:`EVTPARAM_SysNativeControlCreate <struct_e_v_t_p_a_r_a_m___sys_native_control_create>`
+
+- struct :ref:`tagSysNativeControlCustom <structtag_sys_native_control_custom>`
+
+- struct :ref:`EVTPARAM_SysNativeControlDestroy <struct_e_v_t_p_a_r_a_m___sys_native_control_destroy>`
+
+- struct :ref:`EVTPARAM_SysNativeControlCallMethod <struct_e_v_t_p_a_r_a_m___sys_native_control_call_method>`
+
+- struct :ref:`EVTPARAM_SysNativeControlMove <struct_e_v_t_p_a_r_a_m___sys_native_control_move>`
+
+- struct :ref:`EVTPARAM_SysNativeControlShow <struct_e_v_t_p_a_r_a_m___sys_native_control_show>`
+
+- struct :ref:`ISysNativeControl_C <struct_i_sys_native_control___c>`
+
+Macros
+------
+
+- #define :ref:`NATIVE_CONTROL_SNCF_SHOW <group___sys_native_control_itf_1ga0294332858c29358044da993463cdd44>` 0x00000001
+
+- #define :ref:`NATIVE_CONTROL_SNCF_HIDE <group___sys_native_control_itf_1ga2f0c828e748e1af01fcea0c97b5d84aa>` 0x00000002
+
+- #define :ref:`NATIVE_CONTROL_SNCF_HIDE_AND_DESTROY <group___sys_native_control_itf_1ga4580f60b9c8c77257dabab8cfde9c08d>` 0x00000004
+
+- #define :ref:`NATIVE_CONTROL_CNCMF_WITHOUT_RESULT <group___sys_native_control_itf_1ga67d18fdc5b3b8787f7e7484a9abce7d5>` 0x00000001
+
+- #define :ref:`NATIVE_CONTROL_CNCMF_WITH_RESULT <group___sys_native_control_itf_1gaab43fc412f8a6be0caae8b80eee14ce7>` 0x00000002
+
+- #define :ref:`NATIVE_CONTROL_CNCMF_DYNAMIC_MEMORY_ALLOCATED <group___sys_native_control_itf_1ga1b75fa7dd075de2c8360bdf278b39cd2>` 0x00000004
+
+- #define :ref:`NUM_OF_STATIC_NATIVE_CONTROLS <group___sys_native_control_itf___staticdefines_1gab604532c6bd3c812ff42248d51e2d307>` 4
+
+- #define :ref:`EVTPARAMID_SysNativeControlCreate <group___sys_native_control_itf___eventparameter_1ga38e18a41d41ed14dc3a064dad6fa86fd>` 0x0001
+
+- #define :ref:`EVTVERSION_SysNativeControlCreate <group___sys_native_control_itf___eventparameter_1gaf71aabcf29b5dd34cf4e5c4d09954623>` 0x0001
+
+- #define :ref:`EVT_SysNativeControlCreate <group___sys_native_control_itf___events_1ga37f2f53595786b12c974983236b38da6>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`EVT_SysNativeControlCreate2 <group___sys_native_control_itf___events_1gac106a059cc345a848512a1a14890b265>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 6)
+
+- #define :ref:`EVTPARAMID_SysNativeControlCreate2 <group___sys_native_control_itf___events_1ga88eb58572e79b41d887fa8d982112bd7>` 0x0006
+
+- #define :ref:`EVTVERSION_SysNativeControlCreate2 <group___sys_native_control_itf___events_1ga1eb48d509a140c5766010d62b5b4db98>` 0x0001
+
+- #define :ref:`EVTPARAMID_SysNativeControlDestroy <group___sys_native_control_itf___eventparameter_1gac5b2fbd20465ed8c92ad12815406daa6>` 0x0002
+
+- #define :ref:`EVTVERSION_SysNativeControlDestroy <group___sys_native_control_itf___eventparameter_1gabf0efc42e19ce55ad5f6c5c013793b20>` 0x0001
+
+- #define :ref:`EVT_SysNativeControlDestroy <group___sys_native_control_itf___events_1ga39847b1fd6c1207fbf33d263a5301d2b>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+
+- #define :ref:`EVTPARAMID_SysNativeControlCallMethod <group___sys_native_control_itf___eventparameter_1ga39d516ab0eaa430324aa105a70e47a64>` 0x0003
+
+- #define :ref:`EVTVERSION_SysNativeControlCallMethod <group___sys_native_control_itf___eventparameter_1ga1412ebb34a8fffe69014c3a4bb7cbc2b>` 0x0001
+
+- #define :ref:`EVT_SysNativeControlCallMethod <group___sys_native_control_itf___events_1gacb2e181e73f8c0cce8508e3f1c86b3a4>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
+
+- #define :ref:`EVTPARAMID_SysNativeControlMove <group___sys_native_control_itf___eventparameter_1ga45515fb5e7e63b9c921412f2b0c05008>` 0x0004
+
+- #define :ref:`EVTVERSION_SysNativeControlMove <group___sys_native_control_itf___eventparameter_1gab721c23261f4eefee1aa96df5d7b6024>` 0x0001
+
+- #define :ref:`EVT_SysNativeControlMove <group___sys_native_control_itf___events_1gac9a574dfde8d5805cf76441ee3cea573>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 4)
+
+- #define :ref:`EVTPARAMID_SysNativeControlShow <group___sys_native_control_itf___eventparameter_1ga1916e17578d9aebad56f6f6751220801>` 0x0005
+
+- #define :ref:`EVTVERSION_SysNativeControlShow <group___sys_native_control_itf___eventparameter_1gae1620d96c71e64fa016a5c47fd74dbd2>` 0x0001
+
+- #define :ref:`EVT_SysNativeControlShow <group___sys_native_control_itf___events_1gaca04d33f0ae07df193c303b410dd8504>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 5)
+
+- #define :ref:`ITF_SysNativeControl <group___sys_native_control_itf_1gabc9410ec6189717fd460b45cac02b7c4>`
+
+- #define :ref:`EXTITF_SysNativeControl <group___sys_native_control_itf_1gade14c0703da94ee5caa09d7bb799fcef>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagNativeControlParam <structtag_native_control_param>` :ref:`NativeControlParam <group___sys_native_control_itf___staticdefines_1ga41e888ce5eeffa88a16780d6829dcc46>`
+
+- typedef struct :ref:`tagSysNativeControlCustom <structtag_sys_native_control_custom>` :ref:`SysNativeControlCustom <group___sys_native_control_itf___events_1ga72dec154e1ac674216eda0d99a1eb4d3>`
+
+- typedef :ref:`ISysNativeControl_C <struct_i_sys_native_control___c>` :ref:`ISysNativeControl <group___sys_native_control_itf_1gae172fcd0e25923b1ec8bcc9b8e6892f2>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysNativeControlOSInit <group___sys_native_control_itf___events_1ga783691d6568953ee20aacdcb544d58c0>` (INIT_STRUCT * pInit)
+
+- int :ref:`SysNativeControlOSHookFunction <group___sys_native_control_itf___events_1ga3f7b19df39cce34ef704ea37ce443a64>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_HANDLE :ref:`SysNativeControlCreate <group___sys_native_control_itf_1gaa7896e132439dbda20c1a910e45bf66a>` (:ref:`SysNativeControlCreate_Struct <struct_sys_native_control_create___struct>` * pCreate, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`SysNativeControlCreate_ <group___sys_native_control_itf_1gacbd3a79504e9868325331a174346d628>` (:ref:`SysNativeControlCreate_Struct <struct_sys_native_control_create___struct>` * pCreate, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysNativeControlDestroy <group___sys_native_control_itf_1gae409ab305661410dbdedefe7124d05ac>` (RTS_HANDLE hControl)
+
+- RTS_RESULT :ref:`SysNativeControlDestroy_ <group___sys_native_control_itf_1gab665db78ffa64700ef88cdf63385d77d>` (RTS_HANDLE hControl)
+
+- RTS_RESULT :ref:`SysNativeControlCallMethod <group___sys_native_control_itf_1gaeb942389bdaa1cd5bb0b04adcade7748>` (RTS_HANDLE hControl, char * pszMethodName, :ref:`NativeControlParam <group___sys_native_control_itf___staticdefines_1ga41e888ce5eeffa88a16780d6829dcc46>` * params, RTS_SIZE iParamCount, :ref:`NativeControlParam <group___sys_native_control_itf___staticdefines_1ga41e888ce5eeffa88a16780d6829dcc46>` * pResult)
+
+- RTS_RESULT :ref:`SysNativeControlCallMethod_ <group___sys_native_control_itf_1gad5b6ad223cefd8068b9a5ee981e5a977>` (RTS_HANDLE hControl, char * pszMethodName, :ref:`NativeControlParam <group___sys_native_control_itf___staticdefines_1ga41e888ce5eeffa88a16780d6829dcc46>` * params, RTS_SIZE iParamCount, :ref:`NativeControlParam <group___sys_native_control_itf___staticdefines_1ga41e888ce5eeffa88a16780d6829dcc46>` * pResult)
+
+- RTS_RESULT :ref:`SysNativeControlMove <group___sys_native_control_itf_1ga56623b9ce4f6187636e2aab7ba9b340f>` (RTS_HANDLE hControl, RTS_Rectangle * pRect)
+
+- RTS_RESULT :ref:`SysNativeControlMove_ <group___sys_native_control_itf_1ga0411907bca33a2bb8166a94f0691841a>` (RTS_HANDLE hControl, RTS_Rectangle * pRect)
+
+- RTS_RESULT :ref:`SysNativeControlShow <group___sys_native_control_itf_1gaaa74304b9a909d2ccaf683bb3e6a4ede>` (RTS_HANDLE hControl, RTS_UI32 dwFlags)
+
+- RTS_RESULT :ref:`SysNativeControlShow_ <group___sys_native_control_itf_1gaec15a7576187844881f7063b479e7565>` (RTS_HANDLE hControl, RTS_UI32 dwFlags)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysNativeControlItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

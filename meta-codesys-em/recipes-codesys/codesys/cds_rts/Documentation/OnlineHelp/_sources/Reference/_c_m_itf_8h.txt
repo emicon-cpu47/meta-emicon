@@ -1,0 +1,472 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __c_m_itf_8h:
+
+======================
+CMItf.h File Reference
+======================
+
+| #include ":ref:`CmpMemPoolItf.h <_cmp_mem_pool_itf_8h>`"
+| #include ":ref:`CmpEventMgrItf.h <_cmp_event_mgr_itf_8h>`"
+| #include ":ref:`CMUtilsItf.h <_c_m_utils_itf_8h>`"
+| #include ":ref:`SysSemItf.h <_sys_sem_itf_8h>`"
+| #include ":ref:`SysIntItf.h <_sys_int_itf_8h>`"
+
+Data Structures
+---------------
+
+- struct :ref:`EVTPARAM_CmpMgr_Shutdown <struct_e_v_t_p_a_r_a_m___cmp_mgr___shutdown>`
+
+- struct :ref:`EVTPARAM_CmpMgr_DisableOperation <struct_e_v_t_p_a_r_a_m___cmp_mgr___disable_operation>`
+
+- struct :ref:`EVTPARAM_CmpMgr_PrepareExitCommProcessing <struct_e_v_t_p_a_r_a_m___cmp_mgr___prepare_exit_comm_processing>`
+
+- struct :ref:`EVTPARAM_CmpMgr_LicenseRequest <struct_e_v_t_p_a_r_a_m___cmp_mgr___license_request>`
+
+- struct :ref:`ComponentNameString_ <union_component_name_string__>`
+
+- struct :ref:`ComponentName_ <struct_component_name__>`
+
+- struct :ref:`tagComponent_ENTRY <structtag_component___e_n_t_r_y>`
+
+- struct :ref:`tagStaticComponent <structtag_static_component>`
+
+- struct :ref:`tagComponent_LIST <structtag_component___l_i_s_t>`
+
+- struct :ref:`ClassEntry <struct_class_entry>`
+
+- struct :ref:`InstanceEntry <struct_instance_entry>`
+
+- struct :ref:`tagApi_ENTRY <structtag_api___e_n_t_r_y>`
+
+- struct :ref:`tagApi_LIST <structtag_api___l_i_s_t>`
+
+- struct :ref:`tagAPI_RESOLVE_INFO <structtag_a_p_i___r_e_s_o_l_v_e___i_n_f_o>`
+
+- struct :ref:`tagLicenseFunctions <structtag_license_functions>`
+
+- struct :ref:`tagcmaddcomponent_struct <structtagcmaddcomponent__struct>`
+
+- struct :ref:`tagcmaddcomponent2_struct <structtagcmaddcomponent2__struct>`
+
+- struct :ref:`tagcmexitcomponent_struct <structtagcmexitcomponent__struct>`
+
+- struct :ref:`tagcmgetcomponentbyname_struct <structtagcmgetcomponentbyname__struct>`
+
+- struct :ref:`tagcminitcomponent_struct <structtagcminitcomponent__struct>`
+
+- struct :ref:`tagcmregistergetuserlicensevalue_struct <structtagcmregistergetuserlicensevalue__struct>`
+
+- struct :ref:`tagcmregisterlicensefunctions_struct <structtagcmregisterlicensefunctions__struct>`
+
+- struct :ref:`tagcmremovecomponent_struct <structtagcmremovecomponent__struct>`
+
+- struct :ref:`tagcmshutdown_struct <structtagcmshutdown__struct>`
+
+- struct :ref:`tagcmunregistergetuserlicensevalue_struct <structtagcmunregistergetuserlicensevalue__struct>`
+
+- struct :ref:`tagcmunregisterlicensefunctions_struct <structtagcmunregisterlicensefunctions__struct>`
+
+- struct :ref:`tagcmutlcwstrcpy_struct <structtagcmutlcwstrcpy__struct>`
+
+- struct :ref:`tagcmutlsafestrcpy_struct <structtagcmutlsafestrcpy__struct>`
+
+- struct :ref:`tagcmutlstricmp_struct <structtagcmutlstricmp__struct>`
+
+- struct :ref:`tagcmutlutf8tow_struct <structtagcmutlutf8tow__struct>`
+
+- struct :ref:`tagcmutlwstrcpy_struct <structtagcmutlwstrcpy__struct>`
+
+- struct :ref:`tagcmutlwtoutf8_struct <structtagcmutlwtoutf8__struct>`
+
+- struct :ref:`cmloadcomponent_struct <structcmloadcomponent__struct>`
+
+- struct :ref:`cmunloadcomponent_struct <structcmunloadcomponent__struct>`
+
+- struct :ref:`getuserlicensevalue_struct <structgetuserlicensevalue__struct>`
+
+- struct :ref:`reqdynlicchallenge_struct <structreqdynlicchallenge__struct>`
+
+- struct :ref:`confdynlicchallenge_struct <structconfdynlicchallenge__struct>`
+
+- struct :ref:`ICM_C <struct_i_c_m___c>`
+
+Macros
+------
+
+- #define :ref:`EXTERNAL_LIB_PACKMODE <group___c_m_itf_1ga1e9adb1fbf79099ec5621be30f2f933e>` 8
+
+- #define :ref:`MAX_COMPONENT_NAME <group___c_m_itf___staticdefines_1gacc9b1bd01cdf0e7263e33cdc91db9963>` 32
+
+- #define :ref:`MAX_API_NAME <group___c_m_itf___staticdefines_1ga80c357ce04c6a80d450228e3b2e40937>` 64
+
+- #define :ref:`CM_NUM_OF_STATIC_COMPONENTS <group___c_m_itf___staticdefines_1ga3dcd7b2a186a7e034b6ef40838b80073>` 40
+
+- #define :ref:`CM_NUM_OF_STATIC_CLASSES <group___c_m_itf___staticdefines_1ga979bf59418bcfd1435017a869adb5cf0>` 5
+
+- #define :ref:`CM_NUM_OF_STATIC_INSTANCES <group___c_m_itf___staticdefines_1ga5350eaa9f40150ef7906aaf37681b42a>` 5
+
+- #define :ref:`CM_API_VERSION_CHECK_MASK <group___c_m_itf___staticdefines_1gad7fe7ddab97e480e621a17eeb14c589e>` UINT32_C(0xFF000000)
+
+- #define :ref:`CM_API_VERSION_CHECK_MINIMUM <group___c_m_itf___staticdefines_1ga3970182161019805a48e305fff6ea0d2>` UINT32_C(0x00000000)
+
+- #define :ref:`CM_EXTLIB_API_VERSION_CHECK_MASK <group___c_m_itf___staticdefines_1ga278c146adea4103f8ac0608c892f852b>` UINT32_C(0xFF000000)
+
+- #define :ref:`CM_EXTLIB_API_VERSION_CHECK_MINIMUM <group___c_m_itf___staticdefines_1gac803030edae22746746e1835de519f40>` UINT32_C(0x00000000)
+
+- #define :ref:`CMPMGR_KEY_STRING_COMPONENT_NAME <group___c_m_itf___settings_1ga96d50211aa807596b308e885e66b1b43>` "Component"
+
+- #define :ref:`CMPMGR_KEY_INT_OVERLOADABLE_FUNCTIONS <group___c_m_itf___settings_1gaf42c24d7c0f4f35d52eac3aa54627024>` "OverloadableFunctions"
+
+- #define :ref:`CMPMGR_VALUE_INT_OVERLOADABLE_FUNCTIONS_DEFAULT <group___c_m_itf___settings_1ga08864561b147a3a933788d6bd235e767>` 0
+
+- #define :ref:`CMPMGR_KEY_INT_MINIMAL_COMM_CYCLE_HOOK_INTERVAL <group___c_m_itf___settings_1ga5e255452ea5c3d57a3fd22e256a18b1c>` "MinimalCommCycleHookInterval"
+
+- #define :ref:`CMPMGR_VALUE_INT_MINIMAL_COMM_CYCLE_HOOK_INTERVAL_DEFAULT <group___c_m_itf___settings_1gab1453f123a168cecd52fab9ca6af1dce>` 250
+
+- #define :ref:`CMPMGR_KEY_INT_WINCE_COMM_CYCLE_INTERVAL <group___c_m_itf___settings_1ga0a2e4f4baf8f8bc60cb9354fc168dde2>` "WinCE.CommCycleInterval"
+
+- #define :ref:`CMPMGR_VALUE_INT_WINCE_COMM_CYCLE_INTERVAL_DEFAULT <group___c_m_itf___settings_1gad8cf408cd6e3b711537c570fda2a7e5d>` 9
+
+- #define :ref:`CMPMGR_KEY_INT_WINCE_COMM_CYCLE_THREAD_PRIORITY <group___c_m_itf___settings_1ga19b346883c502b3a5781d493d8b12111>` "WinCE.CommCycleThreadPriority"
+
+- #define :ref:`CMPMGR_KEY_INT_WINCE_COMM_CYCLE_THREAD_PRIORITY_DEFAULT <group___c_m_itf___settings_1ga6e386ade150d4a9b4c74c850e8c8b6bb>` 250
+
+- #define :ref:`CMPMGR_KEY_INT_WINDOWHIDED <group___c_m_itf___settings_1ga54aa2c4097485b9fb9ba214e14efa5d1>` "WindowHided"
+
+- #define :ref:`CMPMGR_KEY_INT_WINDOWHIDED_DEFAULT <group___c_m_itf___settings_1ga95627f40f29de8869ffc103ced2a0201>` 0
+
+- #define :ref:`CMPMGR_KEY_INT_DISABLING_OPERATIONS <group___c_m_itf___settings_1ga477bcaeb9a325ef2e782259bd15ff184>` "DisablingOperations"
+
+- #define :ref:`CMPMGR_VALUE_INT_DISABLING_OPERATIONS_DEFAULT <group___c_m_itf___settings_1ga61565f15c2f05a6945c4b316e4a6682a>` 1
+
+- #define :ref:`CMPMGR_KEY_INT_PROFILER_COMPONENTID <group___c_m_itf___settings_1ga77f311f71fbd8469f1f2c7e5f4d19706>` "Profiler.ComponentID"
+
+- #define :ref:`CMPMGR_VALUE_INT_PROFILER_COMPONENTID_DEFAULT <group___c_m_itf___settings_1ga10dbfef5b404f651e547b1f895c8dbe7>` 0
+
+- #define :ref:`EVTPARAMID_CmpMgr_Shutdown <group___c_m_itf___eventparameter_1ga97aeaebd027be084e967b55ba28f888e>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpMgr_Shutdown <group___c_m_itf___eventparameter_1gac9b7e5709d89913b9b411656cc1966fd>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpMgr_DisableOperation <group___c_m_itf___eventparameter_1gabf67180f3cf43f6440e33163ad5c7564>` 0x0002
+
+- #define :ref:`EVTVERSION_CmpMgr_DisableOperation <group___c_m_itf___eventparameter_1ga4ef92354875b8ca1994c31a93aca6afb>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpMgr_PrepareExitCommProcessing <group___c_m_itf___eventparameter_1ga44ca9afdd98ce8f16eedd40fca7fda0f>` 0x0003
+
+- #define :ref:`EVTVERSION_CmpMgr_PrepareExitCommProcessing <group___c_m_itf___eventparameter_1gaba152d419026e7116e7f858b196de90a>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpMgr_LicenseRequest <group___c_m_itf___eventparameter_1ga6e5e1e0d15c838ca5caea4e5de4d04db>` 0x0004
+
+- #define :ref:`EVTVERSION_CmpMgr_LicenseRequest <group___c_m_itf___eventparameter_1ga1d26acb1adddd8c880180d3b05260e75>` 0x0001
+
+- #define :ref:`EVT_CmpMgr_PrepareShutdown <group___c_m_itf___events_1ga542113a5a64949a8979459d56bb7a4f7>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`EVT_CmpMgr_PrepareExitComm <group___c_m_itf___events_1ga27f9d573f6226ca3a479537c39479679>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+
+- #define :ref:`EVT_CmpMgr_PrepareExitTasks <group___c_m_itf___events_1ga46bd911166bd81c4d54e12aa34d1af8d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
+
+- #define :ref:`EVT_CmpMgr_Exit3 <group___c_m_itf___events_1gadc06a04c15128c74ae65e41cad01c1b0>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 4)
+
+- #define :ref:`EVT_CmpMgr_PrepareExit <group___c_m_itf___events_1ga38a16f8ad1fc0110d91b8fab92ceab27>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 5)
+
+- #define :ref:`EVT_CmpMgr_Exit2 <group___c_m_itf___events_1ga9f90a3cc2a48e1f7c0093d9fa7bcedcc>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 5)
+
+- #define :ref:`EVT_CmpMgr_DisableOperation <group___c_m_itf___events_1gaebd27622006784742f2abd075299356d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 6)
+
+- #define :ref:`EVT_CmpMgr_PrepareExitCommProcessing <group___c_m_itf___events_1gab8de0d37c1c3ff245b15162cf4ccd7eb>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 7)
+
+- #define :ref:`EVT_CmpMgr_LicenseRequest <group___c_m_itf___events_1ga3c705aaa5e85f39f9a015d1039f3392c>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 8)
+
+- #define :ref:`RTS_CMINIT_OPTION_SETTINGSFILEISOPTIONAL <group___c_m_itf___c_m_initoptions_1gafea196fa341e0bb59ec032d7051daff9>` UINT32_C(0x00000001)
+
+- #define :ref:`RTS_CMINIT_OPTION_DONTCALLINITHOOKS <group___c_m_itf___c_m_initoptions_1gae839a8968bc34b256b5a523531a0c366>` UINT32_C(0x00000002)
+
+- #define :ref:`CMPTYPE_STANDARD <group___c_m_itf___component_type_1gaad3188f31ca8960aeb7ce702296697fd>` UINT16_C(0x0100)
+
+- #define :ref:`CMPTYPE_SAFETY <group___c_m_itf___component_type_1ga7c03cabb77813b451fc3eda8b864b53d>` UINT16_C(0x0200)
+
+- #define :ref:`CMPTYPE_ALL <group___c_m_itf___component_type_1ga65d819883206c887cc38bccff646f90e>` ( :ref:`CMPTYPE_STANDARD <group___c_m_itf___component_type_1gaad3188f31ca8960aeb7ce702296697fd>` | :ref:`CMPTYPE_SAFETY <group___c_m_itf___component_type_1ga7c03cabb77813b451fc3eda8b864b53d>` )
+
+- #define :ref:`CMPTYPE_STATIC <group___c_m_itf___component_type_1ga59b6a6958e1cfe02864c99dd0741f805>` UINT16_C(0x0001)
+
+- #define :ref:`CMPTYPE_DYNAMIC <group___c_m_itf___component_type_1ga321c04534a3cf9bc0d2730b253e1e8e6>` UINT16_C(0x0002)
+
+- #define :ref:`CMPTYPE_SYSTEM <group___c_m_itf___component_type_1gaa7876decf1de0863c46bc83b2ccd5950>` UINT16_C(0x0004)
+
+- #define :ref:`CMPTYPE_IEC <group___c_m_itf___component_type_1ga22fa65cccc44fbec0c9534be576d926f>` UINT16_C(0x0008)
+
+- #define :ref:`CMPTYPE_APP_CMODULE <group___c_m_itf___component_type_1ga3256310c4ed6e7a137a27bcee350f55b>` UINT16_C(0x0010)
+
+- #define :ref:`RTS_CS_UNKNOWN <group___c_m_itf___component_state_1gae42bf27b55f51869bf8ac6febfffa1dc>` UINT16_C(0x0000)
+
+- #define :ref:`RTS_CS_NOT_FOUND <group___c_m_itf___component_state_1ga7e94080e618151e74a1fc1274d6b42ef>` UINT16_C(0x0001)
+
+- #define :ref:`RTS_CS_LOADED <group___c_m_itf___component_state_1gacf81c02869480db1cfa315db6f62cda8>` UINT16_C(0x0002)
+
+- #define :ref:`RTS_CS_DISABLED <group___c_m_itf___component_state_1ga576dcb3c0ae4b5ce66038cf42d93bb94>` UINT16_C(0x0003)
+
+- #define :ref:`RTS_CS_INITIALIZED <group___c_m_itf___component_state_1gab6086961bb95bddbabb3e59f38188f2d>` UINT16_C(0x0004)
+
+- #define :ref:`RTS_CS_READY <group___c_m_itf___component_state_1ga4e0284e5cb761f6e24c991976b90142c>` UINT16_C(0x0005)
+
+- #define :ref:`RTS_CS_UNLOADED <group___c_m_itf___component_state_1ga8bf1e1a35609fd0449fa6f4f8d6848ab>` UINT16_C(0x0006)
+
+- #define :ref:`CM_HOOK_TYPE_NORMAL <group___c_m_itf___c_o_m_m___c_y_c_l_e___h_o_o_ktypes_1ga9b44b96cd557b892815a1a81fa6098d6>` 0
+
+- #define :ref:`CM_HOOK_TYPE_FLASH_ACCESS <group___c_m_itf___c_o_m_m___c_y_c_l_e___h_o_o_ktypes_1ga2f88f19bd5baf67b217f0178e2f909be>` 1
+
+- #define :ref:`CM_CNF_STATIC <group___c_m_itf___component_name_flags_1gade2620e43ed2e1a0155011d6d7ef5aa1>` 0
+
+- #define :ref:`CM_CNF_DYNAMIC <group___c_m_itf___component_name_flags_1ga9023d9abb30e64fdc6c889815d34b12a>` 1
+
+- #define :ref:`RTS_USE_PROFILING <group___c_m_itf___profiler_1gaf3010849fc9dc0c7bdc8aa5fa979b971>`
+
+- #define :ref:`RTS_PROFILING <group___c_m_itf___profiler_1ga59e234529db0f603ba53e041dad82389>`
+
+- #define :ref:`RTS_PROFILING_COMPONENTS <group___c_m_itf___profiler_1gad3f180a5bb1db8304b61183ad7ac74eb>`
+
+- #define :ref:`RTS_PROFILING_BEGIN <group___c_m_itf___profiler_1ga3c87640b9b61a460f65475af59258a9c>`
+
+- #define :ref:`RTS_PROFILING2 <group___c_m_itf___profiler_1gaf133017d427580409d6019b9b1d40690>`
+
+- #define :ref:`RTS_PROFILING_END <group___c_m_itf___profiler_1ga62bd560b7e8de56215bc0ee91bcd346f>`
+
+- #define :ref:`RTS_CHECKPOINT <group___c_m_itf_1gaefa62e45397392025071f338d11ec38f>`
+
+- #define :ref:`LICENSE_NOT_AVAILABLE <group___c_m_itf_1ga79901fe2535f1b7e289ce9f2dafdd2cc>` UINT32_C(0xffffffff)
+
+- #define :ref:`LICENSE_INVALID <group___c_m_itf_1gab9f2c214e3e4d686344abf8b0f7561fc>` UINT32_C(0x00000000)
+
+- #define :ref:`CM_PROFILING_ID_ADD_BEGIN <group___c_m_itf_1ga3be676907c448393b4ff703596a14116>` (ID | UINT32_C(0x40000000))
+
+- #define :ref:`CM_PROFILING_ID_ADD_END <group___c_m_itf_1gad357f2cd976ef2f1d176dc3fa53fffc8>` (ID | UINT32_C(0x80000000))
+
+- #define :ref:`CM_PROFILING_ID_ISBEGIN <group___c_m_itf_1ga79411b552918ea84f4b266fbb62764cc>` ((ID & UINT32_C(0x40000000)) != 0)
+
+- #define :ref:`CM_PROFILING_ID_ISEND <group___c_m_itf_1gaaf391414ed38c85cd1c5ac057106716a>` ((ID & UINT32_C(0x80000000)) != 0)
+
+- #define :ref:`CM_PROFILING_ID_GET <group___c_m_itf_1ga3e52ee3634493415129a44eb03e17592>` (ID & UINT32_C(0x3FFFFFFF))
+
+- #define :ref:`ITF_CM <group___c_m_itf_1ga61f0c0ead6bd2318dd35a91eb12b2520>`
+
+- #define :ref:`EXTITF_CM <group___c_m_itf_1ga580d932bcd6f727f2b3e250d39a76eac>`
+
+Typedefs
+--------
+
+- typedef union :ref:`ComponentNameString_ <union_component_name_string__>` :ref:`ComponentNameString <group___c_m_itf___component_name_1ga6712dd7980a5862392ed23ce9c407e5c>`
+
+- typedef struct :ref:`ComponentName_ <struct_component_name__>` :ref:`ComponentName <group___c_m_itf___component_name_1ga3bdc72ac8ab727b00e696c00445b9d6d>`
+
+- typedef struct :ref:`tagComponent_ENTRY <structtag_component___e_n_t_r_y>` :ref:`COMPONENT_ENTRY <group___c_m_itf___component_name_1gaae03dae15a92a41cb9e05534ce94a576>`
+
+- typedef struct :ref:`tagStaticComponent <structtag_static_component>` :ref:`StaticComponent <group___c_m_itf___component_name_1gaed4d46d17dc6b38cb3846e6db0938a6f>`
+
+- typedef struct :ref:`tagComponent_LIST <structtag_component___l_i_s_t>` :ref:`COMPONENT_LIST <group___c_m_itf___component_name_1gaff0e6a77ee2ce5cf151cce2a9fa3341c>`
+
+- typedef struct :ref:`tagApi_ENTRY <structtag_api___e_n_t_r_y>` :ref:`API_ENTRY <group___c_m_itf___component_name_1ga8bd069836932b6db489fdec6423eb97e>`
+
+- typedef struct :ref:`tagApi_LIST <structtag_api___l_i_s_t>` :ref:`API_LIST <group___c_m_itf___component_name_1ga8443c2381e5b39656de52ce3388ae4a5>`
+
+- typedef struct :ref:`tagAPI_RESOLVE_INFO <structtag_a_p_i___r_e_s_o_l_v_e___i_n_f_o>` :ref:`API_RESOLVE_INFO <group___c_m_itf___api_resolve_info_1gab9565a2863d19785c9b52114ceafe72f>`
+
+- typedef struct :ref:`tagLicenseFunctions <structtag_license_functions>` :ref:`LicenseFunctions <group___c_m_itf_1ga516a5ec5dd2e25ae6a6e316eceb17c8f>`
+
+- typedef struct :ref:`tagcmaddcomponent_struct <structtagcmaddcomponent__struct>` :ref:`cmaddcomponent_struct <group___c_m_itf_1gaf173983244f7843ed8c7642afd77d4c8>`
+
+- typedef struct :ref:`tagcmaddcomponent2_struct <structtagcmaddcomponent2__struct>` :ref:`cmaddcomponent2_struct <group___c_m_itf_1gafb5d0b67f9a1dba004415b612abc71d4>`
+
+- typedef struct :ref:`tagcmexitcomponent_struct <structtagcmexitcomponent__struct>` :ref:`cmexitcomponent_struct <group___c_m_itf_1ga4d6acacf3068e80a0768087490414914>`
+
+- typedef struct :ref:`tagcmgetcomponentbyname_struct <structtagcmgetcomponentbyname__struct>` :ref:`cmgetcomponentbyname_struct <group___c_m_itf_1gaf68e8771ff2f8b877bf270a026b22da7>`
+
+- typedef struct :ref:`tagcminitcomponent_struct <structtagcminitcomponent__struct>` :ref:`cminitcomponent_struct <group___c_m_itf_1ga8d62f811ee66b66e7ac2969d59d52239>`
+
+- typedef struct :ref:`tagcmregistergetuserlicensevalue_struct <structtagcmregistergetuserlicensevalue__struct>` :ref:`cmregistergetuserlicensevalue_struct <group___c_m_itf_1ga42d14c939cb295bd0470f0bcf60d9fa4>`
+
+- typedef struct :ref:`tagcmregisterlicensefunctions_struct <structtagcmregisterlicensefunctions__struct>` :ref:`cmregisterlicensefunctions_struct <group___c_m_itf_1gaf08dcdeb34004eb2111881d22e8ad36d>`
+
+- typedef struct :ref:`tagcmremovecomponent_struct <structtagcmremovecomponent__struct>` :ref:`cmremovecomponent_struct <group___c_m_itf_1gac53c7c626ca2db9c2f200bc93f19d432>`
+
+- typedef struct :ref:`tagcmshutdown_struct <structtagcmshutdown__struct>` :ref:`cmshutdown_struct <group___c_m_itf_1gadcdbcc3605ccb2cdcb4840b93f740d4f>`
+
+- typedef struct :ref:`tagcmunregistergetuserlicensevalue_struct <structtagcmunregistergetuserlicensevalue__struct>` :ref:`cmunregistergetuserlicensevalue_struct <group___c_m_itf_1gaaf003ce773259523210250fe7e8c569c>`
+
+- typedef struct :ref:`tagcmunregisterlicensefunctions_struct <structtagcmunregisterlicensefunctions__struct>` :ref:`cmunregisterlicensefunctions_struct <group___c_m_itf_1ga2d48d37133912d9f1b553d7c3207ad71>`
+
+- typedef struct :ref:`tagcmutlcwstrcpy_struct <structtagcmutlcwstrcpy__struct>` :ref:`cmutlcwstrcpy_struct <group___c_m_itf_1ga12605b097630b541abfc1ac5f47502d0>`
+
+- typedef struct :ref:`tagcmutlsafestrcpy_struct <structtagcmutlsafestrcpy__struct>` :ref:`cmutlsafestrcpy_struct <group___c_m_itf_1ga7a1c374304d8e00f19f395a9cb450e86>`
+
+- typedef struct :ref:`tagcmutlstricmp_struct <structtagcmutlstricmp__struct>` :ref:`cmutlstricmp_struct <group___c_m_itf_1ga6a3ff3d340c454787fa4fd2bfd996ddf>`
+
+- typedef struct :ref:`tagcmutlutf8tow_struct <structtagcmutlutf8tow__struct>` :ref:`cmutlutf8tow_struct <group___c_m_itf_1ga380e2b558872a047e981190d7eed9ae5>`
+
+- typedef struct :ref:`tagcmutlwstrcpy_struct <structtagcmutlwstrcpy__struct>` :ref:`cmutlwstrcpy_struct <group___c_m_itf_1gab62ab6abfd08ad9bcf1e5a9d6d642fc4>`
+
+- typedef struct :ref:`tagcmutlwtoutf8_struct <structtagcmutlwtoutf8__struct>` :ref:`cmutlwtoutf8_struct <group___c_m_itf_1ga1bab8f0a14c35188767bbd2d219c3a1b>`
+
+- typedef void(* :ref:`PFGETUSERLICENSEVALUE <group___c_m_itf_1ga045330029894373f707aa79633cb5cee>`)(getuserlicensevalue_struct)
+
+- typedef void(* :ref:`PFREQDYNLICCHALLENGE <group___c_m_itf_1ga0bde18f72f128e8190faa8ecc89479f6>`)(reqdynlicchallenge_struct)
+
+- typedef void(* :ref:`PFCONFDYNLICCHALLENGE <group___c_m_itf_1ga1a28e25ec712c38d96e1cba9a6f4a71f>`)(confdynlicchallenge_struct)
+
+- typedef :ref:`ICM_C <struct_i_c_m___c>` :ref:`ICM <group___c_m_itf_1ga983ab90df439c07d3dc899529c92aa61>`
+
+Functions
+---------
+
+- void :ref:`cmaddcomponent <group___c_m_itf_1gabb81474df9661e2bfa1da358d1064451>` (:ref:`cmaddcomponent_struct <group___c_m_itf_1gaf173983244f7843ed8c7642afd77d4c8>` * p)
+
+- void :ref:`cmaddcomponent2 <group___c_m_itf_1gae0051d6ba0279333c2c30c2659c548ed>` (:ref:`cmaddcomponent2_struct <group___c_m_itf_1gafb5d0b67f9a1dba004415b612abc71d4>` * p)
+
+- void :ref:`cmexitcomponent <group___c_m_itf_1ga14bbf2afca63011078fe8291db3e94c1>` (:ref:`cmexitcomponent_struct <group___c_m_itf_1ga4d6acacf3068e80a0768087490414914>` * p)
+
+- void :ref:`cmgetcomponentbyname <group___c_m_itf_1ga7eb48d82b85cf3fad645d3c2075631a4>` (:ref:`cmgetcomponentbyname_struct <group___c_m_itf_1gaf68e8771ff2f8b877bf270a026b22da7>` * p)
+
+- void :ref:`cminitcomponent <group___c_m_itf_1ga4e84f6d1cb599519214f8b3dd10d22eb>` (:ref:`cminitcomponent_struct <group___c_m_itf_1ga8d62f811ee66b66e7ac2969d59d52239>` * p)
+
+- void :ref:`cmregistergetuserlicensevalue <group___c_m_itf_1gaffe023b985245db5fc5d6dbbabb432c3>` (:ref:`cmregistergetuserlicensevalue_struct <group___c_m_itf_1ga42d14c939cb295bd0470f0bcf60d9fa4>` * p)
+
+- void :ref:`cmregisterlicensefunctions <group___c_m_itf_1gaaaac3b4d2130c2e9b47f07a85ee2d28f>` (:ref:`cmregisterlicensefunctions_struct <group___c_m_itf_1gaf08dcdeb34004eb2111881d22e8ad36d>` * p)
+
+- void :ref:`cmremovecomponent <group___c_m_itf_1gad8354c4a49a9aee85c25f59cc58f4e86>` (:ref:`cmremovecomponent_struct <group___c_m_itf_1gac53c7c626ca2db9c2f200bc93f19d432>` * p)
+
+- void :ref:`cmshutdown <group___c_m_itf_1ga4fc274121db40d8b4767c00b5bb5e817>` (:ref:`cmshutdown_struct <group___c_m_itf_1gadcdbcc3605ccb2cdcb4840b93f740d4f>` * p)
+
+- void :ref:`cmunregistergetuserlicensevalue <group___c_m_itf_1ga459d25c69f40ca03471825fb2bc53068>` (:ref:`cmunregistergetuserlicensevalue_struct <group___c_m_itf_1gaaf003ce773259523210250fe7e8c569c>` * p)
+
+- void :ref:`cmunregisterlicensefunctions <group___c_m_itf_1ga77c50280a4257d73399295ea5f2e4b5c>` (:ref:`cmunregisterlicensefunctions_struct <group___c_m_itf_1ga2d48d37133912d9f1b553d7c3207ad71>` * p)
+
+- void :ref:`cmutlcwstrcpy <group___c_m_itf_1gae93e54b4897dfd1d432a313f5d413ac5>` (:ref:`cmutlcwstrcpy_struct <group___c_m_itf_1ga12605b097630b541abfc1ac5f47502d0>` * p)
+
+- void :ref:`cmutlsafestrcpy <group___c_m_itf_1ga577b0d57c9bd6363be1827763d85d134>` (:ref:`cmutlsafestrcpy_struct <group___c_m_itf_1ga7a1c374304d8e00f19f395a9cb450e86>` * p)
+
+- void :ref:`cmutlstricmp <group___c_m_itf_1gabdc6ad1af9072e49dd5a8f9ad75e3ec7>` (:ref:`cmutlstricmp_struct <group___c_m_itf_1ga6a3ff3d340c454787fa4fd2bfd996ddf>` * p)
+
+- void :ref:`cmutlutf8tow <group___c_m_itf_1ga251b1c54a5f2ef6f7910548a477a612e>` (:ref:`cmutlutf8tow_struct <group___c_m_itf_1ga380e2b558872a047e981190d7eed9ae5>` * p)
+
+- void :ref:`cmutlwstrcpy <group___c_m_itf_1ga5261ce4e6d583a961193c1a457c592ab>` (:ref:`cmutlwstrcpy_struct <group___c_m_itf_1gab62ab6abfd08ad9bcf1e5a9d6d642fc4>` * p)
+
+- void :ref:`cmutlwtoutf8 <group___c_m_itf_1gabd597922379cc391d0ac5bf029871967>` (:ref:`cmutlwtoutf8_struct <group___c_m_itf_1ga1bab8f0a14c35188767bbd2d219c3a1b>` * p)
+
+- RTS_RESULT :ref:`CMInit <group___c_m_itf_1gaf05b74542b88e19cba42aaf6048429a4>` (char * pszSettingsFile, :ref:`StaticComponent <group___c_m_itf___component_name_1gaed4d46d17dc6b38cb3846e6db0938a6f>` * pStaticComponents)
+
+- RTS_RESULT :ref:`CMInit2 <group___c_m_itf_1gaf7a568446ffb81c4e3cf2f6352650ed8>` (char * pszSettingsFile, :ref:`StaticComponent <group___c_m_itf___component_name_1gaed4d46d17dc6b38cb3846e6db0938a6f>` * pStaticComponents, int bSettingsFileIsOptional)
+
+- RTS_RESULT :ref:`CMInit3 <group___c_m_itf_1gaaf5c89f9a32848417d795908bf3ef25a>` (char * pszSettingsFile, :ref:`StaticComponent <group___c_m_itf___component_name_1gaed4d46d17dc6b38cb3846e6db0938a6f>` * pStaticComponents, RTS_UI32 options)
+
+- RTS_RESULT :ref:`CMExit <group___c_m_itf_1ga0227148712c0fb5b69d49d921bef25a8>` (void)
+
+- RTS_RESULT :ref:`CMSetExit <group___c_m_itf_1gab1e82745a4395afe05533fe95c085b9e>` (void)
+
+- RTS_RESULT :ref:`CMGetExit <group___c_m_itf_1ga2ed25d4b792ca38fc99824a011778182>` (void)
+
+- RTS_RESULT :ref:`CMDebugOut <group___c_m_itf_1ga3929789cd6294dd00d39467f9c9ad843>` (const char * szFormat, ...)
+
+- RTS_RESULT :ref:`CMDebugOutArg <group___c_m_itf_1ga892619201567cc534245066361d416cd>` (const char * szFormat, va_list * pargList)
+
+- RTS_RESULT :ref:`CMRegisterAPI <group___c_m_itf_1gaeee866d8a9158daa4bef3e48aa0138b7>` (const CMP_EXT_FUNCTION_REF * pExpTable, RTS_UINTPTR dummy, int bExternalLibrary, RTS_UI32 cmpId)
+
+- RTS_RESULT :ref:`CMRegisterAPI2 <group___c_m_itf_1gad189ecacb244a5ea200dffe33b50860f>` (const char * pszAPIName, RTS_VOID_FCTPTR pfAPIFunction, int bExternalLibrary, RTS_UI32 ulSignatureID, RTS_UI32 ulVersion)
+
+- DLL_DECL RTS_RESULT :ref:`CMGetAPI <group___c_m_itf_1ga2e0bd13ddf81ffb69797adbb99eab9cb>` (char * pszAPIName, RTS_VOID_FCTPTR * ppfAPIFunction, RTS_UI32 ulSignatureID)
+
+- DLL_DECL RTS_RESULT :ref:`CMGetAPI2 <group___c_m_itf_1ga69f40399bfffe6c26c6eb86ba2b75da9>` (char * pszAPIName, RTS_VOID_FCTPTR * ppfAPIFunction, int importOptions, RTS_UI32 ulSignatureID, RTS_UI32 ulVersion)
+
+- RTS_RESULT :ref:`CMGetAPI3 <group___c_m_itf_1ga7f6aa70ceb418ca93363b451b3f9603a>` (char * pszAPIName, RTS_VOID_FCTPTR * ppfAPIFunction, int importOptions, RTS_UI32 * pulSignatureID, RTS_UI32 * pulVersion)
+
+- RTS_RESULT :ref:`CMGetAPIToResolve <group___c_m_itf_1gadb9b0f3c32342e12b227da2cd199623c>` (:ref:`API_RESOLVE_INFO <group___c_m_itf___api_resolve_info_1gab9565a2863d19785c9b52114ceafe72f>` * pApiResolveInfo)
+
+- RTS_RESULT :ref:`CMReleaseAPI <group___c_m_itf_1ga6be00dc8a3bdab64ff6647eaf79d7da1>` (RTS_VOID_FCTPTR pfAPIFunction)
+
+- RTS_HANDLE :ref:`CMLoadComponent <group___c_m_itf_1ga10b3d7a4a68c9228e16f774867750b6c>` (char * pszComponent, RTS_RESULT * pResult)
+
+- void :ref:`cmloadcomponent <group___c_m_itf_1ga99134d18ae67a7e21bd82174e95a2550>` (:ref:`cmloadcomponent_struct <structcmloadcomponent__struct>` * p)
+
+- RTS_HANDLE :ref:`CMLoadComponent2 <group___c_m_itf_1ga14bbd5aac99a653f32c1e580b2d0dd1c>` (char * pszComponent, RTS_UI16 iType, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`CMLoadComponent3 <group___c_m_itf_1ga4e0ebc4d7687a49310824347baaf070e>` (char * pszComponent, char * pszFilePath, RTS_UI16 iType, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CMInitComponent <group___c_m_itf_1ga56333a0d1cd19a000279e9e4d8081ed3>` (RTS_HANDLE hComponent)
+
+- RTS_RESULT :ref:`CMImportFunctions <group___c_m_itf_1ga350dd2e2f5d946935a49666022e0df99>` (void)
+
+- RTS_RESULT :ref:`CMExitComponent <group___c_m_itf_1gac805a13f2f77fe14a3858261363b5179>` (RTS_HANDLE hComponent)
+
+- RTS_RESULT :ref:`CMUnloadComponent <group___c_m_itf_1ga58c619b84d82b9ce60512082705b6025>` (RTS_HANDLE hComponent)
+
+- void :ref:`cmunloadcomponent <group___c_m_itf_1ga1e4bba7ccea19081b151c03ff55afd7f>` (:ref:`cmunloadcomponent_struct <structcmunloadcomponent__struct>` * p)
+
+- RTS_HANDLE :ref:`CMAddComponent <group___c_m_itf_1ga49cdd0da5019acc57a5ff9be80b98250>` (:ref:`COMPONENT_ENTRY <group___c_m_itf___component_name_1gaae03dae15a92a41cb9e05534ce94a576>` * pComponent, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CMRemoveComponent <group___c_m_itf_1gaa51ef04014cca8cf9b54cbbe9c6c4849>` (RTS_HANDLE hComponent)
+
+- RTS_HANDLE :ref:`CMGetComponentByName <group___c_m_itf_1gac68bf9a9cecc1fb28e80766e318f68da>` (char * pszCmpName, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CMGetCmpId <group___c_m_itf_1ga02299050371b37e830914f320d5c12dc>` (char * pszCmpName, CMPID * pCmpId)
+
+- RTS_RESULT :ref:`CMGetCmpName <group___c_m_itf_1ga719bb8ef97383d2b7356552709ae0a60>` (CMPID CmpId, char * pszCmpName, int iMaxCmpName)
+
+- :ref:`COMPONENT_ENTRY <group___c_m_itf___component_name_1gaae03dae15a92a41cb9e05534ce94a576>` * :ref:`CMGetComponent <group___c_m_itf_1gadc355a43dfbc02ac84969770f95db31a>` (CMPID CmpId)
+
+- int :ref:`CMGetNumOfComponents <group___c_m_itf_1ga11cc52ad88fde02914914c1aba94bd2d>` (void)
+
+- :ref:`COMPONENT_ENTRY <group___c_m_itf___component_name_1gaae03dae15a92a41cb9e05534ce94a576>` * :ref:`CMGetComponentByIndex <group___c_m_itf_1gac5e13736913420c13d9f40d5953bd7f7>` (int iIndex)
+
+- :ref:`COMPONENT_ENTRY <group___c_m_itf___component_name_1gaae03dae15a92a41cb9e05534ce94a576>` * :ref:`CMGetFirstComponent <group___c_m_itf_1ga057df3fc4357231700e3f7ae17929f06>` (RTS_RESULT * pResult)
+
+- :ref:`COMPONENT_ENTRY <group___c_m_itf___component_name_1gaae03dae15a92a41cb9e05534ce94a576>` * :ref:`CMGetNextComponent <group___c_m_itf_1ga970ace3d4a07bf7320d1456d2089bd89>` (:ref:`COMPONENT_ENTRY <group___c_m_itf___component_name_1gaae03dae15a92a41cb9e05534ce94a576>` * pCmp, RTS_RESULT * pResult)
+
+- IBase * :ref:`CMCreateInstance <group___c_m_itf_1gaa436c3a1c4beaa5d333373ee43e7a82d>` (CLASSID ClassId, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CMDeleteInstance <group___c_m_itf_1ga9742523d2433643388920756679c3237>` (IBase * pIBase)
+
+- RTS_RESULT :ref:`CMDeleteInstance2 <group___c_m_itf_1ga4f4651646362b7183d5e16975fbfabf8>` (CLASSID ClassId, IBase * pIBase)
+
+- IBase * :ref:`CMGetInstance <group___c_m_itf_1ga0ac13021662eda794e70c99c0a16a6bc>` (CLASSID ClassId, OBJID ObjId, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CMRegisterInstance <group___c_m_itf_1ga94ecbc39aa43368f6e8b348397ab2fd2>` (CLASSID ClassId, OBJID ObjId, IBase * pIBase)
+
+- RTS_RESULT :ref:`CMUnregisterInstance <group___c_m_itf_1ga8d66e0fb9a5b31201049092c3b71ca74>` (IBase * pIBase)
+
+- RTS_RESULT :ref:`CMGetInstanceList <group___c_m_itf_1ga84a11b1617c11fb3ce378354324b8363>` (ITFID ItfId, RTS_HANDLE hIBasePool)
+
+- RTS_RESULT :ref:`CMCallHook <group___c_m_itf_1gade57c65791c54884d36898bb8062cb41>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2, int bReverse)
+
+- RTS_RESULT :ref:`CMCallHook2 <group___c_m_itf_1ga7b331ee99c72c0ecb3ead290cfbd136b>` (RTS_UI16 usComponentTypeMask, RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- int :ref:`CMIsDemo <group___c_m_itf_1ga06b703bef3feaaffb8ba4cdb9cd74397>` (void)
+
+- RTS_RESULT :ref:`CMInitEnd <group___c_m_itf_1ga83b61cae6ab87284f41f66db8d1d76d0>` (void)
+
+- RTS_RESULT :ref:`CMCheckSysTargetSignature <group___c_m_itf_1gac0e6df0a0f013fcb877e42cf151e9de4>` (void)
+
+- RTS_UI32 :ref:`CMGetUserLicenseValue <group___c_m_itf_1ga71a6d1c1d634ba5674c749ab43cc2fd3>` (RTS_UI32 ulLicenseID, RTS_RESULT * pResult)
+
+- RTS_UI32 :ref:`CMReqDynLicChallenge <group___c_m_itf_1gaa10334cd8ee8526d53dd42ab106b8e2f>` (RTS_UI32 ulLicenseID, RTS_UI32 ulNewLicenseValue, RTS_RESULT * pResult)
+
+- int :ref:`CMConfDynLicChallenge <group___c_m_itf_1ga6f1f5d71e33840937959d2f2d0c166f3>` (RTS_UI32 ulLicenseID, RTS_UI32 ulNewLicenseValue, RTS_UI32 ulChallenge, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`CMCallExtraCommCycleHook <group___c_m_itf_1ga0c684457436b2dd561191e8767817587>` (RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_UI32 :ref:`CMGetCurrentHook <group___c_m_itf_1ga95ab8e8b3a6ed2e8a67429e64eebf46e>` (void)
+
+- RTS_RESULT :ref:`CMIsOperationDisabled <group___c_m_itf_1gaca15661884ff93447533796c38f62c5f>` (CMPID cmpId, RTS_UI32 ulOperation, CMPID * pCmpIdDisabled)
+
+- RTS_RESULT :ref:`CMProfiling <group___c_m_itf_1ga8f596715677be928e9f97e05c72202b3>` (char * pszInfo, CMPID cmpId, char * pszComponentName, char * pszModuleName, RTS_I32 nLine, RTS_I32 iID)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CMItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,60 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_plc_shell_itf___events:
+
+======
+Events
+======
+
+ :ref:`More... <group___cmp_plc_shell_itf___events-details>`
+
+Macros
+------
+
+- #define :ref:`EVT_PlcShellCommand <group___cmp_plc_shell_itf___events_1ga15646b9cc8a805414bc5bd38352451ba>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`EVT_PlcShellCommandRegister <group___cmp_plc_shell_itf___events_1ga5ba42c23b9944602c2421f26e3e342ae>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+
+.. _group___cmp_plc_shell_itf___events-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_plc_shell_itf___events_1ga15646b9cc8a805414bc5bd38352451ba:
+
+#define EVT_PlcShellCommand :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This event is sent to all command handlers. It has to be handled only if the command name matches.
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------------+
+| [in]    | pEventParam | :ref:`EVTPARAM_PlcShellCommand <struct_e_v_t_p_a_r_a_m___plc_shell_command>` |
++---------+-------------+------------------------------------------------------------------------------+
+
+.. _group___cmp_plc_shell_itf___events_1ga5ba42c23b9944602c2421f26e3e342ae:
+
+#define EVT_PlcShellCommandRegister :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This event is sent in CH_INIT_TASKS for each registered PlcShell command. It can be used to disable the command by setting the bDisable flag (see :ref:`EVTPARAM_PlcShellCommandRegister <struct_e_v_t_p_a_r_a_m___plc_shell_command_register>` ).
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------------------------------------+
+| [in]    | pEventParam | :ref:`EVTPARAM_PlcShellCommandRegister <struct_e_v_t_p_a_r_a_m___plc_shell_command_register>` |
++---------+-------------+-----------------------------------------------------------------------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

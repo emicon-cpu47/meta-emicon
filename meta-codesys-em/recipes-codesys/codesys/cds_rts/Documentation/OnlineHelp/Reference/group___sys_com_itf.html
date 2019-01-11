@@ -1,0 +1,624 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SysComItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="SysCpuBreakpointsItf" href="group___sys_cpu_breakpoints_itf.html" />
+    <link rel="prev" title="IoDrvUnsafeBridgeModuletestItf" href="group___io_drv_unsafe_bridge_moduletest_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___sys_cpu_breakpoints_itf.html" title="SysCpuBreakpointsItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___io_drv_unsafe_bridge_moduletest_itf.html" title="IoDrvUnsafeBridgeModuletestItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SysComItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-itf-syscom">#define ITF_SysCom</a></li>
+<li><a class="reference internal" href="#define-extitf-syscom">#define EXTITF_SysCom</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-tagsyscomclose-struct-syscomclose-struct">typedef struct tagsyscomclose_struct  syscomclose_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyscomgetsettings-struct-syscomgetsettings-struct">typedef struct tagsyscomgetsettings_struct  syscomgetsettings_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyscomopen-struct-syscomopen-struct">typedef struct tagsyscomopen_struct  syscomopen_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyscomopen2-struct-syscomopen2-struct">typedef struct tagsyscomopen2_struct  syscomopen2_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyscompurge-struct-syscompurge-struct">typedef struct tagsyscompurge_struct  syscompurge_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyscomread-struct-syscomread-struct">typedef struct tagsyscomread_struct  syscomread_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyscomsetsettings-struct-syscomsetsettings-struct">typedef struct tagsyscomsetsettings_struct  syscomsetsettings_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyscomsettimeout-struct-syscomsettimeout-struct">typedef struct tagsyscomsettimeout_struct  syscomsettimeout_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagsyscomwrite-struct-syscomwrite-struct">typedef struct tagsyscomwrite_struct  syscomwrite_struct</a></li>
+<li><a class="reference internal" href="#typedef-com-settings-comsettings">typedef COM_Settings COMSettings</a></li>
+<li><a class="reference internal" href="#typedef-com-settingsex-comsettingsex">typedef COM_SettingsEx COMSettingsEx</a></li>
+<li><a class="reference internal" href="#typedef-isyscom-c-isyscom">typedef ISysCom_C ISysCom</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#void-syscomclose-syscomclose-struct-p">void syscomclose (syscomclose_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syscomgetsettings-syscomgetsettings-struct-p">void syscomgetsettings (syscomgetsettings_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syscomopen-syscomopen-struct-p">void syscomopen (syscomopen_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syscomopen2-syscomopen2-struct-p">void syscomopen2 (syscomopen2_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syscompurge-syscompurge-struct-p">void syscompurge (syscompurge_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syscomread-syscomread-struct-p">void syscomread (syscomread_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syscomsetsettings-syscomsetsettings-struct-p">void syscomsetsettings (syscomsetsettings_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syscomsettimeout-syscomsettimeout-struct-p">void syscomsettimeout (syscomsettimeout_struct *p)</a></li>
+<li><a class="reference internal" href="#void-syscomwrite-syscomwrite-struct-p">void syscomwrite (syscomwrite_struct *p)</a></li>
+<li><a class="reference internal" href="#rts-result-syscomosinit-init-struct-pinit">RTS_RESULT SysComOSInit (INIT_STRUCT *pInit)</a></li>
+<li><a class="reference internal" href="#rts-result-syscomoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">RTS_RESULT SysComOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</a></li>
+<li><a class="reference internal" href="#rts-handle-syscomopen-short-sport-rts-result-presult">RTS_HANDLE SysComOpen (short sPort, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-syscomopen2-com-settings-psettings-com-settingsex-psettingsex-rts-result-presult">RTS_HANDLE SysComOpen2 (COM_Settings *pSettings, COM_SettingsEx *pSettingsEx, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-syscomsetsettings-rts-handle-hcom-com-settings-psettings-com-settingsex-psettingsex">RTS_RESULT SysComSetSettings (RTS_HANDLE hCom, COM_Settings *pSettings, COM_SettingsEx *pSettingsEx)</a></li>
+<li><a class="reference internal" href="#rts-result-syscomgetsettings-rts-handle-hcom-com-settings-psettings-com-settingsex-psettingsex">RTS_RESULT SysComGetSettings (RTS_HANDLE hCom, COM_Settings *pSettings, COM_SettingsEx *pSettingsEx)</a></li>
+<li><a class="reference internal" href="#rts-result-syscomclose-rts-handle-hcom">RTS_RESULT SysComClose (RTS_HANDLE hCom)</a></li>
+<li><a class="reference internal" href="#rts-ui32-syscomread-rts-handle-hcom-unsigned-char-pbybuffer-rts-ui32-uisize-rts-ui32-ultimeout-rts-result-presult">RTS_UI32 SysComRead (RTS_HANDLE hCom, unsigned char *pbyBuffer, RTS_UI32 uiSize, RTS_UI32 ulTimeout, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-ui32-syscomwrite-rts-handle-hcom-unsigned-char-pbybuffer-rts-ui32-uisize-rts-ui32-ultimeout-rts-result-presult">RTS_UI32 SysComWrite (RTS_HANDLE hCom, unsigned char *pbyBuffer, RTS_UI32 uiSize, RTS_UI32 ulTimeout, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-syscompurge-rts-handle-hcom">RTS_RESULT SysComPurge (RTS_HANDLE hCom)</a></li>
+<li><a class="reference internal" href="#rts-result-syscomsettimeout-rts-handle-hcom-rts-ui32-ultimeout">RTS_RESULT SysComSetTimeout (RTS_HANDLE hCom, RTS_UI32 ulTimeout)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___io_drv_unsafe_bridge_moduletest_itf.html"
+                        title="previous chapter">IoDrvUnsafeBridgeModuletestItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___sys_cpu_breakpoints_itf.html"
+                        title="next chapter">SysCpuBreakpointsItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_com_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="syscomitf">
+<span id="group-sys-com-itf"></span><h1>SysComItf<a class="headerlink" href="#syscomitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of SysCom. <a class="reference internal" href="#group-sys-com-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___sys_com_itf___baudrates.html#group-sys-com-itf-baudrates"><span class="std std-ref">Baudrates</span></a></li>
+<li><a class="reference internal" href="group___sys_com_itf___comportextendedsettings.html#group-sys-com-itf-comportextendedsettings"><span class="std std-ref">Com port extended settings</span></a></li>
+<li><a class="reference internal" href="group___sys_com_itf___comportsettings.html#group-sys-com-itf-comportsettings"><span class="std std-ref">Com port settings</span></a></li>
+<li><a class="reference internal" href="group___sys_com_itf___comports.html#group-sys-com-itf-comports"><span class="std std-ref">Com ports</span></a></li>
+<li><a class="reference internal" href="group___sys_com_itf___eventparameter.html#group-sys-com-itf-eventparameter"><span class="std std-ref">Event parameter</span></a></li>
+<li><a class="reference internal" href="group___sys_com_itf___events.html#group-sys-com-itf-events"><span class="std std-ref">Events</span></a></li>
+<li><a class="reference internal" href="group___sys_com_itf___parity.html#group-sys-com-itf-parity"><span class="std std-ref">Parity</span></a></li>
+<li><a class="reference internal" href="group___sys_com_itf___settings.html#group-sys-com-itf-settings"><span class="std std-ref">Settings</span></a></li>
+<li><a class="reference internal" href="group___sys_com_itf___stopbits.html#group-sys-com-itf-stopbits"><span class="std std-ref">Stop bits</span></a></li>
+<li><a class="reference internal" href="group___sys_com_itf___timeouts.html#group-sys-com-itf-timeouts"><span class="std std-ref">Timeouts</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="structtagsyscomclose__struct.html#structtagsyscomclose-struct"><span class="std std-ref">tagsyscomclose_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyscomgetsettings__struct.html#structtagsyscomgetsettings-struct"><span class="std std-ref">tagsyscomgetsettings_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyscomopen__struct.html#structtagsyscomopen-struct"><span class="std std-ref">tagsyscomopen_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyscomopen2__struct.html#structtagsyscomopen2-struct"><span class="std std-ref">tagsyscomopen2_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyscompurge__struct.html#structtagsyscompurge-struct"><span class="std std-ref">tagsyscompurge_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyscomread__struct.html#structtagsyscomread-struct"><span class="std std-ref">tagsyscomread_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyscomsetsettings__struct.html#structtagsyscomsetsettings-struct"><span class="std std-ref">tagsyscomsetsettings_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyscomsettimeout__struct.html#structtagsyscomsettimeout-struct"><span class="std std-ref">tagsyscomsettimeout_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagsyscomwrite__struct.html#structtagsyscomwrite-struct"><span class="std std-ref">tagsyscomwrite_struct</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_sys_com___c.html#struct-i-sys-com-c"><span class="std std-ref">ISysCom_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-com-itf-1gabfca817154b1019275366a1702820eef"><span class="std std-ref">ITF_SysCom</span></a></li>
+<li>#define <a class="reference internal" href="#group-sys-com-itf-1gaf6d44fd2e0ffb8d094d03e734870ed1e"><span class="std std-ref">EXTITF_SysCom</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="structtagsyscomclose__struct.html#structtagsyscomclose-struct"><span class="std std-ref">tagsyscomclose_struct</span></a> <a class="reference internal" href="#group-sys-com-itf-1ga3308d78035caed2aef663e0bd8c7afd6"><span class="std std-ref">syscomclose_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyscomgetsettings__struct.html#structtagsyscomgetsettings-struct"><span class="std std-ref">tagsyscomgetsettings_struct</span></a> <a class="reference internal" href="#group-sys-com-itf-1ga7e26dd4ec2e7914f64f57e105442ca3c"><span class="std std-ref">syscomgetsettings_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyscomopen__struct.html#structtagsyscomopen-struct"><span class="std std-ref">tagsyscomopen_struct</span></a> <a class="reference internal" href="#group-sys-com-itf-1gae0fb149d6fe5786904b1a985d3eea046"><span class="std std-ref">syscomopen_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyscomopen2__struct.html#structtagsyscomopen2-struct"><span class="std std-ref">tagsyscomopen2_struct</span></a> <a class="reference internal" href="#group-sys-com-itf-1ga68d1dc1ba9f40cd4a23fa307ff994fe1"><span class="std std-ref">syscomopen2_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyscompurge__struct.html#structtagsyscompurge-struct"><span class="std std-ref">tagsyscompurge_struct</span></a> <a class="reference internal" href="#group-sys-com-itf-1gad21fe96acf909e0c0c4488f5af048986"><span class="std std-ref">syscompurge_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyscomread__struct.html#structtagsyscomread-struct"><span class="std std-ref">tagsyscomread_struct</span></a> <a class="reference internal" href="#group-sys-com-itf-1ga5826d9f8571af91c22ffddc6fc615dc1"><span class="std std-ref">syscomread_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyscomsetsettings__struct.html#structtagsyscomsetsettings-struct"><span class="std std-ref">tagsyscomsetsettings_struct</span></a> <a class="reference internal" href="#group-sys-com-itf-1ga9d9a1056c695224dca3c30d419382463"><span class="std std-ref">syscomsetsettings_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyscomsettimeout__struct.html#structtagsyscomsettimeout-struct"><span class="std std-ref">tagsyscomsettimeout_struct</span></a> <a class="reference internal" href="#group-sys-com-itf-1ga4cdb08bbc06f84e0baf0ef3208cb9500"><span class="std std-ref">syscomsettimeout_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagsyscomwrite__struct.html#structtagsyscomwrite-struct"><span class="std std-ref">tagsyscomwrite_struct</span></a> <a class="reference internal" href="#group-sys-com-itf-1gae655e4f66c8b7201920833dc6e02c93d"><span class="std std-ref">syscomwrite_struct</span></a></li>
+<li>typedef <a class="reference internal" href="group___sys_com_itf___comportsettings.html#group-sys-com-itf-comportsettings-1ga2a1e08f3cfcbf3f3553764f75c3b966a"><span class="std std-ref">COM_Settings</span></a> <a class="reference internal" href="#group-sys-com-itf-1gac0d8d7a7a75e08eb5c7bbf5559874242"><span class="std std-ref">COMSettings</span></a></li>
+<li>typedef <a class="reference internal" href="group___sys_com_itf___comportextendedsettings.html#group-sys-com-itf-comportextendedsettings-1ga850ed8a9016bc7f6f8e45c850379c4c9"><span class="std std-ref">COM_SettingsEx</span></a> <a class="reference internal" href="#group-sys-com-itf-1gaf69acb721dcf34b93878e98aa44e433f"><span class="std std-ref">COMSettingsEx</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_sys_com___c.html#struct-i-sys-com-c"><span class="std std-ref">ISysCom_C</span></a> <a class="reference internal" href="#group-sys-com-itf-1ga0b8fbec3154b167f3c6867a15ab44f88"><span class="std std-ref">ISysCom</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>void <a class="reference internal" href="#group-sys-com-itf-1ga0df7b41fde082ecb1466b597d796de1d"><span class="std std-ref">syscomclose</span></a> (<a class="reference internal" href="#group-sys-com-itf-1ga3308d78035caed2aef663e0bd8c7afd6"><span class="std std-ref">syscomclose_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-com-itf-1gae11e26a5385ee5ec33a28629a61d8dd7"><span class="std std-ref">syscomgetsettings</span></a> (<a class="reference internal" href="#group-sys-com-itf-1ga7e26dd4ec2e7914f64f57e105442ca3c"><span class="std std-ref">syscomgetsettings_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-com-itf-1gac133791775821e103cef6e92ef824cb5"><span class="std std-ref">syscomopen</span></a> (<a class="reference internal" href="#group-sys-com-itf-1gae0fb149d6fe5786904b1a985d3eea046"><span class="std std-ref">syscomopen_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-com-itf-1ga8d94f973e3cb339573241cb102f3b81e"><span class="std std-ref">syscomopen2</span></a> (<a class="reference internal" href="#group-sys-com-itf-1ga68d1dc1ba9f40cd4a23fa307ff994fe1"><span class="std std-ref">syscomopen2_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-com-itf-1gacf81be248974e6f79adf9130dbd975d2"><span class="std std-ref">syscompurge</span></a> (<a class="reference internal" href="#group-sys-com-itf-1gad21fe96acf909e0c0c4488f5af048986"><span class="std std-ref">syscompurge_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-com-itf-1gac8ecb737346f72e608f02c515e5a09e5"><span class="std std-ref">syscomread</span></a> (<a class="reference internal" href="#group-sys-com-itf-1ga5826d9f8571af91c22ffddc6fc615dc1"><span class="std std-ref">syscomread_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-com-itf-1gad571f4b8ba2e624dfddf0c989b0c950d"><span class="std std-ref">syscomsetsettings</span></a> (<a class="reference internal" href="#group-sys-com-itf-1ga9d9a1056c695224dca3c30d419382463"><span class="std std-ref">syscomsetsettings_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-com-itf-1ga2de2eb1038c3d1740378dff5179ebec0"><span class="std std-ref">syscomsettimeout</span></a> (<a class="reference internal" href="#group-sys-com-itf-1ga4cdb08bbc06f84e0baf0ef3208cb9500"><span class="std std-ref">syscomsettimeout_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-sys-com-itf-1ga53101f1df95b5fd10dce26ac552b188f"><span class="std std-ref">syscomwrite</span></a> (<a class="reference internal" href="#group-sys-com-itf-1gae655e4f66c8b7201920833dc6e02c93d"><span class="std std-ref">syscomwrite_struct</span></a> * p)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-com-itf-1ga5ed91811723c888f323839ae0fe24e96"><span class="std std-ref">SysComOSInit</span></a> (INIT_STRUCT * pInit)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-com-itf-1gab10557427484ee710e95f247b3367057"><span class="std std-ref">SysComOSHookFunction</span></a> (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-com-itf-1gacf40acf2958ee6cb83c02cf0cfa75716"><span class="std std-ref">SysComOpen</span></a> (short sPort, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-sys-com-itf-1ga846908a8dc90fdb5fc36d0bb18bb36c7"><span class="std std-ref">SysComOpen2</span></a> (<a class="reference internal" href="group___sys_com_itf___comportsettings.html#group-sys-com-itf-comportsettings-1ga2a1e08f3cfcbf3f3553764f75c3b966a"><span class="std std-ref">COM_Settings</span></a> * pSettings, <a class="reference internal" href="group___sys_com_itf___comportextendedsettings.html#group-sys-com-itf-comportextendedsettings-1ga850ed8a9016bc7f6f8e45c850379c4c9"><span class="std std-ref">COM_SettingsEx</span></a> * pSettingsEx, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-com-itf-1gae816607ac4a8146258416fc228da42e9"><span class="std std-ref">SysComSetSettings</span></a> (RTS_HANDLE hCom, <a class="reference internal" href="group___sys_com_itf___comportsettings.html#group-sys-com-itf-comportsettings-1ga2a1e08f3cfcbf3f3553764f75c3b966a"><span class="std std-ref">COM_Settings</span></a> * pSettings, <a class="reference internal" href="group___sys_com_itf___comportextendedsettings.html#group-sys-com-itf-comportextendedsettings-1ga850ed8a9016bc7f6f8e45c850379c4c9"><span class="std std-ref">COM_SettingsEx</span></a> * pSettingsEx)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-com-itf-1gaa6f95bd94a3d358f26ba49962623491d"><span class="std std-ref">SysComGetSettings</span></a> (RTS_HANDLE hCom, <a class="reference internal" href="group___sys_com_itf___comportsettings.html#group-sys-com-itf-comportsettings-1ga2a1e08f3cfcbf3f3553764f75c3b966a"><span class="std std-ref">COM_Settings</span></a> * pSettings, <a class="reference internal" href="group___sys_com_itf___comportextendedsettings.html#group-sys-com-itf-comportextendedsettings-1ga850ed8a9016bc7f6f8e45c850379c4c9"><span class="std std-ref">COM_SettingsEx</span></a> * pSettingsEx)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-com-itf-1gae03e5ece86996b91333ca76ed0d7a634"><span class="std std-ref">SysComClose</span></a> (RTS_HANDLE hCom)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-com-itf-1gaa28663547298bb38140095bda09e653f"><span class="std std-ref">SysComRead</span></a> (RTS_HANDLE hCom, unsigned char * pbyBuffer, RTS_UI32 uiSize, RTS_UI32 ulTimeout, RTS_RESULT * pResult)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-com-itf-1ga6df7263b8cdb70b1ce1d944dbe167d18"><span class="std std-ref">SysComWrite</span></a> (RTS_HANDLE hCom, unsigned char * pbyBuffer, RTS_UI32 uiSize, RTS_UI32 ulTimeout, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-com-itf-1gaf299ca75a046c99de02e82a9afa1bacb"><span class="std std-ref">SysComPurge</span></a> (RTS_HANDLE hCom)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-com-itf-1ga9fa7a0c0d1ea82160e247351e6883958"><span class="std std-ref">SysComSetTimeout</span></a> (RTS_HANDLE hCom, RTS_UI32 ulTimeout)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-com-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of SysCom.</p>
+<p>The SysCom interface is projected to connect to a serial COM port (RS232) and to send and receive data via this port.</p>
+<p>IMPLEMENTATION NODE: All routines must be realized asynchronous! You have to use the FIFO of the serial device! Don&#8217;t block the read and write routines, until the operations are finished.</p>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-itf-syscom">
+<span id="group-sys-com-itf-1gabfca817154b1019275366a1702820eef"></span><h3>#define ITF_SysCom<a class="headerlink" href="#define-itf-syscom" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-syscom">
+<span id="group-sys-com-itf-1gaf6d44fd2e0ffb8d094d03e734870ed1e"></span><h3>#define EXTITF_SysCom<a class="headerlink" href="#define-extitf-syscom" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-tagsyscomclose-struct-syscomclose-struct">
+<span id="group-sys-com-itf-1ga3308d78035caed2aef663e0bd8c7afd6"></span><h3>typedef struct tagsyscomclose_struct  syscomclose_struct<a class="headerlink" href="#typedef-struct-tagsyscomclose-struct-syscomclose-struct" title="Permalink to this headline">¶</a></h3>
+<p>Close a serial communication device.
+<strong>Returns:</strong></p>
+<p><a href="#id1"><span class="problematic" id="id2">*</span></a>RESULT: Returns the runtime system error code (see CmpErrors.library).</p>
+</div>
+<div class="section" id="typedef-struct-tagsyscomgetsettings-struct-syscomgetsettings-struct">
+<span id="group-sys-com-itf-1ga7e26dd4ec2e7914f64f57e105442ca3c"></span><h3>typedef struct tagsyscomgetsettings_struct  syscomgetsettings_struct<a class="headerlink" href="#typedef-struct-tagsyscomgetsettings-struct-syscomgetsettings-struct" title="Permalink to this headline">¶</a></h3>
+<p>Get the parameter of the interface specified by handle.
+<strong>Returns:</strong></p>
+<p><a href="#id3"><span class="problematic" id="id4">*</span></a>RESULT: Returns the runtime system error code (see CmpErrors.library).</p>
+</div>
+<div class="section" id="typedef-struct-tagsyscomopen-struct-syscomopen-struct">
+<span id="group-sys-com-itf-1gae0fb149d6fe5786904b1a985d3eea046"></span><h3>typedef struct tagsyscomopen_struct  syscomopen_struct<a class="headerlink" href="#typedef-struct-tagsyscomopen-struct-syscomopen-struct" title="Permalink to this headline">¶</a></h3>
+<p>Open a serial communication device.
+<strong>Returns:</strong></p>
+<p><a href="#id5"><span class="problematic" id="id6">*</span></a>RESULT: Handle to the opened com port or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="typedef-struct-tagsyscomopen2-struct-syscomopen2-struct">
+<span id="group-sys-com-itf-1ga68d1dc1ba9f40cd4a23fa307ff994fe1"></span><h3>typedef struct tagsyscomopen2_struct  syscomopen2_struct<a class="headerlink" href="#typedef-struct-tagsyscomopen2-struct-syscomopen2-struct" title="Permalink to this headline">¶</a></h3>
+<p>Opens a serial communication device specified by settings
+<strong>Returns:</strong></p>
+<p><a href="#id7"><span class="problematic" id="id8">*</span></a>RESULT: Handle to the opened com port or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="typedef-struct-tagsyscompurge-struct-syscompurge-struct">
+<span id="group-sys-com-itf-1gad21fe96acf909e0c0c4488f5af048986"></span><h3>typedef struct tagsyscompurge_struct  syscompurge_struct<a class="headerlink" href="#typedef-struct-tagsyscompurge-struct-syscompurge-struct" title="Permalink to this headline">¶</a></h3>
+<p>Clear the fifo buffer of the serial interface
+<strong>Returns:</strong></p>
+<p><a href="#id9"><span class="problematic" id="id10">*</span></a>RESULT: Returns the runtime system error code (see CmpErrors.library).</p>
+</div>
+<div class="section" id="typedef-struct-tagsyscomread-struct-syscomread-struct">
+<span id="group-sys-com-itf-1ga5826d9f8571af91c22ffddc6fc615dc1"></span><h3>typedef struct tagsyscomread_struct  syscomread_struct<a class="headerlink" href="#typedef-struct-tagsyscomread-struct-syscomread-struct" title="Permalink to this headline">¶</a></h3>
+<p>Reads a number bytes from the specifed device to the receive buffer.</p>
+<p>IMPLEMENTATION NOTE: If the timeout elapsed until the requested number of bytes are received, the function returns with the bytes still received! This must be considered in the caller and the implementation!</p>
+<p><strong>Returns:</strong></p>
+<p><a href="#id11"><span class="problematic" id="id12">*</span></a>RESULT: Number of actually read bytes</p>
+</div>
+<div class="section" id="typedef-struct-tagsyscomsetsettings-struct-syscomsetsettings-struct">
+<span id="group-sys-com-itf-1ga9d9a1056c695224dca3c30d419382463"></span><h3>typedef struct tagsyscomsetsettings_struct  syscomsetsettings_struct<a class="headerlink" href="#typedef-struct-tagsyscomsetsettings-struct-syscomsetsettings-struct" title="Permalink to this headline">¶</a></h3>
+<p>Set the parameter of the interface specified by handle.
+<strong>Returns:</strong></p>
+<p><a href="#id13"><span class="problematic" id="id14">*</span></a>RESULT: Returns the runtime system error code (see CmpErrors.library).</p>
+</div>
+<div class="section" id="typedef-struct-tagsyscomsettimeout-struct-syscomsettimeout-struct">
+<span id="group-sys-com-itf-1ga4cdb08bbc06f84e0baf0ef3208cb9500"></span><h3>typedef struct tagsyscomsettimeout_struct  syscomsettimeout_struct<a class="headerlink" href="#typedef-struct-tagsyscomsettimeout-struct-syscomsettimeout-struct" title="Permalink to this headline">¶</a></h3>
+<p>Set the timeout of the specified serial interface (hardware timeout). The Timeout is the time between two received or sent characters until the read or write operation will return. Typically this value should be 0 (returns immediately)
+<strong>Returns:</strong></p>
+<p><a href="#id15"><span class="problematic" id="id16">*</span></a>RESULT: Returns the runtime system error code (see CmpErrors.library).</p>
+</div>
+<div class="section" id="typedef-struct-tagsyscomwrite-struct-syscomwrite-struct">
+<span id="group-sys-com-itf-1gae655e4f66c8b7201920833dc6e02c93d"></span><h3>typedef struct tagsyscomwrite_struct  syscomwrite_struct<a class="headerlink" href="#typedef-struct-tagsyscomwrite-struct-syscomwrite-struct" title="Permalink to this headline">¶</a></h3>
+<p>Writes a number bytes to the specifed device from the sent buffer.</p>
+<p>IMPLEMENTATION NOTE: If the timeout elapsed until the requested number of bytes are sent, the function returns with the bytes still sent! This must be considered in the caller and the implementation!</p>
+<p><strong>Returns:</strong></p>
+<p><a href="#id17"><span class="problematic" id="id18">*</span></a>RESULT: Number of actually written bytes</p>
+</div>
+<div class="section" id="typedef-com-settings-comsettings">
+<span id="group-sys-com-itf-1gac0d8d7a7a75e08eb5c7bbf5559874242"></span><h3>typedef COM_Settings COMSettings<a class="headerlink" href="#typedef-com-settings-comsettings" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION END</p>
+</div>
+<div class="section" id="typedef-com-settingsex-comsettingsex">
+<span id="group-sys-com-itf-1gaf69acb721dcf34b93878e98aa44e433f"></span><h3>typedef COM_SettingsEx COMSettingsEx<a class="headerlink" href="#typedef-com-settingsex-comsettingsex" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-isyscom-c-isyscom">
+<span id="group-sys-com-itf-1ga0b8fbec3154b167f3c6867a15ab44f88"></span><h3>typedef ISysCom_C ISysCom<a class="headerlink" href="#typedef-isyscom-c-isyscom" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="void-syscomclose-syscomclose-struct-p">
+<span id="group-sys-com-itf-1ga0df7b41fde082ecb1466b597d796de1d"></span><h3>void syscomclose (syscomclose_struct <a href="#id19"><span class="problematic" id="id20">*</span></a>p)<a class="headerlink" href="#void-syscomclose-syscomclose-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syscomgetsettings-syscomgetsettings-struct-p">
+<span id="group-sys-com-itf-1gae11e26a5385ee5ec33a28629a61d8dd7"></span><h3>void syscomgetsettings (syscomgetsettings_struct <a href="#id21"><span class="problematic" id="id22">*</span></a>p)<a class="headerlink" href="#void-syscomgetsettings-syscomgetsettings-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syscomopen-syscomopen-struct-p">
+<span id="group-sys-com-itf-1gac133791775821e103cef6e92ef824cb5"></span><h3>void syscomopen (syscomopen_struct <a href="#id23"><span class="problematic" id="id24">*</span></a>p)<a class="headerlink" href="#void-syscomopen-syscomopen-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syscomopen2-syscomopen2-struct-p">
+<span id="group-sys-com-itf-1ga8d94f973e3cb339573241cb102f3b81e"></span><h3>void syscomopen2 (syscomopen2_struct <a href="#id25"><span class="problematic" id="id26">*</span></a>p)<a class="headerlink" href="#void-syscomopen2-syscomopen2-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syscompurge-syscompurge-struct-p">
+<span id="group-sys-com-itf-1gacf81be248974e6f79adf9130dbd975d2"></span><h3>void syscompurge (syscompurge_struct <a href="#id27"><span class="problematic" id="id28">*</span></a>p)<a class="headerlink" href="#void-syscompurge-syscompurge-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syscomread-syscomread-struct-p">
+<span id="group-sys-com-itf-1gac8ecb737346f72e608f02c515e5a09e5"></span><h3>void syscomread (syscomread_struct <a href="#id29"><span class="problematic" id="id30">*</span></a>p)<a class="headerlink" href="#void-syscomread-syscomread-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syscomsetsettings-syscomsetsettings-struct-p">
+<span id="group-sys-com-itf-1gad571f4b8ba2e624dfddf0c989b0c950d"></span><h3>void syscomsetsettings (syscomsetsettings_struct <a href="#id31"><span class="problematic" id="id32">*</span></a>p)<a class="headerlink" href="#void-syscomsetsettings-syscomsetsettings-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syscomsettimeout-syscomsettimeout-struct-p">
+<span id="group-sys-com-itf-1ga2de2eb1038c3d1740378dff5179ebec0"></span><h3>void syscomsettimeout (syscomsettimeout_struct <a href="#id33"><span class="problematic" id="id34">*</span></a>p)<a class="headerlink" href="#void-syscomsettimeout-syscomsettimeout-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-syscomwrite-syscomwrite-struct-p">
+<span id="group-sys-com-itf-1ga53101f1df95b5fd10dce26ac552b188f"></span><h3>void syscomwrite (syscomwrite_struct <a href="#id35"><span class="problematic" id="id36">*</span></a>p)<a class="headerlink" href="#void-syscomwrite-syscomwrite-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-syscomosinit-init-struct-pinit">
+<span id="group-sys-com-itf-1ga5ed91811723c888f323839ae0fe24e96"></span><h3>RTS_RESULT SysComOSInit (INIT_STRUCT <a href="#id37"><span class="problematic" id="id38">*</span></a>pInit)<a class="headerlink" href="#rts-result-syscomosinit-init-struct-pinit" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-syscomoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2">
+<span id="group-sys-com-itf-1gab10557427484ee710e95f247b3367057"></span><h3>RTS_RESULT SysComOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)<a class="headerlink" href="#rts-result-syscomoshookfunction-rts-ui32-ulhook-rts-uintptr-ulparam1-rts-uintptr-ulparam2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-handle-syscomopen-short-sport-rts-result-presult">
+<span id="group-sys-com-itf-1gacf40acf2958ee6cb83c02cf0cfa75716"></span><h3>RTS_HANDLE SysComOpen (short sPort, RTS_RESULT <a href="#id39"><span class="problematic" id="id40">*</span></a>pResult)<a class="headerlink" href="#rts-handle-syscomopen-short-sport-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Open a serial communication device</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>sPort</td>
+<td>Number of the Port to open: 1=COM1, 2=COM2, ...</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the interface or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-handle-syscomopen2-com-settings-psettings-com-settingsex-psettingsex-rts-result-presult">
+<span id="group-sys-com-itf-1ga846908a8dc90fdb5fc36d0bb18bb36c7"></span><h3>RTS_HANDLE SysComOpen2 (COM_Settings <a href="#id41"><span class="problematic" id="id42">*</span></a>pSettings, COM_SettingsEx <a href="#id43"><span class="problematic" id="id44">*</span></a>pSettingsEx, RTS_RESULT <a href="#id45"><span class="problematic" id="id46">*</span></a>pResult)<a class="headerlink" href="#rts-handle-syscomopen2-com-settings-psettings-com-settingsex-psettingsex-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Opens a serial communication device specified with settings</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="11%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pSettings</td>
+<td>Settings for the communication device. See category &#8220;Com port settings&#8221; for detailed information</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pSettingsEx</td>
+<td>Optional extended settings for the serial device. Can be NULL.</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the interface or RTS_INVALID_HANDLE if failed</p>
+</div>
+<div class="section" id="rts-result-syscomsetsettings-rts-handle-hcom-com-settings-psettings-com-settingsex-psettingsex">
+<span id="group-sys-com-itf-1gae816607ac4a8146258416fc228da42e9"></span><h3>RTS_RESULT SysComSetSettings (RTS_HANDLE hCom, COM_Settings <a href="#id47"><span class="problematic" id="id48">*</span></a>pSettings, COM_SettingsEx <a href="#id49"><span class="problematic" id="id50">*</span></a>pSettingsEx)<a class="headerlink" href="#rts-result-syscomsetsettings-rts-handle-hcom-com-settings-psettings-com-settingsex-psettingsex" title="Permalink to this headline">¶</a></h3>
+<p>Set the parameter of the interface specified by handle</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="25%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hCom</td>
+<td>Handle to Com Port</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pSettings</td>
+<td>Pointer to new settings</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pSettingsEx</td>
+<td>Pointer to extended settings</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-syscomgetsettings-rts-handle-hcom-com-settings-psettings-com-settingsex-psettingsex">
+<span id="group-sys-com-itf-1gaa6f95bd94a3d358f26ba49962623491d"></span><h3>RTS_RESULT SysComGetSettings (RTS_HANDLE hCom, COM_Settings <a href="#id51"><span class="problematic" id="id52">*</span></a>pSettings, COM_SettingsEx <a href="#id53"><span class="problematic" id="id54">*</span></a>pSettingsEx)<a class="headerlink" href="#rts-result-syscomgetsettings-rts-handle-hcom-com-settings-psettings-com-settingsex-psettingsex" title="Permalink to this headline">¶</a></h3>
+<p>Get the parameter of the interface specified by handle</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="25%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hCom</td>
+<td>Handle to Com Port</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pSettings</td>
+<td>Pointer to new settings</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pSettingsEx</td>
+<td>Pointer to extended settings</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-syscomclose-rts-handle-hcom">
+<span id="group-sys-com-itf-1gae03e5ece86996b91333ca76ed0d7a634"></span><h3>RTS_RESULT SysComClose (RTS_HANDLE hCom)<a class="headerlink" href="#rts-result-syscomclose-rts-handle-hcom" title="Permalink to this headline">¶</a></h3>
+<p>Close a serial communication device</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="17%" />
+<col width="57%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hCom</td>
+<td>Handle to com port</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-ui32-syscomread-rts-handle-hcom-unsigned-char-pbybuffer-rts-ui32-uisize-rts-ui32-ultimeout-rts-result-presult">
+<span id="group-sys-com-itf-1gaa28663547298bb38140095bda09e653f"></span><h3>RTS_UI32 SysComRead (RTS_HANDLE hCom, unsigned char <a href="#id55"><span class="problematic" id="id56">*</span></a>pbyBuffer, RTS_UI32 uiSize, RTS_UI32 ulTimeout, RTS_RESULT <a href="#id57"><span class="problematic" id="id58">*</span></a>pResult)<a class="headerlink" href="#rts-ui32-syscomread-rts-handle-hcom-unsigned-char-pbybuffer-rts-ui32-uisize-rts-ui32-ultimeout-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Reads a number bytes from the specifed device to the receive buffer.</p>
+<p>IMPLEMENTATION NOTE: If the timeout elapsed until the requested number of bytes are received, the function returns with the bytes still received! This must be considered in the caller and the implementation!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="5%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hCom</td>
+<td>Handle to com port</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pbyBuffer</td>
+<td>Pointer to data buffer for received data</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>uiSize</td>
+<td>Requested number of bytes to read. Must be less or equal the size of the receive buffer!</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulTimeout</td>
+<td>Timeout to read data from the device. 0=Immediate return. If the timeout elapsed, the function returns with the still received data (could be less then the requested number of bytes!)</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to error code, ERR_TIMEOUT if timeout elapsed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Number of actually read bytes</p>
+</div>
+<div class="section" id="rts-ui32-syscomwrite-rts-handle-hcom-unsigned-char-pbybuffer-rts-ui32-uisize-rts-ui32-ultimeout-rts-result-presult">
+<span id="group-sys-com-itf-1ga6df7263b8cdb70b1ce1d944dbe167d18"></span><h3>RTS_UI32 SysComWrite (RTS_HANDLE hCom, unsigned char <a href="#id59"><span class="problematic" id="id60">*</span></a>pbyBuffer, RTS_UI32 uiSize, RTS_UI32 ulTimeout, RTS_RESULT <a href="#id61"><span class="problematic" id="id62">*</span></a>pResult)<a class="headerlink" href="#rts-ui32-syscomwrite-rts-handle-hcom-unsigned-char-pbybuffer-rts-ui32-uisize-rts-ui32-ultimeout-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Writes a number bytes to the specifed device from the sent buffer.</p>
+<p>IMPLEMENTATION NOTE: If the timeout elapsed until the requested number of bytes are sent, the function returns with the bytes still sent! This must be considered in the caller and the implementation!</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="6%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hCom</td>
+<td>Handle to com port</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pbyBuffer</td>
+<td>Pointer to data buffer for sent data</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>uiSize</td>
+<td>Requested number of bytes to sent. Must be less or equal the size of the sent buffer!</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulTimeout</td>
+<td>Timeout to sent data to the device. 0=Immediate return. If the timeout elapsed, the function returns with the still sent data (could be less then the requested number of bytes!)</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pResult</td>
+<td>Pointer to error code, ERR_TIMEOUT if timeout elapsed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Number of actually written bytes</p>
+</div>
+<div class="section" id="rts-result-syscompurge-rts-handle-hcom">
+<span id="group-sys-com-itf-1gaf299ca75a046c99de02e82a9afa1bacb"></span><h3>RTS_RESULT SysComPurge (RTS_HANDLE hCom)<a class="headerlink" href="#rts-result-syscompurge-rts-handle-hcom" title="Permalink to this headline">¶</a></h3>
+<p>Clear the fifo buffer of the serial interface</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="17%" />
+<col width="57%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hCom</td>
+<td>Handle to com port</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-syscomsettimeout-rts-handle-hcom-rts-ui32-ultimeout">
+<span id="group-sys-com-itf-1ga9fa7a0c0d1ea82160e247351e6883958"></span><h3>RTS_RESULT SysComSetTimeout (RTS_HANDLE hCom, RTS_UI32 ulTimeout)<a class="headerlink" href="#rts-result-syscomsettimeout-rts-handle-hcom-rts-ui32-ultimeout" title="Permalink to this headline">¶</a></h3>
+<p>Set the timeout of the specified serial interface (hardware timeout). The Timeout is the time between two received or sent characters until the read or write operation will return. Typically this value should be 0 (returns immediately)</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="28%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hCom</td>
+<td>Handle to com port</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulTimeout</td>
+<td>Timeout to set</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___sys_cpu_breakpoints_itf.html" title="SysCpuBreakpointsItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___io_drv_unsafe_bridge_moduletest_itf.html" title="IoDrvUnsafeBridgeModuletestItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

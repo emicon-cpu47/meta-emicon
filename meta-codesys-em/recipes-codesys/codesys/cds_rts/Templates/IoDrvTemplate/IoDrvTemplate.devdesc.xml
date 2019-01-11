@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DeviceDescription xmlns="http://www.3s-software.com/schemas/DeviceDescription-1.0.xsd" xmlns:ts="http://www.3s-software.com/schemas/TargetSettings-0.1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Types namespace="local">
+		<BitfieldType basetype="std:BYTE" name="TBitStringByte">
+			<Component identifier="Bit0" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:TBitStringByte.Bit0">Bit0</VisibleName>
+			</Component>
+			<Component identifier="Bit1" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:TBitStringByte.Bit1">Bit1</VisibleName>
+			</Component>
+			<Component identifier="Bit2" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:TBitStringByte.Bit2">Bit2</VisibleName>
+			</Component>
+			<Component identifier="Bit3" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:TBitStringByte.Bit3">Bit3</VisibleName>
+			</Component>
+			<Component identifier="Bit4" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:TBitStringByte.Bit4">Bit4</VisibleName>
+			</Component>
+			<Component identifier="Bit5" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:TBitStringByte.Bit5">Bit5</VisibleName>
+			</Component>
+			<Component identifier="Bit6" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:TBitStringByte.Bit6">Bit6</VisibleName>
+			</Component>
+			<Component identifier="Bit7" type="std:BOOL">
+				<Default />
+				<VisibleName name="local:TBitStringByte.Bit7">Bit7</VisibleName>
+			</Component>
+		</BitfieldType>
+		<StructType name="TChannel4Byte">
+			<Component identifier="Byte0" type="local:TBitStringByte">
+				<Default />
+				<VisibleName name="local:TChannel3Byte.Byte0">Byte0</VisibleName>
+			</Component>
+			<Component identifier="Byte1" type="local:TBitStringByte">
+				<Default />
+				<VisibleName name="local:TChannel3Byte.Byte1">Byte1</VisibleName>
+			</Component>
+			<Component identifier="Byte2" type="local:TBitStringByte">
+				<Default />
+				<VisibleName name="local:TChannel3Byte.Byte2">Byte2</VisibleName>
+			</Component>
+			<Component identifier="Byte3" type="local:TBitStringByte">
+				<Default />
+				<VisibleName name="local:TChannel3Byte.Byte2">Byte3</VisibleName>
+			</Component>
+		</StructType>
+	</Types>
+	<Strings namespace="local">
+		<Language lang="en">
+			<String identifier="ModelName">IoDrvTemplate</String>
+			<String identifier="DeviceDescription"></String>
+			<String identifier="VendorName">MyCompany</String>
+			<String identifier="typename">MyDevice_With_Libs</String>
+			<String identifier="typedescription">
+		A device that includes libs and automatically generates some FB instances from this libs.
+			</String>
+		</Language>
+	</Strings>
+	<Device hideInCatalogue="false">
+		<DeviceIdentification>
+			<Type>32768</Type>	<!-- CT_OEM_START = 0x8000 -->
+			<Id>1001 0007</Id>
+			<Version>3.5.4.0</Version>
+		</DeviceIdentification>
+		<DeviceInfo>
+			<Name name="local:ModelName">IoDrvTemplate</Name>
+			<Description name="local:DeviceDescription">Device that is supported by an IO-driver written in C</Description>
+			<Vendor name="local:VendorName">MyCompany</Vendor>
+			<OrderNumber>???</OrderNumber>
+		</DeviceInfo>
+		<Connector moduleType="257" interface="Common.PCI" role="child" explicit="false" connectorId="1" hostpath="-1">
+			<InterfaceName name="local:PCI">PCI-Bus</InterfaceName>
+			<Slot count="1" allowEmpty="false"></Slot>
+		</Connector>
+		<!-- moduleType: CT_OEM_START = 0x8000 -->	
+		<Connector moduleType="32768" interface="MyCompany:Internal" role="parent" explicit="false" connectorId="2" hostpath="1">
+			<InterfaceName name="local:DP">Internal</InterfaceName>
+			<Var max="125"></Var>
+			<DriverInfo needsBusCycle="true">
+				<Scan supported="true">
+				</Scan>
+			</DriverInfo>
+			<HostParameterSet>
+				<Parameter ParameterId="393218" type="std:STRING">
+					<Attributes channel="none" download="true" functional="false" offlineaccess="write" onlineaccess="read" />
+					<Default>'MyCompany'</Default>
+					<Name name="local:Id393218">Vendor</Name>
+					<Description name="local:Id393218.Desc">Vendor of the device</Description>
+				</Parameter>
+				<Parameter ParameterId="393219" type="std:STRING">
+					<Attributes channel="none" download="true" functional="false" offlineaccess="write" onlineaccess="read" />
+					<Default>'MyCard'</Default>
+					<Name name="local:Id393219">ModelName</Name>
+					<Description name="local:Id393219.Desc">Model name of the device</Description>
+				</Parameter>
+				<Parameter ParameterId="393220" type="std:DWORD">
+					<Attributes channel="none" download="true" functional="false" offlineaccess="write" onlineaccess="readwrite" />
+					<Default>1234</Default>
+					<Name name="local:Id393220">DwordParameter</Name>
+					<Description name="local:Id393220.Desc">Test parameter</Description>
+				</Parameter>
+				<Parameter ParameterId="393221" type="std:BOOL">
+					<Attributes channel="none" download="true" functional="false" offlineaccess="write" onlineaccess="readwrite" />
+					<Default>0</Default>
+					<Name name="local:Id393221">Chance_Online_State</Name>
+					<Description name="local:Id393220.Desc">Parameter to change the online state of the device</Description>
+				</Parameter>	
+				<Parameter ParameterId="1000" type="local:TChannel4Byte">
+					<Attributes channel="input" download="true" functional="false" offlineaccess="readwrite" onlineaccess="readwrite" />
+					<Default>17</Default>
+					<Name name="local:in1">in1</Name>
+				</Parameter>
+				<Parameter ParameterId="2000" type="local:TChannel4Byte">
+					<Attributes channel="output" download="true" functional="false" offlineaccess="readwrite" onlineaccess="readwrite" />
+					<Default>17</Default>
+					<Name name="local:out1">out1</Name>
+				</Parameter>
+			</HostParameterSet>
+		</Connector>
+	</Device>
+</DeviceDescription>

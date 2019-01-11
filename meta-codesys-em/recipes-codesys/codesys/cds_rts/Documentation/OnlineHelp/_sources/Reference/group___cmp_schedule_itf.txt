@@ -1,0 +1,421 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_schedule_itf:
+
+==============
+CmpScheduleItf
+==============
+
+Interface of CmpSchedule. :ref:`More... <group___cmp_schedule_itf-details>`
+
+Modules
+-------
+
+- :ref:`Compiler switch <group___cmp_schedule_itf___compilerswitch>`
+
+- :ref:`Event parameter <group___cmp_schedule_itf___eventparameter>`
+
+- :ref:`Events <group___cmp_schedule_itf___events>`
+
+- :ref:`Features <group___cmp_schedule_itf___features>`
+
+- :ref:`OperationID <group___cmp_schedule_itf___operation_i_d>`
+
+- :ref:`Settings <group___cmp_schedule_itf___settings>`
+
+- :ref:`Stack size <group___cmp_schedule_itf___stacksize>`
+
+- :ref:`Static defines <group___cmp_schedule_itf___staticdefines>`
+
+- :ref:`Typedef <group___cmp_schedule_itf___typedef>`
+
+Macros
+------
+
+- #define :ref:`CMD_INIT <group___cmp_schedule_itf_1ga2677fc43f8393bcf3bafc8bbface003f>` 0
+
+- #define :ref:`CMD_TICK <group___cmp_schedule_itf_1ga75193bceb35520e3ab3db84e6a00b551>` 1
+
+- #define :ref:`CMD_WAIT <group___cmp_schedule_itf_1ga6336e6fafd6732a81e1c58b669293657>` 2
+
+- #define :ref:`CMD_DEBUG_LOOP <group___cmp_schedule_itf_1ga9534cb3d0d2d2165ec30f0897d5b8149>` 3
+
+- #define :ref:`CMD_TIMESLICE_BEGIN <group___cmp_schedule_itf_1ga3db86340e4dd57d2d6f3af7c6a269b89>` 4
+
+- #define :ref:`CMD_TIMESLICE_END <group___cmp_schedule_itf_1ga095194108cab962d602bcd2be3920113>` 5
+
+- #define :ref:`SCHEDULEKEY_INT_SCHEDULER_INTERVAL_US <group___cmp_schedule_itf_1ga7d7ddbeeedf4d4c3b1e6a03c53929368>` "SchedulerInterval"
+
+- #define :ref:`SCHEDULEKEY_INT_SCHEDULER_INTERVAL_DEFAULT <group___cmp_schedule_itf_1gaae352bacfebf68e13196822a32d8ed63>` INT32_C(1000)
+
+- #define :ref:`SCHEDULEKEY_INT_PROCESSOR_LOAD_ENABLE <group___cmp_schedule_itf_1gaf305b2aae89ef50eaa23e5d084b9e588>` "ProcessorLoad.Enable"
+
+- #define :ref:`SCHEDULEVALUE_INT_PROCESSOR_LOAD_ENABLE_DEFAULT <group___cmp_schedule_itf_1gaa216bfdce71477486c37c4194adbf3cb>` 1
+
+- #define :ref:`SCHEDULEKEY_INT_PROCESSOR_LOAD_MAX <group___cmp_schedule_itf_1ga3a6ac6a60f0c406d2a28c37c88762bcc>` "ProcessorLoad.Maximum"
+
+- #define :ref:`SCHEDULEKEY_INT_PROCESSOR_LOAD_MAX_DEFAULT <group___cmp_schedule_itf_1ga389771404a384585ae3928869faa096f>` 0
+
+- #define :ref:`SCHEDULEKEY_INT_PROCESSOR_LOAD_INTERVAL <group___cmp_schedule_itf_1ga235f3b458d707e56ff60f915b5a9ab1d>` "ProcessorLoad.Interval"
+
+- #define :ref:`SCHEDULEKEY_INT_PROCESSOR_LOAD_INTERVAL_DEFAULT <group___cmp_schedule_itf_1ga621266a8276ba4feccde24bb8f17bf66>` INT32_C(1000)
+
+- #define :ref:`SCHEDULEKEY_STRING_TIMESLICING_MODE <group___cmp_schedule_itf_1ga851f471f8d35cda92ff9caaa77fee1ed>` "Timeslicing.Mode"
+
+- #define :ref:`SCHEDULEVALUE_STRING_TIMESLICING_MODE_NONE <group___cmp_schedule_itf_1gac1641ad8036281c9f097e8cb62ca8b67>` "None"
+
+- #define :ref:`SCHEDULEVALUE_STRING_TIMESLICING_MODE_INTERNAL <group___cmp_schedule_itf_1ga7d4395d7d1a1ffe5ef0e71042acecd2b>` "Internal"
+
+- #define :ref:`SCHEDULEVALUE_STRING_TIMESLICING_MODE_EXTERNAL <group___cmp_schedule_itf_1ga3104770b51a6c0d376c059a947811c2b>` "External"
+
+- #define :ref:`SCHEDULEVALUE_STRING_TIMESLICING_MODE_DEFAULT <group___cmp_schedule_itf_1ga79ddc37ff7f59b1f485c3344da098333>` :ref:`SCHEDULEVALUE_STRING_TIMESLICING_MODE_NONE <group___cmp_schedule_itf_1gac1641ad8036281c9f097e8cb62ca8b67>`
+
+- #define :ref:`SCHEDULEKEY_INT_TIMESLICING_PLCSLICE_PERCENT <group___cmp_schedule_itf_1ga5c894d81a2a849dbd9ba4c73296eafae>` "Timeslicing.PlcSlicePercent"
+
+- #define :ref:`SCHEDULEKEY_INT_TIMESLICING_PLCSLICE_PERCENT_DEFAULT <group___cmp_schedule_itf_1ga9967a4ff704ea7d7e237b5a65e38cbcd>` 0
+
+- #define :ref:`SCHEDULEKEY_INT_TIMESLICING_PLCSLICE_US <group___cmp_schedule_itf_1gad5ec974321fc9c8d8a1561ab5cb53ead>` "Timeslicing.PlcSliceUs"
+
+- #define :ref:`SCHEDULEKEY_INT_TIMESLICING_START_ON_PROCESSORLOAD <group___cmp_schedule_itf_1ga8c968efed440b6e2f29a45dc9f25bb0f>` "Timeslicing.StartOnProcessorLoad"
+
+- #define :ref:`SCHEDULETIMERKEY_USE_WATCHDOG_TIMER <group___cmp_schedule_itf_1gad0bd330cd8fe13f5fa893bdd6c372e6b>` "UseWatchdogTimer"
+
+- #define :ref:`SCHEDULETIMERVALUE_USE_WATCHDOG_TIMER_DEFAULT <group___cmp_schedule_itf_1ga309f1aaddbd67d56ca7c1a1f7697d1e0>` 1
+
+- #define :ref:`SCHEDULEKEY_INT_ENABLE_LOGGER <group___cmp_schedule_itf_1gae064d8b75e8f27260c09c86de0af5035>` "EnableLogger"
+
+- #define :ref:`SCHEDULEKEY_INT_FREEWHEELING_CYCLETIME_US <group___cmp_schedule_itf_1ga3298d253eb05aeee7c0ea0c756a89d35>` "Task.Freewheeling.Cycletime"
+
+- #define :ref:`SCHEDULEKEY_INT_FREEWHEELING_CYCLETIME_DEFAULT <group___cmp_schedule_itf_1ga8b1659b133a0adfc9e87a04a16b8824d>` INT32_C(-1)
+
+- #define :ref:`SCHEDULEKEY_DONT_USE_MICROSECOND_TIMING <group___cmp_schedule_itf_1gaf7e5f5cf31445208ddb2e4c9e3abc797>` "DontUseMicrosecondTiming"
+
+- #define :ref:`SCHEDULEVALUE_DONT_USE_MICROSECOND_TIMING_DEFAULT <group___cmp_schedule_itf_1gabc12c1a5bd8a33f81c7352be8dea8a2c>` 0
+
+- #define :ref:`SCHEDULEKEY_STRING_SCHEDULING_MODE <group___cmp_schedule_itf_1ga213614f35353d15b1b904c491124518d>` "Scheduling.Mode"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_MODE_MICROSECOND <group___cmp_schedule_itf_1ga5165cba0a7eceb5d78487421cc15306b>` "MicroSecond"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_MODE_TICK <group___cmp_schedule_itf_1ga7b8dfc69398b8f672cbe36ad80e3af99>` "Tick"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_MODE_OS_SCHEDULE <group___cmp_schedule_itf_1gad561232efce551d4da512d7f30c41901>` "OSScheduler"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_MODE_DEFAULT <group___cmp_schedule_itf_1gaa376aefac478d4ec2937ae7eb5506e38>` :ref:`SCHEDULEVALUE_STRING_SCHEDULING_MODE_MICROSECOND <group___cmp_schedule_itf_1ga5165cba0a7eceb5d78487421cc15306b>`
+
+- #define :ref:`SCHEDULEKEY_STRING_SCHEDULING_TASKSUPERVISOR <group___cmp_schedule_itf_1gaa15cf54b5480e6734cd515ae247d2207>` "Scheduling.TaskSupervisor"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_SCHEDULETICK <group___cmp_schedule_itf_1ga917efa45a1b7f98bd3dbbe17038c9ae3>` "ScheduleTick"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_WATCHDOGTIMER <group___cmp_schedule_itf_1ga70534ca0f692a1b91fb38805956e096d>` "WatchdogTimer"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_SCHEDULETICK_TASK <group___cmp_schedule_itf_1ga3b406da6dd35a6c5b04a4e11095669b1>` "ScheduleTickTask"
+
+- #define :ref:`SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_DEFAULT <group___cmp_schedule_itf_1gaa3b98cfdeb74da9bce6f548641c6d1a5>` :ref:`SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_SCHEDULETICK <group___cmp_schedule_itf_1ga917efa45a1b7f98bd3dbbe17038c9ae3>`
+
+- #define :ref:`SCHEDULEKEY_DISABLE_OMITTED_CYCLE_WATCHDOG <group___cmp_schedule_itf_1ga441a57e03b15bc909bdbba3f980b275b>` "DisableOmittedCycleWatchdog"
+
+- #define :ref:`SCHEDULEKEY_DISABLE_OMITTED_CYCLE_WATCHDOG_DEFAULT <group___cmp_schedule_itf_1gaf9ac94174612b06c195cc12dccb8ecda>` 0
+
+- #define :ref:`SCHEDULEKEY_INT_OMITTED_CYCLE_WATCHDOG_OC <group___cmp_schedule_itf_1gad4f55fb7b6a1be789abe3fdaee5ffc8c>` "OmittedCycleWatchdog.OnlineChangeUs"
+
+- #define :ref:`SCHEDULEVALUE_INT_OMITTED_CYCLE_WATCHDOG_OC_DEFAULT <group___cmp_schedule_itf_1ga0173f03b34930c520029793d84eda622>` 0
+
+- #define :ref:`SCHEDULEKEY_INT_SUPERVISOR_TIMEOUT_MULTIPLIER <group___cmp_schedule_itf_1ga86431032a9f9e8fbf607db013581dbc4>` "SupervisorTimeoutMultiplier"
+
+- #define :ref:`SCHEDULEVALUE_INT_SUPERVISOR_TIMEOUT_MULTIPLIER_DEFAULT <group___cmp_schedule_itf_1ga600bdf246f07c0b6cc488a908f01d3fb>` INT32_C(2)
+
+.. _group___cmp_schedule_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpSchedule.
+
+Interface of the scheduler.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_schedule_itf_1ga2677fc43f8393bcf3bafc8bbface003f:
+
+#define CMD_INIT 0
+^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga75193bceb35520e3ab3db84e6a00b551:
+
+#define CMD_TICK 1
+^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga6336e6fafd6732a81e1c58b669293657:
+
+#define CMD_WAIT 2
+^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga9534cb3d0d2d2165ec30f0897d5b8149:
+
+#define CMD_DEBUG_LOOP 3
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga3db86340e4dd57d2d6f3af7c6a269b89:
+
+#define CMD_TIMESLICE_BEGIN 4
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga095194108cab962d602bcd2be3920113:
+
+#define CMD_TIMESLICE_END 5
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga7d7ddbeeedf4d4c3b1e6a03c53929368:
+
+#define SCHEDULEKEY_INT_SCHEDULER_INTERVAL_US "SchedulerInterval"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the interval in microseconds of the scheduler. INT type.
+
+.. _group___cmp_schedule_itf_1gaae352bacfebf68e13196822a32d8ed63:
+
+#define SCHEDULEKEY_INT_SCHEDULER_INTERVAL_DEFAULT INT32_C(1000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1gaf305b2aae89ef50eaa23e5d084b9e588:
+
+#define SCHEDULEKEY_INT_PROCESSOR_LOAD_ENABLE "ProcessorLoad.Enable"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enable the processor load measurement of all plc tasks. If the processor load should be limited, you can conifure this with the setting "ProcessorLoad.Maximum".
+
+.. _group___cmp_schedule_itf_1gaa216bfdce71477486c37c4194adbf3cb:
+
+#define SCHEDULEVALUE_INT_PROCESSOR_LOAD_ENABLE_DEFAULT 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga3a6ac6a60f0c406d2a28c37c88762bcc:
+
+#define SCHEDULEKEY_INT_PROCESSOR_LOAD_MAX "ProcessorLoad.Maximum"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set maximum processor load of all plc tasks. If maximum is reached, either a watchdog exception is generated (default) or timelicing is started (see setting [Timelicing.StartOnProcessorLoad]). Value: 10..100% possible. 0: feature is diabled. Default: 0 (Disabled)
+
+.. _group___cmp_schedule_itf_1ga389771404a384585ae3928869faa096f:
+
+#define SCHEDULEKEY_INT_PROCESSOR_LOAD_MAX_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga235f3b458d707e56ff60f915b5a9ab1d:
+
+#define SCHEDULEKEY_INT_PROCESSOR_LOAD_INTERVAL "ProcessorLoad.Interval"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the interval of the processor load measurement in milliseconds. During this interval, the processorload will be added up.
+
+.. _group___cmp_schedule_itf_1ga621266a8276ba4feccde24bb8f17bf66:
+
+#define SCHEDULEKEY_INT_PROCESSOR_LOAD_INTERVAL_DEFAULT INT32_C(1000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga851f471f8d35cda92ff9caaa77fee1ed:
+
+#define SCHEDULEKEY_STRING_TIMESLICING_MODE "Timeslicing.Mode"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to set the timeslice mode of the scheduler Default: None
+
+.. _group___cmp_schedule_itf_1gac1641ad8036281c9f097e8cb62ca8b67:
+
+#define SCHEDULEVALUE_STRING_TIMESLICING_MODE_NONE "None"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga7d4395d7d1a1ffe5ef0e71042acecd2b:
+
+#define SCHEDULEVALUE_STRING_TIMESLICING_MODE_INTERNAL "Internal"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga3104770b51a6c0d376c059a947811c2b:
+
+#define SCHEDULEVALUE_STRING_TIMESLICING_MODE_EXTERNAL "External"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga79ddc37ff7f59b1f485c3344da098333:
+
+#define SCHEDULEVALUE_STRING_TIMESLICING_MODE_DEFAULT :ref:`SCHEDULEVALUE_STRING_TIMESLICING_MODE_NONE <group___cmp_schedule_itf_1gac1641ad8036281c9f097e8cb62ca8b67>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga5c894d81a2a849dbd9ba4c73296eafae:
+
+#define SCHEDULEKEY_INT_TIMESLICING_PLCSLICE_PERCENT "Timeslicing.PlcSlicePercent"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to set a fix timeslice in % for all plc tasks Value: 10..90% possible. 0: feature is diabled. Default: 0 (disabled)
+
+.. _group___cmp_schedule_itf_1ga9967a4ff704ea7d7e237b5a65e38cbcd:
+
+#define SCHEDULEKEY_INT_TIMESLICING_PLCSLICE_PERCENT_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1gad5ec974321fc9c8d8a1561ab5cb53ead:
+
+#define SCHEDULEKEY_INT_TIMESLICING_PLCSLICE_US "Timeslicing.PlcSliceUs"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to set a fix timeslice in microseconds for all plc tasks 0: feature is diabled (default)
+
+.. _group___cmp_schedule_itf_1ga8c968efed440b6e2f29a45dc9f25bb0f:
+
+#define SCHEDULEKEY_INT_TIMESLICING_START_ON_PROCESSORLOAD "Timeslicing.StartOnProcessorLoad"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to set an option, if timeslicing should be started automatically, after the MaxProcessorLoad is reached (see setting [MaxProcessorLoad]) 0: Feature is diabled, 1: Feature is enabled Default: 0 (disabled)
+
+.. _group___cmp_schedule_itf_1gad0bd330cd8fe13f5fa893bdd6c372e6b:
+
+#define SCHEDULETIMERKEY_USE_WATCHDOG_TIMER "UseWatchdogTimer"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga309f1aaddbd67d56ca7c1a1f7697d1e0:
+
+#define SCHEDULETIMERVALUE_USE_WATCHDOG_TIMER_DEFAULT 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1gae064d8b75e8f27260c09c86de0af5035:
+
+#define SCHEDULEKEY_INT_ENABLE_LOGGER "EnableLogger"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to enable the logger for the scheduler
+
+.. _group___cmp_schedule_itf_1ga3298d253eb05aeee7c0ea0c756a89d35:
+
+#define SCHEDULEKEY_INT_FREEWHEELING_CYCLETIME_US "Task.Freewheeling.Cycletime"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sleep time of a freewheeling IEC task at the end of its cycle. By default (if this setting is -1), (100% - SCHEDULEKEY_INT_PROCESSOR_LOAD_MAX) of the real cycle time of a freewheeling task is assumed for sleep. Example:
+
+- This setting is -1
+
+- Execution time of the freewheeling task is 10ms -> 20% of 10ms is the sleep time => 2ms sleep at the end of its cycle NOTE: Can be configured to 0 only in combination with internal or external timeslicing! In this case, the task can be running forever, but is interrupted only by timeslicing. Be shure, that no other IEC task is running at a lower priority as this task!
+
+.. _group___cmp_schedule_itf_1ga8b1659b133a0adfc9e87a04a16b8824d:
+
+#define SCHEDULEKEY_INT_FREEWHEELING_CYCLETIME_DEFAULT INT32_C(-1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1gaf7e5f5cf31445208ddb2e4c9e3abc797:
+
+#define SCHEDULEKEY_DONT_USE_MICROSECOND_TIMING "DontUseMicrosecondTiming"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OBSOLETE: USE THE FOLLOWING SETTING INSTEAD: [Scheduling.Mode=Tick] Setting for the multitasking scheduler, to ignore the microsecond time and always use the tick resolution for decision if cyclic IEC tasks must be activated 0: Microsecond scheduling is used [Default] 1: Tick based scheduling (no usage of microseconds). NOTE: In this case, the scheduler interval must be correctly specified in setting [SchedulerInterval]!
+
+.. _group___cmp_schedule_itf_1gabc12c1a5bd8a33f81c7352be8dea8a2c:
+
+#define SCHEDULEVALUE_DONT_USE_MICROSECOND_TIMING_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga213614f35353d15b1b904c491124518d:
+
+#define SCHEDULEKEY_STRING_SCHEDULING_MODE "Scheduling.Mode"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Scheduling mode. Is used only for CmpSchedule (not supported in CmpScheduleEmbedded and CmpScheduleTimer)! o MicroSecond: Microsecond scheduling is used [Default] o Tick: Tick based scheduling (no usage of microseconds). NOTE: In this case, the scheduler interval must be correctly specified in setting [SchedulerInterval]! o OSScheduler: The operating system scheduler can schedule the cyclic tasks in realtime. In this case the RTS-scheduler does nothing. The RTS-scheduler supervises only the iEC tasks for an endless loop by default (see setting Scheduling.TaskSupervisor=ScheduleTick). To disable the RTS-scheduler completely, use the corresponding setting Scheduling.TaskSupervisor=WatchdogTimer.
+
+.. _group___cmp_schedule_itf_1ga5165cba0a7eceb5d78487421cc15306b:
+
+#define SCHEDULEVALUE_STRING_SCHEDULING_MODE_MICROSECOND "MicroSecond"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga7b8dfc69398b8f672cbe36ad80e3af99:
+
+#define SCHEDULEVALUE_STRING_SCHEDULING_MODE_TICK "Tick"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1gad561232efce551d4da512d7f30c41901:
+
+#define SCHEDULEVALUE_STRING_SCHEDULING_MODE_OS_SCHEDULE "OSScheduler"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1gaa376aefac478d4ec2937ae7eb5506e38:
+
+#define SCHEDULEVALUE_STRING_SCHEDULING_MODE_DEFAULT :ref:`SCHEDULEVALUE_STRING_SCHEDULING_MODE_MICROSECOND <group___cmp_schedule_itf_1ga5165cba0a7eceb5d78487421cc15306b>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1gaa15cf54b5480e6734cd515ae247d2207:
+
+#define SCHEDULEKEY_STRING_SCHEDULING_TASKSUPERVISOR "Scheduling.TaskSupervisor"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Scheduling task supervisor mode. Is used only for CmpSchedule (not supported in CmpScheduleEmbedded and CmpScheduleTimer)! o ScheduleTick: The scheduler supervises all IEC tasks at every schedule tick for an expired watchdog [Default]. Scheduler runs in a timer. o ScheduleTickTask: The scheduler supervises all IEC tasks at every schedule tick for an expired watchdog. Here the scheduler is running in a task. o WatchdogTimer: All IEC tasks are supervised by a watchdog timer. So the RTS-schedule tick is disabled and does not consume any resources (tickless)
+
+.. _group___cmp_schedule_itf_1ga917efa45a1b7f98bd3dbbe17038c9ae3:
+
+#define SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_SCHEDULETICK "ScheduleTick"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga70534ca0f692a1b91fb38805956e096d:
+
+#define SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_WATCHDOGTIMER "WatchdogTimer"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga3b406da6dd35a6c5b04a4e11095669b1:
+
+#define SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_SCHEDULETICK_TASK "ScheduleTickTask"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1gaa3b98cfdeb74da9bce6f548641c6d1a5:
+
+#define SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_DEFAULT :ref:`SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_SCHEDULETICK <group___cmp_schedule_itf_1ga917efa45a1b7f98bd3dbbe17038c9ae3>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga441a57e03b15bc909bdbba3f980b275b:
+
+#define SCHEDULEKEY_DISABLE_OMITTED_CYCLE_WATCHDOG "DisableOmittedCycleWatchdog"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to disable the new watchdog feature to detected omitted cycles of a task. THis can be activated for backward compatibility, if feature makes a problem in existing systems. NOTE: Setting is ony available for CmpSchedule (not in CmpScheduleTimer and CmpScheduleEmbedded)! 0: Omitted cycle watchdog is enabled [Default] 1: Disable omitted cycle watchdog
+
+.. _group___cmp_schedule_itf_1gaf9ac94174612b06c195cc12dccb8ecda:
+
+#define SCHEDULEKEY_DISABLE_OMITTED_CYCLE_WATCHDOG_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1gad4f55fb7b6a1be789abe3fdaee5ffc8c:
+
+#define SCHEDULEKEY_INT_OMITTED_CYCLE_WATCHDOG_OC "OmittedCycleWatchdog.OnlineChangeUs"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to specify the watchdog time in [us] that is added as a constant to the omitted cycle watchdog during OnlineChange.
+
+ATTENTION: This should only be used on systems to inhibit a watchdog exception for longer processing online change code! Setting must only be used for systems, that has sometimes a serious problem with watchdog exception during OnlineChange, but the specified jitter can be accepted!
+
+NOTES:
+
+- Setting is ony available for CmpSchedule (not in CmpScheduleTimer and CmpScheduleEmbedded)!
+
+- 0=Standard omitted cycle watchdog time is used
+
+.. _group___cmp_schedule_itf_1ga0173f03b34930c520029793d84eda622:
+
+#define SCHEDULEVALUE_INT_OMITTED_CYCLE_WATCHDOG_OC_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf_1ga86431032a9f9e8fbf607db013581dbc4:
+
+#define SCHEDULEKEY_INT_SUPERVISOR_TIMEOUT_MULTIPLIER "SupervisorTimeoutMultiplier"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting to specify the multiplier of the schedule interval for the timeout of the supervisor (e.g. the hardware watchdog). Default: 2 (timeout after expiration of the double of the scheduler interval).
+
+.. _group___cmp_schedule_itf_1ga600bdf246f07c0b6cc488a908f01d3fb:
+
+#define SCHEDULEVALUE_INT_SUPERVISOR_TIMEOUT_MULTIPLIER_DEFAULT INT32_C(2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

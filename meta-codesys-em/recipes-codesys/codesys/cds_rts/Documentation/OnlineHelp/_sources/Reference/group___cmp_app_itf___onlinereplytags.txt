@@ -1,0 +1,51 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_app_itf___onlinereplytags:
+
+=================
+Online reply tags
+=================
+
+ :ref:`More... <group___cmp_app_itf___onlinereplytags-details>`
+
+Macros
+------
+
+- #define :ref:`TAG_REPLY_EXTERNAL_REFERENCE_ERROR_LIST <group___cmp_app_itf___onlinereplytags_1gac70ddd10d91e45810a5520a5593acf42>` 0x01
+
+- #define :ref:`TAG_REPLY_EXTERNAL_REFERENCE_RESULT <group___cmp_app_itf___onlinereplytags_1ga9ce6076b069638328fddd34c4bd97874>` 0x02
+
+- #define :ref:`TAG_REPLY_SYS_APP_ERROR_LIST <group___cmp_app_itf___onlinereplytags_1gab3aa10c8dc9211dc65d6c590c83d9b8a>` 0x03
+
+.. _group___cmp_app_itf___onlinereplytags-details:
+
+Detailed Description
+--------------------
+
+
+
+ReadStatus service. Returns status information about the active Task of the current Application. TAG_APPL_TASK_INDEX may be optionally transferred preceding TAG_APPL_ID to request a specific task.  <service name="SRV_READ_STATUS"> <Request> <tag name="TAG_APPL_APPLICATIONDESC" required="mandatory">Top level tag</tag> <tag name="TAG_APPL_TASK_INDEX" required="optional">[RTS_UI32]: Task index</tag> <tag name="TAG_APPL_ID" required="mandatory">[RTS_UI32]: Session ID; triggers READ_STATUS_RESULT, READ_STATUS_EXECUTIONPOSITION, READ_STATUS_BPHITCOUNT, READ_STATUS_BPHITCOUNTEX</tag> <tag name="READ_STATUS_VERSION" required="optional">triggers READ_STATUS_INSTANCEPOSITION, READ_STATUS_DEBUGTASK</tag> <tag name="READ_USER_NOTIFY" required="optional">triggers READ_USER_NOTIFY</tag> </Request> <Response> <tag name="READ_STATUS_REPLY" required="mandatory">Top level tag may contain the following sub tags</tag> <tag name="READ_STATUS_RESULT" required="optional">[RTS_UI16, RTS_UI32, RTS_UI32]: Result code, App state, App OpState</tag> <tag name="READ_STATUS_EXECUTIONPOSITION" required="optional">[RTS_UI16, RTS_UI32]: Area, Offset of callstackEntry</tag> <tag name="READ_STATUS_DATABP_POSITION" required="optional">[RTS_UI16, RTS_UI32]: Area, Offset of reched data breakpoint</tag> <tag name="READ_STATUS_BPHITCOUNT" required="optional">[RTS_UI32]: HitCount</tag> <tag name="READ_STATUS_BPHITCOUNTEX" required="optional">[RTS_UI16, RTS_UI16, RTS_UI32, RTS_UI32]: Area, state, Offset, current hitcount of BP</tag> <tag name="READ_STATUS_INSTANCEPOSITION" required="optional">[RTS_UI16, RTS_UI32]: AreaInstance, OffsetInstance of callstackEntry</tag> <tag name="READ_STATUS_DEBUGTASK" required="optional">[RTS_UI16]: DebugTaskIdx</tag> <tag name="READ_USER_NOTIFY" required="optional">[...]: Response of SrvGetUserNotificationService2</tag> <tag name="TAG_OPERATION_MODE" required="optional">[RTS_UI32]: Device operation mode</tag> </Response> </service>  ReadStatus service. Returns callstack information about the active Task of the current Application. TAG_APPL_TASK_INDEX may be optionally transferred preceding TAG_APPL_ID to request a specific task.  <service name="SRV_READ_CALLSTACK"> <Request> <tag name="TAG_APPL_APPLICATIONDESC" required="mandatory">Top level</tag> <tag name="TAG_APPL_TASK_INDEX" required="optional">[RTS_UI32]: Task index</tag> <tag name="TAG_APPL_ID" required="mandatory">[RTS_UI32]: Session ID</tag> </Request> <Response> <tag name="READ_STATUS_REPLY" required="mandatory">Top level tag may contain the following sub tags</tag> <tag name="READ_STATUS_STACKPOINTER" required="optional">[RTS_UINTPTR]: Stackpointer</tag> <tag name="READ_STATUS_EXECUTIONPOSITION" required="optional">[RTS_UI16, RTS_UI32]: Area, Offset of callstackEntry</tag> <tag name="READ_STATUS_INSTANCEPOSITION" required="optional">[RTS_UI16, RTS_UI32]: AreaInstance, OffsetInstance of callstackEntry</tag> </Response> </service>
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_app_itf___onlinereplytags_1gac70ddd10d91e45810a5520a5593acf42:
+
+#define TAG_REPLY_EXTERNAL_REFERENCE_ERROR_LIST 0x01
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf___onlinereplytags_1ga9ce6076b069638328fddd34c4bd97874:
+
+#define TAG_REPLY_EXTERNAL_REFERENCE_RESULT 0x02
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf___onlinereplytags_1gab3aa10c8dc9211dc65d6c590c83d9b8a:
+
+#define TAG_REPLY_SYS_APP_ERROR_LIST 0x03
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,88 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagtracemgrpacketreadfirst2__struct:
+
+===================================================
+tagtracemgrpacketreadfirst2_struct Struct Reference
+===================================================
+
+| #include ":ref:`CmpTraceMgrItf.h <_cmp_trace_mgr_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_HANDLE :ref:`hPacket <structtagtracemgrpacketreadfirst2__struct_1a516aefcb48e73d17daebb369960c5ad7>`
+- RTS_IEC_UDINT :ref:`ulTimestamp <structtagtracemgrpacketreadfirst2__struct_1a18ec5fa80359c15afe3eaa7b1a65e706>`
+- :ref:`TraceRecordEntry <group___cmp_trace_mgr_itf_1ga49b1553f6ac8b3f9685de54dd1f97836>` * :ref:`pTraceBuffer <structtagtracemgrpacketreadfirst2__struct_1aa2e33a5a7cd92a9ac466f2dba1cf43d8>`
+- RTS_IEC_UDINT * :ref:`pulReadBytes <structtagtracemgrpacketreadfirst2__struct_1ac3166d14abd63a08401ba62964d7e8cc>`
+- RTS_IEC_RESULT * :ref:`pResult <structtagtracemgrpacketreadfirst2__struct_1a04868c9412988002a60a41040c5cf872>`
+- RTS_IEC_HANDLE :ref:`TraceMgrPacketReadFirst2 <structtagtracemgrpacketreadfirst2__struct_1a9f7e71295a2053934f03f43bf382e526>`
+
+Detailed Description
+--------------------
+
+Reads the contents of the first record, starting at a given time stamp.
+
+Only entries with a time stamp greater than or equal to ulTimestamp are copied. If the time stamp is zero, the function behaves like |TraceMgrPacketReadFirst|.
+
+.. note:: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
+
+.. note:: You should call |TraceMgrPacketReadBegin| before calling this function, to make sure any outstanding trace values are written to the trace buffers.
+
+.. note:: Data is always returned in little endian byte order even if the device has big endian byte order.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle
+
+- ERR_NO_OBJECT if the packet does not have a single record
+
+- ERR_NOTINITIALIZED if the packet is not complete
+
+- ERR_TIMEOUT if reading took too long
+
+- ERR_ENTRIES_REMAINING if more data can be read by a subsequent call (this is not an error)
+
+Field Documentation
+-------------------
+
+.. _structtagtracemgrpacketreadfirst2__struct_1a516aefcb48e73d17daebb369960c5ad7:
+
+RTS_IEC_HANDLE tagtracemgrpacketreadfirst2_struct::hPacket
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadfirst2__struct_1a18ec5fa80359c15afe3eaa7b1a65e706:
+
+RTS_IEC_UDINT tagtracemgrpacketreadfirst2_struct::ulTimestamp
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadfirst2__struct_1aa2e33a5a7cd92a9ac466f2dba1cf43d8:
+
+TraceRecordEntry* tagtracemgrpacketreadfirst2_struct::pTraceBuffer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadfirst2__struct_1ac3166d14abd63a08401ba62964d7e8cc:
+
+RTS_IEC_UDINT* tagtracemgrpacketreadfirst2_struct::pulReadBytes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadfirst2__struct_1a04868c9412988002a60a41040c5cf872:
+
+RTS_IEC_RESULT* tagtracemgrpacketreadfirst2_struct::pResult
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadfirst2__struct_1a9f7e71295a2053934f03f43bf382e526:
+
+RTS_IEC_HANDLE tagtracemgrpacketreadfirst2_struct::TraceMgrPacketReadFirst2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpTraceMgrItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

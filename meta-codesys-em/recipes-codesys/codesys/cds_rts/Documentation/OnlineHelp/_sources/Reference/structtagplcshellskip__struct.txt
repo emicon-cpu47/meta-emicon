@@ -1,0 +1,48 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagplcshellskip__struct:
+
+=======================================
+tagplcshellskip_struct Struct Reference
+=======================================
+
+| #include ":ref:`CmpPlcShellItf.h <_cmp_plc_shell_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_DINT :ref:`iBlockID <structtagplcshellskip__struct_1a1a2182eed11e43144836e2723d06e02c>`
+- RTS_IEC_RESULT :ref:`PlcShellSkip <structtagplcshellskip__struct_1a49281f9b30626cdd7180bfadc7776672>`
+
+Detailed Description
+--------------------
+
+Skip a number of blocks in the output.
+
+If a Command Handler sends a huge amount of output, it might be necessary, that this output is splitted into several blocks by the communication layer. When this happens, the communication layer will discard everything, but the current block from the output and recall the Command Handler several times.
+
+To avoid this, an intelligent Command Handler can generate only the currently necessary block of output. For this, it needs to "skip" all blocks, which are already sent, by calling this function. Then it should write only that much data, that they fit into one block and call :ref:`PlcShellSetEof() <group___cmp_plc_shell_itf_1ga01cf373f03302baec79a02fd5a10f4f8>` when it is finished. RETURN: Returns the runtime system error code (see CmpErrors.library)
+
+Field Documentation
+-------------------
+
+.. _structtagplcshellskip__struct_1a1a2182eed11e43144836e2723d06e02c:
+
+RTS_IEC_DINT tagplcshellskip_struct::iBlockID
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagplcshellskip__struct_1a49281f9b30626cdd7180bfadc7776672:
+
+RTS_IEC_RESULT tagplcshellskip_struct::PlcShellSkip
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpPlcShellItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

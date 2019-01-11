@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceDescription xmlns="http://www.3s-software.com/schemas/DeviceDescription-1.0.xsd" xmlns:ts="http://www.3s-software.com/schemas/TargetSettings-0.1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Strings namespace="local">
+		<Language lang="en">
+			<String identifier="ModelName">My card IEC Driver (master)</String>
+			<String identifier="DeviceDescription">My description</String>
+			<String identifier="VendorName">My company</String>
+		</Language>
+	</Strings>
+	<Files namespace="localFiles">
+		<!-- Used in DeviceInfo as Icon. Will be shown in tree. -->
+		<Language lang="en">
+			<File fileref="local" identifier="DriveIcon">
+				<LocalFile>myIcon.ico</LocalFile>
+			</File>
+		</Language>
+	</Files>
+	<Device hideInCatalogue="false">
+		<DeviceIdentification>
+			<Type>40101</Type>
+			<!-- Range 0-32767 managed by 3S – Smart Software Solutions; Range 32768 – end can be used by customer -->
+			<Id>1001 0001</Id>
+			<!-- First 2 Byte is an unique number for each customer (assigned by 3S – Smart Software Solutions) -->
+			<Version>3.5.10.0</Version>
+			<!-- Format has to be 1.2.3.4 -->
+		</DeviceIdentification>
+		<DeviceInfo>
+			<Name name="local:ModelName">My card IEC Driver (master)</Name>
+			<Description name="local:DeviceDescription">My description</Description>
+			<Vendor name="local:VendorName">My company</Vendor>
+			<OrderNumber>0815</OrderNumber>
+			<!--	<Category>224</Category>  In which node it will be shown. If empty -> Miscellaneous. If 224 -> Fieldbusses-> Ethernet Protocols -> DHCP Server -->
+			<Icon name="localFiles:DriveIcon">myIcon.ico</Icon>
+			<!-- Will be shown in tree. -->
+		</DeviceInfo>
+		<!-- moduleType: distinct information for the I/O driver;  Range 0x0 – 0x7fff is assigned by 3S – Smart Software Solutions; Range from 0x8000 is customer specific -->
+		<!-- hostpath: regulates the membership of a parent to a child connector, with hostpath=9 we are connected with the PLC  -->
+		<Connector moduleType="256" interface="Common.PCI" role="child" explicit="false" connectorId="9" hostpath="-1">
+			<!-- Under PLC node -> defined over "interface="Common.PCI"". The child connector has its Hostpath always set to -1. -->
+			<InterfaceName name="local:PCI">PCI-Bus</InterfaceName>
+			<Slot count="1" allowEmpty="false"/>
+		</Connector>
+		<Connector moduleType="40101" interface="Common.MasterExample" role="parent" explicit="false" connectorId="2" hostpath="9">
+			<!-- Connected over connectorId(parrent)=hostpath(child)=9.  -->
+			<InterfaceName name="local:DP">Master Example</InterfaceName>
+			<Var max="32" />
+			<!-- Max 32 subnodes -->
+			<HostParameterSet>
+				<Parameter ParameterId="100" type="std:STRING">
+					<Attributes channel="none" download="true" functional="false" offlineaccess="write" onlineaccess="read" />
+					<Default>'text'</Default>
+					<Name name="local:PraId2">A String-Parameter</Name>
+					<Description name="local:PraId2_Desc">Description</Description>
+				</Parameter>
+				<Parameter ParameterId="256" type="std:STRING">
+					<Attributes download="true" offlineaccess="readwrite" />
+					<Default>'0.0.0.0'</Default>
+					<Name name="local:IPAddress">IP-Network</Name>
+					<Description name="local:IPAddress">Network, where the counterpart is sending to: IP ADDR: ‘0.0.0.0’ => INADDR_ANY, ‘127.0.0.1’ => INADDR_LOOPBACK, ‘255.255.255.255’ => INADDR_NONE</Description>
+				</Parameter>
+				<Parameter ParameterId="257" type="std:WORD">
+					<Attributes download="true" offlineaccess="readwrite" />
+					<Default>2222</Default>
+					<Name name="local:Port">Receive Port</Name>
+					<Description name="local:IPAddress">The port on which the counterpart is sending to.</Description>
+				</Parameter>
+				<Parameter ParameterId="327936" type="std:STRING">
+					<!-- Is read of IoDrvReadParameter if Diag-Flag is set in dwFlags. -->
+					<Attributes channel="diag" download="true" functional="false" offlineaccess="read" onlineaccess="read" />
+					<Default>'Changeable'</Default>
+					<Name name="local:Id327936">Diag</Name>
+					<Description name="local:Id327936.Desc">Diagnostic information</Description>
+				</Parameter>
+				<Parameter ParameterId="327937" type="std:BOOL">
+					<!-- Is written by IoDrvWriteParameter  after Acknowledge-Button is pressed in the device status tab -->
+					<Attributes channel="diagack" download="true" functional="false" offlineaccess="read" onlineaccess="readwrite" />
+					<Default>0</Default>
+					<Name name="local:Id327937">DiagAcknowledge</Name>
+					<Description name="local:Id327937.Desc">Diagnostic acknowledge</Description>
+				</Parameter>
+			</HostParameterSet>
+			<DriverInfo needsBusCycle="true" needsBusCycleBeforeReadInputs="true">
+				<!-- Call before read inputs and after write outputs -->
+				<RequiredLib libname="IoDrvMasterTemplateIEC" placeholderlib="IoDrvMasterTemplateIEC" vendor="MyCompany" version="*" identifier="IoDrvMasterTemplateIEC">
+					<!-- Lib, from which an instnace is generated in the device, if it was placed into the devicetree -->
+					<FBInstance basename="$(DeviceName)" fbname="IoDrvTemplateMaster" fbnamediag="IoDrvTemplateMasterDiag">
+						<Initialize methodName="Initialize"/>
+						<!-- This method is called after download. -->
+					</FBInstance>
+				</RequiredLib>
+				<Scan supported="true"/>
+			</DriverInfo>
+		</Connector>
+		<ExtendedSettings>
+			<ts:TargetSettings>
+				<ts:section name="deviceconfiguration">
+					<ts:setting name="createBitChannels" type="boolean" access="visible">
+						<ts:value>1</ts:value>
+					</ts:setting>
+				</ts:section>
+				<ts:section name="library-management">
+					<ts:section name="placeholder-libraries">
+						<ts:setting name="IoDrvMasterTemplateIEC" type="string" access="visible">
+							<ts:value>IoDrvMasterTemplateIEC, 3.5.10.0 (MyCompany)</ts:value>
+							<!-- Note: Normally this is defined in PLC devdesc! It's only included here to use a default PLC Win Control where placeholder is missing -->
+						</ts:setting>
+					</ts:section>
+				</ts:section>
+			</ts:TargetSettings>
+		</ExtendedSettings>
+		<CompatibleVersions>
+			<Version>3.5.*.*</Version>
+		</CompatibleVersions>
+	</Device>
+</DeviceDescription>

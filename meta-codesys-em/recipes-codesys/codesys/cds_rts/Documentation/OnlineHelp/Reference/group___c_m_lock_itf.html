@@ -1,0 +1,341 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CMLockItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CMUtilsHashItf" href="group___c_m_utils_hash_itf.html" />
+    <link rel="prev" title="CMItf" href="group___c_m_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___c_m_utils_hash_itf.html" title="CMUtilsHashItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___c_m_itf.html" title="CMItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CMLockItf</a><ul>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-cmlock-prefer-syssem">#define CMLOCK_PREFER_SYSSEM</a></li>
+<li><a class="reference internal" href="#define-cm-get-lock-lock-lockobject">#define CM_GET_LOCK lock = lockobject;</a></li>
+<li><a class="reference internal" href="#define-itf-cmlock">#define ITF_CMLock</a></li>
+<li><a class="reference internal" href="#define-extitf-cmlock">#define EXTITF_CMLock</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-icmlock-c-icmlock">typedef ICMLock_C ICMLock</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#rts-handle-cmlockcreate-rts-result-presult">RTS_HANDLE CMLockCreate (RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-cmlockdelete-rts-handle-hlock">RTS_RESULT CMLockDelete (RTS_HANDLE hLock)</a></li>
+<li><a class="reference internal" href="#rts-result-cmlockenter-rts-handle-hlock">RTS_RESULT CMLockEnter (RTS_HANDLE hLock)</a></li>
+<li><a class="reference internal" href="#rts-result-cmlockleave-rts-handle-hlock">RTS_RESULT CMLockLeave (RTS_HANDLE hLock)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___c_m_itf.html"
+                        title="previous chapter">CMItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___c_m_utils_hash_itf.html"
+                        title="next chapter">CMUtilsHashItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___c_m_lock_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmlockitf">
+<span id="group-c-m-lock-itf"></span><h1>CMLockItf<a class="headerlink" href="#cmlockitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CMLock. <a class="reference internal" href="#group-c-m-lock-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_i_c_m_lock___c.html#struct-i-c-m-lock-c"><span class="std std-ref">ICMLock_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-c-m-lock-itf-1ga1ecdd063f40c92ec5be4ae9fed96dee4"><span class="std std-ref">CMLOCK_PREFER_SYSSEM</span></a></li>
+<li>#define <a class="reference internal" href="#group-c-m-lock-itf-1gaff83b61e17007e983e8ec1167f468744"><span class="std std-ref">CM_GET_LOCK</span></a> lock = lockobject;</li>
+<li>#define <a class="reference internal" href="#group-c-m-lock-itf-1ga42749e13901cd6c99326775eac7566c6"><span class="std std-ref">ITF_CMLock</span></a></li>
+<li>#define <a class="reference internal" href="#group-c-m-lock-itf-1ga568762e66dd796dfd79eff0ce0d5fcf3"><span class="std std-ref">EXTITF_CMLock</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef <a class="reference internal" href="struct_i_c_m_lock___c.html#struct-i-c-m-lock-c"><span class="std std-ref">ICMLock_C</span></a> <a class="reference internal" href="#group-c-m-lock-itf-1gac1f10ba878c6f45f56fdfcf927a21c9a"><span class="std std-ref">ICMLock</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RTS_HANDLE <a class="reference internal" href="#group-c-m-lock-itf-1ga37828972c0c49ca8c6fac57dc24c64b5"><span class="std std-ref">CMLockCreate</span></a> (RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-lock-itf-1ga27b1605f674da61a03578459ba9442d6"><span class="std std-ref">CMLockDelete</span></a> (RTS_HANDLE hLock)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-lock-itf-1gaeec8041d015664ad7732282b3ca4e48f"><span class="std std-ref">CMLockEnter</span></a> (RTS_HANDLE hLock)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-c-m-lock-itf-1gaaf4f6f8a2f093dc88a938510a00c79dc"><span class="std std-ref">CMLockLeave</span></a> (RTS_HANDLE hLock)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-c-m-lock-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CMLock.</p>
+<p>Interface for a generic locking mechanism</p>
+<p>If both SysSem and SysInt components are implemented in the runtime system, a global int-lock implementation can be choosen with CMLOCK_PREFER_SYSINT macro. Otherwise, a mutex-based implementation is automatically selected.</p>
+<p>If either SysSem or SysInt component is implemented only, then the CMLock implementation is based on an existing component.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span>                               <span class="n">USAGE</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">module</span><span class="p">:</span>
+<span class="o">*</span>
+<span class="o">*</span>                                   <span class="n">RTS_HANDLE</span> <span class="n">s_hLock</span> <span class="o">=</span> <span class="n">RTS_INVALID_HANDLE</span><span class="p">;</span>
+<span class="o">*</span>                                   <span class="n">CH_INIT</span><span class="p">:</span>
+<span class="o">*</span>                                       <span class="n">RTS_RESULT</span> <span class="n">result</span><span class="p">;</span>
+<span class="o">*</span>                                       <span class="n">s_hLock</span> <span class="o">=</span> <span class="n">CAL_CMLockCreate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">result</span><span class="p">);</span>
+<span class="o">*</span>                                   <span class="n">CH_EXIT</span><span class="p">:</span>
+<span class="o">*</span>                                       <span class="n">CAL_CMLockDelete</span><span class="p">(</span><span class="n">s_hLock</span><span class="p">);</span>
+<span class="o">*</span>
+<span class="o">*</span>                                   <span class="n">Function</span><span class="p">()</span>
+<span class="o">*</span>                                   <span class="p">{</span>
+<span class="o">*</span>                                       <span class="n">RTS_HANDLE</span> <span class="n">hLock</span><span class="p">;</span>
+<span class="o">*</span>                                       <span class="n">CM_GET_LOCK</span><span class="p">(</span><span class="n">s_hLock</span><span class="p">,</span> <span class="n">hLock</span><span class="p">);</span>
+<span class="o">*</span>
+<span class="o">*</span>                                       <span class="n">CAL_CMLockEnter</span><span class="p">(</span><span class="n">hLock</span><span class="p">);</span>
+<span class="o">*</span>                                       <span class="o">...</span>
+<span class="o">*</span>                                       <span class="n">CAL_CMLockLeave</span><span class="p">(</span><span class="n">hLock</span><span class="p">);</span>
+<span class="o">*</span>                                   <span class="p">}</span>
+<span class="o">*</span>
+</pre></div>
+</div>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-cmlock-prefer-syssem">
+<span id="group-c-m-lock-itf-1ga1ecdd063f40c92ec5be4ae9fed96dee4"></span><h3>#define CMLOCK_PREFER_SYSSEM<a class="headerlink" href="#define-cmlock-prefer-syssem" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-cm-get-lock-lock-lockobject">
+<span id="group-c-m-lock-itf-1gaff83b61e17007e983e8ec1167f468744"></span><h3>#define CM_GET_LOCK lock = lockobject;<a class="headerlink" href="#define-cm-get-lock-lock-lockobject" title="Permalink to this headline">¶</a></h3>
+<p>Macro to get the correct parameter for the lock functions: <a class="reference internal" href="#group-c-m-lock-itf-1gaff83b61e17007e983e8ec1167f468744"><span class="std std-ref">CM_GET_LOCK(hLock, hLocalLock)</span></a></p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="11%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hLockObject</td>
+<td>is retrieved by <span class="xref std std-ref">CMLockCreate()</span></td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>hLock</td>
+<td>local variable of type RTS_HANDLE (declared in the local function!)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+</div>
+<div class="section" id="define-itf-cmlock">
+<span id="group-c-m-lock-itf-1ga42749e13901cd6c99326775eac7566c6"></span><h3>#define ITF_CMLock<a class="headerlink" href="#define-itf-cmlock" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmlock">
+<span id="group-c-m-lock-itf-1ga568762e66dd796dfd79eff0ce0d5fcf3"></span><h3>#define EXTITF_CMLock<a class="headerlink" href="#define-extitf-cmlock" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-icmlock-c-icmlock">
+<span id="group-c-m-lock-itf-1gac1f10ba878c6f45f56fdfcf927a21c9a"></span><h3>typedef ICMLock_C ICMLock<a class="headerlink" href="#typedef-icmlock-c-icmlock" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rts-handle-cmlockcreate-rts-result-presult">
+<span id="group-c-m-lock-itf-1ga37828972c0c49ca8c6fac57dc24c64b5"></span><h3>RTS_HANDLE CMLockCreate (RTS_RESULT <a href="#id1"><span class="problematic" id="id2">*</span></a>pResult)<a class="headerlink" href="#rts-handle-cmlockcreate-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Function to create a lock object to synchronize data against concurrent task or interrupt access.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[out]</td>
+<td>pResult</td>
+<td>Pointer to error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the lock object</p>
+</div>
+<div class="section" id="rts-result-cmlockdelete-rts-handle-hlock">
+<span id="group-c-m-lock-itf-1ga27b1605f674da61a03578459ba9442d6"></span><h3>RTS_RESULT CMLockDelete (RTS_HANDLE hLock)<a class="headerlink" href="#rts-result-cmlockdelete-rts-handle-hlock" title="Permalink to this headline">¶</a></h3>
+<p>Function to delete a lock object.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="5%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hLock</td>
+<td>Handle to the lock object retrieved by <span class="xref std std-ref">CMLockCreate()</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+</div>
+<div class="section" id="rts-result-cmlockenter-rts-handle-hlock">
+<span id="group-c-m-lock-itf-1gaeec8041d015664ad7732282b3ca4e48f"></span><h3>RTS_RESULT CMLockEnter (RTS_HANDLE hLock)<a class="headerlink" href="#rts-result-cmlockenter-rts-handle-hlock" title="Permalink to this headline">¶</a></h3>
+<p>Function to enter a lock object. After entering, the accessed data is _safe_ against concurrent access.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="4%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hLock</td>
+<td><p class="first">Handle to the lock object retrieved by macro: <a class="reference internal" href="#group-c-m-lock-itf-1gaff83b61e17007e983e8ec1167f468744"><span class="std std-ref">CM_GET_LOCK(hLockObject, hLock)</span></a></p>
+<ul class="last simple">
+<li>hLockObject is retrieved by <span class="xref std std-ref">CMLockCreate()</span></li>
+<li>hLock is a local variable of type RTS_HANDLE (declared in the local function!)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+</div>
+<div class="section" id="rts-result-cmlockleave-rts-handle-hlock">
+<span id="group-c-m-lock-itf-1gaaf4f6f8a2f093dc88a938510a00c79dc"></span><h3>RTS_RESULT CMLockLeave (RTS_HANDLE hLock)<a class="headerlink" href="#rts-result-cmlockleave-rts-handle-hlock" title="Permalink to this headline">¶</a></h3>
+<p>Function to leave a lock object. After leaving, the accessed data is _unsafe_ against concurrent access.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="5%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hLock</td>
+<td>Handle to the lock object retrieved by <span class="xref std std-ref">CMLockCreate()</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___c_m_utils_hash_itf.html" title="CMUtilsHashItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___c_m_itf.html" title="CMItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

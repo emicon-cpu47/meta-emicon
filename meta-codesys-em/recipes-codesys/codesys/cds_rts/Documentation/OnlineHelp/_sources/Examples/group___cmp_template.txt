@@ -1,0 +1,209 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_template:
+
+===========
+CmpTemplate
+===========
+
+ :ref:`More... <group___cmp_template-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`CCmpTemplate <struct_c_cmp_template>`
+
+Macros
+------
+
+- #define :ref:`STATICITF_DEF <group___cmp_template_1ga819be70ac9e7f8924fecb7b6db48cc4e>` static
+
+Functions
+---------
+
+- DLL_DECL int :ref:`ComponentEntry <group___cmp_template_1ga428e512ef9d385507218f5cb410ecf22>` (INIT_STRUCT * pInitStruct)
+
+- IBase * :ref:`CreateInstance <group___cmp_template_1ga9f0dd7d920825aefbaa5a8b55d7be440>` (CLASSID cid, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`DeleteInstance <group___cmp_template_1ga943bdf9b0e320026633f0a53e0595660>` (IBase * pIBase)
+
+- int :ref:`ExportFunctions <group___cmp_template_1ga9b0700711be53a466c6c8494343a465a>` (void)
+
+- int :ref:`ImportFunctions <group___cmp_template_1ga87d62c8eb63af9f15a122c28448733bf>` (void)
+
+- RTS_UI32 :ref:`CmpGetVersion <group___cmp_template_1gacf72d3e99274b04feca13b139859c539>` (void)
+
+- RTS_RESULT :ref:`HookFunction <group___cmp_template_1ga0b2ad195d710768e5fa78879787cd805>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- IMPLEMENT_ADDREF static IMPLEMENT_RELEASE void * :ref:`QueryInterface <group___cmp_template_1ga6abe2468348b8ceab360c498feae6c47>` (IBase * pBase, ITFID iid, RTS_RESULT * pResult)
+
+.. _group___cmp_template-details:
+
+Detailed Description
+--------------------
+
+
+
+Example for a runtime component frame that can be used as a starting point to develop own components.
+
+MANDATORY FUNCTIONS:
+
+- :ref:`ComponentEntry() <_cmp_c_s_i_embedded_8c_1a428e512ef9d385507218f5cb410ecf22>`
+
+- ExportFunctions()
+
+- ImportFunctions()
+
+- CmpGetVersion()
+
+- HookFunction()
+
+OPTIONAL FUNCTIONS:
+
+- CreateInstance() + DeleteInstance() + QueryInterface(): Only for C++ Runtimes or if you implement at least a multiple instantiable interface (like CmpIoDrvItf or CmpLogBackendItf)
+
+**Copyright:**
+
+\(c) 2003-2016 3S-Smart Software Solutions
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_template_1ga819be70ac9e7f8924fecb7b6db48cc4e:
+
+#define STATICITF_DEF static
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_template_1ga428e512ef9d385507218f5cb410ecf22:
+
+DLL_DECL int ComponentEntry (INIT_STRUCT *pInitStruct)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Entry function of the component. Called at startup for each component. Used to exchange function pointers with the component manager.
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pInitStruct | Pointer to structure with: pfExportFunctions OUT Pointer to function that exports component functions pfImportFunctions OUT Pointer to function that imports functions from other components pfGetVersion OUT Pointer to function to get component version pfRegisterAPI IN Pointer to component mangager function to register a api function pfGetAPI IN Pointer to component mangager function to get a api function pfCallHook IN Pointer to component mangager function to call a hook function |
++---------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK if component could be initialized, else error code.
+
+.. _group___cmp_template_1ga9f0dd7d920825aefbaa5a8b55d7be440:
+
+static IBase* CreateInstance (CLASSID cid, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OPTIONAL FUNCTION: Function is used to instantiate an object of the specified class if your component is used in a C++ runtime or if you implement at least a multiple instantiable interface like CmpIoDrvItf or CmpLogBackendItf.
+
+**Parameters**
+
++---------+---------+----------------------------------+
+| [in]    | cid     | Requested ClassID to instantiate |
++---------+---------+----------------------------------+
+| [in]    | pResult | Pointer to error code            |
++---------+---------+----------------------------------+
+
+**Returns:**
+
+Return a pointer to IBase interface of the newly created class object
+
+.. _group___cmp_template_1ga943bdf9b0e320026633f0a53e0595660:
+
+static RTS_RESULT DeleteInstance (IBase *pIBase)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OPTIONAL FUNCTION: Function is called to delete the object created in CreateInstance().
+
+**Parameters**
+
++---------+--------+-------------------------------------------------+
+| [in]    | pIBase | Pointer to IBase interface to delete the object |
++---------+--------+-------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_template_1ga9b0700711be53a466c6c8494343a465a:
+
+static int ExportFunctions (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Publish exported functions to the component manager, to make them available for other components. Use generated macro EXPORT_STMT.
+**Returns:**
+
+ERR_OK or error code in case of error
+
+.. _group___cmp_template_1ga87d62c8eb63af9f15a122c28448733bf:
+
+static int ImportFunctions (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Import function pointers from other components. Use generated macro IMPORT_STMT.
+**Returns:**
+
+ERR_OK or error code if function name could not be resolved
+
+.. _group___cmp_template_1gacf72d3e99274b04feca13b139859c539:
+
+static RTS_UI32 CmpGetVersion (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return the version of our component.
+**Returns:**
+
+Version as defined in dep file
+
+.. _group___cmp_template_1ga0b2ad195d710768e5fa78879787cd805:
+
+static RTS_RESULT HookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Hook function to get all broadcast hooks of the component manager. All init and exit stuff must be implemented here!
+
+**Parameters**
+
++---------+----------+--------------------------------------------------------------------------+
+| [in]    | ulHook   | Kind of hook. See CH_ definitions in CmpItf.h for details.               |
++---------+----------+--------------------------------------------------------------------------+
+| [in]    | ulParam1 | Hook specific first parameter. See definitions in CmpItf.h for details.  |
++---------+----------+--------------------------------------------------------------------------+
+| [in]    | ulParam2 | Hook specific second parameter. See definitions in CmpItf.h for details. |
++---------+----------+--------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_template_1ga6abe2468348b8ceab360c498feae6c47:
+
+IMPLEMENT_ADDREF static IMPLEMENT_RELEASE void* QueryInterface (IBase *pBase, ITFID iid, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OPTIONAL FUNCTION: Function to query about all implemented interfaces of our class. Only for C-Runtimes! C++ QueryInterface() is automatically generated in the .cpp file of your component.
+
+**Parameters**
+
++---------+---------+-----------------------------------------+
+| [in]    | pBase   | Pointer to IBase of our object          |
++---------+---------+-----------------------------------------+
+| [in]    | iid     | Interface id of the requested interface |
++---------+---------+-----------------------------------------+
+| [out]   | pResult | Pointer to error code                   |
++---------+---------+-----------------------------------------+
+
+**Returns:**
+
+Return a pointer to the implemented interface
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

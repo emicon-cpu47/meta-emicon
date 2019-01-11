@@ -1,0 +1,82 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagtracemgrrecordupdate4__struct:
+
+================================================
+tagtracemgrrecordupdate4_struct Struct Reference
+================================================
+
+| #include ":ref:`CmpTraceMgrItf.h <_cmp_trace_mgr_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_HANDLE :ref:`hPacket <structtagtracemgrrecordupdate4__struct_1a4721461a3ba79ce306d8d29182a500bc>`
+- RTS_IEC_HANDLE :ref:`hRecord <structtagtracemgrrecordupdate4__struct_1a5b90b7b3200ac0943c3094288f46c144>`
+- RTS_IEC_UDINT * :ref:`pTimestamps <structtagtracemgrrecordupdate4__struct_1aa1351b9c553be9843aa74bd7c369367d>`
+- RTS_IEC_BYTE * :ref:`pDataValues <structtagtracemgrrecordupdate4__struct_1a38c0dff9b120913372761243d094cb12>`
+- RTS_IEC_UDINT :ref:`ulEntries <structtagtracemgrrecordupdate4__struct_1a3be6161df96282fa1bdb1280fc46b8e0>`
+- RTS_IEC_RESULT :ref:`TraceMgrRecordUpdate4 <structtagtracemgrrecordupdate4__struct_1adbffe7905ecae57f7c282e6dc979453e>`
+
+Detailed Description
+--------------------
+
+Stores multiple values with seperate timestamps in the ring buffer of a trace record.
+
+This function can be used to provide the data for so called system parameters from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.)
+
+.. note:: in contrast to |TraceMgrRecordUpdate2|, the timestamp of the values and the values itself are provided in seperate lists by the caller.
+
+.. note:: the number of timestamps must be the same as the number of data values. ulEntries must match to this number.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle
+
+- ERR_NOTINITIALIZED if the packet is not currently recording (not started, trigger reached, ...)
+
+- ERR_PENDING if no value is recorded for this cycle due to :ref:`TracePacketConfiguration.ulEveryNCycles <structtag_trace_packet_configuration_1a29112671b73a99708fc7be47c372ba08>`
+
+Field Documentation
+-------------------
+
+.. _structtagtracemgrrecordupdate4__struct_1a4721461a3ba79ce306d8d29182a500bc:
+
+RTS_IEC_HANDLE tagtracemgrrecordupdate4_struct::hPacket
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrrecordupdate4__struct_1a5b90b7b3200ac0943c3094288f46c144:
+
+RTS_IEC_HANDLE tagtracemgrrecordupdate4_struct::hRecord
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrrecordupdate4__struct_1aa1351b9c553be9843aa74bd7c369367d:
+
+RTS_IEC_UDINT* tagtracemgrrecordupdate4_struct::pTimestamps
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrrecordupdate4__struct_1a38c0dff9b120913372761243d094cb12:
+
+RTS_IEC_BYTE* tagtracemgrrecordupdate4_struct::pDataValues
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrrecordupdate4__struct_1a3be6161df96282fa1bdb1280fc46b8e0:
+
+RTS_IEC_UDINT tagtracemgrrecordupdate4_struct::ulEntries
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrrecordupdate4__struct_1adbffe7905ecae57f7c282e6dc979453e:
+
+RTS_IEC_RESULT tagtracemgrrecordupdate4_struct::TraceMgrRecordUpdate4
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpTraceMgrItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

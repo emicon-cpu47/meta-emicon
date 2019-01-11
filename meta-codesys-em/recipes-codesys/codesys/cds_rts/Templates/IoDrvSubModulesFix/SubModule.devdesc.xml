@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceDescription xmlns="http://www.3s-software.com/schemas/DeviceDescription-1.0.xsd" xmlns:ts="http://www.3s-software.com/schemas/TargetSettings-0.1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Strings namespace="local">
+  <Language lang="en">
+    <String identifier="SubModelName2">SubModuleForFixConnector</String>
+    <String identifier="DeviceDescription">Description of the second SubModule</String>
+    <String identifier="VendorName">MyCompany</String>
+    <String identifier="InterfaceName">MyInterface</String>
+    <String identifier="InterfaceName2">MyInterface2</String>
+    <String identifier="Id393222">DwordParameterOfSubModule2</String>
+    <String identifier="Id393220.Desc">Test parameter 2</String>
+      <String identifier="out1">out1</String>
+      <String identifier="out2">out2</String>
+  </Language>
+</Strings>
+	<Device>
+		<DeviceIdentification>
+            <!-- The information of this section is used for management in the device repository. It is not downloaded -->
+            <!-- Range 0-32767 managed by 3S – Smart Software Solutions; Range 32768 – end can be used by customer -->
+			<Type>40107</Type>
+            <!-- Id is a unsigned long in hex formnat. First part (unsigned short) of Id is vendor id. 0001 is reserved for template devices. Must be replaced with your vendor id! Second part is vendor specific. -->
+			<Id>0001 bcde</Id>
+			<!-- Format has to be 1.2.3.4 -->
+			<Version>3.5.9.0</Version>
+		</DeviceIdentification>
+		<DeviceInfo>
+			<Name name="local:SubModelName2">SubModuleAsDeviceIdentification</Name>
+		    <Description name="local:DeviceDescription">Description of the second SubModule</Description>
+		    <Vendor name="local:VendorName">MyCompany</Vendor>
+		    <OrderNumber>abc</OrderNumber>
+		</DeviceInfo>
+        <!-- Child connector. The moduleType of the connector is evaluated by the IO driver. The interface must be of the same name as in the parent connector -->
+        <Connector moduleType="40107" interface="MyCompany:FixConnectorInterface" role="child" explicit="false" connectorId="1" hostpath="-1">
+          <Slot count="1" allowEmpty="false"></Slot>
+        </Connector>
+        <!-- Parent connector. The moduleType is downloaded and can be evaluated by the IO driver, e.g. with CAL_IoMgrConfigGetFirstConnector . -->
+        <!-- moduleType: distinct information for the I/O driver; Range 0x0 – 0x7fff is assigned by 3S – Smart Software Solutions; Range from 0x8000 is customer specific -->
+		<Connector connectorId="2" moduleType="33025" interface="local.myInternalModuleConnector" role="parent" hostpath="1">
+          <!-- The interface name is used in for the tabs shown in CoDeSys (for example I/O mapping).  The given name is used as a prefix to the specific tab page. -->
+          <InterfaceName name="local:InterfaceName2">MyInterface2</InterfaceName>
+          <Var max="125"></Var>
+          <DriverInfo needsBusCycle="true"></DriverInfo>
+          <HostParameterSet>
+	        <Parameter ParameterId="1000" type="std:DWORD">
+              <Attributes channel="output" download="true" functional="false" offlineaccess="readwrite" onlineaccess="readwrite" />
+              <Default>0</Default>
+              <Name name="local:out1">out1</Name>
+            </Parameter>
+            <Parameter ParameterId="1001" type="std:DWORD">
+              <Attributes channel="output" download="true" functional="false" offlineaccess="readwrite" onlineaccess="readwrite" />
+              <Default>8</Default>
+              <Name name="local:out2">out2</Name>
+            </Parameter>
+            <Parameter ParameterId="393222" type="std:DWORD">
+              <Attributes channel="none" download="true" functional="false" offlineaccess="write" onlineaccess="readwrite" />
+              <Default>1234</Default>
+              <Name name="local:Id393222">DwordParameterOfSubModule2</Name>
+              <Description name="local:Id393220.Desc">Test parameter 2</Description>
+            </Parameter>
+          </HostParameterSet>
+		</Connector>
+	</Device>
+</DeviceDescription>

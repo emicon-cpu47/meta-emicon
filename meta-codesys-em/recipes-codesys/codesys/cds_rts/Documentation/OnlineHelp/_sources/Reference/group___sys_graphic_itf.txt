@@ -1,0 +1,1615 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_graphic_itf:
+
+=============
+SysGraphicItf
+=============
+
+Interface of SysGraphic. :ref:`More... <group___sys_graphic_itf-details>`
+
+Modules
+-------
+
+- :ref:`Antialiasing modes <group___sys_graphic_itf___antialiasingmodes>`
+
+- :ref:`Bitmap style <group___sys_graphic_itf___bitmapstyle>`
+
+- :ref:`Brush style <group___sys_graphic_itf___brushstyle>`
+
+- :ref:`Feature Flags <group___sys_graphic_itf___feature_flags>`
+
+- :ref:`Font style <group___sys_graphic_itf___fontstyle>`
+
+- :ref:`Gradient Type <group___sys_graphic_itf___gradient_type>`
+
+- :ref:`Pen LineCapStyle <group___sys_graphic_itf___pen_line_cap_style>`
+
+- :ref:`Pen LineJoinStyle <group___sys_graphic_itf___pen_line_join_style>`
+
+- :ref:`Pen style <group___sys_graphic_itf___penstyle>`
+
+- :ref:`Settings <group___sys_graphic_itf___settings>`
+
+- :ref:`TF <group___sys_graphic_itf___t_f>`
+
+Data Structures
+---------------
+
+- struct :ref:`_GradientData <struct___gradient_data>`
+
+- struct :ref:`ISysGraphic_C <struct_i_sys_graphic___c>`
+
+Macros
+------
+
+- #define :ref:`SYSGRAPHIC_KEY_REPLACEMENT_FONT_NAME <group___sys_graphic_itf_1gab6ae7a8ff91b31dd0e039c06556e143a>` "ReplacementFontName"
+
+- #define :ref:`PAT_HORIZONTAL <group___sys_graphic_itf_1ga8e0cb68246f82be365b7232be299c630>` 1
+
+- #define :ref:`PAT_VERTICAL <group___sys_graphic_itf_1gad9f76c96b0ec92ba150f80e68b3a28f6>` 2
+
+- #define :ref:`PAT_CROSS <group___sys_graphic_itf_1gab931a323389f0c4aa013770ff6c7066f>` 3
+
+- #define :ref:`PAT_DENSE_LIGHT <group___sys_graphic_itf_1gaa6c133ed309e755c8095d533155845bd>` 4
+
+- #define :ref:`PAT_DENSE_NORMAL <group___sys_graphic_itf_1ga73a5ec5586969398ddb4263340511ea1>` 5
+
+- #define :ref:`PAT_DENSE_VERY <group___sys_graphic_itf_1ga09f6fe9217e8efcbb9861f4571726949>` 6
+
+- #define :ref:`ITF_SysGraphic <group___sys_graphic_itf_1ga415ca8a0f6b5104702020c099e3cb383>`
+
+- #define :ref:`EXTITF_SysGraphic <group___sys_graphic_itf_1ga2d1bfd4a14527d311fe1fc80986464c9>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`_GradientData <struct___gradient_data>` :ref:`GradientData <group___sys_graphic_itf_1ga507c7cb26cae26f0ad758a1939baccc3>`
+
+- typedef :ref:`ISysGraphic_C <struct_i_sys_graphic___c>` :ref:`ISysGraphic <group___sys_graphic_itf_1gafe67efdf13237f3ef0708b35e597c166>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysGraphicCreateCompatibleDeviceContext <group___sys_graphic_itf_1gad38bbc1e3d6bf72163ba911310b18b81>` (RTS_HANDLE hWindow, RTS_HANDLE * phDC)
+
+- RTS_RESULT :ref:`SysGraphicCreateCompatibleDeviceContextWithCustomSize <group___sys_graphic_itf_1gaf6db81769847bd132d3317d8c3a87905>` (RTS_HANDLE hWindow, RTS_I16 iWidth, RTS_I16 iHeight, RTS_HANDLE * phDC)
+
+- RTS_RESULT :ref:`SysGraphicDeleteDeviceContext <group___sys_graphic_itf_1ga1f7d83efb9ca42b8a5372b642b92f493>` (RTS_HANDLE hWindow, RTS_HANDLE hDC)
+
+- RTS_RESULT :ref:`SysGraphicGetDeviceContext <group___sys_graphic_itf_1ga88f720f73eef1959fb8f8a70b7290b3e>` (RTS_HANDLE hWindow, RTS_HANDLE * phDC)
+
+- RTS_RESULT :ref:`SysGraphicReleaseDeviceContext <group___sys_graphic_itf_1ga5f23a2178c76df5997219a0335860604>` (RTS_HANDLE hWindow, RTS_HANDLE hDC)
+
+- RTS_RESULT :ref:`SysGraphicGetDeviceContextForWindowDeviceContext <group___sys_graphic_itf_1ga4a064b7c502a1f03e3c943a0e3973eb5>` (RTS_HANDLE hWindow, RTS_HANDLE hDCWindow, RTS_HANDLE * phDC)
+
+- RTS_RESULT :ref:`SysGraphicReleaseDeviceContextForWindowDeviceContext <group___sys_graphic_itf_1ga40fac78f1b984a54cd6ef762ea1bbe77>` (RTS_HANDLE hWindow, RTS_HANDLE hDC)
+
+- RTS_RESULT :ref:`SysGraphicSetBackgroundColor <group___sys_graphic_itf_1ga2ac4a36d1bb4dd53ac25dbf588c8f9db>` (RTS_HANDLE hDC, RTS_UI32 ulColor)
+
+- RTS_RESULT :ref:`SysGraphicClearRectangle <group___sys_graphic_itf_1gac014b9b2c389929aee4b69472042fbf4>` (RTS_HANDLE hDC, RTS_Rectangle rect)
+
+- RTS_RESULT :ref:`SysGraphicBitBlt <group___sys_graphic_itf_1ga865883bf178906506d59abcf785ccfbc>` (RTS_HANDLE hDCDestination, RTS_HANDLE hDCSource, RTS_Rectangle rect)
+
+- RTS_RESULT :ref:`SysGraphicStretchBlt <group___sys_graphic_itf_1ga7b0f3dc33f572f2a4736bebf5fc4ba1f>` (RTS_HANDLE hDCDestination, RTS_Rectangle rectDestination, RTS_HANDLE hDCSource, RTS_Rectangle rectSource)
+
+- RTS_RESULT :ref:`SysGraphicDrawRect <group___sys_graphic_itf_1ga3a2605ef39ff92002a071b3e9a4261dd>` (RTS_HANDLE hDC, RTS_Rectangle rect, RectangleType nType)
+
+- RTS_RESULT :ref:`SysGraphicDrawRectF <group___sys_graphic_itf_1gaed020ad8c55aa17c379e44ba1141f017>` (RTS_HANDLE hDC, RTS_RectangleF rect, RectangleType nType)
+
+- RTS_RESULT :ref:`SysGraphicDrawPolygon <group___sys_graphic_itf_1ga588ec66d8f579e345d6314e49fe95437>` (RTS_HANDLE hDC, RTS_I16 nPoints, RTS_Point * pPoints, PolygonType nType)
+
+- RTS_RESULT :ref:`SysGraphicDrawPolygonF <group___sys_graphic_itf_1gad7e48202c700bf7e9058b6e3219a23c3>` (RTS_HANDLE hDC, RTS_I16 nPoints, RTS_PointF * pPoints, PolygonType nType)
+
+- RTS_RESULT :ref:`SysGraphicDrawPie <group___sys_graphic_itf_1gaa56ee438551927e7eaee1380fe97e8a3>` (RTS_HANDLE hDC, RTS_Rectangle rect, RTS_IEC_INT iStartAngle, RTS_IEC_INT iSweepAngle, PieType nType)
+
+- RTS_RESULT :ref:`SysGraphicRotateAt <group___sys_graphic_itf_1gaac6fc6648e3ca5a0335a8e9c690c060f>` (RTS_HANDLE hDC, RTS_REAL32 fAngle, RTS_Point point, RTS_BOOL bReset)
+
+- RTS_RESULT :ref:`SysGraphicDrawText <group___sys_graphic_itf_1gaca75cad33953fe8aaa8b78c7d8e0d1c4>` (RTS_HANDLE hDC, RTS_Rectangle rect, void * pszText, RTS_UI32 ulDrawFlags)
+
+- RTS_RESULT :ref:`SysGraphicGetTextMetrics <group___sys_graphic_itf_1ga3f0472fbc9f099e9fd351e5df5a02f48>` (RTS_HANDLE hDC, :ref:`SYS_TEXTMETRICS <struct_s_y_s___t_e_x_t_m_e_t_r_i_c_s>` * ptm)
+
+- RTS_RESULT :ref:`SysGraphicGetTextExtent <group___sys_graphic_itf_1ga9853f1793ae85562cf8d80846231ae95>` (RTS_HANDLE hDC, void * pszText, RTS_UI32 ulDrawFlags, RTS_Size * pSize)
+
+- RTS_RESULT :ref:`SysGraphicGetFontHeight <group___sys_graphic_itf_1ga3fc974d64fa5b645cebc37b8919592cd>` (RTS_HANDLE hDC, RTS_I16 * piHeight)
+
+- RTS_RESULT :ref:`SysGraphicGetFontHandle <group___sys_graphic_itf_1ga762257cc9c9749d144ce0c6257020208>` (RTS_HANDLE hDC, RTS_HANDLE * phFont)
+
+- RTS_RESULT :ref:`SysGraphicCreateBrush <group___sys_graphic_itf_1ga87b88da8c3d0ace48fbd03c3a401712d>` (RTS_HANDLE hDC, RTS_UI32 ulFillFlags, RTS_UI32 ulFillColor, RTS_HANDLE * phBrush)
+
+- RTS_RESULT :ref:`SysGraphicSetBrush <group___sys_graphic_itf_1gad21369f57e48c12ece7e8b53b47bdced>` (RTS_HANDLE hDC, RTS_HANDLE hBrush, RTS_HANDLE * phOldBrush)
+
+- RTS_RESULT :ref:`SysGraphicFreeBrush <group___sys_graphic_itf_1ga653772662b6e8c0ee97771c9f1346aa0>` (RTS_HANDLE hDC, RTS_HANDLE hBrush)
+
+- RTS_RESULT :ref:`SysGraphicCreateGradientBrush <group___sys_graphic_itf_1ga2d891b1089c459be1569799449bfabbe>` (RTS_HANDLE hDC, :ref:`GradientData <group___sys_graphic_itf_1ga507c7cb26cae26f0ad758a1939baccc3>` * gradient, RTS_Rectangle rectangle, RTS_HANDLE * phBrush)
+
+- RTS_RESULT :ref:`SysGraphicCreatePatternBrush <group___sys_graphic_itf_1ga57a5e333e02d210f9ef6b9c7f0451ce9>` (RTS_HANDLE hDC, RTS_UI16 patternType, RTS_UI32 color, RTS_HANDLE * phBrush)
+
+- RTS_RESULT :ref:`SysGraphicCreatePenDetailed <group___sys_graphic_itf_1gaad77ff326127752b51ef29daa3e547e8>` (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, RTS_REAL32 rMiterLimit, RTS_HANDLE * phPen)
+
+- RTS_RESULT :ref:`SysGraphicCreatePen <group___sys_graphic_itf_1gac98afa65facb04e54e062bbb8f3b677f>` (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_HANDLE * phPen)
+
+- RTS_RESULT :ref:`SysGraphicSetPen <group___sys_graphic_itf_1gaf55649de63079081f3441b543ffb1f3f>` (RTS_HANDLE hDC, RTS_HANDLE hPen, RTS_HANDLE * phOldPen)
+
+- RTS_RESULT :ref:`SysGraphicFreePen <group___sys_graphic_itf_1ga4890a42dbcbd203e7234e016399169cd>` (RTS_HANDLE hDC, RTS_HANDLE hPen)
+
+- RTS_RESULT :ref:`SysGraphicCreateFont <group___sys_graphic_itf_1ga83c7bdc13f3087d480b10f98a4d7ccca>` (RTS_HANDLE hDC, char * pszFontName, RTS_I16 nFontSize, RTS_UI32 ulFontFlags, RTS_HANDLE * phFont)
+
+- RTS_RESULT :ref:`SysGraphicFreeFont <group___sys_graphic_itf_1ga414d8f1b71f6a4c731e4ae1ae5f0e4f7>` (RTS_HANDLE hDC, RTS_HANDLE hFont)
+
+- RTS_RESULT :ref:`SysGraphicSetFont <group___sys_graphic_itf_1gaad02a964f1aac284ac066cb245645eb5>` (RTS_HANDLE hDC, RTS_HANDLE hFont, RTS_UI32 ulFontColor, RTS_HANDLE * phOldFont)
+
+- RTS_RESULT :ref:`SysGraphicSetFont2 <group___sys_graphic_itf_1ga66d539e14643847f108094be8dceef3e>` (RTS_HANDLE hDC, RTS_HANDLE hFont, RTS_UI32 ulFontColor, RTS_HANDLE * phOldFont, RTS_UI32 * pulOldFontColor)
+
+- RTS_RESULT :ref:`SysGraphicCreateBitmap <group___sys_graphic_itf_1gad434f39d949c81be2792ba9e516a4b3a>` (RTS_HANDLE hDC, const char * pszBmpPath, RTS_UI32 ulTransparentColor, RTS_UI32 ulFlags, RTS_HANDLE * phBitmap)
+
+- RTS_RESULT :ref:`SysGraphicDrawBitmap <group___sys_graphic_itf_1ga283918b82a010b08074a068c5e6cfa4a>` (RTS_HANDLE hDC, RTS_HANDLE hBmp, RTS_Rectangle rPos, RTS_UI32 ulTransparentColor, RTS_UI32 ulFlags)
+
+- RTS_RESULT :ref:`SysGraphicFreeBitmap <group___sys_graphic_itf_1gafb18c87ed7134463fff0ee365da64bcb>` (RTS_HANDLE hDC, RTS_HANDLE hBmp)
+
+- RTS_RESULT :ref:`SysGraphicGetBitmapSize <group___sys_graphic_itf_1ga7b277d3b02e61db1671ef39bf8f4bba4>` (RTS_HANDLE hBmp, RTS_Point * pSize)
+
+- RTS_RESULT :ref:`SysGraphicAddClipRectangle <group___sys_graphic_itf_1ga61b0c0b5ba6ca3e1834aa0d45f46ea66>` (RTS_HANDLE hDC, RTS_Rectangle rect)
+
+- RTS_RESULT :ref:`SysGraphicRemoveClipRectangle <group___sys_graphic_itf_1ga303cb91efb4328c23f9734737cb8bc35>` (RTS_HANDLE hDC, RTS_Rectangle rect)
+
+- RTS_RESULT :ref:`SysGraphicSetClipRectangle <group___sys_graphic_itf_1ga22c8b8719f9c4ffc28cf6eaca7efcffb>` (RTS_HANDLE hDC, RTS_Rectangle * prect)
+
+- RTS_RESULT :ref:`SysGraphicBeginPaint <group___sys_graphic_itf_1ga93fc9d9c7aa0c8852a345d2e23b1b181>` (RTS_HANDLE hDC, RTS_HANDLE * phPaintContext)
+
+- RTS_RESULT :ref:`SysGraphicEndPaint <group___sys_graphic_itf_1gaf302e17b875f61d1ae3baac9831a15e4>` (RTS_HANDLE hDC, RTS_HANDLE hPaintContext)
+
+- RTS_UI32 :ref:`SysGraphicGetFeatureFlags <group___sys_graphic_itf_1ga4c0d51f7be70c79f53a17d48c146b53c>` (void)
+
+- RTS_RESULT :ref:`SysGraphicPreparePrinting <group___sys_graphic_itf_1ga5e5817bd44aebc91394f1c74ab68a3c7>` (RTS_HANDLE hDC, RTS_HANDLE * phOptionalResultData, RTS_Rectangle * prWindow, RTS_Rectangle * prPrintOutput)
+
+- RTS_RESULT :ref:`SysGraphicFinishPrinting <group___sys_graphic_itf_1gaaecddbc61733e95b7b10e70ce7aecef2>` (RTS_HANDLE hDC, RTS_HANDLE hOptionalResultData)
+
+- RTS_RESULT :ref:`SysGraphicSetAntiAliasingMode <group___sys_graphic_itf_1ga782820e35db3bcf8c9da6a5ed21e1c0e>` (RTS_HANDLE hDC, RTS_UI32 uiAntiAliasingSettings)
+
+- RTS_RESULT :ref:`SysGraphicGetSysWindowFont <group___sys_graphic_itf_1gaaf724496eec95a23e49d9cb4b140c51a>` (RTS_HANDLE hDC, RTS_HANDLE hSysGraphicFont, RTS_HANDLE * phSysWindowFont)
+
+- RTS_RESULT :ref:`SysGraphicInvalidateRectangle <group___sys_graphic_itf_1ga2277a14c1ee963c5306c2c881a095c51>` (RTS_HANDLE hDC, RTS_Rectangle rect)
+
+- RTS_RESULT :ref:`SysGraphicResetInvalidation <group___sys_graphic_itf_1ga209b5e9be7a1508a627cd4c65855f26a>` (RTS_HANDLE hDC)
+
+- RTS_RESULT :ref:`SysGraphicInvalidateClientArea <group___sys_graphic_itf_1gab4e06f08874da823a924b13228391f03>` (RTS_HANDLE hDC)
+
+- RTS_HANDLE :ref:`SysGraphicCreateTransformation <group___sys_graphic_itf_1ga8a9e4f1d861e20593927748577f251a7>` (RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`SysGraphicCreateTransformationByValues <group___sys_graphic_itf_1ga5b9675a578e8be1d9e64c11ca36eb073>` (RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysGraphicFreeTransformation <group___sys_graphic_itf_1ga08a9f7b4037486e372a8954e7151dc9e>` (RTS_HANDLE hTransform)
+
+- RTS_RESULT :ref:`SysGraphicTransformationScale <group___sys_graphic_itf_1gabfaaf78e208bd246010f49ede5b3c235>` (RTS_HANDLE hTransform, RTS_REAL32 x, RTS_REAL32 y)
+
+- RTS_RESULT :ref:`SysGraphicTransformationRotate <group___sys_graphic_itf_1gaaa21188545a72b597d396a0fe05a78f4>` (RTS_HANDLE hTransform, RTS_REAL32 angle)
+
+- RTS_RESULT :ref:`SysGraphicTransformationTranslate <group___sys_graphic_itf_1ga82856e23fdd3c2de0b1c202b6d276a78>` (RTS_HANDLE hTransform, RTS_REAL32 x, RTS_REAL32 y)
+
+- RTS_RESULT :ref:`SysGraphicSetActiveTransformation <group___sys_graphic_itf_1ga7ddaf9233f7b58f511e59ddcf83ccbaf>` (RTS_HANDLE hdc, RTS_HANDLE hTransform)
+
+- RTS_HANDLE :ref:`SysGraphicGetActiveTransformation <group___sys_graphic_itf_1ga4330b069437a1f23f4871ce0d1e08b09>` (RTS_HANDLE hdc, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`SysGraphicCloneTransformation <group___sys_graphic_itf_1ga8d9cdfa3bc890e30429817b6bf3f6872>` (RTS_HANDLE hTransform, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysGraphicTransformationTransform <group___sys_graphic_itf_1gab2b9f9a793623d9be2639f8cd944f740>` (RTS_HANDLE hTransform, RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy)
+
+.. _group___sys_graphic_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysGraphic.
+
+The SysGraphic interface is projected to get access to the graphic library routines of a system. This is the system interface typically for the CoDeSys target visualization.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_graphic_itf_1gab6ae7a8ff91b31dd0e039c06556e143a:
+
+#define SYSGRAPHIC_KEY_REPLACEMENT_FONT_NAME "ReplacementFontName"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Setting which decides if another font should be used.
+
+.. _group___sys_graphic_itf_1ga8e0cb68246f82be365b7232be299c630:
+
+#define PAT_HORIZONTAL 1
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Specifies a pattern of horizontal lines for SysGraphicCreatePatternBrush.
+
+.. _group___sys_graphic_itf_1gad9f76c96b0ec92ba150f80e68b3a28f6:
+
+#define PAT_VERTICAL 2
+^^^^^^^^^^^^^^^^^^^^^^
+
+Specifies a pattern of vertical lines for SysGraphicCreatePatternBrush.
+
+.. _group___sys_graphic_itf_1gab931a323389f0c4aa013770ff6c7066f:
+
+#define PAT_CROSS 3
+^^^^^^^^^^^^^^^^^^^
+
+Specifies a pattern of crossing (at 90-degree angles) horizontal and vertical lines for SysGraphicCreatePatternBrush.
+
+.. _group___sys_graphic_itf_1gaa6c133ed309e755c8095d533155845bd:
+
+#define PAT_DENSE_LIGHT 4
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Specifies a light hatch (about 10%) for SysGraphicCreatePatternBrush.
+
+.. _group___sys_graphic_itf_1ga73a5ec5586969398ddb4263340511ea1:
+
+#define PAT_DENSE_NORMAL 5
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Specifies a normal hatch (about 40-50%) for SysGraphicCreatePatternBrush.
+
+.. _group___sys_graphic_itf_1ga09f6fe9217e8efcbb9861f4571726949:
+
+#define PAT_DENSE_VERY 6
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Specifies a dense hatch (about 80%) for SysGraphicCreatePatternBrush.
+
+.. _group___sys_graphic_itf_1ga415ca8a0f6b5104702020c099e3cb383:
+
+#define ITF_SysGraphic
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_graphic_itf_1ga2d1bfd4a14527d311fe1fc80986464c9:
+
+#define EXTITF_SysGraphic
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_graphic_itf_1ga507c7cb26cae26f0ad758a1939baccc3:
+
+typedef struct _GradientData  GradientData
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data for gradient brush
+
+.. _group___sys_graphic_itf_1gafe67efdf13237f3ef0708b35e597c166:
+
+typedef ISysGraphic_C ISysGraphic
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_graphic_itf_1gad38bbc1e3d6bf72163ba911310b18b81:
+
+RTS_RESULT SysGraphicCreateCompatibleDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE *phDC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create compatible device context
+
+**Parameters**
+
++---------+---------+---------------------------------------------+
+| [in]    | hWindow | Handle to the actual window                 |
++---------+---------+---------------------------------------------+
+| [out]   | phDC    | Pointer to handle to get the device context |
++---------+---------+---------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gaf6db81769847bd132d3317d8c3a87905:
+
+RTS_RESULT SysGraphicCreateCompatibleDeviceContextWithCustomSize (RTS_HANDLE hWindow, RTS_I16 iWidth, RTS_I16 iHeight, RTS_HANDLE *phDC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create compatible device context with custom size
+
+**Parameters**
+
++---------+---------+---------------------------------------------+
+| [in]    | hWindow | Handle to the actual window                 |
++---------+---------+---------------------------------------------+
+| [in]    | iWidth  | Width of the device Context                 |
++---------+---------+---------------------------------------------+
+| [in]    | iHeight | Height of the device Context                |
++---------+---------+---------------------------------------------+
+| [out]   | phDC    | Pointer to handle to get the device context |
++---------+---------+---------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga1f7d83efb9ca42b8a5372b642b92f493:
+
+RTS_RESULT SysGraphicDeleteDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE hDC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete compatible device context
+
+**Parameters**
+
++---------+---------+------------------------------+
+| [in]    | hWindow | Handle to the actual window  |
++---------+---------+------------------------------+
+| [in]    | hDC     | Handle to the device context |
++---------+---------+------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga88f720f73eef1959fb8f8a70b7290b3e:
+
+RTS_RESULT SysGraphicGetDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE *phDC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get a device context. Remember to release such a device context using SysGraphicReleaseDeviceContext and not with SysGraphicDeleteDeviceContext!
+
+**Parameters**
+
++---------+---------+---------------------------------------------+
+| [in]    | hWindow | Handle to the actual window                 |
++---------+---------+---------------------------------------------+
+| [out]   | phDC    | Pointer to handle to get the device context |
++---------+---------+---------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga5f23a2178c76df5997219a0335860604:
+
+RTS_RESULT SysGraphicReleaseDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE hDC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Release a device context that has been retrieved using SysGraphicGetDeviceContext
+
+**Parameters**
+
++---------+---------+------------------------------+
+| [in]    | hWindow | Handle to the actual window  |
++---------+---------+------------------------------+
+| [in]    | hDC     | Handle to the device context |
++---------+---------+------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga4a064b7c502a1f03e3c943a0e3973eb5:
+
+RTS_RESULT SysGraphicGetDeviceContextForWindowDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE hDCWindow, RTS_HANDLE *phDC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get a device context for an existing device context object belonging to a window. Remember to release such a device context using SysGraphicReleaseDeviceContextForWindowDeviceContext and not with SysGraphicDeleteDeviceContext or SysGraphicReleaseDeviceContext!
+
+This method should be used when the SysWindow component wants to use SysGraphic methods directly. The intent of this method is to allow the syswindow component to convert a system specific device context to a device context that the SysGraphic component can work with.
+
+This can be necessary in the following situation:
+
+- SysWindow uses a system specific device context it received from the operating system
+
+- SysWindow wants to call methods from SysGraphic on this device context
+
+- The actual type SysGraphic uses for a device context is different than the operating system's type
+
+The previous siutation will work correctly only when both SysGraphic and SysWindow use the same datatype for device contexts.
+
+**Parameters**
+
++---------+-----------+---------------------------------------------------+
+| [in]    | hWindow   | Handle to the actual window                       |
++---------+-----------+---------------------------------------------------+
+| [in]    | hDCWindow | Handle to the device context of the actual window |
++---------+-----------+---------------------------------------------------+
+| [out]   | phDC      | Pointer to handle to get the device context       |
++---------+-----------+---------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga40fac78f1b984a54cd6ef762ea1bbe77:
+
+RTS_RESULT SysGraphicReleaseDeviceContextForWindowDeviceContext (RTS_HANDLE hWindow, RTS_HANDLE hDC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Release a device context that has been retrieved using SysGraphicGetDeviceContextForWindowDeviceContext
+
+**Parameters**
+
++---------+---------+------------------------------+
+| [in]    | hWindow | Handle to the actual window  |
++---------+---------+------------------------------+
+| [in]    | hDC     | Handle to the device context |
++---------+---------+------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga2ac4a36d1bb4dd53ac25dbf588c8f9db:
+
+RTS_RESULT SysGraphicSetBackgroundColor (RTS_HANDLE hDC, RTS_UI32 ulColor)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the background color of the device context
+
+**Parameters**
+
++---------+---------+----------------------------------------------+
+| [in]    | hWindow | Handle to the device context                 |
++---------+---------+----------------------------------------------+
+| [in]    | ulColor | Color. Defined in IEC-Code for Visualization |
++---------+---------+----------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gac014b9b2c389929aee4b69472042fbf4:
+
+RTS_RESULT SysGraphicClearRectangle (RTS_HANDLE hDC, RTS_Rectangle rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Clear the specified rectangle
+
+**Parameters**
+
++---------+---------+------------------------------+
+| [in]    | hWindow | Handle to the device context |
++---------+---------+------------------------------+
+| [in]    | rect    | Rectangle description        |
++---------+---------+------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga865883bf178906506d59abcf785ccfbc:
+
+RTS_RESULT SysGraphicBitBlt (RTS_HANDLE hDCDestination, RTS_HANDLE hDCSource, RTS_Rectangle rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Performs a bit-block transfer of the color data corresponding to a rectangle of pixels from the specified source device context into a destination device context
+
+**Parameters**
+
++---------+----------------+--------------------------------------+
+| [in]    | hDCDestination | Handle to destination device context |
++---------+----------------+--------------------------------------+
+| [in]    | hDCSource      | Handle to source device context      |
++---------+----------------+--------------------------------------+
+| [in]    | rect           | Rectangle description                |
++---------+----------------+--------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga7b0f3dc33f572f2a4736bebf5fc4ba1f:
+
+RTS_RESULT SysGraphicStretchBlt (RTS_HANDLE hDCDestination, RTS_Rectangle rectDestination, RTS_HANDLE hDCSource, RTS_Rectangle rectSource)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Copies a bitmap from a source rectangle into a destination rectangle, stretching or compressing the bitmap to fit the dimensions of the destination rectangle, if necessary. The system stretches or compresses the bitmap according to the stretching mode currently set in the destination device context.
+
+**Parameters**
+
++---------+-----------------+--------------------------------------+
+| [in]    | hDCDestination  | Handle to destination device context |
++---------+-----------------+--------------------------------------+
+| [in]    | rectDestination | Destination rectangle                |
++---------+-----------------+--------------------------------------+
+| [in]    | hDCSource       | Handle to source device context      |
++---------+-----------------+--------------------------------------+
+| [in]    | rectSource      | Source rectangle                     |
++---------+-----------------+--------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga3a2605ef39ff92002a071b3e9a4261dd:
+
+RTS_RESULT SysGraphicDrawRect (RTS_HANDLE hDC, RTS_Rectangle rect, RectangleType nType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to draw a rectangle based on top left and bottom right
+
+**Parameters**
+
++---------+-------+--------------------------------------------+
+| [in]    | hDC   | Handle to device context                   |
++---------+-------+--------------------------------------------+
+| [in]    | rect  | Rectangle description                      |
++---------+-------+--------------------------------------------+
+| [in]    | nType | Rectangle type. See corresponding category |
++---------+-------+--------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gaed020ad8c55aa17c379e44ba1141f017:
+
+RTS_RESULT SysGraphicDrawRectF (RTS_HANDLE hDC, RTS_RectangleF rect, RectangleType nType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to draw a rectangle based on top left and bottom right with real value coordinates
+
+**Parameters**
+
++---------+-------+--------------------------------------------+
+| [in]    | hDC   | Handle to device context                   |
++---------+-------+--------------------------------------------+
+| [in]    | rect  | Rectangle description                      |
++---------+-------+--------------------------------------------+
+| [in]    | nType | Rectangle type. See corresponding category |
++---------+-------+--------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga588ec66d8f579e345d6314e49fe95437:
+
+RTS_RESULT SysGraphicDrawPolygon (RTS_HANDLE hDC, RTS_I16 nPoints, RTS_Point *pPoints, PolygonType nType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to draw a polygon based on an array of points
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------------+
+| [in]    | hDC     | Handle to device context                                              |
++---------+---------+-----------------------------------------------------------------------+
+| [in]    | nPoints | Number of points in the array                                         |
++---------+---------+-----------------------------------------------------------------------+
+| [in]    | pPoints | Pointer to the array of points. Length must be less or equal nPoints! |
++---------+---------+-----------------------------------------------------------------------+
+| [in]    | nType   | Polygon type. See corresponding category                              |
++---------+---------+-----------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gad7e48202c700bf7e9058b6e3219a23c3:
+
+RTS_RESULT SysGraphicDrawPolygonF (RTS_HANDLE hDC, RTS_I16 nPoints, RTS_PointF *pPoints, PolygonType nType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to draw a polygon based on an array of points
+
+**Parameters**
+
++---------+---------+-----------------------------------------------------------------------+
+| [in]    | hDC     | Handle to device context                                              |
++---------+---------+-----------------------------------------------------------------------+
+| [in]    | nPoints | Number of points in the array                                         |
++---------+---------+-----------------------------------------------------------------------+
+| [in]    | pPoints | Pointer to the array of points. Length must be less or equal nPoints! |
++---------+---------+-----------------------------------------------------------------------+
+| [in]    | nType   | Polygon type. See corresponding category                              |
++---------+---------+-----------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gaa56ee438551927e7eaee1380fe97e8a3:
+
+RTS_RESULT SysGraphicDrawPie (RTS_HANDLE hDC, RTS_Rectangle rect, RTS_IEC_INT iStartAngle, RTS_IEC_INT iSweepAngle, PieType nType)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to draw a pie based on top left and bottom right
+
+**Parameters**
+
++---------+-------------+--------------------------------------+
+| [in]    | hDC         | Handle to device context             |
++---------+-------------+--------------------------------------+
+| [in]    | rect        | Rectangle description                |
++---------+-------------+--------------------------------------+
+| [in]    | iStartAngle | The start angle                      |
++---------+-------------+--------------------------------------+
+| [in]    | iSweepAngle | The sweep angle                      |
++---------+-------------+--------------------------------------+
+| [in]    | nType       | Pie type. See corresponding category |
++---------+-------------+--------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gaac6fc6648e3ca5a0335a8e9c690c060f:
+
+RTS_RESULT SysGraphicRotateAt (RTS_HANDLE hDC, RTS_REAL32 fAngle, RTS_Point point, RTS_BOOL bReset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Applies a clockwise rotation to this system drawing matrix around the point specified in the point parameter
+
+**Parameters**
+
++---------+--------+-------------------------------------------------+
+| [in]    | hDC    | Handle to device context                        |
++---------+--------+-------------------------------------------------+
+| [in]    | iAngle | The angle to rotate in radians                  |
++---------+--------+-------------------------------------------------+
+| [in]    | point  | The point represents the center of the rotation |
++---------+--------+-------------------------------------------------+
+| [in]    | bReset | Reset the transformation                        |
++---------+--------+-------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gaca75cad33953fe8aaa8b78c7d8e0d1c4:
+
+RTS_RESULT SysGraphicDrawText (RTS_HANDLE hDC, RTS_Rectangle rect, void *pszText, RTS_UI32 ulDrawFlags)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to draw a text, based on top left and bottom right. Only the first line, if more than one is given.
+
+**Parameters**
+
++---------+-------------+---------------------------------------------------+
+| [in]    | hDC         | Handle to device context                          |
++---------+-------------+---------------------------------------------------+
+| [in]    | rect        | Rectangle description                             |
++---------+-------------+---------------------------------------------------+
+| [in]    | pszText     | Will be either:                                   |
+|         |             |                                                   |
+|         |             | - charif TF_WSTRING is not set in ulDrawFlags     |
+|         |             |                                                   |
+|         |             | - shortif (TF_WSTRING is set in ulDrawFlags)      |
++---------+-------------+---------------------------------------------------+
+| [in]    | ulDrawFlags | Draw flags. Defined in IEC-Code for Visualization |
++---------+-------------+---------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga3f0472fbc9f099e9fd351e5df5a02f48:
+
+RTS_RESULT SysGraphicGetTextMetrics (RTS_HANDLE hDC, SYS_TEXTMETRICS *ptm)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the system metrics of a device context
+
+**Parameters**
+
++---------+-----+-------------------------------------------------------------------------------------------+
+| [in]    | hDC | Handle to device context                                                                  |
++---------+-----+-------------------------------------------------------------------------------------------+
+| [out]   | ptm | Pointer to the system metrics This function is not used yet and might not be implemented. |
++---------+-----+-------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga9853f1793ae85562cf8d80846231ae95:
+
+RTS_RESULT SysGraphicGetTextExtent (RTS_HANDLE hDC, void *pszText, RTS_UI32 ulDrawFlags, RTS_Size *pSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to calculate the size of a given text with the currently selected font. Use case (1): The function will treat the string as a single line string, ie. it will cut the string after a possible linefeed and calculate the size of the first line only! Use case (2): The string will be formated and measured as defined by it's ulDrawFlags. Here, also text with flag TF_LINEBREAK will be measured, as it will be drawn. For using this case, the flag TF_MEASURE_ALL has to be used additional. And the paint rectangle size has to be forwarded by using pSize.
+
+**Parameters**
+
++---------+-------------+---------------------------------------------------+
+| [in]    | hDC         | Handle to device context                          |
++---------+-------------+---------------------------------------------------+
+| [in]    | pszText     | Will be either:                                   |
+|         |             |                                                   |
+|         |             | - charif TF_WSTRING is not set in ulDrawFlags     |
+|         |             |                                                   |
+|         |             | - shortif (TF_WSTRING is set in ulDrawFlags)      |
++---------+-------------+---------------------------------------------------+
+| [in]    | ulDrawFlags | Draw flags. Defined in IEC-Code for Visualization |
++---------+-------------+---------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga3fc974d64fa5b645cebc37b8919592cd:
+
+RTS_RESULT SysGraphicGetFontHeight (RTS_HANDLE hDC, RTS_I16 *piHeight)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to get the height of the currently selected font.
+
+**Parameters**
+
++---------+----------+--------------------------+
+| [in]    | hDC      | Handle to device context |
++---------+----------+--------------------------+
+| [out]   | piHeight | Height of the text       |
++---------+----------+--------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga762257cc9c9749d144ce0c6257020208:
+
+RTS_RESULT SysGraphicGetFontHandle (RTS_HANDLE hDC, RTS_HANDLE *phFont)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to get the handle of the currently selected font.
+
+**Parameters**
+
++---------+--------+--------------------------------+
+| [in]    | hDC    | Handle to device context       |
++---------+--------+--------------------------------+
+| [out]   | phFont | Pointer to get the font handle |
++---------+--------+--------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga87b88da8c3d0ace48fbd03c3a401712d:
+
+RTS_RESULT SysGraphicCreateBrush (RTS_HANDLE hDC, RTS_UI32 ulFillFlags, RTS_UI32 ulFillColor, RTS_HANDLE *phBrush)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set the fill style of the following objects (i.e. the Brush in Win32)
+
+**Parameters**
+
++---------+-------------+---------------------------------------------------+
+| [in]    | hDC         | Handle to device context                          |
++---------+-------------+---------------------------------------------------+
+| [in]    | ulFillFlags | Fill flags. Defined in IEC-Code for Visualization |
++---------+-------------+---------------------------------------------------+
+| [in]    | ulFillColor | Fill color. Defined in IEC-Code for Visualization |
++---------+-------------+---------------------------------------------------+
+| [out]   | phBrush     | Pointer to get the brush handle                   |
++---------+-------------+---------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gad21369f57e48c12ece7e8b53b47bdced:
+
+RTS_RESULT SysGraphicSetBrush (RTS_HANDLE hDC, RTS_HANDLE hBrush, RTS_HANDLE *phOldBrush)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set the font for the following drawn texts
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC        | Handle to device context                                                                                                                                                                                                                    |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hBrush     | Handle to the brush                                                                                                                                                                                                                         |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phOldBrush | Pointer to get the old brush handle. This pointer can be null if the old brush should not be returned. In this situation, you should take care that you still know a reference to this old brush to be able to release it after it is used! |
++---------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga653772662b6e8c0ee97771c9f1346aa0:
+
+RTS_RESULT SysGraphicFreeBrush (RTS_HANDLE hDC, RTS_HANDLE hBrush)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to free an earlier created font object
+
+**Parameters**
+
++---------+--------+--------------------------+
+| [in]    | hDC    | Handle to device context |
++---------+--------+--------------------------+
+| [in]    | hBrush | Handle to the brush      |
++---------+--------+--------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga2d891b1089c459be1569799449bfabbe:
+
+RTS_RESULT SysGraphicCreateGradientBrush (RTS_HANDLE hDC, GradientData *gradient, RTS_Rectangle rectangle, RTS_HANDLE *phBrush)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to store the gradient fill data of the following objects (i.e. the Brush in Win32). Note: Optional
+
+**Parameters**
+
++---------+--------------+---------------------------------+
+| [in]    | hDC          | Handle to device context        |
++---------+--------------+---------------------------------+
+| [in]    | GradientData | GradientData                    |
++---------+--------------+---------------------------------+
+| [in]    | rectangle    | rectangle                       |
++---------+--------------+---------------------------------+
+| [out]   | phBrush      | Pointer to get the brush handle |
++---------+--------------+---------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga57a5e333e02d210f9ef6b9c7f0451ce9:
+
+RTS_RESULT SysGraphicCreatePatternBrush (RTS_HANDLE hDC, RTS_UI16 patternType, RTS_UI32 color, RTS_HANDLE *phBrush)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creates a brush representing a spedific repeating pattern that can be used to fill elements.
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC         | Handle to device context                                                                                                                                                                                               |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | patternType | The type of pattern used by this brush                                                                                                                                                                                 |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | rectangle   | The foreground color of the pattern                                                                                                                                                                                    |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phBrush     | Pointer to get the brush handle <remark>Please remark: The background color of such a brush is expected to be fully transparent. That means only the foreground color should be used for drawing the pattern.</remark> |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_itf_1gaad77ff326127752b51ef29daa3e547e8:
+
+RTS_RESULT SysGraphicCreatePenDetailed (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, RTS_REAL32 rMiterLimit, RTS_HANDLE *phPen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set the line style of the following objects (i.e. the Pen in Win32)
+
+**Parameters**
+
++---------+---------------+----------------------------------------------------+
+| [in]    | hDC           | Handle to device context                           |
++---------+---------------+----------------------------------------------------+
+| [in]    | nLineWidth    | Width of the line as in Win32                      |
++---------+---------------+----------------------------------------------------+
+| [in]    | ulLineFlags   | Line flags. Defined in IEC-Code for Visualization  |
++---------+---------------+----------------------------------------------------+
+| [in]    | ulLineColor   | Line color. Defined in IEC-Code for Visualization  |
++---------+---------------+----------------------------------------------------+
+| [in]    | nLineCapFlag  | Line cap. Defined in IEC-Code for Visualization    |
++---------+---------------+----------------------------------------------------+
+| [in]    | nLineJoinFlag | Line join. Defined in IEC-Code for Visualization   |
++---------+---------------+----------------------------------------------------+
+| [in]    | rMiterLimit   | Miter limit. Defined in IEC-Code for Visualization |
++---------+---------------+----------------------------------------------------+
+| [out]   | phPen         | Pointer to get the pen handle                      |
++---------+---------------+----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gac98afa65facb04e54e062bbb8f3b677f:
+
+RTS_RESULT SysGraphicCreatePen (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_HANDLE *phPen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set the line style of the following objects (i.e. the Pen in Win32)
+
+**Parameters**
+
++---------+-------------+---------------------------------------------------+
+| [in]    | hDC         | Handle to device context                          |
++---------+-------------+---------------------------------------------------+
+| [in]    | nLineWidth  | Width of the line as in Win32                     |
++---------+-------------+---------------------------------------------------+
+| [in]    | ulLineFlags | Line flags. Defined in IEC-Code for Visualization |
++---------+-------------+---------------------------------------------------+
+| [in]    | ulLineColor | Line color. Defined in IEC-Code for Visualization |
++---------+-------------+---------------------------------------------------+
+| [out]   | phPen       | Pointer to get the pen handle                     |
++---------+-------------+---------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gaf55649de63079081f3441b543ffb1f3f:
+
+RTS_RESULT SysGraphicSetPen (RTS_HANDLE hDC, RTS_HANDLE hPen, RTS_HANDLE *phOldPen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set the font for the following drawn texts
+
+**Parameters**
+
++---------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC      | Handle to device context                                                                                                                                                                                                                |
++---------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hPen     | Handle to the new pen                                                                                                                                                                                                                   |
++---------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phOldPen | Pointer to get the previous set pen. This pointer can be null if the old pen should not be returned. In this situation, you should take care that you still know a reference to this old pen to be able to release it after it is used! |
++---------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga4890a42dbcbd203e7234e016399169cd:
+
+RTS_RESULT SysGraphicFreePen (RTS_HANDLE hDC, RTS_HANDLE hPen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to free a earlier created font object
+
+**Parameters**
+
++---------+------+--------------------------+
+| [in]    | hDC  | Handle to device context |
++---------+------+--------------------------+
+| [in]    | hPen | Handle to the new pen    |
++---------+------+--------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga83c7bdc13f3087d480b10f98a4d7ccca:
+
+RTS_RESULT SysGraphicCreateFont (RTS_HANDLE hDC, char *pszFontName, RTS_I16 nFontSize, RTS_UI32 ulFontFlags, RTS_HANDLE *phFont)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to create a font object(i.e. the Font in Win32)
+
+**Parameters**
+
++---------+-------------+-------------------------------------+
+| [in]    | hDC         | Handle to device context            |
++---------+-------------+-------------------------------------+
+| [in]    | pszFontName | Name of the font that should be set |
++---------+-------------+-------------------------------------+
+| [in]    | nFontSize   | Size of the font as in Win32        |
++---------+-------------+-------------------------------------+
+| [out]   | phFont      | Pointer to get the font handle      |
++---------+-------------+-------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga414d8f1b71f6a4c731e4ae1ae5f0e4f7:
+
+RTS_RESULT SysGraphicFreeFont (RTS_HANDLE hDC, RTS_HANDLE hFont)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to free an earlier created font object
+
+**Parameters**
+
++---------+-------+---------------------------+
+| [in]    | hDC   | Handle to device context  |
++---------+-------+---------------------------+
+| [in]    | hFont | Handle to the font object |
++---------+-------+---------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gaad02a964f1aac284ac066cb245645eb5:
+
+RTS_RESULT SysGraphicSetFont (RTS_HANDLE hDC, RTS_HANDLE hFont, RTS_UI32 ulFontColor, RTS_HANDLE *phOldFont)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set the font for the following drawn texts
+
+**Parameters**
+
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC         | Handle to device context                                                                                                                                                                                                                   |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hFont       | Handle to the font object                                                                                                                                                                                                                  |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulFontColor | Font color. Defined in IEC-Code for Visualization                                                                                                                                                                                          |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phOldFont   | Pointer to get the previous set font. This pointer can be null if the old font should not be returned. In this situation, you should take care that you still know a reference to this old font to be able to release it after it is used! |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga66d539e14643847f108094be8dceef3e:
+
+RTS_RESULT SysGraphicSetFont2 (RTS_HANDLE hDC, RTS_HANDLE hFont, RTS_UI32 ulFontColor, RTS_HANDLE *phOldFont, RTS_UI32 *pulOldFontColor)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set the font for the following drawn texts
+
+**Parameters**
+
++---------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC             | Handle to device context                                                                                                                                                                                                                   |
++---------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hFont           | Handle to the font object                                                                                                                                                                                                                  |
++---------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulFontColor     | Font color. Defined in IEC-Code for Visualization                                                                                                                                                                                          |
++---------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phOldFont       | Pointer to get the previous set font. This pointer can be null if the old font should not be returned. In this situation, you should take care that you still know a reference to this old font to be able to release it after it is used! |
++---------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pulOldFontColor | Pointer to get the previously used font color. This pointer can be null if the old font color should not be returned.                                                                                                                      |
++---------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gad434f39d949c81be2792ba9e516a4b3a:
+
+RTS_RESULT SysGraphicCreateBitmap (RTS_HANDLE hDC, const char *pszBmpPath, RTS_UI32 ulTransparentColor, RTS_UI32 ulFlags, RTS_HANDLE *phBitmap)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to create a Bitmap object(i.e. the HBITMAP in Win32)
+
+**Parameters**
+
++---------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC                | Handle to device context                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
++---------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszBmpPath         | The path of the bitmap to load. Please remark that no mapping of this path is done before this method is called! That means that it is up to the system specific implementation to respect possible mappings of paths that might be configured by the SysFile component. This mapping can be done by either using SysFileOpen for accessing files or by calling SysFileGetFullPath before passing the path to an operating system file implementation (like fopen or classes loading images directly like QImage from Qt or Bitmap from GDI+). |
++---------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulTransparentColor | Contains the color that should be used as the transparent color. Will only be evaluated when the according flag is set. This color value can be used during loading an image when it is possible to do an optimization for painting transparent images like setting this color to transparent directly after loading or so. If such an optimization is not possible or not relevant, then the previous implementation by evaluating it within SysGraphicDrawBitmap can be used.                                                                |
++---------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulFlags            | Flags. Defined in IEC-Code for Visualization. At the moment only the flag for transparency is relevant when loading an image!                                                                                                                                                                                                                                                                                                                                                                                                                  |
++---------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phBitmap           | Pointer to get the bitmap handle                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
++---------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+**Note:**
+
+Due to optimization reasons, the signature of this function was changed for the version 3.4.4. The transparency information is passed to this function too, to allow caching of transparency information. If you do not need to implement such a caching algorithm, then you can simply ignore the two parameters "ulFlags" and "ulTransparentColor".
+
+.. _group___sys_graphic_itf_1ga283918b82a010b08074a068c5e6cfa4a:
+
+RTS_RESULT SysGraphicDrawBitmap (RTS_HANDLE hDC, RTS_HANDLE hBmp, RTS_Rectangle rPos, RTS_UI32 ulTransparentColor, RTS_UI32 ulFlags)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to draw a bitmap into a rectangle
+
+**Parameters**
+
++---------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC                | Handle to device context                                                                                                                                                                                                    |
++---------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hBmp               | Handle to the bitmap                                                                                                                                                                                                        |
++---------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | rPos               | Position of the rectangle                                                                                                                                                                                                   |
++---------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulTransparentColor | Contains the color that should be used as the transparent color. Will only be evaluated when the according flag is set. Additionally, this paramter can be ignored, when it is already evaluated by SysGraphicCreateBitmap! |
++---------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulFlags            | Flags. Defined in IEC-Code for Visualization                                                                                                                                                                                |
++---------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gafb18c87ed7134463fff0ee365da64bcb:
+
+RTS_RESULT SysGraphicFreeBitmap (RTS_HANDLE hDC, RTS_HANDLE hBmp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to free a bitmap object
+
+**Parameters**
+
++---------+------+--------------------------+
+| [in]    | hDC  | Handle to device context |
++---------+------+--------------------------+
+| [in]    | hBmp | Handle to the bitmap     |
++---------+------+--------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga7b277d3b02e61db1671ef39bf8f4bba4:
+
+RTS_RESULT SysGraphicGetBitmapSize (RTS_HANDLE hBmp, RTS_Point *pSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to get the bitmap size
+
+**Parameters**
+
++---------+-------+---------------------------------------+
+| [in]    | hBmp  | Handle to the bitmap                  |
++---------+-------+---------------------------------------+
+| [in]    | pSize | Point to store the size of the bitmap |
++---------+-------+---------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga61b0c0b5ba6ca3e1834aa0d45f46ea66:
+
+RTS_RESULT SysGraphicAddClipRectangle (RTS_HANDLE hDC, RTS_Rectangle rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete: Use SysGraphicSetClipRectangle instead!
+
+OBSOLETE Function to add a clipping rectangle to the current clipping region, i.e. elements beyond this rectangle won't be drawn
+
+**Parameters**
+
++---------+------+--------------------------+
+| [in]    | hDC  | Handle to device context |
++---------+------+--------------------------+
+| [in]    | rect | Rectangle description    |
++---------+------+--------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga303cb91efb4328c23f9734737cb8bc35:
+
+RTS_RESULT SysGraphicRemoveClipRectangle (RTS_HANDLE hDC, RTS_Rectangle rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete: Use SysGraphicSetClipRectangle instead!
+
+OBSOLETE function to remove a clipping rectangle from the current clipping region i.e. elements beyond this rectangle will be drawn again
+
+**Parameters**
+
++---------+------+--------------------------+
+| [in]    | hDC  | Handle to device context |
++---------+------+--------------------------+
+| [in]    | rect | Rectangle description    |
++---------+------+--------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga22c8b8719f9c4ffc28cf6eaca7efcffb:
+
+RTS_RESULT SysGraphicSetClipRectangle (RTS_HANDLE hDC, RTS_Rectangle *prect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+function to set and reset the currently active clipping rectangle i.e. elements beyond this rectangle will not be drawn
+
+**Parameters**
+
++---------+-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC   | Handle to device context                                                                                                                                                                                                           |
++---------+-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | prect | An optional Rectangle. If a rectangle is passed here, this rectangle will become the new clipping rectangle. If NULL is passed, the clipping region will cleared. The passed rectangle must not be modified by the implementation! |
++---------+-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga93fc9d9c7aa0c8852a345d2e23b1b181:
+
+RTS_RESULT SysGraphicBeginPaint (RTS_HANDLE hDC, RTS_HANDLE *phPaintContext)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function and SysGraphicEndPaint are used to encapsule some paint calls together. An implementing platform could use this encapsulation for some optimizations. For every call to SysGraphicBeginPaint there will be an according call to SysGraphicEndPaint.
+
+**Parameters**
+
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC            | The device context that will be drawn onto until the next call to SysGraphicEndPaint                                                                                  |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phPaintContext | An implementation could allocate some data and return it using this parameter. It will be given in the according call to SysGraphicEndPaint and can be deleted there. |
++---------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1gaf302e17b875f61d1ae3baac9831a15e4:
+
+RTS_RESULT SysGraphicEndPaint (RTS_HANDLE hDC, RTS_HANDLE hPaintContext)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function and SysGraphicBeginPaint are used to encapsule some paint calls together. An implementing platform could use this encapsulation for some optimizations. For every call to SysGraphicBeginPaint there will be an according call to SysGraphicEndPaint.
+
+**Parameters**
+
++---------+---------------+------------------------------------------------------------------------------------+
+| [in]    | hDC           | The device context that has been drawn onto until this call                        |
++---------+---------------+------------------------------------------------------------------------------------+
+| [out]   | hPaintContext | The data that has been returned by the corresponding call to SysGraphicBeginPaint. |
++---------+---------------+------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_graphic_itf_1ga4c0d51f7be70c79f53a17d48c146b53c:
+
+RTS_UI32 SysGraphicGetFeatureFlags (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function allows the sysgraphic implementation to give a hint to the kernel part of the targetvisualization about some more or less optional feature that can be supported by an implementation. As this function was introduced lateron, it should be included as an optional import to prevent inconsistencies. Additionally, calling code should assume a result of SYSGRAPHIC_FEATURES_ALL in case this function is not implemented for compatibility reasons.
+**Returns:**
+
+The optional features that are implemented by the current sysgraphic implementation as a combination of the *flag values SYSGRAPHIC_FEATURES_...
+
+.. _group___sys_graphic_itf_1ga5e5817bd44aebc91394f1c74ab68a3c7:
+
+RTS_RESULT SysGraphicPreparePrinting (RTS_HANDLE hDC, RTS_HANDLE *phOptionalResultData, RTS_Rectangle *prWindow, RTS_Rectangle *prPrintOutput)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function can be used to prepare a device context for printing. Normally, this preparation is done by the assignment of a transformation so that the screen output is scaled correctly to a printer device context. This is perhaps necessary when the extent and/or the resolution of a printer device context is different than these properties of the screen device context.
+
+**Parameters**
+
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC                  | The device context of the printer that has to be prepared by this call.                                                                                                                                                                                                            |
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phOptionalResultData | An optional pointer to a handle that allows this method to allocate data that can be released lateron in the call to SysGraphicFinishPrinting. If such data is not necessary on a specific platform implementation, this pointer can be NULL so that nothing can be returned here. |
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | prWindow             | A pointer to a rectangle that describes the extent of the targetvisualization window on the screen.                                                                                                                                                                                |
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | prPrintOutput        | A pointer to a rectangle that describes the extent of the destination on the printer.                                                                                                                                                                                              |
++---------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_itf_1gaaecddbc61733e95b7b10e70ce7aecef2:
+
+RTS_RESULT SysGraphicFinishPrinting (RTS_HANDLE hDC, RTS_HANDLE hOptionalResultData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function reverts the adaptations done by SysGraphicPreparePrinting
+
+**Parameters**
+
++---------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC                 | The device context of the printer that has to be reverted by this call.                                                                                     |
++---------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hOptionalResultData | When SysGraphicPreparePrinting allocated and returned some additional data, this handle will be passed here again to be able to release the data correctly. |
++---------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_itf_1ga782820e35db3bcf8c9da6a5ed21e1c0e:
+
+RTS_RESULT SysGraphicSetAntiAliasingMode (RTS_HANDLE hDC, RTS_UI32 uiAntiAliasingSettings)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function assigns the antialiasing mode to a device context. By default, a device context should be in mode SYSGRAPHIC_ANTIALIASING_NONE. If a device does not support antialiased drawing, it should return ERR_NOT_SUPPORTED. To tell the programming system, whether the antialiasing feature is supported, the targetsetting "visualization\targetsupport\targetvisualization_antialiasing" can be used.
+
+**Parameters**
+
++---------+------------------------+-----------------------------------------------------------+
+| [in]    | hDC                    | The device context to assign the antialiasing mode to.    |
++---------+------------------------+-----------------------------------------------------------+
+| [in]    | uiAntiAliasingSettings | The antialiasing mode (SYSGRAPHIC_ANTIALIASING_NONE,...). |
++---------+------------------------+-----------------------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_itf_1gaaf724496eec95a23e49d9cb4b140c51a:
+
+RTS_RESULT SysGraphicGetSysWindowFont (RTS_HANDLE hDC, RTS_HANDLE hSysGraphicFont, RTS_HANDLE *phSysWindowFont)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function is able to return the probably underlying font type as it is known by the SysWindow component from a font object that was allocated by the SysGraphic-Component.
+
+**Parameters**
+
++---------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC             | The device context that should be used for the conversion of the font type.                                                                           |
++---------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hSysGraphicFont | The font that was allocated by the SysGraphic-Component and that should be converted to a font object that can be handled by the SysWindow-Component. |
++---------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | phSysWindowFont | A pointer that will receive the resulting (SysWindow) font.                                                                                           |
++---------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_itf_1ga2277a14c1ee963c5306c2c881a095c51:
+
+RTS_RESULT SysGraphicInvalidateRectangle (RTS_HANDLE hDC, RTS_Rectangle rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function is optional and can be implemented by systems that need a valid backbuffer for painting to the foreground. This fact probably depends on the underlying graphics system (for Windows or native systems, this is probably not necessary, for QT based systems, an implementation might be necessary. The resulting list of invalidated rectangles should be reset in an implementation of SysGraphicResetInvalidation
+
+**Parameters**
+
++---------+------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hDC  | The device context to invalidate in.                                                                                                                                                        |
++---------+------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | rect | The rectangle that is invalidated by the visualization. An implementation can use this call for example to fill a clip region so that only valid content will be drawn into the backbuffer. |
++---------+------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_itf_1ga209b5e9be7a1508a627cd4c65855f26a:
+
+RTS_RESULT SysGraphicResetInvalidation (RTS_HANDLE hDC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function is optional in the same way than SysGraphicInvalidateRectangle. Nevertheless, if SysGraphicInvalidateRectangle is implemented, then this function should be implemented too. It will be called to reset the list of passed invalidation rectangles. This fact probably depends on the underlying graphics system (for Windows or native systems, this is probably not necessary, for QT based systems, an implementation might be necessary.
+
+**Parameters**
+
++---------+-----+--------------------------------------+
+| [in]    | hDC | The device context to invalidate in. |
++---------+-----+--------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_itf_1gab4e06f08874da823a924b13228391f03:
+
+RTS_RESULT SysGraphicInvalidateClientArea (RTS_HANDLE hDC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function is optional, just as SysGraphicInvalidateRectangle, but should be implemented, if SysGraphicInvalidateRectangle is implemented. It will be called when the whole client area should be invalidated.
+
+**Parameters**
+
++---------+-----+---------------------------------+
+| [in]    | hDC | A handle to the device context. |
++---------+-----+---------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_itf_1ga8a9e4f1d861e20593927748577f251a7:
+
+RTS_HANDLE SysGraphicCreateTransformation (RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creates an affine transformation object. Such transformations can be used for client local animations (eg. when displaying the preview of multitouch gestures) or for drawing transformed elements (eg. rotated images or text). Usually such transformations are represented by transformation matrices. If affine transformations are not supported by the implementing platform,pResult should be set to ERR_NOTIMPLEMENTED. In such a situation, some features might not work correctly.
+
+**Parameters**
+
++---------+---------+--------------------------------+
+| [out]   | pResult | Optional pointer to error code |
++---------+---------+--------------------------------+
+
+**Returns:**
+
+A handle to the created transformation object
+
+.. _group___sys_graphic_itf_1ga5b9675a578e8be1d9e64c11ca36eb073:
+
+RTS_HANDLE SysGraphicCreateTransformationByValues (RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creates an affine transformation object using the given matrix members. Such transformations can be used for client local animations (eg. when displaying the preview of multitouch gestures) or for drawing transformed elements (eg. rotated images or text). Usually such transformations are represented by transformation matrices. If affine transformations are not supported by the implementing platform,pResult should be set to ERR_NOTIMPLEMENTED. In such a situation, some features might not work correctly.
+
+**Parameters**
+
++---------+---------+------------------------------------------------------------------+
+| [in]    | m11     | The transformation matrix value in the first row, first column   |
++---------+---------+------------------------------------------------------------------+
+| [in]    | m12     | The transformation matrix value in the first row, second column  |
++---------+---------+------------------------------------------------------------------+
+| [in]    | m21     | The transformation matrix value in the second row, first column  |
++---------+---------+------------------------------------------------------------------+
+| [in]    | m22     | The transformation matrix value in the second row, second column |
++---------+---------+------------------------------------------------------------------+
+| [in]    | dx      | The transformation matrix value in the third row, first column   |
++---------+---------+------------------------------------------------------------------+
+| [in]    | dy      | The transformation matrix value in the third row, second column  |
++---------+---------+------------------------------------------------------------------+
+| [out]   | pResult | Optional pointer to error code                                   |
++---------+---------+------------------------------------------------------------------+
+
+**Returns:**
+
+A handle to the created transformation object
+
+.. _group___sys_graphic_itf_1ga08a9f7b4037486e372a8954e7151dc9e:
+
+RTS_RESULT SysGraphicFreeTransformation (RTS_HANDLE hTransform)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Deletes an affine transformation object.
+
+**Parameters**
+
++---------+------------+-------------------------------+
+| [in]    | hTransform | The transformation to delete. |
++---------+------------+-------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_itf_1gabfaaf78e208bd246010f49ede5b3c235:
+
+RTS_RESULT SysGraphicTransformationScale (RTS_HANDLE hTransform, RTS_REAL32 x, RTS_REAL32 y)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Applies a scaling operation to the transformation object. The origin of the coordinate system (could have been moved by a previous call to SysGraphicTransformationTranslate will be used as the origin for the scaling operation.
+
+**Parameters**
+
++---------+------------+----------------------------------------------+
+| [in]    | hTransform | The transformation to scale.                 |
++---------+------------+----------------------------------------------+
+| [in]    | x          | The factor to scale in horizontal direction. |
++---------+------------+----------------------------------------------+
+| [in]    | y          | The factor to scale in vertical direction.   |
++---------+------------+----------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_itf_1gaaa21188545a72b597d396a0fe05a78f4:
+
+RTS_RESULT SysGraphicTransformationRotate (RTS_HANDLE hTransform, RTS_REAL32 angle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Applies a rotation operation to the transformation object. The origin of the coordinate system (could have been moved by a previous call to SysGraphicTransformationTranslate will be used as the center for the rotation operation.
+
+**Parameters**
+
++---------+------------+-----------------------------------------------------------------------------------+
+| [in]    | hTransform | The transformation to rotate.                                                     |
++---------+------------+-----------------------------------------------------------------------------------+
+| [in]    | angle      | The angle of the rotation in degrees. Positive values specify clockwise rotation. |
++---------+------------+-----------------------------------------------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_itf_1ga82856e23fdd3c2de0b1c202b6d276a78:
+
+RTS_RESULT SysGraphicTransformationTranslate (RTS_HANDLE hTransform, RTS_REAL32 x, RTS_REAL32 y)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Applies a translation operation to the transformation object.
+
+**Parameters**
+
++---------+------------+----------------------------------------------+
+| [in]    | hTransform | The transformation to translate.             |
++---------+------------+----------------------------------------------+
+| [in]    | x          | The offset to shift in horizontal direction. |
++---------+------------+----------------------------------------------+
+| [in]    | y          | The offset to shift in vertical direction.   |
++---------+------------+----------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_itf_1ga7ddaf9233f7b58f511e59ddcf83ccbaf:
+
+RTS_RESULT SysGraphicSetActiveTransformation (RTS_HANDLE hdc, RTS_HANDLE hTransform)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Activates an affine transformation object on the given device context. This transformation will be applied to modify all followup drawing operations on this device context until a different (or no) transformation is set.
+
+**Parameters**
+
++---------+------------+-----------------------------------------------------------------------------------------+
+| [in]    | hdc        | The device context to apply the transformation on.                                      |
++---------+------------+-----------------------------------------------------------------------------------------+
+| [in]    | hTransform | The transformation to apply. Pass RTS_INVALID_HANDLE to deactivate any transformations. |
++---------+------------+-----------------------------------------------------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. _group___sys_graphic_itf_1ga4330b069437a1f23f4871ce0d1e08b09:
+
+RTS_HANDLE SysGraphicGetActiveTransformation (RTS_HANDLE hdc, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the currently active affine transformation object on the given device context.
+
+**Parameters**
+
++---------+------------+-----------------------------------------------------------------------------------------+
+| [in]    | hdc        | The device context to retrieve the the transformation from.                             |
++---------+------------+-----------------------------------------------------------------------------------------+
+| [in]    | hTransform | The transformation to apply. Pass RTS_INVALID_HANDLE to deactivate any transformations. |
++---------+------------+-----------------------------------------------------------------------------------------+
+| [out]   | pResult    | Optional pointer to error code                                                          |
++---------+------------+-----------------------------------------------------------------------------------------+
+
+**Returns:**
+
+The handle or the active transformation or RTS_INVALID_HANDLE if there was no active one..
+
+.. _group___sys_graphic_itf_1ga8d9cdfa3bc890e30429817b6bf3f6872:
+
+RTS_HANDLE SysGraphicCloneTransformation (RTS_HANDLE hTransform, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creates a new affine transformation object that is a copy of an existing affine transformation object.
+
+**Parameters**
+
++---------+------------+----------------------------------+
+| [in]    | hTransform | A handle to the object to clone. |
++---------+------------+----------------------------------+
+| [out]   | pResult    | Optional pointer to error code.  |
++---------+------------+----------------------------------+
+
+**Returns:**
+
+A handle to the created transformation object or RTS_INVALID_HANDLE if there was an error.
+
+.. _group___sys_graphic_itf_1gab2b9f9a793623d9be2639f8cd944f740:
+
+RTS_RESULT SysGraphicTransformationTransform (RTS_HANDLE hTransform, RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Applies a transformation operation to the transformation object.
+
+**Parameters**
+
++---------+------------+------------------------------------------------------------------+
+| [in]    | hTransform | Handle to the transformation object to transform.                |
++---------+------------+------------------------------------------------------------------+
+| [in]    | m11        | The transformation matrix value in the first row, first column   |
++---------+------------+------------------------------------------------------------------+
+| [in]    | m12        | The transformation matrix value in the first row, second column  |
++---------+------------+------------------------------------------------------------------+
+| [in]    | m21        | The transformation matrix value in the second row, first column  |
++---------+------------+------------------------------------------------------------------+
+| [in]    | m22        | The transformation matrix value in the second row, second column |
++---------+------------+------------------------------------------------------------------+
+| [in]    | dx         | The transformation matrix value in the third row, first column   |
++---------+------------+------------------------------------------------------------------+
+| [in]    | dy         | The transformation matrix value in the third row, second column  |
++---------+------------+------------------------------------------------------------------+
+
+**Returns:**
+
+An error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

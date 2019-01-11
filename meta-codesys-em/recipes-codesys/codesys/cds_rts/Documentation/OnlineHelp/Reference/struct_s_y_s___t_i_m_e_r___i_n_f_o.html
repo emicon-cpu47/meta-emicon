@@ -1,0 +1,246 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SYS_TIMER_INFO Struct Reference &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="SysGraphicGlobalParameters Struct Reference" href="struct_sys_graphic_global_parameters.html" />
+    <link rel="prev" title="SYS_TIMER_CALL_CONTEXT Struct Reference" href="struct_s_y_s___t_i_m_e_r___c_a_l_l___c_o_n_t_e_x_t.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="struct_sys_graphic_global_parameters.html" title="SysGraphicGlobalParameters Struct Reference"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="struct_s_y_s___t_i_m_e_r___c_a_l_l___c_o_n_t_e_x_t.html" title="SYS_TIMER_CALL_CONTEXT Struct Reference"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SYS_TIMER_INFO Struct Reference</a><ul>
+<li><a class="reference internal" href="#data-fields">Data Fields</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#field-documentation">Field Documentation</a><ul>
+<li><a class="reference internal" href="#pftimercallback-sys-timer-info-ptimercallback">PFTIMERCALLBACK SYS_TIMER_INFO::pTimerCallback</a></li>
+<li><a class="reference internal" href="#pftimerexceptionhandler-sys-timer-info-pexceptionhandler">PFTIMEREXCEPTIONHANDLER SYS_TIMER_INFO::pExceptionHandler</a></li>
+<li><a class="reference internal" href="#rts-handle-sys-timer-info-hparam">RTS_HANDLE SYS_TIMER_INFO::hParam</a></li>
+<li><a class="reference internal" href="#rts-handle-sys-timer-info-hsystimer">RTS_HANDLE SYS_TIMER_INFO::hSysTimer</a></li>
+<li><a class="reference internal" href="#rts-handle-sys-timer-info-htimertoreset">RTS_HANDLE SYS_TIMER_INFO::hTimerToReset</a></li>
+<li><a class="reference internal" href="#rts-systime-sys-timer-info-tintervalns">RTS_SYSTIME SYS_TIMER_INFO::tIntervalNs</a></li>
+<li><a class="reference internal" href="#rts-systime-sys-timer-info-tstarttime">RTS_SYSTIME SYS_TIMER_INFO::tStartTime</a></li>
+<li><a class="reference internal" href="#rts-systime-sys-timer-info-tlastexecutens">RTS_SYSTIME SYS_TIMER_INFO::tLastExecuteNs</a></li>
+<li><a class="reference internal" href="#unsigned-long-sys-timer-info-ultype">unsigned long SYS_TIMER_INFO::ulType</a></li>
+<li><a class="reference internal" href="#unsigned-long-sys-timer-info-ulpriority">unsigned long SYS_TIMER_INFO::ulPriority</a></li>
+<li><a class="reference internal" href="#sys-timer-call-context-sys-timer-info-tcallcontext">SYS_TIMER_CALL_CONTEXT SYS_TIMER_INFO::tCallContext</a></li>
+<li><a class="reference internal" href="#sys-timer-bp-context-sys-timer-info-tbpcontext">SYS_TIMER_BP_CONTEXT SYS_TIMER_INFO::tBPContext</a></li>
+<li><a class="reference internal" href="#int-sys-timer-info-biecfunction">int SYS_TIMER_INFO::bIECFunction</a></li>
+<li><a class="reference internal" href="#int-sys-timer-info-istate">int SYS_TIMER_INFO::iState</a></li>
+<li><a class="reference internal" href="#rts-handle-sys-timer-info-hevent">RTS_HANDLE SYS_TIMER_INFO::hEvent</a></li>
+<li><a class="reference internal" href="#unsigned-long-sys-timer-info-ulirq">unsigned long SYS_TIMER_INFO::ulIRQ</a></li>
+<li><a class="reference internal" href="#sehcontext-sys-timer-info-psehcontexthead">SEHContext* SYS_TIMER_INFO::pSEHContextHead</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="struct_s_y_s___t_i_m_e_r___c_a_l_l___c_o_n_t_e_x_t.html"
+                        title="previous chapter">SYS_TIMER_CALL_CONTEXT Struct Reference</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="struct_sys_graphic_global_parameters.html"
+                        title="next chapter">SysGraphicGlobalParameters Struct Reference</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/struct_s_y_s___t_i_m_e_r___i_n_f_o.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sys-timer-info-struct-reference">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o"></span><h1>SYS_TIMER_INFO Struct Reference<a class="headerlink" href="#sys-timer-info-struct-reference" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">#include &#8220;<span class="xref std std-ref">SysTimerItf.h</span>&#8220;</div>
+</div>
+<div class="section" id="data-fields">
+<h2>Data Fields<a class="headerlink" href="#data-fields" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___sys_timer_itf.html#group-sys-timer-itf-1ga6c0e09a03b5aac7aeb73c12ae73a1a08"><span class="std std-ref">PFTIMERCALLBACK</span></a> <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1a4fdd50a5addc2ba3daf3b9166ef8dea4"><span class="std std-ref">pTimerCallback</span></a></li>
+<li><a class="reference internal" href="group___sys_timer_itf.html#group-sys-timer-itf-1ga7b20637e8c2755956fe3b58973be5fbd"><span class="std std-ref">PFTIMEREXCEPTIONHANDLER</span></a> <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1a0476b124f86497cd8a66390ecb272751"><span class="std std-ref">pExceptionHandler</span></a></li>
+<li>RTS_HANDLE <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1a78212ccf480516b5810f9dc902078a39"><span class="std std-ref">hParam</span></a></li>
+<li>RTS_HANDLE <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1a3342eca9bc1d83bf610ad5c516a8a7b4"><span class="std std-ref">hSysTimer</span></a></li>
+<li>RTS_HANDLE <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1aa5210aaf2be88e80ff69c382d1ee6603"><span class="std std-ref">hTimerToReset</span></a></li>
+<li><a class="reference internal" href="group___sys_time_itf.html#group-sys-time-itf-1ga10c9d9a4c57129d83432fb02923858bf"><span class="std std-ref">RTS_SYSTIME</span></a> <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1a8aebb7f999aff782871130625f98699b"><span class="std std-ref">tIntervalNs</span></a></li>
+<li><a class="reference internal" href="group___sys_time_itf.html#group-sys-time-itf-1ga10c9d9a4c57129d83432fb02923858bf"><span class="std std-ref">RTS_SYSTIME</span></a> <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1ac29e8538d89584771e978678aae7d16e"><span class="std std-ref">tStartTime</span></a></li>
+<li><a class="reference internal" href="group___sys_time_itf.html#group-sys-time-itf-1ga10c9d9a4c57129d83432fb02923858bf"><span class="std std-ref">RTS_SYSTIME</span></a> <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1a964a4526f6b99dbad3f8fc9495958bf1"><span class="std std-ref">tLastExecuteNs</span></a></li>
+<li>unsigned long <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1ac82d1e8bf7f2f9982a9274a715ffdb0c"><span class="std std-ref">ulType</span></a></li>
+<li>unsigned long <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1a0f31ae4a72b50d17b7b5bec974662768"><span class="std std-ref">ulPriority</span></a></li>
+<li><a class="reference internal" href="struct_s_y_s___t_i_m_e_r___c_a_l_l___c_o_n_t_e_x_t.html#struct-s-y-s-t-i-m-e-r-c-a-l-l-c-o-n-t-e-x-t"><span class="std std-ref">SYS_TIMER_CALL_CONTEXT</span></a> <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1a94aee1297a402377dfd29e7f29a9d0bb"><span class="std std-ref">tCallContext</span></a></li>
+<li><a class="reference internal" href="struct_s_y_s___t_i_m_e_r___b_p___c_o_n_t_e_x_t.html#struct-s-y-s-t-i-m-e-r-b-p-c-o-n-t-e-x-t"><span class="std std-ref">SYS_TIMER_BP_CONTEXT</span></a> <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1a55392f2564591dc6d3f6704b9c1b277a"><span class="std std-ref">tBPContext</span></a></li>
+<li>int <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1a29cc6f77c2e2d28ce8f04de3051275bd"><span class="std std-ref">bIECFunction</span></a></li>
+<li>int <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1a1b276f5fac5cacb24ae25652cf6a618f"><span class="std std-ref">iState</span></a></li>
+<li>RTS_HANDLE <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1af8a9c77c551a1fc6f1ae071d88d95bf5"><span class="std std-ref">hEvent</span></a></li>
+<li>unsigned long <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1ae241e3062daf34955f59fe807de4b87c"><span class="std std-ref">ulIRQ</span></a></li>
+<li><a class="reference internal" href="group___sys_except_itf___s_e_h_context.html#group-sys-except-itf-s-e-h-context-1ga1f27ab33af4d1aa88d9097c5d8215c22"><span class="std std-ref">SEHContext</span></a> * <a class="reference internal" href="#struct-s-y-s-t-i-m-e-r-i-n-f-o-1a5b29c399cb2f7beace42b9b59eaa23da"><span class="std std-ref">pSEHContextHead</span></a></li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Timer information structure that contains all information for the SysTimerOS implementation to handle one sepcific timer object.</p>
+</div>
+<div class="section" id="field-documentation">
+<h2>Field Documentation<a class="headerlink" href="#field-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pftimercallback-sys-timer-info-ptimercallback">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1a4fdd50a5addc2ba3daf3b9166ef8dea4"></span><h3>PFTIMERCALLBACK SYS_TIMER_INFO::pTimerCallback<a class="headerlink" href="#pftimercallback-sys-timer-info-ptimercallback" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="pftimerexceptionhandler-sys-timer-info-pexceptionhandler">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1a0476b124f86497cd8a66390ecb272751"></span><h3>PFTIMEREXCEPTIONHANDLER SYS_TIMER_INFO::pExceptionHandler<a class="headerlink" href="#pftimerexceptionhandler-sys-timer-info-pexceptionhandler" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-handle-sys-timer-info-hparam">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1a78212ccf480516b5810f9dc902078a39"></span><h3>RTS_HANDLE SYS_TIMER_INFO::hParam<a class="headerlink" href="#rts-handle-sys-timer-info-hparam" title="Permalink to this headline">¶</a></h3>
+<p>Handle to a parameter, that must be transmitted as a parameter for the callback routine! Optional event to wake up the callback routine (task). This event is delivered in SysTimerCreateEvent.</p>
+</div>
+<div class="section" id="rts-handle-sys-timer-info-hsystimer">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1a3342eca9bc1d83bf610ad5c516a8a7b4"></span><h3>RTS_HANDLE SYS_TIMER_INFO::hSysTimer<a class="headerlink" href="#rts-handle-sys-timer-info-hsystimer" title="Permalink to this headline">¶</a></h3>
+<p>Handle to the system timer object in the OS implementation</p>
+</div>
+<div class="section" id="rts-handle-sys-timer-info-htimertoreset">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1aa5210aaf2be88e80ff69c382d1ee6603"></span><h3>RTS_HANDLE SYS_TIMER_INFO::hTimerToReset<a class="headerlink" href="#rts-handle-sys-timer-info-htimertoreset" title="Permalink to this headline">¶</a></h3>
+<p>SysTimer handle to the next timer that mast be activated at the return code of the actual timer callback</p>
+</div>
+<div class="section" id="rts-systime-sys-timer-info-tintervalns">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1a8aebb7f999aff782871130625f98699b"></span><h3>RTS_SYSTIME SYS_TIMER_INFO::tIntervalNs<a class="headerlink" href="#rts-systime-sys-timer-info-tintervalns" title="Permalink to this headline">¶</a></h3>
+<p>Interval of the timer in nanoseconds</p>
+</div>
+<div class="section" id="rts-systime-sys-timer-info-tstarttime">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1ac29e8538d89584771e978678aae7d16e"></span><h3>RTS_SYSTIME SYS_TIMER_INFO::tStartTime<a class="headerlink" href="#rts-systime-sys-timer-info-tstarttime" title="Permalink to this headline">¶</a></h3>
+<p>Start time of the timer event, when the callback is called</p>
+</div>
+<div class="section" id="rts-systime-sys-timer-info-tlastexecutens">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1a964a4526f6b99dbad3f8fc9495958bf1"></span><h3>RTS_SYSTIME SYS_TIMER_INFO::tLastExecuteNs<a class="headerlink" href="#rts-systime-sys-timer-info-tlastexecutens" title="Permalink to this headline">¶</a></h3>
+<p>Last execution time of the timer</p>
+</div>
+<div class="section" id="unsigned-long-sys-timer-info-ultype">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1ac82d1e8bf7f2f9982a9274a715ffdb0c"></span><h3>unsigned long SYS_TIMER_INFO::ulType<a class="headerlink" href="#unsigned-long-sys-timer-info-ultype" title="Permalink to this headline">¶</a></h3>
+<p>Timer type. See corresponding category.</p>
+</div>
+<div class="section" id="unsigned-long-sys-timer-info-ulpriority">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1a0f31ae4a72b50d17b7b5bec974662768"></span><h3>unsigned long SYS_TIMER_INFO::ulPriority<a class="headerlink" href="#unsigned-long-sys-timer-info-ulpriority" title="Permalink to this headline">¶</a></h3>
+<p>Piority of the timer object. Typically between [0..SYSTIMER_NUM_OF_TIMER_PRIOS - 1]: 0=highest prio, 255=lowest prio</p>
+</div>
+<div class="section" id="sys-timer-call-context-sys-timer-info-tcallcontext">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1a94aee1297a402377dfd29e7f29a9d0bb"></span><h3>SYS_TIMER_CALL_CONTEXT SYS_TIMER_INFO::tCallContext<a class="headerlink" href="#sys-timer-call-context-sys-timer-info-tcallcontext" title="Permalink to this headline">¶</a></h3>
+<p>Actual register context of the calling callback. Can be used to make a context switch.</p>
+</div>
+<div class="section" id="sys-timer-bp-context-sys-timer-info-tbpcontext">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1a55392f2564591dc6d3f6704b9c1b277a"></span><h3>SYS_TIMER_BP_CONTEXT SYS_TIMER_INFO::tBPContext<a class="headerlink" href="#sys-timer-bp-context-sys-timer-info-tbpcontext" title="Permalink to this headline">¶</a></h3>
+<p>Actual register context of the actual breakpoint position</p>
+</div>
+<div class="section" id="int-sys-timer-info-biecfunction">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1a29cc6f77c2e2d28ce8f04de3051275bd"></span><h3>int SYS_TIMER_INFO::bIECFunction<a class="headerlink" href="#int-sys-timer-info-biecfunction" title="Permalink to this headline">¶</a></h3>
+<p>Flag to mark, if callback function is an IEC function</p>
+</div>
+<div class="section" id="int-sys-timer-info-istate">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1a1b276f5fac5cacb24ae25652cf6a618f"></span><h3>int SYS_TIMER_INFO::iState<a class="headerlink" href="#int-sys-timer-info-istate" title="Permalink to this headline">¶</a></h3>
+<p>Actual state of the timer object</p>
+</div>
+<div class="section" id="rts-handle-sys-timer-info-hevent">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1af8a9c77c551a1fc6f1ae071d88d95bf5"></span><h3>RTS_HANDLE SYS_TIMER_INFO::hEvent<a class="headerlink" href="#rts-handle-sys-timer-info-hevent" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="unsigned-long-sys-timer-info-ulirq">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1ae241e3062daf34955f59fe807de4b87c"></span><h3>unsigned long SYS_TIMER_INFO::ulIRQ<a class="headerlink" href="#unsigned-long-sys-timer-info-ulirq" title="Permalink to this headline">¶</a></h3>
+<p>Interrupt number of the corresponding timer object</p>
+</div>
+<div class="section" id="sehcontext-sys-timer-info-psehcontexthead">
+<span id="struct-s-y-s-t-i-m-e-r-i-n-f-o-1a5b29c399cb2f7beace42b9b59eaa23da"></span><h3>SEHContext* SYS_TIMER_INFO::pSEHContextHead<a class="headerlink" href="#sehcontext-sys-timer-info-psehcontexthead" title="Permalink to this headline">¶</a></h3>
+<p>Points to the head of the registered exception frames</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="struct_sys_graphic_global_parameters.html" title="SysGraphicGlobalParameters Struct Reference"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="struct_s_y_s___t_i_m_e_r___c_a_l_l___c_o_n_t_e_x_t.html" title="SYS_TIMER_CALL_CONTEXT Struct Reference"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

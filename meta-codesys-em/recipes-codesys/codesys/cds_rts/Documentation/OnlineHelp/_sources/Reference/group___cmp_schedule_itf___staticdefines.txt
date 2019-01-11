@@ -1,0 +1,62 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_schedule_itf___staticdefines:
+
+==============
+Static defines
+==============
+
+ :ref:`More... <group___cmp_schedule_itf___staticdefines-details>`
+
+Macros
+------
+
+- #define :ref:`SCHED_DEBUG_LOOP_CYCLE_TIME <group___cmp_schedule_itf___staticdefines_1ga5c35d45d43df43e59b201d1544c1b3ad>` 100
+
+- #define :ref:`CMPSCHEDULETIMER_WATCHDOG_PRIORITY <group___cmp_schedule_itf___staticdefines_1gaff72b65f54434bf2a29ca5f66f3c1e09>` 0
+
+- #define :ref:`CMPSCHEDULETIMER_WATCHDOG_INTERVAL <group___cmp_schedule_itf___staticdefines_1ga12cc72e0c8a312dff9f6f7b287e141d8>` 1000000 /* 1 ms */
+
+- #define :ref:`CMPSCHEDULE_SEARCH_NOP_AFTER_EXTERNAL_CALL <group___cmp_schedule_itf___staticdefines_1gab9bd8587765e9f5339953dc5fc3f7393>` 21
+
+.. _group___cmp_schedule_itf___staticdefines-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_schedule_itf___staticdefines_1ga5c35d45d43df43e59b201d1544c1b3ad:
+
+#define SCHED_DEBUG_LOOP_CYCLE_TIME 100
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sleep time in breakpoint loop in milliseconds
+
+.. _group___cmp_schedule_itf___staticdefines_1gaff72b65f54434bf2a29ca5f66f3c1e09:
+
+#define CMPSCHEDULETIMER_WATCHDOG_PRIORITY 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf___staticdefines_1ga12cc72e0c8a312dff9f6f7b287e141d8:
+
+#define CMPSCHEDULETIMER_WATCHDOG_INTERVAL 1000000 /* 1 ms */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_schedule_itf___staticdefines_1gab9bd8587765e9f5339953dc5fc3f7393:
+
+#define CMPSCHEDULE_SEARCH_NOP_AFTER_EXTERNAL_CALL 21
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There is a new feature to avoid possible deadlocks in external library calls if a watchdog exception occurred. This feature can be activated in the device description by the following setting: Targetsetting: "codegenerator\\breakpoint-mark-after-external-call" If you activate this feature we do not suspend the IecTask directly in the exernal library call, but we set a breakpoint right after returning from this external library call to driver out of this code in a defined way. And this define is the number of code bytes after returning from the external library call to look maximum for the NOP code.
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,314 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_event_itf:
+
+===========
+SysEventItf
+===========
+
+Interface of SysEvent. :ref:`More... <group___sys_event_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagsyseventcreate_struct <structtagsyseventcreate__struct>`
+
+- struct :ref:`tagsyseventdelete_struct <structtagsyseventdelete__struct>`
+
+- struct :ref:`tagsyseventset_struct <structtagsyseventset__struct>`
+
+- struct :ref:`tagsyseventwait_struct <structtagsyseventwait__struct>`
+
+- struct :ref:`ISysEvent_C <struct_i_sys_event___c>`
+
+Macros
+------
+
+- #define :ref:`SYSEVENT_WAIT_INFINITE <group___sys_event_itf_1ga8279a74a5f77db8c69de7b9a9deea6c6>` ((long)-1)
+
+- #define :ref:`ITF_SysEvent <group___sys_event_itf_1ga61d0bb2aed08c99f526c64ad25691295>`
+
+- #define :ref:`EXTITF_SysEvent <group___sys_event_itf_1gac726da5033bdda803dd48484faa0f041>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagsyseventcreate_struct <structtagsyseventcreate__struct>` :ref:`syseventcreate_struct <group___sys_event_itf_1ga6a3c1c4b319e933ec98f0de40b766d8b>`
+
+- typedef struct :ref:`tagsyseventdelete_struct <structtagsyseventdelete__struct>` :ref:`syseventdelete_struct <group___sys_event_itf_1ga7c6ae17dff1bd39a486796df9bc6b889>`
+
+- typedef struct :ref:`tagsyseventset_struct <structtagsyseventset__struct>` :ref:`syseventset_struct <group___sys_event_itf_1ga75c441968b38e7e2704144e16fb11cdf>`
+
+- typedef struct :ref:`tagsyseventwait_struct <structtagsyseventwait__struct>` :ref:`syseventwait_struct <group___sys_event_itf_1ga4831cd7f1f11300771ab9d3816dc5c35>`
+
+- typedef :ref:`ISysEvent_C <struct_i_sys_event___c>` :ref:`ISysEvent <group___sys_event_itf_1ga8741a5a6b15788a3ecefadcf47cb84a1>`
+
+Functions
+---------
+
+- void :ref:`syseventcreate <group___sys_event_itf_1ga474b05754b1466b545ee3d11b3359309>` (:ref:`syseventcreate_struct <group___sys_event_itf_1ga6a3c1c4b319e933ec98f0de40b766d8b>` * p)
+
+- void :ref:`syseventdelete <group___sys_event_itf_1ga736685ba4cc19328dc8d414ebec6dbc5>` (:ref:`syseventdelete_struct <group___sys_event_itf_1ga7c6ae17dff1bd39a486796df9bc6b889>` * p)
+
+- void :ref:`syseventset <group___sys_event_itf_1ga2ca04a408d835a45afcb19a7aaabd291>` (:ref:`syseventset_struct <group___sys_event_itf_1ga75c441968b38e7e2704144e16fb11cdf>` * p)
+
+- void :ref:`syseventwait <group___sys_event_itf_1gac839a1e16ac252a132a7337e2a8eaacf>` (:ref:`syseventwait_struct <group___sys_event_itf_1ga4831cd7f1f11300771ab9d3816dc5c35>` * p)
+
+- RTS_RESULT :ref:`SysEventOSInit <group___sys_event_itf_1ga7ac88eec49a44dcc85db0f30c19d22a6>` (INIT_STRUCT * pInit)
+
+- RTS_RESULT :ref:`SysEventOSHookFunction <group___sys_event_itf_1ga6c673df231039c79f7c43ca684d8a6e2>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_HANDLE :ref:`SysEventCreate <group___sys_event_itf_1ga3484fc7fc7d98cb724bc024d74c1209c>` (char * pszName, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysEventDelete <group___sys_event_itf_1ga89b4f738d9d3c7e3497c84c886b1c8a4>` (RTS_HANDLE hEvent)
+
+- RTS_RESULT :ref:`SysEventSet <group___sys_event_itf_1gaa233d04b418b30d300d605946580307e>` (RTS_HANDLE hEvent)
+
+- RTS_RESULT :ref:`SysEventWait <group___sys_event_itf_1gac611939828ae7d1988c117c04dd27b41>` (RTS_HANDLE hEvent, long lTimeout)
+
+.. _group___sys_event_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysEvent.
+
+The SysEvent interface is projected to use an operating system event to activate a task. So this component can only be used on systems with tasks!
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_event_itf_1ga8279a74a5f77db8c69de7b9a9deea6c6:
+
+#define SYSEVENT_WAIT_INFINITE ((long)-1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION END
+
+.. _group___sys_event_itf_1ga61d0bb2aed08c99f526c64ad25691295:
+
+#define ITF_SysEvent
+^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_event_itf_1gac726da5033bdda803dd48484faa0f041:
+
+#define EXTITF_SysEvent
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_event_itf_1ga6a3c1c4b319e933ec98f0de40b766d8b:
+
+typedef struct tagsyseventcreate_struct  syseventcreate_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION BEGIN
+
+Create a new event object specified with name. Two components can open the same event, if they specify the same name.
+
+IMPLEMENTATION NOTE:
+
+- If a name is specified in szEvent, typically a system wide event is created.
+
+- If an event still exists with this name, the routine returns the handle to the existing event
+
+- szEvent can be NULL, so a new unique event with an empty name must be created
+
+- If :ref:`SysEventWait() <group___cmp_hilscher_c_i_f_x_dep___taskprefix_1gabdec8868d39a248ddde25af0b3e42236>` is done after :ref:`SysEventSet() <group___cmp_hilscher_c_i_f_x_dep___taskprefix_1ga654b0b6e734f8c15d4fca393603d8dcd>` , the event should signal the task!
+
+- An event must not be used to signal several tasks!
+
+TARGET SPECIFIC IMPLEMENTATION:
+
+- CoDeSys Control RTE:
+
+- If szEvent is specified, the event will work as a system wide Windows event. In this case, every call to SysEventSet/Wait will call the corresponding Windows API-functions and this may last an unpredictable time!
+
+- In case SysEventCreate is called with a NULL-pointer in szEvent, the event can be used to synchronize RTE-tasks only. The calls to SysEventSet/Wait keep their real time capabilities.
+
+**Returns:**
+
+*RESULT: Handle to the event or RTS_INVALID_HANDLE if failed.
+
+.. _group___sys_event_itf_1ga7c6ae17dff1bd39a486796df9bc6b889:
+
+typedef struct tagsyseventdelete_struct  syseventdelete_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete an exisiting event object
+**Returns:**
+
+*RESULT: Returns the runtime system error code (see CmpErrors.library).
+
+.. _group___sys_event_itf_1ga75c441968b38e7e2704144e16fb11cdf:
+
+typedef struct tagsyseventset_struct  syseventset_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the given Event. With this operation, a task is activated if it waits for the event with SysEventWait.
+**Returns:**
+
+*RESULT: Returns the runtime system error code (see CmpErrors.library).
+
+.. _group___sys_event_itf_1ga4831cd7f1f11300771ab9d3816dc5c35:
+
+typedef struct tagsyseventwait_struct  syseventwait_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Wait for the given Event
+**Returns:**
+
+*RESULT: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_OK: if event was received
+
+- ERR_TIMEOUT: for timeout
+
+.. _group___sys_event_itf_1ga8741a5a6b15788a3ecefadcf47cb84a1:
+
+typedef ISysEvent_C ISysEvent
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_event_itf_1ga474b05754b1466b545ee3d11b3359309:
+
+void syseventcreate (syseventcreate_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_event_itf_1ga736685ba4cc19328dc8d414ebec6dbc5:
+
+void syseventdelete (syseventdelete_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_event_itf_1ga2ca04a408d835a45afcb19a7aaabd291:
+
+void syseventset (syseventset_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_event_itf_1gac839a1e16ac252a132a7337e2a8eaacf:
+
+void syseventwait (syseventwait_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_event_itf_1ga7ac88eec49a44dcc85db0f30c19d22a6:
+
+RTS_RESULT SysEventOSInit (INIT_STRUCT *pInit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_event_itf_1ga6c673df231039c79f7c43ca684d8a6e2:
+
+RTS_RESULT SysEventOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_event_itf_1ga3484fc7fc7d98cb724bc024d74c1209c:
+
+RTS_HANDLE SysEventCreate (char *pszName, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create a new event object specified with name. Two components can open the same event, if they sepecify the same name.
+
+IMPLEMENTATION NOTE:
+
+- If a name is specified in pszName, typically a system wide event is created.
+
+- If an event still exists with this name, the routine returns the handle to the existing event
+
+- pszName can be NULL, so a new unique event with an empty name must be created
+
+- If :ref:`SysEventWait() <group___cmp_hilscher_c_i_f_x_dep___taskprefix_1gabdec8868d39a248ddde25af0b3e42236>` is done after :ref:`SysEventSet() <group___cmp_hilscher_c_i_f_x_dep___taskprefix_1ga654b0b6e734f8c15d4fca393603d8dcd>` , the event should signal the task!
+
+- An event must not be used to signal several tasks!
+
+TARGET SPECIFIC IMPLEMENTATION:
+
+- CoDeSys Control RTE:
+
+- If pszName is specified, the event will work as a system wide Windows event. In this case, every call to SysEventSet/Wait will call the corresponding Windows API-functions and this may last an unpredictable time!
+
+- In case SysEventCreate is called with a NULL-pointer in pszName, the event can be used to synchronize RTE-tasks only. The calls to SysEventSet/Wait keep their real time capabilities.
+
+**Parameters**
+
++---------+---------+--------------------------------------+
+| [in]    | pszName | Name for the new event. Can be NULL! |
++---------+---------+--------------------------------------+
+| [out]   | pResult | Pointer to error code                |
++---------+---------+--------------------------------------+
+
+**Returns:**
+
+Handle to the event or RTS_INVALID_HANDLE if failed
+
+.. _group___sys_event_itf_1ga89b4f738d9d3c7e3497c84c886b1c8a4:
+
+RTS_RESULT SysEventDelete (RTS_HANDLE hEvent)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete an exisiting event object
+
+**Parameters**
+
++---------+--------+---------------------------------------------------------------------------------------+
+| [in]    | hEvent | Handle to the event. If hEvent is RTS_INVALID_HANDLE, function returned with an error |
++---------+--------+---------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_event_itf_1gaa233d04b418b30d300d605946580307e:
+
+RTS_RESULT SysEventSet (RTS_HANDLE hEvent)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the given Event. With this operation, a task is activated, if this task waits for the event (see SysEventWait).
+
+**Parameters**
+
++---------+--------+---------------------------------------------------------------------------------------+
+| [in]    | hEvent | Handle to the event. If hEvent is RTS_INVALID_HANDLE, function returned with an error |
++---------+--------+---------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_event_itf_1gac611939828ae7d1988c117c04dd27b41:
+
+RTS_RESULT SysEventWait (RTS_HANDLE hEvent, long lTimeout)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Wait for the given Event
+
+**Parameters**
+
++---------+----------+---------------------------------------------------------------------------------------+
+| [in]    | hEvent   | Handle to the event. If hEvent is RTS_INVALID_HANDLE, function returned with an error |
++---------+----------+---------------------------------------------------------------------------------------+
+| [in]    | lTimeout | Timeout in ms to wait for the event.                                                  |
+|         |          |                                                                                       |
+|         |          | - lTimeout = -1 (SYSEVENT_WAIT_INFINITE): means infinite wait                         |
+|         |          |                                                                                       |
+|         |          | - lTimeout = 0: means no wait, only checks the event!                                 |
++---------+----------+---------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code:
+
+- ERR_OK: if event was received
+
+- ERR_TIMEOUT: for timeout
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

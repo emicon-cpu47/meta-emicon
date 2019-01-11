@@ -1,0 +1,355 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_cpu_handling_dep:
+
+=================
+SysCpuHandlingDep
+=================
+
+ :ref:`More... <group___sys_cpu_handling_dep-details>`
+
+Macros
+------
+
+- #define :ref:`SYSCPUATOMICADD_CAS <group___sys_cpu_handling_dep_1gaeace868fc9fd6edd6e0bd439ae23abee>` do { \
+RTS_I32 iValue; \
+RTS_RESULT Result = ERR_FAILED; \
+do \
+{ \
+iValue = *piValue; \
+SYS_ATOMIC_COMPARE_AND_SWAP(piValue, iValue + nSum, iValue, Result); \
+} while (Result != ERR_OK); \
+RTS_SETRESULT( :ref:`pResult <group___sys_socket_embedded_dep_1gaedc0391d5cd1aca9c77a6cafa5c96ff6>` , ERR_OK); \
+iResult = iValue + nSum; \
+} while(0)
+
+- #define :ref:`SYSCPUATOMICADD_LOCK <group___sys_cpu_handling_dep_1gaaa9e17c42d6909e213bff1cb6633c0ac>` do { \
+SYS_INT_PARAM param; \
+SYS_INT_LOCK(param); \
+iResult = *piValue += nSum; \
+SYS_INT_UNLOCK(param);	\
+RTS_SETRESULT( :ref:`pResult <group___sys_socket_embedded_dep_1gaedc0391d5cd1aca9c77a6cafa5c96ff6>` , ERR_OK); \
+} while(0)
+
+- #define :ref:`SYSCPUTESTANDSETBITININT <group___sys_cpu_handling_dep_1ga74553a21f2988884a25a9f0d543ea95b>` do { \
+RTS_UI32 uiMask = (1 << iBit); \
+RTS_I32 iStored; \
+RTS_I32 iValue; \
+\
+/* Set */			\
+if (bSet) \
+{ \
+do \
+{ \
+iStored = (RTS_I32)*p; \
+if ((iStored & uiMask) != 0) \
+{ \
+Result = ERR_FAILED; \
+break; \
+} \
+iValue = iStored | uiMask; \
+SYS_ATOMIC_COMPARE_AND_SWAP((RTS_I32 *)p, iValue, iStored, Result); \
+} while (Result != ERR_OK); \
+} \
+/* Reset */			\
+else \
+{ \
+do  \
+{ \
+iStored = *p; \
+if ((iStored & uiMask) == 0) \
+{ \
+Result = ERR_FAILED; \
+break; \
+} \
+iValue = iStored & ~uiMask; \
+SYS_ATOMIC_COMPARE_AND_SWAP((RTS_I32 *)p, iValue, iStored, Result); \
+} while (Result != ERR_OK); \
+} \
+} while(0)
+
+- #define :ref:`SYSCPUTESTANDSETBIT_GETBIT <group___sys_cpu_handling_dep_1ga183173f22c282aefdfb12ece1233a0b2>` ((align_offset * 8) + iBit)
+
+- #define :ref:`SYSCPUTESTANDSETBIT_CAS <group___sys_cpu_handling_dep_1gaa1ddce6559ebd9b2584773d0c21b4377>` do { \
+int *piAlign = (int*)ALIGN_MEMORY2_BACK(pAddress, sizeof(int)); \
+int align_offset = (unsigned char *)pAddress - (unsigned char *)piAlign; \
+int myBit = -1; \
+\
+if (pAddress == NULL) \
+{ \
+Result = ERR_PARAMETER; \
+break; \
+} \
+\
+if ((iBit >= (nLen*8)) || \
+(nLen == 4 && align_offset != 0)) \
+{ \
+Result = ERR_PARAMETER; \
+break; \
+} \
+myBit = :ref:`SYSCPUTESTANDSETBIT_GETBIT <group___sys_cpu_handling_dep_1ga183173f22c282aefdfb12ece1233a0b2>` (nLen, align_offset, iBit); \
+if (sizeof(int) == 2 && myBit > 15) \
+{ \
+piAlign = (int *)((unsigned char *)piAlign + 2); \
+myBit -= 15; \
+} \
+:ref:`SYSCPUTESTANDSETBITININT <group___sys_cpu_handling_dep_1ga74553a21f2988884a25a9f0d543ea95b>` (piAlign, myBit, bSet, Result); \
+} while(0)
+
+- #define :ref:`SYSCPUTESTANDSETBIT_GENERIC_GETBYTE <group___sys_cpu_handling_dep_1ga90ef763f5286885984dbaf5a83b81e03>` ((unsigned char *)pAddress + iBit/8)
+
+- #define :ref:`SYSCPUTESTANDSETBIT_GENERIC <group___sys_cpu_handling_dep_1ga11d09e673c49ec6aa3deaca186458e26>` do { \
+unsigned char *pByte; \
+if (pAddress == NULL) \
+{ \
+Result = ERR_PARAMETER; \
+break; \
+} \
+\
+if (iBit >= nLen*8) \
+{ \
+Result = ERR_PARAMETER; \
+break; \
+} \
+pByte = :ref:`SYSCPUTESTANDSETBIT_GENERIC_GETBYTE <group___sys_cpu_handling_dep_1ga90ef763f5286885984dbaf5a83b81e03>` (pAddress, nLen, iBit); \
+iBit %= 8; \
+if ((((*pByte)>>iBit) & 0x1) == bSet) \
+{ \
+Result = ERR_FAILED; \
+break; \
+} \
+\
+*pByte = (unsigned char)((*pByte & ~(unsigned char)(0x1<<iBit)) | (unsigned char)(bSet<<iBit)); \
+Result = ERR_OK; \
+} while(0)
+
+- #define :ref:`SYSCPUTESTANDSETBIT_LOCK <group___sys_cpu_handling_dep_1ga73f2ad504abd3b9edbcc5a15db8f003d>` do { \
+if (CHK_SysIntEnableAll && CHK_SysIntDisableAll) \
+{ \
+RTS_UINTPTR param; \
+\
+CAL_SysIntDisableAll(&param); \
+:ref:`SYSCPUTESTANDSETBIT_GENERIC <group___sys_cpu_handling_dep_1ga11d09e673c49ec6aa3deaca186458e26>` (pAddress, nLen, iBit, bSet, Result); \
+CAL_SysIntEnableAll(&param); \
+} \
+Result = ERR_NOT_SUPPORTED; \
+} while(0)
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysCpuTestAndSetBitBase <group___sys_cpu_handling_dep_1ga93e3bc2170f7adfea57efeb201dcf452>` (void * pAddress, int nLen, int iBit, int bSet)
+
+.. _group___sys_cpu_handling_dep-details:
+
+Detailed Description
+--------------------
+
+
+
+System component that allows access to Cpu specific features.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_cpu_handling_dep_1gaeace868fc9fd6edd6e0bd439ae23abee:
+
+#define SYSCPUATOMICADD_CAS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Value:**
+
+.. parsed-literal::
+
+    do { \\
+    RTS_I32 iValue; \\
+    RTS_RESULT Result = ERR_FAILED; \\
+    do \\
+    { \\
+    iValue = *piValue; \\
+    SYS_ATOMIC_COMPARE_AND_SWAP(piValue, iValue + nSum, iValue, Result); \\
+    } while (Result != ERR_OK); \\
+    RTS_SETRESULT( :ref:`pResult <group___sys_socket_embedded_dep_1gaedc0391d5cd1aca9c77a6cafa5c96ff6>` , ERR_OK); \\
+    iResult = iValue + nSum; \\
+    } while(0)
+
+.. _group___sys_cpu_handling_dep_1gaaa9e17c42d6909e213bff1cb6633c0ac:
+
+#define SYSCPUATOMICADD_LOCK
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Value:**
+
+.. parsed-literal::
+
+    do { \\
+    SYS_INT_PARAM param; \\
+    SYS_INT_LOCK(param); \\
+    iResult = *piValue += nSum; \\
+    SYS_INT_UNLOCK(param);	\\
+    RTS_SETRESULT( :ref:`pResult <group___sys_socket_embedded_dep_1gaedc0391d5cd1aca9c77a6cafa5c96ff6>` , ERR_OK); \\
+    } while(0)
+
+.. _group___sys_cpu_handling_dep_1ga74553a21f2988884a25a9f0d543ea95b:
+
+#define SYSCPUTESTANDSETBITININT
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Value:**
+
+.. parsed-literal::
+
+    do { \\
+    RTS_UI32 uiMask = (1 << iBit); \\
+    RTS_I32 iStored; \\
+    RTS_I32 iValue; \\
+    \\
+    /* Set */			\\
+    if (bSet) \\
+    { \\
+    do \\
+    { \\
+    iStored = (RTS_I32)*p; \\
+    if ((iStored & uiMask) != 0) \\
+    { \\
+    Result = ERR_FAILED; \\
+    break; \\
+    } \\
+    iValue = iStored | uiMask; \\
+    SYS_ATOMIC_COMPARE_AND_SWAP((RTS_I32 *)p, iValue, iStored, Result); \\
+    } while (Result != ERR_OK); \\
+    } \\
+    /* Reset */			\\
+    else \\
+    { \\
+    do  \\
+    { \\
+    iStored = *p; \\
+    if ((iStored & uiMask) == 0) \\
+    { \\
+    Result = ERR_FAILED; \\
+    break; \\
+    } \\
+    iValue = iStored & ~uiMask; \\
+    SYS_ATOMIC_COMPARE_AND_SWAP((RTS_I32 *)p, iValue, iStored, Result); \\
+    } while (Result != ERR_OK); \\
+    } \\
+    } while(0)
+
+.. _group___sys_cpu_handling_dep_1ga183173f22c282aefdfb12ece1233a0b2:
+
+#define SYSCPUTESTANDSETBIT_GETBIT ((align_offset * 8) + iBit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_cpu_handling_dep_1gaa1ddce6559ebd9b2584773d0c21b4377:
+
+#define SYSCPUTESTANDSETBIT_CAS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Value:**
+
+.. parsed-literal::
+
+    do { \\
+    int *piAlign = (int*)ALIGN_MEMORY2_BACK(pAddress, sizeof(int)); \\
+    int align_offset = (unsigned char *)pAddress - (unsigned char *)piAlign; \\
+    int myBit = -1; \\
+    \\
+    if (pAddress == NULL) \\
+    { \\
+    Result = ERR_PARAMETER; \\
+    break; \\
+    } \\
+    \\
+    if ((iBit >= (nLen*8)) || \\
+    (nLen == 4 && align_offset != 0)) \\
+    { \\
+    Result = ERR_PARAMETER; \\
+    break; \\
+    } \\
+    myBit = :ref:`SYSCPUTESTANDSETBIT_GETBIT <group___sys_cpu_handling_dep_1ga183173f22c282aefdfb12ece1233a0b2>` (nLen, align_offset, iBit); \\
+    if (sizeof(int) == 2 && myBit > 15) \\
+    { \\
+    piAlign = (int *)((unsigned char *)piAlign + 2); \\
+    myBit -= 15; \\
+    } \\
+    :ref:`SYSCPUTESTANDSETBITININT <group___sys_cpu_handling_dep_1ga74553a21f2988884a25a9f0d543ea95b>` (piAlign, myBit, bSet, Result); \\
+    } while(0)
+
+.. _group___sys_cpu_handling_dep_1ga90ef763f5286885984dbaf5a83b81e03:
+
+#define SYSCPUTESTANDSETBIT_GENERIC_GETBYTE ((unsigned char *)pAddress + iBit/8)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_cpu_handling_dep_1ga11d09e673c49ec6aa3deaca186458e26:
+
+#define SYSCPUTESTANDSETBIT_GENERIC
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Value:**
+
+.. parsed-literal::
+
+    do { \\
+    unsigned char *pByte; \\
+    if (pAddress == NULL) \\
+    { \\
+    Result = ERR_PARAMETER; \\
+    break; \\
+    } \\
+    \\
+    if (iBit >= nLen*8) \\
+    { \\
+    Result = ERR_PARAMETER; \\
+    break; \\
+    } \\
+    pByte = :ref:`SYSCPUTESTANDSETBIT_GENERIC_GETBYTE <group___sys_cpu_handling_dep_1ga90ef763f5286885984dbaf5a83b81e03>` (pAddress, nLen, iBit); \\
+    iBit %= 8; \\
+    if ((((*pByte)>>iBit) & 0x1) == bSet) \\
+    { \\
+    Result = ERR_FAILED; \\
+    break; \\
+    } \\
+    \\
+    *pByte = (unsigned char)((*pByte & ~(unsigned char)(0x1<<iBit)) | (unsigned char)(bSet<<iBit)); \\
+    Result = ERR_OK; \\
+    } while(0)
+
+.. _group___sys_cpu_handling_dep_1ga73f2ad504abd3b9edbcc5a15db8f003d:
+
+#define SYSCPUTESTANDSETBIT_LOCK
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Value:**
+
+.. parsed-literal::
+
+    do { \\
+    if (CHK_SysIntEnableAll && CHK_SysIntDisableAll) \\
+    { \\
+    RTS_UINTPTR param; \\
+    \\
+    CAL_SysIntDisableAll(&param); \\
+    :ref:`SYSCPUTESTANDSETBIT_GENERIC <group___sys_cpu_handling_dep_1ga11d09e673c49ec6aa3deaca186458e26>` (pAddress, nLen, iBit, bSet, Result); \\
+    CAL_SysIntEnableAll(&param); \\
+    } \\
+    Result = ERR_NOT_SUPPORTED; \\
+    } while(0)
+
+Function Documentation
+----------------------
+
+.. _group___sys_cpu_handling_dep_1ga93e3bc2170f7adfea57efeb201dcf452:
+
+RTS_RESULT SysCpuTestAndSetBitBase (void *pAddress, int nLen, int iBit, int bSet)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,542 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_except_itf:
+
+============
+SysExceptItf
+============
+
+Interface of SysExcept. :ref:`More... <group___sys_except_itf-details>`
+
+Modules
+-------
+
+- :ref:`Compiler switch <group___sys_except_itf___compilerswitch>`
+
+- :ref:`Event parameter <group___sys_except_itf___eventparameter>`
+
+- :ref:`Events <group___sys_except_itf___events>`
+
+- :ref:`Exception code <group___sys_except_itf___exceptioncode>`
+
+- :ref:`Exception context <group___sys_except_itf___exceptioncontext>`
+
+- :ref:`Exception handler <group___sys_except_itf___exceptionhandler>`
+
+- :ref:`Exception pseudo code <group___sys_except_itf___exceptionpseudocode>`
+
+- :ref:`SEH Context <group___sys_except_itf___s_e_h_context>`
+
+- :ref:`Settings <group___sys_except_itf___settings>`
+
+- :ref:`Static defines <group___sys_except_itf___staticdefines>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagsysexceptgenerateexception_struct <structtagsysexceptgenerateexception__struct>`
+
+- struct :ref:`tagsysexceptdisableseh_struct <structtagsysexceptdisableseh__struct>`
+
+- struct :ref:`tagsysexceptdisableseh2_struct <structtagsysexceptdisableseh2__struct>`
+
+- struct :ref:`tagsysexceptenableseh_struct <structtagsysexceptenableseh__struct>`
+
+- struct :ref:`tagsysexceptenableseh2_struct <structtagsysexceptenableseh2__struct>`
+
+- struct :ref:`ISysExcept_C <struct_i_sys_except___c>`
+
+Macros
+------
+
+- #define :ref:`EXCPT_GET_CODE <group___sys_except_itf_1gafa13bd2a20d345de5cd92e2d4cfbfffa>` :ref:`RTSEXCPT_NOEXCEPTION <group___sys_except_itf___exceptioncode_1gade57a8ea56476601c4f9fb6f63f643fd>`
+
+- #define :ref:`EXCPT_GET_CONTEXT <group___sys_except_itf_1gac374b40182a1b3b181b31f10db25e1d5>` NULL
+
+- #define :ref:`rts_try <group___sys_except_itf_1ga61368765a3d688a5e1e3a88e44189d93>` {
+
+- #define :ref:`rts_catch_exception <group___sys_except_itf_1ga1e1e32f23b63c47b755e947a37112033>` if (0)
+
+- #define :ref:`rts_catch <group___sys_except_itf_1ga552b79c08cc9bdef2f867dcf0384289c>` if (0)
+
+- #define :ref:`rts_try_end <group___sys_except_itf_1ga9a04fd3fbedab315f4b4ee5dd081dfcc>` }
+
+- #define :ref:`ITF_SysExcept <group___sys_except_itf_1gac7746708ebfb98e5168ae7e9952b30ad>`
+
+- #define :ref:`EXTITF_SysExcept <group___sys_except_itf_1ga4a7d99301e7bd6b0a2d8ea5d63dc8db6>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagsysexceptgenerateexception_struct <structtagsysexceptgenerateexception__struct>` :ref:`sysexceptgenerateexception_struct <group___sys_except_itf_1ga43436000d1579bbe68a24b38330f8eaf>`
+
+- typedef struct :ref:`tagsysexceptdisableseh_struct <structtagsysexceptdisableseh__struct>` :ref:`sysexceptdisableseh_struct <group___sys_except_itf_1ga86f3e9217852743fcd47861141e7f295>`
+
+- typedef struct :ref:`tagsysexceptdisableseh2_struct <structtagsysexceptdisableseh2__struct>` :ref:`sysexceptdisableseh2_struct <group___sys_except_itf_1ga37fce74c516cdc734f2fe1f708d3a9f4>`
+
+- typedef struct :ref:`tagsysexceptenableseh_struct <structtagsysexceptenableseh__struct>` :ref:`sysexceptenableseh_struct <group___sys_except_itf_1ga1c5a750533e25080df0df14bd1fa8d19>`
+
+- typedef struct :ref:`tagsysexceptenableseh2_struct <structtagsysexceptenableseh2__struct>` :ref:`sysexceptenableseh2_struct <group___sys_except_itf_1gaa420c8d9fef4dd5d6c38ec73be6bb0d5>`
+
+- typedef :ref:`ISysExcept_C <struct_i_sys_except___c>` :ref:`ISysExcept <group___sys_except_itf_1gae17a11c6b4cfa8b942d4cb8a4ae2a711>`
+
+Functions
+---------
+
+- RTS_UI32 :ref:`SysExceptMapException <group___sys_except_itf_1ga336e49c382a64e42f1ec78176678fb65>` (RTS_UI32 ulOSException)
+
+- RTS_RESULT :ref:`SysExceptGenerateException <group___sys_except_itf_1ga08d2a6fb1d1966d74c4a8a2313efd643>` (RTS_HANDLE ulTaskOSHandle, :ref:`ExceptionCode <group___sys_except_itf___exceptioncode_1gabe2074073b7a6a06097f687be87c34cd>`  Exception, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>`  Context)
+
+- RTS_RESULT :ref:`SysExceptGenerateException2 <group___sys_except_itf_1ga3b3c4ab286d3b4fb48d3d085f7304725>` (RTS_HANDLE ulTaskOSHandle, :ref:`ExceptionCode <group___sys_except_itf___exceptioncode_1gabe2074073b7a6a06097f687be87c34cd>`  Exception, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>`  Context, int bSuspendExceptionTask)
+
+- RTS_RESULT :ref:`SysExceptRegisterInterface <group___sys_except_itf_1ga8ceedda4f464989a5c85f11d5d726bcc>` (:ref:`PFEXCEPTIONHANDLER <group___sys_except_itf___exceptionhandler_1ga4c582875389378d7e1f9705d7951eb98>`  pExceptionHandler)
+
+- RTS_RESULT :ref:`SysExceptTry <group___sys_except_itf_1gaad6c28843b2da8220b3f9e4432f12993>` (:ref:`SEHContext <group___sys_except_itf___s_e_h_context_1ga1f27ab33af4d1aa88d9097c5d8215c22>` * context)
+
+- RTS_RESULT :ref:`SysExceptCatchException <group___sys_except_itf_1ga96612c336c3aea3d2ebc32e6bda317ce>` (:ref:`SEHContext <group___sys_except_itf___s_e_h_context_1ga1f27ab33af4d1aa88d9097c5d8215c22>` * context, RTS_UI32 ui32ExceptionCode)
+
+- RTS_RESULT :ref:`SysExceptCatch <group___sys_except_itf_1ga80f2e5a7f6e13c7905c2d8498e5b1756>` (:ref:`SEHContext <group___sys_except_itf___s_e_h_context_1ga1f27ab33af4d1aa88d9097c5d8215c22>` * context)
+
+- RTS_RESULT :ref:`SysExceptUnregisterInterface <group___sys_except_itf_1ga498ce17bbbf06d67dadb5d35c484bbcd>` (:ref:`PFEXCEPTIONHANDLER <group___sys_except_itf___exceptionhandler_1ga4c582875389378d7e1f9705d7951eb98>`  pExceptionHandler)
+
+- RTS_RESULT :ref:`SysExceptConvertToString <group___sys_except_itf_1ga9316367f5ba209468334042df0b633b0>` (RTS_UI32 ulExceptionCode, char * pszException, int iMaxExceptionLen)
+
+- void :ref:`sysexceptgenerateexception <group___sys_except_itf_1gaaccc5ba2f6e5a875ad231102e091ec42>` (:ref:`sysexceptgenerateexception_struct <group___sys_except_itf_1ga43436000d1579bbe68a24b38330f8eaf>` * p)
+
+- void :ref:`sysexceptdisableseh <group___sys_except_itf_1gaf738b2c85ffbcc718fcfbff993593b2c>` (:ref:`sysexceptdisableseh_struct <group___sys_except_itf_1ga86f3e9217852743fcd47861141e7f295>` * p)
+
+- void :ref:`sysexceptdisableseh2 <group___sys_except_itf_1ga17847b0e5660f268f9d1bf2eb82fabe6>` (:ref:`sysexceptdisableseh2_struct <group___sys_except_itf_1ga37fce74c516cdc734f2fe1f708d3a9f4>` * p)
+
+- void :ref:`sysexceptenableseh <group___sys_except_itf_1ga8ca46ee5cfe5ddf69df4809e9699c9f8>` (:ref:`sysexceptenableseh_struct <group___sys_except_itf_1ga1c5a750533e25080df0df14bd1fa8d19>` * p)
+
+- void :ref:`sysexceptenableseh2 <group___sys_except_itf_1gad047183db8e032764558ba5f6e887197>` (:ref:`sysexceptenableseh2_struct <group___sys_except_itf_1gaa420c8d9fef4dd5d6c38ec73be6bb0d5>` * p)
+
+.. _group___sys_except_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysExcept.
+
+The SysExcept interface is projected to handle all exceptions in the runtime system. All available exceptions on the target should be handled. Exception handling is typically cpu and operating system dependant.
+
+All active code parts in the runtime system (tasks, timer, interrupt handler) must be protected against software errors, because this could lead to an unpredictable behaviour or crash of the complete runtime system.
+
+All exceptions are handled in this component as first level. If the first level handling is done in another component, the component has to call the :ref:`SysExceptGenerateException() <group___cmp_schedule_dep___taskplaceholder_1ga737e7b767bcb2f2d7f1fcb56822aa219>` routine to enable second level handling. In this case, the first level handling must be disabled with a config setting (see below).
+
+The SysExcept component forwards every exception to the component, that manages the active code, mostly the SysTask, SysTimer or SysInt component. These components must register exception handlers to the SysExcept component.
+
+As the last station of exception handling, the exception handler of the component, that creates the active object, was called from the SysTask, SysTimer or SysInt component. Below you can see the structure and the layers of exception handling:
+::
+    *				 . +----------------------------------------------------------+
+    *				 . | XXX component:                       Code that generates |
+    *				 . | Registered exceptionhandler          exception (1)       |
+    *				 . | of component, is called. (4)                             |
+    *				 . +----------------------------------------------------------+
+    *				 .      ^                                                 |
+    *				 .      |                                                 |
+    *				 .      |                                                 |
+    *				 . +-----------------------------------------------+      |
+    *				 . | SysTask or SysTimer component:                |      |
+    *				 . | Registered exception handler is called (3)    |      |
+    *				 . +-----------------------------------------------+      |
+    *				 .      ^                                                 |
+    *				 .      |                                                 |
+    *				 .      |                                                 |
+    *				 . +-----------------------------------------------+      |
+    *				 . | SysExcept component:                          |      |
+    *				 . | ::SysExceptGenerateException() is called (2)  |      |
+    *				 . +-----------------------------------------------+      |
+    *				 .      ^                                                 |
+    *				 .      |                                                 |
+    *				 .      |                    Exception occurred (1a)      |
+    *				 .      |<------------------------------------------------|
+    *				 .      |                                                 |
+    *				 . +-----------------------------------------------+      |
+    *				 . | OEM component:                                |      | (1b)
+    *				 . | First level exception handling. If the        |      |
+    *				 . | exception is not in the OEM context, it is    |      |
+    *				 . | forwarded to the SysExcept component          |      |
+    *				 . +-----------------------------------------------+      |
+    *				 .      ^                                                 |
+    *				 .      '-------------------------------------------------'
+    *
+
+If RTS_STRUCTURED_EXCEPTION_HANDLING is set as a define, the structured exception handling is activated. To use this exception handling, the following functions must be imported:
+
+- SysExceptTry
+
+- SysExceptCatch
+
+- SysExceptCatchException
+
+Here is an example of the usage:
+::
+    *				 .    Variant 1:
+    *				.     ----------
+    *				 .    rts_try
+    *				 .    {
+    *				 .        ...
+    *				 .    }
+    *				 .    rts_catch_exception(RTSEXCPT_DIVIDEBYZERO)
+    *				 .    {
+    *				 .        RTS_UI32 exceptionCode = EXCPT_GET_CODE();
+    *				 .        RegContextpExceptionContext = EXCPT_GET_CONTEXT();
+    *				 .        ...
+    *				 .    }
+    *				 .    rts_catch_exception(RTSEXCPT_DIVIDEBYZERO)
+    *				 .    {
+    *				 .        ...
+    *				 .    }
+    *				 .    rts_catch
+    *				 .    {
+    *				 .        ...
+    *				 .    }
+    *				 .    rts_try_end
+    *				 .
+    *				 .
+    *				 .    Variant 2:
+    *				.     ----------
+    *				 .
+    *				 .    rts_try
+    *				 .    {
+    *				 .        ...
+    *				 .    }
+    *				 .    rts_catch
+    *				 .    {
+    *				 .        RTS_UI32 exceptionCode = EXCPT_GET_CODE();
+    *				 .        RegContextpExceptionContext = EXCPT_GET_CONTEXT();
+    *				 .        ...
+    *				 .    }
+    *				 .    rts_try_end
+    *
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_except_itf_1gafa13bd2a20d345de5cd92e2d4cfbfffa:
+
+#define EXCPT_GET_CODE :ref:`RTSEXCPT_NOEXCEPTION <group___sys_except_itf___exceptioncode_1gade57a8ea56476601c4f9fb6f63f643fd>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION END
+
+.. _group___sys_except_itf_1gac374b40182a1b3b181b31f10db25e1d5:
+
+#define EXCPT_GET_CONTEXT NULL
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_except_itf_1ga61368765a3d688a5e1e3a88e44189d93:
+
+#define rts_try {
+^^^^^^^^^^^^^^^^^
+
+.. _group___sys_except_itf_1ga1e1e32f23b63c47b755e947a37112033:
+
+#define rts_catch_exception if (0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_except_itf_1ga552b79c08cc9bdef2f867dcf0384289c:
+
+#define rts_catch if (0)
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_except_itf_1ga9a04fd3fbedab315f4b4ee5dd081dfcc:
+
+#define rts_try_end }
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_except_itf_1gac7746708ebfb98e5168ae7e9952b30ad:
+
+#define ITF_SysExcept
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_except_itf_1ga4a7d99301e7bd6b0a2d8ea5d63dc8db6:
+
+#define EXTITF_SysExcept
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_except_itf_1ga43436000d1579bbe68a24b38330f8eaf:
+
+typedef struct tagsysexceptgenerateexception_struct  sysexceptgenerateexception_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EXTERN LIB SECTION BEGIN
+
+Interrupt the execution of the currently running task, and set the application into an exception state. If the runtime system supports it, CODESYS may even highlight the source position where this function was called.
+**Returns:**
+
+*RESULT: If succeeded this function doesn't return at all, otherwise it returns ERR_FAILED.
+
+.. _group___sys_except_itf_1ga86f3e9217852743fcd47861141e7f295:
+
+typedef struct tagsysexceptdisableseh_struct  sysexceptdisableseh_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete function
+
+.. _group___sys_except_itf_1ga37fce74c516cdc734f2fe1f708d3a9f4:
+
+typedef struct tagsysexceptdisableseh2_struct  sysexceptdisableseh2_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete function
+
+.. _group___sys_except_itf_1ga1c5a750533e25080df0df14bd1fa8d19:
+
+typedef struct tagsysexceptenableseh_struct  sysexceptenableseh_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete function
+
+.. _group___sys_except_itf_1gaa420c8d9fef4dd5d6c38ec73be6bb0d5:
+
+typedef struct tagsysexceptenableseh2_struct  sysexceptenableseh2_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete function
+
+.. _group___sys_except_itf_1gae17a11c6b4cfa8b942d4cb8a4ae2a711:
+
+typedef ISysExcept_C ISysExcept
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_except_itf_1ga336e49c382a64e42f1ec78176678fb65:
+
+RTS_UI32 SysExceptMapException (RTS_UI32 ulOSException)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Map the operating system specific exception into the standard runtime exception code
+
+**Parameters**
+
++---------+---------------+------------------------------------------+
+| [in]    | ulOSException | Operating system specific exception code |
++---------+---------------+------------------------------------------+
+
+**Returns:**
+
+Standard exception code (see category exception code above)
+
+.. _group___sys_except_itf_1ga08d2a6fb1d1966d74c4a8a2313efd643:
+
+RTS_RESULT SysExceptGenerateException (RTS_HANDLE ulTaskOSHandle, ExceptionCode Exception, RegContext Context)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Structured Exception Handling
+
+This function is called from Exception handlers of the hardware, operating systems or, in case of softerrors, within the task code.
+
+The structured exception handling calls every registered exception handler, stops the IEC Tasks and prepares the task context of the task that generated the exception, so that it can be read by the CoDeSys programming system for analysation purposes.
+
+OEM customers can use this function also from their own exception handlers to propagate generic as well as customer specific exceptions to the application. This way, they can profit from the debugging infrastructure of CoDeSys to find the fault adress within the IEC application.
+
+**Note:** On SIL2 Platforms, this function will act only as described above, when the PLC is currently in Debug-Mode. If it is actually in the Safety-Mode, this call puts the PLC directly into the safe mode, by calling the function :ref:`SIL2OEMException() <group___cmp_s_i_l2_itf_1ga18773ad5b541c2d47a6b9c6321379f77>` .
+
+**Parameters**
+
++---------+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulTaskOSHandle     | System specific task or timer handle or RTS_INVALID_HANDLE if unknown RANGE=[RTS_INVALID_HANDLE,NULL,VALID_TASKHANDLE]                                      |
++---------+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | Exception          | Exception code (OS or runtime specific) RANGE=[RTSEXCPT_UNKNOWN]                                                                                            |
++---------+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | Context            | Context to detect the code location where the exception was generated. If ulTaskOSHandle is RTS_INVALID_HANDLE, values can be 0. RANGE=[NULL,VALID_CONTEXT] |
++---------+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | Mode               | ***PSEUDO*** Defines the current mode of the PLC. RANGE=[SAFETY,DEBUG]                                                                                      |
++---------+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | StructuredHandling | ***PSEUDO*** TRUE if structured Exception Handling was used.                                                                                                |
++---------+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_except_itf_1ga3b3c4ab286d3b4fb48d3d085f7304725:
+
+RTS_RESULT SysExceptGenerateException2 (RTS_HANDLE ulTaskOSHandle, ExceptionCode Exception, RegContext Context, int bSuspendExceptionTask)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Structured Exception Handling
+
+This function acts the same way as :ref:`SysExceptGenerateException() <group___cmp_schedule_dep___taskplaceholder_1ga737e7b767bcb2f2d7f1fcb56822aa219>` , except for the case, that it will try to suspend the task in the following condition:
+
+- bSuspendExceptionTask is set to TRUE
+
+- None of the registered exception handlers returned ERR_DONT_SUSPEND_TASK
+
+**Parameters**
+
++---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulTaskOSHandle        | System specific task or timer handle or RTS_INVALID_HANDLE if unknown RANGE=[RTS_INVALID_HANDLE,NULL,VALID_TASKHANDLE]                                      |
++---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | Exception             | Exception code (OS or runtime specific) RANGE=[EXCEPTION_1]                                                                                                 |
++---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | Context               | Context to detect the code location where the exception was generated. If ulTaskOSHandle is RTS_INVALID_HANDLE, values can be 0. RANGE=[NULL,VALID_CONTEXT] |
++---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bSuspendExceptionTask | Flag to specify, if the exception task is forced to suspended RANGE=[0,1]                                                                                   |
++---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bSafetyMode           | ***PSEUDO*** Defines the current mode of the PLC. RANGE=[0,1]                                                                                               |
++---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | bStructuredHandling   | ***PSEUDO*** TRUE if structured Exception Handling was used.                                                                                                |
++---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-----------------------+--------------------------------------------------------------------------+
+| ERR_OK                | None of the registered exception handlers returned ERR_DONT_SUSPEND_TASK |
++-----------------------+--------------------------------------------------------------------------+
+| ERR_DONT_SUSPEND_TASK | An exception handler suspends the task itself                            |
++-----------------------+--------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_except_itf_1ga8ceedda4f464989a5c85f11d5d726bcc:
+
+RTS_RESULT SysExceptRegisterInterface (PFEXCEPTIONHANDLER pExceptionHandler)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to register an exception handler
+
+**Parameters**
+
++---------+-------------------+------------------------------+
+| [in]    | pExceptionHandler | Pointer to exception handler |
++---------+-------------------+------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_except_itf_1gaad6c28843b2da8220b3f9e4432f12993:
+
+RTS_RESULT SysExceptTry (SEHContext *context)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function registers or cleans up an exception context. If this is the entry, it returns ERR_OK, otherwise ERR_FAILED
+
+**Parameters**
+
++---------+---------+----------------------------------------------------+
+| [in]    | context | Context, describing one structured exception frame |
++---------+---------+----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_except_itf_1ga96612c336c3aea3d2ebc32e6bda317ce:
+
+RTS_RESULT SysExceptCatchException (SEHContext *context, RTS_UI32 ui32ExceptionCode)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function returns ERR_OK when the passed exception matches the exception code that really occured.
+
+**Parameters**
+
++---------+-------------------+----------------------------------------------------+
+| [in]    | context           | Context, describing one structured exception frame |
++---------+-------------------+----------------------------------------------------+
+| [in]    | ui32ExceptionCode | Exception code to match on                         |
++---------+-------------------+----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_except_itf_1ga80f2e5a7f6e13c7905c2d8498e5b1756:
+
+RTS_RESULT SysExceptCatch (SEHContext *context)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function returns ERR_OK if the exception was not yet handled.
+
+**Parameters**
+
++---------+---------+----------------------------------------------------+
+| [in]    | context | Context, describing one structured exception frame |
++---------+---------+----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_except_itf_1ga498ce17bbbf06d67dadb5d35c484bbcd:
+
+RTS_RESULT SysExceptUnregisterInterface (PFEXCEPTIONHANDLER pExceptionHandler)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to unregister exception handler
+
+**Parameters**
+
++---------+-------------------+------------------------------+
+| [in]    | pExceptionHandler | Pointer to exception handler |
++---------+-------------------+------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_except_itf_1ga9316367f5ba209468334042df0b633b0:
+
+RTS_RESULT SysExceptConvertToString (RTS_UI32 ulExceptionCode, char *pszException, int iMaxExceptionLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Convert an exception to string
+
+**Parameters**
+
++---------+------------------+--------------------------------------------+
+| [in]    | ulExceptionCode  | Exception code                             |
++---------+------------------+--------------------------------------------+
+| [out]   | pszException     | Pointer to exception string                |
++---------+------------------+--------------------------------------------+
+| [in]    | iMaxExceptionLen | Maximum length of exception string pointer |
++---------+------------------+--------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_except_itf_1gaaccc5ba2f6e5a875ad231102e091ec42:
+
+void sysexceptgenerateexception (sysexceptgenerateexception_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_except_itf_1gaf738b2c85ffbcc718fcfbff993593b2c:
+
+void sysexceptdisableseh (sysexceptdisableseh_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_except_itf_1ga17847b0e5660f268f9d1bf2eb82fabe6:
+
+void sysexceptdisableseh2 (sysexceptdisableseh2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_except_itf_1ga8ca46ee5cfe5ddf69df4809e9699c9f8:
+
+void sysexceptenableseh (sysexceptenableseh_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_except_itf_1gad047183db8e032764558ba5f6e887197:
+
+void sysexceptenableseh2 (sysexceptenableseh2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

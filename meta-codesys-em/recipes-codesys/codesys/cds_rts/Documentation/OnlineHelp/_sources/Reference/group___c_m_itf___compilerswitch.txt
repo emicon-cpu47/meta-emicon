@@ -1,0 +1,78 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___c_m_itf___compilerswitch:
+
+===============
+Compiler switch
+===============
+
+ :ref:`More... <group___c_m_itf___compilerswitch-details>`
+
+.. _group___c_m_itf___compilerswitch-details:
+
+Detailed Description
+--------------------
+
+
+
+.. _group___c_m_itf___compilerswitch_1CMItf_CompilerswitchSect0:
+
+1
+^
+
+The way components are linked together can be specified by the following compiler switches.
+
+If nothing is specified, DYNAMIC_LINK is used by default.
+
+Link examples:
+
+- Static linked and closed runtime system (e.g. embedded): STATIC_LINK must be specified
+
+- Static linked runtime system, that can be extended via separate, dynamically linkable components: MIXED_LINK must be specified for the runtime system. Nothing must be specified in the external component.
+
+- Complete dynamically linked runtime system (each component is a separate loadable module): Nothing must be specified in each component.
+
+- Static linked runtime system, that can be extended via separate, dynamically linkable components and all interface functions should be overloadable: DYNAMIC_LINK must be specified for the runtime system. Nothing must be specified in the external component.
+
+- C++ runtime system: CPLUSPLUS must be specified always in each component, that is used in a C++ runtime system. This is independant, if the kernel or a separate component is linked (static or dynamically linked!
+
+- STATIC_LINK: All components are linked statically to the component manager during compile time. All components call each other via C-function calls.
+
+- MIXED_LINK: All components are linked static, but can be extended by dynamically linked components. All static components call each other via C-function. All dynamically linked components are called and call the kernel components via function pointers.
+
+- DYNAMIC_LINK: [Default] All components exists as separate compiled modules. So this modules can be loaded dynamically. All components call each other via function pointers. NOTE: If DYNAMIC_LINK is specified explicitly in a runtime system that is linked static, all component functions (also the kernel components) are called via function pointers!
+
+- CPLUSPLUS: All components are linked together via C++ classes. All components call each other via C++ method calls. Internally, the components calls itself via C-function calls.
+
+.. _group___c_m_itf___compilerswitch_1CMItf_CompilerswitchSect1:
+
+2
+^
+
+Compiler switches to check if the alignment between the DeviceDescription setting "pack-mode" of the CODESYS compiler and the C-compiler standard pack mode match together.
+
+- EXTERNAL_LIB_PACKMODE: Define the alignment of the CODESYS Compiler: 2=2Byte alignment ("pack-mode"=2) 4=4Byte alignment ("pack-mode"=4) 8=8Byte alignment [default] ("pack-mode"=8)
+
+.. _group___c_m_itf___compilerswitch_1CMItf_CompilerswitchSect2:
+
+3
+^
+
+Compiler switches to enable/disable single features in the component.
+
+- CM_SYSTARGET_DISABLE_OVERLOADABLE_FUNCTIONS: Switch to disable the possibility to overload the SysTarget functions
+
+- CM_DISABLE_API_SIGNATURE_CHECK: Switch to disable the signature check of all api functions
+
+- CM_DISABLE_API_VERSION_CHECK: Switch to disable the version check of all api functions
+
+- CM_NO_EXIT: Switch to disable definite exit or shutdown process of the runtime system
+
+- CM_NO_DYNAMIC_COMPONENTS: Switch to disable dynamic loadable components
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

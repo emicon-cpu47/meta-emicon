@@ -1,0 +1,2863 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_app_itf:
+
+=========
+CmpAppItf
+=========
+
+Interface of CmpApp. :ref:`More... <group___cmp_app_itf-details>`
+
+Modules
+-------
+
+- :ref:`Application description <group___cmp_app_itf___applicationdescription>`
+
+- :ref:`Application flags <group___cmp_app_itf___applicationflags>`
+
+- :ref:`Application function pointer definitions <group___cmp_app_itf___applicationfunctionpointerdefinitions>`
+
+- :ref:`Application information <group___cmp_app_itf___applicationinformation>`
+
+- :ref:`Application memory segment <group___cmp_app_itf___applicationmemorysegment>`
+
+- :ref:`Application memory segment information <group___cmp_app_itf___applicationmemorysegmentinformation>`
+
+- :ref:`Application operating state <group___cmp_app_itf___applicationoperatingstate>`
+
+- :ref:`Application state <group___cmp_app_itf___applicationstate>`
+
+- :ref:`Compact download header <group___cmp_app_itf___compactdownloadheader>`
+
+- :ref:`Download flags <group___cmp_app_itf___downloadflags>`
+
+- :ref:`Event parameter <group___cmp_app_itf___eventparameter>`
+
+- :ref:`Events <group___cmp_app_itf___events>`
+
+- :ref:`Exit reason <group___cmp_app_itf___exitreason>`
+
+- :ref:`File name definitions <group___cmp_app_itf___filenamedefinitions>`
+
+- :ref:`Online reply tags <group___cmp_app_itf___onlinereplytags>`
+
+- :ref:`Online services <group___cmp_app_itf___onlineservices>`
+
+- :ref:`Online tags <group___cmp_app_itf___onlinetags>`
+
+- :ref:`Operation reason <group___cmp_app_itf___operationreason>`
+
+- :ref:`OperationID <group___cmp_app_itf___operation_i_d>`
+
+- :ref:`Operations <group___cmp_app_itf___operations>`
+
+- :ref:`Project information <group___cmp_app_itf___projectinformation>`
+
+- :ref:`Property keys <group___cmp_app_itf___propertykeys>`
+
+- :ref:`Reset options <group___cmp_app_itf___resetoptions>`
+
+- :ref:`Retain backup state <group___cmp_app_itf___retainbackupstate>`
+
+- :ref:`SecuritySettings <group___cmp_app_itf___security_settings>`
+
+- :ref:`Settings <group___cmp_app_itf___settings>`
+
+- :ref:`Start reason <group___cmp_app_itf___startreason>`
+
+- :ref:`Static defines <group___cmp_app_itf___staticdefines>`
+
+- :ref:`Stop reason <group___cmp_app_itf___stopreason>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagPOU_DESCRIPTOR <structtag_p_o_u___d_e_s_c_r_i_p_t_o_r>`
+
+- struct :ref:`tagPOU_CALL_ENTRY <structtag_p_o_u___c_a_l_l___e_n_t_r_y>`
+
+- struct :ref:`tagAREA_CALL_ENTRIES_TABLE <structtag_a_r_e_a___c_a_l_l___e_n_t_r_i_e_s___t_a_b_l_e>`
+
+- struct :ref:`tagAreaOffsetDataRef <structtag_area_offset_data_ref>`
+
+- struct :ref:`tagAreaOffsetBitDataRef <structtag_area_offset_bit_data_ref>`
+
+- struct :ref:`tagPropertyDataRef <structtag_property_data_ref>`
+
+- struct :ref:`tagVarDataRef <structtag_var_data_ref>`
+
+- struct :ref:`tagVarValue <structtag_var_value>`
+
+- struct :ref:`tagVarDesc <structtag_var_desc>`
+
+- struct :ref:`_RTS_VERSION_STRUCT <struct___r_t_s___v_e_r_s_i_o_n___s_t_r_u_c_t>`
+
+- struct :ref:`DownloadedRtsModule <struct_downloaded_rts_module>`
+
+- struct :ref:`tagappcallgetproperty_struct <structtagappcallgetproperty__struct>`
+
+- struct :ref:`tagappcallgetproperty2_struct <structtagappcallgetproperty2__struct>`
+
+- struct :ref:`tagappcallgetproperty2release_struct <structtagappcallgetproperty2release__struct>`
+
+- struct :ref:`tagappcallsetproperty_struct <structtagappcallsetproperty__struct>`
+
+- struct :ref:`tagappfindapplicationbyname_struct <structtagappfindapplicationbyname__struct>`
+
+- struct :ref:`tagappgenerateexception_struct <structtagappgenerateexception__struct>`
+
+- struct :ref:`tagappgetapplicationbyareaaddress_struct <structtagappgetapplicationbyareaaddress__struct>`
+
+- struct :ref:`tagappgetapplicationinfo_struct <structtagappgetapplicationinfo__struct>`
+
+- struct :ref:`tagappgetareaaddress_struct <structtagappgetareaaddress__struct>`
+
+- struct :ref:`tagappgetareaoffsetbyaddress_struct <structtagappgetareaoffsetbyaddress__struct>`
+
+- struct :ref:`tagappgetareapointer_struct <structtagappgetareapointer__struct>`
+
+- struct :ref:`tagappgetareasize_struct <structtagappgetareasize__struct>`
+
+- struct :ref:`tagappgetcurrent_struct <structtagappgetcurrent__struct>`
+
+- struct :ref:`tagappgetfirstapp_struct <structtagappgetfirstapp__struct>`
+
+- struct :ref:`tagappgetnextapp_struct <structtagappgetnextapp__struct>`
+
+- struct :ref:`tagappgetprojectinformation_struct <structtagappgetprojectinformation__struct>`
+
+- struct :ref:`tagappgetsegment_struct <structtagappgetsegment__struct>`
+
+- struct :ref:`tagappgetsegmentaddress_struct <structtagappgetsegmentaddress__struct>`
+
+- struct :ref:`tagappgetsegmentsize_struct <structtagappgetsegmentsize__struct>`
+
+- struct :ref:`tagappnumofactivesessions_struct <structtagappnumofactivesessions__struct>`
+
+- struct :ref:`tagappregisterpropaccessfunctions_struct <structtagappregisterpropaccessfunctions__struct>`
+
+- struct :ref:`tagappreset_struct <structtagappreset__struct>`
+
+- struct :ref:`tagapprestoreretainsfromfile_struct <structtagapprestoreretainsfromfile__struct>`
+
+- struct :ref:`tagappstartapplication_struct <structtagappstartapplication__struct>`
+
+- struct :ref:`tagappstopapplication_struct <structtagappstopapplication__struct>`
+
+- struct :ref:`tagappstoreretainsinfile_struct <structtagappstoreretainsinfile__struct>`
+
+- struct :ref:`ICmpApp_C <struct_i_cmp_app___c>`
+
+Macros
+------
+
+- #define :ref:`APP_CALL_ENTRIES_POOL_COUNT <group___cmp_app_itf_1gafcd67547317dc0c5d29a93d66101021a>` 16384
+
+- #define :ref:`ACET_STATE_UNCERTAIN <group___cmp_app_itf_1ga4e20757e0e8d152407bd9ff3999d6642>` 0x0
+
+- #define :ref:`ACET_STATE_READY <group___cmp_app_itf_1ga5ae328cb07303134c1b8f0d8fd109beb>` ((RTS_SIZE)0x1)
+
+- #define :ref:`ACET_IS_READY <group___cmp_app_itf_1gaa7ffd2ca3be6087658ee9e71e91fe3f7>` (0 != ((pt)->flags & CET_STATE_READY))
+
+- #define :ref:`ACET_IS_UNCERTAIN <group___cmp_app_itf_1ga4f86cd63a18bf0fd3971f38e3b2ef8f2>` (0 == ((pt)->flags & CET_STATE_READY))
+
+- #define :ref:`ACET_SET_READY <group___cmp_app_itf_1gaac4a0fc3b929a37122137e588d8e081f>` (pt)->flags |= CET_STATE_READY
+
+- #define :ref:`ACET_RESET_READY <group___cmp_app_itf_1ga32c62034faf19b738d43dee11ad5a742>` (pt)->flags &= ~CET_STATE_READY
+
+- #define :ref:`ITF_CmpApp <group___cmp_app_itf_1gae41825dc12d0de804c0adc65d69603c5>`
+
+- #define :ref:`EXTITF_CmpApp <group___cmp_app_itf_1ga37344f702c57b66cee7ebbe2a7ecf2a0>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagPOU_DESCRIPTOR <structtag_p_o_u___d_e_s_c_r_i_p_t_o_r>` :ref:`POU_DESCRIPTOR <group___cmp_app_itf_1ga9716fdb931167fdab84ed610b1de1cdf>`
+
+- typedef struct :ref:`tagPOU_CALL_ENTRY <structtag_p_o_u___c_a_l_l___e_n_t_r_y>` :ref:`POU_CALL_ENTRY <group___cmp_app_itf_1gaac37553b55a342f757624cfebc87f57b>`
+
+- typedef struct :ref:`tagAREA_CALL_ENTRIES_TABLE <structtag_a_r_e_a___c_a_l_l___e_n_t_r_i_e_s___t_a_b_l_e>` :ref:`AREA_CALL_ENTRIES_TABLE <group___cmp_app_itf_1ga61d119b0ce1901973fc2596216b58ad9>`
+
+- typedef struct :ref:`tagAreaOffsetDataRef <structtag_area_offset_data_ref>` :ref:`AreaOffsetDataRef <group___cmp_app_itf_1ga659a8e9a2095de6884dcde3b6415d8d2>`
+
+- typedef struct :ref:`tagAreaOffsetBitDataRef <structtag_area_offset_bit_data_ref>` :ref:`AreaOffsetBitDataRef <group___cmp_app_itf_1ga64b2e79a252c2fd6bdc414dab2852a9b>`
+
+- typedef struct :ref:`tagPropertyDataRef <structtag_property_data_ref>` :ref:`PropertyDataRef <group___cmp_app_itf_1ga49280ec40503a5b3e3b59f7fec4f2160>`
+
+- typedef struct :ref:`tagVarDataRef <structtag_var_data_ref>` :ref:`VarDataRef <group___cmp_app_itf_1ga51361a0fdd7ac8b491d32e18f15b5ba2>`
+
+- typedef struct :ref:`tagVarValue <structtag_var_value>` :ref:`VarValue <group___cmp_app_itf_1gabad6f24dff9cb81dfa4a5f0ca92ef522>`
+
+- typedef struct :ref:`tagVarDesc <structtag_var_desc>` :ref:`VarDesc <group___cmp_app_itf_1ga5a7780c49c39f922d55fb6e051c3f1c8>`
+
+- typedef struct :ref:`_RTS_VERSION_STRUCT <struct___r_t_s___v_e_r_s_i_o_n___s_t_r_u_c_t>` :ref:`RTS_VERSION_STRUCT <group___cmp_app_itf_1ga38ede9349c2fa917bc55855ed77b9b40>`
+
+- typedef struct :ref:`tagappcallgetproperty_struct <structtagappcallgetproperty__struct>` :ref:`appcallgetproperty_struct <group___cmp_app_itf_1gacef6e5980cd73b38df5ec5970fd45319>`
+
+- typedef struct :ref:`tagappcallgetproperty2_struct <structtagappcallgetproperty2__struct>` :ref:`appcallgetproperty2_struct <group___cmp_app_itf_1ga42bfedb64a5902481dc448e78770328c>`
+
+- typedef struct :ref:`tagappcallgetproperty2release_struct <structtagappcallgetproperty2release__struct>` :ref:`appcallgetproperty2release_struct <group___cmp_app_itf_1ga8e8849de9df2d7f18b13189c6a3ec1a6>`
+
+- typedef struct :ref:`tagappcallsetproperty_struct <structtagappcallsetproperty__struct>` :ref:`appcallsetproperty_struct <group___cmp_app_itf_1gae1cb5a5f77ad4bceea2076ff62bb36ba>`
+
+- typedef struct :ref:`tagappfindapplicationbyname_struct <structtagappfindapplicationbyname__struct>` :ref:`appfindapplicationbyname_struct <group___cmp_app_itf_1gaf23bee9bb590b39cc75b42d330472443>`
+
+- typedef struct :ref:`tagappgenerateexception_struct <structtagappgenerateexception__struct>` :ref:`appgenerateexception_struct <group___cmp_app_itf_1ga0ac80e643215123ca3bc7cebeaf86221>`
+
+- typedef struct :ref:`tagappgetapplicationbyareaaddress_struct <structtagappgetapplicationbyareaaddress__struct>` :ref:`appgetapplicationbyareaaddress_struct <group___cmp_app_itf_1ga7f28dca06c5892098ac96fe687f45064>`
+
+- typedef struct :ref:`tagappgetapplicationinfo_struct <structtagappgetapplicationinfo__struct>` :ref:`appgetapplicationinfo_struct <group___cmp_app_itf_1ga327058d960d281ab82f87aed0f2aad01>`
+
+- typedef struct :ref:`tagappgetareaaddress_struct <structtagappgetareaaddress__struct>` :ref:`appgetareaaddress_struct <group___cmp_app_itf_1gae0e567104104ed85794080ba7f1c7ae8>`
+
+- typedef struct :ref:`tagappgetareaoffsetbyaddress_struct <structtagappgetareaoffsetbyaddress__struct>` :ref:`appgetareaoffsetbyaddress_struct <group___cmp_app_itf_1ga45c002ec65b28408dddec7a85b797852>`
+
+- typedef struct :ref:`tagappgetareapointer_struct <structtagappgetareapointer__struct>` :ref:`appgetareapointer_struct <group___cmp_app_itf_1gaaa6e1fdef52114932470f8b695e98f00>`
+
+- typedef struct :ref:`tagappgetareasize_struct <structtagappgetareasize__struct>` :ref:`appgetareasize_struct <group___cmp_app_itf_1gae44e1c4b3046a05961b0ec63b8f9eb8d>`
+
+- typedef struct :ref:`tagappgetcurrent_struct <structtagappgetcurrent__struct>` :ref:`appgetcurrent_struct <group___cmp_app_itf_1gac59f1bf9460e6939f50d5944a419a05d>`
+
+- typedef struct :ref:`tagappgetfirstapp_struct <structtagappgetfirstapp__struct>` :ref:`appgetfirstapp_struct <group___cmp_app_itf_1gaf0e6d37aed8e14fef91c2d3726cd3ac5>`
+
+- typedef struct :ref:`tagappgetnextapp_struct <structtagappgetnextapp__struct>` :ref:`appgetnextapp_struct <group___cmp_app_itf_1gac84d93a28f133c309aa08c2eb627a05b>`
+
+- typedef struct :ref:`tagappgetprojectinformation_struct <structtagappgetprojectinformation__struct>` :ref:`appgetprojectinformation_struct <group___cmp_app_itf_1gab7029936118f68d523d86502a9d00dfa>`
+
+- typedef struct :ref:`tagappgetsegment_struct <structtagappgetsegment__struct>` :ref:`appgetsegment_struct <group___cmp_app_itf_1ga025dc9a89abbaa94bd12db4fc9364589>`
+
+- typedef struct :ref:`tagappgetsegmentaddress_struct <structtagappgetsegmentaddress__struct>` :ref:`appgetsegmentaddress_struct <group___cmp_app_itf_1ga9e73a99daf27c628131e00f4f3983cac>`
+
+- typedef struct :ref:`tagappgetsegmentsize_struct <structtagappgetsegmentsize__struct>` :ref:`appgetsegmentsize_struct <group___cmp_app_itf_1gab889eb40bd5f1400424b8c8341a968d0>`
+
+- typedef struct :ref:`tagappnumofactivesessions_struct <structtagappnumofactivesessions__struct>` :ref:`appnumofactivesessions_struct <group___cmp_app_itf_1gadc61e40173b0bce1c3fb1bfbc632d825>`
+
+- typedef struct :ref:`tagappregisterpropaccessfunctions_struct <structtagappregisterpropaccessfunctions__struct>` :ref:`appregisterpropaccessfunctions_struct <group___cmp_app_itf_1ga4a3d296f6cd30813af8d978462fbc8c1>`
+
+- typedef struct :ref:`tagappreset_struct <structtagappreset__struct>` :ref:`appreset_struct <group___cmp_app_itf_1ga58654bd3e6e1b701a220818518c33638>`
+
+- typedef struct :ref:`tagapprestoreretainsfromfile_struct <structtagapprestoreretainsfromfile__struct>` :ref:`apprestoreretainsfromfile_struct <group___cmp_app_itf_1ga366a66be64e7e3f8e578eebfd4e154c1>`
+
+- typedef struct :ref:`tagappstartapplication_struct <structtagappstartapplication__struct>` :ref:`appstartapplication_struct <group___cmp_app_itf_1ga3f47609a962022ba757448e722ee3fc6>`
+
+- typedef struct :ref:`tagappstopapplication_struct <structtagappstopapplication__struct>` :ref:`appstopapplication_struct <group___cmp_app_itf_1ga742c9d352a710e4fd7550063e6cbbf86>`
+
+- typedef struct :ref:`tagappstoreretainsinfile_struct <structtagappstoreretainsinfile__struct>` :ref:`appstoreretainsinfile_struct <group___cmp_app_itf_1gacac0c4b53f72206a5a435dd16d77c7fe>`
+
+- typedef :ref:`ICmpApp_C <struct_i_cmp_app___c>` :ref:`ICmpApp <group___cmp_app_itf_1ga0f55546a1fe4a6e7e41354b8c2fd6c3f>`
+
+Enumerations
+------------
+
+- enum :ref:`SecurityAppDownloadMode <group___cmp_app_itf_1ga28793086d624a1c83e4e5b51779c6bd4>` { :ref:`DownloadMode_NoSecurity <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4ac57261d28236c2bb5724414333f2b45b>`, :ref:`DownloadMode_ALL <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4a9588bf20429b2dd406eb64b5d776330f>`, :ref:`DownloadMode_MIN_ENCRYPTED <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4a064b98b6498467f57e29b109020d7f1e>`, :ref:`DownloadMode_MIN_SIGNED <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4a251525ffbba73c65b99991cabce3a4bc>`, :ref:`DownloadMode_SIGNED_AND_ENCRYPTED <group___cmp_app_itf_1gga28793086d624a1c83e4e5b51779c6bd4a0b3052ed5f773995b213e4ba22a92bec>` }
+
+- enum :ref:`DRT_DATAREFTYPE <group___cmp_app_itf_1ga19a704cc12b4713160417e496c5e343c>` { :ref:`DRT_AREA_OFFSET <group___cmp_app_itf_1gga19a704cc12b4713160417e496c5e343ca10568544905a6b154ebd265a53c886ed>`, :ref:`DRT_PROPERTY <group___cmp_app_itf_1gga19a704cc12b4713160417e496c5e343cae1c9d9a06baa4222d7ad968bb33894f0>`, :ref:`DRT_AREA_OFFSET_BIT <group___cmp_app_itf_1gga19a704cc12b4713160417e496c5e343caef47d5bde162eae01245f1adb10a787f>` }
+
+Functions
+---------
+
+- void :ref:`appcallgetproperty <group___cmp_app_itf_1ga37d39d297807176634764b9ba2c19d4b>` (:ref:`appcallgetproperty_struct <group___cmp_app_itf_1gacef6e5980cd73b38df5ec5970fd45319>` * p)
+
+- void :ref:`appcallgetproperty2 <group___cmp_app_itf_1ga2e7f0f42a3a8523f8855a9f1920314f8>` (:ref:`appcallgetproperty2_struct <group___cmp_app_itf_1ga42bfedb64a5902481dc448e78770328c>` * p)
+
+- void :ref:`appcallgetproperty2release <group___cmp_app_itf_1ga6eba224c20f810cb1048aae336bfb128>` (:ref:`appcallgetproperty2release_struct <group___cmp_app_itf_1ga8e8849de9df2d7f18b13189c6a3ec1a6>` * p)
+
+- void :ref:`appcallsetproperty <group___cmp_app_itf_1ga3e5e5fd14bb01c9eab6dd5a5ba653c40>` (:ref:`appcallsetproperty_struct <group___cmp_app_itf_1gae1cb5a5f77ad4bceea2076ff62bb36ba>` * p)
+
+- void :ref:`appfindapplicationbyname <group___cmp_app_itf_1ga53866ebb972d4c68ab36ae99e5af9d5a>` (:ref:`appfindapplicationbyname_struct <group___cmp_app_itf_1gaf23bee9bb590b39cc75b42d330472443>` * p)
+
+- void :ref:`appgenerateexception <group___cmp_app_itf_1gae55f4b1789c330250f732fa1b66ff5c2>` (:ref:`appgenerateexception_struct <group___cmp_app_itf_1ga0ac80e643215123ca3bc7cebeaf86221>` * p)
+
+- void :ref:`appgetapplicationbyareaaddress <group___cmp_app_itf_1ga0122e2221a2f93fe107ba0c466a9a887>` (:ref:`appgetapplicationbyareaaddress_struct <group___cmp_app_itf_1ga7f28dca06c5892098ac96fe687f45064>` * p)
+
+- void :ref:`appgetapplicationinfo <group___cmp_app_itf_1ga258d7b558d14c06ce7c8aff5e736221b>` (:ref:`appgetapplicationinfo_struct <group___cmp_app_itf_1ga327058d960d281ab82f87aed0f2aad01>` * p)
+
+- void :ref:`appgetareaaddress <group___cmp_app_itf_1ga5ff918e2a90bc7cf562d431d91a71b4d>` (:ref:`appgetareaaddress_struct <group___cmp_app_itf_1gae0e567104104ed85794080ba7f1c7ae8>` * p)
+
+- void :ref:`appgetareaoffsetbyaddress <group___cmp_app_itf_1gae44ed95ac6437df0f87178cbb11452da>` (:ref:`appgetareaoffsetbyaddress_struct <group___cmp_app_itf_1ga45c002ec65b28408dddec7a85b797852>` * p)
+
+- void :ref:`appgetareapointer <group___cmp_app_itf_1ga3f2e130c64d3d5bd7ec0636ed6406e8c>` (:ref:`appgetareapointer_struct <group___cmp_app_itf_1gaaa6e1fdef52114932470f8b695e98f00>` * p)
+
+- void :ref:`appgetareasize <group___cmp_app_itf_1gab247e25821182541af1b7e5075a6134f>` (:ref:`appgetareasize_struct <group___cmp_app_itf_1gae44e1c4b3046a05961b0ec63b8f9eb8d>` * p)
+
+- void :ref:`appgetcurrent <group___cmp_app_itf_1gacda31989bd22719f8d1531554e0516b4>` (:ref:`appgetcurrent_struct <group___cmp_app_itf_1gac59f1bf9460e6939f50d5944a419a05d>` * p)
+
+- void :ref:`appgetfirstapp <group___cmp_app_itf_1ga94d24fbfabf645cc9d0db3cfd2aceae4>` (:ref:`appgetfirstapp_struct <group___cmp_app_itf_1gaf0e6d37aed8e14fef91c2d3726cd3ac5>` * p)
+
+- void :ref:`appgetnextapp <group___cmp_app_itf_1ga0223d02d98a97a7677fe55ef1d23b458>` (:ref:`appgetnextapp_struct <group___cmp_app_itf_1gac84d93a28f133c309aa08c2eb627a05b>` * p)
+
+- void :ref:`appgetprojectinformation <group___cmp_app_itf_1ga3e831eba840a949037fcad6f81a4df7b>` (:ref:`appgetprojectinformation_struct <group___cmp_app_itf_1gab7029936118f68d523d86502a9d00dfa>` * p)
+
+- void :ref:`appgetsegment <group___cmp_app_itf_1gac2bf4762168f52f416f31a7d8b7d9b1d>` (:ref:`appgetsegment_struct <group___cmp_app_itf_1ga025dc9a89abbaa94bd12db4fc9364589>` * p)
+
+- void :ref:`appgetsegmentaddress <group___cmp_app_itf_1gab7af680773f447939c46f31accc3c221>` (:ref:`appgetsegmentaddress_struct <group___cmp_app_itf_1ga9e73a99daf27c628131e00f4f3983cac>` * p)
+
+- void :ref:`appgetsegmentsize <group___cmp_app_itf_1gaecc20a92e3271b2961f285ce1384d497>` (:ref:`appgetsegmentsize_struct <group___cmp_app_itf_1gab889eb40bd5f1400424b8c8341a968d0>` * p)
+
+- void :ref:`appnumofactivesessions <group___cmp_app_itf_1ga61cff74d26b9778b00ebeef88429a04f>` (:ref:`appnumofactivesessions_struct <group___cmp_app_itf_1gadc61e40173b0bce1c3fb1bfbc632d825>` * p)
+
+- void :ref:`appregisterpropaccessfunctions <group___cmp_app_itf_1gae155395e982119d1bab53a0924a71a3f>` (:ref:`appregisterpropaccessfunctions_struct <group___cmp_app_itf_1ga4a3d296f6cd30813af8d978462fbc8c1>` * p)
+
+- void :ref:`appreset <group___cmp_app_itf_1gaa74e19b51e3eafd3aedc72dbc2b8f3a5>` (:ref:`appreset_struct <group___cmp_app_itf_1ga58654bd3e6e1b701a220818518c33638>` * p)
+
+- void :ref:`apprestoreretainsfromfile <group___cmp_app_itf_1ga618f3d44e9fe0dee8146a69845b4f11c>` (:ref:`apprestoreretainsfromfile_struct <group___cmp_app_itf_1ga366a66be64e7e3f8e578eebfd4e154c1>` * p)
+
+- void :ref:`appstartapplication <group___cmp_app_itf_1gaaa9ba3388257a837b2bf2cc4b6b0e7fc>` (:ref:`appstartapplication_struct <group___cmp_app_itf_1ga3f47609a962022ba757448e722ee3fc6>` * p)
+
+- void :ref:`appstopapplication <group___cmp_app_itf_1ga334bacdfae5d5e45113852af77c4c3a7>` (:ref:`appstopapplication_struct <group___cmp_app_itf_1ga742c9d352a710e4fd7550063e6cbbf86>` * p)
+
+- void :ref:`appstoreretainsinfile <group___cmp_app_itf_1ga113c478d9611dc014f9a412a60eb9393>` (:ref:`appstoreretainsinfile_struct <group___cmp_app_itf_1gacac0c4b53f72206a5a435dd16d77c7fe>` * p)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppCreateApplication <group___cmp_app_itf_1ga07319c8fc1225782ffc6699b6ffd57ab>` (char * pszAppName, char * pszAppParentName, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppPrepareDownload <group___cmp_app_itf_1gaeefe3e296c83e3ad66951597889573e1>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bOnlineChange, int bCreateBootproject)
+
+- RTS_RESULT :ref:`AppAppendCode <group___cmp_app_itf_1ga124ee30203d80b8f90ae157313076c84>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI8 * pbyCode, RTS_SIZE ulCodeLen, RTS_SIZE ulCodeOffset, int bLoadBootproject)
+
+- RTS_RESULT :ref:`AppCompleteDownload <group___cmp_app_itf_1gaf8c06285d56052fc9892d78a8670384d>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bOnlineChange, :ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppFindApplicationByName <group___cmp_app_itf_1ga790c11ea67896a28aee3fbb6d98727ed>` (char * pszAppName, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppNumOfActiveSessions <group___cmp_app_itf_1ga394eea744ec7e3ebece50262e0b852dc>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 * pulNumSessions)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppFindApplicationByBootproject <group___cmp_app_itf_1ga1b60c3fee056b9f4a9f92f744d52f902>` (char * pszBootprojectName, RTS_RESULT * pResult)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppFindApplicationBySessionId <group___cmp_app_itf_1ga38c0ff434e841e1395ef8d95927ae7b9>` (RTS_UI32 ulSessionId, RTS_RESULT * pResult)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppFindApplicationById <group___cmp_app_itf_1gaf79da17992ac29ce0bebed88aba39d34>` (int iId, RTS_RESULT * pResult)
+
+- int :ref:`AppGetNumOfApplications <group___cmp_app_itf_1gacea683c66fcd9a43c07770f40e361131>` (void)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppGetApplicationByIndex <group___cmp_app_itf_1gad93b8a30f51d2ec81b8c81d7cd0d31e1>` (int iIndex, RTS_RESULT * pResult)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppGetApplicationByAreaAddress <group___cmp_app_itf_1gab59884b394d05fa3ccb04eaddd382f69>` (void * pAddress, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppGetAreaPointer <group___cmp_app_itf_1gab0748b6547fd5e33f990baba7227279d>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int iArea, unsigned char ** ppucArea)
+
+- RTS_RESULT :ref:`AppGetAreaPointer2 <group___cmp_app_itf_1ga0e27aa797e2e6aa5985eb6ce5dff8552>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_I32 iArea, RTS_UI8 ** ppbyArea, RTS_SIZE * pulSize)
+
+- RTS_RESULT :ref:`AppGetAreaPointerByType <group___cmp_app_itf_1ga1814999425e07714e968044f1304a315>` (char * pszAppName, int iArea, RTS_UI16 usType, unsigned char ** ppucArea)
+
+- RTS_RESULT :ref:`AppHasAddress <group___cmp_app_itf_1ga218c57bd97ba470a169ced36beefaaa5>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_VOID_FCTPTR pAddress)
+
+- RTS_RESULT :ref:`AppIsProgramLoaded <group___cmp_app_itf_1gafa7d59e3f336dfee7851a168500c9284>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int * pbProgramLoaded)
+
+- RTS_RESULT :ref:`AppSetProgramLoaded <group___cmp_app_itf_1ga79c35ede156b155dffe582dd1e089e97>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bProgramLoaded)
+
+- RTS_RESULT :ref:`AppSingleCycle <group___cmp_app_itf_1ga9afd46bbc077eb28cf5345bdc27450d7>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppSetState <group___cmp_app_itf_1ga4cf27836de970f58d8d135588034876c>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, unsigned long ulState)
+
+- unsigned long :ref:`AppGetState <group___cmp_app_itf_1ga63c3ceccc79262cd3cea02ee1987ac69>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppSetOperatingState <group___cmp_app_itf_1gae45a9a7071c8d2314c1c1dcdf972b98b>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, unsigned long ulOpState)
+
+- RTS_RESULT :ref:`AppResetOperatingState <group___cmp_app_itf_1gacdd4cc78e01795a52cf685b3c55c702b>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, unsigned long ulOpState)
+
+- unsigned long :ref:`AppGetOperatingState <group___cmp_app_itf_1ga605713f5b8a7be474c12b715642b7af2>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppSetCodeGuid <group___cmp_app_itf_1ga98f34b2b59e7a1c3f3d774de144b3f0a>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_GUID * pCodeGuid)
+
+- RTS_RESULT :ref:`AppGetCodeGuid <group___cmp_app_itf_1gaa2e8cad1bd2e1b3a5c4ca9a6e43806dc>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_GUID * pCodeGuid)
+
+- RTS_RESULT :ref:`AppSetDataGuid <group___cmp_app_itf_1ga08a97ec5d0c323a8304dd65705b317f9>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_GUID * pDataGuid)
+
+- RTS_RESULT :ref:`AppGetDataGuid <group___cmp_app_itf_1ga0a2fb91d09c4da070acdd18aa99817c4>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_GUID * pDataGuid)
+
+- RTS_RESULT :ref:`AppGetBootprojectGuids <group___cmp_app_itf_1gab9e60aff8ec67fadde77449376c33228>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_GUID * pCodeGuid, RTS_GUID * pDataGuid)
+
+- RTS_RESULT :ref:`AppExceptionHandler <group___cmp_app_itf_1gabc8c14ab64a7097b3966096610b02916>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulException, :ref:`RegContext <group___sys_except_itf___exceptioncontext_1gab00884ef66266dc256618d479aade118>`  Context)
+
+- RTS_RESULT :ref:`AppReset <group___cmp_app_itf_1ga7eba62589bee4d1eb16d2fda20daab39>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI16 usResetOption, RTS_UI32 ulSessionId)
+
+- RTS_RESULT :ref:`AppResetAllApplications <group___cmp_app_itf_1gadc1f6465974e2c4d964dfb7209c3ce60>` (RTS_UI16 usResetOption)
+
+- RTS_RESULT :ref:`AppLoadBootprojects <group___cmp_app_itf_1gaf992e305b1f9888700444c41b9843c6a>` (void)
+
+- RTS_RESULT :ref:`AppStartBootprojects <group___cmp_app_itf_1ga5ba4e1a0c80286f62a94a7e66f5262b0>` (void)
+
+- RTS_RESULT :ref:`AppLoadBootproject <group___cmp_app_itf_1gac2b4a73230de9a57147c77394476e155>` (char * pszAppName, char * pszFilePath)
+
+- RTS_RESULT :ref:`AppStartApplications <group___cmp_app_itf_1gac6dc1230eac449366c1449683dcc9ae1>` (void)
+
+- RTS_RESULT :ref:`AppStartApplication2 <group___cmp_app_itf_1ga74651dd307709d730362b0fb95313da5>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulStartReason)
+
+- RTS_RESULT :ref:`AppStartApplication <group___cmp_app_itf_1gae527b32e0b7180faedf39ea81e821fcf>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppStopApplications <group___cmp_app_itf_1ga52fc198412091fa59364799189f77751>` (RTS_UI32 ulTimeoutMs, RTS_UI32 ulStopReason)
+
+- RTS_RESULT :ref:`AppStopApplication <group___cmp_app_itf_1ga328a89d02adfd171ea0be0c4c6c0cc89>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulTimeoutMs, RTS_UI32 ulStopReason)
+
+- RTS_RESULT :ref:`AppExitApplication <group___cmp_app_itf_1ga14f08356ce3b8d041f4d668758e8c2da>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulExitReason)
+
+- RTS_RESULT :ref:`AppExitApplication2 <group___cmp_app_itf_1ga0928d03c0b72234d532c3d7083162f03>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulExitReason, RTS_UI32 ulTimeoutMs)
+
+- RTS_RESULT :ref:`AppExitApplications <group___cmp_app_itf_1ga10c9b955f06ed25c9b9e01aa650b3e0a>` (RTS_UI32 ulExitReason, RTS_UI32 ulTimeoutMs)
+
+- RTS_RESULT :ref:`AppDeleteApplication <group___cmp_app_itf_1gaf4906e81741ce6cd5ba62301aa7980ce>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulDeleteReason)
+
+- RTS_RESULT :ref:`AppDeleteApplications <group___cmp_app_itf_1gaff280fc480115d7905736dce2e0ba815>` (RTS_UI32 ulDeleteReason)
+
+- RTS_RESULT :ref:`AppDeleteBootproject <group___cmp_app_itf_1gaca05189b98a1f0663311e02f8eb16ea4>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppAddAddrDataSrv <group___cmp_app_itf_1gab28ac2db7f0ff3821522534636d83045>` (RTS_UI32 ulSessionId, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>` * pPeerAddr)
+
+- RTS_RESULT :ref:`AppRemoveAddrDataSrv <group___cmp_app_itf_1ga9a37fe1e779a427df1b4d2c769256fac>` (RTS_UI32 ulSessionId)
+
+- RTS_HANDLE :ref:`AppGetFirstAddrDataSrv <group___cmp_app_itf_1gae87a4e166bdfb50618cae36b2d820bc5>` (:ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>` ** ppPeerAddr, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`AppGetNextAddrDataSrv <group___cmp_app_itf_1gac7ea258c0964017abb13957eb666979c>` (RTS_HANDLE hAddr, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>` ** ppPeerAddr, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`AppConsistencyCheckBegin <group___cmp_app_itf_1gaedfe141f230ca8ad832aac09e4e0a92d>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppConsistencyCheckEnd <group___cmp_app_itf_1gada89122fff08ca42a6566fa8403365ca>` (RTS_HANDLE hConsistency)
+
+- RTS_RESULT :ref:`AppConsistencyCheckAll <group___cmp_app_itf_1gad4b08a6a4eaa396500f0a7ce5648c34e>` (void)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppGetFirstApp <group___cmp_app_itf_1ga807f5fe5306511f44f0608ab70d94c47>` (RTS_RESULT * pResult)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppGetNextApp <group___cmp_app_itf_1ga361487324f3177942a2897219b0b7a5d>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pAppPrev, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppStoreRetainsInFile <group___cmp_app_itf_1gad0745ee97fba28e903e85d7352d5a285>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_IEC_STRING * pszFileName)
+
+- RTS_RESULT :ref:`AppRestoreRetainsFromFile <group___cmp_app_itf_1gab1e5b46da46514f6010cec20ab806f1a>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_IEC_STRING * pszFileName)
+
+- RTS_RESULT :ref:`AppRestoreRetainsFromFile2 <group___cmp_app_itf_1ga677a47788fe4f555f6e61d552b72bc0e>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_IEC_STRING * pszFileName, int bGenerateException)
+
+- RTS_RESULT :ref:`AppSaveRetainAreas <group___cmp_app_itf_1ga1b74c0acc67ffb254c1983d4b3ff2ddd>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_RESULT :ref:`AppSaveAllRetainAreas <group___cmp_app_itf_1ga2eb2a46fe02416a7f0cac065e551ac3f>` (void)
+
+- RTS_RESULT :ref:`AppRestoreRetainAreas <group___cmp_app_itf_1ga7cb68208644309f7082802d799890614>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
+
+- RTS_SIZE :ref:`AppGetAreaSize <group___cmp_app_itf_1ga508a3a8d1ef4516bf1d859225da5a0c7>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI16 usType, RTS_RESULT * pResult)
+
+- RTS_UI8 * :ref:`AppGetAreaAddress <group___cmp_app_itf_1ga7a2e9459247a8e090fddbe538a7b428d>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI16 usType, RTS_RESULT * pResult)
+
+- :ref:`APP_MEMORY_SEGMENT <group___cmp_app_itf___applicationmemorysegment_1ga15634c23ece2d9f1319e8abf895b38f5>` * :ref:`AppGetSegment <group___cmp_app_itf_1ga49bf629c82668f6b482c68d24e47a50a>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI16 usType, RTS_RESULT * pResult)
+
+- :ref:`APP_MEMORY_SEGMENT <group___cmp_app_itf___applicationmemorysegment_1ga15634c23ece2d9f1319e8abf895b38f5>` * :ref:`AppGetSegmentByAddress <group___cmp_app_itf_1ga35c24bdcd62a94241189537fe0c6d256>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, void * pAddress, RTS_RESULT * pResult)
+
+- RTS_SIZE :ref:`AppGetSegmentSize <group___cmp_app_itf_1ga091e365ffff851885225ca05a4a1535a>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI16 usType, RTS_RESULT * pResult)
+
+- RTS_UI8 HUGEPTR * :ref:`AppGetSegmentAddress <group___cmp_app_itf_1gabc9cae3d9bb79852b954a9d084a06974>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI16 usType, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppRegisterPropAccessFunctions <group___cmp_app_itf_1ga573171757ba499f5a3af5a8c20d6e41c>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_VOID_FCTPTR * ppfGetBooleanProperty, RTS_VOID_FCTPTR * ppfGetTextProperty, RTS_VOID_FCTPTR * ppfGetNumberProperty, RTS_VOID_FCTPTR * ppfGetVersionProperty)
+
+- RTS_RESULT :ref:`AppGetProjectInformation <group___cmp_app_itf_1ga45cb1a6c8170816f749c06594f4e48f6>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`PROJECT_INFO <struct_p_r_o_j_e_c_t___i_n_f_o>` * pInfo)
+
+- RTS_RESULT :ref:`AppGetBooleanProperty <group___cmp_app_itf_1gaef539f47866c25b355f8f2830b26d8be>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`BOOLEANPROPERTY <struct_b_o_o_l_e_a_n_p_r_o_p_e_r_t_y>` * pBooleanProperty)
+
+- RTS_RESULT :ref:`AppGetTextProperty <group___cmp_app_itf_1ga09d54c33fa58447501d285eb59da520c>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`TEXTPROPERTY <struct_t_e_x_t_p_r_o_p_e_r_t_y>` * pTextProperty)
+
+- RTS_RESULT :ref:`AppGetNumberProperty <group___cmp_app_itf_1gaa878edd5441a5738dcc836957e10fcf8>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`NUMBERPROPERTY <struct_n_u_m_b_e_r_p_r_o_p_e_r_t_y>` * pNumberProperty)
+
+- RTS_RESULT :ref:`AppGetVersionProperty <group___cmp_app_itf_1ga82658b227c45f0ee119d477cee0370a1>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`VERSIONPROPERTY <struct_v_e_r_s_i_o_n_p_r_o_p_e_r_t_y>` * pVersionProperty)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppGetCurrent <group___cmp_app_itf_1ga504180af0da7a62dbb54a340d50f00ea>` (RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`AppCheckFileConsistency <group___cmp_app_itf_1ga39ca972b66b8285ed8ba6281909040c8>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pBootprojectConsistency, RTS_RESULT * pArchiveConsistency)
+
+- RTS_RESULT :ref:`AppGenerateException <group___cmp_app_itf_1ga67cb5326913a73fc9fc8523ce529c09f>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulException)
+
+- RTS_RESULT :ref:`AppRegisterBootproject <group___cmp_app_itf_1ga7d10072adf86e7ce52b955fb99607cfa>` (char * pszBootproject)
+
+- RTS_RESULT :ref:`AppUnregisterBootproject <group___cmp_app_itf_1ga3217a429e253a815f42604b356b2ffbe>` (char * pszBootproject)
+
+- RTS_RESULT :ref:`AppCallGetProperty <group___cmp_app_itf_1ga8cacc877aef322ba2bb31eb3861d2b0c>` (void * pInstance, RTS_VOID_FCTPTR * ppGetMethod, RTS_UI8 * pbyValue, RTS_SIZE ulSize)
+
+- RTS_RESULT :ref:`AppCallGetProperty2 <group___cmp_app_itf_1ga8e8ffc3a1dd3e5ff4ea7a9082d56350f>` (void * pInstance, RTS_VOID_FCTPTR * ppGetMethod, RTS_UI8 ** ppbyValue, RTS_SIZE ulSize)
+
+- RTS_RESULT :ref:`AppCallGetProperty2Release <group___cmp_app_itf_1gadb551cb1dbc667e84439bdec4a7c06ec>` (RTS_UI8 * pbyValue)
+
+- RTS_RESULT :ref:`AppCallSetProperty <group___cmp_app_itf_1ga3723abdf0ab60dcd9665b54c9fb14a89>` (void * pInstance, RTS_VOID_FCTPTR * ppSetMethod, RTS_UI8 * pbyValue, RTS_SIZE ulSize)
+
+- RTS_RESULT :ref:`AppGetAreaOffsetByAddress <group___cmp_app_itf_1gaa3b60d4d2783cea62c0664f7ec1ac862>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UINTPTR ulAddress, RTS_UI16 * pusArea, RTS_SIZE * pulOffset)
+
+- :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * :ref:`AppSrvGetApplication <group___cmp_app_itf_1ga02b3b1b50a2c13bb63eb3ca39e9d418c>` (:ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>` * pduSendBuffer, :ref:`BINTAGREADER <struct_b_i_n_t_a_g_r_e_a_d_e_r>` * preader, :ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pwriter, RTS_UI32 ulSessionId)
+
+- RTS_RESULT :ref:`AppHasAccessRights <group___cmp_app_itf_1ga40b34455a3aa87ec9d7476a32a2cbf8c>` (char * pszApplication, char * pszObject, RTS_UI32 ulRequestedRights, RTS_UI32 ulSessionId, :ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter)
+
+- :ref:`APPLICATION_INFO <struct_a_p_p_l_i_c_a_t_i_o_n___i_n_f_o>` * :ref:`AppGetApplicationInfo <group___cmp_app_itf_1gafcd9b4f983d30713dcbc18b3d9055300>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`AppGetFirstConfiguredBootproject <group___cmp_app_itf_1gac53f60507bc3c0837f4cdc787a01e580>` (char * pszAppName, RTS_I32 nMaxAppName, RTS_BOOL bCheckFile, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`AppGetNextConfiguredBootproject <group___cmp_app_itf_1gad8855b4c95f7e244136f051acd56e2b5>` (RTS_HANDLE hPrev, char * pszAppName, RTS_I32 nMaxAppName, RTS_BOOL bCheckFile, RTS_RESULT * pResult)
+
+.. _group___cmp_app_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpApp.
+
+This is the interface of the IEC application manager. The manager is responsible for:
+
+- Handles and collects all IEC applications
+
+- Application specific online communication to CoDeSys (debugging, forcing, etc.)
+
+- Code and data handling (areas)
+
+- Handling of non volatile data (retain handling)
+
+An IEC application is a set of objects which are needed for running a particular instance of the PLC program. Each application is specified by its unique name.
+
+Applications can have relationships among each other. If one application e.g. A2 depends from another application A1, A1 is the parent and A2 the child. So A2 is derived from A1.
+
+Each application has two different kinde of states:
+
+- Application state: run, stop, exception, etc.
+
+- Operating state: storing bootproject, do online-change, etc.
+
+The application state is used to specify, if the application is opertaing normal or not. The operating state is used to specify, which job is executed in the moment on the application.
+
+An IEC application consists of one or more tasks. The IEC tasks are not handled directly by the application manager. This is provided by the the IEC task manager. See CmpIecTask for detailed information.
+
+An application can have code and data. So the application manager needs for each application one or more memory areas in which the code and data will be administrated.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_app_itf_1gafcd67547317dc0c5d29a93d66101021a:
+
+#define APP_CALL_ENTRIES_POOL_COUNT 16384
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga4e20757e0e8d152407bd9ff3999d6642:
+
+#define ACET_STATE_UNCERTAIN 0x0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga5ae328cb07303134c1b8f0d8fd109beb:
+
+#define ACET_STATE_READY ((RTS_SIZE)0x1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gaa7ffd2ca3be6087658ee9e71e91fe3f7:
+
+#define ACET_IS_READY (0 != ((pt)->flags & CET_STATE_READY))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga4f86cd63a18bf0fd3971f38e3b2ef8f2:
+
+#define ACET_IS_UNCERTAIN (0 == ((pt)->flags & CET_STATE_READY))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gaac4a0fc3b929a37122137e588d8e081f:
+
+#define ACET_SET_READY (pt)->flags |= CET_STATE_READY
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga32c62034faf19b738d43dee11ad5a742:
+
+#define ACET_RESET_READY (pt)->flags &= ~CET_STATE_READY
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gae41825dc12d0de804c0adc65d69603c5:
+
+#define ITF_CmpApp
+^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga37344f702c57b66cee7ebbe2a7ecf2a0:
+
+#define EXTITF_CmpApp
+^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_app_itf_1ga9716fdb931167fdab84ed610b1de1cdf:
+
+typedef struct tagPOU_DESCRIPTOR  POU_DESCRIPTOR
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+POU Descriptor.
+
+This type might be extending in future somehow that's why :ref:`CODE_INFO <struct_c_o_d_e___i_n_f_o>` etc. are not used here.
+
+.. _group___cmp_app_itf_1gaac37553b55a342f757624cfebc87f57b:
+
+typedef struct tagPOU_CALL_ENTRY  POU_CALL_ENTRY
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Descriptor for a callable entity.
+
+.. _group___cmp_app_itf_1ga61d119b0ce1901973fc2596216b58ad9:
+
+typedef struct tagAREA_CALL_ENTRIES_TABLE  AREA_CALL_ENTRIES_TABLE
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Table of POU entries.
+
+The life-cycle of this object coincides with the life-cycle of the corresponding code area.
+
+.. _group___cmp_app_itf_1ga659a8e9a2095de6884dcde3b6415d8d2:
+
+typedef struct tagAreaOffsetDataRef  AreaOffsetDataRef
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga64b2e79a252c2fd6bdc414dab2852a9b:
+
+typedef struct tagAreaOffsetBitDataRef  AreaOffsetBitDataRef
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga49280ec40503a5b3e3b59f7fec4f2160:
+
+typedef struct tagPropertyDataRef  PropertyDataRef
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga51361a0fdd7ac8b491d32e18f15b5ba2:
+
+typedef struct tagVarDataRef  VarDataRef
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gabad6f24dff9cb81dfa4a5f0ca92ef522:
+
+typedef struct tagVarValue  VarValue
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga5a7780c49c39f922d55fb6e051c3f1c8:
+
+typedef struct tagVarDesc  VarDesc
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga38ede9349c2fa917bc55855ed77b9b40:
+
+typedef struct _RTS_VERSION_STRUCT  RTS_VERSION_STRUCT
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gacef6e5980cd73b38df5ec5970fd45319:
+
+typedef struct tagappcallgetproperty_struct  appcallgetproperty_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appcallgetproperty
+
+.. _group___cmp_app_itf_1ga42bfedb64a5902481dc448e78770328c:
+
+typedef struct tagappcallgetproperty2_struct  appcallgetproperty2_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appcallgetproperty2
+
+.. _group___cmp_app_itf_1ga8e8849de9df2d7f18b13189c6a3ec1a6:
+
+typedef struct tagappcallgetproperty2release_struct  appcallgetproperty2release_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appcallgetproperty2release
+
+.. _group___cmp_app_itf_1gae1cb5a5f77ad4bceea2076ff62bb36ba:
+
+typedef struct tagappcallsetproperty_struct  appcallsetproperty_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appcallsetproperty
+
+.. _group___cmp_app_itf_1gaf23bee9bb590b39cc75b42d330472443:
+
+typedef struct tagappfindapplicationbyname_struct  appfindapplicationbyname_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appfindapplicationbyname
+
+.. _group___cmp_app_itf_1ga0ac80e643215123ca3bc7cebeaf86221:
+
+typedef struct tagappgenerateexception_struct  appgenerateexception_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appgenerateexception
+
+.. _group___cmp_app_itf_1ga7f28dca06c5892098ac96fe687f45064:
+
+typedef struct tagappgetapplicationbyareaaddress_struct  appgetapplicationbyareaaddress_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appgetapplicationbyareaaddress
+
+.. _group___cmp_app_itf_1ga327058d960d281ab82f87aed0f2aad01:
+
+typedef struct tagappgetapplicationinfo_struct  appgetapplicationinfo_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appgetapplicationinfo
+
+.. _group___cmp_app_itf_1gae0e567104104ed85794080ba7f1c7ae8:
+
+typedef struct tagappgetareaaddress_struct  appgetareaaddress_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appgetareaaddress
+
+.. _group___cmp_app_itf_1ga45c002ec65b28408dddec7a85b797852:
+
+typedef struct tagappgetareaoffsetbyaddress_struct  appgetareaoffsetbyaddress_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appgetareaoffsetbyaddress
+
+.. _group___cmp_app_itf_1gaaa6e1fdef52114932470f8b695e98f00:
+
+typedef struct tagappgetareapointer_struct  appgetareapointer_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appgetareapointer
+
+.. _group___cmp_app_itf_1gae44e1c4b3046a05961b0ec63b8f9eb8d:
+
+typedef struct tagappgetareasize_struct  appgetareasize_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appgetareasize
+
+.. _group___cmp_app_itf_1gac59f1bf9460e6939f50d5944a419a05d:
+
+typedef struct tagappgetcurrent_struct  appgetcurrent_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appgetcurrent
+
+.. _group___cmp_app_itf_1gaf0e6d37aed8e14fef91c2d3726cd3ac5:
+
+typedef struct tagappgetfirstapp_struct  appgetfirstapp_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appgetfirstapp
+
+.. _group___cmp_app_itf_1gac84d93a28f133c309aa08c2eb627a05b:
+
+typedef struct tagappgetnextapp_struct  appgetnextapp_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appgetnextapp
+
+.. _group___cmp_app_itf_1gab7029936118f68d523d86502a9d00dfa:
+
+typedef struct tagappgetprojectinformation_struct  appgetprojectinformation_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appgetprojectinformation
+
+.. _group___cmp_app_itf_1ga025dc9a89abbaa94bd12db4fc9364589:
+
+typedef struct tagappgetsegment_struct  appgetsegment_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appgetsegment
+
+.. _group___cmp_app_itf_1ga9e73a99daf27c628131e00f4f3983cac:
+
+typedef struct tagappgetsegmentaddress_struct  appgetsegmentaddress_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function retuns the start address of an IEC segment. All segments resides within an area. This is used to get access for example to the beginning of the output processimage segment (Q = AreaType.DA_OUTPUT).
+
+**Parameters**
+
++---------+---------+------------------------+
+| [in]    | pApp    | Pointer to Application |
++---------+---------+------------------------+
+| [in]    | wType   | Area type              |
++---------+---------+------------------------+
+| [in]    | pResult | Pointer to Result      |
++---------+---------+------------------------+
+
+**Returns:**
+
+Segment start address
+
+.. _group___cmp_app_itf_1gab889eb40bd5f1400424b8c8341a968d0:
+
+typedef struct tagappgetsegmentsize_struct  appgetsegmentsize_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function retuns the start size of an IEC segment. All segments resides within an area. This is used to get access for example to the size of the output processimage segment (Q = AreaType.DA_OUTPUT).
+
+**Parameters**
+
++---------+---------+------------------------+
+| [in]    | pApp    | Pointer to Application |
++---------+---------+------------------------+
+| [in]    | wType   | Area type              |
++---------+---------+------------------------+
+| [in]    | pResult | Pointer to Result      |
++---------+---------+------------------------+
+
+**Returns:**
+
+Segment size
+
+.. _group___cmp_app_itf_1gadc61e40173b0bce1c3fb1bfbc632d825:
+
+typedef struct tagappnumofactivesessions_struct  appnumofactivesessions_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appnumofactivesessions
+
+.. _group___cmp_app_itf_1ga4a3d296f6cd30813af8d978462fbc8c1:
+
+typedef struct tagappregisterpropaccessfunctions_struct  appregisterpropaccessfunctions_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appregisterpropaccessfunctions
+
+.. _group___cmp_app_itf_1ga58654bd3e6e1b701a220818518c33638:
+
+typedef struct tagappreset_struct  appreset_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appreset
+
+.. _group___cmp_app_itf_1ga366a66be64e7e3f8e578eebfd4e154c1:
+
+typedef struct tagapprestoreretainsfromfile_struct  apprestoreretainsfromfile_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+apprestoreretainsfromfile
+
+.. _group___cmp_app_itf_1ga3f47609a962022ba757448e722ee3fc6:
+
+typedef struct tagappstartapplication_struct  appstartapplication_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appstartapplication
+
+.. _group___cmp_app_itf_1ga742c9d352a710e4fd7550063e6cbbf86:
+
+typedef struct tagappstopapplication_struct  appstopapplication_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appstopapplication
+
+.. _group___cmp_app_itf_1gacac0c4b53f72206a5a435dd16d77c7fe:
+
+typedef struct tagappstoreretainsinfile_struct  appstoreretainsinfile_struct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+appstoreretainsinfile
+
+.. _group___cmp_app_itf_1ga0f55546a1fe4a6e7e41354b8c2fd6c3f:
+
+typedef ICmpApp_C ICmpApp
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enumeration Type Documentation
+------------------------------
+
+.. _group___cmp_app_itf_1ga28793086d624a1c83e4e5b51779c6bd4:
+
+enum SecurityAppDownloadMode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Security settings for the IEC application code and bootproject 
+
+**Enumerator:**
+
++-----------------------------------+
+| DownloadMode_NoSecurity           |
++-----------------------------------+
+| DownloadMode_ALL                  |
++-----------------------------------+
+| DownloadMode_MIN_ENCRYPTED        |
++-----------------------------------+
+| DownloadMode_MIN_SIGNED           |
++-----------------------------------+
+| DownloadMode_SIGNED_AND_ENCRYPTED |
++-----------------------------------+
+
+.. _group___cmp_app_itf_1ga19a704cc12b4713160417e496c5e343c:
+
+enum DRT_DATAREFTYPE
+^^^^^^^^^^^^^^^^^^^^
+
+
+**Enumerator:**
+
++---------------------+
+| DRT_AREA_OFFSET     |
++---------------------+
+| DRT_PROPERTY        |
++---------------------+
+| DRT_AREA_OFFSET_BIT |
++---------------------+
+
+Function Documentation
+----------------------
+
+.. _group___cmp_app_itf_1ga37d39d297807176634764b9ba2c19d4b:
+
+void appcallgetproperty (appcallgetproperty_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga2e7f0f42a3a8523f8855a9f1920314f8:
+
+void appcallgetproperty2 (appcallgetproperty2_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga6eba224c20f810cb1048aae336bfb128:
+
+void appcallgetproperty2release (appcallgetproperty2release_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga3e5e5fd14bb01c9eab6dd5a5ba653c40:
+
+void appcallsetproperty (appcallsetproperty_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga53866ebb972d4c68ab36ae99e5af9d5a:
+
+void appfindapplicationbyname (appfindapplicationbyname_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gae55f4b1789c330250f732fa1b66ff5c2:
+
+void appgenerateexception (appgenerateexception_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga0122e2221a2f93fe107ba0c466a9a887:
+
+void appgetapplicationbyareaaddress (appgetapplicationbyareaaddress_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga258d7b558d14c06ce7c8aff5e736221b:
+
+void appgetapplicationinfo (appgetapplicationinfo_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga5ff918e2a90bc7cf562d431d91a71b4d:
+
+void appgetareaaddress (appgetareaaddress_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gae44ed95ac6437df0f87178cbb11452da:
+
+void appgetareaoffsetbyaddress (appgetareaoffsetbyaddress_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga3f2e130c64d3d5bd7ec0636ed6406e8c:
+
+void appgetareapointer (appgetareapointer_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gab247e25821182541af1b7e5075a6134f:
+
+void appgetareasize (appgetareasize_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gacda31989bd22719f8d1531554e0516b4:
+
+void appgetcurrent (appgetcurrent_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga94d24fbfabf645cc9d0db3cfd2aceae4:
+
+void appgetfirstapp (appgetfirstapp_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga0223d02d98a97a7677fe55ef1d23b458:
+
+void appgetnextapp (appgetnextapp_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga3e831eba840a949037fcad6f81a4df7b:
+
+void appgetprojectinformation (appgetprojectinformation_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gac2bf4762168f52f416f31a7d8b7d9b1d:
+
+void appgetsegment (appgetsegment_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gab7af680773f447939c46f31accc3c221:
+
+void appgetsegmentaddress (appgetsegmentaddress_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gaecc20a92e3271b2961f285ce1384d497:
+
+void appgetsegmentsize (appgetsegmentsize_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga61cff74d26b9778b00ebeef88429a04f:
+
+void appnumofactivesessions (appnumofactivesessions_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gae155395e982119d1bab53a0924a71a3f:
+
+void appregisterpropaccessfunctions (appregisterpropaccessfunctions_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gaa74e19b51e3eafd3aedc72dbc2b8f3a5:
+
+void appreset (appreset_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga618f3d44e9fe0dee8146a69845b4f11c:
+
+void apprestoreretainsfromfile (apprestoreretainsfromfile_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1gaaa9ba3388257a837b2bf2cc4b6b0e7fc:
+
+void appstartapplication (appstartapplication_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga334bacdfae5d5e45113852af77c4c3a7:
+
+void appstopapplication (appstopapplication_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga113c478d9611dc014f9a412a60eb9393:
+
+void appstoreretainsinfile (appstoreretainsinfile_struct *p)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_app_itf_1ga07319c8fc1225782ffc6699b6ffd57ab:
+
+APPLICATION* AppCreateApplication (char *pszAppName, char *pszAppParentName, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creates an application specified by name
+
+**Parameters**
+
++---------+------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | pszAppName       | Pointer to name of the application                                                                 |
++---------+------------------+----------------------------------------------------------------------------------------------------+
+| [in]    | pszAppParentName | Pointer to name of the parent application (if a child application should be created). Can be NULL. |
++---------+------------------+----------------------------------------------------------------------------------------------------+
+| [out]   | pResult          | Pointer to error code                                                                              |
++---------+------------------+----------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to the application description
+
+.. _group___cmp_app_itf_1gaeefe3e296c83e3ad66951597889573e1:
+
+RTS_RESULT AppPrepareDownload (APPLICATION *pApp, int bOnlineChange, int bCreateBootproject)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Prepares a new download or online-change
+
+**Parameters**
+
++---------+--------------------+------------------------------------------------------------+
+| [in]    | pApp               | Pointer to the specified application description           |
++---------+--------------------+------------------------------------------------------------+
+| [in]    | bOnlineChange      | 1=Online change, 0=Download                                |
++---------+--------------------+------------------------------------------------------------+
+| [in]    | bCreateBootproject | 1=Create implicitly a bootproject, 0=Create no bootproject |
++---------+--------------------+------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga124ee30203d80b8f90ae157313076c84:
+
+RTS_RESULT AppAppendCode (APPLICATION *pApp, RTS_UI8 *pbyCode, RTS_SIZE ulCodeLen, RTS_SIZE ulCodeOffset, int bLoadBootproject)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Append IEC code for each code fragment. NOTE: Actually only available for CmpAppEmbedded!
+
+**Parameters**
+
++---------+------------------+---------------------------------------------------------------------------------+
+| [in]    | pApp             | Pointer to the specified application description                                |
++---------+------------------+---------------------------------------------------------------------------------+
+| [in]    | pbyCode          | Pointer to code part                                                            |
++---------+------------------+---------------------------------------------------------------------------------+
+| [in]    | ulCodeLen        | Code fragment length                                                            |
++---------+------------------+---------------------------------------------------------------------------------+
+| [in]    | ulCodeOffset     | Code offset of the fragment, to write to                                        |
++---------+------------------+---------------------------------------------------------------------------------+
+| [in]    | bLoadBootproject | 1=Function is called at loading bootproject, 0=Else (e.g. at download sequence) |
++---------+------------------+---------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gaf8c06285d56052fc9892d78a8670384d:
+
+RTS_RESULT AppCompleteDownload (APPLICATION *pApp, int bOnlineChange, BINTAGWRITER *pWriter)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Complete the download and init application. NOTE: Actually only available for CmpAppEmbedded!
+
+**Parameters**
+
++---------+---------------+--------------------------------------------------+
+| [in]    | pApp          | Pointer to the specified application description |
++---------+---------------+--------------------------------------------------+
+| [in]    | bOnlineChange | 1=Online change, 0=Download                      |
++---------+---------------+--------------------------------------------------+
+| [in]    | pWriter       | Pointer to the online writer. Can be NULL.       |
++---------+---------------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga790c11ea67896a28aee3fbb6d98727ed:
+
+APPLICATION* AppFindApplicationByName (char *pszAppName, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves an application by name
+
+**Parameters**
+
++---------+------------+---------------------------------------------------------------+
+| [in]    | pszAppName | Pointer to name of the application RANGE=[NULL,VALID_APPNAME] |
++---------+------------+---------------------------------------------------------------+
+| [out]   | pResult    | Pointer to error code                                         |
++---------+------------+---------------------------------------------------------------+
+
+**Return values**
+
++---------------+--------------------------------------+
+| ERR_OK        | Application successfully retrieved   |
++---------------+--------------------------------------+
+| ERR_PARAMETER | Parameter pszAppName may not be null |
++---------------+--------------------------------------+
+
+**Returns:**
+
+Pointer to the application description, null if no App could not be found
+
+.. _group___cmp_app_itf_1ga394eea744ec7e3ebece50262e0b852dc:
+
+RTS_RESULT AppNumOfActiveSessions (APPLICATION *pApp, RTS_UI32 *pulNumSessions)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the number of active sessions for an application
+
+**Parameters**
+
++---------+----------------+---------------------------------------------------------------+
+| [in]    | pApp           | Pointer to the specified application description              |
++---------+----------------+---------------------------------------------------------------+
+| [out]   | pulNumSessions | Pointer to variable for storing the number of active sessions |
++---------+----------------+---------------------------------------------------------------+
+
+**Return values**
+
++---------------+----------------------------------------------------+
+| ERR_OK        | Number of active sessions successfully retrieved   |
++---------------+----------------------------------------------------+
+| ERR_PARAMETER | Parameters pApp and pulNumSessions may not be null |
++---------------+----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga1b60c3fee056b9f4a9f92f744d52f902:
+
+APPLICATION* AppFindApplicationByBootproject (char *pszBootprojectName, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves an application by name
+
+**Parameters**
+
++---------+--------------------+-----------------------------------------------------------------------+
+| [in]    | pszBootprojectName | Pointer to name of the bootproject. Must not be the application name! |
++---------+--------------------+-----------------------------------------------------------------------+
+| [out]   | pResult            | Pointer to error code                                                 |
++---------+--------------------+-----------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to the application description
+
+.. _group___cmp_app_itf_1ga38c0ff434e841e1395ef8d95927ae7b9:
+
+APPLICATION* AppFindApplicationBySessionId (RTS_UI32 ulSessionId, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves an application by session id. The session id is an unique id that is provided from the login service. There is a relation between the communication channel and the session id.
+
+**Parameters**
+
++---------+-------------+------------------------------+
+| [in]    | ulSessionId | SessionId from login service |
++---------+-------------+------------------------------+
+| [out]   | pResult     | Pointer to error code        |
++---------+-------------+------------------------------+
+
+**Returns:**
+
+Pointer to the application description
+
+.. _group___cmp_app_itf_1gaf79da17992ac29ce0bebed88aba39d34:
+
+APPLICATION* AppFindApplicationById (int iId, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves an application by its id.
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [in]    | iId     | Id of the application |
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Returns:**
+
+Pointer to the application description
+
+.. _group___cmp_app_itf_1gacea683c66fcd9a43c07770f40e361131:
+
+int AppGetNumOfApplications (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the number of registered and loaded applications.
+**Returns:**
+
+Number of registered applications
+
+.. _group___cmp_app_itf_1gad93b8a30f51d2ec81b8c81d7cd0d31e1:
+
+APPLICATION* AppGetApplicationByIndex (int iIndex, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves an application description sepcified by index
+
+**Parameters**
+
++---------+---------+--------------------------------------------------------------------------------------------------------+
+| [in]    | iIndex  | Index of the application list. RANGE=[0..APPL_NUM_OF_STATIC_APPLS-1,APPL_NUM_OF_STATIC_APPLS..INT_MAX] |
++---------+---------+--------------------------------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to error code                                                                                  |
++---------+---------+--------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+-----------------------------------------+
+| ERR_OK        | Application successfully retrieved      |
++---------------+-----------------------------------------+
+| ERR_PARAMETER | Application with index iIndex not found |
++---------------+-----------------------------------------+
+
+**Returns:**
+
+Pointer to the application description
+
+.. _group___cmp_app_itf_1gab59884b394d05fa3ccb04eaddd382f69:
+
+APPLICATION* AppGetApplicationByAreaAddress (void *pAddress, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves an application description which contains the specified memory address or NULL if failed (memory cannot be assiciated to an application)
+
+**Parameters**
+
++---------+----------+-----------------------+
+| [in]    | pAddress | Pointer to memory     |
++---------+----------+-----------------------+
+| [out]   | pResult  | Pointer to error code |
++---------+----------+-----------------------+
+
+**Returns:**
+
+Pointer to the application description or NULL if memory pointer cannot be assiciated to an application
+
+.. _group___cmp_app_itf_1gab0748b6547fd5e33f990baba7227279d:
+
+RTS_RESULT AppGetAreaPointer (APPLICATION *pApp, int iArea, unsigned char **ppucArea)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the pointer to a memory area specified by index
+
+**Parameters**
+
++---------+----------+--------------------------------------------------------------------------+
+| [in]    | pApp     | Pointer to the specified application description RANGE=[NULL,VALID_PAPP] |
++---------+----------+--------------------------------------------------------------------------+
+| [in]    | iArea    | Area index RANGE=[-1,VALID_AREA_TYPE,(APPL_NUM_OF_STATIC_AREAS - 1)]     |
++---------+----------+--------------------------------------------------------------------------+
+| [out]   | ppucArea | Pointer pointer to the area                                              |
++---------+----------+--------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+-------------------------------------------------------------------------------------------------+
+| ERR_OK        | Pointer to Area successfully retrieved                                                          |
++---------------+-------------------------------------------------------------------------------------------------+
+| ERR_PARAMETER | Parameter pApp may not be null, iArea may not be out of range: 0 - APPL_NUM_OF_STATIC_AREAS - 1 |
++---------------+-------------------------------------------------------------------------------------------------+
+| ERR_FAILED    | Pointer to Area could not be retrieved                                                          |
++---------------+-------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga0e27aa797e2e6aa5985eb6ce5dff8552:
+
+RTS_RESULT AppGetAreaPointer2 (APPLICATION *pApp, RTS_I32 iArea, RTS_UI8 **ppbyArea, RTS_SIZE *pulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the pointer and size of a memory area specified by index
+
+**Parameters**
+
++---------+----------+------------------------------------------------------------------------------------+
+| [in]    | pApp     | Pointer to the specified application description RANGE=[NULL,VALID_PAPP]           |
++---------+----------+------------------------------------------------------------------------------------+
+| [in]    | iArea    | Area index RANGE=[-1,VALID_AREA_TYPE,(APPL_NUM_OF_STATIC_AREAS - 1)]               |
++---------+----------+------------------------------------------------------------------------------------+
+| [out]   | ppucArea | Pointer pointer to the area. Can be NULL to get only the area size.                |
++---------+----------+------------------------------------------------------------------------------------+
+| [out]   | pulSize  | Pointer to size to return the area size. Can be NULL to get only the area address. |
++---------+----------+------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+-------------------------------------------------------------------------------------------------+
+| ERR_OK        | Pointer to Area successfully retrieved                                                          |
++---------------+-------------------------------------------------------------------------------------------------+
+| ERR_PARAMETER | Parameter pApp may not be null, iArea may not be out of range: 0 - APPL_NUM_OF_STATIC_AREAS - 1 |
++---------------+-------------------------------------------------------------------------------------------------+
+| ERR_FAILED    | Pointer to Area could not be retrieved                                                          |
++---------------+-------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga1814999425e07714e968044f1304a315:
+
+RTS_RESULT AppGetAreaPointerByType (char *pszAppName, int iArea, RTS_UI16 usType, unsigned char **ppucArea)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves a pointer to the memory area specified by type and index
+
+**Parameters**
+
++---------+------------+--------------------------------------------------------------------------------+
+| [in]    | pszAppName | Application name                                                               |
++---------+------------+--------------------------------------------------------------------------------+
+| [in]    | iArea      | Area index                                                                     |
++---------+------------+--------------------------------------------------------------------------------+
+| [in]    | usType     | Area type. See category "Area Types" in :ref:`SysMemItf.h <_sys_mem_itf_8h>` . |
++---------+------------+--------------------------------------------------------------------------------+
+| [out]   | ppucArea   | Pointer pointer to the area                                                    |
++---------+------------+--------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga218c57bd97ba470a169ced36beefaaa5:
+
+RTS_RESULT AppHasAddress (APPLICATION *pApp, RTS_VOID_FCTPTR pAddress)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function checks, if the address is a part of the specified application (resides in an area)
+
+**Parameters**
+
++---------+----------+----------------------------------------------------------------+
+| [in]    | pApp     | Application                                                    |
++---------+----------+----------------------------------------------------------------+
+| [in]    | pAddress | Pointer to check. Can be a data pointer or a function pointer. |
++---------+----------+----------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK: pAddress is part of the specified application *ERR_FAILED: pAddress is not a part of the specified application
+
+.. _group___cmp_app_itf_1gafa7d59e3f336dfee7851a168500c9284:
+
+RTS_RESULT AppIsProgramLoaded (APPLICATION *pApp, int *pbProgramLoaded)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the load state of an application
+
+**Parameters**
+
++---------+-----------------+--------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pApp            | Pointer to the specified application description RANGE=[NULL,VALID_PAPP]                                                 |
++---------+-----------------+--------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pApp.ulOpState  | ***PSEUDO*** Pointer to the specified application description RANGE=[OS_NONE,OS_PROGRAM_LOADED,OS_DOWNLOAD,OS_EXCEPTION] |
++---------+-----------------+--------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pbProgramLoaded | Pointer to result. If the application contains a loaded project:pbProgramLoaded is set to 1, else 0                      |
++---------+-----------------+--------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+----------------------------------------------------+
+| ERR_OK        | Load state of application successfully retrieved   |
++---------------+----------------------------------------------------+
+| ERR_PARAMETER | Parameter pApp and pbProgramLoaded may not be null |
++---------------+----------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga79c35ede156b155dffe582dd1e089e97:
+
+RTS_RESULT AppSetProgramLoaded (APPLICATION *pApp, int bProgramLoaded)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the load state of an application
+
+**Parameters**
+
++---------+----------------+------------------------------------------------------+
+| [in]    | pApp           | Pointer to the specified application description     |
++---------+----------------+------------------------------------------------------+
+| [in]    | bProgramLoaded | 1=Application is loaded, 0=Application is not loaded |
++---------+----------------+------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga9afd46bbc077eb28cf5345bdc27450d7:
+
+RTS_RESULT AppSingleCycle (APPLICATION *pApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Activate a single cycle on the specified application
+
+**Parameters**
+
++---------+------+--------------------------------------------------+
+| [in]    | pApp | Pointer to the specified application description |
++---------+------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga4cf27836de970f58d8d135588034876c:
+
+RTS_RESULT AppSetState (APPLICATION *pApp, unsigned long ulState)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the state of an application
+
+**Parameters**
+
++---------+---------+----------------------------------------------------------------+
+| [in]    | pApp    | Pointer to the specified application description               |
++---------+---------+----------------------------------------------------------------+
+| [in]    | ulState | State to set. See above for state specifications (prefix: AS_) |
++---------+---------+----------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga63c3ceccc79262cd3cea02ee1987ac69:
+
+unsigned long AppGetState (APPLICATION *pApp, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the state of an application
+
+**Parameters**
+
++---------+--------------+--------------------------------------------------------------------------------------+
+| [in]    | pApp         | Pointer to the specified application description RANGE=[NULL,VALID_PAPP]             |
++---------+--------------+--------------------------------------------------------------------------------------+
+| [in]    | pApp.ulState | ***PSEUDO*** Pointer to the specified application description RANGE=[AS_NONE,AS_RUN] |
++---------+--------------+--------------------------------------------------------------------------------------+
+| [out]   | pResult      | Pointer to error code                                                                |
++---------+--------------+--------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+---------------------------------------------+
+| ERR_OK        | State of application successfully retrieved |
++---------------+---------------------------------------------+
+| ERR_PARAMETER | Parameter pApp may not be null              |
++---------------+---------------------------------------------+
+
+**Returns:**
+
+State of the application. There could be several active states at the same time! *See above for state specifications (prefix: AS_)
+
+.. _group___cmp_app_itf_1gae45a9a7071c8d2314c1c1dcdf972b98b:
+
+RTS_RESULT AppSetOperatingState (APPLICATION *pApp, unsigned long ulOpState)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the operating state of an application
+
+**Parameters**
+
++---------+-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pApp      | Pointer to the specified application description                                                                                                                                                       |
++---------+-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulOpState | Operating state of an application. This is an information, which job or operating possibilities of the application are set actually. There could be several active opertating states at the same time! |
++---------+-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gacdd4cc78e01795a52cf685b3c55c702b:
+
+RTS_RESULT AppResetOperatingState (APPLICATION *pApp, unsigned long ulOpState)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Reset a single operating state of an application
+
+**Parameters**
+
++---------+-----------+--------------------------------------------------+
+| [in]    | pApp      | Pointer to the specified application description |
++---------+-----------+--------------------------------------------------+
+| [in]    | ulOpState | Operating state to reset                         |
++---------+-----------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga605713f5b8a7be474c12b715642b7af2:
+
+unsigned long AppGetOperatingState (APPLICATION *pApp, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the operating state of an application
+
+**Parameters**
+
++---------+-----------------+----------------------------------------------------------------------------+
+| [in]    | pApp            | Pointer to the specified application description RANGE=[VALID_PAPP,NULL]   |
++---------+-----------------+----------------------------------------------------------------------------+
+| [in]    | pApp->ulOpState | ***PSEUDO*** Application operating state RANGE=[OS_NONE,OS_PROGRAM_LOADED] |
++---------+-----------------+----------------------------------------------------------------------------+
+| [out]   | pResult         | Pointer to error code                                                      |
++---------+-----------------+----------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+-------------------------------+
+| ERR_OK        | Status retrieved successfully |
++---------------+-------------------------------+
+| ERR_PARAMETER | pApp may not be null          |
++---------------+-------------------------------+
+
+**Returns:**
+
+Operating state of an application
+
+.. _group___cmp_app_itf_1ga98f34b2b59e7a1c3f3d774de144b3f0a:
+
+RTS_RESULT AppSetCodeGuid (APPLICATION *pApp, RTS_GUID *pCodeGuid)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the code id of the application. The code id is a unique number that specifies the code content of an application.
+
+**Parameters**
+
++---------+-----------+--------------------------------------------------------------------------+
+| [in]    | pApp      | Pointer to the specified application description RANGE=[NULL,VALID_PAPP] |
++---------+-----------+--------------------------------------------------------------------------+
+| [in]    | pCodeGuid | Pointer to code guid RANGE=[NULL,VALID_PCODEGUID]                        |
++---------+-----------+--------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+------------------------------+
+| ERR_OK        | Code Guid was set successful |
++---------------+------------------------------+
+| ERR_PARAMETER | Parameter may not be null    |
++---------------+------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gaa2e8cad1bd2e1b3a5c4ca9a6e43806dc:
+
+RTS_RESULT AppGetCodeGuid (APPLICATION *pApp, RTS_GUID *pCodeGuid)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the code id of the application. The code id is a unique number that specifies the code content of an application.
+
+**Parameters**
+
++---------+-----------+--------------------------------------------------------------------------+
+| [in]    | pApp      | Pointer to the specified application description RANGE=[NULL,VALID_PAPP] |
++---------+-----------+--------------------------------------------------------------------------+
+| [out]   | pCodeGuid | Pointer to code guid RANGE=[NULL,VALID_PCODEGUID]                        |
++---------+-----------+--------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+--------------------------------+
+| ERR_OK        | Code Guid was set successfully |
++---------------+--------------------------------+
+| ERR_PARAMETER | Parameter may not be null      |
++---------------+--------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga08a97ec5d0c323a8304dd65705b317f9:
+
+RTS_RESULT AppSetDataGuid (APPLICATION *pApp, RTS_GUID *pDataGuid)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the data id of the application. The data id is a unique number that specifies the data configuration of an application.
+
+**Parameters**
+
++---------+-----------+--------------------------------------------------------------------------+
+| [in]    | pApp      | Pointer to the specified application description RANGE=[NULL,VALID_PAPP] |
++---------+-----------+--------------------------------------------------------------------------+
+| [in]    | pDataGuid | Pointer to data guid RANGE=[NULL,VALID_PDATAGUID]                        |
++---------+-----------+--------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+------------------------------+
+| ERR_OK        | Data Guid was set successful |
++---------------+------------------------------+
+| ERR_PARAMETER | Parameter may not be null    |
++---------------+------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga0a2fb91d09c4da070acdd18aa99817c4:
+
+RTS_RESULT AppGetDataGuid (APPLICATION *pApp, RTS_GUID *pDataGuid)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the data id of the application. The data id is a unique number that specifies the data configuration of an application.
+
+**Parameters**
+
++---------+-----------+--------------------------------------------------------------------------+
+| [in]    | pApp      | Pointer to the specified application description RANGE=[NULL,VALID_PAPP] |
++---------+-----------+--------------------------------------------------------------------------+
+| [out]   | pDataGuid | Pointer to data guid RANGE=[NULL,VALID_PDATAGUID]                        |
++---------+-----------+--------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+--------------------------------+
+| ERR_OK        | Get data Guid was successfully |
++---------------+--------------------------------+
+| ERR_PARAMETER | Parameter may not be null      |
++---------------+--------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gab9e60aff8ec67fadde77449376c33228:
+
+RTS_RESULT AppGetBootprojectGuids (APPLICATION *pApp, RTS_GUID *pCodeGuid, RTS_GUID *pDataGuid)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the code and data guid of the bootproject of the given application. This function can be used to compare the guids of the loaded application with the bootproject.
+
+**Parameters**
+
++---------+-----------+--------------------------------------------------+
+| [in]    | pApp      | Pointer to the specified application description |
++---------+-----------+--------------------------------------------------+
+| [out]   | pCodeGuid | Pointer to code guid                             |
++---------+-----------+--------------------------------------------------+
+| [out]   | pDataGuid | Pointer to data guid                             |
++---------+-----------+--------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gabc8c14ab64a7097b3966096610b02916:
+
+RTS_RESULT AppExceptionHandler (APPLICATION *pApp, RTS_UI32 ulException, RegContext Context)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Exception handling of an application task. Must be called from another component, if an exception occurred in an IEC task. This routine is called typically by the CmpIecTask.
+
+**Parameters**
+
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pApp        | Pointer to the specified application description, in which the exception was generated.                                                        |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulException | Exception number to see, which exception was generated                                                                                         |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | Context     | Context of the task. With this context it is possible to investigate the complete callstack to the code position, where the exception occurred |
++---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga7eba62589bee4d1eb16d2fda20daab39:
+
+RTS_RESULT AppReset (APPLICATION *pApp, RTS_UI16 usResetOption, RTS_UI32 ulSessionId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Executes a reset on the specified application
+
+**Parameters**
+
++---------+---------------+-------------------------------------------------------------------------+
+| [in]    | pApp          | Pointer to the specified application description                        |
++---------+---------------+-------------------------------------------------------------------------+
+| [in]    | usResetOption | Reset option. See the category "Reset options" for detailed information |
++---------+---------------+-------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gadc1f6465974e2c4d964dfb7209c3ce60:
+
+RTS_RESULT AppResetAllApplications (RTS_UI16 usResetOption)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Resets all applications
+
+**Parameters**
+
++---------+---------------+-------------------------------------------------------------------------+
+| [in]    | usResetOption | Reset option. See the category "Reset options" for detailed information |
++---------+---------------+-------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gaf992e305b1f9888700444c41b9843c6a:
+
+RTS_RESULT AppLoadBootprojects (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Load all registered bootprojects
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga5ba4e1a0c80286f62a94a7e66f5262b0:
+
+RTS_RESULT AppStartBootprojects (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Start all registered bootprojects
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gac2b4a73230de9a57147c77394476e155:
+
+RTS_RESULT AppLoadBootproject (char *pszAppName, char *pszFilePath)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Load a bootproject with the specified application name
+
+**Parameters**
+
++---------+-------------+------------------------------------------------+
+| [in]    | pszAppName  | Pointer to the NUL terminated application name |
++---------+-------------+------------------------------------------------+
+| [in]    | pszFilePath | File path for the bootproject                  |
++---------+-------------+------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gac6dc1230eac449366c1449683dcc9ae1:
+
+RTS_RESULT AppStartApplications (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Start all applications
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga74651dd307709d730362b0fb95313da5:
+
+RTS_RESULT AppStartApplication2 (APPLICATION *pApp, RTS_UI32 ulStartReason)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Start an application
+
+**Parameters**
+
++---------+---------------+------------------------------------------+
+| [in]    | pApp          | Pointer to the application               |
++---------+---------------+------------------------------------------+
+| [in]    | ulStartReason | Start reason, See corresponding category |
++---------+---------------+------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gae527b32e0b7180faedf39ea81e821fcf:
+
+RTS_RESULT AppStartApplication (APPLICATION *pApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Start an application
+
+**Parameters**
+
++---------+------+----------------------------+
+| [in]    | pApp | Pointer to the application |
++---------+------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga52fc198412091fa59364799189f77751:
+
+RTS_RESULT AppStopApplications (RTS_UI32 ulTimeoutMs, RTS_UI32 ulStopReason)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Stop all applications
+
+**Parameters**
+
++---------+--------------+------------------------------------------------------------------------------------------------+
+| [in]    | ulTimeoutMs  | Timeout in milliseconds to wait for stop. RTS_TIMEOUT_DEFAULT can be used as the default value |
++---------+--------------+------------------------------------------------------------------------------------------------+
+| [in]    | ulStopReason | Stop reason, See corresponding category                                                        |
++---------+--------------+------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga328a89d02adfd171ea0be0c4c6c0cc89:
+
+RTS_RESULT AppStopApplication (APPLICATION *pApp, RTS_UI32 ulTimeoutMs, RTS_UI32 ulStopReason)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Stop an application
+
+**Parameters**
+
++---------+--------------+------------------------------------------------------------------------------------------------+
+| [in]    | pApp         | Pointer to the application                                                                     |
++---------+--------------+------------------------------------------------------------------------------------------------+
+| [in]    | ulTimeoutMs  | Timeout in milliseconds to wait for stop. RTS_TIMEOUT_DEFAULT can be used as the default value |
++---------+--------------+------------------------------------------------------------------------------------------------+
+| [in]    | ulStopReason | Stop reason, See corresponding category                                                        |
++---------+--------------+------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga14f08356ce3b8d041f4d668758e8c2da:
+
+RTS_RESULT AppExitApplication (APPLICATION *pApp, RTS_UI32 ulExitReason)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Exit an application (release all tasks, etc.). The application is not deleted!
+
+**Parameters**
+
++---------+--------------+------------------------------------------------------------------+
+| [in]    | pApp         | Pointer to the application                                       |
++---------+--------------+------------------------------------------------------------------+
+| [in]    | ulExitReason | Reason for the exit, see category "Operation reason" for details |
++---------+--------------+------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga0928d03c0b72234d532c3d7083162f03:
+
+RTS_RESULT AppExitApplication2 (APPLICATION *pApp, RTS_UI32 ulExitReason, RTS_UI32 ulTimeoutMs)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Exit an application (release all tasks, etc.). The application is not deleted!
+
+**Parameters**
+
++---------+--------------+----------------------------------------------------------------------------------------------------------------------+
+| [in]    | pApp         | Pointer to the application                                                                                           |
++---------+--------------+----------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulExitReason | Reason for the exit, see category "Operation reason" for details                                                     |
++---------+--------------+----------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulTimeoutMs  | Timeout in milliseconds to to stop the application during exit. RTS_TIMEOUT_DEFAULT can be used as the default value |
++---------+--------------+----------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga10c9b955f06ed25c9b9e01aa650b3e0a:
+
+RTS_RESULT AppExitApplications (RTS_UI32 ulExitReason, RTS_UI32 ulTimeoutMs)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Exit all applications (release all tasks, etc.). The applications are not deleted!
+
+**Parameters**
+
++---------+--------------+-------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulExitReason | Reason for the exit, see category "Operation reason" for details                                                  |
++---------+--------------+-------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulTimeoutMs  | Timeout in milliseconds to stop the application during exit. RTS_TIMEOUT_DEFAULT can be used as the default value |
++---------+--------------+-------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gaf4906e81741ce6cd5ba62301aa7980ce:
+
+RTS_RESULT AppDeleteApplication (APPLICATION *pApp, RTS_UI32 ulDeleteReason)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete an application. Bootproject will not deleted!
+
+**Parameters**
+
++---------+----------------+--------------------------------------------------------------------+
+| [in]    | pApp           | Pointer to the application                                         |
++---------+----------------+--------------------------------------------------------------------+
+| [in]    | ulDeleteReason | Reason for the delete, see category "Operation reason" for details |
++---------+----------------+--------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gaff280fc480115d7905736dce2e0ba815:
+
+RTS_RESULT AppDeleteApplications (RTS_UI32 ulDeleteReason)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete all applications. Bootprojects will not be deleted!
+
+**Parameters**
+
++---------+----------------+--------------------------------------------------------------------+
+| [in]    | ulDeleteReason | Reason for the delete, see category "Operation reason" for details |
++---------+----------------+--------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gaca05189b98a1f0663311e02f8eb16ea4:
+
+RTS_RESULT AppDeleteBootproject (APPLICATION *pApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete a bootproject (corresponding loaded application will not be affected or deleted!)
+
+**Parameters**
+
++---------+------+----------------------------+
+| [in]    | pApp | Pointer to the application |
++---------+------+----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gab28ac2db7f0ff3821522534636d83045:
+
+RTS_RESULT AppAddAddrDataSrv (RTS_UI32 ulSessionId, PEERADDRESS *pPeerAddr)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add the peer address of an existing data server. This can be used from clients, that wants to get symbolic access to IEC variables. If the symbolic infromation is not available here on the controller, the registered data server can be used for that.
+
+**Parameters**
+
++---------+-------------+------------------------------------------------+
+| [in]    | ulSessionId | SessionId of the communication channel         |
++---------+-------------+------------------------------------------------+
+| [in]    | pPeerAddr   | Pointer to the peer address of the data server |
++---------+-------------+------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga9a37fe1e779a427df1b4d2c769256fac:
+
+RTS_RESULT AppRemoveAddrDataSrv (RTS_UI32 ulSessionId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove a peer address of an existing data server that will be shutdown
+
+**Parameters**
+
++---------+-------------+----------------------------------------+
+| [in]    | ulSessionId | SessionId of the communication channel |
++---------+-------------+----------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gae87a4e166bdfb50618cae36b2d820bc5:
+
+RTS_HANDLE AppGetFirstAddrDataSrv (PEERADDRESS **ppPeerAddr, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the peer address of the first registered data server
+
+**Parameters**
+
++---------+------------+-------------------------------------+
+| [out]   | ppPeerAddr | Pointer pointer to the peer address |
++---------+------------+-------------------------------------+
+| [out]   | pResult    | Pointer to error code               |
++---------+------------+-------------------------------------+
+
+**Returns:**
+
+Handle to get the next peer addresse of a registered data server, RTS_INVALID_HANDLE if not available
+
+.. _group___cmp_app_itf_1gac7ea258c0964017abb13957eb666979c:
+
+RTS_HANDLE AppGetNextAddrDataSrv (RTS_HANDLE hAddr, PEERADDRESS **ppPeerAddr, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the peer address of the first registered data server
+
+**Parameters**
+
++---------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hAddr      | Handle, that was retrieved by the :ref:`AppGetFirstAddrDataSrv() <group___cmp_iec_var_access_dep_1ga241ccce32dc7709f70963615c573d715>` function |
++---------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | ppPeerAddr | Pointer pointer to the peer address                                                                                                             |
++---------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult    | Pointer to error code                                                                                                                           |
++---------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to get the next peer addresse of a registered data server, RTS_INVALID_HANDLE if not available
+
+.. _group___cmp_app_itf_1gaedfe141f230ca8ad832aac09e4e0a92d:
+
+RTS_HANDLE AppConsistencyCheckBegin (APPLICATION *pApp, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Begin a consistency sequence. This can be used to check, if any task of an IEC application (or its father application) was active during this sequence. A typical usage is the task consistent data monitoring during this sequence.
+
+**Parameters**
+
++---------+---------+----------------------------+
+| [in]    | pApp    | Pointer to the application |
++---------+---------+----------------------------+
+| [out]   | pResult | Pointer to error code      |
++---------+---------+----------------------------+
+
+**Returns:**
+
+Return a handle to the consistency object
+
+.. _group___cmp_app_itf_1gada89122fff08ca42a6566fa8403365ca:
+
+RTS_RESULT AppConsistencyCheckEnd (RTS_HANDLE hConsistency)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+End a consistency sequence. This can be used to check, if any task of an IEC application (or its father application) was active during this consistency sequence. A typical usage is the task consistent data monitoring.
+
+**Parameters**
+
++---------+--------------+----------------------------------------------------------------------------+
+| [in]    | hConsistency | Handle to the consistency object that is returned by AppConsistencyBegin() |
++---------+--------------+----------------------------------------------------------------------------+
+
+**Returns:**
+
+ERR_OK: No task active during this consistency sequence, *ERR_FAILED: Any task of this application was active during this sequence
+
+.. _group___cmp_app_itf_1gad4b08a6a4eaa396500f0a7ce5648c34e:
+
+RTS_RESULT AppConsistencyCheckAll (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check all applications for consistency, that are called with :ref:`AppConsistencyCheckBegin() <group___cmp_iec_var_access_dep_1ga1045c93a4216202b03a97e5658be5b1e>`
+**Returns:**
+
+ERR_OK: No task active during this consistency sequence, *ERR_FAILED: Any task of an application was active during this sequence
+
+.. _group___cmp_app_itf_1ga807f5fe5306511f44f0608ab70d94c47:
+
+APPLICATION* AppGetFirstApp (RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the application info of the first application
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Returns:**
+
+Pointer to the first application
+
+.. _group___cmp_app_itf_1ga361487324f3177942a2897219b0b7a5d:
+
+APPLICATION* AppGetNextApp (APPLICATION *pAppPrev, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the application info of the next application
+
+**Parameters**
+
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pAppPrev | Pointer to the first application retrieved by the :ref:`AppGetFirstApp() <group___cmp_backup_dep_1gac4ccec9b8f56c4616a8322536cce554f>` |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult  | Pointer to error code                                                                                                                  |
++---------+----------+----------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to the next application
+
+.. _group___cmp_app_itf_1gad0745ee97fba28e903e85d7352d5a285:
+
+RTS_RESULT AppStoreRetainsInFile (APPLICATION *pApp, RTS_IEC_STRING *pszFileName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Stores the retains of an application in a file
+
+**Parameters**
+
++---------+-------------+------------------------+
+| [in]    | pApp        | Pointer to application |
++---------+-------------+------------------------+
+| [out]   | pszFilename | Name of retain file    |
++---------+-------------+------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_app_itf_1gab1e5b46da46514f6010cec20ab806f1a:
+
+RTS_RESULT AppRestoreRetainsFromFile (APPLICATION *pApp, RTS_IEC_STRING *pszFileName)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Restores the retains of an application from a file
+
+**Parameters**
+
++---------+-------------+------------------------+
+| [in]    | pApp        | Pointer to application |
++---------+-------------+------------------------+
+| [in]    | pszFilename | Name of retain file    |
++---------+-------------+------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_app_itf_1ga677a47788fe4f555f6e61d552b72bc0e:
+
+RTS_RESULT AppRestoreRetainsFromFile2 (APPLICATION *pApp, RTS_IEC_STRING *pszFileName, int bGenerateException)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Restores the retains of an application from a file
+
+**Parameters**
+
++---------+--------------------+-------------------------------------------------------------------------------------+
+| [in]    | pApp               | Pointer to application                                                              |
++---------+--------------------+-------------------------------------------------------------------------------------+
+| [in]    | pszFilename        | Name of retain file                                                                 |
++---------+--------------------+-------------------------------------------------------------------------------------+
+| [in]    | bGenerateException | Select behaviour on retain mismatch: 1=Generate exception, 0=Only return error code |
++---------+--------------------+-------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_app_itf_1ga1b74c0acc67ffb254c1983d4b3ff2ddd:
+
+RTS_RESULT AppSaveRetainAreas (APPLICATION *pApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Store retain areas the standard way for the next reboot or reload
+
+**Parameters**
+
++---------+------+------------------------+
+| [in]    | pApp | Pointer to application |
++---------+------+------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_app_itf_1ga2eb2a46fe02416a7f0cac065e551ac3f:
+
+RTS_RESULT AppSaveAllRetainAreas (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Store retain areas the standard way for the next reboot or reload of all applications
+**Returns:**
+
+Error code
+
+.. _group___cmp_app_itf_1ga7cb68208644309f7082802d799890614:
+
+RTS_RESULT AppRestoreRetainAreas (APPLICATION *pApp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Restore retain areas the standard way
+
+**Parameters**
+
++---------+------+------------------------+
+| [in]    | pApp | Pointer to application |
++---------+------+------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_app_itf_1ga508a3a8d1ef4516bf1d859225da5a0c7:
+
+RTS_SIZE AppGetAreaSize (APPLICATION *pApp, RTS_UI16 usType, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function retuns the size of an application area
+
+**Parameters**
+
++---------+---------+--------------------------------------------------------------------------------+
+| [in]    | pApp    | Pointer to Application                                                         |
++---------+---------+--------------------------------------------------------------------------------+
+| [in]    | usType  | Area type. See category "Area Types" in :ref:`SysMemItf.h <_sys_mem_itf_8h>` . |
++---------+---------+--------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to Result                                                              |
++---------+---------+--------------------------------------------------------------------------------+
+
+**Returns:**
+
+Area size
+
+.. _group___cmp_app_itf_1ga7a2e9459247a8e090fddbe538a7b428d:
+
+RTS_UI8* AppGetAreaAddress (APPLICATION *pApp, RTS_UI16 usType, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function retuns the start address of an application area
+
+**Parameters**
+
++---------+---------+--------------------------------------------------------------------------------------------------------------------+
+| [in]    | pApp    | Pointer to the specified application description RANGE=[NULL,VALID_PAPP]                                           |
++---------+---------+--------------------------------------------------------------------------------------------------------------------+
+| [in]    | usType  | Area type. See category "Area Types" in :ref:`SysMemItf.h <_sys_mem_itf_8h>` . RANGE=[DA_NONE,VALID_DA,INVALID_DA] |
++---------+---------+--------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to Result                                                                                                  |
++---------+---------+--------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+------------------------------------+
+| ERR_OK        | Areapointer successfully retrieved |
++---------------+------------------------------------+
+| ERR_PARAMETER | Parameter pApp may not be null     |
++---------------+------------------------------------+
+| ERR_FAILED    | No Area for given type found       |
++---------------+------------------------------------+
+
+**Returns:**
+
+Area start address
+
+.. _group___cmp_app_itf_1ga49bf629c82668f6b482c68d24e47a50a:
+
+APP_MEMORY_SEGMENT* AppGetSegment (APPLICATION *pApp, RTS_UI16 usType, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function retuns the segment info specified by type
+
+**Parameters**
+
++---------+---------+--------------------------------------------------------------------------------+
+| [in]    | pApp    | Pointer to Application                                                         |
++---------+---------+--------------------------------------------------------------------------------+
+| [in]    | usType  | Area type. See category "Area Types" in :ref:`SysMemItf.h <_sys_mem_itf_8h>` . |
++---------+---------+--------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to Result                                                              |
++---------+---------+--------------------------------------------------------------------------------+
+
+**Returns:**
+
+Pointer to segment info
+
+.. _group___cmp_app_itf_1ga35c24bdcd62a94241189537fe0c6d256:
+
+APP_MEMORY_SEGMENT* AppGetSegmentByAddress (APPLICATION *pApp, void *pAddress, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function retuns the segment info specified by address
+
+**Parameters**
+
++---------+----------+-------------------------+
+| [in]    | pApp     | Pointer to Application  |
++---------+----------+-------------------------+
+| [in]    | pAddress | Pointer to segment data |
++---------+----------+-------------------------+
+| [out]   | pResult  | Pointer to Result       |
++---------+----------+-------------------------+
+
+**Returns:**
+
+Pointer to segment info
+
+.. _group___cmp_app_itf_1ga091e365ffff851885225ca05a4a1535a:
+
+RTS_SIZE AppGetSegmentSize (APPLICATION *pApp, RTS_UI16 usType, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function retuns the start size of an IEC segment. All segments resides within an area. This is used to get access for example to the size of the output processimage segment (Q).
+
+**Parameters**
+
++---------+---------+--------------------------------------------------------------------------------+
+| [in]    | pApp    | Pointer to Application                                                         |
++---------+---------+--------------------------------------------------------------------------------+
+| [in]    | usType  | Area type. See category "Area Types" in :ref:`SysMemItf.h <_sys_mem_itf_8h>` . |
++---------+---------+--------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to Result                                                              |
++---------+---------+--------------------------------------------------------------------------------+
+
+**Returns:**
+
+Segment size
+
+.. _group___cmp_app_itf_1gabc9cae3d9bb79852b954a9d084a06974:
+
+RTS_UI8 HUGEPTR* AppGetSegmentAddress (APPLICATION *pApp, RTS_UI16 usType, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function retuns the start address of an IEC segment. All segments resides within an area. This is used to get access for example to the beginning of the output processimage segment (Q).
+
+**Parameters**
+
++---------+---------+--------------------------------------------------------------------------------+
+| [in]    | pApp    | Pointer to Application                                                         |
++---------+---------+--------------------------------------------------------------------------------+
+| [in]    | usType  | Area type. See category "Area Types" in :ref:`SysMemItf.h <_sys_mem_itf_8h>` . |
++---------+---------+--------------------------------------------------------------------------------+
+| [out]   | pResult | Pointer to Result                                                              |
++---------+---------+--------------------------------------------------------------------------------+
+
+**Returns:**
+
+Segment start address
+
+.. _group___cmp_app_itf_1ga573171757ba499f5a3af5a8c20d6e41c:
+
+RTS_RESULT AppRegisterPropAccessFunctions (APPLICATION *pApp, RTS_VOID_FCTPTR *ppfGetBooleanProperty, RTS_VOID_FCTPTR *ppfGetTextProperty, RTS_VOID_FCTPTR *ppfGetNumberProperty, RTS_VOID_FCTPTR *ppfGetVersionProperty)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function registers the properties access functions
+
+**Parameters**
+
++---------+-----------------------+--------------------------------------------------------------------+
+| [in]    | pApp                  | Pointer to Application RANGE=[NULL,VALID_PAPP]                     |
++---------+-----------------------+--------------------------------------------------------------------+
+| [in]    | ppfGetBooleanProperty | Pointer to Pointer to Boolean Function RANGE=[NULL,VALID_PPFBPROP] |
++---------+-----------------------+--------------------------------------------------------------------+
+| [in]    | ppfGetTextProperty    | Pointer to Pointer to Text Function RANGE=[NULL,VALID_PPFTPROP]    |
++---------+-----------------------+--------------------------------------------------------------------+
+| [in]    | ppfGetNumberProperty  | Pointer to Pointer to Number Function RANGE=[NULL,VALID_PPFNPROP]  |
++---------+-----------------------+--------------------------------------------------------------------+
+| [in]    | ppfGetVersionProperty | Pointer to Pointer to Version Function RANGE=[NULL,VALID_PPFNPROP] |
++---------+-----------------------+--------------------------------------------------------------------+
+
+**Return values**
+
++---------------+-----------------------------------+
+| ERR_OK        | Functions successfully registered |
++---------------+-----------------------------------+
+| ERR_PARAMETER | Parameter pApp may not be null    |
++---------------+-----------------------------------+
+
+**Returns:**
+
+Error Code
+
+.. _group___cmp_app_itf_1ga45cb1a6c8170816f749c06594f4e48f6:
+
+RTS_RESULT AppGetProjectInformation (APPLICATION *pApp, PROJECT_INFO *pInfo)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function returns the project information
+
+**Parameters**
+
++---------+----------------------+--------------------------------+
+| [in]    | pApp                 | Pointer to Application         |
++---------+----------------------+--------------------------------+
+| [in]    | pfGetBooleanProperty | Pointer to PROJECT_INFORMATION |
++---------+----------------------+--------------------------------+
+
+**Returns:**
+
+Error Code
+
+.. _group___cmp_app_itf_1gaef539f47866c25b355f8f2830b26d8be:
+
+RTS_RESULT AppGetBooleanProperty (APPLICATION *pApp, BOOLEANPROPERTY *pBooleanProperty)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+With this function you get access to the optional IEC function in the project, which contains boolean project infomration
+
+**Parameters**
+
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pApp             | Pointer to Application                                                                                                                                                                                                     |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pBooleanProperty | wszKey must be set with the key (RTS_IEC_WSTRING!), as defined in the project information dialog in CoDeSys. See category "Property keys" for predefined property keys. bBooleanProperty contains the bool property value. |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error Code
+
+.. _group___cmp_app_itf_1ga09d54c33fa58447501d285eb59da520c:
+
+RTS_RESULT AppGetTextProperty (APPLICATION *pApp, TEXTPROPERTY *pTextProperty)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+With this function you get access to the optional IEC function in the project, which contains text project infomration
+
+**Parameters**
+
++---------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pApp          | Pointer to Application                                                                                                                                                                                                      |
++---------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pTextProperty | wszKey must be set with the key (RTS_IEC_WSTRING!), as defined in the project information dialog in CoDeSys. See category "Property keys" for predefined property keys. wszTextProperty contains the string property value. |
++---------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error Code
+
+.. _group___cmp_app_itf_1gaa878edd5441a5738dcc836957e10fcf8:
+
+RTS_RESULT AppGetNumberProperty (APPLICATION *pApp, NUMBERPROPERTY *pNumberProperty)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+With this function you get access to the optional IEC function in the project, which contains text project infomration
+
+**Parameters**
+
++---------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pApp            | Pointer to Application                                                                                                                                                                                                        |
++---------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pNumberProperty | wszKey must be set with the key (RTS_IEC_WSTRING!), as defined in the project information dialog in CoDeSys. See category "Property keys" for predefined property keys. udiNumberProperty contains the number property value. |
++---------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error Code
+
+.. _group___cmp_app_itf_1ga82658b227c45f0ee119d477cee0370a1:
+
+RTS_RESULT AppGetVersionProperty (APPLICATION *pApp, VERSIONPROPERTY *pVersionProperty)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+With this function you get access to the optional IEC function in the project, which contains text project infomration
+
+**Parameters**
+
++---------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pApp             | Pointer to Application                                                                                                                                                                                                                                 |
++---------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pVersionProperty | wszKey must be set with the key (RTS_IEC_WSTRING!), as defined in the project information dialog in CoDeSys. See category "Property keys" for predefined property keys. uiMajor, uiMinor, uiServicePack, uiPatch contains the version property values. |
++---------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error Code
+
+.. _group___cmp_app_itf_1ga504180af0da7a62dbb54a340d50f00ea:
+
+APPLICATION* AppGetCurrent (RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the current application, in which task context the caller is located
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Returns:**
+
+Pointer to application description
+
+.. _group___cmp_app_itf_1ga39ca972b66b8285ed8ba6281909040c8:
+
+RTS_RESULT AppCheckFileConsistency (APPLICATION *pApp, RTS_RESULT *pBootprojectConsistency, RTS_RESULT *pArchiveConsistency)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check the consistency of the specified application to the files of bootproject and project archive
+
+**Parameters**
+
++---------+-------------------------+---------------------------------------------------------------------------------------------------------+
+| [in]    | pApp                    | Pointer to Application                                                                                  |
++---------+-------------------------+---------------------------------------------------------------------------------------------------------+
+| [out]   | pBootprojectConsistency | Pointer to result of the bootproject consistency. ERR_OK: Bootproject matches the specified application |
++---------+-------------------------+---------------------------------------------------------------------------------------------------------+
+| [out]   | pArchiveConsistency     | Pointer to result of the archive consistency. ERR_OK: Archive matches the specified application         |
++---------+-------------------------+---------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga67cb5326913a73fc9fc8523ce529c09f:
+
+RTS_RESULT AppGenerateException (APPLICATION *pApp, RTS_UI32 ulException)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Generate an exception on the specified application. NOTE: pApp can be NULL, so the current applicaiton in program download sequence is used!
+
+**Parameters**
+
++---------+-------------+-----------------------------------------------------------------------------+
+| [in]    | pApp        | Pointer to Application. Can be NULL!                                        |
++---------+-------------+-----------------------------------------------------------------------------+
+| [in]    | ulException | Exception code. See :ref:`SysExceptItf.h <_sys_except_itf_8h>` for details. |
++---------+-------------+-----------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga7d10072adf86e7ce52b955fb99607cfa:
+
+RTS_RESULT AppRegisterBootproject (char *pszBootproject)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to register a bootproject to reload at the next startup
+
+**Parameters**
+
++---------+------------+------------------------------------------------------------+
+| [in]    | pszAppName | Name of the bootproject without ending or application name |
++---------+------------+------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga3217a429e253a815f42604b356b2ffbe:
+
+RTS_RESULT AppUnregisterBootproject (char *pszBootproject)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to unregister a bootproject to avoid reload at the next startup
+
+**Parameters**
+
++---------+------------+------------------------------------------------------------+
+| [in]    | pszAppName | Name of the bootproject without ending or application name |
++---------+------------+------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga8cacc877aef322ba2bb31eb3861d2b0c:
+
+RTS_RESULT AppCallGetProperty (void *pInstance, RTS_VOID_FCTPTR *ppGetMethod, RTS_UI8 *pbyValue, RTS_SIZE ulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function call a property of a function block to get the value
+
+**Parameters**
+
++---------+-------------+---------------------------------------------------------------------+
+| [in]    | pInstance   | Pointer to the FB instance                                          |
++---------+-------------+---------------------------------------------------------------------+
+| [in]    | ppGetMethod | Pointer to the get method of the property (ADR(__get[PropertyName]) |
++---------+-------------+---------------------------------------------------------------------+
+| [in]    | pbyValue    | Pointer to a value buffer to return the value of the property       |
++---------+-------------+---------------------------------------------------------------------+
+| [in]    | ulSize      | Size in bytes of the property type                                  |
++---------+-------------+---------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga8e8ffc3a1dd3e5ff4ea7a9082d56350f:
+
+RTS_RESULT AppCallGetProperty2 (void *pInstance, RTS_VOID_FCTPTR *ppGetMethod, RTS_UI8 **ppbyValue, RTS_SIZE ulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function call a property of a function block to get the value
+
+The returned internal buffer must be released with AppCallGetProperty2Release.
+
+**Parameters**
+
++---------+-------------+----------------------------------------------------------------------------------+
+| [in]    | pInstance   | Pointer to the FB instance                                                       |
++---------+-------------+----------------------------------------------------------------------------------+
+| [in]    | ppGetMethod | Pointer to the get method of the property (ADR(__get[PropertyName])              |
++---------+-------------+----------------------------------------------------------------------------------+
+| [in]    | ppbyValue   | Pointer to a pointer to an internal buffer which holds the value of the property |
++---------+-------------+----------------------------------------------------------------------------------+
+| [in]    | ulSize      | Size in bytes of the property type                                               |
++---------+-------------+----------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gadb551cb1dbc667e84439bdec4a7c06ec:
+
+RTS_RESULT AppCallGetProperty2Release (RTS_UI8 *pbyValue)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function call to release the internal buffer returned by AppCallGetProperty2
+
+**Parameters**
+
++---------+----------+---------------------------------------------------------+
+| [in]    | pbyValue | Pointer to the internal buffer from AppCallGetProperty2 |
++---------+----------+---------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga3723abdf0ab60dcd9665b54c9fb14a89:
+
+RTS_RESULT AppCallSetProperty (void *pInstance, RTS_VOID_FCTPTR *ppSetMethod, RTS_UI8 *pbyValue, RTS_SIZE ulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function call a property of a function block to set the value
+
+**Parameters**
+
++---------+-------------+---------------------------------------------------------------------+
+| [in]    | pInstance   | Pointer to the FB instance                                          |
++---------+-------------+---------------------------------------------------------------------+
+| [in]    | ppSetMethod | Pointer to the set method of the property (ADR(__get[PropertyName]) |
++---------+-------------+---------------------------------------------------------------------+
+| [in]    | pbyValue    | Pointer to a value buffer to set the value of the property          |
++---------+-------------+---------------------------------------------------------------------+
+| [in]    | ulSize      | Size in bytes of the property type                                  |
++---------+-------------+---------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1gaa3b60d4d2783cea62c0664f7ec1ac862:
+
+RTS_RESULT AppGetAreaOffsetByAddress (APPLICATION *pApp, RTS_UINTPTR ulAddress, RTS_UI16 *pusArea, RTS_SIZE *pulOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get area number and offset of an application specified by a memory address
+
+**Parameters**
+
++---------+-----------+-------------------------------+
+| [in]    | pApp      | Pointer to Application        |
++---------+-----------+-------------------------------+
+| [in]    | ulAddress | Memory address                |
++---------+-----------+-------------------------------+
+| [out]   | pusArea   | Pointer to return area number |
++---------+-----------+-------------------------------+
+| [in]    | pulOffset | Pointer to return area offset |
++---------+-----------+-------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_app_itf_1ga02b3b1b50a2c13bb63eb3ca39e9d418c:
+
+APPLICATION* AppSrvGetApplication (PROTOCOL_DATA_UNIT *pduSendBuffer, BINTAGREADER *preader, BINTAGWRITER *pwriter, RTS_UI32 ulSessionId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the application specified in an online service
+
+**Parameters**
+
++---------+---------------+---------------------------------+
+| [in]    | pduSendBuffer | Pointer to the sent data unit   |
++---------+---------------+---------------------------------+
+| [in]    | preader       | Pointer to the reader           |
++---------+---------------+---------------------------------+
+| [in]    | pwriter       | Pointer to the writer           |
++---------+---------------+---------------------------------+
+| [in]    | ulSessionId   | Session id of the given service |
++---------+---------------+---------------------------------+
+
+**Returns:**
+
+Pointer to the application description
+
+.. _group___cmp_app_itf_1ga40b34455a3aa87ec9d7476a32a2cbf8c:
+
+RTS_RESULT AppHasAccessRights (char *pszApplication, char *pszObject, RTS_UI32 ulRequestedRights, RTS_UI32 ulSessionId, BINTAGWRITER *pWriter)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check the access rights to the specified object of the application
+
+**Parameters**
+
++---------+-------------------+---------------------------------+
+| [in]    | pszApplication    | Name of the application         |
++---------+-------------------+---------------------------------+
+| [in]    | pszObject         | Name of the object              |
++---------+-------------------+---------------------------------+
+| [in]    | ulRequestedRights | Requested rights on the object  |
++---------+-------------------+---------------------------------+
+| [in]    | ulSessionId       | SessionID of the online service |
++---------+-------------------+---------------------------------+
+| [in]    | pWriter           | Pointer to the tag writer       |
++---------+-------------------+---------------------------------+
+
+**Returns:**
+
+Error code: *ERR_OK: Has access rights *ERR_FAILED: Operation failed *ERR_NO_ACCESS_RIGHTS: No access rights to the object
+
+.. _group___cmp_app_itf_1gafcd9b4f983d30713dcbc18b3d9055300:
+
+APPLICATION_INFO* AppGetApplicationInfo (APPLICATION *pApp, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the detail information of the specified application
+
+**Parameters**
+
++---------+---------+------------------------+
+| [in]    | pApp    | Pointer to Application |
++---------+---------+------------------------+
+| [out]   | pResult | Pointer to error code  |
++---------+---------+------------------------+
+
+**Returns:**
+
+Pointer to application info structure
+
+.. _group___cmp_app_itf_1gac53f60507bc3c0837f4cdc787a01e580:
+
+RTS_HANDLE AppGetFirstConfiguredBootproject (char *pszAppName, RTS_I32 nMaxAppName, RTS_BOOL bCheckFile, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to get the first configured bootproject.
+
+This pre-check may be called prior to the loading of any bootproject when functions like AppGetFirstApp, AppGetNextApp, AppGetNumOfApplications are not yet initialized.
+
+To get the next bootpoject, call AppGetNextConfiguredBootproject with the returned iteration handle.
+
+IMPLEMENTATION NOTE: This function may be called prior to CH_INIT_TASKS but after CH_INIT
+
+**Parameters**
+
++---------+-------------+-------------------------------------------------------------------+
+| [out]   | pszAppName  | Pointer to the buffer for application name                        |
++---------+-------------+-------------------------------------------------------------------+
+| [out]   | nMaxAppName | Buffer size                                                       |
++---------+-------------+-------------------------------------------------------------------+
+| [in]    | bCheckFile  | If set the application file is checked and returned only if found |
++---------+-------------+-------------------------------------------------------------------+
+| [out]   | pResult     | Pointer to error code                                             |
++---------+-------------+-------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+---------------------------------------------------------+
+| ERR_OK            | An application name is successfully found and returned. |
++-------------------+---------------------------------------------------------+
+| ERR_PARAMETER     | Invalid parameter (pointer NULL or length 0)            |
++-------------------+---------------------------------------------------------+
+| ERR_END_OF_OBJECT | No more entries found.                                  |
++-------------------+---------------------------------------------------------+
+
+**Returns:**
+
+Interation handle
+
+.. _group___cmp_app_itf_1gad8855b4c95f7e244136f051acd56e2b5:
+
+RTS_HANDLE AppGetNextConfiguredBootproject (RTS_HANDLE hPrev, char *pszAppName, RTS_I32 nMaxAppName, RTS_BOOL bCheckFile, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to get the next configured bootproject.
+
+This function is called at first with the iteration handle of AppGetFirstConfiguredBootproject. The next call requires the iteration handle of the previous call of AppGetNextConfiguredBootproject.
+
+For more information see AppGetFirstConfiguredBootproject.
+
+**Parameters**
+
++---------+-------------+-------------------------------------------------------------------------------------------------------------------+
+| [in]    | hPrev       | Iteration handle from previous call of either AppGetFirstConfiguredBootproject or AppGetNextConfiguredBootproject |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------+
+| [out]   | pszAppName  | Pointer to the buffer for application name                                                                        |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------+
+| [out]   | nMaxAppName | Buffer size                                                                                                       |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------+
+| [in]    | bCheckFile  | If set the application file is checked and returned only if found                                                 |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult     | Pointer to error code                                                                                             |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++-------------------+---------------------------------------------------------+
+| ERR_OK            | An application name is successfully found and returned. |
++-------------------+---------------------------------------------------------+
+| ERR_PARAMETER     | Invalid parameter (pointer NULL or length 0)            |
++-------------------+---------------------------------------------------------+
+| ERR_END_OF_OBJECT | No more entries found.                                  |
++-------------------+---------------------------------------------------------+
+
+**Returns:**
+
+Interation handle
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

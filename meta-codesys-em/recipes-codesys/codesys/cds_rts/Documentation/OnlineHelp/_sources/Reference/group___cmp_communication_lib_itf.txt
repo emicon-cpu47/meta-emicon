@@ -1,0 +1,316 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_communication_lib_itf:
+
+======================
+CmpCommunicationLibItf
+======================
+
+Interface of CmpCommunicationLib. :ref:`More... <group___cmp_communication_lib_itf-details>`
+
+Modules
+-------
+
+- :ref:`Channel server state <group___cmp_communication_lib_itf___channelserverstate>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpCommunicationLib_C <struct_i_cmp_communication_lib___c>`
+
+Macros
+------
+
+- #define :ref:`RTS_BLK_DRV_TYPE_NONE <group___cmp_communication_lib_itf_1ga702bc6d3eed06ebf3ccd4bfc3e1dafd7>` 0x00
+
+- #define :ref:`RTS_BLK_DRV_TYPE_TCP <group___cmp_communication_lib_itf_1ga017046ea2e86667dd90e81d65d6bb4e1>` 0x01
+
+- #define :ref:`RTS_BLK_DRV_TYPE_COM <group___cmp_communication_lib_itf_1ga2756a8bfe91616faffca672862deae44>` 0x02
+
+- #define :ref:`RTS_BLK_DRV_TYPE_USB <group___cmp_communication_lib_itf_1ga1085a99025fadcabc3fbec65164a1515>` 0x03
+
+- #define :ref:`RTS_BLK_DRV_TYPE_SHM <group___cmp_communication_lib_itf_1gaa1411e8fe02d0560710e70a12d9fcdea>` 0x04
+
+- #define :ref:`RTS_BLK_DRV_TYPE_UDP <group___cmp_communication_lib_itf_1ga7ef6f39a1d7bcdc3cf772c84d53778ba>` 0x05
+
+- #define :ref:`RTS_BLK_DRV_TYPE_CAN_CLIENT <group___cmp_communication_lib_itf_1gafe9628422bf404652ed8ab9b3e8740a9>` 0x06
+
+- #define :ref:`RTS_BLK_DRV_TYPE_CAN_SERVER <group___cmp_communication_lib_itf_1ga37c034876a863cad0950bae6523445c1>` 0x07
+
+- #define :ref:`RTS_BLK_DRV_TYPE_DIRECT_CALL <group___cmp_communication_lib_itf_1gac5bb9ca169e9962613b0440410bf3e28>` 0x08
+
+- #define :ref:`RTS_BLK_DRV_TYPE_OEM_BEGIN <group___cmp_communication_lib_itf_1ga1fb9511a2f0e588631d7b4ae71bb3ba2>` 0x40
+
+- #define :ref:`RTS_BLK_DRV_TYPE_OEM_END <group___cmp_communication_lib_itf_1gaa084f8aaa37e4546d1cf8a6ebd0ca6eb>` 0x7F
+
+- #define :ref:`RTS_BLK_DRV_FLAGS_PLC <group___cmp_communication_lib_itf_1gab302a8621ff83d9a80da4926e9e303cb>` 0
+
+- #define :ref:`RTS_BLK_DRV_FLAGS_GATEWAY <group___cmp_communication_lib_itf_1ga2d7c2b1d2a9e724e4d22f0309778e91f>` 1
+
+- #define :ref:`RTS_BLK_DRV_FLAGS_DIRECT_ADDRESS <group___cmp_communication_lib_itf_1gae5331b11ae8f8376eef9e2bca76c0b3e>` 2
+
+- #define :ref:`NSPF_NONE <group___cmp_communication_lib_itf_1gafc728f691939cd727ec62c27fcdcfb0f>` 0x00000000 /* empty flag field */
+
+- #define :ref:`NSPF_ENCRYPTED_COMM_SUPPORTED <group___cmp_communication_lib_itf_1gafda05a24c6929e1274673cae46adede0>` 0x00000001 /* device supports encrypted online communication */
+
+- #define :ref:`NSPF_ENCRYPTED_COMM_REQUIRED <group___cmp_communication_lib_itf_1ga8b93fac3d2f128672e9891b8f57c5cf4>` 0x00000002 /* device requires encrypted online communication */
+
+- #define :ref:`MAX_NODEADDR_LEN <group___cmp_communication_lib_itf_1gae44bcd081a9f1d68c85111178cf899c6>` 0x0F
+
+- #define :ref:`MAX_NETWORKADDR_LEN <group___cmp_communication_lib_itf_1gaad248bdb3a359698817e9ba6fbafaab3>` 8
+
+- #define :ref:`PROGRESS_INVALID <group___cmp_communication_lib_itf_1ga380818c9eabcacc375bd5523f210f9e7>` 0x0000
+
+- #define :ref:`PROGRESS_IDLE <group___cmp_communication_lib_itf_1ga78c7362d75029a1b80a851920c2ed806>` 0x0001 /* No pending requests. A new request may be sent. Progress is 0 */
+
+- #define :ref:`PROGRESS_CHSENDING <group___cmp_communication_lib_itf_1ga6aa3046a3d768f406b7c3fc5ab7b9fd1>` 0x0010 /* A request is being sent from gateway to target. Progress is related to the number of bytes to be sent. */
+
+- #define :ref:`PROGRESS_CHRECEIVING <group___cmp_communication_lib_itf_1ga4379da33405eb1b19affbdeac1d4b481>` 0x0011 /* While receiving a reply. Progress is related to the number of bytes received */
+
+- #define :ref:`PROGRESS_GWSENDING <group___cmp_communication_lib_itf_1ga38923ccaaf7a3c2e517afa3e8cc141e4>` 0x0020 /* Sending a request to the gateway. Progress is related to the number of bytes sent */
+
+- #define :ref:`PROGRESS_GWRECEIVING <group___cmp_communication_lib_itf_1gac0585cd1bc9de0f22cb05eea7fda0bdb>` 0x0021 /* Receiving a reply from the gateway. Progress is related to the number of bytes received */
+
+- #define :ref:`PROGRESS_GWPROCESSING <group___cmp_communication_lib_itf_1ga515a03dee37fc1810f70402cb261fd9d>` 0x0022 /* The service has been sent to the gateway, which is currently working on the service.*/
+
+- #define :ref:`PROGRESS_TRGPROCESSING <group___cmp_communication_lib_itf_1gaae27fb0fba9e19dc38e4db8345ed61d1>` 0x1000 /* Target is processing the service. No further information. */
+
+- #define :ref:`PROGRESS_SVCSPECIFIC <group___cmp_communication_lib_itf_1ga60c3a545fff3a864b35355314b241abb>` 0x1001 /* Service specific progress IDs start here */
+
+- #define :ref:`PROGRESS_USER <group___cmp_communication_lib_itf_1gad70b6ba87831d2f2b559176c7a7f091d>` 0x8000 /* Customer specific progress IDs start here */
+
+- #define :ref:`ITF_CmpCommunicationLib <group___cmp_communication_lib_itf_1ga13ea48d37e7b51736c7eb59e1e811b70>`
+
+- #define :ref:`EXTITF_CmpCommunicationLib <group___cmp_communication_lib_itf_1gada3923beacde756c6c4274f5e0a32978>`
+
+Typedefs
+--------
+
+- typedef RTS_UI8 :ref:`ADDRESSCOMPONENT <group___cmp_communication_lib_itf_1ga81bb0ac00cc0ee9e5866fe0720696d29>`[2]
+
+- typedef :ref:`ICmpCommunicationLib_C <struct_i_cmp_communication_lib___c>` :ref:`ICmpCommunicationLib <group___cmp_communication_lib_itf_1ga6f1c08dea3b7640e323bd78f85a4e421>`
+
+Functions
+---------
+
+- RTS_BOOL :ref:`AddrEquals <group___cmp_communication_lib_itf_1ga3f0d7314b387a554cfb866bda017d272>` (:ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>`  addr1, :ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>`  addr2)
+
+- RTS_BOOL :ref:`AddrEqualsBuffer <group___cmp_communication_lib_itf_1ga78ae63e53aea4b99101d8dc9d3963844>` (:ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>`  addr1, :ref:`ADDRESSCOMPONENT <group___cmp_communication_lib_itf_1ga81bb0ac00cc0ee9e5866fe0720696d29>` * pBufAddr2, RTS_UI32 nLenAddr2)
+
+- RTS_RESULT :ref:`CopyAddrToBuffer <group___cmp_communication_lib_itf_1ga6ecb95dd7f990fa4e9bcc628fad8560b>` (:ref:`ADDRESSCOMPONENT <group___cmp_communication_lib_itf_1ga81bb0ac00cc0ee9e5866fe0720696d29>` * pBufDest, RTS_UI32 * pnLenDest, const :ref:`ADDRESSCOMPONENT <group___cmp_communication_lib_itf_1ga81bb0ac00cc0ee9e5866fe0720696d29>` * pBufSrc, RTS_UI32 nLenSrc)
+
+.. _group___cmp_communication_lib_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpCommunicationLib.
+
+Interface for the communication library.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_communication_lib_itf_1ga702bc6d3eed06ebf3ccd4bfc3e1dafd7:
+
+#define RTS_BLK_DRV_TYPE_NONE 0x00
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga017046ea2e86667dd90e81d65d6bb4e1:
+
+#define RTS_BLK_DRV_TYPE_TCP 0x01
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga2756a8bfe91616faffca672862deae44:
+
+#define RTS_BLK_DRV_TYPE_COM 0x02
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga1085a99025fadcabc3fbec65164a1515:
+
+#define RTS_BLK_DRV_TYPE_USB 0x03
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gaa1411e8fe02d0560710e70a12d9fcdea:
+
+#define RTS_BLK_DRV_TYPE_SHM 0x04
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga7ef6f39a1d7bcdc3cf772c84d53778ba:
+
+#define RTS_BLK_DRV_TYPE_UDP 0x05
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gafe9628422bf404652ed8ab9b3e8740a9:
+
+#define RTS_BLK_DRV_TYPE_CAN_CLIENT 0x06
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga37c034876a863cad0950bae6523445c1:
+
+#define RTS_BLK_DRV_TYPE_CAN_SERVER 0x07
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gac5bb9ca169e9962613b0440410bf3e28:
+
+#define RTS_BLK_DRV_TYPE_DIRECT_CALL 0x08
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga1fb9511a2f0e588631d7b4ae71bb3ba2:
+
+#define RTS_BLK_DRV_TYPE_OEM_BEGIN 0x40
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gaa084f8aaa37e4546d1cf8a6ebd0ca6eb:
+
+#define RTS_BLK_DRV_TYPE_OEM_END 0x7F
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gab302a8621ff83d9a80da4926e9e303cb:
+
+#define RTS_BLK_DRV_FLAGS_PLC 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga2d7c2b1d2a9e724e4d22f0309778e91f:
+
+#define RTS_BLK_DRV_FLAGS_GATEWAY 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gae5331b11ae8f8376eef9e2bca76c0b3e:
+
+#define RTS_BLK_DRV_FLAGS_DIRECT_ADDRESS 2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gafc728f691939cd727ec62c27fcdcfb0f:
+
+#define NSPF_NONE 0x00000000 /* empty flag field */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gafda05a24c6929e1274673cae46adede0:
+
+#define NSPF_ENCRYPTED_COMM_SUPPORTED 0x00000001 /* device supports encrypted online communication */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga8b93fac3d2f128672e9891b8f57c5cf4:
+
+#define NSPF_ENCRYPTED_COMM_REQUIRED 0x00000002 /* device requires encrypted online communication */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gae44bcd081a9f1d68c85111178cf899c6:
+
+#define MAX_NODEADDR_LEN 0x0F
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gaad248bdb3a359698817e9ba6fbafaab3:
+
+#define MAX_NETWORKADDR_LEN 8
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga380818c9eabcacc375bd5523f210f9e7:
+
+#define PROGRESS_INVALID 0x0000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga78c7362d75029a1b80a851920c2ed806:
+
+#define PROGRESS_IDLE 0x0001 /* No pending requests. A new request may be sent. Progress is 0 */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga6aa3046a3d768f406b7c3fc5ab7b9fd1:
+
+#define PROGRESS_CHSENDING 0x0010 /* A request is being sent from gateway to target. Progress is related to the number of bytes to be sent. */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga4379da33405eb1b19affbdeac1d4b481:
+
+#define PROGRESS_CHRECEIVING 0x0011 /* While receiving a reply. Progress is related to the number of bytes received */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga38923ccaaf7a3c2e517afa3e8cc141e4:
+
+#define PROGRESS_GWSENDING 0x0020 /* Sending a request to the gateway. Progress is related to the number of bytes sent */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gac0585cd1bc9de0f22cb05eea7fda0bdb:
+
+#define PROGRESS_GWRECEIVING 0x0021 /* Receiving a reply from the gateway. Progress is related to the number of bytes received */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga515a03dee37fc1810f70402cb261fd9d:
+
+#define PROGRESS_GWPROCESSING 0x0022 /* The service has been sent to the gateway, which is currently working on the service.*/
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gaae27fb0fba9e19dc38e4db8345ed61d1:
+
+#define PROGRESS_TRGPROCESSING 0x1000 /* Target is processing the service. No further information. */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga60c3a545fff3a864b35355314b241abb:
+
+#define PROGRESS_SVCSPECIFIC 0x1001 /* Service specific progress IDs start here */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gad70b6ba87831d2f2b559176c7a7f091d:
+
+#define PROGRESS_USER 0x8000 /* Customer specific progress IDs start here */
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga13ea48d37e7b51736c7eb59e1e811b70:
+
+#define ITF_CmpCommunicationLib
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1gada3923beacde756c6c4274f5e0a32978:
+
+#define EXTITF_CmpCommunicationLib
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_communication_lib_itf_1ga81bb0ac00cc0ee9e5866fe0720696d29:
+
+typedef RTS_UI8 ADDRESSCOMPONENT[2]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_communication_lib_itf_1ga6f1c08dea3b7640e323bd78f85a4e421:
+
+typedef ICmpCommunicationLib_C ICmpCommunicationLib
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_communication_lib_itf_1ga3f0d7314b387a554cfb866bda017d272:
+
+RTS_BOOL AddrEquals (NODEADDRESS addr1, NODEADDRESS addr2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Returns:**
+
+*Returns TRUE if addr1 == addr2, FALSE else
+
+.. _group___cmp_communication_lib_itf_1ga78ae63e53aea4b99101d8dc9d3963844:
+
+RTS_BOOL AddrEqualsBuffer (NODEADDRESS addr1, ADDRESSCOMPONENT *pBufAddr2, RTS_UI32 nLenAddr2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Returns:**
+
+*Returns TRUE, if addr1 equals the address described by pBufAddr2 and nlenAddr2
+
+.. _group___cmp_communication_lib_itf_1ga6ecb95dd7f990fa4e9bcc628fad8560b:
+
+RTS_RESULT CopyAddrToBuffer (ADDRESSCOMPONENT *pBufDest, RTS_UI32 *pnLenDest, const ADDRESSCOMPONENT *pBufSrc, RTS_UI32 nLenSrc)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

@@ -1,0 +1,167 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_heap_pool_itf:
+
+==============
+CmpHeapPoolItf
+==============
+
+Interface of CmpHeapAlloc. :ref:`More... <group___cmp_heap_pool_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`tagRTS_MEM_REGION <structtag_r_t_s___m_e_m___r_e_g_i_o_n>`
+
+- struct :ref:`ICmpHeapPool_C <struct_i_cmp_heap_pool___c>`
+
+Macros
+------
+
+- #define :ref:`RTS_MEM_REGION_DEFINED <group___cmp_heap_pool_itf_1ga094c3b86d162c900f09fa8b7da3251eb>`
+
+- #define :ref:`ITF_CmpHeapPool <group___cmp_heap_pool_itf_1gaaa97b27032497b4103af41481302b18a>`
+
+- #define :ref:`EXTITF_CmpHeapPool <group___cmp_heap_pool_itf_1gaf04b458fae9d303838baf7df9a693d68>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagRTS_MEM_REGION <structtag_r_t_s___m_e_m___r_e_g_i_o_n>` :ref:`RTS_MEM_REGION <group___cmp_heap_pool_itf_1ga0ff62f1256dec2350d8ecc38c4fc63e9>`
+
+- typedef :ref:`ICmpHeapPool_C <struct_i_cmp_heap_pool___c>` :ref:`ICmpHeapPool <group___cmp_heap_pool_itf_1gaa10300b18ad236fdfe5a30c3130c8f2b>`
+
+Functions
+---------
+
+- RTS_HANDLE :ref:`HeapPoolInit <group___cmp_heap_pool_itf_1ga1c5a49ba0412c9989f7223321d31c76b>` (:ref:`RTS_MEM_REGION <group___cmp_heap_pool_itf_1ga0ff62f1256dec2350d8ecc38c4fc63e9>` * pRegionsList, RTS_RESULT * pResult)
+
+- void * :ref:`HeapPoolAlloc <group___cmp_heap_pool_itf_1ga7b2a79b3e746a62b926c20a9bdfc8dcd>` (RTS_HANDLE hPool, RTS_SIZE size, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`HeapPoolFree <group___cmp_heap_pool_itf_1gacb91a13818b81f4cd43728e77ccec039>` (RTS_HANDLE hPool, void * pMem)
+
+.. _group___cmp_heap_pool_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpHeapAlloc.
+
+Allocator for the heap management on limited targets.
+
+This allocator implements a well-known buddy algorithm.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_heap_pool_itf_1ga094c3b86d162c900f09fa8b7da3251eb:
+
+#define RTS_MEM_REGION_DEFINED
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_heap_pool_itf_1gaaa97b27032497b4103af41481302b18a:
+
+#define ITF_CmpHeapPool
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_heap_pool_itf_1gaf04b458fae9d303838baf7df9a693d68:
+
+#define EXTITF_CmpHeapPool
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_heap_pool_itf_1ga0ff62f1256dec2350d8ecc38c4fc63e9:
+
+typedef struct tagRTS_MEM_REGION  RTS_MEM_REGION
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Abstract Memory Region.
+
+.. _group___cmp_heap_pool_itf_1gaa10300b18ad236fdfe5a30c3130c8f2b:
+
+typedef ICmpHeapPool_C ICmpHeapPool
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_heap_pool_itf_1ga1c5a49ba0412c9989f7223321d31c76b:
+
+RTS_HANDLE HeapPoolInit (RTS_MEM_REGION *pRegionsList, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Initializes a buddies pool: builds up sets of blocks with sizes of power of 2 using a list of memory regions supplied with the second parameter.
+
+**Parameters**
+
++---------+--------------+-----------------------------------------------------------------------+
+| [in]    | pRegionsList | Array of memory regions in which the last element should be of size 0 |
++---------+--------------+-----------------------------------------------------------------------+
+| [out]   | pResult      | Pointer to an error code                                              |
++---------+--------------+-----------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the pool or RTS_INVALID_HANDLE
+
+.. _group___cmp_heap_pool_itf_1ga7b2a79b3e746a62b926c20a9bdfc8dcd:
+
+void* HeapPoolAlloc (RTS_HANDLE hPool, RTS_SIZE size, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Allocates a memory block out of the pool
+
+**Parameters**
+
++---------+---------+------------------------------------------+
+| [in]    | hPool   | Handle to a pool object                  |
++---------+---------+------------------------------------------+
+| [in]    | size    | Requested size of memory to be allocated |
++---------+---------+------------------------------------------+
+| [out]   | pResult | Pointer to an error code                 |
++---------+---------+------------------------------------------+
+
+**Return values**
+
++--------------+--------------------------------------------------------+
+| ERR_OK       | Memory block has been allocated successfully           |
++--------------+--------------------------------------------------------+
+| ERR_NOMEMORY | Memory block could not be allocated, not enough memory |
++--------------+--------------------------------------------------------+
+| ERR_FAILED   | Memory corrupted inside the pool                       |
++--------------+--------------------------------------------------------+
+
+**Returns:**
+
+Pointer to the allocated block of memory
+
+.. _group___cmp_heap_pool_itf_1gacb91a13818b81f4cd43728e77ccec039:
+
+RTS_RESULT HeapPoolFree (RTS_HANDLE hPool, void *pMem)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Puts a memory block back to the pool and performs defragmentation.
+
+**Parameters**
+
++---------+-------+------------------------------------------------------+
+| [in]    | hPool | Handle to a pool object                              |
++---------+-------+------------------------------------------------------+
+| [in]    | pMem  | Pointer to a memory block to be returned to the pool |
++---------+-------+------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

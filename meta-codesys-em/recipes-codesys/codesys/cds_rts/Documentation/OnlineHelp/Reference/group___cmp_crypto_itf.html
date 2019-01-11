@@ -1,0 +1,1235 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpCryptoItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="CmpDeviceItf" href="group___cmp_device_itf.html" />
+    <link rel="prev" title="CmpCryptMD5Itf" href="group___cmp_crypt_m_d5_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___cmp_device_itf.html" title="CmpDeviceItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_crypt_m_d5_itf.html" title="CmpCryptMD5Itf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpCryptoItf</a><ul>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-rtscryptoid-aes-128-cbc-rts-iec-udint-c-0x1001">#define RTSCRYPTOID_AES_128_CBC RTS_IEC_UDINT_C(0x1001)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-aes-128-cfb-rts-iec-udint-c-0x1002">#define RTSCRYPTOID_AES_128_CFB RTS_IEC_UDINT_C(0x1002)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-aes-256-cbc-rts-iec-udint-c-0x1003">#define RTSCRYPTOID_AES_256_CBC RTS_IEC_UDINT_C(0x1003)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-des-cbc-rts-iec-udint-c-0x1004">#define RTSCRYPTOID_DES_CBC RTS_IEC_UDINT_C(0x1004)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-aes-256-ctr-rts-iec-udint-c-0x1005">#define RTSCRYPTOID_AES_256_CTR RTS_IEC_UDINT_C(0x1005)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-rsa-rts-iec-udint-c-0x2001">#define RTSCRYPTOID_RSA RTS_IEC_UDINT_C(0x2001)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-rsa-oaep-padding-rts-iec-udint-c-0x2002">#define RTSCRYPTOID_RSA_OAEP_PADDING RTS_IEC_UDINT_C(0x2002)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-rsa-pkcs1-v15-padding-rts-iec-udint-c-0x2003">#define RTSCRYPTOID_RSA_PKCS1_V15_PADDING RTS_IEC_UDINT_C(0x2003)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-hash-md5-rts-iec-udint-c-0x3001">#define RTSCRYPTOID_HASH_MD5 RTS_IEC_UDINT_C(0x3001)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-hash-sha1-rts-iec-udint-c-0x3002">#define RTSCRYPTOID_HASH_SHA1 RTS_IEC_UDINT_C(0x3002)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-hash-sha224-rts-iec-udint-c-0x3003">#define RTSCRYPTOID_HASH_SHA224 RTS_IEC_UDINT_C(0x3003)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-hash-sha256-rts-iec-udint-c-0x3004">#define RTSCRYPTOID_HASH_SHA256 RTS_IEC_UDINT_C(0x3004)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-hash-sha384-rts-iec-udint-c-0x3005">#define RTSCRYPTOID_HASH_SHA384 RTS_IEC_UDINT_C(0x3005)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-hash-sha512-rts-iec-udint-c-0x3006">#define RTSCRYPTOID_HASH_SHA512 RTS_IEC_UDINT_C(0x3006)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-hmac-md5-rts-iec-udint-c-0x4001">#define RTSCRYPTOID_HMAC_MD5 RTS_IEC_UDINT_C(0x4001)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-hmac-sha1-rts-iec-udint-c-0x4002">#define RTSCRYPTOID_HMAC_SHA1 RTS_IEC_UDINT_C(0x4002)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-hmac-sha224-rts-iec-udint-c-0x4003">#define RTSCRYPTOID_HMAC_SHA224 RTS_IEC_UDINT_C(0x4003)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-hmac-sha256-rts-iec-udint-c-0x4004">#define RTSCRYPTOID_HMAC_SHA256 RTS_IEC_UDINT_C(0x4004)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-hmac-sha384-rts-iec-udint-c-0x4005">#define RTSCRYPTOID_HMAC_SHA384 RTS_IEC_UDINT_C(0x4005)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-hmac-sha512-rts-iec-udint-c-0x4006">#define RTSCRYPTOID_HMAC_SHA512 RTS_IEC_UDINT_C(0x4006)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-rsa-oaep-sha1-rts-iec-udint-c-0x5003">#define RTSCRYPTOID_RSA_OAEP_SHA1 RTS_IEC_UDINT_C(0x5003)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-rsa-oaep-sha256-rts-iec-udint-c-0x5004">#define RTSCRYPTOID_RSA_OAEP_SHA256 RTS_IEC_UDINT_C(0x5004)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-rsa-pkcs1-v15-sha1-rts-iec-udint-c-0x5001">#define RTSCRYPTOID_RSA_PKCS1_V15_SHA1 RTS_IEC_UDINT_C(0x5001)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-rsa-pkcs1-v15-sha256-rts-iec-udint-c-0x5002">#define RTSCRYPTOID_RSA_PKCS1_V15_SHA256 RTS_IEC_UDINT_C(0x5002)</a></li>
+<li><a class="reference internal" href="#define-rtscryptoid-rts-iec-udint">#define RTSCRYPTOID RTS_IEC_UDINT</a></li>
+<li><a class="reference internal" href="#define-keytype-key-rts-iec-dint-c-0x0-the-key-is-directly-available-stored-in-a-rts-bytestring">#define KEYTYPE_KEY RTS_IEC_DINT_C(0x0) /* The key is directly available. Stored in a RTS_BYTESTRING. */</a></li>
+<li><a class="reference internal" href="#define-keytype-certhandle-rts-iec-dint-c-0x1-the-key-is-identified-by-a-handle-to-the-certificat-only-used-for-asymmetric-keys">#define KEYTYPE_CERTHANDLE RTS_IEC_DINT_C(0x1)  /* The key is identified by a handle to the certificat. Only used for asymmetric keys. */</a></li>
+<li><a class="reference internal" href="#define-keytype-certcontent-rts-iec-dint-c-0x2-the-key-is-identified-by-the-certificate-context-only-used-for-asymmetric-keys">#define KEYTYPE_CERTCONTENT RTS_IEC_DINT_C(0x2) /* The key is identified by the certificate context. Only used for asymmetric keys. */</a></li>
+<li><a class="reference internal" href="#define-rtscryptokeytype-rts-iec-dint">#define RTSCRYPTOKEYTYPE RTS_IEC_DINT</a></li>
+<li><a class="reference internal" href="#define-rtscryptotype-symmetric-rts-iec-udint-c-0x1000">#define RTSCRYPTOTYPE_SYMMETRIC RTS_IEC_UDINT_C(0x1000)</a></li>
+<li><a class="reference internal" href="#define-rtscryptotype-asymmetric-rts-iec-udint-c-0x2000">#define RTSCRYPTOTYPE_ASYMMETRIC RTS_IEC_UDINT_C(0x2000)</a></li>
+<li><a class="reference internal" href="#define-rtscryptotype-hash-rts-iec-udint-c-0x3000">#define RTSCRYPTOTYPE_HASH RTS_IEC_UDINT_C(0x3000)</a></li>
+<li><a class="reference internal" href="#define-rtscryptotype-hmac-rts-iec-udint-c-0x4000">#define RTSCRYPTOTYPE_HMAC RTS_IEC_UDINT_C(0x4000)</a></li>
+<li><a class="reference internal" href="#define-rtscryptotype-signature-rts-iec-udint-c-0x5000">#define RTSCRYPTOTYPE_SIGNATURE RTS_IEC_UDINT_C(0x5000)</a></li>
+<li><a class="reference internal" href="#define-rtscryptotype-rts-iec-udint">#define RTSCRYPTOTYPE RTS_IEC_UDINT</a></li>
+<li><a class="reference internal" href="#define-itf-cmpcrypto">#define ITF_CmpCrypto</a></li>
+<li><a class="reference internal" href="#define-extitf-cmpcrypto">#define EXTITF_CmpCrypto</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-struct-tagrtsbytestring-rtsbytestring">typedef struct tagRtsByteString  RtsByteString</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagrtscryptokey-rtscryptokey">typedef struct tagRtsCryptoKey  RtsCryptoKey</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptoasymmetricdecrypt-struct-cryptoasymmetricdecrypt-struct">typedef struct tagcryptoasymmetricdecrypt_struct  cryptoasymmetricdecrypt_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptoasymmetricencrypt-struct-cryptoasymmetricencrypt-struct">typedef struct tagcryptoasymmetricencrypt_struct  cryptoasymmetricencrypt_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptogeneratehash-struct-cryptogeneratehash-struct">typedef struct tagcryptogeneratehash_struct  cryptogeneratehash_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptogeneraterandomnumber-struct-cryptogeneraterandomnumber-struct">typedef struct tagcryptogeneraterandomnumber_struct  cryptogeneraterandomnumber_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptogetalgorithmbyid-struct-cryptogetalgorithmbyid-struct">typedef struct tagcryptogetalgorithmbyid_struct  cryptogetalgorithmbyid_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptogetasymmetrickeylength-struct-cryptogetasymmetrickeylength-struct">typedef struct tagcryptogetasymmetrickeylength_struct  cryptogetasymmetrickeylength_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptogetfirstalgorithm-struct-cryptogetfirstalgorithm-struct">typedef struct tagcryptogetfirstalgorithm_struct  cryptogetfirstalgorithm_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptogetnextalgorithm-struct-cryptogetnextalgorithm-struct">typedef struct tagcryptogetnextalgorithm_struct  cryptogetnextalgorithm_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptohmacsign-struct-cryptohmacsign-struct">typedef struct tagcryptohmacsign_struct  cryptohmacsign_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptohmacverify-struct-cryptohmacverify-struct">typedef struct tagcryptohmacverify_struct  cryptohmacverify_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptokeyexit-struct-cryptokeyexit-struct">typedef struct tagcryptokeyexit_struct  cryptokeyexit_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptokeyinit-struct-cryptokeyinit-struct">typedef struct tagcryptokeyinit_struct  cryptokeyinit_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptortsbytestringexit-struct-cryptortsbytestringexit-struct">typedef struct tagcryptortsbytestringexit_struct  cryptortsbytestringexit_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptortsbytestringinit-struct-cryptortsbytestringinit-struct">typedef struct tagcryptortsbytestringinit_struct  cryptortsbytestringinit_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptosignaturegenerate-struct-cryptosignaturegenerate-struct">typedef struct tagcryptosignaturegenerate_struct  cryptosignaturegenerate_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptosignatureverify-struct-cryptosignatureverify-struct">typedef struct tagcryptosignatureverify_struct  cryptosignatureverify_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptosymmetricdecrypt-struct-cryptosymmetricdecrypt-struct">typedef struct tagcryptosymmetricdecrypt_struct  cryptosymmetricdecrypt_struct</a></li>
+<li><a class="reference internal" href="#typedef-struct-tagcryptosymmetricencrypt-struct-cryptosymmetricencrypt-struct">typedef struct tagcryptosymmetricencrypt_struct  cryptosymmetricencrypt_struct</a></li>
+<li><a class="reference internal" href="#typedef-icmpcrypto-c-icmpcrypto">typedef ICmpCrypto_C ICmpCrypto</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#void-cryptoasymmetricdecrypt-cryptoasymmetricdecrypt-struct-p">void cryptoasymmetricdecrypt (cryptoasymmetricdecrypt_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptoasymmetricencrypt-cryptoasymmetricencrypt-struct-p">void cryptoasymmetricencrypt (cryptoasymmetricencrypt_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptogeneratehash-cryptogeneratehash-struct-p">void cryptogeneratehash (cryptogeneratehash_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptogeneraterandomnumber-cryptogeneraterandomnumber-struct-p">void cryptogeneraterandomnumber (cryptogeneraterandomnumber_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptogetalgorithmbyid-cryptogetalgorithmbyid-struct-p">void cryptogetalgorithmbyid (cryptogetalgorithmbyid_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptogetasymmetrickeylength-cryptogetasymmetrickeylength-struct-p">void cryptogetasymmetrickeylength (cryptogetasymmetrickeylength_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptogetfirstalgorithm-cryptogetfirstalgorithm-struct-p">void cryptogetfirstalgorithm (cryptogetfirstalgorithm_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptogetnextalgorithm-cryptogetnextalgorithm-struct-p">void cryptogetnextalgorithm (cryptogetnextalgorithm_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptohmacsign-cryptohmacsign-struct-p">void cryptohmacsign (cryptohmacsign_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptohmacverify-cryptohmacverify-struct-p">void cryptohmacverify (cryptohmacverify_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptokeyexit-cryptokeyexit-struct-p">void cryptokeyexit (cryptokeyexit_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptokeyinit-cryptokeyinit-struct-p">void cryptokeyinit (cryptokeyinit_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptortsbytestringexit-cryptortsbytestringexit-struct-p">void cryptortsbytestringexit (cryptortsbytestringexit_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptortsbytestringinit-cryptortsbytestringinit-struct-p">void cryptortsbytestringinit (cryptortsbytestringinit_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptosignaturegenerate-cryptosignaturegenerate-struct-p">void cryptosignaturegenerate (cryptosignaturegenerate_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptosignatureverify-cryptosignatureverify-struct-p">void cryptosignatureverify (cryptosignatureverify_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptosymmetricdecrypt-cryptosymmetricdecrypt-struct-p">void cryptosymmetricdecrypt (cryptosymmetricdecrypt_struct *p)</a></li>
+<li><a class="reference internal" href="#void-cryptosymmetricencrypt-cryptosymmetricencrypt-struct-p">void cryptosymmetricencrypt (cryptosymmetricencrypt_struct *p)</a></li>
+<li><a class="reference internal" href="#rts-handle-cryptogetalgorithmbyid-rts-ui32-ui32cryptoid-rts-result-presult">RTS_HANDLE CryptoGetAlgorithmById (RTS_UI32 ui32CryptoID, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-cryptogetfirstalgorithm-rts-ui32-ui32cryptotype-char-pszname-rts-i32-i32maxnamelen-rts-ui32-pui32cryptoid-rts-result-presult">RTS_HANDLE CryptoGetFirstAlgorithm (RTS_UI32 ui32CryptoType, char *pszName, RTS_I32 i32MaxNameLen, RTS_UI32 *pui32CryptoID, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-handle-cryptogetnextalgorithm-rts-handle-hcrypto-rts-ui32-ui32cryptotype-char-pszname-rts-i32-i32maxnamelen-rts-ui32-pui32cryptoid-rts-result-presult">RTS_HANDLE CryptoGetNextAlgorithm (RTS_HANDLE hCrypto, RTS_UI32 ui32CryptoType, char *pszName, RTS_I32 i32MaxNameLen, RTS_UI32 *pui32CryptoID, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rtscryptoinfo-cryptogetalgorithminfo-rts-handle-hcrypto-rts-result-pcryptoinfo">RtsCryptoInfo* CryptoGetAlgorithmInfo (RTS_HANDLE hCrypto, RTS_RESULT *pCryptoInfo)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptosymmetricencrypt-rts-handle-halgo-rtsbytestring-pplaintext-rtscryptokey-key-rtsbytestring-pinitvector-rts-bool-benablepadding-rtsbytestring-pciphertext">RTS_RESULT CryptoSymmetricEncrypt (RTS_HANDLE hAlgo, RtsByteString *pPlainText, RtsCryptoKey key, RtsByteString *pInitVector, RTS_BOOL bEnablePadding, RtsByteString *pCipherText)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptosymmetricdecrypt-rts-handle-halgo-rtsbytestring-pciphertext-rtscryptokey-key-rtsbytestring-pinitvector-rts-bool-benablepadding-rtsbytestring-pplaintext">RTS_RESULT CryptoSymmetricDecrypt (RTS_HANDLE hAlgo, RtsByteString *pCipherText, RtsCryptoKey key, RtsByteString *pInitVector, RTS_BOOL bEnablePadding, RtsByteString *pPlainText)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptoasymmetricencrypt-rts-handle-halgo-rtsbytestring-pplaintext-rtscryptokey-publickey-rtsbytestring-pciphertext">RTS_RESULT CryptoAsymmetricEncrypt (RTS_HANDLE hAlgo, RtsByteString *pPlainText, RtsCryptoKey publicKey, RtsByteString *pCipherText)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptoasymmetricdecrypt-rts-handle-halgo-rtsbytestring-pciphertext-rtscryptokey-privatekey-rtsbytestring-pplaintext">RTS_RESULT CryptoAsymmetricDecrypt (RTS_HANDLE hAlgo, RtsByteString *pCipherText, RtsCryptoKey privateKey, RtsByteString *pPlainText)</a></li>
+<li><a class="reference internal" href="#rts-ui32-cryptogetasymmetrickeylength-rtscryptokey-asymmetrickey-rts-result-presult">RTS_UI32 CryptoGetAsymmetricKeyLength (RtsCryptoKey asymmetricKey, RTS_RESULT *pResult)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptogeneratehash-rts-handle-halgo-rtsbytestring-pdata-rtsbytestring-phash">RTS_RESULT CryptoGenerateHash (RTS_HANDLE hAlgo, RtsByteString *pData, RtsByteString *pHash)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptohmacsign-rts-handle-halgo-rtsbytestring-pdata-rtscryptokey-key-rtsbytestring-psignature">RTS_RESULT CryptoHMACSign (RTS_HANDLE hAlgo, RtsByteString *pData, RtsCryptoKey key, RtsByteString *pSignature)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptohmacverify-rts-handle-halgo-rtsbytestring-pdata-rtscryptokey-key-rtsbytestring-psignature">RTS_RESULT CryptoHMACVerify (RTS_HANDLE hAlgo, RtsByteString *pData, RtsCryptoKey key, RtsByteString *pSignature)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptosignaturegenerate-rts-handle-halgo-rtsbytestring-pdata-rtscryptokey-privatekey-rtsbytestring-psignature">RTS_RESULT CryptoSignatureGenerate (RTS_HANDLE hAlgo, RtsByteString *pData, RtsCryptoKey privateKey, RtsByteString *pSignature)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptosignatureverify-rts-handle-halgo-rtsbytestring-pdata-rtscryptokey-publickey-rtsbytestring-psignature">RTS_RESULT CryptoSignatureVerify (RTS_HANDLE hAlgo, RtsByteString *pData, RtsCryptoKey publicKey, RtsByteString *pSignature)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptogeneraterandomnumber-rts-ui32-ui32numofrandombytes-rtsbytestring-prandom">RTS_RESULT CryptoGenerateRandomNumber (RTS_UI32 ui32NumOfRandomBytes, RtsByteString *pRandom)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptokeyinit-rtscryptokey-pkey-rtscryptokeystorage-key-rts-iec-dint-keytype">RTS_RESULT CryptoKeyInit (RtsCryptoKey *pKey, RtsCryptoKeyStorage key, RTS_IEC_DINT keyType)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptokeyexit-rtscryptokey-pkey">RTS_RESULT CryptoKeyExit (RtsCryptoKey *pKey)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptortsbytestringinit-rtsbytestring-pbytestring">RTS_RESULT CryptoRtsByteStringInit (RtsByteString *pByteString)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptortsbytestringinit2-rtsbytestring-pbytestring-rts-ui32-ui32buffersize-rts-ui8-pbuffer">RTS_RESULT CryptoRtsByteStringInit2 (RtsByteString *pByteString, RTS_UI32 ui32BufferSize, RTS_UI8 *pBuffer)</a></li>
+<li><a class="reference internal" href="#rts-result-cryptortsbytestringexit-rtsbytestring-pbytestring">RTS_RESULT CryptoRtsByteStringExit (RtsByteString *pByteString)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___cmp_crypt_m_d5_itf.html"
+                        title="previous chapter">CmpCryptMD5Itf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___cmp_device_itf.html"
+                        title="next chapter">CmpDeviceItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_crypto_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpcryptoitf">
+<span id="group-cmp-crypto-itf"></span><h1>CmpCryptoItf<a class="headerlink" href="#cmpcryptoitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of CmpCrypto. <a class="reference internal" href="#group-cmp-crypto-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="structtag_rts_byte_string.html#structtag-rts-byte-string"><span class="std std-ref">tagRtsByteString</span></a></li>
+<li>struct <a class="reference internal" href="union_rts_crypto_key_storage.html#union-rts-crypto-key-storage"><span class="std std-ref">RtsCryptoKeyStorage</span></a></li>
+<li>struct <a class="reference internal" href="structtag_rts_crypto_key.html#structtag-rts-crypto-key"><span class="std std-ref">tagRtsCryptoKey</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptoasymmetricdecrypt__struct.html#structtagcryptoasymmetricdecrypt-struct"><span class="std std-ref">tagcryptoasymmetricdecrypt_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptoasymmetricencrypt__struct.html#structtagcryptoasymmetricencrypt-struct"><span class="std std-ref">tagcryptoasymmetricencrypt_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptogeneratehash__struct.html#structtagcryptogeneratehash-struct"><span class="std std-ref">tagcryptogeneratehash_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptogeneraterandomnumber__struct.html#structtagcryptogeneraterandomnumber-struct"><span class="std std-ref">tagcryptogeneraterandomnumber_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptogetalgorithmbyid__struct.html#structtagcryptogetalgorithmbyid-struct"><span class="std std-ref">tagcryptogetalgorithmbyid_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptogetasymmetrickeylength__struct.html#structtagcryptogetasymmetrickeylength-struct"><span class="std std-ref">tagcryptogetasymmetrickeylength_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptogetfirstalgorithm__struct.html#structtagcryptogetfirstalgorithm-struct"><span class="std std-ref">tagcryptogetfirstalgorithm_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptogetnextalgorithm__struct.html#structtagcryptogetnextalgorithm-struct"><span class="std std-ref">tagcryptogetnextalgorithm_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptohmacsign__struct.html#structtagcryptohmacsign-struct"><span class="std std-ref">tagcryptohmacsign_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptohmacverify__struct.html#structtagcryptohmacverify-struct"><span class="std std-ref">tagcryptohmacverify_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptokeyexit__struct.html#structtagcryptokeyexit-struct"><span class="std std-ref">tagcryptokeyexit_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptokeyinit__struct.html#structtagcryptokeyinit-struct"><span class="std std-ref">tagcryptokeyinit_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptortsbytestringexit__struct.html#structtagcryptortsbytestringexit-struct"><span class="std std-ref">tagcryptortsbytestringexit_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptortsbytestringinit__struct.html#structtagcryptortsbytestringinit-struct"><span class="std std-ref">tagcryptortsbytestringinit_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptosignaturegenerate__struct.html#structtagcryptosignaturegenerate-struct"><span class="std std-ref">tagcryptosignaturegenerate_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptosignatureverify__struct.html#structtagcryptosignatureverify-struct"><span class="std std-ref">tagcryptosignatureverify_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptosymmetricdecrypt__struct.html#structtagcryptosymmetricdecrypt-struct"><span class="std std-ref">tagcryptosymmetricdecrypt_struct</span></a></li>
+<li>struct <a class="reference internal" href="structtagcryptosymmetricencrypt__struct.html#structtagcryptosymmetricencrypt-struct"><span class="std std-ref">tagcryptosymmetricencrypt_struct</span></a></li>
+<li>struct <a class="reference internal" href="struct_rts_symmetric_cipher_info.html#struct-rts-symmetric-cipher-info"><span class="std std-ref">RtsSymmetricCipherInfo</span></a></li>
+<li>struct <a class="reference internal" href="struct_rts_digest_info.html#struct-rts-digest-info"><span class="std std-ref">RtsDigestInfo</span></a></li>
+<li>struct <a class="reference internal" href="struct_rts_crypto_info.html#struct-rts-crypto-info"><span class="std std-ref">RtsCryptoInfo</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_cmp_crypto___c.html#struct-i-cmp-crypto-c"><span class="std std-ref">ICmpCrypto_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga4306da0e0090da745de1883a8d2bbc38"><span class="std std-ref">RTSCRYPTOID_AES_128_CBC</span></a> RTS_IEC_UDINT_C(0x1001)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga1f6aadd46c1ff34a62f7438fdf7b7ea1"><span class="std std-ref">RTSCRYPTOID_AES_128_CFB</span></a> RTS_IEC_UDINT_C(0x1002)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1gaf54a93a155fe2d77ecbde373c7a6765d"><span class="std std-ref">RTSCRYPTOID_AES_256_CBC</span></a> RTS_IEC_UDINT_C(0x1003)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga8fffcf421fdf1c371ec1818e8025fa3a"><span class="std std-ref">RTSCRYPTOID_DES_CBC</span></a> RTS_IEC_UDINT_C(0x1004)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga8906b0502e9f9f9ba17873b7b5ddcd56"><span class="std std-ref">RTSCRYPTOID_AES_256_CTR</span></a> RTS_IEC_UDINT_C(0x1005)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1gafffe0cff7a4cc24f883e002907222b61"><span class="std std-ref">RTSCRYPTOID_RSA</span></a> RTS_IEC_UDINT_C(0x2001)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga394ed1b060ced887164d811ff1017aa2"><span class="std std-ref">RTSCRYPTOID_RSA_OAEP_PADDING</span></a> RTS_IEC_UDINT_C(0x2002)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1gadc9cfae374494cd06ba2187bf1c0a98a"><span class="std std-ref">RTSCRYPTOID_RSA_PKCS1_V15_PADDING</span></a> RTS_IEC_UDINT_C(0x2003)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga8f37e7aacffc86aa1a12d2acddee1885"><span class="std std-ref">RTSCRYPTOID_HASH_MD5</span></a> RTS_IEC_UDINT_C(0x3001)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga445ace011d861ed03693a271ca755c4f"><span class="std std-ref">RTSCRYPTOID_HASH_SHA1</span></a> RTS_IEC_UDINT_C(0x3002)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga77cda608a4fc6fc499c6de2fb8c1bce9"><span class="std std-ref">RTSCRYPTOID_HASH_SHA224</span></a> RTS_IEC_UDINT_C(0x3003)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga44a7b195ac4a89a2cf540c10d4c9d4b6"><span class="std std-ref">RTSCRYPTOID_HASH_SHA256</span></a> RTS_IEC_UDINT_C(0x3004)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga4ed0205c01437979b35757c38595e272"><span class="std std-ref">RTSCRYPTOID_HASH_SHA384</span></a> RTS_IEC_UDINT_C(0x3005)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga7d613f0f24d09d2602d76953df34d8a9"><span class="std std-ref">RTSCRYPTOID_HASH_SHA512</span></a> RTS_IEC_UDINT_C(0x3006)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga513e22e97af8b17a27aa289435b48aef"><span class="std std-ref">RTSCRYPTOID_HMAC_MD5</span></a> RTS_IEC_UDINT_C(0x4001)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1gac8066488efef4706865e9832311a998a"><span class="std std-ref">RTSCRYPTOID_HMAC_SHA1</span></a> RTS_IEC_UDINT_C(0x4002)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1gaea48bdd131669179efe06a28fb9264f5"><span class="std std-ref">RTSCRYPTOID_HMAC_SHA224</span></a> RTS_IEC_UDINT_C(0x4003)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1gada73673421a61ffab3a289f743d5af11"><span class="std std-ref">RTSCRYPTOID_HMAC_SHA256</span></a> RTS_IEC_UDINT_C(0x4004)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga5cea65bb643859fe8518a2e16d2d7184"><span class="std std-ref">RTSCRYPTOID_HMAC_SHA384</span></a> RTS_IEC_UDINT_C(0x4005)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga391c952586743f76434a1d7b353c5406"><span class="std std-ref">RTSCRYPTOID_HMAC_SHA512</span></a> RTS_IEC_UDINT_C(0x4006)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1gaac1499cc28b42159b8232035857adf1c"><span class="std std-ref">RTSCRYPTOID_RSA_OAEP_SHA1</span></a> RTS_IEC_UDINT_C(0x5003)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga80ee561ad84b4f27c70f894fcb64f358"><span class="std std-ref">RTSCRYPTOID_RSA_OAEP_SHA256</span></a> RTS_IEC_UDINT_C(0x5004)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga6f38750cbff797a51bfeba2ad977bf20"><span class="std std-ref">RTSCRYPTOID_RSA_PKCS1_V15_SHA1</span></a> RTS_IEC_UDINT_C(0x5001)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga3fdafe4ffb8148efda138167b417f0dd"><span class="std std-ref">RTSCRYPTOID_RSA_PKCS1_V15_SHA256</span></a> RTS_IEC_UDINT_C(0x5002)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga9ff781cd99b0d7c7e41e5a67d760942c"><span class="std std-ref">RTSCRYPTOID</span></a> RTS_IEC_UDINT</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1gab7f2ff673c7ad06c8aea24e3916ccbcd"><span class="std std-ref">KEYTYPE_KEY</span></a> RTS_IEC_DINT_C(0x0)   /* The key is directly available. Stored in a RTS_BYTESTRING. <a href="#id1"><span class="problematic" id="id2">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1gad3506c98fc067cf967054383b50e78c9"><span class="std std-ref">KEYTYPE_CERTHANDLE</span></a> RTS_IEC_DINT_C(0x1)    /* The key is identified by a handle to the certificat. Only used for asymmetric keys. <a href="#id3"><span class="problematic" id="id4">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga57af89a54ff4166bca45ee3187e94e9c"><span class="std std-ref">KEYTYPE_CERTCONTENT</span></a> RTS_IEC_DINT_C(0x2)   /* The key is identified by the certificate context. Only used for asymmetric keys. <a href="#id5"><span class="problematic" id="id6">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga5bfe2d9255372e6ff9ba086ca0bdf0cb"><span class="std std-ref">RTSCRYPTOKEYTYPE</span></a> RTS_IEC_DINT</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga5c97fc51b25624b5e3a14e3cbc920e6f"><span class="std std-ref">RTSCRYPTOTYPE_SYMMETRIC</span></a> RTS_IEC_UDINT_C(0x1000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga31e83979a94bcd8958b848272b17d48b"><span class="std std-ref">RTSCRYPTOTYPE_ASYMMETRIC</span></a> RTS_IEC_UDINT_C(0x2000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1gaedd941515517f9dc39ac09ae1e0198f0"><span class="std std-ref">RTSCRYPTOTYPE_HASH</span></a> RTS_IEC_UDINT_C(0x3000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1gafc3a000b42b753e45c127e06817709c8"><span class="std std-ref">RTSCRYPTOTYPE_HMAC</span></a> RTS_IEC_UDINT_C(0x4000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga49e5af0f1ca0ee7ba59f8f59c6347f31"><span class="std std-ref">RTSCRYPTOTYPE_SIGNATURE</span></a> RTS_IEC_UDINT_C(0x5000)</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga26348a92c0683e8dc903eb35648f7dfa"><span class="std std-ref">RTSCRYPTOTYPE</span></a> RTS_IEC_UDINT</li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga2aed92746d74b0c2be2734a8eb481f83"><span class="std std-ref">ITF_CmpCrypto</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-crypto-itf-1ga921fabd3625d4c16db0cf2b2ef09dfa5"><span class="std std-ref">EXTITF_CmpCrypto</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef struct <a class="reference internal" href="structtag_rts_byte_string.html#structtag-rts-byte-string"><span class="std std-ref">tagRtsByteString</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtag_rts_crypto_key.html#structtag-rts-crypto-key"><span class="std std-ref">tagRtsCryptoKey</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1ga9eda126f6497b16d886d8c2fae345687"><span class="std std-ref">RtsCryptoKey</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptoasymmetricdecrypt__struct.html#structtagcryptoasymmetricdecrypt-struct"><span class="std std-ref">tagcryptoasymmetricdecrypt_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1ga140b30bc9d0c2bcce3bd9bad1ceb58eb"><span class="std std-ref">cryptoasymmetricdecrypt_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptoasymmetricencrypt__struct.html#structtagcryptoasymmetricencrypt-struct"><span class="std std-ref">tagcryptoasymmetricencrypt_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1ga09d4a65a6ec398b1c50f11019247c899"><span class="std std-ref">cryptoasymmetricencrypt_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptogeneratehash__struct.html#structtagcryptogeneratehash-struct"><span class="std std-ref">tagcryptogeneratehash_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1ga03c30660a07df57b0641aebde0bdba41"><span class="std std-ref">cryptogeneratehash_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptogeneraterandomnumber__struct.html#structtagcryptogeneraterandomnumber-struct"><span class="std std-ref">tagcryptogeneraterandomnumber_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1ga2113f63bb640923f36b0f7f31caa0593"><span class="std std-ref">cryptogeneraterandomnumber_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptogetalgorithmbyid__struct.html#structtagcryptogetalgorithmbyid-struct"><span class="std std-ref">tagcryptogetalgorithmbyid_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1gab7387611df856bc764f1021eb80543ea"><span class="std std-ref">cryptogetalgorithmbyid_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptogetasymmetrickeylength__struct.html#structtagcryptogetasymmetrickeylength-struct"><span class="std std-ref">tagcryptogetasymmetrickeylength_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1gace88e4ed4aeab4ea0168747a501d1445"><span class="std std-ref">cryptogetasymmetrickeylength_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptogetfirstalgorithm__struct.html#structtagcryptogetfirstalgorithm-struct"><span class="std std-ref">tagcryptogetfirstalgorithm_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1ga00b14d4628730acf21b78245f9dbd68e"><span class="std std-ref">cryptogetfirstalgorithm_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptogetnextalgorithm__struct.html#structtagcryptogetnextalgorithm-struct"><span class="std std-ref">tagcryptogetnextalgorithm_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1gade9645ac2a97fec399d2742ace1cf06f"><span class="std std-ref">cryptogetnextalgorithm_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptohmacsign__struct.html#structtagcryptohmacsign-struct"><span class="std std-ref">tagcryptohmacsign_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1ga99c39b83c2e75adfbaa4a02491ac4258"><span class="std std-ref">cryptohmacsign_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptohmacverify__struct.html#structtagcryptohmacverify-struct"><span class="std std-ref">tagcryptohmacverify_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1ga785cb4186390a70fcf192ea80f5351fd"><span class="std std-ref">cryptohmacverify_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptokeyexit__struct.html#structtagcryptokeyexit-struct"><span class="std std-ref">tagcryptokeyexit_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1gaefa9c48f9b1328a7b393a14e3c5ab683"><span class="std std-ref">cryptokeyexit_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptokeyinit__struct.html#structtagcryptokeyinit-struct"><span class="std std-ref">tagcryptokeyinit_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1ga9689cfb7cae0c400a54294b255d919f7"><span class="std std-ref">cryptokeyinit_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptortsbytestringexit__struct.html#structtagcryptortsbytestringexit-struct"><span class="std std-ref">tagcryptortsbytestringexit_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1ga310851d15be08a6d0ebb4481ef6f2f6c"><span class="std std-ref">cryptortsbytestringexit_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptortsbytestringinit__struct.html#structtagcryptortsbytestringinit-struct"><span class="std std-ref">tagcryptortsbytestringinit_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1gaf6b5b13eaf3db4a0e87ca078cb8e18de"><span class="std std-ref">cryptortsbytestringinit_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptosignaturegenerate__struct.html#structtagcryptosignaturegenerate-struct"><span class="std std-ref">tagcryptosignaturegenerate_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1ga8a4c52fd15248f8b1f4017ed32d309c1"><span class="std std-ref">cryptosignaturegenerate_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptosignatureverify__struct.html#structtagcryptosignatureverify-struct"><span class="std std-ref">tagcryptosignatureverify_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1gaa466b77b05ccb23cb6b3d6b20ee0222c"><span class="std std-ref">cryptosignatureverify_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptosymmetricdecrypt__struct.html#structtagcryptosymmetricdecrypt-struct"><span class="std std-ref">tagcryptosymmetricdecrypt_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1gaaf3bcc4903e64d143be5385576619c50"><span class="std std-ref">cryptosymmetricdecrypt_struct</span></a></li>
+<li>typedef struct <a class="reference internal" href="structtagcryptosymmetricencrypt__struct.html#structtagcryptosymmetricencrypt-struct"><span class="std std-ref">tagcryptosymmetricencrypt_struct</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1gafdadae40c983a197256093ae88cd9c1d"><span class="std std-ref">cryptosymmetricencrypt_struct</span></a></li>
+<li>typedef <a class="reference internal" href="struct_i_cmp_crypto___c.html#struct-i-cmp-crypto-c"><span class="std std-ref">ICmpCrypto_C</span></a> <a class="reference internal" href="#group-cmp-crypto-itf-1gabb70df803f41bdbaeb33e055d0e56345"><span class="std std-ref">ICmpCrypto</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1gab92bb6b95471220b1eba750a3dd9e2a0"><span class="std std-ref">cryptoasymmetricdecrypt</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga140b30bc9d0c2bcce3bd9bad1ceb58eb"><span class="std std-ref">cryptoasymmetricdecrypt_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1gacbf4d058438159477214f8e0f15d0d4a"><span class="std std-ref">cryptoasymmetricencrypt</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga09d4a65a6ec398b1c50f11019247c899"><span class="std std-ref">cryptoasymmetricencrypt_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1gace43eaf55f95c456a35868c30b002f85"><span class="std std-ref">cryptogeneratehash</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga03c30660a07df57b0641aebde0bdba41"><span class="std std-ref">cryptogeneratehash_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1ga370888592dca2b5837867696326a6dc3"><span class="std std-ref">cryptogeneraterandomnumber</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga2113f63bb640923f36b0f7f31caa0593"><span class="std std-ref">cryptogeneraterandomnumber_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1ga2d3ee83c4597e071f7b2dd563e5954bc"><span class="std std-ref">cryptogetalgorithmbyid</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1gab7387611df856bc764f1021eb80543ea"><span class="std std-ref">cryptogetalgorithmbyid_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1gaf98225d144264dabcc05f4cf9f59317e"><span class="std std-ref">cryptogetasymmetrickeylength</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1gace88e4ed4aeab4ea0168747a501d1445"><span class="std std-ref">cryptogetasymmetrickeylength_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1ga1f3305ea9eee09d52a87e242f02d2b7c"><span class="std std-ref">cryptogetfirstalgorithm</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga00b14d4628730acf21b78245f9dbd68e"><span class="std std-ref">cryptogetfirstalgorithm_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1ga6481e0d534d4a0a98c0b50f2c419721f"><span class="std std-ref">cryptogetnextalgorithm</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1gade9645ac2a97fec399d2742ace1cf06f"><span class="std std-ref">cryptogetnextalgorithm_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1ga67d1ba31d7f48a9d6ce5c90ce4937164"><span class="std std-ref">cryptohmacsign</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga99c39b83c2e75adfbaa4a02491ac4258"><span class="std std-ref">cryptohmacsign_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1ga440f0347f4ab31dc9f6c137e37ce9c4a"><span class="std std-ref">cryptohmacverify</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga785cb4186390a70fcf192ea80f5351fd"><span class="std std-ref">cryptohmacverify_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1gab68494da3c5507828e25af14ab5ffc42"><span class="std std-ref">cryptokeyexit</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1gaefa9c48f9b1328a7b393a14e3c5ab683"><span class="std std-ref">cryptokeyexit_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1gab14a86fc05f8a16792911532cc77944e"><span class="std std-ref">cryptokeyinit</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga9689cfb7cae0c400a54294b255d919f7"><span class="std std-ref">cryptokeyinit_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1gac93593b842d66018d57aaaa2a06314e1"><span class="std std-ref">cryptortsbytestringexit</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga310851d15be08a6d0ebb4481ef6f2f6c"><span class="std std-ref">cryptortsbytestringexit_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1ga33b5cad5c7eaf2e5693b24af18f1b186"><span class="std std-ref">cryptortsbytestringinit</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1gaf6b5b13eaf3db4a0e87ca078cb8e18de"><span class="std std-ref">cryptortsbytestringinit_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1gaefa32fa537d028a5b72d71f7a4bdfdab"><span class="std std-ref">cryptosignaturegenerate</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga8a4c52fd15248f8b1f4017ed32d309c1"><span class="std std-ref">cryptosignaturegenerate_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1ga0921707653e61830f7319b25de3149a3"><span class="std std-ref">cryptosignatureverify</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1gaa466b77b05ccb23cb6b3d6b20ee0222c"><span class="std std-ref">cryptosignatureverify_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1ga429aa7f04d7eba721e3e22f7cc51df8b"><span class="std std-ref">cryptosymmetricdecrypt</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1gaaf3bcc4903e64d143be5385576619c50"><span class="std std-ref">cryptosymmetricdecrypt_struct</span></a> * p)</li>
+<li>void <a class="reference internal" href="#group-cmp-crypto-itf-1ga16d196e0bf642b00b97f9f723192ce10"><span class="std std-ref">cryptosymmetricencrypt</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1gafdadae40c983a197256093ae88cd9c1d"><span class="std std-ref">cryptosymmetricencrypt_struct</span></a> * p)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-crypto-itf-1ga6adac43e15d3676e5f10fcefa8c9f9d0"><span class="std std-ref">CryptoGetAlgorithmById</span></a> (RTS_UI32 ui32CryptoID, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-crypto-itf-1ga2bdafb7e661ec24a3fa7c05d3996e646"><span class="std std-ref">CryptoGetFirstAlgorithm</span></a> (RTS_UI32 ui32CryptoType, char * pszName, RTS_I32 i32MaxNameLen, RTS_UI32 * pui32CryptoID, RTS_RESULT * pResult)</li>
+<li>RTS_HANDLE <a class="reference internal" href="#group-cmp-crypto-itf-1ga44eaa8678f492ac2f76981d13bf10ec3"><span class="std std-ref">CryptoGetNextAlgorithm</span></a> (RTS_HANDLE hCrypto, RTS_UI32 ui32CryptoType, char * pszName, RTS_I32 i32MaxNameLen, RTS_UI32 * pui32CryptoID, RTS_RESULT * pResult)</li>
+<li><a class="reference internal" href="struct_rts_crypto_info.html#struct-rts-crypto-info"><span class="std std-ref">RtsCryptoInfo</span></a> * <a class="reference internal" href="#group-cmp-crypto-itf-1ga82610c2d435311134fd49595a56e4e6d"><span class="std std-ref">CryptoGetAlgorithmInfo</span></a> (RTS_HANDLE hCrypto, RTS_RESULT * pCryptoInfo)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1gafdf81c6a74fda3f2dc5328c7e92cd1e6"><span class="std std-ref">CryptoSymmetricEncrypt</span></a> (RTS_HANDLE hAlgo, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pPlainText, <a class="reference internal" href="#group-cmp-crypto-itf-1ga9eda126f6497b16d886d8c2fae345687"><span class="std std-ref">RtsCryptoKey</span></a>  key, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pInitVector, RTS_BOOL bEnablePadding, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pCipherText)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1ga9aab33e1f8dd7f5629d205ed2a75967e"><span class="std std-ref">CryptoSymmetricDecrypt</span></a> (RTS_HANDLE hAlgo, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pCipherText, <a class="reference internal" href="#group-cmp-crypto-itf-1ga9eda126f6497b16d886d8c2fae345687"><span class="std std-ref">RtsCryptoKey</span></a>  key, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pInitVector, RTS_BOOL bEnablePadding, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pPlainText)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1ga303ccce6c893471eddceee7b6dd3a860"><span class="std std-ref">CryptoAsymmetricEncrypt</span></a> (RTS_HANDLE hAlgo, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pPlainText, <a class="reference internal" href="#group-cmp-crypto-itf-1ga9eda126f6497b16d886d8c2fae345687"><span class="std std-ref">RtsCryptoKey</span></a>  publicKey, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pCipherText)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1gad2949a344c7ade1e77d6c45c73ccb53d"><span class="std std-ref">CryptoAsymmetricDecrypt</span></a> (RTS_HANDLE hAlgo, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pCipherText, <a class="reference internal" href="#group-cmp-crypto-itf-1ga9eda126f6497b16d886d8c2fae345687"><span class="std std-ref">RtsCryptoKey</span></a>  privateKey, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pPlainText)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-cmp-crypto-itf-1ga27140cdb3795580aea51ad0a92675c4d"><span class="std std-ref">CryptoGetAsymmetricKeyLength</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga9eda126f6497b16d886d8c2fae345687"><span class="std std-ref">RtsCryptoKey</span></a>  asymmetricKey, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1ga9d85cdae0f377005ced85fca7367fc4a"><span class="std std-ref">CryptoGenerateHash</span></a> (RTS_HANDLE hAlgo, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pData, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pHash)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1ga93928baec523a0c3ad06cdf37e41cdcb"><span class="std std-ref">CryptoHMACSign</span></a> (RTS_HANDLE hAlgo, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pData, <a class="reference internal" href="#group-cmp-crypto-itf-1ga9eda126f6497b16d886d8c2fae345687"><span class="std std-ref">RtsCryptoKey</span></a>  key, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pSignature)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1ga8a0843ac9387d6be09e56dedc07bd5d8"><span class="std std-ref">CryptoHMACVerify</span></a> (RTS_HANDLE hAlgo, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pData, <a class="reference internal" href="#group-cmp-crypto-itf-1ga9eda126f6497b16d886d8c2fae345687"><span class="std std-ref">RtsCryptoKey</span></a>  key, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pSignature)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1ga85c1b6ecc79525bf0bf39b159c63a4db"><span class="std std-ref">CryptoSignatureGenerate</span></a> (RTS_HANDLE hAlgo, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pData, <a class="reference internal" href="#group-cmp-crypto-itf-1ga9eda126f6497b16d886d8c2fae345687"><span class="std std-ref">RtsCryptoKey</span></a>  privateKey, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pSignature)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1ga5bc6bfa2f81eb3074693486292b43b73"><span class="std std-ref">CryptoSignatureVerify</span></a> (RTS_HANDLE hAlgo, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pData, <a class="reference internal" href="#group-cmp-crypto-itf-1ga9eda126f6497b16d886d8c2fae345687"><span class="std std-ref">RtsCryptoKey</span></a>  publicKey, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pSignature)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1ga77e847cf24ef6da255e92733d20aec04"><span class="std std-ref">CryptoGenerateRandomNumber</span></a> (RTS_UI32 ui32NumOfRandomBytes, <a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pRandom)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1ga2e650e42b02d37eb9782fa67e8661283"><span class="std std-ref">CryptoKeyInit</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga9eda126f6497b16d886d8c2fae345687"><span class="std std-ref">RtsCryptoKey</span></a> * pKey, <a class="reference internal" href="union_rts_crypto_key_storage.html#union-rts-crypto-key-storage"><span class="std std-ref">RtsCryptoKeyStorage</span></a>  key, RTS_IEC_DINT keyType)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1ga0082d8c356d9b9ffabd3ea536892e298"><span class="std std-ref">CryptoKeyExit</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga9eda126f6497b16d886d8c2fae345687"><span class="std std-ref">RtsCryptoKey</span></a> * pKey)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1gaad378d3097c39b18dce00a7139447658"><span class="std std-ref">CryptoRtsByteStringInit</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pByteString)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1gac3d559e2f116cbb70687ede2b2f03c19"><span class="std std-ref">CryptoRtsByteStringInit2</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pByteString, RTS_UI32 ui32BufferSize, RTS_UI8 * pBuffer)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-cmp-crypto-itf-1ga96c8707378e2064d18f26066067de953"><span class="std std-ref">CryptoRtsByteStringExit</span></a> (<a class="reference internal" href="#group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"><span class="std std-ref">RtsByteString</span></a> * pByteString)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-crypto-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of CmpCrypto.</p>
+<p>This interface provides access to different cryptographic algorithms:</p>
+<ul class="simple">
+<li>Symmetric ciphers</li>
+<li>Asymmetric ciphers</li>
+<li>Message digest algorithms</li>
+<li>Hashed message authentication codes (HMAC)</li>
+<li>Signature algorithms</li>
+<li>Random number generation</li>
+</ul>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-rtscryptoid-aes-128-cbc-rts-iec-udint-c-0x1001">
+<span id="group-cmp-crypto-itf-1ga4306da0e0090da745de1883a8d2bbc38"></span><h3>#define RTSCRYPTOID_AES_128_CBC RTS_IEC_UDINT_C(0x1001)<a class="headerlink" href="#define-rtscryptoid-aes-128-cbc-rts-iec-udint-c-0x1001" title="Permalink to this headline">¶</a></h3>
+<p>EXTERN LIB SECTION BEGIN</p>
+<p>Enum: RtsCryptoID</p>
+</div>
+<div class="section" id="define-rtscryptoid-aes-128-cfb-rts-iec-udint-c-0x1002">
+<span id="group-cmp-crypto-itf-1ga1f6aadd46c1ff34a62f7438fdf7b7ea1"></span><h3>#define RTSCRYPTOID_AES_128_CFB RTS_IEC_UDINT_C(0x1002)<a class="headerlink" href="#define-rtscryptoid-aes-128-cfb-rts-iec-udint-c-0x1002" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-aes-256-cbc-rts-iec-udint-c-0x1003">
+<span id="group-cmp-crypto-itf-1gaf54a93a155fe2d77ecbde373c7a6765d"></span><h3>#define RTSCRYPTOID_AES_256_CBC RTS_IEC_UDINT_C(0x1003)<a class="headerlink" href="#define-rtscryptoid-aes-256-cbc-rts-iec-udint-c-0x1003" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-des-cbc-rts-iec-udint-c-0x1004">
+<span id="group-cmp-crypto-itf-1ga8fffcf421fdf1c371ec1818e8025fa3a"></span><h3>#define RTSCRYPTOID_DES_CBC RTS_IEC_UDINT_C(0x1004)<a class="headerlink" href="#define-rtscryptoid-des-cbc-rts-iec-udint-c-0x1004" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-aes-256-ctr-rts-iec-udint-c-0x1005">
+<span id="group-cmp-crypto-itf-1ga8906b0502e9f9f9ba17873b7b5ddcd56"></span><h3>#define RTSCRYPTOID_AES_256_CTR RTS_IEC_UDINT_C(0x1005)<a class="headerlink" href="#define-rtscryptoid-aes-256-ctr-rts-iec-udint-c-0x1005" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-rsa-rts-iec-udint-c-0x2001">
+<span id="group-cmp-crypto-itf-1gafffe0cff7a4cc24f883e002907222b61"></span><h3>#define RTSCRYPTOID_RSA RTS_IEC_UDINT_C(0x2001)<a class="headerlink" href="#define-rtscryptoid-rsa-rts-iec-udint-c-0x2001" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-rsa-oaep-padding-rts-iec-udint-c-0x2002">
+<span id="group-cmp-crypto-itf-1ga394ed1b060ced887164d811ff1017aa2"></span><h3>#define RTSCRYPTOID_RSA_OAEP_PADDING RTS_IEC_UDINT_C(0x2002)<a class="headerlink" href="#define-rtscryptoid-rsa-oaep-padding-rts-iec-udint-c-0x2002" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-rsa-pkcs1-v15-padding-rts-iec-udint-c-0x2003">
+<span id="group-cmp-crypto-itf-1gadc9cfae374494cd06ba2187bf1c0a98a"></span><h3>#define RTSCRYPTOID_RSA_PKCS1_V15_PADDING RTS_IEC_UDINT_C(0x2003)<a class="headerlink" href="#define-rtscryptoid-rsa-pkcs1-v15-padding-rts-iec-udint-c-0x2003" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-hash-md5-rts-iec-udint-c-0x3001">
+<span id="group-cmp-crypto-itf-1ga8f37e7aacffc86aa1a12d2acddee1885"></span><h3>#define RTSCRYPTOID_HASH_MD5 RTS_IEC_UDINT_C(0x3001)<a class="headerlink" href="#define-rtscryptoid-hash-md5-rts-iec-udint-c-0x3001" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-hash-sha1-rts-iec-udint-c-0x3002">
+<span id="group-cmp-crypto-itf-1ga445ace011d861ed03693a271ca755c4f"></span><h3>#define RTSCRYPTOID_HASH_SHA1 RTS_IEC_UDINT_C(0x3002)<a class="headerlink" href="#define-rtscryptoid-hash-sha1-rts-iec-udint-c-0x3002" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-hash-sha224-rts-iec-udint-c-0x3003">
+<span id="group-cmp-crypto-itf-1ga77cda608a4fc6fc499c6de2fb8c1bce9"></span><h3>#define RTSCRYPTOID_HASH_SHA224 RTS_IEC_UDINT_C(0x3003)<a class="headerlink" href="#define-rtscryptoid-hash-sha224-rts-iec-udint-c-0x3003" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-hash-sha256-rts-iec-udint-c-0x3004">
+<span id="group-cmp-crypto-itf-1ga44a7b195ac4a89a2cf540c10d4c9d4b6"></span><h3>#define RTSCRYPTOID_HASH_SHA256 RTS_IEC_UDINT_C(0x3004)<a class="headerlink" href="#define-rtscryptoid-hash-sha256-rts-iec-udint-c-0x3004" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-hash-sha384-rts-iec-udint-c-0x3005">
+<span id="group-cmp-crypto-itf-1ga4ed0205c01437979b35757c38595e272"></span><h3>#define RTSCRYPTOID_HASH_SHA384 RTS_IEC_UDINT_C(0x3005)<a class="headerlink" href="#define-rtscryptoid-hash-sha384-rts-iec-udint-c-0x3005" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-hash-sha512-rts-iec-udint-c-0x3006">
+<span id="group-cmp-crypto-itf-1ga7d613f0f24d09d2602d76953df34d8a9"></span><h3>#define RTSCRYPTOID_HASH_SHA512 RTS_IEC_UDINT_C(0x3006)<a class="headerlink" href="#define-rtscryptoid-hash-sha512-rts-iec-udint-c-0x3006" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-hmac-md5-rts-iec-udint-c-0x4001">
+<span id="group-cmp-crypto-itf-1ga513e22e97af8b17a27aa289435b48aef"></span><h3>#define RTSCRYPTOID_HMAC_MD5 RTS_IEC_UDINT_C(0x4001)<a class="headerlink" href="#define-rtscryptoid-hmac-md5-rts-iec-udint-c-0x4001" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-hmac-sha1-rts-iec-udint-c-0x4002">
+<span id="group-cmp-crypto-itf-1gac8066488efef4706865e9832311a998a"></span><h3>#define RTSCRYPTOID_HMAC_SHA1 RTS_IEC_UDINT_C(0x4002)<a class="headerlink" href="#define-rtscryptoid-hmac-sha1-rts-iec-udint-c-0x4002" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-hmac-sha224-rts-iec-udint-c-0x4003">
+<span id="group-cmp-crypto-itf-1gaea48bdd131669179efe06a28fb9264f5"></span><h3>#define RTSCRYPTOID_HMAC_SHA224 RTS_IEC_UDINT_C(0x4003)<a class="headerlink" href="#define-rtscryptoid-hmac-sha224-rts-iec-udint-c-0x4003" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-hmac-sha256-rts-iec-udint-c-0x4004">
+<span id="group-cmp-crypto-itf-1gada73673421a61ffab3a289f743d5af11"></span><h3>#define RTSCRYPTOID_HMAC_SHA256 RTS_IEC_UDINT_C(0x4004)<a class="headerlink" href="#define-rtscryptoid-hmac-sha256-rts-iec-udint-c-0x4004" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-hmac-sha384-rts-iec-udint-c-0x4005">
+<span id="group-cmp-crypto-itf-1ga5cea65bb643859fe8518a2e16d2d7184"></span><h3>#define RTSCRYPTOID_HMAC_SHA384 RTS_IEC_UDINT_C(0x4005)<a class="headerlink" href="#define-rtscryptoid-hmac-sha384-rts-iec-udint-c-0x4005" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-hmac-sha512-rts-iec-udint-c-0x4006">
+<span id="group-cmp-crypto-itf-1ga391c952586743f76434a1d7b353c5406"></span><h3>#define RTSCRYPTOID_HMAC_SHA512 RTS_IEC_UDINT_C(0x4006)<a class="headerlink" href="#define-rtscryptoid-hmac-sha512-rts-iec-udint-c-0x4006" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-rsa-oaep-sha1-rts-iec-udint-c-0x5003">
+<span id="group-cmp-crypto-itf-1gaac1499cc28b42159b8232035857adf1c"></span><h3>#define RTSCRYPTOID_RSA_OAEP_SHA1 RTS_IEC_UDINT_C(0x5003)<a class="headerlink" href="#define-rtscryptoid-rsa-oaep-sha1-rts-iec-udint-c-0x5003" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-rsa-oaep-sha256-rts-iec-udint-c-0x5004">
+<span id="group-cmp-crypto-itf-1ga80ee561ad84b4f27c70f894fcb64f358"></span><h3>#define RTSCRYPTOID_RSA_OAEP_SHA256 RTS_IEC_UDINT_C(0x5004)<a class="headerlink" href="#define-rtscryptoid-rsa-oaep-sha256-rts-iec-udint-c-0x5004" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-rsa-pkcs1-v15-sha1-rts-iec-udint-c-0x5001">
+<span id="group-cmp-crypto-itf-1ga6f38750cbff797a51bfeba2ad977bf20"></span><h3>#define RTSCRYPTOID_RSA_PKCS1_V15_SHA1 RTS_IEC_UDINT_C(0x5001)<a class="headerlink" href="#define-rtscryptoid-rsa-pkcs1-v15-sha1-rts-iec-udint-c-0x5001" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-rsa-pkcs1-v15-sha256-rts-iec-udint-c-0x5002">
+<span id="group-cmp-crypto-itf-1ga3fdafe4ffb8148efda138167b417f0dd"></span><h3>#define RTSCRYPTOID_RSA_PKCS1_V15_SHA256 RTS_IEC_UDINT_C(0x5002)<a class="headerlink" href="#define-rtscryptoid-rsa-pkcs1-v15-sha256-rts-iec-udint-c-0x5002" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptoid-rts-iec-udint">
+<span id="group-cmp-crypto-itf-1ga9ff781cd99b0d7c7e41e5a67d760942c"></span><h3>#define RTSCRYPTOID RTS_IEC_UDINT<a class="headerlink" href="#define-rtscryptoid-rts-iec-udint" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-keytype-key-rts-iec-dint-c-0x0-the-key-is-directly-available-stored-in-a-rts-bytestring">
+<span id="group-cmp-crypto-itf-1gab7f2ff673c7ad06c8aea24e3916ccbcd"></span><h3>#define KEYTYPE_KEY RTS_IEC_DINT_C(0x0) /* The key is directly available. Stored in a RTS_BYTESTRING. <a href="#id7"><span class="problematic" id="id8">*</span></a>/<a class="headerlink" href="#define-keytype-key-rts-iec-dint-c-0x0-the-key-is-directly-available-stored-in-a-rts-bytestring" title="Permalink to this headline">¶</a></h3>
+<p>Enum: RtsCryptoKeyType</p>
+</div>
+<div class="section" id="define-keytype-certhandle-rts-iec-dint-c-0x1-the-key-is-identified-by-a-handle-to-the-certificat-only-used-for-asymmetric-keys">
+<span id="group-cmp-crypto-itf-1gad3506c98fc067cf967054383b50e78c9"></span><h3>#define KEYTYPE_CERTHANDLE RTS_IEC_DINT_C(0x1)  /* The key is identified by a handle to the certificat. Only used for asymmetric keys. <a href="#id9"><span class="problematic" id="id10">*</span></a>/<a class="headerlink" href="#define-keytype-certhandle-rts-iec-dint-c-0x1-the-key-is-identified-by-a-handle-to-the-certificat-only-used-for-asymmetric-keys" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-keytype-certcontent-rts-iec-dint-c-0x2-the-key-is-identified-by-the-certificate-context-only-used-for-asymmetric-keys">
+<span id="group-cmp-crypto-itf-1ga57af89a54ff4166bca45ee3187e94e9c"></span><h3>#define KEYTYPE_CERTCONTENT RTS_IEC_DINT_C(0x2) /* The key is identified by the certificate context. Only used for asymmetric keys. <a href="#id11"><span class="problematic" id="id12">*</span></a>/<a class="headerlink" href="#define-keytype-certcontent-rts-iec-dint-c-0x2-the-key-is-identified-by-the-certificate-context-only-used-for-asymmetric-keys" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptokeytype-rts-iec-dint">
+<span id="group-cmp-crypto-itf-1ga5bfe2d9255372e6ff9ba086ca0bdf0cb"></span><h3>#define RTSCRYPTOKEYTYPE RTS_IEC_DINT<a class="headerlink" href="#define-rtscryptokeytype-rts-iec-dint" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptotype-symmetric-rts-iec-udint-c-0x1000">
+<span id="group-cmp-crypto-itf-1ga5c97fc51b25624b5e3a14e3cbc920e6f"></span><h3>#define RTSCRYPTOTYPE_SYMMETRIC RTS_IEC_UDINT_C(0x1000)<a class="headerlink" href="#define-rtscryptotype-symmetric-rts-iec-udint-c-0x1000" title="Permalink to this headline">¶</a></h3>
+<p>Enum: RtsCryptoType</p>
+</div>
+<div class="section" id="define-rtscryptotype-asymmetric-rts-iec-udint-c-0x2000">
+<span id="group-cmp-crypto-itf-1ga31e83979a94bcd8958b848272b17d48b"></span><h3>#define RTSCRYPTOTYPE_ASYMMETRIC RTS_IEC_UDINT_C(0x2000)<a class="headerlink" href="#define-rtscryptotype-asymmetric-rts-iec-udint-c-0x2000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptotype-hash-rts-iec-udint-c-0x3000">
+<span id="group-cmp-crypto-itf-1gaedd941515517f9dc39ac09ae1e0198f0"></span><h3>#define RTSCRYPTOTYPE_HASH RTS_IEC_UDINT_C(0x3000)<a class="headerlink" href="#define-rtscryptotype-hash-rts-iec-udint-c-0x3000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptotype-hmac-rts-iec-udint-c-0x4000">
+<span id="group-cmp-crypto-itf-1gafc3a000b42b753e45c127e06817709c8"></span><h3>#define RTSCRYPTOTYPE_HMAC RTS_IEC_UDINT_C(0x4000)<a class="headerlink" href="#define-rtscryptotype-hmac-rts-iec-udint-c-0x4000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptotype-signature-rts-iec-udint-c-0x5000">
+<span id="group-cmp-crypto-itf-1ga49e5af0f1ca0ee7ba59f8f59c6347f31"></span><h3>#define RTSCRYPTOTYPE_SIGNATURE RTS_IEC_UDINT_C(0x5000)<a class="headerlink" href="#define-rtscryptotype-signature-rts-iec-udint-c-0x5000" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-rtscryptotype-rts-iec-udint">
+<span id="group-cmp-crypto-itf-1ga26348a92c0683e8dc903eb35648f7dfa"></span><h3>#define RTSCRYPTOTYPE RTS_IEC_UDINT<a class="headerlink" href="#define-rtscryptotype-rts-iec-udint" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-itf-cmpcrypto">
+<span id="group-cmp-crypto-itf-1ga2aed92746d74b0c2be2734a8eb481f83"></span><h3>#define ITF_CmpCrypto<a class="headerlink" href="#define-itf-cmpcrypto" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-extitf-cmpcrypto">
+<span id="group-cmp-crypto-itf-1ga921fabd3625d4c16db0cf2b2ef09dfa5"></span><h3>#define EXTITF_CmpCrypto<a class="headerlink" href="#define-extitf-cmpcrypto" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-struct-tagrtsbytestring-rtsbytestring">
+<span id="group-cmp-crypto-itf-1ga0d96060febb92297b9262b8cd1d3a1e6"></span><h3>typedef struct tagRtsByteString  RtsByteString<a class="headerlink" href="#typedef-struct-tagrtsbytestring-rtsbytestring" title="Permalink to this headline">¶</a></h3>
+<p>This a representation of a byte string.</p>
+</div>
+<div class="section" id="typedef-struct-tagrtscryptokey-rtscryptokey">
+<span id="group-cmp-crypto-itf-1ga9eda126f6497b16d886d8c2fae345687"></span><h3>typedef struct tagRtsCryptoKey  RtsCryptoKey<a class="headerlink" href="#typedef-struct-tagrtscryptokey-rtscryptokey" title="Permalink to this headline">¶</a></h3>
+<p>A cryptographic key.</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptoasymmetricdecrypt-struct-cryptoasymmetricdecrypt-struct">
+<span id="group-cmp-crypto-itf-1ga140b30bc9d0c2bcce3bd9bad1ceb58eb"></span><h3>typedef struct tagcryptoasymmetricdecrypt_struct  cryptoasymmetricdecrypt_struct<a class="headerlink" href="#typedef-struct-tagcryptoasymmetricdecrypt-struct-cryptoasymmetricdecrypt-struct" title="Permalink to this headline">¶</a></h3>
+<p>Perform a asymmetric decryption using the algorithm handle. :return: Result of the operation</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptoasymmetricencrypt-struct-cryptoasymmetricencrypt-struct">
+<span id="group-cmp-crypto-itf-1ga09d4a65a6ec398b1c50f11019247c899"></span><h3>typedef struct tagcryptoasymmetricencrypt_struct  cryptoasymmetricencrypt_struct<a class="headerlink" href="#typedef-struct-tagcryptoasymmetricencrypt-struct-cryptoasymmetricencrypt-struct" title="Permalink to this headline">¶</a></h3>
+<p>Perform a asymmetric encryption using the algorithm handle. :return: Result of the operation</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptogeneratehash-struct-cryptogeneratehash-struct">
+<span id="group-cmp-crypto-itf-1ga03c30660a07df57b0641aebde0bdba41"></span><h3>typedef struct tagcryptogeneratehash_struct  cryptogeneratehash_struct<a class="headerlink" href="#typedef-struct-tagcryptogeneratehash-struct-cryptogeneratehash-struct" title="Permalink to this headline">¶</a></h3>
+<p>Calculate the message digest of the given data. :return: Result of the operation</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptogeneraterandomnumber-struct-cryptogeneraterandomnumber-struct">
+<span id="group-cmp-crypto-itf-1ga2113f63bb640923f36b0f7f31caa0593"></span><h3>typedef struct tagcryptogeneraterandomnumber_struct  cryptogeneraterandomnumber_struct<a class="headerlink" href="#typedef-struct-tagcryptogeneraterandomnumber-struct-cryptogeneraterandomnumber-struct" title="Permalink to this headline">¶</a></h3>
+<p>Generate a number of cryptographic strong bytes. :return: Function returns ERR_OK if the bytes could be generated</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptogetalgorithmbyid-struct-cryptogetalgorithmbyid-struct">
+<span id="group-cmp-crypto-itf-1gab7387611df856bc764f1021eb80543ea"></span><h3>typedef struct tagcryptogetalgorithmbyid_struct  cryptogetalgorithmbyid_struct<a class="headerlink" href="#typedef-struct-tagcryptogetalgorithmbyid-struct-cryptogetalgorithmbyid-struct" title="Permalink to this headline">¶</a></h3>
+<p>Get a handle to the algorithm using a specific ID :return: Handle to the crypto algorithm</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptogetasymmetrickeylength-struct-cryptogetasymmetrickeylength-struct">
+<span id="group-cmp-crypto-itf-1gace88e4ed4aeab4ea0168747a501d1445"></span><h3>typedef struct tagcryptogetasymmetrickeylength_struct  cryptogetasymmetrickeylength_struct<a class="headerlink" href="#typedef-struct-tagcryptogetasymmetrickeylength-struct-cryptogetasymmetrickeylength-struct" title="Permalink to this headline">¶</a></h3>
+<p>Get the asymmetric key size in bits. :return: Size of the asymmetric key in bits</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptogetfirstalgorithm-struct-cryptogetfirstalgorithm-struct">
+<span id="group-cmp-crypto-itf-1ga00b14d4628730acf21b78245f9dbd68e"></span><h3>typedef struct tagcryptogetfirstalgorithm_struct  cryptogetfirstalgorithm_struct<a class="headerlink" href="#typedef-struct-tagcryptogetfirstalgorithm-struct-cryptogetfirstalgorithm-struct" title="Permalink to this headline">¶</a></h3>
+<p>Get the first algorthm matching the type given. Use this with the GetNext function to iterate over algorthmes of a specific type. :return: Handle to the crypto algorithm</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptogetnextalgorithm-struct-cryptogetnextalgorithm-struct">
+<span id="group-cmp-crypto-itf-1gade9645ac2a97fec399d2742ace1cf06f"></span><h3>typedef struct tagcryptogetnextalgorithm_struct  cryptogetnextalgorithm_struct<a class="headerlink" href="#typedef-struct-tagcryptogetnextalgorithm-struct-cryptogetnextalgorithm-struct" title="Permalink to this headline">¶</a></h3>
+<p>Get the next algorthm matching the type given. :return: Handle to the crypto algorithm</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptohmacsign-struct-cryptohmacsign-struct">
+<span id="group-cmp-crypto-itf-1ga99c39b83c2e75adfbaa4a02491ac4258"></span><h3>typedef struct tagcryptohmacsign_struct  cryptohmacsign_struct<a class="headerlink" href="#typedef-struct-tagcryptohmacsign-struct-cryptohmacsign-struct" title="Permalink to this headline">¶</a></h3>
+<p>Generate a hashed message authentication code (HMAC) OF the given data AND key. :return: Result of the operation</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptohmacverify-struct-cryptohmacverify-struct">
+<span id="group-cmp-crypto-itf-1ga785cb4186390a70fcf192ea80f5351fd"></span><h3>typedef struct tagcryptohmacverify_struct  cryptohmacverify_struct<a class="headerlink" href="#typedef-struct-tagcryptohmacverify-struct-cryptohmacverify-struct" title="Permalink to this headline">¶</a></h3>
+<p>Verify a recieved hashed message authentication code (HMAC). :return: Function returns ERR_OK if the HMAC is valid.</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptokeyexit-struct-cryptokeyexit-struct">
+<span id="group-cmp-crypto-itf-1gaefa9c48f9b1328a7b393a14e3c5ab683"></span><h3>typedef struct tagcryptokeyexit_struct  cryptokeyexit_struct<a class="headerlink" href="#typedef-struct-tagcryptokeyexit-struct-cryptokeyexit-struct" title="Permalink to this headline">¶</a></h3>
+<p>cryptokeyexit</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptokeyinit-struct-cryptokeyinit-struct">
+<span id="group-cmp-crypto-itf-1ga9689cfb7cae0c400a54294b255d919f7"></span><h3>typedef struct tagcryptokeyinit_struct  cryptokeyinit_struct<a class="headerlink" href="#typedef-struct-tagcryptokeyinit-struct-cryptokeyinit-struct" title="Permalink to this headline">¶</a></h3>
+<p>cryptokeyinit</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptortsbytestringexit-struct-cryptortsbytestringexit-struct">
+<span id="group-cmp-crypto-itf-1ga310851d15be08a6d0ebb4481ef6f2f6c"></span><h3>typedef struct tagcryptortsbytestringexit_struct  cryptortsbytestringexit_struct<a class="headerlink" href="#typedef-struct-tagcryptortsbytestringexit-struct-cryptortsbytestringexit-struct" title="Permalink to this headline">¶</a></h3>
+<p>cryptortsbytestringexit</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptortsbytestringinit-struct-cryptortsbytestringinit-struct">
+<span id="group-cmp-crypto-itf-1gaf6b5b13eaf3db4a0e87ca078cb8e18de"></span><h3>typedef struct tagcryptortsbytestringinit_struct  cryptortsbytestringinit_struct<a class="headerlink" href="#typedef-struct-tagcryptortsbytestringinit-struct-cryptortsbytestringinit-struct" title="Permalink to this headline">¶</a></h3>
+<p>cryptortsbytestringinit</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptosignaturegenerate-struct-cryptosignaturegenerate-struct">
+<span id="group-cmp-crypto-itf-1ga8a4c52fd15248f8b1f4017ed32d309c1"></span><h3>typedef struct tagcryptosignaturegenerate_struct  cryptosignaturegenerate_struct<a class="headerlink" href="#typedef-struct-tagcryptosignaturegenerate-struct-cryptosignaturegenerate-struct" title="Permalink to this headline">¶</a></h3>
+<p>Sign the data using a specific message digest and the private key. :return: Result of the operation.</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptosignatureverify-struct-cryptosignatureverify-struct">
+<span id="group-cmp-crypto-itf-1gaa466b77b05ccb23cb6b3d6b20ee0222c"></span><h3>typedef struct tagcryptosignatureverify_struct  cryptosignatureverify_struct<a class="headerlink" href="#typedef-struct-tagcryptosignatureverify-struct-cryptosignatureverify-struct" title="Permalink to this headline">¶</a></h3>
+<p>Verify a recieved signature :return: unction returns ERR_OK if the signature is valid.</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptosymmetricdecrypt-struct-cryptosymmetricdecrypt-struct">
+<span id="group-cmp-crypto-itf-1gaaf3bcc4903e64d143be5385576619c50"></span><h3>typedef struct tagcryptosymmetricdecrypt_struct  cryptosymmetricdecrypt_struct<a class="headerlink" href="#typedef-struct-tagcryptosymmetricdecrypt-struct-cryptosymmetricdecrypt-struct" title="Permalink to this headline">¶</a></h3>
+<p>Perform a symmetric decryption using the algorithm handle. :return: Result of the operation</p>
+</div>
+<div class="section" id="typedef-struct-tagcryptosymmetricencrypt-struct-cryptosymmetricencrypt-struct">
+<span id="group-cmp-crypto-itf-1gafdadae40c983a197256093ae88cd9c1d"></span><h3>typedef struct tagcryptosymmetricencrypt_struct  cryptosymmetricencrypt_struct<a class="headerlink" href="#typedef-struct-tagcryptosymmetricencrypt-struct-cryptosymmetricencrypt-struct" title="Permalink to this headline">¶</a></h3>
+<p>Perform a symmetric encryption using the algorithm handle. :return: Result of the operation</p>
+</div>
+<div class="section" id="typedef-icmpcrypto-c-icmpcrypto">
+<span id="group-cmp-crypto-itf-1gabb70df803f41bdbaeb33e055d0e56345"></span><h3>typedef ICmpCrypto_C ICmpCrypto<a class="headerlink" href="#typedef-icmpcrypto-c-icmpcrypto" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="void-cryptoasymmetricdecrypt-cryptoasymmetricdecrypt-struct-p">
+<span id="group-cmp-crypto-itf-1gab92bb6b95471220b1eba750a3dd9e2a0"></span><h3>void cryptoasymmetricdecrypt (cryptoasymmetricdecrypt_struct <a href="#id13"><span class="problematic" id="id14">*</span></a>p)<a class="headerlink" href="#void-cryptoasymmetricdecrypt-cryptoasymmetricdecrypt-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptoasymmetricencrypt-cryptoasymmetricencrypt-struct-p">
+<span id="group-cmp-crypto-itf-1gacbf4d058438159477214f8e0f15d0d4a"></span><h3>void cryptoasymmetricencrypt (cryptoasymmetricencrypt_struct <a href="#id15"><span class="problematic" id="id16">*</span></a>p)<a class="headerlink" href="#void-cryptoasymmetricencrypt-cryptoasymmetricencrypt-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptogeneratehash-cryptogeneratehash-struct-p">
+<span id="group-cmp-crypto-itf-1gace43eaf55f95c456a35868c30b002f85"></span><h3>void cryptogeneratehash (cryptogeneratehash_struct <a href="#id17"><span class="problematic" id="id18">*</span></a>p)<a class="headerlink" href="#void-cryptogeneratehash-cryptogeneratehash-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptogeneraterandomnumber-cryptogeneraterandomnumber-struct-p">
+<span id="group-cmp-crypto-itf-1ga370888592dca2b5837867696326a6dc3"></span><h3>void cryptogeneraterandomnumber (cryptogeneraterandomnumber_struct <a href="#id19"><span class="problematic" id="id20">*</span></a>p)<a class="headerlink" href="#void-cryptogeneraterandomnumber-cryptogeneraterandomnumber-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptogetalgorithmbyid-cryptogetalgorithmbyid-struct-p">
+<span id="group-cmp-crypto-itf-1ga2d3ee83c4597e071f7b2dd563e5954bc"></span><h3>void cryptogetalgorithmbyid (cryptogetalgorithmbyid_struct <a href="#id21"><span class="problematic" id="id22">*</span></a>p)<a class="headerlink" href="#void-cryptogetalgorithmbyid-cryptogetalgorithmbyid-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptogetasymmetrickeylength-cryptogetasymmetrickeylength-struct-p">
+<span id="group-cmp-crypto-itf-1gaf98225d144264dabcc05f4cf9f59317e"></span><h3>void cryptogetasymmetrickeylength (cryptogetasymmetrickeylength_struct <a href="#id23"><span class="problematic" id="id24">*</span></a>p)<a class="headerlink" href="#void-cryptogetasymmetrickeylength-cryptogetasymmetrickeylength-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptogetfirstalgorithm-cryptogetfirstalgorithm-struct-p">
+<span id="group-cmp-crypto-itf-1ga1f3305ea9eee09d52a87e242f02d2b7c"></span><h3>void cryptogetfirstalgorithm (cryptogetfirstalgorithm_struct <a href="#id25"><span class="problematic" id="id26">*</span></a>p)<a class="headerlink" href="#void-cryptogetfirstalgorithm-cryptogetfirstalgorithm-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptogetnextalgorithm-cryptogetnextalgorithm-struct-p">
+<span id="group-cmp-crypto-itf-1ga6481e0d534d4a0a98c0b50f2c419721f"></span><h3>void cryptogetnextalgorithm (cryptogetnextalgorithm_struct <a href="#id27"><span class="problematic" id="id28">*</span></a>p)<a class="headerlink" href="#void-cryptogetnextalgorithm-cryptogetnextalgorithm-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptohmacsign-cryptohmacsign-struct-p">
+<span id="group-cmp-crypto-itf-1ga67d1ba31d7f48a9d6ce5c90ce4937164"></span><h3>void cryptohmacsign (cryptohmacsign_struct <a href="#id29"><span class="problematic" id="id30">*</span></a>p)<a class="headerlink" href="#void-cryptohmacsign-cryptohmacsign-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptohmacverify-cryptohmacverify-struct-p">
+<span id="group-cmp-crypto-itf-1ga440f0347f4ab31dc9f6c137e37ce9c4a"></span><h3>void cryptohmacverify (cryptohmacverify_struct <a href="#id31"><span class="problematic" id="id32">*</span></a>p)<a class="headerlink" href="#void-cryptohmacverify-cryptohmacverify-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptokeyexit-cryptokeyexit-struct-p">
+<span id="group-cmp-crypto-itf-1gab68494da3c5507828e25af14ab5ffc42"></span><h3>void cryptokeyexit (cryptokeyexit_struct <a href="#id33"><span class="problematic" id="id34">*</span></a>p)<a class="headerlink" href="#void-cryptokeyexit-cryptokeyexit-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptokeyinit-cryptokeyinit-struct-p">
+<span id="group-cmp-crypto-itf-1gab14a86fc05f8a16792911532cc77944e"></span><h3>void cryptokeyinit (cryptokeyinit_struct <a href="#id35"><span class="problematic" id="id36">*</span></a>p)<a class="headerlink" href="#void-cryptokeyinit-cryptokeyinit-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptortsbytestringexit-cryptortsbytestringexit-struct-p">
+<span id="group-cmp-crypto-itf-1gac93593b842d66018d57aaaa2a06314e1"></span><h3>void cryptortsbytestringexit (cryptortsbytestringexit_struct <a href="#id37"><span class="problematic" id="id38">*</span></a>p)<a class="headerlink" href="#void-cryptortsbytestringexit-cryptortsbytestringexit-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptortsbytestringinit-cryptortsbytestringinit-struct-p">
+<span id="group-cmp-crypto-itf-1ga33b5cad5c7eaf2e5693b24af18f1b186"></span><h3>void cryptortsbytestringinit (cryptortsbytestringinit_struct <a href="#id39"><span class="problematic" id="id40">*</span></a>p)<a class="headerlink" href="#void-cryptortsbytestringinit-cryptortsbytestringinit-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptosignaturegenerate-cryptosignaturegenerate-struct-p">
+<span id="group-cmp-crypto-itf-1gaefa32fa537d028a5b72d71f7a4bdfdab"></span><h3>void cryptosignaturegenerate (cryptosignaturegenerate_struct <a href="#id41"><span class="problematic" id="id42">*</span></a>p)<a class="headerlink" href="#void-cryptosignaturegenerate-cryptosignaturegenerate-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptosignatureverify-cryptosignatureverify-struct-p">
+<span id="group-cmp-crypto-itf-1ga0921707653e61830f7319b25de3149a3"></span><h3>void cryptosignatureverify (cryptosignatureverify_struct <a href="#id43"><span class="problematic" id="id44">*</span></a>p)<a class="headerlink" href="#void-cryptosignatureverify-cryptosignatureverify-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptosymmetricdecrypt-cryptosymmetricdecrypt-struct-p">
+<span id="group-cmp-crypto-itf-1ga429aa7f04d7eba721e3e22f7cc51df8b"></span><h3>void cryptosymmetricdecrypt (cryptosymmetricdecrypt_struct <a href="#id45"><span class="problematic" id="id46">*</span></a>p)<a class="headerlink" href="#void-cryptosymmetricdecrypt-cryptosymmetricdecrypt-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-cryptosymmetricencrypt-cryptosymmetricencrypt-struct-p">
+<span id="group-cmp-crypto-itf-1ga16d196e0bf642b00b97f9f723192ce10"></span><h3>void cryptosymmetricencrypt (cryptosymmetricencrypt_struct <a href="#id47"><span class="problematic" id="id48">*</span></a>p)<a class="headerlink" href="#void-cryptosymmetricencrypt-cryptosymmetricencrypt-struct-p" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-handle-cryptogetalgorithmbyid-rts-ui32-ui32cryptoid-rts-result-presult">
+<span id="group-cmp-crypto-itf-1ga6adac43e15d3676e5f10fcefa8c9f9d0"></span><h3>RTS_HANDLE CryptoGetAlgorithmById (RTS_UI32 ui32CryptoID, RTS_RESULT <a href="#id49"><span class="problematic" id="id50">*</span></a>pResult)<a class="headerlink" href="#rts-handle-cryptogetalgorithmbyid-rts-ui32-ui32cryptoid-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get a handle to the algorithm using a specific ID</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="19%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ui32CryptoID</td>
+<td>ID of the algorithm</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pResult</td>
+<td>Error code: Result of the operation. Can be NULL.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the crypto algorithm</p>
+</div>
+<div class="section" id="rts-handle-cryptogetfirstalgorithm-rts-ui32-ui32cryptotype-char-pszname-rts-i32-i32maxnamelen-rts-ui32-pui32cryptoid-rts-result-presult">
+<span id="group-cmp-crypto-itf-1ga2bdafb7e661ec24a3fa7c05d3996e646"></span><h3>RTS_HANDLE CryptoGetFirstAlgorithm (RTS_UI32 ui32CryptoType, char <a href="#id51"><span class="problematic" id="id52">*</span></a>pszName, RTS_I32 i32MaxNameLen, RTS_UI32 <a href="#id53"><span class="problematic" id="id54">*</span></a>pui32CryptoID, RTS_RESULT <a href="#id55"><span class="problematic" id="id56">*</span></a>pResult)<a class="headerlink" href="#rts-handle-cryptogetfirstalgorithm-rts-ui32-ui32cryptotype-char-pszname-rts-i32-i32maxnamelen-rts-ui32-pui32cryptoid-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get the first algorithm matching the type given. Use this with the GetNext function to iterate over algorithmes of a specific type.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="21%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ui32CryptoType</td>
+<td>Type of the algorithm. See: Crypto Types</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pszName</td>
+<td>Name of the algorithm. Can be NULL.</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>i32MaxNameLen</td>
+<td>Maximum length of the name buffer</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pui32CryptoID</td>
+<td>ID of the algorithm.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>pResult</td>
+<td>Error code: Result of the operation. Can be NULL.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the crypto algorithm</p>
+</div>
+<div class="section" id="rts-handle-cryptogetnextalgorithm-rts-handle-hcrypto-rts-ui32-ui32cryptotype-char-pszname-rts-i32-i32maxnamelen-rts-ui32-pui32cryptoid-rts-result-presult">
+<span id="group-cmp-crypto-itf-1ga44eaa8678f492ac2f76981d13bf10ec3"></span><h3>RTS_HANDLE CryptoGetNextAlgorithm (RTS_HANDLE hCrypto, RTS_UI32 ui32CryptoType, char <a href="#id57"><span class="problematic" id="id58">*</span></a>pszName, RTS_I32 i32MaxNameLen, RTS_UI32 <a href="#id59"><span class="problematic" id="id60">*</span></a>pui32CryptoID, RTS_RESULT <a href="#id61"><span class="problematic" id="id62">*</span></a>pResult)<a class="headerlink" href="#rts-handle-cryptogetnextalgorithm-rts-handle-hcrypto-rts-ui32-ui32cryptotype-char-pszname-rts-i32-i32maxnamelen-rts-ui32-pui32cryptoid-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get the next algorithm matching the type given.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="21%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hCrypto</td>
+<td>Handle to the last algorithm.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ui32CryptoType</td>
+<td>Handle to the last algorithm.</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pszName</td>
+<td>Name of the algorithm. Can be NULL.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>i32MaxNameLen</td>
+<td>Maximum length of the name buffer</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pui32CryptoID</td>
+<td>ID of the algorithm.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pResult</td>
+<td>Error code: Result of the operation. Can be NULL.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Handle to the crypto algorithm</p>
+</div>
+<div class="section" id="rtscryptoinfo-cryptogetalgorithminfo-rts-handle-hcrypto-rts-result-pcryptoinfo">
+<span id="group-cmp-crypto-itf-1ga82610c2d435311134fd49595a56e4e6d"></span><h3>RtsCryptoInfo* CryptoGetAlgorithmInfo (RTS_HANDLE hCrypto, RTS_RESULT <a href="#id63"><span class="problematic" id="id64">*</span></a>pCryptoInfo)<a class="headerlink" href="#rtscryptoinfo-cryptogetalgorithminfo-rts-handle-hcrypto-rts-result-pcryptoinfo" title="Permalink to this headline">¶</a></h3>
+<p>Get information of the algorithm. Don&#8217;t free or modify the CryptoInfo.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hCrypto</td>
+<td>Handle to the algorithm.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pResult</td>
+<td>Error code: Result of the operation. Can be NULL.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Pointer to the information structure.</p>
+</div>
+<div class="section" id="rts-result-cryptosymmetricencrypt-rts-handle-halgo-rtsbytestring-pplaintext-rtscryptokey-key-rtsbytestring-pinitvector-rts-bool-benablepadding-rtsbytestring-pciphertext">
+<span id="group-cmp-crypto-itf-1gafdf81c6a74fda3f2dc5328c7e92cd1e6"></span><h3>RTS_RESULT CryptoSymmetricEncrypt (RTS_HANDLE hAlgo, RtsByteString <a href="#id65"><span class="problematic" id="id66">*</span></a>pPlainText, RtsCryptoKey key, RtsByteString <a href="#id67"><span class="problematic" id="id68">*</span></a>pInitVector, RTS_BOOL bEnablePadding, RtsByteString <a href="#id69"><span class="problematic" id="id70">*</span></a>pCipherText)<a class="headerlink" href="#rts-result-cryptosymmetricencrypt-rts-handle-halgo-rtsbytestring-pplaintext-rtscryptokey-key-rtsbytestring-pinitvector-rts-bool-benablepadding-rtsbytestring-pciphertext" title="Permalink to this headline">¶</a></h3>
+<p>Perform a symmetric encryption using the algorithm handle.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="10%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hAlgo</td>
+<td>Handle to the algorithm.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pPlainText</td>
+<td>Data to be encrypted</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>key</td>
+<td>Key to encrypt the data. Has to be a KeyType_Key key.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pInitVector</td>
+<td>Init vector of the ecryption</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>bEnablePadding</td>
+<td>Enables the padding of the algorithm. If padding is not enabled the plaintext length has to match a multiple of the cipher block length</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pCipherText</td>
+<td>Encrypted data.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: Result of the operation</p>
+</div>
+<div class="section" id="rts-result-cryptosymmetricdecrypt-rts-handle-halgo-rtsbytestring-pciphertext-rtscryptokey-key-rtsbytestring-pinitvector-rts-bool-benablepadding-rtsbytestring-pplaintext">
+<span id="group-cmp-crypto-itf-1ga9aab33e1f8dd7f5629d205ed2a75967e"></span><h3>RTS_RESULT CryptoSymmetricDecrypt (RTS_HANDLE hAlgo, RtsByteString <a href="#id71"><span class="problematic" id="id72">*</span></a>pCipherText, RtsCryptoKey key, RtsByteString <a href="#id73"><span class="problematic" id="id74">*</span></a>pInitVector, RTS_BOOL bEnablePadding, RtsByteString <a href="#id75"><span class="problematic" id="id76">*</span></a>pPlainText)<a class="headerlink" href="#rts-result-cryptosymmetricdecrypt-rts-handle-halgo-rtsbytestring-pciphertext-rtscryptokey-key-rtsbytestring-pinitvector-rts-bool-benablepadding-rtsbytestring-pplaintext" title="Permalink to this headline">¶</a></h3>
+<p>Perform a symmetric decryption using the algorithm handle.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="10%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hAlgo</td>
+<td>Handle to the algorithm.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pCipherText</td>
+<td>Data to be decrypted</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>key</td>
+<td>Key to decrypt the data. Has to be a KeyType_Key key.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pInitVector</td>
+<td>Init vector of the decrypt.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>bEnablePadding</td>
+<td>Enables the padding of the algorithm. If padding is not enabled the plaintext length has to match a multiple of the cipher block length</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pCipherText</td>
+<td>Decrypted data.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: Result of the operation</p>
+</div>
+<div class="section" id="rts-result-cryptoasymmetricencrypt-rts-handle-halgo-rtsbytestring-pplaintext-rtscryptokey-publickey-rtsbytestring-pciphertext">
+<span id="group-cmp-crypto-itf-1ga303ccce6c893471eddceee7b6dd3a860"></span><h3>RTS_RESULT CryptoAsymmetricEncrypt (RTS_HANDLE hAlgo, RtsByteString <a href="#id77"><span class="problematic" id="id78">*</span></a>pPlainText, RtsCryptoKey publicKey, RtsByteString <a href="#id79"><span class="problematic" id="id80">*</span></a>pCipherText)<a class="headerlink" href="#rts-result-cryptoasymmetricencrypt-rts-handle-halgo-rtsbytestring-pplaintext-rtscryptokey-publickey-rtsbytestring-pciphertext" title="Permalink to this headline">¶</a></h3>
+<p>Perform an asymmetric encryption using the algorithm handle.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="10%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hAlgo</td>
+<td>Handle to the algorithm.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pPlainText</td>
+<td>Data to be encrypted</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>publicKey</td>
+<td>Public key used to encrypt the data. Use X509CertGetPublicKey to get the public key form an certificate.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pCipherText</td>
+<td>Encrypted data.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: Result of the operation</p>
+</div>
+<div class="section" id="rts-result-cryptoasymmetricdecrypt-rts-handle-halgo-rtsbytestring-pciphertext-rtscryptokey-privatekey-rtsbytestring-pplaintext">
+<span id="group-cmp-crypto-itf-1gad2949a344c7ade1e77d6c45c73ccb53d"></span><h3>RTS_RESULT CryptoAsymmetricDecrypt (RTS_HANDLE hAlgo, RtsByteString <a href="#id81"><span class="problematic" id="id82">*</span></a>pCipherText, RtsCryptoKey privateKey, RtsByteString <a href="#id83"><span class="problematic" id="id84">*</span></a>pPlainText)<a class="headerlink" href="#rts-result-cryptoasymmetricdecrypt-rts-handle-halgo-rtsbytestring-pciphertext-rtscryptokey-privatekey-rtsbytestring-pplaintext" title="Permalink to this headline">¶</a></h3>
+<p>Perform an asymmetric decryption using the algorithm handle.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="10%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hAlgo</td>
+<td>Handle to the algorithm.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pCiperText</td>
+<td>Data to be decrypted</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>privateKey</td>
+<td>Private key used to decrypt the data. Use X509CertGetPrivateKey to get the private key from an certificate.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pCipherText</td>
+<td>Decrypted data.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: Result of the operation</p>
+</div>
+<div class="section" id="rts-ui32-cryptogetasymmetrickeylength-rtscryptokey-asymmetrickey-rts-result-presult">
+<span id="group-cmp-crypto-itf-1ga27140cdb3795580aea51ad0a92675c4d"></span><h3>RTS_UI32 CryptoGetAsymmetricKeyLength (RtsCryptoKey asymmetricKey, RTS_RESULT <a href="#id85"><span class="problematic" id="id86">*</span></a>pResult)<a class="headerlink" href="#rts-ui32-cryptogetasymmetrickeylength-rtscryptokey-asymmetrickey-rts-result-presult" title="Permalink to this headline">¶</a></h3>
+<p>Get the private key size in bits.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="10%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>priavteKey</td>
+<td>Asymmetric key of intrest. Use X509CertGetPublicKey or X509CertGetPrivateKey to get the asymmetric key.</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pResult</td>
+<td>Error code: Operation Result</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Size of the private key in bits</p>
+</div>
+<div class="section" id="rts-result-cryptogeneratehash-rts-handle-halgo-rtsbytestring-pdata-rtsbytestring-phash">
+<span id="group-cmp-crypto-itf-1ga9d85cdae0f377005ced85fca7367fc4a"></span><h3>RTS_RESULT CryptoGenerateHash (RTS_HANDLE hAlgo, RtsByteString <a href="#id87"><span class="problematic" id="id88">*</span></a>pData, RtsByteString <a href="#id89"><span class="problematic" id="id90">*</span></a>pHash)<a class="headerlink" href="#rts-result-cryptogeneratehash-rts-handle-halgo-rtsbytestring-pdata-rtsbytestring-phash" title="Permalink to this headline">¶</a></h3>
+<p>Calculate the message digest of the given data.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="13%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hAlgo</td>
+<td>Handle to the algorithm.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pData</td>
+<td>Data to calculate the message digest.</td>
+</tr>
+<tr class="row-odd"><td>[out]</td>
+<td>pHash</td>
+<td>Calculated message digest.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Result of the operation</p>
+</div>
+<div class="section" id="rts-result-cryptohmacsign-rts-handle-halgo-rtsbytestring-pdata-rtscryptokey-key-rtsbytestring-psignature">
+<span id="group-cmp-crypto-itf-1ga93928baec523a0c3ad06cdf37e41cdcb"></span><h3>RTS_RESULT CryptoHMACSign (RTS_HANDLE hAlgo, RtsByteString <a href="#id91"><span class="problematic" id="id92">*</span></a>pData, RtsCryptoKey key, RtsByteString <a href="#id93"><span class="problematic" id="id94">*</span></a>pSignature)<a class="headerlink" href="#rts-result-cryptohmacsign-rts-handle-halgo-rtsbytestring-pdata-rtscryptokey-key-rtsbytestring-psignature" title="Permalink to this headline">¶</a></h3>
+<p>Generate a hashed message authentication code (HMAC) of the given data and key.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="20%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hAlgo</td>
+<td>Handle to the algorithm.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pData</td>
+<td>Data to calculate the HMAC.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>key</td>
+<td>Key to be used for the HMAC calcuation</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pSignature</td>
+<td>Calculated HMAC</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code Result of the operation</p>
+</div>
+<div class="section" id="rts-result-cryptohmacverify-rts-handle-halgo-rtsbytestring-pdata-rtscryptokey-key-rtsbytestring-psignature">
+<span id="group-cmp-crypto-itf-1ga8a0843ac9387d6be09e56dedc07bd5d8"></span><h3>RTS_RESULT CryptoHMACVerify (RTS_HANDLE hAlgo, RtsByteString <a href="#id95"><span class="problematic" id="id96">*</span></a>pData, RtsCryptoKey key, RtsByteString <a href="#id97"><span class="problematic" id="id98">*</span></a>pSignature)<a class="headerlink" href="#rts-result-cryptohmacverify-rts-handle-halgo-rtsbytestring-pdata-rtscryptokey-key-rtsbytestring-psignature" title="Permalink to this headline">¶</a></h3>
+<p>Verify a recieved hashed message authentication code (HMAC).</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="20%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hAlgo</td>
+<td>Handle to the algorithm.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pData</td>
+<td>Data to calculate the HMAC.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>key</td>
+<td>Key to be used for the HMAC calcuation</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pSignature</td>
+<td>Recieved HMAC</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error Code Function returns ERR_OK if the HMAC is valid.</p>
+</div>
+<div class="section" id="rts-result-cryptosignaturegenerate-rts-handle-halgo-rtsbytestring-pdata-rtscryptokey-privatekey-rtsbytestring-psignature">
+<span id="group-cmp-crypto-itf-1ga85c1b6ecc79525bf0bf39b159c63a4db"></span><h3>RTS_RESULT CryptoSignatureGenerate (RTS_HANDLE hAlgo, RtsByteString <a href="#id99"><span class="problematic" id="id100">*</span></a>pData, RtsCryptoKey privateKey, RtsByteString <a href="#id101"><span class="problematic" id="id102">*</span></a>pSignature)<a class="headerlink" href="#rts-result-cryptosignaturegenerate-rts-handle-halgo-rtsbytestring-pdata-rtscryptokey-privatekey-rtsbytestring-psignature" title="Permalink to this headline">¶</a></h3>
+<p>Sign the data using a specific message digest and the private key.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="10%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hAlgo</td>
+<td>Handle to the algorithm.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pData</td>
+<td>Data to be signed.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>privateKey</td>
+<td>Key to be used signing. Has to be a private key. Use X509CertGetPrivateKey to get the private key.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pSignature</td>
+<td>Calculated signature of the data.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: Result of the operation.</p>
+</div>
+<div class="section" id="rts-result-cryptosignatureverify-rts-handle-halgo-rtsbytestring-pdata-rtscryptokey-publickey-rtsbytestring-psignature">
+<span id="group-cmp-crypto-itf-1ga5bc6bfa2f81eb3074693486292b43b73"></span><h3>RTS_RESULT CryptoSignatureVerify (RTS_HANDLE hAlgo, RtsByteString <a href="#id103"><span class="problematic" id="id104">*</span></a>pData, RtsCryptoKey publicKey, RtsByteString <a href="#id105"><span class="problematic" id="id106">*</span></a>pSignature)<a class="headerlink" href="#rts-result-cryptosignatureverify-rts-handle-halgo-rtsbytestring-pdata-rtscryptokey-publickey-rtsbytestring-psignature" title="Permalink to this headline">¶</a></h3>
+<p>Verify a received signature</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="14%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>hAlgo</td>
+<td>Handle to the algorithm.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pData</td>
+<td>Data to verify.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>publicKey</td>
+<td>Public key of the sender. X509CertGetPublicKey to get the key.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pSignature</td>
+<td>Received signature.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: Function returns ERR_OK if the signature is valid.</p>
+</div>
+<div class="section" id="rts-result-cryptogeneraterandomnumber-rts-ui32-ui32numofrandombytes-rtsbytestring-prandom">
+<span id="group-cmp-crypto-itf-1ga77e847cf24ef6da255e92733d20aec04"></span><h3>RTS_RESULT CryptoGenerateRandomNumber (RTS_UI32 ui32NumOfRandomBytes, RtsByteString <a href="#id107"><span class="problematic" id="id108">*</span></a>pRandom)<a class="headerlink" href="#rts-result-cryptogeneraterandomnumber-rts-ui32-ui32numofrandombytes-rtsbytestring-prandom" title="Permalink to this headline">¶</a></h3>
+<p>Generate a number of cryptographic strong bytes.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="37%" />
+<col width="47%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ui32NumOfRandomBytes</td>
+<td>Number of bytes needed.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pRandom</td>
+<td>Buffer to store the bytes.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Error code: Function returns ERR_OK if the bytes could be generated</p>
+</div>
+<div class="section" id="rts-result-cryptokeyinit-rtscryptokey-pkey-rtscryptokeystorage-key-rts-iec-dint-keytype">
+<span id="group-cmp-crypto-itf-1ga2e650e42b02d37eb9782fa67e8661283"></span><h3>RTS_RESULT CryptoKeyInit (RtsCryptoKey <a href="#id109"><span class="problematic" id="id110">*</span></a>pKey, RtsCryptoKeyStorage key, RTS_IEC_DINT keyType)<a class="headerlink" href="#rts-result-cryptokeyinit-rtscryptokey-pkey-rtscryptokeystorage-key-rts-iec-dint-keytype" title="Permalink to this headline">¶</a></h3>
+<p>Initialize a crypto key.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="11%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pKey</td>
+<td>Pointer to the key to be initialized.</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>key</td>
+<td>Content of the key.</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>type</td>
+<td>Type of the key.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Operation result.</p>
+</div>
+<div class="section" id="rts-result-cryptokeyexit-rtscryptokey-pkey">
+<span id="group-cmp-crypto-itf-1ga0082d8c356d9b9ffabd3ea536892e298"></span><h3>RTS_RESULT CryptoKeyExit (RtsCryptoKey <a href="#id111"><span class="problematic" id="id112">*</span></a>pKey)<a class="headerlink" href="#rts-result-cryptokeyexit-rtscryptokey-pkey" title="Permalink to this headline">¶</a></h3>
+<p>Clean up a crypto key.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="17%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pKey</td>
+<td>Key to be clean up.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Operation result.</p>
+</div>
+<div class="section" id="rts-result-cryptortsbytestringinit-rtsbytestring-pbytestring">
+<span id="group-cmp-crypto-itf-1gaad378d3097c39b18dce00a7139447658"></span><h3>RTS_RESULT CryptoRtsByteStringInit (RtsByteString <a href="#id113"><span class="problematic" id="id114">*</span></a>pByteString)<a class="headerlink" href="#rts-result-cryptortsbytestringinit-rtsbytestring-pbytestring" title="Permalink to this headline">¶</a></h3>
+<p>Initialize a byte string.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="21%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pByteString</td>
+<td>Pointer to the key to be initialized.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Operation result.</p>
+</div>
+<div class="section" id="rts-result-cryptortsbytestringinit2-rtsbytestring-pbytestring-rts-ui32-ui32buffersize-rts-ui8-pbuffer">
+<span id="group-cmp-crypto-itf-1gac3d559e2f116cbb70687ede2b2f03c19"></span><h3>RTS_RESULT CryptoRtsByteStringInit2 (RtsByteString <a href="#id115"><span class="problematic" id="id116">*</span></a>pByteString, RTS_UI32 ui32BufferSize, RTS_UI8 <a href="#id117"><span class="problematic" id="id118">*</span></a>pBuffer)<a class="headerlink" href="#rts-result-cryptortsbytestringinit2-rtsbytestring-pbytestring-rts-ui32-ui32buffersize-rts-ui8-pbuffer" title="Permalink to this headline">¶</a></h3>
+<p>Initialize a byte string.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="21%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pByteString</td>
+<td>Pointer to the key to be initialized.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Operation result.</p>
+</div>
+<div class="section" id="rts-result-cryptortsbytestringexit-rtsbytestring-pbytestring">
+<span id="group-cmp-crypto-itf-1ga96c8707378e2064d18f26066067de953"></span><h3>RTS_RESULT CryptoRtsByteStringExit (RtsByteString <a href="#id119"><span class="problematic" id="id120">*</span></a>pByteString)<a class="headerlink" href="#rts-result-cryptortsbytestringexit-rtsbytestring-pbytestring" title="Permalink to this headline">¶</a></h3>
+<p>Clean up a byte string.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="25%" />
+<col width="57%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>pByteString</td>
+<td>Byte string to be clean up.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>Operation result.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___cmp_device_itf.html" title="CmpDeviceItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___cmp_crypt_m_d5_itf.html" title="CmpCryptMD5Itf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

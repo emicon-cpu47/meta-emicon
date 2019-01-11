@@ -1,0 +1,596 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CmpSJACanDrvDep &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CmpSJACanDrvDep</a><ul>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-sja-settg-num-devices-numdevices">#define SJA_SETTG_NUM_DEVICES &#8220;NumDevices&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-disable-ret-disableretain">#define SJA_SETTG_DISABLE_RET &#8220;DisableRetain&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-disable-pciscan-disablepciscan">#define SJA_SETTG_DISABLE_PCISCAN &#8220;DisablePciScan&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-disable-sjachipcheck-disablesjachipcheck">#define SJA_SETTG_DISABLE_SJACHIPCHECK &#8220;DisableSjaChipCheck&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-addr-d-address">#define SJA_SETTG_ADDR &#8220;%d.Address&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-memmap-d-mapaddress">#define SJA_SETTG_MEMMAP &#8220;%d.MapAddress&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-int-d-interrupt">#define SJA_SETTG_INT &#8220;%d.Interrupt&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-intedge-d-intedgetrig">#define SJA_SETTG_INTEDGE &#8220;%d.IntEdgeTrig&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-xtal-d-xtalfrequency">#define SJA_SETTG_XTAL &#8220;%d.XtalFrequency&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-bustype-d-bustype">#define SJA_SETTG_BUSTYPE &#8220;%d.BusType&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-alignment-d-alignment">#define SJA_SETTG_ALIGNMENT &#8220;%d.Alignment&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-name-d-name">#define SJA_SETTG_NAME &#8220;%d.Name&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-octrl-d-outputctrl">#define SJA_SETTG_OCTRL &#8220;%d.OutputCtrl&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-portaddr-d-portaddress">#define SJA_SETTG_PORTADDR &#8220;%d.PortAddress&#8221;</a></li>
+<li><a class="reference internal" href="#define-sja-settg-portval-d-portvalue">#define SJA_SETTG_PORTVAL &#8220;%d.PortValue&#8221;</a></li>
+<li><a class="reference internal" href="#define-vendor-id-0x10b5-plx-technology">#define VENDOR_ID 0x10B5                /* PLX technology */</a></li>
+<li><a class="reference internal" href="#define-device-id-pci-0x9050-pci-card-with-plx9050">#define DEVICE_ID_PCI 0x9050    /* PCI card with PLX9050 */</a></li>
+<li><a class="reference internal" href="#define-device-id-pci-9056-0x9056-pci-card-with-plx9056">#define DEVICE_ID_PCI_9056 0x9056       /* PCI card with PLX9056 */</a></li>
+<li><a class="reference internal" href="#define-device-id-pci-f3-altera-0xe005">#define DEVICE_ID_PCI_F3_ALTERA 0xE005</a></li>
+<li><a class="reference internal" href="#define-device-id-pciex-a2-altera-0x0004">#define DEVICE_ID_PCIEX_A2_ALTERA 0x0004</a></li>
+<li><a class="reference internal" href="#define-subvendor-id-automata-0x1971-automata-chip">#define SUBVENDOR_ID_AUTOMATA 0x1971            /* Automata chip */</a></li>
+<li><a class="reference internal" href="#define-subsystem-id-3450-0x3450-pci-subsystem-id-defined-for-can-card-70034500-1can-70034500-1n">#define SUBSYSTEM_ID_3450 0x3450        /* PCI subsystem ID defined for CAN card 70034500  1CAN  70034500 1N*/</a></li>
+<li><a class="reference internal" href="#define-subsystem-id-3451-0x3451-pci-subsystem-id-defined-for-can-card-70034510-2can-70062810-2n">#define SUBSYSTEM_ID_3451 0x3451        /* PCI subsystem ID defined for CAN card 70034510  2CAN  70062810 2N*/</a></li>
+<li><a class="reference internal" href="#define-subsystem-id-3455-0x3455-pci-subsystem-id-defined-for-can-card-70034550-2can-nv-ram-70062800-2nnv">#define SUBSYSTEM_ID_3455 0x3455        /* PCI subsystem ID defined for CAN card 70034550  2CAN + NV-RAM  70062800 2NNV*/</a></li>
+<li><a class="reference internal" href="#define-subsystem-id-3680-0x3680-pci-subsystem-id-defined-for-f3-canmaster-61kz010298-61kz010256">#define SUBSYSTEM_ID_3680 0x3680        /* PCI subsystem ID defined for F3 CANMaster 61KZ010298 &amp; 61KZ010256*/</a></li>
+<li><a class="reference internal" href="#define-subsystem-id-395f-0x395f-pci-subsystem-id-defined-for-a2-canmaster-72011100">#define SUBSYSTEM_ID_395F 0x395F        /* PCI subsystem ID defined for A2 CANMaster 72011100 */</a></li>
+<li><a class="reference internal" href="#define-vendor-id-ixxat-2-0x10b5-plx-technology">#define VENDOR_ID_IXXAT_2 0x10B5                /* PLX technology */</a></li>
+<li><a class="reference internal" href="#define-subvendor-id-ixxat-2-0x10b5-plx-technology">#define SUBVENDOR_ID_IXXAT_2 0x10B5             /* PLX technology */</a></li>
+<li><a class="reference internal" href="#define-device-id-pci-ixxat-2-0x9051">#define DEVICE_ID_PCI_IXXAT_2 0x9051</a></li>
+<li><a class="reference internal" href="#define-subsystem-id-ixxat-2-0x2540">#define SUBSYSTEM_ID_IXXAT_2 0x2540</a></li>
+<li><a class="reference internal" href="#define-subvendor-id-esd-0x12fe">#define SUBVENDOR_ID_ESD 0x12FE</a></li>
+<li><a class="reference internal" href="#define-subsystem-id-esd-pci200-0x0004">#define SUBSYSTEM_ID_ESD_PCI200 0x0004</a></li>
+<li><a class="reference internal" href="#define-subsystem-id-esd-cpci200-0x010b">#define SUBSYSTEM_ID_ESD_CPCI200 0x010B</a></li>
+<li><a class="reference internal" href="#define-subsystem-id-esd-104200-0x0501">#define SUBSYSTEM_ID_ESD_104200 0x0501</a></li>
+<li><a class="reference internal" href="#define-subsystem-id-esd-pci266-0x0009">#define SUBSYSTEM_ID_ESD_PCI266 0x0009</a></li>
+<li><a class="reference internal" href="#define-subsystem-id-esd-pex266-0x0200">#define SUBSYSTEM_ID_ESD_PEX266 0x0200</a></li>
+<li><a class="reference internal" href="#define-subsystem-id-esd-pmc266-0x000e">#define SUBSYSTEM_ID_ESD_PMC266 0x000E</a></li>
+<li><a class="reference internal" href="#define-device-id-pci-9030-0x9030-pci-card-with-plx9030">#define DEVICE_ID_PCI_9030 0x9030       /* PCI card with PLX9030 */</a></li>
+<li><a class="reference internal" href="#define-subvendor-id-asem-0x3000-asem-chip">#define SUBVENDOR_ID_ASEM 0x3000        /* Asem chip */</a></li>
+<li><a class="reference internal" href="#define-can-sub-system-id-conf1-0x1000-pci-subsystem-id-defined-for-1-can-ch">#define CAN_SUB_SYSTEM_ID_CONF1 0x1000  /* PCI subsystem ID defined for 1 CAN ch. */</a></li>
+<li><a class="reference internal" href="#define-can-sub-system-id-conf2-0x1001-pci-subsystem-id-defined-for-2-can-ch-nvr">#define CAN_SUB_SYSTEM_ID_CONF2 0x1001  /* PCI subsystem ID defined for 2 CAN ch + NVR */</a></li>
+<li><a class="reference internal" href="#define-can-sub-system-id-conf3-0x1002-pci-subsystem-id-defined-for-2-can-ch">#define CAN_SUB_SYSTEM_ID_CONF3 0x1002  /* PCI subsystem ID defined for 2 CAN ch */</a></li>
+<li><a class="reference internal" href="#define-can-sub-system-id-conf4-0x1003-pci-subsystem-id-defined-for-future-config">#define CAN_SUB_SYSTEM_ID_CONF4 0x1003  /* PCI subsystem ID defined for future config. */</a></li>
+<li><a class="reference internal" href="#define-vendor-id-peak-0x001c-vendor-id-peak-systems">#define VENDOR_ID_PEAK 0x001C   /* Vendor ID Peak Systems */</a></li>
+<li><a class="reference internal" href="#define-device-id-peak-0x0001-pcan-pci">#define DEVICE_ID_PEAK 0x0001   /* PCAN-PCI. */</a></li>
+<li><a class="reference internal" href="#define-device-id-peak2-0x0002-pcan-expresscard">#define DEVICE_ID_PEAK2 0x0002  /* PCAN-ExpressCard. */</a></li>
+<li><a class="reference internal" href="#define-device-id-peak3-0x0003-pcan-pci-express">#define DEVICE_ID_PEAK3 0x0003  /* PCAN-PCI Express. */</a></li>
+<li><a class="reference internal" href="#define-device-id-peak4-0x0004-pcan-compactpci">#define DEVICE_ID_PEAK4 0x0004  /* PCAN-compactPCI. */</a></li>
+<li><a class="reference internal" href="#define-device-id-peak5-0x0005-pcan-minipci">#define DEVICE_ID_PEAK5 0x0005  /* PCAN-miniPCI. */</a></li>
+<li><a class="reference internal" href="#define-device-id-peak6-0x0006-pcan-pc-104-plus">#define DEVICE_ID_PEAK6 0x0006  /* PCAN-PC/104-Plus. */</a></li>
+<li><a class="reference internal" href="#define-device-id-peak7-0x0007-pcan-pci-104-express">#define DEVICE_ID_PEAK7 0x0007  /* PCAN-PCI/104-Express. */</a></li>
+<li><a class="reference internal" href="#define-device-id-peak8-0x0008-pcan-minipci-express">#define DEVICE_ID_PEAK8 0x0008  /* PCAN-miniPCI-Express. */</a></li>
+<li><a class="reference internal" href="#define-subsystem-id-ixxat-pci04-0x2540">#define SUBSYSTEM_ID_IXXAT_PCI04 0x2540</a></li>
+<li><a class="reference internal" href="#define-subvendor-id-ixxat-pci04-0x10b5">#define SUBVENDOR_ID_IXXAT_PCI04 0x10B5</a></li>
+<li><a class="reference internal" href="#define-pci-janz-subvendor-id-0x13c3">#define PCI_JANZ_SUBVENDOR_ID 0x13c3</a></li>
+<li><a class="reference internal" href="#define-pci-janz-subsystem-id-0x1a00">#define PCI_JANZ_SUBSYSTEM_ID 0x1a00</a></li>
+<li><a class="reference internal" href="#define-pci-janz-subsystem-id-1-channel-0x1900">#define PCI_JANZ_SUBSYSTEM_ID_1_CHANNEL 0x1900</a></li>
+<li><a class="reference internal" href="#define-pci-janz-subsystem-id-onboard-0x1d00">#define PCI_JANZ_SUBSYSTEM_ID_ONBOARD 0x1d00</a></li>
+<li><a class="reference internal" href="#define-pci-vendor-altera-0x1172">#define PCI_VENDOR_ALTERA 0x1172</a></li>
+<li><a class="reference internal" href="#define-pci-device-grossenb-0x1f32">#define PCI_DEVICE_GROSSENB 0x1f32</a></li>
+<li><a class="reference internal" href="#define-pci-subvendor-altera-0x1172">#define PCI_SUBVENDOR_ALTERA 0x1172</a></li>
+<li><a class="reference internal" href="#define-pci-subdevice-grossenb-0xcafe">#define PCI_SUBDEVICE_GROSSENB 0xcafe</a></li>
+<li><a class="reference internal" href="#define-pci-vendor-beh-0x10ee-it-is-the-xilinx-vendor-code-pci-core-from-xilinx-used">#define PCI_VENDOR_BEH 0x10EE           /<em>it is the Xilinx vendor code (PCI core from Xilinx used)</em>/</a></li>
+<li><a class="reference internal" href="#define-pci-device-belb-0x0300-it-s-the-device-code-for-the-whole-belb-not-only-can-board">#define PCI_DEVICE_BELB 0x0300          /<em>it&#8217;s the device code for the whole BELB (not only CAN Board)</em>/</a></li>
+<li><a class="reference internal" href="#define-belbreg-master-irq-enable-0x008-16bit-rw-irq-enable-register">#define BELBREG_MASTER_IRQ_ENABLE 0x008  /* 16bit rw?, IRQ Enable Register */</a></li>
+<li><a class="reference internal" href="#define-belbirqenable-0x0000-varible-required-because-register-is-writeonly">#define belbIrqEnable 0x0000    /<em>varible required because register is writeonly?</em>/</a></li>
+<li><a class="reference internal" href="#define-belbreg-irqline-select-0x3f4-16bit-wo-write-only">#define BELBREG_IRQLINE_SELECT 0x3F4  /* 16bit wo (write only), ??? */</a></li>
+<li><a class="reference internal" href="#define-belbirq-can1-0x4000-free-defined-use-e-g-15th-irq-line-for-can0">#define belbIrq_CAN1 0x4000      /* free defined, use e.g. 15th IRQ line for CAN0 */</a></li>
+<li><a class="reference internal" href="#define-belbirq-can2-0x8000-free-defined-use-e-g-16th-irq-line-for-can1">#define belbIrq_CAN2 0x8000      /* free defined, use e.g. 16th IRQ line for CAN1 */</a></li>
+<li><a class="reference internal" href="#define-belbirq-io-0x0001-free-defined-use-e-g-1st-irq-line-for-io">#define belbIrq_IO 0x0001        /* free defined, use e.g. 1st IRQ line for IO */</a></li>
+<li><a class="reference internal" href="#define-belb-slave-size-0x400-size-of-belb-slave-device">#define BELB_SLAVE_SIZE 0x400      /* size of BELB slave device*/</a></li>
+<li><a class="reference internal" href="#define-belb-slave-count-32">#define BELB_SLAVE_COUNT 32</a></li>
+<li><a class="reference internal" href="#define-belb-bar1-memory-size-32-0x400-size-of-all-belb-slaves-together-all-memory-is-contiguous">#define BELB_BAR1_MEMORY_SIZE (32 * 0x400) /* size of all BELB slaves together, all memory is contiguous */</a></li>
+<li><a class="reference internal" href="#define-belbreg-dev-type-0x3fc-16bit-ro-lower-byte-is-the-type-higher-byte-is-the-version-revision-todo">#define BELBREG_DEV_TYPE 0x3FC  /* 16bit ro, Lower Byte is the Type, Higher Byte is the Version &amp; Revision TODO*/</a></li>
+<li><a class="reference internal" href="#define-belb-dev-type-can-0x1107-check-only-lower-byte-0x07-0x1207-is-the-current-one-todo-1access-reads">#define BELB_DEV_TYPE_CAN 0x1107        /* check only Lower Byte &#8220;0x07&#8221;   0x1207 is the current one?TODO 1access reads */</a></li>
+<li><a class="reference internal" href="#define-belb-dev-type-in8-0x3202">#define BELB_DEV_TYPE_IN8 0x3202</a></li>
+<li><a class="reference internal" href="#define-belb-dev-type-out8-0x3203">#define BELB_DEV_TYPE_OUT8 0x3203</a></li>
+<li><a class="reference internal" href="#define-belb-dev-type-in16-0x3202">#define BELB_DEV_TYPE_IN16 0x3202</a></li>
+<li><a class="reference internal" href="#define-belb-dev-type-rs232-0x3204">#define BELB_DEV_TYPE_RS232 0x3204</a></li>
+<li><a class="reference internal" href="#define-belb-dev-type-arcnet-0x0">#define BELB_DEV_TYPE_ARCNET 0x0</a></li>
+<li><a class="reference internal" href="#define-belb-dev-size-0x400">#define BELB_DEV_SIZE 0x400</a></li>
+<li><a class="reference internal" href="#define-pci-vendor-adam-5095-0x13fe">#define PCI_VENDOR_ADAM_5095 0x13fe</a></li>
+<li><a class="reference internal" href="#define-pci-device-adam-5095-0x5095">#define PCI_DEVICE_ADAM_5095 0x5095</a></li>
+<li><a class="reference internal" href="#define-pci-subvendor-adam-5095-0">#define PCI_SUBVENDOR_ADAM_5095 0</a></li>
+<li><a class="reference internal" href="#define-pci-subdevice-adam-5095-0">#define PCI_SUBDEVICE_ADAM_5095 0</a></li>
+<li><a class="reference internal" href="#define-pci-vendor-pcm26d2ca-0x13fe">#define PCI_VENDOR_PCM26D2CA 0x13fe</a></li>
+<li><a class="reference internal" href="#define-pci-device-pcm26d2ca-0xc202">#define PCI_DEVICE_PCM26D2CA 0xc202</a></li>
+<li><a class="reference internal" href="#define-pci-device-pcm26d2ca-2-0xc302">#define PCI_DEVICE_PCM26D2CA_2 0xc302</a></li>
+<li><a class="reference internal" href="#define-pci-subvendor-pcm26d2ca-0x13fe">#define PCI_SUBVENDOR_PCM26D2CA 0x13fe</a></li>
+<li><a class="reference internal" href="#define-pci-subdevice-pcm26d2ca-0xc202">#define PCI_SUBDEVICE_PCM26D2CA 0xc202</a></li>
+<li><a class="reference internal" href="#define-pci-subdevice-pcm26d2ca-2-0xc302">#define PCI_SUBDEVICE_PCM26D2CA_2 0xc302</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#optional-imports-syspcigetcardinfo-syspcireadvalue-syspciwritevalue-systimegetms-eventopen-eventclose-eventunregistercallbackfunction-eventregistercallbackfunction-required-imports-settggetintvalue">OPTIONAL_IMPORTS (SysPciGetCardInfo, SysPciReadValue, SysPciWriteValue, SysTimeGetMs, EventOpen, EventClose, EventUnregisterCallbackFunction, EventRegisterCallbackFunction) REQUIRED_IMPORTS(SettgGetIntValue</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___cmp_s_j_a_can_drv_dep.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cmpsjacandrvdep">
+<span id="group-cmp-s-j-a-can-drv-dep"></span><h1>CmpSJACanDrvDep<a class="headerlink" href="#cmpsjacandrvdep" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaaf3bdc9eb08af5189245ee7532505056"><span class="std std-ref">SJA_SETTG_NUM_DEVICES</span></a> &#8220;NumDevices&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga033aa47c55183856c5fee97d569c79ac"><span class="std std-ref">SJA_SETTG_DISABLE_RET</span></a> &#8220;DisableRetain&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga2b831894e619c2c4a952c7985d25df61"><span class="std std-ref">SJA_SETTG_DISABLE_PCISCAN</span></a> &#8220;DisablePciScan&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga6b0ff551895f38f307d2901fd3c07ba4"><span class="std std-ref">SJA_SETTG_DISABLE_SJACHIPCHECK</span></a> &#8220;DisableSjaChipCheck&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga776091f9487295857b0d46d28ac029e6"><span class="std std-ref">SJA_SETTG_ADDR</span></a> &#8220;%d.Address&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga3930e9f357bbedd2ecb5a8aa461e7e22"><span class="std std-ref">SJA_SETTG_MEMMAP</span></a> &#8220;%d.MapAddress&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaf70c12c9741c248ea86bd1b11ed17cee"><span class="std std-ref">SJA_SETTG_INT</span></a> &#8220;%d.Interrupt&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga5a2bac0bf5f70c3fc72d59159b1de805"><span class="std std-ref">SJA_SETTG_INTEDGE</span></a> &#8220;%d.IntEdgeTrig&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga5253f2667b9f8c613720d3fab67bb2ff"><span class="std std-ref">SJA_SETTG_XTAL</span></a> &#8220;%d.XtalFrequency&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga7457d663d0245de86cd42b938248ecc8"><span class="std std-ref">SJA_SETTG_BUSTYPE</span></a> &#8220;%d.BusType&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga704b991cd43e1b3935d085cbfc06d1ee"><span class="std std-ref">SJA_SETTG_ALIGNMENT</span></a> &#8220;%d.Alignment&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga6bcc6f40d3b6b3c275301fa86301dcbe"><span class="std std-ref">SJA_SETTG_NAME</span></a> &#8220;%d.Name&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaacb8177d4d01446cf16212e37dafe529"><span class="std std-ref">SJA_SETTG_OCTRL</span></a> &#8220;%d.OutputCtrl&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaf4dd203858765743a2f6794d877bb08e"><span class="std std-ref">SJA_SETTG_PORTADDR</span></a> &#8220;%d.PortAddress&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga7a88b65255f5c21a86fe9bbe5c829764"><span class="std std-ref">SJA_SETTG_PORTVAL</span></a> &#8220;%d.PortValue&#8221;</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga5e2fdecfea0fad3bdb8fa4eedf041a3d"><span class="std std-ref">VENDOR_ID</span></a> 0x10B5           /* PLX technology <a href="#id1"><span class="problematic" id="id2">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaf8896e4c790dbf1a38fd6e2142957c5b"><span class="std std-ref">DEVICE_ID_PCI</span></a> 0x9050       /* PCI card with PLX9050 <a href="#id3"><span class="problematic" id="id4">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gac2066744741e5fe63e894391a3b15487"><span class="std std-ref">DEVICE_ID_PCI_9056</span></a> 0x9056  /* PCI card with PLX9056 <a href="#id5"><span class="problematic" id="id6">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga4ce395bf78390e6cd4d8baa5dcaf0b35"><span class="std std-ref">DEVICE_ID_PCI_F3_ALTERA</span></a> 0xE005</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gab9cabff7fd38a6b56575c804875bd547"><span class="std std-ref">DEVICE_ID_PCIEX_A2_ALTERA</span></a> 0x0004</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga9464da63c432888d39126e1f57c0780f"><span class="std std-ref">SUBVENDOR_ID_AUTOMATA</span></a> 0x1971               /* Automata chip <a href="#id7"><span class="problematic" id="id8">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga624550daf4d0b7510e52b378bb973786"><span class="std std-ref">SUBSYSTEM_ID_3450</span></a> 0x3450   /* PCI subsystem ID defined for CAN card 70034500  1CAN  70034500 1N*/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga9f91ca0bcacb86079ee45302a780c65d"><span class="std std-ref">SUBSYSTEM_ID_3451</span></a> 0x3451   /* PCI subsystem ID defined for CAN card 70034510  2CAN  70062810 2N*/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gad6da0a89ae7ce67ebe14a7d3640c0fba"><span class="std std-ref">SUBSYSTEM_ID_3455</span></a> 0x3455   /* PCI subsystem ID defined for CAN card 70034550  2CAN + NV-RAM  70062800 2NNV*/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gae3a1fab1bdd2576c9a3d6f0d9768999b"><span class="std std-ref">SUBSYSTEM_ID_3680</span></a> 0x3680   /* PCI subsystem ID defined for F3 CANMaster 61KZ010298 &amp; 61KZ010256*/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaf4f68b07d4674fecdea9166ee09329d9"><span class="std std-ref">SUBSYSTEM_ID_395F</span></a> 0x395F   /* PCI subsystem ID defined for A2 CANMaster 72011100 <a href="#id9"><span class="problematic" id="id10">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gafa01c6135cf9b07e9d1ab246d421bdd9"><span class="std std-ref">VENDOR_ID_IXXAT_2</span></a> 0x10B5           /* PLX technology <a href="#id11"><span class="problematic" id="id12">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga64ac9059c6df3f90f9e79f1fa62cf93f"><span class="std std-ref">SUBVENDOR_ID_IXXAT_2</span></a> 0x10B5                /* PLX technology <a href="#id13"><span class="problematic" id="id14">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga41e97b88cce160a8c25901e2dada65df"><span class="std std-ref">DEVICE_ID_PCI_IXXAT_2</span></a> 0x9051</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaa43965a425e644dd7ab560438d37ec8e"><span class="std std-ref">SUBSYSTEM_ID_IXXAT_2</span></a> 0x2540</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gad1edb1fbf1312580719f9646bb876153"><span class="std std-ref">SUBVENDOR_ID_ESD</span></a> 0x12FE</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga3170a6ee5f19fc566d31b49a8586fe27"><span class="std std-ref">SUBSYSTEM_ID_ESD_PCI200</span></a> 0x0004</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaa5089e549a8b5e30a9a00d90866741b2"><span class="std std-ref">SUBSYSTEM_ID_ESD_CPCI200</span></a> 0x010B</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga5b413decd3b72a445091ad2bc66f3f1c"><span class="std std-ref">SUBSYSTEM_ID_ESD_104200</span></a> 0x0501</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga79a7a2f70a7cc1f01a18a5e998eae20d"><span class="std std-ref">SUBSYSTEM_ID_ESD_PCI266</span></a> 0x0009</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gad67d08c140ec61df1689eb8438ce1d94"><span class="std std-ref">SUBSYSTEM_ID_ESD_PEX266</span></a> 0x0200</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga0a2a584311317d13adf23d1478d926ff"><span class="std std-ref">SUBSYSTEM_ID_ESD_PMC266</span></a> 0x000E</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaff7ddd869e0527a85f73b1dc142b5398"><span class="std std-ref">DEVICE_ID_PCI_9030</span></a> 0x9030  /* PCI card with PLX9030 <a href="#id15"><span class="problematic" id="id16">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga3e4365f452fe5116f8d8077fe167e9f7"><span class="std std-ref">SUBVENDOR_ID_ASEM</span></a> 0x3000   /* Asem chip <a href="#id17"><span class="problematic" id="id18">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga13fb71cf472bc2c73e11e06798114d98"><span class="std std-ref">CAN_SUB_SYSTEM_ID_CONF1</span></a> 0x1000     /* PCI subsystem ID defined for 1 CAN ch. <a href="#id19"><span class="problematic" id="id20">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga09f01e10b072a5986c86ffa2fbb8e706"><span class="std std-ref">CAN_SUB_SYSTEM_ID_CONF2</span></a> 0x1001     /* PCI subsystem ID defined for 2 CAN ch + NVR <a href="#id21"><span class="problematic" id="id22">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gace21f29c79d4a19cd949ef8b9c40ac3a"><span class="std std-ref">CAN_SUB_SYSTEM_ID_CONF3</span></a> 0x1002     /* PCI subsystem ID defined for 2 CAN ch <a href="#id23"><span class="problematic" id="id24">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga2f2742cb21eff5b4c1349bdb5b8fb9cd"><span class="std std-ref">CAN_SUB_SYSTEM_ID_CONF4</span></a> 0x1003     /* PCI subsystem ID defined for future config. <a href="#id25"><span class="problematic" id="id26">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga7deadf352d505231f4ed973befabc7d4"><span class="std std-ref">VENDOR_ID_PEAK</span></a> 0x001C      /* Vendor ID Peak Systems <a href="#id27"><span class="problematic" id="id28">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gac0828fe7538ca205612bb53c9eb0ebc9"><span class="std std-ref">DEVICE_ID_PEAK</span></a> 0x0001      /* PCAN-PCI. <a href="#id29"><span class="problematic" id="id30">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaaa6e308939582801d1327af974fc73c0"><span class="std std-ref">DEVICE_ID_PEAK2</span></a> 0x0002     /* PCAN-ExpressCard. <a href="#id31"><span class="problematic" id="id32">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaf6f0bdf568799d7ce46d658b91bee934"><span class="std std-ref">DEVICE_ID_PEAK3</span></a> 0x0003     /* PCAN-PCI Express. <a href="#id33"><span class="problematic" id="id34">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gae438639e5e252752ee10183a92329eda"><span class="std std-ref">DEVICE_ID_PEAK4</span></a> 0x0004     /* PCAN-compactPCI. <a href="#id35"><span class="problematic" id="id36">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gab715895178315f8679b417948af0aa95"><span class="std std-ref">DEVICE_ID_PEAK5</span></a> 0x0005     /* PCAN-miniPCI. <a href="#id37"><span class="problematic" id="id38">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga0f5a418e924f124e85f78da7bdead890"><span class="std std-ref">DEVICE_ID_PEAK6</span></a> 0x0006     /* PCAN-PC/104-Plus. <a href="#id39"><span class="problematic" id="id40">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaf7e290d57004d4d027ebd2d2fc45633b"><span class="std std-ref">DEVICE_ID_PEAK7</span></a> 0x0007     /* PCAN-PCI/104-Express. <a href="#id41"><span class="problematic" id="id42">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaa5a4d8c76a86ab10b9f8bc43e20dc3e9"><span class="std std-ref">DEVICE_ID_PEAK8</span></a> 0x0008     /* PCAN-miniPCI-Express. <a href="#id43"><span class="problematic" id="id44">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga456a2e06a1a9614e43ecfec86a9b89f0"><span class="std std-ref">SUBSYSTEM_ID_IXXAT_PCI04</span></a> 0x2540</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga28737a9be5430f262eba554596301bf1"><span class="std std-ref">SUBVENDOR_ID_IXXAT_PCI04</span></a> 0x10B5</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga7e395340775e1fb909b5a75fcc5a2799"><span class="std std-ref">PCI_JANZ_SUBVENDOR_ID</span></a> 0x13c3</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaf616375c4fb071770679cf2690899f68"><span class="std std-ref">PCI_JANZ_SUBSYSTEM_ID</span></a> 0x1a00</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga15e9fb060978b5304aff9595e0b31f13"><span class="std std-ref">PCI_JANZ_SUBSYSTEM_ID_1_CHANNEL</span></a> 0x1900</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga68c8dc23db380358239d364b7ca82ef5"><span class="std std-ref">PCI_JANZ_SUBSYSTEM_ID_ONBOARD</span></a> 0x1d00</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaeaa40caf5e5965d2f91a860b5b0309f3"><span class="std std-ref">PCI_VENDOR_ALTERA</span></a> 0x1172</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gae278971d51abab5b70fce93b238a1c84"><span class="std std-ref">PCI_DEVICE_GROSSENB</span></a> 0x1f32</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaccc0e9a0e43daed4e837d5cde54c80fe"><span class="std std-ref">PCI_SUBVENDOR_ALTERA</span></a> 0x1172</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga96675522981ecf0b9b9a14b315d121a8"><span class="std std-ref">PCI_SUBDEVICE_GROSSENB</span></a> 0xcafe</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gad2a02940dddc977e0e19faace181f785"><span class="std std-ref">PCI_VENDOR_BEH</span></a> 0x10EE              /<em>it is the Xilinx vendor code (PCI core from Xilinx used)</em>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga6c6f59ea4d23a30a1393b46d283e2aee"><span class="std std-ref">PCI_DEVICE_BELB</span></a> 0x0300             /<em>it&#8217;s the device code for the whole BELB (not only CAN Board)</em>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gae11a2ad53457b274fdd015802bf7227c"><span class="std std-ref">BELBREG_MASTER_IRQ_ENABLE</span></a> 0x008     /* 16bit rw?, IRQ Enable Register <a href="#id45"><span class="problematic" id="id46">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga4ca252c968234d559d90a387120e1cfa"><span class="std std-ref">belbIrqEnable</span></a> 0x0000       /<em>varible required because register is writeonly?</em>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga6f99cf6400a038749b550d22d00f5a41"><span class="std std-ref">BELBREG_IRQLINE_SELECT</span></a> 0x3F4  /* 16bit wo (write only), ??? <a href="#id47"><span class="problematic" id="id48">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga098f7e8a46ed9acb2f8b59cf57e4517e"><span class="std std-ref">belbIrq_CAN1</span></a> 0x4000         /* free defined, use e.g. 15th IRQ line for CAN0 <a href="#id49"><span class="problematic" id="id50">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga273e22bc0facdc874692b6e65e23601d"><span class="std std-ref">belbIrq_CAN2</span></a> 0x8000         /* free defined, use e.g. 16th IRQ line for CAN1 <a href="#id51"><span class="problematic" id="id52">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gafaf84d1a4a12828729ce55876d879308"><span class="std std-ref">belbIrq_IO</span></a> 0x0001   /* free defined, use e.g. 1st IRQ line for IO <a href="#id53"><span class="problematic" id="id54">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga955e203b2c27b37285fd0290b057e89b"><span class="std std-ref">BELB_SLAVE_SIZE</span></a> 0x400         /* size of BELB slave device*/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga51c6b72a299c16bd6e2f2d7c67d0f1e8"><span class="std std-ref">BELB_SLAVE_COUNT</span></a> 32</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga067d394e408b7fcd180b62665dfdf96e"><span class="std std-ref">BELB_BAR1_MEMORY_SIZE</span></a> (32 * 0x400) /* size of all BELB slaves together, all memory is contiguous <a href="#id55"><span class="problematic" id="id56">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gadbeb9ebabd329cfbce7e25e14825bbaa"><span class="std std-ref">BELBREG_DEV_TYPE</span></a> 0x3FC  /* 16bit ro, Lower Byte is the Type, Higher Byte is the Version &amp; Revision TODO*/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga98e2e588f876c3b5fd2d083d561e10c7"><span class="std std-ref">BELB_DEV_TYPE_CAN</span></a> 0x1107   /* check only Lower Byte &#8220;0x07&#8221;   0x1207 is the current one?TODO 1access reads <a href="#id57"><span class="problematic" id="id58">*</span></a>/</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga64ce3ac592526db7c619ba942d28ea6f"><span class="std std-ref">BELB_DEV_TYPE_IN8</span></a> 0x3202</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gab2da9a00d78d208d6953d74e06b13985"><span class="std std-ref">BELB_DEV_TYPE_OUT8</span></a> 0x3203</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga63534db4b726aba2ef0ad71f624e0941"><span class="std std-ref">BELB_DEV_TYPE_IN16</span></a> 0x3202</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gab734b57153ac88c8ed01c32c23eb1f09"><span class="std std-ref">BELB_DEV_TYPE_RS232</span></a> 0x3204</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gae98e375e9ca1f4688105bb08e2879a85"><span class="std std-ref">BELB_DEV_TYPE_ARCNET</span></a> 0x0</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gabd718314859e379d27cf60e3c0a405b4"><span class="std std-ref">BELB_DEV_SIZE</span></a> 0x400</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gabee5871269d5ac09d29485fa47f4971e"><span class="std std-ref">PCI_VENDOR_ADAM_5095</span></a> 0x13fe</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga95a3c834264e85ad4c1861cdab6b6d33"><span class="std std-ref">PCI_DEVICE_ADAM_5095</span></a> 0x5095</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaa921b17f9df30bc29c692ca9b2c366f3"><span class="std std-ref">PCI_SUBVENDOR_ADAM_5095</span></a> 0</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gac7a684f1f1098a6607e50b800cfdc784"><span class="std std-ref">PCI_SUBDEVICE_ADAM_5095</span></a> 0</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga90d00dd99269f427798c9fdca3ef35e1"><span class="std std-ref">PCI_VENDOR_PCM26D2CA</span></a> 0x13fe</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gae88ec86dd00b6d6dca1edb17b05b5d93"><span class="std std-ref">PCI_DEVICE_PCM26D2CA</span></a> 0xc202</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gae4a179465866a2bdc7115927574a8b38"><span class="std std-ref">PCI_DEVICE_PCM26D2CA_2</span></a> 0xc302</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gae1644edf4a0a78fbadf8f7dcc31c1f0b"><span class="std std-ref">PCI_SUBVENDOR_PCM26D2CA</span></a> 0x13fe</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gacd6881be189527c6be8553f87923737a"><span class="std std-ref">PCI_SUBDEVICE_PCM26D2CA</span></a> 0xc202</li>
+<li>#define <a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1ga4d1b5e75105c932b2f15f2d6230ab97d"><span class="std std-ref">PCI_SUBDEVICE_PCM26D2CA_2</span></a> 0xc302</li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="#group-cmp-s-j-a-can-drv-dep-1gaecc2a2ac31c4e62c47994cbaed146d1e"><span class="std std-ref">OPTIONAL_IMPORTS</span></a> (<a class="reference internal" href="group___sys_pci_itf.html#group-sys-pci-itf-1ga701df9befb17a2f027996fec4456e45a"><span class="std std-ref">SysPciGetCardInfo</span></a>, <a class="reference internal" href="group___sys_pci_itf.html#group-sys-pci-itf-1gae96b9d709b4d611fd56f2214e8de797f"><span class="std std-ref">SysPciReadValue</span></a>, <a class="reference internal" href="group___sys_pci_itf.html#group-sys-pci-itf-1gada82541621c4fab66735cdb00e3720f3"><span class="std std-ref">SysPciWriteValue</span></a>, <a class="reference internal" href="group___sys_time_itf.html#group-sys-time-itf-1ga5da4ae803f6328356b5e07dfcc518d59"><span class="std std-ref">SysTimeGetMs</span></a>, <a class="reference internal" href="group___cmp_event_mgr_itf.html#group-cmp-event-mgr-itf-1ga03c581805da95e555049ae869ff346ef"><span class="std std-ref">EventOpen</span></a>, <a class="reference internal" href="group___cmp_event_mgr_itf.html#group-cmp-event-mgr-itf-1gab412d42bea35b57d05e6ec72c09b2248"><span class="std std-ref">EventClose</span></a>, <a class="reference internal" href="group___cmp_event_mgr_itf.html#group-cmp-event-mgr-itf-1ga4af436d4a7636f183f8aefd388ba00c6"><span class="std std-ref">EventUnregisterCallbackFunction</span></a>, <a class="reference internal" href="group___cmp_event_mgr_itf.html#group-cmp-event-mgr-itf-1ga840f61977305de6ac7b102b1dea6e97a"><span class="std std-ref">EventRegisterCallbackFunction</span></a>)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-cmp-s-j-a-can-drv-dep-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p><strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-sja-settg-num-devices-numdevices">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaaf3bdc9eb08af5189245ee7532505056"></span><h3>#define SJA_SETTG_NUM_DEVICES &#8220;NumDevices&#8221;<a class="headerlink" href="#define-sja-settg-num-devices-numdevices" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-disable-ret-disableretain">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga033aa47c55183856c5fee97d569c79ac"></span><h3>#define SJA_SETTG_DISABLE_RET &#8220;DisableRetain&#8221;<a class="headerlink" href="#define-sja-settg-disable-ret-disableretain" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-disable-pciscan-disablepciscan">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga2b831894e619c2c4a952c7985d25df61"></span><h3>#define SJA_SETTG_DISABLE_PCISCAN &#8220;DisablePciScan&#8221;<a class="headerlink" href="#define-sja-settg-disable-pciscan-disablepciscan" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-disable-sjachipcheck-disablesjachipcheck">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga6b0ff551895f38f307d2901fd3c07ba4"></span><h3>#define SJA_SETTG_DISABLE_SJACHIPCHECK &#8220;DisableSjaChipCheck&#8221;<a class="headerlink" href="#define-sja-settg-disable-sjachipcheck-disablesjachipcheck" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-addr-d-address">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga776091f9487295857b0d46d28ac029e6"></span><h3>#define SJA_SETTG_ADDR &#8220;%d.Address&#8221;<a class="headerlink" href="#define-sja-settg-addr-d-address" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-memmap-d-mapaddress">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga3930e9f357bbedd2ecb5a8aa461e7e22"></span><h3>#define SJA_SETTG_MEMMAP &#8220;%d.MapAddress&#8221;<a class="headerlink" href="#define-sja-settg-memmap-d-mapaddress" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-int-d-interrupt">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaf70c12c9741c248ea86bd1b11ed17cee"></span><h3>#define SJA_SETTG_INT &#8220;%d.Interrupt&#8221;<a class="headerlink" href="#define-sja-settg-int-d-interrupt" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-intedge-d-intedgetrig">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga5a2bac0bf5f70c3fc72d59159b1de805"></span><h3>#define SJA_SETTG_INTEDGE &#8220;%d.IntEdgeTrig&#8221;<a class="headerlink" href="#define-sja-settg-intedge-d-intedgetrig" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-xtal-d-xtalfrequency">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga5253f2667b9f8c613720d3fab67bb2ff"></span><h3>#define SJA_SETTG_XTAL &#8220;%d.XtalFrequency&#8221;<a class="headerlink" href="#define-sja-settg-xtal-d-xtalfrequency" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-bustype-d-bustype">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga7457d663d0245de86cd42b938248ecc8"></span><h3>#define SJA_SETTG_BUSTYPE &#8220;%d.BusType&#8221;<a class="headerlink" href="#define-sja-settg-bustype-d-bustype" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-alignment-d-alignment">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga704b991cd43e1b3935d085cbfc06d1ee"></span><h3>#define SJA_SETTG_ALIGNMENT &#8220;%d.Alignment&#8221;<a class="headerlink" href="#define-sja-settg-alignment-d-alignment" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-name-d-name">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga6bcc6f40d3b6b3c275301fa86301dcbe"></span><h3>#define SJA_SETTG_NAME &#8220;%d.Name&#8221;<a class="headerlink" href="#define-sja-settg-name-d-name" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-octrl-d-outputctrl">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaacb8177d4d01446cf16212e37dafe529"></span><h3>#define SJA_SETTG_OCTRL &#8220;%d.OutputCtrl&#8221;<a class="headerlink" href="#define-sja-settg-octrl-d-outputctrl" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-portaddr-d-portaddress">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaf4dd203858765743a2f6794d877bb08e"></span><h3>#define SJA_SETTG_PORTADDR &#8220;%d.PortAddress&#8221;<a class="headerlink" href="#define-sja-settg-portaddr-d-portaddress" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sja-settg-portval-d-portvalue">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga7a88b65255f5c21a86fe9bbe5c829764"></span><h3>#define SJA_SETTG_PORTVAL &#8220;%d.PortValue&#8221;<a class="headerlink" href="#define-sja-settg-portval-d-portvalue" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-vendor-id-0x10b5-plx-technology">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga5e2fdecfea0fad3bdb8fa4eedf041a3d"></span><h3>#define VENDOR_ID 0x10B5                /* PLX technology <a href="#id59"><span class="problematic" id="id60">*</span></a>/<a class="headerlink" href="#define-vendor-id-0x10b5-plx-technology" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-pci-0x9050-pci-card-with-plx9050">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaf8896e4c790dbf1a38fd6e2142957c5b"></span><h3>#define DEVICE_ID_PCI 0x9050    /* PCI card with PLX9050 <a href="#id61"><span class="problematic" id="id62">*</span></a>/<a class="headerlink" href="#define-device-id-pci-0x9050-pci-card-with-plx9050" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-pci-9056-0x9056-pci-card-with-plx9056">
+<span id="group-cmp-s-j-a-can-drv-dep-1gac2066744741e5fe63e894391a3b15487"></span><h3>#define DEVICE_ID_PCI_9056 0x9056       /* PCI card with PLX9056 <a href="#id63"><span class="problematic" id="id64">*</span></a>/<a class="headerlink" href="#define-device-id-pci-9056-0x9056-pci-card-with-plx9056" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-pci-f3-altera-0xe005">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga4ce395bf78390e6cd4d8baa5dcaf0b35"></span><h3>#define DEVICE_ID_PCI_F3_ALTERA 0xE005<a class="headerlink" href="#define-device-id-pci-f3-altera-0xe005" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-pciex-a2-altera-0x0004">
+<span id="group-cmp-s-j-a-can-drv-dep-1gab9cabff7fd38a6b56575c804875bd547"></span><h3>#define DEVICE_ID_PCIEX_A2_ALTERA 0x0004<a class="headerlink" href="#define-device-id-pciex-a2-altera-0x0004" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subvendor-id-automata-0x1971-automata-chip">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga9464da63c432888d39126e1f57c0780f"></span><h3>#define SUBVENDOR_ID_AUTOMATA 0x1971            /* Automata chip <a href="#id65"><span class="problematic" id="id66">*</span></a>/<a class="headerlink" href="#define-subvendor-id-automata-0x1971-automata-chip" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subsystem-id-3450-0x3450-pci-subsystem-id-defined-for-can-card-70034500-1can-70034500-1n">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga624550daf4d0b7510e52b378bb973786"></span><h3>#define SUBSYSTEM_ID_3450 0x3450        /* PCI subsystem ID defined for CAN card 70034500  1CAN  70034500 1N*/<a class="headerlink" href="#define-subsystem-id-3450-0x3450-pci-subsystem-id-defined-for-can-card-70034500-1can-70034500-1n" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subsystem-id-3451-0x3451-pci-subsystem-id-defined-for-can-card-70034510-2can-70062810-2n">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga9f91ca0bcacb86079ee45302a780c65d"></span><h3>#define SUBSYSTEM_ID_3451 0x3451        /* PCI subsystem ID defined for CAN card 70034510  2CAN  70062810 2N*/<a class="headerlink" href="#define-subsystem-id-3451-0x3451-pci-subsystem-id-defined-for-can-card-70034510-2can-70062810-2n" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subsystem-id-3455-0x3455-pci-subsystem-id-defined-for-can-card-70034550-2can-nv-ram-70062800-2nnv">
+<span id="group-cmp-s-j-a-can-drv-dep-1gad6da0a89ae7ce67ebe14a7d3640c0fba"></span><h3>#define SUBSYSTEM_ID_3455 0x3455        /* PCI subsystem ID defined for CAN card 70034550  2CAN + NV-RAM  70062800 2NNV*/<a class="headerlink" href="#define-subsystem-id-3455-0x3455-pci-subsystem-id-defined-for-can-card-70034550-2can-nv-ram-70062800-2nnv" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subsystem-id-3680-0x3680-pci-subsystem-id-defined-for-f3-canmaster-61kz010298-61kz010256">
+<span id="group-cmp-s-j-a-can-drv-dep-1gae3a1fab1bdd2576c9a3d6f0d9768999b"></span><h3>#define SUBSYSTEM_ID_3680 0x3680        /* PCI subsystem ID defined for F3 CANMaster 61KZ010298 &amp; 61KZ010256*/<a class="headerlink" href="#define-subsystem-id-3680-0x3680-pci-subsystem-id-defined-for-f3-canmaster-61kz010298-61kz010256" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subsystem-id-395f-0x395f-pci-subsystem-id-defined-for-a2-canmaster-72011100">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaf4f68b07d4674fecdea9166ee09329d9"></span><h3>#define SUBSYSTEM_ID_395F 0x395F        /* PCI subsystem ID defined for A2 CANMaster 72011100 <a href="#id67"><span class="problematic" id="id68">*</span></a>/<a class="headerlink" href="#define-subsystem-id-395f-0x395f-pci-subsystem-id-defined-for-a2-canmaster-72011100" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-vendor-id-ixxat-2-0x10b5-plx-technology">
+<span id="group-cmp-s-j-a-can-drv-dep-1gafa01c6135cf9b07e9d1ab246d421bdd9"></span><h3>#define VENDOR_ID_IXXAT_2 0x10B5                /* PLX technology <a href="#id69"><span class="problematic" id="id70">*</span></a>/<a class="headerlink" href="#define-vendor-id-ixxat-2-0x10b5-plx-technology" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subvendor-id-ixxat-2-0x10b5-plx-technology">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga64ac9059c6df3f90f9e79f1fa62cf93f"></span><h3>#define SUBVENDOR_ID_IXXAT_2 0x10B5             /* PLX technology <a href="#id71"><span class="problematic" id="id72">*</span></a>/<a class="headerlink" href="#define-subvendor-id-ixxat-2-0x10b5-plx-technology" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-pci-ixxat-2-0x9051">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga41e97b88cce160a8c25901e2dada65df"></span><h3>#define DEVICE_ID_PCI_IXXAT_2 0x9051<a class="headerlink" href="#define-device-id-pci-ixxat-2-0x9051" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subsystem-id-ixxat-2-0x2540">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaa43965a425e644dd7ab560438d37ec8e"></span><h3>#define SUBSYSTEM_ID_IXXAT_2 0x2540<a class="headerlink" href="#define-subsystem-id-ixxat-2-0x2540" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subvendor-id-esd-0x12fe">
+<span id="group-cmp-s-j-a-can-drv-dep-1gad1edb1fbf1312580719f9646bb876153"></span><h3>#define SUBVENDOR_ID_ESD 0x12FE<a class="headerlink" href="#define-subvendor-id-esd-0x12fe" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subsystem-id-esd-pci200-0x0004">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga3170a6ee5f19fc566d31b49a8586fe27"></span><h3>#define SUBSYSTEM_ID_ESD_PCI200 0x0004<a class="headerlink" href="#define-subsystem-id-esd-pci200-0x0004" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subsystem-id-esd-cpci200-0x010b">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaa5089e549a8b5e30a9a00d90866741b2"></span><h3>#define SUBSYSTEM_ID_ESD_CPCI200 0x010B<a class="headerlink" href="#define-subsystem-id-esd-cpci200-0x010b" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subsystem-id-esd-104200-0x0501">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga5b413decd3b72a445091ad2bc66f3f1c"></span><h3>#define SUBSYSTEM_ID_ESD_104200 0x0501<a class="headerlink" href="#define-subsystem-id-esd-104200-0x0501" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subsystem-id-esd-pci266-0x0009">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga79a7a2f70a7cc1f01a18a5e998eae20d"></span><h3>#define SUBSYSTEM_ID_ESD_PCI266 0x0009<a class="headerlink" href="#define-subsystem-id-esd-pci266-0x0009" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subsystem-id-esd-pex266-0x0200">
+<span id="group-cmp-s-j-a-can-drv-dep-1gad67d08c140ec61df1689eb8438ce1d94"></span><h3>#define SUBSYSTEM_ID_ESD_PEX266 0x0200<a class="headerlink" href="#define-subsystem-id-esd-pex266-0x0200" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subsystem-id-esd-pmc266-0x000e">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga0a2a584311317d13adf23d1478d926ff"></span><h3>#define SUBSYSTEM_ID_ESD_PMC266 0x000E<a class="headerlink" href="#define-subsystem-id-esd-pmc266-0x000e" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-pci-9030-0x9030-pci-card-with-plx9030">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaff7ddd869e0527a85f73b1dc142b5398"></span><h3>#define DEVICE_ID_PCI_9030 0x9030       /* PCI card with PLX9030 <a href="#id73"><span class="problematic" id="id74">*</span></a>/<a class="headerlink" href="#define-device-id-pci-9030-0x9030-pci-card-with-plx9030" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subvendor-id-asem-0x3000-asem-chip">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga3e4365f452fe5116f8d8077fe167e9f7"></span><h3>#define SUBVENDOR_ID_ASEM 0x3000        /* Asem chip <a href="#id75"><span class="problematic" id="id76">*</span></a>/<a class="headerlink" href="#define-subvendor-id-asem-0x3000-asem-chip" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-can-sub-system-id-conf1-0x1000-pci-subsystem-id-defined-for-1-can-ch">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga13fb71cf472bc2c73e11e06798114d98"></span><h3>#define CAN_SUB_SYSTEM_ID_CONF1 0x1000  /* PCI subsystem ID defined for 1 CAN ch. <a href="#id77"><span class="problematic" id="id78">*</span></a>/<a class="headerlink" href="#define-can-sub-system-id-conf1-0x1000-pci-subsystem-id-defined-for-1-can-ch" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-can-sub-system-id-conf2-0x1001-pci-subsystem-id-defined-for-2-can-ch-nvr">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga09f01e10b072a5986c86ffa2fbb8e706"></span><h3>#define CAN_SUB_SYSTEM_ID_CONF2 0x1001  /* PCI subsystem ID defined for 2 CAN ch + NVR <a href="#id79"><span class="problematic" id="id80">*</span></a>/<a class="headerlink" href="#define-can-sub-system-id-conf2-0x1001-pci-subsystem-id-defined-for-2-can-ch-nvr" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-can-sub-system-id-conf3-0x1002-pci-subsystem-id-defined-for-2-can-ch">
+<span id="group-cmp-s-j-a-can-drv-dep-1gace21f29c79d4a19cd949ef8b9c40ac3a"></span><h3>#define CAN_SUB_SYSTEM_ID_CONF3 0x1002  /* PCI subsystem ID defined for 2 CAN ch <a href="#id81"><span class="problematic" id="id82">*</span></a>/<a class="headerlink" href="#define-can-sub-system-id-conf3-0x1002-pci-subsystem-id-defined-for-2-can-ch" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-can-sub-system-id-conf4-0x1003-pci-subsystem-id-defined-for-future-config">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga2f2742cb21eff5b4c1349bdb5b8fb9cd"></span><h3>#define CAN_SUB_SYSTEM_ID_CONF4 0x1003  /* PCI subsystem ID defined for future config. <a href="#id83"><span class="problematic" id="id84">*</span></a>/<a class="headerlink" href="#define-can-sub-system-id-conf4-0x1003-pci-subsystem-id-defined-for-future-config" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-vendor-id-peak-0x001c-vendor-id-peak-systems">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga7deadf352d505231f4ed973befabc7d4"></span><h3>#define VENDOR_ID_PEAK 0x001C   /* Vendor ID Peak Systems <a href="#id85"><span class="problematic" id="id86">*</span></a>/<a class="headerlink" href="#define-vendor-id-peak-0x001c-vendor-id-peak-systems" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-peak-0x0001-pcan-pci">
+<span id="group-cmp-s-j-a-can-drv-dep-1gac0828fe7538ca205612bb53c9eb0ebc9"></span><h3>#define DEVICE_ID_PEAK 0x0001   /* PCAN-PCI. <a href="#id87"><span class="problematic" id="id88">*</span></a>/<a class="headerlink" href="#define-device-id-peak-0x0001-pcan-pci" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-peak2-0x0002-pcan-expresscard">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaaa6e308939582801d1327af974fc73c0"></span><h3>#define DEVICE_ID_PEAK2 0x0002  /* PCAN-ExpressCard. <a href="#id89"><span class="problematic" id="id90">*</span></a>/<a class="headerlink" href="#define-device-id-peak2-0x0002-pcan-expresscard" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-peak3-0x0003-pcan-pci-express">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaf6f0bdf568799d7ce46d658b91bee934"></span><h3>#define DEVICE_ID_PEAK3 0x0003  /* PCAN-PCI Express. <a href="#id91"><span class="problematic" id="id92">*</span></a>/<a class="headerlink" href="#define-device-id-peak3-0x0003-pcan-pci-express" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-peak4-0x0004-pcan-compactpci">
+<span id="group-cmp-s-j-a-can-drv-dep-1gae438639e5e252752ee10183a92329eda"></span><h3>#define DEVICE_ID_PEAK4 0x0004  /* PCAN-compactPCI. <a href="#id93"><span class="problematic" id="id94">*</span></a>/<a class="headerlink" href="#define-device-id-peak4-0x0004-pcan-compactpci" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-peak5-0x0005-pcan-minipci">
+<span id="group-cmp-s-j-a-can-drv-dep-1gab715895178315f8679b417948af0aa95"></span><h3>#define DEVICE_ID_PEAK5 0x0005  /* PCAN-miniPCI. <a href="#id95"><span class="problematic" id="id96">*</span></a>/<a class="headerlink" href="#define-device-id-peak5-0x0005-pcan-minipci" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-peak6-0x0006-pcan-pc-104-plus">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga0f5a418e924f124e85f78da7bdead890"></span><h3>#define DEVICE_ID_PEAK6 0x0006  /* PCAN-PC/104-Plus. <a href="#id97"><span class="problematic" id="id98">*</span></a>/<a class="headerlink" href="#define-device-id-peak6-0x0006-pcan-pc-104-plus" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-peak7-0x0007-pcan-pci-104-express">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaf7e290d57004d4d027ebd2d2fc45633b"></span><h3>#define DEVICE_ID_PEAK7 0x0007  /* PCAN-PCI/104-Express. <a href="#id99"><span class="problematic" id="id100">*</span></a>/<a class="headerlink" href="#define-device-id-peak7-0x0007-pcan-pci-104-express" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-device-id-peak8-0x0008-pcan-minipci-express">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaa5a4d8c76a86ab10b9f8bc43e20dc3e9"></span><h3>#define DEVICE_ID_PEAK8 0x0008  /* PCAN-miniPCI-Express. <a href="#id101"><span class="problematic" id="id102">*</span></a>/<a class="headerlink" href="#define-device-id-peak8-0x0008-pcan-minipci-express" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subsystem-id-ixxat-pci04-0x2540">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga456a2e06a1a9614e43ecfec86a9b89f0"></span><h3>#define SUBSYSTEM_ID_IXXAT_PCI04 0x2540<a class="headerlink" href="#define-subsystem-id-ixxat-pci04-0x2540" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-subvendor-id-ixxat-pci04-0x10b5">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga28737a9be5430f262eba554596301bf1"></span><h3>#define SUBVENDOR_ID_IXXAT_PCI04 0x10B5<a class="headerlink" href="#define-subvendor-id-ixxat-pci04-0x10b5" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-janz-subvendor-id-0x13c3">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga7e395340775e1fb909b5a75fcc5a2799"></span><h3>#define PCI_JANZ_SUBVENDOR_ID 0x13c3<a class="headerlink" href="#define-pci-janz-subvendor-id-0x13c3" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-janz-subsystem-id-0x1a00">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaf616375c4fb071770679cf2690899f68"></span><h3>#define PCI_JANZ_SUBSYSTEM_ID 0x1a00<a class="headerlink" href="#define-pci-janz-subsystem-id-0x1a00" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-janz-subsystem-id-1-channel-0x1900">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga15e9fb060978b5304aff9595e0b31f13"></span><h3>#define PCI_JANZ_SUBSYSTEM_ID_1_CHANNEL 0x1900<a class="headerlink" href="#define-pci-janz-subsystem-id-1-channel-0x1900" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-janz-subsystem-id-onboard-0x1d00">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga68c8dc23db380358239d364b7ca82ef5"></span><h3>#define PCI_JANZ_SUBSYSTEM_ID_ONBOARD 0x1d00<a class="headerlink" href="#define-pci-janz-subsystem-id-onboard-0x1d00" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-vendor-altera-0x1172">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaeaa40caf5e5965d2f91a860b5b0309f3"></span><h3>#define PCI_VENDOR_ALTERA 0x1172<a class="headerlink" href="#define-pci-vendor-altera-0x1172" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-device-grossenb-0x1f32">
+<span id="group-cmp-s-j-a-can-drv-dep-1gae278971d51abab5b70fce93b238a1c84"></span><h3>#define PCI_DEVICE_GROSSENB 0x1f32<a class="headerlink" href="#define-pci-device-grossenb-0x1f32" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-subvendor-altera-0x1172">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaccc0e9a0e43daed4e837d5cde54c80fe"></span><h3>#define PCI_SUBVENDOR_ALTERA 0x1172<a class="headerlink" href="#define-pci-subvendor-altera-0x1172" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-subdevice-grossenb-0xcafe">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga96675522981ecf0b9b9a14b315d121a8"></span><h3>#define PCI_SUBDEVICE_GROSSENB 0xcafe<a class="headerlink" href="#define-pci-subdevice-grossenb-0xcafe" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-vendor-beh-0x10ee-it-is-the-xilinx-vendor-code-pci-core-from-xilinx-used">
+<span id="group-cmp-s-j-a-can-drv-dep-1gad2a02940dddc977e0e19faace181f785"></span><h3>#define PCI_VENDOR_BEH 0x10EE           /<em>it is the Xilinx vendor code (PCI core from Xilinx used)</em>/<a class="headerlink" href="#define-pci-vendor-beh-0x10ee-it-is-the-xilinx-vendor-code-pci-core-from-xilinx-used" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-device-belb-0x0300-it-s-the-device-code-for-the-whole-belb-not-only-can-board">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga6c6f59ea4d23a30a1393b46d283e2aee"></span><h3>#define PCI_DEVICE_BELB 0x0300          /<em>it&#8217;s the device code for the whole BELB (not only CAN Board)</em>/<a class="headerlink" href="#define-pci-device-belb-0x0300-it-s-the-device-code-for-the-whole-belb-not-only-can-board" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belbreg-master-irq-enable-0x008-16bit-rw-irq-enable-register">
+<span id="group-cmp-s-j-a-can-drv-dep-1gae11a2ad53457b274fdd015802bf7227c"></span><h3>#define BELBREG_MASTER_IRQ_ENABLE 0x008  /* 16bit rw?, IRQ Enable Register <a href="#id103"><span class="problematic" id="id104">*</span></a>/<a class="headerlink" href="#define-belbreg-master-irq-enable-0x008-16bit-rw-irq-enable-register" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belbirqenable-0x0000-varible-required-because-register-is-writeonly">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga4ca252c968234d559d90a387120e1cfa"></span><h3>#define belbIrqEnable 0x0000    /<em>varible required because register is writeonly?</em>/<a class="headerlink" href="#define-belbirqenable-0x0000-varible-required-because-register-is-writeonly" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belbreg-irqline-select-0x3f4-16bit-wo-write-only">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga6f99cf6400a038749b550d22d00f5a41"></span><h3>#define BELBREG_IRQLINE_SELECT 0x3F4  /* 16bit wo (write only), ??? <a href="#id105"><span class="problematic" id="id106">*</span></a>/<a class="headerlink" href="#define-belbreg-irqline-select-0x3f4-16bit-wo-write-only" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belbirq-can1-0x4000-free-defined-use-e-g-15th-irq-line-for-can0">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga098f7e8a46ed9acb2f8b59cf57e4517e"></span><h3>#define belbIrq_CAN1 0x4000      /* free defined, use e.g. 15th IRQ line for CAN0 <a href="#id107"><span class="problematic" id="id108">*</span></a>/<a class="headerlink" href="#define-belbirq-can1-0x4000-free-defined-use-e-g-15th-irq-line-for-can0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belbirq-can2-0x8000-free-defined-use-e-g-16th-irq-line-for-can1">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga273e22bc0facdc874692b6e65e23601d"></span><h3>#define belbIrq_CAN2 0x8000      /* free defined, use e.g. 16th IRQ line for CAN1 <a href="#id109"><span class="problematic" id="id110">*</span></a>/<a class="headerlink" href="#define-belbirq-can2-0x8000-free-defined-use-e-g-16th-irq-line-for-can1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belbirq-io-0x0001-free-defined-use-e-g-1st-irq-line-for-io">
+<span id="group-cmp-s-j-a-can-drv-dep-1gafaf84d1a4a12828729ce55876d879308"></span><h3>#define belbIrq_IO 0x0001        /* free defined, use e.g. 1st IRQ line for IO <a href="#id111"><span class="problematic" id="id112">*</span></a>/<a class="headerlink" href="#define-belbirq-io-0x0001-free-defined-use-e-g-1st-irq-line-for-io" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belb-slave-size-0x400-size-of-belb-slave-device">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga955e203b2c27b37285fd0290b057e89b"></span><h3>#define BELB_SLAVE_SIZE 0x400      /* size of BELB slave device*/<a class="headerlink" href="#define-belb-slave-size-0x400-size-of-belb-slave-device" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belb-slave-count-32">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga51c6b72a299c16bd6e2f2d7c67d0f1e8"></span><h3>#define BELB_SLAVE_COUNT 32<a class="headerlink" href="#define-belb-slave-count-32" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belb-bar1-memory-size-32-0x400-size-of-all-belb-slaves-together-all-memory-is-contiguous">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga067d394e408b7fcd180b62665dfdf96e"></span><h3>#define BELB_BAR1_MEMORY_SIZE (32 * 0x400) /* size of all BELB slaves together, all memory is contiguous <a href="#id113"><span class="problematic" id="id114">*</span></a>/<a class="headerlink" href="#define-belb-bar1-memory-size-32-0x400-size-of-all-belb-slaves-together-all-memory-is-contiguous" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belbreg-dev-type-0x3fc-16bit-ro-lower-byte-is-the-type-higher-byte-is-the-version-revision-todo">
+<span id="group-cmp-s-j-a-can-drv-dep-1gadbeb9ebabd329cfbce7e25e14825bbaa"></span><h3>#define BELBREG_DEV_TYPE 0x3FC  /* 16bit ro, Lower Byte is the Type, Higher Byte is the Version &amp; Revision TODO*/<a class="headerlink" href="#define-belbreg-dev-type-0x3fc-16bit-ro-lower-byte-is-the-type-higher-byte-is-the-version-revision-todo" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belb-dev-type-can-0x1107-check-only-lower-byte-0x07-0x1207-is-the-current-one-todo-1access-reads">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga98e2e588f876c3b5fd2d083d561e10c7"></span><h3>#define BELB_DEV_TYPE_CAN 0x1107        /* check only Lower Byte &#8220;0x07&#8221;   0x1207 is the current one?TODO 1access reads <a href="#id115"><span class="problematic" id="id116">*</span></a>/<a class="headerlink" href="#define-belb-dev-type-can-0x1107-check-only-lower-byte-0x07-0x1207-is-the-current-one-todo-1access-reads" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belb-dev-type-in8-0x3202">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga64ce3ac592526db7c619ba942d28ea6f"></span><h3>#define BELB_DEV_TYPE_IN8 0x3202<a class="headerlink" href="#define-belb-dev-type-in8-0x3202" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belb-dev-type-out8-0x3203">
+<span id="group-cmp-s-j-a-can-drv-dep-1gab2da9a00d78d208d6953d74e06b13985"></span><h3>#define BELB_DEV_TYPE_OUT8 0x3203<a class="headerlink" href="#define-belb-dev-type-out8-0x3203" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belb-dev-type-in16-0x3202">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga63534db4b726aba2ef0ad71f624e0941"></span><h3>#define BELB_DEV_TYPE_IN16 0x3202<a class="headerlink" href="#define-belb-dev-type-in16-0x3202" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belb-dev-type-rs232-0x3204">
+<span id="group-cmp-s-j-a-can-drv-dep-1gab734b57153ac88c8ed01c32c23eb1f09"></span><h3>#define BELB_DEV_TYPE_RS232 0x3204<a class="headerlink" href="#define-belb-dev-type-rs232-0x3204" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belb-dev-type-arcnet-0x0">
+<span id="group-cmp-s-j-a-can-drv-dep-1gae98e375e9ca1f4688105bb08e2879a85"></span><h3>#define BELB_DEV_TYPE_ARCNET 0x0<a class="headerlink" href="#define-belb-dev-type-arcnet-0x0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-belb-dev-size-0x400">
+<span id="group-cmp-s-j-a-can-drv-dep-1gabd718314859e379d27cf60e3c0a405b4"></span><h3>#define BELB_DEV_SIZE 0x400<a class="headerlink" href="#define-belb-dev-size-0x400" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-vendor-adam-5095-0x13fe">
+<span id="group-cmp-s-j-a-can-drv-dep-1gabee5871269d5ac09d29485fa47f4971e"></span><h3>#define PCI_VENDOR_ADAM_5095 0x13fe<a class="headerlink" href="#define-pci-vendor-adam-5095-0x13fe" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-device-adam-5095-0x5095">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga95a3c834264e85ad4c1861cdab6b6d33"></span><h3>#define PCI_DEVICE_ADAM_5095 0x5095<a class="headerlink" href="#define-pci-device-adam-5095-0x5095" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-subvendor-adam-5095-0">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaa921b17f9df30bc29c692ca9b2c366f3"></span><h3>#define PCI_SUBVENDOR_ADAM_5095 0<a class="headerlink" href="#define-pci-subvendor-adam-5095-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-subdevice-adam-5095-0">
+<span id="group-cmp-s-j-a-can-drv-dep-1gac7a684f1f1098a6607e50b800cfdc784"></span><h3>#define PCI_SUBDEVICE_ADAM_5095 0<a class="headerlink" href="#define-pci-subdevice-adam-5095-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-vendor-pcm26d2ca-0x13fe">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga90d00dd99269f427798c9fdca3ef35e1"></span><h3>#define PCI_VENDOR_PCM26D2CA 0x13fe<a class="headerlink" href="#define-pci-vendor-pcm26d2ca-0x13fe" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-device-pcm26d2ca-0xc202">
+<span id="group-cmp-s-j-a-can-drv-dep-1gae88ec86dd00b6d6dca1edb17b05b5d93"></span><h3>#define PCI_DEVICE_PCM26D2CA 0xc202<a class="headerlink" href="#define-pci-device-pcm26d2ca-0xc202" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-device-pcm26d2ca-2-0xc302">
+<span id="group-cmp-s-j-a-can-drv-dep-1gae4a179465866a2bdc7115927574a8b38"></span><h3>#define PCI_DEVICE_PCM26D2CA_2 0xc302<a class="headerlink" href="#define-pci-device-pcm26d2ca-2-0xc302" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-subvendor-pcm26d2ca-0x13fe">
+<span id="group-cmp-s-j-a-can-drv-dep-1gae1644edf4a0a78fbadf8f7dcc31c1f0b"></span><h3>#define PCI_SUBVENDOR_PCM26D2CA 0x13fe<a class="headerlink" href="#define-pci-subvendor-pcm26d2ca-0x13fe" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-subdevice-pcm26d2ca-0xc202">
+<span id="group-cmp-s-j-a-can-drv-dep-1gacd6881be189527c6be8553f87923737a"></span><h3>#define PCI_SUBDEVICE_PCM26D2CA 0xc202<a class="headerlink" href="#define-pci-subdevice-pcm26d2ca-0xc202" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-pci-subdevice-pcm26d2ca-2-0xc302">
+<span id="group-cmp-s-j-a-can-drv-dep-1ga4d1b5e75105c932b2f15f2d6230ab97d"></span><h3>#define PCI_SUBDEVICE_PCM26D2CA_2 0xc302<a class="headerlink" href="#define-pci-subdevice-pcm26d2ca-2-0xc302" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="optional-imports-syspcigetcardinfo-syspcireadvalue-syspciwritevalue-systimegetms-eventopen-eventclose-eventunregistercallbackfunction-eventregistercallbackfunction-required-imports-settggetintvalue">
+<span id="group-cmp-s-j-a-can-drv-dep-1gaecc2a2ac31c4e62c47994cbaed146d1e"></span><h3>OPTIONAL_IMPORTS (SysPciGetCardInfo, SysPciReadValue, SysPciWriteValue, SysTimeGetMs, EventOpen, EventClose, EventUnregisterCallbackFunction, EventRegisterCallbackFunction) REQUIRED_IMPORTS(SettgGetIntValue<a class="headerlink" href="#optional-imports-syspcigetcardinfo-syspcireadvalue-syspciwritevalue-systimegetms-eventopen-eventclose-eventunregistercallbackfunction-eventregistercallbackfunction-required-imports-settggetintvalue" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

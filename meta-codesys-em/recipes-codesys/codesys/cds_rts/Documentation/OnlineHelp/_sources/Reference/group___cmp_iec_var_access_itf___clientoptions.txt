@@ -1,0 +1,50 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_iec_var_access_itf___clientoptions:
+
+==============
+Client options
+==============
+
+ :ref:`More... <group___cmp_iec_var_access_itf___clientoptions-details>`
+
+Macros
+------
+
+- #define :ref:`CO_CLIENT_ADDRESS_RESOLUTION <group___cmp_iec_var_access_itf___clientoptions_1gac2c65aa749365af7bcad0c7e31009de5>` 0x00000001
+
+- #define :ref:`CO_DIRECT_ADDRESS_INFO <group___cmp_iec_var_access_itf___clientoptions_1gac0a498de12d5ed97a35ea2a24e90ecb6>` 0x00000002
+
+.. _group___cmp_iec_var_access_itf___clientoptions-details:
+
+Detailed Description
+--------------------
+
+
+
+Get all SymbolsSets available within the PLC. If the SymbolsSets can't be transmitted within one online service ERR_ENTRIES_REMAINING will be returned as a result. To get the next bunch of entries setup the TAG_SYMBOLSET within the request to the last received symbol set.  <service name="SRV_IECVARACC_GET_SYMBOLSETS"> <Request> <tag name="TAG_IECVARACC_SYMBOLSET" optional="required"> <tag name="TAG_IECVARACC_SYMBOLSET_NAME" required="optional">[String]: Name of the last symbols set.</tag> <tag name="TAG_IECVARACC_SYMBOLSET_APPLICATION" required="optional">[String]: Application name of the last symbol set.</tag> <tag name="TAG_IECVARACC_SYBMOLSET_GROUP" required="optional">[String]: The last group that has been uploaded. If empty start with the first group.</tag> </tag> </Request> <Response> <tag name="TAG_IECVARACC_SYMBOLSET" optional="required"> This tag descripts a symbol set. This tag may appear multiple times in this service.
+
+<tag name="TAG_IECVARACC_SYMBOLSET_NAME" required="required">[String]: Name of the symbols set.</tag> <tag name="TAG_IECVARACC_SYMBOLSET_APPLICATION" required="required">[String]: Name of the application where the symbol set was defined.</tag> <tag name="TAG_IECVARACC_SYBMOLSET_GROUP" required="optional">[String]: Group(s) that have access to this symbol set. This tag may appear multiple times</tag> </tag> <tag name="TAG_IECVARACC_SYMBOLSET_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag> </Response> </service>  Configure a symbols sets. This means the groups that have access to this symbols set will be configured. By now only one symbols set can be configured within this online service. If more symbol sets are transmitted only the first one will be handled. The others are ignored silently.  <service name="SRV_IECVARACC_CONFIGURE_SYMBOLSET"> <Request> <tag name="TAG_IECVARACC_SYMBOLSET" optional="required"> <tag name="TAG_IECVARACC_SYMBOLSET_NAME" required="optional">[String]: Name of the last symbols set.</tag> <tag name="TAG_IECVARACC_SYMBOLSET_APPLICATION" required="optional">[String]: Application name of the last symbol set.</tag> <tag name="TAG_IECVARACC_SYMBOLSET_EXTEND_CONFIG" required="optional">[BOOL]: Switch to select if the configuration of thie symbols set should be extended. If false the group assignment will be cleard before adding the groups.</tag> <tag name="TAG_IECVARACC_SYBMOLSET_GROUP" required="optional">[String]: Group(s) that have access to this symbol set. This tag may appear multiple times</tag> </tag> </Request> <Response> <tag name="TAG_IECVARACC_SYMBOLSET_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag> </Response> </service>
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_iec_var_access_itf___clientoptions_1gac2c65aa749365af7bcad0c7e31009de5:
+
+#define CO_CLIENT_ADDRESS_RESOLUTION 0x00000001
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Address resolution is done in client
+
+.. _group___cmp_iec_var_access_itf___clientoptions_1gac0a498de12d5ed97a35ea2a24e90ecb6:
+
+#define CO_DIRECT_ADDRESS_INFO 0x00000002
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Direct address info for each leaf node necessary
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

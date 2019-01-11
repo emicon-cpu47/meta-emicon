@@ -1,0 +1,168 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_cpu_breakpoints_itf:
+
+====================
+SysCpuBreakpointsItf
+====================
+
+Interface of SysCpuBreakpoints
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. :ref:`More... <group___sys_cpu_breakpoints_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`ISysCpuBreakpoints_C <struct_i_sys_cpu_breakpoints___c>`
+
+Macros
+------
+
+- #define :ref:`SYSCPUBREAKPOINTS_NOTIMPLEMENTED <group___sys_cpu_breakpoints_itf_1gac6a25c3414d94b7c2d73524903adf0b9>`
+
+- #define :ref:`ITF_SysCpuBreakpoints <group___sys_cpu_breakpoints_itf_1ga651fbb3a18543b3ef70326c21b4dc6c5>`
+
+- #define :ref:`EXTITF_SysCpuBreakpoints <group___sys_cpu_breakpoints_itf_1ga264689d5ccf3fbc01a1c332863d59e69>`
+
+Typedefs
+--------
+
+- typedef :ref:`ISysCpuBreakpoints_C <struct_i_sys_cpu_breakpoints___c>` :ref:`ISysCpuBreakpoints <group___sys_cpu_breakpoints_itf_1gacf59bf9f60ee723d11c25453f3f58628>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`SysCpuBreakpointsOSInit <group___sys_cpu_breakpoints_itf_1gad4e9058501ffad42e531c3728a0325ab>` (INIT_STRUCT * pInit)
+
+- RTS_RESULT :ref:`SysCpuBreakpointsOSHookFunction <group___sys_cpu_breakpoints_itf_1ga30d8ab9a18866d7d650222bd62f24ea1>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_RESULT :ref:`SysCpuBreakpointSet <group___sys_cpu_breakpoints_itf_1ga55d1c3f15ac6d9260371de4763ee4700>` (RTS_HANDLE hApp, RTS_UI32 ulBPType, void * pAddress, RTS_UI32 ulSize)
+
+- RTS_RESULT :ref:`SysCpuBreakpointDelete <group___sys_cpu_breakpoints_itf_1gac6c2a7ea7df75f5d0e5af9d9dfaee5c1>` (RTS_HANDLE hApp, RTS_UI32 ulBPType, void * pAddress, RTS_UI32 ulSize)
+
+- RTS_RESULT :ref:`SysCpuBreakpointGetAddressByContext <group___sys_cpu_breakpoints_itf_1gac9580c05e72755f953bd29f825bd9c12>` (void * pContext, RTS_UINTPTR * pAddress, RTS_UI32 * pulSize)
+
+.. _group___sys_cpu_breakpoints_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysCpuBreakpoints
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_cpu_breakpoints_itf_1gac6a25c3414d94b7c2d73524903adf0b9:
+
+#define SYSCPUBREAKPOINTS_NOTIMPLEMENTED
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_cpu_breakpoints_itf_1ga651fbb3a18543b3ef70326c21b4dc6c5:
+
+#define ITF_SysCpuBreakpoints
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_cpu_breakpoints_itf_1ga264689d5ccf3fbc01a1c332863d59e69:
+
+#define EXTITF_SysCpuBreakpoints
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_cpu_breakpoints_itf_1gacf59bf9f60ee723d11c25453f3f58628:
+
+typedef ISysCpuBreakpoints_C ISysCpuBreakpoints
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_cpu_breakpoints_itf_1gad4e9058501ffad42e531c3728a0325ab:
+
+RTS_RESULT SysCpuBreakpointsOSInit (INIT_STRUCT *pInit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_cpu_breakpoints_itf_1ga30d8ab9a18866d7d650222bd62f24ea1:
+
+RTS_RESULT SysCpuBreakpointsOSHookFunction (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_cpu_breakpoints_itf_1ga55d1c3f15ac6d9260371de4763ee4700:
+
+RTS_RESULT SysCpuBreakpointSet (RTS_HANDLE hApp, RTS_UI32 ulBPType, void *pAddress, RTS_UI32 ulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to set a hardware breakpoint (data breakpoint).
+
+**Parameters**
+
++---------+----------+--------------------------------------------------------------------------------------------------+
+| [in]    | hApp     | Handle to the application (see :ref:`CmpAppItf.h <_cmp_app_itf_8h>` ) RANGE=[RTS_INVALID_HANDLE] |
++---------+----------+--------------------------------------------------------------------------------------------------+
+| [in]    | ulBPType | The type of the breakpoint to set (BP_DATA) RANGE=[RTS_RANGE_OF_RTS_UI32]                        |
++---------+----------+--------------------------------------------------------------------------------------------------+
+| [in]    | pAddress | The address in the global data are to be observed                                                |
++---------+----------+--------------------------------------------------------------------------------------------------+
+| [in]    | ulSize   | The size of data to be observed                                                                  |
++---------+----------+--------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Returns ERR_OK or ERR_FAILED
+
+.. _group___sys_cpu_breakpoints_itf_1gac6c2a7ea7df75f5d0e5af9d9dfaee5c1:
+
+RTS_RESULT SysCpuBreakpointDelete (RTS_HANDLE hApp, RTS_UI32 ulBPType, void *pAddress, RTS_UI32 ulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to delete a hardware breakpoint (data breakpoint).
+
+**Parameters**
+
++---------+----------+--------------------------------------------------------------------------------------------------+
+| [in]    | hApp     | Handle to the application (see :ref:`CmpAppItf.h <_cmp_app_itf_8h>` ) RANGE=[RTS_INVALID_HANDLE] |
++---------+----------+--------------------------------------------------------------------------------------------------+
+| [in]    | ulBPType | The type of the breakpoint to set (BP_DATA) RANGE=[RTS_RANGE_OF_RTS_I32]                         |
++---------+----------+--------------------------------------------------------------------------------------------------+
+| [in]    | pAddress | The address in the global data area of the breakpoint to be deleted                              |
++---------+----------+--------------------------------------------------------------------------------------------------+
+| [in]    | ulSize   | The size of data of the breakpoint to be deleted                                                 |
++---------+----------+--------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Returns ERR_OK or ERR_FAILED
+
+.. _group___sys_cpu_breakpoints_itf_1gac9580c05e72755f953bd29f825bd9c12:
+
+RTS_RESULT SysCpuBreakpointGetAddressByContext (void *pContext, RTS_UINTPTR *pAddress, RTS_UI32 *pulSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to retrieve a breakpoint address by the context as produced in the breakpoint exception. This function is system specific and may only be called by other system components.
+
+**Parameters**
+
++---------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pContext  | pointer to the context. This parameter is system specific and is interpreted as a system specific type. (e.g: in Windows CONTEXT). It contains all information necessary to retrieve the active hardware breakpoint. RANGE=NULL |
++---------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | ppAddress | The address in the global data area of the currently active breakpoint as retrieved according to the pContext.                                                                                                                  |
++---------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pulSize   | The size of data of the currently active breakpoint as retrieved according to the pContext                                                                                                                                      |
++---------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Returns ERR_OK or ERR_FAILED
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

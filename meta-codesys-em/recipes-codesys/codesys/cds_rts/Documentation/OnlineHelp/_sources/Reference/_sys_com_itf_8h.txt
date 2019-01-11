@@ -1,0 +1,212 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __sys_com_itf_8h:
+
+==========================
+SysComItf.h File Reference
+==========================
+
+| #include ":ref:`CmpStd.h`"
+
+Data Structures
+---------------
+
+- struct :ref:`EVTPARAM_SysComOpen <struct_e_v_t_p_a_r_a_m___sys_com_open>`
+
+- struct :ref:`tagCOM_SettingsEx <structtag_c_o_m___settings_ex>`
+
+- struct :ref:`tagCOM_Settings <structtag_c_o_m___settings>`
+
+- struct :ref:`tagsyscomclose_struct <structtagsyscomclose__struct>`
+
+- struct :ref:`tagsyscomgetsettings_struct <structtagsyscomgetsettings__struct>`
+
+- struct :ref:`tagsyscomopen_struct <structtagsyscomopen__struct>`
+
+- struct :ref:`tagsyscomopen2_struct <structtagsyscomopen2__struct>`
+
+- struct :ref:`tagsyscompurge_struct <structtagsyscompurge__struct>`
+
+- struct :ref:`tagsyscomread_struct <structtagsyscomread__struct>`
+
+- struct :ref:`tagsyscomsetsettings_struct <structtagsyscomsetsettings__struct>`
+
+- struct :ref:`tagsyscomsettimeout_struct <structtagsyscomsettimeout__struct>`
+
+- struct :ref:`tagsyscomwrite_struct <structtagsyscomwrite__struct>`
+
+- struct :ref:`ISysCom_C <struct_i_sys_com___c>`
+
+Macros
+------
+
+- #define :ref:`SYSCOMKEY_INT_WINDOWS_PORT_TO_CHECK <group___sys_com_itf___settings_1ga2b3d78f768b42ba795237072c7e85e8c>` "Windows.PortToCheck"
+
+- #define :ref:`SYSTIMERVALUE_INT_WINDOWS_PORT_TO_CHECK_DEFAULT <group___sys_com_itf___settings_1ga59aa5cce852108b08b885b953fc143d9>` 0
+
+- #define :ref:`SYSCOMKEY_STRING_WINDOWS_PORTNAME_CHECK_WITH <group___sys_com_itf___settings_1gab1f8fc3608f9163146dfb617d570d882>` "Windows.CheckWithPortname"
+
+- #define :ref:`SYSTIMERVALUE_STRING_WINDOWS_PORTNAME_CHECK_WITH_DEFAULT <group___sys_com_itf___settings_1ga773162a40d40b770c177e9b729be7f71>` ""
+
+- #define :ref:`SYSCOMKEY_STRING_LINUX_DEVICEFILE <group___sys_com_itf___settings_1gad32da7e93e5ce777f2cecb3378febb1d>` "Linux.Devicefile"
+
+- #define :ref:`SYSCOMKEY_STRING_LINUX_DEVICEFILE_DEFAULT <group___sys_com_itf___settings_1gab8395d42a3371b8e7b3815b38b454224>` "/dev/ttyS"
+
+- #define :ref:`SYSCOMKEY_INT_LINUX_EXCLUSIVE_ACCESS <group___sys_com_itf___settings_1ga4c73e4206c2b5dc05e8db523b948e2f6>` "Linux.ExclusiveAccess"
+
+- #define :ref:`SYSCOMKEY_INT_LINUX_EXCLUSIVE_ACCESS_DEFAULT <group___sys_com_itf___settings_1ga796b3f6d3074b03c3d3a2a4ae42f667a>` 0
+
+- #define :ref:`SYSCOMKEY_STRING_LINUX_PHYSICAL_LAYER <group___sys_com_itf___settings_1ga2d63af39865514ad7baca15790f1009c>` "Linux.PhysicalLayer"
+
+- #define :ref:`SYSCOMKEY_STRING_LINUX_PHYSICAL_LAYER_DEFAULT <group___sys_com_itf___settings_1ga121a3973e975d0c04a6c718089fb1e37>` "rs232"
+
+- #define :ref:`SYSCOMKEY_STRING_LINUX_RS485_RTS_PIN <group___sys_com_itf___settings_1gaa50fbcb545506bd6ffd48bb982a7b8e3>` "Linux.rs485.RTSPin"
+
+- #define :ref:`SYSCOMKEY_STRING_LINUX_RS485_RTS_PIN_DEFAULT <group___sys_com_itf___settings_1gaf176fb3a5e3b2e4bb84a286958ac308c>` "on_send"
+
+- #define :ref:`EVTPARAMID_SysComOpen <group___sys_com_itf___eventparameter_1gaab2d6e39c832b80b5aae75fb54212064>` 0x0001
+
+- #define :ref:`EVTVERSION_SysComOpen <group___sys_com_itf___eventparameter_1gaab049c466a662ad134c9735a031c4d5e>` 0x0001
+
+- #define :ref:`EVT_SysComOpenBefore <group___sys_com_itf___events_1gabb296e39d178dad0d6c7f121b12e352d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`EVT_SysComOpenAfter <group___sys_com_itf___events_1gac3c674be237550f4dd2a882934484bd3>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+
+- #define :ref:`SYS_BR_4800 <group___sys_com_itf___baudrates_1ga739a20f04d0ce68a7479aa5f7bd1b43d>` 4800
+
+- #define :ref:`SYS_BR_9600 <group___sys_com_itf___baudrates_1ga30ec1abb012d9d7c92a3e0ab619bd287>` 9600
+
+- #define :ref:`SYS_BR_19200 <group___sys_com_itf___baudrates_1ga981e351330588e2167b5c0fd4da5e01b>` 19200
+
+- #define :ref:`SYS_BR_38400 <group___sys_com_itf___baudrates_1ga77407443a387dd63518d894248e1fb31>` 38400
+
+- #define :ref:`SYS_BR_57600 <group___sys_com_itf___baudrates_1gaee244fed4efb889d3a4e736af649fe12>` 57600
+
+- #define :ref:`SYS_BR_115200 <group___sys_com_itf___baudrates_1ga44d6adf13a84265f8514605b9c1cf517>` 115200
+
+- #define :ref:`COM_BAUDRATE <group___sys_com_itf___baudrates_1ga008956bafb238f05f81666d2ab4ddb9b>` RTS_IEC_DWORD
+
+- #define :ref:`SYS_NOPARITY <group___sys_com_itf___parity_1ga0331c17c4e2c03bb1f7d8b0640e3ee39>` 0	/* <element name="SYS_NOPARITY" TYPE="IN">No parity</element> */
+
+- #define :ref:`SYS_ODDPARITY <group___sys_com_itf___parity_1ga0fcb217834c52c243e75852fbbe6ab89>` 1	/* <element name="SYS_ODDPARITY" TYPE="IN">Odd parity</element> */
+
+- #define :ref:`SYS_EVENPARITY <group___sys_com_itf___parity_1gacd3f1df20456a226766df51f2adc9d9e>` 2	/* <element name="SYS_EVENPARITY" TYPE="IN">Even parity</element> */
+
+- #define :ref:`COM_PARITY <group___sys_com_itf___parity_1ga02ca5baf6efaed78b5eb93ff09f4eb21>` RTS_IEC_BYTE
+
+- #define :ref:`SYS_COMPORT_NONE <group___sys_com_itf___comports_1ga03d66ccb800eb79a8c0803c67a71b9de>` 0
+
+- #define :ref:`SYS_COMPORT1 <group___sys_com_itf___comports_1ga3dd7d55d79e94f3e342c215d155db6f6>` 1
+
+- #define :ref:`SYS_COMPORT2 <group___sys_com_itf___comports_1ga370d695e122ff299bd43919f65665f72>` 2
+
+- #define :ref:`SYS_COMPORT3 <group___sys_com_itf___comports_1ga6d2cba2d775723818db7fd1e013085e0>` 3
+
+- #define :ref:`SYS_COMPORT4 <group___sys_com_itf___comports_1ga0c635c781605e2c7a900bfb1b3b30ac6>` 4
+
+- #define :ref:`COM_PORTS <group___sys_com_itf___comports_1ga2c3fca5f011faee6382a7407b0426deb>` RTS_IEC_INT
+
+- #define :ref:`SYS_ONESTOPBIT <group___sys_com_itf___stopbits_1ga70addb7d5fd536038a837b8733c89e0f>` 1
+
+- #define :ref:`SYS_ONE5STOPBITS <group___sys_com_itf___stopbits_1ga299551e8c5cdca3c96e073b7cc02ac6b>` 2
+
+- #define :ref:`SYS_TWOSTOPBITS <group___sys_com_itf___stopbits_1gac36da710bf0d1311b4aa904c9da4eabd>` 3
+
+- #define :ref:`COM_STOPBITS <group___sys_com_itf___stopbits_1ga953934be5dc006417ab1329def1a8d8a>` RTS_IEC_BYTE
+
+- #define :ref:`SYS_NOWAIT <group___sys_com_itf___timeouts_1ga7808d9e23ad902526aa402cb003b07ae>` 0
+
+- #define :ref:`SYS_INFINITE <group___sys_com_itf___timeouts_1ga92c1b6321f0001c0f0ff052f30371dc2>` 0xFFFFFFFF
+
+- #define :ref:`COM_TIMEOUT <group___sys_com_itf___timeouts_1ga055ea21b3876eb14fc42bdf93d506951>` RTS_IEC_UDINT
+
+- #define :ref:`ITF_SysCom <group___sys_com_itf_1gabfca817154b1019275366a1702820eef>`
+
+- #define :ref:`EXTITF_SysCom <group___sys_com_itf_1gaf6d44fd2e0ffb8d094d03e734870ed1e>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagCOM_SettingsEx <structtag_c_o_m___settings_ex>` :ref:`COM_SettingsEx <group___sys_com_itf___comportextendedsettings_1ga850ed8a9016bc7f6f8e45c850379c4c9>`
+
+- typedef struct :ref:`tagCOM_Settings <structtag_c_o_m___settings>` :ref:`COM_Settings <group___sys_com_itf___comportsettings_1ga2a1e08f3cfcbf3f3553764f75c3b966a>`
+
+- typedef struct :ref:`tagsyscomclose_struct <structtagsyscomclose__struct>` :ref:`syscomclose_struct <group___sys_com_itf_1ga3308d78035caed2aef663e0bd8c7afd6>`
+
+- typedef struct :ref:`tagsyscomgetsettings_struct <structtagsyscomgetsettings__struct>` :ref:`syscomgetsettings_struct <group___sys_com_itf_1ga7e26dd4ec2e7914f64f57e105442ca3c>`
+
+- typedef struct :ref:`tagsyscomopen_struct <structtagsyscomopen__struct>` :ref:`syscomopen_struct <group___sys_com_itf_1gae0fb149d6fe5786904b1a985d3eea046>`
+
+- typedef struct :ref:`tagsyscomopen2_struct <structtagsyscomopen2__struct>` :ref:`syscomopen2_struct <group___sys_com_itf_1ga68d1dc1ba9f40cd4a23fa307ff994fe1>`
+
+- typedef struct :ref:`tagsyscompurge_struct <structtagsyscompurge__struct>` :ref:`syscompurge_struct <group___sys_com_itf_1gad21fe96acf909e0c0c4488f5af048986>`
+
+- typedef struct :ref:`tagsyscomread_struct <structtagsyscomread__struct>` :ref:`syscomread_struct <group___sys_com_itf_1ga5826d9f8571af91c22ffddc6fc615dc1>`
+
+- typedef struct :ref:`tagsyscomsetsettings_struct <structtagsyscomsetsettings__struct>` :ref:`syscomsetsettings_struct <group___sys_com_itf_1ga9d9a1056c695224dca3c30d419382463>`
+
+- typedef struct :ref:`tagsyscomsettimeout_struct <structtagsyscomsettimeout__struct>` :ref:`syscomsettimeout_struct <group___sys_com_itf_1ga4cdb08bbc06f84e0baf0ef3208cb9500>`
+
+- typedef struct :ref:`tagsyscomwrite_struct <structtagsyscomwrite__struct>` :ref:`syscomwrite_struct <group___sys_com_itf_1gae655e4f66c8b7201920833dc6e02c93d>`
+
+- typedef :ref:`COM_Settings <group___sys_com_itf___comportsettings_1ga2a1e08f3cfcbf3f3553764f75c3b966a>` :ref:`COMSettings <group___sys_com_itf_1gac0d8d7a7a75e08eb5c7bbf5559874242>`
+
+- typedef :ref:`COM_SettingsEx <group___sys_com_itf___comportextendedsettings_1ga850ed8a9016bc7f6f8e45c850379c4c9>` :ref:`COMSettingsEx <group___sys_com_itf_1gaf69acb721dcf34b93878e98aa44e433f>`
+
+- typedef :ref:`ISysCom_C <struct_i_sys_com___c>` :ref:`ISysCom <group___sys_com_itf_1ga0b8fbec3154b167f3c6867a15ab44f88>`
+
+Functions
+---------
+
+- void :ref:`syscomclose <group___sys_com_itf_1ga0df7b41fde082ecb1466b597d796de1d>` (:ref:`syscomclose_struct <group___sys_com_itf_1ga3308d78035caed2aef663e0bd8c7afd6>` * p)
+
+- void :ref:`syscomgetsettings <group___sys_com_itf_1gae11e26a5385ee5ec33a28629a61d8dd7>` (:ref:`syscomgetsettings_struct <group___sys_com_itf_1ga7e26dd4ec2e7914f64f57e105442ca3c>` * p)
+
+- void :ref:`syscomopen <group___sys_com_itf_1gac133791775821e103cef6e92ef824cb5>` (:ref:`syscomopen_struct <group___sys_com_itf_1gae0fb149d6fe5786904b1a985d3eea046>` * p)
+
+- void :ref:`syscomopen2 <group___sys_com_itf_1ga8d94f973e3cb339573241cb102f3b81e>` (:ref:`syscomopen2_struct <group___sys_com_itf_1ga68d1dc1ba9f40cd4a23fa307ff994fe1>` * p)
+
+- void :ref:`syscompurge <group___sys_com_itf_1gacf81be248974e6f79adf9130dbd975d2>` (:ref:`syscompurge_struct <group___sys_com_itf_1gad21fe96acf909e0c0c4488f5af048986>` * p)
+
+- void :ref:`syscomread <group___sys_com_itf_1gac8ecb737346f72e608f02c515e5a09e5>` (:ref:`syscomread_struct <group___sys_com_itf_1ga5826d9f8571af91c22ffddc6fc615dc1>` * p)
+
+- void :ref:`syscomsetsettings <group___sys_com_itf_1gad571f4b8ba2e624dfddf0c989b0c950d>` (:ref:`syscomsetsettings_struct <group___sys_com_itf_1ga9d9a1056c695224dca3c30d419382463>` * p)
+
+- void :ref:`syscomsettimeout <group___sys_com_itf_1ga2de2eb1038c3d1740378dff5179ebec0>` (:ref:`syscomsettimeout_struct <group___sys_com_itf_1ga4cdb08bbc06f84e0baf0ef3208cb9500>` * p)
+
+- void :ref:`syscomwrite <group___sys_com_itf_1ga53101f1df95b5fd10dce26ac552b188f>` (:ref:`syscomwrite_struct <group___sys_com_itf_1gae655e4f66c8b7201920833dc6e02c93d>` * p)
+
+- RTS_RESULT :ref:`SysComOSInit <group___sys_com_itf_1ga5ed91811723c888f323839ae0fe24e96>` (INIT_STRUCT * pInit)
+
+- RTS_RESULT :ref:`SysComOSHookFunction <group___sys_com_itf_1gab10557427484ee710e95f247b3367057>` (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
+
+- RTS_HANDLE :ref:`SysComOpen <group___sys_com_itf_1gacf40acf2958ee6cb83c02cf0cfa75716>` (short sPort, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`SysComOpen2 <group___sys_com_itf_1ga846908a8dc90fdb5fc36d0bb18bb36c7>` (:ref:`COM_Settings <group___sys_com_itf___comportsettings_1ga2a1e08f3cfcbf3f3553764f75c3b966a>` * pSettings, :ref:`COM_SettingsEx <group___sys_com_itf___comportextendedsettings_1ga850ed8a9016bc7f6f8e45c850379c4c9>` * pSettingsEx, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysComSetSettings <group___sys_com_itf_1gae816607ac4a8146258416fc228da42e9>` (RTS_HANDLE hCom, :ref:`COM_Settings <group___sys_com_itf___comportsettings_1ga2a1e08f3cfcbf3f3553764f75c3b966a>` * pSettings, :ref:`COM_SettingsEx <group___sys_com_itf___comportextendedsettings_1ga850ed8a9016bc7f6f8e45c850379c4c9>` * pSettingsEx)
+
+- RTS_RESULT :ref:`SysComGetSettings <group___sys_com_itf_1gaa6f95bd94a3d358f26ba49962623491d>` (RTS_HANDLE hCom, :ref:`COM_Settings <group___sys_com_itf___comportsettings_1ga2a1e08f3cfcbf3f3553764f75c3b966a>` * pSettings, :ref:`COM_SettingsEx <group___sys_com_itf___comportextendedsettings_1ga850ed8a9016bc7f6f8e45c850379c4c9>` * pSettingsEx)
+
+- RTS_RESULT :ref:`SysComClose <group___sys_com_itf_1gae03e5ece86996b91333ca76ed0d7a634>` (RTS_HANDLE hCom)
+
+- RTS_UI32 :ref:`SysComRead <group___sys_com_itf_1gaa28663547298bb38140095bda09e653f>` (RTS_HANDLE hCom, unsigned char * pbyBuffer, RTS_UI32 uiSize, RTS_UI32 ulTimeout, RTS_RESULT * pResult)
+
+- RTS_UI32 :ref:`SysComWrite <group___sys_com_itf_1ga6df7263b8cdb70b1ce1d944dbe167d18>` (RTS_HANDLE hCom, unsigned char * pbyBuffer, RTS_UI32 uiSize, RTS_UI32 ulTimeout, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysComPurge <group___sys_com_itf_1gaf299ca75a046c99de02e82a9afa1bacb>` (RTS_HANDLE hCom)
+
+- RTS_RESULT :ref:`SysComSetTimeout <group___sys_com_itf_1ga9fa7a0c0d1ea82160e247351e6883958>` (RTS_HANDLE hCom, RTS_UI32 ulTimeout)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysComItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

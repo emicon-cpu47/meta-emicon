@@ -1,0 +1,276 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_backup_itf:
+
+============
+CmpBackupItf
+============
+
+Interface of CmpBackup. :ref:`More... <group___cmp_backup_itf-details>`
+
+Modules
+-------
+
+- :ref:`Backup mode flags <group___cmp_backup_itf___backupmodeflags>`
+
+- :ref:`Event parameter <group___cmp_backup_itf___eventparameter>`
+
+- :ref:`Events <group___cmp_backup_itf___events>`
+
+- :ref:`Online service bits <group___cmp_backup_itf___onlineservicebits>`
+
+- :ref:`Online service commands <group___cmp_backup_itf___onlineservicecommands>`
+
+- :ref:`Online service structs <group___cmp_backup_itf___onlineservicestructs>`
+
+- :ref:`Online service tags <group___cmp_backup_itf___onlineservicetags>`
+
+- :ref:`Online services <group___cmp_backup_itf___onlineservices>`
+
+- :ref:`Register file flags <group___cmp_backup_itf___registerfileflags>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpBackup_C <struct_i_cmp_backup___c>`
+
+Macros
+------
+
+- #define :ref:`BACKUPKEY_INT_CAPABILITIES_APPLICATION <group___cmp_backup_itf_1ga232b25274098f882ae7ba6ce940f581d>` "Capabilities.Application"
+
+- #define :ref:`BACKUPVALUE_INT_CAPABILITIES_APPLICATION_DEFAULT <group___cmp_backup_itf_1ga3682b81be36a5c624f56b5bc4507a803>` 1
+
+- #define :ref:`BACKUPKEY_INT_CAPABILITIES_SYSTEM <group___cmp_backup_itf_1ga0cb9df3a3edda806fae6a531de41d576>` "Capabilities.System"
+
+- #define :ref:`BACKUPVALUE_INT_CAPABILITIES_SYSTEM_DEFAULT <group___cmp_backup_itf_1ga9aeba16691dca5663a1b03e82911cb60>` 0
+
+- #define :ref:`ITF_CmpBackup <group___cmp_backup_itf_1gaedf94d4a0bef1db3e5b6bac9beb71b9b>`
+
+- #define :ref:`EXTITF_CmpBackup <group___cmp_backup_itf_1gab88241b256e3df64f3fe0e68e3b78ec7>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpBackup_C <struct_i_cmp_backup___c>` :ref:`ICmpBackup <group___cmp_backup_itf_1gae2983c9dc96cd7db383a35235986e27b>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`BakSetStatus <group___cmp_backup_itf_1gaa48d8438443ab2b273e8f211576e2f10>` (CMPID cmpId, RTS_UI32 ulStatus)
+
+- RTS_RESULT :ref:`BakRegisterFile <group___cmp_backup_itf_1gac712299fe79161fe7fd33f73c2dbe4ec>` (CMPID cmpId, char * pszFilePath, RTS_UI32 ulFlags, RTS_SIZE ulFileSize)
+
+- RTS_RESULT :ref:`BakUnregisterFile <group___cmp_backup_itf_1gae377828dcd9abca97e323dd1f8467f40>` (CMPID cmpId, char * pszFilePath)
+
+- RTS_UI32 :ref:`BakGetCapabilities <group___cmp_backup_itf_1gafd9a8b172154a02644ec711d75130107>` (void)
+
+- RTS_RESULT :ref:`BakBackup <group___cmp_backup_itf_1ga8d6c21a496d8ede1a5afa75ba14c7483>` (char * pszFilePath, RTS_UI32 ulMode, :ref:`PFEVENTCALLBACKFUNCTION <group___cmp_event_callback_itf_1ga66fcdd6103915e80e60e526bd4ad4dcf>`  pfCallbackFunction)
+
+- RTS_RESULT :ref:`BakRestore <group___cmp_backup_itf_1ga515902abb111ce735fd1d7074ed71061>` (char * pszFilePath, RTS_UI32 ulMode, :ref:`PFEVENTCALLBACKFUNCTION <group___cmp_event_callback_itf_1ga66fcdd6103915e80e60e526bd4ad4dcf>`  pfCallbackFunction)
+
+.. _group___cmp_backup_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpBackup.
+
+Interface for the backup component. This component is optional, and intended to serve a backup and restore feature.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_backup_itf_1ga232b25274098f882ae7ba6ce940f581d:
+
+#define BACKUPKEY_INT_CAPABILITIES_APPLICATION "Capabilities.Application"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_backup_itf_1ga3682b81be36a5c624f56b5bc4507a803:
+
+#define BACKUPVALUE_INT_CAPABILITIES_APPLICATION_DEFAULT 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_backup_itf_1ga0cb9df3a3edda806fae6a531de41d576:
+
+#define BACKUPKEY_INT_CAPABILITIES_SYSTEM "Capabilities.System"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_backup_itf_1ga9aeba16691dca5663a1b03e82911cb60:
+
+#define BACKUPVALUE_INT_CAPABILITIES_SYSTEM_DEFAULT 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_backup_itf_1gaedf94d4a0bef1db3e5b6bac9beb71b9b:
+
+#define ITF_CmpBackup
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_backup_itf_1gab88241b256e3df64f3fe0e68e3b78ec7:
+
+#define EXTITF_CmpBackup
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_backup_itf_1gae2983c9dc96cd7db383a35235986e27b:
+
+typedef ICmpBackup_C ICmpBackup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_backup_itf_1gaa48d8438443ab2b273e8f211576e2f10:
+
+RTS_RESULT BakSetStatus (CMPID cmpId, RTS_UI32 ulStatus)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the status for the backup request
+
+**Parameters**
+
++---------+----------+-----------------+
+| [in]    | cmpId    | Id of component |
++---------+----------+-----------------+
+| [in]    | ulStatus | Status          |
++---------+----------+-----------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_backup_itf_1gac712299fe79161fe7fd33f73c2dbe4ec:
+
+RTS_RESULT BakRegisterFile (CMPID cmpId, char *pszFilePath, RTS_UI32 ulFlags, RTS_SIZE ulFileSize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Registers a file from a component to be in the backup file list
+
+**Parameters**
+
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | cmpId       | Id of component                                                                                                                                             |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszFilePath | Given file path                                                                                                                                             |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulFlags     | Flags. See category "Register file flags" for details.                                                                                                      |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulFileSize  | File size. May be set to 0, in that case CmpBackup checks the file size. If unsuccessfull the entry will be discarded, i.e. not registered (ERR_NO_OBJECT). |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+----------------------------------+
+| ERR_OK        | File was successfully registered |
++---------------+----------------------------------+
+| ERR_NO_OBJECT | File size check failed           |
++---------------+----------------------------------+
+| ERR_DUPLICATE | The file is already registered   |
++---------------+----------------------------------+
+
+.. _group___cmp_backup_itf_1gae377828dcd9abca97e323dd1f8467f40:
+
+RTS_RESULT BakUnregisterFile (CMPID cmpId, char *pszFilePath)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unregisters a file from a component to be removed from the backup file list
+
+**Parameters**
+
++---------+-------------+-----------------+
+| [in]    | cmpId       | Id of component |
++---------+-------------+-----------------+
+| [in]    | pszFilePath | Given file path |
++---------+-------------+-----------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++---------------+------------------------------------+
+| ERR_OK        | File was successfully unregistered |
++---------------+------------------------------------+
+| ERR_NO_OBJECT | File was not registered            |
++---------------+------------------------------------+
+
+.. _group___cmp_backup_itf_1gafd9a8b172154a02644ec711d75130107:
+
+RTS_UI32 BakGetCapabilities (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns the backup capabilities
+**Returns:**
+
+Capability flags (see category "Online service bits")
+
+.. _group___cmp_backup_itf_1ga8d6c21a496d8ede1a5afa75ba14c7483:
+
+RTS_RESULT BakBackup (char *pszFilePath, RTS_UI32 ulMode, PFEVENTCALLBACKFUNCTION pfCallbackFunction)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Triggers the complete backup process. Function returns immediately (asynchronous). Start and completion can be optionally monitored via events. With the sync bit set, the function will wait to finish the operation and returns success or failure (synchronous).
+
+**Parameters**
+
++---------+--------------------+-------------------------------------------------------+
+| [in]    | pszFilePath        | File path of backup file                              |
++---------+--------------------+-------------------------------------------------------+
+| [in]    | ulMode             | Mode flags (see category "Backup mode flags")         |
++---------+--------------------+-------------------------------------------------------+
+| [in]    | pfCallbackFunction | Callback function to monitor Backup events (optional) |
++---------+--------------------+-------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++--------+-----------------------------------+
+| ERR_OK | Backup was successfully triggered |
++--------+-----------------------------------+
+
+.. _group___cmp_backup_itf_1ga515902abb111ce735fd1d7074ed71061:
+
+RTS_RESULT BakRestore (char *pszFilePath, RTS_UI32 ulMode, PFEVENTCALLBACKFUNCTION pfCallbackFunction)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Triggers the complete restore process. Function returns immediately (asynchronous). Start and completion can be optionally monitored via events. With the sync bit set, the function will wait to finish the operation and returns success or failure (synchronous).
+
+**Parameters**
+
++---------+--------------------+-------------------------------------------------------+
+| [in]    | pszFilePath        | File path of backup file                              |
++---------+--------------------+-------------------------------------------------------+
+| [in]    | ulMode             | Mode flags (see category "Backup mode flags")         |
++---------+--------------------+-------------------------------------------------------+
+| [in]    | pfCallbackFunction | Callback function to monitor Backup events (optional) |
++---------+--------------------+-------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+**Return values**
+
++--------+------------------------------------+
+| ERR_OK | Restore was successfully triggered |
++--------+------------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

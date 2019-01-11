@@ -1,0 +1,107 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __cmp_channel_server_itf_8h:
+
+====================================
+CmpChannelServerItf.h File Reference
+====================================
+
+| #include ":ref:`CmpChannelMgrItf.h <_cmp_channel_mgr_itf_8h>`"
+| #include ":ref:`CmpEventMgrItf.h <_cmp_event_mgr_itf_8h>`"
+
+Data Structures
+---------------
+
+- struct :ref:`EVTPARAM_CmpChS_ChannelClosed <struct_e_v_t_p_a_r_a_m___cmp_ch_s___channel_closed>`
+
+- struct :ref:`EVTPARAM_CmpChS_ChannelOpened <struct_e_v_t_p_a_r_a_m___cmp_ch_s___channel_opened>`
+
+- struct :ref:`ICmpChannelServer_C <struct_i_cmp_channel_server___c>`
+
+Macros
+------
+
+- #define :ref:`CHANNELSERVERKEY_INT_BUFFERSIZE <group___cmp_channel_server_itf___settings_1ga40aa00cc951e28e35a9f9f6831ad4266>` "BufferSize"
+
+- #define :ref:`CHANNELSERVERVALUE_INT_BUFFERSIZE_DEFAULT <group___cmp_channel_server_itf___settings_1ga172ff6c2230836d7aa237c759d90537b>` NETSERVER_BUFFERSIZE
+
+- #define :ref:`CHANNELSERVERKEY_INT_MAXCHANNELS <group___cmp_channel_server_itf___settings_1gaa31438d1196cf2861bde4d57a59ecdb3>` "MaxChannels"
+
+- #define :ref:`CHANNELSERVERVALUE_INT_MAXCHANNELS_DEFAULT <group___cmp_channel_server_itf___settings_1ga2814965217a17f14366999f9f13384c7>` NETSERVER_MAXCHANNELS
+
+- #define :ref:`EVTPARAMID_CmpChS_ChannelClosed <group___cmp_channel_server_itf___eventparameter_1ga1eff415078e34e2f96d02b7e746094b0>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpChS_ChannelClosed <group___cmp_channel_server_itf___eventparameter_1gacdb59e88866e84c5d2a7812f12fe1c4c>` 0x0001
+
+- #define :ref:`EVTPARAMID_CmpChannelServer <group___cmp_channel_server_itf___eventparameter_1ga93ff31f37778dc0468b1adbcfa0dac4c>` :ref:`EVTPARAMID_CmpChS_ChannelClosed <group___cmp_channel_server_itf___eventparameter_1ga1eff415078e34e2f96d02b7e746094b0>`
+
+- #define :ref:`EVTVERSION_CmpChannelServer <group___cmp_channel_server_itf___eventparameter_1gaa2d2d7532be9c6ba2ecc1fb1f6c45e1c>` :ref:`EVTVERSION_CmpChS_ChannelClosed <group___cmp_channel_server_itf___eventparameter_1gacdb59e88866e84c5d2a7812f12fe1c4c>`
+
+- #define :ref:`EVTPARAMID_CmpChS_ChannelOpened <group___cmp_channel_server_itf___eventparameter_1gafaca585e287576a1a97bb6ba0e6215d5>` 0x0002
+
+- #define :ref:`EVTVERSION_CmpChS_ChannelOpened <group___cmp_channel_server_itf___eventparameter_1gaf1357f8fa0557f5f7053c22942521831>` 0x0001
+
+- #define :ref:`EVT_ChSChannelClosed <group___cmp_channel_server_itf___events_1ga582155ba7e5bafe2d6a142b96ca7855d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`EVT_ChSChannelOpened <group___cmp_channel_server_itf___events_1ga2376278277ecc1c9624cc2f62c955a92>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+
+- #define :ref:`ITF_CmpChannelServer <group___cmp_channel_server_itf_1ga5af6297baff82b348ed308edcef925d3>`
+
+- #define :ref:`EXTITF_CmpChannelServer <group___cmp_channel_server_itf_1gadcdcf6d61f34f733160ec53a17b1e385>`
+
+Typedefs
+--------
+
+- typedef :ref:`EVTPARAM_CmpChS_ChannelClosed <struct_e_v_t_p_a_r_a_m___cmp_ch_s___channel_closed>` :ref:`EVTPARAM_ChannelClosed <group___cmp_channel_server_itf___eventparameter_1ga60cd353c544cbd91e9a13452336d9e22>`
+
+- typedef :ref:`ICmpChannelServer_C <struct_i_cmp_channel_server___c>` :ref:`ICmpChannelServer <group___cmp_channel_server_itf_1ga210c4c13ac2920d84670061a6a4804d0>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`NetServerGetMaxChannels <group___cmp_channel_server_itf_1gaa61219249349fff27e8d5026984d69eb>` (RTS_UI16 * pwMaxChannels)
+
+- RTS_RESULT :ref:`NetServerGetMaxChannelBufferSize <group___cmp_channel_server_itf_1ga70303eac042a808bc04909757b4879d3>` (RTS_I32 * pi32MaxChannelBufferSize)
+
+- RTS_RESULT :ref:`NetServerGetChannelInfoByIndex <group___cmp_channel_server_itf_1gaf77f99a0acb88ef37188f4eb44ada1b7>` (RTS_UI16 ui16ChannelIndex, RTS_UI32 * pui32ServerState, :ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChInfoBuffer, RTS_SIZE * psiBufferLen)
+
+- RTS_RESULT :ref:`NetServerGetChannelInfoByIndex2 <group___cmp_channel_server_itf_1ga1b88d27b187b18b540ab30c0ab6013de>` (RTS_UI16 ui16ChannelIndex, RTS_UI32 * pui32ServerState, :ref:`CHANNELINFO <struct_c_h_a_n_n_e_l_i_n_f_o>` * pChInfoBuffer, RTS_SIZE * psiBufferLen)
+
+- RTS_RESULT :ref:`NetServerGetStatus <group___cmp_channel_server_itf_1gaf050a401e94cd38d1aaa2d3aaf2c91ae>` (RTS_UI32 ulChannelHandle, RTS_UI16 * pusStatus, RTS_UI8 * pbyScalingFactor, RTS_I32 * pnItemsComplete, RTS_I32 * pnTotalItems)
+
+- RTS_RESULT :ref:`NetServerGetRequest <group___cmp_channel_server_itf_1ga40fb91f88755597d5b6eda05c9a28697>` (RTS_UI32 ulChannelHandle, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>` * ppduRequest, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>` * ppduReplyBuffer)
+
+- RTS_RESULT :ref:`NetServerFinishRequest <group___cmp_channel_server_itf_1ga340718f90a7eca4b17b75ce83b5bf30f>` (RTS_UI32 ulChannelHandle, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData)
+
+- RTS_RESULT :ref:`NetServerSetSessionId <group___cmp_channel_server_itf_1gac137e47c3a5fdd01150edf34f6e066e5>` (RTS_UI32 ulChannelHandle, RTS_UI32 ulSessionId)
+
+- RTS_RESULT :ref:`NetServerGetSessionId <group___cmp_channel_server_itf_1ga7c130fed4dc66eee53fbeff1bf6295fc>` (RTS_UI32 ulChannelHandle, RTS_UI32 * pulSessionId)
+
+- int :ref:`NetServerGetChannel <group___cmp_channel_server_itf_1gab766ff65e706c26c830d7a25b260927d>` (:ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrPeer, unsigned short wChannelId, :ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` ** ppChBuffer)
+
+- int :ref:`NetServerReleaseChannel <group___cmp_channel_server_itf_1ga50119c1e88fa896c1577e6f6ba59f655>` (:ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChBuffer)
+
+- int :ref:`NetServerHandleMetaRequest <group___cmp_channel_server_itf_1gaf52e870aa5161b58734a8eae3d028dfc>` (RTS_HANDLE hRouter, :ref:`PEERADDRESS <struct_p_e_e_r_a_d_d_r_e_s_s>`  addrSender, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData)
+
+- void :ref:`NetServerForEachChannel <group___cmp_channel_server_itf_1ga4fec7786feefac8319ede3e8cb06b86e>` (:ref:`PFCHANNELHANDLER <group___cmp_channel_mgr_itf_1gaa6bb7106c459aa8702f58da0df9919c2>`  pfChannelHandler, void * pParam)
+
+- int :ref:`NetServerMessageReceived <group___cmp_channel_server_itf_1gad1721a0b7624dd70db7a4060e3a08abf>` (:ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChBuffer, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData)
+
+- int :ref:`NetServerMessageReceived2 <group___cmp_channel_server_itf_1gac15631c2e30feea02ce34caab494c52b>` (RTS_HANDLE hRouter, :ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChBuffer, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData)
+
+- RTS_RESULT :ref:`NetServerMessageReceived3 <group___cmp_channel_server_itf_1gae75efe79619be304817299704f536ff1>` (:ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChBuffer, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData, RTS_UI32 bFirstCall)
+
+- int :ref:`NetServerChannelError <group___cmp_channel_server_itf_1gac1428a568b4f07be79b180d12e23fa5c>` (:ref:`CHANNELBUFFER <struct_c_h_a_n_n_e_l_b_u_f_f_e_r>` * pChBuffer, int nError)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpChannelServerItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

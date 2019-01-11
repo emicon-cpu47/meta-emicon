@@ -1,0 +1,84 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _structtagtracemgrpacketreadnext__struct:
+
+=================================================
+tagtracemgrpacketreadnext_struct Struct Reference
+=================================================
+
+| #include ":ref:`CmpTraceMgrItf.h <_cmp_trace_mgr_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_IEC_HANDLE :ref:`hPacket <structtagtracemgrpacketreadnext__struct_1a05b86e03aaa0db419a440beb4d386984>`
+- RTS_IEC_HANDLE :ref:`hPrevRecord <structtagtracemgrpacketreadnext__struct_1abcc7b97d9132375fbc07f1ded78fd480>`
+- :ref:`TraceRecordEntry <group___cmp_trace_mgr_itf_1ga49b1553f6ac8b3f9685de54dd1f97836>` * :ref:`pTraceBuffer <structtagtracemgrpacketreadnext__struct_1aee4cae668b61ebec6ec07a793e2af119>`
+- RTS_IEC_UDINT * :ref:`pulReadBytes <structtagtracemgrpacketreadnext__struct_1ac662ebd07395f5d46cd11d298777c74b>`
+- RTS_IEC_RESULT * :ref:`pResult <structtagtracemgrpacketreadnext__struct_1a377f845be3a583f6ee6c84352bdf3e31>`
+- RTS_IEC_HANDLE :ref:`TraceMgrPacketReadNext <structtagtracemgrpacketreadnext__struct_1a0656cead229bb25a61ada5907c4f1f59>`
+
+Detailed Description
+--------------------
+
+Reads the contents of the next record.
+
+.. note:: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
+
+.. note:: Data is always returned in little endian byte order even if the device has big endian byte order.
+
+:return: Returns the runtime system error code (see CmpErrors.library):
+
+- ERR_PARAMETER if hPacket is not a valid packet handle or if hPrevRecord is not a valid record handle
+
+- ERR_NO_OBJECT if there is no next record
+
+- ERR_NOTINITIALIZED if the packet is not complete
+
+- ERR_TIMEOUT if reading took too long
+
+- ERR_ENTRIES_REMAINING if more data can be read by a subsequent call (this is not an error)
+
+Field Documentation
+-------------------
+
+.. _structtagtracemgrpacketreadnext__struct_1a05b86e03aaa0db419a440beb4d386984:
+
+RTS_IEC_HANDLE tagtracemgrpacketreadnext_struct::hPacket
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadnext__struct_1abcc7b97d9132375fbc07f1ded78fd480:
+
+RTS_IEC_HANDLE tagtracemgrpacketreadnext_struct::hPrevRecord
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadnext__struct_1aee4cae668b61ebec6ec07a793e2af119:
+
+TraceRecordEntry* tagtracemgrpacketreadnext_struct::pTraceBuffer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadnext__struct_1ac662ebd07395f5d46cd11d298777c74b:
+
+RTS_IEC_UDINT* tagtracemgrpacketreadnext_struct::pulReadBytes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadnext__struct_1a377f845be3a583f6ee6c84352bdf3e31:
+
+RTS_IEC_RESULT* tagtracemgrpacketreadnext_struct::pResult
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtagtracemgrpacketreadnext__struct_1a0656cead229bb25a61ada5907c4f1f59:
+
+RTS_IEC_HANDLE tagtracemgrpacketreadnext_struct::TraceMgrPacketReadNext
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpTraceMgrItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

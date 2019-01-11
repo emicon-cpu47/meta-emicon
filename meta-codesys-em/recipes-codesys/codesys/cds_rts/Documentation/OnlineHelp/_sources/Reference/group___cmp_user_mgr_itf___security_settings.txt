@@ -1,0 +1,183 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_user_mgr_itf___security_settings:
+
+================
+SecuritySettings
+================
+
+ :ref:`More... <group___cmp_user_mgr_itf___security_settings-details>`
+
+Macros
+------
+
+- #define :ref:`CMPUSERMGR_SECURITY_LOGIN <group___cmp_user_mgr_itf___security_settings_1gae0da9b49d2d5cb29a1048dcbfb79b35d>` { \
+{(RTS_I32) :ref:`UserMgrLoginErr_Exclusion <group___cmp_user_mgr_itf___security_settings_1gga27f322cdd3442b0f0683706e865e0ef9a88669301c7f4c979f4d065a4e6cd6d7a>` , :ref:`CMPSECMAN_FLAGS_NONE <group___cmp_security_manager_itf___applicationflags_1ga936df906a0b2f9bd74bd686c30d03a4f>` , "UserMgrLoginErr_Exclusion", "User is excluded permanently [HIGHEST SECURITY LEVEL]"},\
+{(RTS_I32) :ref:`UserMgrLoginErr_Timeout <group___cmp_user_mgr_itf___security_settings_1gga27f322cdd3442b0f0683706e865e0ef9afe462bfc4174e1353163153f226c27d5>` , :ref:`CMPSECMAN_FLAGS_DEFAULT <group___cmp_security_manager_itf___applicationflags_1gaa5df6ddff07339e160fc0ae78770850c>` , "UserMgrLoginErr_Timeout", "User is excluded temporarily [DEFAULT]"},\
+{(RTS_I32) :ref:`UserMgrLoginErr_NoExclusion <group___cmp_user_mgr_itf___security_settings_1gga27f322cdd3442b0f0683706e865e0ef9a9dc5eb033c67edd447870479b1e9d0ec>` , :ref:`CMPSECMAN_FLAGS_NONE <group___cmp_security_manager_itf___applicationflags_1ga936df906a0b2f9bd74bd686c30d03a4f>` , "UserMgrLoginErr_NoExclusion", "No user exclusion"},\
+}
+
+- #define :ref:`CMPUSERMGR_SECURITY_ID_LOGIN <group___cmp_user_mgr_itf___security_settings_1ga237ad1516a5ef631b0aa4cda092b74a5>` 0
+
+- #define :ref:`CMPUSERMGR_SECURITY_MAXRETRIES <group___cmp_user_mgr_itf___security_settings_1ga1249f270e869d7aba93dfb7fdc9fd2ab>` { :ref:`CMPSECMAN_FLAGS_INTSETTING <group___cmp_security_manager_itf___applicationflags_1ga4ce4770ea24bcfce902ad4f5d91b84ae>` | :ref:`CMPSECMAN_FLAGS_EDITABLESETTING <group___cmp_security_manager_itf___applicationflags_1ga3c5f8affc49b9e0bb308e4eb3eb0f773>` , "UserMgrLoginErr_MaxRetries", "Maximal number of failed login retries", { USERMGR_NUM_OF_LOGIN_RETRIES } }
+
+- #define :ref:`CMPUSERMGR_SECURITY_ID_MAXRETRIES <group___cmp_user_mgr_itf___security_settings_1ga83a1dd68e486ece829979c4cb963b973>` 1
+
+- #define :ref:`CMPUSERMGR_SECURITY_TIMEOUT <group___cmp_user_mgr_itf___security_settings_1ga56f0a6bf1cf44310d74c550c84568009>` { :ref:`CMPSECMAN_FLAGS_INTSETTING <group___cmp_security_manager_itf___applicationflags_1ga4ce4770ea24bcfce902ad4f5d91b84ae>` | :ref:`CMPSECMAN_FLAGS_EDITABLESETTING <group___cmp_security_manager_itf___applicationflags_1ga3c5f8affc49b9e0bb308e4eb3eb0f773>` , "UserMgrLoginErr_Timeout", "Exclusion timeout [s]", { USERMGR_TIMEOUT_OF_LOGIN_RETRIES } }
+
+- #define :ref:`CMPUSERMGR_SECURITY_ID_TIMEOUT <group___cmp_user_mgr_itf___security_settings_1ga0ac539e02e6fdfe1aa6d7f8b1f4364f1>` 2
+
+- #define :ref:`CMPUSERMGR_SECURITY_ENFORCE <group___cmp_user_mgr_itf___security_settings_1gac9fdc883a6e32d4dd108d5c2155c3c13>` { \
+{(RTS_I32) :ref:`UserMgrEnforced <group___cmp_user_mgr_itf___security_settings_1gga90d5d613a1676cb53d1f969a4913c99aa538c2151383c74847fac35a4f50e1546>` , :ref:`CMPSECMAN_FLAGS_NONE <group___cmp_security_manager_itf___applicationflags_1ga936df906a0b2f9bd74bd686c30d03a4f>` , "UserMgrEnforced", "User management is enforced, i.e. no anonymous login possible [HIGHEST SECURITY LEVEL]"},\
+{(RTS_I32) :ref:`UserMgrOptional <group___cmp_user_mgr_itf___security_settings_1gga90d5d613a1676cb53d1f969a4913c99aafc9b534be4c7d78ce308f269807e378e>` , :ref:`CMPSECMAN_FLAGS_DEFAULT <group___cmp_security_manager_itf___applicationflags_1gaa5df6ddff07339e160fc0ae78770850c>` , "UserMgrOptional", "User management is optional [DEFAULT]"}\
+}
+
+- #define :ref:`CMPUSERMGR_SECURITY_ID_ENFORCE <group___cmp_user_mgr_itf___security_settings_1gaf85f1b50f8047f3f05adbf1b32a4ba71>` 3
+
+- #define :ref:`USERMGR_US_NONE <group___cmp_user_mgr_itf___security_settings_1ga92a48212f70ee2f6f18c11af3af1f5b8>` UINT32_C(0x00000000)
+
+- #define :ref:`USERMGR_US_LOGGEDIN <group___cmp_user_mgr_itf___security_settings_1ga40c3435153136d0e473e09cf045f4e0f>` UINT32_C(0x00000001)
+
+- #define :ref:`USERMGR_US_AUTHENTICATED <group___cmp_user_mgr_itf___security_settings_1ga1b624ff1e8e0b2d2e74702b7e04e3290>` UINT32_C(0x00000002)
+
+Enumerations
+------------
+
+- enum :ref:`SecurityUserMgrLoginErr <group___cmp_user_mgr_itf___security_settings_1ga27f322cdd3442b0f0683706e865e0ef9>` { :ref:`UserMgrLoginErr_NoExclusion <group___cmp_user_mgr_itf___security_settings_1gga27f322cdd3442b0f0683706e865e0ef9a9dc5eb033c67edd447870479b1e9d0ec>`, :ref:`UserMgrLoginErr_Timeout <group___cmp_user_mgr_itf___security_settings_1gga27f322cdd3442b0f0683706e865e0ef9afe462bfc4174e1353163153f226c27d5>`, :ref:`UserMgrLoginErr_Exclusion <group___cmp_user_mgr_itf___security_settings_1gga27f322cdd3442b0f0683706e865e0ef9a88669301c7f4c979f4d065a4e6cd6d7a>` }
+
+- enum :ref:`SecurityUserMgrEnforce <group___cmp_user_mgr_itf___security_settings_1ga90d5d613a1676cb53d1f969a4913c99a>` { :ref:`UserMgrOptional <group___cmp_user_mgr_itf___security_settings_1gga90d5d613a1676cb53d1f969a4913c99aafc9b534be4c7d78ce308f269807e378e>`, :ref:`UserMgrEnforced <group___cmp_user_mgr_itf___security_settings_1gga90d5d613a1676cb53d1f969a4913c99aa538c2151383c74847fac35a4f50e1546>` }
+
+.. _group___cmp_user_mgr_itf___security_settings-details:
+
+Detailed Description
+--------------------
+
+
+
+
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_user_mgr_itf___security_settings_1gae0da9b49d2d5cb29a1048dcbfb79b35d:
+
+#define CMPUSERMGR_SECURITY_LOGIN
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Value:**
+
+.. parsed-literal::
+
+    { \\
+    {(RTS_I32) :ref:`UserMgrLoginErr_Exclusion <group___cmp_user_mgr_itf___security_settings_1gga27f322cdd3442b0f0683706e865e0ef9a88669301c7f4c979f4d065a4e6cd6d7a>` , :ref:`CMPSECMAN_FLAGS_NONE <group___cmp_security_manager_itf___applicationflags_1ga936df906a0b2f9bd74bd686c30d03a4f>` , "UserMgrLoginErr_Exclusion", "User is excluded permanently [HIGHEST SECURITY LEVEL]"},\\
+    {(RTS_I32) :ref:`UserMgrLoginErr_Timeout <group___cmp_user_mgr_itf___security_settings_1gga27f322cdd3442b0f0683706e865e0ef9afe462bfc4174e1353163153f226c27d5>` , :ref:`CMPSECMAN_FLAGS_DEFAULT <group___cmp_security_manager_itf___applicationflags_1gaa5df6ddff07339e160fc0ae78770850c>` , "UserMgrLoginErr_Timeout", "User is excluded temporarily [DEFAULT]"},\\
+    {(RTS_I32) :ref:`UserMgrLoginErr_NoExclusion <group___cmp_user_mgr_itf___security_settings_1gga27f322cdd3442b0f0683706e865e0ef9a9dc5eb033c67edd447870479b1e9d0ec>` , :ref:`CMPSECMAN_FLAGS_NONE <group___cmp_security_manager_itf___applicationflags_1ga936df906a0b2f9bd74bd686c30d03a4f>` , "UserMgrLoginErr_NoExclusion", "No user exclusion"},\\
+    }
+
+Security settings of the behavior when login authentication fails. Can be selected in CmpSecurityManager. NOTE: Security modes must be ordered in an descending sorting, i.e. the setting with the highest security level is found at the beginning of the list!
+
+.. _group___cmp_user_mgr_itf___security_settings_1ga237ad1516a5ef631b0aa4cda092b74a5:
+
+#define CMPUSERMGR_SECURITY_ID_LOGIN 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_user_mgr_itf___security_settings_1ga1249f270e869d7aba93dfb7fdc9fd2ab:
+
+#define CMPUSERMGR_SECURITY_MAXRETRIES { :ref:`CMPSECMAN_FLAGS_INTSETTING <group___cmp_security_manager_itf___applicationflags_1ga4ce4770ea24bcfce902ad4f5d91b84ae>` | :ref:`CMPSECMAN_FLAGS_EDITABLESETTING <group___cmp_security_manager_itf___applicationflags_1ga3c5f8affc49b9e0bb308e4eb3eb0f773>` , "UserMgrLoginErr_MaxRetries", "Maximal number of failed login retries", { USERMGR_NUM_OF_LOGIN_RETRIES } }
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Editable security setting: Maximal number of failed login retries
+
+.. _group___cmp_user_mgr_itf___security_settings_1ga83a1dd68e486ece829979c4cb963b973:
+
+#define CMPUSERMGR_SECURITY_ID_MAXRETRIES 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_user_mgr_itf___security_settings_1ga56f0a6bf1cf44310d74c550c84568009:
+
+#define CMPUSERMGR_SECURITY_TIMEOUT { :ref:`CMPSECMAN_FLAGS_INTSETTING <group___cmp_security_manager_itf___applicationflags_1ga4ce4770ea24bcfce902ad4f5d91b84ae>` | :ref:`CMPSECMAN_FLAGS_EDITABLESETTING <group___cmp_security_manager_itf___applicationflags_1ga3c5f8affc49b9e0bb308e4eb3eb0f773>` , "UserMgrLoginErr_Timeout", "Exclusion timeout [s]", { USERMGR_TIMEOUT_OF_LOGIN_RETRIES } }
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Editable security setting: Exclusion timeout in seconds in case the maximal number of failed login retries is reached
+
+.. _group___cmp_user_mgr_itf___security_settings_1ga0ac539e02e6fdfe1aa6d7f8b1f4364f1:
+
+#define CMPUSERMGR_SECURITY_ID_TIMEOUT 2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_user_mgr_itf___security_settings_1gac9fdc883a6e32d4dd108d5c2155c3c13:
+
+#define CMPUSERMGR_SECURITY_ENFORCE
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Value:**
+
+.. parsed-literal::
+
+    { \\
+    {(RTS_I32) :ref:`UserMgrEnforced <group___cmp_user_mgr_itf___security_settings_1gga90d5d613a1676cb53d1f969a4913c99aa538c2151383c74847fac35a4f50e1546>` , :ref:`CMPSECMAN_FLAGS_NONE <group___cmp_security_manager_itf___applicationflags_1ga936df906a0b2f9bd74bd686c30d03a4f>` , "UserMgrEnforced", "User management is enforced, i.e. no anonymous login possible [HIGHEST SECURITY LEVEL]"},\\
+    {(RTS_I32) :ref:`UserMgrOptional <group___cmp_user_mgr_itf___security_settings_1gga90d5d613a1676cb53d1f969a4913c99aafc9b534be4c7d78ce308f269807e378e>` , :ref:`CMPSECMAN_FLAGS_DEFAULT <group___cmp_security_manager_itf___applicationflags_1gaa5df6ddff07339e160fc0ae78770850c>` , "UserMgrOptional", "User management is optional [DEFAULT]"}\\
+    }
+
+Security settings to enforce the usage of the user management. NOTE: Security modes must be ordered in an descending sorting, i.e. the setting with the highest security level is found at the beginning of the list!
+
+.. _group___cmp_user_mgr_itf___security_settings_1gaf85f1b50f8047f3f05adbf1b32a4ba71:
+
+#define CMPUSERMGR_SECURITY_ID_ENFORCE 3
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_user_mgr_itf___security_settings_1ga92a48212f70ee2f6f18c11af3af1f5b8:
+
+#define USERMGR_US_NONE UINT32_C(0x00000000)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_user_mgr_itf___security_settings_1ga40c3435153136d0e473e09cf045f4e0f:
+
+#define USERMGR_US_LOGGEDIN UINT32_C(0x00000001)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_user_mgr_itf___security_settings_1ga1b624ff1e8e0b2d2e74702b7e04e3290:
+
+#define USERMGR_US_AUTHENTICATED UINT32_C(0x00000002)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enumeration Type Documentation
+------------------------------
+
+.. _group___cmp_user_mgr_itf___security_settings_1ga27f322cdd3442b0f0683706e865e0ef9:
+
+enum SecurityUserMgrLoginErr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Security settings of the behavior when login authentication fails. 
+
+**Enumerator:**
+
++-----------------------------+
+| UserMgrLoginErr_NoExclusion |
++-----------------------------+
+| UserMgrLoginErr_Timeout     |
++-----------------------------+
+| UserMgrLoginErr_Exclusion   |
++-----------------------------+
+
+.. _group___cmp_user_mgr_itf___security_settings_1ga90d5d613a1676cb53d1f969a4913c99a:
+
+enum SecurityUserMgrEnforce
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Security settings to enforce the usage of the user management. 
+
+**Enumerator:**
+
++-----------------+
+| UserMgrOptional |
++-----------------+
+| UserMgrEnforced |
++-----------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

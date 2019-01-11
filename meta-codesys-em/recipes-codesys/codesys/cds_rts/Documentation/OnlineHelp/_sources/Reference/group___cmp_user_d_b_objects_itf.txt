@@ -1,0 +1,999 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_user_d_b_objects_itf:
+
+===================
+CmpUserDBObjectsItf
+===================
+
+Interface of CmpUserDBObjects. :ref:`More... <group___cmp_user_d_b_objects_itf-details>`
+
+Modules
+-------
+
+- :ref:`Group rights entry <group___cmp_user_d_b_objects_itf___grouprightsentry>`
+
+- :ref:`Object entry <group___cmp_user_d_b_objects_itf___objectentry>`
+
+- :ref:`Properties <group___cmp_user_d_b_objects_itf___properties>`
+
+- :ref:`Static defines <group___cmp_user_d_b_objects_itf___staticdefines>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpUserDBObjects_C <struct_i_cmp_user_d_b_objects___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpUserDBObjects <group___cmp_user_d_b_objects_itf_1gaa96365e4191c167ef61f438912db102d>`
+
+- #define :ref:`EXTITF_CmpUserDBObjects <group___cmp_user_d_b_objects_itf_1ga262520269293c802090ff562fbd0f4b3>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpUserDBObjects_C <struct_i_cmp_user_d_b_objects___c>` :ref:`ICmpUserDBObjects <group___cmp_user_d_b_objects_itf_1gaf73277ad34af2b9439063a993d9bdf62>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`UserDBRightsLoad <group___cmp_user_d_b_objects_itf_1ga91659e835b42994966300d8a637fc943>` (void)
+
+- RTS_RESULT :ref:`UserDBRightsStore <group___cmp_user_d_b_objects_itf_1gaa13562c7d0c1225e9ba823e286b5fc7b>` (void)
+
+- RTS_RESULT :ref:`UserDBRightsRelease <group___cmp_user_d_b_objects_itf_1ga740be94d09e4909676c67fb93bf5074d>` (void)
+
+- RTS_HANDLE :ref:`UserDBObjectAdd <group___cmp_user_d_b_objects_itf_1ga025ba4f0a6be7ae9f5b6a72c4d95e568>` (char * pszObject, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectAdd2 <group___cmp_user_d_b_objects_itf_1gae9db6cdbdfff40c0210ff2560aec752d>` (char * pszObject, RTS_UI32 properties, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBObjectRemove <group___cmp_user_d_b_objects_itf_1ga751556c319d0eff1462ffc4c96604e4b>` (RTS_HANDLE hObject)
+
+- RTS_HANDLE :ref:`UserDBObjectAddChild <group___cmp_user_d_b_objects_itf_1gab0373c8bc403ae7ed2c0b41a0d1bbb39>` (RTS_HANDLE hFatherObject, char * pszObject, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBObjectSetUsedRights <group___cmp_user_d_b_objects_itf_1gaab6a03b2bbab14e823ad56d8d337b249>` (RTS_HANDLE hObject, RTS_UI32 ulUsedRights)
+
+- RTS_RESULT :ref:`UserDBObjectGetUsedRights <group___cmp_user_d_b_objects_itf_1ga9b3805986b0a7db4c745b79761c26324>` (RTS_HANDLE hObject, RTS_UI32 * pulUsedRights)
+
+- RTS_RESULT :ref:`UserDBObjectGetProperties <group___cmp_user_d_b_objects_itf_1ga11e4245dc928054549bd3fb36def751d>` (RTS_HANDLE hObject, RTS_UI32 * pulProperties)
+
+- RTS_RESULT :ref:`UserDBObjectGetID <group___cmp_user_d_b_objects_itf_1ga1dbda78722d85e821ef0060cddec27d0>` (RTS_HANDLE hObject, RTS_UI32 * pulID)
+
+- RTS_RESULT :ref:`UserDBObjectSetID <group___cmp_user_d_b_objects_itf_1gae4ff4b101ef8701b294d929dfa8c8858>` (RTS_HANDLE hObject, RTS_UI32 ulID)
+
+- RTS_RESULT :ref:`UserDBObjectAddGroup <group___cmp_user_d_b_objects_itf_1gaa24efd478320759dfbe0e59c29add239>` (RTS_HANDLE hObject, RTS_HANDLE hGroup)
+
+- RTS_RESULT :ref:`UserDBObjectRemoveGroup <group___cmp_user_d_b_objects_itf_1ga3d0cf387e9da96a8e6e5034cb1ec16d1>` (RTS_HANDLE hObject, RTS_HANDLE hGroup)
+
+- RTS_RESULT :ref:`UserDBObjectSetGroupRights <group___cmp_user_d_b_objects_itf_1ga6a983d1a6cdfef28d9ac51972594bfb9>` (RTS_HANDLE hObject, RTS_HANDLE hGroup, RTS_UI32 ulRights)
+
+- RTS_RESULT :ref:`UserDBObjectSetGroupDeniedRights <group___cmp_user_d_b_objects_itf_1gaecb1dbb879b61ac84fb86f57600bb8a3>` (RTS_HANDLE hObject, RTS_HANDLE hGroup, RTS_UI32 ulDeniedRights)
+
+- RTS_HANDLE :ref:`UserDBObjectGetFirst <group___cmp_user_d_b_objects_itf_1gae39441a005c39247db62d7945e555b73>` (RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectGetNext <group___cmp_user_d_b_objects_itf_1ga065389c35d380fc9138cd73fc4fe2eaf>` (RTS_HANDLE hPrevObject, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectOpen <group___cmp_user_d_b_objects_itf_1ga0f34c95214c7f0ed119ae205761337f4>` (char * pszObject, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBObjectClose <group___cmp_user_d_b_objects_itf_1ga2d8673c3a52d6aaa18839944c73b0de4>` (RTS_HANDLE hObject)
+
+- RTS_RESULT :ref:`UserDBObjectGetName <group___cmp_user_d_b_objects_itf_1ga3fd83d0d757af18b83c9434cce474e4b>` (RTS_HANDLE hObject, char * pszObject, int * piMaxLen)
+
+- RTS_RESULT :ref:`UserDBObjectGetPath <group___cmp_user_d_b_objects_itf_1gad42743065d3803b1c91de99ad29258e4>` (RTS_HANDLE hObject, char * pszObject, int * piMaxLen)
+
+- RTS_HANDLE :ref:`UserDBObjectGetFirstChild <group___cmp_user_d_b_objects_itf_1gafac4ff5ab210265b7ea71ff375502d3c>` (RTS_HANDLE hFatherObject, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectGetNextChild <group___cmp_user_d_b_objects_itf_1ga3f6ca2689ac544ecbc6bb1a684ff7ee3>` (RTS_HANDLE hFatherObject, RTS_HANDLE hPrevChildObject, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectGetFather <group___cmp_user_d_b_objects_itf_1gac253d2a61d4b16f9a1a47c88ac586968>` (RTS_HANDLE hChildObject, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectGetFirstGroup <group___cmp_user_d_b_objects_itf_1ga27b9d715209def8ddfab274b981e3b9c>` (RTS_HANDLE hObject, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`UserDBObjectGetNextGroup <group___cmp_user_d_b_objects_itf_1ga26e2651eef1f837177d13cbccfdfc0bc>` (RTS_HANDLE hObject, RTS_HANDLE hPrevGroup, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`UserDBObjectGetGroupRights <group___cmp_user_d_b_objects_itf_1ga75bfbb56951f552114f2a061f3543bdf>` (RTS_HANDLE hObject, RTS_HANDLE hGroup, RTS_UI32 * pulRights, RTS_UI32 * pulDeniedRights)
+
+- RTS_RESULT :ref:`UserDBObjectHasRights <group___cmp_user_d_b_objects_itf_1ga471e4ecc020e4148efa17830ed104767>` (char * pszObject, RTS_HANDLE hUser, RTS_UI32 ulRequestedRights)
+
+- RTS_RESULT :ref:`UserDBObjectGetRights <group___cmp_user_d_b_objects_itf_1gabd2e62a5fa07a430754f7be16cec3fef>` (char * pszObject, RTS_HANDLE hUser, RTS_UI32 * pulRights, RTS_UI32 * pulDeniedRights)
+
+- RTS_RESULT :ref:`UserDBObjectsActivate <group___cmp_user_d_b_objects_itf_1ga637671c3890ef6e358dc74a0a4dd0454>` (void)
+
+.. _group___cmp_user_d_b_objects_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpUserDBObjects.
+
+Interface for the user rights management database.
+
+Here you have to store the tree of all objects of the runtime system with their assigned usergroups and the configured rights on it.
+
+Example:
+
+- Object: Name = "Device"; UserGroup = "Administator" | Rights = USERDB_RIGHT_ALL | DeniedRights = USERDB_RIGHT_NONE; UserGroup = "..." | Rights = ... | DeniedRights = ...; ...
+
+- Object: Name = "Device.MyObject"; UserGroup = "Administator" | Rights = USERDB_RIGHT_ALL | DeniedRights = USERDB_RIGHT_NONE; UserGroup = "..." | Rights = ... | DeniedRights = ...; ...
+
+For details see :ref:`CmpUserMgrItf.h <_cmp_user_mgr_itf_8h>` .
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. GmbH
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_user_d_b_objects_itf_1gaa96365e4191c167ef61f438912db102d:
+
+#define ITF_CmpUserDBObjects
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_user_d_b_objects_itf_1ga262520269293c802090ff562fbd0f4b3:
+
+#define EXTITF_CmpUserDBObjects
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_user_d_b_objects_itf_1gaf73277ad34af2b9439063a993d9bdf62:
+
+typedef ICmpUserDBObjects_C ICmpUserDBObjects
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_user_d_b_objects_itf_1ga91659e835b42994966300d8a637fc943:
+
+RTS_RESULT UserDBRightsLoad (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Load the user rights database into memory
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------------+
+| ERR_OK             | Succeeded                                          |
++--------------------+----------------------------------------------------+
+| ERR_FAILED         | Error loading user rights database                 |
++--------------------+----------------------------------------------------+
+| ERR_NOTIMPLEMENTED | Is not implemented perhaps the UserDBRights is fix |
++--------------------+----------------------------------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1gaa13562c7d0c1225e9ba823e286b5fc7b:
+
+RTS_RESULT UserDBRightsStore (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Storing the current user rights management into permanent database file
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------------+
+| ERR_OK             | Succeeded                                          |
++--------------------+----------------------------------------------------+
+| ERR_FAILED         | Error storing user rights database                 |
++--------------------+----------------------------------------------------+
+| ERR_NOTIMPLEMENTED | Is not implemented perhaps the UserDBRights is fix |
++--------------------+----------------------------------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1ga740be94d09e4909676c67fb93bf5074d:
+
+RTS_RESULT UserDBRightsRelease (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Release user rights management in memory. NOTE: The database file is not removed!
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------------+
+| ERR_OK             | Succeeded                                          |
++--------------------+----------------------------------------------------+
+| ERR_FAILED         | Failed releasing user rights management            |
++--------------------+----------------------------------------------------+
+| ERR_NOTIMPLEMENTED | Is not implemented perhaps the UserDBRights is fix |
++--------------------+----------------------------------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1ga025ba4f0a6be7ae9f5b6a72c4d95e568:
+
+RTS_HANDLE UserDBObjectAdd (char *pszObject, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add a new object to the object management, so the access rights can be configured on that object. NOTE: The name of the object must include the full namespace with "Device" as the root node, e.g. "Device.MyObject" or if it's a filesystem object with "/" as the root node.
+
+**Parameters**
+
++---------+-----------+------------------------------------+
+| [in]    | pszObject | Full object name (see object tree) |
++---------+-----------+------------------------------------+
+| [out]   | pResult   | Pointer to error code              |
++---------+-----------+------------------------------------+
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | Object could be added                                          |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Object invalid = NULL or empty                                 |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+| ERR_NOMEMORY       | If memory could not be allocated to store this object          |
++--------------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the object or RTS_INVALID_HANDLE if it could not be added
+
+.. _group___cmp_user_d_b_objects_itf_1gae9db6cdbdfff40c0210ff2560aec752d:
+
+RTS_HANDLE UserDBObjectAdd2 (char *pszObject, RTS_UI32 properties, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add a new object to the object management, so the access rights can be configured on that object. NOTE: The name of the object must include the full namespace with "Device" as the root node, e.g. "Device.MyObject" or if it's a filesystem object with "/" as the root node.
+
+**Parameters**
+
++---------+------------+-------------------------------------------+
+| [in]    | pszObject  | Full object name (see object tree)        |
++---------+------------+-------------------------------------------+
+| [in]    | properties | Properties of the object. See Properties. |
++---------+------------+-------------------------------------------+
+| [out]   | pResult    | Pointer to error code                     |
++---------+------------+-------------------------------------------+
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | Object could be added                                          |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Object invalid = NULL or empty                                 |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+| ERR_NOMEMORY       | If memory could not be allocated to store this object          |
++--------------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the object or RTS_INVALID_HANDLE if it could not be added
+
+.. _group___cmp_user_d_b_objects_itf_1ga751556c319d0eff1462ffc4c96604e4b:
+
+RTS_RESULT UserDBObjectRemove (RTS_HANDLE hObject)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove an object from the object management and all its children
+
+**Parameters**
+
++---------+---------+------------------+
+| [in]    | hObject | Handle to object |
++---------+---------+------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-------------------------+
+| ERR_OK        | Object could be removed |
++---------------+-------------------------+
+| ERR_PARAMETER | Invalid object handle   |
++---------------+-------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1gab0373c8bc403ae7ed2c0b41a0d1bbb39:
+
+RTS_HANDLE UserDBObjectAddChild (RTS_HANDLE hFatherObject, char *pszObject, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add a new object under a father object specified by its name to the object management, so the access rights can be configured on that object.
+
+**Parameters**
+
++---------+---------------+-------------------------------------------------------------------+
+| [in]    | hFatherObject | Handle to the father object, under which the object will be added |
++---------+---------------+-------------------------------------------------------------------+
+| [in]    | pszObject     | Object name (see object tree)                                     |
++---------+---------------+-------------------------------------------------------------------+
+| [out]   | pResult       | Pointer to error code                                             |
++---------+---------------+-------------------------------------------------------------------+
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | Object could be added                                          |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Object invalid = NULL or empty                                 |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+| ERR_NOMEMORY       | If memory could not be allocated to store this object          |
++--------------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the object or RTS_INVALID_HANDLE if it could not be added
+
+.. _group___cmp_user_d_b_objects_itf_1gaab6a03b2bbab14e823ad56d8d337b249:
+
+RTS_RESULT UserDBObjectSetUsedRights (RTS_HANDLE hObject, RTS_UI32 ulUsedRights)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the used access rights for the object specified by handle. The rights are additionally stored in an internal list. In case USERDB_RIGHT_NONE is passed for ulUsedRights the previously stored rights are retrieved for this object.
+
+**Parameters**
+
++---------+--------------+-------------------------------------------------------+
+| [in]    | hObject      | Handle to the object                                  |
++---------+--------------+-------------------------------------------------------+
+| [in]    | ulUsedRights | Used access rights or USERDB_RIGHT_NONE for retrieval |
++---------+--------------+-------------------------------------------------------+
+
+**Return values**
+
++---------------+-------------------------------------------+
+| ERR_OK        | Rights are successfully set               |
++---------------+-------------------------------------------+
+| ERR_PARAMETER | Invalid object handle                     |
++---------------+-------------------------------------------+
+| ERR_NO_OBJECT | Object was not found for rights retrieval |
++---------------+-------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_user_d_b_objects_itf_1ga9b3805986b0a7db4c745b79761c26324:
+
+RTS_RESULT UserDBObjectGetUsedRights (RTS_HANDLE hObject, RTS_UI32 *pulUsedRights)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the used access rights for the object specified by handle. NOTE: In case the used rights are not set the function returns USERDB_RIGHT_ALL.
+
+**Parameters**
+
++---------+---------------+-------------------------------+
+| [in]    | hObject       | Handle to the object          |
++---------+---------------+-------------------------------+
+| [out]   | pulUsedRights | Pointer to used access rights |
++---------+---------------+-------------------------------+
+
+**Return values**
+
++---------------+------------------------------------------+
+| ERR_OK        | Rights are successfully set              |
++---------------+------------------------------------------+
+| ERR_PARAMETER | Invalid object handle or invalid pointer |
++---------------+------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_user_d_b_objects_itf_1ga11e4245dc928054549bd3fb36def751d:
+
+RTS_RESULT UserDBObjectGetProperties (RTS_HANDLE hObject, RTS_UI32 *pulProperties)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the properties for the object specified by handle.
+
+**Parameters**
+
++---------+---------------+-----------------------+
+| [in]    | hObject       | Handle to the object  |
++---------+---------------+-----------------------+
+| [out]   | pulProperties | Pointer to properties |
++---------+---------------+-----------------------+
+
+**Return values**
+
++---------------+------------------------------------------+
+| ERR_OK        | Rights are successfully set              |
++---------------+------------------------------------------+
+| ERR_PARAMETER | Invalid object handle or invalid pointer |
++---------------+------------------------------------------+
+
+**Returns:**
+
+Error code
+
+.. _group___cmp_user_d_b_objects_itf_1ga1dbda78722d85e821ef0060cddec27d0:
+
+RTS_RESULT UserDBObjectGetID (RTS_HANDLE hObject, RTS_UI32 *pulID)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get a unique identifier of an object
+
+**Parameters**
+
++---------+---------+-----------------------------+
+| [in]    | hObject | Handle to object            |
++---------+---------+-----------------------------+
+| [out]   | pulID   | Pointer to get the ObjectID |
++---------+---------+-----------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-----------------------------+
+| ERR_OK        | ObjectID could be retrieved |
++---------------+-----------------------------+
+| ERR_PARAMETER | Invalid object handle       |
++---------------+-----------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1gae4ff4b101ef8701b294d929dfa8c8858:
+
+RTS_RESULT UserDBObjectSetID (RTS_HANDLE hObject, RTS_UI32 ulID)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set a unique identifier of an object
+
+**Parameters**
+
++---------+---------+------------------+
+| [in]    | hObject | Handle to object |
++---------+---------+------------------+
+| [in]    | ulID    | ObjectID to set  |
++---------+---------+------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-----------------------+
+| ERR_OK        | ObjectID could be set |
++---------------+-----------------------+
+| ERR_PARAMETER | Invalid object handle |
++---------------+-----------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1gaa24efd478320759dfbe0e59c29add239:
+
+RTS_RESULT UserDBObjectAddGroup (RTS_HANDLE hObject, RTS_HANDLE hGroup)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add a group to the specified object to manage access rights
+
+**Parameters**
+
++---------+---------+---------------------------------------------+
+| [in]    | hObject | Handle to object                            |
++---------+---------+---------------------------------------------+
+| [in]    | hGroup  | Handle to the group that should be attached |
++---------+---------+---------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+------------------------------------------+
+| ERR_OK        | Group could be added or is already added |
++---------------+------------------------------------------+
+| ERR_PARAMETER | Invalid handles                          |
++---------------+------------------------------------------+
+| ERR_NOMEMORY  | No memory to add group                   |
++---------------+------------------------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1ga3d0cf387e9da96a8e6e5034cb1ec16d1:
+
+RTS_RESULT UserDBObjectRemoveGroup (RTS_HANDLE hObject, RTS_HANDLE hGroup)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove a group from the specified object
+
+**Parameters**
+
++---------+---------+--------------------------------------------+
+| [in]    | hObject | Handle to object                           |
++---------+---------+--------------------------------------------+
+| [in]    | hGroup  | Handle to the group that should be removed |
++---------+---------+--------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+------------------------+
+| ERR_OK        | Group could be removed |
++---------------+------------------------+
+| ERR_PARAMETER | Invalid handles        |
++---------------+------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1ga6a983d1a6cdfef28d9ac51972594bfb9:
+
+RTS_RESULT UserDBObjectSetGroupRights (RTS_HANDLE hObject, RTS_HANDLE hGroup, RTS_UI32 ulRights)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the access rights for the group at the specified object
+
+**Parameters**
+
++---------+---------+---------------------+
+| [in]    | hObject | Handle to object    |
++---------+---------+---------------------+
+| [in]    | hGroup  | Handle to the group |
++---------+---------+---------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+-----------------------------------------------------------------------------+
+| ERR_OK        | Access rights could be set                                                  |
++---------------+-----------------------------------------------------------------------------+
+| ERR_PARAMETER | Invalid handles Rights of the group. See category "User rights" for details |
++---------------+-----------------------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1gaecb1dbb879b61ac84fb86f57600bb8a3:
+
+RTS_RESULT UserDBObjectSetGroupDeniedRights (RTS_HANDLE hObject, RTS_HANDLE hGroup, RTS_UI32 ulDeniedRights)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the denied access rights for the group at the specified object
+
+**Parameters**
+
++---------+---------+---------------------+
+| [in]    | hObject | Handle to object    |
++---------+---------+---------------------+
+| [in]    | hGroup  | Handle to the group |
++---------+---------+---------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+------------------------------------------------------------------------------------+
+| ERR_OK        | Access rights could be set                                                         |
++---------------+------------------------------------------------------------------------------------+
+| ERR_PARAMETER | Invalid handles Denied rights of the group. See category "User rights" for details |
++---------------+------------------------------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1gae39441a005c39247db62d7945e555b73:
+
+RTS_HANDLE UserDBObjectGetFirst (RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get the first object of the user rights management
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Return values**
+
++---------------+------------------------------------------------------+
+| ERR_OK        | First object of the user rights management available |
++---------------+------------------------------------------------------+
+| ERR_NO_OBJECT | No object available                                  |
++---------------+------------------------------------------------------+
+
+**Returns:**
+
+Handle to the first object in the user rights management or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_objects_itf_1ga065389c35d380fc9138cd73fc4fe2eaf:
+
+RTS_HANDLE UserDBObjectGetNext (RTS_HANDLE hPrevObject, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get next object of the user rights management. Must be started with :ref:`UserDBObjectGetFirst() <group___cmp_user_d_b_dep___staticdefines_1gad9ba90307442de5aa260a8404e49e033>`
+
+**Parameters**
+
++---------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hPrevObject | Handle to the previous object retrieved via :ref:`UserDBObjectGetFirst() <group___cmp_user_d_b_dep___staticdefines_1gad9ba90307442de5aa260a8404e49e033>` or subsequent calls of :ref:`UserDBObjectGetNext() <group___cmp_user_d_b_dep___staticdefines_1gae711cd8c362ea4ad68097c5b61ea58d5>` |
++---------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult     | Pointer to error code                                                                                                                                                                                                                                                                       |
++---------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+--------------------------+
+| ERR_OK        | Next object available    |
++---------------+--------------------------+
+| ERR_PARAMETER | Invalid handles          |
++---------------+--------------------------+
+| ERR_NO_OBJECT | No next object available |
++---------------+--------------------------+
+
+**Returns:**
+
+Handle to the next object in the user rights management or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_objects_itf_1ga0f34c95214c7f0ed119ae205761337f4:
+
+RTS_HANDLE UserDBObjectOpen (char *pszObject, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Open object specified by its name
+
+**Parameters**
+
++---------+-----------+------------------------------------+
+| [in]    | pszObject | Full object name (see object tree) |
++---------+-----------+------------------------------------+
+| [out]   | pResult   | Pointer to error code              |
++---------+-----------+------------------------------------+
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | Object could be opened                                         |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Invalid parameter. pszObject = NULL or empty                   |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the object or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_objects_itf_1ga2d8673c3a52d6aaa18839944c73b0de4:
+
+RTS_RESULT UserDBObjectClose (RTS_HANDLE hObject)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Close an object
+
+**Parameters**
+
++---------+---------+----------------------+
+| [in]    | hObject | Handle to the object |
++---------+---------+----------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+------------------------+
+| ERR_OK        | Object could be closed |
++---------------+------------------------+
+| ERR_PARAMETER | Invalid object handle  |
++---------------+------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1ga3fd83d0d757af18b83c9434cce474e4b:
+
+RTS_RESULT UserDBObjectGetName (RTS_HANDLE hObject, char *pszObject, int *piMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get object name
+
+**Parameters**
+
++---------+-----------+--------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hObject   | Handle to the object                                                                                                     |
++---------+-----------+--------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pszObject | Pointer to get object name                                                                                               |
++---------+-----------+--------------------------------------------------------------------------------------------------------------------------+
+| [inout] | piMaxLen  | Pointer to length of buffer in pszObject. If pszObject = NULL, only the length of the object name is returned inpiMaxLen |
++---------+-----------+--------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+---------------------------------------------------------------+
+| ERR_OK        | Object name is returned                                       |
++---------------+---------------------------------------------------------------+
+| ERR_PARAMETER | Invalid object handle or pszObject = NULL and piMaxLen = NULL |
++---------------+---------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1gad42743065d3803b1c91de99ad29258e4:
+
+RTS_RESULT UserDBObjectGetPath (RTS_HANDLE hObject, char *pszObject, int *piMaxLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the complete object path name
+
+**Parameters**
+
++---------+-----------+--------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hObject   | Handle to the object                                                                                                     |
++---------+-----------+--------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszObject | Full object path name (see object tree)                                                                                  |
++---------+-----------+--------------------------------------------------------------------------------------------------------------------------+
+| [inout] | piMaxLen  | Pointer to length of buffer in pszObject. If pszObject = NULL, only the length of the object name is returned inpiMaxLen |
++---------+-----------+--------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+---------------------------------------------------------------+
+| ERR_OK        | Object name is returned                                       |
++---------------+---------------------------------------------------------------+
+| ERR_PARAMETER | Invalid object handle or pszObject = NULL and piMaxLen = NULL |
++---------------+---------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1gafac4ff5ab210265b7ea71ff375502d3c:
+
+RTS_HANDLE UserDBObjectGetFirstChild (RTS_HANDLE hFatherObject, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get first child object in object tree of the specified father object
+
+**Parameters**
+
++---------+---------------+-----------------------------+
+| [in]    | hFatherObject | Handle to the father object |
++---------+---------------+-----------------------------+
+| [out]   | pResult       | Pointer to error code       |
++---------+---------------+-----------------------------+
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | First child object available                                   |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Invalid parameter hFatherObject                                |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the child object or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_objects_itf_1ga3f6ca2689ac544ecbc6bb1a684ff7ee3:
+
+RTS_HANDLE UserDBObjectGetNextChild (RTS_HANDLE hFatherObject, RTS_HANDLE hPrevChildObject, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get next child object in object tree of the specified father object. Must be started with :ref:`UserDBObjectGetFirstChild() <group___cmp_user_mgr_dep_1gae0a213bc649559b4900535bef06dd774>`
+
+**Parameters**
+
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hFatherObject    | Handle to the father object                                                                                                                                                                                                                                                |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hPrevChildObject | Handle to the previous child object retrieved by :ref:`UserDBObjectGetFirstChild() <group___cmp_user_mgr_dep_1gae0a213bc649559b4900535bef06dd774>` or subsequent calls of :ref:`UserDBObjectGetNextChild() <group___cmp_user_mgr_dep_1ga7a88edfb064b6773b9f273f116759384>` |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult          | Pointer to error code                                                                                                                                                                                                                                                      |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | Next child object available                                    |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Invalid parameter hFatherObject or hPrevChildObject            |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the next child object or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_objects_itf_1gac253d2a61d4b16f9a1a47c88ac586968:
+
+RTS_HANDLE UserDBObjectGetFather (RTS_HANDLE hChildObject, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the father object in object tree of the specified child object
+
+**Parameters**
+
++---------+--------------+----------------------------+
+| [in]    | hChildObject | Handle to the child object |
++---------+--------------+----------------------------+
+| [out]   | pResult      | Pointer to error code      |
++---------+--------------+----------------------------+
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | Father object could be retrieved                               |
++--------------------+----------------------------------------------------------------+
+| ERR_PARAMETER      | Invalid parameter hChildObject                                 |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the father/parent object or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_objects_itf_1ga27b9d715209def8ddfab274b981e3b9c:
+
+RTS_HANDLE UserDBObjectGetFirstGroup (RTS_HANDLE hObject, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get the first group in the user rights management of the specified object
+
+**Parameters**
+
++---------+---------+-----------------------+
+| [in]    | hObject | Handle to the object  |
++---------+---------+-----------------------+
+| [out]   | pResult | Pointer to error code |
++---------+---------+-----------------------+
+
+**Return values**
+
++---------------+-----------------------+
+| ERR_OK        | First group available |
++---------------+-----------------------+
+| ERR_NO_OBJECT | No group available    |
++---------------+-----------------------+
+
+**Returns:**
+
+Handle to the first group of the object in the user rights management or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_objects_itf_1ga26e2651eef1f837177d13cbccfdfc0bc:
+
+RTS_HANDLE UserDBObjectGetNextGroup (RTS_HANDLE hObject, RTS_HANDLE hPrevGroup, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Iteration interface to get next group in the user rights management of the specified object. Must be started with :ref:`UserDBObjectGetFirstGroup() <group___cmp_user_mgr_dep_1ga84f248344eead5363bda00f10e65cb22>`
+
+**Parameters**
+
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hObject    | Handle to the object                                                                                                                                                                                                                                                 |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hPrevGroup | Handle to the previous group retrieved via :ref:`UserDBObjectGetFirstGroup() <group___cmp_user_mgr_dep_1ga84f248344eead5363bda00f10e65cb22>` or subsequent calls of :ref:`UserDBObjectGetNextGroup() <group___cmp_user_mgr_dep_1ga7689a3bf70af1949eff206675710530c>` |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult    | Pointer to error code                                                                                                                                                                                                                                                |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Return values**
+
++---------------+-------------------------+
+| ERR_OK        | Next group available    |
++---------------+-------------------------+
+| ERR_PARAMETER | Invalid handles         |
++---------------+-------------------------+
+| ERR_NO_OBJECT | No next group available |
++---------------+-------------------------+
+
+**Returns:**
+
+Handle to the next group of the object in the user rights management or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_user_d_b_objects_itf_1ga75bfbb56951f552114f2a061f3543bdf:
+
+RTS_RESULT UserDBObjectGetGroupRights (RTS_HANDLE hObject, RTS_HANDLE hGroup, RTS_UI32 *pulRights, RTS_UI32 *pulDeniedRights)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the rights and the denied rights of a group on a specified object
+
+**Parameters**
+
++---------+---------+-------------------------------------------------------+
+| [in]    | hObject | Handle to object                                      |
++---------+---------+-------------------------------------------------------+
+| [in]    | hGroup  | Handle to the group which access rights are requested |
++---------+---------+-------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+--------------------------------------------------------------------------------------------+
+| ERR_OK        | Access rights could be retrieved                                                           |
++---------------+--------------------------------------------------------------------------------------------+
+| ERR_PARAMETER | Invalid handles Pointer to get rights of the group. See category "User rights" for details |
++---------------+--------------------------------------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1ga471e4ecc020e4148efa17830ed104767:
+
+RTS_RESULT UserDBObjectHasRights (char *pszObject, RTS_HANDLE hUser, RTS_UI32 ulRequestedRights)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check access rights of a user on an object (authorization)
+
+**Parameters**
+
++---------+-----------+----------------------------------------------------+
+| [in]    | pszObject | Full object name (see object tree)                 |
++---------+-----------+----------------------------------------------------+
+| [in]    | hUser     | Handle to the user which access rights are checked |
++---------+-----------+----------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++----------------------+------------------------------------------------------------+
+| ERR_OK               | Access permitted                                           |
++----------------------+------------------------------------------------------------+
+| ERR_PARAMETER        | Access rights could not be retrieved, so no access rights! |
++----------------------+------------------------------------------------------------+
+| ERR_NO_ACCESS_RIGHTS | No access rights!                                          |
++----------------------+------------------------------------------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1gabd2e62a5fa07a430754f7be16cec3fef:
+
+RTS_RESULT UserDBObjectGetRights (char *pszObject, RTS_HANDLE hUser, RTS_UI32 *pulRights, RTS_UI32 *pulDeniedRights)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the rights and the denied rights of a user on a specified object
+
+**Parameters**
+
++---------+-----------+------------------------------------------------------+
+| [in]    | pszObject | Full object name (see object tree)                   |
++---------+-----------+------------------------------------------------------+
+| [in]    | hUser     | Handle to the user which access rights are requested |
++---------+-----------+------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++---------------+----------------------------------+
+| ERR_OK        | Access rights could be retrieved |
++---------------+----------------------------------+
+| ERR_PARAMETER | Invalid handles                  |
++---------------+----------------------------------+
+
+.. _group___cmp_user_d_b_objects_itf_1ga637671c3890ef6e358dc74a0a4dd0454:
+
+RTS_RESULT UserDBObjectsActivate (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Explicitly activate the usage of user authentication: no assuming of administrator rights NOTE: The UserDBObjects is activated implicitly when a DB file is loaded or configured via CODESYS.
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++--------------------+----------------------------------------------------------------+
+| ERR_OK             | Activation was successful                                      |
++--------------------+----------------------------------------------------------------+
+| ERR_NOTINITIALIZED | The user management is not initialized or it is not loaded yet |
++--------------------+----------------------------------------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

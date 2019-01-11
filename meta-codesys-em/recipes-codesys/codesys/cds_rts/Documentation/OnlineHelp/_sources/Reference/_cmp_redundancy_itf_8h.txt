@@ -1,0 +1,313 @@
+.. first line of composition.rst template
+
+.. first line of file.rst template
+
+.. __cmp_redundancy_itf_8h:
+
+=================================
+CmpRedundancyItf.h File Reference
+=================================
+
+| #include ":ref:`CmpItf.h`"
+
+Data Structures
+---------------
+
+- struct :ref:`tagRedundancyState <structtag_redundancy_state>`
+
+- struct :ref:`tagRedundancyTlgHeader <structtag_redundancy_tlg_header>`
+
+- struct :ref:`tagCLIENT_REPLY <structtag_c_l_i_e_n_t___r_e_p_l_y>`
+
+- struct :ref:`tagarearegister_struct <structtagarearegister__struct>`
+
+- struct :ref:`tagarearegistersegment_struct <structtagarearegistersegment__struct>`
+
+- struct :ref:`tagredundancycycleend_struct <structtagredundancycycleend__struct>`
+
+- struct :ref:`tagunregisterareas_struct <structtagunregisterareas__struct>`
+
+- struct :ref:`tagredundancycyclestart_struct <structtagredundancycyclestart__struct>`
+
+- struct :ref:`taggetredundancystate_struct <structtaggetredundancystate__struct>`
+
+- struct :ref:`tagswitchtosimulation_struct <structtagswitchtosimulation__struct>`
+
+- struct :ref:`tagswitchtostandalone_struct <structtagswitchtostandalone__struct>`
+
+- struct :ref:`tagswitchtostandby_struct <structtagswitchtostandby__struct>`
+
+- struct :ref:`tagswitchtoactive_struct <structtagswitchtoactive__struct>`
+
+- struct :ref:`tagsynchronize_struct <structtagsynchronize__struct>`
+
+- struct :ref:`ICmpRedundancy_C <struct_i_cmp_redundancy___c>`
+
+Macros
+------
+
+- #define :ref:`RDCY_SRV_WRITESETT <group___cmp_redundancy_itf_1gae96a07d7daf9f527f9f8d43c2c3b388a>` 0x01
+
+- #define :ref:`RDCY_SRV_READSETT <group___cmp_redundancy_itf_1ga50e24c74d5a9694b6438f4d7bf989a0d>` 0x02
+
+- #define :ref:`RDCY_SRV_READETHERCATNICSETTING <group___cmp_redundancy_itf_1ga61523c81b2f6e7abf357589b9dde987b>` 0x03
+
+- #define :ref:`RDCY_SRV_READRDCYSTATE <group___cmp_redundancy_itf_1gafecd2dfc305d20ee3441ca8245cd80e0>` 0x04
+
+- #define :ref:`RDCY_SRV_SWITCHOVER <group___cmp_redundancy_itf_1gab7a645fd77893f7155587318bc1dbeee>` 0x05
+
+- #define :ref:`RDCY_SRV_SYNCHRONIZE <group___cmp_redundancy_itf_1ga465a0bae81d2500ee15095422ccfe7a7>` 0x06
+
+- #define :ref:`RDCY_SRV_SETSIMULATIONMODE <group___cmp_redundancy_itf_1ga09bdd21cebe492c17a71f9ef1d7ca941>` 0x07
+
+- #define :ref:`RDCY_SRV_SWITCHTOSTANDALONE <group___cmp_redundancy_itf_1ga0cda988bddd714983e5d34847a966ca1>` 0x08
+
+- #define :ref:`RDCY_SRV_SWITCHTOACTIVE <group___cmp_redundancy_itf_1ga7bf0ffe47432bceadaec7fbc8bb3c3a5>` 0x09
+
+- #define :ref:`TAG_SESSION_ID <group___cmp_redundancy_itf_1gafae0982246719b63bbe4ce30b5b35a41>` 0x10
+
+- #define :ref:`TAG_SETT_IPADDRESSLOCAL_FIRSTLINK <group___cmp_redundancy_itf_1ga804d249f730fb2880397d9bdfeed72cc>` 0x11
+
+- #define :ref:`TAG_SETT_IPADDRESSPEER_FIRSTLINK <group___cmp_redundancy_itf_1ga04c94e8c369d25ad7040754403a31504>` 0x12
+
+- #define :ref:`TAG_SETT_PORT_FIRSTLINK <group___cmp_redundancy_itf_1ga8ea65b3024c1b2345c5f81d8506fbcdb>` 0x13
+
+- #define :ref:`TAG_SETT_USESECONDLINK <group___cmp_redundancy_itf_1ga50113426810b7da45a7eb26dddf51db0>` 0x14
+
+- #define :ref:`TAG_SETT_IPADDRESSLOCAL_SECONDLINK <group___cmp_redundancy_itf_1ga0c023809bdd118a665935cb603e3f6d1>` 0x15
+
+- #define :ref:`TAG_SETT_IPADDRESSPEER_SECONDLINK <group___cmp_redundancy_itf_1gabd60b6019996330745a9724d9f526737>` 0x16
+
+- #define :ref:`TAG_SETT_PORT_SECONDLINK <group___cmp_redundancy_itf_1gabd895b21d8d02068bc4cd2db6eb4fcec>` 0x17
+
+- #define :ref:`TAG_SETT_BOOTUPWAITTIME <group___cmp_redundancy_itf_1gab8677770df7fa408dd2ae21cd204c0a3>` 0x18
+
+- #define :ref:`TAG_SETT_TCPWAITTIME <group___cmp_redundancy_itf_1ga77b5ffd682365c73dc6f5c928fbbd248>` 0x19
+
+- #define :ref:`TAG_SETT_STANDBYWAITTIME <group___cmp_redundancy_itf_1gab3f92647791a540d37d927c8a5f09e17>` 0x1A
+
+- #define :ref:`TAG_SETT_LOCKTIMEOUT <group___cmp_redundancy_itf_1ga44f2fa5911c2511e3bef33d5e0c2e244>` 0x1B
+
+- #define :ref:`TAG_SETT_BOOTPROJECTNAME <group___cmp_redundancy_itf_1ga1c597bc09dbd877a817ec4fcb060b9b6>` 0x1C
+
+- #define :ref:`TAG_SETT_REDUNDANCYTASKNAME <group___cmp_redundancy_itf_1gaef35080da08af92b340a46da5e1c527d>` 0x1D
+
+- #define :ref:`TAG_SETT_SERVICEWAITTIME <group___cmp_redundancy_itf_1ga1b08073565d19357c1b831e992103ee0>` 0x1E
+
+- #define :ref:`TAG_SETT_SERVICE <group___cmp_redundancy_itf_1gad4bbf0a1db709e9b8c4187670459cc8e>` 0x1F
+
+- #define :ref:`TAG_SETT_FIELDBUSES <group___cmp_redundancy_itf_1ga8f99846575f3db5cf3fc699bfebb54e8>` 0x20
+
+- #define :ref:`TAG_SETT_ETHERCATNICSETTING <group___cmp_redundancy_itf_1gae7d166770a94bcd1ba00f8c94003ff09>` 0x21
+
+- #define :ref:`TAG_SETT_MACADDRESSLOCAL_FIRSTLINK <group___cmp_redundancy_itf_1ga479b6026c7201af254d75a4169af0192>` 0x22
+
+- #define :ref:`TAG_SETT_REDUNDANCYFRAMEWAITTIME <group___cmp_redundancy_itf_1gae5f85915ee6c86d1f7664e5f2e320cdb>` 0x23
+
+- #define :ref:`TAG_SETT_GETFRAMESLEEPTIME <group___cmp_redundancy_itf_1gaefee8a02c9248066a8e618025a3f20e6>` 0x24
+
+- #define :ref:`TAG_SETT_DATAVIASYNCWAITTIME <group___cmp_redundancy_itf_1ga1d661015f36c76621c7665a498a9c8f5>` 0x25
+
+- #define :ref:`TAG_SETT_DATAVIASYNCLEEPTIME <group___cmp_redundancy_itf_1ga80daa90a31f7a1bc205c096eeca38b7e>` 0x26
+
+- #define :ref:`RDCY_ACK <group___cmp_redundancy_itf_1ga238605a0bdfe05ff5b1d4881aff67841>` 0x81
+
+- #define :ref:`TAG_SETT_RDCYCONNECTION <group___cmp_redundancy_itf_1ga64ee1597f7b496d34c08949b009a6f19>` 0x82
+
+- #define :ref:`TAG_RDCY_SUCCESS <group___cmp_redundancy_itf_1ga971c839d67b08b9226a168ce3a4dc3fa>` 0x2A
+
+- #define :ref:`TAG_RDCY_ERROR <group___cmp_redundancy_itf_1ga9f9a8eb7029f35fa9888c1f7caf7f488>` 0x2B
+
+- #define :ref:`TAG_RDCY_STATE <group___cmp_redundancy_itf_1ga6ebca0b93adb28ea714deca47c6d11bf>` 0x2C
+
+- #define :ref:`RDCYKEY_INT_BOOTUPWAITTIME <group___cmp_redundancy_itf_1ga79035f86ea36351498906b17be43d300>` "BootupWaitTime"
+
+- #define :ref:`RDCYVALUE_INT_BOOTUPWAITTIME_DEFAULT <group___cmp_redundancy_itf_1ga394cea1567a41717bb51fd059ad4b81c>` 5000
+
+- #define :ref:`RDCYKEY_INT_TCPWAITTIME <group___cmp_redundancy_itf_1ga9e33430a77ba8f2e195254aadb7c64bd>` "TcpWaitTime"
+
+- #define :ref:`RDCYVALUE_INT_TCPWAITTIME_DEFAULT <group___cmp_redundancy_itf_1ga1f02170b142630f4ac4beb8b33f140bf>` 2000
+
+- #define :ref:`RDCYKEY_INT_RECONNECTWAITTIME <group___cmp_redundancy_itf_1ga670bec42328b36c5ee288d36ef9a7bbc>` "ReconnectWaitTime"
+
+- #define :ref:`RDCYVALUE_INT_RECONNECTWAITTIME_DEFAULT <group___cmp_redundancy_itf_1gadb1c2bfee0f380ecfe1e35edc03b5d63>` 5000
+
+- #define :ref:`RDCYKEY_INT_STANDBYWAITTIME <group___cmp_redundancy_itf_1ga185610f200c635a6bd8937309aa7aa04>` "StandbyWaitTime"
+
+- #define :ref:`RDCYVALUE_INT_STANDBYWAITTIME_DEFAULT <group___cmp_redundancy_itf_1ga389ac542bb79e1d21eb35657a26598ce>` 30
+
+- #define :ref:`RDCYKEY_INT_LOCKTIMEOUT <group___cmp_redundancy_itf_1ga6e2af35ea62fec35dd300d5774e9b238>` "LockTimeout"
+
+- #define :ref:`RDCYVALUE_INT_LOCKTIMEOUT_DEFAULT <group___cmp_redundancy_itf_1ga3261ed888db61b9c1ec6cd173e6b1088>` 50
+
+- #define :ref:`RDCYKEY_STRING_BOOTPROJECTNAME <group___cmp_redundancy_itf_1ga91a933c564c8ccd5450e51c7636e51e8>` "Bootproject"
+
+- #define :ref:`RDCYVALUE_STRING_BOOTPROJECTNAME_DEFAULT <group___cmp_redundancy_itf_1ga4cb58f8acef9cefd44d4e657a539fa26>` ""
+
+- #define :ref:`RDCYKEY_STRING_REDUNDANCYMAINTASKNAME <group___cmp_redundancy_itf_1gacf2e2c258e8ce27dfe9c3997846cccbb>` "RedundancyTaskName"
+
+- #define :ref:`RDCYVALUE_STRING_REDUNDANCYMAINTASKNAME_DEFAULT <group___cmp_redundancy_itf_1ga594a082af5a36993753fa76a2291515c>` ""
+
+- #define :ref:`RDCYKEY_INT_SERVICEWAITTIME <group___cmp_redundancy_itf_1ga17c30dd944ae7d2d82bef1985b178f4d>` "Service.WaitTime"
+
+- #define :ref:`RDCYVALUE_INT_SERVICEWAITTIME_DEFAULT <group___cmp_redundancy_itf_1ga3cc7d3ea46cf4dee7607bb1488d4ac88>` 1000
+
+- #define :ref:`RDCYKEY_INT_EVTTRGSTARTENDCALL <group___cmp_redundancy_itf_1ga672a213d60b554466473ea2cee5f8476>` "EvtTrgStartEndCall"
+
+- #define :ref:`RDCYVALUE_INT_EVTTRGSTARTENDCALL_DEFAULT <group___cmp_redundancy_itf_1ga62b97b854be63cc66a708e9230137dea>` TRUE
+
+- #define :ref:`RDCYKEY_INT_PROFIBUS <group___cmp_redundancy_itf_1gaac06b79590e4762dcf4002b637fd339e>` "Profibus"
+
+- #define :ref:`RDCYVALUE_INT_PROFIBUS_DEFAULT <group___cmp_redundancy_itf_1ga627bd3d8af9cf7749811dd10437282f7>` FALSE
+
+- #define :ref:`RDCYKEY_INT_ETHERCAT <group___cmp_redundancy_itf_1gabe276a08ad6b6d51c7f5e7982f03ba79>` "Ethercat"
+
+- #define :ref:`RDCYVALUE_INT_ETHERCAT_DEFAULT <group___cmp_redundancy_itf_1gab656cad45f996e3e4b907ba38425c39c>` FALSE
+
+- #define :ref:`RDCYKEY_INT_DEBUGMESSAGES <group___cmp_redundancy_itf_1ga34c9684f65423e75d823c212c52ef476>` "DebugMessages"
+
+- #define :ref:`RDCYVALUE_INT_DEBUGMESSAGES_DEFAULT <group___cmp_redundancy_itf_1ga62c9ef624a6364f38e3409b5342714f5>` FALSE
+
+- #define :ref:`RDCYKEY_INT_DEBUGMESSAGESTASKTIME <group___cmp_redundancy_itf_1ga2e659a100b83f1a78e86c79b83ab8f5d>` "DebugMessagesTaskTime"
+
+- #define :ref:`RDCYVALUE_INT_DEBUGMESSAGESTASKTIME_DEFAULT <group___cmp_redundancy_itf_1ga3a9b0eb78030356d511488a7171a25a8>` FALSE
+
+- #define :ref:`RDCYKEY_INT_CALLVFINIT <group___cmp_redundancy_itf_1ga6ee97709afe350b01730f3b312655f8f>` "CallVfInit"
+
+- #define :ref:`RDCYVALUE_INT_CALLVFINIT_DEFAULT <group___cmp_redundancy_itf_1ga23a981e6529caa7a537e224f5d73c746>` TRUE
+
+- #define :ref:`RDCYKEY_INT_SIMULATION <group___cmp_redundancy_itf_1gae4219a9a98212abfd04f04b7616d85ac>` "Simulation"
+
+- #define :ref:`RDCYVALUE_INT_SIMULATION_DEFAULT <group___cmp_redundancy_itf_1ga68e61678bcd78ce7522b2860e28cc05d>` FALSE
+
+- #define :ref:`RDCYKEY_INT_SYNCHROPHASELENGTH <group___cmp_redundancy_itf_1gaad52f851da14ea50aa816baffecee6f5>` "SynchroPhaseLength"
+
+- #define :ref:`RDCYVALUE_INT_SYNCHROPHASELENGTH_DEFAULT <group___cmp_redundancy_itf_1ga2d1b8fefa224d6b4c3076d2fd6fa432c>` 0
+
+- #define :ref:`RDCYKEY_INT_EXTRASTANDBYWAITTIME <group___cmp_redundancy_itf_1gad35f09a337a6749b4a237cf9a65a28f0>` "ExtraStandbyWaitTime"
+
+- #define :ref:`RDCYVALUE_INT_EXTRASTANDBYWAITTIME_DEFAULT <group___cmp_redundancy_itf_1ga51e926fb6f8eeae73cc7229bcaf587bd>` 0
+
+- #define :ref:`RDCYKEY_INT_STANDALONEAFTERSTANDBY <group___cmp_redundancy_itf_1ga211ef0b915ca5101cabb0d63698a65ef>` "StandaloneAfterStandby"
+
+- #define :ref:`RDCYVALUE_INT_STANDALONEAFTERSTANDBY_DEFAULT <group___cmp_redundancy_itf_1ga40557a3c397b183dec872d62a5b358b6>` 2
+
+- #define :ref:`RDCYKEY_INT_INPUTAREACRCCHECK <group___cmp_redundancy_itf_1ga1818e6eb97ae10c2467d25f2f73c002a>` "InputAreaCrcCheck"
+
+- #define :ref:`RDCYVALUE_INT_INPUTAREACRCCHECK_DEFAULT <group___cmp_redundancy_itf_1gaf860f8c3efbd6a93649619ce9a48e2f9>` FALSE
+
+- #define :ref:`RDCYKEY_INT_CMPSRV_SERVICEWAITTIME <group___cmp_redundancy_itf_1ga6d3e7c087138089edeec51e01db403c0>` "Service.WaitTime"
+
+- #define :ref:`RDCYVALUE_INT_CMPSRV_SERVICEWAITTIME_DEFAULT <group___cmp_redundancy_itf_1ga468dc65fe9cb9d7150ca6a3d21b4a30f>` 1000
+
+- #define :ref:`EVTPARAMID_CmpRedundancy_vfInit <group___cmp_redundancy_itf_1gada5890de6fae4a519f755d095ba05bed>` 0x0001
+
+- #define :ref:`EVTVERSION_CmpRedundancy_vfInit <group___cmp_redundancy_itf_1ga76c7b44b856150576e3cc198196c0dbe>` 0x0001
+
+- #define :ref:`EVT_CmpRedundancy_vfInit <group___cmp_redundancy_itf_1ga3e3feb269771cdc7f1c8e7496183cb27>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+
+- #define :ref:`ITF_CmpRedundancy <group___cmp_redundancy_itf_1ga0dd3ecee7f66540f8b9bc98c212fc0a8>`
+
+- #define :ref:`EXTITF_CmpRedundancy <group___cmp_redundancy_itf_1gac8b7911dd91162a2809e3125142ba9e5>`
+
+Typedefs
+--------
+
+- typedef struct :ref:`tagRedundancyState <structtag_redundancy_state>` :ref:`RedundancyState <group___cmp_redundancy_itf_1gac5758e0f67b24a0fd33d0eb02f0fd6ed>`
+
+- typedef struct :ref:`tagRedundancyTlgHeader <structtag_redundancy_tlg_header>` :ref:`RedundancyTlgHeader <group___cmp_redundancy_itf_1ga1e58f398eb3ea0878131a8911b644609>`
+
+- typedef struct :ref:`tagCLIENT_REPLY <structtag_c_l_i_e_n_t___r_e_p_l_y>` :ref:`CLIENT_REPLY <group___cmp_redundancy_itf_1ga9aca827043efb8b7c5d41e1c7b5341af>`
+
+- typedef struct :ref:`tagarearegister_struct <structtagarearegister__struct>` :ref:`arearegister_struct <group___cmp_redundancy_itf_1gab7f9229af993fcc1d30516a2806fab91>`
+
+- typedef struct :ref:`tagarearegistersegment_struct <structtagarearegistersegment__struct>` :ref:`arearegistersegment_struct <group___cmp_redundancy_itf_1ga6d86ff0b6a010cdb1f9fdb5b10b7a87f>`
+
+- typedef struct :ref:`tagredundancycycleend_struct <structtagredundancycycleend__struct>` :ref:`redundancycycleend_struct <group___cmp_redundancy_itf_1gab81e258d5594e94adf36fa3af9d10e39>`
+
+- typedef struct :ref:`tagunregisterareas_struct <structtagunregisterareas__struct>` :ref:`unregisterareas_struct <group___cmp_redundancy_itf_1gadd9130b43f7ce5977243f1699755cf6a>`
+
+- typedef struct :ref:`tagredundancycyclestart_struct <structtagredundancycyclestart__struct>` :ref:`redundancycyclestart_struct <group___cmp_redundancy_itf_1gaebcc4a895b191220a2d1b2ab025f586a>`
+
+- typedef struct :ref:`taggetredundancystate_struct <structtaggetredundancystate__struct>` :ref:`getredundancystate_struct <group___cmp_redundancy_itf_1ga13235d10c01b8fd28b255308389d8f59>`
+
+- typedef struct :ref:`tagswitchtosimulation_struct <structtagswitchtosimulation__struct>` :ref:`switchtosimulation_struct <group___cmp_redundancy_itf_1ga092c601c30fc129e3f1104da84f5a14c>`
+
+- typedef struct :ref:`tagswitchtostandalone_struct <structtagswitchtostandalone__struct>` :ref:`switchtostandalone_struct <group___cmp_redundancy_itf_1ga8f7a449a761e0ee7fd32be29d3e9224a>`
+
+- typedef struct :ref:`tagswitchtostandby_struct <structtagswitchtostandby__struct>` :ref:`switchtostandby_struct <group___cmp_redundancy_itf_1ga36d76eff3906c29ea16ba9da2f07bbac>`
+
+- typedef struct :ref:`tagswitchtoactive_struct <structtagswitchtoactive__struct>` :ref:`switchtoactive_struct <group___cmp_redundancy_itf_1gab24363868395d8934ae2ed5ac5b07261>`
+
+- typedef struct :ref:`tagsynchronize_struct <structtagsynchronize__struct>` :ref:`synchronize_struct <group___cmp_redundancy_itf_1ga61bc0e8b8a5e12157c74b05c88a72522>`
+
+- typedef :ref:`ICmpRedundancy_C <struct_i_cmp_redundancy___c>` :ref:`ICmpRedundancy <group___cmp_redundancy_itf_1ga68e81713996b40e816cbeed65d36cf6d>`
+
+Enumerations
+------------
+
+- enum :ref:`RDCY_STATE <group___cmp_redundancy_itf_1ga37d0780292ead094a126f2ea2ad10f7d>` { :ref:`RS_START <group___cmp_redundancy_itf_1gga37d0780292ead094a126f2ea2ad10f7dab940da3e3105f29e43536410e06aed93>`, :ref:`RS_SYNCHRO <group___cmp_redundancy_itf_1gga37d0780292ead094a126f2ea2ad10f7dac1bd9f88abada2e8e389fe53205da8b2>`, :ref:`RS_CYCLE_ACTIVE <group___cmp_redundancy_itf_1gga37d0780292ead094a126f2ea2ad10f7da38303db0be28ef158bfa5452e6929a12>`, :ref:`RS_CYCLE_STANDBY <group___cmp_redundancy_itf_1gga37d0780292ead094a126f2ea2ad10f7dae3945b54a2932c67539697b3413d4e0d>`, :ref:`RS_CYCLE_STANDALONE <group___cmp_redundancy_itf_1gga37d0780292ead094a126f2ea2ad10f7dad28052814cd559cfa6022c0289b6a01a>`, :ref:`RS_CYCLE_ERROR <group___cmp_redundancy_itf_1gga37d0780292ead094a126f2ea2ad10f7dad08755d8e6c06bccaad17de88b9f31f0>`, :ref:`RS_SIMULATION <group___cmp_redundancy_itf_1gga37d0780292ead094a126f2ea2ad10f7daf8a8cc198fc1cf9addc790d7a07c369f>`, :ref:`RS_BOOTUP_ERROR <group___cmp_redundancy_itf_1gga37d0780292ead094a126f2ea2ad10f7da84f5d3a2b2becb23f7b65ca442489c18>`, :ref:`RS_SHUTDOWN_ACTIVE <group___cmp_redundancy_itf_1gga37d0780292ead094a126f2ea2ad10f7daacdf28ced34cf398d0d3a2b3f9298531>`, :ref:`RS_SHUTDOWN_STANDBY <group___cmp_redundancy_itf_1gga37d0780292ead094a126f2ea2ad10f7da49bbe0570561eccaa5243e81ce2ad5ef>`, :ref:`RS_SYNCHRO_ERROR <group___cmp_redundancy_itf_1gga37d0780292ead094a126f2ea2ad10f7da3d85da028bbe8c260fba8321ca46789d>`, :ref:`RS_SIMULATION_START <group___cmp_redundancy_itf_1gga37d0780292ead094a126f2ea2ad10f7dad93c8c9707393d73f895bf7c73bb3ae8>`, :ref:`RS_NO_LICENSE <group___cmp_redundancy_itf_1gga37d0780292ead094a126f2ea2ad10f7da4b11f764b1f7d4097f4d2d16b2b5dc01>` }
+
+- enum :ref:`RDCY_ERROR <group___cmp_redundancy_itf_1ga19cebc1900585838605f8ae89e2b6a51>` { :ref:`RDCY_NO_ERROR <group___cmp_redundancy_itf_1gga19cebc1900585838605f8ae89e2b6a51a92b10a25e023981355e770900c4760fb>`, :ref:`RDCY_ERR_FAILED <group___cmp_redundancy_itf_1gga19cebc1900585838605f8ae89e2b6a51a080b8cfb19c718641e063fffe05b73cd>`, :ref:`RDCY_BOOTUP_ERROR <group___cmp_redundancy_itf_1gga19cebc1900585838605f8ae89e2b6a51a4572217ee5b3041b9ba7fcc898414df9>`, :ref:`RDCY_SYNCHRO_ERROR <group___cmp_redundancy_itf_1gga19cebc1900585838605f8ae89e2b6a51af2c35728263791443f77359879bb91b2>`, :ref:`RDCY_CYCLE_ERROR <group___cmp_redundancy_itf_1gga19cebc1900585838605f8ae89e2b6a51a3d2d56f36d1c8adf795b6d1970df983f>`, :ref:`RDCY_LINK_ERROR <group___cmp_redundancy_itf_1gga19cebc1900585838605f8ae89e2b6a51afd91d205157dc85df90886dddbd7d703>`, :ref:`RDCY_FIELDBUS_ERROR <group___cmp_redundancy_itf_1gga19cebc1900585838605f8ae89e2b6a51a2ae675e1564fc7a62ca95c7b46413459>`, :ref:`RDCY_RECEIVEMESSAGE_ERROR <group___cmp_redundancy_itf_1gga19cebc1900585838605f8ae89e2b6a51a817d3122d89d31bdf332f239523bf46f>`, :ref:`RDCY_NOMESSAGE_ERROR <group___cmp_redundancy_itf_1gga19cebc1900585838605f8ae89e2b6a51a6ba4a3279b486f9b7ad5063b911480e3>`, :ref:`RDCY_WRONGMESSAGE_ERROR <group___cmp_redundancy_itf_1gga19cebc1900585838605f8ae89e2b6a51a2b8f0176bb1bd67a7d3745b6de5e3b3f>`, :ref:`RDCY_CONFIG_ERROR <group___cmp_redundancy_itf_1gga19cebc1900585838605f8ae89e2b6a51a52592476d76b8120462d8a9c13558025>`, :ref:`RDCY_INPUTAREACRC_ERROR <group___cmp_redundancy_itf_1gga19cebc1900585838605f8ae89e2b6a51a755afdac3ef7fdf3cc86f2e0c6e54c62>`, :ref:`RDCY_NO_LICENSE_ERROR <group___cmp_redundancy_itf_1gga19cebc1900585838605f8ae89e2b6a51ac5d80e957f53ec6b1ad9a84a11b5eb81>` }
+
+- enum :ref:`RDCY_AREA_TYPE <group___cmp_redundancy_itf_1ga187db713ec4f1402790808ed42227e8b>` { :ref:`AREA_NONE <group___cmp_redundancy_itf_1gga187db713ec4f1402790808ed42227e8ba63dff4e57f02465779e266cbadcf840f>`, :ref:`AREA_INPUT <group___cmp_redundancy_itf_1gga187db713ec4f1402790808ed42227e8ba06c9041037d6cc333beb1cfed3d01c2b>`, :ref:`AREA_SYNCHRO <group___cmp_redundancy_itf_1gga187db713ec4f1402790808ed42227e8ba552415140da26af887df6644af55c1d6>`, :ref:`AREA_OUTPUT <group___cmp_redundancy_itf_1gga187db713ec4f1402790808ed42227e8ba9aa8f63a6cd0ea9f8a3ae5a343869323>`, :ref:`AREA_PASSIVEACTIVE <group___cmp_redundancy_itf_1gga187db713ec4f1402790808ed42227e8ba2737c3de7bbcb8d8d4ad6689623a4c0f>` }
+
+- enum :ref:`REDUNDANCY_COMM_MODE <group___cmp_redundancy_itf_1gae9015dc80362e86c441a3b750d366dee>` { :ref:`RCOM_SyncReceive <group___cmp_redundancy_itf_1ggae9015dc80362e86c441a3b750d366deead61e08df175a53fb7fb9d7f152c98f1e>`, :ref:`RCOM_SyncSend <group___cmp_redundancy_itf_1ggae9015dc80362e86c441a3b750d366deea125798a51a801e614f179d5611c91c35>`, :ref:`RCOM_DataClient <group___cmp_redundancy_itf_1ggae9015dc80362e86c441a3b750d366deea8cf63a0f00dd4936572fe6b457562086>`, :ref:`RCOM_DataServer <group___cmp_redundancy_itf_1ggae9015dc80362e86c441a3b750d366deeaeb8d9a8ac2bbc7be728e8626abb3db83>`, :ref:`RCOM_DataWork <group___cmp_redundancy_itf_1ggae9015dc80362e86c441a3b750d366deeaa2ca1bda5a8bd074a2072c0ea00f95eb>` }
+
+Functions
+---------
+
+- void :ref:`arearegister <group___cmp_redundancy_itf_1ga0c10fff3e2b67dc6d4bfb6bad9f954d6>` (:ref:`arearegister_struct <group___cmp_redundancy_itf_1gab7f9229af993fcc1d30516a2806fab91>` * p)
+
+- void :ref:`arearegistersegment <group___cmp_redundancy_itf_1gaca8401df1aff570d7fbdadd0c0ba382c>` (:ref:`arearegistersegment_struct <group___cmp_redundancy_itf_1ga6d86ff0b6a010cdb1f9fdb5b10b7a87f>` * p)
+
+- void :ref:`unregisterareas <group___cmp_redundancy_itf_1gaa43c2bba813a2219570d5a10969d9674>` (:ref:`unregisterareas_struct <group___cmp_redundancy_itf_1gadd9130b43f7ce5977243f1699755cf6a>` * p)
+
+- void :ref:`redundancycycleend <group___cmp_redundancy_itf_1gab1be23cd29d288a54122e7bf597d79ab>` (:ref:`redundancycycleend_struct <group___cmp_redundancy_itf_1gab81e258d5594e94adf36fa3af9d10e39>` * p)
+
+- void :ref:`redundancycyclestart <group___cmp_redundancy_itf_1ga9bfdf2c2c1e85d2730b605b06ceea825>` (:ref:`redundancycyclestart_struct <group___cmp_redundancy_itf_1gaebcc4a895b191220a2d1b2ab025f586a>` * p)
+
+- void :ref:`getredundancystate <group___cmp_redundancy_itf_1ga576dadfc96d6ba198f1010789e076ab3>` (:ref:`getredundancystate_struct <group___cmp_redundancy_itf_1ga13235d10c01b8fd28b255308389d8f59>` * p)
+
+- void :ref:`switchtosimulation <group___cmp_redundancy_itf_1ga80861ceb9461fc2406ab26f47cbe8b52>` (:ref:`switchtosimulation_struct <group___cmp_redundancy_itf_1ga092c601c30fc129e3f1104da84f5a14c>` * p)
+
+- void :ref:`switchtostandalone <group___cmp_redundancy_itf_1ga301cfee21890fcc300d5ae19fe8fb179>` (:ref:`switchtostandalone_struct <group___cmp_redundancy_itf_1ga8f7a449a761e0ee7fd32be29d3e9224a>` * p)
+
+- void :ref:`switchtostandby <group___cmp_redundancy_itf_1ga58716957758c14dbd8615a7c7ce7830c>` (:ref:`switchtostandby_struct <group___cmp_redundancy_itf_1ga36d76eff3906c29ea16ba9da2f07bbac>` * p)
+
+- void :ref:`switchtoactive <group___cmp_redundancy_itf_1ga0d38d8ffde71a90aa9d1aef7b7485663>` (:ref:`switchtoactive_struct <group___cmp_redundancy_itf_1gab24363868395d8934ae2ed5ac5b07261>` * p)
+
+- void :ref:`synchronize <group___cmp_redundancy_itf_1ga34cf799e921c2ceed3318e54643e6a4a>` (:ref:`synchronize_struct <group___cmp_redundancy_itf_1ga61bc0e8b8a5e12157c74b05c88a72522>` * p)
+
+- RTS_IEC_BOOL :ref:`RedundancyAreaRegister <group___cmp_redundancy_itf_1gaf2c843aba8f718d6d56f5fffeaf76c2e>` (unsigned char * pbyArea, RTS_UI32 ulSize, :ref:`RDCY_AREA_TYPE <group___cmp_redundancy_itf_1ga187db713ec4f1402790808ed42227e8b>`  eType)
+
+- RTS_IEC_BOOL :ref:`RedundancyAreaRegisterSegment <group___cmp_redundancy_itf_1gaa9a90e9310fb193a966c0b330fb28cfd>` (RTS_UI16 usSegment, :ref:`RDCY_AREA_TYPE <group___cmp_redundancy_itf_1ga187db713ec4f1402790808ed42227e8b>`  eType)
+
+- RTS_IEC_BOOL :ref:`RedundancyUnregisterAreas <group___cmp_redundancy_itf_1ga0784fd328c24b8874f45ee4cfe30f759>` (void)
+
+- RTS_IEC_BOOL :ref:`RedundancyCycleEnd <group___cmp_redundancy_itf_1ga26e0c696641e9e11c5f9af46f7048215>` (void)
+
+- RTS_IEC_BOOL :ref:`RedundancyCycleStart <group___cmp_redundancy_itf_1ga68eef26167cc366c8bd64034e14f84e4>` (void)
+
+- RTS_IEC_BOOL :ref:`RedundancyGetState <group___cmp_redundancy_itf_1ga760495dc4557e42b067250b03bcce016>` (:ref:`RedundancyState <group___cmp_redundancy_itf_1gac5758e0f67b24a0fd33d0eb02f0fd6ed>` * pState)
+
+- RTS_IEC_BOOL :ref:`RedundancySwitchToSimulation <group___cmp_redundancy_itf_1ga989b540b847d7a0255ce052768e54b5e>` (void)
+
+- RTS_IEC_BOOL :ref:`RedundancySwitchToStandalone <group___cmp_redundancy_itf_1ga3996627874324d8e88581feeccc38206>` (void)
+
+- RTS_IEC_BOOL :ref:`RedundancySwitchToStandby <group___cmp_redundancy_itf_1ga57d06d129f2bcc4159747feec767bbf3>` (void)
+
+- RTS_IEC_BOOL :ref:`RedundancySwitchToActive <group___cmp_redundancy_itf_1ga5db28c197ea9cd17b970f305c1316ca6>` (void)
+
+- RTS_IEC_BOOL :ref:`RedundancySynchronize <group___cmp_redundancy_itf_1ga4aa99ae17fef5e537b07980f41fc0576>` (void)
+
+Detailed Description
+--------------------
+
+Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpRedundancyItf.h
+
+ 
+.. last line of file.rst template
+.. last line of composition.rst template
+
+

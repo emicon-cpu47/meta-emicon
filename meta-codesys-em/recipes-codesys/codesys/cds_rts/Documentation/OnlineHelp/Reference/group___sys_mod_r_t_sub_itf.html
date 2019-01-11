@@ -1,0 +1,467 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SysModRTSubItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.5.13.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="SysModuleItf" href="group___sys_module_itf.html" />
+    <link rel="prev" title="SysModRTMainItf" href="group___sys_mod_r_t_main_itf.html" /> 
+  </head>
+  <body role="document">
+	<div id="header">
+		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
+		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
+	</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="group___sys_module_itf.html" title="SysModuleItf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_mod_r_t_main_itf.html" title="SysModRTMainItf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SysModRTSubItf</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#detailed-description">Detailed Description</a></li>
+<li><a class="reference internal" href="#macro-definition-documentation">Macro Definition Documentation</a><ul>
+<li><a class="reference internal" href="#define-extitf-sysmodrtsub">#define EXTITF_SysModRTSub</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-void-pfmodrtsubinit-void">typedef void( * PFMODRTSUBINIT)(void)</a></li>
+<li><a class="reference internal" href="#typedef-void-pfmodrtsubcommcycle-void">typedef void( * PFMODRTSUBCOMMCYCLE)(void)</a></li>
+<li><a class="reference internal" href="#typedef-isysmodrtsub-c-isysmodrtsub">typedef ISysModRTSub_C ISysModRTSub</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
+<li><a class="reference internal" href="#void-modrtsubinit-void">void ModRTSubInit (void)</a></li>
+<li><a class="reference internal" href="#void-modrtsubcommcycle-void">void ModRTSubCommCycle (void)</a></li>
+<li><a class="reference internal" href="#rts-result-modrtmainsysflasherase-flasharea-fa-rts-size-ulsize-rts-size-uloffset">RTS_RESULT ModRTMainSysFlashErase (FlashArea fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)</a></li>
+<li><a class="reference internal" href="#rts-result-modrtmainsysflashwrite-flasharea-fa-char-pcsource-rts-size-ulsize-rts-size-uloffset">RTS_RESULT ModRTMainSysFlashWrite (FlashArea fa, char *pcSource, RTS_SIZE ulSize, RTS_SIZE ulOffset)</a></li>
+<li><a class="reference internal" href="#rts-result-modrtmainsysflashflush-flasharea-fa-rts-size-ulsize-rts-size-uloffset">RTS_RESULT ModRTMainSysFlashFlush (FlashArea fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)</a></li>
+<li><a class="reference internal" href="#rts-ui32-modrtmainsystimegetms-void">RTS_UI32 ModRTMainSysTimeGetMs (void)</a></li>
+<li><a class="reference internal" href="#rts-result-modrtmainsystimegetus-rts-systime-ptime">RTS_RESULT ModRTMainSysTimeGetUs (RTS_SYSTIME *pTime)</a></li>
+<li><a class="reference internal" href="#rts-result-modrtmainsystimegetns-rts-systime-ptime">RTS_RESULT ModRTMainSysTimeGetNs (RTS_SYSTIME *pTime)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="group___sys_mod_r_t_main_itf.html"
+                        title="previous chapter">SysModRTMainItf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="group___sys_module_itf.html"
+                        title="next chapter">SysModuleItf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Reference/group___sys_mod_r_t_sub_itf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sysmodrtsubitf">
+<span id="group-sys-mod-r-t-sub-itf"></span><h1>SysModRTSubItf<a class="headerlink" href="#sysmodrtsubitf" title="Permalink to this headline">¶</a></h1>
+<p>Interface of SysModRTSub
+<strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. <a class="reference internal" href="#group-sys-mod-r-t-sub-itf-details"><span class="std std-ref">More...</span></a></p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="group___sys_mod_r_t_sub_itf___staticdefines.html#group-sys-mod-r-t-sub-itf-staticdefines"><span class="std std-ref">Static defines</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>struct <a class="reference internal" href="struct_sys_mod_r_t_sub_function_table.html#struct-sys-mod-r-t-sub-function-table"><span class="std std-ref">SysModRTSubFunctionTable</span></a></li>
+<li>struct <a class="reference internal" href="struct_i_sys_mod_r_t_sub___c.html#struct-i-sys-mod-r-t-sub-c"><span class="std std-ref">ISysModRTSub_C</span></a></li>
+</ul>
+</div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>#define <a class="reference internal" href="#group-sys-mod-r-t-sub-itf-1gaf3be99d90d4c981900b839d20ebaf7c8"><span class="std std-ref">EXTITF_SysModRTSub</span></a></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>typedef void(* <a class="reference internal" href="#group-sys-mod-r-t-sub-itf-1ga2d33f5a036b8cab127aa7c5d61306bc5"><span class="std std-ref">PFMODRTSUBINIT</span></a>)(void)</li>
+<li>typedef void(* <a class="reference internal" href="#group-sys-mod-r-t-sub-itf-1gaa27c8e40032938e2935b7506873dc827"><span class="std std-ref">PFMODRTSUBCOMMCYCLE</span></a>)(void)</li>
+<li>typedef <a class="reference internal" href="struct_i_sys_mod_r_t_sub___c.html#struct-i-sys-mod-r-t-sub-c"><span class="std std-ref">ISysModRTSub_C</span></a> <a class="reference internal" href="#group-sys-mod-r-t-sub-itf-1ga6187151968409072a2aeaaf4105095cd"><span class="std std-ref">ISysModRTSub</span></a></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>void <a class="reference internal" href="#group-sys-mod-r-t-sub-itf-1gae27c46a17462f0eaee51f26b56e07b19"><span class="std std-ref">ModRTSubInit</span></a> (void)</li>
+<li>void <a class="reference internal" href="#group-sys-mod-r-t-sub-itf-1gae675bed1bfffba60017fa91da0e4e873"><span class="std std-ref">ModRTSubCommCycle</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-mod-r-t-sub-itf-1ga26b84365bb824e1af1a37a42b0226b43"><span class="std std-ref">ModRTMainSysFlashErase</span></a> (<a class="reference internal" href="group___sys_flash_itf___settings.html#group-sys-flash-itf-settings-1ga592e77b8379be53433be404615060ceb"><span class="std std-ref">FlashArea</span></a>  fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-mod-r-t-sub-itf-1gada2b5914f6b240ce33b68f434545d155"><span class="std std-ref">ModRTMainSysFlashWrite</span></a> (<a class="reference internal" href="group___sys_flash_itf___settings.html#group-sys-flash-itf-settings-1ga592e77b8379be53433be404615060ceb"><span class="std std-ref">FlashArea</span></a>  fa, char * pcSource, RTS_SIZE ulSize, RTS_SIZE ulOffset)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-mod-r-t-sub-itf-1ga923863970726a4f75630ff5d2bfe125d"><span class="std std-ref">ModRTMainSysFlashFlush</span></a> (<a class="reference internal" href="group___sys_flash_itf___settings.html#group-sys-flash-itf-settings-1ga592e77b8379be53433be404615060ceb"><span class="std std-ref">FlashArea</span></a>  fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)</li>
+<li>RTS_UI32 <a class="reference internal" href="#group-sys-mod-r-t-sub-itf-1ga1605f789cad24c69ba8d7536de79f9bd"><span class="std std-ref">ModRTMainSysTimeGetMs</span></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-mod-r-t-sub-itf-1ga2f1c9fd746b8f3190845df1fca7b7321"><span class="std std-ref">ModRTMainSysTimeGetUs</span></a> (<a class="reference internal" href="group___sys_time_itf.html#group-sys-time-itf-1ga10c9d9a4c57129d83432fb02923858bf"><span class="std std-ref">RTS_SYSTIME</span></a> * pTime)</li>
+<li>RTS_RESULT <a class="reference internal" href="#group-sys-mod-r-t-sub-itf-1ga6474ac6129d8be65b15a70b7f2bcdcdf"><span class="std std-ref">ModRTMainSysTimeGetNs</span></a> (<a class="reference internal" href="group___sys_time_itf.html#group-sys-time-itf-1ga10c9d9a4c57129d83432fb02923858bf"><span class="std std-ref">RTS_SYSTIME</span></a> * pTime)</li>
+</ul>
+</div>
+<div class="section" id="detailed-description">
+<span id="group-sys-mod-r-t-sub-itf-details"></span><h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Interface of SysModRTSub
+<strong>Copyright:</strong></p>
+<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+</div>
+<div class="section" id="macro-definition-documentation">
+<h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-extitf-sysmodrtsub">
+<span id="group-sys-mod-r-t-sub-itf-1gaf3be99d90d4c981900b839d20ebaf7c8"></span><h3>#define EXTITF_SysModRTSub<a class="headerlink" href="#define-extitf-sysmodrtsub" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="typedef-documentation">
+<h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-void-pfmodrtsubinit-void">
+<span id="group-sys-mod-r-t-sub-itf-1ga2d33f5a036b8cab127aa7c5d61306bc5"></span><h3>typedef void( * PFMODRTSUBINIT)(void)<a class="headerlink" href="#typedef-void-pfmodrtsubinit-void" title="Permalink to this headline">¶</a></h3>
+<p>Memory address of <a class="reference internal" href="struct_sys_mod_r_t_sub_function_table.html#struct-sys-mod-r-t-sub-function-table"><span class="std std-ref">SysModRTSubFunctionTable</span></a> EXTERN LIB SECTION BEGIN</p>
+</div>
+<div class="section" id="typedef-void-pfmodrtsubcommcycle-void">
+<span id="group-sys-mod-r-t-sub-itf-1gaa27c8e40032938e2935b7506873dc827"></span><h3>typedef void( * PFMODRTSUBCOMMCYCLE)(void)<a class="headerlink" href="#typedef-void-pfmodrtsubcommcycle-void" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-isysmodrtsub-c-isysmodrtsub">
+<span id="group-sys-mod-r-t-sub-itf-1ga6187151968409072a2aeaaf4105095cd"></span><h3>typedef ISysModRTSub_C ISysModRTSub<a class="headerlink" href="#typedef-isysmodrtsub-c-isysmodrtsub" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="void-modrtsubinit-void">
+<span id="group-sys-mod-r-t-sub-itf-1gae27c46a17462f0eaee51f26b56e07b19"></span><h3>void ModRTSubInit (void)<a class="headerlink" href="#void-modrtsubinit-void" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="void-modrtsubcommcycle-void">
+<span id="group-sys-mod-r-t-sub-itf-1gae675bed1bfffba60017fa91da0e4e873"></span><h3>void ModRTSubCommCycle (void)<a class="headerlink" href="#void-modrtsubcommcycle-void" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rts-result-modrtmainsysflasherase-flasharea-fa-rts-size-ulsize-rts-size-uloffset">
+<span id="group-sys-mod-r-t-sub-itf-1ga26b84365bb824e1af1a37a42b0226b43"></span><h3>RTS_RESULT ModRTMainSysFlashErase (FlashArea fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)<a class="headerlink" href="#rts-result-modrtmainsysflasherase-flasharea-fa-rts-size-ulsize-rts-size-uloffset" title="Permalink to this headline">¶</a></h3>
+<p>Interface wrapper function to ModRTMain. Erases a block of flash memory. You must erase a flash area before writing to it. This function is implemented in the generic part of SysFlash and splits up the block to erase in several smaller pieces with the maximum size of EraseBlockSize. For each piece <a class="reference internal" href="group___sys_flash_itf.html#group-sys-flash-itf-1ga21fd79f255440888df20a0a73f181d87"><span class="std std-ref">SysFlashErase_()</span></a> and the CommCycleHook is called, to keep the rest of the RTS also on single-tasking systems alive.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>fa</td>
+<td>Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulSize</td>
+<td>Size of flash area to erase RANGE=[0,VALID_FLASH_SIZE,INVALID_FLASH_SIZE]</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulOffset</td>
+<td>Offset of flash area to erase. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Flash erase was successful</td>
+</tr>
+<tr class="row-even"><td>ERR_NOT_SUPPORTED</td>
+<td>Type of Flasharea is not supported</td>
+</tr>
+<tr class="row-odd"><td>ERR_PARAMETER</td>
+<td>size or offset wrong</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Flash could not be erased</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-modrtmainsysflashwrite-flasharea-fa-char-pcsource-rts-size-ulsize-rts-size-uloffset">
+<span id="group-sys-mod-r-t-sub-itf-1gada2b5914f6b240ce33b68f434545d155"></span><h3>RTS_RESULT ModRTMainSysFlashWrite (FlashArea fa, char <a href="#id1"><span class="problematic" id="id2">*</span></a>pcSource, RTS_SIZE ulSize, RTS_SIZE ulOffset)<a class="headerlink" href="#rts-result-modrtmainsysflashwrite-flasharea-fa-char-pcsource-rts-size-ulsize-rts-size-uloffset" title="Permalink to this headline">¶</a></h3>
+<p>Interface wrapper function to ModRTMain. Writes a block of data to the flash. The flash area has to be erased first with SysFlashErase. This function is implemented in the generic part of SysFlash and splits up the block to write in several smaller pieces with the maximum size of WriteBlockSize. For each piece <span class="xref std std-ref">SysFlashWrite()</span> and the CommCycleHook is called, to keep the rest of the RTS also on single-tasking systems alive.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>fa</td>
+<td>Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>pcSource</td>
+<td>Pointer to buffer that contains the data RANGE=[0,INVALID_SRC_BUFFER,VALID_SRC_BUFFER]</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulSize</td>
+<td>Size of the buffer RANGE=[0,VALID_BUFFER_SIZE,INVALID_BUFFER_SIZE]</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulOffset</td>
+<td>Offset of flash area to write to. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Flash read was successful</td>
+</tr>
+<tr class="row-even"><td>ERR_NOT_SUPPORTED</td>
+<td>Type of Flasharea is not supported</td>
+</tr>
+<tr class="row-odd"><td>ERR_PARAMETER</td>
+<td>pcSrc,size or offset wrong or null</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Flash could not be read</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-result-modrtmainsysflashflush-flasharea-fa-rts-size-ulsize-rts-size-uloffset">
+<span id="group-sys-mod-r-t-sub-itf-1ga923863970726a4f75630ff5d2bfe125d"></span><h3>RTS_RESULT ModRTMainSysFlashFlush (FlashArea fa, RTS_SIZE ulSize, RTS_SIZE ulOffset)<a class="headerlink" href="#rts-result-modrtmainsysflashflush-flasharea-fa-rts-size-ulsize-rts-size-uloffset" title="Permalink to this headline">¶</a></h3>
+<p>Interface wrapper function to ModRTMain. Called when a file that was opened for writing is closed. This function is implemented in the generic part of SysFlash and splits up the block to flush in several smaller pieces with the maximum size of FlushBlockSize. For each piece <span class="xref std std-ref">SysFlashFlush()</span> and the CommCycleHook is called, to keep the rest of the RTS also on single-tasking systems alive.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>fa</td>
+<td>Flash area that shall be used for the operation. Now, FA_CODE and FA_FILE are defined. RANGE=[FA_UNKNOWN,FA_FILE,FA_CODE]</td>
+</tr>
+<tr class="row-even"><td>[in]</td>
+<td>ulSize</td>
+<td>Size of the buffer RANGE=[0,VALID_BUFFER_SIZE,INVALID_BUFFER_SIZE]</td>
+</tr>
+<tr class="row-odd"><td>[in]</td>
+<td>ulOffset</td>
+<td>Offset of flash area to write to. The function adds the start address of the flash to calculate the physical address of the area. RANGE=[0,VALID_FLASH_OFFSET,INVALID_FLASH_OFFSET]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Flash flush was successful</td>
+</tr>
+<tr class="row-even"><td>ERR_NOT_SUPPORTED</td>
+<td>Type of Flasharea is not supported</td>
+</tr>
+<tr class="row-odd"><td>ERR_PARAMETER</td>
+<td>size or offset wrong or null</td>
+</tr>
+<tr class="row-even"><td>ERR_FAILED</td>
+<td>Flash could not be flushed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+</div>
+<div class="section" id="rts-ui32-modrtmainsystimegetms-void">
+<span id="group-sys-mod-r-t-sub-itf-1ga1605f789cad24c69ba8d7536de79f9bd"></span><h3>RTS_UI32 ModRTMainSysTimeGetMs (void)<a class="headerlink" href="#rts-ui32-modrtmainsystimegetms-void" title="Permalink to this headline">¶</a></h3>
+<p>Interface wrapper function to ModRTMain.</p>
+<p>Return a monotonic, rising millisecond tick.</p>
+<p><strong>Returns:</strong></p>
+<p>Returns the millisecond tick</p>
+</div>
+<div class="section" id="rts-result-modrtmainsystimegetus-rts-systime-ptime">
+<span id="group-sys-mod-r-t-sub-itf-1ga2f1c9fd746b8f3190845df1fca7b7321"></span><h3>RTS_RESULT ModRTMainSysTimeGetUs (RTS_SYSTIME <a href="#id3"><span class="problematic" id="id4">*</span></a>pTime)<a class="headerlink" href="#rts-result-modrtmainsystimegetus-rts-systime-ptime" title="Permalink to this headline">¶</a></h3>
+<p>Interface wrapper function to ModRTMain.</p>
+<p>Return a monotonic, rising microsecond tick.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="9%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[inout]</td>
+<td>pTime</td>
+<td>Pointer to the time tick result RANGE=[NULL,VALID_PTIME]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Time was returned successfully</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>pTime was NULL</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Internal Error</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rts-result-modrtmainsystimegetns-rts-systime-ptime">
+<span id="group-sys-mod-r-t-sub-itf-1ga6474ac6129d8be65b15a70b7f2bcdcdf"></span><h3>RTS_RESULT ModRTMainSysTimeGetNs (RTS_SYSTIME <a href="#id5"><span class="problematic" id="id6">*</span></a>pTime)<a class="headerlink" href="#rts-result-modrtmainsystimegetns-rts-systime-ptime" title="Permalink to this headline">¶</a></h3>
+<p>Interface wrapper function to ModRTMain.</p>
+<p>Return a monotonic, rising nanosecond tick.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="9%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[inout]</td>
+<td>pTime</td>
+<td>Pointer to the time tick result RANGE=[NULL,VALID_PTIME]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<p>error code</p>
+<p><strong>Return values</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>ERR_OK</td>
+<td>Time was returned successfully</td>
+</tr>
+<tr class="row-even"><td>ERR_PARAMETER</td>
+<td>pTime was NULL</td>
+</tr>
+<tr class="row-odd"><td>ERR_FAILED</td>
+<td>Internal Error</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="group___sys_module_itf.html" title="SysModuleItf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="group___sys_mod_r_t_main_itf.html" title="SysModRTMainItf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

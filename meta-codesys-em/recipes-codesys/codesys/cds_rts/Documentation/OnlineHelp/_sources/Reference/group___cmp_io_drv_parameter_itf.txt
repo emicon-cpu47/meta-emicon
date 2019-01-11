@@ -1,0 +1,176 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_io_drv_parameter_itf:
+
+====================
+CmpIoDrvParameterItf
+====================
+
+Interface of CmpIoDrvParameter. :ref:`More... <group___cmp_io_drv_parameter_itf-details>`
+
+Data Structures
+---------------
+
+- struct :ref:`iodrvreadparameter_struct <structiodrvreadparameter__struct>`
+
+- struct :ref:`iodrvwriteparameter_struct <structiodrvwriteparameter__struct>`
+
+- struct :ref:`ICmpIoDrvParameter_C <struct_i_cmp_io_drv_parameter___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_CmpIoDrvParameter <group___cmp_io_drv_parameter_itf_1gafc82ef245ca536fe0798f90090b34349>`
+
+- #define :ref:`EXTITF_CmpIoDrvParameter <group___cmp_io_drv_parameter_itf_1ga20f1487709af9c56bd58f47e06860098>`
+
+Typedefs
+--------
+
+- typedef :ref:`ICmpIoDrvParameter_C <struct_i_cmp_io_drv_parameter___c>` :ref:`ICmpIoDrvParameter <group___cmp_io_drv_parameter_itf_1ga092f5388480502197f58cc15fada9b92>`
+
+Functions
+---------
+
+- STATICITF_DEF RTS_RESULT :ref:`IoDrvReadParameter <group___cmp_io_drv_parameter_itf_1ga9c410decb95bdf9ae25ae1bad958cc72>` (RTS_HANDLE hDevice, :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector, :ref:`IoConfigParameter <group___cmp_io_mgr_itf_1gaa43db625c1bf83b11bac9f91dbf72a38>` * pParameter, void * pData, RTS_SIZE ulBitSize, RTS_SIZE ulBitOffset)
+
+- STATICITF_DEF RTS_RESULT :ref:`IoDrvWriteParameter <group___cmp_io_drv_parameter_itf_1ga761ab3dfea1fc68bedba1d2949e9ebea>` (RTS_HANDLE hDevice, :ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnector, :ref:`IoConfigParameter <group___cmp_io_mgr_itf_1gaa43db625c1bf83b11bac9f91dbf72a38>` * pParameter, void * pData, RTS_SIZE ulBitSize, RTS_SIZE ulBitOffset)
+
+.. _group___cmp_io_drv_parameter_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpIoDrvParameter.
+
+Interface to access parameters of an IO-driver.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_io_drv_parameter_itf_1gafc82ef245ca536fe0798f90090b34349:
+
+#define ITF_CmpIoDrvParameter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_io_drv_parameter_itf_1ga20f1487709af9c56bd58f47e06860098:
+
+#define EXTITF_CmpIoDrvParameter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_io_drv_parameter_itf_1ga092f5388480502197f58cc15fada9b92:
+
+typedef ICmpIoDrvParameter_C ICmpIoDrvParameter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_io_drv_parameter_itf_1ga9c410decb95bdf9ae25ae1bad958cc72:
+
+STATICITF_DEF RTS_RESULT IoDrvReadParameter (RTS_HANDLE hDevice, IoConfigConnector *pConnector, IoConfigParameter *pParameter, void *pData, RTS_SIZE ulBitSize, RTS_SIZE ulBitOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Read a driver specific parameters.
+
+These parameters can be read by the application, as well as, by an online service, which is triggered from the device configurator plugin in the CoDeSys programming system.
+
+Note: If the I/O driver returns an error, the I/O Manager may try to read the parameter himself
+
+Note2: On SIL2 runtimes, this interface is not supported.
+
+**Parameters**
+
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | hDevice             | Handle to the IO-driver instance RANGE=[RTS_INVALID_HANDLE,VALID_IODRIVER]                                |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | pConnector          | Pointer to the connector (might be determined with IoMgrConfigGetConnector). RANGE=[NULL,VALID_CONNECTOR] |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | pParameter          | Pointer to the parameter (might be determined with IoMgrConfigGetParameter) RANGE=[NULL,VALID_PARAMETER]  |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | pData               | Buffer where the read data is stored RANGE=[NULL,VALID_DATABUFFER]                                        |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | ulBitSize           | Size of the part of the parameter data, that should be read RANGE=[0..PARAM_SIZE-1]                       |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | ulBitOffset         | Offset of the part of the parameter, that should be read RANGE=[0..PARAM_SIZE-1]                          |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | OperationMode       | ***PSEUDO*** Operation mode RANGE=[RTS_SIL2_OPMODE_SAFE,RTS_SIL2_OPMODE_DEBUG]                            |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [out]   | bExceptionGenerated | ***PSEUDO*** Indicates, if an exception was thrown or not RANGE=[TRUE,FALSE]                              |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++-------------------+-------------------------------------------------------------------------+
+| ERR_OK            | Parameter was retrieved                                                 |
++-------------------+-------------------------------------------------------------------------+
+| ERR_PARAMETER     | hDevice was invalid, or pConnector, pConfigParameter or pData was NULL. |
++-------------------+-------------------------------------------------------------------------+
+| ERR_FAILED        | Parameter is not handled by the driver                                  |
++-------------------+-------------------------------------------------------------------------+
+| ERR_NOT_SUPPORTED | This feature is not supported by the driver, or the I/O Manager         |
++-------------------+-------------------------------------------------------------------------+
+
+.. _group___cmp_io_drv_parameter_itf_1ga761ab3dfea1fc68bedba1d2949e9ebea:
+
+STATICITF_DEF RTS_RESULT IoDrvWriteParameter (RTS_HANDLE hDevice, IoConfigConnector *pConnector, IoConfigParameter *pParameter, void *pData, RTS_SIZE ulBitSize, RTS_SIZE ulBitOffset)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Write a driver specific parameters.
+
+These parameters can be written by the application, as well as, by an online service, which is triggered from the device configurator plugin in the CoDeSys programming system.
+
+Note: On SIL2 runtimes, this interface is not supported. And if called in safe-mode, on SIL2 Runtimes, an exception is generated.
+
+**Parameters**
+
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | hDevice             | Handle to the IO-driver instance RANGE=[RTS_INVALID_HANDLE,VALID_IODRIVER]                                |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | pConnector          | Pointer to the connector (might be determined with IoMgrConfigGetConnector). RANGE=[NULL,VALID_CONNECTOR] |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | pParameter          | Pointer to the parameter (might be determined with IoMgrConfigGetParameter) RANGE=[NULL,VALID_PARAMETER]  |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | pData               | Buffer where the read data is stored RANGE=[NULL,VALID_DATABUFFER]                                        |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | ulBitSize           | Size of the part of the parameter data, that should be written RANGE=[0..PARAM_SIZE-1]                    |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | ulBitOffset         | Offset of the part of the parameter, that should be written RANGE=[0..PARAM_SIZE-1]                       |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [in]    | OperationMode       | ***PSEUDO*** Operation mode RANGE=[RTS_SIL2_OPMODE_SAFE,RTS_SIL2_OPMODE_DEBUG]                            |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| [out]   | bExceptionGenerated | ***PSEUDO*** Indicates, if an exception was thrown or not RANGE=[TRUE,FALSE]                              |
++---------+---------------------+-----------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+Error code
+
+**Return values**
+
++-------------------+-------------------------------------------------------------------------+
+| ERR_OK            | Parameter was retrieved                                                 |
++-------------------+-------------------------------------------------------------------------+
+| ERR_PARAMETER     | hDevice was invalid, or pConnector, pConfigParameter or pData was NULL. |
++-------------------+-------------------------------------------------------------------------+
+| ERR_FAILED        | Parameter is not handled by the driver                                  |
++-------------------+-------------------------------------------------------------------------+
+| ERR_NOT_SUPPORTED | This feature is not supported by the driver, or the I/O Manager         |
++-------------------+-------------------------------------------------------------------------+
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

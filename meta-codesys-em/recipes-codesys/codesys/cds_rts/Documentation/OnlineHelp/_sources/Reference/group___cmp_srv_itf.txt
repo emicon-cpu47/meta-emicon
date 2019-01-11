@@ -1,0 +1,672 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___cmp_srv_itf:
+
+=========
+CmpSrvItf
+=========
+
+Interface of CmpSrv. :ref:`More... <group___cmp_srv_itf-details>`
+
+Modules
+-------
+
+- :ref:`Event parameter <group___cmp_srv_itf___eventparameter>`
+
+- :ref:`Events <group___cmp_srv_itf___events>`
+
+- :ref:`Service Groups <group___cmp_srv_itf___service_groups>`
+
+- :ref:`Service reply tags <group___cmp_srv_itf___servicereplytags>`
+
+- :ref:`Static defines <group___cmp_srv_itf___staticdefines>`
+
+Data Structures
+---------------
+
+- struct :ref:`ICmpSrv_C <struct_i_cmp_srv___c>`
+
+Macros
+------
+
+- #define :ref:`HEADERTAG_3S <group___cmp_srv_itf_1ga0046428262063f454be57aa827cdfd98>` 0xCD55
+
+- #define :ref:`HEADERTAG_CRYPT <group___cmp_srv_itf_1ga7c5366bf491add14d2855bf0afb01071>` 0x7557
+
+- #define :ref:`HEADERTAG_SAFETY <group___cmp_srv_itf_1gab722842fef72272a2e942b9cf5aed4fe>` 0x5AF4
+
+- #define :ref:`SRV_SESSION_ID_EMPTY <group___cmp_srv_itf_1ga4de72117c791ede3981a7e1451c40b66>` 0
+
+- #define :ref:`SRV_SESSION_ID_INVALID <group___cmp_srv_itf_1gaa7fbd8d1acecbbfbbc6f58d0bf234a43>` 0x00000001
+
+- #define :ref:`SRV_SESSION_ID_INITAL_REQUEST <group___cmp_srv_itf_1ga7a4571db36dcc072c449daff1ffa08fb>` 0x00000011
+
+- #define :ref:`SRV_SESSION_ID_REMOTE_VISU_CLIENT <group___cmp_srv_itf_1ga421e2e91fbc87e88bda8f41f3cb508ac>` 0x00000815
+
+- #define :ref:`SRV_SESSION_ID_WEBSERVER <group___cmp_srv_itf_1ga51cd7f5f268c6fa5c5e048bcb63a3eb2>` 0x0000ABCD
+
+- #define :ref:`SRV_SESSION_ID_VALIDATION_BIT <group___cmp_srv_itf_1ga3417a43c9c67c72cdfb949a0c2f8d0ba>` 0x80000000
+
+- #define :ref:`ITF_CmpSrv <group___cmp_srv_itf_1ga576259b0ba6642dd1867ab9e2e096b75>`
+
+- #define :ref:`EXTITF_CmpSrv <group___cmp_srv_itf_1gabed52952896368f8abf4a8d276e498c1>`
+
+Typedefs
+--------
+
+- typedef RTS_RESULT(* :ref:`PFServiceHandler <group___cmp_srv_itf_1ga441b16c1f6973ca0c9ebd0a339e86531>`)(RTS_UI32 ulChannelId, HEADER_TAG *pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)
+
+- typedef RTS_RESULT(* :ref:`PFServiceHandler2 <group___cmp_srv_itf_1ga1fccaae79144a93ec9998176a821c808>`)(RTS_HANDLE hRouter, RTS_UI32 ulChannelId, HEADER_TAG *pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)
+
+- typedef :ref:`ICmpSrv_C <struct_i_cmp_srv___c>` :ref:`ICmpSrv <group___cmp_srv_itf_1ga6988cf0c8f48e1808fc020f1e5858552>`
+
+Functions
+---------
+
+- RTS_RESULT :ref:`ServerAppHandleRequest <group___cmp_srv_itf_1ga36c79c1c4ea2881de45257692f94af16>` (RTS_UI32 ulChannelId, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduRequest, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduReply)
+
+- RTS_RESULT :ref:`ServerAppHandleRequest2 <group___cmp_srv_itf_1ga58d4eaee96676a23879fd1b9405dbf13>` (RTS_HANDLE hRouter, RTS_UI32 ulChannelId, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduRequest, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduReply)
+
+- RTS_RESULT :ref:`ServerAppHandleRequest3 <group___cmp_srv_itf_1gadd61540aa74bae25150b1d4fe96609ef>` (RTS_UI32 ulChannelId, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduRequest, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduReply, RTS_UI32 bFirstCall)
+
+- RTS_RESULT :ref:`ServerRegisterServiceHandler <group___cmp_srv_itf_1ga485f7aaf5009723d62200f31f6e2d65f>` (RTS_UI32 ulServiceGroup, :ref:`PFServiceHandler <group___cmp_srv_itf_1ga441b16c1f6973ca0c9ebd0a339e86531>`  pfServiceHandler)
+
+- RTS_RESULT :ref:`ServerRegisterServiceHandler2 <group___cmp_srv_itf_1gae85b4c0435220a9662226d3f6538942b>` (RTS_UI32 ulServiceGroup, :ref:`PFServiceHandler <group___cmp_srv_itf_1ga441b16c1f6973ca0c9ebd0a339e86531>`  pfServiceHandler, char * pszRouter)
+
+- RTS_RESULT :ref:`ServerRegisterServiceHandler3 <group___cmp_srv_itf_1gae52a96e6cd998e926a403173667e95a7>` (RTS_UI32 ulServiceGroup, :ref:`PFServiceHandler2 <group___cmp_srv_itf_1ga1fccaae79144a93ec9998176a821c808>`  pfServiceHandler2)
+
+- RTS_RESULT :ref:`ServerUnRegisterServiceHandler <group___cmp_srv_itf_1ga34a0a4d439a54dd5e75fe2f414ca0a58>` (RTS_UI32 ulServiceGroup, :ref:`PFServiceHandler <group___cmp_srv_itf_1ga441b16c1f6973ca0c9ebd0a339e86531>`  pfServiceHandler)
+
+- RTS_RESULT :ref:`ServerRegisterProtocolHandler <group___cmp_srv_itf_1ga362a87043d6c86695ef3cfc1b4525579>` (RTS_UI16 usProtocolId, :ref:`PFServiceHandler <group___cmp_srv_itf_1ga441b16c1f6973ca0c9ebd0a339e86531>`  pfServiceHandler)
+
+- RTS_RESULT :ref:`ServerRegisterProtocolHandler2 <group___cmp_srv_itf_1ga4032fd640d13076a903f3541679f3a87>` (RTS_UI16 usProtocolId, :ref:`PFServiceHandler <group___cmp_srv_itf_1ga441b16c1f6973ca0c9ebd0a339e86531>`  pfServiceHandler, char * pszRouter)
+
+- RTS_RESULT :ref:`ServerUnRegisterProtocolHandler <group___cmp_srv_itf_1ga7e9ff60fc3a285f61e7470662385ef14>` (RTS_UI16 usProtocolId, :ref:`PFServiceHandler <group___cmp_srv_itf_1ga441b16c1f6973ca0c9ebd0a339e86531>`  pfServiceHandler)
+
+- RTS_RESULT :ref:`ServerFinishRequest <group___cmp_srv_itf_1gaeac2e260382c3b9ef40e6ba1def76e0c>` (RTS_UI32 ulChannelId, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduData)
+
+- RTS_RESULT :ref:`ServerGenerateSessionId <group___cmp_srv_itf_1gafc3e3143d0d038cfdb26c563d0f62af0>` (RTS_UI32 * pulSessionId)
+
+- RTS_RESULT :ref:`ServerSetSessionId <group___cmp_srv_itf_1gac5ba09b19c0abca1d170684a445aafcb>` (RTS_UI32 ulChannelHandle, RTS_UI32 ulSessionId)
+
+- RTS_RESULT :ref:`ServerGetSessionId <group___cmp_srv_itf_1ga10d3760ff6b77de724ac210cb8a0a4a9>` (RTS_UI32 ulChannelHandle, RTS_UI32 * pulSessionId)
+
+- RTS_RESULT :ref:`ServerGetMaxChannels <group___cmp_srv_itf_1gafa508e300d932cd0732ee7881c413e03>` (RTS_UI16 * pwMaxChannels)
+
+- RTS_RESULT :ref:`ServerGetChannelInfoByIndex <group___cmp_srv_itf_1ga9735307044d638000c3f2241bff60362>` (RTS_UI16 ui16ChannelIndex, RTS_UI32 * pui32ServerState, :ref:`CHANNELINFO <struct_c_h_a_n_n_e_l_i_n_f_o>` * pChInfoBuffer, RTS_SIZE * psiBufferLen)
+
+- RTS_RESULT :ref:`ServerGetStatus <group___cmp_srv_itf_1ga75d24b922e6819c69632a5f22fcfcf00>` (RTS_UI32 ulChannelHandle, RTS_UI16 * pusStatus, RTS_UI8 * pbyScalingFactor, RTS_I32 * pnItemsComplete, RTS_I32 * pnTotalItems)
+
+- RTS_RESULT :ref:`ServerSetRedundancyMode <group___cmp_srv_itf_1ga8d2b08b616998a2c73b2e01bdace4753>` (RTS_BOOL bRedundant)
+
+- RTS_RESULT :ref:`ServerSetRedundancyModeStandby <group___cmp_srv_itf_1gaa0a956722fa3a51fcccec49f8d463fcf>` (RTS_BOOL bRedundanyStandby)
+
+- RTS_RESULT :ref:`ServerExecuteOnlineService <group___cmp_srv_itf_1ga0121deb31f2b40837f381a45a73c43ad>` (void)
+
+- RTS_RESULT :ref:`ServerHandleRequest <group___cmp_srv_itf_1ga16c7f32f6b6792df66637c74803b67d4>` (RTS_UI32 ulChannelId, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduRequest, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  pduReply)
+
+- RTS_RESULT :ref:`SrvGetUserNotificationService <group___cmp_srv_itf_1ga15f99c5983f0573542aef291a6097bde>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>` * pduSendBuffer)
+
+- RTS_RESULT :ref:`SrvGetUserNotificationService2 <group___cmp_srv_itf_1ga10067ebfcec16fafbf3d4f2b27c41de5>` (:ref:`BINTAGWRITER <struct_b_i_n_t_a_g_w_r_i_t_e_r>` * pWriter, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>` * pduSendBuffer, unsigned long ulTagId)
+
+.. _group___cmp_srv_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of CmpSrv.
+
+Interface of the level 7 server.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___cmp_srv_itf_1ga0046428262063f454be57aa827cdfd98:
+
+#define HEADERTAG_3S 0xCD55
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Defines the default CoDeSys layer 7 protocol.
+
+.. _group___cmp_srv_itf_1ga7c5366bf491add14d2855bf0afb01071:
+
+#define HEADERTAG_CRYPT 0x7557
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Defines the default CoDeSys encrypted layer 7 protocol.
+
+.. _group___cmp_srv_itf_1gab722842fef72272a2e942b9cf5aed4fe:
+
+#define HEADERTAG_SAFETY 0x5AF4
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Defines the default safety communication layer 7 protocol.
+
+.. _group___cmp_srv_itf_1ga4de72117c791ede3981a7e1451c40b66:
+
+#define SRV_SESSION_ID_EMPTY 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Defines some special values for session ids
+
+.. _group___cmp_srv_itf_1gaa7fbd8d1acecbbfbbc6f58d0bf234a43:
+
+#define SRV_SESSION_ID_INVALID 0x00000001
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_srv_itf_1ga7a4571db36dcc072c449daff1ffa08fb:
+
+#define SRV_SESSION_ID_INITAL_REQUEST 0x00000011
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_srv_itf_1ga421e2e91fbc87e88bda8f41f3cb508ac:
+
+#define SRV_SESSION_ID_REMOTE_VISU_CLIENT 0x00000815
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_srv_itf_1ga51cd7f5f268c6fa5c5e048bcb63a3eb2:
+
+#define SRV_SESSION_ID_WEBSERVER 0x0000ABCD
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_srv_itf_1ga3417a43c9c67c72cdfb949a0c2f8d0ba:
+
+#define SRV_SESSION_ID_VALIDATION_BIT 0x80000000
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_srv_itf_1ga576259b0ba6642dd1867ab9e2e096b75:
+
+#define ITF_CmpSrv
+^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_srv_itf_1gabed52952896368f8abf4a8d276e498c1:
+
+#define EXTITF_CmpSrv
+^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___cmp_srv_itf_1ga441b16c1f6973ca0c9ebd0a339e86531:
+
+typedef RTS_RESULT( * PFServiceHandler)(RTS_UI32 ulChannelId, HEADER_TAG *pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Servers register this callback function to process services of a service group. The reply to such a request must be sent using FinishRequest.
+
+**Parameters**
+
++---------+---------------+------------------------------------------------------------------------------------------+
+| [in]    | ulChannelId   | Id of the channel on which the request arrived                                           |
++---------+---------------+------------------------------------------------------------------------------------------+
+| [in]    | pHeaderTag    | Pointer to the header struct of the message                                              |
++---------+---------------+------------------------------------------------------------------------------------------+
+| [in]    | pduData       | References the request data (without header)                                             |
++---------+---------------+------------------------------------------------------------------------------------------+
+| [in]    | pduSendBuffer | Contains the length of the buffer for the reply data, and the buffer for the replay data |
++---------+---------------+------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+*Should return ERR_OK (succeeded immediatly) or ERR_PENDING (service is handled asynchronously). *All other results abort the request.
+
+.. _group___cmp_srv_itf_1ga1fccaae79144a93ec9998176a821c808:
+
+typedef RTS_RESULT( * PFServiceHandler2)(RTS_HANDLE hRouter, RTS_UI32 ulChannelId, HEADER_TAG *pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT pduSendBuffer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete: Use PFServiceHandler (above) instead. Will be removed in future versions!
+
+Servers register this callback function to process services of a service group. The reply to such a request must be sent using FinishRequest.
+
+**Parameters**
+
++---------+---------------+------------------------------------------------------------------------------------------+
+| [in]    | hRouter       | Obsolete parameter, should be set to RTS_INVALID_HANDLE.                                 |
++---------+---------------+------------------------------------------------------------------------------------------+
+| [in]    | ulChannelId   | Id of the channel on which the request arrived                                           |
++---------+---------------+------------------------------------------------------------------------------------------+
+| [in]    | pHeaderTag    | Pointer to the header struct of the message                                              |
++---------+---------------+------------------------------------------------------------------------------------------+
+| [in]    | pduData       | References the request data (without header)                                             |
++---------+---------------+------------------------------------------------------------------------------------------+
+| [in]    | pduSendBuffer | Contains the length of the buffer for the reply data, and the buffer for the replay data |
++---------+---------------+------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+*Should return ERR_OK (succeeded immediatly) or ERR_PENDING (service is handled asynchronously). *All other results abort the request.
+
+.. _group___cmp_srv_itf_1ga6988cf0c8f48e1808fc020f1e5858552:
+
+typedef ICmpSrv_C ICmpSrv
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___cmp_srv_itf_1ga36c79c1c4ea2881de45257692f94af16:
+
+RTS_RESULT ServerAppHandleRequest (RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduRequest, PROTOCOL_DATA_UNIT pduReply)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete: Use ServerAppHandleRequest3 instead. Will be removed in future versions!
+
+.. _group___cmp_srv_itf_1ga58d4eaee96676a23879fd1b9405dbf13:
+
+RTS_RESULT ServerAppHandleRequest2 (RTS_HANDLE hRouter, RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduRequest, PROTOCOL_DATA_UNIT pduReply)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete: Use ServerAppHandleRequest3 instead. Will be removed in future versions!
+
+.. _group___cmp_srv_itf_1gadd61540aa74bae25150b1d4fe96609ef:
+
+RTS_RESULT ServerAppHandleRequest3 (RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduRequest, PROTOCOL_DATA_UNIT pduReply, RTS_UI32 bFirstCall)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Handle one sevice request from the communication layer below (channel server)
+
+**Parameters**
+
++---------+-------------+---------------------------------------------------------------------------------------------+
+| [in]    | ulChannelId | Id of the channel on which the request arrived                                              |
++---------+-------------+---------------------------------------------------------------------------------------------+
+| [in]    | pduRequest  | Pointer to the request                                                                      |
++---------+-------------+---------------------------------------------------------------------------------------------+
+| [out]   | pduReply    | Pointer to the request reply buffer                                                         |
++---------+-------------+---------------------------------------------------------------------------------------------+
+| [in]    | bFirstCall  | 0: Tells the function, if it was already called for the same request before (0) or not (1). |
++---------+-------------+---------------------------------------------------------------------------------------------+
+
+**Return values**
+
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ERR_OK         | Received service was completely handeled.                                                                                                                |
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ERR_PENDING    | Received service will be handled asynchronously, but the caller has not to take care about this anymore.                                                 |
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ERR_CALL_AGAIN | Received service will be handled asynchronously. To progress this function have to be called again for the same received service data with bFirstCall=0. |
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ERR_...        | Another error occured, channel should be closed.                                                                                                         |
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1ga485f7aaf5009723d62200f31f6e2d65f:
+
+RTS_RESULT ServerRegisterServiceHandler (RTS_UI32 ulServiceGroup, PFServiceHandler pfServiceHandler)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Register a handler for requests to a specific service group
+
+**Parameters**
+
++---------+------------------+-------------------------------------------------------------+
+| [in]    | ulServiceGroup   | The service group which is handled by the provided function |
++---------+------------------+-------------------------------------------------------------+
+| [in]    | pfServiceHandler | A handler function.                                         |
++---------+------------------+-------------------------------------------------------------+
+
+.. _group___cmp_srv_itf_1gae85b4c0435220a9662226d3f6538942b:
+
+RTS_RESULT ServerRegisterServiceHandler2 (RTS_UI32 ulServiceGroup, PFServiceHandler pfServiceHandler, char *pszRouter)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete: Use ServerRegisterServiceHandler instead. Will be removed in future versions!
+
+Register a handler for requests to a specific service group
+
+**Parameters**
+
++---------+------------------+-------------------------------------------------------------+
+| [in]    | ulServiceGroup   | The service group which is handled by the provided function |
++---------+------------------+-------------------------------------------------------------+
+| [in]    | pfServiceHandler | A handler function.                                         |
++---------+------------------+-------------------------------------------------------------+
+| [in]    | pszRouter        | Obsolete parameter, should be set to NULL.                  |
++---------+------------------+-------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1gae52a96e6cd998e926a403173667e95a7:
+
+RTS_RESULT ServerRegisterServiceHandler3 (RTS_UI32 ulServiceGroup, PFServiceHandler2 pfServiceHandler2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete: Use ServerRegisterServiceHandler instead. Will be removed in future versions!
+
+Register a handler for requests to a specific service group
+
+**Parameters**
+
++---------+-------------------+-------------------------------------------------------------+
+| [in]    | ulServiceGroup    | The service group which is handled by the provided function |
++---------+-------------------+-------------------------------------------------------------+
+| [in]    | pfServiceHandler2 | A handler function.                                         |
++---------+-------------------+-------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1ga34a0a4d439a54dd5e75fe2f414ca0a58:
+
+RTS_RESULT ServerUnRegisterServiceHandler (RTS_UI32 ulServiceGroup, PFServiceHandler pfServiceHandler)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unregister a handler for requests to a specific service group
+
+**Parameters**
+
++---------+------------------+-------------------------------------------------------------+
+| [in]    | ulServiceGroup   | The service group which is handled by the provided function |
++---------+------------------+-------------------------------------------------------------+
+| [in]    | pfServiceHandler | A handler function.                                         |
++---------+------------------+-------------------------------------------------------------+
+
+.. _group___cmp_srv_itf_1ga362a87043d6c86695ef3cfc1b4525579:
+
+RTS_RESULT ServerRegisterProtocolHandler (RTS_UI16 usProtocolId, PFServiceHandler pfServiceHandler)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Register a handler for requests of a specific protocol other then HEADERTAG_3S. All requests with that protocol will be sent to this handler.
+
+**Parameters**
+
++---------+------------------+-----------------------------------------------------------+
+| [in]    | usProtocolId     | The protocol id which is handled by the provided function |
++---------+------------------+-----------------------------------------------------------+
+| [in]    | pfServiceHandler | A handler function.                                       |
++---------+------------------+-----------------------------------------------------------+
+
+.. _group___cmp_srv_itf_1ga4032fd640d13076a903f3541679f3a87:
+
+RTS_RESULT ServerRegisterProtocolHandler2 (RTS_UI16 usProtocolId, PFServiceHandler pfServiceHandler, char *pszRouter)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obsolete: Use ServerRegisterProtocolHandler instead. Will be removed in future versions!
+
+Register a handler for requests of a specific protocol other then HEADERTAG_3S. All requests with that protocol will be sent to this handler.
+
+**Parameters**
+
++---------+------------------+-----------------------------------------------------------+
+| [in]    | usProtocolId     | The protocol id which is handled by the provided function |
++---------+------------------+-----------------------------------------------------------+
+| [in]    | pfServiceHandler | A handler function.                                       |
++---------+------------------+-----------------------------------------------------------+
+| [in]    | pszRouter        | Obsolete parameter, should be set to NULL.                |
++---------+------------------+-----------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1ga7e9ff60fc3a285f61e7470662385ef14:
+
+RTS_RESULT ServerUnRegisterProtocolHandler (RTS_UI16 usProtocolId, PFServiceHandler pfServiceHandler)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unregister a handler for requests of a specific protocol.
+
+**Parameters**
+
++---------+------------------+-----------------------------------------------------------+
+| [in]    | usProtocolId     | The protocol id which is handled by the provided function |
++---------+------------------+-----------------------------------------------------------+
+| [in]    | pfServiceHandler | A handler function.                                       |
++---------+------------------+-----------------------------------------------------------+
+
+.. _group___cmp_srv_itf_1gaeac2e260382c3b9ef40e6ba1def76e0c:
+
+RTS_RESULT ServerFinishRequest (RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Send a reply to a request previously received by a service handler
+
+**Parameters**
+
++---------+-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ulChannelId | Id of the channel on which to answer a reply. Must be the same that was passed in to the service handler function.                                                                                       |
++---------+-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pduData     | Contains the buffer and the length of the reply data. Buffer must be the same as the one passed in to the service handler function, the length must not be greater then the maximum reply buffer length. |
++---------+-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _group___cmp_srv_itf_1gafc3e3143d0d038cfdb26c563d0f62af0:
+
+RTS_RESULT ServerGenerateSessionId (RTS_UI32 *pulSessionId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Generates a unique session Id
+
+**Parameters**
+
++---------+--------------+----------------------------------------------+
+| [out]   | pulSessionId | Pointer to get back the generated session Id |
++---------+--------------+----------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1gac5ba09b19c0abca1d170684a445aafcb:
+
+RTS_RESULT ServerSetSessionId (RTS_UI32 ulChannelHandle, RTS_UI32 ulSessionId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Stores the session id in the channel instance.
+
+**Parameters**
+
++---------+-----------------+-----------------------------------------------------------+
+| [in]    | ulChannelHandle | Id of the channel for which the session id should be set. |
++---------+-----------------+-----------------------------------------------------------+
+| [in]    | ulSessionId     | New session id fo the channel.                            |
++---------+-----------------+-----------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1ga10d3760ff6b77de724ac210cb8a0a4a9:
+
+RTS_RESULT ServerGetSessionId (RTS_UI32 ulChannelHandle, RTS_UI32 *pulSessionId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the stored session id from the channel instance.
+
+**Parameters**
+
++---------+-----------------+------------------------------------------------------------+
+| [in]    | ulChannelHandle | Id of the channel for which the session id should be read. |
++---------+-----------------+------------------------------------------------------------+
+| [out]   | pulSessionId    | Pointer to return the session id.                          |
++---------+-----------------+------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1gafa508e300d932cd0732ee7881c413e03:
+
+RTS_RESULT ServerGetMaxChannels (RTS_UI16 *pwMaxChannels)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves the number of available server channels. This is equal to the max. number of clients, which can be connected at the same time.
+
+**Parameters**
+
++---------+---------------+------------------------+
+| [out]   | pwMaxChannels | Number of of channels. |
++---------+---------------+------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1ga9735307044d638000c3f2241bff60362:
+
+RTS_RESULT ServerGetChannelInfoByIndex (RTS_UI16 ui16ChannelIndex, RTS_UI32 *pui32ServerState, CHANNELINFO *pChInfoBuffer, RTS_SIZE *psiBufferLen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieves general information for the specified server channel. This function is intended for information purpoeses only.
+
+**Parameters**
+
++---------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ui16ChannelIndex | Index of the channel. Allowed range: 0..MaxChannels-1.                                                                                                                   |
++---------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pui32ServerState | State of the server channel, see category "channel server state" for CSSTATE_ values in CmpCommunicationLibItf.                                                          |
++---------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pChInfoBuffer    | Caller allocated buffer, which is filled by the :ref:`CHANNELINFO <struct_c_h_a_n_n_e_l_i_n_f_o>` structure. If the the state is CSSTATE_FREE, no structure is returned. |
++---------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | psiBufferLen     | Pointer to the size of the buffer in bytes, returns the number of copied bytes.                                                                                          |
++---------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1ga75d24b922e6819c69632a5f22fcfcf00:
+
+RTS_RESULT ServerGetStatus (RTS_UI32 ulChannelHandle, RTS_UI16 *pusStatus, RTS_UI8 *pbyScalingFactor, RTS_I32 *pnItemsComplete, RTS_I32 *pnTotalItems)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the current status of an active channel.
+
+**Parameters**
+
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | wChannelHandle   | Id of the channel                                                                                                                                                                                        |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pusStatus        | Is set to the current progress state. The PROGRESS_xxx constants define valied values.                                                                                                                   |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pbyScalingFactor | Provides the scaling factor for pnItemsComplete and pnTotalItems. These values have been scaled down by dividing them through 2^ScalingFactor (i.e. they have been right shifted by ScalingFactor bits). |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pnItemsComplete  | Number of items completed (eg. the number of bytes transfered).                                                                                                                                          |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pnTotalItems     | Total number of item. Is set to -1 if unknown.                                                                                                                                                           |
++---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1ga8d2b08b616998a2c73b2e01bdace4753:
+
+RTS_RESULT ServerSetRedundancyMode (RTS_BOOL bRedundant)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set redundancy mode to enable synchronous execution of services (called by CmpRedundancy)
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1gaa0a956722fa3a51fcccec49f8d463fcf:
+
+RTS_RESULT ServerSetRedundancyModeStandby (RTS_BOOL bRedundanyStandby)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set redundancy mode standby to enable session id handling for standby controller (called by CmpRedundancy)
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1ga0121deb31f2b40837f381a45a73c43ad:
+
+RTS_RESULT ServerExecuteOnlineService (void)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set flag to execute online service (called by CmpRedundancy)
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1ga16c7f32f6b6792df66637c74803b67d4:
+
+RTS_RESULT ServerHandleRequest (RTS_UI32 ulChannelId, PROTOCOL_DATA_UNIT pduRequest, PROTOCOL_DATA_UNIT pduReply)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Handle one request (called by CmpRedundancy)
+
+**Parameters**
+
++---------+-------------+------------------------------------------------+
+| [in]    | ulChannelId | Id of the channel on which the request arrived |
++---------+-------------+------------------------------------------------+
+| [in]    | pduRequest  | Pointer to the request                         |
++---------+-------------+------------------------------------------------+
+| [out]   | pduReply    | Pointer to the request reply                   |
++---------+-------------+------------------------------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___cmp_srv_itf_1ga15f99c5983f0573542aef291a6097bde:
+
+RTS_RESULT SrvGetUserNotificationService (BINTAGWRITER *pWriter, PROTOCOL_DATA_UNIT *pduSendBuffer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the last log entry of class LOG_USER_NOTIFY as a toplevel online service tag
+
+**Parameters**
+
++---------+---------------+----------------------------------------------------------------------+
+| [in]    | pWriter       | Pointer to the bintag writer to get the service tag                  |
++---------+---------------+----------------------------------------------------------------------+
+| [in]    | pduSendBuffer | Pointer to the send buffer to reset the content of the bintag writer |
++---------+---------------+----------------------------------------------------------------------+
+
+**Returns:**
+
+Error code:
+
+- ERR_OK: There is still an unread log entry of the type LOG_USER_NOTIFY
+
+- ERR_NO_OBJECT: No pending log entry of the type LOG_USER_NOTIFY
+
+- ERR_NOT_SUPPORTED: Service not supported
+
+.. _group___cmp_srv_itf_1ga10067ebfcec16fafbf3d4f2b27c41de5:
+
+RTS_RESULT SrvGetUserNotificationService2 (BINTAGWRITER *pWriter, PROTOCOL_DATA_UNIT *pduSendBuffer, unsigned long ulTagId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the last log entry of class LOG_USER_NOTIFY as a toplevel online service tag
+
+**Parameters**
+
++---------+---------------+----------------------------------------------------------------------+
+| [in]    | pWriter       | Pointer to the bintag writer to get the service tag                  |
++---------+---------------+----------------------------------------------------------------------+
+| [in]    | pduSendBuffer | Pointer to the send buffer to reset the content of the bintag writer |
++---------+---------------+----------------------------------------------------------------------+
+| [in]    | ulTagId       | TagId to send user notify info                                       |
++---------+---------------+----------------------------------------------------------------------+
+
+**Returns:**
+
+Error code:
+
+- ERR_OK: There is still an unread log entry of the type LOG_USER_NOTIFY
+
+- ERR_NO_OBJECT: No pending log entry of the type LOG_USER_NOTIFY
+
+- ERR_NOT_SUPPORTED: Service not supported
+
+cmpsrv
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+

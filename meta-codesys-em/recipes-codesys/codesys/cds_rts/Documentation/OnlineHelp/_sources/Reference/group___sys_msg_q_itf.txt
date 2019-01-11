@@ -1,0 +1,200 @@
+.. first line of composition.rst template
+
+.. first line of group.rst template
+
+.. _group___sys_msg_q_itf:
+
+==========
+SysMsgQItf
+==========
+
+Interface of SysMsgQ. :ref:`More... <group___sys_msg_q_itf-details>`
+
+Modules
+-------
+
+- :ref:`Message Queue Entry Priority <group___sys_msg_q_itf___message_queue_entry_priority>`
+
+- :ref:`Message Queue Options <group___sys_msg_q_itf___message_queue_options>`
+
+- :ref:`Message Queue Timeouts <group___sys_msg_q_itf___message_queue_timeouts>`
+
+Data Structures
+---------------
+
+- struct :ref:`ISysMsgQ_C <struct_i_sys_msg_q___c>`
+
+Macros
+------
+
+- #define :ref:`ITF_SysMsgQ <group___sys_msg_q_itf_1gaba42ca5bce986dd069a21d01df6bf67d>`
+
+- #define :ref:`EXTITF_SysMsgQ <group___sys_msg_q_itf_1gadc9f7a941248e06db029d88482349451>`
+
+Typedefs
+--------
+
+- typedef :ref:`ISysMsgQ_C <struct_i_sys_msg_q___c>` :ref:`ISysMsgQ <group___sys_msg_q_itf_1ga0f4b4d420cf11972a4982688a7d337d6>`
+
+Functions
+---------
+
+- RTS_HANDLE :ref:`SysMsgQCreate <group___sys_msg_q_itf_1ga625d0a68ddfb91a8d93e5781e9001bdf>` (int iMaxMsgs, int iMaxMsgLength, int iOptions, RTS_RESULT * pResult)
+
+- RTS_RESULT :ref:`SysMsgQDelete <group___sys_msg_q_itf_1gae58ade8514076be4c1150e17d3317648>` (RTS_HANDLE hMsgQ)
+
+- int :ref:`SysMsgQSend <group___sys_msg_q_itf_1gad21da6e4670487b5ea8fda2c5e5fb772>` (RTS_HANDLE hMsgQ, unsigned char * pbySendMsg, int iSendMsgLen, unsigned long ulTimeout, int iPriority, RTS_RESULT * pResult)
+
+- int :ref:`SysMsgQRecv <group___sys_msg_q_itf_1ga5053de3fc42f6ecd1c11070d30c9bc60>` (RTS_HANDLE hMsgQ, unsigned char * pbyRecvMsg, int iMaxMsgLen, unsigned long ulTimeout, RTS_RESULT * pResult)
+
+- int :ref:`SysMsgQGetNumOfMsgs <group___sys_msg_q_itf_1ga1fb6b24685d4cd87a5cb0888811ee2d5>` (RTS_HANDLE hMsgQ, RTS_RESULT * pResult)
+
+.. _group___sys_msg_q_itf-details:
+
+Detailed Description
+--------------------
+
+Interface of SysMsgQ.
+
+The SysMsgQ interface is projected to get access to the message queue of an operating system. A message queue can be used for inter task respectively thread communication.
+
+**Copyright:**
+
+Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Macro Definition Documentation
+------------------------------
+.. _group___sys_msg_q_itf_1gaba42ca5bce986dd069a21d01df6bf67d:
+
+#define ITF_SysMsgQ
+^^^^^^^^^^^^^^^^^^^
+
+.. _group___sys_msg_q_itf_1gadc9f7a941248e06db029d88482349451:
+
+#define EXTITF_SysMsgQ
+^^^^^^^^^^^^^^^^^^^^^^
+
+Typedef Documentation
+---------------------
+
+.. _group___sys_msg_q_itf_1ga0f4b4d420cf11972a4982688a7d337d6:
+
+typedef ISysMsgQ_C ISysMsgQ
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function Documentation
+----------------------
+
+.. _group___sys_msg_q_itf_1ga625d0a68ddfb91a8d93e5781e9001bdf:
+
+RTS_HANDLE SysMsgQCreate (int iMaxMsgs, int iMaxMsgLength, int iOptions, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to create a new message queue
+
+**Parameters**
+
++---------+----------+-------------------------------------------------------------------+
+| [in]    | iMaxMsgs | Maximum number of entries in the message queue                    |
++---------+----------+-------------------------------------------------------------------+
+| [in]    | iOptions | Options of the message queue (see category Message Queue Options) |
++---------+----------+-------------------------------------------------------------------+
+| [out]   | pResult  | Pointer to error code                                             |
++---------+----------+-------------------------------------------------------------------+
+
+**Returns:**
+
+Handle to the message queue or RTS_INVALID_HANDLE if failed
+
+.. _group___sys_msg_q_itf_1gae58ade8514076be4c1150e17d3317648:
+
+RTS_RESULT SysMsgQDelete (RTS_HANDLE hMsgQ)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to delete a message queue
+
+**Parameters**
+
++---------+-------+-----------------------------+
+| [in]    | hMsgQ | Handle to the message queue |
++---------+-------+-----------------------------+
+
+**Returns:**
+
+error code
+
+.. _group___sys_msg_q_itf_1gad21da6e4670487b5ea8fda2c5e5fb772:
+
+int SysMsgQSend (RTS_HANDLE hMsgQ, unsigned char *pbySendMsg, int iSendMsgLen, unsigned long ulTimeout, int iPriority, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to send a message via a message queue
+
+**Parameters**
+
++---------+-------------+----------------------------------------------------------+
+| [in]    | hMsgQ       | Handle to the message queue                              |
++---------+-------------+----------------------------------------------------------+
+| [in]    | pbySendMsg  | Pointer to the message to sent                           |
++---------+-------------+----------------------------------------------------------+
+| [in]    | iSendMsgLen | Number of bytes to sent                                  |
++---------+-------------+----------------------------------------------------------+
+| [in]    | ulTimeout   | Timeout to sent (see category Message Queue Timeouts)    |
++---------+-------------+----------------------------------------------------------+
+| [in]    | iPriority   | Priority to sent (see category Message Queue Priorities) |
++---------+-------------+----------------------------------------------------------+
+| [out]   | pResult     | Pointer to error code                                    |
++---------+-------------+----------------------------------------------------------+
+
+**Returns:**
+
+Number of bytes sent, 0 if failed
+
+.. _group___sys_msg_q_itf_1ga5053de3fc42f6ecd1c11070d30c9bc60:
+
+int SysMsgQRecv (RTS_HANDLE hMsgQ, unsigned char *pbyRecvMsg, int iMaxMsgLen, unsigned long ulTimeout, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to receive a message via a message queue
+
+**Parameters**
+
++---------+------------+-------------------------------------------------------+
+| [in]    | hMsgQ      | Handle to the message queue                           |
++---------+------------+-------------------------------------------------------+
+| [in]    | pbyRecvMsg | Pointer to receive message                            |
++---------+------------+-------------------------------------------------------+
+| [in]    | iMaxMsgLen | Maximum number of bytes to receive                    |
++---------+------------+-------------------------------------------------------+
+| [in]    | ulTimeout  | Timeout to sent (see category Message Queue Timeouts) |
++---------+------------+-------------------------------------------------------+
+| [out]   | pResult    | Pointer to error code                                 |
++---------+------------+-------------------------------------------------------+
+
+**Returns:**
+
+Number of bytes received, 0 if failed
+
+.. _group___sys_msg_q_itf_1ga1fb6b24685d4cd87a5cb0888811ee2d5:
+
+int SysMsgQGetNumOfMsgs (RTS_HANDLE hMsgQ, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Function to check number of messages actual in the queue
+
+**Parameters**
+
++---------+---------+-----------------------------+
+| [in]    | hMsgQ   | Handle to the message queue |
++---------+---------+-----------------------------+
+| [out]   | pResult | Pointer to error code       |
++---------+---------+-----------------------------+
+
+**Returns:**
+
+Number of message in the queue
+
+.. last line of group.rst template
+.. last line of composition.rst template
+
+
