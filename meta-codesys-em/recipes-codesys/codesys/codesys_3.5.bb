@@ -19,10 +19,16 @@ do_compile () {
 }
 
 do_install () {
-	install -d ${D}${bindir}
-	install -m 755 -d ${D}${bindir}/codesys
-	install -m 755 -d ${D}${bindir}/codesys/CODESYSControl
-  install -m 0755 CmpEmiconEmu/Linux/libCmpEmiconEmu.so ${D}${bindir}/codesys/CODESYSControl
+    install -d ${D}${bindir}
+    install -m 755 -d ${D}${bindir}/codesys
+    install -m 755 -d ${D}${bindir}/codesys/CODESYSControl
+
+    install -m 0755 ../Platforms/Linux/Bin/codesyscontrol ${D}${bindir}/codesys/CODESYSControl
+    install -m 0755 ${WORKDIR}/CODESYSControl/CODESYSControl.cfg ${D}${bindir}/codesys/CODESYSControl
+
+    install -m 0755 CmpEmiconEmu/Linux/libCmpEmiconEmu.so ${D}${bindir}/codesys/CODESYSControl
+    install -m 0755 CmpEmiconEventsControl/Linux/libCmpEmiconEventsControl.so ${D}${bindir}/codesys/CODESYSControl
+
 }
 
 inherit deploy
@@ -34,5 +40,5 @@ do_deploy () {
 }
 
 #FILES_${PN} += " \ 
-#	/usr/bin/codesys \
+#   /usr/bin/codesys \
 #"
