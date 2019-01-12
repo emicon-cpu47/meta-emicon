@@ -14,12 +14,12 @@
  *  (c) 2003-2016 3S-Smart Software Solutions
  *  </copyright>
  */
-#ifndef _CMPEMICONEVENTSCONTROLDEP_H_
-#define _CMPEMICONEVENTSCONTROLDEP_H_
+#ifndef _CMPEMICONLCDDEP_H_
+#define _CMPEMICONLCDDEP_H_
 
-#define COMPONENT_NAME "CmpEmiconEventsControl" COMPONENT_NAME_POSTFIX
-#define COMPONENT_ID    ADDVENDORID(CMP_VENDORID, CMPID_CmpEmiconEventsControl)
-#define COMPONENT_NAME_UNQUOTED CmpEmiconEventsControl
+#define COMPONENT_NAME "CmpEmiconLCD" COMPONENT_NAME_POSTFIX
+#define COMPONENT_ID    ADDVENDORID(CMP_VENDORID, CMPID_CmpEmiconLCD)
+#define COMPONENT_NAME_UNQUOTED CmpEmiconLCD
 
 
 
@@ -38,9 +38,9 @@
 #include "CmpLogItf.h"
 #include "CMUtilsItf.h"				
 
-#define CMPID_CmpEmiconEventsControl		0x2010								/* NOTE: START HERE WITH YOUR COMPONENTIDS (see CmpItf.h */
-#define CLASSID_CCmpEmiconEventsControl	ADDVENDORID(CMP_VENDORID, 0x2010)	/* NOTE: START HERE WITH YOUR CLASSIDS (see CmpItf.h */
-#define ITFID_ICmpEmiconEventsControl		ADDVENDORID(CMP_VENDORID, 0x2010)	/* NOTE: START HERE WITH YOUR INTERFACEIDS (see CmpItf.h */
+#define CMPID_CmpEmiconLCD		0x2004								/* NOTE: START HERE WITH YOUR COMPONENTIDS (see CmpItf.h */
+#define CLASSID_CCmpEmiconLCD	ADDVENDORID(CMP_VENDORID, 0x2004)	/* NOTE: START HERE WITH YOUR CLASSIDS (see CmpItf.h */
+#define ITFID_ICmpEmiconLCD		ADDVENDORID(CMP_VENDORID, 0x2004)	/* NOTE: START HERE WITH YOUR INTERFACEIDS (see CmpItf.h */
 
 
 /*Obsolete include: CMUtilsItf.m4*/
@@ -49,10 +49,19 @@
 #include "SysFileItf.h"
 
 
+/*Obsolete include: CmpLogItf.m4*/
+
+
+#include "CmpAppItf.h"
+
+
 #include "CmpEventMgrItf.h"
 
 
 #include "SysEventItf.h"
+
+
+#include "SysCpuHandlingItf.h"
 
 
 #include "CmpEmiconEmuItf.h"
@@ -63,7 +72,7 @@
 
 
 
-#include "CmpEmiconEventsControlItf.h"
+#include "CmpEmiconLCDItf.h"
 
 
 
@@ -72,30 +81,16 @@
 
 
     
-
-
-
-
-
-
-
-
-
 
      
 
 
 
-
-
-
-
-
-
-
-
-
     
+
+
+
+
 
 
 
@@ -105,7 +100,12 @@
 
 
 
+
+
+
+
      
+
 
 #ifdef CPLUSPLUS
     #define INIT_STMT \
@@ -139,6 +139,15 @@
                 pIBase->Release(pIBase); \
             } \
         } \
+          if (pISysCpuHandling == NULL && s_pfCMCreateInstance != NULL) \
+        { \
+            pIBase = (IBase *)s_pfCMCreateInstance(CLASSID_CSysCpuHandling, &initResult); \
+            if (pIBase != NULL) \
+            { \
+                pISysCpuHandling = (ISysCpuHandling *)pIBase->QueryInterface(pIBase, ITFID_ISysCpuHandling, &initResult); \
+                pIBase->Release(pIBase); \
+            } \
+        } \
           if (pISysEvent == NULL && s_pfCMCreateInstance != NULL) \
         { \
             pIBase = (IBase *)s_pfCMCreateInstance(CLASSID_CSysEvent, &initResult); \
@@ -157,7 +166,17 @@
                 pIBase->Release(pIBase); \
             } \
         } \
-          if (pISysFile == NULL && s_pfCMCreateInstance != NULL) \
+          if (pICmpApp == NULL && s_pfCMCreateInstance != NULL) \
+        { \
+            pIBase = (IBase *)s_pfCMCreateInstance(CLASSID_CCmpApp, &initResult); \
+            if (pIBase != NULL) \
+            { \
+                pICmpApp = (ICmpApp *)pIBase->QueryInterface(pIBase, ITFID_ICmpApp, &initResult); \
+                pIBase->Release(pIBase); \
+            } \
+        } \
+          /*Obsolete include CmpLog*/ \
+		  if (pISysFile == NULL && s_pfCMCreateInstance != NULL) \
         { \
             pIBase = (IBase *)s_pfCMCreateInstance(CLASSID_CSysFile, &initResult); \
             if (pIBase != NULL) \
@@ -174,9 +193,12 @@
         pICmpLog = NULL; \
         pICMUtils = NULL; \
         pICmpEmiconEmu = NULL; \
+          pISysCpuHandling = NULL; \
           pISysEvent = NULL; \
           pICmpEventMgr = NULL; \
-          pISysFile = NULL; \
+          pICmpApp = NULL; \
+          /*Obsolete include CmpLog*/ \
+		  pISysFile = NULL; \
           /*Obsolete include CMUtils*/ \
 		   \
     }
@@ -214,6 +236,16 @@
                     pICmpEmiconEmu = NULL; \
             } \
         } \
+          if (pISysCpuHandling != NULL) \
+        { \
+            pIBase = (IBase *)pISysCpuHandling->QueryInterface(pISysCpuHandling, ITFID_IBase, &exitResult); \
+            if (pIBase != NULL) \
+            { \
+                 pIBase->Release(pIBase); \
+                 if (pIBase->Release(pIBase) == 0) /* The object will be deleted here! */ \
+                    pISysCpuHandling = NULL; \
+            } \
+        } \
           if (pISysEvent != NULL) \
         { \
             pIBase = (IBase *)pISysEvent->QueryInterface(pISysEvent, ITFID_IBase, &exitResult); \
@@ -234,7 +266,18 @@
                     pICmpEventMgr = NULL; \
             } \
         } \
-          if (pISysFile != NULL) \
+          if (pICmpApp != NULL) \
+        { \
+            pIBase = (IBase *)pICmpApp->QueryInterface(pICmpApp, ITFID_IBase, &exitResult); \
+            if (pIBase != NULL) \
+            { \
+                 pIBase->Release(pIBase); \
+                 if (pIBase->Release(pIBase) == 0) /* The object will be deleted here! */ \
+                    pICmpApp = NULL; \
+            } \
+        } \
+          /*Obsolete include CmpLog*/ \
+		  if (pISysFile != NULL) \
         { \
             pIBase = (IBase *)pISysFile->QueryInterface(pISysFile, ITFID_IBase, &exitResult); \
             if (pIBase != NULL) \
@@ -266,21 +309,16 @@
         TempResult = GET_LogAdd(CM_IMPORT_OPTIONAL_FUNCTION); \
         TempResult = GET_CMUtlMemCpy(CM_IMPORT_OPTIONAL_FUNCTION); \
         if (ERR_OK == importResult ) TempResult = GET_CmpEmiconEmu_is_emu(CM_IMPORT_OPTIONAL_FUNCTION);\
+          if (ERR_OK == importResult ) TempResult = GET_EventUnregisterCallbackFunction(CM_IMPORT_OPTIONAL_FUNCTION);\
+          if (ERR_OK == importResult ) TempResult = GET_EventRegisterCallbackFunction(CM_IMPORT_OPTIONAL_FUNCTION);\
+          if (ERR_OK == importResult ) TempResult = GET_EventClose(CM_IMPORT_OPTIONAL_FUNCTION);\
+          if (ERR_OK == importResult ) TempResult = GET_EventOpen(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_SysFileWrite(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_SysFileRead(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_SysFileClose(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_SysFileOpen(CM_IMPORT_OPTIONAL_FUNCTION);\
-          if (ERR_OK == importResult ) importResult = GET_EventPostByEvent(0);\
-          if (ERR_OK == importResult ) importResult = GET_EventPost(0);\
-          if (ERR_OK == importResult ) importResult = GET_EventUnregisterCallback(0);\
-          if (ERR_OK == importResult ) importResult = GET_EventRegisterCallback(0);\
-          if (ERR_OK == importResult ) importResult = GET_EventUnregisterCallbackFunction(0);\
-          if (ERR_OK == importResult ) importResult = GET_EventRegisterCallbackFunction(0);\
-          if (ERR_OK == importResult ) importResult = GET_EventClose(0);\
-          if (ERR_OK == importResult ) importResult = GET_EventOpen(0);\
-          if (ERR_OK == importResult ) importResult = GET_EventDelete(0);\
-          if (ERR_OK == importResult ) importResult = GET_EventCreate2(0);\
-          if (ERR_OK == importResult ) importResult = GET_EventCreate(0);\
+          if (ERR_OK == importResult ) importResult = GET_SysCpuCallIecFuncWithParams(0);\
+          if (ERR_OK == importResult ) importResult = GET_CMUtlSafeStrCpy(0);\
            \
         /* To make LINT happy */\
         TempResult = TempResult;\
@@ -290,9 +328,39 @@
 
 
 
+#ifndef CMPEMICONLCD_DISABLE_EXTREF
+#define EXPORT_EXTREF_STMT \
+            { (RTS_VOID_FCTPTR)set_visibility, "set_visibility", 0x0FD7B385, 0x03050D02 },\
+          { (RTS_VOID_FCTPTR)set_default_screen, "set_default_screen", 0x99CC3DB4, 0x03050D02 },\
+          { (RTS_VOID_FCTPTR)menu_item_create, "menu_item_create", 0x4B583CD3, 0x03050D02 },\
+          { (RTS_VOID_FCTPTR)lcd_puts, "lcd_puts", 0xA74BD7B7, 0x03050D02 },\
+          { (RTS_VOID_FCTPTR)get_default_screen, "get_default_screen", 0xBC400E09, 0x03050D02 },\
+          { (RTS_VOID_FCTPTR)get_current_screen, "get_current_screen", 0xB05F91C6, 0x03050D02 },\
+          { (RTS_VOID_FCTPTR)display_screen, "display_screen", 0x46B0648F, 0x03050D02 },\
+          
+#else
 #define EXPORT_EXTREF_STMT
+#endif
+#ifndef CMPEMICONLCD_DISABLE_EXTREF2
+#define EXPORT_EXTREF2_STMT \
+                          
+#else
 #define EXPORT_EXTREF2_STMT
-#define EXPORT_CMPITF_STMT {{ ((RTS_VOID_FCTPTR)(void *)0), "", 0, 0 }}
+#endif
+#if !defined(STATIC_LINK) && !defined(CPLUSPLUS) && !defined(CPLUSPLUS_ONLY)
+#define EXPORT_CMPITF_STMT \
+    {\
+        { (RTS_VOID_FCTPTR)CmpEmiconLCD_display_screen, "CmpEmiconLCD_display_screen", 0, 0 },\
+          { (RTS_VOID_FCTPTR)CmpEmiconLCD_puts, "CmpEmiconLCD_puts", 0, 0 },\
+                        \
+        { ((RTS_VOID_FCTPTR)(void *)0), "", 0, 0 }\
+    }
+#else
+#define EXPORT_CMPITF_STMT \
+    {\
+        { ((RTS_VOID_FCTPTR)(void *)0), "", 0, 0 }\
+    }
+#endif
 #define EXPORT_CPP_STMT
 
 
@@ -350,24 +418,21 @@
     USE_LogAdd \
 	/*obsolete entry ITF_CMUtils*/      \
 	ITF_SysFile     \
+	/*obsolete entry ITF_CmpLog*/      \
+	ITF_CmpApp     \
 	ITF_CmpEventMgr     \
 	ITF_SysEvent     \
-	ITF_CmpEmiconEmu      \
-    USE_EventCreate      \
-    USE_EventCreate2      \
-    USE_EventDelete      \
-    USE_EventOpen      \
-    USE_EventClose      \
-    USE_EventRegisterCallbackFunction      \
-    USE_EventUnregisterCallbackFunction      \
-    USE_EventRegisterCallback      \
-    USE_EventUnregisterCallback      \
-    USE_EventPost      \
-    USE_EventPostByEvent      \
+	ITF_SysCpuHandling      \
+    USE_CMUtlSafeStrCpy      \
+    USE_SysCpuCallIecFuncWithParams      \
     USE_SysFileOpen      \
     USE_SysFileClose      \
     USE_SysFileRead      \
     USE_SysFileWrite      \
+    USE_EventOpen      \
+    USE_EventClose      \
+    USE_EventRegisterCallbackFunction      \
+    USE_EventUnregisterCallbackFunction      \
     USE_CmpEmiconEmu_is_emu     
 #define USEIMPORT_STMT \
     /*lint -save --e{551} */ \
@@ -385,48 +450,42 @@
     USE_LogAdd \
 	/*obsolete entry ITF_CMUtils*/     \
 	ITF_SysFile    \
+	/*obsolete entry ITF_CmpLog*/     \
+	ITF_CmpApp    \
 	ITF_CmpEventMgr    \
 	ITF_SysEvent    \
-	ITF_CmpEmiconEmu     \
-    USE_EventCreate      \
-    USE_EventCreate2      \
-    USE_EventDelete      \
-    USE_EventOpen      \
-    USE_EventClose      \
-    USE_EventRegisterCallbackFunction      \
-    USE_EventUnregisterCallbackFunction      \
-    USE_EventRegisterCallback      \
-    USE_EventUnregisterCallback      \
-    USE_EventPost      \
-    USE_EventPostByEvent      \
+	ITF_SysCpuHandling     \
+    USE_CMUtlSafeStrCpy      \
+    USE_SysCpuCallIecFuncWithParams      \
     USE_SysFileOpen      \
     USE_SysFileClose      \
     USE_SysFileRead      \
     USE_SysFileWrite      \
+    USE_EventOpen      \
+    USE_EventClose      \
+    USE_EventRegisterCallbackFunction      \
+    USE_EventUnregisterCallbackFunction      \
     USE_CmpEmiconEmu_is_emu     
 #define USEEXTERN_STMT \
     EXT_CMUtlMemCpy  \
     EXT_LogAdd \
 	/*obsolete entry EXTITF_CMUtils*/     \
 	EXTITF_SysFile    \
+	/*obsolete entry EXTITF_CmpLog*/     \
+	EXTITF_CmpApp    \
 	EXTITF_CmpEventMgr    \
 	EXTITF_SysEvent    \
-	EXTITF_CmpEmiconEmu     \
-    EXT_EventCreate  \
-    EXT_EventCreate2  \
-    EXT_EventDelete  \
-    EXT_EventOpen  \
-    EXT_EventClose  \
-    EXT_EventRegisterCallbackFunction  \
-    EXT_EventUnregisterCallbackFunction  \
-    EXT_EventRegisterCallback  \
-    EXT_EventUnregisterCallback  \
-    EXT_EventPost  \
-    EXT_EventPostByEvent  \
+	EXTITF_SysCpuHandling     \
+    EXT_CMUtlSafeStrCpy  \
+    EXT_SysCpuCallIecFuncWithParams  \
     EXT_SysFileOpen  \
     EXT_SysFileClose  \
     EXT_SysFileRead  \
     EXT_SysFileWrite  \
+    EXT_EventOpen  \
+    EXT_EventClose  \
+    EXT_EventRegisterCallbackFunction  \
+    EXT_EventUnregisterCallbackFunction  \
     EXT_CmpEmiconEmu_is_emu 
 #ifndef COMPONENT_NAME
     #error COMPONENT_NAME is not defined. This prevents the component from being linked statically. Use SET_COMPONENT_NAME(<name_of_your_component>) to set the name of the component in your .m4 component description.
@@ -436,19 +495,19 @@
 
 
 #if defined(STATIC_LINK) || defined(MIXED_LINK) || defined(DYNAMIC_LINK) || defined(CPLUSPLUS_STATIC_LINK)
-    #define ComponentEntry CmpEmiconEventsControl__Entry
+    #define ComponentEntry CmpEmiconLCD__Entry
 #endif
 
 
 #ifdef CPLUSPLUS
 
-class CCmpEmiconEventsControl : public ICmpEmiconEventsControl 
+class CCmpEmiconLCD : public ICmpEmiconLCD 
 {
     public:
-        CCmpEmiconEventsControl() : hCmpEmiconEventsControl(RTS_INVALID_HANDLE), iRefCount(0)
+        CCmpEmiconLCD() : hCmpEmiconLCD(RTS_INVALID_HANDLE), iRefCount(0)
         {
         }
-        virtual ~CCmpEmiconEventsControl()
+        virtual ~CCmpEmiconLCD()
         {
         }
         virtual unsigned long AddRef(IBase *pIBase = NULL)
@@ -472,9 +531,9 @@ class CCmpEmiconEventsControl : public ICmpEmiconEventsControl
         {
             void *pItf;
             if (iid == ITFID_IBase)
-                pItf = dynamic_cast<IBase *>((ICmpEmiconEventsControl *)this);            
-            else if (iid == ITFID_ICmpEmiconEventsControl)
-                pItf = dynamic_cast<ICmpEmiconEventsControl *>(this); 
+                pItf = dynamic_cast<IBase *>((ICmpEmiconLCD *)this);            
+            else if (iid == ITFID_ICmpEmiconLCD)
+                pItf = dynamic_cast<ICmpEmiconLCD *>(this); 
             else
             {
                 if (pResult != NULL)
@@ -487,15 +546,17 @@ class CCmpEmiconEventsControl : public ICmpEmiconEventsControl
                 *pResult = ERR_OK;
             return pItf;
         }
+        virtual uint32_t CDECL ICmpEmiconLCD_puts(uint8_t n, uint8_t line, uint8_t pos, char *str);
+        virtual uint32_t CDECL ICmpEmiconLCD_display_screen(uint8_t n);
 
     public:
-        RTS_HANDLE hCmpEmiconEventsControl;
+        RTS_HANDLE hCmpEmiconLCD;
         int iRefCount;
 };
 
 #endif /*CPLUSPLUS*/
 #ifdef RTS_COMPACT_MICRO
-/* CmpEmiconEventsControl Declarations for uRTS */
+/* CmpEmiconLCD Declarations for uRTS */
 /* This header is included only to have the CMP_EXT_FUNCTION_REF type definition. */
 /* In final version this type could be moved to CmpItf.h, if we will use */
 /* the same structure for representing an export entry. */
@@ -552,7 +613,7 @@ class CCmpEmiconEventsControl : public ICmpEmiconEventsControl
 #endif
 
 /* This wrapper is only required in uRTS */
-#define USE_HOOK_FUNCTION	RTS_RESULT CmpEmiconEventsControl_HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)\
+#define USE_HOOK_FUNCTION	RTS_RESULT CmpEmiconLCD_HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)\
 {\
 	return HookFunction(ulHook, ulParam1, ulParam2);\
 }
@@ -562,7 +623,7 @@ class CCmpEmiconEventsControl : public ICmpEmiconEventsControl
 #define USE_CMEXPORTFUNCTIONS
 
 /* Exports table to IEC */
-#define USE_EXPORT_EXTREF const CMP_EXT_FUNCTION_REF CmpEmiconEventsControl_ExternalsTable[] = \
+#define USE_EXPORT_EXTREF const CMP_EXT_FUNCTION_REF CmpEmiconLCD_ExternalsTable[] = \
 	{\
 		EXPORT_EXTREF_STMT\
 		EXPORT_EXTREF2_STMT\

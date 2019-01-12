@@ -28,6 +28,7 @@ do_install () {
 
     install -m 0755 CmpEmiconEmu/Linux/libCmpEmiconEmu.so ${D}${bindir}/codesys/CODESYSControl
     install -m 0755 CmpEmiconEventsControl/Linux/libCmpEmiconEventsControl.so ${D}${bindir}/codesys/CODESYSControl
+    install -m 0755 CmpEmiconLCD/Linux/libCmpEmiconLCD.so ${D}${bindir}/codesys/CODESYSControl
 
 }
 
