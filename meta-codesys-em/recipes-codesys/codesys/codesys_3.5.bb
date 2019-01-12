@@ -32,6 +32,8 @@ do_install () {
     install -m 0755 CmpEmiconLog/Linux/libCmpEmiconLog.so ${D}${bindir}/codesys/CODESYSControl
     install -m 0755 CmpEmiconMemManager/Linux/libCmpEmiconMemManager.so ${D}${bindir}/codesys/CODESYSControl
     install -m 0755 CmpEmiconNetwork/Linux/libCmpEmiconNetwork.so ${D}${bindir}/codesys/CODESYSControl
+    install -m 0755 CmpEmiconPlcShellHandler/Linux/libCmpPlcShellHandler.so ${D}${bindir}/codesys/CODESYSControl
+    install -m 0755 CmpEmiconStopControl/Linux/libCmpEmiconStopControl.so ${D}${bindir}/codesys/CODESYSControl
 
 }
 
