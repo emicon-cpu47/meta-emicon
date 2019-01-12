@@ -12,7 +12,6 @@ SRC_URI += " \
     file://run_lcd_menu \
     file://etc \
     file://Packages \
-    file://setenv_codesys.sh \
 "
 
 S="${THISDIR}/cds_rts/Templates"
@@ -26,6 +25,13 @@ do_install () {
     install -d ${D}${libdir}
     install -m 755 -d ${D}${bindir}/codesys
     install -m 755 -d ${D}${bindir}/codesys/CODESYSControl
+
+    install -d ${D}${sysconfdir}
+    cp ${WORKDIR}/etc/*.sh ${D}${sysconfdir}
+    
+    install -d ${D}${sysconfdir}/init.d
+    install -m 0755 ${WORKDIR}/codesys ${D}${sysconfdir}/init.d
+    update-rc.d -r ${D} codesys defaults
 
     install -m 0755 ../Platforms/Linux/Bin/codesyscontrol ${D}${bindir}/codesys/CODESYSControl
     install -m 0755 ${WORKDIR}/CODESYSControl/CODESYSControl.cfg ${D}${bindir}/codesys/CODESYSControl
