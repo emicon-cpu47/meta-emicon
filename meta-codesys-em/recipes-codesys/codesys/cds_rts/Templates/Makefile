@@ -9,6 +9,7 @@ all:
 	$(MAKE) -C CmpEmiconNetwork/Linux all
 	$(MAKE) -C CmpEmiconPlcShellHandler/Linux all
 	$(MAKE) -C CmpEmiconStopControl/Linux all
+	$(MAKE) -C CmpEmiconSys/Linux all
 
 clean: cleanall
 
@@ -21,5 +22,6 @@ cleanall:
 	$(MAKE) -C CmpEmiconNetwork/Linux cleanall
 	$(MAKE) -C CmpEmiconPlcShellHandler/Linux cleanall
 	$(MAKE) -C CmpEmiconStopControl/Linux cleanall
+	$(MAKE) -C CmpEmiconSys/Linux cleanall
 
 
