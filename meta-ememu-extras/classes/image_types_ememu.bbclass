@@ -35,8 +35,7 @@ IMAGE_CMD_sdcard-ememu () {
 	cp ${DEPLOY_DIR_IMAGE}/zImage ${DEPLOY_DIR_IMAGE}/ememu/ememu/system/emu_kernel
 	cp ${DEPLOY_DIR_IMAGE}/zImage-vexpress-v2p-ca9.dtb ${DEPLOY_DIR_IMAGE}/ememu/ememu/system/emu.dtb
 	
-	rm -r ${DEPLOY_DIR_IMAGE}/ememu/CODESYS
-	cp -rl ${DEPLOY_DIR_IMAGE}/CODESYS ${DEPLOY_DIR_IMAGE}/ememu/
+	cp -r ${DEPLOY_DIR_IMAGE}/CODESYS ${DEPLOY_DIR_IMAGE}/ememu/
 	rm -r ${DEPLOY_DIR_IMAGE}/CODESYS
 }
 
