@@ -26,7 +26,7 @@
 #define MEM_FILE_NAME "memnvram.txt"
 static bool _is_emu = false;
 
-#define SIZE_OF_SETS 32				// байт настроек
+#define SIZE_OF_SETS 32					// байт настроек
 #define FIRST_BYTE_OF_SETS 197272		// %MW98636
 /* NWRAM Memmory params */
 const uint32_t CS3_MEM_ADDRESS = 0x2000000;
