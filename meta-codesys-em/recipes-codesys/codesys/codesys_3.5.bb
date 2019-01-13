@@ -52,8 +52,8 @@ inherit deploy
 addtask deploy before do_package after do_install
 
 do_deploy () {
-   mkdir -p ${DEPLOYDIR}/CODESYS
-   cp -r ${WORKDIR}/Packages ${DEPLOYDIR}/CODESYS
+   mkdir -p ${DEPLOYDIR}/ForCODESYS
+   cp -r ${WORKDIR}/Packages ${DEPLOYDIR}/ForCODESYS
 }
 
 FILES_${PN} += "${libdir}/*.so"
