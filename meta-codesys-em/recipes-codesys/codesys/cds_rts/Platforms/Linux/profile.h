@@ -38,7 +38,6 @@ int SysDir__Entry(INIT_STRUCT *pInitStruct); \
 int SysCpuHandling__Entry(INIT_STRUCT *pInitStruct); \
 int SysCom__Entry(INIT_STRUCT *pInitStruct); \
 int CmpUserMgr__Entry(INIT_STRUCT *pInitStruct); \
-int CmpUserDBObjects__Entry(INIT_STRUCT *pInitStruct); \
 int CmpUserDB__Entry(INIT_STRUCT *pInitStruct); \
 int CmpTraceMgr__Entry(INIT_STRUCT *pInitStruct); \
 int CmpSrv__Entry(INIT_STRUCT *pInitStruct); \
@@ -126,7 +125,6 @@ int CM__Entry(INIT_STRUCT *pInitStruct);
 {"SysCpuHandling", SysCpuHandling__Entry, 0}, \
 {"SysCom", SysCom__Entry, 0}, \
 {"CmpUserMgr", CmpUserMgr__Entry, 0}, \
-{"CmpUserDBObjects", CmpUserDBObjects__Entry, 0}, \
 {"CmpUserDB", CmpUserDB__Entry, 0}, \
 {"CmpTraceMgr", CmpTraceMgr__Entry, 0}, \
 {"CmpSrv", CmpSrv__Entry, 0}, \
@@ -199,11 +197,9 @@ int CM__Entry(INIT_STRUCT *pInitStruct);
 #define CMPSECURITYMANAGER_NOTIMPLEMENTED
 #define CMPSUPERVISOR_NOTIMPLEMENTED
 #define CMPX509CERT_NOTIMPLEMENTED
-#define SYSCPUBREAKPOINTS_NOTIMPLEMENTED
 #define SYSCPUMULTICORE_NOTIMPLEMENTED
 #define SYSFLASH_NOTIMPLEMENTED
 #define SYSINT_NOTIMPLEMENTED
-#define SYSREADWRITELOCK_NOTIMPLEMENTED
 #define SYSUSERDB_NOTIMPLEMENTED
 
 

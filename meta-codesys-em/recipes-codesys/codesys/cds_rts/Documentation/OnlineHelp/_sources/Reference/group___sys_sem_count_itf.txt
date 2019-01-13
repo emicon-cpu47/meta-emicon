@@ -63,7 +63,7 @@ IMPLEMENTATION NOTE: The semaphores must work recursive! That means, that a mult
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -117,11 +117,9 @@ Create a new counting semaphore object
 
 **Parameters**
 
-+---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | ui32InitialValue | Initial semaphore value. Value is counted down by each :ref:`SysSemCountEnter() <group___sys_read_write_lock_dep_1ga69e261c00ccda11917aa2a32c98cb37b>` call and blocks, if internal counter is 0! At each :ref:`SysSemCountLeave() <group___sys_read_write_lock_dep_1gac8dce82943e69d1e327b4e0c38de0d09>` call, the counter is counting up. So the initial value is the number of critical sections, which can be entered at the same time! NOTE: A SysSemCount semaphore is typically not inversion safe and is not thread local (multiple eneter in one task blocks the semaphore, if internal counter reaches 0)! |
-+---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [out]   | pResult          | One of: ERR_OK: The semaphore was created. ERR_PARAMETER: Error within the given parameters. ERR_NOMEMORY: The needed ressources couldn't be allocated. ERR_FAILED: An internal error occured.                                                                                                                                                                                                                                                                                                                                                                                                                       |
-+---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------+---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pResult | One of: ERR_OK: The semaphore was created. ERR_PARAMETER: Error within the given parameters. ERR_NOMEMORY: The needed ressources couldn't be allocated. ERR_FAILED: An internal error occured. |
++---------+---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Returns:**
 
@@ -169,7 +167,7 @@ e *One of:
 
 - ERR_OK: The semaphore was enterd.
 
-- ERR_FAILED: The semaphore couldn't be entered.
+- ERR_FAILED: The semaphore couldn't be enterd.
 
 - ERR_TIMEOUT: The given timeout expired.
 

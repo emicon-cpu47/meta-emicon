@@ -309,14 +309,14 @@ define(`DEF_DELETEITF_API',
 	`#define USE_`'CMP_NAME`'$3'
 	`#define EXT_`'CMP_NAME`'$3'
 	`#define GET_`'CMP_NAME`'$3  ERR_OK'
-	`#define CAL_`'CMP_NAME`'$3(_MAKE_DUMMYPARAMLIST(`$4')) ifelse(_TRIM($1),`void',`',``(((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((I'CMP_NAME`*)p0)'->I'$3(_MAKE_HANDLE_DUMMYPARAMLIST(`$4'))))'
+	`#define CAL_`'CMP_NAME`'$3(_MAKE_DUMMYPARAMLIST(`$4')) ifelse(_TRIM($1),`void',`',``((I'CMP_NAME`*)p0)'->I'$3(_MAKE_HANDLE_DUMMYPARAMLIST(`$4')))'
 	`#define CHK_`'CMP_NAME`'$3  TRUE'
 	`#define EXP_`'CMP_NAME`'$3  ERR_OK'
 `#elif defined(CPLUSPLUS)'
 	`#define USE_$3'
 	`#define EXT_$3'
 	`#define GET_$3(fl)  CAL_GETAPI'
-	`#define CAL_$3(_MAKE_DUMMYPARAMLIST(`$4')) ifelse(_TRIM($1),`void',`',``(((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((I'CMP_NAME`*)p0)'->I'$3(_MAKE_HANDLE_DUMMYPARAMLIST(`$4'))))'
+	`#define CAL_$3(_MAKE_DUMMYPARAMLIST(`$4')) ifelse(_TRIM($1),`void',`',``((I'CMP_NAME`*)p0)'->I'$3(_MAKE_HANDLE_DUMMYPARAMLIST(`$4')))'
 	`#define CHK_$3  TRUE'
 	`#define EXP_$3  CAL_EXPAPI'
 `#else /* DYNAMIC_LINK */'
@@ -332,6 +332,7 @@ divert'
 `divert(DIVERT_INTERFACEDEF_C)	_FUN_PTR($3) `I'$3;
  divert'
 )
+
 
 %
 % Call the DEF_HANDLEITF_API Makro with the following parameters:
@@ -1257,70 +1258,6 @@ divert'
 % DEF_ITF_API(`int',`CDECL', `MyApiFunction', `(int nX, void *pData)')
 %
 define(`DEF_ITF_API',
-`ifelse(eval($# < 5),`0',`define(`EXTERNAL',_TRIM(`$5'))',`define(`EXTERNAL',0)')'dnl
-`define(`REGISTER_API', `s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"$3", (RTS_UINTPTR)$3, ifelse(EXTERNAL,1,1,0), _CHKSUM($1, $2, $4))' )'dnl
-`define(`FCT_NOTIMPLEMENTED', `ifelse(_TRIMPOINTERPARAM(`$4'),1,`FUNCTION_NOTIMPLEMENTED2',`FUNCTION_NOTIMPLEMENTED')' )'dnl
-`define(`CAL_GETAPI', `CAL_CMGETAPI( "$3" )' )'dnl
-`define(`CAL_EXPAPI', `CAL_CMEXPAPI( "$3" )' )'dnl
-`ifelse(_TRIM(`$5'),1,`$1 $2 CDECL_EXT $3$4;',`$1 $2 $3$4;')'
-`ifelse(eval($# < 6), `1',`typedef $1 ($2 * _FUN_PTR($3)) $4;', ifelse($6, `1',`typedef $1 ($2 * _FUN_PTR($3)) $4;',`'))'
-`#if ifdef(`ITFNOTDEFINED',`defined(ITFNOTDEFINED) || ')defined(_UPPERCASE(_TRIM(`$3'))_NOTIMPLEMENTED)'
-	`#define USE_$3'
-	`#define EXT_$3'
-	`#define GET_$3(fl)  ERR_NOTIMPLEMENTED'
-	`#define CAL_$3`'ifelse(_TRIMVARPARAMLIST($4),1,`',`(_MAKE_DUMMYPARAMLIST(`$4'))')  ifelse(_TRIM($1),`void',`', ifelse(_TRIM($4), `void',`($1)ERR_NOTIMPLEMENTED',ifelse(_TRIMVARPARAMLIST($4),1,FCT_NOTIMPLEMENTED,ifelse(_TRIM($1),`RTS_HANDLE',`($1)RTS_INVALID_HANDLE',ifelse(_TRIM($1),`void *',`($1)(RTS_SIZE)ERR_NOTIMPLEMENTED',`($1)ERR_NOTIMPLEMENTED')))))'
-	`#define CHK_$3  FALSE'
-	`#define EXP_$3  ERR_OK'
-`#elif defined(STATIC_LINK)'
-	`#define USE_$3'
-	`#define EXT_$3'
-	`#define GET_$3(fl)  CAL_GETAPI'
-	`#define CAL_$3  $3'
-	`#define CHK_$3  TRUE'
-	`#define EXP_$3  ifelse(EXTERNAL,1,REGISTER_API,CAL_EXPAPI)'
-`#elif defined(MIXED_LINK) && !defined(ITFEXTERNAL)'
-	`#define USE_$3'
-	`#define EXT_$3'
-	`#define GET_$3(fl)  CAL_GETAPI'
-	`#define CAL_$3  $3'
-	`#define CHK_$3  TRUE'
-	`#define EXP_$3  REGISTER_API'
-`#elif defined(CPLUSPLUS_ONLY)'
-	`#define USE_`'CMP_NAME`'$3'
-	`#define EXT_`'CMP_NAME`'$3'
-	`#define GET_`'CMP_NAME`'$3  ERR_OK'
-	`#define CAL_`'CMP_NAME`''$3 ``pI'CMP_NAME->I'$3
-	`#define CHK_`'CMP_NAME`''$3 ``(pI'CMP_NAME != NULL)'
-	`#define EXP_`'CMP_NAME`'$3  ERR_OK'
-`#elif defined(CPLUSPLUS)'
-	`#define USE_$3'
-	`#define EXT_$3'
-	`#define GET_$3(fl)  CAL_GETAPI'
-	`#define CAL_'$3 ``pI'CMP_NAME->I'$3
-	`#define CHK_'$3 ``(pI'CMP_NAME != NULL)'
-	`#define EXP_$3  CAL_EXPAPI'
-`#else /* DYNAMIC_LINK */'
-	`#define USE_'$3  `ifelse(eval($# < 6), `1',`_FUN_PTR($3) pf$3;', ifelse($6, `1', `_FUN_PTR($3) pf$3;'))'
-	`#define EXT_'$3  `extern _FUN_PTR($3) pf$3';
-	`#define GET_'$3(fl)  s_pfCMGetAPI2( "$3", (RTS_VOID_FCTPTR *)&pf$3, (fl), _CHKSUM($1, $2, $4), 0)
-	`#define CAL_'$3  pf$3
-	`#define CHK_'$3  (pf$3 != NULL)
-	`#define EXP_$3  REGISTER_API'
-`#endif'
-`divert(DIVERT_INTERFACEDEF)		virtual $1 $2 `I'$3(_CONCAT(`_MAKE_ITF_PARAMLIST',_TRIM(`$4'))) =0;
-divert'
-`divert(DIVERT_INTERFACEDEF_C)	_FUN_PTR($3) `I'$3;
- divert'
-)
-
-%
-% Call the DEF_ITF_API Makro with the following parameters:
-% DEF_ITF_API(<return type>, <calling convention>, <function name>, <parameters>)
-%
-% Example:
-% DEF_ITF_API_OWNCPP(`int',`CDECL', `MyApiFunction', `(int nX, void *pData)')
-%
-define(`DEF_ITF_API_OWNCPP',
 `ifelse(eval($# < 5),`0',`define(`EXTERNAL',_TRIM(`$5'))',`define(`EXTERNAL',0)')'dnl
 `define(`REGISTER_API', `s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"$3", (RTS_UINTPTR)$3, ifelse(EXTERNAL,1,1,0), _CHKSUM($1, $2, $4))' )'dnl
 `define(`FCT_NOTIMPLEMENTED', `ifelse(_TRIMPOINTERPARAM(`$4'),1,`FUNCTION_NOTIMPLEMENTED2',`FUNCTION_NOTIMPLEMENTED')' )'dnl

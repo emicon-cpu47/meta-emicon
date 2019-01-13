@@ -15,10 +15,6 @@ Data Structures
 
 - struct :ref:`tagsyscpuatomicadd_struct <structtagsyscpuatomicadd__struct>`
 
-- struct :ref:`tagsyscpuatomicadd64_struct <structtagsyscpuatomicadd64__struct>`
-
-- struct :ref:`tagsyscpuatomiccompareandswap_struct <structtagsyscpuatomiccompareandswap__struct>`
-
 - struct :ref:`tagsyscpucalliecfuncwithparams_struct <structtagsyscpucalliecfuncwithparams__struct>`
 
 - struct :ref:`tagsyscputestandreset_struct <structtagsyscputestandreset__struct>`
@@ -52,14 +48,6 @@ Macros
 
 - #define :ref:`SYSCPU_NOP_OPCODE_SIZE <group___sys_cpu_handling_itf___platformdefines_1ga66e34c4b447ceefc63e7c341ba034302>` 0
 
-- #define :ref:`SYSCPU_ALIGNMENT_CHECK_16 <group___sys_cpu_handling_itf___platformdefines_1ga34bc98a5b8f222876fb485477724383c>` 2
-
-- #define :ref:`SYSCPU_ALIGNMENT_CHECK_32 <group___sys_cpu_handling_itf___platformdefines_1ga59d4a15cc7627afe3f14fc8b89255c7a>` 4
-
-- #define :ref:`SYSCPU_ALIGNMENT_CHECK_64 <group___sys_cpu_handling_itf___platformdefines_1ga828f7fe9cb451d16372cade6ef069e54>` 8
-
-- #define :ref:`SYSCPU_REGISTER_OFFSET <group___sys_cpu_handling_itf___register_offsets_1ga8e9730cb8f7ce421a7cc4bc5ac6febfa>` (regNumber)
-
 - #define :ref:`ITF_SysCpuHandling <group___sys_cpu_handling_itf_1ga7714b75559c7f21bb5d6dd01bf3bcee5>`
 
 - #define :ref:`EXTITF_SysCpuHandling <group___sys_cpu_handling_itf_1ga5624e438e0e63b44d0defa028bf4d467>`
@@ -68,10 +56,6 @@ Typedefs
 --------
 
 - typedef struct :ref:`tagsyscpuatomicadd_struct <structtagsyscpuatomicadd__struct>` :ref:`syscpuatomicadd_struct <group___sys_cpu_handling_itf_1ga50aabc20d5e6ebeb33501c4c2a08176a>`
-
-- typedef struct :ref:`tagsyscpuatomicadd64_struct <structtagsyscpuatomicadd64__struct>` :ref:`syscpuatomicadd64_struct <group___sys_cpu_handling_itf_1ga2d5fc38c2d2b1686471aa0b2777465f7>`
-
-- typedef struct :ref:`tagsyscpuatomiccompareandswap_struct <structtagsyscpuatomiccompareandswap__struct>` :ref:`syscpuatomiccompareandswap_struct <group___sys_cpu_handling_itf_1ga514f459b5057ef79692f596e01b87271>`
 
 - typedef struct :ref:`tagsyscpucalliecfuncwithparams_struct <structtagsyscpucalliecfuncwithparams__struct>` :ref:`syscpucalliecfuncwithparams_struct <group___sys_cpu_handling_itf_1ga9ad4c2d68fbe821e17fc3e1ddddc92d7>`
 
@@ -88,10 +72,6 @@ Functions
 
 - void :ref:`syscpuatomicadd <group___sys_cpu_handling_itf_1ga8c261020d58afb5468eb75cd51370829>` (:ref:`syscpuatomicadd_struct <group___sys_cpu_handling_itf_1ga50aabc20d5e6ebeb33501c4c2a08176a>` * p)
 
-- void :ref:`syscpuatomicadd64 <group___sys_cpu_handling_itf_1gaee858b810cf1482f1a5ba709f0774e72>` (:ref:`syscpuatomicadd64_struct <group___sys_cpu_handling_itf_1ga2d5fc38c2d2b1686471aa0b2777465f7>` * p)
-
-- void :ref:`syscpuatomiccompareandswap <group___sys_cpu_handling_itf_1gaacc60cea73b09061bc6579895cab7f3b>` (:ref:`syscpuatomiccompareandswap_struct <group___sys_cpu_handling_itf_1ga514f459b5057ef79692f596e01b87271>` * p)
-
 - void :ref:`syscpucalliecfuncwithparams <group___sys_cpu_handling_itf_1ga342ad004d7518950bad3f3b11a7b9bc0>` (:ref:`syscpucalliecfuncwithparams_struct <group___sys_cpu_handling_itf_1ga9ad4c2d68fbe821e17fc3e1ddddc92d7>` * p)
 
 - void :ref:`syscputestandreset <group___sys_cpu_handling_itf_1ga9e0dc508a43652ec1d666a63d4e0e92d>` (:ref:`syscputestandreset_struct <group___sys_cpu_handling_itf_1ga4ce7f1fe46dbd728cef005e0d1ea2e07>` * p)
@@ -107,8 +87,6 @@ Functions
 - int :ref:`SysCpuFlushInstructionCache <group___sys_cpu_handling_itf_1gad9c708fa59e4da7c362a2bd305dee8bc>` (void * pBaseAddress, unsigned long ulSize)
 
 - RTS_RESULT :ref:`SysCpuCallIecFuncWithParams <group___sys_cpu_handling_itf_1ga008f25292ebc98e6882d51ebd6303c14>` (RTS_VOID_FCTPTR pfIECFunc, void * pParam, int iSize)
-
-- RTS_RESULT :ref:`SysCpuSetRegisterValue <group___sys_cpu_handling_itf_1gab93592451daf8f547df9e5ff298104a2>` (RTS_UINTPTR * pRegBuff, RTS_I32 nRegisterNumber, RTS_UINTPTR newValue)
 
 - void :ref:`syscpudebughandler <group___sys_cpu_handling_itf_1gaf578b1b3a5575decb892beb9ce698a90>` (void)
 
@@ -136,26 +114,10 @@ Functions
 
 - RTS_I32 :ref:`SysCpuAtomicAdd <group___sys_cpu_handling_itf_1gaa546c6642b797434c619a165d0cd3714>` (RTS_I32 * piValue, RTS_I32 nSum, RTS_RESULT * pResult)
 
-- RTS_I64 :ref:`SysCpuAtomicAdd64 <group___sys_cpu_handling_itf_1ga76fae609a3a3212e3ba964a7f563a1c1>` (RTS_I64 * pi64Value, RTS_I64 nSum, RTS_RESULT * pResult)
-
-- RTS_RESULT :ref:`SysCpuAtomicCompareAndSwap <group___sys_cpu_handling_itf_1gab1318c09a385367612ec8efbae08ed22>` (void * pAddress, void * pSwapValue, void * pCompareValue, RTS_UI8 valueSize)
-
-- RTS_I64 :ref:`SysCpuReadInt64 <group___sys_cpu_handling_itf_1ga61ac7c09ad81724a97709944a601dc9f>` (RTS_I64 * pSrc, RTS_RESULT * pResult)
-
-- RTS_RESULT :ref:`SysCpuWriteInt64 <group___sys_cpu_handling_itf_1gadcdac72472ff6647d7649236eb71de26>` (RTS_I64 * pDest, RTS_I64 i64Value)
-
-- RTS_REAL64 :ref:`SysCpuReadReal64 <group___sys_cpu_handling_itf_1ga385c32805057dd999ad5a02452b1f2b2>` (RTS_REAL64 * pSrc, RTS_RESULT * pResult)
-
-- RTS_RESULT :ref:`SysCpuWriteReal64 <group___sys_cpu_handling_itf_1gaedab8a704ce10c7088ac852a99c2905d>` (RTS_REAL64 * pDest, RTS_REAL64 r64Value)
-
-- RTS_RESULT :ref:`SysCpuWriteValueAtomic <group___sys_cpu_handling_itf_1ga8e4cc6e035e5082ca20a32ea4a904be3>` (void * pDest, void * pSrc, RTS_UI32 nLen)
-
-- RTS_RESULT :ref:`SysCpuReadValueAtomic <group___sys_cpu_handling_itf_1ga83020bd88a10f540befa908c6fafa96c>` (void * pSrc, void * pDest, RTS_UI32 nLen)
-
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysCpuHandlingItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysCpuHandlingItf.h
 
  
 .. last line of file.rst template

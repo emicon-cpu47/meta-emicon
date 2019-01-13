@@ -4,9 +4,7 @@
  *	<p>The SysTimer interface is projected to access timer devices on target.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysTimer')
@@ -359,7 +357,7 @@ DEF_API(`void',`CDECL',`systimergetinterval',`(systimergetinterval_struct *p)',1
 typedef struct tagsystimergettimestamp_struct
 {
 	RTS_IEC_HANDLE hTimer;				/* VAR_INPUT */	/* <param name="hTimer" type="IN">Handle of the timer</param> */
-	RTS_IEC_ULINT *ptTimestampNs;		/* VAR_INPUT */	/* <param name="ptTimestampNs" type="OUT">Timestamp in nanoseconds</param> */
+	RTS_IEC_ULINT *ptTimestampNs;		/* VAR_INPUT */	/* <param name="ptTimestampNs" type="out">Timestamp in nanoseconds</param> */
 	RTS_IEC_RESULT SysTimerGetTimeStamp;	/* VAR_OUTPUT */	
 } systimergettimestamp_struct;
 
@@ -371,7 +369,7 @@ DEF_API(`void',`CDECL',`systimergettimestamp',`(systimergettimestamp_struct *p)'
  */
 typedef struct tagsystimermaxtimer_struct
 {
-	RTS_IEC_UDINT *pulMaxTimer;			/* VAR_INPUT */	/* <param name="pulMaxTimer" type="OUT">Number of Timers</param> */
+	RTS_IEC_UDINT *pulMaxTimer;			/* VAR_INPUT */	/* <param name="pulMaxTimer" type="out">Number of Timers</param> */
 	RTS_IEC_RESULT SysTimerMaxTimer;	/* VAR_OUTPUT */	
 } systimermaxtimer_struct;
 

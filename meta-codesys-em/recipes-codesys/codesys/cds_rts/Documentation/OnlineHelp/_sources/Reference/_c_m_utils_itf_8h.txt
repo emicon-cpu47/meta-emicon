@@ -58,7 +58,7 @@ rbuf.uiReadPos = (rbuf.uiReadPos + sizeToRead) % sizeof(rbuf.ucBuf);\
 }while(0)
 
 - #define :ref:`RTS_RINGBUFFER_READB <group___c_m_utils_itf_1gafaf454f281b6434037b6dfbfc0f5509a>` do{\
-:ref:`c <group___cmp_c_a_a_storage_dep_1gacd88f945c2d129ce6a734b5952d90324>` = rbuf.ucBuf[rbuf.uiReadPos];\
+:ref:`c <group___cmp_c_a_a_storage_dep_1ga0f8d5044c3ab491b6e15453ab19a3f92>` = rbuf.ucBuf[rbuf.uiReadPos];\
 rbuf.uiReadPos = (rbuf.uiReadPos + 1) % sizeof(rbuf.ucBuf);\
 }while(0)
 
@@ -72,7 +72,7 @@ rbuf.uiWritePos = (rbuf.uiWritePos + sizeToWrite) % sizeof(rbuf.ucBuf);\
 }while(0)
 
 - #define :ref:`RTS_RINGBUFFER_WRITEB <group___c_m_utils_itf_1gae91514facba590a7e1784392df417ab8>` do{\
-rbuf.ucBuf[rbuf.uiWritePos] = :ref:`c <group___cmp_c_a_a_storage_dep_1gacd88f945c2d129ce6a734b5952d90324>` ;\
+rbuf.ucBuf[rbuf.uiWritePos] = :ref:`c <group___cmp_c_a_a_storage_dep_1ga0f8d5044c3ab491b6e15453ab19a3f92>` ;\
 rbuf.uiWritePos = (rbuf.uiWritePos + 1) % sizeof(rbuf.ucBuf);\
 }while(0)
 
@@ -96,9 +96,9 @@ rbuf.uiWritePos = (rbuf.uiWritePos + 1) % sizeof(rbuf.ucBuf);\
 
 - #define :ref:`RTS_STRING_ASCII <group___c_m_utils_itf___component_name_flags_1ga986361ad55d7a93a53880519dfb8e019>` 0x00010000
 
-- #define :ref:`CM_STRING_GET_CONTENT <group___c_m_utils_itf_1gab79193aa2113a89173602828a40348e0>` (pString == NULL ? default : ( ((( :ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->ulFlags & :ref:`RTS_STRING_DYNAMIC <group___c_m_utils_itf___component_name_flags_1gafc4946f3306228537866e9df2642730a>` ) ? (( :ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->name.psz : (( :ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->name.sz) )
+- #define :ref:`CM_STRING_GET_CONTENT <group___c_m_utils_itf_1gab79193aa2113a89173602828a40348e0>` (pString == NULL ? default : ( (((:ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->ulFlags & :ref:`RTS_STRING_DYNAMIC <group___c_m_utils_itf___component_name_flags_1gafc4946f3306228537866e9df2642730a>` ) ? ((:ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->name.psz : ((:ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->name.sz) )
 
-- #define :ref:`CM_STRING_GET_SIZE <group___c_m_utils_itf_1ga925f73506e804082d56884f5e15a287a>` (pString == NULL ? 0 : (( :ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->size)
+- #define :ref:`CM_STRING_GET_SIZE <group___c_m_utils_itf_1ga925f73506e804082d56884f5e15a287a>` (pString == NULL ? 0 : ((:ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->size)
 
 - #define :ref:`ITF_CMUtils <group___c_m_utils_itf_1ga4ff85fe8755eb599454b7dc813211102>`
 
@@ -196,10 +196,6 @@ Functions
 
 - RTS_WCHAR * :ref:`CMUtlwstrchr <group___c_m_utils_itf_1ga7e6c9f82ee7609a35bb23318e16c1ec5>` (const RTS_WCHAR * pwsz, RTS_WCHAR w)
 
-- RTS_RESULT :ref:`CMUtlWToUtf8 <group___c_m_utils_itf_1ga3f1edd84a32b6a9f0a00266a6b140399>` (RTS_WCHAR * pwsz, RTS_SIZE wstrLen, RTS_UI8 * pUtf8Str, RTS_SIZE bufferSize)
-
-- RTS_RESULT :ref:`CMUtlUtf8ToW <group___c_m_utils_itf_1ga5f6e129b157774bfdace4e9d32f803d9>` (RTS_UI8 * pUtf8Str, RTS_SIZE utf8BufferSize, RTS_WCHAR * pwsz, RTS_SIZE wstrLen)
-
 - int :ref:`CMUtlcwstrcmp <group___c_m_utils_itf_1ga19f32fabee7740573b95085e0dcf1ffe>` (const RTS_CWCHAR * pwsz1, const RTS_CWCHAR * pwsz2)
 
 - RTS_RESULT :ref:`CMUtlcwstrcpy <group___c_m_utils_itf_1ga45e8180fa576440b486ba75aa8bcaecd>` (RTS_CWCHAR * pwszDest, RTS_SIZE nDestSize, const RTS_CWCHAR * pwszSrc)
@@ -225,7 +221,7 @@ Functions
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CMUtilsItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CMUtilsItf.h
 
  
 .. last line of file.rst template

@@ -64,7 +64,7 @@ Data Structures
 Macros
 ------
 
-- #define :ref:`RTSCRYPTOID_AES_128_CBC <group___cmp_crypto_itf_1ga4306da0e0090da745de1883a8d2bbc38>` RTS_IEC_UDINT_C(0x1001)
+- #define :ref:`RTSCRYPTOID_AES_128_CBC <group___cmp_crypto_itf_1ga4306da0e0090da745de1883a8d2bbc38>` RTS_IEC_UDINT_C(0x1001)	/* Symmetric chipers */
 
 - #define :ref:`RTSCRYPTOID_AES_128_CFB <group___cmp_crypto_itf_1ga1f6aadd46c1ff34a62f7438fdf7b7ea1>` RTS_IEC_UDINT_C(0x1002)
 
@@ -74,13 +74,13 @@ Macros
 
 - #define :ref:`RTSCRYPTOID_AES_256_CTR <group___cmp_crypto_itf_1ga8906b0502e9f9f9ba17873b7b5ddcd56>` RTS_IEC_UDINT_C(0x1005)
 
-- #define :ref:`RTSCRYPTOID_RSA <group___cmp_crypto_itf_1gafffe0cff7a4cc24f883e002907222b61>` RTS_IEC_UDINT_C(0x2001)
+- #define :ref:`RTSCRYPTOID_RSA <group___cmp_crypto_itf_1gafffe0cff7a4cc24f883e002907222b61>` RTS_IEC_UDINT_C(0x2001)	/* Asymmetric Cipers */
 
 - #define :ref:`RTSCRYPTOID_RSA_OAEP_PADDING <group___cmp_crypto_itf_1ga394ed1b060ced887164d811ff1017aa2>` RTS_IEC_UDINT_C(0x2002)
 
 - #define :ref:`RTSCRYPTOID_RSA_PKCS1_V15_PADDING <group___cmp_crypto_itf_1gadc9cfae374494cd06ba2187bf1c0a98a>` RTS_IEC_UDINT_C(0x2003)
 
-- #define :ref:`RTSCRYPTOID_HASH_MD5 <group___cmp_crypto_itf_1ga8f37e7aacffc86aa1a12d2acddee1885>` RTS_IEC_UDINT_C(0x3001)
+- #define :ref:`RTSCRYPTOID_HASH_MD5 <group___cmp_crypto_itf_1ga8f37e7aacffc86aa1a12d2acddee1885>` RTS_IEC_UDINT_C(0x3001)	/* Hash functions */
 
 - #define :ref:`RTSCRYPTOID_HASH_SHA1 <group___cmp_crypto_itf_1ga445ace011d861ed03693a271ca755c4f>` RTS_IEC_UDINT_C(0x3002)
 
@@ -92,7 +92,7 @@ Macros
 
 - #define :ref:`RTSCRYPTOID_HASH_SHA512 <group___cmp_crypto_itf_1ga7d613f0f24d09d2602d76953df34d8a9>` RTS_IEC_UDINT_C(0x3006)
 
-- #define :ref:`RTSCRYPTOID_HMAC_MD5 <group___cmp_crypto_itf_1ga513e22e97af8b17a27aa289435b48aef>` RTS_IEC_UDINT_C(0x4001)
+- #define :ref:`RTSCRYPTOID_HMAC_MD5 <group___cmp_crypto_itf_1ga513e22e97af8b17a27aa289435b48aef>` RTS_IEC_UDINT_C(0x4001)	/* HMAC Functions */
 
 - #define :ref:`RTSCRYPTOID_HMAC_SHA1 <group___cmp_crypto_itf_1gac8066488efef4706865e9832311a998a>` RTS_IEC_UDINT_C(0x4002)
 
@@ -104,7 +104,7 @@ Macros
 
 - #define :ref:`RTSCRYPTOID_HMAC_SHA512 <group___cmp_crypto_itf_1ga391c952586743f76434a1d7b353c5406>` RTS_IEC_UDINT_C(0x4006)
 
-- #define :ref:`RTSCRYPTOID_RSA_OAEP_SHA1 <group___cmp_crypto_itf_1gaac1499cc28b42159b8232035857adf1c>` RTS_IEC_UDINT_C(0x5003)
+- #define :ref:`RTSCRYPTOID_RSA_OAEP_SHA1 <group___cmp_crypto_itf_1gaac1499cc28b42159b8232035857adf1c>` RTS_IEC_UDINT_C(0x5003)	/* Signature Functions */
 
 - #define :ref:`RTSCRYPTOID_RSA_OAEP_SHA256 <group___cmp_crypto_itf_1ga80ee561ad84b4f27c70f894fcb64f358>` RTS_IEC_UDINT_C(0x5004)
 
@@ -238,7 +238,7 @@ Functions
 
 - RTS_RESULT :ref:`CryptoAsymmetricDecrypt <group___cmp_crypto_itf_1gad2949a344c7ade1e77d6c45c73ccb53d>` (RTS_HANDLE hAlgo, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCipherText, :ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>`  privateKey, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pPlainText)
 
-- RTS_UI32 :ref:`CryptoGetAsymmetricKeyLength <group___cmp_crypto_itf_1ga27140cdb3795580aea51ad0a92675c4d>` (:ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>`  asymmetricKey, RTS_RESULT * pResult)
+- RTS_UI32 :ref:`CryptoGetAsymmetricKeyLength <group___cmp_crypto_itf_1gafb4534389a7686acfd5266d47455dedb>` (:ref:`RtsCryptoKey <group___cmp_crypto_itf_1ga9eda126f6497b16d886d8c2fae345687>`  privateKey, RTS_RESULT * pResult)
 
 - RTS_RESULT :ref:`CryptoGenerateHash <group___cmp_crypto_itf_1ga9d85cdae0f377005ced85fca7367fc4a>` (RTS_HANDLE hAlgo, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pData, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pHash)
 
@@ -265,7 +265,7 @@ Functions
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpCryptoItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpCryptoItf.h
 
  
 .. last line of file.rst template

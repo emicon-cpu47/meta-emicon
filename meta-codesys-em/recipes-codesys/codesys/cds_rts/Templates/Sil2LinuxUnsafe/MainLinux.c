@@ -106,7 +106,7 @@ int PlcExit(void)
 	return MainExitLoop(0);
 }
 
-RTS_RESULT CDECL MainLoadComponent(char *pszName, char *pszPath, RTS_HANDLE *phModule, PF_COMPONENT_ENTRY* ppfComponentEntry)
+RTS_RESULT CDECL MainLoadComponent(char *pszName, RTS_HANDLE *phModule, PF_COMPONENT_ENTRY* ppfComponentEntry)
 {
 		printf("module %s not builtin\n",pszName);
 		return ERR_FAILED;

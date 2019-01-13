@@ -1,0 +1,48 @@
+.. first line of composition.rst template
+
+.. first line of struct.rst template
+
+.. _struct_e_v_t_p_a_r_a_m___channel_closed:
+
+=======================================
+EVTPARAM_ChannelClosed Struct Reference
+=======================================
+
+| #include ":ref:`CmpChannelServerItf.h <_cmp_channel_server_itf_8h>`"
+
+Data Fields
+-----------
+
+- RTS_UI32 :ref:`ulChannelHandle <group___cmp_channel_server_itf_1gad79cbb83176272277fdc8d7a08bc3706>`
+- RTS_RESULT :ref:`errReason <group___cmp_channel_server_itf_1ga3dc5f2ce609c564a70ebb35c4a9679a3>`
+
+Detailed Description
+--------------------
+
+
+
+Field Documentation
+-------------------
+
+.. _group___cmp_channel_server_itf_1gad79cbb83176272277fdc8d7a08bc3706:
+
+RTS_UI32 EVTPARAM_ChannelClosed::ulChannelHandle
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The channelhandle is always a combination of two words (16 bit). The low word (ulChannelHandle masked with 0xFFFF) is the id of the "physical" channel. The highword is the id of the client using this channel (multiple clients may use the same channel in a round robbin manner). A highword of 0xFFFF indicates, that the channel is completely closed and all clients have disconnected. In all other cases the channel is still open, only that client has disconnected. When attaching any resources to a specific channel (eg. open files, logins, ...) the component should release the resource when the client detaches as well as release all clients resources when the channel is completely closed.
+
+.. _group___cmp_channel_server_itf_1ga3dc5f2ce609c564a70ebb35c4a9679a3:
+
+RTS_RESULT EVTPARAM_ChannelClosed::errReason
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+An error code describing the reason for closing the channel
+
+------------------------------------------------------------------------
+The documentation for this struct was generated from the following file:
+C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpChannelServerItf.h
+
+.. last line of struct.rst template
+.. last line of composition.rst template
+
+

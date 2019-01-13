@@ -4,12 +4,18 @@
 
 #define PRI_I8		"d"
 #define PRI_I16		"d"
+#define PRI_I32		"ld"
+#define PRI_I64		"lld"
 
 #define PRI_UI8		"u"
 #define PRI_UI16	"u"
+#define PRI_UI32	"lu"
+#define PRI_UI64	"llu"
 
 #define PRI_X8		"x"
 #define PRI_X16		"x"
+#define PRI_X32		"lx"
+#define PRI_X64		"llx"
 
 #define PRI_HANDLE	"p"
 #define PRI_RESULT	"x"
@@ -20,35 +26,6 @@
 
 #define PRI_REAL32	"f"
 #define PRI_REAL64	"f"
-
-#if RTS_REGISTER_WIDTH == 16
-#define PRI_I32		"ld"
-#define PRI_I64		"lld"
-
-#define PRI_UI32	"lu"
-#define PRI_UI64	"llu"
-
-#define PRI_X32		"lx"
-#define PRI_X64		"llx"
-#elif RTS_REGISTER_WIDTH == 32
-#define PRI_I32		"d"
-#define PRI_I64		"lld"
-
-#define PRI_UI32	"u"
-#define PRI_UI64	"llu"
-
-#define PRI_X32		"x"
-#define PRI_X64		"llx"
-#elif RTS_REGISTER_WIDTH == 64
-#define PRI_I32		"d"
-#define PRI_I64		"d"
-
-#define PRI_UI32	"u"
-#define PRI_UI64	"u"
-
-#define PRI_X32		"x"
-#define PRI_X64		"x"
-#endif
 
 #if RTS_REGISTER_WIDTH == 16 || RTS_REGISTER_WIDTH == 32
 	#define PRI_UINTPTR	PRI_UI32

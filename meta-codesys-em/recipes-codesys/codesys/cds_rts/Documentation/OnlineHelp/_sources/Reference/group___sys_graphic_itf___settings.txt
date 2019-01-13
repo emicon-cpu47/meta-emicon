@@ -32,19 +32,13 @@ Macros
 
 - #define :ref:`SYSGRAPHIC_WIN32_MAX_JPEG_BYTEARRAY_SIZE_DEFAULT <group___sys_graphic_itf___settings_1gaecf4b109c170ae66bc5c7027a7d4f626>` INT32_C(2359296)
 
-- #define :ref:`SYSGRAPHIC_WIN32_PNG_LOADPALETTE_ASPALETTE <group___sys_graphic_itf___settings_1ga8464761acd0554c0b46a7699155d576c>` "Win32.LoadPNGImagesPalette"
-
-- #define :ref:`SYSGRAPHIC_WIN32_PNG_LOADPALETTE_ASPALETTE_DEFAULT <group___sys_graphic_itf___settings_1ga5e6960f775a9ce0c2dd6e017c86eb1d6>` 0
-
 - #define :ref:`SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD <group___sys_graphic_itf___settings_1ga64dd3e8b8ef1363255fef2f094dc98c7>` "WinCE.UseOldDrawRectMethod"
 
-- #define :ref:`SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD_DEFAULT <group___sys_graphic_itf___settings_1ga6077fdf0d21fa729c93053e7cea4d604>` 1
+- #define :ref:`SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD_DEFAULT <group___sys_graphic_itf___settings_1ga6077fdf0d21fa729c93053e7cea4d604>` 0
 
 - #define :ref:`SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5 <group___sys_graphic_itf___settings_1gadf57a24d40d7e7e119bfc179dd163e0b>` "WinCE.UseOldDrawRectMethodCE5"
 
 - #define :ref:`SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULT <group___sys_graphic_itf___settings_1ga7ec441ffb94e550d27ec413d5dec040d>` 0
-
-- #define :ref:`SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULTCE6 <group___sys_graphic_itf___settings_1ga14fdff3b6c718a97b2d3744a545cf9c7>` 1
 
 - #define :ref:`SYSGRAPHIC_WINGDIPLUS_USESVGPROXY <group___sys_graphic_itf___settings_1ga453eee8046f88ae5c18995e88ae59444>` "WinGDIPlus.UseSVGProxy"
 
@@ -115,28 +109,16 @@ for converting jpegs into bmps, a big conversion byte array is used This setting
 #define SYSGRAPHIC_WIN32_MAX_JPEG_BYTEARRAY_SIZE_DEFAULT INT32_C(2359296)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___sys_graphic_itf___settings_1ga8464761acd0554c0b46a7699155d576c:
-
-#define SYSGRAPHIC_WIN32_PNG_LOADPALETTE_ASPALETTE "Win32.LoadPNGImagesPalette"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Typically PNG images including palette information are converted during loading into flat RGB pixels. This costs more memory but typically yields better performance when the image is drawn. If performance is not an issue but the addtional memory consumption of such PNG images (compared to BMP) is, then this setting can be set to 1.
-
-.. _group___sys_graphic_itf___settings_1ga5e6960f775a9ce0c2dd6e017c86eb1d6:
-
-#define SYSGRAPHIC_WIN32_PNG_LOADPALETTE_ASPALETTE_DEFAULT 0
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. _group___sys_graphic_itf___settings_1ga64dd3e8b8ef1363255fef2f094dc98c7:
 
 #define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD "WinCE.UseOldDrawRectMethod"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Only relevant for Windows CE: Defines the way how rectangles are drawn. Starting with 3.5 SP 1 the height and the width of rectangles are decremented by 1, due to a wrong bugfix (paint bug when drawing and invalidating rectangles with bar meters, where the origin of the bug was a wrong invalidation and not wrong painting of the rectangles) Before 3.5 SP 1 the rectangles are drawn correctly. The default value is 1 to use the correct behaviour before 3.5 SP 1
+Windows CE: when drawing and invalidating rectangles, CE draws slightly differently from XP/7 (1 pixel too much at the right and bottom) This causes paint bugs when invalidating is perfectly optimized, e.g with bar meters This has been fixed in version 3.5 SP 1 This setting can be used to use the old code for drawing (one pixel more at the right and bottom) default value is 0 (use the new code)
 
 .. _group___sys_graphic_itf___settings_1ga6077fdf0d21fa729c93053e7cea4d604:
 
-#define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD_DEFAULT 1
+#define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD_DEFAULT 0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___sys_graphic_itf___settings_1gadf57a24d40d7e7e119bfc179dd163e0b:
@@ -144,17 +126,12 @@ Only relevant for Windows CE: Defines the way how rectangles are drawn. Starting
 #define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5 "WinCE.UseOldDrawRectMethodCE5"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Same as "WinCE.UseOldDrawRectMethod" but not for rectangles without frame. This might be necessary on CE5 panels as the rectangle is drawn different. default value is 0. For Windows CE 6 the default value needs to be 1, because without this active setting rectangles without frame are not drawn correctly
+Same as "WinCE.UseOldDrawRectMethod" but not for rectangles without frame. This might be necessary on CE5 panels as the rectangle is drawn different. default value is 0
 
 .. _group___sys_graphic_itf___settings_1ga7ec441ffb94e550d27ec413d5dec040d:
 
 #define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULT 0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_graphic_itf___settings_1ga14fdff3b6c718a97b2d3744a545cf9c7:
-
-#define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULTCE6 1
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___sys_graphic_itf___settings_1ga453eee8046f88ae5c18995e88ae59444:
 

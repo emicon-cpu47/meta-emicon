@@ -5,9 +5,7 @@
  *	TCP, UDP and RAW sockets can be used.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysSocket')
@@ -65,7 +63,6 @@ SET_INTERFACE_NAME(`SysSocket')
 #define SOCKET_IPPROTO_UDP              17		/* user datagram protocol */
 #define SOCKET_IPPROTO_IDP              22		/* xns idp */
 #define SOCKET_IPPROTO_ND               77		/* UNOFFICIAL net disk proto */
-#define SOCKET_IPPROTO_TLS             254		/* UNOFFICIAL TCP / TLS protocol */
 #define SOCKET_IPPROTO_RAW             255		/* raw IP packet */
 #define SOCKET_IPPROTO_MAX             256
 
@@ -98,7 +95,6 @@ SET_INTERFACE_NAME(`SysSocket')
 #define	SOCKET_SO_ERROR			0x1007		/* get error status and clear */
 #define	SOCKET_SO_TYPE			0x1008		/* get socket type */
 #define SOCKET_SO_PROTOTYPE		0x1009		/* get/set protocol type */
-#define SOCKET_SO_HOSTNAME		0x2001		/* get/set the hostname for TLS connections. Needed for SNI support */
 
 /**
  * <category>Socket TCP options</category>
@@ -410,7 +406,7 @@ typedef struct UDP_REPLYtag
  *  was found a "NameUnicode" setting, the "Name" setting is ignored.
  *  Example: Adapter.0.Name=Lan1
  *           Adapter.1.Name=Lan2
- *           Adapter.2.NameUnicode="L\00a\00n\003\00"
+ *           Adapter.2.NameUnicode="L\00a\00n\003\00\00\00"
  * </description>
  */
 #define SYSSOCKET_ADAPTER_PREFIX								"Adapter"
@@ -419,7 +415,7 @@ typedef struct UDP_REPLYtag
  * <category>Settings</category>
  * <type>WString</type>
  * <description>Setting for network adapter list. Adapter name in Unicode.
- *	Example: Adapter.0.NameUnicode="L\00a\00n\001\00"
+ *	Example: Adapter.0.NameUnicode="L\00a\00n\001\00\00\00"
  * </description>
  */
 #define SYSSOCKETKEY_WSTRING_NAME_UNICODE						"NameUnicode"
@@ -432,7 +428,7 @@ typedef struct UDP_REPLYtag
  *	Example: Adapter.0.Name="Lan1"
  * </description>
  */
-#define SYSSOCKETKEY_STRING_NAME								"Name"
+#define SYSSOCKETKEY_WSTRING_NAME								"Name"
 
 /**
  * <category>Settings</category>
@@ -458,40 +454,14 @@ typedef struct UDP_REPLYtag
 /**
  * <category>Settings</category>
  * <type>String</type>
- * <description>Setting to specify the IP address of the target. Both settings
- *  ipaddress and subnetmask have to be configured. The combination ipaddress=0.0.0.0
- *  and subnetmask=0.0.0.0 can be used to remove the IP address from the adapter. 
- *  With this configuration is no IP based communication possible, until an IP address is set
- *  e. g. by calling SysSockSetIpAddressAndNetMask().
- *	Example: 
- *  Adapter.0.Name="Lan1"
- *  Adapter.0.ipaddress=192.168.2.1
- *  Adapter.0.subnetmask=255.255.255.0
- *  Runtime systems based on SysSocketEmbedded use a simplyfied configuration, 
- *  as these support only a single network adapter: 
- *	ipaddress=192.168.2.1
- *  subnetmask=255.255.255.1
- *  Note: On some operating systems it is neccessary to store this in a non-volatile way to
- *        provide the IP address and the subnet mask for the next boot to the operating system,
- *        before the runtime systems is started. In such cases the system must be booted twice 
- *        after the setting was added or changed. The first boot is needed to read the settings
- *        by the runtime system and to store the information for the operating system. The
- *        second boot activates the setting during the operating system's startup. 
- *  OS-specific information:  
- * 	On Microsoft Windows based runtime systems the following Windows registry key will be written
- *  to disable the IP autoconfiguartion feature for the referenced adapter:
- *  IPAutoconfigurationEnabled = 0 (DWORD)
- *  The key is located here:
- *  HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\<Guid>\
- *  Whereas <Guid> is replaced by the guid, identifying the configured network adapter.
- * </description>
+ * <description>Setting to specify the IP address of the target. </description>
  */
 #define SYSSOCKETKEY_STRING_IPADDRESS							"ipaddress"
 
 /**
  * <category>Settings</category>
  * <type>String</type>
- * <description>Setting to specify the subnet mask of the target. See setting ipaddress for details.</description>
+ * <description>Setting to specify the subnet mask of the target. </description>
  */
 #define SYSSOCKETKEY_STRING_SUBNETMASK							"subnetmask"
 
@@ -691,7 +661,7 @@ typedef struct tagsyssockaccept_struct
 	RTS_IEC_HANDLE SysSockAccept;		/* VAR_OUTPUT */	
 } syssockaccept_struct;
 
-DEF_API(`void',`CDECL',`syssockaccept',`(syssockaccept_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCA6B3076),0x03050C00)
+DEF_API(`void',`CDECL',`syssockaccept',`(syssockaccept_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCA6B3076),0x03050900)
 
 /**
  * | Bind a socket to a socket address and port number.
@@ -708,7 +678,7 @@ typedef struct tagsyssockbind_struct
 	RTS_IEC_RESULT SysSockBind;			/* VAR_OUTPUT */	
 } syssockbind_struct;
 
-DEF_API(`void',`CDECL',`syssockbind',`(syssockbind_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCF23D531),0x03050C00)
+DEF_API(`void',`CDECL',`syssockbind',`(syssockbind_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCF23D531),0x03050900)
 
 /**
  *  | Close a socket.
@@ -720,7 +690,7 @@ typedef struct tagsyssockclose_struct
 	RTS_IEC_RESULT SysSockClose;		/* VAR_OUTPUT */	
 } syssockclose_struct;
 
-DEF_API(`void',`CDECL',`syssockclose',`(syssockclose_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xF72471AA),0x03050C00)
+DEF_API(`void',`CDECL',`syssockclose',`(syssockclose_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xF72471AA),0x03050900)
 
 /**
  * | Close a UDP socket. Handle must be retrieved by |SysSockCreateUdp| !
@@ -734,7 +704,7 @@ typedef struct tagsyssockcloseudp_struct
 	RTS_IEC_RESULT SysSockCloseUdp;		/* VAR_OUTPUT */	
 } syssockcloseudp_struct;
 
-DEF_API(`void',`CDECL',`syssockcloseudp',`(syssockcloseudp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x6978E3CC),0x03050C00)
+DEF_API(`void',`CDECL',`syssockcloseudp',`(syssockcloseudp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x6978E3CC),0x03050900)
 
 /**
  * | Connect as a client to a TCP server.
@@ -748,7 +718,7 @@ typedef struct tagsyssockconnect_struct
 	RTS_IEC_RESULT SysSockConnect;		/* VAR_OUTPUT */	
 } syssockconnect_struct;
 
-DEF_API(`void',`CDECL',`syssockconnect',`(syssockconnect_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x765FD3AB),0x03050C00)
+DEF_API(`void',`CDECL',`syssockconnect',`(syssockconnect_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x765FD3AB),0x03050900)
 
 /**
  * Create a new socket and return the socket handle.
@@ -764,7 +734,7 @@ typedef struct tagsyssockcreate_struct
 	RTS_IEC_HANDLE SysSockCreate;		/* VAR_OUTPUT */	
 } syssockcreate_struct;
 
-DEF_API(`void',`CDECL',`syssockcreate',`(syssockcreate_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xE8829CB3),0x03050C00)
+DEF_API(`void',`CDECL',`syssockcreate',`(syssockcreate_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xE8829CB3),0x03050900)
 
 /**
  * | Higher level function, to create a complete UDP socket.
@@ -779,7 +749,7 @@ typedef struct tagsyssockcreateudp_struct
 	RTS_IEC_HANDLE SysSockCreateUdp;	/* VAR_OUTPUT */	
 } syssockcreateudp_struct;
 
-DEF_API(`void',`CDECL',`syssockcreateudp',`(syssockcreateudp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x4A894324),0x03050C00)
+DEF_API(`void',`CDECL',`syssockcreateudp',`(syssockcreateudp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x4A894324),0x03050900)
 
 /**
  * | Add a socket to a socket set.
@@ -792,7 +762,7 @@ typedef struct tagsyssockfdinit_struct
 	RTS_IEC_RESULT SysSockFdInit;		/* VAR_OUTPUT */	
 } syssockfdinit_struct;
 
-DEF_API(`void',`CDECL',`syssockfdinit',`(syssockfdinit_struct *p)',1,0x09C72D7D,0x03050C00)
+DEF_API(`void',`CDECL',`syssockfdinit',`(syssockfdinit_struct *p)',1,0x09C72D7D,0x03050900)
 
 /**
  * | Check if a socket is inside of a set.
@@ -805,7 +775,7 @@ typedef struct tagsyssockfdisset_struct
 	RTS_IEC_BOOL SysSockFdIsset;		/* VAR_OUTPUT */	
 } syssockfdisset_struct;
 
-DEF_API(`void',`CDECL',`syssockfdisset',`(syssockfdisset_struct *p)',1,0x25248CA6,0x03050C00)
+DEF_API(`void',`CDECL',`syssockfdisset',`(syssockfdisset_struct *p)',1,0x25248CA6,0x03050900)
 
 /**
  * | Clear a Socket set.
@@ -817,7 +787,7 @@ typedef struct tagsyssockfdzero_struct
 	RTS_IEC_RESULT SysSockFdZero;		/* VAR_OUTPUT */	
 } syssockfdzero_struct;
 
-DEF_API(`void',`CDECL',`syssockfdzero',`(syssockfdzero_struct *p)',1,0xD6D9FDA1,0x03050C00)
+DEF_API(`void',`CDECL',`syssockfdzero',`(syssockfdzero_struct *p)',1,0xD6D9FDA1,0x03050900)
 
 /**
  * | Get adapter information struct of the first network adapter.
@@ -832,7 +802,7 @@ typedef struct tagsyssockgetfirstadapterinfo_struct
 	RTS_IEC_HANDLE SysSockGetFirstAdapterInfo;	/* VAR_OUTPUT */	
 } syssockgetfirstadapterinfo_struct;
 
-DEF_API(`void',`CDECL',`syssockgetfirstadapterinfo',`(syssockgetfirstadapterinfo_struct *p)',1,RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5),0x03050C00)
+DEF_API(`void',`CDECL',`syssockgetfirstadapterinfo',`(syssockgetfirstadapterinfo_struct *p)',1,RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5),0x03050900)
 
 /**
  * | Get host description specified by host name.
@@ -845,7 +815,7 @@ typedef struct tagsyssockgethostbyname_struct
 	RTS_IEC_RESULT SysSockGetHostByName;	/* VAR_OUTPUT */	
 } syssockgethostbyname_struct;
 
-DEF_API(`void',`CDECL',`syssockgethostbyname',`(syssockgethostbyname_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x05667F90),0x03050C00)
+DEF_API(`void',`CDECL',`syssockgethostbyname',`(syssockgethostbyname_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x05667F90),0x03050900)
 
 /**
  * | Get host name of the target.
@@ -858,7 +828,7 @@ typedef struct tagsyssockgethostname_struct
 	RTS_IEC_RESULT SysSockGetHostName;	/* VAR_OUTPUT */	
 } syssockgethostname_struct;
 
-DEF_API(`void',`CDECL',`syssockgethostname',`(syssockgethostname_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x68CAC03B),0x03050C00)
+DEF_API(`void',`CDECL',`syssockgethostname',`(syssockgethostname_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x68CAC03B),0x03050900)
 
 /**
  * | Get adapter information struct of the next network adapter from the adapter list.
@@ -874,7 +844,7 @@ typedef struct tagsyssockgetnextadapterinfo_struct
 	RTS_IEC_HANDLE SysSockGetNextAdapterInfo;	/* VAR_OUTPUT */	
 } syssockgetnextadapterinfo_struct;
 
-DEF_API(`void',`CDECL',`syssockgetnextadapterinfo',`(syssockgetnextadapterinfo_struct *p)',1,RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3),0x03050C00)
+DEF_API(`void',`CDECL',`syssockgetnextadapterinfo',`(syssockgetnextadapterinfo_struct *p)',1,RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3),0x03050900)
 
 /**
  * | Set options of a specified socket.
@@ -890,7 +860,7 @@ typedef struct tagsyssockgetoption_struct
 	RTS_IEC_RESULT SysSockGetOption;	/* VAR_OUTPUT */	
 } syssockgetoption_struct;
 
-DEF_API(`void',`CDECL',`syssockgetoption',`(syssockgetoption_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8),0x03050C00)
+DEF_API(`void',`CDECL',`syssockgetoption',`(syssockgetoption_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8),0x03050900)
 
 /**
  * | Get operating system handle of the UDP socket.
@@ -902,7 +872,7 @@ typedef struct tagsyssockgetoshandle_struct
 	RTS_IEC_HANDLE SysSockGetOSHandle;	/* VAR_OUTPUT */	
 } syssockgetoshandle_struct;
 
-DEF_API(`void',`CDECL',`syssockgetoshandle',`(syssockgetoshandle_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x784811EB),0x03050C00)
+DEF_API(`void',`CDECL',`syssockgetoshandle',`(syssockgetoshandle_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x784811EB),0x03050900)
 
 /**
  * | Returns the socket address of the peer to which a socket is connected.
@@ -917,7 +887,7 @@ typedef struct tagsyssockgetpeername_struct
 	RTS_IEC_RESULT SysSockGetPeerName;	/* VAR_OUTPUT */	
 } syssockgetpeername_struct;
 
-DEF_API(`void',`CDECL',`syssockgetpeername',`(syssockgetpeername_struct *p)',1,0xE0A45F4A,0x03050C00)
+DEF_API(`void',`CDECL',`syssockgetpeername',`(syssockgetpeername_struct *p)',1,0xE0A45F4A,0x03050900)
 
 /**
  * Check actual received data on the UDP socket.
@@ -934,7 +904,7 @@ typedef struct tagsyssockgetrecvsizeudp_struct
 	RTS_IEC_XINT SysSockGetRecvSizeUdp;	/* VAR_OUTPUT */	
 } syssockgetrecvsizeudp_struct;
 
-DEF_API(`void',`CDECL',`syssockgetrecvsizeudp',`(syssockgetrecvsizeudp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xDBEEF58B),0x03050C00)
+DEF_API(`void',`CDECL',`syssockgetrecvsizeudp',`(syssockgetrecvsizeudp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xDBEEF58B),0x03050900)
 
 /**
  * | Returns the socket address of the local socket.
@@ -951,7 +921,7 @@ typedef struct tagsyssockgetsockname_struct
 	RTS_IEC_RESULT SysSockGetSockName;	/* VAR_OUTPUT */	
 } syssockgetsockname_struct;
 
-DEF_API(`void',`CDECL',`syssockgetsockname',`(syssockgetsockname_struct *p)',1,0x7EE86135,0x03050C00)
+DEF_API(`void',`CDECL',`syssockgetsockname',`(syssockgetsockname_struct *p)',1,0x7EE86135,0x03050900)
 
 /**
  * | Get subnetmask of a specified IP address adapter.
@@ -965,7 +935,7 @@ typedef struct tagsyssockgetsubnetmask_struct
 	RTS_IEC_RESULT SysSockGetSubnetMask;	/* VAR_OUTPUT */	
 } syssockgetsubnetmask_struct;
 
-DEF_API(`void',`CDECL',`syssockgetsubnetmask',`(syssockgetsubnetmask_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x972C29B9),0x03050C00)
+DEF_API(`void',`CDECL',`syssockgetsubnetmask',`(syssockgetsubnetmask_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x972C29B9),0x03050900)
 
 /**
  * | Converts a value of type UDINT from host byte order to the order of the TCP/IP network.
@@ -977,7 +947,7 @@ typedef struct tagsyssockhtonl_struct
 	RTS_IEC_UDINT SysSockHtonl;			/* VAR_OUTPUT */	
 } syssockhtonl_struct;
 
-DEF_API(`void',`CDECL',`syssockhtonl',`(syssockhtonl_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x72F6021A),0x03050C00)
+DEF_API(`void',`CDECL',`syssockhtonl',`(syssockhtonl_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x72F6021A),0x03050900)
 
 /**
  * | Converts a value of type short from order of the TCP/IP network to the host byte order.
@@ -989,7 +959,7 @@ typedef struct tagsyssockhtons_struct
 	RTS_IEC_WORD SysSockHtons;			/* VAR_OUTPUT */	
 } syssockhtons_struct;
 
-DEF_API(`void',`CDECL',`syssockhtons',`(syssockhtons_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xD258956A),0x03050C00)
+DEF_API(`void',`CDECL',`syssockhtons',`(syssockhtons_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xD258956A),0x03050900)
 
 /**
  * | Convert an IP address string into an IP address.
@@ -1002,7 +972,7 @@ typedef struct tagsyssockinetaddr_struct
 	RTS_IEC_RESULT SysSockInetAddr;		/* VAR_OUTPUT */	
 } syssockinetaddr_struct;
 
-DEF_API(`void',`CDECL',`syssockinetaddr',`(syssockinetaddr_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xB8198B8F),0x03050C00)
+DEF_API(`void',`CDECL',`syssockinetaddr',`(syssockinetaddr_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xB8198B8F),0x03050900)
 
 /**
  * | Convert IP address to a string.
@@ -1016,7 +986,7 @@ typedef struct tagsyssockinetntoa_struct
 	RTS_IEC_RESULT SysSockInetNtoa;		/* VAR_OUTPUT */	
 } syssockinetntoa_struct;
 
-DEF_API(`void',`CDECL',`syssockinetntoa',`(syssockinetntoa_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x5CE722B2),0x03050C00)
+DEF_API(`void',`CDECL',`syssockinetntoa',`(syssockinetntoa_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x5CE722B2),0x03050900)
 
 /**
  * | Io-control of a socket.
@@ -1030,7 +1000,7 @@ typedef struct tagsyssockioctl_struct
 	RTS_IEC_RESULT SysSockIoctl;		/* VAR_OUTPUT */	
 } syssockioctl_struct;
 
-DEF_API(`void',`CDECL',`syssockioctl',`(syssockioctl_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x408480FB),0x03050C00)
+DEF_API(`void',`CDECL',`syssockioctl',`(syssockioctl_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x408480FB),0x03050900)
 
 /**
  * | Listen on a TCP server socket for new connection.
@@ -1043,7 +1013,7 @@ typedef struct tagsyssocklisten_struct
 	RTS_IEC_RESULT SysSockListen;		/* VAR_OUTPUT */	
 } syssocklisten_struct;
 
-DEF_API(`void',`CDECL',`syssocklisten',`(syssocklisten_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x30FE27C1),0x03050C00)
+DEF_API(`void',`CDECL',`syssocklisten',`(syssocklisten_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x30FE27C1),0x03050900)
 
 /**
  * | Convert a UDINT value from ethernet byte order into host format.
@@ -1055,7 +1025,7 @@ typedef struct tagsyssockntohl_struct
 	RTS_IEC_UDINT SysSockNtohl;			/* VAR_OUTPUT */	
 } syssockntohl_struct;
 
-DEF_API(`void',`CDECL',`syssockntohl',`(syssockntohl_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x05B31DF1),0x03050C00)
+DEF_API(`void',`CDECL',`syssockntohl',`(syssockntohl_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x05B31DF1),0x03050900)
 
 /**
  * | Convert a WORD value from ethernet byte order into host format.
@@ -1067,7 +1037,7 @@ typedef struct tagsyssockntohs_struct
 	RTS_IEC_WORD SysSockNtohs;			/* VAR_OUTPUT */	
 } syssockntohs_struct;
 
-DEF_API(`void',`CDECL',`syssockntohs',`(syssockntohs_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x100E0417),0x03050C00)
+DEF_API(`void',`CDECL',`syssockntohs',`(syssockntohs_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x100E0417),0x03050900)
 
 /**
  * | Check the availability of the communication partner with a ping request.
@@ -1084,7 +1054,7 @@ typedef struct tagsyssockping_struct
 	RTS_IEC_RESULT SysSockPing;			/* VAR_OUTPUT */	
 } syssockping_struct;
 
-DEF_API(`void',`CDECL',`syssockping',`(syssockping_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xB3610A39),0x03050C00)
+DEF_API(`void',`CDECL',`syssockping',`(syssockping_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xB3610A39),0x03050900)
 
 /**
  * | Receive data from a TCP socket.
@@ -1103,7 +1073,7 @@ typedef struct tagsyssockrecv_struct
 	RTS_IEC_XINT SysSockRecv;			/* VAR_OUTPUT */	
 } syssockrecv_struct;
 
-DEF_API(`void',`CDECL',`syssockrecv',`(syssockrecv_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x887FBA6B),0x03050C00)
+DEF_API(`void',`CDECL',`syssockrecv',`(syssockrecv_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x887FBA6B),0x03050900)
 
 /**
  * | Receive a message from a connectionless socket (UDP).
@@ -1124,7 +1094,7 @@ typedef struct tagsyssockrecvfrom_struct
 	RTS_IEC_XINT SysSockRecvFrom;		/* VAR_OUTPUT */	
 } syssockrecvfrom_struct;
 
-DEF_API(`void',`CDECL',`syssockrecvfrom',`(syssockrecvfrom_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x26DF0362),0x03050C00)
+DEF_API(`void',`CDECL',`syssockrecvfrom',`(syssockrecvfrom_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x26DF0362),0x03050900)
 
 /**
  * | Receive a paket from a UDP socket.
@@ -1140,7 +1110,7 @@ typedef struct tagsyssockrecvfromudp_struct
 	RTS_IEC_XINT SysSockRecvFromUdp;	/* VAR_OUTPUT */	
 } syssockrecvfromudp_struct;
 
-DEF_API(`void',`CDECL',`syssockrecvfromudp',`(syssockrecvfromudp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x86A63EF8),0x03050C00)
+DEF_API(`void',`CDECL',`syssockrecvfromudp',`(syssockrecvfromudp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x86A63EF8),0x03050900)
 
 /**
  * | Receive a paket from a UDP socket.
@@ -1156,7 +1126,7 @@ typedef struct tagsyssockrecvfromudp2_struct
 	RTS_IEC_XINT SysSockRecvFromUdp2;	/* VAR_OUTPUT */	
 } syssockrecvfromudp2_struct;
 
-DEF_API(`void',`CDECL',`syssockrecvfromudp2',`(syssockrecvfromudp2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xBA3470D3),0x03050C00)
+DEF_API(`void',`CDECL',`syssockrecvfromudp2',`(syssockrecvfromudp2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xBA3470D3),0x03050900)
 
 /**
  * | Check a number of sockets for activity.
@@ -1181,7 +1151,7 @@ typedef struct tagsyssockselect_struct
 	RTS_IEC_RESULT SysSockSelect;		/* VAR_OUTPUT */	
 } syssockselect_struct;
 
-DEF_API(`void',`CDECL',`syssockselect',`(syssockselect_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x59125CA7),0x03050C00)
+DEF_API(`void',`CDECL',`syssockselect',`(syssockselect_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x59125CA7),0x03050900)
 
 /**
  * | Sent data to a TCP socket.
@@ -1200,7 +1170,7 @@ typedef struct tagsyssocksend_struct
 	RTS_IEC_XINT SysSockSend;			/* VAR_OUTPUT */	
 } syssocksend_struct;
 
-DEF_API(`void',`CDECL',`syssocksend',`(syssocksend_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xA73C5F51),0x03050C00)
+DEF_API(`void',`CDECL',`syssocksend',`(syssocksend_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xA73C5F51),0x03050900)
 
 /**
  * | Send a message over a connectionless socket (UDP).
@@ -1221,7 +1191,7 @@ typedef struct tagsyssocksendto_struct
 	RTS_IEC_XINT SysSockSendTo;			/* VAR_OUTPUT */	
 } syssocksendto_struct;
 
-DEF_API(`void',`CDECL',`syssocksendto',`(syssocksendto_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xEE37CAFA),0x03050C00)
+DEF_API(`void',`CDECL',`syssocksendto',`(syssocksendto_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xEE37CAFA),0x03050900)
 
 /**
  * | Send a paket to a UDP socket.
@@ -1238,7 +1208,7 @@ typedef struct tagsyssocksendtoudp_struct
 	RTS_IEC_XINT SysSockSendToUdp;		/* VAR_OUTPUT */	
 } syssocksendtoudp_struct;
 
-DEF_API(`void',`CDECL',`syssocksendtoudp',`(syssocksendtoudp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x81DCE32E),0x03050C00)
+DEF_API(`void',`CDECL',`syssocksendtoudp',`(syssocksendtoudp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x81DCE32E),0x03050900)
 
 /**
  * | Set IP address of the specified ethernet device. Is not available on all platforms! 
@@ -1252,14 +1222,12 @@ typedef struct tagsyssocksetipaddress_struct
 	RTS_IEC_RESULT SysSockSetIPAddress;	/* VAR_OUTPUT */	
 } syssocksetipaddress_struct;
 
-DEF_API(`void',`CDECL',`syssocksetipaddress',`(syssocksetipaddress_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x955CE64B),0x03050C00)
+DEF_API(`void',`CDECL',`syssocksetipaddress',`(syssocksetipaddress_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x955CE64B),0x03050900)
 
 /**
- * | Set IP address and subnet mask of an adapter. 
+ * | Set ip address and subnet mask of an adapter. 
  * | It depends on the device, whether the new ip address and subnet mask is reset during reboot or
- *   if it is retained. In general the caller should consider these as volatile. The combination 
- *   IP address = 0.0.0.0 and subnet mask = 0.0.0.0 can be used to remove the IP address from the adapter.
- *   After this there is no IP based communication possible anymore, until a new IP address is set.
+ *   if it is retained. In general the caller should consider these as volatile. 
  *   Replaces the functions SysSockSetIPAddress() and SysSockSetSubnetMask().
  * :return: Runtime system error code (see CmpErrors.library).
  */
@@ -1271,7 +1239,7 @@ typedef struct tagsyssocksetipaddressandnetmask_struct
 	RTS_IEC_RESULT SysSockSetIpAddressAndNetMask;	/* VAR_OUTPUT */	
 } syssocksetipaddressandnetmask_struct;
 
-DEF_API(`void',`CDECL',`syssocksetipaddressandnetmask',`(syssocksetipaddressandnetmask_struct *p)',1,0x01D16C55,0x03050C00)
+DEF_API(`void',`CDECL',`syssocksetipaddressandnetmask',`(syssocksetipaddressandnetmask_struct *p)',1,0x01D16C55,0x03050900)
 
 /**
  * | Set options of a specified socket.
@@ -1287,7 +1255,7 @@ typedef struct tagsyssocksetoption_struct
 	RTS_IEC_RESULT SysSockSetOption;	/* VAR_OUTPUT */	
 } syssocksetoption_struct;
 
-DEF_API(`void',`CDECL',`syssocksetoption',`(syssocksetoption_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xFBCD9B23),0x03050C00)
+DEF_API(`void',`CDECL',`syssocksetoption',`(syssocksetoption_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xFBCD9B23),0x03050900)
 
 /**
  * | Set subnetmask of an adapter, specified by IP address. Is not available on all platforms!
@@ -1301,7 +1269,7 @@ typedef struct tagsyssocksetsubnetmask_struct
 	RTS_IEC_RESULT SysSockSetSubnetMask;	/* VAR_OUTPUT */	
 } syssocksetsubnetmask_struct;
 
-DEF_API(`void',`CDECL',`syssocksetsubnetmask',`(syssocksetsubnetmask_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x0185BC67),0x03050C00)
+DEF_API(`void',`CDECL',`syssocksetsubnetmask',`(syssocksetsubnetmask_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x0185BC67),0x03050900)
 
 /**
  * | Shutdown a socket.
@@ -1314,7 +1282,7 @@ typedef struct tagsyssockshutdown_struct
 	RTS_IEC_RESULT SysSockShutdown;		/* VAR_OUTPUT */	
 } syssockshutdown_struct;
 
-DEF_API(`void',`CDECL',`syssockshutdown',`(syssockshutdown_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCB0E612E),0x03050C00)
+DEF_API(`void',`CDECL',`syssockshutdown',`(syssockshutdown_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCB0E612E),0x03050900)
 
 #ifdef __cplusplus
 }
@@ -1331,7 +1299,6 @@ extern "C" {
  * <category>Internal flags for adapter management</category>
  * <description></description>
  */
-#define SOCK_IFLAG_AF_INETFOUND				0x00000001	/* Adapter information for AF_INET already found - to be used internally in SysSocketOS implementation */
 #define SOCK_IFLAG_IN_PROGRESS				0x00000002	/* Adapter information is currently checked for update - to be used internally in SysSocketOS implementation */
 #define SOCK_IFLAG_FREE_STRINGS_ON_EXIT		0x00000004	/* On shutdown SysSocket.c checks this flag and if set it frees all referenced strings by calling SysMemFree() */
 #define SOCK_IFLAG_FREE_HOSSPECIFIC_ON_EXIT	0x00000008	/* On shutdown SysSocket.c checks this flag and if set it frees hOsSpecific by calling SysMemFree() */
@@ -1882,11 +1849,9 @@ DEF_ITF_API(`SOCK_ADAPTER_INFO*',`CDECL',`SysSockGetNextAdapterInfo',`(SOCK_ADAP
 
 /**
  * <description>
- *	Set IP address and subnet mask of an adapter. 
+ *	Set ip address and subnet mask of an adapter. 
  *  It depends on the device, whether the new ip address and subnet mask is reset during reboot or
- *  if it is retained. In general the caller should consider these as volatile. The combination 
- *  IP address = 0.0.0.0 and subnet mask = 0.0.0.0 can be used to remove the IP address from the adapter.
- *  After this there is no IP based communication possible anymore, until a new IP address is set.
+ *  if it is retained. In general the caller should consider these as volatile. 
  *  Replaces the functions SysSockSetIPAddress() and SysSockSetSubnetMask().
  * </description>
  * <param name="pwszAdapterName" type="IN">Adapter name provided by SysSockGetFirstAdapter() / SysSockGetNextAdapter()</param>

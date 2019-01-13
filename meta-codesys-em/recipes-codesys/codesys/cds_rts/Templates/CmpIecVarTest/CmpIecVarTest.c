@@ -154,11 +154,10 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 void DumpOne(char *szName) {
 	RTS_RESULT result;
 	RTS_HANDLE hNode;
-	VariableInformationStruct3 VarInfo;
+	VariableInformationStruct VarInfo;
 	RTS_HANDLE hInterface = RTS_INVALID_HANDLE;
 
-    CAL_IecVarAccInitVarInfo((VariableInformationStruct2*)&VarInfo, sizeof(VarInfo));
-	hNode = CAL_IecVarAccGetNode3(szName, &hInterface, (VariableInformationStruct2*)&VarInfo, &result);
+	hNode = CAL_IecVarAccGetNode3(szName, &hInterface, &VarInfo, &result);
 	
 	if(result == ERR_OK) {
 		TreeNodeType type;
@@ -171,15 +170,15 @@ void DumpOne(char *szName) {
 			unsigned short usValue;
 			
 			/* read value */
-			lSize = CAL_IecVarAccGetSize3(hInterface, hNode, (VariableInformationStruct2*)&VarInfo, &result);
-			varType = CAL_IecVarAccGetTypeClass3(hInterface, hNode, (VariableInformationStruct2*)&VarInfo, &result);
+			lSize = CAL_IecVarAccGetSize3(hInterface, hNode, &VarInfo, &result);
+			varType = CAL_IecVarAccGetTypeClass3(hInterface, hNode, &VarInfo, &result);
 			switch(varType) {
 			case TYPE3_INT:
-				CAL_IecVarAccGetValue3(hInterface, hNode, (VariableInformationStruct2*)&VarInfo, &usValue, lSize, &result);
+				CAL_IecVarAccGetValue3(hInterface, hNode, &VarInfo, &usValue, lSize, &result);
 				CAL_SysOutPrintf("%s: Var %s: Value: %d (size: %d)\n", COMPONENT_NAME, szName, (int)usValue, lSize);
 				break;
 			case TYPE3_UDINT:
-				CAL_IecVarAccGetValue3(hInterface, hNode, (VariableInformationStruct2*)&VarInfo, &ulValue, lSize, &result);
+				CAL_IecVarAccGetValue3(hInterface, hNode, &VarInfo, &ulValue, lSize, &result);
 				CAL_SysOutPrintf("%s: Var %s: Value: %lu (size: %d)\n", COMPONENT_NAME, szName, ulValue, lSize);
 				break;
 			default:
@@ -192,20 +191,18 @@ void DumpOne(char *szName) {
 			CAL_SysOutPrintf("%s: Var %s: no value, node is not a LeafNode\n", COMPONENT_NAME, szName);
 		}
 	}
-    CAL_IecVarAccExitVarInfo((VariableInformationStruct2*)&VarInfo);
 }
 
 
 void ExpandNode(char *szName) {
 	RTS_RESULT result;
 	RTS_HANDLE hNode;
-	VariableInformationStruct3 VarInfo;
+	VariableInformationStruct VarInfo;
 	RTS_HANDLE hInterface = RTS_INVALID_HANDLE;
 	TypeClass3 varType;
 
-    CAL_IecVarAccInitVarInfo((VariableInformationStruct2*)&VarInfo, sizeof(VarInfo));
-	hNode = CAL_IecVarAccGetNode3(szName, &hInterface, (VariableInformationStruct2*)&VarInfo, &result);
-	varType = CAL_IecVarAccGetTypeClass3(hInterface, hNode, (VariableInformationStruct2*)&VarInfo, &result);
+	hNode = CAL_IecVarAccGetNode3(szName, &hInterface, &VarInfo, &result);
+	varType = CAL_IecVarAccGetTypeClass3(hInterface, hNode, &VarInfo, &result);
 	switch(varType) {
 		case TYPE3_ARRAY:
 		{
@@ -215,7 +212,7 @@ void ExpandNode(char *szName) {
 
 			CAL_SysOutPrintf("%s: Expand array %s\n", COMPONENT_NAME, szName);
 
-			hTypeNode = CAL_IecVarAccGetTypeNode3(hInterface, hNode, (VariableInformationStruct2*)&VarInfo, &result);
+			hTypeNode = CAL_IecVarAccGetTypeNode3(hInterface, hNode, &VarInfo, &result);
 			memset(&typeDesc, 0, sizeof(typeDesc));
 			result = CAL_IecVarAccGetTypeDesc(hInterface, hTypeNode, &typeDesc);
 
@@ -272,7 +269,7 @@ void ExpandNode(char *szName) {
 
 			CAL_SysOutPrintf("%s: Expand structure %s\n", COMPONENT_NAME, szName);
 
-			hTypeNode = CAL_IecVarAccGetTypeNode3(hInterface, hNode, (VariableInformationStruct2*)&VarInfo, &result);
+			hTypeNode = CAL_IecVarAccGetTypeNode3(hInterface, hNode, &VarInfo, &result);
 			memset(&typeDesc, 0, sizeof(typeDesc));
 			CAL_IecVarAccGetTypeDesc(hInterface, hTypeNode, &typeDesc);
 			typeDesc._union._struct._Components = (IBaseTreeNode **)CAL_SysMemAllocData(COMPONENT_NAME, typeDesc._union._struct._iComponents * sizeof(IBaseTreeNode*), NULL);
@@ -297,7 +294,6 @@ void ExpandNode(char *szName) {
 			DumpOne(szName);
 			break;
 	}
-    CAL_IecVarAccExitVarInfo((VariableInformationStruct2*)&VarInfo);
 }
 
 
@@ -310,10 +306,8 @@ void DumpAll(RTS_HANDLE hNode) {
 			s_hInterface = CAL_IecVarAccGetFirstInterface(NULL);
 			/* Optinally call get CAL_IecVarAccGetNextInterface(), if there is more than one application */
 		}
-		if (CAL_IecVarAccGetApplicationName(s_hInterface, szAppName, sizeof(szAppName)) == ERR_OK)
-			CAL_SysOutPrintf("%s: Application Name: %s\n", COMPONENT_NAME, szAppName);
-		else
-			CAL_SysOutPrintf("%s: No symbols available\n", COMPONENT_NAME);
+		CAL_IecVarAccGetApplicationName(s_hInterface, szAppName, sizeof(szAppName));
+		CAL_SysOutPrintf("%s: Application Name: %s\n", COMPONENT_NAME, szAppName);
 
 		hNode = CAL_IecVarAccBrowseGetRoot(s_hInterface, &result);
 		hNode = CAL_IecVarAccBrowseDown(s_hInterface, hNode, &result);

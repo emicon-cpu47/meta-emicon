@@ -1,23 +1,8 @@
  /**
  * <interfacename>SysCpuMultiCore</interfacename>
- * <description>
- * <p>This interface provides functions to manage multi core cpu system.</p>
- * <p>Naming convention: In this interface a core describes a logical processor, a logical CPU, independent of the physical hardware. 
- * A CoreId is a zero based number of a core, corresponding to the position of a bit in the CoreBits bitfield. E.g., a dual core processor 
- * with hyperthreading supplies four logical processors, SysMCGetNumOfCores returns 4 cores and they are numbered from 0 to 3.</p>
- * <p>The bitfield is placed in a processor word (XWORD ulCoreBits) inside the CpuCoreBits union in case the number of cores fits there in,
- * i.e. up to 32 cores on a 32 bit system, up to 64 cores on a 64 bit system. In case the number of cores exceed these values 
- * (i.e. nNumOfCores > SYSMCBITSPERXWORD), an allocated array of XWORDs is used (pulCoreBits) and this is where the functions SysMCBDAlloc 
- * and SysMCBDFree come in handy.</p>
+ * <description></description>
  *
- * <p>NOTE:
- * SysMCBDAlloc also initializes the member nNumOfCores of the CpuCoreBindingDesc structure. In case a local declared variable of CpuCoreBindingDesc
- * is used, this member nNumOfCores should be initialized manually.</p>
- * </description>
- *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright></copyright>
  */
 
 
@@ -35,193 +20,6 @@
 
 
 
-#include "CmpTraceMgrItf.h"
-
-
-struct tagCpuCoreBindingDesc;
-/**
- * <category>Event parameter</category>
- * <element name="hTaskGroup" type="IN">Handle to task group where the binding is set.</element>
- * <element name="pCoreBinding" type="IN">Configuration which cores the group should use. Can be set by this event.</element>
- */
-typedef struct
-{
-	RTS_HANDLE hTaskGroup;
-    struct tagCpuCoreBindingDesc* pCoreBinding;
-} EVTPARAM_SysCpuMC_GroupBinding;
-#define EVTPARAMID_SysCpuMC_GroupBinding						0x0001
-#define EVTVERSION_SysCpuMC_GroupBinding						0x0001
-
-/**
- * <category>Events</category>
- * <description>Event is sent before start of the specified application</description>
- * <param name="pEventParam" type="IN">EVTPARAM_CmpApp</param>
- */
-#define EVT_GroupBinding					                    MAKE_EVENTID(EVTCLASS_INFO, 1)
-
-
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>Setting to bind the runtime process to the specified core (0 is the first core). If the value is -1, the process is unbound!</description>
- */
-#define SYSMCKEY_INT_BINDPROCESS					"BindProcess.CoreID"
-#ifndef SYSMCVALUE_INT_BINDPROCESS
-	#define SYSMCVALUE_INT_BINDPROCESS				-1
-#endif
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>Setting to enable/disable the CPU load system trace feature. With this feature you can upload the system trace "CpuCoreLoad" in CODESYS and you can see the CPU load
- *	in a trace window!
- * </description>
- */
-#define SYSMCKEY_INT_CPULOADTRACE					"CpuLoadTrace.Enable"
-#ifndef SYSMCVALUE_INT_CPULOADTRACE
-	#define SYSMCVALUE_INT_CPULOADTRACE				1
-#endif
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>Setting to enable/disable the PLC load system trace feature. With this feature you can upload the system trace "PlcLoad" in CODESYS and you can see the CPU load
- *	in a trace window!
- * </description>
- */
-#define SYSMCKEY_INT_PLCLOADTRACE					"PlcLoadTrace.Enable"
-#ifndef SYSMCVALUE_INT_PLCLOADTRACE
-	#define SYSMCVALUE_INT_PLCLOADTRACE				1
-#endif
-
-/**
- * <category>Settings</category>
- * <type>String</type>
- * <description>Setting to configure which cores should be used by the IEC code. For notation see: SYSMCSUBKEY_TASKGROUP_CORESET. 
- * If not configured the default depends on the available license:
- * 1. No license available: This results in a single core license. Core 0 will be used by default.
- * 2. License available: This will result in a {0..Licensevalue-1} core set.
- * The core set can be overwritten using this setting. Pay attention to configure only the licensed number of cores.
- * </description>
- */
-#define SYSMCKEY_STRING_IECCORESET					"IecCoreSet"
-#ifndef SYSMCVALUE_STRING_IECCORESET
-	#define SYSMCVALUE_STRING_IECCORESET			"{0..MAXCOREID}"
-#endif
-
-/**
- * <category>Static defines</category>
- * <description>Task group options
- * </description>
- * <element name="SYSMC_TASKGROUPMASK_STRATEGY">Mask to select the strategy bits of the task group (low byte). The strategy defines how the tasks of this group are bound to cores.</element>
- * <element name="SYSMC_TASKGROUPOPTION_MULTICORE_FREEFLOATING" type="IN">
- *  Default: Tasks will be freely moved around the cores by the operating system. 
- *  Depending of the binding set by SysMCSetTaskGroupBinding the task will behave differently:
- *      1. No bits set in the CpuCoreBindingDesc: All Cores will be used by the tasks. Tasks can be freely moved by the operating system.
- *      2. Bits set in the CpuCoreBindingDesc: The taks will be freely moved by the operating system within the specified cores. Note: This is not supported by all operating systems.
- * </element>
- * <element name="SYSMC_TASKGROUPOPTION_MULTICORE_SEQUENCIAL_PINNED" type="IN">The tasks of this group will be sequentially pinned.
- * The pinning is done by pinning each task one by one to the next configured core and then start over again. The task with the highest priority is pinned first.
- * The core used by the system group is stepped over in the first pinnig cycle.</element>
- * <element name="SYSMC_TASKGROUPOPTION_SINGLECORE" type="IN">The tasks of this group will be pinned to the same core.
- *  Depending of the binding set by SysMCSetTaskGroupBinding the task will behave differently
- *      1. No bits set in the CpuCoreBindingDesc: A core is selected by the runtime system.</element>
- *      2. One bit is set in the CpuCoreBindingDesc: This core will be used.</element>
- *      3. More bits set: Configuration error. Will not be accepted.
- * <element name="SYSMC_TASKGROUPMASK_OPTIONS" type="IN">Mask to select the options part of the flag field.</element>
- * <element name="SYSMC_TASKGROUPOPTION_GROUP_CONF" type="IN">Flag that indicates this group is in configuration mode.</element>
- * <element name="SYSMC_TASKGROUPOPTION_IEC_TASKS" type="IN">Flag that this task group contains contain IEC Tasks.</element>
- * <element name="SYSMC_TASKGROUPOPTION_AUTODELETE" type="IN">Flag to indicate that this group shold be deleted automatically if the last task was removed from this group.</element>
- */
-#define SYSMC_TASKGROUPMASK_STRATEGY                        0x000000FF
-#define SYSMC_TASKGROUPOPTION_MULTICORE_FREEFLOATING		0x00000000
-#define SYSMC_TASKGROUPOPTION_MULTICORE_SEQUENCIAL_PINNED	0x00000001
-#define SYSMC_TASKGROUPOPTION_SINGLECORE					0x00000002
-
-#define SYSMC_TASKGROUPMASK_OPTIONS                         0x0000FF00
-#define SYSMC_TASKGROUPOPTION_GROUP_CONF                    0x00000100
-#define SYSMC_TASKGROUPOPTION_IEC_TASKS                     0x00000200
-#define SYSMC_TASKGROUPOPTION_AUTODELETE                    0x00000400
-
-
-/**
- * <category>Static defines</category>
- * <description>Task group names
- * </description>
- */
-#ifndef SYSMC_TASKGROUPNAME_SYS
-	#define SYSMC_TASKGROUPNAME_SYS "System"
-#endif
-#ifndef SYSMC_TASKGROUPNAME_IEC
-	#define SYSMC_TASKGROUPNAME_IEC "IEC-Tasks"
-#endif
-#ifndef SYSMC_TASKGROUPNAME_COM
-	#define SYSMC_TASKGROUPNAME_COM "Communication"
-#endif
-#ifndef SYSMC_TASKGROUPNAME_VIS
-	#define SYSMC_TASKGROUPNAME_VIS "Visualization"
-#endif
-
-/**
- * <category>Settings</category>
- * <description>A base setting to configure task groups. The following subsettings are available: Name, Option and CoreSet. The numbering starts with 1.
- * Example to bind all system tasks to core 0:
- * TaskGroup.1.Name=System
- * TaskGroup.1.Option=1
- * TaskGroup.1.CoreSet={0}
- * </description>
- */
-#define SYSMCBASEKEY_TASKGROUP						"TaskGroup"
-
-/**
- * <category>Settings</category>
- * <type>String</type>
- * <description>Setting to name a task group. For predefined task group names see 'Task group names'.
- * Example:
- * TaskGroup.2.Name=IecTask
- * </description>
- */
-#define SYSMCSUBKEY_TASKGROUP_NAME					"Name"
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>Setting to configure the options of a task group. See 'Task group options'.
- * Example:
- * TaskGroup.2.Option=2
- * </description>
- */
-#define SYSMCSUBKEY_TASKGROUP_OPTION				"Option"
-#ifndef SYSMCVALUE_INT_TASKGROUP_OPTION_DEFAULT
-	#define SYSMCVALUE_INT_TASKGROUP_OPTION_DEFAULT	SYSMC_TASKGROUPOPTION_MULTICORE_FREEFLOATING
-#endif
-
-/**
- * <category>Settings</category>
- * <type>String</type>
- * <description>Setting to configure a set of cores for a task group.
- * There is a placeholder for the highest core id named MAXCOREID to configure independently of the current num of cores.
- * To build more comlex expressions a range and a subtraction operator are provided.
- * Example:
- * TaskGroup.2.CoreSet={0..MAXCOREID-1}
- * TaskGroup.3.CoreSet={0,1,2}
- * </description>
- */
-#define SYSMCSUBKEY_TASKGROUP_CORESET				"CoreSet"
-
-/**
- * <category>Static defines</category>
- * <description>Number of bits in a processor word (XWORD)</description>
- */
-#define SYSMCBITSPERXWORD (sizeof(RTS_IEC_XWORD) * 8)
-
-/**
- * <category>Static defines</category>
- * <description>License ID for MultiCore</description>
- */
-#define SYSMC_LICENSE_ID	0x2251
-
 /** EXTERN LIB SECTION BEGIN **/
 /*  Comments are ignored for m4 compiler so restructured text can be used.  */
 
@@ -230,361 +28,265 @@ extern "C" {
 #endif
 
 /**
- * <description>CpuCoreBits</description>
+ * <description>Enum: eCoreBindingKindOf</description>
+ */
+#define ECOREBINDINGKINDOF_COREBINDINGDESC_UNBOUND    0	
+#define ECOREBINDINGKINDOF_COREBINDINGDESC_SINGLECORE    1	
+#define ECOREBINDINGKINDOF_COREBINDINGDESC_COREGROUP    2	
+/* Typed enum definition */
+#define ECOREBINDINGKINDOF    RTS_IEC_INT
+
+/**
+ * <description>CoreGroupDefinition</description>
+ */
+typedef struct tagCoreGroupDefinition
+{
+	RTS_IEC_DWORD dwNumCoresInGroup;		
+	RTS_IEC_XWORD *CoreIDs;		/* A core identifier can be a number or a pointer to a description. */
+} CoreGroupDefinition;
+
+/**
+ * <description>CpuCoreIdentifier</description>
  */
 typedef union
 {
-	RTS_IEC_XWORD ulCoreBits;		
-	RTS_IEC_XWORD *pulCoreBits;		
-} CpuCoreBits;
+	RTS_IEC_XWORD nCoreID;		
+	CoreGroupDefinition CoreGroupID;		
+} CpuCoreIdentifier;
 
 /**
  * <description>CpuCoreBindingDesc</description>
  */
 typedef struct tagCpuCoreBindingDesc
 {
-	RTS_IEC_UDINT nNumOfCores;		
-	CpuCoreBits cores;		
+	RTS_IEC_INT eCoreKindOfBinding;		
+	CpuCoreIdentifier idCpuCoreIdentifier;		
 } CpuCoreBindingDesc;
 
 /**
- * <description>sysmcbdalloc</description>
+ *Function to bind a process to a core / core group.
  */
-typedef struct tagsysmcbdalloc_struct
+typedef struct tagsysmcbindprocess_struct
 {
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	CpuCoreBindingDesc *SysMCBDAlloc;	/* VAR_OUTPUT */	
-} sysmcbdalloc_struct;
+	CpuCoreBindingDesc CoreID;			/* VAR_INPUT */	/* Identifier (index) of the core to bind the process to. */
+	RTS_IEC_HANDLE hProcess;			/* VAR_INPUT */	
+	RTS_IEC_RESULT SysMCBindProcess;	/* VAR_OUTPUT */	
+} sysmcbindprocess_struct;
 
-void CDECL CDECL_EXT sysmcbdalloc(sysmcbdalloc_struct *p);
-typedef void (CDECL CDECL_EXT* PFSYSMCBDALLOC_IEC) (sysmcbdalloc_struct *p);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDALLOC_NOTIMPLEMENTED)
-	#define USE_sysmcbdalloc
-	#define EXT_sysmcbdalloc
-	#define GET_sysmcbdalloc(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_sysmcbdalloc(p0) 
-	#define CHK_sysmcbdalloc  FALSE
-	#define EXP_sysmcbdalloc  ERR_OK
+void CDECL CDECL_EXT sysmcbindprocess(sysmcbindprocess_struct *p);
+typedef void (CDECL CDECL_EXT* PFSYSMCBINDPROCESS_IEC) (sysmcbindprocess_struct *p);
+#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBINDPROCESS_NOTIMPLEMENTED)
+	#define USE_sysmcbindprocess
+	#define EXT_sysmcbindprocess
+	#define GET_sysmcbindprocess(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_sysmcbindprocess(p0) 
+	#define CHK_sysmcbindprocess  FALSE
+	#define EXP_sysmcbindprocess  ERR_OK
 #elif defined(STATIC_LINK)
-	#define USE_sysmcbdalloc
-	#define EXT_sysmcbdalloc
-	#define GET_sysmcbdalloc(fl)  CAL_CMGETAPI( "sysmcbdalloc" ) 
-	#define CAL_sysmcbdalloc  sysmcbdalloc
-	#define CHK_sysmcbdalloc  TRUE
-	#define EXP_sysmcbdalloc  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdalloc", (RTS_UINTPTR)sysmcbdalloc, 1, RTSITF_GET_SIGNATURE(0xECD5C206, 0xC7AAC7EB), 0x03050B00) 
+	#define USE_sysmcbindprocess
+	#define EXT_sysmcbindprocess
+	#define GET_sysmcbindprocess(fl)  CAL_CMGETAPI( "sysmcbindprocess" ) 
+	#define CAL_sysmcbindprocess  sysmcbindprocess
+	#define CHK_sysmcbindprocess  TRUE
+	#define EXP_sysmcbindprocess  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbindprocess", (RTS_UINTPTR)sysmcbindprocess, 1, RTSITF_GET_SIGNATURE(0xEF41205F, 0xEF59CBC1), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_sysmcbdalloc
-	#define EXT_sysmcbdalloc
-	#define GET_sysmcbdalloc(fl)  CAL_CMGETAPI( "sysmcbdalloc" ) 
-	#define CAL_sysmcbdalloc  sysmcbdalloc
-	#define CHK_sysmcbdalloc  TRUE
-	#define EXP_sysmcbdalloc  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdalloc", (RTS_UINTPTR)sysmcbdalloc, 1, RTSITF_GET_SIGNATURE(0xECD5C206, 0xC7AAC7EB), 0x03050B00) 
+	#define USE_sysmcbindprocess
+	#define EXT_sysmcbindprocess
+	#define GET_sysmcbindprocess(fl)  CAL_CMGETAPI( "sysmcbindprocess" ) 
+	#define CAL_sysmcbindprocess  sysmcbindprocess
+	#define CHK_sysmcbindprocess  TRUE
+	#define EXP_sysmcbindprocess  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbindprocess", (RTS_UINTPTR)sysmcbindprocess, 1, RTSITF_GET_SIGNATURE(0xEF41205F, 0xEF59CBC1), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoresysmcbdalloc
-	#define EXT_SysCpuMultiCoresysmcbdalloc
-	#define GET_SysCpuMultiCoresysmcbdalloc  ERR_OK
-	#define CAL_SysCpuMultiCoresysmcbdalloc  sysmcbdalloc
-	#define CHK_SysCpuMultiCoresysmcbdalloc  TRUE
-	#define EXP_SysCpuMultiCoresysmcbdalloc  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdalloc", (RTS_UINTPTR)sysmcbdalloc, 1, RTSITF_GET_SIGNATURE(0xECD5C206, 0xC7AAC7EB), 0x03050B00) 
+	#define USE_SysCpuMultiCoresysmcbindprocess
+	#define EXT_SysCpuMultiCoresysmcbindprocess
+	#define GET_SysCpuMultiCoresysmcbindprocess  ERR_OK
+	#define CAL_SysCpuMultiCoresysmcbindprocess  sysmcbindprocess
+	#define CHK_SysCpuMultiCoresysmcbindprocess  TRUE
+	#define EXP_SysCpuMultiCoresysmcbindprocess  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbindprocess", (RTS_UINTPTR)sysmcbindprocess, 1, RTSITF_GET_SIGNATURE(0xEF41205F, 0xEF59CBC1), 0x03050800) 
 #elif defined(CPLUSPLUS)
-	#define USE_sysmcbdalloc
-	#define EXT_sysmcbdalloc
-	#define GET_sysmcbdalloc(fl)  CAL_CMGETAPI( "sysmcbdalloc" ) 
-	#define CAL_sysmcbdalloc  sysmcbdalloc
-	#define CHK_sysmcbdalloc  TRUE
-	#define EXP_sysmcbdalloc  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdalloc", (RTS_UINTPTR)sysmcbdalloc, 1, RTSITF_GET_SIGNATURE(0xECD5C206, 0xC7AAC7EB), 0x03050B00) 
+	#define USE_sysmcbindprocess
+	#define EXT_sysmcbindprocess
+	#define GET_sysmcbindprocess(fl)  CAL_CMGETAPI( "sysmcbindprocess" ) 
+	#define CAL_sysmcbindprocess  sysmcbindprocess
+	#define CHK_sysmcbindprocess  TRUE
+	#define EXP_sysmcbindprocess  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbindprocess", (RTS_UINTPTR)sysmcbindprocess, 1, RTSITF_GET_SIGNATURE(0xEF41205F, 0xEF59CBC1), 0x03050800) 
 #else /* DYNAMIC_LINK */
-	#define USE_sysmcbdalloc  PFSYSMCBDALLOC_IEC pfsysmcbdalloc;
-	#define EXT_sysmcbdalloc  extern PFSYSMCBDALLOC_IEC pfsysmcbdalloc;
-	#define GET_sysmcbdalloc(fl)  s_pfCMGetAPI2( "sysmcbdalloc", (RTS_VOID_FCTPTR *)&pfsysmcbdalloc, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0xECD5C206, 0xC7AAC7EB), 0x03050B00)
-	#define CAL_sysmcbdalloc  pfsysmcbdalloc
-	#define CHK_sysmcbdalloc  (pfsysmcbdalloc != NULL)
-	#define EXP_sysmcbdalloc   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdalloc", (RTS_UINTPTR)sysmcbdalloc, 1, RTSITF_GET_SIGNATURE(0xECD5C206, 0xC7AAC7EB), 0x03050B00) 
+	#define USE_sysmcbindprocess  PFSYSMCBINDPROCESS_IEC pfsysmcbindprocess;
+	#define EXT_sysmcbindprocess  extern PFSYSMCBINDPROCESS_IEC pfsysmcbindprocess;
+	#define GET_sysmcbindprocess(fl)  s_pfCMGetAPI2( "sysmcbindprocess", (RTS_VOID_FCTPTR *)&pfsysmcbindprocess, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0xEF41205F, 0xEF59CBC1), 0x03050800)
+	#define CAL_sysmcbindprocess  pfsysmcbindprocess
+	#define CHK_sysmcbindprocess  (pfsysmcbindprocess != NULL)
+	#define EXP_sysmcbindprocess   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbindprocess", (RTS_UINTPTR)sysmcbindprocess, 1, RTSITF_GET_SIGNATURE(0xEF41205F, 0xEF59CBC1), 0x03050800) 
 #endif
 
 
 /**
- * <description>sysmcbdcount</description>
+ *Function to bind a task to a core / core group.
  */
-typedef struct tagsysmcbdcount_struct
+typedef struct tagsysmcbindtask_struct
 {
-	CpuCoreBindingDesc *pBindingDesc;	/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RTS_IEC_UDINT SysMCBDCount;			/* VAR_OUTPUT */	
-} sysmcbdcount_struct;
+	CpuCoreBindingDesc CoreID;			/* VAR_INPUT */	/* Identifier (index) of the core to bind the process to. */
+	RTS_IEC_HANDLE hTask;				/* VAR_INPUT */	
+	RTS_IEC_RESULT SysMCBindTask;		/* VAR_OUTPUT */	
+} sysmcbindtask_struct;
 
-void CDECL CDECL_EXT sysmcbdcount(sysmcbdcount_struct *p);
-typedef void (CDECL CDECL_EXT* PFSYSMCBDCOUNT_IEC) (sysmcbdcount_struct *p);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDCOUNT_NOTIMPLEMENTED)
-	#define USE_sysmcbdcount
-	#define EXT_sysmcbdcount
-	#define GET_sysmcbdcount(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_sysmcbdcount(p0) 
-	#define CHK_sysmcbdcount  FALSE
-	#define EXP_sysmcbdcount  ERR_OK
+void CDECL CDECL_EXT sysmcbindtask(sysmcbindtask_struct *p);
+typedef void (CDECL CDECL_EXT* PFSYSMCBINDTASK_IEC) (sysmcbindtask_struct *p);
+#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBINDTASK_NOTIMPLEMENTED)
+	#define USE_sysmcbindtask
+	#define EXT_sysmcbindtask
+	#define GET_sysmcbindtask(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_sysmcbindtask(p0) 
+	#define CHK_sysmcbindtask  FALSE
+	#define EXP_sysmcbindtask  ERR_OK
 #elif defined(STATIC_LINK)
-	#define USE_sysmcbdcount
-	#define EXT_sysmcbdcount
-	#define GET_sysmcbdcount(fl)  CAL_CMGETAPI( "sysmcbdcount" ) 
-	#define CAL_sysmcbdcount  sysmcbdcount
-	#define CHK_sysmcbdcount  TRUE
-	#define EXP_sysmcbdcount  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdcount", (RTS_UINTPTR)sysmcbdcount, 1, RTSITF_GET_SIGNATURE(0xA5E90785, 0x52EBF69E), 0x03050B00) 
+	#define USE_sysmcbindtask
+	#define EXT_sysmcbindtask
+	#define GET_sysmcbindtask(fl)  CAL_CMGETAPI( "sysmcbindtask" ) 
+	#define CAL_sysmcbindtask  sysmcbindtask
+	#define CHK_sysmcbindtask  TRUE
+	#define EXP_sysmcbindtask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbindtask", (RTS_UINTPTR)sysmcbindtask, 1, RTSITF_GET_SIGNATURE(0x15C18ACA, 0xF8047447), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_sysmcbdcount
-	#define EXT_sysmcbdcount
-	#define GET_sysmcbdcount(fl)  CAL_CMGETAPI( "sysmcbdcount" ) 
-	#define CAL_sysmcbdcount  sysmcbdcount
-	#define CHK_sysmcbdcount  TRUE
-	#define EXP_sysmcbdcount  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdcount", (RTS_UINTPTR)sysmcbdcount, 1, RTSITF_GET_SIGNATURE(0xA5E90785, 0x52EBF69E), 0x03050B00) 
+	#define USE_sysmcbindtask
+	#define EXT_sysmcbindtask
+	#define GET_sysmcbindtask(fl)  CAL_CMGETAPI( "sysmcbindtask" ) 
+	#define CAL_sysmcbindtask  sysmcbindtask
+	#define CHK_sysmcbindtask  TRUE
+	#define EXP_sysmcbindtask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbindtask", (RTS_UINTPTR)sysmcbindtask, 1, RTSITF_GET_SIGNATURE(0x15C18ACA, 0xF8047447), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoresysmcbdcount
-	#define EXT_SysCpuMultiCoresysmcbdcount
-	#define GET_SysCpuMultiCoresysmcbdcount  ERR_OK
-	#define CAL_SysCpuMultiCoresysmcbdcount  sysmcbdcount
-	#define CHK_SysCpuMultiCoresysmcbdcount  TRUE
-	#define EXP_SysCpuMultiCoresysmcbdcount  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdcount", (RTS_UINTPTR)sysmcbdcount, 1, RTSITF_GET_SIGNATURE(0xA5E90785, 0x52EBF69E), 0x03050B00) 
+	#define USE_SysCpuMultiCoresysmcbindtask
+	#define EXT_SysCpuMultiCoresysmcbindtask
+	#define GET_SysCpuMultiCoresysmcbindtask  ERR_OK
+	#define CAL_SysCpuMultiCoresysmcbindtask  sysmcbindtask
+	#define CHK_SysCpuMultiCoresysmcbindtask  TRUE
+	#define EXP_SysCpuMultiCoresysmcbindtask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbindtask", (RTS_UINTPTR)sysmcbindtask, 1, RTSITF_GET_SIGNATURE(0x15C18ACA, 0xF8047447), 0x03050800) 
 #elif defined(CPLUSPLUS)
-	#define USE_sysmcbdcount
-	#define EXT_sysmcbdcount
-	#define GET_sysmcbdcount(fl)  CAL_CMGETAPI( "sysmcbdcount" ) 
-	#define CAL_sysmcbdcount  sysmcbdcount
-	#define CHK_sysmcbdcount  TRUE
-	#define EXP_sysmcbdcount  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdcount", (RTS_UINTPTR)sysmcbdcount, 1, RTSITF_GET_SIGNATURE(0xA5E90785, 0x52EBF69E), 0x03050B00) 
+	#define USE_sysmcbindtask
+	#define EXT_sysmcbindtask
+	#define GET_sysmcbindtask(fl)  CAL_CMGETAPI( "sysmcbindtask" ) 
+	#define CAL_sysmcbindtask  sysmcbindtask
+	#define CHK_sysmcbindtask  TRUE
+	#define EXP_sysmcbindtask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbindtask", (RTS_UINTPTR)sysmcbindtask, 1, RTSITF_GET_SIGNATURE(0x15C18ACA, 0xF8047447), 0x03050800) 
 #else /* DYNAMIC_LINK */
-	#define USE_sysmcbdcount  PFSYSMCBDCOUNT_IEC pfsysmcbdcount;
-	#define EXT_sysmcbdcount  extern PFSYSMCBDCOUNT_IEC pfsysmcbdcount;
-	#define GET_sysmcbdcount(fl)  s_pfCMGetAPI2( "sysmcbdcount", (RTS_VOID_FCTPTR *)&pfsysmcbdcount, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0xA5E90785, 0x52EBF69E), 0x03050B00)
-	#define CAL_sysmcbdcount  pfsysmcbdcount
-	#define CHK_sysmcbdcount  (pfsysmcbdcount != NULL)
-	#define EXP_sysmcbdcount   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdcount", (RTS_UINTPTR)sysmcbdcount, 1, RTSITF_GET_SIGNATURE(0xA5E90785, 0x52EBF69E), 0x03050B00) 
+	#define USE_sysmcbindtask  PFSYSMCBINDTASK_IEC pfsysmcbindtask;
+	#define EXT_sysmcbindtask  extern PFSYSMCBINDTASK_IEC pfsysmcbindtask;
+	#define GET_sysmcbindtask(fl)  s_pfCMGetAPI2( "sysmcbindtask", (RTS_VOID_FCTPTR *)&pfsysmcbindtask, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x15C18ACA, 0xF8047447), 0x03050800)
+	#define CAL_sysmcbindtask  pfsysmcbindtask
+	#define CHK_sysmcbindtask  (pfsysmcbindtask != NULL)
+	#define EXP_sysmcbindtask   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbindtask", (RTS_UINTPTR)sysmcbindtask, 1, RTSITF_GET_SIGNATURE(0x15C18ACA, 0xF8047447), 0x03050800) 
 #endif
 
 
 /**
- * <description>sysmcbdfree</description>
+ *Function to remove a dedicated core from the management of the runtime system.
+ *This core will not be used by the runtime and is therefore exclusively available for other applications.
  */
-typedef struct tagsysmcbdfree_struct
+typedef struct tagsysmcdisablecore_struct
 {
-	CpuCoreBindingDesc *pBindingDesc;	/* VAR_INPUT */	
-	RTS_IEC_RESULT SysMCBDFree;			/* VAR_OUTPUT */	
-} sysmcbdfree_struct;
+	RTS_IEC_XWORD nCoreIdx;				/* VAR_INPUT */	/* Platform dependent identifier (index) of the core to remove. */
+	RTS_IEC_RESULT SysMCDisableCore;	/* VAR_OUTPUT */	
+} sysmcdisablecore_struct;
 
-void CDECL CDECL_EXT sysmcbdfree(sysmcbdfree_struct *p);
-typedef void (CDECL CDECL_EXT* PFSYSMCBDFREE_IEC) (sysmcbdfree_struct *p);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDFREE_NOTIMPLEMENTED)
-	#define USE_sysmcbdfree
-	#define EXT_sysmcbdfree
-	#define GET_sysmcbdfree(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_sysmcbdfree(p0) 
-	#define CHK_sysmcbdfree  FALSE
-	#define EXP_sysmcbdfree  ERR_OK
+void CDECL CDECL_EXT sysmcdisablecore(sysmcdisablecore_struct *p);
+typedef void (CDECL CDECL_EXT* PFSYSMCDISABLECORE_IEC) (sysmcdisablecore_struct *p);
+#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCDISABLECORE_NOTIMPLEMENTED)
+	#define USE_sysmcdisablecore
+	#define EXT_sysmcdisablecore
+	#define GET_sysmcdisablecore(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_sysmcdisablecore(p0) 
+	#define CHK_sysmcdisablecore  FALSE
+	#define EXP_sysmcdisablecore  ERR_OK
 #elif defined(STATIC_LINK)
-	#define USE_sysmcbdfree
-	#define EXT_sysmcbdfree
-	#define GET_sysmcbdfree(fl)  CAL_CMGETAPI( "sysmcbdfree" ) 
-	#define CAL_sysmcbdfree  sysmcbdfree
-	#define CHK_sysmcbdfree  TRUE
-	#define EXP_sysmcbdfree  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdfree", (RTS_UINTPTR)sysmcbdfree, 1, RTSITF_GET_SIGNATURE(0x2D152790, 0x4E99D982), 0x03050B00) 
+	#define USE_sysmcdisablecore
+	#define EXT_sysmcdisablecore
+	#define GET_sysmcdisablecore(fl)  CAL_CMGETAPI( "sysmcdisablecore" ) 
+	#define CAL_sysmcdisablecore  sysmcdisablecore
+	#define CHK_sysmcdisablecore  TRUE
+	#define EXP_sysmcdisablecore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcdisablecore", (RTS_UINTPTR)sysmcdisablecore, 1, RTSITF_GET_SIGNATURE(0x48575919, 0xD40C62F8), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_sysmcbdfree
-	#define EXT_sysmcbdfree
-	#define GET_sysmcbdfree(fl)  CAL_CMGETAPI( "sysmcbdfree" ) 
-	#define CAL_sysmcbdfree  sysmcbdfree
-	#define CHK_sysmcbdfree  TRUE
-	#define EXP_sysmcbdfree  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdfree", (RTS_UINTPTR)sysmcbdfree, 1, RTSITF_GET_SIGNATURE(0x2D152790, 0x4E99D982), 0x03050B00) 
+	#define USE_sysmcdisablecore
+	#define EXT_sysmcdisablecore
+	#define GET_sysmcdisablecore(fl)  CAL_CMGETAPI( "sysmcdisablecore" ) 
+	#define CAL_sysmcdisablecore  sysmcdisablecore
+	#define CHK_sysmcdisablecore  TRUE
+	#define EXP_sysmcdisablecore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcdisablecore", (RTS_UINTPTR)sysmcdisablecore, 1, RTSITF_GET_SIGNATURE(0x48575919, 0xD40C62F8), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoresysmcbdfree
-	#define EXT_SysCpuMultiCoresysmcbdfree
-	#define GET_SysCpuMultiCoresysmcbdfree  ERR_OK
-	#define CAL_SysCpuMultiCoresysmcbdfree  sysmcbdfree
-	#define CHK_SysCpuMultiCoresysmcbdfree  TRUE
-	#define EXP_SysCpuMultiCoresysmcbdfree  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdfree", (RTS_UINTPTR)sysmcbdfree, 1, RTSITF_GET_SIGNATURE(0x2D152790, 0x4E99D982), 0x03050B00) 
+	#define USE_SysCpuMultiCoresysmcdisablecore
+	#define EXT_SysCpuMultiCoresysmcdisablecore
+	#define GET_SysCpuMultiCoresysmcdisablecore  ERR_OK
+	#define CAL_SysCpuMultiCoresysmcdisablecore  sysmcdisablecore
+	#define CHK_SysCpuMultiCoresysmcdisablecore  TRUE
+	#define EXP_SysCpuMultiCoresysmcdisablecore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcdisablecore", (RTS_UINTPTR)sysmcdisablecore, 1, RTSITF_GET_SIGNATURE(0x48575919, 0xD40C62F8), 0x03050800) 
 #elif defined(CPLUSPLUS)
-	#define USE_sysmcbdfree
-	#define EXT_sysmcbdfree
-	#define GET_sysmcbdfree(fl)  CAL_CMGETAPI( "sysmcbdfree" ) 
-	#define CAL_sysmcbdfree  sysmcbdfree
-	#define CHK_sysmcbdfree  TRUE
-	#define EXP_sysmcbdfree  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdfree", (RTS_UINTPTR)sysmcbdfree, 1, RTSITF_GET_SIGNATURE(0x2D152790, 0x4E99D982), 0x03050B00) 
+	#define USE_sysmcdisablecore
+	#define EXT_sysmcdisablecore
+	#define GET_sysmcdisablecore(fl)  CAL_CMGETAPI( "sysmcdisablecore" ) 
+	#define CAL_sysmcdisablecore  sysmcdisablecore
+	#define CHK_sysmcdisablecore  TRUE
+	#define EXP_sysmcdisablecore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcdisablecore", (RTS_UINTPTR)sysmcdisablecore, 1, RTSITF_GET_SIGNATURE(0x48575919, 0xD40C62F8), 0x03050800) 
 #else /* DYNAMIC_LINK */
-	#define USE_sysmcbdfree  PFSYSMCBDFREE_IEC pfsysmcbdfree;
-	#define EXT_sysmcbdfree  extern PFSYSMCBDFREE_IEC pfsysmcbdfree;
-	#define GET_sysmcbdfree(fl)  s_pfCMGetAPI2( "sysmcbdfree", (RTS_VOID_FCTPTR *)&pfsysmcbdfree, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x2D152790, 0x4E99D982), 0x03050B00)
-	#define CAL_sysmcbdfree  pfsysmcbdfree
-	#define CHK_sysmcbdfree  (pfsysmcbdfree != NULL)
-	#define EXP_sysmcbdfree   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdfree", (RTS_UINTPTR)sysmcbdfree, 1, RTSITF_GET_SIGNATURE(0x2D152790, 0x4E99D982), 0x03050B00) 
+	#define USE_sysmcdisablecore  PFSYSMCDISABLECORE_IEC pfsysmcdisablecore;
+	#define EXT_sysmcdisablecore  extern PFSYSMCDISABLECORE_IEC pfsysmcdisablecore;
+	#define GET_sysmcdisablecore(fl)  s_pfCMGetAPI2( "sysmcdisablecore", (RTS_VOID_FCTPTR *)&pfsysmcdisablecore, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x48575919, 0xD40C62F8), 0x03050800)
+	#define CAL_sysmcdisablecore  pfsysmcdisablecore
+	#define CHK_sysmcdisablecore  (pfsysmcdisablecore != NULL)
+	#define EXP_sysmcdisablecore   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcdisablecore", (RTS_UINTPTR)sysmcdisablecore, 1, RTSITF_GET_SIGNATURE(0x48575919, 0xD40C62F8), 0x03050800) 
 #endif
 
 
 /**
- * <description>sysmcbdgetfirstid</description>
+ *Function to add a formerlay removed dedicated core back to the management of the runtime system.
  */
-typedef struct tagsysmcbdgetfirstid_struct
+typedef struct tagsysmcenablecore_struct
 {
-	CpuCoreBindingDesc *pBindingDesc;	/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RTS_IEC_UDINT SysMCBDGetFirstID;	/* VAR_OUTPUT */	
-} sysmcbdgetfirstid_struct;
+	RTS_IEC_XWORD nCoreIdx;				/* VAR_INPUT */	/* Platform dependent identifier (index) of the core. */
+	RTS_IEC_RESULT SysMCEnableCore;		/* VAR_OUTPUT */	
+} sysmcenablecore_struct;
 
-void CDECL CDECL_EXT sysmcbdgetfirstid(sysmcbdgetfirstid_struct *p);
-typedef void (CDECL CDECL_EXT* PFSYSMCBDGETFIRSTID_IEC) (sysmcbdgetfirstid_struct *p);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDGETFIRSTID_NOTIMPLEMENTED)
-	#define USE_sysmcbdgetfirstid
-	#define EXT_sysmcbdgetfirstid
-	#define GET_sysmcbdgetfirstid(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_sysmcbdgetfirstid(p0) 
-	#define CHK_sysmcbdgetfirstid  FALSE
-	#define EXP_sysmcbdgetfirstid  ERR_OK
+void CDECL CDECL_EXT sysmcenablecore(sysmcenablecore_struct *p);
+typedef void (CDECL CDECL_EXT* PFSYSMCENABLECORE_IEC) (sysmcenablecore_struct *p);
+#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCENABLECORE_NOTIMPLEMENTED)
+	#define USE_sysmcenablecore
+	#define EXT_sysmcenablecore
+	#define GET_sysmcenablecore(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_sysmcenablecore(p0) 
+	#define CHK_sysmcenablecore  FALSE
+	#define EXP_sysmcenablecore  ERR_OK
 #elif defined(STATIC_LINK)
-	#define USE_sysmcbdgetfirstid
-	#define EXT_sysmcbdgetfirstid
-	#define GET_sysmcbdgetfirstid(fl)  CAL_CMGETAPI( "sysmcbdgetfirstid" ) 
-	#define CAL_sysmcbdgetfirstid  sysmcbdgetfirstid
-	#define CHK_sysmcbdgetfirstid  TRUE
-	#define EXP_sysmcbdgetfirstid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdgetfirstid", (RTS_UINTPTR)sysmcbdgetfirstid, 1, RTSITF_GET_SIGNATURE(0x0413C991, 0xF3084CC6), 0x03050B00) 
+	#define USE_sysmcenablecore
+	#define EXT_sysmcenablecore
+	#define GET_sysmcenablecore(fl)  CAL_CMGETAPI( "sysmcenablecore" ) 
+	#define CAL_sysmcenablecore  sysmcenablecore
+	#define CHK_sysmcenablecore  TRUE
+	#define EXP_sysmcenablecore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcenablecore", (RTS_UINTPTR)sysmcenablecore, 1, RTSITF_GET_SIGNATURE(0xD975D612, 0x2F1B61C0), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_sysmcbdgetfirstid
-	#define EXT_sysmcbdgetfirstid
-	#define GET_sysmcbdgetfirstid(fl)  CAL_CMGETAPI( "sysmcbdgetfirstid" ) 
-	#define CAL_sysmcbdgetfirstid  sysmcbdgetfirstid
-	#define CHK_sysmcbdgetfirstid  TRUE
-	#define EXP_sysmcbdgetfirstid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdgetfirstid", (RTS_UINTPTR)sysmcbdgetfirstid, 1, RTSITF_GET_SIGNATURE(0x0413C991, 0xF3084CC6), 0x03050B00) 
+	#define USE_sysmcenablecore
+	#define EXT_sysmcenablecore
+	#define GET_sysmcenablecore(fl)  CAL_CMGETAPI( "sysmcenablecore" ) 
+	#define CAL_sysmcenablecore  sysmcenablecore
+	#define CHK_sysmcenablecore  TRUE
+	#define EXP_sysmcenablecore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcenablecore", (RTS_UINTPTR)sysmcenablecore, 1, RTSITF_GET_SIGNATURE(0xD975D612, 0x2F1B61C0), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoresysmcbdgetfirstid
-	#define EXT_SysCpuMultiCoresysmcbdgetfirstid
-	#define GET_SysCpuMultiCoresysmcbdgetfirstid  ERR_OK
-	#define CAL_SysCpuMultiCoresysmcbdgetfirstid  sysmcbdgetfirstid
-	#define CHK_SysCpuMultiCoresysmcbdgetfirstid  TRUE
-	#define EXP_SysCpuMultiCoresysmcbdgetfirstid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdgetfirstid", (RTS_UINTPTR)sysmcbdgetfirstid, 1, RTSITF_GET_SIGNATURE(0x0413C991, 0xF3084CC6), 0x03050B00) 
+	#define USE_SysCpuMultiCoresysmcenablecore
+	#define EXT_SysCpuMultiCoresysmcenablecore
+	#define GET_SysCpuMultiCoresysmcenablecore  ERR_OK
+	#define CAL_SysCpuMultiCoresysmcenablecore  sysmcenablecore
+	#define CHK_SysCpuMultiCoresysmcenablecore  TRUE
+	#define EXP_SysCpuMultiCoresysmcenablecore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcenablecore", (RTS_UINTPTR)sysmcenablecore, 1, RTSITF_GET_SIGNATURE(0xD975D612, 0x2F1B61C0), 0x03050800) 
 #elif defined(CPLUSPLUS)
-	#define USE_sysmcbdgetfirstid
-	#define EXT_sysmcbdgetfirstid
-	#define GET_sysmcbdgetfirstid(fl)  CAL_CMGETAPI( "sysmcbdgetfirstid" ) 
-	#define CAL_sysmcbdgetfirstid  sysmcbdgetfirstid
-	#define CHK_sysmcbdgetfirstid  TRUE
-	#define EXP_sysmcbdgetfirstid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdgetfirstid", (RTS_UINTPTR)sysmcbdgetfirstid, 1, RTSITF_GET_SIGNATURE(0x0413C991, 0xF3084CC6), 0x03050B00) 
+	#define USE_sysmcenablecore
+	#define EXT_sysmcenablecore
+	#define GET_sysmcenablecore(fl)  CAL_CMGETAPI( "sysmcenablecore" ) 
+	#define CAL_sysmcenablecore  sysmcenablecore
+	#define CHK_sysmcenablecore  TRUE
+	#define EXP_sysmcenablecore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcenablecore", (RTS_UINTPTR)sysmcenablecore, 1, RTSITF_GET_SIGNATURE(0xD975D612, 0x2F1B61C0), 0x03050800) 
 #else /* DYNAMIC_LINK */
-	#define USE_sysmcbdgetfirstid  PFSYSMCBDGETFIRSTID_IEC pfsysmcbdgetfirstid;
-	#define EXT_sysmcbdgetfirstid  extern PFSYSMCBDGETFIRSTID_IEC pfsysmcbdgetfirstid;
-	#define GET_sysmcbdgetfirstid(fl)  s_pfCMGetAPI2( "sysmcbdgetfirstid", (RTS_VOID_FCTPTR *)&pfsysmcbdgetfirstid, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x0413C991, 0xF3084CC6), 0x03050B00)
-	#define CAL_sysmcbdgetfirstid  pfsysmcbdgetfirstid
-	#define CHK_sysmcbdgetfirstid  (pfsysmcbdgetfirstid != NULL)
-	#define EXP_sysmcbdgetfirstid   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdgetfirstid", (RTS_UINTPTR)sysmcbdgetfirstid, 1, RTSITF_GET_SIGNATURE(0x0413C991, 0xF3084CC6), 0x03050B00) 
-#endif
-
-
-/**
- * <description>sysmcbdgetnextid</description>
- */
-typedef struct tagsysmcbdgetnextid_struct
-{
-	CpuCoreBindingDesc *pBindingDesc;	/* VAR_INPUT */	
-	RTS_IEC_UDINT uPrevCoreID;			/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RTS_IEC_UDINT SysMCBDGetNextID;		/* VAR_OUTPUT */	
-} sysmcbdgetnextid_struct;
-
-void CDECL CDECL_EXT sysmcbdgetnextid(sysmcbdgetnextid_struct *p);
-typedef void (CDECL CDECL_EXT* PFSYSMCBDGETNEXTID_IEC) (sysmcbdgetnextid_struct *p);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDGETNEXTID_NOTIMPLEMENTED)
-	#define USE_sysmcbdgetnextid
-	#define EXT_sysmcbdgetnextid
-	#define GET_sysmcbdgetnextid(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_sysmcbdgetnextid(p0) 
-	#define CHK_sysmcbdgetnextid  FALSE
-	#define EXP_sysmcbdgetnextid  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_sysmcbdgetnextid
-	#define EXT_sysmcbdgetnextid
-	#define GET_sysmcbdgetnextid(fl)  CAL_CMGETAPI( "sysmcbdgetnextid" ) 
-	#define CAL_sysmcbdgetnextid  sysmcbdgetnextid
-	#define CHK_sysmcbdgetnextid  TRUE
-	#define EXP_sysmcbdgetnextid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdgetnextid", (RTS_UINTPTR)sysmcbdgetnextid, 1, RTSITF_GET_SIGNATURE(0xDC0570FA, 0xB42D3BDD), 0x03050B00) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_sysmcbdgetnextid
-	#define EXT_sysmcbdgetnextid
-	#define GET_sysmcbdgetnextid(fl)  CAL_CMGETAPI( "sysmcbdgetnextid" ) 
-	#define CAL_sysmcbdgetnextid  sysmcbdgetnextid
-	#define CHK_sysmcbdgetnextid  TRUE
-	#define EXP_sysmcbdgetnextid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdgetnextid", (RTS_UINTPTR)sysmcbdgetnextid, 1, RTSITF_GET_SIGNATURE(0xDC0570FA, 0xB42D3BDD), 0x03050B00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoresysmcbdgetnextid
-	#define EXT_SysCpuMultiCoresysmcbdgetnextid
-	#define GET_SysCpuMultiCoresysmcbdgetnextid  ERR_OK
-	#define CAL_SysCpuMultiCoresysmcbdgetnextid  sysmcbdgetnextid
-	#define CHK_SysCpuMultiCoresysmcbdgetnextid  TRUE
-	#define EXP_SysCpuMultiCoresysmcbdgetnextid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdgetnextid", (RTS_UINTPTR)sysmcbdgetnextid, 1, RTSITF_GET_SIGNATURE(0xDC0570FA, 0xB42D3BDD), 0x03050B00) 
-#elif defined(CPLUSPLUS)
-	#define USE_sysmcbdgetnextid
-	#define EXT_sysmcbdgetnextid
-	#define GET_sysmcbdgetnextid(fl)  CAL_CMGETAPI( "sysmcbdgetnextid" ) 
-	#define CAL_sysmcbdgetnextid  sysmcbdgetnextid
-	#define CHK_sysmcbdgetnextid  TRUE
-	#define EXP_sysmcbdgetnextid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdgetnextid", (RTS_UINTPTR)sysmcbdgetnextid, 1, RTSITF_GET_SIGNATURE(0xDC0570FA, 0xB42D3BDD), 0x03050B00) 
-#else /* DYNAMIC_LINK */
-	#define USE_sysmcbdgetnextid  PFSYSMCBDGETNEXTID_IEC pfsysmcbdgetnextid;
-	#define EXT_sysmcbdgetnextid  extern PFSYSMCBDGETNEXTID_IEC pfsysmcbdgetnextid;
-	#define GET_sysmcbdgetnextid(fl)  s_pfCMGetAPI2( "sysmcbdgetnextid", (RTS_VOID_FCTPTR *)&pfsysmcbdgetnextid, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0xDC0570FA, 0xB42D3BDD), 0x03050B00)
-	#define CAL_sysmcbdgetnextid  pfsysmcbdgetnextid
-	#define CHK_sysmcbdgetnextid  (pfsysmcbdgetnextid != NULL)
-	#define EXP_sysmcbdgetnextid   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdgetnextid", (RTS_UINTPTR)sysmcbdgetnextid, 1, RTSITF_GET_SIGNATURE(0xDC0570FA, 0xB42D3BDD), 0x03050B00) 
-#endif
-
-
-/**
- * <description>sysmcbdisset</description>
- */
-typedef struct tagsysmcbdisset_struct
-{
-	CpuCoreBindingDesc *pBindingDesc;	/* VAR_INPUT */	
-	RTS_IEC_UDINT uCoreId;				/* VAR_INPUT */	
-	RTS_IEC_RESULT SysMCBDIsSet;		/* VAR_OUTPUT */	
-} sysmcbdisset_struct;
-
-void CDECL CDECL_EXT sysmcbdisset(sysmcbdisset_struct *p);
-typedef void (CDECL CDECL_EXT* PFSYSMCBDISSET_IEC) (sysmcbdisset_struct *p);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDISSET_NOTIMPLEMENTED)
-	#define USE_sysmcbdisset
-	#define EXT_sysmcbdisset
-	#define GET_sysmcbdisset(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_sysmcbdisset(p0) 
-	#define CHK_sysmcbdisset  FALSE
-	#define EXP_sysmcbdisset  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_sysmcbdisset
-	#define EXT_sysmcbdisset
-	#define GET_sysmcbdisset(fl)  CAL_CMGETAPI( "sysmcbdisset" ) 
-	#define CAL_sysmcbdisset  sysmcbdisset
-	#define CHK_sysmcbdisset  TRUE
-	#define EXP_sysmcbdisset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdisset", (RTS_UINTPTR)sysmcbdisset, 1, RTSITF_GET_SIGNATURE(0x54BC1578, 0xA3BEE463), 0x03050B00) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_sysmcbdisset
-	#define EXT_sysmcbdisset
-	#define GET_sysmcbdisset(fl)  CAL_CMGETAPI( "sysmcbdisset" ) 
-	#define CAL_sysmcbdisset  sysmcbdisset
-	#define CHK_sysmcbdisset  TRUE
-	#define EXP_sysmcbdisset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdisset", (RTS_UINTPTR)sysmcbdisset, 1, RTSITF_GET_SIGNATURE(0x54BC1578, 0xA3BEE463), 0x03050B00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoresysmcbdisset
-	#define EXT_SysCpuMultiCoresysmcbdisset
-	#define GET_SysCpuMultiCoresysmcbdisset  ERR_OK
-	#define CAL_SysCpuMultiCoresysmcbdisset  sysmcbdisset
-	#define CHK_SysCpuMultiCoresysmcbdisset  TRUE
-	#define EXP_SysCpuMultiCoresysmcbdisset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdisset", (RTS_UINTPTR)sysmcbdisset, 1, RTSITF_GET_SIGNATURE(0x54BC1578, 0xA3BEE463), 0x03050B00) 
-#elif defined(CPLUSPLUS)
-	#define USE_sysmcbdisset
-	#define EXT_sysmcbdisset
-	#define GET_sysmcbdisset(fl)  CAL_CMGETAPI( "sysmcbdisset" ) 
-	#define CAL_sysmcbdisset  sysmcbdisset
-	#define CHK_sysmcbdisset  TRUE
-	#define EXP_sysmcbdisset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdisset", (RTS_UINTPTR)sysmcbdisset, 1, RTSITF_GET_SIGNATURE(0x54BC1578, 0xA3BEE463), 0x03050B00) 
-#else /* DYNAMIC_LINK */
-	#define USE_sysmcbdisset  PFSYSMCBDISSET_IEC pfsysmcbdisset;
-	#define EXT_sysmcbdisset  extern PFSYSMCBDISSET_IEC pfsysmcbdisset;
-	#define GET_sysmcbdisset(fl)  s_pfCMGetAPI2( "sysmcbdisset", (RTS_VOID_FCTPTR *)&pfsysmcbdisset, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x54BC1578, 0xA3BEE463), 0x03050B00)
-	#define CAL_sysmcbdisset  pfsysmcbdisset
-	#define CHK_sysmcbdisset  (pfsysmcbdisset != NULL)
-	#define EXP_sysmcbdisset   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcbdisset", (RTS_UINTPTR)sysmcbdisset, 1, RTSITF_GET_SIGNATURE(0x54BC1578, 0xA3BEE463), 0x03050B00) 
+	#define USE_sysmcenablecore  PFSYSMCENABLECORE_IEC pfsysmcenablecore;
+	#define EXT_sysmcenablecore  extern PFSYSMCENABLECORE_IEC pfsysmcenablecore;
+	#define GET_sysmcenablecore(fl)  s_pfCMGetAPI2( "sysmcenablecore", (RTS_VOID_FCTPTR *)&pfsysmcenablecore, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0xD975D612, 0x2F1B61C0), 0x03050800)
+	#define CAL_sysmcenablecore  pfsysmcenablecore
+	#define CHK_sysmcenablecore  (pfsysmcenablecore != NULL)
+	#define EXP_sysmcenablecore   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcenablecore", (RTS_UINTPTR)sysmcenablecore, 1, RTSITF_GET_SIGNATURE(0xD975D612, 0x2F1B61C0), 0x03050800) 
 #endif
 
 
@@ -593,7 +295,7 @@ typedef void (CDECL CDECL_EXT* PFSYSMCBDISSET_IEC) (sysmcbdisset_struct *p);
  */
 typedef struct tagsysmcgetload_struct
 {
-	RTS_IEC_UDINT CoreID;				/* VAR_INPUT */	
+	RTS_IEC_XWORD CoreID;				/* VAR_INPUT */	
 	RTS_IEC_BYTE *pPercent;				/* VAR_INPUT */	/* CPU-Core load in percent. */
 	RTS_IEC_RESULT SysMCGetLoad;		/* VAR_OUTPUT */	
 } sysmcgetload_struct;
@@ -613,35 +315,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMCGETLOAD_IEC) (sysmcgetload_struct *p);
 	#define GET_sysmcgetload(fl)  CAL_CMGETAPI( "sysmcgetload" ) 
 	#define CAL_sysmcgetload  sysmcgetload
 	#define CHK_sysmcgetload  TRUE
-	#define EXP_sysmcgetload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetload", (RTS_UINTPTR)sysmcgetload, 1, 0xEF6D21E5, 0x03050B00) 
+	#define EXP_sysmcgetload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetload", (RTS_UINTPTR)sysmcgetload, 1, RTSITF_GET_SIGNATURE(0x21F877E6, 0x7598BC7E), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
 	#define USE_sysmcgetload
 	#define EXT_sysmcgetload
 	#define GET_sysmcgetload(fl)  CAL_CMGETAPI( "sysmcgetload" ) 
 	#define CAL_sysmcgetload  sysmcgetload
 	#define CHK_sysmcgetload  TRUE
-	#define EXP_sysmcgetload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetload", (RTS_UINTPTR)sysmcgetload, 1, 0xEF6D21E5, 0x03050B00) 
+	#define EXP_sysmcgetload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetload", (RTS_UINTPTR)sysmcgetload, 1, RTSITF_GET_SIGNATURE(0x21F877E6, 0x7598BC7E), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysCpuMultiCoresysmcgetload
 	#define EXT_SysCpuMultiCoresysmcgetload
 	#define GET_SysCpuMultiCoresysmcgetload  ERR_OK
 	#define CAL_SysCpuMultiCoresysmcgetload  sysmcgetload
 	#define CHK_SysCpuMultiCoresysmcgetload  TRUE
-	#define EXP_SysCpuMultiCoresysmcgetload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetload", (RTS_UINTPTR)sysmcgetload, 1, 0xEF6D21E5, 0x03050B00) 
+	#define EXP_SysCpuMultiCoresysmcgetload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetload", (RTS_UINTPTR)sysmcgetload, 1, RTSITF_GET_SIGNATURE(0x21F877E6, 0x7598BC7E), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmcgetload
 	#define EXT_sysmcgetload
 	#define GET_sysmcgetload(fl)  CAL_CMGETAPI( "sysmcgetload" ) 
 	#define CAL_sysmcgetload  sysmcgetload
 	#define CHK_sysmcgetload  TRUE
-	#define EXP_sysmcgetload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetload", (RTS_UINTPTR)sysmcgetload, 1, 0xEF6D21E5, 0x03050B00) 
+	#define EXP_sysmcgetload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetload", (RTS_UINTPTR)sysmcgetload, 1, RTSITF_GET_SIGNATURE(0x21F877E6, 0x7598BC7E), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmcgetload  PFSYSMCGETLOAD_IEC pfsysmcgetload;
 	#define EXT_sysmcgetload  extern PFSYSMCGETLOAD_IEC pfsysmcgetload;
-	#define GET_sysmcgetload(fl)  s_pfCMGetAPI2( "sysmcgetload", (RTS_VOID_FCTPTR *)&pfsysmcgetload, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xEF6D21E5, 0x03050B00)
+	#define GET_sysmcgetload(fl)  s_pfCMGetAPI2( "sysmcgetload", (RTS_VOID_FCTPTR *)&pfsysmcgetload, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x21F877E6, 0x7598BC7E), 0x03050800)
 	#define CAL_sysmcgetload  pfsysmcgetload
 	#define CHK_sysmcgetload  (pfsysmcgetload != NULL)
-	#define EXP_sysmcgetload   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetload", (RTS_UINTPTR)sysmcgetload, 1, 0xEF6D21E5, 0x03050B00) 
+	#define EXP_sysmcgetload   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetload", (RTS_UINTPTR)sysmcgetload, 1, RTSITF_GET_SIGNATURE(0x21F877E6, 0x7598BC7E), 0x03050800) 
 #endif
 
 
@@ -651,7 +353,7 @@ typedef void (CDECL CDECL_EXT* PFSYSMCGETLOAD_IEC) (sysmcgetload_struct *p);
  */
 typedef struct tagsysmcgetnumofcores_struct
 {
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to retrieve optional error code. */
+	RTS_IEC_RESULT *Result;				/* VAR_INPUT */	/* Pointer to retrieve optional error code. */
 	RTS_IEC_DWORD SysMCGetNumOfCores;	/* VAR_OUTPUT */	
 } sysmcgetnumofcores_struct;
 
@@ -670,35 +372,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMCGETNUMOFCORES_IEC) (sysmcgetnumofcores_str
 	#define GET_sysmcgetnumofcores(fl)  CAL_CMGETAPI( "sysmcgetnumofcores" ) 
 	#define CAL_sysmcgetnumofcores  sysmcgetnumofcores
 	#define CHK_sysmcgetnumofcores  TRUE
-	#define EXP_sysmcgetnumofcores  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetnumofcores", (RTS_UINTPTR)sysmcgetnumofcores, 1, 0x9360E181, 0x03050B00) 
+	#define EXP_sysmcgetnumofcores  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetnumofcores", (RTS_UINTPTR)sysmcgetnumofcores, 1, 0xA3C2E550, 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
 	#define USE_sysmcgetnumofcores
 	#define EXT_sysmcgetnumofcores
 	#define GET_sysmcgetnumofcores(fl)  CAL_CMGETAPI( "sysmcgetnumofcores" ) 
 	#define CAL_sysmcgetnumofcores  sysmcgetnumofcores
 	#define CHK_sysmcgetnumofcores  TRUE
-	#define EXP_sysmcgetnumofcores  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetnumofcores", (RTS_UINTPTR)sysmcgetnumofcores, 1, 0x9360E181, 0x03050B00) 
+	#define EXP_sysmcgetnumofcores  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetnumofcores", (RTS_UINTPTR)sysmcgetnumofcores, 1, 0xA3C2E550, 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysCpuMultiCoresysmcgetnumofcores
 	#define EXT_SysCpuMultiCoresysmcgetnumofcores
 	#define GET_SysCpuMultiCoresysmcgetnumofcores  ERR_OK
 	#define CAL_SysCpuMultiCoresysmcgetnumofcores  sysmcgetnumofcores
 	#define CHK_SysCpuMultiCoresysmcgetnumofcores  TRUE
-	#define EXP_SysCpuMultiCoresysmcgetnumofcores  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetnumofcores", (RTS_UINTPTR)sysmcgetnumofcores, 1, 0x9360E181, 0x03050B00) 
+	#define EXP_SysCpuMultiCoresysmcgetnumofcores  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetnumofcores", (RTS_UINTPTR)sysmcgetnumofcores, 1, 0xA3C2E550, 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmcgetnumofcores
 	#define EXT_sysmcgetnumofcores
 	#define GET_sysmcgetnumofcores(fl)  CAL_CMGETAPI( "sysmcgetnumofcores" ) 
 	#define CAL_sysmcgetnumofcores  sysmcgetnumofcores
 	#define CHK_sysmcgetnumofcores  TRUE
-	#define EXP_sysmcgetnumofcores  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetnumofcores", (RTS_UINTPTR)sysmcgetnumofcores, 1, 0x9360E181, 0x03050B00) 
+	#define EXP_sysmcgetnumofcores  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetnumofcores", (RTS_UINTPTR)sysmcgetnumofcores, 1, 0xA3C2E550, 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmcgetnumofcores  PFSYSMCGETNUMOFCORES_IEC pfsysmcgetnumofcores;
 	#define EXT_sysmcgetnumofcores  extern PFSYSMCGETNUMOFCORES_IEC pfsysmcgetnumofcores;
-	#define GET_sysmcgetnumofcores(fl)  s_pfCMGetAPI2( "sysmcgetnumofcores", (RTS_VOID_FCTPTR *)&pfsysmcgetnumofcores, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x9360E181, 0x03050B00)
+	#define GET_sysmcgetnumofcores(fl)  s_pfCMGetAPI2( "sysmcgetnumofcores", (RTS_VOID_FCTPTR *)&pfsysmcgetnumofcores, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xA3C2E550, 0x03050800)
 	#define CAL_sysmcgetnumofcores  pfsysmcgetnumofcores
 	#define CHK_sysmcgetnumofcores  (pfsysmcgetnumofcores != NULL)
-	#define EXP_sysmcgetnumofcores   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetnumofcores", (RTS_UINTPTR)sysmcgetnumofcores, 1, 0x9360E181, 0x03050B00) 
+	#define EXP_sysmcgetnumofcores   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetnumofcores", (RTS_UINTPTR)sysmcgetnumofcores, 1, 0xA3C2E550, 0x03050800) 
 #endif
 
 
@@ -707,7 +409,7 @@ typedef void (CDECL CDECL_EXT* PFSYSMCGETNUMOFCORES_IEC) (sysmcgetnumofcores_str
  */
 typedef struct tagsysmcgetprocessbinding_struct
 {
-	RTS_IEC_HANDLE hProcess;			/* VAR_INPUT */	
+	RTS_IEC_HANDLE hProcess;				/* VAR_INPUT */	
 	CpuCoreBindingDesc *pBindingDesc;	/* VAR_INPUT */	
 	RTS_IEC_RESULT SysMCGetProcessBinding;	/* VAR_OUTPUT */	
 } sysmcgetprocessbinding_struct;
@@ -727,35 +429,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMCGETPROCESSBINDING_IEC) (sysmcgetprocessbin
 	#define GET_sysmcgetprocessbinding(fl)  CAL_CMGETAPI( "sysmcgetprocessbinding" ) 
 	#define CAL_sysmcgetprocessbinding  sysmcgetprocessbinding
 	#define CHK_sysmcgetprocessbinding  TRUE
-	#define EXP_sysmcgetprocessbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetprocessbinding", (RTS_UINTPTR)sysmcgetprocessbinding, 1, RTSITF_GET_SIGNATURE(0x630248E0, 0x2F2E120C), 0x03050B00) 
+	#define EXP_sysmcgetprocessbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetprocessbinding", (RTS_UINTPTR)sysmcgetprocessbinding, 1, RTSITF_GET_SIGNATURE(0x6877335F, 0x9C17E917), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
 	#define USE_sysmcgetprocessbinding
 	#define EXT_sysmcgetprocessbinding
 	#define GET_sysmcgetprocessbinding(fl)  CAL_CMGETAPI( "sysmcgetprocessbinding" ) 
 	#define CAL_sysmcgetprocessbinding  sysmcgetprocessbinding
 	#define CHK_sysmcgetprocessbinding  TRUE
-	#define EXP_sysmcgetprocessbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetprocessbinding", (RTS_UINTPTR)sysmcgetprocessbinding, 1, RTSITF_GET_SIGNATURE(0x630248E0, 0x2F2E120C), 0x03050B00) 
+	#define EXP_sysmcgetprocessbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetprocessbinding", (RTS_UINTPTR)sysmcgetprocessbinding, 1, RTSITF_GET_SIGNATURE(0x6877335F, 0x9C17E917), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysCpuMultiCoresysmcgetprocessbinding
 	#define EXT_SysCpuMultiCoresysmcgetprocessbinding
 	#define GET_SysCpuMultiCoresysmcgetprocessbinding  ERR_OK
 	#define CAL_SysCpuMultiCoresysmcgetprocessbinding  sysmcgetprocessbinding
 	#define CHK_SysCpuMultiCoresysmcgetprocessbinding  TRUE
-	#define EXP_SysCpuMultiCoresysmcgetprocessbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetprocessbinding", (RTS_UINTPTR)sysmcgetprocessbinding, 1, RTSITF_GET_SIGNATURE(0x630248E0, 0x2F2E120C), 0x03050B00) 
+	#define EXP_SysCpuMultiCoresysmcgetprocessbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetprocessbinding", (RTS_UINTPTR)sysmcgetprocessbinding, 1, RTSITF_GET_SIGNATURE(0x6877335F, 0x9C17E917), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmcgetprocessbinding
 	#define EXT_sysmcgetprocessbinding
 	#define GET_sysmcgetprocessbinding(fl)  CAL_CMGETAPI( "sysmcgetprocessbinding" ) 
 	#define CAL_sysmcgetprocessbinding  sysmcgetprocessbinding
 	#define CHK_sysmcgetprocessbinding  TRUE
-	#define EXP_sysmcgetprocessbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetprocessbinding", (RTS_UINTPTR)sysmcgetprocessbinding, 1, RTSITF_GET_SIGNATURE(0x630248E0, 0x2F2E120C), 0x03050B00) 
+	#define EXP_sysmcgetprocessbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetprocessbinding", (RTS_UINTPTR)sysmcgetprocessbinding, 1, RTSITF_GET_SIGNATURE(0x6877335F, 0x9C17E917), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmcgetprocessbinding  PFSYSMCGETPROCESSBINDING_IEC pfsysmcgetprocessbinding;
 	#define EXT_sysmcgetprocessbinding  extern PFSYSMCGETPROCESSBINDING_IEC pfsysmcgetprocessbinding;
-	#define GET_sysmcgetprocessbinding(fl)  s_pfCMGetAPI2( "sysmcgetprocessbinding", (RTS_VOID_FCTPTR *)&pfsysmcgetprocessbinding, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x630248E0, 0x2F2E120C), 0x03050B00)
+	#define GET_sysmcgetprocessbinding(fl)  s_pfCMGetAPI2( "sysmcgetprocessbinding", (RTS_VOID_FCTPTR *)&pfsysmcgetprocessbinding, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x6877335F, 0x9C17E917), 0x03050800)
 	#define CAL_sysmcgetprocessbinding  pfsysmcgetprocessbinding
 	#define CHK_sysmcgetprocessbinding  (pfsysmcgetprocessbinding != NULL)
-	#define EXP_sysmcgetprocessbinding   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetprocessbinding", (RTS_UINTPTR)sysmcgetprocessbinding, 1, RTSITF_GET_SIGNATURE(0x630248E0, 0x2F2E120C), 0x03050B00) 
+	#define EXP_sysmcgetprocessbinding   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgetprocessbinding", (RTS_UINTPTR)sysmcgetprocessbinding, 1, RTSITF_GET_SIGNATURE(0x6877335F, 0x9C17E917), 0x03050800) 
 #endif
 
 
@@ -784,35 +486,148 @@ typedef void (CDECL CDECL_EXT* PFSYSMCGETTASKBINDING_IEC) (sysmcgettaskbinding_s
 	#define GET_sysmcgettaskbinding(fl)  CAL_CMGETAPI( "sysmcgettaskbinding" ) 
 	#define CAL_sysmcgettaskbinding  sysmcgettaskbinding
 	#define CHK_sysmcgettaskbinding  TRUE
-	#define EXP_sysmcgettaskbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgettaskbinding", (RTS_UINTPTR)sysmcgettaskbinding, 1, RTSITF_GET_SIGNATURE(0x4571B9EE, 0x2D12BDE0), 0x03050B00) 
+	#define EXP_sysmcgettaskbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgettaskbinding", (RTS_UINTPTR)sysmcgettaskbinding, 1, RTSITF_GET_SIGNATURE(0xF701342B, 0x0023E80A), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
 	#define USE_sysmcgettaskbinding
 	#define EXT_sysmcgettaskbinding
 	#define GET_sysmcgettaskbinding(fl)  CAL_CMGETAPI( "sysmcgettaskbinding" ) 
 	#define CAL_sysmcgettaskbinding  sysmcgettaskbinding
 	#define CHK_sysmcgettaskbinding  TRUE
-	#define EXP_sysmcgettaskbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgettaskbinding", (RTS_UINTPTR)sysmcgettaskbinding, 1, RTSITF_GET_SIGNATURE(0x4571B9EE, 0x2D12BDE0), 0x03050B00) 
+	#define EXP_sysmcgettaskbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgettaskbinding", (RTS_UINTPTR)sysmcgettaskbinding, 1, RTSITF_GET_SIGNATURE(0xF701342B, 0x0023E80A), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysCpuMultiCoresysmcgettaskbinding
 	#define EXT_SysCpuMultiCoresysmcgettaskbinding
 	#define GET_SysCpuMultiCoresysmcgettaskbinding  ERR_OK
 	#define CAL_SysCpuMultiCoresysmcgettaskbinding  sysmcgettaskbinding
 	#define CHK_SysCpuMultiCoresysmcgettaskbinding  TRUE
-	#define EXP_SysCpuMultiCoresysmcgettaskbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgettaskbinding", (RTS_UINTPTR)sysmcgettaskbinding, 1, RTSITF_GET_SIGNATURE(0x4571B9EE, 0x2D12BDE0), 0x03050B00) 
+	#define EXP_SysCpuMultiCoresysmcgettaskbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgettaskbinding", (RTS_UINTPTR)sysmcgettaskbinding, 1, RTSITF_GET_SIGNATURE(0xF701342B, 0x0023E80A), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmcgettaskbinding
 	#define EXT_sysmcgettaskbinding
 	#define GET_sysmcgettaskbinding(fl)  CAL_CMGETAPI( "sysmcgettaskbinding" ) 
 	#define CAL_sysmcgettaskbinding  sysmcgettaskbinding
 	#define CHK_sysmcgettaskbinding  TRUE
-	#define EXP_sysmcgettaskbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgettaskbinding", (RTS_UINTPTR)sysmcgettaskbinding, 1, RTSITF_GET_SIGNATURE(0x4571B9EE, 0x2D12BDE0), 0x03050B00) 
+	#define EXP_sysmcgettaskbinding  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgettaskbinding", (RTS_UINTPTR)sysmcgettaskbinding, 1, RTSITF_GET_SIGNATURE(0xF701342B, 0x0023E80A), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmcgettaskbinding  PFSYSMCGETTASKBINDING_IEC pfsysmcgettaskbinding;
 	#define EXT_sysmcgettaskbinding  extern PFSYSMCGETTASKBINDING_IEC pfsysmcgettaskbinding;
-	#define GET_sysmcgettaskbinding(fl)  s_pfCMGetAPI2( "sysmcgettaskbinding", (RTS_VOID_FCTPTR *)&pfsysmcgettaskbinding, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x4571B9EE, 0x2D12BDE0), 0x03050B00)
+	#define GET_sysmcgettaskbinding(fl)  s_pfCMGetAPI2( "sysmcgettaskbinding", (RTS_VOID_FCTPTR *)&pfsysmcgettaskbinding, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0xF701342B, 0x0023E80A), 0x03050800)
 	#define CAL_sysmcgettaskbinding  pfsysmcgettaskbinding
 	#define CHK_sysmcgettaskbinding  (pfsysmcgettaskbinding != NULL)
-	#define EXP_sysmcgettaskbinding   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgettaskbinding", (RTS_UINTPTR)sysmcgettaskbinding, 1, RTSITF_GET_SIGNATURE(0x4571B9EE, 0x2D12BDE0), 0x03050B00) 
+	#define EXP_sysmcgettaskbinding   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcgettaskbinding", (RTS_UINTPTR)sysmcgettaskbinding, 1, RTSITF_GET_SIGNATURE(0xF701342B, 0x0023E80A), 0x03050800) 
+#endif
+
+
+/**
+ *Function to remove the core binding of a process.
+ * 
+ */
+typedef struct tagsysmcunbindprocess_struct
+{
+	RTS_IEC_HANDLE hProcess;			/* VAR_INPUT */	
+	RTS_IEC_RESULT SysMCUnbindProcess;	/* VAR_OUTPUT */	
+} sysmcunbindprocess_struct;
+
+void CDECL CDECL_EXT sysmcunbindprocess(sysmcunbindprocess_struct *p);
+typedef void (CDECL CDECL_EXT* PFSYSMCUNBINDPROCESS_IEC) (sysmcunbindprocess_struct *p);
+#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCUNBINDPROCESS_NOTIMPLEMENTED)
+	#define USE_sysmcunbindprocess
+	#define EXT_sysmcunbindprocess
+	#define GET_sysmcunbindprocess(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_sysmcunbindprocess(p0) 
+	#define CHK_sysmcunbindprocess  FALSE
+	#define EXP_sysmcunbindprocess  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_sysmcunbindprocess
+	#define EXT_sysmcunbindprocess
+	#define GET_sysmcunbindprocess(fl)  CAL_CMGETAPI( "sysmcunbindprocess" ) 
+	#define CAL_sysmcunbindprocess  sysmcunbindprocess
+	#define CHK_sysmcunbindprocess  TRUE
+	#define EXP_sysmcunbindprocess  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcunbindprocess", (RTS_UINTPTR)sysmcunbindprocess, 1, 0x91976CA3, 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
+	#define USE_sysmcunbindprocess
+	#define EXT_sysmcunbindprocess
+	#define GET_sysmcunbindprocess(fl)  CAL_CMGETAPI( "sysmcunbindprocess" ) 
+	#define CAL_sysmcunbindprocess  sysmcunbindprocess
+	#define CHK_sysmcunbindprocess  TRUE
+	#define EXP_sysmcunbindprocess  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcunbindprocess", (RTS_UINTPTR)sysmcunbindprocess, 1, 0x91976CA3, 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_SysCpuMultiCoresysmcunbindprocess
+	#define EXT_SysCpuMultiCoresysmcunbindprocess
+	#define GET_SysCpuMultiCoresysmcunbindprocess  ERR_OK
+	#define CAL_SysCpuMultiCoresysmcunbindprocess  sysmcunbindprocess
+	#define CHK_SysCpuMultiCoresysmcunbindprocess  TRUE
+	#define EXP_SysCpuMultiCoresysmcunbindprocess  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcunbindprocess", (RTS_UINTPTR)sysmcunbindprocess, 1, 0x91976CA3, 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_sysmcunbindprocess
+	#define EXT_sysmcunbindprocess
+	#define GET_sysmcunbindprocess(fl)  CAL_CMGETAPI( "sysmcunbindprocess" ) 
+	#define CAL_sysmcunbindprocess  sysmcunbindprocess
+	#define CHK_sysmcunbindprocess  TRUE
+	#define EXP_sysmcunbindprocess  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcunbindprocess", (RTS_UINTPTR)sysmcunbindprocess, 1, 0x91976CA3, 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_sysmcunbindprocess  PFSYSMCUNBINDPROCESS_IEC pfsysmcunbindprocess;
+	#define EXT_sysmcunbindprocess  extern PFSYSMCUNBINDPROCESS_IEC pfsysmcunbindprocess;
+	#define GET_sysmcunbindprocess(fl)  s_pfCMGetAPI2( "sysmcunbindprocess", (RTS_VOID_FCTPTR *)&pfsysmcunbindprocess, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x91976CA3, 0x03050800)
+	#define CAL_sysmcunbindprocess  pfsysmcunbindprocess
+	#define CHK_sysmcunbindprocess  (pfsysmcunbindprocess != NULL)
+	#define EXP_sysmcunbindprocess   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcunbindprocess", (RTS_UINTPTR)sysmcunbindprocess, 1, 0x91976CA3, 0x03050800) 
+#endif
+
+
+/**
+ * <description>sysmcunbindtask</description>
+ */
+typedef struct tagsysmcunbindtask_struct
+{
+	RTS_IEC_HANDLE hTask;				/* VAR_INPUT */	
+	RTS_IEC_RESULT SysMCUnbindTask;		/* VAR_OUTPUT */	
+} sysmcunbindtask_struct;
+
+void CDECL CDECL_EXT sysmcunbindtask(sysmcunbindtask_struct *p);
+typedef void (CDECL CDECL_EXT* PFSYSMCUNBINDTASK_IEC) (sysmcunbindtask_struct *p);
+#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCUNBINDTASK_NOTIMPLEMENTED)
+	#define USE_sysmcunbindtask
+	#define EXT_sysmcunbindtask
+	#define GET_sysmcunbindtask(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_sysmcunbindtask(p0) 
+	#define CHK_sysmcunbindtask  FALSE
+	#define EXP_sysmcunbindtask  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_sysmcunbindtask
+	#define EXT_sysmcunbindtask
+	#define GET_sysmcunbindtask(fl)  CAL_CMGETAPI( "sysmcunbindtask" ) 
+	#define CAL_sysmcunbindtask  sysmcunbindtask
+	#define CHK_sysmcunbindtask  TRUE
+	#define EXP_sysmcunbindtask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcunbindtask", (RTS_UINTPTR)sysmcunbindtask, 1, 0x7D06154E, 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
+	#define USE_sysmcunbindtask
+	#define EXT_sysmcunbindtask
+	#define GET_sysmcunbindtask(fl)  CAL_CMGETAPI( "sysmcunbindtask" ) 
+	#define CAL_sysmcunbindtask  sysmcunbindtask
+	#define CHK_sysmcunbindtask  TRUE
+	#define EXP_sysmcunbindtask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcunbindtask", (RTS_UINTPTR)sysmcunbindtask, 1, 0x7D06154E, 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_SysCpuMultiCoresysmcunbindtask
+	#define EXT_SysCpuMultiCoresysmcunbindtask
+	#define GET_SysCpuMultiCoresysmcunbindtask  ERR_OK
+	#define CAL_SysCpuMultiCoresysmcunbindtask  sysmcunbindtask
+	#define CHK_SysCpuMultiCoresysmcunbindtask  TRUE
+	#define EXP_SysCpuMultiCoresysmcunbindtask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcunbindtask", (RTS_UINTPTR)sysmcunbindtask, 1, 0x7D06154E, 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_sysmcunbindtask
+	#define EXT_sysmcunbindtask
+	#define GET_sysmcunbindtask(fl)  CAL_CMGETAPI( "sysmcunbindtask" ) 
+	#define CAL_sysmcunbindtask  sysmcunbindtask
+	#define CHK_sysmcunbindtask  TRUE
+	#define EXP_sysmcunbindtask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcunbindtask", (RTS_UINTPTR)sysmcunbindtask, 1, 0x7D06154E, 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_sysmcunbindtask  PFSYSMCUNBINDTASK_IEC pfsysmcunbindtask;
+	#define EXT_sysmcunbindtask  extern PFSYSMCUNBINDTASK_IEC pfsysmcunbindtask;
+	#define GET_sysmcunbindtask(fl)  s_pfCMGetAPI2( "sysmcunbindtask", (RTS_VOID_FCTPTR *)&pfsysmcunbindtask, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x7D06154E, 0x03050800)
+	#define CAL_sysmcunbindtask  pfsysmcunbindtask
+	#define CHK_sysmcunbindtask  (pfsysmcunbindtask != NULL)
+	#define EXP_sysmcunbindtask   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmcunbindtask", (RTS_UINTPTR)sysmcunbindtask, 1, 0x7D06154E, 0x03050800) 
 #endif
 
 
@@ -832,1421 +647,17 @@ RTS_RESULT CDECL SysCpuMultiCoreOSHookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulPa
 
 /**
  * <description>
- * <p>Task group maintenance</p>
- * This function adds a task group. In case the task group is already present, the handle is returned anyway but an internal reference counter is incremented.
- * </description>
- * <param name="pszTaskGroup" type="IN">The name of the task group to add</param>
- * <param name="taskGroupOptions" type="IN">See 'Task group options'</param>
- * <param name="pResult" type="IN">Pointer to a variable to return an errorcode (optional)</param>
- * <result>Returns the handle to the newly added task group or RTS_INVALID_HANDLE.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The required memory pool was not initialized.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOMEMORY">Not enough memory to allocate.</errorcode>
- */
-RTS_HANDLE CDECL SysMCAddTaskGroup(char *pszTaskGroup, RTS_UI32 taskGroupOptions, RTS_RESULT *pResult);
-typedef RTS_HANDLE (CDECL * PFSYSMCADDTASKGROUP) (char *pszTaskGroup, RTS_UI32 taskGroupOptions, RTS_RESULT *pResult);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCADDTASKGROUP_NOTIMPLEMENTED)
-	#define USE_SysMCAddTaskGroup
-	#define EXT_SysMCAddTaskGroup
-	#define GET_SysMCAddTaskGroup(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCAddTaskGroup(p0,p1,p2)  (RTS_HANDLE)RTS_INVALID_HANDLE
-	#define CHK_SysMCAddTaskGroup  FALSE
-	#define EXP_SysMCAddTaskGroup  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCAddTaskGroup
-	#define EXT_SysMCAddTaskGroup
-	#define GET_SysMCAddTaskGroup(fl)  CAL_CMGETAPI( "SysMCAddTaskGroup" ) 
-	#define CAL_SysMCAddTaskGroup  SysMCAddTaskGroup
-	#define CHK_SysMCAddTaskGroup  TRUE
-	#define EXP_SysMCAddTaskGroup  CAL_CMEXPAPI( "SysMCAddTaskGroup" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCAddTaskGroup
-	#define EXT_SysMCAddTaskGroup
-	#define GET_SysMCAddTaskGroup(fl)  CAL_CMGETAPI( "SysMCAddTaskGroup" ) 
-	#define CAL_SysMCAddTaskGroup  SysMCAddTaskGroup
-	#define CHK_SysMCAddTaskGroup  TRUE
-	#define EXP_SysMCAddTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCAddTaskGroup", (RTS_UINTPTR)SysMCAddTaskGroup, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCAddTaskGroup
-	#define EXT_SysCpuMultiCoreSysMCAddTaskGroup
-	#define GET_SysCpuMultiCoreSysMCAddTaskGroup  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCAddTaskGroup pISysCpuMultiCore->ISysMCAddTaskGroup
-	#define CHK_SysCpuMultiCoreSysMCAddTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCAddTaskGroup  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCAddTaskGroup
-	#define EXT_SysMCAddTaskGroup
-	#define GET_SysMCAddTaskGroup(fl)  CAL_CMGETAPI( "SysMCAddTaskGroup" ) 
-	#define CAL_SysMCAddTaskGroup pISysCpuMultiCore->ISysMCAddTaskGroup
-	#define CHK_SysMCAddTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCAddTaskGroup  CAL_CMEXPAPI( "SysMCAddTaskGroup" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCAddTaskGroup  PFSYSMCADDTASKGROUP pfSysMCAddTaskGroup;
-	#define EXT_SysMCAddTaskGroup  extern PFSYSMCADDTASKGROUP pfSysMCAddTaskGroup;
-	#define GET_SysMCAddTaskGroup(fl)  s_pfCMGetAPI2( "SysMCAddTaskGroup", (RTS_VOID_FCTPTR *)&pfSysMCAddTaskGroup, (fl), 0, 0)
-	#define CAL_SysMCAddTaskGroup  pfSysMCAddTaskGroup
-	#define CHK_SysMCAddTaskGroup  (pfSysMCAddTaskGroup != NULL)
-	#define EXP_SysMCAddTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCAddTaskGroup", (RTS_UINTPTR)SysMCAddTaskGroup, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Task group maintenance</p>
- * This function removes a task group. The group is not deleted until the internal reference counter reaches zero. 
- * </description>
- * <param name="hTaskGroup" type="IN">The handle to a previous added task group</param>
- * <result>Returns an errorcode.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">The given handle is invalid.</errorcode>
- */
-RTS_RESULT CDECL SysMCRemoveTaskGroup(RTS_HANDLE hTaskGroup);
-typedef RTS_RESULT (CDECL * PFSYSMCREMOVETASKGROUP) (RTS_HANDLE hTaskGroup);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCREMOVETASKGROUP_NOTIMPLEMENTED)
-	#define USE_SysMCRemoveTaskGroup
-	#define EXT_SysMCRemoveTaskGroup
-	#define GET_SysMCRemoveTaskGroup(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCRemoveTaskGroup(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCRemoveTaskGroup  FALSE
-	#define EXP_SysMCRemoveTaskGroup  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCRemoveTaskGroup
-	#define EXT_SysMCRemoveTaskGroup
-	#define GET_SysMCRemoveTaskGroup(fl)  CAL_CMGETAPI( "SysMCRemoveTaskGroup" ) 
-	#define CAL_SysMCRemoveTaskGroup  SysMCRemoveTaskGroup
-	#define CHK_SysMCRemoveTaskGroup  TRUE
-	#define EXP_SysMCRemoveTaskGroup  CAL_CMEXPAPI( "SysMCRemoveTaskGroup" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCRemoveTaskGroup
-	#define EXT_SysMCRemoveTaskGroup
-	#define GET_SysMCRemoveTaskGroup(fl)  CAL_CMGETAPI( "SysMCRemoveTaskGroup" ) 
-	#define CAL_SysMCRemoveTaskGroup  SysMCRemoveTaskGroup
-	#define CHK_SysMCRemoveTaskGroup  TRUE
-	#define EXP_SysMCRemoveTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCRemoveTaskGroup", (RTS_UINTPTR)SysMCRemoveTaskGroup, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCRemoveTaskGroup
-	#define EXT_SysCpuMultiCoreSysMCRemoveTaskGroup
-	#define GET_SysCpuMultiCoreSysMCRemoveTaskGroup  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCRemoveTaskGroup pISysCpuMultiCore->ISysMCRemoveTaskGroup
-	#define CHK_SysCpuMultiCoreSysMCRemoveTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCRemoveTaskGroup  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCRemoveTaskGroup
-	#define EXT_SysMCRemoveTaskGroup
-	#define GET_SysMCRemoveTaskGroup(fl)  CAL_CMGETAPI( "SysMCRemoveTaskGroup" ) 
-	#define CAL_SysMCRemoveTaskGroup pISysCpuMultiCore->ISysMCRemoveTaskGroup
-	#define CHK_SysMCRemoveTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCRemoveTaskGroup  CAL_CMEXPAPI( "SysMCRemoveTaskGroup" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCRemoveTaskGroup  PFSYSMCREMOVETASKGROUP pfSysMCRemoveTaskGroup;
-	#define EXT_SysMCRemoveTaskGroup  extern PFSYSMCREMOVETASKGROUP pfSysMCRemoveTaskGroup;
-	#define GET_SysMCRemoveTaskGroup(fl)  s_pfCMGetAPI2( "SysMCRemoveTaskGroup", (RTS_VOID_FCTPTR *)&pfSysMCRemoveTaskGroup, (fl), 0, 0)
-	#define CAL_SysMCRemoveTaskGroup  pfSysMCRemoveTaskGroup
-	#define CHK_SysMCRemoveTaskGroup  (pfSysMCRemoveTaskGroup != NULL)
-	#define EXP_SysMCRemoveTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCRemoveTaskGroup", (RTS_UINTPTR)SysMCRemoveTaskGroup, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Task group maintenance</p>
- * This function searches for a task group and returns its handle on success.
- * </description>
- * <param name="pszTaskGroup" type="IN">The name of the task group to search for</param>
- * <param name="bIecTaskGroup" type="IN">Search IEC task groups only (TRUE), search all task groups (FALSE)</param>
- * <param name="pResult" type="IN">Pointer to a variable to return an errorcode (optional)</param>
- * <result>Returns the handle to the searched task group or RTS_INVALID_HANDLE.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The required memory pool was not initialized.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NO_OBJECT">The task group was not found.</errorcode>
- */
-RTS_HANDLE CDECL SysMCFindTaskGroup(char *pszTaskGroup, RTS_I32 bIecTaskGroup, RTS_RESULT *pResult);
-typedef RTS_HANDLE (CDECL * PFSYSMCFINDTASKGROUP) (char *pszTaskGroup, RTS_I32 bIecTaskGroup, RTS_RESULT *pResult);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCFINDTASKGROUP_NOTIMPLEMENTED)
-	#define USE_SysMCFindTaskGroup
-	#define EXT_SysMCFindTaskGroup
-	#define GET_SysMCFindTaskGroup(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCFindTaskGroup(p0,p1,p2)  (RTS_HANDLE)RTS_INVALID_HANDLE
-	#define CHK_SysMCFindTaskGroup  FALSE
-	#define EXP_SysMCFindTaskGroup  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCFindTaskGroup
-	#define EXT_SysMCFindTaskGroup
-	#define GET_SysMCFindTaskGroup(fl)  CAL_CMGETAPI( "SysMCFindTaskGroup" ) 
-	#define CAL_SysMCFindTaskGroup  SysMCFindTaskGroup
-	#define CHK_SysMCFindTaskGroup  TRUE
-	#define EXP_SysMCFindTaskGroup  CAL_CMEXPAPI( "SysMCFindTaskGroup" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCFindTaskGroup
-	#define EXT_SysMCFindTaskGroup
-	#define GET_SysMCFindTaskGroup(fl)  CAL_CMGETAPI( "SysMCFindTaskGroup" ) 
-	#define CAL_SysMCFindTaskGroup  SysMCFindTaskGroup
-	#define CHK_SysMCFindTaskGroup  TRUE
-	#define EXP_SysMCFindTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCFindTaskGroup", (RTS_UINTPTR)SysMCFindTaskGroup, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCFindTaskGroup
-	#define EXT_SysCpuMultiCoreSysMCFindTaskGroup
-	#define GET_SysCpuMultiCoreSysMCFindTaskGroup  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCFindTaskGroup pISysCpuMultiCore->ISysMCFindTaskGroup
-	#define CHK_SysCpuMultiCoreSysMCFindTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCFindTaskGroup  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCFindTaskGroup
-	#define EXT_SysMCFindTaskGroup
-	#define GET_SysMCFindTaskGroup(fl)  CAL_CMGETAPI( "SysMCFindTaskGroup" ) 
-	#define CAL_SysMCFindTaskGroup pISysCpuMultiCore->ISysMCFindTaskGroup
-	#define CHK_SysMCFindTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCFindTaskGroup  CAL_CMEXPAPI( "SysMCFindTaskGroup" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCFindTaskGroup  PFSYSMCFINDTASKGROUP pfSysMCFindTaskGroup;
-	#define EXT_SysMCFindTaskGroup  extern PFSYSMCFINDTASKGROUP pfSysMCFindTaskGroup;
-	#define GET_SysMCFindTaskGroup(fl)  s_pfCMGetAPI2( "SysMCFindTaskGroup", (RTS_VOID_FCTPTR *)&pfSysMCFindTaskGroup, (fl), 0, 0)
-	#define CAL_SysMCFindTaskGroup  pfSysMCFindTaskGroup
-	#define CHK_SysMCFindTaskGroup  (pfSysMCFindTaskGroup != NULL)
-	#define EXP_SysMCFindTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCFindTaskGroup", (RTS_UINTPTR)SysMCFindTaskGroup, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Task group maintenance</p>
- * This function returns the first found task group. The returned handle may be used for SysMCGetNextTaskGroup.
- * </description>
- * <param name="pResult" type="IN">Pointer to a variable to return an errorcode</param>
- * <result>Returns the handle to the searched task group or RTS_INVALID_HANDLE.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The required memory pool was not initialized.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NO_OBJECT">The task group was not found.</errorcode>
- */
-RTS_HANDLE CDECL SysMCGetFirstTaskGroup(RTS_RESULT *pResult);
-typedef RTS_HANDLE (CDECL * PFSYSMCGETFIRSTTASKGROUP) (RTS_RESULT *pResult);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCGETFIRSTTASKGROUP_NOTIMPLEMENTED)
-	#define USE_SysMCGetFirstTaskGroup
-	#define EXT_SysMCGetFirstTaskGroup
-	#define GET_SysMCGetFirstTaskGroup(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCGetFirstTaskGroup(p0)  (RTS_HANDLE)RTS_INVALID_HANDLE
-	#define CHK_SysMCGetFirstTaskGroup  FALSE
-	#define EXP_SysMCGetFirstTaskGroup  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCGetFirstTaskGroup
-	#define EXT_SysMCGetFirstTaskGroup
-	#define GET_SysMCGetFirstTaskGroup(fl)  CAL_CMGETAPI( "SysMCGetFirstTaskGroup" ) 
-	#define CAL_SysMCGetFirstTaskGroup  SysMCGetFirstTaskGroup
-	#define CHK_SysMCGetFirstTaskGroup  TRUE
-	#define EXP_SysMCGetFirstTaskGroup  CAL_CMEXPAPI( "SysMCGetFirstTaskGroup" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCGetFirstTaskGroup
-	#define EXT_SysMCGetFirstTaskGroup
-	#define GET_SysMCGetFirstTaskGroup(fl)  CAL_CMGETAPI( "SysMCGetFirstTaskGroup" ) 
-	#define CAL_SysMCGetFirstTaskGroup  SysMCGetFirstTaskGroup
-	#define CHK_SysMCGetFirstTaskGroup  TRUE
-	#define EXP_SysMCGetFirstTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetFirstTaskGroup", (RTS_UINTPTR)SysMCGetFirstTaskGroup, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCGetFirstTaskGroup
-	#define EXT_SysCpuMultiCoreSysMCGetFirstTaskGroup
-	#define GET_SysCpuMultiCoreSysMCGetFirstTaskGroup  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCGetFirstTaskGroup pISysCpuMultiCore->ISysMCGetFirstTaskGroup
-	#define CHK_SysCpuMultiCoreSysMCGetFirstTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCGetFirstTaskGroup  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCGetFirstTaskGroup
-	#define EXT_SysMCGetFirstTaskGroup
-	#define GET_SysMCGetFirstTaskGroup(fl)  CAL_CMGETAPI( "SysMCGetFirstTaskGroup" ) 
-	#define CAL_SysMCGetFirstTaskGroup pISysCpuMultiCore->ISysMCGetFirstTaskGroup
-	#define CHK_SysMCGetFirstTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCGetFirstTaskGroup  CAL_CMEXPAPI( "SysMCGetFirstTaskGroup" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCGetFirstTaskGroup  PFSYSMCGETFIRSTTASKGROUP pfSysMCGetFirstTaskGroup;
-	#define EXT_SysMCGetFirstTaskGroup  extern PFSYSMCGETFIRSTTASKGROUP pfSysMCGetFirstTaskGroup;
-	#define GET_SysMCGetFirstTaskGroup(fl)  s_pfCMGetAPI2( "SysMCGetFirstTaskGroup", (RTS_VOID_FCTPTR *)&pfSysMCGetFirstTaskGroup, (fl), 0, 0)
-	#define CAL_SysMCGetFirstTaskGroup  pfSysMCGetFirstTaskGroup
-	#define CHK_SysMCGetFirstTaskGroup  (pfSysMCGetFirstTaskGroup != NULL)
-	#define EXP_SysMCGetFirstTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetFirstTaskGroup", (RTS_UINTPTR)SysMCGetFirstTaskGroup, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Task group maintenance</p>
- * This function returns the next found task group and is used to iterate through all task groups until the result is ERR_END_OF_OBJECT.
- * </description>
- * <param name="hPrevTaskGroup" type="IN">The handle to a previous found task group</param>
- * <param name="pResult" type="IN">Pointer to a variable to return an errorcode</param>
- * <result>Returns the handle to the searched task group or RTS_INVALID_HANDLE.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The required memory pool was not initialized.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">The given handle is invalid.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_END_OF_OBJECT">There are no more task groups to find.</errorcode>
- */
-RTS_HANDLE CDECL SysMCGetNextTaskGroup(RTS_HANDLE hPrevTaskGroup, RTS_RESULT *pResult);
-typedef RTS_HANDLE (CDECL * PFSYSMCGETNEXTTASKGROUP) (RTS_HANDLE hPrevTaskGroup, RTS_RESULT *pResult);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCGETNEXTTASKGROUP_NOTIMPLEMENTED)
-	#define USE_SysMCGetNextTaskGroup
-	#define EXT_SysMCGetNextTaskGroup
-	#define GET_SysMCGetNextTaskGroup(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCGetNextTaskGroup(p0,p1)  (RTS_HANDLE)RTS_INVALID_HANDLE
-	#define CHK_SysMCGetNextTaskGroup  FALSE
-	#define EXP_SysMCGetNextTaskGroup  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCGetNextTaskGroup
-	#define EXT_SysMCGetNextTaskGroup
-	#define GET_SysMCGetNextTaskGroup(fl)  CAL_CMGETAPI( "SysMCGetNextTaskGroup" ) 
-	#define CAL_SysMCGetNextTaskGroup  SysMCGetNextTaskGroup
-	#define CHK_SysMCGetNextTaskGroup  TRUE
-	#define EXP_SysMCGetNextTaskGroup  CAL_CMEXPAPI( "SysMCGetNextTaskGroup" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCGetNextTaskGroup
-	#define EXT_SysMCGetNextTaskGroup
-	#define GET_SysMCGetNextTaskGroup(fl)  CAL_CMGETAPI( "SysMCGetNextTaskGroup" ) 
-	#define CAL_SysMCGetNextTaskGroup  SysMCGetNextTaskGroup
-	#define CHK_SysMCGetNextTaskGroup  TRUE
-	#define EXP_SysMCGetNextTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetNextTaskGroup", (RTS_UINTPTR)SysMCGetNextTaskGroup, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCGetNextTaskGroup
-	#define EXT_SysCpuMultiCoreSysMCGetNextTaskGroup
-	#define GET_SysCpuMultiCoreSysMCGetNextTaskGroup  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCGetNextTaskGroup pISysCpuMultiCore->ISysMCGetNextTaskGroup
-	#define CHK_SysCpuMultiCoreSysMCGetNextTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCGetNextTaskGroup  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCGetNextTaskGroup
-	#define EXT_SysMCGetNextTaskGroup
-	#define GET_SysMCGetNextTaskGroup(fl)  CAL_CMGETAPI( "SysMCGetNextTaskGroup" ) 
-	#define CAL_SysMCGetNextTaskGroup pISysCpuMultiCore->ISysMCGetNextTaskGroup
-	#define CHK_SysMCGetNextTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCGetNextTaskGroup  CAL_CMEXPAPI( "SysMCGetNextTaskGroup" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCGetNextTaskGroup  PFSYSMCGETNEXTTASKGROUP pfSysMCGetNextTaskGroup;
-	#define EXT_SysMCGetNextTaskGroup  extern PFSYSMCGETNEXTTASKGROUP pfSysMCGetNextTaskGroup;
-	#define GET_SysMCGetNextTaskGroup(fl)  s_pfCMGetAPI2( "SysMCGetNextTaskGroup", (RTS_VOID_FCTPTR *)&pfSysMCGetNextTaskGroup, (fl), 0, 0)
-	#define CAL_SysMCGetNextTaskGroup  pfSysMCGetNextTaskGroup
-	#define CHK_SysMCGetNextTaskGroup  (pfSysMCGetNextTaskGroup != NULL)
-	#define EXP_SysMCGetNextTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetNextTaskGroup", (RTS_UINTPTR)SysMCGetNextTaskGroup, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Task group maintenance</p>
- * This function returns the name of a task group with the given handle.
- * </description>
- * <param name="hTaskGroup" type="IN">The handle to a task group</param>
- * <param name="pResult" type="IN">Pointer to a variable to return an errorcode</param>
- * <result>Returns a pointer to the name of the task group or NULL.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The required memory pool was not initialized.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">The given handle is invalid.</errorcode>
- */
-char* CDECL SysMCGetTaskGroupName(RTS_HANDLE hTaskGroup, RTS_RESULT *pResult);
-typedef char* (CDECL * PFSYSMCGETTASKGROUPNAME) (RTS_HANDLE hTaskGroup, RTS_RESULT *pResult);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCGETTASKGROUPNAME_NOTIMPLEMENTED)
-	#define USE_SysMCGetTaskGroupName
-	#define EXT_SysMCGetTaskGroupName
-	#define GET_SysMCGetTaskGroupName(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCGetTaskGroupName(p0,p1)  (char*)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCGetTaskGroupName  FALSE
-	#define EXP_SysMCGetTaskGroupName  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCGetTaskGroupName
-	#define EXT_SysMCGetTaskGroupName
-	#define GET_SysMCGetTaskGroupName(fl)  CAL_CMGETAPI( "SysMCGetTaskGroupName" ) 
-	#define CAL_SysMCGetTaskGroupName  SysMCGetTaskGroupName
-	#define CHK_SysMCGetTaskGroupName  TRUE
-	#define EXP_SysMCGetTaskGroupName  CAL_CMEXPAPI( "SysMCGetTaskGroupName" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCGetTaskGroupName
-	#define EXT_SysMCGetTaskGroupName
-	#define GET_SysMCGetTaskGroupName(fl)  CAL_CMGETAPI( "SysMCGetTaskGroupName" ) 
-	#define CAL_SysMCGetTaskGroupName  SysMCGetTaskGroupName
-	#define CHK_SysMCGetTaskGroupName  TRUE
-	#define EXP_SysMCGetTaskGroupName  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetTaskGroupName", (RTS_UINTPTR)SysMCGetTaskGroupName, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCGetTaskGroupName
-	#define EXT_SysCpuMultiCoreSysMCGetTaskGroupName
-	#define GET_SysCpuMultiCoreSysMCGetTaskGroupName  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCGetTaskGroupName pISysCpuMultiCore->ISysMCGetTaskGroupName
-	#define CHK_SysCpuMultiCoreSysMCGetTaskGroupName (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCGetTaskGroupName  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCGetTaskGroupName
-	#define EXT_SysMCGetTaskGroupName
-	#define GET_SysMCGetTaskGroupName(fl)  CAL_CMGETAPI( "SysMCGetTaskGroupName" ) 
-	#define CAL_SysMCGetTaskGroupName pISysCpuMultiCore->ISysMCGetTaskGroupName
-	#define CHK_SysMCGetTaskGroupName (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCGetTaskGroupName  CAL_CMEXPAPI( "SysMCGetTaskGroupName" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCGetTaskGroupName  PFSYSMCGETTASKGROUPNAME pfSysMCGetTaskGroupName;
-	#define EXT_SysMCGetTaskGroupName  extern PFSYSMCGETTASKGROUPNAME pfSysMCGetTaskGroupName;
-	#define GET_SysMCGetTaskGroupName(fl)  s_pfCMGetAPI2( "SysMCGetTaskGroupName", (RTS_VOID_FCTPTR *)&pfSysMCGetTaskGroupName, (fl), 0, 0)
-	#define CAL_SysMCGetTaskGroupName  pfSysMCGetTaskGroupName
-	#define CHK_SysMCGetTaskGroupName  (pfSysMCGetTaskGroupName != NULL)
-	#define EXP_SysMCGetTaskGroupName  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetTaskGroupName", (RTS_UINTPTR)SysMCGetTaskGroupName, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Task group maintenance</p>
- * This function returns the binding description of a task group with the given handle.
- * </description>
- * <param name="hTaskGroup" type="IN">The handle to a task group</param>
- * <param name="pResult" type="IN">Pointer to a variable to return an errorcode</param>
- * <result>Returns a pointer to binding description of the task group or NULL.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The required memory pool was not initialized.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">The given handle is invalid.</errorcode>
- */
-CpuCoreBindingDesc* CDECL SysMCGetTaskGroupBinding(RTS_HANDLE hTaskGroup, RTS_RESULT *pResult);
-typedef CpuCoreBindingDesc* (CDECL * PFSYSMCGETTASKGROUPBINDING) (RTS_HANDLE hTaskGroup, RTS_RESULT *pResult);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCGETTASKGROUPBINDING_NOTIMPLEMENTED)
-	#define USE_SysMCGetTaskGroupBinding
-	#define EXT_SysMCGetTaskGroupBinding
-	#define GET_SysMCGetTaskGroupBinding(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCGetTaskGroupBinding(p0,p1)  (CpuCoreBindingDesc*)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCGetTaskGroupBinding  FALSE
-	#define EXP_SysMCGetTaskGroupBinding  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCGetTaskGroupBinding
-	#define EXT_SysMCGetTaskGroupBinding
-	#define GET_SysMCGetTaskGroupBinding(fl)  CAL_CMGETAPI( "SysMCGetTaskGroupBinding" ) 
-	#define CAL_SysMCGetTaskGroupBinding  SysMCGetTaskGroupBinding
-	#define CHK_SysMCGetTaskGroupBinding  TRUE
-	#define EXP_SysMCGetTaskGroupBinding  CAL_CMEXPAPI( "SysMCGetTaskGroupBinding" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCGetTaskGroupBinding
-	#define EXT_SysMCGetTaskGroupBinding
-	#define GET_SysMCGetTaskGroupBinding(fl)  CAL_CMGETAPI( "SysMCGetTaskGroupBinding" ) 
-	#define CAL_SysMCGetTaskGroupBinding  SysMCGetTaskGroupBinding
-	#define CHK_SysMCGetTaskGroupBinding  TRUE
-	#define EXP_SysMCGetTaskGroupBinding  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetTaskGroupBinding", (RTS_UINTPTR)SysMCGetTaskGroupBinding, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCGetTaskGroupBinding
-	#define EXT_SysCpuMultiCoreSysMCGetTaskGroupBinding
-	#define GET_SysCpuMultiCoreSysMCGetTaskGroupBinding  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCGetTaskGroupBinding pISysCpuMultiCore->ISysMCGetTaskGroupBinding
-	#define CHK_SysCpuMultiCoreSysMCGetTaskGroupBinding (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCGetTaskGroupBinding  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCGetTaskGroupBinding
-	#define EXT_SysMCGetTaskGroupBinding
-	#define GET_SysMCGetTaskGroupBinding(fl)  CAL_CMGETAPI( "SysMCGetTaskGroupBinding" ) 
-	#define CAL_SysMCGetTaskGroupBinding pISysCpuMultiCore->ISysMCGetTaskGroupBinding
-	#define CHK_SysMCGetTaskGroupBinding (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCGetTaskGroupBinding  CAL_CMEXPAPI( "SysMCGetTaskGroupBinding" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCGetTaskGroupBinding  PFSYSMCGETTASKGROUPBINDING pfSysMCGetTaskGroupBinding;
-	#define EXT_SysMCGetTaskGroupBinding  extern PFSYSMCGETTASKGROUPBINDING pfSysMCGetTaskGroupBinding;
-	#define GET_SysMCGetTaskGroupBinding(fl)  s_pfCMGetAPI2( "SysMCGetTaskGroupBinding", (RTS_VOID_FCTPTR *)&pfSysMCGetTaskGroupBinding, (fl), 0, 0)
-	#define CAL_SysMCGetTaskGroupBinding  pfSysMCGetTaskGroupBinding
-	#define CHK_SysMCGetTaskGroupBinding  (pfSysMCGetTaskGroupBinding != NULL)
-	#define EXP_SysMCGetTaskGroupBinding  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetTaskGroupBinding", (RTS_UINTPTR)SysMCGetTaskGroupBinding, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Task group maintenance</p>
- * This function returns the options of a task group with the given handle.
- * </description>
- * <param name="hTaskGroup" type="IN">The handle to a task group</param>
- * <param name="pResult" type="IN">Pointer to a variable to return an errorcode</param>
- * <result>Returns the options of the task group (see 'Task group options').</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The required memory pool was not initialized.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">The given handle is invalid.</errorcode>
- */
-RTS_UI32 CDECL SysMCGetTaskGroupOptions(RTS_HANDLE hTaskGroup, RTS_RESULT *pResult);
-typedef RTS_UI32 (CDECL * PFSYSMCGETTASKGROUPOPTIONS) (RTS_HANDLE hTaskGroup, RTS_RESULT *pResult);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCGETTASKGROUPOPTIONS_NOTIMPLEMENTED)
-	#define USE_SysMCGetTaskGroupOptions
-	#define EXT_SysMCGetTaskGroupOptions
-	#define GET_SysMCGetTaskGroupOptions(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCGetTaskGroupOptions(p0,p1)  (RTS_UI32)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCGetTaskGroupOptions  FALSE
-	#define EXP_SysMCGetTaskGroupOptions  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCGetTaskGroupOptions
-	#define EXT_SysMCGetTaskGroupOptions
-	#define GET_SysMCGetTaskGroupOptions(fl)  CAL_CMGETAPI( "SysMCGetTaskGroupOptions" ) 
-	#define CAL_SysMCGetTaskGroupOptions  SysMCGetTaskGroupOptions
-	#define CHK_SysMCGetTaskGroupOptions  TRUE
-	#define EXP_SysMCGetTaskGroupOptions  CAL_CMEXPAPI( "SysMCGetTaskGroupOptions" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCGetTaskGroupOptions
-	#define EXT_SysMCGetTaskGroupOptions
-	#define GET_SysMCGetTaskGroupOptions(fl)  CAL_CMGETAPI( "SysMCGetTaskGroupOptions" ) 
-	#define CAL_SysMCGetTaskGroupOptions  SysMCGetTaskGroupOptions
-	#define CHK_SysMCGetTaskGroupOptions  TRUE
-	#define EXP_SysMCGetTaskGroupOptions  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetTaskGroupOptions", (RTS_UINTPTR)SysMCGetTaskGroupOptions, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCGetTaskGroupOptions
-	#define EXT_SysCpuMultiCoreSysMCGetTaskGroupOptions
-	#define GET_SysCpuMultiCoreSysMCGetTaskGroupOptions  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCGetTaskGroupOptions pISysCpuMultiCore->ISysMCGetTaskGroupOptions
-	#define CHK_SysCpuMultiCoreSysMCGetTaskGroupOptions (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCGetTaskGroupOptions  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCGetTaskGroupOptions
-	#define EXT_SysMCGetTaskGroupOptions
-	#define GET_SysMCGetTaskGroupOptions(fl)  CAL_CMGETAPI( "SysMCGetTaskGroupOptions" ) 
-	#define CAL_SysMCGetTaskGroupOptions pISysCpuMultiCore->ISysMCGetTaskGroupOptions
-	#define CHK_SysMCGetTaskGroupOptions (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCGetTaskGroupOptions  CAL_CMEXPAPI( "SysMCGetTaskGroupOptions" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCGetTaskGroupOptions  PFSYSMCGETTASKGROUPOPTIONS pfSysMCGetTaskGroupOptions;
-	#define EXT_SysMCGetTaskGroupOptions  extern PFSYSMCGETTASKGROUPOPTIONS pfSysMCGetTaskGroupOptions;
-	#define GET_SysMCGetTaskGroupOptions(fl)  s_pfCMGetAPI2( "SysMCGetTaskGroupOptions", (RTS_VOID_FCTPTR *)&pfSysMCGetTaskGroupOptions, (fl), 0, 0)
-	#define CAL_SysMCGetTaskGroupOptions  pfSysMCGetTaskGroupOptions
-	#define CHK_SysMCGetTaskGroupOptions  (pfSysMCGetTaskGroupOptions != NULL)
-	#define EXP_SysMCGetTaskGroupOptions  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetTaskGroupOptions", (RTS_UINTPTR)SysMCGetTaskGroupOptions, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Task group maintenance</p>
- * This function overwrites the strategy part of the options of a task group with the given handle.
- * A following SysMCSetTaskGroupBinding is recommended.
- * </description>
- * <param name="hTaskGroup" type="IN">The handle to a task group</param>
- * <param name="taskGroupOptions" type="IN">See 'Task group options'</param>
- * <result>Returns an errorcode.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The required memory pool was not initialized.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">The given handle is invalid.</errorcode>
- */
-RTS_RESULT CDECL SysMCChangeTaskGroupStrategy(RTS_HANDLE hTaskGroup, RTS_UI32 taskGroupStrategy);
-typedef RTS_RESULT (CDECL * PFSYSMCCHANGETASKGROUPSTRATEGY) (RTS_HANDLE hTaskGroup, RTS_UI32 taskGroupStrategy);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCCHANGETASKGROUPSTRATEGY_NOTIMPLEMENTED)
-	#define USE_SysMCChangeTaskGroupStrategy
-	#define EXT_SysMCChangeTaskGroupStrategy
-	#define GET_SysMCChangeTaskGroupStrategy(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCChangeTaskGroupStrategy(p0,p1)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCChangeTaskGroupStrategy  FALSE
-	#define EXP_SysMCChangeTaskGroupStrategy  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCChangeTaskGroupStrategy
-	#define EXT_SysMCChangeTaskGroupStrategy
-	#define GET_SysMCChangeTaskGroupStrategy(fl)  CAL_CMGETAPI( "SysMCChangeTaskGroupStrategy" ) 
-	#define CAL_SysMCChangeTaskGroupStrategy  SysMCChangeTaskGroupStrategy
-	#define CHK_SysMCChangeTaskGroupStrategy  TRUE
-	#define EXP_SysMCChangeTaskGroupStrategy  CAL_CMEXPAPI( "SysMCChangeTaskGroupStrategy" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCChangeTaskGroupStrategy
-	#define EXT_SysMCChangeTaskGroupStrategy
-	#define GET_SysMCChangeTaskGroupStrategy(fl)  CAL_CMGETAPI( "SysMCChangeTaskGroupStrategy" ) 
-	#define CAL_SysMCChangeTaskGroupStrategy  SysMCChangeTaskGroupStrategy
-	#define CHK_SysMCChangeTaskGroupStrategy  TRUE
-	#define EXP_SysMCChangeTaskGroupStrategy  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCChangeTaskGroupStrategy", (RTS_UINTPTR)SysMCChangeTaskGroupStrategy, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCChangeTaskGroupStrategy
-	#define EXT_SysCpuMultiCoreSysMCChangeTaskGroupStrategy
-	#define GET_SysCpuMultiCoreSysMCChangeTaskGroupStrategy  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCChangeTaskGroupStrategy pISysCpuMultiCore->ISysMCChangeTaskGroupStrategy
-	#define CHK_SysCpuMultiCoreSysMCChangeTaskGroupStrategy (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCChangeTaskGroupStrategy  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCChangeTaskGroupStrategy
-	#define EXT_SysMCChangeTaskGroupStrategy
-	#define GET_SysMCChangeTaskGroupStrategy(fl)  CAL_CMGETAPI( "SysMCChangeTaskGroupStrategy" ) 
-	#define CAL_SysMCChangeTaskGroupStrategy pISysCpuMultiCore->ISysMCChangeTaskGroupStrategy
-	#define CHK_SysMCChangeTaskGroupStrategy (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCChangeTaskGroupStrategy  CAL_CMEXPAPI( "SysMCChangeTaskGroupStrategy" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCChangeTaskGroupStrategy  PFSYSMCCHANGETASKGROUPSTRATEGY pfSysMCChangeTaskGroupStrategy;
-	#define EXT_SysMCChangeTaskGroupStrategy  extern PFSYSMCCHANGETASKGROUPSTRATEGY pfSysMCChangeTaskGroupStrategy;
-	#define GET_SysMCChangeTaskGroupStrategy(fl)  s_pfCMGetAPI2( "SysMCChangeTaskGroupStrategy", (RTS_VOID_FCTPTR *)&pfSysMCChangeTaskGroupStrategy, (fl), 0, 0)
-	#define CAL_SysMCChangeTaskGroupStrategy  pfSysMCChangeTaskGroupStrategy
-	#define CHK_SysMCChangeTaskGroupStrategy  (pfSysMCChangeTaskGroupStrategy != NULL)
-	#define EXP_SysMCChangeTaskGroupStrategy  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCChangeTaskGroupStrategy", (RTS_UINTPTR)SysMCChangeTaskGroupStrategy, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Task group maintenance</p>
- * This function sets the binding description of a task group with the given handle and checks the license.
- * NOTE: Free floating groups for IEC are only possible if at least the number of physical cores is licensed.
- * </description>
- * <param name="hTaskGroup" type="IN">The handle to a task group</param>
- * <param name="pBindingDesc" type="IN">Pointer to the description of the core binding.</param>
- * <result>Returns an errorcode.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The required memory pool was not initialized.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">The given handle is invalid.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">The given binding description is invalid.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_LICENSE_MISSING">The given binding is not licensed.</errorcode>
- */
-RTS_RESULT CDECL SysMCSetTaskGroupBinding(RTS_HANDLE hTaskGroup, CpuCoreBindingDesc *pBindingDesc);
-typedef RTS_RESULT (CDECL * PFSYSMCSETTASKGROUPBINDING) (RTS_HANDLE hTaskGroup, CpuCoreBindingDesc *pBindingDesc);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCSETTASKGROUPBINDING_NOTIMPLEMENTED)
-	#define USE_SysMCSetTaskGroupBinding
-	#define EXT_SysMCSetTaskGroupBinding
-	#define GET_SysMCSetTaskGroupBinding(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCSetTaskGroupBinding(p0,p1)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCSetTaskGroupBinding  FALSE
-	#define EXP_SysMCSetTaskGroupBinding  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCSetTaskGroupBinding
-	#define EXT_SysMCSetTaskGroupBinding
-	#define GET_SysMCSetTaskGroupBinding(fl)  CAL_CMGETAPI( "SysMCSetTaskGroupBinding" ) 
-	#define CAL_SysMCSetTaskGroupBinding  SysMCSetTaskGroupBinding
-	#define CHK_SysMCSetTaskGroupBinding  TRUE
-	#define EXP_SysMCSetTaskGroupBinding  CAL_CMEXPAPI( "SysMCSetTaskGroupBinding" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCSetTaskGroupBinding
-	#define EXT_SysMCSetTaskGroupBinding
-	#define GET_SysMCSetTaskGroupBinding(fl)  CAL_CMGETAPI( "SysMCSetTaskGroupBinding" ) 
-	#define CAL_SysMCSetTaskGroupBinding  SysMCSetTaskGroupBinding
-	#define CHK_SysMCSetTaskGroupBinding  TRUE
-	#define EXP_SysMCSetTaskGroupBinding  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCSetTaskGroupBinding", (RTS_UINTPTR)SysMCSetTaskGroupBinding, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCSetTaskGroupBinding
-	#define EXT_SysCpuMultiCoreSysMCSetTaskGroupBinding
-	#define GET_SysCpuMultiCoreSysMCSetTaskGroupBinding  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCSetTaskGroupBinding pISysCpuMultiCore->ISysMCSetTaskGroupBinding
-	#define CHK_SysCpuMultiCoreSysMCSetTaskGroupBinding (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCSetTaskGroupBinding  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCSetTaskGroupBinding
-	#define EXT_SysMCSetTaskGroupBinding
-	#define GET_SysMCSetTaskGroupBinding(fl)  CAL_CMGETAPI( "SysMCSetTaskGroupBinding" ) 
-	#define CAL_SysMCSetTaskGroupBinding pISysCpuMultiCore->ISysMCSetTaskGroupBinding
-	#define CHK_SysMCSetTaskGroupBinding (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCSetTaskGroupBinding  CAL_CMEXPAPI( "SysMCSetTaskGroupBinding" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCSetTaskGroupBinding  PFSYSMCSETTASKGROUPBINDING pfSysMCSetTaskGroupBinding;
-	#define EXT_SysMCSetTaskGroupBinding  extern PFSYSMCSETTASKGROUPBINDING pfSysMCSetTaskGroupBinding;
-	#define GET_SysMCSetTaskGroupBinding(fl)  s_pfCMGetAPI2( "SysMCSetTaskGroupBinding", (RTS_VOID_FCTPTR *)&pfSysMCSetTaskGroupBinding, (fl), 0, 0)
-	#define CAL_SysMCSetTaskGroupBinding  pfSysMCSetTaskGroupBinding
-	#define CHK_SysMCSetTaskGroupBinding  (pfSysMCSetTaskGroupBinding != NULL)
-	#define EXP_SysMCSetTaskGroupBinding  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCSetTaskGroupBinding", (RTS_UINTPTR)SysMCSetTaskGroupBinding, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Task group maintenance</p>
- * This function adds a task to a task group and checks the license.
- * After that it binds the tasks of the group if not in configuration mode (see SysMCBeginTaskGroupConf/SysMCEndTaskGroupConf).
- * NOTE: Free floating groups for IEC are only possible if at least the number of physical cores is licensed.
- * NOTE: In case the process is bound to one core, no task binding is possible at all, but the function returns ERR_OK anyway.
- * </description>
- * <param name="hSysTask" type="IN">The handle to a SysTask</param>
- * <param name="hTaskGroup" type="IN">The handle to a task group</param>
- * <result>Returns an errorcode.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The required memory pool was not initialized.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">The given handle is invalid.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">The given SysTask handle is invalid.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_DUPLICATE">The given SysTask handle is already added.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOMEMORY">Not enough memory to allocate.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">The binding configuration is invalid.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_LICENSE_MISSING">The binding of the task group is not licensed.</errorcode>
- */
-RTS_RESULT CDECL SysMCAddToTaskGroup(RTS_HANDLE hSysTask, RTS_HANDLE hTaskGroup);
-typedef RTS_RESULT (CDECL * PFSYSMCADDTOTASKGROUP) (RTS_HANDLE hSysTask, RTS_HANDLE hTaskGroup);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCADDTOTASKGROUP_NOTIMPLEMENTED)
-	#define USE_SysMCAddToTaskGroup
-	#define EXT_SysMCAddToTaskGroup
-	#define GET_SysMCAddToTaskGroup(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCAddToTaskGroup(p0,p1)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCAddToTaskGroup  FALSE
-	#define EXP_SysMCAddToTaskGroup  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCAddToTaskGroup
-	#define EXT_SysMCAddToTaskGroup
-	#define GET_SysMCAddToTaskGroup(fl)  CAL_CMGETAPI( "SysMCAddToTaskGroup" ) 
-	#define CAL_SysMCAddToTaskGroup  SysMCAddToTaskGroup
-	#define CHK_SysMCAddToTaskGroup  TRUE
-	#define EXP_SysMCAddToTaskGroup  CAL_CMEXPAPI( "SysMCAddToTaskGroup" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCAddToTaskGroup
-	#define EXT_SysMCAddToTaskGroup
-	#define GET_SysMCAddToTaskGroup(fl)  CAL_CMGETAPI( "SysMCAddToTaskGroup" ) 
-	#define CAL_SysMCAddToTaskGroup  SysMCAddToTaskGroup
-	#define CHK_SysMCAddToTaskGroup  TRUE
-	#define EXP_SysMCAddToTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCAddToTaskGroup", (RTS_UINTPTR)SysMCAddToTaskGroup, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCAddToTaskGroup
-	#define EXT_SysCpuMultiCoreSysMCAddToTaskGroup
-	#define GET_SysCpuMultiCoreSysMCAddToTaskGroup  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCAddToTaskGroup pISysCpuMultiCore->ISysMCAddToTaskGroup
-	#define CHK_SysCpuMultiCoreSysMCAddToTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCAddToTaskGroup  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCAddToTaskGroup
-	#define EXT_SysMCAddToTaskGroup
-	#define GET_SysMCAddToTaskGroup(fl)  CAL_CMGETAPI( "SysMCAddToTaskGroup" ) 
-	#define CAL_SysMCAddToTaskGroup pISysCpuMultiCore->ISysMCAddToTaskGroup
-	#define CHK_SysMCAddToTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCAddToTaskGroup  CAL_CMEXPAPI( "SysMCAddToTaskGroup" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCAddToTaskGroup  PFSYSMCADDTOTASKGROUP pfSysMCAddToTaskGroup;
-	#define EXT_SysMCAddToTaskGroup  extern PFSYSMCADDTOTASKGROUP pfSysMCAddToTaskGroup;
-	#define GET_SysMCAddToTaskGroup(fl)  s_pfCMGetAPI2( "SysMCAddToTaskGroup", (RTS_VOID_FCTPTR *)&pfSysMCAddToTaskGroup, (fl), 0, 0)
-	#define CAL_SysMCAddToTaskGroup  pfSysMCAddToTaskGroup
-	#define CHK_SysMCAddToTaskGroup  (pfSysMCAddToTaskGroup != NULL)
-	#define EXP_SysMCAddToTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCAddToTaskGroup", (RTS_UINTPTR)SysMCAddToTaskGroup, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Task group maintenance</p>
- * This function removes a task from a task group.
- * </description>
- * <param name="hSysTask" type="IN">The handle to a SysTask</param>
- * <param name="hTaskGroup" type="IN">The handle to a task group</param>
- * <result>Returns an errorcode.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The required memory pool was not initialized.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">The given handle is invalid.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">The given SysTask handle is invalid.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NO_OBJECT">The given SysTask handle was not found.</errorcode>
- */
-RTS_RESULT CDECL SysMCRemoveFromTaskGroup(RTS_HANDLE hSysTask, RTS_HANDLE hTaskGroup);
-typedef RTS_RESULT (CDECL * PFSYSMCREMOVEFROMTASKGROUP) (RTS_HANDLE hSysTask, RTS_HANDLE hTaskGroup);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCREMOVEFROMTASKGROUP_NOTIMPLEMENTED)
-	#define USE_SysMCRemoveFromTaskGroup
-	#define EXT_SysMCRemoveFromTaskGroup
-	#define GET_SysMCRemoveFromTaskGroup(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCRemoveFromTaskGroup(p0,p1)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCRemoveFromTaskGroup  FALSE
-	#define EXP_SysMCRemoveFromTaskGroup  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCRemoveFromTaskGroup
-	#define EXT_SysMCRemoveFromTaskGroup
-	#define GET_SysMCRemoveFromTaskGroup(fl)  CAL_CMGETAPI( "SysMCRemoveFromTaskGroup" ) 
-	#define CAL_SysMCRemoveFromTaskGroup  SysMCRemoveFromTaskGroup
-	#define CHK_SysMCRemoveFromTaskGroup  TRUE
-	#define EXP_SysMCRemoveFromTaskGroup  CAL_CMEXPAPI( "SysMCRemoveFromTaskGroup" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCRemoveFromTaskGroup
-	#define EXT_SysMCRemoveFromTaskGroup
-	#define GET_SysMCRemoveFromTaskGroup(fl)  CAL_CMGETAPI( "SysMCRemoveFromTaskGroup" ) 
-	#define CAL_SysMCRemoveFromTaskGroup  SysMCRemoveFromTaskGroup
-	#define CHK_SysMCRemoveFromTaskGroup  TRUE
-	#define EXP_SysMCRemoveFromTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCRemoveFromTaskGroup", (RTS_UINTPTR)SysMCRemoveFromTaskGroup, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCRemoveFromTaskGroup
-	#define EXT_SysCpuMultiCoreSysMCRemoveFromTaskGroup
-	#define GET_SysCpuMultiCoreSysMCRemoveFromTaskGroup  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCRemoveFromTaskGroup pISysCpuMultiCore->ISysMCRemoveFromTaskGroup
-	#define CHK_SysCpuMultiCoreSysMCRemoveFromTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCRemoveFromTaskGroup  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCRemoveFromTaskGroup
-	#define EXT_SysMCRemoveFromTaskGroup
-	#define GET_SysMCRemoveFromTaskGroup(fl)  CAL_CMGETAPI( "SysMCRemoveFromTaskGroup" ) 
-	#define CAL_SysMCRemoveFromTaskGroup pISysCpuMultiCore->ISysMCRemoveFromTaskGroup
-	#define CHK_SysMCRemoveFromTaskGroup (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCRemoveFromTaskGroup  CAL_CMEXPAPI( "SysMCRemoveFromTaskGroup" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCRemoveFromTaskGroup  PFSYSMCREMOVEFROMTASKGROUP pfSysMCRemoveFromTaskGroup;
-	#define EXT_SysMCRemoveFromTaskGroup  extern PFSYSMCREMOVEFROMTASKGROUP pfSysMCRemoveFromTaskGroup;
-	#define GET_SysMCRemoveFromTaskGroup(fl)  s_pfCMGetAPI2( "SysMCRemoveFromTaskGroup", (RTS_VOID_FCTPTR *)&pfSysMCRemoveFromTaskGroup, (fl), 0, 0)
-	#define CAL_SysMCRemoveFromTaskGroup  pfSysMCRemoveFromTaskGroup
-	#define CHK_SysMCRemoveFromTaskGroup  (pfSysMCRemoveFromTaskGroup != NULL)
-	#define EXP_SysMCRemoveFromTaskGroup  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCRemoveFromTaskGroup", (RTS_UINTPTR)SysMCRemoveFromTaskGroup, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Task group maintenance</p>
- * This function starts the configuration mode of task groups.
- * </description>
- * <param name="hTaskGroup" type="IN">The handle to a task group</param>
- * <result>Returns an errorcode.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">The given handle is invalid.</errorcode>
- */
-RTS_RESULT CDECL SysMCBeginTaskGroupConf(RTS_HANDLE hTaskGroup);
-typedef RTS_RESULT (CDECL * PFSYSMCBEGINTASKGROUPCONF) (RTS_HANDLE hTaskGroup);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBEGINTASKGROUPCONF_NOTIMPLEMENTED)
-	#define USE_SysMCBeginTaskGroupConf
-	#define EXT_SysMCBeginTaskGroupConf
-	#define GET_SysMCBeginTaskGroupConf(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCBeginTaskGroupConf(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCBeginTaskGroupConf  FALSE
-	#define EXP_SysMCBeginTaskGroupConf  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCBeginTaskGroupConf
-	#define EXT_SysMCBeginTaskGroupConf
-	#define GET_SysMCBeginTaskGroupConf(fl)  CAL_CMGETAPI( "SysMCBeginTaskGroupConf" ) 
-	#define CAL_SysMCBeginTaskGroupConf  SysMCBeginTaskGroupConf
-	#define CHK_SysMCBeginTaskGroupConf  TRUE
-	#define EXP_SysMCBeginTaskGroupConf  CAL_CMEXPAPI( "SysMCBeginTaskGroupConf" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCBeginTaskGroupConf
-	#define EXT_SysMCBeginTaskGroupConf
-	#define GET_SysMCBeginTaskGroupConf(fl)  CAL_CMGETAPI( "SysMCBeginTaskGroupConf" ) 
-	#define CAL_SysMCBeginTaskGroupConf  SysMCBeginTaskGroupConf
-	#define CHK_SysMCBeginTaskGroupConf  TRUE
-	#define EXP_SysMCBeginTaskGroupConf  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBeginTaskGroupConf", (RTS_UINTPTR)SysMCBeginTaskGroupConf, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCBeginTaskGroupConf
-	#define EXT_SysCpuMultiCoreSysMCBeginTaskGroupConf
-	#define GET_SysCpuMultiCoreSysMCBeginTaskGroupConf  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCBeginTaskGroupConf pISysCpuMultiCore->ISysMCBeginTaskGroupConf
-	#define CHK_SysCpuMultiCoreSysMCBeginTaskGroupConf (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCBeginTaskGroupConf  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCBeginTaskGroupConf
-	#define EXT_SysMCBeginTaskGroupConf
-	#define GET_SysMCBeginTaskGroupConf(fl)  CAL_CMGETAPI( "SysMCBeginTaskGroupConf" ) 
-	#define CAL_SysMCBeginTaskGroupConf pISysCpuMultiCore->ISysMCBeginTaskGroupConf
-	#define CHK_SysMCBeginTaskGroupConf (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCBeginTaskGroupConf  CAL_CMEXPAPI( "SysMCBeginTaskGroupConf" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCBeginTaskGroupConf  PFSYSMCBEGINTASKGROUPCONF pfSysMCBeginTaskGroupConf;
-	#define EXT_SysMCBeginTaskGroupConf  extern PFSYSMCBEGINTASKGROUPCONF pfSysMCBeginTaskGroupConf;
-	#define GET_SysMCBeginTaskGroupConf(fl)  s_pfCMGetAPI2( "SysMCBeginTaskGroupConf", (RTS_VOID_FCTPTR *)&pfSysMCBeginTaskGroupConf, (fl), 0, 0)
-	#define CAL_SysMCBeginTaskGroupConf  pfSysMCBeginTaskGroupConf
-	#define CHK_SysMCBeginTaskGroupConf  (pfSysMCBeginTaskGroupConf != NULL)
-	#define EXP_SysMCBeginTaskGroupConf  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBeginTaskGroupConf", (RTS_UINTPTR)SysMCBeginTaskGroupConf, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Task group maintenance</p>
- * This function ends the configuration mode of task groups and than binds the tasks of all groups as configured.
- * NOTE: In case the process is bound to one core, no task binding is possible at all, but the function returns ERR_OK anyway.
- * </description>
- * <param name="hTaskGroup" type="IN">The handle to a task group</param>
- * <result>Returns an errorcode.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">The given handle is invalid.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">The binding configuration is invalid.</errorcode>
- */
-RTS_RESULT CDECL SysMCEndTaskGroupConf(RTS_HANDLE hTaskGroup);
-typedef RTS_RESULT (CDECL * PFSYSMCENDTASKGROUPCONF) (RTS_HANDLE hTaskGroup);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCENDTASKGROUPCONF_NOTIMPLEMENTED)
-	#define USE_SysMCEndTaskGroupConf
-	#define EXT_SysMCEndTaskGroupConf
-	#define GET_SysMCEndTaskGroupConf(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCEndTaskGroupConf(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCEndTaskGroupConf  FALSE
-	#define EXP_SysMCEndTaskGroupConf  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCEndTaskGroupConf
-	#define EXT_SysMCEndTaskGroupConf
-	#define GET_SysMCEndTaskGroupConf(fl)  CAL_CMGETAPI( "SysMCEndTaskGroupConf" ) 
-	#define CAL_SysMCEndTaskGroupConf  SysMCEndTaskGroupConf
-	#define CHK_SysMCEndTaskGroupConf  TRUE
-	#define EXP_SysMCEndTaskGroupConf  CAL_CMEXPAPI( "SysMCEndTaskGroupConf" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCEndTaskGroupConf
-	#define EXT_SysMCEndTaskGroupConf
-	#define GET_SysMCEndTaskGroupConf(fl)  CAL_CMGETAPI( "SysMCEndTaskGroupConf" ) 
-	#define CAL_SysMCEndTaskGroupConf  SysMCEndTaskGroupConf
-	#define CHK_SysMCEndTaskGroupConf  TRUE
-	#define EXP_SysMCEndTaskGroupConf  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCEndTaskGroupConf", (RTS_UINTPTR)SysMCEndTaskGroupConf, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCEndTaskGroupConf
-	#define EXT_SysCpuMultiCoreSysMCEndTaskGroupConf
-	#define GET_SysCpuMultiCoreSysMCEndTaskGroupConf  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCEndTaskGroupConf pISysCpuMultiCore->ISysMCEndTaskGroupConf
-	#define CHK_SysCpuMultiCoreSysMCEndTaskGroupConf (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCEndTaskGroupConf  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCEndTaskGroupConf
-	#define EXT_SysMCEndTaskGroupConf
-	#define GET_SysMCEndTaskGroupConf(fl)  CAL_CMGETAPI( "SysMCEndTaskGroupConf" ) 
-	#define CAL_SysMCEndTaskGroupConf pISysCpuMultiCore->ISysMCEndTaskGroupConf
-	#define CHK_SysMCEndTaskGroupConf (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCEndTaskGroupConf  CAL_CMEXPAPI( "SysMCEndTaskGroupConf" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCEndTaskGroupConf  PFSYSMCENDTASKGROUPCONF pfSysMCEndTaskGroupConf;
-	#define EXT_SysMCEndTaskGroupConf  extern PFSYSMCENDTASKGROUPCONF pfSysMCEndTaskGroupConf;
-	#define GET_SysMCEndTaskGroupConf(fl)  s_pfCMGetAPI2( "SysMCEndTaskGroupConf", (RTS_VOID_FCTPTR *)&pfSysMCEndTaskGroupConf, (fl), 0, 0)
-	#define CAL_SysMCEndTaskGroupConf  pfSysMCEndTaskGroupConf
-	#define CHK_SysMCEndTaskGroupConf  (pfSysMCEndTaskGroupConf != NULL)
-	#define EXP_SysMCEndTaskGroupConf  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCEndTaskGroupConf", (RTS_UINTPTR)SysMCEndTaskGroupConf, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>CpuCoreBindingDesc helper function</p>
- * SysMCBDAlloc allocates a CpuCoreBindingDesc which should be freed with SysMCBDFree after usage. Initializes the nNumOfCores member. In case nNumOfCores > SYSMCBITSPERXWORD an array of appropriate XWORDs is allocated to pulCoreBits.
- * </description>
- * <param name="pResult" type="IN">Pointer to a variable to return an errorcode (optional)</param>
- * <result>Returns a pointer to CpuCoreBindingDesc or NULL if no memory is available.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">A valid pointer is returned.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOMEMORY">Not enough memory is available.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">Component is not yet initialized.</errorcode>
- */
-CpuCoreBindingDesc * CDECL SysMCBDAlloc(RTS_RESULT* pResult);
-typedef CpuCoreBindingDesc * (CDECL * PFSYSMCBDALLOC) (RTS_RESULT* pResult);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDALLOC_NOTIMPLEMENTED)
-	#define USE_SysMCBDAlloc
-	#define EXT_SysMCBDAlloc
-	#define GET_SysMCBDAlloc(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCBDAlloc(p0)  (CpuCoreBindingDesc *)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCBDAlloc  FALSE
-	#define EXP_SysMCBDAlloc  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCBDAlloc
-	#define EXT_SysMCBDAlloc
-	#define GET_SysMCBDAlloc(fl)  CAL_CMGETAPI( "SysMCBDAlloc" ) 
-	#define CAL_SysMCBDAlloc  SysMCBDAlloc
-	#define CHK_SysMCBDAlloc  TRUE
-	#define EXP_SysMCBDAlloc  CAL_CMEXPAPI( "SysMCBDAlloc" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCBDAlloc
-	#define EXT_SysMCBDAlloc
-	#define GET_SysMCBDAlloc(fl)  CAL_CMGETAPI( "SysMCBDAlloc" ) 
-	#define CAL_SysMCBDAlloc  SysMCBDAlloc
-	#define CHK_SysMCBDAlloc  TRUE
-	#define EXP_SysMCBDAlloc  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDAlloc", (RTS_UINTPTR)SysMCBDAlloc, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCBDAlloc
-	#define EXT_SysCpuMultiCoreSysMCBDAlloc
-	#define GET_SysCpuMultiCoreSysMCBDAlloc  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCBDAlloc pISysCpuMultiCore->ISysMCBDAlloc
-	#define CHK_SysCpuMultiCoreSysMCBDAlloc (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCBDAlloc  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCBDAlloc
-	#define EXT_SysMCBDAlloc
-	#define GET_SysMCBDAlloc(fl)  CAL_CMGETAPI( "SysMCBDAlloc" ) 
-	#define CAL_SysMCBDAlloc pISysCpuMultiCore->ISysMCBDAlloc
-	#define CHK_SysMCBDAlloc (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCBDAlloc  CAL_CMEXPAPI( "SysMCBDAlloc" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCBDAlloc  PFSYSMCBDALLOC pfSysMCBDAlloc;
-	#define EXT_SysMCBDAlloc  extern PFSYSMCBDALLOC pfSysMCBDAlloc;
-	#define GET_SysMCBDAlloc(fl)  s_pfCMGetAPI2( "SysMCBDAlloc", (RTS_VOID_FCTPTR *)&pfSysMCBDAlloc, (fl), 0, 0)
-	#define CAL_SysMCBDAlloc  pfSysMCBDAlloc
-	#define CHK_SysMCBDAlloc  (pfSysMCBDAlloc != NULL)
-	#define EXP_SysMCBDAlloc  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDAlloc", (RTS_UINTPTR)SysMCBDAlloc, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>CpuCoreBindingDesc helper function</p>
- * SysMCBDFree frees an CpuCoreBindingDesc which should be allocated with SysMCBDAlloc before usage.
- * </description>
- * <param name="pBindingDesc" type="IN">Pointer to the description of the core binding.</param>
- * <result>Returns an errorcode.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Memory is sucessfully freed.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">No appropriate memory block was found.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">CpuCoreBindingDesc is invalid pointer.</errorcode>
- */
-RTS_RESULT CDECL SysMCBDFree(CpuCoreBindingDesc *pBindingDesc);
-typedef RTS_RESULT (CDECL * PFSYSMCBDFREE) (CpuCoreBindingDesc *pBindingDesc);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDFREE_NOTIMPLEMENTED)
-	#define USE_SysMCBDFree
-	#define EXT_SysMCBDFree
-	#define GET_SysMCBDFree(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCBDFree(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCBDFree  FALSE
-	#define EXP_SysMCBDFree  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCBDFree
-	#define EXT_SysMCBDFree
-	#define GET_SysMCBDFree(fl)  CAL_CMGETAPI( "SysMCBDFree" ) 
-	#define CAL_SysMCBDFree  SysMCBDFree
-	#define CHK_SysMCBDFree  TRUE
-	#define EXP_SysMCBDFree  CAL_CMEXPAPI( "SysMCBDFree" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCBDFree
-	#define EXT_SysMCBDFree
-	#define GET_SysMCBDFree(fl)  CAL_CMGETAPI( "SysMCBDFree" ) 
-	#define CAL_SysMCBDFree  SysMCBDFree
-	#define CHK_SysMCBDFree  TRUE
-	#define EXP_SysMCBDFree  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDFree", (RTS_UINTPTR)SysMCBDFree, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCBDFree
-	#define EXT_SysCpuMultiCoreSysMCBDFree
-	#define GET_SysCpuMultiCoreSysMCBDFree  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCBDFree pISysCpuMultiCore->ISysMCBDFree
-	#define CHK_SysCpuMultiCoreSysMCBDFree (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCBDFree  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCBDFree
-	#define EXT_SysMCBDFree
-	#define GET_SysMCBDFree(fl)  CAL_CMGETAPI( "SysMCBDFree" ) 
-	#define CAL_SysMCBDFree pISysCpuMultiCore->ISysMCBDFree
-	#define CHK_SysMCBDFree (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCBDFree  CAL_CMEXPAPI( "SysMCBDFree" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCBDFree  PFSYSMCBDFREE pfSysMCBDFree;
-	#define EXT_SysMCBDFree  extern PFSYSMCBDFREE pfSysMCBDFree;
-	#define GET_SysMCBDFree(fl)  s_pfCMGetAPI2( "SysMCBDFree", (RTS_VOID_FCTPTR *)&pfSysMCBDFree, (fl), 0, 0)
-	#define CAL_SysMCBDFree  pfSysMCBDFree
-	#define CHK_SysMCBDFree  (pfSysMCBDFree != NULL)
-	#define EXP_SysMCBDFree  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDFree", (RTS_UINTPTR)SysMCBDFree, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>CpuCoreBindingDesc helper function</p>
- * SysMCBDZero clears all the CpuCoreBits of the given CpuCoreBindingDesc. SysMCBDZero should be called prior to any call of SysMCBDSet.
- * </description>
- * <param name="pBindingDesc" type="IN">Pointer to the description of the core binding.</param>
- * <result>Returns an errorcode.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Operation sucessfully finished.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">CpuCoreBindingDesc is invalid pointer.</errorcode>
- */
-RTS_RESULT CDECL SysMCBDZero(CpuCoreBindingDesc *pBindingDesc);
-typedef RTS_RESULT (CDECL * PFSYSMCBDZERO) (CpuCoreBindingDesc *pBindingDesc);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDZERO_NOTIMPLEMENTED)
-	#define USE_SysMCBDZero
-	#define EXT_SysMCBDZero
-	#define GET_SysMCBDZero(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCBDZero(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCBDZero  FALSE
-	#define EXP_SysMCBDZero  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCBDZero
-	#define EXT_SysMCBDZero
-	#define GET_SysMCBDZero(fl)  CAL_CMGETAPI( "SysMCBDZero" ) 
-	#define CAL_SysMCBDZero  SysMCBDZero
-	#define CHK_SysMCBDZero  TRUE
-	#define EXP_SysMCBDZero  CAL_CMEXPAPI( "SysMCBDZero" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCBDZero
-	#define EXT_SysMCBDZero
-	#define GET_SysMCBDZero(fl)  CAL_CMGETAPI( "SysMCBDZero" ) 
-	#define CAL_SysMCBDZero  SysMCBDZero
-	#define CHK_SysMCBDZero  TRUE
-	#define EXP_SysMCBDZero  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDZero", (RTS_UINTPTR)SysMCBDZero, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCBDZero
-	#define EXT_SysCpuMultiCoreSysMCBDZero
-	#define GET_SysCpuMultiCoreSysMCBDZero  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCBDZero pISysCpuMultiCore->ISysMCBDZero
-	#define CHK_SysCpuMultiCoreSysMCBDZero (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCBDZero  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCBDZero
-	#define EXT_SysMCBDZero
-	#define GET_SysMCBDZero(fl)  CAL_CMGETAPI( "SysMCBDZero" ) 
-	#define CAL_SysMCBDZero pISysCpuMultiCore->ISysMCBDZero
-	#define CHK_SysMCBDZero (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCBDZero  CAL_CMEXPAPI( "SysMCBDZero" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCBDZero  PFSYSMCBDZERO pfSysMCBDZero;
-	#define EXT_SysMCBDZero  extern PFSYSMCBDZERO pfSysMCBDZero;
-	#define GET_SysMCBDZero(fl)  s_pfCMGetAPI2( "SysMCBDZero", (RTS_VOID_FCTPTR *)&pfSysMCBDZero, (fl), 0, 0)
-	#define CAL_SysMCBDZero  pfSysMCBDZero
-	#define CHK_SysMCBDZero  (pfSysMCBDZero != NULL)
-	#define EXP_SysMCBDZero  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDZero", (RTS_UINTPTR)SysMCBDZero, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>CpuCoreBindingDesc helper function</p>
- * Set the appropriate bit for uCoreId in the CpuCoreBindingDesc.CpuCoreBits. SysMCBDZero should be called prior to any call of SysMCBDSet.
- * </description>
- * <param name="pBindingDesc" type="IN">Pointer to the description of the core binding.</param>
- * <param name="uCoreId" type="IN">Identifies the core ID. Starting with 0=first core, ...</param>
- * <result>Returns an errorcode.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Operation sucessfully finished.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">CpuCoreBindingDesc is invalid pointer or uCoreId is invalid.</errorcode>
- */
-RTS_RESULT CDECL SysMCBDSet(CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uCoreId);
-typedef RTS_RESULT (CDECL * PFSYSMCBDSET) (CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uCoreId);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDSET_NOTIMPLEMENTED)
-	#define USE_SysMCBDSet
-	#define EXT_SysMCBDSet
-	#define GET_SysMCBDSet(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCBDSet(p0,p1)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCBDSet  FALSE
-	#define EXP_SysMCBDSet  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCBDSet
-	#define EXT_SysMCBDSet
-	#define GET_SysMCBDSet(fl)  CAL_CMGETAPI( "SysMCBDSet" ) 
-	#define CAL_SysMCBDSet  SysMCBDSet
-	#define CHK_SysMCBDSet  TRUE
-	#define EXP_SysMCBDSet  CAL_CMEXPAPI( "SysMCBDSet" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCBDSet
-	#define EXT_SysMCBDSet
-	#define GET_SysMCBDSet(fl)  CAL_CMGETAPI( "SysMCBDSet" ) 
-	#define CAL_SysMCBDSet  SysMCBDSet
-	#define CHK_SysMCBDSet  TRUE
-	#define EXP_SysMCBDSet  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDSet", (RTS_UINTPTR)SysMCBDSet, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCBDSet
-	#define EXT_SysCpuMultiCoreSysMCBDSet
-	#define GET_SysCpuMultiCoreSysMCBDSet  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCBDSet pISysCpuMultiCore->ISysMCBDSet
-	#define CHK_SysCpuMultiCoreSysMCBDSet (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCBDSet  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCBDSet
-	#define EXT_SysMCBDSet
-	#define GET_SysMCBDSet(fl)  CAL_CMGETAPI( "SysMCBDSet" ) 
-	#define CAL_SysMCBDSet pISysCpuMultiCore->ISysMCBDSet
-	#define CHK_SysMCBDSet (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCBDSet  CAL_CMEXPAPI( "SysMCBDSet" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCBDSet  PFSYSMCBDSET pfSysMCBDSet;
-	#define EXT_SysMCBDSet  extern PFSYSMCBDSET pfSysMCBDSet;
-	#define GET_SysMCBDSet(fl)  s_pfCMGetAPI2( "SysMCBDSet", (RTS_VOID_FCTPTR *)&pfSysMCBDSet, (fl), 0, 0)
-	#define CAL_SysMCBDSet  pfSysMCBDSet
-	#define CHK_SysMCBDSet  (pfSysMCBDSet != NULL)
-	#define EXP_SysMCBDSet  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDSet", (RTS_UINTPTR)SysMCBDSet, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>CpuCoreBindingDesc helper function</p>
- * SysMCBDReset resets the appropriate bit for uCoreId in the CpuCoreBindingDesc.CpuCoreBits, i.e. clears it.
- * </description>
- * <result>Returns an errorcode.</result>
- * <param name="pBindingDesc" type="IN">Pointer to the description of the core binding.</param>
- * <param name="uCoreId" type="IN">Identifies the core ID. Starting with 0=first core, ...</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Operation sucessfully finished.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">CpuCoreBindingDesc is invalid pointer or uCoreId is invalid.</errorcode>
- */
-RTS_RESULT CDECL SysMCBDReset(CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uCoreId);
-typedef RTS_RESULT (CDECL * PFSYSMCBDRESET) (CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uCoreId);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDRESET_NOTIMPLEMENTED)
-	#define USE_SysMCBDReset
-	#define EXT_SysMCBDReset
-	#define GET_SysMCBDReset(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCBDReset(p0,p1)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCBDReset  FALSE
-	#define EXP_SysMCBDReset  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCBDReset
-	#define EXT_SysMCBDReset
-	#define GET_SysMCBDReset(fl)  CAL_CMGETAPI( "SysMCBDReset" ) 
-	#define CAL_SysMCBDReset  SysMCBDReset
-	#define CHK_SysMCBDReset  TRUE
-	#define EXP_SysMCBDReset  CAL_CMEXPAPI( "SysMCBDReset" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCBDReset
-	#define EXT_SysMCBDReset
-	#define GET_SysMCBDReset(fl)  CAL_CMGETAPI( "SysMCBDReset" ) 
-	#define CAL_SysMCBDReset  SysMCBDReset
-	#define CHK_SysMCBDReset  TRUE
-	#define EXP_SysMCBDReset  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDReset", (RTS_UINTPTR)SysMCBDReset, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCBDReset
-	#define EXT_SysCpuMultiCoreSysMCBDReset
-	#define GET_SysCpuMultiCoreSysMCBDReset  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCBDReset pISysCpuMultiCore->ISysMCBDReset
-	#define CHK_SysCpuMultiCoreSysMCBDReset (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCBDReset  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCBDReset
-	#define EXT_SysMCBDReset
-	#define GET_SysMCBDReset(fl)  CAL_CMGETAPI( "SysMCBDReset" ) 
-	#define CAL_SysMCBDReset pISysCpuMultiCore->ISysMCBDReset
-	#define CHK_SysMCBDReset (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCBDReset  CAL_CMEXPAPI( "SysMCBDReset" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCBDReset  PFSYSMCBDRESET pfSysMCBDReset;
-	#define EXT_SysMCBDReset  extern PFSYSMCBDRESET pfSysMCBDReset;
-	#define GET_SysMCBDReset(fl)  s_pfCMGetAPI2( "SysMCBDReset", (RTS_VOID_FCTPTR *)&pfSysMCBDReset, (fl), 0, 0)
-	#define CAL_SysMCBDReset  pfSysMCBDReset
-	#define CHK_SysMCBDReset  (pfSysMCBDReset != NULL)
-	#define EXP_SysMCBDReset  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDReset", (RTS_UINTPTR)SysMCBDReset, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>CpuCoreBindingDesc helper function</p>
- * SysMCBDIsSet tests the appropriate bit for uCoreId in CpuCoreBindingDesc.CpuCoreBits: see errorcode
- * </description>
- * <result>Returns an errorcode.</result>
- * <param name="pBindingDesc" type="IN">Pointer to the description of the core binding.</param>
- * <param name="uCoreId" type="IN">Identifies the core ID. Starting with 0=first core, ...</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Bit is set.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">Bit is not set.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">CpuCoreBindingDesc is invalid pointer or uCoreId is invalid.</errorcode>
- */
-RTS_RESULT CDECL SysMCBDIsSet(CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uCoreId);
-typedef RTS_RESULT (CDECL * PFSYSMCBDISSET) (CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uCoreId);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDISSET_NOTIMPLEMENTED)
-	#define USE_SysMCBDIsSet
-	#define EXT_SysMCBDIsSet
-	#define GET_SysMCBDIsSet(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCBDIsSet(p0,p1)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCBDIsSet  FALSE
-	#define EXP_SysMCBDIsSet  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCBDIsSet
-	#define EXT_SysMCBDIsSet
-	#define GET_SysMCBDIsSet(fl)  CAL_CMGETAPI( "SysMCBDIsSet" ) 
-	#define CAL_SysMCBDIsSet  SysMCBDIsSet
-	#define CHK_SysMCBDIsSet  TRUE
-	#define EXP_SysMCBDIsSet  CAL_CMEXPAPI( "SysMCBDIsSet" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCBDIsSet
-	#define EXT_SysMCBDIsSet
-	#define GET_SysMCBDIsSet(fl)  CAL_CMGETAPI( "SysMCBDIsSet" ) 
-	#define CAL_SysMCBDIsSet  SysMCBDIsSet
-	#define CHK_SysMCBDIsSet  TRUE
-	#define EXP_SysMCBDIsSet  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDIsSet", (RTS_UINTPTR)SysMCBDIsSet, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCBDIsSet
-	#define EXT_SysCpuMultiCoreSysMCBDIsSet
-	#define GET_SysCpuMultiCoreSysMCBDIsSet  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCBDIsSet pISysCpuMultiCore->ISysMCBDIsSet
-	#define CHK_SysCpuMultiCoreSysMCBDIsSet (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCBDIsSet  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCBDIsSet
-	#define EXT_SysMCBDIsSet
-	#define GET_SysMCBDIsSet(fl)  CAL_CMGETAPI( "SysMCBDIsSet" ) 
-	#define CAL_SysMCBDIsSet pISysCpuMultiCore->ISysMCBDIsSet
-	#define CHK_SysMCBDIsSet (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCBDIsSet  CAL_CMEXPAPI( "SysMCBDIsSet" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCBDIsSet  PFSYSMCBDISSET pfSysMCBDIsSet;
-	#define EXT_SysMCBDIsSet  extern PFSYSMCBDISSET pfSysMCBDIsSet;
-	#define GET_SysMCBDIsSet(fl)  s_pfCMGetAPI2( "SysMCBDIsSet", (RTS_VOID_FCTPTR *)&pfSysMCBDIsSet, (fl), 0, 0)
-	#define CAL_SysMCBDIsSet  pfSysMCBDIsSet
-	#define CHK_SysMCBDIsSet  (pfSysMCBDIsSet != NULL)
-	#define EXP_SysMCBDIsSet  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDIsSet", (RTS_UINTPTR)SysMCBDIsSet, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>CpuCoreBindingDesc helper function</p>
- * SysMCBDCount counts the set bits in CpuCoreBindingDesc.CpuCoreBits.
- * </description>
- * <result>Returns the number of the bits set.</result>
- * <param name="pBindingDesc" type="IN">Pointer to the description of the core binding.</param>
- * <param name="pResult" type="IN">Pointer to a variable to return an errorcode (optional)</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Operation sucessfully finished.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">CpuCoreBindingDesc is invalid pointer.</errorcode>
- */
-RTS_UI32 CDECL SysMCBDCount(CpuCoreBindingDesc *pBindingDesc, RTS_RESULT* pResult);
-typedef RTS_UI32 (CDECL * PFSYSMCBDCOUNT) (CpuCoreBindingDesc *pBindingDesc, RTS_RESULT* pResult);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDCOUNT_NOTIMPLEMENTED)
-	#define USE_SysMCBDCount
-	#define EXT_SysMCBDCount
-	#define GET_SysMCBDCount(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCBDCount(p0,p1)  (RTS_UI32)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCBDCount  FALSE
-	#define EXP_SysMCBDCount  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCBDCount
-	#define EXT_SysMCBDCount
-	#define GET_SysMCBDCount(fl)  CAL_CMGETAPI( "SysMCBDCount" ) 
-	#define CAL_SysMCBDCount  SysMCBDCount
-	#define CHK_SysMCBDCount  TRUE
-	#define EXP_SysMCBDCount  CAL_CMEXPAPI( "SysMCBDCount" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCBDCount
-	#define EXT_SysMCBDCount
-	#define GET_SysMCBDCount(fl)  CAL_CMGETAPI( "SysMCBDCount" ) 
-	#define CAL_SysMCBDCount  SysMCBDCount
-	#define CHK_SysMCBDCount  TRUE
-	#define EXP_SysMCBDCount  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDCount", (RTS_UINTPTR)SysMCBDCount, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCBDCount
-	#define EXT_SysCpuMultiCoreSysMCBDCount
-	#define GET_SysCpuMultiCoreSysMCBDCount  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCBDCount pISysCpuMultiCore->ISysMCBDCount
-	#define CHK_SysCpuMultiCoreSysMCBDCount (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCBDCount  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCBDCount
-	#define EXT_SysMCBDCount
-	#define GET_SysMCBDCount(fl)  CAL_CMGETAPI( "SysMCBDCount" ) 
-	#define CAL_SysMCBDCount pISysCpuMultiCore->ISysMCBDCount
-	#define CHK_SysMCBDCount (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCBDCount  CAL_CMEXPAPI( "SysMCBDCount" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCBDCount  PFSYSMCBDCOUNT pfSysMCBDCount;
-	#define EXT_SysMCBDCount  extern PFSYSMCBDCOUNT pfSysMCBDCount;
-	#define GET_SysMCBDCount(fl)  s_pfCMGetAPI2( "SysMCBDCount", (RTS_VOID_FCTPTR *)&pfSysMCBDCount, (fl), 0, 0)
-	#define CAL_SysMCBDCount  pfSysMCBDCount
-	#define CHK_SysMCBDCount  (pfSysMCBDCount != NULL)
-	#define EXP_SysMCBDCount  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDCount", (RTS_UINTPTR)SysMCBDCount, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>CpuCoreBindingDesc helper function</p>
- * SysMCBDGetFirstID returns the CoreId (i.e. the position) of the first set bit in CpuCoreBindingDesc.CpuCoreBits.
- * </description>
- * <param name="pBindingDesc" type="IN">Pointer to the description of the core binding.</param>
- * <param name="pResult" type="IN">Pointer to a variable to return an errorcode.</param>
- * <result>Returns a valid CoreId if ERR_OK, otherwise the result is undefined.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">First found CoreId is returned.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">CpuCoreBindingDesc is invalid pointer.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_END_OF_OBJECT">No core was set.</errorcode>
- */
-RTS_UI32 CDECL SysMCBDGetFirstID(CpuCoreBindingDesc *pBindingDesc, RTS_RESULT* pResult);
-typedef RTS_UI32 (CDECL * PFSYSMCBDGETFIRSTID) (CpuCoreBindingDesc *pBindingDesc, RTS_RESULT* pResult);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDGETFIRSTID_NOTIMPLEMENTED)
-	#define USE_SysMCBDGetFirstID
-	#define EXT_SysMCBDGetFirstID
-	#define GET_SysMCBDGetFirstID(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCBDGetFirstID(p0,p1)  (RTS_UI32)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCBDGetFirstID  FALSE
-	#define EXP_SysMCBDGetFirstID  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCBDGetFirstID
-	#define EXT_SysMCBDGetFirstID
-	#define GET_SysMCBDGetFirstID(fl)  CAL_CMGETAPI( "SysMCBDGetFirstID" ) 
-	#define CAL_SysMCBDGetFirstID  SysMCBDGetFirstID
-	#define CHK_SysMCBDGetFirstID  TRUE
-	#define EXP_SysMCBDGetFirstID  CAL_CMEXPAPI( "SysMCBDGetFirstID" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCBDGetFirstID
-	#define EXT_SysMCBDGetFirstID
-	#define GET_SysMCBDGetFirstID(fl)  CAL_CMGETAPI( "SysMCBDGetFirstID" ) 
-	#define CAL_SysMCBDGetFirstID  SysMCBDGetFirstID
-	#define CHK_SysMCBDGetFirstID  TRUE
-	#define EXP_SysMCBDGetFirstID  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDGetFirstID", (RTS_UINTPTR)SysMCBDGetFirstID, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCBDGetFirstID
-	#define EXT_SysCpuMultiCoreSysMCBDGetFirstID
-	#define GET_SysCpuMultiCoreSysMCBDGetFirstID  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCBDGetFirstID pISysCpuMultiCore->ISysMCBDGetFirstID
-	#define CHK_SysCpuMultiCoreSysMCBDGetFirstID (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCBDGetFirstID  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCBDGetFirstID
-	#define EXT_SysMCBDGetFirstID
-	#define GET_SysMCBDGetFirstID(fl)  CAL_CMGETAPI( "SysMCBDGetFirstID" ) 
-	#define CAL_SysMCBDGetFirstID pISysCpuMultiCore->ISysMCBDGetFirstID
-	#define CHK_SysMCBDGetFirstID (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCBDGetFirstID  CAL_CMEXPAPI( "SysMCBDGetFirstID" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCBDGetFirstID  PFSYSMCBDGETFIRSTID pfSysMCBDGetFirstID;
-	#define EXT_SysMCBDGetFirstID  extern PFSYSMCBDGETFIRSTID pfSysMCBDGetFirstID;
-	#define GET_SysMCBDGetFirstID(fl)  s_pfCMGetAPI2( "SysMCBDGetFirstID", (RTS_VOID_FCTPTR *)&pfSysMCBDGetFirstID, (fl), 0, 0)
-	#define CAL_SysMCBDGetFirstID  pfSysMCBDGetFirstID
-	#define CHK_SysMCBDGetFirstID  (pfSysMCBDGetFirstID != NULL)
-	#define EXP_SysMCBDGetFirstID  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDGetFirstID", (RTS_UINTPTR)SysMCBDGetFirstID, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>CpuCoreBindingDesc helper function</p>
- * SysMCBDGetNextID returns the CoreId (i.e. the position) of the next set bit in CpuCoreBindingDesc.CpuCoreBits.
- * </description>
- * <param name="pBindingDesc" type="IN">Pointer to the description of the core binding.</param>
- * <param name="uPrevCoreID" type="IN">CoreId found by SysMCBDGetFirstID or a previous call of SysMCBDGetNextID.</param>
- * <param name="pResult" type="IN">Pointer to a variable to return an errorcode.</param>
- * <result>Returns a valid CoreId if ERR_OK, otherwise the result is undefined.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Next found CoreId is returned.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">CpuCoreBindingDesc is invalid pointer.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_END_OF_OBJECT">No more cores were set.</errorcode>
- */
-RTS_UI32 CDECL SysMCBDGetNextID(CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uPrevCoreID, RTS_RESULT* pResult);
-typedef RTS_UI32 (CDECL * PFSYSMCBDGETNEXTID) (CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uPrevCoreID, RTS_RESULT* pResult);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBDGETNEXTID_NOTIMPLEMENTED)
-	#define USE_SysMCBDGetNextID
-	#define EXT_SysMCBDGetNextID
-	#define GET_SysMCBDGetNextID(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCBDGetNextID(p0,p1,p2)  (RTS_UI32)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCBDGetNextID  FALSE
-	#define EXP_SysMCBDGetNextID  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCBDGetNextID
-	#define EXT_SysMCBDGetNextID
-	#define GET_SysMCBDGetNextID(fl)  CAL_CMGETAPI( "SysMCBDGetNextID" ) 
-	#define CAL_SysMCBDGetNextID  SysMCBDGetNextID
-	#define CHK_SysMCBDGetNextID  TRUE
-	#define EXP_SysMCBDGetNextID  CAL_CMEXPAPI( "SysMCBDGetNextID" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCBDGetNextID
-	#define EXT_SysMCBDGetNextID
-	#define GET_SysMCBDGetNextID(fl)  CAL_CMGETAPI( "SysMCBDGetNextID" ) 
-	#define CAL_SysMCBDGetNextID  SysMCBDGetNextID
-	#define CHK_SysMCBDGetNextID  TRUE
-	#define EXP_SysMCBDGetNextID  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDGetNextID", (RTS_UINTPTR)SysMCBDGetNextID, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCBDGetNextID
-	#define EXT_SysCpuMultiCoreSysMCBDGetNextID
-	#define GET_SysCpuMultiCoreSysMCBDGetNextID  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCBDGetNextID pISysCpuMultiCore->ISysMCBDGetNextID
-	#define CHK_SysCpuMultiCoreSysMCBDGetNextID (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCBDGetNextID  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCBDGetNextID
-	#define EXT_SysMCBDGetNextID
-	#define GET_SysMCBDGetNextID(fl)  CAL_CMGETAPI( "SysMCBDGetNextID" ) 
-	#define CAL_SysMCBDGetNextID pISysCpuMultiCore->ISysMCBDGetNextID
-	#define CHK_SysMCBDGetNextID (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCBDGetNextID  CAL_CMEXPAPI( "SysMCBDGetNextID" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCBDGetNextID  PFSYSMCBDGETNEXTID pfSysMCBDGetNextID;
-	#define EXT_SysMCBDGetNextID  extern PFSYSMCBDGETNEXTID pfSysMCBDGetNextID;
-	#define GET_SysMCBDGetNextID(fl)  s_pfCMGetAPI2( "SysMCBDGetNextID", (RTS_VOID_FCTPTR *)&pfSysMCBDGetNextID, (fl), 0, 0)
-	#define CAL_SysMCBDGetNextID  pfSysMCBDGetNextID
-	#define CHK_SysMCBDGetNextID  (pfSysMCBDGetNextID != NULL)
-	#define EXP_SysMCBDGetNextID  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCBDGetNextID", (RTS_UINTPTR)SysMCBDGetNextID, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * <p>Function to bind a process to a core or a set of cores.</p>
+ * <p>Function to bind a process to a CPU core or a group of CPU cores.</p>
  * <p>
- * To set the corresponding bit(s) in CpuCoreBindingDesc.CpuCoreBits use SysMCBDSet.
+ * To bind a process to a single core, set the member "eCoreKindOfBinding" of the input structure CpuCoreBindingDesc to ECOREBINDINGKINDOF_COREBINDINGDESC_SINGLECORE.
+ * Set the union member nCoreID to the identifier of the core. This is a system dependent value.
+ * </p>
+ * <p>
+ * To bind a process to a group of cores, set the member "eCoreKindOfBinding" of the input structure CpuCoreBindingDesc to ECOREBINDINGKINDOF_COREBINDINGDESC_COREGROUP.
+ * Set the union member CoreGroupID.dwNumCoresInGroup to the number of cores in the group. Set the union member of CoreGroupID.CoreIDs to the address of the first array elelment of an array of identifiers of cores.
  * </p>
  * </description>
- * <param name="pBindingDesc" type="IN">Pointer to the binding description for the new core binding.</param>
+ * <param name="pCoreID" type="IN">Pointer to the binding description for the new core binding.</param>
  * <param name="hProcess" type="IN">Handle of the process to bind.</param>
  * <result>Returns the result.</result>
  * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
@@ -2254,11 +665,10 @@ typedef RTS_UI32 (CDECL * PFSYSMCBDGETNEXTID) (CpuCoreBindingDesc *pBindingDesc,
  * <errorcode name="RTS_RESULT" type="ERR_OPERATION_DENIED">Operation is denied on OS level.</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">Handle is invalid.</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_FAILED">Function failed for any reason on OS level.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not implemented.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Function is not supported.</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not supported.</errorcode>
  */
-RTS_RESULT CDECL SysMCBindProcess(CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hProcess);
-typedef RTS_RESULT (CDECL * PFSYSMCBINDPROCESS) (CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hProcess);
+RTS_RESULT CDECL SysMCBindProcess(CpuCoreBindingDesc *pCoreID, RTS_IEC_HANDLE hProcess);
+typedef RTS_RESULT (CDECL * PFSYSMCBINDPROCESS) (CpuCoreBindingDesc *pCoreID, RTS_IEC_HANDLE hProcess);
 #if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBINDPROCESS_NOTIMPLEMENTED)
 	#define USE_SysMCBindProcess
 	#define EXT_SysMCBindProcess
@@ -2311,8 +721,8 @@ typedef RTS_RESULT (CDECL * PFSYSMCBINDPROCESS) (CpuCoreBindingDesc *pBindingDes
  * The OS implementation of SysMCBindProcess
  * </description>
  */
-RTS_RESULT CDECL SysMCBindProcess_(CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hProcess);
-typedef RTS_RESULT (CDECL * PFSYSMCBINDPROCESS_) (CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hProcess);
+RTS_RESULT CDECL SysMCBindProcess_(CpuCoreBindingDesc *pCoreID, RTS_IEC_HANDLE hProcess);
+typedef RTS_RESULT (CDECL * PFSYSMCBINDPROCESS_) (CpuCoreBindingDesc *pCoreID, RTS_IEC_HANDLE hProcess);
 #if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBINDPROCESS__NOTIMPLEMENTED)
 	#define USE_SysMCBindProcess_
 	#define EXT_SysMCBindProcess_
@@ -2362,12 +772,17 @@ typedef RTS_RESULT (CDECL * PFSYSMCBINDPROCESS_) (CpuCoreBindingDesc *pBindingDe
 
 /**
  * <description>
- * <p>Function to bind a task to a core or a set of cores.</p>
+ * <p>Function to bind a task to a CPU core or a group of CPU cores.</p>
  * <p>
- * To set the corresponding bit(s) in CpuCoreBindingDesc.CpuCoreBits use SysMCBDSet.
+ * To bind a task to a single core, set the member "eCoreKindOfBinding" of the input structure CpuCoreBindingDesc to ECOREBINDINGKINDOF_COREBINDINGDESC_SINGLECORE.
+ * Set the union member nCoreID to the identifier of the core. This is a system dependent value.
+ * </p>
+ * <p>
+ * To bind a task to a group of cores, set the member "eCoreKindOfBinding" of the input structure CpuCoreBindingDesc to ECOREBINDINGKINDOF_COREBINDINGDESC_COREGROUP.
+ * Set the union member CoreGroupID.dwNumCoresInGroup to the number of cores in the group. Set the union member of CoreGroupID.CoreIDs to the address of the first array elelment of an array of identifiers of cores.
  * </p>
  * </description>
- * <param name="pBindingDesc" type="IN">Pointer to the binding description for the new core binding.</param>
+ * <param name="pCoreID" type="IN">Pointer to the binding description for the new core binding.</param>
  * <param name="hTask" type="IN">Handle of the task to bind.</param>
  * <result>Returns the result.</result>
  * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
@@ -2375,11 +790,10 @@ typedef RTS_RESULT (CDECL * PFSYSMCBINDPROCESS_) (CpuCoreBindingDesc *pBindingDe
  * <errorcode name="RTS_RESULT" type="ERR_OPERATION_DENIED">Operation is denied on OS level.</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">Handle is invalid.</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_FAILED">Function failed for any reason on OS level.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not implemented.</errorcode> 
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Function is not supported.</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not supported.</errorcode>
  */
-RTS_RESULT CDECL SysMCBindTask(CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hTask);
-typedef RTS_RESULT (CDECL * PFSYSMCBINDTASK) (CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hTask);
+RTS_RESULT CDECL SysMCBindTask(CpuCoreBindingDesc *pCoreID, RTS_IEC_HANDLE hTask);
+typedef RTS_RESULT (CDECL * PFSYSMCBINDTASK) (CpuCoreBindingDesc *pCoreID, RTS_IEC_HANDLE hTask);
 #if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBINDTASK_NOTIMPLEMENTED)
 	#define USE_SysMCBindTask
 	#define EXT_SysMCBindTask
@@ -2432,8 +846,8 @@ typedef RTS_RESULT (CDECL * PFSYSMCBINDTASK) (CpuCoreBindingDesc *pBindingDesc, 
  * The OS implementation of SysMCBindTask
  * </description>
  */
-RTS_RESULT CDECL SysMCBindTask_(CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hTask);
-typedef RTS_RESULT (CDECL * PFSYSMCBINDTASK_) (CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hTask);
+RTS_RESULT CDECL SysMCBindTask_(CpuCoreBindingDesc *pCoreID, RTS_IEC_HANDLE hTask);
+typedef RTS_RESULT (CDECL * PFSYSMCBINDTASK_) (CpuCoreBindingDesc *pCoreID, RTS_IEC_HANDLE hTask);
 #if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCBINDTASK__NOTIMPLEMENTED)
 	#define USE_SysMCBindTask_
 	#define EXT_SysMCBindTask_
@@ -2483,9 +897,9 @@ typedef RTS_RESULT (CDECL * PFSYSMCBINDTASK_) (CpuCoreBindingDesc *pBindingDesc,
 
 /**
  * <description>
- * <p>Function to remove the binding to a core or a set of cores of a process.</p>
+ * <p>Function to remove the binding to a core or a group of cores of a process.</p>
  * <p>
- * This means the OS is again responsible on which core(s) the process is allowed to run on.
+ * This means the OS is again responsible on which core the process is allowed to run on.
  * </p>
  * </description>
  * <param name="hProcess" type="IN">Handle of the process to unbind.</param>
@@ -2495,7 +909,7 @@ typedef RTS_RESULT (CDECL * PFSYSMCBINDTASK_) (CpuCoreBindingDesc *pBindingDesc,
  * <errorcode name="RTS_RESULT" type="ERR_OPERATION_DENIED">Operation is denied on OS level.</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">Handle is invalid.</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_FAILED">Function failed for any reason on OS level.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not implemented.</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not supported.</errorcode>
  */
 RTS_RESULT CDECL SysMCUnbindProcess(RTS_IEC_HANDLE hProcess);
 typedef RTS_RESULT (CDECL * PFSYSMCUNBINDPROCESS) (RTS_IEC_HANDLE hProcess);
@@ -2604,7 +1018,7 @@ typedef RTS_RESULT (CDECL * PFSYSMCUNBINDPROCESS_) (RTS_IEC_HANDLE hProcess);
  * <description>
  * <p>Function to remove the binding to a core or a group of cores of a task.</p>
  * <p>
- * This means the OS is again responsible on which core(s) the task is allowed to run on.
+ * This means the OS is again responsible on which core the task is allowed to run on.
  * </p>
  * </description>
  * <param name="hTask" type="IN">Handle of the task to unbind.</param>
@@ -2614,7 +1028,7 @@ typedef RTS_RESULT (CDECL * PFSYSMCUNBINDPROCESS_) (RTS_IEC_HANDLE hProcess);
  * <errorcode name="RTS_RESULT" type="ERR_OPERATION_DENIED">Operation is denied on OS level.</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">Handle is invalid.</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_FAILED">Function failed for any reason on OS level.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not implemented.</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not supported.</errorcode>
  */
 RTS_RESULT CDECL SysMCUnbindTask(RTS_IEC_HANDLE hTask);
 typedef RTS_RESULT (CDECL * PFSYSMCUNBINDTASK) (RTS_IEC_HANDLE hTask);
@@ -2721,15 +1135,9 @@ typedef RTS_RESULT (CDECL * PFSYSMCUNBINDTASK_) (RTS_IEC_HANDLE hTask);
 
 /**
  * <description>
- * OPTIONAL FUNCTION:
- * <p>Function to get the current average workload of a dedicated core, identified by the input parameter.
- *  NOTE:
- *  This function may not be supported by every operating system!</p>
+ * <p>Function to get the current average workload of a dedicated core, identified by the input parameter.</p>
  * </description>
- * <param name="uCoreID" type="IN">Identifies the core whose load has to be returned. Starting with 0=first core, ...
- *	NOTE:
- *	If uCoreID=RTS_UI32_MAX, average CPU load over all cores in percent is returned!
- * </param>
+ * <param name="CoreID" type="IN">Identifies the core whose load has to be returned.</param>
  * <param name="pPercent" type="OUT">CPU-Core load in percent.</param>
  * <result>Returns the result.</result>
  * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
@@ -2737,10 +1145,10 @@ typedef RTS_RESULT (CDECL * PFSYSMCUNBINDTASK_) (RTS_IEC_HANDLE hTask);
  * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">Function is not initialized.</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_NOBUFFER">Not enough memory for the performance counters</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_FAILED">Function failed for any reason on OS level.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not implemented.</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not supported.</errorcode>
  */
-RTS_RESULT CDECL SysMCGetLoad(RTS_UI32 uCoreID, RTS_UI8 *pPercent);
-typedef RTS_RESULT (CDECL * PFSYSMCGETLOAD) (RTS_UI32 uCoreID, RTS_UI8 *pPercent);
+RTS_RESULT CDECL SysMCGetLoad(RTS_IEC_XWORD CoreID, RTS_IEC_BYTE *pPercent);
+typedef RTS_RESULT (CDECL * PFSYSMCGETLOAD) (RTS_IEC_XWORD CoreID, RTS_IEC_BYTE *pPercent);
 #if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCGETLOAD_NOTIMPLEMENTED)
 	#define USE_SysMCGetLoad
 	#define EXT_SysMCGetLoad
@@ -2793,8 +1201,8 @@ typedef RTS_RESULT (CDECL * PFSYSMCGETLOAD) (RTS_UI32 uCoreID, RTS_UI8 *pPercent
  * The OS implementation of SysMCGetLoad
  * </description>
  */
-RTS_RESULT CDECL SysMCGetLoad_(RTS_UI32 uCoreID, RTS_UI8 *pPercent);
-typedef RTS_RESULT (CDECL * PFSYSMCGETLOAD_) (RTS_UI32 uCoreID, RTS_UI8 *pPercent);
+RTS_RESULT CDECL SysMCGetLoad_(RTS_IEC_XWORD CoreID, RTS_IEC_BYTE *pPercent);
+typedef RTS_RESULT (CDECL * PFSYSMCGETLOAD_) (RTS_IEC_XWORD CoreID, RTS_IEC_BYTE *pPercent);
 #if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCGETLOAD__NOTIMPLEMENTED)
 	#define USE_SysMCGetLoad_
 	#define EXT_SysMCGetLoad_
@@ -2844,13 +1252,13 @@ typedef RTS_RESULT (CDECL * PFSYSMCGETLOAD_) (RTS_UI32 uCoreID, RTS_UI8 *pPercen
 
 /**
  * <description>
- * <p>Function to get the number of cores available for use by the runtime system.</p>
+ * <p>Function to get the number of CPU cores available for use by the runtime system.</p>
  * </description>
- * <param name="pResult" type="IN">Pointer to a variable to return an errorcode (optional)</param>
+ * <param name="Result" type="IN">Address of a variable to return an optional errorcode.</param>
  * <result>Returns the number of cores.</result>
  * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Call was sucessfull.</errorcode>
  * <errorcode name="RTS_RESULT pResult" type="ERR_FAILED">Function failed for any reason on OS level.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not implemented.</errorcode> 
+ * <errorcode name="RTS_RESULT pResult" type="ERR_NOTIMPLEMENTED">Function is not supported.</errorcode>
  */
 RTS_UI32 CDECL SysMCGetNumOfCores(RTS_RESULT* pResult);
 typedef RTS_UI32 (CDECL * PFSYSMCGETNUMOFCORES) (RTS_RESULT* pResult);
@@ -2957,23 +1365,138 @@ typedef RTS_UI32 (CDECL * PFSYSMCGETNUMOFCORES_) (RTS_RESULT* pResult);
 
 /**
  * <description>
- * <p>Function to read the binding of a process to core(s).</p>
- *  NOTE:
- *  To obtain the binding of the current process hProcess may be RTS_INVALID_HANDLE.
- *  NOTE:
- *  To obtain the CoreIds set in CpuCoreBindingDesc use SysMCBDGetFirstID and SysMCBDGetNextID.
+ * <p>Administration function to enable a dedicated (formerly disabled) core identified by the input parameter CoreID to be used by the runtime system.</p>
  * </description>
- * <param name="hProcess" type="IN">Handle of the process or RTS_INVALID_HANDLE for current process.</param>
- * <param name="pBindingDesc" type="OUT">Pointer to the binding description for the core binding.</param>
+ * <param name="CoreID" type="IN">Identifies the core to be removed from the list of available cores.</param>
+ * <result>Returns the result.</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Parameter is invalid, e.g. core does not exist.</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_FAILED">Function failed for any reason on OS level.</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not supported.</errorcode>
+ */
+RTS_RESULT CDECL SysMCEnableCore(RTS_IEC_XWORD CoreID);
+typedef RTS_RESULT (CDECL * PFSYSMCENABLECORE) (RTS_IEC_XWORD CoreID);
+#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCENABLECORE_NOTIMPLEMENTED)
+	#define USE_SysMCEnableCore
+	#define EXT_SysMCEnableCore
+	#define GET_SysMCEnableCore(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_SysMCEnableCore(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
+	#define CHK_SysMCEnableCore  FALSE
+	#define EXP_SysMCEnableCore  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_SysMCEnableCore
+	#define EXT_SysMCEnableCore
+	#define GET_SysMCEnableCore(fl)  CAL_CMGETAPI( "SysMCEnableCore" ) 
+	#define CAL_SysMCEnableCore  SysMCEnableCore
+	#define CHK_SysMCEnableCore  TRUE
+	#define EXP_SysMCEnableCore  CAL_CMEXPAPI( "SysMCEnableCore" ) 
+#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
+	#define USE_SysMCEnableCore
+	#define EXT_SysMCEnableCore
+	#define GET_SysMCEnableCore(fl)  CAL_CMGETAPI( "SysMCEnableCore" ) 
+	#define CAL_SysMCEnableCore  SysMCEnableCore
+	#define CHK_SysMCEnableCore  TRUE
+	#define EXP_SysMCEnableCore  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCEnableCore", (RTS_UINTPTR)SysMCEnableCore, 0, 0) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_SysCpuMultiCoreSysMCEnableCore
+	#define EXT_SysCpuMultiCoreSysMCEnableCore
+	#define GET_SysCpuMultiCoreSysMCEnableCore  ERR_OK
+	#define CAL_SysCpuMultiCoreSysMCEnableCore pISysCpuMultiCore->ISysMCEnableCore
+	#define CHK_SysCpuMultiCoreSysMCEnableCore (pISysCpuMultiCore != NULL)
+	#define EXP_SysCpuMultiCoreSysMCEnableCore  ERR_OK
+#elif defined(CPLUSPLUS)
+	#define USE_SysMCEnableCore
+	#define EXT_SysMCEnableCore
+	#define GET_SysMCEnableCore(fl)  CAL_CMGETAPI( "SysMCEnableCore" ) 
+	#define CAL_SysMCEnableCore pISysCpuMultiCore->ISysMCEnableCore
+	#define CHK_SysMCEnableCore (pISysCpuMultiCore != NULL)
+	#define EXP_SysMCEnableCore  CAL_CMEXPAPI( "SysMCEnableCore" ) 
+#else /* DYNAMIC_LINK */
+	#define USE_SysMCEnableCore  PFSYSMCENABLECORE pfSysMCEnableCore;
+	#define EXT_SysMCEnableCore  extern PFSYSMCENABLECORE pfSysMCEnableCore;
+	#define GET_SysMCEnableCore(fl)  s_pfCMGetAPI2( "SysMCEnableCore", (RTS_VOID_FCTPTR *)&pfSysMCEnableCore, (fl), 0, 0)
+	#define CAL_SysMCEnableCore  pfSysMCEnableCore
+	#define CHK_SysMCEnableCore  (pfSysMCEnableCore != NULL)
+	#define EXP_SysMCEnableCore  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCEnableCore", (RTS_UINTPTR)SysMCEnableCore, 0, 0) 
+#endif
+
+
+
+
+/**
+ * <description>
+ * <p>Administration function to disable a dedicated core identified by the input parameter CoreID not to be used by the runtime system.</p>
+ * </description>
+ * <param name="CoreID" type="IN">Identifies the core to be removed from the list of available cores.</param>
+ * <result>Returns the result.</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Parameter is invalid, e.g. core does not exist.</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_FAILED">Function failed for any reason on OS level.</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not supported.</errorcode>
+ */
+RTS_RESULT CDECL SysMCDisableCore(RTS_IEC_XWORD CoreID);
+typedef RTS_RESULT (CDECL * PFSYSMCDISABLECORE) (RTS_IEC_XWORD CoreID);
+#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCDISABLECORE_NOTIMPLEMENTED)
+	#define USE_SysMCDisableCore
+	#define EXT_SysMCDisableCore
+	#define GET_SysMCDisableCore(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_SysMCDisableCore(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
+	#define CHK_SysMCDisableCore  FALSE
+	#define EXP_SysMCDisableCore  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_SysMCDisableCore
+	#define EXT_SysMCDisableCore
+	#define GET_SysMCDisableCore(fl)  CAL_CMGETAPI( "SysMCDisableCore" ) 
+	#define CAL_SysMCDisableCore  SysMCDisableCore
+	#define CHK_SysMCDisableCore  TRUE
+	#define EXP_SysMCDisableCore  CAL_CMEXPAPI( "SysMCDisableCore" ) 
+#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
+	#define USE_SysMCDisableCore
+	#define EXT_SysMCDisableCore
+	#define GET_SysMCDisableCore(fl)  CAL_CMGETAPI( "SysMCDisableCore" ) 
+	#define CAL_SysMCDisableCore  SysMCDisableCore
+	#define CHK_SysMCDisableCore  TRUE
+	#define EXP_SysMCDisableCore  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCDisableCore", (RTS_UINTPTR)SysMCDisableCore, 0, 0) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_SysCpuMultiCoreSysMCDisableCore
+	#define EXT_SysCpuMultiCoreSysMCDisableCore
+	#define GET_SysCpuMultiCoreSysMCDisableCore  ERR_OK
+	#define CAL_SysCpuMultiCoreSysMCDisableCore pISysCpuMultiCore->ISysMCDisableCore
+	#define CHK_SysCpuMultiCoreSysMCDisableCore (pISysCpuMultiCore != NULL)
+	#define EXP_SysCpuMultiCoreSysMCDisableCore  ERR_OK
+#elif defined(CPLUSPLUS)
+	#define USE_SysMCDisableCore
+	#define EXT_SysMCDisableCore
+	#define GET_SysMCDisableCore(fl)  CAL_CMGETAPI( "SysMCDisableCore" ) 
+	#define CAL_SysMCDisableCore pISysCpuMultiCore->ISysMCDisableCore
+	#define CHK_SysMCDisableCore (pISysCpuMultiCore != NULL)
+	#define EXP_SysMCDisableCore  CAL_CMEXPAPI( "SysMCDisableCore" ) 
+#else /* DYNAMIC_LINK */
+	#define USE_SysMCDisableCore  PFSYSMCDISABLECORE pfSysMCDisableCore;
+	#define EXT_SysMCDisableCore  extern PFSYSMCDISABLECORE pfSysMCDisableCore;
+	#define GET_SysMCDisableCore(fl)  s_pfCMGetAPI2( "SysMCDisableCore", (RTS_VOID_FCTPTR *)&pfSysMCDisableCore, (fl), 0, 0)
+	#define CAL_SysMCDisableCore  pfSysMCDisableCore
+	#define CHK_SysMCDisableCore  (pfSysMCDisableCore != NULL)
+	#define EXP_SysMCDisableCore  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCDisableCore", (RTS_UINTPTR)SysMCDisableCore, 0, 0) 
+#endif
+
+
+
+
+/**
+ * <description>
+ * <p>Function to read the binding of a process to CPU core(s).</p>
+ * </description>
+ * <param name="hProcess" type="IN">Handle of the process.</param>
+ * <param name="pCoreID" type="OUT">Pointer to the binding description for the core binding.</param>
  * <result>Returns the result.</result>
  * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Parameter is invalid.</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_FAILED">Function failed for any reason on OS level.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not implemented.</errorcode> 
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Function is not supported.</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not supported.</errorcode>
  */
-RTS_RESULT CDECL SysMCGetProcessBinding(RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pBindingDesc);
-typedef RTS_RESULT (CDECL * PFSYSMCGETPROCESSBINDING) (RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pBindingDesc);
+RTS_RESULT CDECL SysMCGetProcessBinding(RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pCoreID);
+typedef RTS_RESULT (CDECL * PFSYSMCGETPROCESSBINDING) (RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pCoreID);
 #if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCGETPROCESSBINDING_NOTIMPLEMENTED)
 	#define USE_SysMCGetProcessBinding
 	#define EXT_SysMCGetProcessBinding
@@ -3026,8 +1549,8 @@ typedef RTS_RESULT (CDECL * PFSYSMCGETPROCESSBINDING) (RTS_IEC_HANDLE hProcess, 
  * The OS implementation of SysMCGetProcessBinding
  * </description>
  */
-RTS_RESULT CDECL SysMCGetProcessBinding_(RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pBindingDesc);
-typedef RTS_RESULT (CDECL * PFSYSMCGETPROCESSBINDING_) (RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pBindingDesc);
+RTS_RESULT CDECL SysMCGetProcessBinding_(RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pCoreID);
+typedef RTS_RESULT (CDECL * PFSYSMCGETPROCESSBINDING_) (RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pCoreID);
 #if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCGETPROCESSBINDING__NOTIMPLEMENTED)
 	#define USE_SysMCGetProcessBinding_
 	#define EXT_SysMCGetProcessBinding_
@@ -3077,25 +1600,18 @@ typedef RTS_RESULT (CDECL * PFSYSMCGETPROCESSBINDING_) (RTS_IEC_HANDLE hProcess,
 
 /**
  * <description>
- * <p>Function to read the binding of a task to core(s).</p>
- *  NOTE:
- *  To obtain the binding of the current task hTask may be RTS_INVALID_HANDLE.
- *  NOTE:
- *  Operating system dependent this function may support only the current task.
- *  NOTE:
- *  To obtain the CoreIds set in CpuCoreBindingDesc use SysMCBDGetFirstID and SysMCBDGetNextID.
+ * <p>Function to read the binding of a task to CPU core(s).</p>
  * </description>
- * <param name="hTask" type="IN">Handle of the task or RTS_INVALID_HANDLE for current task.</param>
- * <param name="pBindingDesc" type="OUT">Pointer to the binding description for the core binding.</param>
+ * <param name="hTask" type="IN">Handle of the task.</param>
+ * <param name="pCoreID" type="OUT">Pointer to the binding description for the core binding.</param>
  * <result>Returns the result.</result>
  * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Parameter is invalid.</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_FAILED">Function failed for any reason on OS level.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not implemented.</errorcode> 
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Function is not supported.</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not supported.</errorcode>
  */
-RTS_RESULT CDECL SysMCGetTaskBinding(RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pBindingDesc);
-typedef RTS_RESULT (CDECL * PFSYSMCGETTASKBINDING) (RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pBindingDesc);
+RTS_RESULT CDECL SysMCGetTaskBinding(RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pCoreID);
+typedef RTS_RESULT (CDECL * PFSYSMCGETTASKBINDING) (RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pCoreID);
 #if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCGETTASKBINDING_NOTIMPLEMENTED)
 	#define USE_SysMCGetTaskBinding
 	#define EXT_SysMCGetTaskBinding
@@ -3148,8 +1664,8 @@ typedef RTS_RESULT (CDECL * PFSYSMCGETTASKBINDING) (RTS_IEC_HANDLE hTask, CpuCor
  * The OS implementation of SysMCGetTaskBinding
  * </description>
  */
-RTS_RESULT CDECL SysMCGetTaskBinding_(RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pBindingDesc);
-typedef RTS_RESULT (CDECL * PFSYSMCGETTASKBINDING_) (RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pBindingDesc);
+RTS_RESULT CDECL SysMCGetTaskBinding_(RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pCoreID);
+typedef RTS_RESULT (CDECL * PFSYSMCGETTASKBINDING_) (RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pCoreID);
 #if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCGETTASKBINDING__NOTIMPLEMENTED)
 	#define USE_SysMCGetTaskBinding_
 	#define EXT_SysMCGetTaskBinding_
@@ -3197,153 +1713,17 @@ typedef RTS_RESULT (CDECL * PFSYSMCGETTASKBINDING_) (RTS_IEC_HANDLE hTask, CpuCo
 
 
 
-/**
- * <description>
- * <p>Function to read current CoreId the calling process or task is running on.</p>
- * </description>
- * <param name="pResult" type="IN">Pointer to a variable to return an errorcode (optional)</param>
- * <result>Returns the current CoreId.</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessfull.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">Function failed for any reason on OS level.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Function is not implemented.</errorcode> 
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Function is not supported.</errorcode>
- */
-RTS_UI32 CDECL SysMCGetCurrentCoreID(RTS_RESULT* pResult);
-typedef RTS_UI32 (CDECL * PFSYSMCGETCURRENTCOREID) (RTS_RESULT* pResult);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCGETCURRENTCOREID_NOTIMPLEMENTED)
-	#define USE_SysMCGetCurrentCoreID
-	#define EXT_SysMCGetCurrentCoreID
-	#define GET_SysMCGetCurrentCoreID(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCGetCurrentCoreID(p0)  (RTS_UI32)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCGetCurrentCoreID  FALSE
-	#define EXP_SysMCGetCurrentCoreID  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCGetCurrentCoreID
-	#define EXT_SysMCGetCurrentCoreID
-	#define GET_SysMCGetCurrentCoreID(fl)  CAL_CMGETAPI( "SysMCGetCurrentCoreID" ) 
-	#define CAL_SysMCGetCurrentCoreID  SysMCGetCurrentCoreID
-	#define CHK_SysMCGetCurrentCoreID  TRUE
-	#define EXP_SysMCGetCurrentCoreID  CAL_CMEXPAPI( "SysMCGetCurrentCoreID" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCGetCurrentCoreID
-	#define EXT_SysMCGetCurrentCoreID
-	#define GET_SysMCGetCurrentCoreID(fl)  CAL_CMGETAPI( "SysMCGetCurrentCoreID" ) 
-	#define CAL_SysMCGetCurrentCoreID  SysMCGetCurrentCoreID
-	#define CHK_SysMCGetCurrentCoreID  TRUE
-	#define EXP_SysMCGetCurrentCoreID  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetCurrentCoreID", (RTS_UINTPTR)SysMCGetCurrentCoreID, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCGetCurrentCoreID
-	#define EXT_SysCpuMultiCoreSysMCGetCurrentCoreID
-	#define GET_SysCpuMultiCoreSysMCGetCurrentCoreID  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCGetCurrentCoreID pISysCpuMultiCore->ISysMCGetCurrentCoreID
-	#define CHK_SysCpuMultiCoreSysMCGetCurrentCoreID (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCGetCurrentCoreID  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCGetCurrentCoreID
-	#define EXT_SysMCGetCurrentCoreID
-	#define GET_SysMCGetCurrentCoreID(fl)  CAL_CMGETAPI( "SysMCGetCurrentCoreID" ) 
-	#define CAL_SysMCGetCurrentCoreID pISysCpuMultiCore->ISysMCGetCurrentCoreID
-	#define CHK_SysMCGetCurrentCoreID (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCGetCurrentCoreID  CAL_CMEXPAPI( "SysMCGetCurrentCoreID" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCGetCurrentCoreID  PFSYSMCGETCURRENTCOREID pfSysMCGetCurrentCoreID;
-	#define EXT_SysMCGetCurrentCoreID  extern PFSYSMCGETCURRENTCOREID pfSysMCGetCurrentCoreID;
-	#define GET_SysMCGetCurrentCoreID(fl)  s_pfCMGetAPI2( "SysMCGetCurrentCoreID", (RTS_VOID_FCTPTR *)&pfSysMCGetCurrentCoreID, (fl), 0, 0)
-	#define CAL_SysMCGetCurrentCoreID  pfSysMCGetCurrentCoreID
-	#define CHK_SysMCGetCurrentCoreID  (pfSysMCGetCurrentCoreID != NULL)
-	#define EXP_SysMCGetCurrentCoreID  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetCurrentCoreID", (RTS_UINTPTR)SysMCGetCurrentCoreID, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * The OS implementation of SysMCGetCurrentCoreID
- * </description>
- */
-RTS_UI32 CDECL SysMCGetCurrentCoreID_(RTS_RESULT* pResult);
-typedef RTS_UI32 (CDECL * PFSYSMCGETCURRENTCOREID_) (RTS_RESULT* pResult);
-#if defined(SYSCPUMULTICORE_NOTIMPLEMENTED) || defined(SYSMCGETCURRENTCOREID__NOTIMPLEMENTED)
-	#define USE_SysMCGetCurrentCoreID_
-	#define EXT_SysMCGetCurrentCoreID_
-	#define GET_SysMCGetCurrentCoreID_(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMCGetCurrentCoreID_(p0)  (RTS_UI32)ERR_NOTIMPLEMENTED
-	#define CHK_SysMCGetCurrentCoreID_  FALSE
-	#define EXP_SysMCGetCurrentCoreID_  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMCGetCurrentCoreID_
-	#define EXT_SysMCGetCurrentCoreID_
-	#define GET_SysMCGetCurrentCoreID_(fl)  CAL_CMGETAPI( "SysMCGetCurrentCoreID_" ) 
-	#define CAL_SysMCGetCurrentCoreID_  SysMCGetCurrentCoreID_
-	#define CHK_SysMCGetCurrentCoreID_  TRUE
-	#define EXP_SysMCGetCurrentCoreID_  CAL_CMEXPAPI( "SysMCGetCurrentCoreID_" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUMULTICORE_EXTERNAL)
-	#define USE_SysMCGetCurrentCoreID_
-	#define EXT_SysMCGetCurrentCoreID_
-	#define GET_SysMCGetCurrentCoreID_(fl)  CAL_CMGETAPI( "SysMCGetCurrentCoreID_" ) 
-	#define CAL_SysMCGetCurrentCoreID_  SysMCGetCurrentCoreID_
-	#define CHK_SysMCGetCurrentCoreID_  TRUE
-	#define EXP_SysMCGetCurrentCoreID_  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetCurrentCoreID_", (RTS_UINTPTR)SysMCGetCurrentCoreID_, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuMultiCoreSysMCGetCurrentCoreID_
-	#define EXT_SysCpuMultiCoreSysMCGetCurrentCoreID_
-	#define GET_SysCpuMultiCoreSysMCGetCurrentCoreID_  ERR_OK
-	#define CAL_SysCpuMultiCoreSysMCGetCurrentCoreID_ pISysCpuMultiCore->ISysMCGetCurrentCoreID_
-	#define CHK_SysCpuMultiCoreSysMCGetCurrentCoreID_ (pISysCpuMultiCore != NULL)
-	#define EXP_SysCpuMultiCoreSysMCGetCurrentCoreID_  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMCGetCurrentCoreID_
-	#define EXT_SysMCGetCurrentCoreID_
-	#define GET_SysMCGetCurrentCoreID_(fl)  CAL_CMGETAPI( "SysMCGetCurrentCoreID_" ) 
-	#define CAL_SysMCGetCurrentCoreID_ pISysCpuMultiCore->ISysMCGetCurrentCoreID_
-	#define CHK_SysMCGetCurrentCoreID_ (pISysCpuMultiCore != NULL)
-	#define EXP_SysMCGetCurrentCoreID_  CAL_CMEXPAPI( "SysMCGetCurrentCoreID_" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMCGetCurrentCoreID_  PFSYSMCGETCURRENTCOREID_ pfSysMCGetCurrentCoreID_;
-	#define EXT_SysMCGetCurrentCoreID_  extern PFSYSMCGETCURRENTCOREID_ pfSysMCGetCurrentCoreID_;
-	#define GET_SysMCGetCurrentCoreID_(fl)  s_pfCMGetAPI2( "SysMCGetCurrentCoreID_", (RTS_VOID_FCTPTR *)&pfSysMCGetCurrentCoreID_, (fl), 0, 0)
-	#define CAL_SysMCGetCurrentCoreID_  pfSysMCGetCurrentCoreID_
-	#define CHK_SysMCGetCurrentCoreID_  (pfSysMCGetCurrentCoreID_ != NULL)
-	#define EXP_SysMCGetCurrentCoreID_  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMCGetCurrentCoreID_", (RTS_UINTPTR)SysMCGetCurrentCoreID_, 0, 0) 
-#endif
-
-
-
-
 #ifdef __cplusplus
 }
 #endif
 
 
 
+
 typedef struct
 {
 	IBase_C *pBase;
-	PFSYSMCADDTASKGROUP ISysMCAddTaskGroup;
- 	PFSYSMCREMOVETASKGROUP ISysMCRemoveTaskGroup;
- 	PFSYSMCFINDTASKGROUP ISysMCFindTaskGroup;
- 	PFSYSMCGETFIRSTTASKGROUP ISysMCGetFirstTaskGroup;
- 	PFSYSMCGETNEXTTASKGROUP ISysMCGetNextTaskGroup;
- 	PFSYSMCGETTASKGROUPNAME ISysMCGetTaskGroupName;
- 	PFSYSMCGETTASKGROUPBINDING ISysMCGetTaskGroupBinding;
- 	PFSYSMCGETTASKGROUPOPTIONS ISysMCGetTaskGroupOptions;
- 	PFSYSMCCHANGETASKGROUPSTRATEGY ISysMCChangeTaskGroupStrategy;
- 	PFSYSMCSETTASKGROUPBINDING ISysMCSetTaskGroupBinding;
- 	PFSYSMCADDTOTASKGROUP ISysMCAddToTaskGroup;
- 	PFSYSMCREMOVEFROMTASKGROUP ISysMCRemoveFromTaskGroup;
- 	PFSYSMCBEGINTASKGROUPCONF ISysMCBeginTaskGroupConf;
- 	PFSYSMCENDTASKGROUPCONF ISysMCEndTaskGroupConf;
- 	PFSYSMCBDALLOC ISysMCBDAlloc;
- 	PFSYSMCBDFREE ISysMCBDFree;
- 	PFSYSMCBDZERO ISysMCBDZero;
- 	PFSYSMCBDSET ISysMCBDSet;
- 	PFSYSMCBDRESET ISysMCBDReset;
- 	PFSYSMCBDISSET ISysMCBDIsSet;
- 	PFSYSMCBDCOUNT ISysMCBDCount;
- 	PFSYSMCBDGETFIRSTID ISysMCBDGetFirstID;
- 	PFSYSMCBDGETNEXTID ISysMCBDGetNextID;
- 	PFSYSMCBINDPROCESS ISysMCBindProcess;
+	PFSYSMCBINDPROCESS ISysMCBindProcess;
  	PFSYSMCBINDPROCESS_ ISysMCBindProcess_;
  	PFSYSMCBINDTASK ISysMCBindTask;
  	PFSYSMCBINDTASK_ ISysMCBindTask_;
@@ -3355,59 +1735,36 @@ typedef struct
  	PFSYSMCGETLOAD_ ISysMCGetLoad_;
  	PFSYSMCGETNUMOFCORES ISysMCGetNumOfCores;
  	PFSYSMCGETNUMOFCORES_ ISysMCGetNumOfCores_;
+ 	PFSYSMCENABLECORE ISysMCEnableCore;
+ 	PFSYSMCDISABLECORE ISysMCDisableCore;
  	PFSYSMCGETPROCESSBINDING ISysMCGetProcessBinding;
  	PFSYSMCGETPROCESSBINDING_ ISysMCGetProcessBinding_;
  	PFSYSMCGETTASKBINDING ISysMCGetTaskBinding;
  	PFSYSMCGETTASKBINDING_ ISysMCGetTaskBinding_;
- 	PFSYSMCGETCURRENTCOREID ISysMCGetCurrentCoreID;
- 	PFSYSMCGETCURRENTCOREID_ ISysMCGetCurrentCoreID_;
  } ISysCpuMultiCore_C;
 
 #ifdef CPLUSPLUS
 class ISysCpuMultiCore : public IBase
 {
 	public:
-		virtual RTS_HANDLE CDECL ISysMCAddTaskGroup(char *pszTaskGroup, RTS_UI32 taskGroupOptions, RTS_RESULT *pResult) =0;
-		virtual RTS_RESULT CDECL ISysMCRemoveTaskGroup(RTS_HANDLE hTaskGroup) =0;
-		virtual RTS_HANDLE CDECL ISysMCFindTaskGroup(char *pszTaskGroup, RTS_I32 bIecTaskGroup, RTS_RESULT *pResult) =0;
-		virtual RTS_HANDLE CDECL ISysMCGetFirstTaskGroup(RTS_RESULT *pResult) =0;
-		virtual RTS_HANDLE CDECL ISysMCGetNextTaskGroup(RTS_HANDLE hPrevTaskGroup, RTS_RESULT *pResult) =0;
-		virtual char* CDECL ISysMCGetTaskGroupName(RTS_HANDLE hTaskGroup, RTS_RESULT *pResult) =0;
-		virtual CpuCoreBindingDesc* CDECL ISysMCGetTaskGroupBinding(RTS_HANDLE hTaskGroup, RTS_RESULT *pResult) =0;
-		virtual RTS_UI32 CDECL ISysMCGetTaskGroupOptions(RTS_HANDLE hTaskGroup, RTS_RESULT *pResult) =0;
-		virtual RTS_RESULT CDECL ISysMCChangeTaskGroupStrategy(RTS_HANDLE hTaskGroup, RTS_UI32 taskGroupStrategy) =0;
-		virtual RTS_RESULT CDECL ISysMCSetTaskGroupBinding(RTS_HANDLE hTaskGroup, CpuCoreBindingDesc *pBindingDesc) =0;
-		virtual RTS_RESULT CDECL ISysMCAddToTaskGroup(RTS_HANDLE hSysTask, RTS_HANDLE hTaskGroup) =0;
-		virtual RTS_RESULT CDECL ISysMCRemoveFromTaskGroup(RTS_HANDLE hSysTask, RTS_HANDLE hTaskGroup) =0;
-		virtual RTS_RESULT CDECL ISysMCBeginTaskGroupConf(RTS_HANDLE hTaskGroup) =0;
-		virtual RTS_RESULT CDECL ISysMCEndTaskGroupConf(RTS_HANDLE hTaskGroup) =0;
-		virtual CpuCoreBindingDesc * CDECL ISysMCBDAlloc(RTS_RESULT* pResult) =0;
-		virtual RTS_RESULT CDECL ISysMCBDFree(CpuCoreBindingDesc *pBindingDesc) =0;
-		virtual RTS_RESULT CDECL ISysMCBDZero(CpuCoreBindingDesc *pBindingDesc) =0;
-		virtual RTS_RESULT CDECL ISysMCBDSet(CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uCoreId) =0;
-		virtual RTS_RESULT CDECL ISysMCBDReset(CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uCoreId) =0;
-		virtual RTS_RESULT CDECL ISysMCBDIsSet(CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uCoreId) =0;
-		virtual RTS_UI32 CDECL ISysMCBDCount(CpuCoreBindingDesc *pBindingDesc, RTS_RESULT* pResult) =0;
-		virtual RTS_UI32 CDECL ISysMCBDGetFirstID(CpuCoreBindingDesc *pBindingDesc, RTS_RESULT* pResult) =0;
-		virtual RTS_UI32 CDECL ISysMCBDGetNextID(CpuCoreBindingDesc *pBindingDesc, RTS_UI32 uPrevCoreID, RTS_RESULT* pResult) =0;
-		virtual RTS_RESULT CDECL ISysMCBindProcess(CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hProcess) =0;
-		virtual RTS_RESULT CDECL ISysMCBindProcess_(CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hProcess) =0;
-		virtual RTS_RESULT CDECL ISysMCBindTask(CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hTask) =0;
-		virtual RTS_RESULT CDECL ISysMCBindTask_(CpuCoreBindingDesc *pBindingDesc, RTS_IEC_HANDLE hTask) =0;
+		virtual RTS_RESULT CDECL ISysMCBindProcess(CpuCoreBindingDesc *pCoreID, RTS_IEC_HANDLE hProcess) =0;
+		virtual RTS_RESULT CDECL ISysMCBindProcess_(CpuCoreBindingDesc *pCoreID, RTS_IEC_HANDLE hProcess) =0;
+		virtual RTS_RESULT CDECL ISysMCBindTask(CpuCoreBindingDesc *pCoreID, RTS_IEC_HANDLE hTask) =0;
+		virtual RTS_RESULT CDECL ISysMCBindTask_(CpuCoreBindingDesc *pCoreID, RTS_IEC_HANDLE hTask) =0;
 		virtual RTS_RESULT CDECL ISysMCUnbindProcess(RTS_IEC_HANDLE hProcess) =0;
 		virtual RTS_RESULT CDECL ISysMCUnbindProcess_(RTS_IEC_HANDLE hProcess) =0;
 		virtual RTS_RESULT CDECL ISysMCUnbindTask(RTS_IEC_HANDLE hTask) =0;
 		virtual RTS_RESULT CDECL ISysMCUnbindTask_(RTS_IEC_HANDLE hTask) =0;
-		virtual RTS_RESULT CDECL ISysMCGetLoad(RTS_UI32 uCoreID, RTS_UI8 *pPercent) =0;
-		virtual RTS_RESULT CDECL ISysMCGetLoad_(RTS_UI32 uCoreID, RTS_UI8 *pPercent) =0;
+		virtual RTS_RESULT CDECL ISysMCGetLoad(RTS_IEC_XWORD CoreID, RTS_IEC_BYTE *pPercent) =0;
+		virtual RTS_RESULT CDECL ISysMCGetLoad_(RTS_IEC_XWORD CoreID, RTS_IEC_BYTE *pPercent) =0;
 		virtual RTS_UI32 CDECL ISysMCGetNumOfCores(RTS_RESULT* pResult) =0;
 		virtual RTS_UI32 CDECL ISysMCGetNumOfCores_(RTS_RESULT* pResult) =0;
-		virtual RTS_RESULT CDECL ISysMCGetProcessBinding(RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pBindingDesc) =0;
-		virtual RTS_RESULT CDECL ISysMCGetProcessBinding_(RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pBindingDesc) =0;
-		virtual RTS_RESULT CDECL ISysMCGetTaskBinding(RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pBindingDesc) =0;
-		virtual RTS_RESULT CDECL ISysMCGetTaskBinding_(RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pBindingDesc) =0;
-		virtual RTS_UI32 CDECL ISysMCGetCurrentCoreID(RTS_RESULT* pResult) =0;
-		virtual RTS_UI32 CDECL ISysMCGetCurrentCoreID_(RTS_RESULT* pResult) =0;
+		virtual RTS_RESULT CDECL ISysMCEnableCore(RTS_IEC_XWORD CoreID) =0;
+		virtual RTS_RESULT CDECL ISysMCDisableCore(RTS_IEC_XWORD CoreID) =0;
+		virtual RTS_RESULT CDECL ISysMCGetProcessBinding(RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pCoreID) =0;
+		virtual RTS_RESULT CDECL ISysMCGetProcessBinding_(RTS_IEC_HANDLE hProcess, CpuCoreBindingDesc *pCoreID) =0;
+		virtual RTS_RESULT CDECL ISysMCGetTaskBinding(RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pCoreID) =0;
+		virtual RTS_RESULT CDECL ISysMCGetTaskBinding_(RTS_IEC_HANDLE hTask, CpuCoreBindingDesc *pCoreID) =0;
 };
 	#ifndef ITF_SysCpuMultiCore
 		#define ITF_SysCpuMultiCore static ISysCpuMultiCore *pISysCpuMultiCore = NULL;

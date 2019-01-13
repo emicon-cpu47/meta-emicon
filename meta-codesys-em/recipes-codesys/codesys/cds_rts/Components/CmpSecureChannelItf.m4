@@ -9,9 +9,7 @@
  *  SECURITY-NOTE:
  *           The security manager must be linked statically to the runtime system core to prevent, that it cannot be removed or replaced by a malware!
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpSecureChannel')

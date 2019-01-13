@@ -47,6 +47,10 @@ Macros
 
 - #define :ref:`CMPTARGETVISU_VALUE_GESTURES_FLICKPANTHRESHOLD_VELOCITY_DEFAULT <group___cmp_target_visu_itf___settings_1gaf7885b85f0c629897eb94210c246b2d7>` 1000
 
+- #define :ref:`CMPTARGETVISU_KEY_GESTURES_TOUCHORMOUSE_THRESHOLD_WAITTIME <group___cmp_target_visu_itf___settings_1ga6048c819ec1ea40aed77e081e7ee81bb>` "GesturesTouchOrMouseThresholdWaitTime"
+
+- #define :ref:`CMPTARGETVISU_VALUE_GESTURES_TOUCHORMOUSE_THRESHOLD_WAITTIME_DEFAULT <group___cmp_target_visu_itf___settings_1ga3aee14867cb8068f653298f6f4500e29>` 250
+
 - #define :ref:`CMPTARGETVISU_KEY_GESTURES_PANFLICK_THRESHOLD_WAITTIME <group___cmp_target_visu_itf___settings_1gaa1f859c4cfc3264afd790addacd4f5f5>` "GesturesPanFlickThresholdWaitTime"
 
 - #define :ref:`CMPTARGETVISU_VALUE_GESTURES_PANFLICK_THRESHOLD_WAITTIME_DEFAULT <group___cmp_target_visu_itf___settings_1gaca9e1368114ca8764f53de955cfffa64>` 40
@@ -102,14 +106,6 @@ Macros
 - #define :ref:`CMPTARGETVISU_MAXSTARTVISUSIZE <group___cmp_target_visu_itf___settings_1ga67a330ab04dac1330ac82dee7f9b794d>` 40
 
 - #define :ref:`CMPTARGETVISU_MAXCLIENTNAMESIZE <group___cmp_target_visu_itf___settings_1gaf18795a00f4e5c63df2e50d87532d86e>` 30
-
-- #define :ref:`CMPTARGETVISU_KEY_FILE_OPEN_SAVE_DIR <group___cmp_target_visu_itf___settings_1ga2c624bccb9ebc0f4ecc0407a404604f5>` "FileOpenSavePath"
-
-- #define :ref:`CMPTARGETVISU_KEY_FILE_OPEN_SAVE_DIR_FALLBACK <group___cmp_target_visu_itf___settings_1ga3533ff36352da904c86ef93566e70b73>` "FileOpenSavePathFallback"
-
-- #define :ref:`CMPTARGETVISU_VALUE_FILE_OPEN_SAVE_DIR_DEFAULT <group___cmp_target_visu_itf___settings_1gabfc4de7119afe1cb823a6ca30332c8f7>` ""
-
-- #define :ref:`CMPTARGETVISU_MAXLEN_FILE_OPEN_SAVE_DIR <group___cmp_target_visu_itf___settings_1gaab8a5c71db6009ae874b582845cec5f2>` 254
 
 Functions
 ---------
@@ -227,6 +223,18 @@ A setting affecting the evaluation of gestures. As the gestures "Pan" and "Flick
 
 #define CMPTARGETVISU_VALUE_GESTURES_FLICKPANTHRESHOLD_VELOCITY_DEFAULT 1000
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_target_visu_itf___settings_1ga6048c819ec1ea40aed77e081e7ee81bb:
+
+#define CMPTARGETVISU_KEY_GESTURES_TOUCHORMOUSE_THRESHOLD_WAITTIME "GesturesTouchOrMouseThresholdWaitTime"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A setting affecting the evaluation of gestures. As for example gestures depending on a single touch are ambigous to raising "old style" mouse events when touching (eg. when having a toggle button within a scrollable frame), a small threashold time is used to distinguish between these possibilities. To support this, before raising mouse events in scrollareas, this amount of time is typically waited (if there are no other conditions like quick movement or quick clicking). This minimum waittime in milliseconds is defined by this setting. Please remark that an according "onetouch" gesture will be started before this time is elapsed only when there is a movement larger than CMPTARGETVISU_KEY_GESTURES_PANCLICKTHRESHOLD Please remark that this value must be non negative.
+
+.. _group___cmp_target_visu_itf___settings_1ga3aee14867cb8068f653298f6f4500e29:
+
+#define CMPTARGETVISU_VALUE_GESTURES_TOUCHORMOUSE_THRESHOLD_WAITTIME_DEFAULT 250
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___cmp_target_visu_itf___settings_1gaa1f859c4cfc3264afd790addacd4f5f5:
 
@@ -387,28 +395,6 @@ Setting that decides at whitch position in whitch size and in which window type 
 
 #define CMPTARGETVISU_MAXCLIENTNAMESIZE 30
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_target_visu_itf___settings_1ga2c624bccb9ebc0f4ecc0407a404604f5:
-
-#define CMPTARGETVISU_KEY_FILE_OPEN_SAVE_DIR "FileOpenSavePath"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Setting for the initial directory when opening or saving a file. The OS specific file path seperator must be used. The configured path has to end with the seperator. The "FileOpenSavePath" is updated automatically with the path selected in the last file open or save. The "FileOpenSavePathFallback" is used whenever the "FileOpenSavePath" is not available, e.g. if it points to a directory on a storage device that has been removed.
-
-.. _group___cmp_target_visu_itf___settings_1ga3533ff36352da904c86ef93566e70b73:
-
-#define CMPTARGETVISU_KEY_FILE_OPEN_SAVE_DIR_FALLBACK "FileOpenSavePathFallback"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_target_visu_itf___settings_1gabfc4de7119afe1cb823a6ca30332c8f7:
-
-#define CMPTARGETVISU_VALUE_FILE_OPEN_SAVE_DIR_DEFAULT ""
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_target_visu_itf___settings_1gaab8a5c71db6009ae874b582845cec5f2:
-
-#define CMPTARGETVISU_MAXLEN_FILE_OPEN_SAVE_DIR 254
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Function Documentation
 ----------------------

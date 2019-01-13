@@ -26,21 +26,20 @@ Data Fields
 - RTS_HANDLE :ref:`hNetwork <structtag_u_s_b_d_e_v_i_c_e_1a2bd4dd4ce63b6cefd5518bbea4024c43>`
 - :ref:`SENDBUFFER <group___cmp_blk_drv_usb_itf_1ga80d3367dfd8b61b0d329f7b917a112b4>` :ref:`send <structtag_u_s_b_d_e_v_i_c_e_1affe3fc643a834c777bfd332b6ef5497b>`
 - :ref:`RECBUFFER <group___cmp_blk_drv_usb_itf_1ga372d4c9e4d608e65eac038aedc7f4b75>` :ref:`rec <structtag_u_s_b_d_e_v_i_c_e_1ade5635690099c6ae12584919de5726fb>`
-- RTS_UI32 :ref:`ulLastAction <structtag_u_s_b_d_e_v_i_c_e_1aaf4e22f6eea7374064f21d856963a2b4>`
-- RTS_UI32 :ref:`ulSendDelay <structtag_u_s_b_d_e_v_i_c_e_1acde01d38c95a28f06ab37c2636bade72>`
-- RTS_BOOL :ref:`bAddrRequestReceived <structtag_u_s_b_d_e_v_i_c_e_1aa513c60880dbea632b0f43463f3f465e>`
-- RTS_BOOL :ref:`bForceReregister <structtag_u_s_b_d_e_v_i_c_e_1afa6636b9c2a662ba6a99d5a47d496ac4>`
-- RTS_UI32 :ref:`ui32ProtocolExtensionType <structtag_u_s_b_d_e_v_i_c_e_1a14c88bc41f8dc807a6a18dd57326e5bc>`
-- RTS_I32 :ref:`i32EnableAutoAddressing <structtag_u_s_b_d_e_v_i_c_e_1a944dce43d3c1dca35cc7fa320e9fed08>`
-- RTS_I32 :ref:`i32EnableHalfDuplexMode <structtag_u_s_b_d_e_v_i_c_e_1a4b9b8235165fdab94f0aaf443d07961a>`
-- RTS_UI16 :ref:`usHdxTokenId <structtag_u_s_b_d_e_v_i_c_e_1af9b785aa46a523bc85b1d8e3f958194e>`
-- RTS_UI8 :ref:`ucHdxRole <structtag_u_s_b_d_e_v_i_c_e_1a4aa612151507c1727346f4a352142b69>`
-- RTS_UI8 :ref:`ucPeerAddr <structtag_u_s_b_d_e_v_i_c_e_1a23ba9b5d4f336571f215588a211f8daf>`
-- RTS_UI8 :ref:`ucLocalAddr <structtag_u_s_b_d_e_v_i_c_e_1a45604a14afc60f06ac60769902c1e6b4>`
+- unsigned long :ref:`ulLastSend <structtag_u_s_b_d_e_v_i_c_e_1a7aec8073d8b7c7b67b4a5d47e201f1ea>`
+- unsigned long :ref:`ulSendDelay <structtag_u_s_b_d_e_v_i_c_e_1a554434afae13a492439d9717c5864e6f>`
+- int :ref:`bAddrRequestReceived <structtag_u_s_b_d_e_v_i_c_e_1a7d50a9c3ed63aa0bc37eac7b740552af>`
+- RTS_I32 :ref:`bEnableAutoAddressing <structtag_u_s_b_d_e_v_i_c_e_1a2570085f81868565dc8e0cb90b26d82f>`
+- unsigned char :ref:`ucPeerAddr <structtag_u_s_b_d_e_v_i_c_e_1a5185471c22be659704fccefcbd40ec6e>`
+- unsigned char :ref:`ucLocalAddr <structtag_u_s_b_d_e_v_i_c_e_1ac657dfcf791368b0771ca0d90e312a25>`
 - :ref:`MINIPORTDRVUSB2 <group___cmp_blk_drv_usb_itf_1ga1808efd31df8b207c50cf16371d60fcf>` * :ref:`pDrv <structtag_u_s_b_d_e_v_i_c_e_1ade617e4c4d19caf767adc3394858524d>`
 - char :ref:`szName <structtag_u_s_b_d_e_v_i_c_e_1a850ac87c467ff66be5d3f830b1d2775b>`[32]
 - char :ref:`szDriverName <structtag_u_s_b_d_e_v_i_c_e_1af8dc1ba051c5d776bc3217d1f5377ce8>`[32]
-- RTS_UI8 :ref:`ucHdxRetries <structtag_u_s_b_d_e_v_i_c_e_1a71d3083d866cf41c5f7693f2a2b7b3ae>`
+- unsigned long :ref:`ulLastAction <structtag_u_s_b_d_e_v_i_c_e_1a6bf8ee43ed65b486fdb76e47b11c41a6>`
+- int :ref:`bEnableHalfDuplexMode <structtag_u_s_b_d_e_v_i_c_e_1a8afc3c312675bf5e467a7827c7610955>`
+- unsigned short :ref:`usHdxTokenId <structtag_u_s_b_d_e_v_i_c_e_1ac8c6497ec04e787e2441d525bce05d27>`
+- unsigned char :ref:`ucHdxRole <structtag_u_s_b_d_e_v_i_c_e_1aa9810b45e125fcd66f28580b8218e97a>`
+- unsigned char :ref:`ucHdxRetries <structtag_u_s_b_d_e_v_i_c_e_1a37e99f212822a4ebbe8c4211fc5fcef7>`
 - char :ref:`szInitToken <structtag_u_s_b_d_e_v_i_c_e_1a20aaa9772ac3330ad45df7f1e61b60cb>`[30]
 
 Detailed Description
@@ -116,60 +115,35 @@ SENDBUFFER tagUSBDEVICE::send
 RECBUFFER tagUSBDEVICE::rec
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _structtag_u_s_b_d_e_v_i_c_e_1aaf4e22f6eea7374064f21d856963a2b4:
+.. _structtag_u_s_b_d_e_v_i_c_e_1a7aec8073d8b7c7b67b4a5d47e201f1ea:
 
-RTS_UI32 tagUSBDEVICE::ulLastAction
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+unsigned long tagUSBDEVICE::ulLastSend
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _structtag_u_s_b_d_e_v_i_c_e_1acde01d38c95a28f06ab37c2636bade72:
+.. _structtag_u_s_b_d_e_v_i_c_e_1a554434afae13a492439d9717c5864e6f:
 
-RTS_UI32 tagUSBDEVICE::ulSendDelay
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _structtag_u_s_b_d_e_v_i_c_e_1aa513c60880dbea632b0f43463f3f465e:
-
-RTS_BOOL tagUSBDEVICE::bAddrRequestReceived
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _structtag_u_s_b_d_e_v_i_c_e_1afa6636b9c2a662ba6a99d5a47d496ac4:
-
-RTS_BOOL tagUSBDEVICE::bForceReregister
+unsigned long tagUSBDEVICE::ulSendDelay
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _structtag_u_s_b_d_e_v_i_c_e_1a14c88bc41f8dc807a6a18dd57326e5bc:
+.. _structtag_u_s_b_d_e_v_i_c_e_1a7d50a9c3ed63aa0bc37eac7b740552af:
 
-RTS_UI32 tagUSBDEVICE::ui32ProtocolExtensionType
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+int tagUSBDEVICE::bAddrRequestReceived
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _structtag_u_s_b_d_e_v_i_c_e_1a944dce43d3c1dca35cc7fa320e9fed08:
+.. _structtag_u_s_b_d_e_v_i_c_e_1a2570085f81868565dc8e0cb90b26d82f:
 
-RTS_I32 tagUSBDEVICE::i32EnableAutoAddressing
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RTS_I32 tagUSBDEVICE::bEnableAutoAddressing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _structtag_u_s_b_d_e_v_i_c_e_1a4b9b8235165fdab94f0aaf443d07961a:
+.. _structtag_u_s_b_d_e_v_i_c_e_1a5185471c22be659704fccefcbd40ec6e:
 
-RTS_I32 tagUSBDEVICE::i32EnableHalfDuplexMode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+unsigned char tagUSBDEVICE::ucPeerAddr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _structtag_u_s_b_d_e_v_i_c_e_1af9b785aa46a523bc85b1d8e3f958194e:
+.. _structtag_u_s_b_d_e_v_i_c_e_1ac657dfcf791368b0771ca0d90e312a25:
 
-RTS_UI16 tagUSBDEVICE::usHdxTokenId
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _structtag_u_s_b_d_e_v_i_c_e_1a4aa612151507c1727346f4a352142b69:
-
-RTS_UI8 tagUSBDEVICE::ucHdxRole
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _structtag_u_s_b_d_e_v_i_c_e_1a23ba9b5d4f336571f215588a211f8daf:
-
-RTS_UI8 tagUSBDEVICE::ucPeerAddr
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _structtag_u_s_b_d_e_v_i_c_e_1a45604a14afc60f06ac60769902c1e6b4:
-
-RTS_UI8 tagUSBDEVICE::ucLocalAddr
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+unsigned char tagUSBDEVICE::ucLocalAddr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _structtag_u_s_b_d_e_v_i_c_e_1ade617e4c4d19caf767adc3394858524d:
 
@@ -186,10 +160,30 @@ char tagUSBDEVICE::szName[32]
 char tagUSBDEVICE::szDriverName[32]
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _structtag_u_s_b_d_e_v_i_c_e_1a71d3083d866cf41c5f7693f2a2b7b3ae:
+.. _structtag_u_s_b_d_e_v_i_c_e_1a6bf8ee43ed65b486fdb76e47b11c41a6:
 
-RTS_UI8 tagUSBDEVICE::ucHdxRetries
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+unsigned long tagUSBDEVICE::ulLastAction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtag_u_s_b_d_e_v_i_c_e_1a8afc3c312675bf5e467a7827c7610955:
+
+int tagUSBDEVICE::bEnableHalfDuplexMode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtag_u_s_b_d_e_v_i_c_e_1ac8c6497ec04e787e2441d525bce05d27:
+
+unsigned short tagUSBDEVICE::usHdxTokenId
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtag_u_s_b_d_e_v_i_c_e_1aa9810b45e125fcd66f28580b8218e97a:
+
+unsigned char tagUSBDEVICE::ucHdxRole
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _structtag_u_s_b_d_e_v_i_c_e_1a37e99f212822a4ebbe8c4211fc5fcef7:
+
+unsigned char tagUSBDEVICE::ucHdxRetries
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _structtag_u_s_b_d_e_v_i_c_e_1a20aaa9772ac3330ad45df7f1e61b60cb:
 
@@ -198,7 +192,7 @@ char tagUSBDEVICE::szInitToken[30]
 
 ------------------------------------------------------------------------
 The documentation for this struct was generated from the following file:
-C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpBlkDrvUsbItf.h
+C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpBlkDrvUsbItf.h
 
 .. last line of struct.rst template
 .. last line of composition.rst template

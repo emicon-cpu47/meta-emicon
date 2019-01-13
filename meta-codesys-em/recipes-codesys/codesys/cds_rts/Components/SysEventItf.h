@@ -5,9 +5,7 @@
  *	can only be used on systems with tasks!</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -418,14 +416,14 @@ typedef RTS_RESULT (CDECL * PFSYSEVENTDELETE) (RTS_HANDLE hEvent);
 	#define USE_SysEventSysEventDelete
 	#define EXT_SysEventSysEventDelete
 	#define GET_SysEventSysEventDelete  ERR_OK
-	#define CAL_SysEventSysEventDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysEvent*)p0)->ISysEventDelete())
+	#define CAL_SysEventSysEventDelete(p0) ((ISysEvent*)p0)->ISysEventDelete()
 	#define CHK_SysEventSysEventDelete  TRUE
 	#define EXP_SysEventSysEventDelete  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysEventDelete
 	#define EXT_SysEventDelete
 	#define GET_SysEventDelete(fl)  CAL_CMGETAPI( "SysEventDelete" ) 
-	#define CAL_SysEventDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysEvent*)p0)->ISysEventDelete())
+	#define CAL_SysEventDelete(p0) ((ISysEvent*)p0)->ISysEventDelete()
 	#define CHK_SysEventDelete  TRUE
 	#define EXP_SysEventDelete  CAL_CMEXPAPI( "SysEventDelete" ) 
 #else /* DYNAMIC_LINK */

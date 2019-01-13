@@ -6,13 +6,13 @@
  *  which are intended to be used for anything. Use at your own risk.
  *  </description>
  *  <copyright>
- *  Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+ *  (c) 2003-2016 3S-Smart Software Solutions
  *  </copyright>
  */
 SET_COMPONENT_NAME(`CmpTemplate')
 COMPONENT_SOURCES(`CmpTemplate.c')
 
-COMPONENT_VERSION(`0x03050D00')
+COMPONENT_VERSION(`0x03050A00')
 
 /* NOTE: REPLACE 0x0001 BY YOUR VENDORID */
 COMPONENT_VENDORID(`0x0001')				
@@ -46,7 +46,6 @@ USE_ITF(`CmpIecVarAccessItf.m4')
 USE_ITF(`SysTimeRtcItf.m4')
 USE_ITF(`CmpUserMgrItf.m4')
 USE_ITF(`CmpSupervisorItf.m4')
-USE_ITF(`CMUtilsItf.m4')
 
 REQUIRED_IMPORTS(
 ServerRegisterServiceHandler,
@@ -109,8 +108,7 @@ IecTaskCycle,
 CMExit,
 SchedRegisterExternalEvent,
 SchedPostExternalEvent,
-SchedUnregisterExternalEvent,
-CMUtlvsnprintf)
+SchedUnregisterExternalEvent)
 
 OPTIONAL_IMPORTS(
 SysMemIsValidPointer,
@@ -135,12 +133,10 @@ UserMgrObjectOpen,
 UserMgrObjectClose,
 UserMgrHasAccessRights,
 UserMgrAddOnlineAccessError,
-SupervisorOperationGetState2,
+SupervisorOperationGetState,
 SupervisorOperationRegister,
 SupervisorOperationUnregister,
 SupervisorOperationEnable,
 SupervisorOperationDisable,
 SupervisorOperationAlive,
-SupervisorOperationDead,
-SupervisorOperationGetEntry,
-SysTaskGetHandleByOSHandle)
+SupervisorOperationDead)

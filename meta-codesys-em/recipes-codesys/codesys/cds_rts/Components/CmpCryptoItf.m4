@@ -12,9 +12,7 @@
  *	</ul>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 SET_INTERFACE_NAME(`CmpCrypto')
 
@@ -28,44 +26,32 @@ extern "C" {
 /**
  * <description>Enum: RtsCryptoID</description>
  */
-
-/* --- Symmetric chipers --- */
-#define RTSCRYPTOID_AES_128_CBC				RTS_IEC_UDINT_C(0x1001)
-#define RTSCRYPTOID_AES_128_CFB				RTS_IEC_UDINT_C(0x1002)	
-#define RTSCRYPTOID_AES_256_CBC				RTS_IEC_UDINT_C(0x1003)	
-#define RTSCRYPTOID_DES_CBC					RTS_IEC_UDINT_C(0x1004)	
-#define RTSCRYPTOID_AES_256_CTR				RTS_IEC_UDINT_C(0x1005)
-
-/* --- Asymmetric Cipers --- */	
-#define RTSCRYPTOID_RSA						RTS_IEC_UDINT_C(0x2001)
-#define RTSCRYPTOID_RSA_OAEP_PADDING		RTS_IEC_UDINT_C(0x2002)	
-#define RTSCRYPTOID_RSA_PKCS1_V15_PADDING   RTS_IEC_UDINT_C(0x2003)	
-
-/* --- Hash functions --- */
-#define RTSCRYPTOID_HASH_MD5				RTS_IEC_UDINT_C(0x3001)	
-#define RTSCRYPTOID_HASH_SHA1				RTS_IEC_UDINT_C(0x3002)	
-#define RTSCRYPTOID_HASH_SHA224				RTS_IEC_UDINT_C(0x3003)	
-#define RTSCRYPTOID_HASH_SHA256				RTS_IEC_UDINT_C(0x3004)	
-#define RTSCRYPTOID_HASH_SHA384				RTS_IEC_UDINT_C(0x3005)	
-#define RTSCRYPTOID_HASH_SHA512				RTS_IEC_UDINT_C(0x3006)	
-
-/* --- Signature Functions --- */
-/* HMAC Functions */
-#define RTSCRYPTOID_HMAC_MD5				RTS_IEC_UDINT_C(0x4001)
-#define RTSCRYPTOID_HMAC_SHA1				RTS_IEC_UDINT_C(0x4002)	
-#define RTSCRYPTOID_HMAC_SHA224				RTS_IEC_UDINT_C(0x4003)	
-#define RTSCRYPTOID_HMAC_SHA256				RTS_IEC_UDINT_C(0x4004)	
-#define RTSCRYPTOID_HMAC_SHA384				RTS_IEC_UDINT_C(0x4005)	
-#define RTSCRYPTOID_HMAC_SHA512				RTS_IEC_UDINT_C(0x4006)	
-
-/* RSA Functions */
-#define RTSCRYPTOID_RSA_OAEP_SHA1			RTS_IEC_UDINT_C(0x5003)
-#define RTSCRYPTOID_RSA_OAEP_SHA256			RTS_IEC_UDINT_C(0x5004)	
-#define RTSCRYPTOID_RSA_PKCS1_V15_SHA1		RTS_IEC_UDINT_C(0x5001)	
+#define RTSCRYPTOID_AES_128_CBC    RTS_IEC_UDINT_C(0x1001)	/* Symmetric chipers */
+#define RTSCRYPTOID_AES_128_CFB    RTS_IEC_UDINT_C(0x1002)	
+#define RTSCRYPTOID_AES_256_CBC    RTS_IEC_UDINT_C(0x1003)	
+#define RTSCRYPTOID_DES_CBC    RTS_IEC_UDINT_C(0x1004)	
+#define RTSCRYPTOID_AES_256_CTR    RTS_IEC_UDINT_C(0x1005)	
+#define RTSCRYPTOID_RSA    RTS_IEC_UDINT_C(0x2001)	/* Asymmetric Cipers */
+#define RTSCRYPTOID_RSA_OAEP_PADDING    RTS_IEC_UDINT_C(0x2002)	
+#define RTSCRYPTOID_RSA_PKCS1_V15_PADDING    RTS_IEC_UDINT_C(0x2003)	
+#define RTSCRYPTOID_HASH_MD5    RTS_IEC_UDINT_C(0x3001)	/* Hash functions */
+#define RTSCRYPTOID_HASH_SHA1    RTS_IEC_UDINT_C(0x3002)	
+#define RTSCRYPTOID_HASH_SHA224    RTS_IEC_UDINT_C(0x3003)	
+#define RTSCRYPTOID_HASH_SHA256    RTS_IEC_UDINT_C(0x3004)	
+#define RTSCRYPTOID_HASH_SHA384    RTS_IEC_UDINT_C(0x3005)	
+#define RTSCRYPTOID_HASH_SHA512    RTS_IEC_UDINT_C(0x3006)	
+#define RTSCRYPTOID_HMAC_MD5    RTS_IEC_UDINT_C(0x4001)	/* HMAC Functions */
+#define RTSCRYPTOID_HMAC_SHA1    RTS_IEC_UDINT_C(0x4002)	
+#define RTSCRYPTOID_HMAC_SHA224    RTS_IEC_UDINT_C(0x4003)	
+#define RTSCRYPTOID_HMAC_SHA256    RTS_IEC_UDINT_C(0x4004)	
+#define RTSCRYPTOID_HMAC_SHA384    RTS_IEC_UDINT_C(0x4005)	
+#define RTSCRYPTOID_HMAC_SHA512    RTS_IEC_UDINT_C(0x4006)	
+#define RTSCRYPTOID_RSA_OAEP_SHA1    RTS_IEC_UDINT_C(0x5003)	/* Signature Functions */
+#define RTSCRYPTOID_RSA_OAEP_SHA256    RTS_IEC_UDINT_C(0x5004)	
+#define RTSCRYPTOID_RSA_PKCS1_V15_SHA1    RTS_IEC_UDINT_C(0x5001)	
 #define RTSCRYPTOID_RSA_PKCS1_V15_SHA256    RTS_IEC_UDINT_C(0x5002)	
-
 /* Typed enum definition */
-#define RTSCRYPTOID							RTS_IEC_UDINT
+#define RTSCRYPTOID    RTS_IEC_UDINT
 
 /**
  * <description>Enum: RtsCryptoKeyType</description>
@@ -129,7 +115,7 @@ typedef struct tagcryptoasymmetricdecrypt_struct
 	RTS_IEC_RESULT CryptoAsymmetricDecrypt;	/* VAR_OUTPUT */	
 } cryptoasymmetricdecrypt_struct;
 
-DEF_API(`void',`CDECL',`cryptoasymmetricdecrypt',`(cryptoasymmetricdecrypt_struct *p)',1,0x126B86CC,0x03050B00)
+DEF_API(`void',`CDECL',`cryptoasymmetricdecrypt',`(cryptoasymmetricdecrypt_struct *p)',1,0x126B86CC,0x03050A00)
 
 /**
  * Perform a asymmetric encryption using the algorithm handle.
@@ -144,7 +130,7 @@ typedef struct tagcryptoasymmetricencrypt_struct
 	RTS_IEC_RESULT CryptoAsymmetricEncrypt;	/* VAR_OUTPUT */	
 } cryptoasymmetricencrypt_struct;
 
-DEF_API(`void',`CDECL',`cryptoasymmetricencrypt',`(cryptoasymmetricencrypt_struct *p)',1,0xC14613D0,0x03050B00)
+DEF_API(`void',`CDECL',`cryptoasymmetricencrypt',`(cryptoasymmetricencrypt_struct *p)',1,0xC14613D0,0x03050A00)
 
 /**
  * Calculate the message digest of the given data.
@@ -158,7 +144,7 @@ typedef struct tagcryptogeneratehash_struct
 	RTS_IEC_RESULT CryptoGenerateHash;	/* VAR_OUTPUT */	
 } cryptogeneratehash_struct;
 
-DEF_API(`void',`CDECL',`cryptogeneratehash',`(cryptogeneratehash_struct *p)',1,0x34E1A812,0x03050B00)
+DEF_API(`void',`CDECL',`cryptogeneratehash',`(cryptogeneratehash_struct *p)',1,0x34E1A812,0x03050A00)
 
 /**
  * Generate a number of cryptographic strong bytes.
@@ -171,7 +157,7 @@ typedef struct tagcryptogeneraterandomnumber_struct
 	RTS_IEC_RESULT CryptoGenerateRandomNumber;	/* VAR_OUTPUT */	
 } cryptogeneraterandomnumber_struct;
 
-DEF_API(`void',`CDECL',`cryptogeneraterandomnumber',`(cryptogeneraterandomnumber_struct *p)',1,0xF9FC5437,0x03050B00)
+DEF_API(`void',`CDECL',`cryptogeneraterandomnumber',`(cryptogeneraterandomnumber_struct *p)',1,0xF9FC5437,0x03050A00)
 
 /**
  * Get a handle to the algorithm using a specific ID
@@ -184,20 +170,20 @@ typedef struct tagcryptogetalgorithmbyid_struct
 	RTS_IEC_HANDLE CryptoGetAlgorithmById;	/* VAR_OUTPUT */	
 } cryptogetalgorithmbyid_struct;
 
-DEF_API(`void',`CDECL',`cryptogetalgorithmbyid',`(cryptogetalgorithmbyid_struct *p)',1,0x3D0776D3,0x03050B00)
+DEF_API(`void',`CDECL',`cryptogetalgorithmbyid',`(cryptogetalgorithmbyid_struct *p)',1,0x3D0776D3,0x03050A00)
 
 /**
- * Get the asymmetric key size in bits.
- * :return: Size of the asymmetric key in bits
+ * Get the PRIVATE key size in bytes.
+ * :return: Size of the private key in bytes
  */
 typedef struct tagcryptogetasymmetrickeylength_struct
 {
-	RtsCryptoKey asymmetricKey;			/* VAR_INPUT */	/* Asymmetric key of intrest. */
+	RtsCryptoKey privateKey;			/* VAR_INPUT */	/* Private key of intrest. */
 	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Operation Result */
-	RTS_IEC_UDINT CryptoGetAsymmetricKeyLength;	/* VAR_OUTPUT */	
+	RTS_IEC_RESULT CryptoGetAsymmetricKeyLength;	/* VAR_OUTPUT */	
 } cryptogetasymmetrickeylength_struct;
 
-DEF_API(`void',`CDECL',`cryptogetasymmetrickeylength',`(cryptogetasymmetrickeylength_struct *p)',1,0,0x03050B00)
+DEF_API(`void',`CDECL',`cryptogetasymmetrickeylength',`(cryptogetasymmetrickeylength_struct *p)',1,0x0F3B29BE,0x03050A00)
 
 /**
  * Get the first algorthm matching the type given. Use this with the GetNext function to iterate over algorthmes of a specific type.
@@ -213,7 +199,7 @@ typedef struct tagcryptogetfirstalgorithm_struct
 	RTS_IEC_HANDLE CryptoGetFirstAlgorithm;	/* VAR_OUTPUT */	
 } cryptogetfirstalgorithm_struct;
 
-DEF_API(`void',`CDECL',`cryptogetfirstalgorithm',`(cryptogetfirstalgorithm_struct *p)',1,0xC8A4A345,0x03050B00)
+DEF_API(`void',`CDECL',`cryptogetfirstalgorithm',`(cryptogetfirstalgorithm_struct *p)',1,0xC8A4A345,0x03050A00)
 
 /**
  * Get the next algorthm matching the type given.
@@ -230,7 +216,7 @@ typedef struct tagcryptogetnextalgorithm_struct
 	RTS_IEC_HANDLE CryptoGetNextAlgorithm;	/* VAR_OUTPUT */	
 } cryptogetnextalgorithm_struct;
 
-DEF_API(`void',`CDECL',`cryptogetnextalgorithm',`(cryptogetnextalgorithm_struct *p)',1,0x79EC29C8,0x03050B00)
+DEF_API(`void',`CDECL',`cryptogetnextalgorithm',`(cryptogetnextalgorithm_struct *p)',1,0x79EC29C8,0x03050A00)
 
 /**
  *Generate a hashed message authentication code (HMAC) OF the given data AND key.
@@ -245,7 +231,7 @@ typedef struct tagcryptohmacsign_struct
 	RTS_IEC_RESULT CryptoHMACSign;		/* VAR_OUTPUT */	
 } cryptohmacsign_struct;
 
-DEF_API(`void',`CDECL',`cryptohmacsign',`(cryptohmacsign_struct *p)',1,0x931A9470,0x03050B00)
+DEF_API(`void',`CDECL',`cryptohmacsign',`(cryptohmacsign_struct *p)',1,0x931A9470,0x03050A00)
 
 /**
  * Verify a recieved hashed message authentication code (HMAC).
@@ -260,7 +246,7 @@ typedef struct tagcryptohmacverify_struct
 	RTS_IEC_RESULT CryptoHMACVerify;	/* VAR_OUTPUT */	
 } cryptohmacverify_struct;
 
-DEF_API(`void',`CDECL',`cryptohmacverify',`(cryptohmacverify_struct *p)',1,0x49EEB4A9,0x03050B00)
+DEF_API(`void',`CDECL',`cryptohmacverify',`(cryptohmacverify_struct *p)',1,0x49EEB4A9,0x03050A00)
 
 /**
  * <description>cryptokeyexit</description>
@@ -271,7 +257,7 @@ typedef struct tagcryptokeyexit_struct
 	RTS_IEC_RESULT CryptoKeyExit;		/* VAR_OUTPUT */	
 } cryptokeyexit_struct;
 
-DEF_API(`void',`CDECL',`cryptokeyexit',`(cryptokeyexit_struct *p)',1,0xD71ED5F3,0x03050B00)
+DEF_API(`void',`CDECL',`cryptokeyexit',`(cryptokeyexit_struct *p)',1,0xD71ED5F3,0x03050A00)
 
 /**
  * <description>cryptokeyinit</description>
@@ -284,7 +270,7 @@ typedef struct tagcryptokeyinit_struct
 	RTS_IEC_RESULT CryptoKeyInit;		/* VAR_OUTPUT */	
 } cryptokeyinit_struct;
 
-DEF_API(`void',`CDECL',`cryptokeyinit',`(cryptokeyinit_struct *p)',1,0xE8E228B3,0x03050B00)
+DEF_API(`void',`CDECL',`cryptokeyinit',`(cryptokeyinit_struct *p)',1,0xE8E228B3,0x03050A00)
 
 /**
  * <description>cryptortsbytestringexit</description>
@@ -295,7 +281,7 @@ typedef struct tagcryptortsbytestringexit_struct
 	RTS_IEC_RESULT CryptoRtsByteStringExit;	/* VAR_OUTPUT */	
 } cryptortsbytestringexit_struct;
 
-DEF_API(`void',`CDECL',`cryptortsbytestringexit',`(cryptortsbytestringexit_struct *p)',1,0x16B297C5,0x03050B00)
+DEF_API(`void',`CDECL',`cryptortsbytestringexit',`(cryptortsbytestringexit_struct *p)',1,0x16B297C5,0x03050A00)
 
 /**
  * <description>cryptortsbytestringinit</description>
@@ -306,7 +292,7 @@ typedef struct tagcryptortsbytestringinit_struct
 	RTS_IEC_RESULT CryptoRtsByteStringInit;	/* VAR_OUTPUT */	
 } cryptortsbytestringinit_struct;
 
-DEF_API(`void',`CDECL',`cryptortsbytestringinit',`(cryptortsbytestringinit_struct *p)',1,0xC1B4C2F9,0x03050B00)
+DEF_API(`void',`CDECL',`cryptortsbytestringinit',`(cryptortsbytestringinit_struct *p)',1,0xC1B4C2F9,0x03050A00)
 
 /**
  * Sign the data using a specific message digest and the private key.
@@ -321,7 +307,7 @@ typedef struct tagcryptosignaturegenerate_struct
 	RTS_IEC_RESULT CryptoSignatureGenerate;	/* VAR_OUTPUT */	
 } cryptosignaturegenerate_struct;
 
-DEF_API(`void',`CDECL',`cryptosignaturegenerate',`(cryptosignaturegenerate_struct *p)',1,0x0C2FBF80,0x03050B00)
+DEF_API(`void',`CDECL',`cryptosignaturegenerate',`(cryptosignaturegenerate_struct *p)',1,0x0C2FBF80,0x03050A00)
 
 /**
  * Verify a recieved signature
@@ -336,7 +322,7 @@ typedef struct tagcryptosignatureverify_struct
 	RTS_IEC_RESULT CryptoSignatureVerify;	/* VAR_OUTPUT */	
 } cryptosignatureverify_struct;
 
-DEF_API(`void',`CDECL',`cryptosignatureverify',`(cryptosignatureverify_struct *p)',1,0x3F425BB9,0x03050B00)
+DEF_API(`void',`CDECL',`cryptosignatureverify',`(cryptosignatureverify_struct *p)',1,0x3F425BB9,0x03050A00)
 
 /**
  * Perform a symmetric decryption using the algorithm handle.
@@ -353,7 +339,7 @@ typedef struct tagcryptosymmetricdecrypt_struct
 	RTS_IEC_RESULT CryptoSymmetricDecrypt;	/* VAR_OUTPUT */	
 } cryptosymmetricdecrypt_struct;
 
-DEF_API(`void',`CDECL',`cryptosymmetricdecrypt',`(cryptosymmetricdecrypt_struct *p)',1,0xF3963545,0x03050B00)
+DEF_API(`void',`CDECL',`cryptosymmetricdecrypt',`(cryptosymmetricdecrypt_struct *p)',1,0xF3963545,0x03050A00)
 
 /**
  * Perform a symmetric encryption using the algorithm handle.
@@ -370,7 +356,7 @@ typedef struct tagcryptosymmetricencrypt_struct
 	RTS_IEC_RESULT CryptoSymmetricEncrypt;	/* VAR_OUTPUT */	
 } cryptosymmetricencrypt_struct;
 
-DEF_API(`void',`CDECL',`cryptosymmetricencrypt',`(cryptosymmetricencrypt_struct *p)',1,0x8D659084,0x03050B00)
+DEF_API(`void',`CDECL',`cryptosymmetricencrypt',`(cryptosymmetricencrypt_struct *p)',1,0x8D659084,0x03050A00)
 
 #ifdef __cplusplus
 }
@@ -473,7 +459,7 @@ DEF_ITF_API(`RtsCryptoInfo*',`CDECL',`CryptoGetAlgorithmInfo',`(RTS_HANDLE hCryp
  * <param name="pPlainText" type="IN">Data to be encrypted</param>
  * <param name="key" type="IN">Key to encrypt the data. Has to be a KeyType_Key key.</param>
  * <param name="pInitVector" type="IN">Init vector of the ecryption</param>
- * <param name="bEnablePadding" type="IN">Enables the padding of the algorithm. If padding is not enabled the plaintext length has to match a multiple of the cipher block length</param>
+ * <param name="bEnablePadding" type="in">Enables the padding of the algorithm. If padding is not enabled the plaintext length has to match a multiple of the cipher block length</param>
  * <param name="pCipherText" type="OUT">Encrypted data.</param>
  * <result>Error code: Result of the operation</result>
  */
@@ -485,7 +471,7 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`CryptoSymmetricEncrypt',`(RTS_HANDLE hAlgo, Rt
  * <param name="pCipherText" type="IN">Data to be decrypted</param>
  * <param name="key" type="IN">Key to decrypt the data. Has to be a KeyType_Key key.</param>
  * <param name="pInitVector" type="IN">Init vector of the decrypt.</param>
- * <param name="bEnablePadding" type="IN">Enables the padding of the algorithm. If padding is not enabled the plaintext length has to match a multiple of the cipher block length</param>
+ * <param name="bEnablePadding" type="in">Enables the padding of the algorithm. If padding is not enabled the plaintext length has to match a multiple of the cipher block length</param>
  * <param name="pCipherText" type="OUT">Decrypted data.</param>
  * <result>Error code: Result of the operation</result>
  */
@@ -495,7 +481,7 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`CryptoSymmetricDecrypt',`(RTS_HANDLE hAlgo, Rt
  * <description>Perform an asymmetric encryption using the algorithm handle.</description>
  * <param name="hAlgo" type="IN">Handle to the algorithm.</param>
  * <param name="pPlainText" type="IN">Data to be encrypted</param>
- * <param name="publicKey" type="IN">Public key used to encrypt the data. Use X509CertGetPublicKey to get the public key form an certificate.</param>
+ * <param name="publicKey" type="IN">Public key used to encrypt the data.</param>
  * <param name="pCipherText" type="OUT">Encrypted data.</param>
  * <result>Error code: Result of the operation</result>
  */
@@ -505,19 +491,19 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`CryptoAsymmetricEncrypt',`(RTS_HANDLE hAlgo, R
  * <description>Perform an asymmetric decryption using the algorithm handle.</description>
  * <param name="hAlgo" type="IN">Handle to the algorithm.</param>
  * <param name="pCiperText" type="IN">Data to be decrypted</param>
- * <param name="privateKey" type="IN">Private key used to decrypt the data. Use X509CertGetPrivateKey to get the private key from an certificate.</param>
+ * <param name="privateKey" type="IN">Private key used to decrypt the data.</param>
  * <param name="pCipherText" type="OUT">Decrypted data.</param>
  * <result>Error code: Result of the operation</result>
  */
 DEF_ITF_API(`RTS_RESULT',`CDECL',`CryptoAsymmetricDecrypt',`(RTS_HANDLE hAlgo, RtsByteString* pCipherText, RtsCryptoKey privateKey, RtsByteString* pPlainText)')
 
 /**
- * <description>Get the private key size in bits.</description>
- * <param name="priavteKey" type="IN">Asymmetric key of intrest. Use X509CertGetPublicKey or X509CertGetPrivateKey to get the asymmetric key.</param>
+ * <description>Get the private key size in bytes.</description>
+ * <param name="priavteKey" type="IN">Private key of intrest.</param>
  * <param name="pResult" type="OUT">Error code: Operation Result</param>
- * <result>Size of the private key in bits</result>
+ * <result>Size of the private key in bytes</result>
  */
-DEF_ITF_API(`RTS_UI32',`CDECL',`CryptoGetAsymmetricKeyLength',`(RtsCryptoKey asymmetricKey, RTS_RESULT* pResult)')
+DEF_ITF_API(`RTS_UI32',`CDECL',`CryptoGetAsymmetricKeyLength',`(RtsCryptoKey privateKey, RTS_RESULT* pResult)')
 
 /**
  * <description>Calculate the message digest of the given data.</description>
@@ -552,7 +538,7 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`CryptoHMACVerify',`(RTS_HANDLE hAlgo, RtsByteS
  * <description>Sign the data using a specific message digest and the private key.</description>
  * <param name="hAlgo" type="IN">Handle to the algorithm.</param>
  * <param name="pData" type="IN">Data to be signed.</param>
- * <param name="privateKey" type="IN">Key to be used signing. Has to be a private key. Use X509CertGetPrivateKey to get the private key.</param>
+ * <param name="privateKey" type="IN">Key to be used signing. Has to be a private key.</param>
  * <param name="pSignature" type="IN">Calculated signature of the data.</param>
  * <result>Error code: Result of the operation.</result>
  **/
@@ -562,7 +548,7 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`CryptoSignatureGenerate',`(RTS_HANDLE hAlgo, R
  * <description>Verify a received signature</description>
  * <param name="hAlgo" type="IN">Handle to the algorithm.</param>
  * <param name="pData" type="IN">Data to verify.</param>
- * <param name="publicKey" type="IN">Public key of the sender. X509CertGetPublicKey to get the key.</param>
+ * <param name="publicKey" type="IN">Public key of the sender.</param>
  * <param name="pSignature" type="IN">Received signature.</param>
  * <result>Error code: Function returns ERR_OK if the signature is valid.</result>
  **/

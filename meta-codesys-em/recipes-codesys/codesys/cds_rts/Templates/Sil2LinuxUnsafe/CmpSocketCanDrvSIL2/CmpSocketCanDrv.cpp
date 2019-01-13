@@ -8,8 +8,6 @@
 
 
 
-
-
 #include "CmpSocketCanDrv.c"
 #include "SocketCanDrv.c"
 

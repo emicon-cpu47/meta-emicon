@@ -450,7 +450,7 @@ The SysSocket interface is projected to handle access to ethernet socket layer. 
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -749,7 +749,7 @@ typedef struct tagsyssocksetipaddress_struct  syssocksetipaddress_struct
 typedef struct tagsyssocksetipaddressandnetmask_struct  syssocksetipaddressandnetmask_struct
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-| Set IP address and subnet mask of an adapter. | It depends on the device, whether the new ip address and subnet mask is reset during reboot or if it is retained. In general the caller should consider these as volatile. The combination IP address = 0.0.0.0 and subnet mask = 0.0.0.0 can be used to remove the IP address from the adapter. After this there is no IP based communication possible anymore, until a new IP address is set. Replaces the functions :ref:`SysSockSetIPAddress() <group___sys_socket_itf_1gac9df27adc7dee251a49276325cb38c4c>` and :ref:`SysSockSetSubnetMask() <group___sys_socket_itf_1gabb69f4209169d1fcd77f059587927930>` . :return: Runtime system error code (see CmpErrors.library).
+| Set ip address and subnet mask of an adapter. | It depends on the device, whether the new ip address and subnet mask is reset during reboot or if it is retained. In general the caller should consider these as volatile. Replaces the functions :ref:`SysSockSetIPAddress() <group___sys_socket_itf_1gac9df27adc7dee251a49276325cb38c4c>` and :ref:`SysSockSetSubnetMask() <group___sys_socket_itf_1gabb69f4209169d1fcd77f059587927930>` . :return: Runtime system error code (see CmpErrors.library).
 
 .. _group___sys_socket_itf_1ga1fbddd897a07cd8bd9c54c6b66a143e5:
 
@@ -1829,7 +1829,7 @@ Information struct of current network adapter
 RTS_RESULT SysSockSetIpAddressAndNetMask (RTS_WCHAR *pwszAdapterName, INADDR *pIpAddr, INADDR *pNetMask)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Set IP address and subnet mask of an adapter. It depends on the device, whether the new ip address and subnet mask is reset during reboot or if it is retained. In general the caller should consider these as volatile. The combination IP address = 0.0.0.0 and subnet mask = 0.0.0.0 can be used to remove the IP address from the adapter. After this there is no IP based communication possible anymore, until a new IP address is set. Replaces the functions :ref:`SysSockSetIPAddress() <group___sys_socket_itf_1gac9df27adc7dee251a49276325cb38c4c>` and :ref:`SysSockSetSubnetMask() <group___sys_socket_itf_1gabb69f4209169d1fcd77f059587927930>` .
+Set ip address and subnet mask of an adapter. It depends on the device, whether the new ip address and subnet mask is reset during reboot or if it is retained. In general the caller should consider these as volatile. Replaces the functions :ref:`SysSockSetIPAddress() <group___sys_socket_itf_1gac9df27adc7dee251a49276325cb38c4c>` and :ref:`SysSockSetSubnetMask() <group___sys_socket_itf_1gabb69f4209169d1fcd77f059587927930>` .
 
 **Parameters**
 

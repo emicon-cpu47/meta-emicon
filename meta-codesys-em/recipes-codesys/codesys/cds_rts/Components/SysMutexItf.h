@@ -21,9 +21,7 @@
  *	</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -150,14 +148,14 @@ typedef RTS_RESULT (CDECL * PFSYSMUTEXDELETE) (RTS_HANDLE hMutex);
 	#define USE_SysMutexSysMutexDelete
 	#define EXT_SysMutexSysMutexDelete
 	#define GET_SysMutexSysMutexDelete  ERR_OK
-	#define CAL_SysMutexSysMutexDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysMutex*)p0)->ISysMutexDelete())
+	#define CAL_SysMutexSysMutexDelete(p0) ((ISysMutex*)p0)->ISysMutexDelete()
 	#define CHK_SysMutexSysMutexDelete  TRUE
 	#define EXP_SysMutexSysMutexDelete  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysMutexDelete
 	#define EXT_SysMutexDelete
 	#define GET_SysMutexDelete(fl)  CAL_CMGETAPI( "SysMutexDelete" ) 
-	#define CAL_SysMutexDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysMutex*)p0)->ISysMutexDelete())
+	#define CAL_SysMutexDelete(p0) ((ISysMutex*)p0)->ISysMutexDelete()
 	#define CHK_SysMutexDelete  TRUE
 	#define EXP_SysMutexDelete  CAL_CMEXPAPI( "SysMutexDelete" ) 
 #else /* DYNAMIC_LINK */

@@ -137,7 +137,7 @@
 #define LOGID_CmpApp_ParentBootprojectFailed		0x0000002E	/** <classid>LOG_ERROR</classid>		<severity>none</severity> */
 #define LOGID_CmpApp_ParentBootprojectMismatch		0x0000002F	/** <classid>LOG_ERROR</classid>		<severity>none</severity> */
 #define LOGID_CmpApp_BootprojectFormat				0x00000030	/** <classid>LOG_ERROR</classid>		<severity>none</severity> */
-#define LOGID_CmpApp_RetainsInitialized				0x00000031	/** <classid>LOG_INFO/LOG_WARNING</classid>		<severity>none</severity> */
+#define LOGID_CmpApp_RetainsInitialized				0x00000031	/** <classid>LOG_INFO</classid>			<severity>none</severity> */
 #define LOGID_CmpApp_DownloadDenied					0x00000032	/** <classid>LOG_ERROR</classid>		<severity>Operation denied</severity> */
 #define LOGID_CmpApp_OnlineChangeDenied2			0x00000033	/** <classid>LOG_ERROR</classid>		<severity>Operation denied</severity> */
 #define LOGID_CmpApp_ResetDenied					0x00000034	/** <classid>LOG_ERROR</classid>		<severity>Operation denied</severity> */
@@ -161,7 +161,6 @@
 #define LOGID_CmpApp_CIM_UnloadFailed				0x00000046  /** <classid>LOG_ERROR</classid>		<severity>Application operation failed</severity> */
 #define LOGID_CmpApp_InitServiceHandlerDenied		0x00000047	/** <classid>LOG_INFO</classid>			<severity>none</severity> */
 #define LOGID_CmpApp_OpenBootprojectCRCFailed		0x00000048	/** <classid>LOG_ERROR</classid>		<severity>Application operation failed</severity> */
-#define LOGID_CmpApp_UnalignedArea					0x00000049	/** <classid>LOG_ERROR</classid>		<severity>none</severity> */
 
 /**
  * <description>CmpAppEmbedded</description>
@@ -227,11 +226,6 @@
 #define LOGID_CmpBlkDrvCom_EndDelimiterWithoutStart	0x0000000A	/** <classid>LOG_WARNING</classid>		<severity>Low communication performace, block has to be repeated</severity> */
 #define LOGID_CmpBlkDrvCom_ReadFailed				0x0000000B	/** <classid>LOG_ERROR</classid>		<severity>Communication error</severity> */
 #define LOGID_CmpBlkDrvCom_WriteFailed				0x0000000C	/** <classid>LOG_ERROR</classid>		<severity>Communication error</severity> */
-#define LOGID_CmpBlkDrvCom_SwitchNoneToHdx			0x0000000D	/** <classid>LOG_DEBUG</classid>		<severity>protocol type changed</severity> */
-#define LOGID_CmpBlkDrvCom_SwitchNoneToAutoAddr		0x0000000E	/** <classid>LOG_DEBUG</classid>		<severity>protocol type changed</severity> */
-#define LOGID_CmpBlkDrvCom_SwitchAutoAddrToHdx		0x0000000F	/** <classid>LOG_DEBUG</classid>		<severity>protocol type changed</severity> */
-#define LOGID_CmpBlkDrvCom_SwitchHdxToAutoAddr		0x00000010	/** <classid>LOG_DEBUG</classid>		<severity>protocol type changed</severity> */
-#define LOGID_CmpBlkDrvCom_ProtocolAndAddr			0x00000011	/** <classid>LOG_DEBUG</classid>		<severity>none</severity> */
 
 /**
  *  <desription>CmpBlkDrvDirectCall</desription>
@@ -247,7 +241,7 @@
  */
 #define LOGID_CmpBlkDrvUsb_OpenComFailed			0x00000001	/** <classid>LOG_ERROR</classid>		<severity>No communication possible</severity> */
 #define LOGID_CmpBlkDrvUsb_ExceptionOccurred		0x00000002	/** <classid>LOG_EXCEPTION</classid>	<severity>Restart communication server</severity> */
-#define LOGID_CmpBlkDrvUsb_CRCError					0x00000003	/** <classid>LOG_WARNING</classid>		<severity>Low communication performance, block has to be repeated</severity> */
+#define LOGID_CmpBlkDrvUsb_CRCError					0x00000003	/** <classid>LOG_ERROR</classid>		<severity>Online operation failed</severity> */
 #define LOGID_CmpBlkDrvUsb_ComPortOpened			0x00000004	/** <classid>LOG_INFO</classid>			<severity>none</severity> */
 #define LOGID_CmpBlkDrvUsb_CloseComPort				0x00000005	/** <classid>LOG_INFO</classid>			<severity>none</severity> */
 #define LOGID_CmpBlkDrvUsb_ReregisterPort			0x00000006	/** <classid>LOG_INFO</classid>			<severity>none</severity> */
@@ -257,11 +251,6 @@
 #define LOGID_CmpBlkDrvUsb_EndDelimiterWithoutStart	0x0000000A	/** <classid>LOG_WARNING</classid>		<severity>Low communication performace, block has to be repeated</severity> */
 #define LOGID_CmpBlkDrvUsb_ReadFailed				0x0000000B	/** <classid>LOG_ERROR</classid>		<severity>Communication error</severity> */
 #define LOGID_CmpBlkDrvUsb_WriteFailed				0x0000000C	/** <classid>LOG_ERROR</classid>		<severity>Communication error</severity> */
-#define LOGID_CmpBlkDrvUsb_SwitchNoneToHdx			0x0000000D	/** <classid>LOG_DEBUG</classid>		<severity>protocol type changed</severity> */
-#define LOGID_CmpBlkDrvUsb_SwitchNoneToAutoAddr		0x0000000E	/** <classid>LOG_DEBUG</classid>		<severity>protocol type changed</severity> */
-#define LOGID_CmpBlkDrvUsb_SwitchAutoAddrToHdx		0x0000000F	/** <classid>LOG_DEBUG</classid>		<severity>protocol type changed</severity> */
-#define LOGID_CmpBlkDrvUsb_SwitchHdxToAutoAddr		0x00000010	/** <classid>LOG_DEBUG</classid>		<severity>protocol type changed</severity> */
-#define LOGID_CmpBlkDrvUsb_ProtocolAndAddr			0x00000011	/** <classid>LOG_DEBUG</classid>		<severity>none</severity> */
 
 /**
  *  <desription>CmpBlkDrvUdp</desription>
@@ -394,7 +383,7 @@
 #define LOGID_CmpIecTask_CreateTaskFailed			0x00000002	/** <classid>LOG_ERROR</classid>	<severity>One task of this application is not created</severity> */
 #define LOGID_CmpIecTask_Exception					0x00000003	/** <classid>LOG_EXCEPTION</classid>	<severity>This task can not be executed</severity> */
 #define LOGID_CmpIecTask_Exception_StopTimeout		0x00000004	/** <classid>LOG_EXCEPTION</classid>	<severity>Timeout occurred to switch in stop mode</severity> */
-#define LOGID_CmpIecTask_SupervisorOperationRegisterFailed		0x00000005	/** <classid>LOG_ERROR</classid>	<severity>Supervisor operation register failed</severity> */
+
 
 /**
  *  <desription>CmpRouter</desription>
@@ -445,12 +434,8 @@
 
 #define LOGID_CmpSchedule_TaskDelete_Failed			0x00000012	/** <classid>LOG_ERROR</classid>	<severity>Task cannot operate</severity> */
 #define LOGID_CmpSchedule_BindTaskToCoreFailed		0x00000013	/** <classid>LOG_ERROR</classid>	<severity>none</severity> */
-#define LOGID_CmpSchedule_SupervisorOperationRegisterFailed		0x00000014	/** <classid>LOG_ERROR</classid>	<severity>Component not supervised</severity> */
-#define LOGID_CmpSchedule_BindTaskToGroupFailed		0x00000015	/** <classid>LOG_ERROR</classid>	<severity>none</severity> */
 
-#define LOGID_CmpSchedule_ProcessorloadWatchdog_Exception	0x00000016	/** <classid>LOG_EXCEPTION</classid>	<severity>none</severity> */
-#define LOGID_CmpSchedule_CreateTaskGroupFailed				0x00000017	/** <classid>LOG_ERROR</classid>	<severity>none</severity> */
-#define LOGID_CmpSchedule_TaskGroupBindingReconfigured		0x00000018	/** <classid>LOG_WARNING/classid>		<severity>none</severity> */
+#define LOGID_CmpSchedule_SupervisorOperationRegisterFailed		0x00000014	/** <classid>LOG_ERROR</classid>	<severity>Component not supervised</severity> */
 
 /**
  *  <desription>CmpSrv</desription>
@@ -489,7 +474,6 @@
 #define LOGID_CmpTargetVisu_CreateEmbeddedTargetVisuFailed	0x0000001A	/** <classid>LOG_ERROR</classid>		<severity>Service cannot be handled</severity> */
 #define LOGID_CmpTargetVisu_GesturesInitFailed				0x0000001B	/** <classid>LOG_WARNING</classid>	<severity>Service cannot be handled</severity> */
 #define LOGID_CmpTargetVisu_TouchHandlingInitFailed			0x0000001C	/** <classid>LOG_WARNING</classid>	<severity>Service cannot be handled</severity> */
-#define LOGID_CmpTargetVisu_CreateWindowAccessSemFailed		0x0000001D	/** <classid>LOG_ERROR</classid>		<severity>Service cannot be handled</severity> */
 
 
 
@@ -553,7 +537,6 @@
 #define LOGID_CmpWebServerHandlerV3_LicenseFailed			0x00000002	/** <classid>LOG_ERROR</classid>	<severity>Service cannot be handled</severity> */
 #define LOGID_CmpWebServerHandlerV3_SendServiceFailed		0x00000003	/** <classid>LOG_ERROR</classid>	<severity>Service cannot be handled</severity> */
 #define LOGID_CmpWebServerHandlerV3_CheckService			0x00000004	/** <classid>LOG_ERROR</classid>	<severity>Service cannot be handled</severity> */
-#define LOGID_CmpWebServerHandlerV3_StateShutdownRTS		0x00000005	/** <classid>LOG_INFO</classid>		<severity>notification only</severity> */
 
 
 /**
@@ -792,7 +775,6 @@
 #define LOGID_CmpIecVarAccess_InvalidOptimizedVariableRequest					1			/** <classid>LOG_ERROR</classid> */
 #define LOGID_CmpIecVarAccess_NoMemoryParseOptimizedVariableRequest				2			/** <classid>LOG_ERROR</classid> */
 #define LOGID_CmpIecVarAccess_OptimizedVariableRequestNested					3			/** <classid>LOG_ERROR</classid> */
-#define LOGID_CmpIecVarAccess_ParentApplicationNotFound							4			/** <classid>LOG_ERROR</classid> */
 
 
 /**
@@ -814,8 +796,6 @@
  */
 #define LOGID_SysSocketEmbedded_CouldNotCreateSocket							1			/** <classid>LOG_WARNING</classid>	<severity>Could not create socket. Out of memory.</severity> */
 #define LOGID_SysSocket_DuplicateIP												2			/** <classid>LOG_WARNING</classid>	<severity>Duplicate IP detected. Skipping second one.</severity> */
-#define LOGID_SysSocket_AddIpFailed												3			/** <classid>LOG_ERROR</classid>	<severity>IP could not be added to adapter</severity> */
-#define LOGID_SysSocket_RemoveIpFailed											4			/** <classid>LOG_ERROR</classid>	<severity>IP could not be removed from adapter</severity> */
 
 /**
  *  <desription>SIL2PSP_RM4x</desription>
@@ -832,26 +812,6 @@
  *  <desription>SysCpuMultiCore</desription>
  */
 #define LOGID_SysCpuMultiCore_BindCurrentProcessToCoreFailed					1			/** <classid>LOG_ERROR</classid>	<severity>none/severity> */
-#define LOGID_SysCpuMultiCore_ConfigTaskGroupFailed								2			/** <classid>LOG_ERROR</classid>	<severity>none/severity> */
-#define LOGID_SysCpuMultiCore_LicenseMissing									3			/** <classid>LOG_ERROR</classid>	<severity>none</severity> */
-#define LOGID_SysCpuMultiCore_MultiCoreInfo										4			/** <classid>LOG_INFO</classid>		<severity>none</severity> */
 
-
- /**
- *  <desription>SysTask</desription>
- */
-#define LOGID_SysTask_BindTaskToGroupFailed										1			/** <classid>LOG_ERROR</classid>	<severity>none/severity> */
-
-
-/**
-*	<description>CmpCANFoxDrv</description>
-*/
-#define LOGID_CmpCANFoxDrv_HardwareRegistered									0
-#define LOGID_CmpCANFoxDrv_HardwareNotRegistered								1
-#define LOGID_CmpCANFoxDrv_WrongDriverVersion									2
-#define LOGID_CmpCANFoxDrv_WrongFirmwareVersion									3
-#define LOGID_CmpCANFoxDrv_NotReadyForOperation									4
-#define LOGID_CmpCANFoxDrv_MaximalNumberOfDevicesExceeded						5
-#define LOGID_CmpCANFoxDrv_NoHardwareFound										6
 
 #endif	/*_LOGINFOIDS_H_*/

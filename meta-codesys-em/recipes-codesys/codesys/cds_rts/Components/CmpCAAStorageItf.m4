@@ -21,19 +21,6 @@ SET_INTERFACE_NAME(`CmpCAAStorage')
 
 /**
  * <category>Settings</category>
- * <description>Setting to disable the dynamic memory allocation if the memsys5 memory allocator runs out of memory. The following
- *	values are possible at the moment:
- *		o 1: Dynamic memory allocation by using SysMemAllocData is disabled
- *		o (all other values or if this setting does not exist): Dynamic memory allocation by using SysMemAllocData is active
- * </description>
- */
-#define CMPCAASTORAGE_KEY_DISABLE_DYNAMIC_MEMORY_ALLOCATION					"DisableDynamicMemoryAllocation"
-#ifndef CMPCAASTORAGE_VALUE_DISABLE_DYNAMIC_MEMORY_ALLOCATION_DEFAULT
-	#define CMPCAASTORAGE_VALUE_DISABLE_DYNAMIC_MEMORY_ALLOCATION_DEFAULT	0
-#endif
-
-/**
- * <category>Settings</category>
  * <description>Setting defining the number of MB the memsys5 memory allocator uses.</description>
  */
 #define CMPCAASTORAGE_KEY_MEMSYS5_MEMSIZE								"Memsys5SizeInMB"
@@ -102,15 +89,6 @@ typedef CAA_LREAL STO_REAL8;
 extern "C" {
 #endif
 
-
-/*
- * required for proper struct alignment of 64bit member with Wind River VxWorks GNU compiler
- * ( defined in vxworks <sysdefines.h>, for all other OS'es "dummy" macro )  
- */
-#ifndef VXWORKS_ALIGNATTRIB
-#define VXWORKS_ALIGNATTRIB
-#endif
-
 /**
  * Each value stored in the storage has one of the following types
  */
@@ -147,7 +125,7 @@ extern "C" {
 #define STO_ENCODING    RTS_IEC_INT
 
 /**
- * Every error output of a method or function returns one of these error codes.
+ * Every error output of a methode or function returns one of these error codes.
  */
 #define STO_ERROR_NO_ERROR    0	
 #define STO_ERROR_FIRST_ERROR    30400	
@@ -159,7 +137,6 @@ extern "C" {
 #define STO_ERROR_CURSOR_SEARCH_BEFORE    30406	/* Possible return values of the ICursor.CursorSearch_* methods with the meaning, */
 #define STO_ERROR_CURSOR_SEARCH_AFTER    30407	/* that the value to search for was not found and the cursor's current position */
 #define STO_ERROR_NOT_IMPLEMENTED    30408	/* This return value will be used in case of not implemented functionality */
-#define STO_ERROR_INCOMPLETE_STORAGE_CLOSE    30409	/* A call to STI_StorageClose was done, but was not successful (e.g. by a still open table). All subsequent calls (except a storage close call), that require an open storage, will return error code. */
 #define STO_ERROR_SQLITE_ERROR    30431	/* (1) SQL error or missing database */
 #define STO_ERROR_SQLITE_INTERNAL    30432	/* (2) Internal logic error in SQLite */
 #define STO_ERROR_SQLITE_PERM    30433	/* (3) Access permission denied */
@@ -765,7 +742,7 @@ typedef struct tagsti_columngetint64_struct
 	RTS_IEC_XWORD hRow;					/* VAR_INPUT */	
 	RTS_IEC_DWORD idColumn;				/* VAR_INPUT */	
 	RTS_IEC_INT STI_ColumnGetINT64;		/* VAR_OUTPUT, Enum: ERROR */
-	RTS_IEC_LINT liValue VXWORKS_ALIGNATTRIB;	/* VAR_OUTPUT */	
+	RTS_IEC_LINT liValue;				/* VAR_OUTPUT */	
 	RTS_IEC_BOOL xNULL;					/* VAR_OUTPUT */	
 } sti_columngetint64_struct;
 
@@ -886,7 +863,7 @@ typedef struct tagsti_columnsetint64_struct
 {
 	RTS_IEC_XWORD hRow;					/* VAR_INPUT */	
 	RTS_IEC_DWORD idColumn;				/* VAR_INPUT */	
-	RTS_IEC_LINT liValue  VXWORKS_ALIGNATTRIB;				/* VAR_INPUT */	
+	RTS_IEC_LINT liValue;				/* VAR_INPUT */	
 	RTS_IEC_INT STI_ColumnSetINT64;		/* VAR_OUTPUT, Enum: ERROR */
 } sti_columnsetint64_struct;
 
@@ -1005,7 +982,7 @@ typedef struct tagsti_columnupdateint64_struct
 {
 	RTS_IEC_XWORD hRow;					/* VAR_INPUT */	
 	RTS_IEC_DWORD idColumn;				/* VAR_INPUT */	
-	RTS_IEC_LINT *liValue  VXWORKS_ALIGNATTRIB;				/* VAR_IN_OUT */	
+	RTS_IEC_LINT *liValue;				/* VAR_IN_OUT */	
 	RTS_IEC_BOOL *xNULL;				/* VAR_IN_OUT */	
 	RTS_IEC_INT STI_ColumnUpdateINT64;	/* VAR_OUTPUT, Enum: ERROR */
 } sti_columnupdateint64_struct;
@@ -1195,7 +1172,7 @@ DEF_API(`void',`CDECL',`sti_cursorsearchint32',`(sti_cursorsearchint32_struct *p
 typedef struct tagsti_cursorsearchint64_struct
 {
 	RTS_IEC_XWORD hCursor;				/* VAR_INPUT */	
-	RTS_IEC_LINT liValue  VXWORKS_ALIGNATTRIB;				/* VAR_INPUT */	
+	RTS_IEC_LINT liValue;				/* VAR_INPUT */	
 	RTS_IEC_INT STI_CursorSearchINT64;	/* VAR_OUTPUT, Enum: ERROR */
 } sti_cursorsearchint64_struct;
 
@@ -1266,7 +1243,7 @@ DEF_API(`void',`CDECL',`sti_cursorsearchrowid',`(sti_cursorsearchrowid_struct *p
 typedef struct tagsti_cursorsearchrowid2_struct
 {
 	RTS_IEC_XWORD hCursor;				/* VAR_INPUT */	
-	RTS_IEC_LINT idRow  VXWORKS_ALIGNATTRIB;					/* VAR_INPUT */	
+	RTS_IEC_LINT idRow;					/* VAR_INPUT */	
 	RTS_IEC_INT STI_CursorSearchRowId2;	/* VAR_OUTPUT, Enum: ERROR */
 } sti_cursorsearchrowid2_struct;
 
@@ -1325,7 +1302,7 @@ DEF_API(`void',`CDECL',`sti_rowdelete',`(sti_rowdelete_struct *p)',1,RTSITF_GET_
 typedef struct tagsti_rowdelete2_struct
 {
 	RTS_IEC_XWORD hTable;				/* VAR_INPUT */	
-	RTS_IEC_LINT idRow  VXWORKS_ALIGNATTRIB;					/* VAR_INPUT */	
+	RTS_IEC_LINT idRow;					/* VAR_INPUT */	
 	RTS_IEC_INT STI_RowDelete2;			/* VAR_OUTPUT, Enum: ERROR */
 } sti_rowdelete2_struct;
 
@@ -1374,7 +1351,7 @@ DEF_API(`void',`CDECL',`sti_rowgetid',`(sti_rowgetid_struct *p)',1,RTSITF_GET_SI
 typedef struct tagsti_rowgetid2_struct
 {
 	RTS_IEC_XWORD hRow;					/* VAR_INPUT */	
-	RTS_IEC_LINT STI_RowGetId2  VXWORKS_ALIGNATTRIB;			/* VAR_OUTPUT */	
+	RTS_IEC_LINT STI_RowGetId2;			/* VAR_OUTPUT */	
 	RTS_IEC_INT eError;					/* VAR_OUTPUT, Enum: ERROR */
 } sti_rowgetid2_struct;
 
@@ -1532,18 +1509,6 @@ typedef struct tagsti_storageclose_struct
 DEF_API(`void',`CDECL',`sti_storageclose',`(sti_storageclose_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x168E35B2),0x03050500)
 
 /**
- * <description>sti_storageexecutestatement</description>
- */
-typedef struct tagsti_storageexecutestatement_struct
-{
-	RTS_IEC_XWORD hStorage;				/* VAR_INPUT */	
-	RTS_IEC_STRING *sStatement;			/* VAR_IN_OUT */	
-	RTS_IEC_INT sti_storageexecutestatement;	/* VAR_OUTPUT, Enum: ERROR */
-} sti_storageexecutestatement_struct;
-
-DEF_API(`void',`CDECL',`sti_storageexecutestatement',`(sti_storageexecutestatement_struct *p)',1,RTSITF_GET_SIGNATURE(0x28B52F50, 0xC3FDFD07),0x03050C00)
-
-/**
  * = SignatureFlag.SimulationExternal = link even in simulation mode
  */
 typedef struct tagsti_storagegetencoding_struct
@@ -1554,20 +1519,6 @@ typedef struct tagsti_storagegetencoding_struct
 } sti_storagegetencoding_struct;
 
 DEF_API(`void',`CDECL',`sti_storagegetencoding',`(sti_storagegetencoding_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xBE199139),0x03050500)
-
-/**
- * <description>sti_storagegetindexid</description>
- */
-typedef struct tagsti_storagegetindexid_struct
-{
-	RTS_IEC_XWORD hStorage;				/* VAR_INPUT */	
-	RTS_IEC_STRING *sIndex;				/* VAR_IN_OUT */	
-	RTS_IEC_STRING *sTable;				/* VAR_IN_OUT */	
-	RTS_IEC_INT sti_storagegetindexid;	/* VAR_OUTPUT, Enum: ERROR */
-	RTS_IEC_DWORD idIndex;				/* VAR_OUTPUT */	
-} sti_storagegetindexid_struct;
-
-DEF_API(`void',`CDECL',`sti_storagegetindexid',`(sti_storagegetindexid_struct *p)',1,RTSITF_GET_SIGNATURE(0x08A23D12, 0x227C8789),0x03050C00)
 
 /**
  * = SignatureFlag.SimulationExternal = link even in simulation mode
@@ -1640,19 +1591,6 @@ typedef struct tagsti_storagegetstorageversion_struct
 } sti_storagegetstorageversion_struct;
 
 DEF_API(`void',`CDECL',`sti_storagegetstorageversion',`(sti_storagegetstorageversion_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x09CB4CDD),0x03050500)
-
-/**
- * <description>sti_storagegettableid</description>
- */
-typedef struct tagsti_storagegettableid_struct
-{
-	RTS_IEC_XWORD hStorage;				/* VAR_INPUT */	
-	RTS_IEC_STRING *sTable;				/* VAR_IN_OUT */	
-	RTS_IEC_INT sti_storagegettableid;	/* VAR_OUTPUT, Enum: ERROR */
-	RTS_IEC_DWORD idTable;				/* VAR_OUTPUT */	
-} sti_storagegettableid_struct;
-
-DEF_API(`void',`CDECL',`sti_storagegettableid',`(sti_storagegettableid_struct *p)',1,RTSITF_GET_SIGNATURE(0xCDAB221E, 0xE7759885),0x03050C00)
 
 /**
  * = SignatureFlag.SimulationExternal = link even in simulation mode
@@ -1743,8 +1681,8 @@ typedef struct tagsti_tablegetminmaxrowids_struct
 {
 	RTS_IEC_XWORD hTable;				/* VAR_INPUT */	
 	RTS_IEC_INT STI_TableGetMinMaxRowIds;	/* VAR_OUTPUT, Enum: ERROR */
-	RTS_IEC_LINT idRowMin  VXWORKS_ALIGNATTRIB;				/* VAR_OUTPUT */	
-	RTS_IEC_LINT idRowMax  VXWORKS_ALIGNATTRIB;				/* VAR_OUTPUT */	
+	RTS_IEC_LINT idRowMin;				/* VAR_OUTPUT */	
+	RTS_IEC_LINT idRowMax;				/* VAR_OUTPUT */	
 } sti_tablegetminmaxrowids_struct;
 
 DEF_API(`void',`CDECL',`sti_tablegetminmaxrowids',`(sti_tablegetminmaxrowids_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x0D54AAEA),0x03050900)
@@ -1875,7 +1813,7 @@ DEF_API(`void',`CDECL',`sti_transactionsetsavepoint',`(sti_transactionsetsavepoi
 typedef struct tagsti_utilitygetcurrentdateandtime_struct
 {
 	RTS_IEC_XWORD hStorage;				/* VAR_INPUT */	
-	RTS_IEC_LINT STI_UtilityGetCurrentDateAndTime  VXWORKS_ALIGNATTRIB;	/* VAR_OUTPUT */	
+	RTS_IEC_LINT STI_UtilityGetCurrentDateAndTime;	/* VAR_OUTPUT */	
 	RTS_IEC_INT eError;					/* VAR_OUTPUT, Enum: ERROR */
 } sti_utilitygetcurrentdateandtime_struct;
 
@@ -2033,10 +1971,6 @@ DEF_ITF_API(`STI_SAVEPOINT',`CDECL',`STI_TransactionSetSavepoint',`(STI_TRANSACT
 DEF_ITF_API(`STO_INT64',`CDECL',`STI_UtilityGetCurrentDateAndTime',`(STI_STORAGE hStorage, STO_ERROR *peError)')
 DEF_ITF_API(`STO_ERROR',`CDECL',`STI_UtilityRandomness',`(STI_STORAGE hStorage, CAA_SIZE szSize, CAA_PVOID pData)')
 DEF_ITF_API(`STO_ERROR',`CDECL',`STI_DeleteFile',`(CAA_FILENAME sPath)')
-
-DEF_ITF_API(`STO_ERROR',`CDECL',`STI_StorageExecuteStatement',`(STI_STORAGE hStorage, RTS_IEC_STRING *sStatement)')
-DEF_ITF_API(`STO_ERROR',`CDECL',`STI_StorageGetTableId',`(STI_STORAGE hStorage, RTS_IEC_STRING *sTable, RTS_IEC_DWORD *pidTable)')
-DEF_ITF_API(`STO_ERROR',`CDECL',`STI_StorageGetIndexId',`(STI_STORAGE hStorage, RTS_IEC_STRING *sTable, RTS_IEC_STRING *sIndex, RTS_IEC_DWORD *pidIndex)')
 
 #ifdef __cplusplus
 }

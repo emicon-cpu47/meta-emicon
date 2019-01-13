@@ -19,8 +19,6 @@ Data Structures
 
 - struct :ref:`EVTPARAM_SysFileClose <struct_e_v_t_p_a_r_a_m___sys_file_close>`
 
-- struct :ref:`EVTPARAM_SysFileFlashGetFileMapIndex <struct_e_v_t_p_a_r_a_m___sys_file_flash_get_file_map_index>`
-
 - struct :ref:`tagsysfileclose_struct <structtagsysfileclose__struct>`
 
 - struct :ref:`tagsysfilecopy_struct <structtagsysfilecopy__struct>`
@@ -95,14 +93,6 @@ Macros
 - #define :ref:`SYSFILE_KEY_INT_FORCE_IECFILEPATH <group___sys_file_itf___settings_1ga9343ad6923200c829ca0b8433e3653d4>` "ForceIecFilePath"
 
 - #define :ref:`SYSFILE_VALUE_INT_FORCE_IECFILEPATH_DEFAULT <group___sys_file_itf___settings_1ga6d6648b4f9d69e526af463e6c0f9f6de>` 0
-
-- #define :ref:`SYSFILE_KEY_INT_FORCE_ONLINEFILEPATH <group___sys_file_itf___settings_1gafacd78169364108cf231d8eaf221d9e1>` "ForceOnlineFilePath"
-
-- #define :ref:`SYSFILE_VALUE_INT_FORCE_ONLINEFILEPATH_DEFAULT <group___sys_file_itf___settings_1gab0d628df02f4a1a8d112f16b35ba8bbd>` 1
-
-- #define :ref:`SYSFILE_KEY_INT_DENYONLINEACCESSCFGFILE <group___sys_file_itf___settings_1gad112c7ce151819fc06d9ec932b7f097c>` "DenyOnlineAccessCfgFile"
-
-- #define :ref:`SYSFILE_VALUE_INT_DENYONLINEACCESSCFGFILE_DEFAULT <group___sys_file_itf___settings_1gaa196a30eb388ae691a050354a3848445>` 1
 
 - #define :ref:`SYSFILE_KEY_STRING_GET_PLACEHOLDER_FILEPATH <group___sys_file_itf___settings_1ga8aeb571e54bca9b69f34f8d40a908c05>` "PlaceholderFilePath"
 
@@ -194,17 +184,9 @@ Macros
 
 - #define :ref:`EVTVERSION_SysFileClose <group___sys_file_itf___eventparameter_1gaf7b90d8c90fdfbffe896080d106d2fb3>` 0x0001
 
-- #define :ref:`MAX_FILENAME <group___sys_file_itf___eventparameter_1gabe0ec333b60117063f9b9fd9f849cb08>` 32
+- #define :ref:`EVT_SysFileOpen <group___sys_file_itf___events_1gad8048696d86b8cb0d46413fb2df179c1>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
 
-- #define :ref:`EVTPARAMID_SysFileFlashGetFileMapIndex <group___sys_file_itf___eventparameter_1ga13bbf58be312b7b0a76492def2d11dbb>` 0x0003
-
-- #define :ref:`EVTVERSION_SysFileFlashGetFileMapIndex <group___sys_file_itf___eventparameter_1ga82c64f002b252341ec238b75e1fdaa36>` 0x0001
-
-- #define :ref:`EVT_SysFileOpen <group___sys_file_itf___events_1gad8048696d86b8cb0d46413fb2df179c1>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
-
-- #define :ref:`EVT_SysFileClose <group___sys_file_itf___events_1ga04799f413701b17d8d01ce6d94fc3d16>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
-
-- #define :ref:`EVT_SysFileFlashGetFileMapIndex <group___sys_file_itf___events_1ga2418e6f8698b3604c2be2c3060fddd80>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
+- #define :ref:`EVT_SysFileClose <group___sys_file_itf___events_1ga04799f413701b17d8d01ce6d94fc3d16>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
 
 - #define :ref:`ACCESS_MODE_AM_READ <group___sys_file_itf___fileinfo_1gaa879e83c72ef3778ee983af5775df194>` :ref:`RTS_ACCESS_MODE_AM_READ <group___sys_file_itf_1gab07324d909f0778e06a07f5086a4aa54>`
 
@@ -410,8 +392,6 @@ Functions
 
 - RTS_RESULT :ref:`SysFileGenerateCRC3 <group___sys_file_itf_1ga0be5f7aad5a35feee6e23ed1e20e8a4b>` (char * pszFile, RTS_SIZE ulSize, RTS_UI32 * pulCRC, RTS_BOOL bUseCache)
 
-- RTS_RESULT :ref:`SysFileGenerateCRC3_ <group___sys_file_itf_1ga9fd5f8996b864ee3e58e61ad86078004>` (char * pszFile, RTS_SIZE ulSize, RTS_UI32 * pulCRC, RTS_BOOL bUseCache)
-
 - RTS_RESULT :ref:`SysFileGenerateCRC2_ <group___sys_file_itf_1ga4d28d12f76b503951a9927c03e24e086>` (char * pszFile, RTS_SIZE ulSize, RTS_UI32 * pulCRC)
 
 - RTS_RESULT :ref:`SysFileFlush <group___sys_file_itf_1gaab879175f88d0f1b42862af3e5ce0103>` (RTS_HANDLE hFile)
@@ -432,16 +412,10 @@ Functions
 
 - RTS_RESULT :ref:`SysFilePlcLogicPrefix <group___sys_file_itf_1ga1389feb4f282083cf88a78123482d794>` (char * pszPathOut, RTS_SIZE ulPathOutSize, char * pszSubDir, char * pszName, const char * pszExt)
 
-- RTS_RESULT :ref:`SysFileIsBlacklisted <group___sys_file_itf_1ga5681f6aac97d8c314e2a167db8848a45>` (char * pszPath)
-
-- RTS_RESULT :ref:`SysFileAddToBlacklist <group___sys_file_itf_1ga457a33093cdbc0bd46eec7693e60333a>` (char * pszPath)
-
-- RTS_RESULT :ref:`SysFileIsOnlineAccessDenied <group___sys_file_itf_1ga3e59ed5842dadc542712b5b4b69f0c25>` (char * pszPath)
-
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysFileItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysFileItf.h
 
  
 .. last line of file.rst template

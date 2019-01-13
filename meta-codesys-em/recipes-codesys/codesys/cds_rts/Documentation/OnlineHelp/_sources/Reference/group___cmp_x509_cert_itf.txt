@@ -19,10 +19,6 @@ Modules
 
 - :ref:`Object Identifiers <group___cmp_x509_cert_itf___object_identifiers>`
 
-- :ref:`Online service tags <group___cmp_x509_cert_itf___onlineservicetags>`
-
-- :ref:`Online services <group___cmp_x509_cert_itf___onlineservices>`
-
 - :ref:`SecuritySettings <group___cmp_x509_cert_itf___security_settings>`
 
 - :ref:`Settings <group___cmp_x509_cert_itf___settings>`
@@ -43,8 +39,6 @@ Data Structures
 - struct :ref:`tagRtsX509NameEntry <structtag_rts_x509_name_entry>`
 
 - struct :ref:`tagRtsX509CertName <structtag_rts_x509_cert_name>`
-
-- struct :ref:`tagRtsX509ExKeyUsage <structtag_rts_x509_ex_key_usage>`
 
 - struct :ref:`RtsX509CertFilterContent <union_rts_x509_cert_filter_content>`
 
@@ -94,8 +88,6 @@ Data Structures
 
 - struct :ref:`tagx509certstoregetnextcert_struct <structtagx509certstoregetnextcert__struct>`
 
-- struct :ref:`tagx509certstoregetregisteredcert_struct <structtagx509certstoregetregisteredcert__struct>`
-
 - struct :ref:`tagx509certstoreopen_struct <structtagx509certstoreopen__struct>`
 
 - struct :ref:`tagx509certstoreregister_struct <structtagx509certstoreregister__struct>`
@@ -112,13 +104,15 @@ Data Structures
 
 - struct :ref:`tagx509parsecertificate_struct <structtagx509parsecertificate__struct>`
 
-- struct :ref:`X509CertCreateSelfSignedAsyncResult <struct_x509_cert_create_self_signed_async_result>`
+- struct :ref:`X509CertCreateSelfSignedAsyncStruct <struct_x509_cert_create_self_signed_async_struct>`
 
-- struct :ref:`X509CertCreateCSRAsyncResult <struct_x509_cert_create_c_s_r_async_result>`
+- struct :ref:`X509CertCreateCSRAsyncStruct <struct_x509_cert_create_c_s_r_async_struct>`
 
-- struct :ref:`X509AsyncOperationResult <union_x509_async_operation_result>`
+- struct :ref:`X509CertCreateDHParamsyncStruct <struct_x509_cert_create_d_h_paramsync_struct>`
 
-- struct :ref:`X509AsyncResult <struct_x509_async_result>`
+- struct :ref:`X509AsyncParameterStruct <union_x509_async_parameter_struct>`
+
+- struct :ref:`_X509AsyncStruct <struct___x509_async_struct>`
 
 - struct :ref:`ICmpX509Cert_C <struct_i_cmp_x509_cert___c>`
 
@@ -169,19 +163,13 @@ Macros
 
 - #define :ref:`RTSX509CERTFILTERTYPE_SUBJECT_MATCHALL <group___cmp_x509_cert_itf_1gaa3ff13c9a299e6ccd9f7cbe1afb3e188>` RTS_IEC_INT_C(0x2)
 
-- #define :ref:`RTSX509CERTFILTERTYPE_CERT_DATEVALID <group___cmp_x509_cert_itf_1gac7b31ce4ddfac3ac0e6cc7f5a65666fd>` RTS_IEC_INT_C(0x3)
-
-- #define :ref:`RTSX509CERTFILTERTYPE_CERT_KEYUSAGE <group___cmp_x509_cert_itf_1ga2ea9b2e7c3ad29968a8d0d0a9615d7ee>` RTS_IEC_INT_C(0x4)
-
-- #define :ref:`RTSX509CERTFILTERTYPE_CERT_EXKEYUSAGE <group___cmp_x509_cert_itf_1gaab202d9e5acaac9ef6f1afe50e6cfa3f>` RTS_IEC_INT_C(0x5)
-
-- #define :ref:`RTSX509CERTFILTERTYPE_CERT_THUMBPRINT <group___cmp_x509_cert_itf_1ga397b6bf8f86f99d29b1a3e94b92e66f2>` RTS_IEC_INT_C(0x6)
-
 - #define :ref:`RTSX509CERTFILTERTYPE <group___cmp_x509_cert_itf_1gac0a940a207e99d841b157b5abdacd067>` RTS_IEC_INT
 
-- #define :ref:`CMPX509CERT_ASYNC_FUNCTION_CREATESELFSIGNED <group___cmp_x509_cert_itf_1gab0c3674136331ef3d08683692ebdf477>` 1
+- #define :ref:`OPENSSL_ASYNC_FUNCTION_CREATESELFSIGNED <group___cmp_x509_cert_itf_1gaba61ba34964e62eac530d72b81090998>` 1
 
-- #define :ref:`CMPX509CERT_ASYNC_FUNCTION_CREATECSR <group___cmp_x509_cert_itf_1gae389919c688154c0cbb5452d1507550c>` 2
+- #define :ref:`OPENSSL_ASYNC_FUNCTION_CREATECSR <group___cmp_x509_cert_itf_1ga1910c98bb53021b0816b9999d720e862>` 2
+
+- #define :ref:`OPENSSL_ASYNC_FUNCTION_CREATEDHPARAMS <group___cmp_x509_cert_itf_1ga0d1398e172dead1d6ccfa8a5d530004e>` 3
 
 - #define :ref:`ITF_CmpX509Cert <group___cmp_x509_cert_itf_1gad93ddb1893238f0723892dc36b8f625b>`
 
@@ -197,8 +185,6 @@ Typedefs
 - typedef struct :ref:`tagRtsX509NameEntry <structtag_rts_x509_name_entry>` :ref:`RtsX509NameEntry <group___cmp_x509_cert_itf_1ga949c43a2f0a07ec7103b293f375cfed3>`
 
 - typedef struct :ref:`tagRtsX509CertName <structtag_rts_x509_cert_name>` :ref:`RtsX509CertName <group___cmp_x509_cert_itf_1ga7471487b9fc63f37d2049e302cefeb2e>`
-
-- typedef struct :ref:`tagRtsX509ExKeyUsage <structtag_rts_x509_ex_key_usage>` :ref:`RtsX509ExKeyUsage <group___cmp_x509_cert_itf_1ga31519dff2498615bbe9dc17755351f33>`
 
 - typedef struct :ref:`tagRtsX509CertFilter <structtag_rts_x509_cert_filter>` :ref:`RtsX509CertFilter <group___cmp_x509_cert_itf_1ga72a12c7d19ffabbf04660a3566a8bda2>`
 
@@ -246,8 +232,6 @@ Typedefs
 
 - typedef struct :ref:`tagx509certstoregetnextcert_struct <structtagx509certstoregetnextcert__struct>` :ref:`x509certstoregetnextcert_struct <group___cmp_x509_cert_itf_1ga9dc17d300dd4982b26af1640e2230bcf>`
 
-- typedef struct :ref:`tagx509certstoregetregisteredcert_struct <structtagx509certstoregetregisteredcert__struct>` :ref:`x509certstoregetregisteredcert_struct <group___cmp_x509_cert_itf_1ga75ecd0f0652a89353ca5b60ec2a1ba0b>`
-
 - typedef struct :ref:`tagx509certstoreopen_struct <structtagx509certstoreopen__struct>` :ref:`x509certstoreopen_struct <group___cmp_x509_cert_itf_1gaeb1cecb322bff68041a6652448ec19a0>`
 
 - typedef struct :ref:`tagx509certstoreregister_struct <structtagx509certstoreregister__struct>` :ref:`x509certstoreregister_struct <group___cmp_x509_cert_itf_1ga4fb20cd1398f5e3bbc040d1958b18382>`
@@ -264,7 +248,9 @@ Typedefs
 
 - typedef struct :ref:`tagx509parsecertificate_struct <structtagx509parsecertificate__struct>` :ref:`x509parsecertificate_struct <group___cmp_x509_cert_itf_1ga0a52e762be835bab4c3428725a6df8e6>`
 
-- typedef void HUGEPTR(* :ref:`PFX509ASYNCCALLBACK <group___cmp_x509_cert_itf_1ga2ae20ef388388cf7cd68cc7faeab6401>`)(X509AsyncResult *pAsyncStruct)
+- typedef void HUGEPTR(* :ref:`PFX509ASYNCCALLBACK <group___cmp_x509_cert_itf_1gacedc17c2cfb2f1a8e9c51862ce46dfb1>`)(struct _X509AsyncStruct *pAsyncStruct)
+
+- typedef struct :ref:`_X509AsyncStruct <struct___x509_async_struct>` :ref:`X509AsyncStruct <group___cmp_x509_cert_itf_1ga3c2d496633e4cdebc1948c5d409a23ff>`
 
 - typedef :ref:`ICmpX509Cert_C <struct_i_cmp_x509_cert___c>` :ref:`ICmpX509Cert <group___cmp_x509_cert_itf_1gaf47ff42ad940ed3f43064a69215725a3>`
 
@@ -312,8 +298,6 @@ Functions
 - void :ref:`x509certstoregetfirstcert <group___cmp_x509_cert_itf_1gac14fc5af262d185948ace8263b10733b>` (:ref:`x509certstoregetfirstcert_struct <group___cmp_x509_cert_itf_1ga9178369e5850a911fba9b9c35103acbf>` * p)
 
 - void :ref:`x509certstoregetnextcert <group___cmp_x509_cert_itf_1ga32f7fe3f9239d0d4d4ee63aea7800f26>` (:ref:`x509certstoregetnextcert_struct <group___cmp_x509_cert_itf_1ga9dc17d300dd4982b26af1640e2230bcf>` * p)
-
-- void :ref:`x509certstoregetregisteredcert <group___cmp_x509_cert_itf_1gac2d54f292ae981f158a7604b65eceeba>` (:ref:`x509certstoregetregisteredcert_struct <group___cmp_x509_cert_itf_1ga75ecd0f0652a89353ca5b60ec2a1ba0b>` * p)
 
 - void :ref:`x509certstoreopen <group___cmp_x509_cert_itf_1ga5f443868c7ddcd00562d400ad1933b85>` (:ref:`x509certstoreopen_struct <group___cmp_x509_cert_itf_1gaeb1cecb322bff68041a6652448ec19a0>` * p)
 
@@ -371,6 +355,8 @@ Functions
 
 - RTS_RESULT :ref:`X509CertCmsDecrypt <group___cmp_x509_cert_itf_1gaebc8225f7eb1f386c6e24732d53494ec>` (RTS_HANDLE hCertStore, RTS_HANDLE hRecipientCert, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCms, RTS_IEC_INT encoding, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pOutData)
 
+- RTS_RESULT :ref:`X509SplitCertificateChain <group___cmp_x509_cert_itf_1gaf8e485926efbf1b4ee64495fdee7f192>` (:ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCertificateChain, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCertificates, RTS_UI32 * pui32NumOfCertificates)
+
 - RTS_RESULT :ref:`RtsOIDCreate <group___cmp_x509_cert_itf_1gac62d802c208e5937b00033c2288b0c63>` (char * id, :ref:`RtsOID <group___cmp_x509_cert_itf_1gafb230e6dc978609d7aed4d3f75777dd4>` * oid)
 
 - RTS_RESULT :ref:`RtsOIDGetID <group___cmp_x509_cert_itf_1gaff3a425033e2d1a475c6623f99829d1b>` (:ref:`RtsOID <group___cmp_x509_cert_itf_1gafb230e6dc978609d7aed4d3f75777dd4>` * oid, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pBuffer)
@@ -391,11 +377,11 @@ Functions
 
 - RTS_HANDLE :ref:`X509CertCreateSelfSigned <group___cmp_x509_cert_itf_1gaf0d551e9529268467ac55cd5f244166e>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo, RTS_UI32 ui32KeySize, RTS_RESULT * pResult)
 
-- RTS_RESULT :ref:`X509CertCreateSelfSignedAsync <group___cmp_x509_cert_itf_1gafa3352932820f31bffb651567d200f5c>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo, RTS_UI32 ui32KeySize, void * pCallbackParam, :ref:`PFX509ASYNCCALLBACK <group___cmp_x509_cert_itf_1ga2ae20ef388388cf7cd68cc7faeab6401>`  pfCallback)
+- RTS_RESULT :ref:`X509CertCreateSelfSignedAsync <group___cmp_x509_cert_itf_1gab243d259781bf52349c821d27e05a4af>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo, RTS_UI32 ui32KeySize, RTS_UI32 nIndex, :ref:`PFX509ASYNCCALLBACK <group___cmp_x509_cert_itf_1gacedc17c2cfb2f1a8e9c51862ce46dfb1>`  pfCallback)
 
 - RTS_RESULT :ref:`X509CertCreateCSR <group___cmp_x509_cert_itf_1gae352d99fc4f1b840c570aab5d2991caf>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo, RTS_UI32 ui32KeySize, RTS_IEC_INT encoding, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCSR)
 
-- RTS_RESULT :ref:`X509CertCreateCSRAsync <group___cmp_x509_cert_itf_1ga11c9602a184532a470c199fe50be7c13>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTS_IEC_INT encoding, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCSR, void * pCallbackParam, :ref:`PFX509ASYNCCALLBACK <group___cmp_x509_cert_itf_1ga2ae20ef388388cf7cd68cc7faeab6401>`  pfCallback)
+- RTS_RESULT :ref:`X509CertCreateCSRAsync <group___cmp_x509_cert_itf_1ga3932382911a59919f7cff98f6c3a32b5>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTS_IEC_INT encoding, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCSR, RTS_UI32 nIndex, :ref:`PFX509ASYNCCALLBACK <group___cmp_x509_cert_itf_1gacedc17c2cfb2f1a8e9c51862ce46dfb1>`  pfCallback)
 
 - RTS_RESULT :ref:`X509CertStoreAddCert <group___cmp_x509_cert_itf_1ga01ee2bd1985de5a20ab80cc616d9b6a6>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RTS_HANDLE hCert, RTS_IEC_INT trustLevel)
 
@@ -409,8 +395,6 @@ Functions
 
 - RTS_RESULT :ref:`X509CertStoreUnregister <group___cmp_x509_cert_itf_1ga8545f584011c653ac8baa957d1020bc0>` (RTS_HANDLE hCertStore, RTS_HANDLE hRegisteredComponent)
 
-- RTS_HANDLE :ref:`X509CertStoreGetRegisteredCert <group___cmp_x509_cert_itf_1ga1d36aa91065172a577af54736687fb4e>` (RTS_HANDLE hCertStore, RTS_HANDLE hUseCase, RTS_RESULT * pResult)
-
 .. _group___cmp_x509_cert_itf-details:
 
 Detailed Description
@@ -418,11 +402,11 @@ Detailed Description
 
 Interface of CmpX509Cert.
 
-This interface provides functionality to handle and verify X.509 Certificates
+This interface provides functionaltiy to handle and verify X.509 Certificates
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -546,40 +530,25 @@ Enum: RtsX509CertFilterType
 #define RTSX509CERTFILTERTYPE_SUBJECT_MATCHALL RTS_IEC_INT_C(0x2)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_x509_cert_itf_1gac7b31ce4ddfac3ac0e6cc7f5a65666fd:
-
-#define RTSX509CERTFILTERTYPE_CERT_DATEVALID RTS_IEC_INT_C(0x3)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_x509_cert_itf_1ga2ea9b2e7c3ad29968a8d0d0a9615d7ee:
-
-#define RTSX509CERTFILTERTYPE_CERT_KEYUSAGE RTS_IEC_INT_C(0x4)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_x509_cert_itf_1gaab202d9e5acaac9ef6f1afe50e6cfa3f:
-
-#define RTSX509CERTFILTERTYPE_CERT_EXKEYUSAGE RTS_IEC_INT_C(0x5)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_x509_cert_itf_1ga397b6bf8f86f99d29b1a3e94b92e66f2:
-
-#define RTSX509CERTFILTERTYPE_CERT_THUMBPRINT RTS_IEC_INT_C(0x6)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. _group___cmp_x509_cert_itf_1gac0a940a207e99d841b157b5abdacd067:
 
 #define RTSX509CERTFILTERTYPE RTS_IEC_INT
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_x509_cert_itf_1gab0c3674136331ef3d08683692ebdf477:
+.. _group___cmp_x509_cert_itf_1gaba61ba34964e62eac530d72b81090998:
 
-#define CMPX509CERT_ASYNC_FUNCTION_CREATESELFSIGNED 1
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#define OPENSSL_ASYNC_FUNCTION_CREATESELFSIGNED 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_x509_cert_itf_1gae389919c688154c0cbb5452d1507550c:
+.. _group___cmp_x509_cert_itf_1ga1910c98bb53021b0816b9999d720e862:
 
-#define CMPX509CERT_ASYNC_FUNCTION_CREATECSR 2
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#define OPENSSL_ASYNC_FUNCTION_CREATECSR 2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_x509_cert_itf_1ga0d1398e172dead1d6ccfa8a5d530004e:
+
+#define OPENSSL_ASYNC_FUNCTION_CREATEDHPARAMS 3
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___cmp_x509_cert_itf_1gad93ddb1893238f0723892dc36b8f625b:
 
@@ -621,13 +590,6 @@ typedef struct tagRtsX509CertName  RtsX509CertName
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 RtsX509CertName
-
-.. _group___cmp_x509_cert_itf_1ga31519dff2498615bbe9dc17755351f33:
-
-typedef struct tagRtsX509ExKeyUsage  RtsX509ExKeyUsage
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-RtsX509ExKeyUsage
 
 .. _group___cmp_x509_cert_itf_1ga72a12c7d19ffabbf04660a3566a8bda2:
 
@@ -792,13 +754,6 @@ typedef struct tagx509certstoregetnextcert_struct  x509certstoregetnextcert_stru
 
 x509certstoregetnextcert
 
-.. _group___cmp_x509_cert_itf_1ga75ecd0f0652a89353ca5b60ec2a1ba0b:
-
-typedef struct tagx509certstoregetregisteredcert_struct  x509certstoregetregisteredcert_struct
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-x509certstoregetregisteredcert
-
 .. _group___cmp_x509_cert_itf_1gaeb1cecb322bff68041a6652448ec19a0:
 
 typedef struct tagx509certstoreopen_struct  x509certstoreopen_struct
@@ -855,10 +810,15 @@ typedef struct tagx509parsecertificate_struct  x509parsecertificate_struct
 
 Parse a certificate which is located in the memory (e.g received FROM a communication partner). Once parsed the certificate is stored in a temporary store. Use the function X509CertClose to close the certificate. :return: Handle to the parsed certificate.
 
-.. _group___cmp_x509_cert_itf_1ga2ae20ef388388cf7cd68cc7faeab6401:
+.. _group___cmp_x509_cert_itf_1gacedc17c2cfb2f1a8e9c51862ce46dfb1:
 
-typedef void HUGEPTR( * PFX509ASYNCCALLBACK)(X509AsyncResult *pAsyncStruct)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+typedef void HUGEPTR( * PFX509ASYNCCALLBACK)(struct _X509AsyncStruct *pAsyncStruct)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_x509_cert_itf_1ga3c2d496633e4cdebc1948c5d409a23ff:
+
+typedef struct _X509AsyncStruct  X509AsyncStruct
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___cmp_x509_cert_itf_1gaf47ff42ad940ed3f43064a69215725a3:
 
@@ -972,11 +932,6 @@ void x509certstoregetfirstcert (x509certstoregetfirstcert_struct *p)
 
 void x509certstoregetnextcert (x509certstoregetnextcert_struct *p)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_x509_cert_itf_1gac2d54f292ae981f158a7604b65eceeba:
-
-void x509certstoregetregisteredcert (x509certstoregetregisteredcert_struct *p)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___cmp_x509_cert_itf_1ga5f443868c7ddcd00562d400ad1933b85:
 
@@ -1468,6 +1423,11 @@ Decrypt a CMS container.
 
 ERR_OK if the container was successfully decrypted. *ERR_PARAMETER if the given parameters are not consistent.
 
+.. _group___cmp_x509_cert_itf_1gaf8e485926efbf1b4ee64495fdee7f192:
+
+RTS_RESULT X509SplitCertificateChain (RtsByteString *pCertificateChain, RtsByteString *pCertificates, RTS_UI32 *pui32NumOfCertificates)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. _group___cmp_x509_cert_itf_1gac62d802c208e5937b00033c2288b0c63:
 
 RTS_RESULT RtsOIDCreate (char *id, RtsOID *oid)
@@ -1655,48 +1615,36 @@ Create a new self signed certificate. A private key is generated and automatical
 | [in]    | ui32KeySize | Size in bits of the private key.                                                                                              |
 +---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
 | [out]   | pResult     | Result of the operation.                                                                                                      |
-|         |             |                                                                                                                               |
-|         |             | - ERR_OK: Everything went fine.                                                                                               |
-|         |             |                                                                                                                               |
-|         |             | - ERR_INVALID_HANDLE: Some input handle is invalid.                                                                           |
-|         |             |                                                                                                                               |
-|         |             | - ERR_PARAMETER: Some input parameter is invalid.                                                                             |
-|         |             |                                                                                                                               |
-|         |             | - ERR_OVERFLOW: The timestamps of the certificate would overflow.                                                             |
-|         |             |                                                                                                                               |
-|         |             | - ERR_NOMEMORY: Not enough memory to perform this operation.                                                                  |
-|         |             |                                                                                                                               |
-|         |             | - ERR_FAILED: Creation of self signed certificate failed. failed                                                              |
 +---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
 
 **Returns:**
 
 Handle to the created selfsigned certificate
 
-.. _group___cmp_x509_cert_itf_1gafa3352932820f31bffb651567d200f5c:
+.. _group___cmp_x509_cert_itf_1gab243d259781bf52349c821d27e05a4af:
 
-RTS_RESULT X509CertCreateSelfSignedAsync (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo *pCertInfo, RTS_UI32 ui32KeySize, void *pCallbackParam, PFX509ASYNCCALLBACK pfCallback)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RTS_RESULT X509CertCreateSelfSignedAsync (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo *pCertInfo, RTS_UI32 ui32KeySize, RTS_UI32 nIndex, PFX509ASYNCCALLBACK pfCallback)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create a new self signed certificate, asynchronously. A private key is generated and automatically stored.
 
 **Parameters**
 
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | hCertStore     | Handle to the certificate store                                                                                               |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | hBackend       | Handle to the backend where to store the generated certificate. RTS_INVALID_HANDLE should be used if no backend is specified. |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pCertInfo      | Information of the certificate to be generated.                                                                               |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | ui32KeySize    | Size in bits of the private key.                                                                                              |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | ui32KeySize    | Size in bits of the private key.                                                                                              |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pCallbackParam | Parameter used when the callback is called when the operation has finished.                                                   |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pfCallback     | Callback function that is called at the end of the operation                                                                  |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hCertStore  | Handle to the certificate store                                                                                               |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hBackend    | Handle to the backend where to store the generated certificate. RTS_INVALID_HANDLE should be used if no backend is specified. |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pCertInfo   | Information of the certificate to be generated.                                                                               |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ui32KeySize | Size in bits of the private key.                                                                                              |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ui32KeySize | Size in bits of the private key.                                                                                              |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | nIndex      | Optional index of the operation. Is proivided in the callback as an additional parameter.                                     |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfCallback  | Callback function that is called at the end of the operation                                                                  |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
 
 **Returns:**
 
@@ -1729,34 +1677,34 @@ Create a new certificate request. A new private key will be generated and automa
 
 Result of the operation
 
-.. _group___cmp_x509_cert_itf_1ga11c9602a184532a470c199fe50be7c13:
+.. _group___cmp_x509_cert_itf_1ga3932382911a59919f7cff98f6c3a32b5:
 
-RTS_RESULT X509CertCreateCSRAsync (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo *pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTS_IEC_INT encoding, RtsByteString *pCSR, void *pCallbackParam, PFX509ASYNCCALLBACK pfCallback)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RTS_RESULT X509CertCreateCSRAsync (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo *pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTS_IEC_INT encoding, RtsByteString *pCSR, RTS_UI32 nIndex, PFX509ASYNCCALLBACK pfCallback)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create a new certificate request. A new private key will be generated and automatically stored in the key store. The certificate request can be sent to an offical CA to get a signed certificate.
 
 **Parameters**
 
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | hCertStore     | Handle to the certificate store                                                                                               |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | hBackend       | Handle to the backend where to store the generated certificate. RTS_INVALID_HANDLE should be used if no backend is specified. |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pCertInfo      | Information of the certificate to be generated.                                                                               |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | cmpID          | Component ID of the component for which the CSR is created.                                                                   |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | ui32KeySize    | Size in bits of the private key.                                                                                              |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | encoding       | Encoding of the generated CSR.                                                                                                |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [out]   | pCSR           | The signing request in binary form.                                                                                           |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pCallbackParam | Parameter used when the callback is called when the operation has finished.                                                   |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pfCallback     | Callback function that is called at the end of the operation                                                                  |
-+---------+----------------+-------------------------------------------------------------------------------------------------------------------------------+
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hCertStore  | Handle to the certificate store                                                                                               |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hBackend    | Handle to the backend where to store the generated certificate. RTS_INVALID_HANDLE should be used if no backend is specified. |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pCertInfo   | Information of the certificate to be generated.                                                                               |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | cmpID       | Component ID of the component for which the CSR is created.                                                                   |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | ui32KeySize | Size in bits of the private key.                                                                                              |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | encoding    | Encoding of the generated CSR.                                                                                                |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [out]   | pCSR        | The signing request in binary form.                                                                                           |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | nIndex      | Optional index of the operation. Is proivided in the callback as an additional parameter.                                     |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pfCallback  | Callback function that is called at the end of the operation                                                                  |
++---------+-------------+-------------------------------------------------------------------------------------------------------------------------------+
 
 **Returns:**
 
@@ -1857,37 +1805,6 @@ RTS_RESULT X509CertStoreUnregister (RTS_HANDLE hCertStore, RTS_HANDLE hRegistere
 **Returns:**
 
 Result of the operation
-
-.. _group___cmp_x509_cert_itf_1ga1d36aa91065172a577af54736687fb4e:
-
-RTS_HANDLE X509CertStoreGetRegisteredCert (RTS_HANDLE hCertStore, RTS_HANDLE hUseCase, RTS_RESULT *pResult)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Get the certificate available for a registered use case. If not certificate is available RTS_INVALID_HANDLE will be returned. The following rules apply for selecting the certificate:
-
-- Check if a certificate is configured by the user. (The thumbprint is pinned for component and index). Use this one if available, return error if not available.
-
-- If no certificate is configured filter the available certificates by subject, key usage, extended key usage and a valid timestamp. Return error if list is empty.
-
-- Split the available certificates by signed and self signed certificates. Prefer the signed certificates over the self signed certificates:
-
-- Select the certificate with the longest period of validity.
-
-- If some certificates have the same period of validity select the one with the strongest key.
-
-**Parameters**
-
-+---------+------------+---------------------------------------------------------------------------+
-| [in]    | hCertStore | Handle of to certificate store.                                           |
-+---------+------------+---------------------------------------------------------------------------+
-| [in]    | hUseCase   | Handle to the registered use case. Retrieved using X509CertStoreRegister. |
-+---------+------------+---------------------------------------------------------------------------+
-| [out]   | pResult    | Pointer to error code                                                     |
-+---------+------------+---------------------------------------------------------------------------+
-
-**Returns:**
-
-Handle to the certificate. Use X509CertClose to close the certificat.
 
 .. last line of group.rst template
 .. last line of composition.rst template

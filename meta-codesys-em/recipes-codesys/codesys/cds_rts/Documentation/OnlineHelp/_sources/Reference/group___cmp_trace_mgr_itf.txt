@@ -174,8 +174,6 @@ Data Structures
 
 - struct :ref:`tagtracemgrrecordupdate3_struct <structtagtracemgrrecordupdate3__struct>`
 
-- struct :ref:`tagtracemgrrecordupdate4_struct <structtagtracemgrrecordupdate4__struct>`
-
 - struct :ref:`ICmpTraceMgr_C <struct_i_cmp_trace_mgr___c>`
 
 Macros
@@ -298,8 +296,6 @@ Typedefs
 
 - typedef struct :ref:`tagtracemgrrecordupdate3_struct <structtagtracemgrrecordupdate3__struct>` :ref:`tracemgrrecordupdate3_struct <group___cmp_trace_mgr_itf_1ga1e5ccbb079b173d958c8da4ece430520>`
 
-- typedef struct :ref:`tagtracemgrrecordupdate4_struct <structtagtracemgrrecordupdate4__struct>` :ref:`tracemgrrecordupdate4_struct <group___cmp_trace_mgr_itf_1ga582c6247e8881d76430114cf5b9bc94d>`
-
 - typedef :ref:`ICmpTraceMgr_C <struct_i_cmp_trace_mgr___c>` :ref:`ICmpTraceMgr <group___cmp_trace_mgr_itf_1gaac1e08476367d1abfe1dad34c31eb38e>`
 
 Functions
@@ -382,8 +378,6 @@ Functions
 - void :ref:`tracemgrrecordupdate2 <group___cmp_trace_mgr_itf_1gad3538e5aecd6c6911973c45de96948f7>` (:ref:`tracemgrrecordupdate2_struct <group___cmp_trace_mgr_itf_1ga48fc60a2538165b5f4776e2eb82c3cbe>` * p)
 
 - void :ref:`tracemgrrecordupdate3 <group___cmp_trace_mgr_itf_1ga3ed9d3f6c7995abab0dad1b1996df9c4>` (:ref:`tracemgrrecordupdate3_struct <group___cmp_trace_mgr_itf_1ga1e5ccbb079b173d958c8da4ece430520>` * p)
-
-- void :ref:`tracemgrrecordupdate4 <group___cmp_trace_mgr_itf_1ga8e64fc175f64e7b99ef661af00460663>` (:ref:`tracemgrrecordupdate4_struct <group___cmp_trace_mgr_itf_1ga582c6247e8881d76430114cf5b9bc94d>` * p)
 
 - RTS_HANDLE :ref:`TraceMgrPacketCreate <group___cmp_trace_mgr_itf_1ga9e40d78672ffc95ed104bdf1ccf34fec>` (:ref:`TracePacketConfiguration <group___cmp_trace_mgr_itf_1ga8b87d21b2badb4e18b4483d5875d0cae>` * pConfiguration, RTS_RESULT * pResult)
 
@@ -469,8 +463,6 @@ Functions
 
 - RTS_RESULT :ref:`TraceMgrRecordUpdate3 <group___cmp_trace_mgr_itf_1ga178d0f27e7eef0463df579b4ee0e4ef2>` (RTS_HANDLE hPacket, RTS_HANDLE hRecord, void * pData, RTS_UI32 ulLen)
 
-- RTS_RESULT :ref:`TraceMgrRecordUpdate4 <group___cmp_trace_mgr_itf_1gaf6f4f188de1a622345c497af947801e9>` (RTS_HANDLE hPacket, RTS_HANDLE hRecord, RTS_UI32 * pTimestamps, void * pDataValues, RTS_UI32 ulEntries)
-
 - RTS_RESULT :ref:`TraceMgrDeviceTaskUpdate <group___cmp_trace_mgr_itf_1gafaf5299d5a90bae14917202770c5ae80>` (char * pszTaskName)
 
 - RTS_RESULT :ref:`TraceMgrHasFeature <group___cmp_trace_mgr_itf_1ga5dc3ae6ae19cb427fc029b116a4c635f>` (RTS_UI32 ulFeatures)
@@ -496,7 +488,7 @@ This is the sequence of typical handling of the trace manager: 1. Packet create 
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -634,7 +626,7 @@ The state of a trace packet
 typedef struct tagtracemgrgetconfigfromfile_struct  tracemgrgetconfigfromfile_struct
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Loads a given trace file and returns the configuration it contains. After this function call a call to function |TraceMgrGetConfigFromFileRelease| is necessary to free the dynamically allocated memory.
+Loads a given trace file and returns the configuration it contains. After this function call a call to function ``TraceMgrGetConfigFromFileRelease`` is necessary to free the dynamically allocated memory.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -652,14 +644,16 @@ Loads a given trace file and returns the configuration it contains. After this f
 
 - ERR_NO_CHANGE if a NULL pointer was passed to parameter
 
-- ERR_OUT_OF_LIMITS if the parameters ``pRecordConfiguration`` and ``iMaxRecordCount`` do not have enough memory to hold all the records from the file
+- ERR_OUT_OF_LIMITS if the parameters ``pRecordConfiguration`` and ``iMaxRecordCount``
+
+do not have enough memory to hold all the records from the file
 
 .. _group___cmp_trace_mgr_itf_1ga416bab7da81952eda411f7a15a82b925:
 
 typedef struct tagtracemgrgetconfigfromfilerelease_struct  tracemgrgetconfigfromfilerelease_struct
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This function has to be called after |TraceMgrGetConfigFromFile|. It frees the dynamically allocated memory for the strings of the packet resp. record configuration. :return: Returns the runtime system error code (see CmpErrors.library)
+This function has to be called after ``TraceMgrGetConfigFromFile`` . It frees the dynamically allocated memory for the strings of the packet resp. record configuration. :return: Returns the runtime system error code (see CmpErrors.library)
 
 .. _group___cmp_trace_mgr_itf_1ga4e2016a336b939bfc7111711f8ac1c4c:
 
@@ -768,7 +762,7 @@ typedef struct tagtracemgrpacketenabletrigger_struct  tracemgrpacketenabletrigge
 
 Enables the trigger of a trace packet.
 
-.. note:: This function should be called if the trigger is currently disabled. If the trigger has already fired, call |TraceMgrPacketResetTrigger| to reset the trigger, instead.
+Note: This function should be called if the trigger is currently disabled. If the trigger has already fired, call TraceMgrPacketResetTrigger to reset the trigger, instead.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -781,7 +775,7 @@ typedef struct tagtracemgrpacketgetabsolutestarttime_struct  tracemgrpacketgetab
 
 Returns the absolute start time of a trace packet or 0 if trace packet has not been started yet.
 
-.. note:: The start time is the time when the packet was started for the first time.
+Note: the start time is the time when the packet was started for the first time.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -814,7 +808,7 @@ Queries the configuration of a trace packet.
 typedef struct tagtracemgrpacketgetfirst_struct  tracemgrpacketgetfirst_struct
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Returns the first trace packet. This function can be used together with |TraceMgrPacketGetNext| to iterate through all trace packets.
+Returns the first trace packet. This function can be used together with TraceMgrPacketGetNext to iterate through all trace packets.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -825,7 +819,7 @@ Returns the first trace packet. This function can be used together with |TraceMg
 typedef struct tagtracemgrpacketgetnext_struct  tracemgrpacketgetnext_struct
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Returns the next trace packet. This function can be used together with |TraceMgrPacketGetFirst| to iterate through all trace packets.
+Returns the next trace packet. This function can be used together with TraceMgrPacketGetFirst to iterate through all trace packets.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -840,7 +834,7 @@ typedef struct tagtracemgrpacketgetstarttime_struct  tracemgrpacketgetstarttime_
 
 Returns the start time of a trace packet or 0 if trace packet has not been started yet.
 
-.. note:: the start time is the time when the packet was started for the first time.
+Note: the start time is the time when the packet was started for the first time.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -862,9 +856,7 @@ Returns the state of a trace packet.
 typedef struct tagtracemgrpacketopen_struct  tracemgrpacketopen_struct
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Opens a trace packet specified by name.
-
-.. note:: Comparison of packet names is case-insensitive.
+Opens a trace packet specified by name. Note: Comparison of packet names is case-insensitive.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -879,7 +871,7 @@ Start reading trace packet.
 
 The purpose of this function is to trigger the event EVT_TRACEMGR_PACKET_SAMPLE. In response to the event, any outstanding trace samples will be written by runtime system components and IEC applications that provide trace values for system parameters.
 
-.. note:: Normally, there is no need to call this function. It should be called before |TraceMgrPacketReadFirst| and |TraceMgrPacketReadFirst2| to make sure all trace values are present before reading. When finished with reading, TraceMgrPacketReadEnd should be called.
+Note: Normally, there is no need to call this function. It should be called before TraceMgrPacketReadFirst and TraceMgrPacketReadFirst2 to make sure all trace values are present before reading. When finished with reading, TraceMgrPacketReadEnd should be called.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -894,7 +886,7 @@ typedef struct tagtracemgrpacketreadend_struct  tracemgrpacketreadend_struct
 
 End reading trace packet.
 
-See description of function |TraceMgrPacketReadBegin|.
+See description of function TraceMgrPacketReadBegin.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -909,11 +901,11 @@ typedef struct tagtracemgrpacketreadfirst_struct  tracemgrpacketreadfirst_struct
 
 Reads the contents of the first record.
 
-.. note:: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
+Note: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
 
-.. note:: You should call |TraceMgrPacketReadBegin| before calling this function, to make sure any outstanding trace values are written to the trace buffers.
+Note 2: You should call TraceMgrPacketReadBegin before calling this function, to make sure any outstanding trace values are written to the trace buffers.
 
-.. note:: Data is always returned in little endian byte order even if the device has big endian byte order.
+Note 3: Data is always returned in little endian byte order even if the device has big endian byte order.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -934,13 +926,13 @@ typedef struct tagtracemgrpacketreadfirst2_struct  tracemgrpacketreadfirst2_stru
 
 Reads the contents of the first record, starting at a given time stamp.
 
-Only entries with a time stamp greater than or equal to ulTimestamp are copied. If the time stamp is zero, the function behaves like |TraceMgrPacketReadFirst|.
+Only entries with a time stamp greater than or equal to ulTimestamp are copied. If the time stamp is zero, the function behaves like TraceMgrPacketReadFirst.
 
-.. note:: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
+Note: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
 
-.. note:: You should call |TraceMgrPacketReadBegin| before calling this function, to make sure any outstanding trace values are written to the trace buffers.
+Note 2: You should call TraceMgrPacketReadBegin before calling this function, to make sure any outstanding trace values are written to the trace buffers.
 
-.. note:: Data is always returned in little endian byte order even if the device has big endian byte order.
+Note 3: Data is always returned in little endian byte order even if the device has big endian byte order.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -961,9 +953,9 @@ typedef struct tagtracemgrpacketreadnext_struct  tracemgrpacketreadnext_struct
 
 Reads the contents of the next record.
 
-.. note:: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
+Note: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
 
-.. note:: Data is always returned in little endian byte order even if the device has big endian byte order.
+Note 2: Data is always returned in little endian byte order even if the device has big endian byte order.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -984,11 +976,11 @@ typedef struct tagtracemgrpacketreadnext2_struct  tracemgrpacketreadnext2_struct
 
 Reads the contents of the next record, starting at a given time stamp.
 
-Only entries with a time stamp greater than or equal to ulTimestamp are copied. If the time stamp is zero, the function behaves like |TraceMgrPacketReadNext|.
+Only entries with a time stamp greater than or equal to ulTimestamp are copied. If the time stamp is zero, the function behaves like TraceMgrPacketReadNext.
 
-.. note:: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
+Note: if the result code is ERR_ENTRIES_REMAINING, data has been successfully copied to pTraceBuffer, but more data can be read by a subsequent call. (Either because the destination buffer was too small, or because new data has been recorded in the mean time.)
 
-.. note:: Data is always returned in little endian byte order even if the device has big endian byte order.
+Note 2: Data is always returned in little endian byte order even if the device has big endian byte order.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -1009,7 +1001,7 @@ typedef struct tagtracemgrpacketresettrigger_struct  tracemgrpacketresettrigger_
 
 Resets the trigger of a trace packet. The start time and date of of the trigger is reset to 0 and the trigger is set to state enabled (if it is not disabled).
 
-.. note: if the trigger is currently disabled, it stays disabled. To enable it, call TraceMgrPacketEnableTrigger.
+Note: if the trigger is currently disabled, it stays disabled. To enable it, call TraceMgrPacketEnableTrigger.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -1054,7 +1046,7 @@ typedef struct tagtracemgrpacketstart_struct  tracemgrpacketstart_struct
 
 Starts a trace packet and resets the trigger.
 
-.. note:: if the packet is started for the first time, the start time of the packet is set to the current time. See: |TraceMgrPacketGetStartTime|.
+Note: if the packet is started for the first time, the start time of the packet is set to the current time. See TraceGetStartTime.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -1119,7 +1111,7 @@ Queries the configuration of a trace record.
 typedef struct tagtracemgrrecordgetfirst_struct  tracemgrrecordgetfirst_struct
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Returns the first trace record of a trace packet. This function can be used together with |TraceMgrRecordGetNext| to iterate through all trace records of a packet.
+Returns the first trace record of a trace packet. This function can be used together with TraceMgrRecordGetNext to iterate through all trace records of a packet.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -1132,7 +1124,7 @@ Returns the first trace record of a trace packet. This function can be used toge
 typedef struct tagtracemgrrecordgetnext_struct  tracemgrrecordgetnext_struct
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Returns the next trace record of a trace packet. This function can be used together with |TraceMgrRecordGetFirst| to iterate through all trace records of a packet.
+Returns the next trace record of a trace packet. This function can be used together with TraceMgrRecordGetFirst to iterate through all trace records of a packet.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -1158,7 +1150,7 @@ typedef struct tagtracemgrrecordupdate_struct  tracemgrrecordupdate_struct
 
 Records the current value of the trace variable of a record together with the current time stamp.
 
-.. note:: This function is called cyclically by CmpTraceMgr. It should not be called by the application.
+Note: this function is called cyclically by CmpTraceMgr. It should not be called by the application.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -1177,7 +1169,7 @@ typedef struct tagtracemgrrecordupdate2_struct  tracemgrrecordupdate2_struct
 
 Stores entries in the ring buffer of a trace record.
 
-This function can be used to provide the data for so called system parameters from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.) If only a single entry is to be added, consider using |TraceMgrRecordUpdate3| instead.
+This function can be used to provide the data for so called system parameters from the IEC application. (See TRACE_VAR_ADDRESS_FLAGS_SYSTEM.) If only a single entry is to be added, consider using TraceMgrRecordUpdate3 instead.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -1196,11 +1188,11 @@ typedef struct tagtracemgrrecordupdate3_struct  tracemgrrecordupdate3_struct
 
 Stores one entry in the ring buffer of a trace record.
 
-This function can be used to provide the data for so called system parameters from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.) If more than one single entry is to be added, consider using |TraceMgrRecordUpdate2| instead.
+This function can be used to provide the data for so called system parameters from the IEC application. (See TRACE_VAR_ADDRESS_FLAGS_SYSTEM.) If more than onesingle entry is to be added, consider using TraceMgrRecordUpdate2 instead.
 
-.. note:: in contrast to |TraceMgrRecordUpdate2|, the time stamp of the entry is not provided by the caller but set inside |TraceMgrRecordUpdate3|.
+Note: in contrast to TraceMgrRecordUpdate2, the time stamp of the entry is not provided by the caller but set inside TraceMgrRecordUpdate3.
 
-.. note:: If pData is 0, the current value of the trace variable is read, i.e. the function behaves TraceMgrRecordUpdate.
+Note 2: If pData is 0, the current value of the trace variable is read, i.e. the function behaves TraceMgrRecordUpdate.
 
 :return: Returns the runtime system error code (see CmpErrors.library):
 
@@ -1211,27 +1203,6 @@ This function can be used to provide the data for so called system parameters fr
 - ERR_PENDING if no value is recorded for this cycle due to :ref:`TracePacketConfiguration.ulEveryNCycles <structtag_trace_packet_configuration_1a29112671b73a99708fc7be47c372ba08>`
 
 - ERR_FAILED if pData is 0 and the current value of the trace variable cannot be read
-
-.. _group___cmp_trace_mgr_itf_1ga582c6247e8881d76430114cf5b9bc94d:
-
-typedef struct tagtracemgrrecordupdate4_struct  tracemgrrecordupdate4_struct
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Stores multiple values with seperate timestamps in the ring buffer of a trace record.
-
-This function can be used to provide the data for so called system parameters from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.)
-
-.. note:: in contrast to |TraceMgrRecordUpdate2|, the timestamp of the values and the values itself are provided in seperate lists by the caller.
-
-.. note:: the number of timestamps must be the same as the number of data values. ulEntries must match to this number.
-
-:return: Returns the runtime system error code (see CmpErrors.library):
-
-- ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle
-
-- ERR_NOTINITIALIZED if the packet is not currently recording (not started, trigger reached, ...)
-
-- ERR_PENDING if no value is recorded for this cycle due to :ref:`TracePacketConfiguration.ulEveryNCycles <structtag_trace_packet_configuration_1a29112671b73a99708fc7be47c372ba08>`
 
 .. _group___cmp_trace_mgr_itf_1gaac1e08476367d1abfe1dad34c31eb38e:
 
@@ -1434,11 +1405,6 @@ void tracemgrrecordupdate2 (tracemgrrecordupdate2_struct *p)
 .. _group___cmp_trace_mgr_itf_1ga3ed9d3f6c7995abab0dad1b1996df9c4:
 
 void tracemgrrecordupdate3 (tracemgrrecordupdate3_struct *p)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_trace_mgr_itf_1ga8e64fc175f64e7b99ef661af00460663:
-
-void tracemgrrecordupdate4 (tracemgrrecordupdate4_struct *p)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___cmp_trace_mgr_itf_1ga9e40d78672ffc95ed104bdf1ccf34fec:
@@ -2260,31 +2226,6 @@ Update single value in the trace record
 +---------+---------+--------------------------------------------------------------------------------------------+
 | [in]    | ulLen   | Size of the single record value. NOTE: Must fit with the real size of the record variable! |
 +---------+---------+--------------------------------------------------------------------------------------------+
-
-**Returns:**
-
-error code
-
-.. _group___cmp_trace_mgr_itf_1gaf6f4f188de1a622345c497af947801e9:
-
-RTS_RESULT TraceMgrRecordUpdate4 (RTS_HANDLE hPacket, RTS_HANDLE hRecord, RTS_UI32 *pTimestamps, void *pDataValues, RTS_UI32 ulEntries)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Update multiple values with seperate timestamps in the trace record
-
-**Parameters**
-
-+---------+-------------+---------------------------------------+
-| [in]    | hPacket     | Handle to the trace packet            |
-+---------+-------------+---------------------------------------+
-| [in]    | hRecord     | Handle to the trace record            |
-+---------+-------------+---------------------------------------+
-| [in]    | pTimestamps | Pointer to the array of timestamps    |
-+---------+-------------+---------------------------------------+
-| [in]    | pDataValues | Pointer to the array of record values |
-+---------+-------------+---------------------------------------+
-| [in]    | ulEntries   | Number of timestamp and value pairs   |
-+---------+-------------+---------------------------------------+
 
 **Returns:**
 

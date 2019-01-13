@@ -47,9 +47,7 @@
  * the IEC task. So we allow those calls only in debug mode.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpIecTask')
@@ -57,48 +55,6 @@ SET_INTERFACE_NAME(`CmpIecTask')
 REF_ITF(`CmpAppItf.m4')
 REF_ITF(`CmpMemPoolItf.m4')
 REF_ITF(`SysTimeItf.m4')
-
-
-/**
- * <category>Compiler switch</category>
- * <description>
- *	Compiler switches to enable/disable single features in the component.
- * </description>
- * <element name="RTS_STRUCTURED_EXCEPTION_HANDLING" type="IN">To enable the structured exception handling</element>
- * <element name="RTS_IECTASK_STRUCTURED_EXCEPTION_HANDLING" type="IN">To enable structured exception handling for all IecTasks.
- *		If RTS_STRUCTURED_EXCEPTION_HANDLING is enable and RTS_IECTASK_STRUCTURED_EXCEPTION_HANDLING is disabled, the structured exception handling
- *		out of the IEC program can be used via the SysExcept.library (unusual used feature).
- * </element>
- * <element name="RTS_IECTASK_ENABLE_TASK_TRACE" type="IN">Enable IEC task trace feature. This feature creates a CODESYS system trace with all IEC-tasks to trace the timing.
- *	NOTES:
- *		1. To really activate the task trace, you have to set the setting "EnableTaskTrace=1" in the configuration!
- *		2. CmpSchedule must be built with the same compiler switch to activate additional tracing of the SchedulerTick and optional SchedulerTimeslicing!
- * </element>
- * <element name="CMPIECTASK_STACK_SIZE" type="IN">Define to specify the stack size for all IEC tasks. Default size = 1MB.</element>
- * <element name="CMPIECTASK_STACK_SIZE_ADDITIONAL" type="IN">Define to specify the additional stack size for all IEC tasks (depends on the platform). Default: 0.</element>
- * <element name="CMPIECTASK_SYNCHRONIZATION_USE_SYSSEM" type="IN">Use semaphores (SysSem) instead of using SysReadWriteLock by default! This is because SysReadWriteLock could have 
- *																	priority inversion problems on some platforms and so we use SysSem as a better alternative by default!</element>
- */
-
-#if defined(CMPTRACEMGR_NOTIMPLEMENTED)
-	#undef RTS_IECTASK_ENABLE_TASK_TRACE
-#elif !defined(SYSCPUMULTICORE_NOTIMPLEMENTED) && !defined(RTS_IECTASK_ENABLE_TASK_TRACE)
-	#define RTS_IECTASK_ENABLE_TASK_TRACE
-#endif
-
-#if !defined(SYSCPUMULTICORE_NOTIMPLEMENTED)
-	#define IECTASK_USE_ATOMIC_BITACCESS
-#endif
-
-#ifndef CMPIECTASK_STACK_SIZE
-	#define CMPIECTASK_STACK_SIZE 0
-#endif
-
-#ifndef CMPIECTASK_STACK_SIZE_ADDITIONAL
-	#define CMPIECTASK_STACK_SIZE_ADDITIONAL 0
-#endif
-
-#define CMPIECTASK_SYNCHRONIZATION_USE_SYSSEM
 
 typedef struct
 {
@@ -110,7 +66,6 @@ typedef struct
 
 struct tagTask_Desc;
 struct tagTask_Info;
-typedef struct tagTask_Info Task_Info;
 
 typedef struct
 {
@@ -137,9 +92,23 @@ typedef struct
 	#define MAX_IEC_SLOTS					(-1)
 #endif
 
-#define IECTASK_TASK_INFO_VERSION			5
-#define IECTASK_TASK_INFO_GROUPS_VERSION    4
+#define IECTASK_TASK_INFO_VERSION			2
 #define IECTASK_TASK_MAX_PRIO				255
+
+
+/**
+ * <category>Compile options</category>
+ * <description>
+ *	Default timeout to wait for a task until stop. If a task is not ending execution in this timeout, the
+ *	task will be killed hard and recreated.
+ *	The value is in milliseconds.
+ * </description>
+ * <element name="RTS_STRUCTURED_EXCEPTION_HANDLING" type="IN">To enable the structured exception handling</element>
+ * <element name="RTS_IECTASK_STRUCTURED_EXCEPTION_HANDLING" type="IN">To enable structured exception handling for all IecTasks.
+ *		If RTS_STRUCTURED_EXCEPTION_HANDLING is enable and RTS_IECTASK_STRUCTURED_EXCEPTION_HANDLING is disabled, the structured exception handling
+ *		out of the IEC program can be used via the SysExcept.library (unusual used feature).
+ * </element>
+ */
 
 
 /**
@@ -148,63 +117,13 @@ typedef struct
  * <description>
  *	Default timeout to wait for a task until stop. If a task is not ending execution in this timeout, the
  *	task will be suspended and marked with exception.
- *	This timeout is the maximum reaction time on an application stop to set the machine in a safe state!
+ *	This timeout is the maximum reaction time on an application stop.
  *	The value is in milliseconds.
  * </description>
  */
 #define IECTASKKEY_INT_WAIT_FOR_STOP_TIMEOUT				"WaitForStopTimeoutMs"
 #ifndef IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_DEFAULT
 	#define IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_DEFAULT	INT32_C(10000)
-#endif
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- *	Default timeout to wait for a task until stop, after the safe state is reached! If a task is not ending execution in this timeout, the
- *	task will be suspended and marked with exception.
-  *	The value is in milliseconds.
- * </description>
- */
-#define IECTASKKEY_INT_WAIT_FOR_STOP_TIMEOUT_2				"WaitForStop.TimeoutMs_2"
-#ifndef IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_2_DEFAULT
-	#define IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_2_DEFAULT	INT32_C(25000)
-#endif
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- * Setting to disable the following feature for the RUN/STOP transition of an application.
- *
- * This feature splits the RUN/STOP transition into 2 phases:
- *
- * - PHASE 1:
- *   This is the phase at the RUN/STOP transition until the safe state of the application/machine will be reached.
- *	 In this phase, we wait only for IEC tasks wich use mapped outputs!
- *	 
- * - PHASE 2:
- *   This is the phase at the RUN/STOP transition after the safe state of the application/machine has been reached.
- *	 In this phase, we wait only for IEC tasks, wich don't use mapped outputs!
- *	 For this phase, there is a new setting for the timeout:
- *	    [CmpIecTask]
- *	    WaitForStop.TimeoutMs_2=25000
- *  
- * Reason for this feature:
- * - This is because typically non IO tasks (AlarmTasks, TrendTasks, etc.) need a much longer cycle time at the RUN/STOP transition than the IO tasks.
- *   And so sometimes a watchdog error occurres at this non IO tasks during normal RUN/STOP transition.
- *  
- * NOTES:
- * - To disable this feature, you can use the following new setting in the cfg-file:
- *     [CmpIecTask]
- *     WaitForStop.SkipTasksWithoutOutputs=0
- * - If your plc does not use the standard CODESYS IO-configuration/IO-mapping, you have to switch off this feature!
- *
- * </description>
- */
-#define IECTASKKEY_INT_WAIT_FOR_STOP_SKIPTASKSWITHOUTOUTPUTS		"WaitForStop.SkipTasksWithoutOutputs"
-#ifndef IECTASKVALUE_INT_WAIT_FOR_STOP_SKIPTASKSWITHOUTOUTPUTS_DEFAULT
-	#define IECTASKVALUE_INT_WAIT_FOR_STOP_SKIPTASKSWITHOUTOUTPUTS_DEFAULT	INT32_C(1)
 #endif
 
 /**
@@ -221,18 +140,6 @@ typedef struct
 
 /**
  * <category>Settings</category>
- * <type>Int</type>
- * <description>
- *	Setting to activate the task trace.
- * </description>
- */
-#define IECTASKKEY_INT_ENABLE_TASK_TRACE					"EnableTaskTrace"
-#ifndef IECTASKVALUE_INT_ENABLE_TASK_TRACE_DEFAULT
-	#define IECTASKVALUE_INT_ENABLE_TASK_TRACE_DEFAULT		0
-#endif
-
-/**
- * <category>Settings</category>
  * <type>String</type>
  * <description>
  *	Name of the task, that controls the target visualization.
@@ -243,18 +150,6 @@ typedef struct
  */
 #define IECTASKKEY_STRING_VISU_TASK							"VisuTask"
 
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- *	Setting enables the feature to fire a watchdog during an IO-update in an IEC task!
- *	Can be disabled if this causes problems in IEC applications and so the behaviour is similar to the runtime system before v3.5.12.0.
- * </description>
- */
-#define IECTASKKEY_INT_ENABLE_WATCHDOG_DURING_IOUPDATE		"EnableWatchdogDuringIOUpdate"
-#ifndef IECTASKVALUE_INT_ENABLE_WATCHDOG_DURING_IOUPDATE
-	#define IECTASKVALUE_INT_ENABLE_WATCHDOG_DURING_IOUPDATE		1
-#endif
 
 /**
  * <category>Event parameter</category>
@@ -325,26 +220,6 @@ typedef struct
 
 
 /**
- * <category>OperationID</category>
- * <description>Operation ID for the supervision of the RUN-STOP transition of an application</description>
- * <param name="RTS_OPID_Application_RunStop" type="IN">The OperationID is the ID of the application (see APPLICATION.iId for details)</param>
- * <param name="RTS_OPID_Application_RunStop_Description" type="IN"></param>
- */
-#define RTS_OPID_IecTask_WatchdogInIO				1
-#define RTS_OPID_IecTask_WatchdogInIO_Description	"Supervision of a watchdog error during IO-update (IEC task must leave IO update)"
-
-
-/**
- * <category>Stop reason option</category>
- * <description>Option that can be specified for IecTasksWaitForStop() in stop reason</description>
- * <element name="IEC_TASK_STOPREASON_OPTION_PREPARE_SAFE_STATE" type="IN">Stop all IEC tasks _before_ setting the outputs to a safe state</element>
- * <element name="IEC_TASK_STOPREASON_OPTION_DONE_SAFE_STATE" type="IN">Stop all IEC tasks _after_ setting the outputs to a safe state. Here we can wait a longer period!</element>
- */
-#define IEC_TASK_STOPREASON_OPTION_PREPARE_SAFE_STATE 			0x00000000
-#define IEC_TASK_STOPREASON_OPTION_DONE_SAFE_STATE	 			0x00010000
-
-
-/**
  * <category>IEC task types</category>
  * <description></description>
  */
@@ -352,8 +227,7 @@ typedef struct
 #define TaskEvent			0x0001
 #define TaskExternal		0x0002
 #define TaskFreewheeling	0x0003
-#define TaskParentSync		0x0004
-#define TaskLastIndex		0x0005
+#define TaskLastIndex		0x0004
 
 
 /**
@@ -478,10 +352,6 @@ typedef struct
 #define ITF_SUSPEND_AT_NEXT_CHANCE	0x00000080
 #define ITF_IN_IO_UPDATE			0x00000100
 #define ITF_INIT_OUTPUTS			0x00000200
-#define ITF_ENTER_LOCK				0x00000400
-#define ITF_LEAVE_READER_LOCK		0x00000800
-#define ITF_SUSPENDED_BY_DEBUG_TASK	0x00001000
-#define ITF_IN_DEBUG_CONTEXT		0x00002000
 
 /**
  * <category>Iec Task Bits</category>
@@ -497,10 +367,6 @@ typedef struct
 #define ITF_BIT_SUSPEND_AT_NEXT_CHANCE	7
 #define ITF_BIT_IN_IO_UPDATE			8
 #define ITF_BIT_INIT_OUTPUTS			9
-#define ITF_BIT_ENTER_LOCK				10
-#define ITF_BIT_LEAVE_READER_LOCK		11
-#define ITF_BIT_SUSPENDED_BY_DEBUG_TASK	12
-#define ITF_BIT_IN_DEBUG_CONTEXT		13
 
 
 #define IsVisuTask(pTask)				(pTask->ulFlags & ITF_VISU_TASK)
@@ -513,11 +379,6 @@ typedef struct
 #define IsSuspendAtNextChance(pTask)	(pTask->ulFlags & ITF_SUSPEND_AT_NEXT_CHANCE)
 #define IsInIoUpdate(pTask)				(pTask->ulFlags & ITF_IN_IO_UPDATE)
 #define DoInitOutputs(pTask)			(pTask->ulFlags & ITF_INIT_OUTPUTS)
-#define IsEnterLockDisabled(pTask)		(pTask->ulFlags & ITF_ENTER_LOCK)
-#define IsLeaveReaderLock(pTask)		(pTask->ulFlags & ITF_LEAVE_READER_LOCK)
-#define IsSuspendedByDebugTask(pTask)	(pTask->ulFlags & ITF_SUSPENDED_BY_DEBUG_TASK)
-#define IsInDebugContext(pTask)			(pTask->ulFlags & ITF_IN_DEBUG_CONTEXT)
-
 
 #ifdef IECTASK_USE_NO_ATOMIC_BITACCESS
 	#define SetVisuTask(pTask)			(pTask->ulFlags |= ITF_VISU_TASK)
@@ -548,18 +409,6 @@ typedef struct
 
 	#define SetInitOutputs(pTask)		(pTask->ulFlags |= ITF_INIT_OUTPUTS)
 	#define ResetInitOutputs(pTask)		(pTask->ulFlags &= ~ITF_INIT_OUTPUTS)
-
-	#define DisableEnterLock(pTask)		(pTask->ulFlags |= ITF_ENTER_LOCK)
-	#define EnableEnterLock(pTask)		(pTask->ulFlags &= ~ITF_ENTER_LOCK)
-
-	#define SetLeaveReaderLock(pTask)	(pTask->ulFlags |= ITF_LEAVE_READER_LOCK)
-	#define ResetLeaveReaderLock(pTask)	(pTask->ulFlags &= ~ITF_LEAVE_READER_LOCK)
-	
-	#define SetSuspendedByDebugTask(pTask)		(pTask->ulFlags |= ITF_SUSPENDED_BY_DEBUG_TASK)
-	#define ResetSuspendedByDebugTask(pTask)	(pTask->ulFlags &= ~ITF_SUSPENDED_BY_DEBUG_TASK)
-
-	#define SetInDebugContext(pTask)	(pTask->ulFlags |= ITF_IN_DEBUG_CONTEXT)
-	#define ResetInDebugContext(pTask)	(pTask->ulFlags &= ~ITF_IN_DEBUG_CONTEXT)
 #else
 	#define SetVisuTask(pTask)			CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_VISU_TASK, 1)
 
@@ -589,18 +438,6 @@ typedef struct
 
 	#define SetInitOutputs(pTask)		CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_INIT_OUTPUTS, 1)
 	#define ResetInitOutputs(pTask)		CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_INIT_OUTPUTS, 0)
-
-	#define DisableEnterLock(pTask)		CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_ENTER_LOCK, 1)
-	#define EnableEnterLock(pTask)		CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_ENTER_LOCK, 0)
-
-	#define SetLeaveReaderLock(pTask)	CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_LEAVE_READER_LOCK, 1)
-	#define ResetLeaveReaderLock(pTask)	CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_LEAVE_READER_LOCK, 0)
-	
-	#define SetSuspendedByDebugTask(pTask)		CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_SUSPENDED_BY_DEBUG_TASK, 1)
-	#define ResetSuspendedByDebugTask(pTask)	CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_SUSPENDED_BY_DEBUG_TASK, 0)
-
-	#define SetInDebugContext(pTask)	CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_IN_DEBUG_CONTEXT, 1)
-	#define ResetInDebugContext(pTask)	CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_IN_DEBUG_CONTEXT, 0)
 #endif
 
 /**
@@ -626,13 +463,11 @@ typedef struct tagTask_Desc
 	RTS_UI32 ulFlags;
 	int iWatchdogHitCount;
 	RTS_I32 iWatchdogDisable2Ref;
-#ifdef RTS_IECTASK_ENABLE_TASK_TRACE
+#ifdef RTS_ENABLE_TASK_TRACE	
 	RTS_HANDLE hTracePacket;
 	RTS_HANDLE hTraceRecord;
 #endif
 	SEHContext *pSEHContextHead;
-	RTS_I32 nEnterWriteLock;
-	RTS_HANDLE hRWLSync;
 } Task_Desc;
 
 typedef struct tagTASK_LIST
@@ -660,14 +495,6 @@ typedef struct
 	RTS_IEC_DINT nReturnValue;
 } sys_register_slot_pou_struct;
 
-typedef struct
-{
-    RTS_IEC_DWORD dwVersion;
-    RTS_IEC_STRING* pszGroupName;
-    RTS_IEC_DWORD dwTaskGroupOptions;
-    RTS_IEC_DINT diMaxCores;    /* maximum number of cores available in pdwCoreBits */
-    RTS_IEC_DWORD* pdwCoreBits; /* Pointer to an array of DWORDS containing the core bits */
-} TaskGroup_Info;
 
 /*------>>> Functions only for backward compatibility ----------*/
 /**
@@ -735,8 +562,6 @@ DEF_API(`void',`CDECL',`iectaskgetinfo',`(iectaskgetinfo_struct *p)',1,0)
 /*------<<< Functions only for backward compatibility  ----------*/
 
 
-
-
 /** EXTERN LIB SECTION BEGIN **/
 /*  Comments are ignored for m4 compiler so restructured text can be used. changecom(`/*', `*/') */
 
@@ -755,313 +580,11 @@ typedef struct tagJitter_Distribution
 } Jitter_Distribution;
 
 /**
- * Create a new IEC Task
- *
- * IEC Tasks itself are used by the scheduler of the runtime. They don't 
- * essentially need a corresponding OS task or timer. They might be handled
- * by the scheduler in a completely different way.
- *
- * .. note::
- *     | Task_Info2.dwEventFunctionPointer:
- *     | Function pointer to the event check routine in case Task_Info2.KindOfTask = TaskEvent
- *
- *     .. code-block:: codesys
- *
- *         FUNCTION CheckEvent : BOOL
- *         VAR_INPUT
- *         END_VAR
- *
- *         (* This function checks wether the event is triggered *)
- *         (* by returning TRUE: raising edge, status, etc. *)
- *
- *     | Task_Info2.dwTaskEntryFunctionPointer: 
- *     | Function pointer to the task code
- *
- *     .. code-block:: codesys
- *
- *         FUNCTION IecTaskCyclic : BOOL
- *         VAR_INPUT
- *             parameter : IEC_CYCLE_STRUCT;
- *         END_VAR
- *         VAR
- *             udiState : UDINT;
- *             hTask : RTS_IEC_HANDLE;
- *         END_VAR
- *
- *         (* ----- mandatory cyclic task frame code begin ----- *)
- *         udiState := parameter.pApplication^.udiState;
- *         hTask := parameter.hTaskHandle;
- *         IF udiState = AS_STOP THEN
- *             RETURN;
- *         END_IF
- *         IF parameter.pTaskInfo^.bWatchdog THEN
- *             IecTaskEnableWatchdog(hTask);
- *         END_IF
- *         (* ------ mandatory cyclic task frame code end ------ *)
- *
- * Error code:
- *     + ERR_OK: The new task was successfully created.
- *     + ERR_FAILED: There was an error in a subsystem (e.g. the scheduler could not allocate his task handle).
- *     + ERR_PARAMETER: Invalid application- or task info pointer
- *     + ERR_OUT_OF_LIMITS: Maximum number of Tasks reached (target specific)
- *     + ERR_NOMEMORY: Unable to allocate the memory, that is necessary for the task description    
- *
- * :return: Handle to newly created task
- */
-typedef struct tagiectaskcreate_struct
-{
-	APPLICATION *pApp;					/* VAR_INPUT */	/* Pointer to application that contains the task */
-	Task_Info *pTaskInfo;				/* VAR_INPUT */	/* Pointer to task information */
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to error code */
-	RTS_IEC_HANDLE IecTaskCreate;		/* VAR_OUTPUT */	
-} iectaskcreate_struct;
-
-DEF_API(`void',`CDECL',`iectaskcreate',`(iectaskcreate_struct *p)',1,0xAF209471,0x03050D00)
-
-/**
- * Delete an IEC task with timeout
- *
- * This function creates an asynchronous job to delete the IEC task with the given handle and timeout value.
- * When the asynchronous job is successfully created the function returns immediately with ERR_PENDING.
- * There is no indication wether the following deletion of the IEC task itself is successful. 
- *
- * .. note::
- *     Due to the asynchronous manner of the deletion a dynamically created IEC task may delete itself. 
- *
- * Error code:
- *     + ERR_PENDING: The asynchronous job to delete the IEC task was successfully created.
- *     + ERR_FAILED: The asynchronous job to delete the IEC task could not be created.
- *     + ERR_PARAMETER: Invalid task handle
- *     + ERR_NOT_SUPPORTED: asynchronous jobs are not supported
- *
- * :return: Error code 
- */
-typedef struct tagiectaskdelete2_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle to task */
-	RTS_IEC_UDINT ulTimeoutMs;			/* VAR_INPUT */	/* Timeout in milliseconds to wait for deleting the task. Some timeouts are predefined:
-     + RTS_TIMEOUT_DEFAULT: Use default wait time
-     + RTS_TIMEOUT_NO_WAIT: No wait */
-	RTS_IEC_RESULT IecTaskDelete2;		/* VAR_OUTPUT */	
-} iectaskdelete2_struct;
-
-DEF_API(`void',`CDECL',`iectaskdelete2',`(iectaskdelete2_struct *p)',1,0x8269275F,0x03050D00)
-
-/**
- * Disable scheduling for the specified task
- * :return: Returns the runtime system error code (see CmpErrors.library)
- */
-typedef struct tagiectaskdisablescheduling_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskDisableScheduling;	/* VAR_OUTPUT */	
-} iectaskdisablescheduling_struct;
-
-DEF_API(`void',`CDECL',`iectaskdisablescheduling',`(iectaskdisablescheduling_struct *p)',1,0xC3E3F168,0x03050D00)
-
-/**
- * Disable watchdog for the specified task
- *
- * .. note::
- *     - You have to enable the watchdog of the task with |IecTaskEnableWatchdog| and _not_ with |IecTaskEnableWatchdog2|, because they act on different task flags!
- *     - The watchdog is disabled only for the current cycle! At the next cycle, the watchod is automatically enabled!
- * :return: Returns the runtime system error code (see CmpErrors.library)
- *     + ERR_OK: The watchdog for the task was disabled
- *     + ERR_PARAMETER: The task handle was invalid
- */
-typedef struct tagiectaskdisablewatchdog_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskDisableWatchdog;	/* VAR_OUTPUT */	
-} iectaskdisablewatchdog_struct;
-
-DEF_API(`void',`CDECL',`iectaskdisablewatchdog',`(iectaskdisablewatchdog_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x2FF63495),0x03050D00)
-
-/**
- * Disable watchdog for the specified task
- *
- * .. note::
- *     - You have to enable the watchdog of the task with |IecTaskEnableWatchdog2| and _not_ with |IecTaskEnableWatchdog|, because they act on different task flags!
- *     - The watchdog is disabled until |IecTaskEnableWatchdog2| is called!!! So this is a security issue, if you never enable the watchdog!
- *     - As a consequence, you always have to call |IecTaskDisableWatchdog2| and |IecTaskEnableWatchdog2| symmetrical
- *     - Can be called nested. First call disables the watchdog.
- * :return: Returns the runtime system error code (see CmpErrors.library)
- *     + ERR_OK: The watchdog for the task was disabled
- *     + ERR_PARAMETER: The task handle was invalid
- */
-typedef struct tagiectaskdisablewatchdog2_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskDisableWatchdog2;	/* VAR_OUTPUT */	
-} iectaskdisablewatchdog2_struct;
-
-DEF_API(`void',`CDECL',`iectaskdisablewatchdog2',`(iectaskdisablewatchdog2_struct *p)',1,0x277BF3FE,0x03050D00)
-
-/**
- * Enable scheduling for one specified task
- * :return: Returns the runtime system error code (see CmpErrors.library)
- */
-typedef struct tagiectaskenablescheduling_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskEnableScheduling;	/* VAR_OUTPUT */	
-} iectaskenablescheduling_struct;
-
-DEF_API(`void',`CDECL',`iectaskenablescheduling',`(iectaskenablescheduling_struct *p)',1,0x4A96918C,0x03050D00)
-
-/**
- * Enable watchdog for the specified task
- *
- * .. note::
- *     - You have to disable the watchdog of the task before with |IecTaskDisableWatchdog| and _not_ with |IecTaskDisableWatchdog2|, because they act on different task flags!
- *     - The watchdog is enabled only at the next IEC cycle and _not_ immediately after calling this function!
- *     - If you disable with |IecTaskDisableWatchdog| and forgot to enable it, at least at the next cycle, the watchdog is automatically enabled!
- * :return: Returns the runtime system error code (see CmpErrors.library)
- *     + ERR_OK: The watchdog for the task was enabled
- *     + ERR_PARAMETER: The task handle was invalid
- */
-typedef struct tagiectaskenablewatchdog_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskEnableWatchdog;	/* VAR_OUTPUT */	
-} iectaskenablewatchdog_struct;
-
-DEF_API(`void',`CDECL',`iectaskenablewatchdog',`(iectaskenablewatchdog_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x1CDBB730),0x03050D00)
-
-/**
- * Enable watchdog for the specified task
- *
- * .. note::
- *     - You have to disable the watchdog of the task before with |IecTaskDisableWatchdog2| and _not_ with |IecTaskDisableWatchdog|, because they act on different task flags!
- *     - The watchdog is enabled only at the next IEC cycle and _not_ immediately after calling this function!
- *       But if you never enable the watchdog after calling |IecTaskDisableWatchdog2|, the watchdog is disabled forever!
- *     - As a consequence, you always have to call |IecTaskDisableWatchdog2| and |IecTaskEnableWatchdog2| symmetrical
- *     - Can be called nested. Last call enables the watchdog.
- * :return: Returns the runtime system error code (see CmpErrors.library)
- *     + ERR_OK: The watchdog for the task was enabled
- *     + ERR_PARAMETER: The task handle was invalid
- */
-typedef struct tagiectaskenablewatchdog2_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskEnableWatchdog2;	/* VAR_OUTPUT */	
-} iectaskenablewatchdog2_struct;
-
-DEF_API(`void',`CDECL',`iectaskenablewatchdog2',`(iectaskenablewatchdog2_struct *p)',1,0xE71D232F,0x03050D00)
-
-/**
- * Funktion to get own task handle
- * :return: Returns the current IEC task handle
- */
-typedef struct tagiectaskgetcurrent_struct
-{
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer that returns the runtime system error code (see CmpErrors.library) */
-	RTS_IEC_HANDLE IecTaskGetCurrent;	/* VAR_OUTPUT */	
-} iectaskgetcurrent_struct;
-
-DEF_API(`void',`CDECL',`iectaskgetcurrent',`(iectaskgetcurrent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xFD44B5CC),0x03050D00)
-
-/**
- * <description>iectaskgetdesc</description>
- */
-typedef struct tagiectaskgetdesc_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	
-	Task_Desc *IecTaskGetDesc;			/* VAR_OUTPUT */	
-} iectaskgetdesc_struct;
-
-DEF_API(`void',`CDECL',`iectaskgetdesc',`(iectaskgetdesc_struct *p)',1,0xCC23A789,0x03050D00)
-
-/**
- * Get the first IEC task in the specified application
- * :return: Returns the handle to the first IEC task
- */
-typedef struct tagiectaskgetfirst_struct
-{
-	RTS_IEC_STRING *pszAppName;			/* VAR_INPUT */	/* Application name */
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer that returns the runtime system error code (see CmpErrors.library) */
-	RTS_IEC_HANDLE IecTaskGetFirst;		/* VAR_OUTPUT */	
-} iectaskgetfirst_struct;
-
-DEF_API(`void',`CDECL',`iectaskgetfirst',`(iectaskgetfirst_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xD65D1BF9),0x03050D00)
-
-/**
- * OBSOLETE FUNCTION
- */
-typedef struct tagiectaskgetinfo2_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	Task_Info *IecTaskGetInfo2;			/* VAR_OUTPUT */	
-} iectaskgetinfo2_struct;
-
-DEF_API(`void',`CDECL',`iectaskgetinfo2',`(iectaskgetinfo2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6),0x03050D00)
-
-/**
- * Get the first IEC task in the specified application
- * :return: Returns the andle to the first IEC task 
- */
-typedef struct tagiectaskgetnext_struct
-{
-	RTS_IEC_STRING *pszAppName;			/* VAR_INPUT */	/* Application name */
-	RTS_IEC_HANDLE hPrevIecTask;		/* VAR_INPUT */	/* Handle to the previous task */
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer that returns the runtime system error code (see CmpErrors.library) */
-	RTS_IEC_HANDLE IecTaskGetNext;		/* VAR_OUTPUT */	
-} iectaskgetnext_struct;
-
-DEF_API(`void',`CDECL',`iectaskgetnext',`(iectaskgetnext_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xC2306FF5),0x03050D00)
-
-/**
- * <description>iectaskgetprofiling</description>
- */
-typedef struct tagiectaskgetprofiling_struct
-{
-	RTS_IEC_BOOL IecTaskGetProfiling;	/* VAR_OUTPUT */	
-} iectaskgetprofiling_struct;
-
-DEF_API(`void',`CDECL',`iectaskgetprofiling',`(iectaskgetprofiling_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x217F24B2),0x03050D00)
-
-/**
- * Reload a specified IEC task. Reload means here: Delete the task at the actual position and create it newly.
- * :return: Handle to the new created task
- */
-typedef struct tagiectaskreload_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle to the task to reload */
-	RTS_IEC_UDINT udiTimeoutMs;			/* VAR_INPUT */	/* Timeout in milliseconds to wait, until the task deleted itself. Timeout can be one of the following predefined values:
-     + RTS_TIMEOUT_DEFAULT: Default timeout to delete the task
-     + RTS_TIMEOUT_NO_WAIT: Immediate deletion of the task
- See Timeouts details. */
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to error code */
-	RTS_IEC_HANDLE IecTaskReload;		/* VAR_OUTPUT */	
-} iectaskreload_struct;
-
-DEF_API(`void',`CDECL',`iectaskreload',`(iectaskreload_struct *p)',1,0x796FC828,0x03050D00)
-
-/**
- * Reset the task statistics of a task (see Task_Info member e.g. dwCycleTime, dwAverageCycleTime, etc.)
- * :return: Returns the runtime system error code (see CmpErrors.library)
- */
-typedef struct tagiectaskresetstatistics_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskResetStatistics;	/* VAR_OUTPUT */	
-} iectaskresetstatistics_struct;
-
-DEF_API(`void',`CDECL',`iectaskresetstatistics',`(iectaskresetstatistics_struct *p)',1,0x6291DC5B,0x03050D00)
-
-#ifdef __cplusplus
-}
-#endif
-
-/** EXTERN LIB SECTION END **/
-
-/**
  * Task info
  * Task information out of the task configuration
  * Note for SIL2: This information is already inside of the data area, so we don't need to tag it as safe anywhere.
  */
-struct tagTask_Info
+typedef struct tagTask_Info
 {
 	RTS_IEC_DWORD dwVersion;		/* Version of the structure */
 	RTS_IEC_STRING *pszName;		/* Name of the task */
@@ -1093,11 +616,248 @@ struct tagTask_Info
 	RTS_IEC_BOOL bShouldBlock;		/* Declared in IEC and evaluated there starting with compiler 3.5.6; If TRUE, the task will not call it's POUs */
 	RTS_IEC_BOOL bActive;			/* Declared in IEC and evaluated there starting with compiler 3.5.6; Will be FALSE when the task is not active */
 	RTS_IEC_DWORD dwIECCycleCount;		/* Cycle counter for execution of user code */
-	RTS_IEC_INT nCoreConfigured;	/* Needed for backward compatability for V3.5.11.0 */
-	RTS_IEC_INT nCoreCurrent;		/* Needed for backward compatability for V3.5.11.0 */
-	TaskGroup_Info *pTaskGroup;		/* Pointer to task group description since V3.5.12.0 */
-    RTS_IEC_STRING *pszParentTaskName;		/* Name of the parent task if the type is TaskParentSync */
-};
+	RTS_IEC_INT nCoreConfigured;
+	RTS_IEC_INT nCoreCurrent;
+} Task_Info;
+
+/**
+ * Create a new IEC Task
+ *
+ * IEC Tasks itself are used by the scheduler of the runtime. They don't 
+ *   essentially need a corresponding OS task or timer. They might be handled
+ *   by the scheduler in a completely different way.
+ *
+ * Error code:
+ *    + ERR_OK: The new task was successfully created.
+ *    + ERR_FAILED: There was an error in a subsystem (e.g. the scheduler could not allocate his task handle).
+ *    + ERR_PARAMETER: Invalid application- or task info pointer
+ *    + ERR_OUT_OF_LIMITS: Maximum number of Tasks reached (target specific)
+ *    + ERR_NOMEMORY: Unable to allocate the memory, that is necessary for the task description    
+ *
+ * :return: Handle to newly created task
+ */
+typedef struct tagiectaskcreate_struct
+{
+	APPLICATION *pApp;					/* VAR_INPUT */	/* Pointer to application that contains the task */
+	Task_Info *pTaskInfo;				/* VAR_INPUT */	/* Pointer to task information */
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to error code */
+	RTS_IEC_HANDLE IecTaskCreate;		/* VAR_OUTPUT */	
+} iectaskcreate_struct;
+
+DEF_API(`void',`CDECL',`iectaskcreate',`(iectaskcreate_struct *p)',1,0xAF209471,0x03050800)
+
+/**
+ * Delete an IEC task with timeout
+ * :return: Error code 
+ */
+typedef struct tagiectaskdelete2_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle to task */
+	RTS_IEC_UDINT ulTimeoutMs;			/* VAR_INPUT */	/* Timeout in milliseconds to wait for deleting the task. Some timeouts are predefined:
+     + RTS_TIMEOUT_DEFAULT: Use default wait time
+     + RTS_TIMEOUT_NO_WAIT: No wait */
+	RTS_IEC_RESULT IecTaskDelete2;		/* VAR_OUTPUT */	
+} iectaskdelete2_struct;
+
+DEF_API(`void',`CDECL',`iectaskdelete2',`(iectaskdelete2_struct *p)',1,0x8269275F,0x03050800)
+
+/**
+ * Disable scheduling for the specified task
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ */
+typedef struct tagiectaskdisablescheduling_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskDisableScheduling;	/* VAR_OUTPUT */	
+} iectaskdisablescheduling_struct;
+
+DEF_API(`void',`CDECL',`iectaskdisablescheduling',`(iectaskdisablescheduling_struct *p)',1,0xC3E3F168,0x03050800)
+
+/**
+ * Disable watchdog for the specified task
+ *
+ * .. note::
+ *     - You have to enable the watchdog of the task with |IecTaskEnableWatchdog| and _not_ with |IecTaskEnableWatchdog2|, because they act on different task flags!
+ * - The watchdog is disabled only for the current cycle! At the next cycle, the watchod is automatically enabled!
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ *	+ ERR_OK: The watchdog for the task was disabled
+ *	+ ERR_PARAMETER: The task handle was invalid
+ */
+typedef struct tagiectaskdisablewatchdog_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskDisableWatchdog;	/* VAR_OUTPUT */	
+} iectaskdisablewatchdog_struct;
+
+DEF_API(`void',`CDECL',`iectaskdisablewatchdog',`(iectaskdisablewatchdog_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x2FF63495),0x03050800)
+
+/**
+ * Disable watchdog for the specified task
+ *
+ * .. note::
+ *     - You have to enable the watchdog of the task with |IecTaskEnableWatchdog2| and _not_ with |IecTaskEnableWatchdog|, because they act on different task flags!
+ *     - The watchdog is disabled until |IecTaskEnableWatchdog2| is called!!! So this is a security issue, if you never enable the watchdog!
+ *     - As a consequence, you always have to call |IecTaskDisableWatchdog2| and |IecTaskEnableWatchdog2| symmetrical
+ * - Can be called nested. First call disables the watchdog.
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ *	+ ERR_OK: The watchdog for the task was disabled
+ *	+ ERR_PARAMETER: The task handle was invalid
+ */
+typedef struct tagiectaskdisablewatchdog2_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskDisableWatchdog2;	/* VAR_OUTPUT */	
+} iectaskdisablewatchdog2_struct;
+
+DEF_API(`void',`CDECL',`iectaskdisablewatchdog2',`(iectaskdisablewatchdog2_struct *p)',1,0x277BF3FE,0x03050800)
+
+/**
+ * Enable scheduling for one specified task
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ */
+typedef struct tagiectaskenablescheduling_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskEnableScheduling;	/* VAR_OUTPUT */	
+} iectaskenablescheduling_struct;
+
+DEF_API(`void',`CDECL',`iectaskenablescheduling',`(iectaskenablescheduling_struct *p)',1,0x4A96918C,0x03050800)
+
+/**
+ * Enable watchdog for the specified task
+ *
+ * .. note::
+ *     - You have to disable the watchdog of the task before with |IecTaskDisableWatchdog| and _not_ with |IecTaskDisableWatchdog2|, because they act on different task flags!
+ * - The watchdog is enabled only at the next IEC cycle and _not_ immediately after calling this function!
+ *     - If you disable with |IecTaskDisableWatchdog| and forgot to enable it, at least at the next cycle, the watchdog is automatically enabled!
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ *	+ ERR_OK: The watchdog for the task was enabled
+ *	+ ERR_PARAMETER: The task handle was invalid
+ */
+typedef struct tagiectaskenablewatchdog_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskEnableWatchdog;	/* VAR_OUTPUT */	
+} iectaskenablewatchdog_struct;
+
+DEF_API(`void',`CDECL',`iectaskenablewatchdog',`(iectaskenablewatchdog_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x1CDBB730),0x03050800)
+
+/**
+ * Enable watchdog for the specified task
+ *
+ * .. note::
+ *     - You have to disable the watchdog of the task before with |IecTaskDisableWatchdog2| and _not_ with |IecTaskDisableWatchdog|, because they act on different task flags!
+ * - The watchdog is enabled only at the next IEC cycle and _not_ immediately after calling this function!
+ *       But if you never enable the watchdog after calling |IecTaskDisableWatchdog2|, the watchdog is disabled forever!
+ *     - As a consequence, you always have to call |IecTaskDisableWatchdog2| and |IecTaskEnableWatchdog2| symmetrical
+ * - Can be called nested. Last call enables the watchdog.
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ *	+ ERR_OK: The watchdog for the task was enabled
+ *	+ ERR_PARAMETER: The task handle was invalid
+ */
+typedef struct tagiectaskenablewatchdog2_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskEnableWatchdog2;	/* VAR_OUTPUT */	
+} iectaskenablewatchdog2_struct;
+
+DEF_API(`void',`CDECL',`iectaskenablewatchdog2',`(iectaskenablewatchdog2_struct *p)',1,0xE71D232F,0x03050800)
+
+/**
+ * Funktion to get own task handle
+ * :return: Returns the current IEC task handle
+ */
+typedef struct tagiectaskgetcurrent_struct
+{
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer that returns the runtime system error code (see CmpErrors.library) */
+	RTS_IEC_HANDLE IecTaskGetCurrent;	/* VAR_OUTPUT */	
+} iectaskgetcurrent_struct;
+
+DEF_API(`void',`CDECL',`iectaskgetcurrent',`(iectaskgetcurrent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xFD44B5CC),0x03050800)
+
+/**
+ * Get the first IEC task in the specified application
+ * :return: Returns the handle to the first IEC task
+ */
+typedef struct tagiectaskgetfirst_struct
+{
+	RTS_IEC_STRING *pszAppName;			/* VAR_INPUT */	/* Application name */
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer that returns the runtime system error code (see CmpErrors.library) */
+	RTS_IEC_HANDLE IecTaskGetFirst;		/* VAR_OUTPUT */	
+} iectaskgetfirst_struct;
+
+DEF_API(`void',`CDECL',`iectaskgetfirst',`(iectaskgetfirst_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xD65D1BF9),0x03050800)
+
+/**
+ * OBSOLETE FUNCTION
+ */
+typedef struct tagiectaskgetinfo2_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
+	Task_Info *IecTaskGetInfo2;			/* VAR_OUTPUT */	
+} iectaskgetinfo2_struct;
+
+DEF_API(`void',`CDECL',`iectaskgetinfo2',`(iectaskgetinfo2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6),0x03050800)
+
+/**
+ * Get the first IEC task in the specified application
+ * :return: Returns the andle to the first IEC task 
+ */
+typedef struct tagiectaskgetnext_struct
+{
+	RTS_IEC_STRING *pszAppName;			/* VAR_INPUT */	/* Application name */
+	RTS_IEC_HANDLE hPrevIecTask;		/* VAR_INPUT */	/* Handle to the previous task */
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer that returns the runtime system error code (see CmpErrors.library) */
+	RTS_IEC_HANDLE IecTaskGetNext;		/* VAR_OUTPUT */	
+} iectaskgetnext_struct;
+
+DEF_API(`void',`CDECL',`iectaskgetnext',`(iectaskgetnext_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xC2306FF5),0x03050800)
+
+/**
+ * <description>iectaskgetprofiling</description>
+ */
+typedef struct tagiectaskgetprofiling_struct
+{
+	RTS_IEC_BOOL IecTaskGetProfiling;	/* VAR_OUTPUT */	
+} iectaskgetprofiling_struct;
+
+DEF_API(`void',`CDECL',`iectaskgetprofiling',`(iectaskgetprofiling_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x217F24B2),0x03050800)
+
+/**
+ * Reload a specified IEC task. Reload means here: Delete the task at the actual position and create it newly.
+ * :return: Handle to the new created task
+ */
+typedef struct tagiectaskreload_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle to the task to reload */
+	RTS_IEC_UDINT udiTimeoutMs;			/* VAR_INPUT */	/* Timeout in milliseconds to wait, until the task deleted itself. Timeout can be one of the following predefined values:
+     + RTS_TIMEOUT_DEFAULT: Default timeout to delete the task
+     + RTS_TIMEOUT_NO_WAIT: Immediate deletion of the task
+     See Timeouts details. */
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to error code */
+	RTS_IEC_HANDLE IecTaskReload;		/* VAR_OUTPUT */	
+} iectaskreload_struct;
+
+DEF_API(`void',`CDECL',`iectaskreload',`(iectaskreload_struct *p)',1,0x796FC828,0x03050800)
+
+/**
+ * Reset the task statistics of a task (see Task_Info member e.g. dwCycleTime, dwAverageCycleTime, etc.)
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ */
+typedef struct tagiectaskresetstatistics_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskResetStatistics;	/* VAR_OUTPUT */	
+} iectaskresetstatistics_struct;
+
+DEF_API(`void',`CDECL',`iectaskresetstatistics',`(iectaskresetstatistics_struct *p)',1,0x6291DC5B,0x03050800)
+
+#ifdef __cplusplus
+}
+#endif
+
+/** EXTERN LIB SECTION END **/
 							  
 
 #ifdef __cplusplus
@@ -1115,7 +875,7 @@ extern "C" {
  * <p>The Task registers itself at the scheduler, by calling the function
  * SchedAddTask().</p>
  * <p>When the define RTS_COMPACT is set, no semaphores are used.</p>
- * <p>When the define RTS_SIL2 is set, no dynamic memory allocation and no core binding is used.</p>
+ * <p>When the define RTS_SIL2 is set, no dynamic memory allocation is used.</p>
  * </description>
  * <param name="pApp" type="IN" range="[NULL,VALID_APPLICATION]">Pointer to application that contains the task</param>
  * <parampseudo name="pApp.iId" type="IN" range="[0..APPL_NUM_OF_STATIC_APPLS-1,APPL_NUM_OF_STATIC_APPLS..INT_MAX]">Application ID</parampseudo>
@@ -1128,7 +888,6 @@ extern "C" {
  * <errorcode name="pResult" type="ERR_PARAMETER">Invalid application- or task info pointer</errorcode>
  * <errorcode name="pResult" type="ERR_OUT_OF_LIMITS">Maximum number of Tasks reached (target specific)</errorcode>
  * <errorcode name="pResult" type="ERR_NOMEMORY">Unable to allocate the memory, that is necessary for the task description</errorcode>
- * <errorcode name="pResult" type="ERR_LICENSE_MISSING">License for core binding is missing</errorcode>
  */
 DEF_CREATEITF_API(`RTS_HANDLE', `CDECL', `IecTaskCreate', `(APPLICATION *pApp, Task_Info *pTaskInfo, RTS_RESULT *pResult)')
 
@@ -1238,16 +997,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `IecTasksPrepareReset', `(APPLICATION *pApp, 
 DEF_ITF_API(`RTS_RESULT', `CDECL', `IecTasksResetDone', `(APPLICATION *pApp, int bResetOrigin)')
 
 /**
- * <description>Get the calculated timeout to wait for stop for specified application</description>
- * <param name="pApp" type="IN">Pointer to specified application</param>
- * <param name="pResult" type="OUT">Result of operation</param>
- * <errorcode name="pResult" type="ERR_OK">Timeout has been calculated successfully</errorcode>
- * <errorcode name="pResult" type="ERR_PARAMETER">Application is not valid</errorcode>
- * <result>calculated timeout</result>
- */
-DEF_ITF_API(`RTS_UI32', `CDECL', `IecTaskGetWaitForStopTimeout', `(APPLICATION *pApp, RTS_RESULT *pResult)')
-
-/**
  * <description>Wait, if all Iec-Tasks has recognized the stop status of the application</description>
  * <param name="pApp" type="IN">Pointer to specified application</param>
  * <param name="ulTimeoutMs" type="IN">Timeout in milliseconds to wait for stop.
@@ -1258,7 +1007,7 @@ DEF_ITF_API(`RTS_UI32', `CDECL', `IecTaskGetWaitForStopTimeout', `(APPLICATION *
  *		<li>RTS_TIMEOUT_NO_WAIT: No wait</li>
  *	</ul>
  * </param>
- * <param name="ulStopReason" type="IN">See corresponding category "Stop reason" in CmpAppItf.h and additionally "Stop reason option" in this file.</param>
+ * <param name="ulStopReason" type="IN">Stop reason. See corresponding category in CmpAppItf.h</param>
  * <result>Error code</result>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `IecTasksWaitForStop', `(APPLICATION *pApp, RTS_UI32 ulTimeoutMs, unsigned long ulStopReason)')
@@ -1287,7 +1036,7 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `IecTaskEnterExclusiveSection',`(void)')
 DEF_ITF_API(`RTS_RESULT', `CDECL', `IecTaskLeaveExclusiveSection',`(void)')
 
 /**
- * <description>Enter an exclusive section.
+ * <description>Enter an exolusive section.
  *	After this call, no IEC task will be rescheduled of the specified application, if it is not already running.
  *	Each call must be matched with a call to TaskLeaveExclusiveSection.
  * </description>
@@ -1296,20 +1045,7 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `IecTaskLeaveExclusiveSection',`(void)')
 DEF_ITF_API(`RTS_RESULT', `CDECL', `IecTaskEnterExclusiveSection2',`(APPLICATION *pApp)')
 
 /**
- * <description>Try to enter an exclusive section.
- *	If the exclusive section can not be entered within the specified timeout, it depends on the bForceEnter flag what happens:
- *	- FALSE: ERR_FAILED is returned.
- *	- TRUE: Other tasks belonging to that application are successively suspended and their lock is released, while the try to enter the exclusive section is repeated.
- *	Each call must be matched with a call to TaskLeaveExclusiveSection.
- * </description>
- * <errorcode name="RTS_RESULT" type="ERR_OK">The exclusive section could be entered successfully</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">The exclusive section could not be entered.</errorcode>
- * <result>Error code</result>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `IecTaskTryEnterExclusiveSection2',`(APPLICATION *pApp, RTS_UI32 timeoutMs, RTS_BOOL bForceEnter)')
-
-/**
- * <description>Leave an exclusive section of the specified application, that has been entered by TaskEnterExclusiveSection or IecTaskTryEnterExclusiveSection2</description>
+ * <description>Leave an exclusive section of the specified application, that has been entered by TaskEnterExclusiveSection</description>
  * <result>Error code</result>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `IecTaskLeaveExclusiveSection2',`(APPLICATION *pApp)')
@@ -1561,7 +1297,7 @@ DEF_ITF_API(`Task_Desc *',`CDECL',`IecTaskGetByIndex',`(APPLICATION* pApp, int i
  * <param name="pResult" type="OUT">Pointer to error code</param>
  * <result>Handle to the task or RTS_INVALID_HANDLE if failed</result>
  */
-DEF_ITF_API_OWNCPP(`RTS_HANDLE',`CDECL',`IecTaskGetHandleByIndex',`(APPLICATION* pApp, int iIndex, RTS_RESULT *pResult)')
+DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecTaskGetHandleByIndex',`(APPLICATION* pApp, int iIndex, RTS_RESULT *pResult)')
 
 /**
  * <description>Returns task handle of the task specified by its unique Id</description>
@@ -1755,7 +1491,7 @@ DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecTaskGetNext',`(char *pszAppName, RTS_HANDLE
  * <errorcode name="pResult" type="ERR_NOTINITIALIZED">Component was not initialized</errorcode>
  * <result>Handle to the task or RTS_INVALID_HANDLE if failed</result>
  */
-DEF_ITF_API_OWNCPP(`RTS_HANDLE',`CDECL',`IecTaskGetFirst2',`(APPLICATION *pApp, RTS_RESULT *pResult)')
+DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecTaskGetFirst2',`(APPLICATION *pApp, RTS_RESULT *pResult)')
 
 /**
  * <description>
@@ -1773,7 +1509,7 @@ DEF_ITF_API_OWNCPP(`RTS_HANDLE',`CDECL',`IecTaskGetFirst2',`(APPLICATION *pApp, 
  * <errorcode name="pResult" type="ERR_NOTINITIALIZED">The component was not correctly initialized</errorcode>
  * <result>Handle to the task or RTS_INVALID_HANDLE if failed</result>
  */
-DEF_ITF_API_OWNCPP(`RTS_HANDLE',`CDECL',`IecTaskGetNext2',`(APPLICATION *pApp, RTS_HANDLE hPrevIecTask, RTS_RESULT *pResult)')
+DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecTaskGetNext2',`(APPLICATION *pApp, RTS_HANDLE hPrevIecTask, RTS_RESULT *pResult)')
 
 /**
  * <description>Reload a specified IEC task. Reload means here: Delete the task at the actual position and create it newly.</description>
@@ -1833,54 +1569,6 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`IecTaskSingleCycle',`(APPLICATION *pApp)')
  * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Application name was NULL</errorcode>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `IecTaskResetStatistics', `(RTS_HANDLE hIecTask)')
-
-/**
- * <description>Is called entering the debug handler, if an IEC task is halted on a breakpoint</description>
- * <param name="hIecTask" type="IN">Handle to the task, which enters the debug handler</param>
- * <result>Error code</result>
- */
-DEF_HANDLEITF_API(`RTS_RESULT',`CDECL',`IecTaskDebugHandlerEnter',`(RTS_HANDLE hIecTask)')
-
-/**
- * <description>Is called leaving the debug handler, if an IEC task is leaving a breakpoint</description>
- * <param name="hIecTask" type="IN">Handle to the task, which leaves the debug handler</param>
- * <result>Error code</result>
- */
-DEF_HANDLEITF_API(`RTS_RESULT',`CDECL',`IecTaskDebugHandlerLeave',`(RTS_HANDLE hIecTask)')
-
-/**
- * <description>
- *	<p>Call an IEC function from plain C code. 
- *	Since different CPU's/systems use different calling conventions, this function 
- *	should be used as a wrapper.</p>
- *
- * <p>ATTENTION: Instead of SysCpuCallIecFuncWithParams() this function is synchronized against an OnlineChange of the corresponding IEC application!!</p>
- *
- *  <p>IEC functions or methods of function block use all the same calling convention:
- *	They have no return value and exactly one parameter, which is a pointer to a struct that contains all required
- *  IN and OUT parameters.</p>
- *
- *	<p>IMPLEMENTATION NOTE: The content of the parameter structure must be copied completely on the stack as 
- *	an input parameter! Don't copy only the pointer! Because of this, the size of the structure is provided as a 
- *	separate parameter to this function. Additionally, the structure of the IEC function must be copied back into the
- *	give parameter to return result values of the IEC function! For all this operations you have to ensure the stack
- *  alignment, but avoid copying more bytes than iSize</p>
- *
- *	<p>IMPLEMENTATION NOTE:
- *	Unused parameter pParam can be NULL, if function has no argument and no result (e.g. CodeInit)!
- *	</p>
- * </description>
- * <param name="hIecTask" type="IN">IecTask handle from the calling IEC task or RTS_INVALID_HANDLE, if it is a non IEC task!</param>
- * <param name="pApp" type="IN">Pointer to the application, in which the pfIECFunc is residing!</param>
- * <param name="pfIECFunc" type="IN" range="[NULL,VALID_IEC_FUNC,INVALID_IEC_FUNC]">Pointer to the IEC function that should be called</param>
- * <param name="pParam" type="INOUT" range="[NULL,VALID_PARAMETER]">Pointer to the parameter struct that contains the function parameters. ATTENTION: Can be NULL!</param>
- * <param name="iSize" type="IN" range="[0,VALID_SIZE]">Size of the parameter structure to copy the content on stack. ATTENTION: Can be 0!</param>
- * <errorcode name="RTS_RESULT Result" type="ERR_OK">Parameter check was successfull and pfIECFunc was called</errorcode>
- * <errorcode name="RTS_RESULT Result" type="ERR_PARAMETER">pfIECFunc is NULL or for a paramter size > 0 pParam is NULL</errorcode>
- * <errorcode name="RTS_RESULT Result" type="ERR_NOTIMPLEMENTED">Function is not implemented</errorcode>
- * <result>error code</result>
- */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`IecTaskCallIecFuncWithParams',`(RTS_HANDLE hIecTask, APPLICATION *pApp, RTS_VOID_FCTPTR pfIECFunc, void* pParam, int iSize)')
 
 #ifdef __cplusplus
 }

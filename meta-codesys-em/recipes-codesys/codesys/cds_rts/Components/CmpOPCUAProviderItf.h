@@ -2,9 +2,7 @@
  * <interfacename>CmpOPCUAServer</interfacename>
  * <description></description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
  
 /*
@@ -34,30 +32,6 @@
 
 /* OPC UA Stack header files */
 #include "opcua.h"
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>Use the nodename of the PLC instead of the device name as display name of the PLC node within the OPC UA namespace.
- * Note: This setting will be used by the CmpOPCUAPROVIDERIecVarAccess.</description>
- */
-#define CMPOPCUAPROVIDERIECVARACCESS_KEY_USE_NODENAME               "UseNodeName"
-#ifndef CMPOPCUAPROVIDERIECVARACCESS_VALUE_USE_NODENAME_DEFAULT
-    #define CMPOPCUAPROVIDERIECVARACCESS_VALUE_USE_NODENAME_DEFAULT		0
-#endif
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>Use the CODESYS node name of the PLC instead of the device name for node ids within the OPC UA namespace.
- * This will also change the browse name and display name of the PLC node.
- * Note: This setting will be used by the CmpOPCUAPROVIDERIecVarAccess. After changing the node name 
- * (either by CODESYS or by the PLCHandler) a restart of the PLC is required to update all node ids.</description>
- */
-#define CMPOPCUAPROVIDERIECVARACCESS_KEY_USE_NODENAME_FORIDS               "UseNodeNameForNodeIds"
-#ifndef CMPOPCUAPROVIDERIECVARACCESS_VALUE_USE_NODENAME_FORIDS_DEFAULT
-    #define CMPOPCUAPROVIDERIECVARACCESS_VALUE_USE_NODENAME_FORIDS_DEFAULT		0
-#endif
 
 /**
  * <category>viewservices</category>
@@ -794,8 +768,8 @@ typedef struct _OpcUaProvider_Info
 	OpcUa_UInt32 providerInterfaceSize;
 	OpcUa_UInt32 providerVersion;
 	OpcUa_String providerName;
+
 	RTS_HANDLE hProvider;
-    CMPID cmpId;                /* Added with V3.5.12.0 */
 
 } OpcUaProvider_Info;
 

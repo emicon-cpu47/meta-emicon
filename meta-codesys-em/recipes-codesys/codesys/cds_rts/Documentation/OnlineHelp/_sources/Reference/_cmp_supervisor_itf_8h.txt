@@ -11,10 +11,6 @@ CmpSupervisorItf.h File Reference
 Data Structures
 ---------------
 
-- struct :ref:`EVTPARAM_CmpSupervisor_StateChanged <struct_e_v_t_p_a_r_a_m___cmp_supervisor___state_changed>`
-
-- struct :ref:`tagSupervisorInstance <structtag_supervisor_instance>`
-
 - struct :ref:`tagSupervisorEntry <structtag_supervisor_entry>`
 
 - struct :ref:`tagSupervisorState <structtag_supervisor_state>`
@@ -34,8 +30,6 @@ Data Structures
 - struct :ref:`tagsupervisoroperationgetnext_struct <structtagsupervisoroperationgetnext__struct>`
 
 - struct :ref:`tagsupervisoroperationgetstate_struct <structtagsupervisoroperationgetstate__struct>`
-
-- struct :ref:`tagsupervisoroperationgetstate2_struct <structtagsupervisoroperationgetstate2__struct>`
 
 - struct :ref:`tagsupervisoroperationregister_struct <structtagsupervisoroperationregister__struct>`
 
@@ -60,22 +54,12 @@ Macros
 
 - #define :ref:`RTS_SUPERVISOR_FLAG_RESET_NECESSARY <group___cmp_supervisor_itf___supervisorflags_1gabf6d7d6433ba44fda7f4196d7828b76a>` 0x00000001
 
-- #define :ref:`RTS_SUPERVISOR_FLAG_WATCHDOG <group___cmp_supervisor_itf___supervisorflags_1ga3d744812f6ff07bd423588cd95901102>` 0x00010000
-
-- #define :ref:`EVTPARAMID_CmpSupervisor_StateChanged <group___cmp_supervisor_itf___eventparameter_1ga31b3c73939c613b2ceddf866428286e6>` 0x0001
-
-- #define :ref:`EVTVERSION_CmpSupervisor_StateChanged <group___cmp_supervisor_itf___eventparameter_1ga67e4939df3b7d1443b94ef9494c91333>` 0x0001
-
-- #define :ref:`EVT_Supervisor_StateChanged <group___cmp_supervisor_itf___events_1ga8cb8f1e14e24463eb772a4e05a63612b>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
-
 - #define :ref:`ITF_CmpSupervisor <group___cmp_supervisor_itf_1ga5ef77c4264ec564be325cf64b1c22647>`
 
 - #define :ref:`EXTITF_CmpSupervisor <group___cmp_supervisor_itf_1ga0430ec3a9357ebefd47ee79248d82641>`
 
 Typedefs
 --------
-
-- typedef struct :ref:`tagSupervisorInstance <structtag_supervisor_instance>` :ref:`SupervisorInstance <group___cmp_supervisor_itf_1gad27ca62deb757661318372b7a906b11a>`
 
 - typedef struct :ref:`tagSupervisorEntry <structtag_supervisor_entry>` :ref:`SupervisorEntry <group___cmp_supervisor_itf_1gac2f1c534073a2587fbc7a26c27aef946>`
 
@@ -96,8 +80,6 @@ Typedefs
 - typedef struct :ref:`tagsupervisoroperationgetnext_struct <structtagsupervisoroperationgetnext__struct>` :ref:`supervisoroperationgetnext_struct <group___cmp_supervisor_itf_1ga51e0dca475cf46c8ba5f68e5780ed0eb>`
 
 - typedef struct :ref:`tagsupervisoroperationgetstate_struct <structtagsupervisoroperationgetstate__struct>` :ref:`supervisoroperationgetstate_struct <group___cmp_supervisor_itf_1ga8f0e2a222bbbf233fb746032a117cb03>`
-
-- typedef struct :ref:`tagsupervisoroperationgetstate2_struct <structtagsupervisoroperationgetstate2__struct>` :ref:`supervisoroperationgetstate2_struct <group___cmp_supervisor_itf_1ga9968531ccfc5eff6e58ee37c0cf039c7>`
 
 - typedef struct :ref:`tagsupervisoroperationregister_struct <structtagsupervisoroperationregister__struct>` :ref:`supervisoroperationregister_struct <group___cmp_supervisor_itf_1ga9b1de9a499b8d381eb8072d6af47034d>`
 
@@ -126,8 +108,6 @@ Functions
 
 - void :ref:`supervisoroperationgetstate <group___cmp_supervisor_itf_1ga89c18ac1b9a24f1a03f23dcfe1b99e57>` (:ref:`supervisoroperationgetstate_struct <group___cmp_supervisor_itf_1ga8f0e2a222bbbf233fb746032a117cb03>` * p)
 
-- void :ref:`supervisoroperationgetstate2 <group___cmp_supervisor_itf_1ga8d4dcc422dea19a988f7c58d4d0945d6>` (:ref:`supervisoroperationgetstate2_struct <group___cmp_supervisor_itf_1ga9968531ccfc5eff6e58ee37c0cf039c7>` * p)
-
 - void :ref:`supervisoroperationregister <group___cmp_supervisor_itf_1gadfdc987827d52f9ab2a80b6d4d618e45>` (:ref:`supervisoroperationregister_struct <group___cmp_supervisor_itf_1ga9b1de9a499b8d381eb8072d6af47034d>` * p)
 
 - void :ref:`supervisoroperationsettimeout <group___cmp_supervisor_itf_1ga68be5d31b40e8056a7fef4870f179d97>` (:ref:`supervisoroperationsettimeout_struct <group___cmp_supervisor_itf_1ga630622d790bf644a619f30a68248d17d>` * p)
@@ -139,8 +119,6 @@ Functions
 - RTS_RESULT :ref:`SupervisorOperationUnregister <group___cmp_supervisor_itf_1ga9e06546fdd64023fb60462bf5bdc44b7>` (RTS_HANDLE hOperation)
 
 - :ref:`SupervisorState <group___cmp_supervisor_itf_1ga8287bdd1cf976595e1a9d736d2d67edf>` * :ref:`SupervisorOperationGetState <group___cmp_supervisor_itf_1gacdec02d481b824d9717baa21365c9f3c>` (RTS_RESULT * pResult)
-
-- RTS_RESULT :ref:`SupervisorOperationGetState2 <group___cmp_supervisor_itf_1gae5bbfb7a4b6b5a024a3e5d6de4af17b7>` (:ref:`SupervisorState <group___cmp_supervisor_itf_1ga8287bdd1cf976595e1a9d736d2d67edf>` * pSupervisorState)
 
 - RTS_HANDLE :ref:`SupervisorOperationGetFirst <group___cmp_supervisor_itf_1ga3cbf7aa4cb85263deb0877fa2bafc503>` (RTS_RESULT * pResult)
 
@@ -158,12 +136,10 @@ Functions
 
 - RTS_RESULT :ref:`SupervisorOperationSetTimeout <group___cmp_supervisor_itf_1gae23842f61fa651d1d954652952667cce>` (RTS_HANDLE hOperation, :ref:`RTS_SYSTIME <group___sys_time_itf_1ga10c9d9a4c57129d83432fb02923858bf>`  stTimeoutUs)
 
-- RTS_HANDLE :ref:`SupervisorOperationGet <group___cmp_supervisor_itf_1gaa11f7969bc152187cb3554397dd5926a>` (RTS_UI32 ui32OperationID, RTS_UI32 cmpId, RTS_RESULT * pResult)
-
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpSupervisorItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpSupervisorItf.h
 
  
 .. last line of file.rst template

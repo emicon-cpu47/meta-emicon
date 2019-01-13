@@ -39,14 +39,12 @@
  *     - USERDB_RIGHT_VIEW: Only view rights on the object. Object cannot be modified in any case!
  *     - USERDB_RIGHT_MODIFY: Object can be viewed and modified
  *     - USERDB_RIGHT_EXECUTE: Object can be executed
- *     - USERDB_RIGHT_ADD_REMOVE: It is allowed to add and remove objects or subobjects
+ *     - USERDB_RIGHT_ADD_REMOVE_CHILDS: It is allowed to add and remove subobjects
  *     - USERDB_RIGHT_ALL: All rights allowed on the object
  *
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpUserMgr')
@@ -209,18 +207,6 @@ REF_ITF(`CmpDeviceItf.m4')
 
 /**
  * <category>Online tags</category>
- * <description>Used rights</description>
- */
-#define TAG_USED_RIGHTS								0x0E
-
-/**
- * <category>Online tags</category>
- * <description>Version of Online User Manager</description>
- */
-#define TAG_USRMGR_VERSION							0x0F
-
-/**
- * <category>Online tags</category>
  * <description>Contains user information</description>
  */
 #define TAG_USER									0x81
@@ -273,163 +259,28 @@ typedef struct
 #define USERDB_OBJECT_USERMGMT		"Device.UserManagement"
 
 
-/**
- * <category>Event parameter</category>
- * <element name="bUserManagementChanged" type="IN">TRUE: Usermanagement database changed; FALSE: Not changed</element>
- * <element name="bRightsManagementChanged" type="IN">TRUE: Rightsmanagement database changed; FALSE: Not changed</element>
- */
-typedef struct
-{
-	RTS_BOOL bUserManagementChanged;
-	RTS_BOOL bRightsManagementChanged;
-} EVTPARAM_CmpUserMgrDatabaseChanged;
-
-#define EVTPARAMID_CmpUserMgrDatabaseChanged	0x0001
-#define EVTVERSION_CmpUserMgrDatabaseChanged	0x0001
-
-/**
- * <category>Events</category>
- * <description>Event is sent every time the usermanagement database or the userrights database was changed</description>
- * <param name="pEventParam" type="IN">EVTPARAM_CmpUserMgrDatabaseChanged</param>
- */
-#define EVT_UserMgrDatabaseChanged		MAKE_EVENTID(EVTCLASS_INFO, 1)
-
-/**
- * <category>Static defines</category>
- * <description>Number of unsuccessful login retries to limit failed user authentication
- * In case USERMGR_NUM_OF_LOGIN_RETRIES is set to 0 this security feature is disabled.
- * </description>
- */
-#ifndef USERMGR_NUM_OF_LOGIN_RETRIES
-	#define USERMGR_NUM_OF_LOGIN_RETRIES			3
-#endif
-
-/**
- * <category>Static defines</category>
- * <description>Timeout after USERMGR_NUM_OF_LOGIN_RETRIES unsuccessful login tries in seconds, i.e. the user is temporarily excluded
- * The maximal timeout value for user exclusion is 4233600 seconds which is equivalent to 49 days. But this is not persistent, i.e. a restart of the runtime resets the exclusion.
- * </description>
- */
-#ifndef USERMGR_TIMEOUT_OF_LOGIN_RETRIES
-	#define USERMGR_TIMEOUT_OF_LOGIN_RETRIES		60
-#endif
-
-/**
- * <category>SecuritySettings</category>
- * <description>Security settings of the behavior when login authentication fails.
- * </description>
- * <element name="UserMgrLoginErr_NoExclusion" type="OUT">No user exclusion</element>
- * <element name="UserMgrLoginErr_Timeout" type="OUT">User is excluded temporarily [DEFAULT]</element>
- * <element name="UserMgrLoginErr_Exclusion" type="OUT">User is excluded permanently [HIGHEST SECURITY LEVEL]</element>
- */
-typedef enum
-{
-	UserMgrLoginErr_NoExclusion,
-	UserMgrLoginErr_Timeout,
-	UserMgrLoginErr_Exclusion
-} SecurityUserMgrLoginErr;
-
-/**
- * <category>SecuritySettings</category>
- * <description>Security settings of the behavior when login authentication fails. Can be selected in CmpSecurityManager.
- *	NOTE:
- *		Security modes must be ordered in an descending sorting, i.e. the setting with the highest security level is found at the beginning of the list!
- * </description>
- */
-#define CMPUSERMGR_SECURITY_LOGIN		{ \
-	{(RTS_I32)UserMgrLoginErr_Exclusion, CMPSECMAN_FLAGS_NONE, "UserMgrLoginErr_Exclusion", "User is excluded permanently [HIGHEST SECURITY LEVEL]"},\
-	{(RTS_I32)UserMgrLoginErr_Timeout, CMPSECMAN_FLAGS_DEFAULT, "UserMgrLoginErr_Timeout", "User is excluded temporarily [DEFAULT]"},\
-	{(RTS_I32)UserMgrLoginErr_NoExclusion, CMPSECMAN_FLAGS_NONE, "UserMgrLoginErr_NoExclusion", "No user exclusion"},\
-}
-
-#define CMPUSERMGR_SECURITY_ID_LOGIN 0
-
-/**
- * <category>SecuritySettings</category>
- * <description>Editable security setting: Maximal number of failed login retries
- * </description>
- */
-#define CMPUSERMGR_SECURITY_MAXRETRIES	{ CMPSECMAN_FLAGS_INTSETTING | CMPSECMAN_FLAGS_EDITABLESETTING, "UserMgrLoginErr_MaxRetries", "Maximal number of failed login retries", { USERMGR_NUM_OF_LOGIN_RETRIES } }
-
-#define CMPUSERMGR_SECURITY_ID_MAXRETRIES 1
-
-/**
- * <category>SecuritySettings</category>
- * <description>Editable security setting: Exclusion timeout in seconds in case the maximal number of failed login retries is reached
- * </description>
- */
-#define CMPUSERMGR_SECURITY_TIMEOUT		{ CMPSECMAN_FLAGS_INTSETTING | CMPSECMAN_FLAGS_EDITABLESETTING, "UserMgrLoginErr_Timeout", "Exclusion timeout [s]", { USERMGR_TIMEOUT_OF_LOGIN_RETRIES } }
-
-#define CMPUSERMGR_SECURITY_ID_TIMEOUT 2
-
-/**
- * <category>SecuritySettings</category>
- * <description>Security settings to enforce the usage of the user management.
- * </description>
- * <element name="UserMgrOptional" type="OUT">User management is optional [DEFAULT]</element>
- * <element name="UserMgrEnforced" type="OUT">User management is enforced, i.e. no anonymous login possible [HIGHEST SECURITY LEVEL]</element>
- */
-typedef enum
-{
-	UserMgrOptional,
-	UserMgrEnforced
-} SecurityUserMgrEnforce;
-
-/**
- * <category>SecuritySettings</category>
- * <description>Security settings to enforce the usage of the user management.
- *	NOTE:
- *		Security modes must be ordered in an descending sorting, i.e. the setting with the highest security level is found at the beginning of the list!
- * </description>
- */
-#define CMPUSERMGR_SECURITY_ENFORCE		{ \
-	{(RTS_I32)UserMgrEnforced, CMPSECMAN_FLAGS_NONE, "UserMgrEnforced", "User management is enforced, i.e. no anonymous login possible [HIGHEST SECURITY LEVEL]"},\
-	{(RTS_I32)UserMgrOptional, CMPSECMAN_FLAGS_DEFAULT, "UserMgrOptional", "User management is optional [DEFAULT]"}\
-}
-
-#define CMPUSERMGR_SECURITY_ID_ENFORCE 3
-
-/**
- * <category>User state</category>
- * <description>The bit definitions for UserMgrGetState
- * </description>
- * <element name="USERMGR_US_NONE" type="The user is known</element>
- * <element name="USERMGR_US_LOGGEDIN" type="OUT">The user has successfully logged in</element>
- * <element name="USERMGR_US_AUTHENTICATED" type="OUT">The user is authenticated e.g. by password verification</element>
- */
-#define USERMGR_US_NONE				UINT32_C(0x00000000)
-#define USERMGR_US_LOGGEDIN			UINT32_C(0x00000001)
-#define USERMGR_US_AUTHENTICATED	UINT32_C(0x00000002)
-
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /**
- * <description>Login user on the usermanagement
- * NOTE: The returned handle is not compatible with a handle from the UserDB, and these handles must not be mixed.
- * </description>
+ * <description>Login user on the usermanagement</description>
  * <param name="pszUser" type="IN">Name of the user</param>
  * <param name="pResult" type="OUT">Pointer to error code</param>
  * <errorcode name="RTS_RESULT" type="ERR_OK">User is available</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">If pszUser is NULL</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The user management is not initialized or it is not loaded yet</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_NO_OBJECT or ERR_PARAMETER">The user is not available in the user management</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOMEMORY">Could not store user information</errorcode>
  * <result>Handle to the user or RTS_INVALID_HANDLE if not available</result>
  */
 DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserMgrLogin', `(char *pszUser, RTS_RESULT *pResult)')
 
 /**
- * <description>Logout specified by User
- * NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.
- * </description>
+ * <description>Logout specified by User</description>
  * <param name="hUser" type="IN">Handle to the user</param>
  * <result>Error code</result>
  * <errorcode name="RTS_RESULT" type="ERR_OK">User is available and logout succeeded</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">If user is not avilable</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">hUser is invalid or unknown</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">If user is not avilable or hUser is RTS_INVALID_HANDLE</errorcode>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrLogout', `(RTS_HANDLE hUser)')
 
@@ -439,62 +290,19 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrLogout', `(RTS_HANDLE hUser)')
  * <result>Error code</result>
  * <errorcode name="RTS_RESULT" type="ERR_OK">SessionID or user is available and logout succeeded</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">If SessionID or user is not avilable</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">Related user handle of the session is invalid or unknown</errorcode>
  */
  DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrLogoutBySessionId', `(RTS_UI32 ulSessionId)')
 
 /**
- * <description>Check user password against credentials (authentication)!
- * NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.
- * </description>
+ * <description>Check user password against credentials (authentication)!</description>
  * <param name="hUser" type="IN">Handle to the user</param>
  * <param name="pszPassword" type="IN">Pointer to the cleartext password!</param>
  * <result>Error code</result>
  * <errorcode name="RTS_RESULT" type="ERR_OK">User is available</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">If user is not avilable</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">If user is not avilable or hUser is RTS_INVALID_HANDLE</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_FAILED">If user password does not match credentials</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">hUser is invalid or unknown</errorcode>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrCheckPassword', `(RTS_HANDLE hUser, char *pszPassword)')
-
-/**
- * <description>Get properties of a user
- * NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.
- * </description>
- * <param name="hUser" type="IN">Handle to the user</param>
- * <param name="pulProperty" type="OUT">Pointer to return the properties. For details see category "UserDB properties"</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Properties could be retrieved</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Property pointer = NULL</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">hUser is invalid or unknown</errorcode>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrGetProperty', `(RTS_HANDLE hUser, RTS_UI32 *pulProperty)')
-
-/**
- * <description>Check if the a user is a member of the given group
- * NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.
- * </description>
- * <param name="pszGroup" type="IN">Group name</param>
- * <param name="hUser" type="IN">Handle to the user</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">The user is a member of the given group</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">The user is not a member of the given group</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">hUser is invalid or unknown</errorcode>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrIsGroupMember', `(char *pszGroup, RTS_HANDLE hUser)')
-
-/**
- * <description>Returns the user state
- * The returned bitfield shows whether the user is logged in and is authenticated (see category User state)
- * NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.
- * </description>
- * <param name="hUser" type="IN">Handle to the user</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>User state</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Success</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">hUser is invalid or unknown</errorcode>
- */
-DEF_ITF_API(`RTS_UI32', `CDECL', `UserMgrGetState', `(RTS_HANDLE hUser, RTS_RESULT *pResult)')
 
 /**
  * <description>Check user access rights on the specified object (authorization)!</description>
@@ -506,7 +314,6 @@ DEF_ITF_API(`RTS_UI32', `CDECL', `UserMgrGetState', `(RTS_HANDLE hUser, RTS_RESU
  * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">If SessionID or user is not avilable or the object does not exist</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_FAILED">If something failed retrieving the access rights</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_NO_ACCESS_RIGHTS">Explicitly denied rights</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">Related user handle of the session is invalid or unknown</errorcode>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrHasAccessRights', `(char *pszObject, RTS_UI32 ulSessionId, RTS_UI32 ulRequestedRights)')
 
@@ -523,30 +330,24 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrHasAccessRights', `(char *pszObject, 
  * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">If SessionID or user is not avilable or the object does not exist</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_FAILED">If something failed retrieving the access rights</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_NO_ACCESS_RIGHTS">Explicitly denied rights</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">Related user handle of the session is invalid or unknown</errorcode>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrGetAccessRights', `(char *pszObject, RTS_UI32 ulSessionId, RTS_UI32 *pulRights, RTS_UI32 *pulDeniedRights)')
 
 /**
- * <description>Check user access rights on the specified object (authorization)!
- * NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.
- * </description>
+ * <description>Check user access rights on the specified object (authorization)!</description>
  * <param name="pszObject" type="IN">Full object name (see object tree)</param>
  * <param name="hUser" type="IN">Handle to the user</param>
  * <param name="ulRequestedRights" type="IN">Requested rights on that object</param>
  * <result>Error code</result>
  * <errorcode name="RTS_RESULT" type="ERR_OK">If user has the requested rights on the object or if no user management is configured</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">If user is not avilable or the object does not exist</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">If SessionID or user is not avilable or the object does not exist</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_FAILED">If something failed retrieving the access rights</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_NO_ACCESS_RIGHTS">Explicitly denied rights</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">hUser is invalid or unknown</errorcode>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrHasUserAccessRights', `(char *pszObject, RTS_HANDLE hUser, RTS_UI32 ulRequestedRights)')
 
 /**
- * <description>Get user access rights on the specified object (authorization)!
- * NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.
- * </description>
+ * <description>Get user access rights on the specified object (authorization)!</description>
  * <param name="pszObject" type="IN">Full object name (see object tree)</param>
  * <param name="hUser" type="IN">Handle to the user</param>
  * <param name="pulRights" type="IN">Pointer to get admitted rights</param>
@@ -555,17 +356,14 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrHasUserAccessRights', `(char *pszObje
  *	 If the required right is denied _and_ admitted on the specified object, the denied right is more significant and so the access must be denied !!</param>
  * <result>Error code</result>
  * <errorcode name="RTS_RESULT" type="ERR_OK">If user has the requested rights on the object or if no user management is configured</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">If user is not avilable or the object does not exist</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">If SessionID or user is not avilable or the object does not exist</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_FAILED">If something failed retrieving the access rights</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_NO_ACCESS_RIGHTS">Explicitly denied rights</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_INVALID_HANDLE">hUser is invalid or unknown</errorcode>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrGetUserAccessRights', `(char *pszObject, RTS_HANDLE hUser, RTS_UI32 *pulRights, RTS_UI32 *pulDeniedRights)')
 
 /**
- * <description>Add online SessionID to the user (bind the user at this session)
- * NOTE: The requred user handle is not compatible with a handle from the UserDB, and these handles must not be mixed.
- * </description>
+ * <description>Add online SessionID to the user (bind the user at this session)</description>
  * <param name="hUser" type="IN">Handle to the user</param>
  * <param name="ulSessionId" type="IN">SessionID of the device online connection (see CmpDeviceItf.h)</param>
  * <result>Error code</result>
@@ -587,9 +385,7 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrAddSessionId', `(RTS_HANDLE hUser, RT
 DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrRemoveSessionId', `(RTS_UI32 ulSessionId)')
 
 /**
- * <description>Returns the user bound at the SessionID
- * NOTE: The returned handle is not compatible with a handle from the UserDB, and these handles must not be mixed.
- * </description>
+ * <description>Returns the user bound at the SessionID</description>
  * <param name="ulSessionId" type="IN">SessionID of the device online connection (see CmpDeviceItf.h)</param>
  * <param name="pResult" type="OUT">Pointer to error code</param>
  * <errorcode name="RTS_RESULT" type="ERR_OK">User is available</errorcode>
@@ -599,46 +395,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrRemoveSessionId', `(RTS_UI32 ulSessio
  * <result>Handle to the user or RTS_INVALID_HANDLE if not available</result>
  */
 DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserMgrFindUserBySessionId', `(RTS_UI32 ulSessionId, RTS_RESULT *pResult)')
-
-/**
- * <description>Adds an value to an logged in user. This can be used as some kind of chache that exists as long as the user is logged in.</description>
- * <param name="hUser" type="IN">Handle to the user.</param>
- * <param name="key" type="IN">Access key for the chace value. This has to be used at UserMgrGetInfoOfUser to access the value.</param>
- * <param name="pValue" type="IN">Value to cache at the user.</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Value cached</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_DUPLICATE">The same key has been used already</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">The caching failed</errorcode>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrAddInfoToUser', `(RTS_HANDLE hUser, RTS_SIZE key, RTS_TYPEDVALUE *pValue)')
-
-/**
- * <description>Removes a specific chace value from an user.</description>
- * <param name="hUser" type="IN">Handle to the user.</param>
- * <param name="key" type="IN">Key of the cache value.</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Removing cache value successfull</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NO_OBJECT">No cache value with this key available.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">Removing cache value failed</errorcode>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrRemoveInfoFromUser', `(RTS_HANDLE hUser, RTS_SIZE key)')
-
-/**
- * <description>Removes a specific chace value from all logged in users.</description>
- * <param name="key" type="IN">Key of the cache value.</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Removing cache value successfull</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">Removing cache value failed</errorcode>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrRemoveInfoFromAllUsers', `(RTS_SIZE key)')
-
-/**
- * <description>Retrieves the value cached using UserMgrAddInfoToUser.</description>
- * <param name="hUser" type="IN">Handle to the user.</param>
- * <param name="key" type="IN">Key of the cache value.</param>
- * <param name="pValue" type="IN">Value to cache at the user.</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Retrieving cache value successfull. Value copied to pValue.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Some parameter is invalid</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NO_OBJECT">No cache value with this key available.</errorcode>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrGetInfoOfUser', `(RTS_HANDLE hUser, RTS_SIZE key, RTS_TYPEDVALUE *pValue)')
 
 /**
  * <description>Add the error tag to the reply stream of an online service, if the service is denied because of a failed access right (authorization error)!</description>
@@ -695,33 +451,6 @@ DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserMgrObjectAddChild', `(RTS_HANDLE hFather
 
 /**
  * <description>
- *	Set the used access rights for the object specified by handle.
- *	The rights are additionally stored in an internal list. In case USERDB_RIGHT_NONE is passed for ulUsedRights the previously stored rights are retrieved for this object.
- * </description>
- * <param name="hObject" type="IN">Handle to the object</param>
- * <param name="ulUsedRights" type="IN">Used access rights or USERDB_RIGHT_NONE for retrieval</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Rights are successfully set</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid object handle</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NO_OBJECT">Object was not found for rights retrieval</errorcode>
- * <result>Error code</result>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrObjectSetUsedRights', `(RTS_HANDLE hObject, RTS_UI32 ulUsedRights)')
-
-/**
- * <description>
- *	Get the used access rights for the object specified by handle.
- *	NOTE: In case the used rights are not set the function returns USERDB_RIGHT_ALL.
- * </description>
- * <param name="hObject" type="IN">Handle to the object</param>
- * <param name="pulUsedRights" type="OUT">Pointer to used access rights</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Rights are successfully set</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid object handle or invalid pointer</errorcode>
- * <result>Error code</result>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrObjectGetUsedRights', `(RTS_HANDLE hObject, RTS_UI32 *pulUsedRights)')
-
-/**
- * <description>
  *	Open an existing object.
  *	NOTE:
  *	The name of the object must include the full namespace with "Device" as the root node, e.g. "Device.MyObject" or if it's a filesystem object with "/" as the root node.
@@ -733,18 +462,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `UserMgrObjectGetUsedRights', `(RTS_HANDLE hO
  * <result>Handle to the object or RTS_INVALID_HANDLE if it is not available</result>
  */
 DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserMgrObjectOpen', `(char *pszObject, RTS_RESULT *pResult)')
-
-/**
- * <description>Opens an existing object. Checks if the user is member of at least one group that has access to this object.</description>
- * <param name="pszObject" type="IN">Full object name (see object tree)</param>
- * <param name="hUser" type="IN">Handle of the logged in user.</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Object could be opened. User has access rights to the object.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Object not available of invalid.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NO_ACCESS_RIGHTS">User has no access rights to this object.</errorcode>
- * <result>Handle to the object or RTS_INVALID_HANDLE if it is not available or no access rights are existing.</result>
- */
-DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserMgrObjectOpen2', `(char *pszObject, RTS_HANDLE hUser, RTS_RESULT *pResult)')
 
 /**
  * <description>Close an object</description>

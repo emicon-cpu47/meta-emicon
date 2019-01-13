@@ -1540,14 +1540,14 @@ typedef int (CDECL * PFSYSFILESTREAMFCLOSE) (void *pFile);
 	#define USE_SysFileStreamSysFileStreamFClose
 	#define EXT_SysFileStreamSysFileStreamFClose
 	#define GET_SysFileStreamSysFileStreamFClose  ERR_OK
-	#define CAL_SysFileStreamSysFileStreamFClose(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysFileStream*)p0)->ISysFileStreamFClose())
+	#define CAL_SysFileStreamSysFileStreamFClose(p0) ((ISysFileStream*)p0)->ISysFileStreamFClose()
 	#define CHK_SysFileStreamSysFileStreamFClose  TRUE
 	#define EXP_SysFileStreamSysFileStreamFClose  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysFileStreamFClose
 	#define EXT_SysFileStreamFClose
 	#define GET_SysFileStreamFClose(fl)  CAL_CMGETAPI( "SysFileStreamFClose" ) 
-	#define CAL_SysFileStreamFClose(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysFileStream*)p0)->ISysFileStreamFClose())
+	#define CAL_SysFileStreamFClose(p0) ((ISysFileStream*)p0)->ISysFileStreamFClose()
 	#define CHK_SysFileStreamFClose  TRUE
 	#define EXP_SysFileStreamFClose  CAL_CMEXPAPI( "SysFileStreamFClose" ) 
 #else /* DYNAMIC_LINK */

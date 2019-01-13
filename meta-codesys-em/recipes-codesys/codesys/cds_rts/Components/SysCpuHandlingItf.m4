@@ -6,9 +6,7 @@
  *	in sysdefines.h dependant of the compiler specific options (see category "Processor ID" in SysTargetItf.h)</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysCpuHandling')
@@ -94,7 +92,7 @@ REF_ITF(`SysExceptItf.m4')
 	#elif defined(TRG_ARM)
 		#define SYSCPU_EXTLIBCALL_REGISTER_SAVE_AREA	1
 	#elif defined(TRG_CORTEX)
-		#define SYSCPU_EXTLIBCALL_REGISTER_SAVE_AREA	0
+		#define SYSCPU_EXTLIBCALL_REGISTER_SAVE_AREA	1
 	#elif defined(TRG_PPC)
 		#define SYSCPU_EXTLIBCALL_REGISTER_SAVE_AREA	8
 	#elif defined(TRG_MIPS)
@@ -156,68 +154,6 @@ REF_ITF(`SysExceptItf.m4')
 #endif
 
 
-/**
- * <category>Platform defines</category>	
- * <description>
- *	Alignment of 2-byte data types will be checked and handled according to this define.
- * </description> 					  
- */
-#ifndef SYSCPU_ALIGNMENT_CHECK_16
-	#ifdef TRG_X86
-		#define SYSCPU_ALIGNMENT_CHECK_16 1
-	#else
-		#define SYSCPU_ALIGNMENT_CHECK_16 2
-	#endif
-#endif
-
-
-/**
- * <category>Platform defines</category>	
- * <description>
- *	Alignment of 4-byte data types will be checked and handled according to this define.
- * </description> 					  
- */
-#ifndef SYSCPU_ALIGNMENT_CHECK_32
-	#ifdef TRG_X86
-		#define SYSCPU_ALIGNMENT_CHECK_32 1
-	#else
-		#define SYSCPU_ALIGNMENT_CHECK_32 4
-	#endif
-#endif
-
-
-/**
- * <category>Platform defines</category>	
- * <description>
- *	Alignment of 8-byte data types will be checked and handled according to this define.
- * </description> 					  
- */
-#ifndef SYSCPU_ALIGNMENT_CHECK_64
-	#ifdef TRG_X86
-		#define SYSCPU_ALIGNMENT_CHECK_64 1
-	#else
-		#define SYSCPU_ALIGNMENT_CHECK_64 8
-	#endif
-#endif
-
-
-/**
- * <category>Register Offsets</category>
- * <description>
- *	The syscpudebughandler function stores the register context to stack on enty and calls
- *	AppDebugHandler2() function with the register context, which is system specific.
- *	According to the currently used CPU one of those stored registers, which is addressed
- *	by register number, is tried to be set in the SysCpuSetRegisterValue() function.
- *	Depending to the system adaptation and the syscpudebughandler implementation, the 
- *	register context may have different layouts and the offset to the given register number
- *	may vary and this macro may be used to specify the pointer size wide offset to the 
- *	given register number in the stored register context. 
- * </description>
- */
-#ifndef SYSCPU_REGISTER_OFFSET
-	#define SYSCPU_REGISTER_OFFSET(regNumber)	(regNumber)
-#endif
-
 /** EXTERN LIB SECTION BEGIN **/
 
 #ifdef __cplusplus
@@ -226,7 +162,7 @@ extern "C" {
 
 /**
  * <description>
- *  Function to increment the content of the given pointer by nSum in one atomic operation (task safe).
+ *  Function to increment the content of the given pointer by 1 in one atomic operation (task safe).
  *  IMPLEMENTATION NOTE:
  *  - Add/Sub the value to the content of the pointer
  *  - Return the value after the Add/Sub operation
@@ -244,49 +180,7 @@ typedef struct tagsyscpuatomicadd_struct
 	RTS_IEC_DINT SysCpuAtomicAdd;		/* VAR_OUTPUT */	
 } syscpuatomicadd_struct;
 
-DEF_API(`void',`CDECL',`syscpuatomicadd',`(syscpuatomicadd_struct *p)',1,0x414E4706,0x03050D00)
-
-/**
- * <description>
- *  Function to increment the content of the given pointer by nSum in one atomic operation (task safe).
- *  IMPLEMENTATION NOTE:
- *  - Add/Sub the value to the content of the pointer
- *  - Return the value after the Add/Sub operation
- *  Both things must be done atomic!
- * </description>
- * <result><p>RESULT: Returns the value after the increment operation in an atomic way!
- * </p></result>
- * <SIL2/>
- */
-typedef struct tagsyscpuatomicadd64_struct
-{
-	RTS_IEC_LINT *piValue;				/* VAR_INPUT */	/* <param name="piValue" type="INOUT">Pointer to the value to increment</param> */
-	RTS_IEC_LINT nSum;					/* VAR_INPUT */	/* <param name="nSum" type="IN">Summand for the operation. &gt;0 to increment, &lt;0 to decrement</param> */
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* <param name="pResult" type="OUT">Pointer to runtime system error code (see CmpErrors.library)</param> */
-	RTS_IEC_LINT SysCpuAtomicAdd64;		/* VAR_OUTPUT */	
-} syscpuatomicadd64_struct;
-
-DEF_API(`void',`CDECL',`syscpuatomicadd64',`(syscpuatomicadd64_struct *p)',1,0xA535E8A0,0x03050D00)
-
-/**
- * <description>
- * Function for compare-and-swap in one atomic operation (task safe).
- * Supports only 32- and 64-bit types 
- * </description>
- * <result><p>RESULT: Returns ERR_OK if the swap was successful
- * </p></result>
- * <SIL2/>
- */
-typedef struct tagsyscpuatomiccompareandswap_struct
-{
-	RTS_IEC_BYTE *pAddress;				/* VAR_INPUT */	/* pointer to the value to test */
-	RTS_IEC_BYTE *pSwapValue;			/* VAR_INPUT */	/* pointer to new valie */
-	RTS_IEC_BYTE *pCompareValue;		/* VAR_INPUT */	/* pointer to compare value */
-	RTS_IEC_USINT valueSize;			/* VAR_INPUT */	/* size of the value */
-	RTS_IEC_RESULT SysCpuAtomicCompareAndSwap;	/* VAR_OUTPUT */	
-} syscpuatomiccompareandswap_struct;
-
-DEF_API(`void',`CDECL',`syscpuatomiccompareandswap',`(syscpuatomiccompareandswap_struct *p)',1,0xCBB4ED00,0x03050D00)
+DEF_API(`void',`CDECL',`syscpuatomicadd',`(syscpuatomicadd_struct *p)',1,0x414E4706,0x03050500)
 
 /**
  * Call an IEC function from plain C code.
@@ -383,7 +277,7 @@ typedef struct tagsyscputestandsetbit_struct
 	RTS_IEC_RESULT SysCpuTestAndSetBit;	/* VAR_OUTPUT */	
 } syscputestandsetbit_struct;
 
-DEF_API(`void',`CDECL',`syscputestandsetbit',`(syscputestandsetbit_struct *p)',1,0x6A76133F,0x03050D00)
+DEF_API(`void',`CDECL',`syscputestandsetbit',`(syscputestandsetbit_struct *p)',1,0x6A76133F,0x03050500)
 
 #ifdef __cplusplus
 }
@@ -417,10 +311,7 @@ DEF_ITF_API(`int', `CDECL', `SysCpuFlushInstructionCache', `(void * pBaseAddress
  * <description>
  *	<p>Call an IEC function from plain C code.
  *	Since different CPU's/systems use different calling conventions, this function 
- *	should be used as a wrapper. But this function respectively the IEC callback code is not synchronized against an OnlineChange of the corresponding application!</p>
- *
- *  <p>ATTENTION: To be safe on multitasking and muticore systems you have to use IecTaskCallIecFuncWithParams() instead (see CmpIecTaskItf.h)!</p>
- *
+ *	should be used as a wrapper.</p>
  *  <p>IEC functions or methods of function block use all the same calling convention:
  *	They have no return value and exactly one parameter, which is a pointer to a struct that contains all required
  *  IN and OUT parameters.</p>
@@ -444,17 +335,6 @@ DEF_ITF_API(`int', `CDECL', `SysCpuFlushInstructionCache', `(void * pBaseAddress
  * <result>error code</result>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `SysCpuCallIecFuncWithParams', `(RTS_VOID_FCTPTR pfIECFunc, void* pParam, int iSize)')
-
-/**
- * <description>
- *	Sets the specified register to the given value inside the 'syscpudebughandler'
- * </description>
- * <param name="pRegBuff" type="IN">Pointer to start of saved registers</param>
- * <param name="nRegisterNumber" type="IN">Register number to be set. See category "Register offsets" for details</param>
- * <param name="newValue" type="IN">The new value</param>
- * <result>error code</result>
- */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`SysCpuSetRegisterValue',`(RTS_UINTPTR *pRegBuff, RTS_I32 nRegisterNumber, RTS_UINTPTR newValue)')
 
 /**
  * <description>
@@ -689,128 +569,11 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`SysCpuGetContext',`(RegContext *pContext)')
  * <param name="nSum" type="IN" range="[RTS_RANGE_OF_RTS_I32]">Summand for the operation. greater 0 to increment, lower 0 to decrement</param>
  * <param name="pResult" type="OUT">Pointer to error code</param>
  * <result>Returns the value after the increment operation in an atomic way!</result>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Call was sucessful</errorcode>
+ * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Call was sucessfull</errorcode>
  * <errorcode name="RTS_RESULT pResult" type="ERR_PARAMETER">piValue was NULL</errorcode>
  * <errorcode name="RTS_RESULT pResult" type="ERR_NOTIMPLEMENTED">Function is not supported</errorcode>
  */
 DEF_ITF_API(`RTS_I32',`CDECL',`SysCpuAtomicAdd',`(RTS_I32 *piValue, RTS_I32 nSum, RTS_RESULT *pResult)')
-
-/**
- * <description>
- * <p>Function to increment the content of the given pointer by nSum in one atomic operation (task safe).</p>
- * <p>IMPLEMENTATION NOTE: Add or substract the value to/from the content of the pointer,
- * and return the value after this operation atomically.</p>
- * </description>
- * <param name="pi64Value" type="INOUT">Pointer to the value to increment</param>
- * <param name="nSum" type="IN">Summand for the operation. greater 0 to increment, lower 0 to decrement</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Returns the value after the increment operation in an atomic way!</result>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_PARAMETER">pi64Value was NULL</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_NOT_SUPPORTED">Function is not supported</errorcode>
- */
-DEF_ITF_API(`RTS_I64',`CDECL',`SysCpuAtomicAdd64',`(RTS_I64 *pi64Value, RTS_I64 nSum, RTS_RESULT *pResult)')
-
-/**
- * <description>
- * Function for compare-and-swap in one atomic operation (task safe).
- * Supports only 32- and 64-bit types (i.e. a valid valueSize is 4 or 8)
- * </description>
- * <param name="pAddress" type="INOUT">Pointer to the value to handle</param>
- * <param name="pSwapValue" type="IN">Pointer to the swap value</param>
- * <param name="pCompareValue" type="IN">Pointer to the compare value</param>
- * <param name="valueSize" type="IN">Size of the value in bytes (a valid valueSize is 4 or 8)</param>
- * <result>Returns errorcode</result>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Swap was successful</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_FAILED">Swap was not successful</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_PARAMETER">At least one of the pointers was NULL</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_NOT_SUPPORTED">Swap not supported for this byte size or on this platform</errorcode>
- */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`SysCpuAtomicCompareAndSwap',`(void *pAddress, void *pSwapValue, void *pCompareValue, RTS_UI8 valueSize)')
-
-/**
- * <description>
- * Function to read a 64bit integer value atomic / consistent.
- * </description>
- * <param name="pSrc" type="IN">Pointer to the value to read</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Returns the read value</result>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_PARAMETER">pSrc is NULL</errorcode> 
- * <errorcode name="RTS_RESULT pResult" type="ERR_NOT_SUPPORTED">Atomic function is not supported!</errorcode>
- */
-DEF_ITF_API(`RTS_I64',`CDECL',`SysCpuReadInt64',`(RTS_I64 *pSrc, RTS_RESULT *pResult)')
-
-/**
- * <description>
- * Function to write a 64bit integer value atomic / consistent.
- * </description>
- * <param name="pDest" type="IN">Pointer to the value to write</param>
- * <param name="i64Value" type="IN">Value to write</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">pDest is NULL</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Atomic function is not supported!</errorcode>
- */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`SysCpuWriteInt64',`(RTS_I64 *pDest, RTS_I64 i64Value)')
-
-/**
- * <description>
- * Function to read a 64bit real value atomic / consistent.
- * </description>
- * <param name="pSrc" type="IN">Pointer to the value to read</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Returns the read value</result>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_PARAMETER">pSrc is NULL</errorcode> 
- * <errorcode name="RTS_RESULT pResult" type="ERR_NOT_SUPPORTED">Atomic function is not supported!</errorcode>
- */
-DEF_ITF_API(`RTS_REAL64',`CDECL',`SysCpuReadReal64',`(RTS_REAL64 *pSrc, RTS_RESULT *pResult)')
-
-/**
- * <description>
- * Function to write a 64bit real value atomic / consistent.
- * </description>
- * <param name="pDest" type="IN">Pointer to the value to write</param>
- * <param name="r64Value" type="IN">Value to write</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">pDest is NULL</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Atomic function is not supported!</errorcode>
- */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`SysCpuWriteReal64',`(RTS_REAL64 *pDest, RTS_REAL64 r64Value)')
-
-/**
- * <description>
- * This function will write values with with 1, 2, 4 or 8 byte size as an atomic operation.
- * Note: pDest has to be aligned according to the nLen parameter. If the alignment isn't correct the function will fail.
- * </description>
- * <param name="pDest" type="IN">Pointer to the destination address. The value will be written to this address. The write operation to this address will be atomic.</param>
- * <param name="pSrc" type="IN">Pointer to the source address. The value will be read from this address.</param>
- * <param name="nLen" type="IN">Size of the value to be written. 1, 2, 4 and 8 will be accepted.</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">pDest, pSrc is NULL or nLen isn't supported.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Atomic function is not supported!</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_ALIGNMENT">pDest was not aligned according to nLen.</errorcode>
- */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`SysCpuWriteValueAtomic',`(void* pDest, void* pSrc, RTS_UI32 nLen)')
-
-/**
- * <description>
- * This function will read values with with 1, 2, 4 or 8 byte size as an atomic operation.
- * Note: pSrc has to be aligned according to the nLen parameter. If the alignment isn't correct the function will fail.
- * </description>
- * <param name="pSrc" type="IN">Pointer to the source address. The value will be read from this address. The read operation from this address will be atomic.</param>
- * <param name="pDst" type="IN">Pointer to the destination address. The value will be written to this address.</param>
- * <param name="nLen" type="IN">Size of the value to be read. 1, 2, 4 and 8 will be accepted.</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">pSrc or pDest is NULL or nLen isn't supported.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Atomic function is not supported!</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_ALIGNMENT">pSrc was not aligned according to nLen.</errorcode>
- */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`SysCpuReadValueAtomic',`(void* pSrc, void* pDest, RTS_UI32 nLen)')
 
 #ifdef __cplusplus
 }

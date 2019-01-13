@@ -14,8 +14,6 @@ CmpEventMgrItf.h File Reference
 Data Structures
 ---------------
 
-- struct :ref:`tagEventOptions <structtag_event_options>`
-
 - struct :ref:`EVTPARAM_CmpEventMgr <struct_e_v_t_p_a_r_a_m___cmp_event_mgr>`
 
 - struct :ref:`icmpeventcallback_struct <structicmpeventcallback__struct>`
@@ -58,8 +56,6 @@ Data Structures
 
 - struct :ref:`tageventunregistercallbackfunction_struct <structtageventunregistercallbackfunction__struct>`
 
-- struct :ref:`tageventunregistercallbackfunction2_struct <structtageventunregistercallbackfunction2__struct>`
-
 - struct :ref:`ICmpEventMgr_C <struct_i_cmp_event_mgr___c>`
 
 Macros
@@ -97,21 +93,19 @@ Macros
 
 - #define :ref:`EVENT_CALLBACKS_NO_LIMIT <group___cmp_event_mgr_itf___callbacklimit_1gaf925e22cbea048d47ab31da5d36a91b6>` UINT32_MAX
 
-- #define :ref:`EMF_NO_IEC_CALLBACKS <group___cmp_event_mgr_itf___eventmanagerflags_1ga0b13ac0688de7fa0e6d29dedcda2b794>` UINT32_C(0x00000001)
-
 - #define :ref:`EVTPARAMID_CmpEventMgr <group___cmp_event_mgr_itf___eventparameter_1ga125fc6b2f3254e9b6ed3cf09e3864434>` 0x0001
 
 - #define :ref:`EVTVERSION_CmpEventMgr <group___cmp_event_mgr_itf___eventparameter_1ga2e6c053d9db1c7500708f88e4b6ec881>` 0x0001
 
-- #define :ref:`EVT_EventCreate <group___cmp_event_mgr_itf___events_1ga0f099cbd018271825f299da8fb0c16cd>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+- #define :ref:`EVT_EventCreate <group___cmp_event_mgr_itf___events_1ga0f099cbd018271825f299da8fb0c16cd>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
 
-- #define :ref:`EVT_EventDelete <group___cmp_event_mgr_itf___events_1ga94d877bbb919b506869f415486b323cb>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+- #define :ref:`EVT_EventDelete <group___cmp_event_mgr_itf___events_1ga94d877bbb919b506869f415486b323cb>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
 
-- #define :ref:`EVT_EventOpen <group___cmp_event_mgr_itf___events_1gaaef3dc13ce32b9900518db5bea457b5d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
+- #define :ref:`EVT_EventOpen <group___cmp_event_mgr_itf___events_1gaaef3dc13ce32b9900518db5bea457b5d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
 
-- #define :ref:`EVT_EventClose <group___cmp_event_mgr_itf___events_1gaa846d9a446c480ea3d6aa9529589c943>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 4)
+- #define :ref:`EVT_EventClose <group___cmp_event_mgr_itf___events_1gaa846d9a446c480ea3d6aa9529589c943>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 4)
 
-- #define :ref:`EVT_EventCommCycle <group___cmp_event_mgr_itf___events_1ga98ee1d17eabca49131ce82288d3f6224>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 5)
+- #define :ref:`EVT_EventCommCycle <group___cmp_event_mgr_itf___events_1ga98ee1d17eabca49131ce82288d3f6224>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 5)
 
 - #define :ref:`EventParam2 <group___cmp_event_mgr_itf___events_1ga0eca60f7954e09b4fd44a4661cf21b62>` :ref:`EventParam <struct_event_param>`
 
@@ -121,8 +115,6 @@ Macros
 
 Typedefs
 --------
-
-- typedef struct :ref:`tagEventOptions <structtag_event_options>` :ref:`EventOptions <group___cmp_event_mgr_itf___eventoptions_1ga28e8a6e8821a62bc983dba997cea5bb7>`
 
 - typedef struct :ref:`tagicmpeventcallback_eventcallback_struct <structtagicmpeventcallback__eventcallback__struct>` :ref:`icmpeventcallback_eventcallback_struct <group___cmp_event_mgr_itf_1gacf0f656b76951176be0b20d7340a3631>`
 
@@ -161,8 +153,6 @@ Typedefs
 - typedef struct :ref:`tageventunregistercallback_struct <structtageventunregistercallback__struct>` :ref:`eventunregistercallback_struct <group___cmp_event_mgr_itf_1ga49f5cccea1584b39b67599126948707a>`
 
 - typedef struct :ref:`tageventunregistercallbackfunction_struct <structtageventunregistercallbackfunction__struct>` :ref:`eventunregistercallbackfunction_struct <group___cmp_event_mgr_itf_1ga8ef30b67b3ee04001bd40094f91b25fa>`
-
-- typedef struct :ref:`tageventunregistercallbackfunction2_struct <structtageventunregistercallbackfunction2__struct>` :ref:`eventunregistercallbackfunction2_struct <group___cmp_event_mgr_itf_1gac3020fae9ca103c60b6b985104a618fe>`
 
 - typedef :ref:`ICmpEventMgr_C <struct_i_cmp_event_mgr___c>` :ref:`ICmpEventMgr <group___cmp_event_mgr_itf_1gaddb27114577b319b983678219172c543>`
 
@@ -205,13 +195,9 @@ Functions
 
 - void :ref:`eventunregistercallbackfunction <group___cmp_event_mgr_itf_1ga09a6c3101242f985bbdf34580d230435>` (:ref:`eventunregistercallbackfunction_struct <group___cmp_event_mgr_itf_1ga8ef30b67b3ee04001bd40094f91b25fa>` * p)
 
-- void :ref:`eventunregistercallbackfunction2 <group___cmp_event_mgr_itf_1ga0de01ddf99042d3c71866d6155df02f1>` (:ref:`eventunregistercallbackfunction2_struct <group___cmp_event_mgr_itf_1gac3020fae9ca103c60b6b985104a618fe>` * p)
-
 - RTS_HANDLE :ref:`EventCreate <group___cmp_event_mgr_itf_1ga6d63f00d5bce0b4125c266dd37bee048>` (:ref:`EVENTID <group___cmp_event_callback_itf_1ga01e77e79206096b36fae0f8b3bf05ed4>`  EventId, CMPID CmpIdProvider, RTS_RESULT * pResult)
 
 - RTS_HANDLE :ref:`EventCreate2 <group___cmp_event_mgr_itf_1ga5b5f843105b4c1b7997ffbe066fdc493>` (:ref:`EVENTID <group___cmp_event_callback_itf_1ga01e77e79206096b36fae0f8b3bf05ed4>`  EventId, CMPID CmpIdProvider, RTS_UI32 nCallbacksPossible, RTS_RESULT * pResult)
-
-- RTS_HANDLE :ref:`EventCreate3 <group___cmp_event_mgr_itf_1gad246cb6f243b196a3362cb265f3eadcb>` (:ref:`EVENTID <group___cmp_event_callback_itf_1ga01e77e79206096b36fae0f8b3bf05ed4>`  EventId, CMPID CmpIdProvider, :ref:`EventOptions <group___cmp_event_mgr_itf___eventoptions_1ga28e8a6e8821a62bc983dba997cea5bb7>` * pEventOptions, RTS_RESULT * pResult)
 
 - RTS_RESULT :ref:`EventDelete <group___cmp_event_mgr_itf_1ga46db17c2283a873758be432ba1b3c705>` (RTS_HANDLE hEvent)
 
@@ -239,8 +225,6 @@ Functions
 
 - RTS_RESULT :ref:`EventUnregisterCallbackFunction <group___cmp_event_mgr_itf_1ga4af436d4a7636f183f8aefd388ba00c6>` (RTS_HANDLE hEvent, :ref:`PFEVENTCALLBACKFUNCTION <group___cmp_event_callback_itf_1ga66fcdd6103915e80e60e526bd4ad4dcf>`  pfCallbackFunction)
 
-- RTS_RESULT :ref:`EventUnregisterCallbackFunction2 <group___cmp_event_mgr_itf_1ga93b438a1806e0a7751df719d951724bf>` (RTS_HANDLE hEvent, :ref:`PFEVENTCALLBACKFUNCTION <group___cmp_event_callback_itf_1ga66fcdd6103915e80e60e526bd4ad4dcf>`  pfCallbackFunction, void * pUserParameter)
-
 - unsigned long :ref:`EventRegisteredCallbacks <group___cmp_event_mgr_itf_1ga96364151374eb2eab3374c453744b546>` (RTS_HANDLE hEvent, RTS_RESULT * pResult)
 
 - RTS_RESULT :ref:`EventPost <group___cmp_event_mgr_itf_1gabf56cffdf81dfa63d7fc79b094b38be7>` (RTS_HANDLE hEvent, :ref:`EventParam <struct_event_param>` * pEventParam)
@@ -252,7 +236,7 @@ Functions
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpEventMgrItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpEventMgrItf.h
 
  
 .. last line of file.rst template

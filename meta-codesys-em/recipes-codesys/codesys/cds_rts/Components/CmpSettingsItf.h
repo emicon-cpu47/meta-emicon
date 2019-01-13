@@ -5,9 +5,7 @@
  *	components, to realise different sources for the settings (e.g. ini-File, hardcoded, XML, etc.).
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -1199,22 +1197,13 @@ typedef RTS_RESULT (CDECL * PFSETTGSETINTVALUE) (const char *pszComponent, const
 
 /**
  * <description>Get a string value from settings</description>
- *	The following parameter sets are typical use cases:
- *  - pszValue = NULL, piLen = NULL: Check if the setting exists (ERR_OK) or not (ERR_FAILED).
- *	- pszValue = NULL, piLen != NULL: Check if the setting exists (ERR_OK) or not (ERR_FAILED) and retrieve the needed buffer size
- *                                    to read the setting or the default value (including NUL termination).
- *  - pszValue != NULL, piLen != NULL: Read the setting (or default value). If ERR_BUFFERSIZE is returned, the buffer was too small
- *                                     regardless of whether the setting or the default value was read. Thus in this case there is
- *                                     no indication, if the setting exists or not.
  * <param name="pszComponent" type="IN">Name of component</param>
  * <param name="pszKey" type="IN">Name of key</param>
- * <param name="pszValue" type="INOUT">Pointer to value for result. Can be NULL to get the needed buffer length for the value (including the NUL ending).</param>
- * <param name="piLen" type="INOUT">Max length of string value as IN and number of copied characters excluding the NUL ending as OUT. If pszValue is NULL, then the needed buffer length is returned.</param>
+ * <param name="pszValue" type="INOUT">Pointer to value for result</param>
+ * <param name="piLen" type="INOUT">Max length of string value as IN and length of copied values excluding the NUL ending as OUT!</param>
  * <param name="pszDefault" type="IN">Default value to set, if key not found</param>
  * <param name="bCached" type="IN">Flag, if value should be read cached or direct from file (CMPSETTINGS_CACHED, CMPSETTINGS_NOT_CACHED)</param>
  * <result>ERR_OK</result>
- * <result>ERR_PARAMETER: Invalid parameter given</result>
- * <result>ERR_BUFFERSIZE: Buffer size is not sufficient to carry out the complete key; only a part is returned.</result>
  * <result>ERR_FAILED: Key not found</result>
  */
 RTS_RESULT CDECL SettgGetStringValue(const char *pszComponent, const char *pszKey, char *pszValue, RTS_I32 *piLen, char *pszDefault, int bCached);
@@ -1272,13 +1261,7 @@ typedef RTS_RESULT (CDECL * PFSETTGGETSTRINGVALUE) (const char *pszComponent, co
  * <param name="pszKey" type="IN">Name of key</param>
  * <param name="pszValue" type="IN">Pointer to write value</param>
  * <param name="iLen" type="IN">Length of string to write excluding the NUL ending</param>
- * <result>ERR_OK: Success</result>
- * <result>ERR_PARAMETER: Invalid parameter given</result>
- * <result>ERR_NOTINITIALIZED: Component has not been initialized yet</result>
- * <result>ERR_NOMEMORY: Not enough memory to handle the settings cache</result> 
- * <result>ERR_NOT_SUPPORTED: Unsupported character in key value: '=', '[', ']' or control character 0x00-0x1F, 0x7F</result>
- * <result>ERR_NO_ACCESS_RIGHTS: No write access rights to corresponding settings file</result>
- * <result>ERR_FAILED: Any other reason for failure</result>
+ * <result>ERR_OK</result>
  */
 RTS_RESULT CDECL SettgSetStringValue(const char *pszComponent, const char *pszKey, char *pszValue, RTS_I32 iLen);
 typedef RTS_RESULT (CDECL * PFSETTGSETSTRINGVALUE) (const char *pszComponent, const char *pszKey, char *pszValue, RTS_I32 iLen);
@@ -1330,33 +1313,14 @@ typedef RTS_RESULT (CDECL * PFSETTGSETSTRINGVALUE) (const char *pszComponent, co
 
 
 /**
- * <description> 
- *  Get a WSTRING value from settings.
- *  The storage format is conform to UTF-16, that means one character consists of 2 byte values like "\ab\cd".
- *  Plain ASCII characters can also be represented in a mixed way in order to keep the readability of the string, e.g. "a\00".
- *  The value is interpreted depending on the target byteorder, e.g:
- *   - INTEL: NodeNameUnicode="T\00e\00s\00t\00"
- *   - MOTOROLA: NodeNameUnicode="\00T\00e\00s\00t"
- *  Example: The unicode character 'DEGREE CELSIUS' (U+2103) is stored as 
- *   - INTEL: "\03\21"
- *   - MOTOROLA: "\21\03"
- *	The following parameter sets are typical use cases:
- *	- pwszValue = NULL, piLen = NULL: Check if the setting exists (ERR_OK) or not (ERR_FAILED).
- *	- pwszValue = NULL, piLen != NULL: Check if the setting exists (ERR_OK) or not (ERR_FAILED) and retrieve the needed buffer size
- *                                     to read the setting or the default value (in WSTRING characters including NUL termination).
- *  - pwszValue != NULL, piLen != NULL: Read the setting (or default value). If ERR_BUFFERSIZE is returned, the buffer was too small
- *                                      regardless of whether the setting or the default value was read. Thus in this case there is
- *                                      no indication, if the setting exists or not. 
- * </description>
+ * <description>Get a WSTRING value from settings</description>
  * <param name="pszComponent" type="IN">Name of component</param>
  * <param name="pszKey" type="IN">Name of key</param>
- * <param name="pwszValue" type="INOUT">Pointer to value for result. Can be NULL to get the needed buffer length for the value (including the NUL ending).</param>
- * <param name="piLen" type="INOUT">Max length of buffer in WSTRING characters (not bytes!) as IN and number of copied WSTRING characters excluding the NUL ending as OUT. If pwszValue is NULL, then the needed buffer length is returned.</param>
+ * <param name="pwszValue" type="INOUT">Pointer to value for result</param>
+ * <param name="piLen" type="INOUT">Max length of string in WSTRING characters (not bytes!) as IN and length of copied WSTRING characters excluding the NUL ending as OUT</param>
  * <param name="pwszDefault" type="IN">Default value to set, if key not found</param>
  * <param name="bCached" type="IN">Flag, if value should be read cached or direct from file (CMPSETTINGS_CACHED, CMPSETTINGS_NOT_CACHED)</param>
  * <result>ERR_OK</result>
- * <result>ERR_PARAMETER: Invalid parameter given</result>
- * <result>ERR_BUFFERSIZE: Buffer size is not sufficient to carry out the complete setting or default value; only a part is returned.</result>
  * <result>ERR_FAILED: Key not found</result>
  */
 RTS_RESULT CDECL SettgGetWStringValue(const char *pszComponent, const char *pszKey, RTS_WCHAR *pwszValue, RTS_I32 *piLen, RTS_WCHAR *pwszDefault, int bCached);
@@ -1409,17 +1373,7 @@ typedef RTS_RESULT (CDECL * PFSETTGGETWSTRINGVALUE) (const char *pszComponent, c
 
 
 /**
- * <description>
- *	Write a WSTRING value to settings.
- *  The storage format is conform to UTF-16, that means one character consists of 2 byte values like "\ab\cd".
- *  Plain ASCII characters can also be represented in a mixed way in order to keep the readability of the string, e.g. "a\00".
- *  The value is interpreted depending on the target byteorder, e.g:
- *   - INTEL: NodeNameUnicode="T\00e\00s\00t\00"
- *   - MOTOROLA: NodeNameUnicode="\00T\00e\00s\00t"
- *  Example: The unicode character 'DEGREE CELSIUS' (U+2103) is stored as 
- *   - INTEL: "\03\21"
- *   - MOTOROLA: "\21\03"
- * </description>
+ * <description>Write a WSTRING value to settings</description>
  * <param name="pszComponent" type="IN">Name of component</param>
  * <param name="pszKey" type="IN">Name of key</param>
  * <param name="pszValue" type="IN">Pointer to write value</param>

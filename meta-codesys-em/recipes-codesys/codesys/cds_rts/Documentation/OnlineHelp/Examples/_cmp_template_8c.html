@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>CmpTemplate.c File Reference &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    <title>CmpTemplate.c File Reference &mdash; RuntimeSystemOnlineHelp V3.5.10.0</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.5.13.10',
+        VERSION:     '3.5.10.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,20 +24,18 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.10.0" href="../index.html" />
     <link rel="up" title="Examples" href="index.html" />
     <link rel="next" title="CmpTemplateEmpty.c File Reference" href="_cmp_template_empty_8c.html" />
     <link rel="prev" title="Examples" href="index.html" /> 
   </head>
-  <body role="document">
+  <body>
 	<div id="header">
 		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
 		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
 	</div>
 
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -49,11 +47,11 @@
         <li class="right" >
           <a href="index.html" title="Examples"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Examples</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Examples</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
@@ -72,21 +70,22 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="_cmp_template_empty_8c.html"
                         title="next chapter">CmpTemplateEmpty.c File Reference</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/Examples/_cmp_template_8c.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/Examples/_cmp_template_8c.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -95,52 +94,52 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body" role="main">
+          <div class="body">
             
   <div class="section" id="cmptemplate-c-file-reference">
 <h1>CmpTemplate.c File Reference<a class="headerlink" href="#cmptemplate-c-file-reference" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
-<div class="line">#include &#8220;<span class="xref std std-ref">CmpStd.h</span>&#8220;</div>
-<div class="line">#include &#8220;<span class="xref std std-ref">CmpItf.h</span>&#8220;</div>
-<div class="line">#include &#8220;<span class="xref std std-ref">CmpTemplateDep.h</span>&#8220;</div>
-<div class="line">#include &#8220;<span class="xref std std-ref">RtsDisableOperations.c</span>&#8220;</div>
-<div class="line">#include &#8220;<span class="xref std std-ref">RtsRunStopSwitch.c</span>&#8220;</div>
-<div class="line">#include &#8220;<span class="xref std std-ref">RtsPowerFail.c</span>&#8220;</div>
-<div class="line">#include &#8220;<span class="xref std std-ref">RtsHandleEvents.c</span>&#8220;</div>
-<div class="line">#include &#8220;<span class="xref std std-ref">RtsServiceHandler.c</span>&#8220;</div>
-<div class="line">#include &#8220;<span class="xref std std-ref">RtsExternalLibs.c</span>&#8220;</div>
-<div class="line">#include &#8220;<span class="xref std std-ref">RtsInteractiveLogin.c</span>&#8220;</div>
-<div class="line">#include &#8220;<span class="xref std std-ref">RtsHardwareWatchdog.c</span>&#8220;</div>
-<div class="line">#include &#8220;<span class="xref std std-ref">RtsSupervisorOperation.c</span>&#8220;</div>
+<div class="line">#include &#8220;<em class="xref std std-ref">CmpStd.h</em>&#8220;</div>
+<div class="line">#include &#8220;<em class="xref std std-ref">CmpItf.h</em>&#8220;</div>
+<div class="line">#include &#8220;<em class="xref std std-ref">CmpTemplateDep.h</em>&#8220;</div>
+<div class="line">#include &#8220;<em class="xref std std-ref">RtsDisableOperations.c</em>&#8220;</div>
+<div class="line">#include &#8220;<em class="xref std std-ref">RtsRunStopSwitch.c</em>&#8220;</div>
+<div class="line">#include &#8220;<em class="xref std std-ref">RtsPowerFail.c</em>&#8220;</div>
+<div class="line">#include &#8220;<em class="xref std std-ref">RtsHandleEvents.c</em>&#8220;</div>
+<div class="line">#include &#8220;<em class="xref std std-ref">RtsServiceHandler.c</em>&#8220;</div>
+<div class="line">#include &#8220;<em class="xref std std-ref">RtsExternalLibs.c</em>&#8220;</div>
+<div class="line">#include &#8220;<em class="xref std std-ref">RtsInteractiveLogin.c</em>&#8220;</div>
+<div class="line">#include &#8220;<em class="xref std std-ref">RtsHardwareWatchdog.c</em>&#8220;</div>
+<div class="line">#include &#8220;<em class="xref std std-ref">RtsSupervisorOperation.c</em>&#8220;</div>
 </div>
 <div class="section" id="data-structures">
 <h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>struct <a class="reference internal" href="struct_c_cmp_template.html#struct-c-cmp-template"><span class="std std-ref">CCmpTemplate</span></a></li>
+<li>struct <a class="reference internal" href="struct_c_cmp_template.html#struct-c-cmp-template"><em>CCmpTemplate</em></a></li>
 </ul>
 </div>
 <div class="section" id="macros">
 <h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>#define <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga819be70ac9e7f8924fecb7b6db48cc4e"><span class="std std-ref">STATICITF_DEF</span></a> static</li>
+<li>#define <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga819be70ac9e7f8924fecb7b6db48cc4e"><em>STATICITF_DEF</em></a> static</li>
 </ul>
 </div>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>DLL_DECL int <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga428e512ef9d385507218f5cb410ecf22"><span class="std std-ref">ComponentEntry</span></a> (INIT_STRUCT * pInitStruct)</li>
-<li>IBase * <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga9f0dd7d920825aefbaa5a8b55d7be440"><span class="std std-ref">CreateInstance</span></a> (CLASSID cid, RTS_RESULT * pResult)</li>
-<li>RTS_RESULT <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga943bdf9b0e320026633f0a53e0595660"><span class="std std-ref">DeleteInstance</span></a> (IBase * pIBase)</li>
-<li>int <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga9b0700711be53a466c6c8494343a465a"><span class="std std-ref">ExportFunctions</span></a> (void)</li>
-<li>int <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga87d62c8eb63af9f15a122c28448733bf"><span class="std std-ref">ImportFunctions</span></a> (void)</li>
-<li>RTS_UI32 <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1gacf72d3e99274b04feca13b139859c539"><span class="std std-ref">CmpGetVersion</span></a> (void)</li>
-<li>RTS_RESULT <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga0b2ad195d710768e5fa78879787cd805"><span class="std std-ref">HookFunction</span></a> (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</li>
-<li>IMPLEMENT_ADDREF static IMPLEMENT_RELEASE void * <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga6abe2468348b8ceab360c498feae6c47"><span class="std std-ref">QueryInterface</span></a> (IBase * pBase, ITFID iid, RTS_RESULT * pResult)</li>
+<li>DLL_DECL int <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga428e512ef9d385507218f5cb410ecf22"><em>ComponentEntry</em></a> (INIT_STRUCT * pInitStruct)</li>
+<li>IBase * <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga9f0dd7d920825aefbaa5a8b55d7be440"><em>CreateInstance</em></a> (CLASSID cid, RTS_RESULT * pResult)</li>
+<li>RTS_RESULT <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga943bdf9b0e320026633f0a53e0595660"><em>DeleteInstance</em></a> (IBase * pIBase)</li>
+<li>int <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga9b0700711be53a466c6c8494343a465a"><em>ExportFunctions</em></a> (void)</li>
+<li>int <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga87d62c8eb63af9f15a122c28448733bf"><em>ImportFunctions</em></a> (void)</li>
+<li>RTS_UI32 <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1gacf72d3e99274b04feca13b139859c539"><em>CmpGetVersion</em></a> (void)</li>
+<li>RTS_RESULT <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga0b2ad195d710768e5fa78879787cd805"><em>HookFunction</em></a> (RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)</li>
+<li>IMPLEMENT_ADDREF static IMPLEMENT_RELEASE void * <a class="reference internal" href="group___cmp_template.html#group-cmp-template-1ga6abe2468348b8ceab360c498feae6c47"><em>QueryInterface</em></a> (IBase * pBase, ITFID iid, RTS_RESULT * pResult)</li>
 </ul>
 </div>
 <div class="section" id="detailed-description">
 <h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
-<p>Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp-templates/CmpTemplate.c</p>
+<p>Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp-templates/CmpTemplate.c</p>
 </div>
 </div>
 
@@ -150,7 +149,7 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -162,13 +161,13 @@
         <li class="right" >
           <a href="index.html" title="Examples"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Examples</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li>
+          <li><a href="index.html" >Examples</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    <div class="footer">
+        &copy; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

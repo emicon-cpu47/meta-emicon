@@ -4,9 +4,7 @@
  *	<p>The SysTimer interface is projected to access timer devices on target.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -597,7 +595,7 @@ typedef void (CDECL CDECL_EXT* PFSYSTIMERGETINTERVAL_IEC) (systimergetinterval_s
 typedef struct tagsystimergettimestamp_struct
 {
 	RTS_IEC_HANDLE hTimer;				/* VAR_INPUT */	/* <param name="hTimer" type="IN">Handle of the timer</param> */
-	RTS_IEC_ULINT *ptTimestampNs;		/* VAR_INPUT */	/* <param name="ptTimestampNs" type="OUT">Timestamp in nanoseconds</param> */
+	RTS_IEC_ULINT *ptTimestampNs;		/* VAR_INPUT */	/* <param name="ptTimestampNs" type="out">Timestamp in nanoseconds</param> */
 	RTS_IEC_RESULT SysTimerGetTimeStamp;	/* VAR_OUTPUT */	
 } systimergettimestamp_struct;
 
@@ -654,7 +652,7 @@ typedef void (CDECL CDECL_EXT* PFSYSTIMERGETTIMESTAMP_IEC) (systimergettimestamp
  */
 typedef struct tagsystimermaxtimer_struct
 {
-	RTS_IEC_UDINT *pulMaxTimer;			/* VAR_INPUT */	/* <param name="pulMaxTimer" type="OUT">Number of Timers</param> */
+	RTS_IEC_UDINT *pulMaxTimer;			/* VAR_INPUT */	/* <param name="pulMaxTimer" type="out">Number of Timers</param> */
 	RTS_IEC_RESULT SysTimerMaxTimer;	/* VAR_OUTPUT */	
 } systimermaxtimer_struct;
 
@@ -1167,14 +1165,14 @@ typedef RTS_RESULT (CDECL * PFSYSTIMERDELETE) (RTS_HANDLE hTimer);
 	#define USE_SysTimerSysTimerDelete
 	#define EXT_SysTimerSysTimerDelete
 	#define GET_SysTimerSysTimerDelete  ERR_OK
-	#define CAL_SysTimerSysTimerDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysTimer*)p0)->ISysTimerDelete())
+	#define CAL_SysTimerSysTimerDelete(p0) ((ISysTimer*)p0)->ISysTimerDelete()
 	#define CHK_SysTimerSysTimerDelete  TRUE
 	#define EXP_SysTimerSysTimerDelete  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysTimerDelete
 	#define EXT_SysTimerDelete
 	#define GET_SysTimerDelete(fl)  CAL_CMGETAPI( "SysTimerDelete" ) 
-	#define CAL_SysTimerDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysTimer*)p0)->ISysTimerDelete())
+	#define CAL_SysTimerDelete(p0) ((ISysTimer*)p0)->ISysTimerDelete()
 	#define CHK_SysTimerDelete  TRUE
 	#define EXP_SysTimerDelete  CAL_CMEXPAPI( "SysTimerDelete" ) 
 #else /* DYNAMIC_LINK */

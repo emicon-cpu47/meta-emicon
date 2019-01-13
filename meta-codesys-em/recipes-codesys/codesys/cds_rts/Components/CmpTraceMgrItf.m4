@@ -28,9 +28,7 @@
  *	</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpTraceMgr')
@@ -280,7 +278,6 @@ REF_ITF(`CmpAppItf.m4')
  * <element name="TRACE_PACKET_FLAGS_TIMESTAMP_MS" type="IN">Timestamp for the trace values have milliseonds reaolution (ticks)</element>
  * <element name="TRACE_PACKET_FLAGS_TIMESTAMP_US" type="IN">Timestamp for the trace values have microseonds reaolution (ticks)</element>
  * <element name="TRACE_PACKET_FLAGS_STORE_IN_FILE" type="IN">Is used to initiate to store trace persistent in file. Only used, if TRACE_PACKET_FLAGS_AUTOSTART is set.</element>
- * <element name="TRACE_PACKET_FLAGS_SYSTEM_TRACE" type="IN">Is used to mark a trace as system trace.</element>
  */
 #define TRACE_PACKET_FLAGS_NOT_INITIALIZED			0x00000000
 #define TRACE_PACKET_FLAGS_COMPLETED				0x00000001
@@ -289,7 +286,6 @@ REF_ITF(`CmpAppItf.m4')
 #define TRACE_PACKET_FLAGS_TIMESTAMP_MS				0x00000010
 #define TRACE_PACKET_FLAGS_TIMESTAMP_US				0x00000020
 #define TRACE_PACKET_FLAGS_STORE_IN_FILE			0x00000040
-#define TRACE_PACKET_FLAGS_SYSTEM_TRACE				0x00010000
 
 
 /**
@@ -468,7 +464,7 @@ typedef struct tagEVTPARAM_CmpTraceMgr_Record
 typedef union
 {
 	RTS_IEC_BYTE *pbyByteCode;		
-	RTS_IEC_BYTE aByteCode[TRACE_MONITORING2_STATIC_BYTECODE_SIZE_CHARS];		/* see: |TRACE_MONITORING2_STATIC_BYTECODE_SIZE_CHARS| */
+	RTS_IEC_BYTE aByteCode[TRACE_MONITORING2_STATIC_BYTECODE_SIZE_CHARS];		
 } Monitoring2ByteCodeUnion;
 
 /**
@@ -547,7 +543,7 @@ typedef union
  */
 typedef struct tagTraceVariableAddress
 {
-	RTS_IEC_UDINT ulAddressFlags;		/* Address flags. See |TRACE_VAR_ADDRESS_FLAGS| */
+	RTS_IEC_UDINT ulAddressFlags;		/* Address flags. See TRACE_VAR_ADDRESS_FLAGS */
 	TraceAddress taAddress;		/* Trace address definition */
 } TraceVariableAddress;
 
@@ -586,11 +582,11 @@ typedef struct tagTraceTrigger
 {
 	TraceVariable tvVariable;		/* Specification of the trigger variable */
 	TriggerValue ttvLevel;		/* Holds the trigger level for analog (i.e. non-boolean) triggers */
-	RTS_IEC_UDINT ulFlags;		/* Trigger flags. See |TRACE_TRIGGER_FLAGS|. */
-	RTS_IEC_BYTE byEdge;		/* Trigger edge. See |TRACE_TRIGGER_EDGE|. */
+	RTS_IEC_UDINT ulFlags;		/* Trigger flags. See TRACE_TRIGGER_FLAGS. */
+	RTS_IEC_BYTE byEdge;		/* Trigger edge. See TRACE_TRIGGER_EDGE. */
 	RTS_IEC_BYTE byPosition;		/* Number of samples to record after the trigger has fired in percent (0..100) of the buffer size.  Deprecated, use ulUpdatesAfterTrigger instead. */
 	RTS_IEC_WORD wAlignmentDummy;		/* Alignment bytes */
-	RTS_IEC_UDINT ulUpdatesAfterTrigger;		/* Number of samples to record after the trigger has fired. Note: |TRACE_TRIGGER_FLAGS_UPDATESAFTERTRIGGER| must be set in ulFlags, if this entry is used instead of byPosition. */
+	RTS_IEC_UDINT ulUpdatesAfterTrigger;		/* Number of samples to record after the trigger has fired. Note: TRACE_TRIGGER_FLAGS_UPDATESAFTERTRIGGER must be set in ulFlags, if this entry is used instead of byPosition. */
 } TraceTrigger;
 
 /**
@@ -610,15 +606,7 @@ typedef struct tagTraceRecordConfiguration
 	RTS_IEC_UDINT tcClass;		/* Type class of the variable. See enum IBase.TypeClass for the possible values. */
 	RTS_IEC_UDINT ulSize;		/* Size in bytes of a single sample */
 	RTS_IEC_UDINT ulGraphColor;		/* Color in which the trace curve for the variable should be displayed */
-	RTS_IEC_UDINT ulGraphType;		/* | Graph type:
- | 1: line (with points)    
- | 2: cross    
- | 4: step (with points)    
- | 5: point    
- | 8: line (without points)    
- | 9: step (without points)    
- | 10: line (with crosses)    
- | 11: steps (with crosses)) */
+	RTS_IEC_UDINT ulGraphType;		/* Graph type (1: line (with points), 2: cross, 4: step (with points), 5: point, 8: line (without points), 9: step (without points), 10: line (with crosses), 11: steps (with crosses)) */
 	RTS_IEC_UDINT ulMinWarningColor;		/* Color to use if a sample is <= fCriticalLowerLimit */
 	RTS_IEC_UDINT ulMaxWarningColor;		/* Color to use if a sample is >= fCriticalUpperLimit */
 	RTS_IEC_REAL fCriticalLowerLimit;		/* The lower limit */
@@ -644,7 +632,7 @@ typedef struct tagTraceRecordEntry
  */
 typedef struct tagTriggerState
 {
-	RTS_IEC_UDINT ulState;		/* The state. See |TRACE_TRIGGER_STATE| */
+	RTS_IEC_UDINT ulState;		/* The state. See TRACE_TRIGGER_STATE */
 	RTS_IEC_UDINT dtTriggerDate;		/* The date of the trigger event (in UTC) */
 	RTS_IEC_ULINT tTriggerReached;		/* The time of the trigger event */
 } TriggerState;
@@ -654,7 +642,7 @@ typedef struct tagTriggerState
  */
 typedef struct tagTraceState
 {
-	RTS_IEC_UDINT ulState;		/* The state.  See |TRACE_PACKET_STATE| */
+	RTS_IEC_UDINT ulState;		/* The state.  See TRACE_PACKET_STATE */
 	RTS_IEC_UDINT ulFillLevel;		/* The number of recorded samples */
 	RTS_IEC_ULINT tStartTime;		/* The time of the first start of the trace, all time stamps are relative to this value. */
 	TriggerState tsTriggerState;		/* The state of the trigger. */
@@ -662,20 +650,20 @@ typedef struct tagTraceState
 
 /**
  * Loads a given trace file and returns the configuration it contains. After this function
- * call a call to function |TraceMgrGetConfigFromFileRelease| is necessary to free the dynamically allocated
+ * call a call to function <c>TraceMgrGetConfigFromFileRelease</c> is necessary to free the dynamically allocated
  * memory.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if pszFileName is not a valid file path
  *   - ERR_NOMEMORY if the memory is not sufficient for opening the file
  *   - ERR_NOT_SUPPORTED if reading from files is not supported by the runtime system
- *     or if an addressing mode is not supported (e.g. symbolic access)
+ *       or if an addressing mode is not supported (e.g. symbolic access)
  *   - ERR_NO_OBJECT if opening the file failed
  *   - ERR_FAILED if opening the file failed
  *   - ERR_END_OF_OBJECT if either the packet configuration or the record configuration is incomplete
  *   - ERR_NO_CHANGE if a NULL pointer was passed to parameter
- *   - ERR_OUT_OF_LIMITS if the parameters ``pRecordConfiguration`` and ``iMaxRecordCount``
- *     do not have enough memory to hold all the records from the file
+ *   - ERR_OUT_OF_LIMITS if the parameters <c>pRecordConfiguration</c> and <c>iMaxRecordCount</c>
+ *       do not have enough memory to hold all the records from the file
  */
 typedef struct tagtracemgrgetconfigfromfile_struct
 {
@@ -690,10 +678,10 @@ typedef struct tagtracemgrgetconfigfromfile_struct
 	RTS_IEC_RESULT TraceMgrGetConfigFromFile;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrgetconfigfromfile_struct;
 
-DEF_API(`void',`CDECL',`tracemgrgetconfigfromfile',`(tracemgrgetconfigfromfile_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x6FE07E94),0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrgetconfigfromfile',`(tracemgrgetconfigfromfile_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x6FE07E94),0x03050700)
 
 /**
- * This function has to be called after |TraceMgrGetConfigFromFile|. It frees
+ * This function has to be called after <c>TraceMgrGetConfigFromFile</c>. It frees
  * the dynamically allocated memory for the strings of the packet resp. record configuration.
  * :return: Returns the runtime system error code (see CmpErrors.library) 
  */
@@ -706,7 +694,7 @@ typedef struct tagtracemgrgetconfigfromfilerelease_struct
 	RTS_IEC_RESULT TraceMgrGetConfigFromFileRelease;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrgetconfigfromfilerelease_struct;
 
-DEF_API(`void',`CDECL',`tracemgrgetconfigfromfilerelease',`(tracemgrgetconfigfromfilerelease_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x1E24AEEF),0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrgetconfigfromfilerelease',`(tracemgrgetconfigfromfilerelease_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x1E24AEEF),0x03050700)
 
 /**
  * Checks if the trigger fires this cycle and sets the trigger state
@@ -729,7 +717,7 @@ typedef struct tagtracemgrpacketchecktrigger_struct
 	RTS_IEC_RESULT TraceMgrPacketCheckTrigger;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketchecktrigger_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketchecktrigger',`(tracemgrpacketchecktrigger_struct *p)',1,0xD2E54704,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketchecktrigger',`(tracemgrpacketchecktrigger_struct *p)',1,0xD2E54704,0x03050700)
 
 /**
  * Closes a handle opened by TraceMgrPacketOpen.
@@ -743,7 +731,7 @@ typedef struct tagtracemgrpacketclose_struct
 	RTS_IEC_RESULT TraceMgrPacketClose;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketclose_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketclose',`(tracemgrpacketclose_struct *p)',1,0xBF67CDD5,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketclose',`(tracemgrpacketclose_struct *p)',1,0xBF67CDD5,0x03050700)
 
 /**
  * Completes a trace packet and finishes the configuration.
@@ -758,7 +746,7 @@ typedef struct tagtracemgrpacketcomplete_struct
 	RTS_IEC_RESULT TraceMgrPacketComplete;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketcomplete_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketcomplete',`(tracemgrpacketcomplete_struct *p)',1,0x77ED2847,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketcomplete',`(tracemgrpacketcomplete_struct *p)',1,0x77ED2847,0x03050700)
 
 /**
  * Creates a new trace packet.  The returned handle must be deleted with
@@ -772,11 +760,11 @@ DEF_API(`void',`CDECL',`tracemgrpacketcomplete',`(tracemgrpacketcomplete_struct 
 typedef struct tagtracemgrpacketcreate_struct
 {
 	TracePacketConfiguration *pConfiguration;	/* VAR_IN_OUT */	/* The trace packet configuration (in) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrPacketCreate;	/* VAR_OUTPUT */	/* The trace packet handle or RTS_INVALID_HANDLE on failure */
 } tracemgrpacketcreate_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketcreate',`(tracemgrpacketcreate_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7),0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketcreate',`(tracemgrpacketcreate_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7),0x03050700)
 
 /**
  * Deletes an existing handle.  The handle must have been created with
@@ -791,7 +779,7 @@ typedef struct tagtracemgrpacketdelete_struct
 	RTS_IEC_RESULT TraceMgrPacketDelete;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketdelete_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketdelete',`(tracemgrpacketdelete_struct *p)',1,0x0BCF729C,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketdelete',`(tracemgrpacketdelete_struct *p)',1,0x0BCF729C,0x03050700)
 
 /**
  * Disables a trace packet.  Does nothing if the trace packet is
@@ -806,7 +794,7 @@ typedef struct tagtracemgrpacketdisable_struct
 	RTS_IEC_RESULT TraceMgrPacketDisable;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketdisable_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketdisable',`(tracemgrpacketdisable_struct *p)',1,0x05DBBAFD,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketdisable',`(tracemgrpacketdisable_struct *p)',1,0x05DBBAFD,0x03050700)
 
 /**
  * Disables the trigger of a trace packet.
@@ -820,7 +808,7 @@ typedef struct tagtracemgrpacketdisabletrigger_struct
 	RTS_IEC_RESULT TraceMgrPacketDisableTrigger;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketdisabletrigger_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketdisabletrigger',`(tracemgrpacketdisabletrigger_struct *p)',1,0x293C8EA4,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketdisabletrigger',`(tracemgrpacketdisabletrigger_struct *p)',1,0x293C8EA4,0x03050700)
 
 /**
  * Enables a trace packet.  Does nothing if the trace packet is
@@ -835,14 +823,14 @@ typedef struct tagtracemgrpacketenable_struct
 	RTS_IEC_RESULT TraceMgrPacketEnable;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketenable_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketenable',`(tracemgrpacketenable_struct *p)',1,0x3B8A1A22,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketenable',`(tracemgrpacketenable_struct *p)',1,0x3B8A1A22,0x03050700)
 
 /**
  * Enables the trigger of a trace packet.
  * 
- * .. note:: This function should be called if the trigger is currently disabled.
- *    If the trigger has already fired, call |TraceMgrPacketResetTrigger|
- *    to reset the trigger, instead.
+ * Note: This function should be called if the trigger is currently disabled.
+ * If the trigger has already fired, call TraceMgrPacketResetTrigger
+ * to reset the trigger, instead.
  * 
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -853,13 +841,14 @@ typedef struct tagtracemgrpacketenabletrigger_struct
 	RTS_IEC_RESULT TraceMgrPacketEnableTrigger;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketenabletrigger_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketenabletrigger',`(tracemgrpacketenabletrigger_struct *p)',1,0x9E0738EB,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketenabletrigger',`(tracemgrpacketenabletrigger_struct *p)',1,0x9E0738EB,0x03050700)
 
 /**
  * Returns the absolute start time of a trace packet or 0 if trace packet has not
  * been started yet.
  *
- * .. note:: The start time is the time when the packet was started for the first time.
+ * Note: the start time is the time when the packet was started for the first
+ * time.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid handle
@@ -871,7 +860,7 @@ typedef struct tagtracemgrpacketgetabsolutestarttime_struct
 	RTS_IEC_RESULT TraceMgrPacketGetAbsoluteStartTime;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketgetabsolutestarttime_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketgetabsolutestarttime',`(tracemgrpacketgetabsolutestarttime_struct *p)',1,0x4D6D7E87,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketgetabsolutestarttime',`(tracemgrpacketgetabsolutestarttime_struct *p)',1,0x4D6D7E87,0x03050700)
 
 /**
  * Returns the timestamp of a trace packet's last modification.
@@ -886,7 +875,7 @@ typedef struct tagtracemgrpacketgetchangetimestamp_struct
 	RTS_IEC_RESULT TraceMgrPacketGetChangeTimestamp;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketgetchangetimestamp_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketgetchangetimestamp',`(tracemgrpacketgetchangetimestamp_struct *p)',1,0x47F49777,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketgetchangetimestamp',`(tracemgrpacketgetchangetimestamp_struct *p)',1,0x47F49777,0x03050700)
 
 /**
  * Queries the configuration of a trace packet.
@@ -901,11 +890,11 @@ typedef struct tagtracemgrpacketgetconfig_struct
 	RTS_IEC_RESULT TraceMgrPacketGetConfig;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketgetconfig_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketgetconfig',`(tracemgrpacketgetconfig_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xF96CF7C8),0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketgetconfig',`(tracemgrpacketgetconfig_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xF96CF7C8),0x03050700)
 
 /**
  * Returns the first trace packet.
- * This function can be used together with |TraceMgrPacketGetNext| to iterate
+ * This function can be used together with TraceMgrPacketGetNext to iterate
  * through all trace packets.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
@@ -913,15 +902,15 @@ DEF_API(`void',`CDECL',`tracemgrpacketgetconfig',`(tracemgrpacketgetconfig_struc
  */
 typedef struct tagtracemgrpacketgetfirst_struct
 {
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrPacketGetFirst;	/* VAR_OUTPUT */	/* The packet handle or RTS_INVALID_HANDLE if there is no packet */
 } tracemgrpacketgetfirst_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketgetfirst',`(tracemgrpacketgetfirst_struct *p)',1,0xA4D19325,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketgetfirst',`(tracemgrpacketgetfirst_struct *p)',1,0xA4D19325,0x03050700)
 
 /**
  * Returns the next trace packet.
- * This function can be used together with |TraceMgrPacketGetFirst| to iterate
+ * This function can be used together with TraceMgrPacketGetFirst to iterate
  * through all trace packets.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
@@ -931,17 +920,18 @@ DEF_API(`void',`CDECL',`tracemgrpacketgetfirst',`(tracemgrpacketgetfirst_struct 
 typedef struct tagtracemgrpacketgetnext_struct
 {
 	RTS_IEC_HANDLE hPrevPacket;			/* VAR_INPUT */	/* The packet handle of the current trace packet */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code */
 	RTS_IEC_HANDLE TraceMgrPacketGetNext;	/* VAR_OUTPUT */	/* The packet handle or RTS_INVALID_HANDLE if there is no further packet */
 } tracemgrpacketgetnext_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketgetnext',`(tracemgrpacketgetnext_struct *p)',1,0x1E3AD1B8,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketgetnext',`(tracemgrpacketgetnext_struct *p)',1,0x1E3AD1B8,0x03050700)
 
 /**
  * Returns the start time of a trace packet or 0 if trace packet has not
  * been started yet.
  *
- * .. note:: the start time is the time when the packet was started for the first time.
+ * Note: the start time is the time when the packet was started for the first
+ * time.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid handle
@@ -953,7 +943,7 @@ typedef struct tagtracemgrpacketgetstarttime_struct
 	RTS_IEC_RESULT TraceMgrPacketGetStartTime;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketgetstarttime_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketgetstarttime',`(tracemgrpacketgetstarttime_struct *p)',1,0x8FC2D61B,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketgetstarttime',`(tracemgrpacketgetstarttime_struct *p)',1,0x8FC2D61B,0x03050700)
 
 /**
  * Returns the state of a trace packet.
@@ -968,12 +958,11 @@ typedef struct tagtracemgrpacketgetstate_struct
 	RTS_IEC_RESULT TraceMgrPacketGetState;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketgetstate_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketgetstate',`(tracemgrpacketgetstate_struct *p)',1,0x998E4A5E,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketgetstate',`(tracemgrpacketgetstate_struct *p)',1,0x998E4A5E,0x03050700)
 
 /**
  * Opens a trace packet specified by name.
- *
- * .. note:: Comparison of packet names is case-insensitive.
+ * Note: Comparison of packet names is case-insensitive.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_NO_OBJECT if no packet with the given name is found. 
@@ -981,25 +970,25 @@ DEF_API(`void',`CDECL',`tracemgrpacketgetstate',`(tracemgrpacketgetstate_struct 
 typedef struct tagtracemgrpacketopen_struct
 {
 	RTS_IEC_STRING *pszName;			/* VAR_IN_OUT */	/* The name of the trace packet to open (in) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrPacketOpen;	/* VAR_OUTPUT */	/* The packet handle if found, RTS_INVALID_HANDLE otherwise */
 } tracemgrpacketopen_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketopen',`(tracemgrpacketopen_struct *p)',1,0x32667B41,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketopen',`(tracemgrpacketopen_struct *p)',1,0x32667B41,0x03050700)
 
 /**
  * Start reading trace packet.
  * 
  * The purpose of this function is to trigger the event
- * EVT_TRACEMGR_PACKET_SAMPLE.
+ *  EVT_TRACEMGR_PACKET_SAMPLE.
  * In response to the event, any outstanding trace samples will be written
  * by runtime system components and IEC applications that provide trace
  * values for system parameters.
  *
- * .. note:: Normally, there is no need to call this function. It should be
- *    called before |TraceMgrPacketReadFirst| and |TraceMgrPacketReadFirst2| to
- *    make sure all trace values are present before reading.  When finished
- *    with reading, TraceMgrPacketReadEnd should be called.
+ * Note: Normally, there is no need to call this function. It should be
+ * called before TraceMgrPacketReadFirst and TraceMgrPacketReadFirst2 to
+ * make sure all trace values are present before reading.  When finished
+ * with reading, TraceMgrPacketReadEnd should be called.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -1011,12 +1000,12 @@ typedef struct tagtracemgrpacketreadbegin_struct
 	RTS_IEC_RESULT TraceMgrPacketReadBegin;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketreadbegin_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketreadbegin',`(tracemgrpacketreadbegin_struct *p)',1,0xDD2F3F8A,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketreadbegin',`(tracemgrpacketreadbegin_struct *p)',1,0xDD2F3F8A,0x03050700)
 
 /**
  * End reading trace packet.
  *
- * See description of function |TraceMgrPacketReadBegin|.
+ * See description of function TraceMgrPacketReadBegin.
  * 
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -1028,22 +1017,22 @@ typedef struct tagtracemgrpacketreadend_struct
 	RTS_IEC_RESULT TraceMgrPacketReadEnd;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketreadend_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketreadend',`(tracemgrpacketreadend_struct *p)',1,0x96F691B2,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketreadend',`(tracemgrpacketreadend_struct *p)',1,0x96F691B2,0x03050700)
 
 /**
  * Reads the contents of the first record.
  *
- * .. note:: if the result code is ERR_ENTRIES_REMAINING, data has been
- *    successfully copied to pTraceBuffer, but more data can be read
- *    by a subsequent call.  (Either because the destination buffer was
- *    too small, or because new data has been recorded in the mean time.)
+ * Note: if the result code is ERR_ENTRIES_REMAINING, data has been
+ * successfully copied to pTraceBuffer, but more data can be read
+ * by a subsequent call.  (Either because the destination buffer was
+ * too small, or because new data has been recorded in the mean time.)
  *
- * .. note:: You should call |TraceMgrPacketReadBegin| before calling
- *    this function, to make sure any outstanding trace values are written
- *    to the trace buffers.
+ * Note 2: You should call TraceMgrPacketReadBegin before calling
+ * this function, to make sure any outstanding trace values are written
+ * to the trace buffers.
  * 
- * .. note:: Data is always returned in little endian byte order even if 
- *    the device has big endian byte order.
+ * Note 3: Data is always returned in little endian byte order even if 
+ * the device has big endian byte order.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -1057,30 +1046,30 @@ typedef struct tagtracemgrpacketreadfirst_struct
 	RTS_IEC_HANDLE hPacket;				/* VAR_INPUT */	/* The trace packet handle */
 	TraceRecordEntry *pTraceBuffer;		/* VAR_IN_OUT */	/* Pointer to the destination buffer */
 	RTS_IEC_UDINT *pulReadBytes;		/* VAR_IN_OUT */	/* Size of the destination buffer in bytes (in), number of bytes copied (out) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code */
 	RTS_IEC_HANDLE TraceMgrPacketReadFirst;	/* VAR_OUTPUT */	/* The handle of the first trace record or RTS_INVALID_HANLDE on error */
 } tracemgrpacketreadfirst_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketreadfirst',`(tracemgrpacketreadfirst_struct *p)',1,0x074AB535,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketreadfirst',`(tracemgrpacketreadfirst_struct *p)',1,0x074AB535,0x03050700)
 
 /**
  * Reads the contents of the first record, starting at a given time stamp.
  *
  * Only entries with a time stamp greater than or equal to ulTimestamp are
  * copied.  If the time stamp is zero, the function behaves like
- * |TraceMgrPacketReadFirst|.
+ * TraceMgrPacketReadFirst.
  *
- * .. note:: if the result code is ERR_ENTRIES_REMAINING, data has been
- *    successfully copied to pTraceBuffer, but more data can be read
- *    by a subsequent call.  (Either because the destination buffer was
- *    too small, or because new data has been recorded in the mean time.)
+ * Note: if the result code is ERR_ENTRIES_REMAINING, data has been
+ * successfully copied to pTraceBuffer, but more data can be read
+ * by a subsequent call.  (Either because the destination buffer was
+ * too small, or because new data has been recorded in the mean time.)
  *
- * .. note:: You should call |TraceMgrPacketReadBegin| before calling
- *    this function, to make sure any outstanding trace values are written
- *    to the trace buffers.
+ * Note 2: You should call TraceMgrPacketReadBegin before calling
+ * this function, to make sure any outstanding trace values are written
+ * to the trace buffers.
  *
- * .. note:: Data is always returned in little endian byte order even if
- *    the device has big endian byte order.
+ * Note 3: Data is always returned in little endian byte order even if
+ * the device has big endian byte order.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -1095,22 +1084,22 @@ typedef struct tagtracemgrpacketreadfirst2_struct
 	RTS_IEC_UDINT ulTimestamp;			/* VAR_INPUT */	/* The time stamp (relative to the trace start time) from where to start copying */
 	TraceRecordEntry *pTraceBuffer;		/* VAR_IN_OUT */	/* Pointer to the destination buffer */
 	RTS_IEC_UDINT *pulReadBytes;		/* VAR_IN_OUT */	/* Size of the destination buffer in bytes (in), number of bytes copied (out) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code */
 	RTS_IEC_HANDLE TraceMgrPacketReadFirst2;	/* VAR_OUTPUT */	/* The handle of the first trace record or RTS_INVALID_HANLDE on error */
 } tracemgrpacketreadfirst2_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketreadfirst2',`(tracemgrpacketreadfirst2_struct *p)',1,0x8F85D7AF,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketreadfirst2',`(tracemgrpacketreadfirst2_struct *p)',1,0x8F85D7AF,0x03050700)
 
 /**
  * Reads the contents of the next record.
  *
- * .. note:: if the result code is ERR_ENTRIES_REMAINING, data has been
- *    successfully copied to pTraceBuffer, but more data can be read
- *    by a subsequent call.  (Either because the destination buffer was
- *    too small, or because new data has been recorded in the mean time.)
+ * Note: if the result code is ERR_ENTRIES_REMAINING, data has been
+ * successfully copied to pTraceBuffer, but more data can be read
+ * by a subsequent call.  (Either because the destination buffer was
+ * too small, or because new data has been recorded in the mean time.)
  *
- * .. note:: Data is always returned in little endian byte order even if
- *    the device has big endian byte order.
+ * Note 2: Data is always returned in little endian byte order even if
+ * the device has big endian byte order.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle or if hPrevRecord is not a valid record handle
@@ -1125,26 +1114,26 @@ typedef struct tagtracemgrpacketreadnext_struct
 	RTS_IEC_HANDLE hPrevRecord;			/* VAR_INPUT */	/* The trace record handle of the current record */
 	TraceRecordEntry *pTraceBuffer;		/* VAR_IN_OUT */	/* Pointer to the destination buffer */
 	RTS_IEC_UDINT *pulReadBytes;		/* VAR_IN_OUT */	/* Size of the destination buffer in bytes (in), number of bytes copied (out) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code */
 	RTS_IEC_HANDLE TraceMgrPacketReadNext;	/* VAR_OUTPUT */	/* The handle of the next trace record or RTS_INVALID_HANLDE on error */
 } tracemgrpacketreadnext_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketreadnext',`(tracemgrpacketreadnext_struct *p)',1,0xDA5B316F,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketreadnext',`(tracemgrpacketreadnext_struct *p)',1,0xDA5B316F,0x03050700)
 
 /**
  * Reads the contents of the next record, starting at a given time stamp.
  *
  * Only entries with a time stamp greater than or equal to ulTimestamp are
  * copied.  If the time stamp is zero, the function behaves like
- * |TraceMgrPacketReadNext|.
+ * TraceMgrPacketReadNext.
  *
- * .. note:: if the result code is ERR_ENTRIES_REMAINING, data has been
- *    successfully copied to pTraceBuffer, but more data can be read
- *    by a subsequent call.  (Either because the destination buffer was
- *    too small, or because new data has been recorded in the mean time.)
+ * Note: if the result code is ERR_ENTRIES_REMAINING, data has been
+ * successfully copied to pTraceBuffer, but more data can be read
+ * by a subsequent call.  (Either because the destination buffer was
+ * too small, or because new data has been recorded in the mean time.)
  *
- * .. note:: Data is always returned in little endian byte order even if
- *    the device has big endian byte order.
+ * Note 2: Data is always returned in little endian byte order even if
+ * the device has big endian byte order.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle or if hPrevRecord is not a valid record handle
@@ -1160,19 +1149,19 @@ typedef struct tagtracemgrpacketreadnext2_struct
 	RTS_IEC_UDINT ulTimestamp;			/* VAR_INPUT */	/* The time stamp (relative to the trace start time) from where to start copying */
 	TraceRecordEntry *pTraceBuffer;		/* VAR_IN_OUT */	/* Pointer to the destination buffer */
 	RTS_IEC_UDINT *pulReadBytes;		/* VAR_IN_OUT */	/* Size of the destination buffer in bytes (in), number of bytes copied (out) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code */
 	RTS_IEC_HANDLE TraceMgrPacketReadNext2;	/* VAR_OUTPUT */	/* The handle of the next trace record or RTS_INVALID_HANLDE on error */
 } tracemgrpacketreadnext2_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketreadnext2',`(tracemgrpacketreadnext2_struct *p)',1,0xE91DB9CD,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketreadnext2',`(tracemgrpacketreadnext2_struct *p)',1,0xE91DB9CD,0x03050700)
 
 /**
  * Resets the trigger of a trace packet.  The start time and date of
  * of the trigger is reset to 0 and the trigger is set to state enabled
  * (if it is not disabled).
  * 
- * .. note: if the trigger is currently disabled, it stays disabled.  To enable
- *    it, call TraceMgrPacketEnableTrigger.
+ * Note: if the trigger is currently disabled, it stays disabled.  To enable
+ * it, call TraceMgrPacketEnableTrigger.
  * 
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -1183,7 +1172,7 @@ typedef struct tagtracemgrpacketresettrigger_struct
 	RTS_IEC_RESULT TraceMgrPacketResetTrigger;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketresettrigger_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketresettrigger',`(tracemgrpacketresettrigger_struct *p)',1,0xE73A7FCC,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketresettrigger',`(tracemgrpacketresettrigger_struct *p)',1,0xE73A7FCC,0x03050700)
 
 /**
  * Restarts a trace packet and resets the start time and the trigger.
@@ -1201,7 +1190,7 @@ typedef struct tagtracemgrpacketrestart_struct
 	RTS_IEC_RESULT TraceMgrPacketRestart;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketrestart_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketrestart',`(tracemgrpacketrestart_struct *p)',1,0xAD7F1200,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketrestart',`(tracemgrpacketrestart_struct *p)',1,0xAD7F1200,0x03050700)
 
 /**
  * Loads a trace packet from a trace file.
@@ -1211,24 +1200,25 @@ DEF_API(`void',`CDECL',`tracemgrpacketrestart',`(tracemgrpacketrestart_struct *p
  *   - ERR_PARAMETER if hPacket is not a valid handle, or if pszFileName is not a valid file path
  *   - ERR_NOMEMORY if the memory is not sufficient for opening the file
  *   - ERR_NOT_SUPPORTED if reading from files is not supported by the runtime system
- *     or if an addressing mode is not supported (e.g. symbolic access)
+ *       or if an addressing mode is not supported (e.g. symbolic access)
  *   - ERR_NO_OBJECT if opening the file failed
  *   - ERR_FAILED if opening the file failed
  */
 typedef struct tagtracemgrpacketrestore_struct
 {
 	RTS_IEC_STRING *pszFileName;		/* VAR_IN_OUT */	/* The file path (in) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrPacketRestore;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketrestore_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketrestore',`(tracemgrpacketrestore_struct *p)',1,0xE1899ACC,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketrestore',`(tracemgrpacketrestore_struct *p)',1,0xE1899ACC,0x03050700)
 
 /**
  * Starts a trace packet and resets the trigger.
  *
- * .. note:: if the packet is started for the first time, the start
- *    time of the packet is set to the current time. See: |TraceMgrPacketGetStartTime|.
+ * Note: if the packet is started for the first time, the start
+ * time of the packet is set to the current time. See
+ * TraceGetStartTime.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -1239,7 +1229,7 @@ typedef struct tagtracemgrpacketstart_struct
 	RTS_IEC_RESULT TraceMgrPacketStart;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketstart_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketstart',`(tracemgrpacketstart_struct *p)',1,0xDCA4F311,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketstart',`(tracemgrpacketstart_struct *p)',1,0xDCA4F311,0x03050700)
 
 /**
  * Stops a trace packet.
@@ -1253,7 +1243,7 @@ typedef struct tagtracemgrpacketstop_struct
 	RTS_IEC_RESULT TraceMgrPacketStop;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketstop_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketstop',`(tracemgrpacketstop_struct *p)',1,0x3C28C22F,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketstop',`(tracemgrpacketstop_struct *p)',1,0x3C28C22F,0x03050700)
 
 /**
  * Stores a trace packet to a trace file.
@@ -1273,7 +1263,7 @@ typedef struct tagtracemgrpacketstore_struct
 	RTS_IEC_RESULT TraceMgrPacketStore;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketstore_struct;
 
-DEF_API(`void',`CDECL',`tracemgrpacketstore',`(tracemgrpacketstore_struct *p)',1,0x705D2F68,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrpacketstore',`(tracemgrpacketstore_struct *p)',1,0x705D2F68,0x03050700)
 
 /**
  * Adds a new record to a trace packet
@@ -1286,11 +1276,11 @@ typedef struct tagtracemgrrecordadd_struct
 {
 	RTS_IEC_HANDLE hPacket;				/* VAR_INPUT */	/* The trace packet handle */
 	TraceRecordConfiguration *pConfiguration;	/* VAR_IN_OUT */	/* The record configuration (in) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrRecordAdd;	/* VAR_OUTPUT */	/* The record handle or RTS_INVALID_HANDLE on failure */
 } tracemgrrecordadd_struct;
 
-DEF_API(`void',`CDECL',`tracemgrrecordadd',`(tracemgrrecordadd_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x68ACB311),0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrrecordadd',`(tracemgrrecordadd_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x68ACB311),0x03050700)
 
 /**
  * Queries the configuration of a trace record.
@@ -1306,11 +1296,11 @@ typedef struct tagtracemgrrecordgetconfig_struct
 	RTS_IEC_RESULT TraceMgrRecordGetConfig;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrrecordgetconfig_struct;
 
-DEF_API(`void',`CDECL',`tracemgrrecordgetconfig',`(tracemgrrecordgetconfig_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xDAF803A5),0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrrecordgetconfig',`(tracemgrrecordgetconfig_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xDAF803A5),0x03050700)
 
 /**
  * Returns the first trace record of a trace packet.
- * This function can be used together with |TraceMgrRecordGetNext| to iterate
+ * This function can be used together with TraceMgrRecordGetNext to iterate
  * through all trace records of a packet.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
@@ -1320,15 +1310,15 @@ DEF_API(`void',`CDECL',`tracemgrrecordgetconfig',`(tracemgrrecordgetconfig_struc
 typedef struct tagtracemgrrecordgetfirst_struct
 {
 	RTS_IEC_HANDLE hPacket;				/* VAR_INPUT */	/* The trace packet handle */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrRecordGetFirst;	/* VAR_OUTPUT */	/* The record handle, or RTS_INVALID_HANDLE on failure */
 } tracemgrrecordgetfirst_struct;
 
-DEF_API(`void',`CDECL',`tracemgrrecordgetfirst',`(tracemgrrecordgetfirst_struct *p)',1,0xDE6CF5CE,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrrecordgetfirst',`(tracemgrrecordgetfirst_struct *p)',1,0xDE6CF5CE,0x03050700)
 
 /**
  * Returns the next trace record of a trace packet.
- * This function can be used together with |TraceMgrRecordGetFirst| to iterate
+ * This function can be used together with TraceMgrRecordGetFirst to iterate
  * through all trace records of a packet.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
@@ -1339,11 +1329,11 @@ typedef struct tagtracemgrrecordgetnext_struct
 {
 	RTS_IEC_HANDLE hPacket;				/* VAR_INPUT */	/* The trace packet handle */
 	RTS_IEC_HANDLE hPrevRecord;			/* VAR_INPUT */	/* The trace record handle of the current record */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrRecordGetNext;	/* VAR_OUTPUT */	/* The handle of the next record or RTS_INVALID_HANDLE on failure */
 } tracemgrrecordgetnext_struct;
 
-DEF_API(`void',`CDECL',`tracemgrrecordgetnext',`(tracemgrrecordgetnext_struct *p)',1,0xA7463D33,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrrecordgetnext',`(tracemgrrecordgetnext_struct *p)',1,0xA7463D33,0x03050700)
 
 /**
  * Removes a trace record from a trace packet.
@@ -1358,14 +1348,14 @@ typedef struct tagtracemgrrecordremove_struct
 	RTS_IEC_RESULT TraceMgrRecordRemove;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrrecordremove_struct;
 
-DEF_API(`void',`CDECL',`tracemgrrecordremove',`(tracemgrrecordremove_struct *p)',1,0xA0864F53,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrrecordremove',`(tracemgrrecordremove_struct *p)',1,0xA0864F53,0x03050700)
 
 /**
  * Records the current value of the trace variable of a record
  * together with the current time stamp.
  *
- * .. note:: This function is called cyclically by CmpTraceMgr.  It
- *    should not be called by the application.
+ * Note: this function is called cyclically by CmpTraceMgr.  It
+ * should not be called by the application.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle
@@ -1380,14 +1370,14 @@ typedef struct tagtracemgrrecordupdate_struct
 	RTS_IEC_RESULT TraceMgrRecordUpdate;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrrecordupdate_struct;
 
-DEF_API(`void',`CDECL',`tracemgrrecordupdate',`(tracemgrrecordupdate_struct *p)',1,0xD9B5E571,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrrecordupdate',`(tracemgrrecordupdate_struct *p)',1,0xD9B5E571,0x03050700)
 
 /**
  * Stores entries in the ring buffer of a trace record.
  *
  * This function can be used to provide the data for so called system parameters
- * from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.)
- * If only a single entry is to be added, consider using |TraceMgrRecordUpdate3|
+ * from the IEC application. (See TRACE_VAR_ADDRESS_FLAGS_SYSTEM.)
+ * If only a single entry is to be added, consider using TraceMgrRecordUpdate3
  * instead.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
@@ -1405,21 +1395,21 @@ typedef struct tagtracemgrrecordupdate2_struct
 	RTS_IEC_RESULT TraceMgrRecordUpdate2;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrrecordupdate2_struct;
 
-DEF_API(`void',`CDECL',`tracemgrrecordupdate2',`(tracemgrrecordupdate2_struct *p)',1,0x3FE213B2,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrrecordupdate2',`(tracemgrrecordupdate2_struct *p)',1,0x3FE213B2,0x03050700)
 
 /**
  * Stores one entry in the ring buffer of a trace record.
  *
  * This function can be used to provide the data for so called system parameters
- * from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.)
- * If more than one single entry is to be added, consider using |TraceMgrRecordUpdate2|
+ * from the IEC application. (See TRACE_VAR_ADDRESS_FLAGS_SYSTEM.)
+ * If more than onesingle entry is to be added, consider using TraceMgrRecordUpdate2
  * instead.
  *
- * .. note:: in contrast to |TraceMgrRecordUpdate2|, the time stamp of the entry is not
- *    provided by the caller but set inside |TraceMgrRecordUpdate3|.
+ * Note: in contrast to TraceMgrRecordUpdate2, the time stamp of the entry is not
+ * provided by the caller but set inside TraceMgrRecordUpdate3.
  *
- * .. note:: If pData is 0, the current value of the trace variable is read, i.e. the
- *    function behaves TraceMgrRecordUpdate.
+ * Note 2: If pData is 0, the current value of the trace variable is read, i.e. the
+ * function behaves TraceMgrRecordUpdate.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle, or if ulLen differs from the size of the trace variable
@@ -1431,40 +1421,12 @@ typedef struct tagtracemgrrecordupdate3_struct
 {
 	RTS_IEC_HANDLE hPacket;				/* VAR_INPUT */	/* The trace packet handle */
 	RTS_IEC_HANDLE hRecord;				/* VAR_INPUT */	/* The trace record handle */
-	RTS_IEC_BYTE *pData;				/* VAR_INPUT */	/* The address of the variable value to copy, if pData is null the function behaves like |TraceMgrRecordUpdate| */
+	RTS_IEC_BYTE *pData;				/* VAR_INPUT */	/* The address of the variable value to copy, if pData is null the function behaves like TraceMgrRecordUpdate */
 	RTS_IEC_UDINT ulLen;				/* VAR_INPUT */	/* The length (in bytes) of the variable value */
 	RTS_IEC_RESULT TraceMgrRecordUpdate3;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrrecordupdate3_struct;
 
-DEF_API(`void',`CDECL',`tracemgrrecordupdate3',`(tracemgrrecordupdate3_struct *p)',1,0xA5C60449,0x03050B00)
-
-/**
- * Stores multiple values with seperate timestamps in the ring buffer of a trace record.
- *
- * This function can be used to provide the data for so called system parameters
- * from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.)
- *
- * .. note:: in contrast to |TraceMgrRecordUpdate2|, the timestamp of the values and the
- *    values itself are provided in seperate lists by the caller.
- *
- * .. note:: the number of timestamps must be the same as the number of data values. ulEntries must match to this number.
- *
- * :return: Returns the runtime system error code (see CmpErrors.library):
- *   - ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle
- *   - ERR_NOTINITIALIZED if the packet is not currently recording (not started, trigger reached, ...)
- *   - ERR_PENDING if no value is recorded for this cycle due to TracePacketConfiguration.ulEveryNCycles
- */
-typedef struct tagtracemgrrecordupdate4_struct
-{
-	RTS_IEC_HANDLE hPacket;				/* VAR_INPUT */	/* The trace packet handle */
-	RTS_IEC_HANDLE hRecord;				/* VAR_INPUT */	/* The trace record handle */
-	RTS_IEC_UDINT *pTimestamps;			/* VAR_INPUT */	/* The address of the first timestamp of the variable values */
-	RTS_IEC_BYTE *pDataValues;			/* VAR_INPUT */	/* The address of the first variable value of the list to copy */
-	RTS_IEC_UDINT ulEntries;			/* VAR_INPUT */	/* The number of variables to be updated */
-	RTS_IEC_RESULT TraceMgrRecordUpdate4;	/* VAR_OUTPUT */	/* The result code */
-} tracemgrrecordupdate4_struct;
-
-DEF_API(`void',`CDECL',`tracemgrrecordupdate4',`(tracemgrrecordupdate4_struct *p)',1,0x72F1828D,0x03050B00)
+DEF_API(`void',`CDECL',`tracemgrrecordupdate3',`(tracemgrrecordupdate3_struct *p)',1,0xA5C60449,0x03050700)
 
 #ifdef __cplusplus
 }
@@ -1929,17 +1891,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `TraceMgrRecordUpdate2', `(RTS_HANDLE hPacket
  * <result>error code</result>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `TraceMgrRecordUpdate3', `(RTS_HANDLE hPacket, RTS_HANDLE hRecord, void *pData, RTS_UI32 ulLen)')
-
-/**
- * <description>Update multiple values with seperate timestamps in the trace record</description>
- * <param name="hPacket" type="IN">Handle to the trace packet</param>
- * <param name="hRecord" type="IN">Handle to the trace record</param>
- * <param name="pTimestamps" type="IN">Pointer to the array of timestamps</param>
- * <param name="pDataValues" type="IN">Pointer to the array of record values</param>
- * <param name="ulEntries" type="IN">Number of timestamp and value pairs</param>
- * <result>error code</result>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `TraceMgrRecordUpdate4', `(RTS_HANDLE hPacket, RTS_HANDLE hRecord, RTS_UI32 *pTimestamps, void *pDataValues, RTS_UI32 ulEntries)')
 
 /**
  * <description>Update all trace packets at the task specified by name</description>

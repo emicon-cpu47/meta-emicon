@@ -235,7 +235,7 @@ Limitations:
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -866,33 +866,33 @@ Receive data from the encrypted channel. If the connection is not established ye
 
 **Parameters**
 
-+---------+-----------+--------------------------------------------------------------------------------------------------------+
-| [in]    | hTlsConn  | Handle of the TLS connection, created with one of the TLSxxxOpen functions                             |
-+---------+-----------+--------------------------------------------------------------------------------------------------------+
-| [in]    | pbyData   | Pointer to a data buffer, where the received data should be written to.                                |
-+---------+-----------+--------------------------------------------------------------------------------------------------------+
-| [in]    | lDataSize | Size of pbyData. Maximum number of bytes, that could be received from the TLS connection.              |
-+---------+-----------+--------------------------------------------------------------------------------------------------------+
-| [out]   | pResult   | Result of this operation. May be one of these values:                                                  |
-|         |           |                                                                                                        |
-|         |           | - ERR_OK: No error. Everything worked as expected.                                                     |
-|         |           |                                                                                                        |
-|         |           | - ERR_NOTINITIALIZED: The TLS component was not initialized properly.                                  |
-|         |           |                                                                                                        |
-|         |           | - ERR_TLS_CONNECTION_CLOSED: The TLS connection is closed. Use TlsShutdown to shutdown locally.        |
-|         |           |                                                                                                        |
-|         |           | - ERR_TLS_WANT_READ: The operation needs to read data from the IO system. There is no data available.  |
-|         |           |                                                                                                        |
-|         |           | - ERR_TLS_WANT_WRITE: The operation needs to write data to the IO system. This is not possible.        |
-|         |           |                                                                                                        |
-|         |           | - ERR_TLS_RETRY_OPERATION: Something went wrong. Try the same function call again                      |
-|         |           |                                                                                                        |
-|         |           | - ERR_TLS_IO_SYSTEM: An error in the underlaying IO system.                                            |
-|         |           |                                                                                                        |
-|         |           | - ERR_TLS_INTERNAL: An internal Error of the TLS Component                                             |
-|         |           |                                                                                                        |
-|         |           | - ERR_FAILED: Unknown error.                                                                           |
-+---------+-----------+--------------------------------------------------------------------------------------------------------+
++---------+-----------+-------------------------------------------------------------------------------------------------------+
+| [in]    | hTlsConn  | Handle of the TLS connection, created with one of the TLSxxxOpen functions                            |
++---------+-----------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pbyData   | Pointer to a data buffer, where the received data should be written to.                               |
++---------+-----------+-------------------------------------------------------------------------------------------------------+
+| [in]    | lDataSize | Size of pbyData. Maximum number of bytes, that could be received from the TLS connection.             |
++---------+-----------+-------------------------------------------------------------------------------------------------------+
+| [out]   | pResult   | Result of this operation. May be one of these values:                                                 |
+|         |           |                                                                                                       |
+|         |           | - ERR_OK: No error. Everything worked as expected.                                                    |
+|         |           |                                                                                                       |
+|         |           | - ERR_NOTINITIALIZED: The TLS component was not initialized properly.                                 |
+|         |           |                                                                                                       |
+|         |           | - ERR_TLS_CONNECTION_CLOSED: The TLS connection is closed. Use TlsShutdown to shutdown locally.       |
+|         |           |                                                                                                       |
+|         |           | - ERR_TLS_WANT_READ: The operation needs to read data from the IO system. There is no data available. |
+|         |           |                                                                                                       |
+|         |           | - ERR_TLS_WANT_WRITE: The operation needs to write data to the IO system. This is not possible.       |
+|         |           |                                                                                                       |
+|         |           | - ERR_TLS_RETRY_OPERATION: Something went wrong. Try the same function call again                     |
+|         |           |                                                                                                       |
+|         |           | - ERR_TLS_IO_SYSTEM: An error in the underlaying IO system.                                           |
+|         |           |                                                                                                       |
+|         |           | - ERR_TLS_INTERNAL: An internal Error of the TLS Component                                            |
+|         |           |                                                                                                       |
+|         |           | - ERR_FAILED: Unknown error.                                                                          |
++---------+-----------+-------------------------------------------------------------------------------------------------------+
 
 **Returns:**
 
@@ -907,33 +907,33 @@ Send data over the encrypted channel. If the connection is not established yet, 
 
 **Parameters**
 
-+---------+-----------+--------------------------------------------------------------------------------------------------------+
-| [in]    | hTlsConn  | Handle of the TLS connection, created with one of the TLSxxxOpen functions                             |
-+---------+-----------+--------------------------------------------------------------------------------------------------------+
-| [in]    | pbyData   | Pointer to data, that should be sent over the TLS connection                                           |
-+---------+-----------+--------------------------------------------------------------------------------------------------------+
-| [in]    | lDataSize | Size of pbyData. Number of bytes that should be sent over the TLS connection                           |
-+---------+-----------+--------------------------------------------------------------------------------------------------------+
-| [out]   | pResult   | Result of this operation. May be one of these values:                                                  |
-|         |           |                                                                                                        |
-|         |           | - ERR_OK: No error. Everything worked as expected.                                                     |
-|         |           |                                                                                                        |
-|         |           | - ERR_NOTINITIALIZED: The TLS component was not initialized properly.                                  |
-|         |           |                                                                                                        |
-|         |           | - ERR_TLS_CONNECTION_CLOSED: The TLS connection is closed. Use TlsShutdown to shutdown locally.        |
-|         |           |                                                                                                        |
-|         |           | - ERR_TLS_WANT_READ: The operation needs to read data from the IO system. There is no data available.  |
-|         |           |                                                                                                        |
-|         |           | - ERR_TLS_WANT_WRITE: The operation needs to write data to the IO system. This is not possible.        |
-|         |           |                                                                                                        |
-|         |           | - ERR_TLS_RETRY_OPERATION: Something went wrong. Try the same function call again                      |
-|         |           |                                                                                                        |
-|         |           | - ERR_TLS_IO_SYSTEM: An error in the underlaying IO system.                                            |
-|         |           |                                                                                                        |
-|         |           | - ERR_TLS_INTERNAL: An internal Error of the TLS Component                                             |
-|         |           |                                                                                                        |
-|         |           | - ERR_FAILED: Unknown error.                                                                           |
-+---------+-----------+--------------------------------------------------------------------------------------------------------+
++---------+-----------+-------------------------------------------------------------------------------------------------------+
+| [in]    | hTlsConn  | Handle of the TLS connection, created with one of the TLSxxxOpen functions                            |
++---------+-----------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pbyData   | Pointer to data, that should be sent over the TLS connection                                          |
++---------+-----------+-------------------------------------------------------------------------------------------------------+
+| [in]    | lDataSize | Size of pbyData. Number of bytes that should be sent over the TLS connection                          |
++---------+-----------+-------------------------------------------------------------------------------------------------------+
+| [out]   | pResult   | Result of this operation. May be one of these values:                                                 |
+|         |           |                                                                                                       |
+|         |           | - ERR_OK: No error. Everything worked as expected.                                                    |
+|         |           |                                                                                                       |
+|         |           | - ERR_NOTINITIALIZED: The TLS component was not initialized properly.                                 |
+|         |           |                                                                                                       |
+|         |           | - ERR_TLS_CONNECTION_CLOSED: The TLS connection is closed. Use TlsShutdown to shutdown locally.       |
+|         |           |                                                                                                       |
+|         |           | - ERR_TLS_WANT_READ: The operation needs to read data from the IO system. There is no data available. |
+|         |           |                                                                                                       |
+|         |           | - ERR_TLS_WANT_WRITE: The operation needs to write data to the IO system. This is not possible.       |
+|         |           |                                                                                                       |
+|         |           | - ERR_TLS_RETRY_OPERATION: Something went wrong. Try the same function call again                     |
+|         |           |                                                                                                       |
+|         |           | - ERR_TLS_IO_SYSTEM: An error in the underlaying IO system.                                           |
+|         |           |                                                                                                       |
+|         |           | - ERR_TLS_INTERNAL: An internal Error of the TLS Component                                            |
+|         |           |                                                                                                       |
+|         |           | - ERR_FAILED: Unknown error.                                                                          |
++---------+-----------+-------------------------------------------------------------------------------------------------------+
 
 **Returns:**
 

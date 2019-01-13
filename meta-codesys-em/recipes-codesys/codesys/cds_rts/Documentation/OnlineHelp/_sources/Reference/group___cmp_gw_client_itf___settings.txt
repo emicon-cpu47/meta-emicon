@@ -57,15 +57,15 @@ Typedefs
 
 - typedef struct :ref:`tagASYNCRESULT <structtag_a_s_y_n_c_r_e_s_u_l_t>` :ref:`ASYNCRESULT <group___cmp_gw_client_itf___settings_1gab897b5448b842f1312593236871366ad>`
 
-- typedef RTS_RESULT(* :ref:`PFCOMMDRVSEND <group___cmp_gw_client_itf___settings_1ga736042c5e6e3b724693e276d53dbbef9>`)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent)
+- typedef int(* :ref:`PFCOMMDRVSEND <group___cmp_gw_client_itf___settings_1gadcd85c7a69239ec629cbc3cf2c7d4328>`)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, unsigned long *pdwSent)
 
-- typedef RTS_RESULT(* :ref:`PFCOMMDRVRECEIVE <group___cmp_gw_client_itf___settings_1ga89ea9f7c0bb594a5bbccb06584e83b72>`)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData, RTS_UI32 dwReceive)
+- typedef int(* :ref:`PFCOMMDRVRECEIVE <group___cmp_gw_client_itf___settings_1ga2666369f62151c69857b38be322d0d01>`)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData, unsigned long dwReceive)
 
-- typedef RTS_RESULT(* :ref:`PFCOMMDRVBEGINCONNECT <group___cmp_gw_client_itf___settings_1ga245d5818bf4649e19c18e3f77acc7acf>`)(PARAMLIST *pParams, RTS_HANDLE *phConnHandle, ASYNCRESULT *pAsyncRes)
+- typedef int(* :ref:`PFCOMMDRVBEGINCONNECT <group___cmp_gw_client_itf___settings_1ga5f7c47c52be9edeabf471651dc5e9c8d>`)(PARAMLIST *pParams, RTS_HANDLE *phConnHandle, ASYNCRESULT *pAsyncRes)
 
-- typedef RTS_RESULT(* :ref:`PFCOMMDRVENDCONNECT <group___cmp_gw_client_itf___settings_1gabf4fdffe7fd9a65b41394fdc132ac05c>`)(ASYNCRESULT *pAsyncRes, RTS_HANDLE *phConnHandle)
+- typedef int(* :ref:`PFCOMMDRVENDCONNECT <group___cmp_gw_client_itf___settings_1gacd5e87ede95b92e7b1b5b3711657adcd>`)(ASYNCRESULT *pAsyncRes, RTS_HANDLE *phConnHandle)
 
-- typedef RTS_RESULT(* :ref:`PFCOMMDRVCLOSE <group___cmp_gw_client_itf___settings_1ga88061d5df63058166a1d7adba5c4f31e>`)(RTS_HANDLE hConnHandle)
+- typedef int(* :ref:`PFCOMMDRVCLOSE <group___cmp_gw_client_itf___settings_1ga005ed48d6cacfee04fbbe2c822e91d62>`)(RTS_HANDLE hConnHandle)
 
 Enumerations
 ------------
@@ -133,30 +133,30 @@ typedef void( * PFASYNCCALLBACK)(struct tagASYNCRESULT *pAsyncRes)
 typedef struct tagASYNCRESULT ASYNCRESULT
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_gw_client_itf___settings_1ga736042c5e6e3b724693e276d53dbbef9:
+.. _group___cmp_gw_client_itf___settings_1gadcd85c7a69239ec629cbc3cf2c7d4328:
 
-typedef RTS_RESULT( * PFCOMMDRVSEND)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+typedef int( * PFCOMMDRVSEND)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, unsigned long *pdwSent)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_gw_client_itf___settings_1ga89ea9f7c0bb594a5bbccb06584e83b72:
+.. _group___cmp_gw_client_itf___settings_1ga2666369f62151c69857b38be322d0d01:
 
-typedef RTS_RESULT( * PFCOMMDRVRECEIVE)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData, RTS_UI32 dwReceive)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+typedef int( * PFCOMMDRVRECEIVE)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData, unsigned long dwReceive)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_gw_client_itf___settings_1ga245d5818bf4649e19c18e3f77acc7acf:
+.. _group___cmp_gw_client_itf___settings_1ga5f7c47c52be9edeabf471651dc5e9c8d:
 
-typedef RTS_RESULT( * PFCOMMDRVBEGINCONNECT)(PARAMLIST *pParams, RTS_HANDLE *phConnHandle, ASYNCRESULT *pAsyncRes)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+typedef int( * PFCOMMDRVBEGINCONNECT)(PARAMLIST *pParams, RTS_HANDLE *phConnHandle, ASYNCRESULT *pAsyncRes)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_gw_client_itf___settings_1gabf4fdffe7fd9a65b41394fdc132ac05c:
+.. _group___cmp_gw_client_itf___settings_1gacd5e87ede95b92e7b1b5b3711657adcd:
 
-typedef RTS_RESULT( * PFCOMMDRVENDCONNECT)(ASYNCRESULT *pAsyncRes, RTS_HANDLE *phConnHandle)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+typedef int( * PFCOMMDRVENDCONNECT)(ASYNCRESULT *pAsyncRes, RTS_HANDLE *phConnHandle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_gw_client_itf___settings_1ga88061d5df63058166a1d7adba5c4f31e:
+.. _group___cmp_gw_client_itf___settings_1ga005ed48d6cacfee04fbbe2c822e91d62:
 
-typedef RTS_RESULT( * PFCOMMDRVCLOSE)(RTS_HANDLE hConnHandle)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+typedef int( * PFCOMMDRVCLOSE)(RTS_HANDLE hConnHandle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Enumeration Type Documentation
 ------------------------------

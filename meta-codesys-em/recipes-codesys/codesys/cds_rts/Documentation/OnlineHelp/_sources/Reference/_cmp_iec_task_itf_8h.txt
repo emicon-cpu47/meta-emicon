@@ -31,8 +31,6 @@ Data Structures
 
 - struct :ref:`sys_register_slot_pou_struct <structsys__register__slot__pou__struct>`
 
-- struct :ref:`TaskGroup_Info <struct_task_group___info>`
-
 - struct :ref:`tagLDATAREF_TYPE <structtag_l_d_a_t_a_r_e_f___t_y_p_e>`
 
 - struct :ref:`tagSYSIECTASKCONFENTRY <structtag_s_y_s_i_e_c_t_a_s_k_c_o_n_f_e_n_t_r_y>`
@@ -44,6 +42,8 @@ Data Structures
 - struct :ref:`tagiectaskgetinfo_struct <structtagiectaskgetinfo__struct>`
 
 - struct :ref:`tagJitter_Distribution <structtag_jitter___distribution>`
+
+- struct :ref:`tagTask_Info <structtag_task___info>`
 
 - struct :ref:`tagiectaskcreate_struct <structtagiectaskcreate__struct>`
 
@@ -63,8 +63,6 @@ Data Structures
 
 - struct :ref:`tagiectaskgetcurrent_struct <structtagiectaskgetcurrent__struct>`
 
-- struct :ref:`tagiectaskgetdesc_struct <structtagiectaskgetdesc__struct>`
-
 - struct :ref:`tagiectaskgetfirst_struct <structtagiectaskgetfirst__struct>`
 
 - struct :ref:`tagiectaskgetinfo2_struct <structtagiectaskgetinfo2__struct>`
@@ -77,22 +75,10 @@ Data Structures
 
 - struct :ref:`tagiectaskresetstatistics_struct <structtagiectaskresetstatistics__struct>`
 
-- struct :ref:`tagTask_Info <structtag_task___info>`
-
 - struct :ref:`ICmpIecTask_C <struct_i_cmp_iec_task___c>`
 
 Macros
 ------
-
-- #define :ref:`RTS_IECTASK_ENABLE_TASK_TRACE <group___cmp_iec_task_itf_1gaa7357a39213c30478c394ec17b8843e3>`
-
-- #define :ref:`IECTASK_USE_ATOMIC_BITACCESS <group___cmp_iec_task_itf_1ga6d97ec721af30a7bc52406696e076755>`
-
-- #define :ref:`CMPIECTASK_STACK_SIZE <group___cmp_iec_task_itf_1ga56cd627a23d446e4adf43a1e73f9511e>` 0
-
-- #define :ref:`CMPIECTASK_STACK_SIZE_ADDITIONAL <group___cmp_iec_task_itf_1ga2b58fa388ece90533e3d9ced40115eff>` 0
-
-- #define :ref:`CMPIECTASK_SYNCHRONIZATION_USE_SYSSEM <group___cmp_iec_task_itf_1gab52e6822120f99ebd8d6f24980b43a18>`
 
 - #define :ref:`NUM_OF_STATIC_IEC_TASKS <group___cmp_iec_task_itf_1ga657450891a8816e7bf4e1ff8179793f5>` 5
 
@@ -104,9 +90,7 @@ Macros
 
 - #define :ref:`MAX_IEC_SLOTS <group___cmp_iec_task_itf_1ga3a29c1ccb3c5663c7f367377ba958e4e>` (-1)
 
-- #define :ref:`IECTASK_TASK_INFO_VERSION <group___cmp_iec_task_itf_1ga39aedd38d5a72e92eb08ee450e28496d>` 5
-
-- #define :ref:`IECTASK_TASK_INFO_GROUPS_VERSION <group___cmp_iec_task_itf_1ga3479963bc690ce02f57178914eddac2e>` 4
+- #define :ref:`IECTASK_TASK_INFO_VERSION <group___cmp_iec_task_itf_1ga39aedd38d5a72e92eb08ee450e28496d>` 2
 
 - #define :ref:`IECTASK_TASK_MAX_PRIO <group___cmp_iec_task_itf_1gafd184ac6058887baab5e504c0cf5700a>` 255
 
@@ -114,55 +98,31 @@ Macros
 
 - #define :ref:`IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_DEFAULT <group___cmp_iec_task_itf___settings_1ga806fb4decbd1a9252285b1fbebbbdb22>` INT32_C(10000)
 
-- #define :ref:`IECTASKKEY_INT_WAIT_FOR_STOP_TIMEOUT_2 <group___cmp_iec_task_itf___settings_1ga37513ddec3be7a493c2f6a218619402c>` "WaitForStop.TimeoutMs_2"
-
-- #define :ref:`IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_2_DEFAULT <group___cmp_iec_task_itf___settings_1ga3c2d5b8afd2ffbffed0c1bc6f18cd930>` INT32_C(25000)
-
-- #define :ref:`IECTASKKEY_INT_WAIT_FOR_STOP_SKIPTASKSWITHOUTOUTPUTS <group___cmp_iec_task_itf___settings_1ga13b67af339de3e388331f7a011243d7f>` "WaitForStop.SkipTasksWithoutOutputs"
-
-- #define :ref:`IECTASKVALUE_INT_WAIT_FOR_STOP_SKIPTASKSWITHOUTOUTPUTS_DEFAULT <group___cmp_iec_task_itf___settings_1ga17a6a84b6b4d78f068676748c4c703e8>` INT32_C(1)
-
 - #define :ref:`IECTASKKEY_INT_SIMPLE_CYCLE <group___cmp_iec_task_itf___settings_1gad5dcbfdd7595fc6aea9b10e4c5ee6c60>` "Simple_Cycle"
 
 - #define :ref:`IECTASKVALUE_INT_SIMPLE_CYCLE_DEFAULT <group___cmp_iec_task_itf___settings_1ga959c92c87e76a723fba2470a259d81cf>` 0
 
-- #define :ref:`IECTASKKEY_INT_ENABLE_TASK_TRACE <group___cmp_iec_task_itf___settings_1ga25a041842c6b7bb2d639f9a2ca5ac785>` "EnableTaskTrace"
-
-- #define :ref:`IECTASKVALUE_INT_ENABLE_TASK_TRACE_DEFAULT <group___cmp_iec_task_itf___settings_1ga5e69653bed8c3505432104996c20513c>` 0
-
 - #define :ref:`IECTASKKEY_STRING_VISU_TASK <group___cmp_iec_task_itf___settings_1gaa4767986e9484e24adfffec6b398b8bd>` "VisuTask"
-
-- #define :ref:`IECTASKKEY_INT_ENABLE_WATCHDOG_DURING_IOUPDATE <group___cmp_iec_task_itf___settings_1ga3440e2e53062ed684a28b74658a2d0e0>` "EnableWatchdogDuringIOUpdate"
-
-- #define :ref:`IECTASKVALUE_INT_ENABLE_WATCHDOG_DURING_IOUPDATE <group___cmp_iec_task_itf___settings_1ga12ba996600de7edabd0f74e9509adb38>` 1
 
 - #define :ref:`EVTPARAMID_CmpIecTask <group___cmp_iec_task_itf___eventparameter_1ga88b1d80a7e501bbfbbe27a3b663f1331>` 0x0001
 
 - #define :ref:`EVTVERSION_CmpIecTask <group___cmp_iec_task_itf___eventparameter_1gacd25379a86156c03597f80bb86e853d8>` 0x0001
 
-- #define :ref:`EVT_AfterReadingInputs <group___cmp_iec_task_itf___events_1ga082b17c2edb2207ca5b136208e984bc8>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+- #define :ref:`EVT_AfterReadingInputs <group___cmp_iec_task_itf___events_1ga082b17c2edb2207ca5b136208e984bc8>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
 
-- #define :ref:`EVT_BeforeWritingOutputs <group___cmp_iec_task_itf___events_1gac0d72b62d17cea0e6191528041e41fae>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+- #define :ref:`EVT_BeforeWritingOutputs <group___cmp_iec_task_itf___events_1gac0d72b62d17cea0e6191528041e41fae>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
 
-- #define :ref:`EVT_BeforeReadingInputs <group___cmp_iec_task_itf___events_1gacc18f9470dedd3bfe7f6d84389083882>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
+- #define :ref:`EVT_BeforeReadingInputs <group___cmp_iec_task_itf___events_1gacc18f9470dedd3bfe7f6d84389083882>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
 
-- #define :ref:`EVT_AfterWritingOutputs <group___cmp_iec_task_itf___events_1gaacc33f29b26656933d3867662ba0d6e2>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 4)
+- #define :ref:`EVT_AfterWritingOutputs <group___cmp_iec_task_itf___events_1gaacc33f29b26656933d3867662ba0d6e2>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 4)
 
-- #define :ref:`EVT_IecTask_ReloadInit <group___cmp_iec_task_itf___events_1ga6d910b20558275cdf2138804741d8fbe>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 5)
+- #define :ref:`EVT_IecTask_ReloadInit <group___cmp_iec_task_itf___events_1ga6d910b20558275cdf2138804741d8fbe>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 5)
 
-- #define :ref:`EVT_IecTaskCreateDone <group___cmp_iec_task_itf___events_1ga49a37c8a7980ed29e4e260054b861cd4>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 6)
+- #define :ref:`EVT_IecTaskCreateDone <group___cmp_iec_task_itf___events_1ga49a37c8a7980ed29e4e260054b861cd4>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 6)
 
-- #define :ref:`EVT_IecTaskPrepareDelete <group___cmp_iec_task_itf___events_1ga27e35871ca23c5f600d8ff75225cad0e>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 7)
+- #define :ref:`EVT_IecTaskPrepareDelete <group___cmp_iec_task_itf___events_1ga27e35871ca23c5f600d8ff75225cad0e>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 7)
 
-- #define :ref:`EVT_IecTaskDebugLoop <group___cmp_iec_task_itf___events_1ga5ad11f3e7bc8d00b95df9eb665b9fd9b>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 8)
-
-- #define :ref:`RTS_OPID_IecTask_WatchdogInIO <group___cmp_iec_task_itf___operation_i_d_1ga76d8b655b96c0ba359bd82562b6d77df>` 1
-
-- #define :ref:`RTS_OPID_IecTask_WatchdogInIO_Description <group___cmp_iec_task_itf___operation_i_d_1ga1268ecb3cd53291717a84d3213bd4220>` "Supervision of a watchdog error during IO-update (IEC task must leave IO update)"
-
-- #define :ref:`IEC_TASK_STOPREASON_OPTION_PREPARE_SAFE_STATE <group___cmp_iec_task_itf___stopreasonoption_1ga565b56ea15d580d8934371f458962ff0>` 0x00000000
-
-- #define :ref:`IEC_TASK_STOPREASON_OPTION_DONE_SAFE_STATE <group___cmp_iec_task_itf___stopreasonoption_1gadccd0cfa6c72efd325735739d36301ee>` 0x00010000
+- #define :ref:`EVT_IecTaskDebugLoop <group___cmp_iec_task_itf___events_1ga5ad11f3e7bc8d00b95df9eb665b9fd9b>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 8)
 
 - #define :ref:`TaskCyclic <group___cmp_iec_task_itf___i_e_ctasktypes_1ga137d4e4cffab17822f3c330b8a14d87d>` 0x0000
 
@@ -172,9 +132,7 @@ Macros
 
 - #define :ref:`TaskFreewheeling <group___cmp_iec_task_itf___i_e_ctasktypes_1ga7a9c79a438c38a132841c46848bd69d4>` 0x0003
 
-- #define :ref:`TaskParentSync <group___cmp_iec_task_itf___i_e_ctasktypes_1ga57c2f8b06e30498410b104561e4b2ced>` 0x0004
-
-- #define :ref:`TaskLastIndex <group___cmp_iec_task_itf___i_e_ctasktypes_1ga916a915ce4cc37db67b2bca34f9cf18e>` 0x0005
+- #define :ref:`TaskLastIndex <group___cmp_iec_task_itf___i_e_ctasktypes_1ga916a915ce4cc37db67b2bca34f9cf18e>` 0x0004
 
 - #define :ref:`TS_WATCHDOG_ENABLE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga38e4cf07b43b804adde5a3c6e2bd6613>` 0x0040
 
@@ -222,37 +180,37 @@ Macros
 
 - #define :ref:`IsSingleCycle <group___cmp_iec_task_itf___taskstatusbits_1ga371e36b3ee7113fa0bbbcc174c044bdb>` (pTask->iState & :ref:`TS_SINGLE_CYCLE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga7ed16770704181e098355f88655b7161>` )
 
-- #define :ref:`SetWatchdogEnabled <group___cmp_iec_task_itf___taskstatusbits_1ga5d509e84b3a90ee712ca99def1e288df>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_WATCHDOG_ENABLE <group___cmp_iec_task_itf___taskstatusbits_1gae5a7ef98e6c5d531e4b48201c4bbc905>` , 1)
+- #define :ref:`SetWatchdogEnabled <group___cmp_iec_task_itf___taskstatusbits_1ga5d509e84b3a90ee712ca99def1e288df>` (pTask->iState |= :ref:`TS_WATCHDOG_ENABLE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga38e4cf07b43b804adde5a3c6e2bd6613>` )
 
-- #define :ref:`SetWatchdogDisabled <group___cmp_iec_task_itf___taskstatusbits_1gaecf2dd2fc102840ca9fe390c2714c766>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_WATCHDOG_ENABLE <group___cmp_iec_task_itf___taskstatusbits_1gae5a7ef98e6c5d531e4b48201c4bbc905>` , 0)
+- #define :ref:`SetWatchdogDisabled <group___cmp_iec_task_itf___taskstatusbits_1gaecf2dd2fc102840ca9fe390c2714c766>` (pTask->iState &= ~:ref:`TS_WATCHDOG_ENABLE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga38e4cf07b43b804adde5a3c6e2bd6613>` )
 
-- #define :ref:`SetWatchdogEnabled2 <group___cmp_iec_task_itf___taskstatusbits_1gac009ed490336b679fcec69cc9b18bf4d>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_WATCHDOG_ENABLE2 <group___cmp_iec_task_itf___taskstatusbits_1ga8d68b82a4e5f1bc8cef62a3e32535464>` , 1)
+- #define :ref:`SetWatchdogEnabled2 <group___cmp_iec_task_itf___taskstatusbits_1gac009ed490336b679fcec69cc9b18bf4d>` (pTask->iState |= :ref:`TS_WATCHDOG_ENABLE2 <group___cmp_iec_task_itf___taskstatusdefinitions_1ga45f3c424cfb2be2ce4da954d68dfd656>` )
 
-- #define :ref:`SetWatchdogDisabled2 <group___cmp_iec_task_itf___taskstatusbits_1gaf47f248bd7724c0a4b2c04c319c989f5>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_WATCHDOG_ENABLE2 <group___cmp_iec_task_itf___taskstatusbits_1ga8d68b82a4e5f1bc8cef62a3e32535464>` , 0)
+- #define :ref:`SetWatchdogDisabled2 <group___cmp_iec_task_itf___taskstatusbits_1gaf47f248bd7724c0a4b2c04c319c989f5>` (pTask->iState &= ~:ref:`TS_WATCHDOG_ENABLE2 <group___cmp_iec_task_itf___taskstatusdefinitions_1ga45f3c424cfb2be2ce4da954d68dfd656>` )
 
-- #define :ref:`SetTaskTimeDisabled <group___cmp_iec_task_itf___taskstatusbits_1ga4993d13e681ff3059be9a0a93258bc55>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_DISABLE_TASK_TIME <group___cmp_iec_task_itf___taskstatusbits_1ga7821fc0b6711662b2f5e608640f66fdb>` , 1)
+- #define :ref:`SetTaskTimeDisabled <group___cmp_iec_task_itf___taskstatusbits_1ga4993d13e681ff3059be9a0a93258bc55>` (pTask->iState |= :ref:`TS_DISABLE_TASK_TIME <group___cmp_iec_task_itf___taskstatusdefinitions_1ga6a3591af21dc58e929de048abecbaf9a>` )
 
-- #define :ref:`SetTaskTimeEnabled <group___cmp_iec_task_itf___taskstatusbits_1ga848503e77256f8933d56d5113c3f04eb>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_DISABLE_TASK_TIME <group___cmp_iec_task_itf___taskstatusbits_1ga7821fc0b6711662b2f5e608640f66fdb>` , 0)
+- #define :ref:`SetTaskTimeEnabled <group___cmp_iec_task_itf___taskstatusbits_1ga848503e77256f8933d56d5113c3f04eb>` (pTask->iState &= ~:ref:`TS_DISABLE_TASK_TIME <group___cmp_iec_task_itf___taskstatusdefinitions_1ga6a3591af21dc58e929de048abecbaf9a>` )
 
-- #define :ref:`SetActivated <group___cmp_iec_task_itf___taskstatusbits_1gad949de33eda0b32eeabf8b0f1fc9fd03>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_ACTIVATED <group___cmp_iec_task_itf___taskstatusbits_1ga1a38b6a114d7fe33e8764e8b7d507e2e>` , 1)
+- #define :ref:`SetActivated <group___cmp_iec_task_itf___taskstatusbits_1gad949de33eda0b32eeabf8b0f1fc9fd03>` (pTask->iState |= :ref:`TS_ACTIVATED <group___cmp_iec_task_itf___taskstatusdefinitions_1ga7a04046244803fb540bf76ac471c6fa0>` )
 
-- #define :ref:`ResetActivated <group___cmp_iec_task_itf___taskstatusbits_1ga1c2dd48c04602cc19a8f356e5e82c17a>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_ACTIVATED <group___cmp_iec_task_itf___taskstatusbits_1ga1a38b6a114d7fe33e8764e8b7d507e2e>` , 0)
+- #define :ref:`ResetActivated <group___cmp_iec_task_itf___taskstatusbits_1ga1c2dd48c04602cc19a8f356e5e82c17a>` (pTask->iState &= ~:ref:`TS_ACTIVATED <group___cmp_iec_task_itf___taskstatusdefinitions_1ga7a04046244803fb540bf76ac471c6fa0>` )
 
-- #define :ref:`SetToActivate <group___cmp_iec_task_itf___taskstatusbits_1ga2f7ba09de404e6000b91687eb477d138>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_TOACTIVATE <group___cmp_iec_task_itf___taskstatusbits_1gabb338450cea63657abae8bb4adf06b56>` , 1)
+- #define :ref:`SetToActivate <group___cmp_iec_task_itf___taskstatusbits_1ga2f7ba09de404e6000b91687eb477d138>` (pTask->iState |= :ref:`TS_TOACTIVATE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga3b83ae99a133b548fde9a424f9946fd3>` )
 
-- #define :ref:`ResetToActivate <group___cmp_iec_task_itf___taskstatusbits_1ga31d7b26fce4ce14493374ff964247e1c>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_TOACTIVATE <group___cmp_iec_task_itf___taskstatusbits_1gabb338450cea63657abae8bb4adf06b56>` , 0)
+- #define :ref:`ResetToActivate <group___cmp_iec_task_itf___taskstatusbits_1ga31d7b26fce4ce14493374ff964247e1c>` (pTask->iState &= ~:ref:`TS_TOACTIVATE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga3b83ae99a133b548fde9a424f9946fd3>` )
 
-- #define :ref:`SetStopped <group___cmp_iec_task_itf___taskstatusbits_1gac8eb7c66eeef3784dc92b0ef9140b66c>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_STOP <group___cmp_iec_task_itf___taskstatusbits_1ga641bf582cde86870bcdcc99fcc3e6088>` , 1)
+- #define :ref:`SetStopped <group___cmp_iec_task_itf___taskstatusbits_1gac8eb7c66eeef3784dc92b0ef9140b66c>` (pTask->iState |= :ref:`TS_STOP <group___cmp_iec_task_itf___taskstatusdefinitions_1gacf55d2174435d56f966bdfa647fe6d3e>` )
 
-- #define :ref:`SetRunning <group___cmp_iec_task_itf___taskstatusbits_1ga5ab9e75024ac3c56e61179f1293d3c9f>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_STOP <group___cmp_iec_task_itf___taskstatusbits_1ga641bf582cde86870bcdcc99fcc3e6088>` , 0)
+- #define :ref:`SetRunning <group___cmp_iec_task_itf___taskstatusbits_1ga5ab9e75024ac3c56e61179f1293d3c9f>` (pTask->iState &= ~:ref:`TS_STOP <group___cmp_iec_task_itf___taskstatusdefinitions_1gacf55d2174435d56f966bdfa647fe6d3e>` )
 
-- #define :ref:`SetHaltOnBreakpoint <group___cmp_iec_task_itf___taskstatusbits_1gab10cda1ba9a0e62119d71b6a8b4b402b>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_HALT_ON_BP <group___cmp_iec_task_itf___taskstatusbits_1ga5c193893801c3db62ba46464348b8e56>` , 1)
+- #define :ref:`SetHaltOnBreakpoint <group___cmp_iec_task_itf___taskstatusbits_1gab10cda1ba9a0e62119d71b6a8b4b402b>` (pTask->iState |= :ref:`TS_HALT_ON_BP <group___cmp_iec_task_itf___taskstatusdefinitions_1gaa7e54955c09fd86561493f5680a4cb10>` )
 
-- #define :ref:`ResetHaltOnBreakpoint <group___cmp_iec_task_itf___taskstatusbits_1ga746eba1ebbb0e84fb829f4cb15a8bd0a>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_HALT_ON_BP <group___cmp_iec_task_itf___taskstatusbits_1ga5c193893801c3db62ba46464348b8e56>` , 0)
+- #define :ref:`ResetHaltOnBreakpoint <group___cmp_iec_task_itf___taskstatusbits_1ga746eba1ebbb0e84fb829f4cb15a8bd0a>` (pTask->iState &= ~:ref:`TS_HALT_ON_BP <group___cmp_iec_task_itf___taskstatusdefinitions_1gaa7e54955c09fd86561493f5680a4cb10>` )
 
-- #define :ref:`SetSingleCycle <group___cmp_iec_task_itf___taskstatusbits_1gaf18c0cde7f011ee017f631a7af75cdc7>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_SINGLE_CYCLE <group___cmp_iec_task_itf___taskstatusbits_1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93>` , 1)
+- #define :ref:`SetSingleCycle <group___cmp_iec_task_itf___taskstatusbits_1gaf18c0cde7f011ee017f631a7af75cdc7>` (pTask->iState |= :ref:`TS_SINGLE_CYCLE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga7ed16770704181e098355f88655b7161>` )
 
-- #define :ref:`ResetSingleCycle <group___cmp_iec_task_itf___taskstatusbits_1ga1faa320efb723b7cf8790731344bc419>` CAL_SysCpuTestAndSetBit(&pTask->iState, sizeof(pTask->iState), :ref:`TF_SINGLE_CYCLE <group___cmp_iec_task_itf___taskstatusbits_1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93>` , 0)
+- #define :ref:`ResetSingleCycle <group___cmp_iec_task_itf___taskstatusbits_1ga1faa320efb723b7cf8790731344bc419>` (pTask->iState &= ~:ref:`TS_SINGLE_CYCLE <group___cmp_iec_task_itf___taskstatusdefinitions_1ga7ed16770704181e098355f88655b7161>` )
 
 - #define :ref:`SLOT_BEFORE_READ_INPUTS <group___cmp_iec_task_itf___taskstatusbits_1gac9441a320aa839536c3262e8a1feebc7>` 50
 
@@ -288,14 +246,6 @@ Macros
 
 - #define :ref:`ITF_INIT_OUTPUTS <group___cmp_iec_task_itf___iec_task_flags_1ga75935177009a8d2ecdd780e2a2a4dd53>` 0x00000200
 
-- #define :ref:`ITF_ENTER_LOCK <group___cmp_iec_task_itf___iec_task_flags_1ga4f6c482d0652352202a453f74be3db80>` 0x00000400
-
-- #define :ref:`ITF_LEAVE_READER_LOCK <group___cmp_iec_task_itf___iec_task_flags_1ga851db9bbdeabd5b2e9b712aa49135d93>` 0x00000800
-
-- #define :ref:`ITF_SUSPENDED_BY_DEBUG_TASK <group___cmp_iec_task_itf___iec_task_flags_1gaef1ce868c039e476fa352f8fb4c4fef2>` 0x00001000
-
-- #define :ref:`ITF_IN_DEBUG_CONTEXT <group___cmp_iec_task_itf___iec_task_flags_1ga6d4cfda518c971d3de86bcfe16a6717c>` 0x00002000
-
 - #define :ref:`ITF_BIT_VISU_TASK <group___cmp_iec_task_itf___iec_task_bits_1ga5d744f5fa649f25d39c3d1f551bc8025>` 0
 
 - #define :ref:`ITF_BIT_DONT_SCHEDULE <group___cmp_iec_task_itf___iec_task_bits_1ga914643b7d1fa5196f1c3fa2663806ed7>` 1
@@ -316,14 +266,6 @@ Macros
 
 - #define :ref:`ITF_BIT_INIT_OUTPUTS <group___cmp_iec_task_itf___iec_task_bits_1ga548eaed85782b209400cff4848b6c2df>` 9
 
-- #define :ref:`ITF_BIT_ENTER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gacbfec466801f94f17441e423a2e1f1f9>` 10
-
-- #define :ref:`ITF_BIT_LEAVE_READER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gaca838322e0933c045c005cbe5a90f7d0>` 11
-
-- #define :ref:`ITF_BIT_SUSPENDED_BY_DEBUG_TASK <group___cmp_iec_task_itf___iec_task_bits_1ga618da858f592f6253d1a2459ac8475cb>` 12
-
-- #define :ref:`ITF_BIT_IN_DEBUG_CONTEXT <group___cmp_iec_task_itf___iec_task_bits_1ga6d7689171de9ea9a1f475378069d62be>` 13
-
 - #define :ref:`IsVisuTask <group___cmp_iec_task_itf___iec_task_bits_1ga4da081d79ff77e8b9a51297f45743d12>` (pTask->ulFlags & :ref:`ITF_VISU_TASK <group___cmp_iec_task_itf___iec_task_flags_1gab40b3faa2d4736b96d4799a581eba46a>` )
 
 - #define :ref:`DontSchedule <group___cmp_iec_task_itf___iec_task_bits_1ga464acb0ee5885dc2736aabb694fd5c64>` (pTask->ulFlags & :ref:`ITF_DONT_SCHEDULE <group___cmp_iec_task_itf___iec_task_flags_1gafeac8ba2dab5958050cf30ce6aa35491>` )
@@ -343,14 +285,6 @@ Macros
 - #define :ref:`IsInIoUpdate <group___cmp_iec_task_itf___iec_task_bits_1gabba2bc1de299f42547da1043c3733197>` (pTask->ulFlags & :ref:`ITF_IN_IO_UPDATE <group___cmp_iec_task_itf___iec_task_flags_1ga1996f83b1e516748f76118cd3a2bf7c3>` )
 
 - #define :ref:`DoInitOutputs <group___cmp_iec_task_itf___iec_task_bits_1gac5ec23143a449e1875c1afdaf17d113c>` (pTask->ulFlags & :ref:`ITF_INIT_OUTPUTS <group___cmp_iec_task_itf___iec_task_flags_1ga75935177009a8d2ecdd780e2a2a4dd53>` )
-
-- #define :ref:`IsEnterLockDisabled <group___cmp_iec_task_itf___iec_task_bits_1ga2cf7538c94a1caa41880b26d5ae4a0f9>` (pTask->ulFlags & :ref:`ITF_ENTER_LOCK <group___cmp_iec_task_itf___iec_task_flags_1ga4f6c482d0652352202a453f74be3db80>` )
-
-- #define :ref:`IsLeaveReaderLock <group___cmp_iec_task_itf___iec_task_bits_1gaec30af0ebd462ec77829d81a3c581a3b>` (pTask->ulFlags & :ref:`ITF_LEAVE_READER_LOCK <group___cmp_iec_task_itf___iec_task_flags_1ga851db9bbdeabd5b2e9b712aa49135d93>` )
-
-- #define :ref:`IsSuspendedByDebugTask <group___cmp_iec_task_itf___iec_task_bits_1ga27db4c11cd9774be5a7453e4f33c3c6a>` (pTask->ulFlags & :ref:`ITF_SUSPENDED_BY_DEBUG_TASK <group___cmp_iec_task_itf___iec_task_flags_1gaef1ce868c039e476fa352f8fb4c4fef2>` )
-
-- #define :ref:`IsInDebugContext <group___cmp_iec_task_itf___iec_task_bits_1gaad6d1b9991e9acc5959218f3213b6df5>` (pTask->ulFlags & :ref:`ITF_IN_DEBUG_CONTEXT <group___cmp_iec_task_itf___iec_task_flags_1ga6d4cfda518c971d3de86bcfe16a6717c>` )
 
 - #define :ref:`SetVisuTask <group___cmp_iec_task_itf___iec_task_bits_1ga5dedcab92cd882984ee619a0f2b36d7b>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_VISU_TASK <group___cmp_iec_task_itf___iec_task_bits_1ga5d744f5fa649f25d39c3d1f551bc8025>` , 1)
 
@@ -390,30 +324,12 @@ Macros
 
 - #define :ref:`ResetInitOutputs <group___cmp_iec_task_itf___iec_task_bits_1ga08c6f5c3baa90ed0e4f3ea9f8ed7a550>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_INIT_OUTPUTS <group___cmp_iec_task_itf___iec_task_bits_1ga548eaed85782b209400cff4848b6c2df>` , 0)
 
-- #define :ref:`DisableEnterLock <group___cmp_iec_task_itf___iec_task_bits_1ga346be34dd2f8bbe5f304202ff906cd7d>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_ENTER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gacbfec466801f94f17441e423a2e1f1f9>` , 1)
-
-- #define :ref:`EnableEnterLock <group___cmp_iec_task_itf___iec_task_bits_1ga008a0192d7aeed40bc4ed5246e5ae338>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_ENTER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gacbfec466801f94f17441e423a2e1f1f9>` , 0)
-
-- #define :ref:`SetLeaveReaderLock <group___cmp_iec_task_itf___iec_task_bits_1gade9e06a9cb6ef8cb2b844d8a5b2fe4c2>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_LEAVE_READER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gaca838322e0933c045c005cbe5a90f7d0>` , 1)
-
-- #define :ref:`ResetLeaveReaderLock <group___cmp_iec_task_itf___iec_task_bits_1ga0e14fb5e0cc2c8975e56555eb1a85003>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_LEAVE_READER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gaca838322e0933c045c005cbe5a90f7d0>` , 0)
-
-- #define :ref:`SetSuspendedByDebugTask <group___cmp_iec_task_itf___iec_task_bits_1gac2cd30bab5ce7c79abe591e6454ba828>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_SUSPENDED_BY_DEBUG_TASK <group___cmp_iec_task_itf___iec_task_bits_1ga618da858f592f6253d1a2459ac8475cb>` , 1)
-
-- #define :ref:`ResetSuspendedByDebugTask <group___cmp_iec_task_itf___iec_task_bits_1ga2e7e66e72bf00ad2fbb9b5e547b65da4>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_SUSPENDED_BY_DEBUG_TASK <group___cmp_iec_task_itf___iec_task_bits_1ga618da858f592f6253d1a2459ac8475cb>` , 0)
-
-- #define :ref:`SetInDebugContext <group___cmp_iec_task_itf___iec_task_bits_1ga64f2fd7a3f794d8cca0f99f71efa867a>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_IN_DEBUG_CONTEXT <group___cmp_iec_task_itf___iec_task_bits_1ga6d7689171de9ea9a1f475378069d62be>` , 1)
-
-- #define :ref:`ResetInDebugContext <group___cmp_iec_task_itf___iec_task_bits_1ga2045fe6b2537b89b16e43a00c164eec8>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_IN_DEBUG_CONTEXT <group___cmp_iec_task_itf___iec_task_bits_1ga6d7689171de9ea9a1f475378069d62be>` , 0)
-
 - #define :ref:`ITF_CmpIecTask <group___cmp_iec_task_itf_1ga3dd245ae28b4f1f43a41d77d6841f9d0>`
 
 - #define :ref:`EXTITF_CmpIecTask <group___cmp_iec_task_itf_1ga6d53bedf899f50b142533136e59425ce>`
 
 Typedefs
 --------
-
-- typedef struct :ref:`tagTask_Info <structtag_task___info>` :ref:`Task_Info <group___cmp_iec_task_itf_1ga56b1767676d541fc548c45a73424dd38>`
 
 - typedef void HUGEPTR(** :ref:`PF_SLOT_IEC_CALLBACK <group___cmp_iec_task_itf___taskstatusbits_1ga97f1143bf1cc8f75f026c1d53ae81ae5>`)(void)
 
@@ -435,6 +351,8 @@ Typedefs
 
 - typedef struct :ref:`tagJitter_Distribution <structtag_jitter___distribution>` :ref:`Jitter_Distribution <group___cmp_iec_task_itf_1ga1fb3c00e50b75ae282034095f49685a2>`
 
+- typedef struct :ref:`tagTask_Info <structtag_task___info>` :ref:`Task_Info <group___cmp_iec_task_itf_1gafd8ed4e7ac9524ae36329e885318d0c7>`
+
 - typedef struct :ref:`tagiectaskcreate_struct <structtagiectaskcreate__struct>` :ref:`iectaskcreate_struct <group___cmp_iec_task_itf_1ga800360dce949a03d470d1f0182c51315>`
 
 - typedef struct :ref:`tagiectaskdelete2_struct <structtagiectaskdelete2__struct>` :ref:`iectaskdelete2_struct <group___cmp_iec_task_itf_1gaa4945f2581ee1c8c6fafe7e726d4589e>`
@@ -452,8 +370,6 @@ Typedefs
 - typedef struct :ref:`tagiectaskenablewatchdog2_struct <structtagiectaskenablewatchdog2__struct>` :ref:`iectaskenablewatchdog2_struct <group___cmp_iec_task_itf_1ga6fd2ec688600b878816a957e876f74dc>`
 
 - typedef struct :ref:`tagiectaskgetcurrent_struct <structtagiectaskgetcurrent__struct>` :ref:`iectaskgetcurrent_struct <group___cmp_iec_task_itf_1gab5ffa43c0bbea15ac2cfc36886b55455>`
-
-- typedef struct :ref:`tagiectaskgetdesc_struct <structtagiectaskgetdesc__struct>` :ref:`iectaskgetdesc_struct <group___cmp_iec_task_itf_1gad788a0725c38d20b15e9aac157704916>`
 
 - typedef struct :ref:`tagiectaskgetfirst_struct <structtagiectaskgetfirst__struct>` :ref:`iectaskgetfirst_struct <group___cmp_iec_task_itf_1gab1a6f5cea7705881e2a5ffc739178702>`
 
@@ -494,8 +410,6 @@ Functions
 
 - void :ref:`iectaskgetcurrent <group___cmp_iec_task_itf_1ga8af7ea168b5a6a73cf03325bf8f9fec0>` (:ref:`iectaskgetcurrent_struct <group___cmp_iec_task_itf_1gab5ffa43c0bbea15ac2cfc36886b55455>` * p)
 
-- void :ref:`iectaskgetdesc <group___cmp_iec_task_itf_1ga01434141623c3c4a1418c0345c3b52da>` (:ref:`iectaskgetdesc_struct <group___cmp_iec_task_itf_1gad788a0725c38d20b15e9aac157704916>` * p)
-
 - void :ref:`iectaskgetfirst <group___cmp_iec_task_itf_1ga835ef14b601fae1f9518ce2e6fa9c042>` (:ref:`iectaskgetfirst_struct <group___cmp_iec_task_itf_1gab1a6f5cea7705881e2a5ffc739178702>` * p)
 
 - void :ref:`iectaskgetinfo2 <group___cmp_iec_task_itf_1ga5005ade6486c3e511c7e09f57655be97>` (:ref:`iectaskgetinfo2_struct <group___cmp_iec_task_itf_1ga624479edf937d2524e9d848e80f552b1>` * p)
@@ -508,7 +422,7 @@ Functions
 
 - void :ref:`iectaskresetstatistics <group___cmp_iec_task_itf_1ga214ffaa11435d6726cfd55cd75399e29>` (:ref:`iectaskresetstatistics_struct <group___cmp_iec_task_itf_1ga88b246c91780d83085b431c25e456d82>` * p)
 
-- RTS_HANDLE :ref:`IecTaskCreate <group___cmp_iec_task_itf_1ga04cd5e02f05231c7e341a08f67bbeb34>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`Task_Info <group___cmp_iec_task_itf_1ga56b1767676d541fc548c45a73424dd38>` * pTaskInfo, RTS_RESULT * pResult)
+- RTS_HANDLE :ref:`IecTaskCreate <group___cmp_iec_task_itf_1ga04cd5e02f05231c7e341a08f67bbeb34>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`Task_Info <group___cmp_iec_task_itf_1gafd8ed4e7ac9524ae36329e885318d0c7>` * pTaskInfo, RTS_RESULT * pResult)
 
 - RTS_RESULT :ref:`IecTaskDelete <group___cmp_iec_task_itf_1ga77bb8fc663de256b0fc9e9dc65b7e1c1>` (RTS_HANDLE hIecTask)
 
@@ -530,8 +444,6 @@ Functions
 
 - RTS_RESULT :ref:`IecTasksResetDone <group___cmp_iec_task_itf_1ga476f2757fcf65cc3cc9a308dda7b4c33>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bResetOrigin)
 
-- RTS_UI32 :ref:`IecTaskGetWaitForStopTimeout <group___cmp_iec_task_itf_1gac988b39607f94a84094ceb1793fc2efa>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
-
 - RTS_RESULT :ref:`IecTasksWaitForStop <group___cmp_iec_task_itf_1ga66ed6fe06051ed5833de2462b045662a>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulTimeoutMs, unsigned long ulStopReason)
 
 - RTS_RESULT :ref:`IecTaskInitOutputs <group___cmp_iec_task_itf_1ga531c9c02a1a2c7438c1c2eca5d4ee2e9>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
@@ -541,8 +453,6 @@ Functions
 - RTS_RESULT :ref:`IecTaskLeaveExclusiveSection <group___cmp_iec_task_itf_1ga1c6f2cf08c1fd4a4d7a95c9bfa2927e2>` (void)
 
 - RTS_RESULT :ref:`IecTaskEnterExclusiveSection2 <group___cmp_iec_task_itf_1gabfe38b66d27f2469477968391326f510>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
-
-- RTS_RESULT :ref:`IecTaskTryEnterExclusiveSection2 <group___cmp_iec_task_itf_1gadfaead5f45d92e72a8023a6f1cfc58ce>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 timeoutMs, RTS_BOOL bForceEnter)
 
 - RTS_RESULT :ref:`IecTaskLeaveExclusiveSection2 <group___cmp_iec_task_itf_1ga4099b8e2c977de54d113bca32ceaff83>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
 
@@ -584,6 +494,8 @@ Functions
 
 - :ref:`Task_Desc <group___cmp_iec_task_itf_1ga3e7248e4ba098ac4bb720b4a1ac4f6dd>` * :ref:`IecTaskGetByIndex <group___cmp_iec_task_itf_1ga9dc414e98485d686021f8e16ce7b0c0c>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int iIndex, RTS_RESULT * pResult)
 
+- RTS_HANDLE :ref:`IecTaskGetHandleByIndex <group___cmp_iec_task_itf_1ga30565e7afcb8e6d4b102638d0fe3c54a>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int iIndex, RTS_RESULT * pResult)
+
 - :ref:`Task_Desc <group___cmp_iec_task_itf_1ga3e7248e4ba098ac4bb720b4a1ac4f6dd>` * :ref:`IecTaskGetById <group___cmp_iec_task_itf_1gaa2c71e5dd0a7a8dc2c33a525635de1e2>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pappl, int iId, RTS_RESULT * pResult)
 
 - int :ref:`IecTaskGetNumOfTasks <group___cmp_iec_task_itf_1gaa28bf143273d1595dc6fc5a686fd0ac3>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pAppl, RTS_RESULT * pResult)
@@ -610,6 +522,10 @@ Functions
 
 - RTS_HANDLE :ref:`IecTaskGetNext <group___cmp_iec_task_itf_1gab1f75eadafc2edd33f4a4ccc57a7b798>` (char * pszAppName, RTS_HANDLE hPrevIecTask, RTS_RESULT * pResult)
 
+- RTS_HANDLE :ref:`IecTaskGetFirst2 <group___cmp_iec_task_itf_1ga1717bf2df3276ec1f79fdb1c31235539>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecTaskGetNext2 <group___cmp_iec_task_itf_1gac7df703743e5dff24c67ce27de296fb3>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_HANDLE hPrevIecTask, RTS_RESULT * pResult)
+
 - RTS_HANDLE :ref:`IecTaskReload <group___cmp_iec_task_itf_1gaf300ff9b039e6f240ff1cfc39a59de9c>` (RTS_HANDLE hIecTask, RTS_UI32 ulTimeoutMs, RTS_RESULT * pResult)
 
 - int :ref:`IecTaskCalculateId <group___cmp_iec_task_itf_1ga2defc0b0b2f479dea946e115b0f900a4>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int iIndex, RTS_RESULT * pResult)
@@ -620,16 +536,10 @@ Functions
 
 - RTS_RESULT :ref:`IecTaskResetStatistics <group___cmp_iec_task_itf_1ga622d8e5cc5e7571abbe87d08adc45f62>` (RTS_HANDLE hIecTask)
 
-- RTS_RESULT :ref:`IecTaskDebugHandlerEnter <group___cmp_iec_task_itf_1gaaf7938b3efb461894767443dafebca50>` (RTS_HANDLE hIecTask)
-
-- RTS_RESULT :ref:`IecTaskDebugHandlerLeave <group___cmp_iec_task_itf_1ga16b40497332d4db4155f1d3c7b4eff2f>` (RTS_HANDLE hIecTask)
-
-- RTS_RESULT :ref:`IecTaskCallIecFuncWithParams <group___cmp_iec_task_itf_1ga9a95ae840366f4e31cdae58ca785dd7f>` (RTS_HANDLE hIecTask, :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_VOID_FCTPTR pfIECFunc, void * pParam, int iSize)
-
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpIecTaskItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpIecTaskItf.h
 
  
 .. last line of file.rst template

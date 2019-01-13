@@ -18,6 +18,10 @@ Modules
 Data Structures
 ---------------
 
+- struct :ref:`AUTHMODINFO <struct_a_u_t_h_m_o_d_i_n_f_o>`
+
+- struct :ref:`GWAUTHFUNCS <struct_g_w_a_u_t_h_f_u_n_c_s>`
+
 - struct :ref:`ICmpGateway_C <struct_i_cmp_gateway___c>`
 
 Macros
@@ -30,16 +34,30 @@ Macros
 Typedefs
 --------
 
+- typedef int(* :ref:`PFAUTHMODBEGINAUTH <group___cmp_gateway_itf_1ga6a8df81eefac730bdd20221cc378849b>`)(unsigned long dwClientId)
+
+- typedef int(* :ref:`PFAUTHMODHANDLEMESSAGE <group___cmp_gateway_itf_1gabe4a2b601ab8a7a24f183b34f5100b2c>`)(unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)
+
+- typedef int(* :ref:`PFGWSENDREPLY <group___cmp_gateway_itf_1ga295c1d68cc415a8d61ab14b10da1f8fe>`)(unsigned long dwClientId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)
+
+- typedef int(* :ref:`PFGWAUTHFINISHED <group___cmp_gateway_itf_1gab835c665a1432a16640856b323a0ee48>`)(unsigned long dwClientId, int nResult)
+
 - typedef :ref:`ICmpGateway_C <struct_i_cmp_gateway___c>` :ref:`ICmpGateway <group___cmp_gateway_itf_1ga94ad6f83424506d92106651fdbfcc441>`
 
 Functions
 ---------
 
-- RTS_RESULT :ref:`GWConnectionReady <group___cmp_gateway_itf_1ga8710f436ff795cf02a64516f92c660b5>` (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction)
+- int :ref:`GWConnectionReady <group___cmp_gateway_itf_1ga298f83f482697191fd0b086dc77d54fc>` (unsigned long dwDriverHandle, unsigned long dwConnHandle, int nAction)
 
-- RTS_RESULT :ref:`GWClientConnect <group___cmp_gateway_itf_1ga5ab846bd6ceb2bf35a358f662a48c280>` (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)
+- int :ref:`GWClientConnect <group___cmp_gateway_itf_1gacb5070108907e17f34419eadbe51538b>` (unsigned long dwDriverId, unsigned long dwConnHandle)
 
-- RTS_RESULT :ref:`GWClientDisconnect <group___cmp_gateway_itf_1gaed50886539cfaaa4b160cdb5c02668e6>` (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)
+- int :ref:`GWClientDisconnect <group___cmp_gateway_itf_1ga237efe3c2d0ba14400e50c68ffb11156>` (unsigned long dwDriverId, unsigned long dwConnHandle)
+
+- int :ref:`AuthModBeginAuth <group___cmp_gateway_itf_1ga562165c13f96b46a3eac858d8746ea47>` (unsigned long dwClientId)
+
+- int :ref:`AuthModHandleMessage <group___cmp_gateway_itf_1gad29b6a3a4b4213e99e3c854439a937b9>` (unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  data)
+
+- int :ref:`GWRegisterAuthModule <group___cmp_gateway_itf_1ga78ae98ca86e1f558b3b62b800ded0d02>` (:ref:`AUTHMODINFO <struct_a_u_t_h_m_o_d_i_n_f_o>` * pfAuthModInfo, :ref:`GWAUTHFUNCS <struct_g_w_a_u_t_h_f_u_n_c_s>` * pfGWFuncs)
 
 .. _group___cmp_gateway_itf-details:
 
@@ -52,7 +70,7 @@ Interface of the gateway
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -69,6 +87,26 @@ Macro Definition Documentation
 Typedef Documentation
 ---------------------
 
+.. _group___cmp_gateway_itf_1ga6a8df81eefac730bdd20221cc378849b:
+
+typedef int( * PFAUTHMODBEGINAUTH)(unsigned long dwClientId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gateway_itf_1gabe4a2b601ab8a7a24f183b34f5100b2c:
+
+typedef int( * PFAUTHMODHANDLEMESSAGE)(unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gateway_itf_1ga295c1d68cc415a8d61ab14b10da1f8fe:
+
+typedef int( * PFGWSENDREPLY)(unsigned long dwClientId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gateway_itf_1gab835c665a1432a16640856b323a0ee48:
+
+typedef int( * PFGWAUTHFINISHED)(unsigned long dwClientId, int nResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. _group___cmp_gateway_itf_1ga94ad6f83424506d92106651fdbfcc441:
 
 typedef ICmpGateway_C ICmpGateway
@@ -77,32 +115,47 @@ typedef ICmpGateway_C ICmpGateway
 Function Documentation
 ----------------------
 
-.. _group___cmp_gateway_itf_1ga8710f436ff795cf02a64516f92c660b5:
+.. _group___cmp_gateway_itf_1ga298f83f482697191fd0b086dc77d54fc:
 
-RTS_RESULT GWConnectionReady (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+int GWConnectionReady (unsigned long dwDriverHandle, unsigned long dwConnHandle, int nAction)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 May be called by a commdriver if a connection is ready to send/receive. This function shall not signal a condition more then once without the gateway reacting to that signal. Eg. if the commdriver signals that a connection is ready to send it shall not signal this situation again before the gateway actually called "send". The gwclient must not rely on this function to be called but may use it to increase the performance of the connection.
 
 **Parameters**
 
-+---------+---------------+-----------------------------------------------------------------------------------------------+
-| [in]    | hDriverHandle | The driver handle returned by GWRegisterCommDrv.                                              |
-+---------+---------------+-----------------------------------------------------------------------------------------------+
-| [in]    | hConnHandle   | The handle to the connection.                                                                 |
-+---------+---------------+-----------------------------------------------------------------------------------------------+
-| [in]    | nAction       | The action that is ready on this connection - eg. COMMDRV_ACTION_SEND, COMMDRV_ACTION_RECEIVE |
-+---------+---------------+-----------------------------------------------------------------------------------------------+
++---------+----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | dwDriverHandle | The driver handle returned by GWRegisterCommDrv.                                              |
++---------+----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | dwConnHandle   | The handle to the connection.                                                                 |
++---------+----------------+-----------------------------------------------------------------------------------------------+
+| [in]    | nAction        | The action that is ready on this connection - eg. COMMDRV_ACTION_SEND, COMMDRV_ACTION_RECEIVE |
++---------+----------------+-----------------------------------------------------------------------------------------------+
 
-.. _group___cmp_gateway_itf_1ga5ab846bd6ceb2bf35a358f662a48c280:
+.. _group___cmp_gateway_itf_1gacb5070108907e17f34419eadbe51538b:
 
-RTS_RESULT GWClientConnect (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)
+int GWClientConnect (unsigned long dwDriverId, unsigned long dwConnHandle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gateway_itf_1ga237efe3c2d0ba14400e50c68ffb11156:
+
+int GWClientDisconnect (unsigned long dwDriverId, unsigned long dwConnHandle)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_gateway_itf_1gaed50886539cfaaa4b160cdb5c02668e6:
+.. _group___cmp_gateway_itf_1ga562165c13f96b46a3eac858d8746ea47:
 
-RTS_RESULT GWClientDisconnect (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+int AuthModBeginAuth (unsigned long dwClientId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gateway_itf_1gad29b6a3a4b4213e99e3c854439a937b9:
+
+int AuthModHandleMessage (unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _group___cmp_gateway_itf_1ga78ae98ca86e1f558b3b62b800ded0d02:
+
+int GWRegisterAuthModule (AUTHMODINFO *pfAuthModInfo, GWAUTHFUNCS *pfGWFuncs)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. last line of group.rst template
 .. last line of composition.rst template

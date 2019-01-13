@@ -5,9 +5,7 @@
  *	A message queue can be used for inter task respectively thread communication.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -146,14 +144,14 @@ typedef RTS_RESULT (CDECL * PFSYSMSGQDELETE) (RTS_HANDLE hMsgQ);
 	#define USE_SysMsgQSysMsgQDelete
 	#define EXT_SysMsgQSysMsgQDelete
 	#define GET_SysMsgQSysMsgQDelete  ERR_OK
-	#define CAL_SysMsgQSysMsgQDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysMsgQ*)p0)->ISysMsgQDelete())
+	#define CAL_SysMsgQSysMsgQDelete(p0) ((ISysMsgQ*)p0)->ISysMsgQDelete()
 	#define CHK_SysMsgQSysMsgQDelete  TRUE
 	#define EXP_SysMsgQSysMsgQDelete  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysMsgQDelete
 	#define EXT_SysMsgQDelete
 	#define GET_SysMsgQDelete(fl)  CAL_CMGETAPI( "SysMsgQDelete" ) 
-	#define CAL_SysMsgQDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysMsgQ*)p0)->ISysMsgQDelete())
+	#define CAL_SysMsgQDelete(p0) ((ISysMsgQ*)p0)->ISysMsgQDelete()
 	#define CHK_SysMsgQDelete  TRUE
 	#define EXP_SysMsgQDelete  CAL_CMEXPAPI( "SysMsgQDelete" ) 
 #else /* DYNAMIC_LINK */

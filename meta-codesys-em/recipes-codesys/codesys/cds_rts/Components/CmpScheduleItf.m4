@@ -4,15 +4,12 @@
  *	Interface of the scheduler.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpSchedule')
 
 REF_ITF(`CmpIecTaskItf.m4')
-REF_ITF(`SysCpuMultiCoreItf.m4')
 
 #define CMD_INIT				0
 #define CMD_TICK				1
@@ -432,32 +429,6 @@ typedef struct
  */
 #define EVT_ScheduleTaskGap									MAKE_EVENTID(EVTCLASS_INFO, 6)
 
-
-/**
-* <category>Event parameter</category>
-* <element name="pSchedTime" type="IN">Actual time value of the scheduler, that is used for activating the tasks</element>
-* <element name="iScheduleIntervalUs" type="IN">Schedule interval in microseconds</element>
-* <element name="pApp" type="IN">Pointer to the application for which the task gap has been detected</element>
-*/
-typedef struct
-{
-	RTS_SYSTIME *pSchedTime;
-	RTS_I32 iScheduleIntervalUs;
-	APPLICATION *pApp;
-} EVTPARAM_CmpScheduleTaskGapApp;
-#define EVTPARAMID_CmpScheduleTaskGapApp	0x0003
-#define EVTVERSION_CmpScheduleTaskGapApp	0x0001
-
-/**
- * <category>Events</category>
- * <description>
- * Event is sent always for each application, if no IEC task in that application is active (task gap).
- * The synchronization for the application has to be done in the callback of the event.
- * </description>
- * <param name="pEventParam" type="IN">EVTPARAM_CmpScheduleTaskGapApp</param>
- */
-#define EVT_ScheduleTaskGapApp								MAKE_EVENTID(EVTCLASS_INFO, 7)
-
 /**
  * <SIL2/>
  * <category>Typedef</category>
@@ -470,7 +441,6 @@ extern RTS_UI32 g_RTS_SIL2_Cycle_LifeCounter_CmpScheduleTimer;
 
 
 /** EXTERN LIB SECTION BEGIN **/
-/*  Comments are ignored for m4 compiler so restructured text can be used. changecom(`/*', `*/') */
 
 #ifdef __cplusplus
 extern "C" {
@@ -664,28 +634,6 @@ typedef struct tagschedsettaskinterval_struct
 DEF_API(`void',`CDECL',`schedsettaskinterval',`(schedsettaskinterval_struct *p)',1,0x4DF2120E,0x03050900)
 
 /**
- * <description>schedtaskresume</description>
- */
-typedef struct tagschedtaskresume_struct
-{
-	RTS_IEC_HANDLE hSchedTask;			/* VAR_INPUT */	
-	RTS_IEC_RESULT SchedTaskResume;		/* VAR_OUTPUT */	
-} schedtaskresume_struct;
-
-DEF_API(`void',`CDECL',`schedtaskresume',`(schedtaskresume_struct *p)',1,0x8D82FF00,0x03050900)
-
-/**
- * <description>schedtasksuspend</description>
- */
-typedef struct tagschedtasksuspend_struct
-{
-	RTS_IEC_HANDLE hSchedTask;			/* VAR_INPUT */	
-	RTS_IEC_RESULT SchedTaskSuspend;	/* VAR_OUTPUT */	
-} schedtasksuspend_struct;
-
-DEF_API(`void',`CDECL',`schedtasksuspend',`(schedtasksuspend_struct *p)',1,0x3BC86060,0x03050900)
-
-/**
  * <description>
  * <p>Unregister an external event, which was registered by
  * SchedRegisterExternalEvent() before.</p>
@@ -740,6 +688,7 @@ DEF_API(`void',`CDECL',`schedwaitsleep',`(schedwaitsleep_struct *p)',1,RTSITF_GE
 #endif
 
 /** EXTERN LIB SECTION END **/
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -995,25 +944,11 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`SchedTimeslicePlcEnd',`(void)')
 
 /**
  * <description>Returns the processor load, that is consumed by all IEC tasks in %. Can be in the range of 0..100 [%].
- *	This feature must be enabled with the setting "ProcessorLoad.Maximum" > 0.
- *	On multicore systems, the function returned the average load over all cores!
- * </description>
+ *	This feature must be enabled with the setting "ProcessorLoad.Maximum" > 0.</description>
  * <param name="pResult" type="OUT">Pointer to error code</param>
  * <result>Processor load in percent</result>
  */
 DEF_ITF_API(`unsigned long',`CDECL',`SchedGetProcessorLoad',`(RTS_RESULT *pResult)')
-
-/**
- * <description>Returns the processor load, that is consumed by all IEC tasks in %. Can be in the range of 0..100 [%].
- *	This feature must be enabled with the setting "ProcessorLoad.Maximum" > 0.</description>
- * <param name="uCoreID" type="IN">Identifies a single core. Starting with 0=first core, ...
- *	NOTE:
- *	If uCoreID=RTS_UI32_MAX, average plc load over all cores in percent is returned (see SchedGetProcessorLoad())!
- * </param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Processor load in percent</result>
- */
-DEF_ITF_API(`RTS_UI32',`CDECL',`SchedGetProcessorLoadOnCore',`(RTS_UI32 uCoreID, RTS_RESULT *pResult)')
 
 /**
  * <description>
@@ -1074,7 +1009,7 @@ DEF_ITF_API(`int',`CDECL',`SchedGetScheduleIntervalUs',`(RTS_RESULT *pResult)')
 
 /**
  * <description>
- *	Set the actual schedule interval in microseconds.
+ *	Get the actual schedule interval in microseconds.
  *  The actual schedule interval (system base tick) has to be adapted accordingly.
  * </description>
  * <param name="iScheduleIntervalUsNew" type="IN">Schedule interval in microseconds to set</param>
@@ -1147,37 +1082,6 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`SchedUnregisterExternalEvent',`(RTS_HANDLE hEx
  * <result>Error Code</result>
  */
 DEF_ITF_API(`RTS_RESULT',`CDECL',`SchedPostExternalEvent',`(RTS_HANDLE hExtEvent)')
-
-/**
- * <description>
- * Get the task handle of the backend interface
- * </description>
- * <param name="hSchedTask" type="IN">Scheduler task handle</param>
- * <param name="pCmpIdBackend" type="IN">Pointer to the resulting backend componentID</param>
- * <param name="pResult" type="IN">Pointer to the resulting error code</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Backend task handle was successfully retrieved</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid handle hSchedTask</errorcode>
- * <result>Task handle</result>
- */
-DEF_ITF_API(`RTS_HANDLE',`CDECL',`SchedGetTaskHandleBackend',`(RTS_HANDLE hSchedTask, CMPID *pCmpIdBackend, RTS_RESULT *pResult)')
-
-/**
- * <description>
- * Suspend the specified task.
- * </description>
- * <param name="hSchedTask" type="IN">Scheduler task handle</param>
- * <result>Error code</result>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `SchedTaskSuspend', `(RTS_HANDLE hSchedTask)')
-
-/**
- * <description>
- * Resume the specified task.
- * </description>
- * <param name="hSchedTask" type="IN">Scheduler task handle</param>
- * <result>Error code</result>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `SchedTaskResume', `(RTS_HANDLE hSchedTask)')
 
 #ifdef __cplusplus
 }

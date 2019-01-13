@@ -10,9 +10,7 @@
  *   (error rate, round-trip-time).
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpGwDiagnostic')
@@ -28,7 +26,7 @@ extern "C" {
  */
 enum
 {
-	GWDOT_COMMDRV,					/* A communication driver (client-gateway communication) */
+	GWDOT_COMMDRV, /* A communication driver (client-gateway communication) */
 	GWDOT_CLIENT,
 	GWDOT_CHANNEL,
 	GWDOT_VIRTUALCHANNEL,
@@ -44,8 +42,8 @@ typedef struct
 
 typedef struct
 {
-	RTS_SIZE nSize;					/* Size of the structure */
-	RTS_HANDLE hObjectId;			/* The object id is unique only within one object type (ie. different object types may use the same id)! */
+	int nSize; /* Size of the structure */
+	unsigned long ulObjectId; /* The object id is unique only within one object type (ie. different object types may use the same id)! */
 }GWDOBJECTINFO;
 
 typedef struct
@@ -53,17 +51,17 @@ typedef struct
 	GWDOBJECTINFO objInfo;
 	RTS_WCHAR *wszName;
 
-	RTS_SIZE nNumSettings;			/* Number of valid entries in the driverSettings array */
-	GWDPROPERTY *driverSettings;	/* An array of properties of the driver - eg. port(TCP) or BaudRate(RS232) etc.*/
+	int nNumSettings; /* Number of valid entries in the driverSettings array */
+	GWDPROPERTY *driverSettings; /* An array of properties of the driver - eg. port(TCP) or BaudRate(RS232) etc.*/
 }GWDCOMMDRVINFO;
 
 typedef struct
 {
 	GWDOBJECTINFO objInfo;
 
-	RTS_HANDLE hDriverId;			/* Id of the commdriver used */
-	RTS_WCHAR *wszAddress;			/* Address of the client. The content depends highly on the commdriver */
-	RTS_WCHAR *wszUserName;			/* Name of the authenticated user */
+	unsigned long ulDriverId; /* Id of the commdriver used */
+	RTS_WCHAR *wszAddress;	  /* Address of the client. The content depends highly on the commdriver */
+	RTS_WCHAR *wszUserName;	  /* Name of the authenticated user */
 
 	/* TODO: Connected since (timestamp) */
 }GWDCLIENTINFO;
@@ -72,8 +70,8 @@ typedef struct
 {
 	GWDOBJECTINFO objInfo;
 
-	NODEADDRESSREF addrDevice;		/* Address of the remote device */
-	RTS_UI32 ulCommBufferSize; 
+	NODEADDRESSREF addrDevice; /* Address of the remote device */
+	unsigned long ulCommBufferSize; 
 }GWDCHANNELINFO;
 
 /* Information about a virtual channel passed as pInfo in a call to the ObjectAdded function. */
@@ -81,7 +79,7 @@ typedef struct
 {
 	GWDOBJECTINFO objInfo;
 
-	RTS_UI32 ulChannelId;			/* The channel used by this virtual channel */
+	unsigned long ulChannelId; /* The channel used by this virtual channel */
 	RTS_WCHAR *wszChannelName;
 }GWDVIRTUALCHANNELINFO;
 
@@ -92,8 +90,8 @@ typedef struct
 {
 	GWDOBJECTINFO objInfo;
 	
-	RTS_HANDLE hVirtualChannelId;
-	RTS_HANDLE hClientId;
+	unsigned long ulVirtualChannelId;
+	unsigned long ulClientId;
 }GWDVIRTUALCHANNELREFINFO;
 
 /**
@@ -107,21 +105,20 @@ typedef struct
  */
 typedef struct
 {
-	RTS_SIZE nStructSize;			/* Size of this struct. Allows for future extension of this struct */
+	int nStructSize; /* Size of this struct. Allows for future extension of this struct */
 
-	RTS_INT nOpenRequests;			/* Number of requests currently waiting to be handled for this channel */
+	unsigned long ulOpenRequests; /* Number of requests currently waiting to be handled for this channel */
 
-	RTS_UI32 ulBlocksSent;			/* Number of blocks sent to the remote node. Retransmitted blocks are counted twice. */
-	RTS_UI32 ulBlocksFailed;		/* Number of blocks that had to be retransmitted */
+	unsigned long ulBlocksSent;   /* Number of blocks sent to the remote node. Retransmitted blocks are counted twice. */
+	unsigned long ulBlocksFailed; /* Number of blocks that had to be retransmitted */
 
-	RTS_UI32 ulRoundTripTime;		/* Average time from the sending of a block until the answer is received (microseconds)*/
+	unsigned long ulRoundTripTime; /* Average time from the sending of a block until the answer is received (microseconds)*/
 }GWDCHANNELSTATE;
 
 /** 
  * <description>
  *   Is called every time an object is added in the gateway. 
  * </description>
- * <param name="hListenerId" type="IN">The id returned by the GWDRegisterListener</param>
  * <param name="nObjType" type="IN">
  *   The type of the object which is added. One of the GWDOT_xxx constants.
  *   Since new object types may be added in the future, implementations should
@@ -132,25 +129,24 @@ typedef struct
  *   an extension of the GWOBJECTINFO struct will be passed.
  * </param>
  */
-typedef void (CDECL *PFOBJECTADDED)(RTS_HANDLE hListenerId, RTS_INT nObjType, GWDOBJECTINFO *pInfo);
+typedef void (CDECL *PFOBJECTADDED)(unsigned long ulListenerId, int nObjType, GWDOBJECTINFO *pInfo);
 
 /** 
  * <description>
  *   Called by the gateway when an object is removed. 
  * </description>
- * <param name="hListenerId" type="IN">The id returned by the GWDRegisterListener</param>
  * <param name="nObjType" type="IN">
- *   Same as in PFOBJECTADDED. hObjectId is not unique across different object types!
+ *   Same as in PFOBJECTADDED. ulObjectId is not unique across different object types!
  * </param>
- * <param name="hObjectId" type="IN">
+ * <param name="ulObjectId" type="IN">
  *   Refers to the object id passed in the ObjectAdded routines pInfo parameter.
  * </param>
  */
-typedef void (CDECL *PFOBJECTREMOVED)(RTS_HANDLE hListenerId, RTS_INT nObjType, RTS_HANDLE hObjectId);
+typedef void (CDECL *PFOBJECTREMOVED)(unsigned long ulListenerId, int nObjType, unsigned long ulObjectId);
 
 typedef struct
 {
-	RTS_SIZE nStructSize; /* Allows for future extension of this structure */
+	int nStructSize; /* Allows for future extension of this structure */
 
 	PFOBJECTADDED pfObjectAdded;
 	PFOBJECTREMOVED pfObjectRemoved;
@@ -165,20 +161,20 @@ typedef struct
  *   in order to synchronize the listener with the gateway.
  * </description>
  * <param name="callbacks" type="IN">callback functions of the listener</param>
- * <param name="phListenerId" type="OUT">
+ * <param name="pulListenerId" type="OUT">
  *   Will be set to a unique number that identifies the listener. Use this value in a call to 
  *   unsubscribe.
  * </param>
  */
-DEF_API(`RTS_RESULT',`CDECL',`GWDRegisterListener',`(GWDLISTENERCALLBACKS callbacks, RTS_HANDLE *phListenerId)')
+DEF_API(`int',`CDECL',`GWDRegisterListener',`(GWDLISTENERCALLBACKS callbacks, unsigned long *pulListenerId)')
 
 /**
  * <description>
  *   Stop informing the specified listener about activities in the gateway.
  * </description>
- * <param name="hListenerId" type="IN">The id returned by the GWDRegisterListener</param>
+ * <param name="ulListenerId" type="IN">The id returned by the GWDRegisterListener</param>
  */
-DEF_API(`RTS_RESULT',`CDECL',`GWDUnregisterListener',`(RTS_HANDLE hListenerId)')
+DEF_API(`int',`CDECL',`GWDUnregisterListener',`(unsigned long ulListenerId)')
 
 /**
  * <description>
@@ -191,9 +187,9 @@ DEF_API(`RTS_RESULT',`CDECL',`GWDUnregisterListener',`(RTS_HANDLE hListenerId)')
  *   On success this member will be set to the size of the structure actually used, which is less or equal
  *   to the provided size. If a component passes in an extension of GWDCHANNELSTATE it must be prepared
  *   that the gateway only fills the basic structure.
-
+ * </param>
  */
-DEF_API(`RTS_RESULT',`CDECL',`GWDGetChannelState',`(RTS_UI32 ulChannelId, GWDCHANNELSTATE *pState)')
+DEF_API(`int',`CDECL',`GWDGetChannelState',`(unsigned long ulChannelId, GWDCHANNELSTATE *pState)')
 
 #ifdef __cplusplus
 }

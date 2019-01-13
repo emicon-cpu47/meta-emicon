@@ -34,11 +34,28 @@ typedef RTS_IEC_HANDLE	ITypeDesc;
 #define LeafNode		TREENODETYPE_LEAFNODE
 
 /**
-* <category>NamespaceNodeFlags macros</category>
-* <description>Please use this macros to separate Application, GVL, Program, Variable or
-*	ExplicitNamespace nodes (e.g. IsApplicationNode(namespaceNodeFlags) to check if it is an application node).
-*  Namespace node flags are retrieved by IecVarAccGetNamespaceNodeFlags().</description>
-*/
+ * <description>VariableInformationStruct3</description>
+ */
+typedef struct tagVariableInformationStruct3
+{
+	RTS_IEC_WORD wStructSize;		
+	RTS_IEC_WORD wFlags;		
+	RTS_IEC_XWORD dwOffset;		
+	RTS_IEC_BYTE byBitOffset;		
+	RTS_IEC_XWORD xwMonitoringOffset;		
+	RTS_IEC_XWORD xwMonitoringSize;	
+	RTS_IEC_DWORD dwArrayOfArrayNesting;	
+	RTS_HANDLE hBrowseInfo;
+	RTS_IEC_BYTE aBrowseInfoPool[28];	/* OBSOLETE: Only for backward compatibility. Not used anymore because pool is created dynamic */
+} VariableInformationStruct3;
+
+
+/**
+ * <category>NamespaceNodeFlags macros</category>
+ * <description>Please use this macros to separate Application, GVL, Program, Variable or
+ *	ExplicitNamespace nodes (e.g. IsApplicationNode(namespaceNodeFlags) to check if it is an application node).
+ *  Namespace node flags are retrieved by IecVarAccGetNamespaceNodeFlags().</description>
+ */
 #define IsApplicationNode(namespaceNodeFlags)	((namespaceNodeFlags & NAMESPACENODEFLAGS_NODETYPEBRANCHNODE) != 0 && \
 												 (namespaceNodeFlags & NAMESPACENODEFLAGS_NODETYPELEAFNODE) == 0 && \
 												 (namespaceNodeFlags & NAMESPACENODEFLAGS_SIGTYPEGVL) == 0 && \
@@ -71,76 +88,7 @@ typedef RTS_IEC_HANDLE	ITypeDesc;
 												 (namespaceNodeFlags & NAMESPACENODEFLAGS_BRANCHNODEIMPLICITROOTNODE) == 0 && \
 												 (namespaceNodeFlags & NAMESPACENODEFLAGS_BRANCHNODEAPPLICATIONNAME) == 0)
 
-/**
-* WARNING!
-* If you pass this struct to the IecVarAccess or CmpIecVarAccess, it MUST be initialized with
-* IIecVarAccess9.VarAccInitVarInfo() or IecVarAccInitVarInfo() before usage, and it MUST be
-* cleaned up with IIecVarAccess9.VarAccExitVarInfo() or IecVarAccExitVarInfo(). Weird side
-* effects including crashes and memory leaks will result if you do not adhere to this rule.
-*/
-typedef struct tagVariableInformationStruct3
-{
-	RTS_IEC_WORD wStructSize;
-	RTS_IEC_WORD wFlags;
-	RTS_IEC_XWORD dwOffset;
-	RTS_IEC_BYTE byBitOffset;
-	RTS_IEC_XWORD xwMonitoringOffset;
-	RTS_IEC_XWORD xwMonitoringSize;
-	RTS_IEC_DWORD dwArrayOfArrayNesting;
-	RTS_IEC_HANDLE hBrowseInfo;
-	RTS_IEC_BYTE aBrowseInfoPool[28];		/* OBSOLETE: Only for backward compatibility. Not used anymore because data is stored in hBrowseInfo pool. */
-} VariableInformationStruct3;
 
-/**
-* WARNING!
-* If you pass this struct to the IecVarAccess or CmpIecVarAccess, it MUST be initialized with
-* IIecVarAccess9.VarAccInitVarInfo() or IecVarAccInitVarInfo() before usage, and it MUST be
-* cleaned up with IIecVarAccess9.VarAccExitVarInfo() or IecVarAccExitVarInfo(). Weird side
-* effects including crashes and memory leaks will result if you do not adhere to this rule.
-*
-* The new member wMethodMemberIndex nicely fits into an existing gap within the
-* VariableInformationStruct3 struct. Depending on the architecture and global pack mode
-* settings, we either have 3 bytes or 7 bytes gap. wMethodMemberIndex uses 2 bytes, thus
-* a further byte is available for further use. The resulting struct size, which is also stored
-* in the member wStructSize, is unchanged compared to the VariableInformationStruct3 struct.
-* This allows us to implement executables without dynamic allocation in the runtime. Access
-* is additionally guarded by VIF_EXECUTABLE_MEMBER.
-*/
-typedef struct tagVariableInformationStruct4
-{
-	RTS_IEC_WORD wStructSize;
-	RTS_IEC_WORD wFlags;
-	RTS_IEC_XWORD dwOffset;
-	RTS_IEC_BYTE byBitOffset;
-	RTS_IEC_WORD wMethodMemberIndex;
-	RTS_IEC_XWORD xwMonitoringOffset;
-	RTS_IEC_XWORD xwMonitoringSize;
-	RTS_IEC_DWORD dwArrayOfArrayNesting;
-	RTS_IEC_HANDLE hBrowseInfo;
-	RTS_IEC_BYTE aBrowseInfoPool[28];		/* OBSOLETE: Only for backward compatibility. Not used anymore because data is stored in hBrowseInfo pool. */
-} VariableInformationStruct4;
-
-typedef union tagHandleStore
-{
-	RTS_IEC_HANDLE handle;
-	RTS_IEC_DWORD dummy[2];
-} HandleStore;
-
-typedef struct tagVariableInformationStruct5
-{
-	RTS_IEC_WORD wStructSize;
-	RTS_IEC_WORD wFlags;
-	RTS_IEC_XWORD dwOffset;
-	RTS_IEC_BYTE byBitOffset;
-	RTS_IEC_WORD wMethodMemberIndex;
-	RTS_IEC_XWORD xwMonitoringOffset;
-	RTS_IEC_XWORD xwMonitoringSize;
-	RTS_IEC_DWORD dwArrayOfArrayNesting;
-	RTS_IEC_HANDLE hBrowseInfo;
-	HandleStore User;
-    HandleStore varInstance;
-	RTS_IEC_BYTE aBrowseInfoPool[12];		/* Not Used: Only for backward compatibility. */
-} VariableInformationStruct5;
 
 /** EXTERN LIB SECTION BEGIN **/
 /*  Comments are ignored for m4 compiler so restructured text can be used.  */
@@ -150,25 +98,15 @@ extern "C" {
 #endif
 
 /**
- * <description>NamespaceNodeFlagsEx</description>
- */
-#define NAMESPACENODEFLAGSEX_EXPORTEDEXECUTABLEVARIABLEFLAG		RTS_IEC_LWORD_C(0x800000000)	/* The variable represents an executable member. */
-#define NAMESPACENODEFLAGSEX_EXPORTEDEXECUTABLEVARIABLE		RTS_IEC_LWORD_C(0x800000002)	/* The variable node represents an exported executable variable.. */
-#define NAMESPACENODEFLAGSEX_NODEHASEXECUTABLECHILDREN		RTS_IEC_LWORD_C(0x200000000000)	/* This node has executable children. Some interfaces (e. g. PLCHandler) need to take special
- precautions for clients which cannot cope with executable children. This flag is mainly for
- optimization purposes, as it allows to skip the workarounds on nodes without executable children. */
-
-/**
  * <description>VariableInformationFlags</description>
  */
-#define VIF_COMPLETE_ACCESS		RTS_IEC_WORD_C(0x1)	/* Complete access to this node, e.g. for array access */
-#define VIF_DONT_MODIFY_OFFSET		RTS_IEC_WORD_C(0x2)	/* Internally used for resolving struct members */
-#define VIF_BITACCESS		RTS_IEC_WORD_C(0x4)	/* A bit access is requested, e. g. for a direct address like %IX0.0 */
-#define VIF_SPLIT_HUGE_VARIABLES		RTS_IEC_WORD_C(0x8)	/* Allow to read/write only a part of the requested variable */
-#define VIF_CLIENT_ADDRESS_RESOLUTION		RTS_IEC_WORD_C(0x10)	/* Address/offset/size was resolved by client */
-#define VIF_NATIVE_SIZE		RTS_IEC_WORD_C(0x20)	/* VarAccGetSize3() should return native size instead of (client) size */
-#define VIF_EXTENDED_INFORMATION		RTS_IEC_WORD_C(0x40)	/* Obsolete, not used anymore */
-#define VIF_EXECUTABLE_MEMBER		RTS_IEC_WORD_C(0x80)	/* Member is executable, since V3.5.11.0 */
+#define VIF_COMPLETE_ACCESS		RTS_IEC_WORD_C(0x1)	/* Complete access to this node (e.g. for array access) */
+#define VIF_DONT_MODIFY_OFFSET		RTS_IEC_WORD_C(0x2)	
+#define VIF_BITACCESS		RTS_IEC_WORD_C(0x4)	
+#define VIF_SPLIT_HUGE_VARIABLES		RTS_IEC_WORD_C(0x8)	
+#define VIF_CLIENT_ADDRESS_RESOLUTION		RTS_IEC_WORD_C(0x10)	
+#define VIF_NATIVE_SIZE		RTS_IEC_WORD_C(0x20)	
+#define VIF_EXTENDED_INFORMATION		RTS_IEC_WORD_C(0x40)	/* VariableInformationStruct3 contains an extend informaiton pool instead of the browseinfo pool */
 
 /**
  * Describing the access rights of a symbol config node.
@@ -187,37 +125,9 @@ extern "C" {
 #define ACCESSRIGHTS    RTS_IEC_INT
 
 /**
- * The feature flags describing the contents of the symbol tables files.
- * This enum corresponds to the runtime subset (lower 16 bit) of the enumeration 
- * _3S.CoDeSys.SymbolConfigObject.SymbolConfigContentFeatureFlags which
- * is defined in the SymbolConfigObject interface assembly in the 
- * automation platform, and has to be kept in sync with it.
- * The presence of those flags only indicates that the feature
- * has been enabled in the symbol configuration, it does not 
- * necessarily indicate that there is actually data of that type
- * within the symbol tables (e. G. a user could just have no configured
- * executables, or no comments, or the filter for attributes rejects
- * everything).
- */
-#define CONTENTFEATUREFLAGS_NONE    RTS_IEC_INT_C(0x0)	/* Nothing configured. */
-#define CONTENTFEATUREFLAGS_SUPPORTOPCUA    RTS_IEC_INT_C(0x1)	/* Support OPC UA features (flag supported since V3.5.8.30).
-
- This is required for IncludeComments, IncludeAttributes, IncludeTypeNodeAttributes and IncludeExecutables. */
-#define CONTENTFEATUREFLAGS_INCLUDECOMMENTS    RTS_IEC_INT_C(0x2)	/* Include comments (flag supported since V3.5.9.0). */
-#define CONTENTFEATUREFLAGS_INCLUDEATTRIBUTES    RTS_IEC_INT_C(0x4)	/* Include attributes (flag supported since V3.5.9.0). */
-#define CONTENTFEATUREFLAGS_INCLUDETYPENODEATTRIBUTES    RTS_IEC_INT_C(0x8)	/* Also include comments / attributes for type nodes (flag supported since V3.5.9.0). */
-#define CONTENTFEATUREFLAGS_INCLUDEEXECUTABLES    RTS_IEC_INT_C(0x10)	/* Inclusion of executable members (flag supported since V3.5.11.0, allows calling of programs, functions, FBs and methods, requires OPC UA support).
-
- If this flag is set, the list of available signatures may also include callables. */
-/* Typed enum definition */
-#define CONTENTFEATUREFLAGS    RTS_IEC_INT
-
-/**
  * The node type of a branch node.
  * Several flags may be set concurrently.
  * Not all of the flags defined here are actually generated yet by the code generator.
- * 
- * NOTE : Due to CDS-54976 we could not add new flags here, so they've been moved to NamespaceNodeFlagsEx!
  */
 #define NAMESPACENODEFLAGS_NONE    RTS_IEC_LWORD_C(0x0)	/* Uninitialized variable. */
 #define NAMESPACENODEFLAGS_NODETYPEMASK    RTS_IEC_LWORD_C(0xFF)	/* The node type mask - 6 Bits for possible node types and flags */
@@ -266,7 +176,8 @@ extern "C" {
 #define NAMESPACENODEFLAGS_EXPORTEDVARIABLE    RTS_IEC_ULINT_C(0x100000002)	/* The variable node represents a normal exported variable. */
 #define NAMESPACENODEFLAGS_EXPORTEDSTATICVARIABLE    RTS_IEC_ULINT_C(0x200000002)	/* The variable node represents an exported static variable. */
 #define NAMESPACENODEFLAGS_EXPORTEDPROPERTYVARIABLE    RTS_IEC_ULINT_C(0x400000002)	/* The variable node represents an exported property with monitoring type 'call'. */
-#define NAMESPACENODEFLAGS_NODEFLAGSMASK    RTS_IEC_LWORD_C(0xFF0000000000)	/* The node property flags mask, those bits show some special properties of the nodes. */
+#define NAMESPACENODEFLAGS_NODEFLAGSMASK    RTS_IEC_LWORD_C(0xFF0000000000)	/* The variable node represents an exported property with monitoring type 'call'.
+ The node property flags mask, those bits show some special properties of the nodes. */
 #define NAMESPACENODEFLAGS_NODEFLAGHIDDEN    RTS_IEC_LWORD_C(0x100000000000)	/* This node is hidden, it should not be shown while browsing using the IecVarAcces or
  CmpIecVarAccess interfaces. (It can still be found by it's node path, and queried using
  the IBaseTreeNode interfaces.)
@@ -313,26 +224,6 @@ typedef struct tagEnumValues
 	RTS_IEC_STRING *pValueName;		
 	RTS_IEC_LWORD value;		
 } EnumValues;
-
-/**
- * <description>IecVarAccSymbolSetDescription</description>
- */
-typedef struct tagIecVarAccSymbolSetDescription
-{
-	RTS_IEC_STRING *pszSymbolsSetName;		
-	RTS_IEC_DWORD dwSymbolsSetBit;		
-} IecVarAccSymbolSetDescription;
-
-/**
- * <description>RtsBrowseInfo</description>
- */
-typedef struct tagRtsBrowseInfo
-{
-	IBaseTreeNode *hNode;		
-	ITypeDesc *hType;		
-	RTS_IEC_DINT nArrayIndex;		
-	RTS_IEC_DINT nStructIndex;		
-} RtsBrowseInfo;
 
 /**
  * <description>TypeDescArrayAsStruct</description>
@@ -719,631 +610,6 @@ typedef void (CDECL * PFVARACCGETTYPEATTRIBUTEBYINDEX) (iiecvaraccess11_varaccge
 	#define CAL_VarAccGetTypeAttributeByIndex  pfVarAccGetTypeAttributeByIndex
 	#define CHK_VarAccGetTypeAttributeByIndex  (pfVarAccGetTypeAttributeByIndex != NULL)
 	#define EXP_VarAccGetTypeAttributeByIndex  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetTypeAttributeByIndex", (RTS_UINTPTR)VarAccGetTypeAttributeByIndex, 0, 0) 
-#endif
-
-
-
-
-typedef struct
-{
-	void* __VFTABLEPOINTER;	/* Pointer to virtual function table */
-} iiecvaraccess12_struct;
-
-/**
- * Gets the content feature flags.
- * Return values:
- * - ERR_OK -> if pContentFeatureFlags is not 0, it will be set to the feature flags.
- * - ERR_NOTINITIALIZED -> The code generator did not set the flag value.
- */
-typedef struct tagiiecvaraccess12_varaccgetcontentfeatureflags_struct
-{
-	iiecvaraccess12_struct *pInstance;	/* VAR_INPUT */	
-	RTS_IEC_INT *pContentFeatureFlags;	/* VAR_INPUT */	/* Pointer to the destination variable. May be 0 to just query whether the flags are set or not. */
-	RTS_IEC_RESULT VarAccGetContentFeatureFlags;	/* VAR_OUTPUT */	
-} iiecvaraccess12_varaccgetcontentfeatureflags_struct;
-
-void CDECL VarAccGetContentFeatureFlags(iiecvaraccess12_varaccgetcontentfeatureflags_struct *p);
-typedef void (CDECL * PFVARACCGETCONTENTFEATUREFLAGS) (iiecvaraccess12_varaccgetcontentfeatureflags_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCGETCONTENTFEATUREFLAGS_NOTIMPLEMENTED)
-	#define USE_VarAccGetContentFeatureFlags
-	#define EXT_VarAccGetContentFeatureFlags
-	#define GET_VarAccGetContentFeatureFlags(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccGetContentFeatureFlags(p0)  
-	#define CHK_VarAccGetContentFeatureFlags  FALSE
-	#define EXP_VarAccGetContentFeatureFlags  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VarAccGetContentFeatureFlags
-	#define EXT_VarAccGetContentFeatureFlags
-	#define GET_VarAccGetContentFeatureFlags(fl)  CAL_CMGETAPI( "VarAccGetContentFeatureFlags" ) 
-	#define CAL_VarAccGetContentFeatureFlags  VarAccGetContentFeatureFlags
-	#define CHK_VarAccGetContentFeatureFlags  TRUE
-	#define EXP_VarAccGetContentFeatureFlags  CAL_CMEXPAPI( "VarAccGetContentFeatureFlags" ) 
-#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccGetContentFeatureFlags
-	#define EXT_VarAccGetContentFeatureFlags
-	#define GET_VarAccGetContentFeatureFlags(fl)  CAL_CMGETAPI( "VarAccGetContentFeatureFlags" ) 
-	#define CAL_VarAccGetContentFeatureFlags  VarAccGetContentFeatureFlags
-	#define CHK_VarAccGetContentFeatureFlags  TRUE
-	#define EXP_VarAccGetContentFeatureFlags  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetContentFeatureFlags", (RTS_UINTPTR)VarAccGetContentFeatureFlags, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccGetContentFeatureFlags
-	#define EXT_IecVarAccess_ItfsVarAccGetContentFeatureFlags
-	#define GET_IecVarAccess_ItfsVarAccGetContentFeatureFlags  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccGetContentFeatureFlags pIIecVarAccess_Itfs->IVarAccGetContentFeatureFlags
-	#define CHK_IecVarAccess_ItfsVarAccGetContentFeatureFlags (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccGetContentFeatureFlags  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VarAccGetContentFeatureFlags
-	#define EXT_VarAccGetContentFeatureFlags
-	#define GET_VarAccGetContentFeatureFlags(fl)  CAL_CMGETAPI( "VarAccGetContentFeatureFlags" ) 
-	#define CAL_VarAccGetContentFeatureFlags pIIecVarAccess_Itfs->IVarAccGetContentFeatureFlags
-	#define CHK_VarAccGetContentFeatureFlags (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccGetContentFeatureFlags  CAL_CMEXPAPI( "VarAccGetContentFeatureFlags" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VarAccGetContentFeatureFlags  PFVARACCGETCONTENTFEATUREFLAGS pfVarAccGetContentFeatureFlags;
-	#define EXT_VarAccGetContentFeatureFlags  extern PFVARACCGETCONTENTFEATUREFLAGS pfVarAccGetContentFeatureFlags;
-	#define GET_VarAccGetContentFeatureFlags(fl)  s_pfCMGetAPI2( "VarAccGetContentFeatureFlags", (RTS_VOID_FCTPTR *)&pfVarAccGetContentFeatureFlags, (fl), 0, 0)
-	#define CAL_VarAccGetContentFeatureFlags  pfVarAccGetContentFeatureFlags
-	#define CHK_VarAccGetContentFeatureFlags  (pfVarAccGetContentFeatureFlags != NULL)
-	#define EXP_VarAccGetContentFeatureFlags  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetContentFeatureFlags", (RTS_UINTPTR)VarAccGetContentFeatureFlags, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>IIecVarAccess12::VarAccGetRange</description>
- */
-typedef struct tagiiecvaraccess12_varaccgetrange_struct
-{
-	iiecvaraccess12_struct *pInstance;	/* VAR_INPUT */	
-	ITypeDesc *typeDesc;				/* VAR_INPUT */	
-	RTS_IEC_LWORD *pLower;				/* VAR_INPUT */	
-	RTS_IEC_LWORD *pUpper;				/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RTS_IEC_BOOL VarAccGetRange;		/* VAR_OUTPUT */	
-} iiecvaraccess12_varaccgetrange_struct;
-
-void CDECL VarAccGetRange(iiecvaraccess12_varaccgetrange_struct *p);
-typedef void (CDECL * PFVARACCGETRANGE) (iiecvaraccess12_varaccgetrange_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCGETRANGE_NOTIMPLEMENTED)
-	#define USE_VarAccGetRange
-	#define EXT_VarAccGetRange
-	#define GET_VarAccGetRange(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccGetRange(p0)  
-	#define CHK_VarAccGetRange  FALSE
-	#define EXP_VarAccGetRange  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VarAccGetRange
-	#define EXT_VarAccGetRange
-	#define GET_VarAccGetRange(fl)  CAL_CMGETAPI( "VarAccGetRange" ) 
-	#define CAL_VarAccGetRange  VarAccGetRange
-	#define CHK_VarAccGetRange  TRUE
-	#define EXP_VarAccGetRange  CAL_CMEXPAPI( "VarAccGetRange" ) 
-#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccGetRange
-	#define EXT_VarAccGetRange
-	#define GET_VarAccGetRange(fl)  CAL_CMGETAPI( "VarAccGetRange" ) 
-	#define CAL_VarAccGetRange  VarAccGetRange
-	#define CHK_VarAccGetRange  TRUE
-	#define EXP_VarAccGetRange  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetRange", (RTS_UINTPTR)VarAccGetRange, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccGetRange
-	#define EXT_IecVarAccess_ItfsVarAccGetRange
-	#define GET_IecVarAccess_ItfsVarAccGetRange  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccGetRange pIIecVarAccess_Itfs->IVarAccGetRange
-	#define CHK_IecVarAccess_ItfsVarAccGetRange (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccGetRange  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VarAccGetRange
-	#define EXT_VarAccGetRange
-	#define GET_VarAccGetRange(fl)  CAL_CMGETAPI( "VarAccGetRange" ) 
-	#define CAL_VarAccGetRange pIIecVarAccess_Itfs->IVarAccGetRange
-	#define CHK_VarAccGetRange (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccGetRange  CAL_CMEXPAPI( "VarAccGetRange" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VarAccGetRange  PFVARACCGETRANGE pfVarAccGetRange;
-	#define EXT_VarAccGetRange  extern PFVARACCGETRANGE pfVarAccGetRange;
-	#define GET_VarAccGetRange(fl)  s_pfCMGetAPI2( "VarAccGetRange", (RTS_VOID_FCTPTR *)&pfVarAccGetRange, (fl), 0, 0)
-	#define CAL_VarAccGetRange  pfVarAccGetRange
-	#define CHK_VarAccGetRange  (pfVarAccGetRange != NULL)
-	#define EXP_VarAccGetRange  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetRange", (RTS_UINTPTR)VarAccGetRange, 0, 0) 
-#endif
-
-
-
-
-typedef struct
-{
-	void* __VFTABLEPOINTER;	/* Pointer to virtual function table */
-} iiecvaraccess13_struct;
-
-/**
- * <description>IIecVarAccess13::VarAccBrowseUp3</description>
- */
-typedef struct tagiiecvaraccess13_varaccbrowseup3_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	VariableInformationStruct2 *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_BOOL bBrowseIntoComplexTypes;	/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	IBaseTreeNode *VarAccBrowseUp3;		/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccbrowseup3_struct;
-
-void CDECL VarAccBrowseUp3(iiecvaraccess13_varaccbrowseup3_struct *p);
-typedef void (CDECL * PFVARACCBROWSEUP3) (iiecvaraccess13_varaccbrowseup3_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCBROWSEUP3_NOTIMPLEMENTED)
-	#define USE_VarAccBrowseUp3
-	#define EXT_VarAccBrowseUp3
-	#define GET_VarAccBrowseUp3(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccBrowseUp3(p0)  
-	#define CHK_VarAccBrowseUp3  FALSE
-	#define EXP_VarAccBrowseUp3  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VarAccBrowseUp3
-	#define EXT_VarAccBrowseUp3
-	#define GET_VarAccBrowseUp3(fl)  CAL_CMGETAPI( "VarAccBrowseUp3" ) 
-	#define CAL_VarAccBrowseUp3  VarAccBrowseUp3
-	#define CHK_VarAccBrowseUp3  TRUE
-	#define EXP_VarAccBrowseUp3  CAL_CMEXPAPI( "VarAccBrowseUp3" ) 
-#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccBrowseUp3
-	#define EXT_VarAccBrowseUp3
-	#define GET_VarAccBrowseUp3(fl)  CAL_CMGETAPI( "VarAccBrowseUp3" ) 
-	#define CAL_VarAccBrowseUp3  VarAccBrowseUp3
-	#define CHK_VarAccBrowseUp3  TRUE
-	#define EXP_VarAccBrowseUp3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccBrowseUp3", (RTS_UINTPTR)VarAccBrowseUp3, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccBrowseUp3
-	#define EXT_IecVarAccess_ItfsVarAccBrowseUp3
-	#define GET_IecVarAccess_ItfsVarAccBrowseUp3  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccBrowseUp3 pIIecVarAccess_Itfs->IVarAccBrowseUp3
-	#define CHK_IecVarAccess_ItfsVarAccBrowseUp3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccBrowseUp3  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VarAccBrowseUp3
-	#define EXT_VarAccBrowseUp3
-	#define GET_VarAccBrowseUp3(fl)  CAL_CMGETAPI( "VarAccBrowseUp3" ) 
-	#define CAL_VarAccBrowseUp3 pIIecVarAccess_Itfs->IVarAccBrowseUp3
-	#define CHK_VarAccBrowseUp3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccBrowseUp3  CAL_CMEXPAPI( "VarAccBrowseUp3" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VarAccBrowseUp3  PFVARACCBROWSEUP3 pfVarAccBrowseUp3;
-	#define EXT_VarAccBrowseUp3  extern PFVARACCBROWSEUP3 pfVarAccBrowseUp3;
-	#define GET_VarAccBrowseUp3(fl)  s_pfCMGetAPI2( "VarAccBrowseUp3", (RTS_VOID_FCTPTR *)&pfVarAccBrowseUp3, (fl), 0, 0)
-	#define CAL_VarAccBrowseUp3  pfVarAccBrowseUp3
-	#define CHK_VarAccBrowseUp3  (pfVarAccBrowseUp3 != NULL)
-	#define EXP_VarAccBrowseUp3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccBrowseUp3", (RTS_UINTPTR)VarAccBrowseUp3, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>IIecVarAccess13::VarAccGetAccessRights2</description>
- */
-typedef struct tagiiecvaraccess13_varaccgetaccessrights2_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	VariableInformationStruct2 *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_BOOL bGetUserRights;		/* VAR_INPUT */	
-	RTS_IEC_UDINT *pResult;				/* VAR_INPUT */	
-	RTS_IEC_INT VarAccGetAccessRights2;	/* VAR_OUTPUT, Enum: ACCESSRIGHTS */
-} iiecvaraccess13_varaccgetaccessrights2_struct;
-
-void CDECL VarAccGetAccessRights2(iiecvaraccess13_varaccgetaccessrights2_struct *p);
-typedef void (CDECL * PFVARACCGETACCESSRIGHTS2) (iiecvaraccess13_varaccgetaccessrights2_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCGETACCESSRIGHTS2_NOTIMPLEMENTED)
-	#define USE_VarAccGetAccessRights2
-	#define EXT_VarAccGetAccessRights2
-	#define GET_VarAccGetAccessRights2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccGetAccessRights2(p0)  
-	#define CHK_VarAccGetAccessRights2  FALSE
-	#define EXP_VarAccGetAccessRights2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VarAccGetAccessRights2
-	#define EXT_VarAccGetAccessRights2
-	#define GET_VarAccGetAccessRights2(fl)  CAL_CMGETAPI( "VarAccGetAccessRights2" ) 
-	#define CAL_VarAccGetAccessRights2  VarAccGetAccessRights2
-	#define CHK_VarAccGetAccessRights2  TRUE
-	#define EXP_VarAccGetAccessRights2  CAL_CMEXPAPI( "VarAccGetAccessRights2" ) 
-#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccGetAccessRights2
-	#define EXT_VarAccGetAccessRights2
-	#define GET_VarAccGetAccessRights2(fl)  CAL_CMGETAPI( "VarAccGetAccessRights2" ) 
-	#define CAL_VarAccGetAccessRights2  VarAccGetAccessRights2
-	#define CHK_VarAccGetAccessRights2  TRUE
-	#define EXP_VarAccGetAccessRights2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetAccessRights2", (RTS_UINTPTR)VarAccGetAccessRights2, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccGetAccessRights2
-	#define EXT_IecVarAccess_ItfsVarAccGetAccessRights2
-	#define GET_IecVarAccess_ItfsVarAccGetAccessRights2  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccGetAccessRights2 pIIecVarAccess_Itfs->IVarAccGetAccessRights2
-	#define CHK_IecVarAccess_ItfsVarAccGetAccessRights2 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccGetAccessRights2  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VarAccGetAccessRights2
-	#define EXT_VarAccGetAccessRights2
-	#define GET_VarAccGetAccessRights2(fl)  CAL_CMGETAPI( "VarAccGetAccessRights2" ) 
-	#define CAL_VarAccGetAccessRights2 pIIecVarAccess_Itfs->IVarAccGetAccessRights2
-	#define CHK_VarAccGetAccessRights2 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccGetAccessRights2  CAL_CMEXPAPI( "VarAccGetAccessRights2" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VarAccGetAccessRights2  PFVARACCGETACCESSRIGHTS2 pfVarAccGetAccessRights2;
-	#define EXT_VarAccGetAccessRights2  extern PFVARACCGETACCESSRIGHTS2 pfVarAccGetAccessRights2;
-	#define GET_VarAccGetAccessRights2(fl)  s_pfCMGetAPI2( "VarAccGetAccessRights2", (RTS_VOID_FCTPTR *)&pfVarAccGetAccessRights2, (fl), 0, 0)
-	#define CAL_VarAccGetAccessRights2  pfVarAccGetAccessRights2
-	#define CHK_VarAccGetAccessRights2  (pfVarAccGetAccessRights2 != NULL)
-	#define EXP_VarAccGetAccessRights2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetAccessRights2", (RTS_UINTPTR)VarAccGetAccessRights2, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>IIecVarAccess13::VarAccBrowseGetChildByIndex2</description>
- */
-typedef struct tagiiecvaraccess13_varaccbrowsegetchildbyindex2_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	RTS_IEC_DINT diIndex;				/* VAR_INPUT */	
-	VariableInformationStruct2 *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_UDINT *pResult;				/* VAR_INPUT */	
-	IBaseTreeNode *VarAccBrowseGetChildByIndex2;	/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccbrowsegetchildbyindex2_struct;
-
-void CDECL VarAccBrowseGetChildByIndex2(iiecvaraccess13_varaccbrowsegetchildbyindex2_struct *p);
-typedef void (CDECL * PFVARACCBROWSEGETCHILDBYINDEX2) (iiecvaraccess13_varaccbrowsegetchildbyindex2_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCBROWSEGETCHILDBYINDEX2_NOTIMPLEMENTED)
-	#define USE_VarAccBrowseGetChildByIndex2
-	#define EXT_VarAccBrowseGetChildByIndex2
-	#define GET_VarAccBrowseGetChildByIndex2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccBrowseGetChildByIndex2(p0)  
-	#define CHK_VarAccBrowseGetChildByIndex2  FALSE
-	#define EXP_VarAccBrowseGetChildByIndex2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VarAccBrowseGetChildByIndex2
-	#define EXT_VarAccBrowseGetChildByIndex2
-	#define GET_VarAccBrowseGetChildByIndex2(fl)  CAL_CMGETAPI( "VarAccBrowseGetChildByIndex2" ) 
-	#define CAL_VarAccBrowseGetChildByIndex2  VarAccBrowseGetChildByIndex2
-	#define CHK_VarAccBrowseGetChildByIndex2  TRUE
-	#define EXP_VarAccBrowseGetChildByIndex2  CAL_CMEXPAPI( "VarAccBrowseGetChildByIndex2" ) 
-#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccBrowseGetChildByIndex2
-	#define EXT_VarAccBrowseGetChildByIndex2
-	#define GET_VarAccBrowseGetChildByIndex2(fl)  CAL_CMGETAPI( "VarAccBrowseGetChildByIndex2" ) 
-	#define CAL_VarAccBrowseGetChildByIndex2  VarAccBrowseGetChildByIndex2
-	#define CHK_VarAccBrowseGetChildByIndex2  TRUE
-	#define EXP_VarAccBrowseGetChildByIndex2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccBrowseGetChildByIndex2", (RTS_UINTPTR)VarAccBrowseGetChildByIndex2, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccBrowseGetChildByIndex2
-	#define EXT_IecVarAccess_ItfsVarAccBrowseGetChildByIndex2
-	#define GET_IecVarAccess_ItfsVarAccBrowseGetChildByIndex2  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccBrowseGetChildByIndex2 pIIecVarAccess_Itfs->IVarAccBrowseGetChildByIndex2
-	#define CHK_IecVarAccess_ItfsVarAccBrowseGetChildByIndex2 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccBrowseGetChildByIndex2  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VarAccBrowseGetChildByIndex2
-	#define EXT_VarAccBrowseGetChildByIndex2
-	#define GET_VarAccBrowseGetChildByIndex2(fl)  CAL_CMGETAPI( "VarAccBrowseGetChildByIndex2" ) 
-	#define CAL_VarAccBrowseGetChildByIndex2 pIIecVarAccess_Itfs->IVarAccBrowseGetChildByIndex2
-	#define CHK_VarAccBrowseGetChildByIndex2 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccBrowseGetChildByIndex2  CAL_CMEXPAPI( "VarAccBrowseGetChildByIndex2" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VarAccBrowseGetChildByIndex2  PFVARACCBROWSEGETCHILDBYINDEX2 pfVarAccBrowseGetChildByIndex2;
-	#define EXT_VarAccBrowseGetChildByIndex2  extern PFVARACCBROWSEGETCHILDBYINDEX2 pfVarAccBrowseGetChildByIndex2;
-	#define GET_VarAccBrowseGetChildByIndex2(fl)  s_pfCMGetAPI2( "VarAccBrowseGetChildByIndex2", (RTS_VOID_FCTPTR *)&pfVarAccBrowseGetChildByIndex2, (fl), 0, 0)
-	#define CAL_VarAccBrowseGetChildByIndex2  pfVarAccBrowseGetChildByIndex2
-	#define CHK_VarAccBrowseGetChildByIndex2  (pfVarAccBrowseGetChildByIndex2 != NULL)
-	#define EXP_VarAccBrowseGetChildByIndex2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccBrowseGetChildByIndex2", (RTS_UINTPTR)VarAccBrowseGetChildByIndex2, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>IIecVarAccess13::VarAccBrowseGetNext3</description>
- */
-typedef struct tagiiecvaraccess13_varaccbrowsegetnext3_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	VariableInformationStruct2 *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_BOOL bBrowseIntoComplexTypes;	/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	IBaseTreeNode *VarAccBrowseGetNext3;	/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccbrowsegetnext3_struct;
-
-void CDECL VarAccBrowseGetNext3(iiecvaraccess13_varaccbrowsegetnext3_struct *p);
-typedef void (CDECL * PFVARACCBROWSEGETNEXT3) (iiecvaraccess13_varaccbrowsegetnext3_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCBROWSEGETNEXT3_NOTIMPLEMENTED)
-	#define USE_VarAccBrowseGetNext3
-	#define EXT_VarAccBrowseGetNext3
-	#define GET_VarAccBrowseGetNext3(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccBrowseGetNext3(p0)  
-	#define CHK_VarAccBrowseGetNext3  FALSE
-	#define EXP_VarAccBrowseGetNext3  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VarAccBrowseGetNext3
-	#define EXT_VarAccBrowseGetNext3
-	#define GET_VarAccBrowseGetNext3(fl)  CAL_CMGETAPI( "VarAccBrowseGetNext3" ) 
-	#define CAL_VarAccBrowseGetNext3  VarAccBrowseGetNext3
-	#define CHK_VarAccBrowseGetNext3  TRUE
-	#define EXP_VarAccBrowseGetNext3  CAL_CMEXPAPI( "VarAccBrowseGetNext3" ) 
-#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccBrowseGetNext3
-	#define EXT_VarAccBrowseGetNext3
-	#define GET_VarAccBrowseGetNext3(fl)  CAL_CMGETAPI( "VarAccBrowseGetNext3" ) 
-	#define CAL_VarAccBrowseGetNext3  VarAccBrowseGetNext3
-	#define CHK_VarAccBrowseGetNext3  TRUE
-	#define EXP_VarAccBrowseGetNext3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccBrowseGetNext3", (RTS_UINTPTR)VarAccBrowseGetNext3, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccBrowseGetNext3
-	#define EXT_IecVarAccess_ItfsVarAccBrowseGetNext3
-	#define GET_IecVarAccess_ItfsVarAccBrowseGetNext3  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccBrowseGetNext3 pIIecVarAccess_Itfs->IVarAccBrowseGetNext3
-	#define CHK_IecVarAccess_ItfsVarAccBrowseGetNext3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccBrowseGetNext3  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VarAccBrowseGetNext3
-	#define EXT_VarAccBrowseGetNext3
-	#define GET_VarAccBrowseGetNext3(fl)  CAL_CMGETAPI( "VarAccBrowseGetNext3" ) 
-	#define CAL_VarAccBrowseGetNext3 pIIecVarAccess_Itfs->IVarAccBrowseGetNext3
-	#define CHK_VarAccBrowseGetNext3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccBrowseGetNext3  CAL_CMEXPAPI( "VarAccBrowseGetNext3" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VarAccBrowseGetNext3  PFVARACCBROWSEGETNEXT3 pfVarAccBrowseGetNext3;
-	#define EXT_VarAccBrowseGetNext3  extern PFVARACCBROWSEGETNEXT3 pfVarAccBrowseGetNext3;
-	#define GET_VarAccBrowseGetNext3(fl)  s_pfCMGetAPI2( "VarAccBrowseGetNext3", (RTS_VOID_FCTPTR *)&pfVarAccBrowseGetNext3, (fl), 0, 0)
-	#define CAL_VarAccBrowseGetNext3  pfVarAccBrowseGetNext3
-	#define CHK_VarAccBrowseGetNext3  (pfVarAccBrowseGetNext3 != NULL)
-	#define EXP_VarAccBrowseGetNext3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccBrowseGetNext3", (RTS_UINTPTR)VarAccBrowseGetNext3, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>IIecVarAccess13::VarAccInitVarInfo2</description>
- */
-typedef struct tagiiecvaraccess13_varaccinitvarinfo2_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	VariableInformationStruct2 *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_UINT nSizeOfVarInfo;		/* VAR_INPUT */	
-	RTS_IEC_HANDLE hUser;				/* VAR_INPUT */	
-	RTS_IEC_RESULT VarAccInitVarInfo2;	/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccinitvarinfo2_struct;
-
-void CDECL VarAccInitVarInfo2(iiecvaraccess13_varaccinitvarinfo2_struct *p);
-typedef void (CDECL * PFVARACCINITVARINFO2) (iiecvaraccess13_varaccinitvarinfo2_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCINITVARINFO2_NOTIMPLEMENTED)
-	#define USE_VarAccInitVarInfo2
-	#define EXT_VarAccInitVarInfo2
-	#define GET_VarAccInitVarInfo2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccInitVarInfo2(p0)  
-	#define CHK_VarAccInitVarInfo2  FALSE
-	#define EXP_VarAccInitVarInfo2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VarAccInitVarInfo2
-	#define EXT_VarAccInitVarInfo2
-	#define GET_VarAccInitVarInfo2(fl)  CAL_CMGETAPI( "VarAccInitVarInfo2" ) 
-	#define CAL_VarAccInitVarInfo2  VarAccInitVarInfo2
-	#define CHK_VarAccInitVarInfo2  TRUE
-	#define EXP_VarAccInitVarInfo2  CAL_CMEXPAPI( "VarAccInitVarInfo2" ) 
-#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccInitVarInfo2
-	#define EXT_VarAccInitVarInfo2
-	#define GET_VarAccInitVarInfo2(fl)  CAL_CMGETAPI( "VarAccInitVarInfo2" ) 
-	#define CAL_VarAccInitVarInfo2  VarAccInitVarInfo2
-	#define CHK_VarAccInitVarInfo2  TRUE
-	#define EXP_VarAccInitVarInfo2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccInitVarInfo2", (RTS_UINTPTR)VarAccInitVarInfo2, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccInitVarInfo2
-	#define EXT_IecVarAccess_ItfsVarAccInitVarInfo2
-	#define GET_IecVarAccess_ItfsVarAccInitVarInfo2  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccInitVarInfo2 pIIecVarAccess_Itfs->IVarAccInitVarInfo2
-	#define CHK_IecVarAccess_ItfsVarAccInitVarInfo2 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccInitVarInfo2  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VarAccInitVarInfo2
-	#define EXT_VarAccInitVarInfo2
-	#define GET_VarAccInitVarInfo2(fl)  CAL_CMGETAPI( "VarAccInitVarInfo2" ) 
-	#define CAL_VarAccInitVarInfo2 pIIecVarAccess_Itfs->IVarAccInitVarInfo2
-	#define CHK_VarAccInitVarInfo2 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccInitVarInfo2  CAL_CMEXPAPI( "VarAccInitVarInfo2" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VarAccInitVarInfo2  PFVARACCINITVARINFO2 pfVarAccInitVarInfo2;
-	#define EXT_VarAccInitVarInfo2  extern PFVARACCINITVARINFO2 pfVarAccInitVarInfo2;
-	#define GET_VarAccInitVarInfo2(fl)  s_pfCMGetAPI2( "VarAccInitVarInfo2", (RTS_VOID_FCTPTR *)&pfVarAccInitVarInfo2, (fl), 0, 0)
-	#define CAL_VarAccInitVarInfo2  pfVarAccInitVarInfo2
-	#define CHK_VarAccInitVarInfo2  (pfVarAccInitVarInfo2 != NULL)
-	#define EXP_VarAccInitVarInfo2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccInitVarInfo2", (RTS_UINTPTR)VarAccInitVarInfo2, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>IIecVarAccess13::VarAccGetApplicationName</description>
- */
-typedef struct tagiiecvaraccess13_varaccgetapplicationname_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	RTS_IEC_STRING *pszApplicationName;	/* VAR_INPUT */	
-	RTS_IEC_DINT nMaxLen;				/* VAR_INPUT */	
-	RTS_IEC_RESULT VarAccGetApplicationName;	/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccgetapplicationname_struct;
-
-void CDECL VarAccGetApplicationName(iiecvaraccess13_varaccgetapplicationname_struct *p);
-typedef void (CDECL * PFVARACCGETAPPLICATIONNAME) (iiecvaraccess13_varaccgetapplicationname_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCGETAPPLICATIONNAME_NOTIMPLEMENTED)
-	#define USE_VarAccGetApplicationName
-	#define EXT_VarAccGetApplicationName
-	#define GET_VarAccGetApplicationName(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccGetApplicationName(p0)  
-	#define CHK_VarAccGetApplicationName  FALSE
-	#define EXP_VarAccGetApplicationName  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VarAccGetApplicationName
-	#define EXT_VarAccGetApplicationName
-	#define GET_VarAccGetApplicationName(fl)  CAL_CMGETAPI( "VarAccGetApplicationName" ) 
-	#define CAL_VarAccGetApplicationName  VarAccGetApplicationName
-	#define CHK_VarAccGetApplicationName  TRUE
-	#define EXP_VarAccGetApplicationName  CAL_CMEXPAPI( "VarAccGetApplicationName" ) 
-#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccGetApplicationName
-	#define EXT_VarAccGetApplicationName
-	#define GET_VarAccGetApplicationName(fl)  CAL_CMGETAPI( "VarAccGetApplicationName" ) 
-	#define CAL_VarAccGetApplicationName  VarAccGetApplicationName
-	#define CHK_VarAccGetApplicationName  TRUE
-	#define EXP_VarAccGetApplicationName  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetApplicationName", (RTS_UINTPTR)VarAccGetApplicationName, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccGetApplicationName
-	#define EXT_IecVarAccess_ItfsVarAccGetApplicationName
-	#define GET_IecVarAccess_ItfsVarAccGetApplicationName  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccGetApplicationName pIIecVarAccess_Itfs->IVarAccGetApplicationName
-	#define CHK_IecVarAccess_ItfsVarAccGetApplicationName (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccGetApplicationName  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VarAccGetApplicationName
-	#define EXT_VarAccGetApplicationName
-	#define GET_VarAccGetApplicationName(fl)  CAL_CMGETAPI( "VarAccGetApplicationName" ) 
-	#define CAL_VarAccGetApplicationName pIIecVarAccess_Itfs->IVarAccGetApplicationName
-	#define CHK_VarAccGetApplicationName (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccGetApplicationName  CAL_CMEXPAPI( "VarAccGetApplicationName" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VarAccGetApplicationName  PFVARACCGETAPPLICATIONNAME pfVarAccGetApplicationName;
-	#define EXT_VarAccGetApplicationName  extern PFVARACCGETAPPLICATIONNAME pfVarAccGetApplicationName;
-	#define GET_VarAccGetApplicationName(fl)  s_pfCMGetAPI2( "VarAccGetApplicationName", (RTS_VOID_FCTPTR *)&pfVarAccGetApplicationName, (fl), 0, 0)
-	#define CAL_VarAccGetApplicationName  pfVarAccGetApplicationName
-	#define CHK_VarAccGetApplicationName  (pfVarAccGetApplicationName != NULL)
-	#define EXP_VarAccGetApplicationName  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetApplicationName", (RTS_UINTPTR)VarAccGetApplicationName, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>IIecVarAccess13::VarAccBrowseGetRoot2</description>
- */
-typedef struct tagiiecvaraccess13_varaccbrowsegetroot2_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	RTS_IEC_HANDLE hUser;				/* VAR_INPUT */	
-	RTS_IEC_UDINT *pResult;				/* VAR_INPUT */	
-	IBaseTreeNode *VarAccBrowseGetRoot2;	/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccbrowsegetroot2_struct;
-
-void CDECL VarAccBrowseGetRoot2(iiecvaraccess13_varaccbrowsegetroot2_struct *p);
-typedef void (CDECL * PFVARACCBROWSEGETROOT2) (iiecvaraccess13_varaccbrowsegetroot2_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCBROWSEGETROOT2_NOTIMPLEMENTED)
-	#define USE_VarAccBrowseGetRoot2
-	#define EXT_VarAccBrowseGetRoot2
-	#define GET_VarAccBrowseGetRoot2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccBrowseGetRoot2(p0)  
-	#define CHK_VarAccBrowseGetRoot2  FALSE
-	#define EXP_VarAccBrowseGetRoot2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VarAccBrowseGetRoot2
-	#define EXT_VarAccBrowseGetRoot2
-	#define GET_VarAccBrowseGetRoot2(fl)  CAL_CMGETAPI( "VarAccBrowseGetRoot2" ) 
-	#define CAL_VarAccBrowseGetRoot2  VarAccBrowseGetRoot2
-	#define CHK_VarAccBrowseGetRoot2  TRUE
-	#define EXP_VarAccBrowseGetRoot2  CAL_CMEXPAPI( "VarAccBrowseGetRoot2" ) 
-#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccBrowseGetRoot2
-	#define EXT_VarAccBrowseGetRoot2
-	#define GET_VarAccBrowseGetRoot2(fl)  CAL_CMGETAPI( "VarAccBrowseGetRoot2" ) 
-	#define CAL_VarAccBrowseGetRoot2  VarAccBrowseGetRoot2
-	#define CHK_VarAccBrowseGetRoot2  TRUE
-	#define EXP_VarAccBrowseGetRoot2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccBrowseGetRoot2", (RTS_UINTPTR)VarAccBrowseGetRoot2, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccBrowseGetRoot2
-	#define EXT_IecVarAccess_ItfsVarAccBrowseGetRoot2
-	#define GET_IecVarAccess_ItfsVarAccBrowseGetRoot2  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccBrowseGetRoot2 pIIecVarAccess_Itfs->IVarAccBrowseGetRoot2
-	#define CHK_IecVarAccess_ItfsVarAccBrowseGetRoot2 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccBrowseGetRoot2  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VarAccBrowseGetRoot2
-	#define EXT_VarAccBrowseGetRoot2
-	#define GET_VarAccBrowseGetRoot2(fl)  CAL_CMGETAPI( "VarAccBrowseGetRoot2" ) 
-	#define CAL_VarAccBrowseGetRoot2 pIIecVarAccess_Itfs->IVarAccBrowseGetRoot2
-	#define CHK_VarAccBrowseGetRoot2 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccBrowseGetRoot2  CAL_CMEXPAPI( "VarAccBrowseGetRoot2" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VarAccBrowseGetRoot2  PFVARACCBROWSEGETROOT2 pfVarAccBrowseGetRoot2;
-	#define EXT_VarAccBrowseGetRoot2  extern PFVARACCBROWSEGETROOT2 pfVarAccBrowseGetRoot2;
-	#define GET_VarAccBrowseGetRoot2(fl)  s_pfCMGetAPI2( "VarAccBrowseGetRoot2", (RTS_VOID_FCTPTR *)&pfVarAccBrowseGetRoot2, (fl), 0, 0)
-	#define CAL_VarAccBrowseGetRoot2  pfVarAccBrowseGetRoot2
-	#define CHK_VarAccBrowseGetRoot2  (pfVarAccBrowseGetRoot2 != NULL)
-	#define EXP_VarAccBrowseGetRoot2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccBrowseGetRoot2", (RTS_UINTPTR)VarAccBrowseGetRoot2, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>IIecVarAccess13::VarAccBrowseDown3</description>
- */
-typedef struct tagiiecvaraccess13_varaccbrowsedown3_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	VariableInformationStruct2 *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_BOOL bBrowseIntoComplexTypes;	/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	IBaseTreeNode *VarAccBrowseDown3;	/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccbrowsedown3_struct;
-
-void CDECL VarAccBrowseDown3(iiecvaraccess13_varaccbrowsedown3_struct *p);
-typedef void (CDECL * PFVARACCBROWSEDOWN3) (iiecvaraccess13_varaccbrowsedown3_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCBROWSEDOWN3_NOTIMPLEMENTED)
-	#define USE_VarAccBrowseDown3
-	#define EXT_VarAccBrowseDown3
-	#define GET_VarAccBrowseDown3(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccBrowseDown3(p0)  
-	#define CHK_VarAccBrowseDown3  FALSE
-	#define EXP_VarAccBrowseDown3  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VarAccBrowseDown3
-	#define EXT_VarAccBrowseDown3
-	#define GET_VarAccBrowseDown3(fl)  CAL_CMGETAPI( "VarAccBrowseDown3" ) 
-	#define CAL_VarAccBrowseDown3  VarAccBrowseDown3
-	#define CHK_VarAccBrowseDown3  TRUE
-	#define EXP_VarAccBrowseDown3  CAL_CMEXPAPI( "VarAccBrowseDown3" ) 
-#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccBrowseDown3
-	#define EXT_VarAccBrowseDown3
-	#define GET_VarAccBrowseDown3(fl)  CAL_CMGETAPI( "VarAccBrowseDown3" ) 
-	#define CAL_VarAccBrowseDown3  VarAccBrowseDown3
-	#define CHK_VarAccBrowseDown3  TRUE
-	#define EXP_VarAccBrowseDown3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccBrowseDown3", (RTS_UINTPTR)VarAccBrowseDown3, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccBrowseDown3
-	#define EXT_IecVarAccess_ItfsVarAccBrowseDown3
-	#define GET_IecVarAccess_ItfsVarAccBrowseDown3  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccBrowseDown3 pIIecVarAccess_Itfs->IVarAccBrowseDown3
-	#define CHK_IecVarAccess_ItfsVarAccBrowseDown3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccBrowseDown3  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VarAccBrowseDown3
-	#define EXT_VarAccBrowseDown3
-	#define GET_VarAccBrowseDown3(fl)  CAL_CMGETAPI( "VarAccBrowseDown3" ) 
-	#define CAL_VarAccBrowseDown3 pIIecVarAccess_Itfs->IVarAccBrowseDown3
-	#define CHK_VarAccBrowseDown3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccBrowseDown3  CAL_CMEXPAPI( "VarAccBrowseDown3" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VarAccBrowseDown3  PFVARACCBROWSEDOWN3 pfVarAccBrowseDown3;
-	#define EXT_VarAccBrowseDown3  extern PFVARACCBROWSEDOWN3 pfVarAccBrowseDown3;
-	#define GET_VarAccBrowseDown3(fl)  s_pfCMGetAPI2( "VarAccBrowseDown3", (RTS_VOID_FCTPTR *)&pfVarAccBrowseDown3, (fl), 0, 0)
-	#define CAL_VarAccBrowseDown3  pfVarAccBrowseDown3
-	#define CHK_VarAccBrowseDown3  (pfVarAccBrowseDown3 != NULL)
-	#define EXP_VarAccBrowseDown3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccBrowseDown3", (RTS_UINTPTR)VarAccBrowseDown3, 0, 0) 
 #endif
 
 
@@ -2993,60 +2259,63 @@ typedef void (CDECL * PFVARACCGETSIZE3) (iiecvaraccess5_varaccgetsize3_struct *p
 
 
 /**
- * <description>IIecVarAccess5::VarAccRemoveVariable3</description>
+ * <description>IIecVarAccess5::VarAccGetNodeFullPath3</description>
  */
-typedef struct tagiiecvaraccess5_varaccremovevariable3_struct
+typedef struct tagiiecvaraccess5_varaccgetnodefullpath3_struct
 {
 	iiecvaraccess5_struct *pInstance;	/* VAR_INPUT */	
 	IBaseTreeNode *pNode;				/* VAR_INPUT */	
 	VariableInformationStruct *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_RESULT VarAccRemoveVariable3;	/* VAR_OUTPUT */	
-} iiecvaraccess5_varaccremovevariable3_struct;
+	RTS_IEC_STRING *pszPath;			/* VAR_INPUT */	
+	RTS_IEC_DINT diMaxPath;				/* VAR_INPUT */	
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
+	RTS_IEC_DINT VarAccGetNodeFullPath3;	/* VAR_OUTPUT */	
+} iiecvaraccess5_varaccgetnodefullpath3_struct;
 
-void CDECL VarAccRemoveVariable3(iiecvaraccess5_varaccremovevariable3_struct *p);
-typedef void (CDECL * PFVARACCREMOVEVARIABLE3) (iiecvaraccess5_varaccremovevariable3_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCREMOVEVARIABLE3_NOTIMPLEMENTED)
-	#define USE_VarAccRemoveVariable3
-	#define EXT_VarAccRemoveVariable3
-	#define GET_VarAccRemoveVariable3(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccRemoveVariable3(p0)  
-	#define CHK_VarAccRemoveVariable3  FALSE
-	#define EXP_VarAccRemoveVariable3  ERR_OK
+void CDECL VarAccGetNodeFullPath3(iiecvaraccess5_varaccgetnodefullpath3_struct *p);
+typedef void (CDECL * PFVARACCGETNODEFULLPATH3) (iiecvaraccess5_varaccgetnodefullpath3_struct *p);
+#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCGETNODEFULLPATH3_NOTIMPLEMENTED)
+	#define USE_VarAccGetNodeFullPath3
+	#define EXT_VarAccGetNodeFullPath3
+	#define GET_VarAccGetNodeFullPath3(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_VarAccGetNodeFullPath3(p0)  
+	#define CHK_VarAccGetNodeFullPath3  FALSE
+	#define EXP_VarAccGetNodeFullPath3  ERR_OK
 #elif defined(STATIC_LINK)
-	#define USE_VarAccRemoveVariable3
-	#define EXT_VarAccRemoveVariable3
-	#define GET_VarAccRemoveVariable3(fl)  CAL_CMGETAPI( "VarAccRemoveVariable3" ) 
-	#define CAL_VarAccRemoveVariable3  VarAccRemoveVariable3
-	#define CHK_VarAccRemoveVariable3  TRUE
-	#define EXP_VarAccRemoveVariable3  CAL_CMEXPAPI( "VarAccRemoveVariable3" ) 
+	#define USE_VarAccGetNodeFullPath3
+	#define EXT_VarAccGetNodeFullPath3
+	#define GET_VarAccGetNodeFullPath3(fl)  CAL_CMGETAPI( "VarAccGetNodeFullPath3" ) 
+	#define CAL_VarAccGetNodeFullPath3  VarAccGetNodeFullPath3
+	#define CHK_VarAccGetNodeFullPath3  TRUE
+	#define EXP_VarAccGetNodeFullPath3  CAL_CMEXPAPI( "VarAccGetNodeFullPath3" ) 
 #elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccRemoveVariable3
-	#define EXT_VarAccRemoveVariable3
-	#define GET_VarAccRemoveVariable3(fl)  CAL_CMGETAPI( "VarAccRemoveVariable3" ) 
-	#define CAL_VarAccRemoveVariable3  VarAccRemoveVariable3
-	#define CHK_VarAccRemoveVariable3  TRUE
-	#define EXP_VarAccRemoveVariable3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccRemoveVariable3", (RTS_UINTPTR)VarAccRemoveVariable3, 0, 0) 
+	#define USE_VarAccGetNodeFullPath3
+	#define EXT_VarAccGetNodeFullPath3
+	#define GET_VarAccGetNodeFullPath3(fl)  CAL_CMGETAPI( "VarAccGetNodeFullPath3" ) 
+	#define CAL_VarAccGetNodeFullPath3  VarAccGetNodeFullPath3
+	#define CHK_VarAccGetNodeFullPath3  TRUE
+	#define EXP_VarAccGetNodeFullPath3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetNodeFullPath3", (RTS_UINTPTR)VarAccGetNodeFullPath3, 0, 0) 
 #elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccRemoveVariable3
-	#define EXT_IecVarAccess_ItfsVarAccRemoveVariable3
-	#define GET_IecVarAccess_ItfsVarAccRemoveVariable3  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccRemoveVariable3 pIIecVarAccess_Itfs->IVarAccRemoveVariable3
-	#define CHK_IecVarAccess_ItfsVarAccRemoveVariable3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccRemoveVariable3  ERR_OK
+	#define USE_IecVarAccess_ItfsVarAccGetNodeFullPath3
+	#define EXT_IecVarAccess_ItfsVarAccGetNodeFullPath3
+	#define GET_IecVarAccess_ItfsVarAccGetNodeFullPath3  ERR_OK
+	#define CAL_IecVarAccess_ItfsVarAccGetNodeFullPath3 pIIecVarAccess_Itfs->IVarAccGetNodeFullPath3
+	#define CHK_IecVarAccess_ItfsVarAccGetNodeFullPath3 (pIIecVarAccess_Itfs != NULL)
+	#define EXP_IecVarAccess_ItfsVarAccGetNodeFullPath3  ERR_OK
 #elif defined(CPLUSPLUS)
-	#define USE_VarAccRemoveVariable3
-	#define EXT_VarAccRemoveVariable3
-	#define GET_VarAccRemoveVariable3(fl)  CAL_CMGETAPI( "VarAccRemoveVariable3" ) 
-	#define CAL_VarAccRemoveVariable3 pIIecVarAccess_Itfs->IVarAccRemoveVariable3
-	#define CHK_VarAccRemoveVariable3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccRemoveVariable3  CAL_CMEXPAPI( "VarAccRemoveVariable3" ) 
+	#define USE_VarAccGetNodeFullPath3
+	#define EXT_VarAccGetNodeFullPath3
+	#define GET_VarAccGetNodeFullPath3(fl)  CAL_CMGETAPI( "VarAccGetNodeFullPath3" ) 
+	#define CAL_VarAccGetNodeFullPath3 pIIecVarAccess_Itfs->IVarAccGetNodeFullPath3
+	#define CHK_VarAccGetNodeFullPath3 (pIIecVarAccess_Itfs != NULL)
+	#define EXP_VarAccGetNodeFullPath3  CAL_CMEXPAPI( "VarAccGetNodeFullPath3" ) 
 #else /* DYNAMIC_LINK */
-	#define USE_VarAccRemoveVariable3  PFVARACCREMOVEVARIABLE3 pfVarAccRemoveVariable3;
-	#define EXT_VarAccRemoveVariable3  extern PFVARACCREMOVEVARIABLE3 pfVarAccRemoveVariable3;
-	#define GET_VarAccRemoveVariable3(fl)  s_pfCMGetAPI2( "VarAccRemoveVariable3", (RTS_VOID_FCTPTR *)&pfVarAccRemoveVariable3, (fl), 0, 0)
-	#define CAL_VarAccRemoveVariable3  pfVarAccRemoveVariable3
-	#define CHK_VarAccRemoveVariable3  (pfVarAccRemoveVariable3 != NULL)
-	#define EXP_VarAccRemoveVariable3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccRemoveVariable3", (RTS_UINTPTR)VarAccRemoveVariable3, 0, 0) 
+	#define USE_VarAccGetNodeFullPath3  PFVARACCGETNODEFULLPATH3 pfVarAccGetNodeFullPath3;
+	#define EXT_VarAccGetNodeFullPath3  extern PFVARACCGETNODEFULLPATH3 pfVarAccGetNodeFullPath3;
+	#define GET_VarAccGetNodeFullPath3(fl)  s_pfCMGetAPI2( "VarAccGetNodeFullPath3", (RTS_VOID_FCTPTR *)&pfVarAccGetNodeFullPath3, (fl), 0, 0)
+	#define CAL_VarAccGetNodeFullPath3  pfVarAccGetNodeFullPath3
+	#define CHK_VarAccGetNodeFullPath3  (pfVarAccGetNodeFullPath3 != NULL)
+	#define EXP_VarAccGetNodeFullPath3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetNodeFullPath3", (RTS_UINTPTR)VarAccGetNodeFullPath3, 0, 0) 
 #endif
 
 
@@ -3116,66 +2385,6 @@ typedef void (CDECL * PFVARACCSETVALUE3) (iiecvaraccess5_varaccsetvalue3_struct 
 
 
 /**
- * <description>IIecVarAccess5::VarAccAppendVariable3</description>
- */
-typedef struct tagiiecvaraccess5_varaccappendvariable3_struct
-{
-	iiecvaraccess5_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	VariableInformationStruct *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_RESULT VarAccAppendVariable3;	/* VAR_OUTPUT */	
-} iiecvaraccess5_varaccappendvariable3_struct;
-
-void CDECL VarAccAppendVariable3(iiecvaraccess5_varaccappendvariable3_struct *p);
-typedef void (CDECL * PFVARACCAPPENDVARIABLE3) (iiecvaraccess5_varaccappendvariable3_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCAPPENDVARIABLE3_NOTIMPLEMENTED)
-	#define USE_VarAccAppendVariable3
-	#define EXT_VarAccAppendVariable3
-	#define GET_VarAccAppendVariable3(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccAppendVariable3(p0)  
-	#define CHK_VarAccAppendVariable3  FALSE
-	#define EXP_VarAccAppendVariable3  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VarAccAppendVariable3
-	#define EXT_VarAccAppendVariable3
-	#define GET_VarAccAppendVariable3(fl)  CAL_CMGETAPI( "VarAccAppendVariable3" ) 
-	#define CAL_VarAccAppendVariable3  VarAccAppendVariable3
-	#define CHK_VarAccAppendVariable3  TRUE
-	#define EXP_VarAccAppendVariable3  CAL_CMEXPAPI( "VarAccAppendVariable3" ) 
-#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccAppendVariable3
-	#define EXT_VarAccAppendVariable3
-	#define GET_VarAccAppendVariable3(fl)  CAL_CMGETAPI( "VarAccAppendVariable3" ) 
-	#define CAL_VarAccAppendVariable3  VarAccAppendVariable3
-	#define CHK_VarAccAppendVariable3  TRUE
-	#define EXP_VarAccAppendVariable3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccAppendVariable3", (RTS_UINTPTR)VarAccAppendVariable3, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccAppendVariable3
-	#define EXT_IecVarAccess_ItfsVarAccAppendVariable3
-	#define GET_IecVarAccess_ItfsVarAccAppendVariable3  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccAppendVariable3 pIIecVarAccess_Itfs->IVarAccAppendVariable3
-	#define CHK_IecVarAccess_ItfsVarAccAppendVariable3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccAppendVariable3  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VarAccAppendVariable3
-	#define EXT_VarAccAppendVariable3
-	#define GET_VarAccAppendVariable3(fl)  CAL_CMGETAPI( "VarAccAppendVariable3" ) 
-	#define CAL_VarAccAppendVariable3 pIIecVarAccess_Itfs->IVarAccAppendVariable3
-	#define CHK_VarAccAppendVariable3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccAppendVariable3  CAL_CMEXPAPI( "VarAccAppendVariable3" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VarAccAppendVariable3  PFVARACCAPPENDVARIABLE3 pfVarAccAppendVariable3;
-	#define EXT_VarAccAppendVariable3  extern PFVARACCAPPENDVARIABLE3 pfVarAccAppendVariable3;
-	#define GET_VarAccAppendVariable3(fl)  s_pfCMGetAPI2( "VarAccAppendVariable3", (RTS_VOID_FCTPTR *)&pfVarAccAppendVariable3, (fl), 0, 0)
-	#define CAL_VarAccAppendVariable3  pfVarAccAppendVariable3
-	#define CHK_VarAccAppendVariable3  (pfVarAccAppendVariable3 != NULL)
-	#define EXP_VarAccAppendVariable3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccAppendVariable3", (RTS_UINTPTR)VarAccAppendVariable3, 0, 0) 
-#endif
-
-
-
-
-/**
  * <description>IIecVarAccess5::VarAccGetAddress3</description>
  */
 typedef struct tagiiecvaraccess5_varaccgetaddress3_struct
@@ -3237,61 +2446,60 @@ typedef void (CDECL * PFVARACCGETADDRESS3) (iiecvaraccess5_varaccgetaddress3_str
 
 
 /**
- * <description>IIecVarAccess5::VarAccGetTypeNode3</description>
+ * <description>IIecVarAccess5::VarAccAppendVariable3</description>
  */
-typedef struct tagiiecvaraccess5_varaccgettypenode3_struct
+typedef struct tagiiecvaraccess5_varaccappendvariable3_struct
 {
 	iiecvaraccess5_struct *pInstance;	/* VAR_INPUT */	
 	IBaseTreeNode *pNode;				/* VAR_INPUT */	
 	VariableInformationStruct *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	ITypeDesc *VarAccGetTypeNode3;		/* VAR_OUTPUT */	
-} iiecvaraccess5_varaccgettypenode3_struct;
+	RTS_IEC_RESULT VarAccAppendVariable3;	/* VAR_OUTPUT */	
+} iiecvaraccess5_varaccappendvariable3_struct;
 
-void CDECL VarAccGetTypeNode3(iiecvaraccess5_varaccgettypenode3_struct *p);
-typedef void (CDECL * PFVARACCGETTYPENODE3) (iiecvaraccess5_varaccgettypenode3_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCGETTYPENODE3_NOTIMPLEMENTED)
-	#define USE_VarAccGetTypeNode3
-	#define EXT_VarAccGetTypeNode3
-	#define GET_VarAccGetTypeNode3(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccGetTypeNode3(p0)  
-	#define CHK_VarAccGetTypeNode3  FALSE
-	#define EXP_VarAccGetTypeNode3  ERR_OK
+void CDECL VarAccAppendVariable3(iiecvaraccess5_varaccappendvariable3_struct *p);
+typedef void (CDECL * PFVARACCAPPENDVARIABLE3) (iiecvaraccess5_varaccappendvariable3_struct *p);
+#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCAPPENDVARIABLE3_NOTIMPLEMENTED)
+	#define USE_VarAccAppendVariable3
+	#define EXT_VarAccAppendVariable3
+	#define GET_VarAccAppendVariable3(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_VarAccAppendVariable3(p0)  
+	#define CHK_VarAccAppendVariable3  FALSE
+	#define EXP_VarAccAppendVariable3  ERR_OK
 #elif defined(STATIC_LINK)
-	#define USE_VarAccGetTypeNode3
-	#define EXT_VarAccGetTypeNode3
-	#define GET_VarAccGetTypeNode3(fl)  CAL_CMGETAPI( "VarAccGetTypeNode3" ) 
-	#define CAL_VarAccGetTypeNode3  VarAccGetTypeNode3
-	#define CHK_VarAccGetTypeNode3  TRUE
-	#define EXP_VarAccGetTypeNode3  CAL_CMEXPAPI( "VarAccGetTypeNode3" ) 
+	#define USE_VarAccAppendVariable3
+	#define EXT_VarAccAppendVariable3
+	#define GET_VarAccAppendVariable3(fl)  CAL_CMGETAPI( "VarAccAppendVariable3" ) 
+	#define CAL_VarAccAppendVariable3  VarAccAppendVariable3
+	#define CHK_VarAccAppendVariable3  TRUE
+	#define EXP_VarAccAppendVariable3  CAL_CMEXPAPI( "VarAccAppendVariable3" ) 
 #elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccGetTypeNode3
-	#define EXT_VarAccGetTypeNode3
-	#define GET_VarAccGetTypeNode3(fl)  CAL_CMGETAPI( "VarAccGetTypeNode3" ) 
-	#define CAL_VarAccGetTypeNode3  VarAccGetTypeNode3
-	#define CHK_VarAccGetTypeNode3  TRUE
-	#define EXP_VarAccGetTypeNode3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetTypeNode3", (RTS_UINTPTR)VarAccGetTypeNode3, 0, 0) 
+	#define USE_VarAccAppendVariable3
+	#define EXT_VarAccAppendVariable3
+	#define GET_VarAccAppendVariable3(fl)  CAL_CMGETAPI( "VarAccAppendVariable3" ) 
+	#define CAL_VarAccAppendVariable3  VarAccAppendVariable3
+	#define CHK_VarAccAppendVariable3  TRUE
+	#define EXP_VarAccAppendVariable3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccAppendVariable3", (RTS_UINTPTR)VarAccAppendVariable3, 0, 0) 
 #elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccGetTypeNode3
-	#define EXT_IecVarAccess_ItfsVarAccGetTypeNode3
-	#define GET_IecVarAccess_ItfsVarAccGetTypeNode3  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccGetTypeNode3 pIIecVarAccess_Itfs->IVarAccGetTypeNode3
-	#define CHK_IecVarAccess_ItfsVarAccGetTypeNode3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccGetTypeNode3  ERR_OK
+	#define USE_IecVarAccess_ItfsVarAccAppendVariable3
+	#define EXT_IecVarAccess_ItfsVarAccAppendVariable3
+	#define GET_IecVarAccess_ItfsVarAccAppendVariable3  ERR_OK
+	#define CAL_IecVarAccess_ItfsVarAccAppendVariable3 pIIecVarAccess_Itfs->IVarAccAppendVariable3
+	#define CHK_IecVarAccess_ItfsVarAccAppendVariable3 (pIIecVarAccess_Itfs != NULL)
+	#define EXP_IecVarAccess_ItfsVarAccAppendVariable3  ERR_OK
 #elif defined(CPLUSPLUS)
-	#define USE_VarAccGetTypeNode3
-	#define EXT_VarAccGetTypeNode3
-	#define GET_VarAccGetTypeNode3(fl)  CAL_CMGETAPI( "VarAccGetTypeNode3" ) 
-	#define CAL_VarAccGetTypeNode3 pIIecVarAccess_Itfs->IVarAccGetTypeNode3
-	#define CHK_VarAccGetTypeNode3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccGetTypeNode3  CAL_CMEXPAPI( "VarAccGetTypeNode3" ) 
+	#define USE_VarAccAppendVariable3
+	#define EXT_VarAccAppendVariable3
+	#define GET_VarAccAppendVariable3(fl)  CAL_CMGETAPI( "VarAccAppendVariable3" ) 
+	#define CAL_VarAccAppendVariable3 pIIecVarAccess_Itfs->IVarAccAppendVariable3
+	#define CHK_VarAccAppendVariable3 (pIIecVarAccess_Itfs != NULL)
+	#define EXP_VarAccAppendVariable3  CAL_CMEXPAPI( "VarAccAppendVariable3" ) 
 #else /* DYNAMIC_LINK */
-	#define USE_VarAccGetTypeNode3  PFVARACCGETTYPENODE3 pfVarAccGetTypeNode3;
-	#define EXT_VarAccGetTypeNode3  extern PFVARACCGETTYPENODE3 pfVarAccGetTypeNode3;
-	#define GET_VarAccGetTypeNode3(fl)  s_pfCMGetAPI2( "VarAccGetTypeNode3", (RTS_VOID_FCTPTR *)&pfVarAccGetTypeNode3, (fl), 0, 0)
-	#define CAL_VarAccGetTypeNode3  pfVarAccGetTypeNode3
-	#define CHK_VarAccGetTypeNode3  (pfVarAccGetTypeNode3 != NULL)
-	#define EXP_VarAccGetTypeNode3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetTypeNode3", (RTS_UINTPTR)VarAccGetTypeNode3, 0, 0) 
+	#define USE_VarAccAppendVariable3  PFVARACCAPPENDVARIABLE3 pfVarAccAppendVariable3;
+	#define EXT_VarAccAppendVariable3  extern PFVARACCAPPENDVARIABLE3 pfVarAccAppendVariable3;
+	#define GET_VarAccAppendVariable3(fl)  s_pfCMGetAPI2( "VarAccAppendVariable3", (RTS_VOID_FCTPTR *)&pfVarAccAppendVariable3, (fl), 0, 0)
+	#define CAL_VarAccAppendVariable3  pfVarAccAppendVariable3
+	#define CHK_VarAccAppendVariable3  (pfVarAccAppendVariable3 != NULL)
+	#define EXP_VarAccAppendVariable3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccAppendVariable3", (RTS_UINTPTR)VarAccAppendVariable3, 0, 0) 
 #endif
 
 
@@ -3422,63 +2630,61 @@ typedef void (CDECL * PFVARACCGETNODE3) (iiecvaraccess5_varaccgetnode3_struct *p
 
 
 /**
- * <description>IIecVarAccess5::VarAccGetNodeFullPath3</description>
+ * <description>IIecVarAccess5::VarAccGetTypeNode3</description>
  */
-typedef struct tagiiecvaraccess5_varaccgetnodefullpath3_struct
+typedef struct tagiiecvaraccess5_varaccgettypenode3_struct
 {
 	iiecvaraccess5_struct *pInstance;	/* VAR_INPUT */	
 	IBaseTreeNode *pNode;				/* VAR_INPUT */	
 	VariableInformationStruct *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_STRING *pszPath;			/* VAR_INPUT */	
-	RTS_IEC_DINT diMaxPath;				/* VAR_INPUT */	
 	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RTS_IEC_DINT VarAccGetNodeFullPath3;	/* VAR_OUTPUT */	
-} iiecvaraccess5_varaccgetnodefullpath3_struct;
+	ITypeDesc *VarAccGetTypeNode3;		/* VAR_OUTPUT */	
+} iiecvaraccess5_varaccgettypenode3_struct;
 
-void CDECL VarAccGetNodeFullPath3(iiecvaraccess5_varaccgetnodefullpath3_struct *p);
-typedef void (CDECL * PFVARACCGETNODEFULLPATH3) (iiecvaraccess5_varaccgetnodefullpath3_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCGETNODEFULLPATH3_NOTIMPLEMENTED)
-	#define USE_VarAccGetNodeFullPath3
-	#define EXT_VarAccGetNodeFullPath3
-	#define GET_VarAccGetNodeFullPath3(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccGetNodeFullPath3(p0)  
-	#define CHK_VarAccGetNodeFullPath3  FALSE
-	#define EXP_VarAccGetNodeFullPath3  ERR_OK
+void CDECL VarAccGetTypeNode3(iiecvaraccess5_varaccgettypenode3_struct *p);
+typedef void (CDECL * PFVARACCGETTYPENODE3) (iiecvaraccess5_varaccgettypenode3_struct *p);
+#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCGETTYPENODE3_NOTIMPLEMENTED)
+	#define USE_VarAccGetTypeNode3
+	#define EXT_VarAccGetTypeNode3
+	#define GET_VarAccGetTypeNode3(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_VarAccGetTypeNode3(p0)  
+	#define CHK_VarAccGetTypeNode3  FALSE
+	#define EXP_VarAccGetTypeNode3  ERR_OK
 #elif defined(STATIC_LINK)
-	#define USE_VarAccGetNodeFullPath3
-	#define EXT_VarAccGetNodeFullPath3
-	#define GET_VarAccGetNodeFullPath3(fl)  CAL_CMGETAPI( "VarAccGetNodeFullPath3" ) 
-	#define CAL_VarAccGetNodeFullPath3  VarAccGetNodeFullPath3
-	#define CHK_VarAccGetNodeFullPath3  TRUE
-	#define EXP_VarAccGetNodeFullPath3  CAL_CMEXPAPI( "VarAccGetNodeFullPath3" ) 
+	#define USE_VarAccGetTypeNode3
+	#define EXT_VarAccGetTypeNode3
+	#define GET_VarAccGetTypeNode3(fl)  CAL_CMGETAPI( "VarAccGetTypeNode3" ) 
+	#define CAL_VarAccGetTypeNode3  VarAccGetTypeNode3
+	#define CHK_VarAccGetTypeNode3  TRUE
+	#define EXP_VarAccGetTypeNode3  CAL_CMEXPAPI( "VarAccGetTypeNode3" ) 
 #elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccGetNodeFullPath3
-	#define EXT_VarAccGetNodeFullPath3
-	#define GET_VarAccGetNodeFullPath3(fl)  CAL_CMGETAPI( "VarAccGetNodeFullPath3" ) 
-	#define CAL_VarAccGetNodeFullPath3  VarAccGetNodeFullPath3
-	#define CHK_VarAccGetNodeFullPath3  TRUE
-	#define EXP_VarAccGetNodeFullPath3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetNodeFullPath3", (RTS_UINTPTR)VarAccGetNodeFullPath3, 0, 0) 
+	#define USE_VarAccGetTypeNode3
+	#define EXT_VarAccGetTypeNode3
+	#define GET_VarAccGetTypeNode3(fl)  CAL_CMGETAPI( "VarAccGetTypeNode3" ) 
+	#define CAL_VarAccGetTypeNode3  VarAccGetTypeNode3
+	#define CHK_VarAccGetTypeNode3  TRUE
+	#define EXP_VarAccGetTypeNode3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetTypeNode3", (RTS_UINTPTR)VarAccGetTypeNode3, 0, 0) 
 #elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccGetNodeFullPath3
-	#define EXT_IecVarAccess_ItfsVarAccGetNodeFullPath3
-	#define GET_IecVarAccess_ItfsVarAccGetNodeFullPath3  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccGetNodeFullPath3 pIIecVarAccess_Itfs->IVarAccGetNodeFullPath3
-	#define CHK_IecVarAccess_ItfsVarAccGetNodeFullPath3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccGetNodeFullPath3  ERR_OK
+	#define USE_IecVarAccess_ItfsVarAccGetTypeNode3
+	#define EXT_IecVarAccess_ItfsVarAccGetTypeNode3
+	#define GET_IecVarAccess_ItfsVarAccGetTypeNode3  ERR_OK
+	#define CAL_IecVarAccess_ItfsVarAccGetTypeNode3 pIIecVarAccess_Itfs->IVarAccGetTypeNode3
+	#define CHK_IecVarAccess_ItfsVarAccGetTypeNode3 (pIIecVarAccess_Itfs != NULL)
+	#define EXP_IecVarAccess_ItfsVarAccGetTypeNode3  ERR_OK
 #elif defined(CPLUSPLUS)
-	#define USE_VarAccGetNodeFullPath3
-	#define EXT_VarAccGetNodeFullPath3
-	#define GET_VarAccGetNodeFullPath3(fl)  CAL_CMGETAPI( "VarAccGetNodeFullPath3" ) 
-	#define CAL_VarAccGetNodeFullPath3 pIIecVarAccess_Itfs->IVarAccGetNodeFullPath3
-	#define CHK_VarAccGetNodeFullPath3 (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccGetNodeFullPath3  CAL_CMEXPAPI( "VarAccGetNodeFullPath3" ) 
+	#define USE_VarAccGetTypeNode3
+	#define EXT_VarAccGetTypeNode3
+	#define GET_VarAccGetTypeNode3(fl)  CAL_CMGETAPI( "VarAccGetTypeNode3" ) 
+	#define CAL_VarAccGetTypeNode3 pIIecVarAccess_Itfs->IVarAccGetTypeNode3
+	#define CHK_VarAccGetTypeNode3 (pIIecVarAccess_Itfs != NULL)
+	#define EXP_VarAccGetTypeNode3  CAL_CMEXPAPI( "VarAccGetTypeNode3" ) 
 #else /* DYNAMIC_LINK */
-	#define USE_VarAccGetNodeFullPath3  PFVARACCGETNODEFULLPATH3 pfVarAccGetNodeFullPath3;
-	#define EXT_VarAccGetNodeFullPath3  extern PFVARACCGETNODEFULLPATH3 pfVarAccGetNodeFullPath3;
-	#define GET_VarAccGetNodeFullPath3(fl)  s_pfCMGetAPI2( "VarAccGetNodeFullPath3", (RTS_VOID_FCTPTR *)&pfVarAccGetNodeFullPath3, (fl), 0, 0)
-	#define CAL_VarAccGetNodeFullPath3  pfVarAccGetNodeFullPath3
-	#define CHK_VarAccGetNodeFullPath3  (pfVarAccGetNodeFullPath3 != NULL)
-	#define EXP_VarAccGetNodeFullPath3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetNodeFullPath3", (RTS_UINTPTR)VarAccGetNodeFullPath3, 0, 0) 
+	#define USE_VarAccGetTypeNode3  PFVARACCGETTYPENODE3 pfVarAccGetTypeNode3;
+	#define EXT_VarAccGetTypeNode3  extern PFVARACCGETTYPENODE3 pfVarAccGetTypeNode3;
+	#define GET_VarAccGetTypeNode3(fl)  s_pfCMGetAPI2( "VarAccGetTypeNode3", (RTS_VOID_FCTPTR *)&pfVarAccGetTypeNode3, (fl), 0, 0)
+	#define CAL_VarAccGetTypeNode3  pfVarAccGetTypeNode3
+	#define CHK_VarAccGetTypeNode3  (pfVarAccGetTypeNode3 != NULL)
+	#define EXP_VarAccGetTypeNode3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetTypeNode3", (RTS_UINTPTR)VarAccGetTypeNode3, 0, 0) 
 #endif
 
 
@@ -3540,6 +2746,66 @@ typedef void (CDECL * PFVARACCGETTYPECLASS3) (iiecvaraccess5_varaccgettypeclass3
 	#define CAL_VarAccGetTypeClass3  pfVarAccGetTypeClass3
 	#define CHK_VarAccGetTypeClass3  (pfVarAccGetTypeClass3 != NULL)
 	#define EXP_VarAccGetTypeClass3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetTypeClass3", (RTS_UINTPTR)VarAccGetTypeClass3, 0, 0) 
+#endif
+
+
+
+
+/**
+ * <description>IIecVarAccess5::VarAccRemoveVariable3</description>
+ */
+typedef struct tagiiecvaraccess5_varaccremovevariable3_struct
+{
+	iiecvaraccess5_struct *pInstance;	/* VAR_INPUT */	
+	IBaseTreeNode *pNode;				/* VAR_INPUT */	
+	VariableInformationStruct *pVariableInformation;	/* VAR_INPUT */	
+	RTS_IEC_RESULT VarAccRemoveVariable3;	/* VAR_OUTPUT */	
+} iiecvaraccess5_varaccremovevariable3_struct;
+
+void CDECL VarAccRemoveVariable3(iiecvaraccess5_varaccremovevariable3_struct *p);
+typedef void (CDECL * PFVARACCREMOVEVARIABLE3) (iiecvaraccess5_varaccremovevariable3_struct *p);
+#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCREMOVEVARIABLE3_NOTIMPLEMENTED)
+	#define USE_VarAccRemoveVariable3
+	#define EXT_VarAccRemoveVariable3
+	#define GET_VarAccRemoveVariable3(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_VarAccRemoveVariable3(p0)  
+	#define CHK_VarAccRemoveVariable3  FALSE
+	#define EXP_VarAccRemoveVariable3  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_VarAccRemoveVariable3
+	#define EXT_VarAccRemoveVariable3
+	#define GET_VarAccRemoveVariable3(fl)  CAL_CMGETAPI( "VarAccRemoveVariable3" ) 
+	#define CAL_VarAccRemoveVariable3  VarAccRemoveVariable3
+	#define CHK_VarAccRemoveVariable3  TRUE
+	#define EXP_VarAccRemoveVariable3  CAL_CMEXPAPI( "VarAccRemoveVariable3" ) 
+#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
+	#define USE_VarAccRemoveVariable3
+	#define EXT_VarAccRemoveVariable3
+	#define GET_VarAccRemoveVariable3(fl)  CAL_CMGETAPI( "VarAccRemoveVariable3" ) 
+	#define CAL_VarAccRemoveVariable3  VarAccRemoveVariable3
+	#define CHK_VarAccRemoveVariable3  TRUE
+	#define EXP_VarAccRemoveVariable3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccRemoveVariable3", (RTS_UINTPTR)VarAccRemoveVariable3, 0, 0) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_IecVarAccess_ItfsVarAccRemoveVariable3
+	#define EXT_IecVarAccess_ItfsVarAccRemoveVariable3
+	#define GET_IecVarAccess_ItfsVarAccRemoveVariable3  ERR_OK
+	#define CAL_IecVarAccess_ItfsVarAccRemoveVariable3 pIIecVarAccess_Itfs->IVarAccRemoveVariable3
+	#define CHK_IecVarAccess_ItfsVarAccRemoveVariable3 (pIIecVarAccess_Itfs != NULL)
+	#define EXP_IecVarAccess_ItfsVarAccRemoveVariable3  ERR_OK
+#elif defined(CPLUSPLUS)
+	#define USE_VarAccRemoveVariable3
+	#define EXT_VarAccRemoveVariable3
+	#define GET_VarAccRemoveVariable3(fl)  CAL_CMGETAPI( "VarAccRemoveVariable3" ) 
+	#define CAL_VarAccRemoveVariable3 pIIecVarAccess_Itfs->IVarAccRemoveVariable3
+	#define CHK_VarAccRemoveVariable3 (pIIecVarAccess_Itfs != NULL)
+	#define EXP_VarAccRemoveVariable3  CAL_CMEXPAPI( "VarAccRemoveVariable3" ) 
+#else /* DYNAMIC_LINK */
+	#define USE_VarAccRemoveVariable3  PFVARACCREMOVEVARIABLE3 pfVarAccRemoveVariable3;
+	#define EXT_VarAccRemoveVariable3  extern PFVARACCREMOVEVARIABLE3 pfVarAccRemoveVariable3;
+	#define GET_VarAccRemoveVariable3(fl)  s_pfCMGetAPI2( "VarAccRemoveVariable3", (RTS_VOID_FCTPTR *)&pfVarAccRemoveVariable3, (fl), 0, 0)
+	#define CAL_VarAccRemoveVariable3  pfVarAccRemoveVariable3
+	#define CHK_VarAccRemoveVariable3  (pfVarAccRemoveVariable3 != NULL)
+	#define EXP_VarAccRemoveVariable3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccRemoveVariable3", (RTS_UINTPTR)VarAccRemoveVariable3, 0, 0) 
 #endif
 
 
@@ -3741,6 +3007,64 @@ typedef struct
 } iiecvaraccess7_struct;
 
 /**
+ * <description>IIecVarAccess7::VarAccEnterAccess</description>
+ */
+typedef struct tagiiecvaraccess7_varaccenteraccess_struct
+{
+	iiecvaraccess7_struct *pInstance;	/* VAR_INPUT */	
+	RTS_IEC_RESULT VarAccEnterAccess;	/* VAR_OUTPUT */	
+} iiecvaraccess7_varaccenteraccess_struct;
+
+void CDECL VarAccEnterAccess(iiecvaraccess7_varaccenteraccess_struct *p);
+typedef void (CDECL * PFVARACCENTERACCESS) (iiecvaraccess7_varaccenteraccess_struct *p);
+#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCENTERACCESS_NOTIMPLEMENTED)
+	#define USE_VarAccEnterAccess
+	#define EXT_VarAccEnterAccess
+	#define GET_VarAccEnterAccess(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_VarAccEnterAccess(p0)  
+	#define CHK_VarAccEnterAccess  FALSE
+	#define EXP_VarAccEnterAccess  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_VarAccEnterAccess
+	#define EXT_VarAccEnterAccess
+	#define GET_VarAccEnterAccess(fl)  CAL_CMGETAPI( "VarAccEnterAccess" ) 
+	#define CAL_VarAccEnterAccess  VarAccEnterAccess
+	#define CHK_VarAccEnterAccess  TRUE
+	#define EXP_VarAccEnterAccess  CAL_CMEXPAPI( "VarAccEnterAccess" ) 
+#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
+	#define USE_VarAccEnterAccess
+	#define EXT_VarAccEnterAccess
+	#define GET_VarAccEnterAccess(fl)  CAL_CMGETAPI( "VarAccEnterAccess" ) 
+	#define CAL_VarAccEnterAccess  VarAccEnterAccess
+	#define CHK_VarAccEnterAccess  TRUE
+	#define EXP_VarAccEnterAccess  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccEnterAccess", (RTS_UINTPTR)VarAccEnterAccess, 0, 0) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_IecVarAccess_ItfsVarAccEnterAccess
+	#define EXT_IecVarAccess_ItfsVarAccEnterAccess
+	#define GET_IecVarAccess_ItfsVarAccEnterAccess  ERR_OK
+	#define CAL_IecVarAccess_ItfsVarAccEnterAccess pIIecVarAccess_Itfs->IVarAccEnterAccess
+	#define CHK_IecVarAccess_ItfsVarAccEnterAccess (pIIecVarAccess_Itfs != NULL)
+	#define EXP_IecVarAccess_ItfsVarAccEnterAccess  ERR_OK
+#elif defined(CPLUSPLUS)
+	#define USE_VarAccEnterAccess
+	#define EXT_VarAccEnterAccess
+	#define GET_VarAccEnterAccess(fl)  CAL_CMGETAPI( "VarAccEnterAccess" ) 
+	#define CAL_VarAccEnterAccess pIIecVarAccess_Itfs->IVarAccEnterAccess
+	#define CHK_VarAccEnterAccess (pIIecVarAccess_Itfs != NULL)
+	#define EXP_VarAccEnterAccess  CAL_CMEXPAPI( "VarAccEnterAccess" ) 
+#else /* DYNAMIC_LINK */
+	#define USE_VarAccEnterAccess  PFVARACCENTERACCESS pfVarAccEnterAccess;
+	#define EXT_VarAccEnterAccess  extern PFVARACCENTERACCESS pfVarAccEnterAccess;
+	#define GET_VarAccEnterAccess(fl)  s_pfCMGetAPI2( "VarAccEnterAccess", (RTS_VOID_FCTPTR *)&pfVarAccEnterAccess, (fl), 0, 0)
+	#define CAL_VarAccEnterAccess  pfVarAccEnterAccess
+	#define CHK_VarAccEnterAccess  (pfVarAccEnterAccess != NULL)
+	#define EXP_VarAccEnterAccess  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccEnterAccess", (RTS_UINTPTR)VarAccEnterAccess, 0, 0) 
+#endif
+
+
+
+
+/**
  * <description>IIecVarAccess7::VarAccGetNumOfAttributes</description>
  */
 typedef struct tagiiecvaraccess7_varaccgetnumofattributes_struct
@@ -3801,58 +3125,61 @@ typedef void (CDECL * PFVARACCGETNUMOFATTRIBUTES) (iiecvaraccess7_varaccgetnumof
 
 
 /**
- * <description>IIecVarAccess7::VarAccEnterAccess</description>
+ * <description>IIecVarAccess7::VarAccGetAttributeByIndex</description>
  */
-typedef struct tagiiecvaraccess7_varaccenteraccess_struct
+typedef struct tagiiecvaraccess7_varaccgetattributebyindex_struct
 {
 	iiecvaraccess7_struct *pInstance;	/* VAR_INPUT */	
-	RTS_IEC_RESULT VarAccEnterAccess;	/* VAR_OUTPUT */	
-} iiecvaraccess7_varaccenteraccess_struct;
+	IBaseTreeNode *pNode;				/* VAR_INPUT */	
+	RTS_IEC_WORD wIndex;				/* VAR_INPUT */	
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
+	RTS_IEC_STRING *VarAccGetAttributeByIndex;	/* VAR_OUTPUT */	
+} iiecvaraccess7_varaccgetattributebyindex_struct;
 
-void CDECL VarAccEnterAccess(iiecvaraccess7_varaccenteraccess_struct *p);
-typedef void (CDECL * PFVARACCENTERACCESS) (iiecvaraccess7_varaccenteraccess_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCENTERACCESS_NOTIMPLEMENTED)
-	#define USE_VarAccEnterAccess
-	#define EXT_VarAccEnterAccess
-	#define GET_VarAccEnterAccess(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccEnterAccess(p0)  
-	#define CHK_VarAccEnterAccess  FALSE
-	#define EXP_VarAccEnterAccess  ERR_OK
+void CDECL VarAccGetAttributeByIndex(iiecvaraccess7_varaccgetattributebyindex_struct *p);
+typedef void (CDECL * PFVARACCGETATTRIBUTEBYINDEX) (iiecvaraccess7_varaccgetattributebyindex_struct *p);
+#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCGETATTRIBUTEBYINDEX_NOTIMPLEMENTED)
+	#define USE_VarAccGetAttributeByIndex
+	#define EXT_VarAccGetAttributeByIndex
+	#define GET_VarAccGetAttributeByIndex(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_VarAccGetAttributeByIndex(p0)  
+	#define CHK_VarAccGetAttributeByIndex  FALSE
+	#define EXP_VarAccGetAttributeByIndex  ERR_OK
 #elif defined(STATIC_LINK)
-	#define USE_VarAccEnterAccess
-	#define EXT_VarAccEnterAccess
-	#define GET_VarAccEnterAccess(fl)  CAL_CMGETAPI( "VarAccEnterAccess" ) 
-	#define CAL_VarAccEnterAccess  VarAccEnterAccess
-	#define CHK_VarAccEnterAccess  TRUE
-	#define EXP_VarAccEnterAccess  CAL_CMEXPAPI( "VarAccEnterAccess" ) 
+	#define USE_VarAccGetAttributeByIndex
+	#define EXT_VarAccGetAttributeByIndex
+	#define GET_VarAccGetAttributeByIndex(fl)  CAL_CMGETAPI( "VarAccGetAttributeByIndex" ) 
+	#define CAL_VarAccGetAttributeByIndex  VarAccGetAttributeByIndex
+	#define CHK_VarAccGetAttributeByIndex  TRUE
+	#define EXP_VarAccGetAttributeByIndex  CAL_CMEXPAPI( "VarAccGetAttributeByIndex" ) 
 #elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccEnterAccess
-	#define EXT_VarAccEnterAccess
-	#define GET_VarAccEnterAccess(fl)  CAL_CMGETAPI( "VarAccEnterAccess" ) 
-	#define CAL_VarAccEnterAccess  VarAccEnterAccess
-	#define CHK_VarAccEnterAccess  TRUE
-	#define EXP_VarAccEnterAccess  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccEnterAccess", (RTS_UINTPTR)VarAccEnterAccess, 0, 0) 
+	#define USE_VarAccGetAttributeByIndex
+	#define EXT_VarAccGetAttributeByIndex
+	#define GET_VarAccGetAttributeByIndex(fl)  CAL_CMGETAPI( "VarAccGetAttributeByIndex" ) 
+	#define CAL_VarAccGetAttributeByIndex  VarAccGetAttributeByIndex
+	#define CHK_VarAccGetAttributeByIndex  TRUE
+	#define EXP_VarAccGetAttributeByIndex  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetAttributeByIndex", (RTS_UINTPTR)VarAccGetAttributeByIndex, 0, 0) 
 #elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccEnterAccess
-	#define EXT_IecVarAccess_ItfsVarAccEnterAccess
-	#define GET_IecVarAccess_ItfsVarAccEnterAccess  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccEnterAccess pIIecVarAccess_Itfs->IVarAccEnterAccess
-	#define CHK_IecVarAccess_ItfsVarAccEnterAccess (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccEnterAccess  ERR_OK
+	#define USE_IecVarAccess_ItfsVarAccGetAttributeByIndex
+	#define EXT_IecVarAccess_ItfsVarAccGetAttributeByIndex
+	#define GET_IecVarAccess_ItfsVarAccGetAttributeByIndex  ERR_OK
+	#define CAL_IecVarAccess_ItfsVarAccGetAttributeByIndex pIIecVarAccess_Itfs->IVarAccGetAttributeByIndex
+	#define CHK_IecVarAccess_ItfsVarAccGetAttributeByIndex (pIIecVarAccess_Itfs != NULL)
+	#define EXP_IecVarAccess_ItfsVarAccGetAttributeByIndex  ERR_OK
 #elif defined(CPLUSPLUS)
-	#define USE_VarAccEnterAccess
-	#define EXT_VarAccEnterAccess
-	#define GET_VarAccEnterAccess(fl)  CAL_CMGETAPI( "VarAccEnterAccess" ) 
-	#define CAL_VarAccEnterAccess pIIecVarAccess_Itfs->IVarAccEnterAccess
-	#define CHK_VarAccEnterAccess (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccEnterAccess  CAL_CMEXPAPI( "VarAccEnterAccess" ) 
+	#define USE_VarAccGetAttributeByIndex
+	#define EXT_VarAccGetAttributeByIndex
+	#define GET_VarAccGetAttributeByIndex(fl)  CAL_CMGETAPI( "VarAccGetAttributeByIndex" ) 
+	#define CAL_VarAccGetAttributeByIndex pIIecVarAccess_Itfs->IVarAccGetAttributeByIndex
+	#define CHK_VarAccGetAttributeByIndex (pIIecVarAccess_Itfs != NULL)
+	#define EXP_VarAccGetAttributeByIndex  CAL_CMEXPAPI( "VarAccGetAttributeByIndex" ) 
 #else /* DYNAMIC_LINK */
-	#define USE_VarAccEnterAccess  PFVARACCENTERACCESS pfVarAccEnterAccess;
-	#define EXT_VarAccEnterAccess  extern PFVARACCENTERACCESS pfVarAccEnterAccess;
-	#define GET_VarAccEnterAccess(fl)  s_pfCMGetAPI2( "VarAccEnterAccess", (RTS_VOID_FCTPTR *)&pfVarAccEnterAccess, (fl), 0, 0)
-	#define CAL_VarAccEnterAccess  pfVarAccEnterAccess
-	#define CHK_VarAccEnterAccess  (pfVarAccEnterAccess != NULL)
-	#define EXP_VarAccEnterAccess  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccEnterAccess", (RTS_UINTPTR)VarAccEnterAccess, 0, 0) 
+	#define USE_VarAccGetAttributeByIndex  PFVARACCGETATTRIBUTEBYINDEX pfVarAccGetAttributeByIndex;
+	#define EXT_VarAccGetAttributeByIndex  extern PFVARACCGETATTRIBUTEBYINDEX pfVarAccGetAttributeByIndex;
+	#define GET_VarAccGetAttributeByIndex(fl)  s_pfCMGetAPI2( "VarAccGetAttributeByIndex", (RTS_VOID_FCTPTR *)&pfVarAccGetAttributeByIndex, (fl), 0, 0)
+	#define CAL_VarAccGetAttributeByIndex  pfVarAccGetAttributeByIndex
+	#define CHK_VarAccGetAttributeByIndex  (pfVarAccGetAttributeByIndex != NULL)
+	#define EXP_VarAccGetAttributeByIndex  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetAttributeByIndex", (RTS_UINTPTR)VarAccGetAttributeByIndex, 0, 0) 
 #endif
 
 
@@ -4153,67 +3480,6 @@ typedef void (CDECL * PFVARACCGETTYPENODEBYINDEX) (iiecvaraccess7_varaccgettypen
 	#define CAL_VarAccGetTypeNodeByIndex  pfVarAccGetTypeNodeByIndex
 	#define CHK_VarAccGetTypeNodeByIndex  (pfVarAccGetTypeNodeByIndex != NULL)
 	#define EXP_VarAccGetTypeNodeByIndex  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetTypeNodeByIndex", (RTS_UINTPTR)VarAccGetTypeNodeByIndex, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>IIecVarAccess7::VarAccGetAttributeByIndex</description>
- */
-typedef struct tagiiecvaraccess7_varaccgetattributebyindex_struct
-{
-	iiecvaraccess7_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	RTS_IEC_WORD wIndex;				/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RTS_IEC_STRING *VarAccGetAttributeByIndex;	/* VAR_OUTPUT */	
-} iiecvaraccess7_varaccgetattributebyindex_struct;
-
-void CDECL VarAccGetAttributeByIndex(iiecvaraccess7_varaccgetattributebyindex_struct *p);
-typedef void (CDECL * PFVARACCGETATTRIBUTEBYINDEX) (iiecvaraccess7_varaccgetattributebyindex_struct *p);
-#if defined(IECVARACCESS_ITFS_NOTIMPLEMENTED) || defined(VARACCGETATTRIBUTEBYINDEX_NOTIMPLEMENTED)
-	#define USE_VarAccGetAttributeByIndex
-	#define EXT_VarAccGetAttributeByIndex
-	#define GET_VarAccGetAttributeByIndex(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VarAccGetAttributeByIndex(p0)  
-	#define CHK_VarAccGetAttributeByIndex  FALSE
-	#define EXP_VarAccGetAttributeByIndex  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VarAccGetAttributeByIndex
-	#define EXT_VarAccGetAttributeByIndex
-	#define GET_VarAccGetAttributeByIndex(fl)  CAL_CMGETAPI( "VarAccGetAttributeByIndex" ) 
-	#define CAL_VarAccGetAttributeByIndex  VarAccGetAttributeByIndex
-	#define CHK_VarAccGetAttributeByIndex  TRUE
-	#define EXP_VarAccGetAttributeByIndex  CAL_CMEXPAPI( "VarAccGetAttributeByIndex" ) 
-#elif defined(MIXED_LINK) && !defined(IECVARACCESS_ITFS_EXTERNAL)
-	#define USE_VarAccGetAttributeByIndex
-	#define EXT_VarAccGetAttributeByIndex
-	#define GET_VarAccGetAttributeByIndex(fl)  CAL_CMGETAPI( "VarAccGetAttributeByIndex" ) 
-	#define CAL_VarAccGetAttributeByIndex  VarAccGetAttributeByIndex
-	#define CHK_VarAccGetAttributeByIndex  TRUE
-	#define EXP_VarAccGetAttributeByIndex  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetAttributeByIndex", (RTS_UINTPTR)VarAccGetAttributeByIndex, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_IecVarAccess_ItfsVarAccGetAttributeByIndex
-	#define EXT_IecVarAccess_ItfsVarAccGetAttributeByIndex
-	#define GET_IecVarAccess_ItfsVarAccGetAttributeByIndex  ERR_OK
-	#define CAL_IecVarAccess_ItfsVarAccGetAttributeByIndex pIIecVarAccess_Itfs->IVarAccGetAttributeByIndex
-	#define CHK_IecVarAccess_ItfsVarAccGetAttributeByIndex (pIIecVarAccess_Itfs != NULL)
-	#define EXP_IecVarAccess_ItfsVarAccGetAttributeByIndex  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VarAccGetAttributeByIndex
-	#define EXT_VarAccGetAttributeByIndex
-	#define GET_VarAccGetAttributeByIndex(fl)  CAL_CMGETAPI( "VarAccGetAttributeByIndex" ) 
-	#define CAL_VarAccGetAttributeByIndex pIIecVarAccess_Itfs->IVarAccGetAttributeByIndex
-	#define CHK_VarAccGetAttributeByIndex (pIIecVarAccess_Itfs != NULL)
-	#define EXP_VarAccGetAttributeByIndex  CAL_CMEXPAPI( "VarAccGetAttributeByIndex" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VarAccGetAttributeByIndex  PFVARACCGETATTRIBUTEBYINDEX pfVarAccGetAttributeByIndex;
-	#define EXT_VarAccGetAttributeByIndex  extern PFVARACCGETATTRIBUTEBYINDEX pfVarAccGetAttributeByIndex;
-	#define GET_VarAccGetAttributeByIndex(fl)  s_pfCMGetAPI2( "VarAccGetAttributeByIndex", (RTS_VOID_FCTPTR *)&pfVarAccGetAttributeByIndex, (fl), 0, 0)
-	#define CAL_VarAccGetAttributeByIndex  pfVarAccGetAttributeByIndex
-	#define CHK_VarAccGetAttributeByIndex  (pfVarAccGetAttributeByIndex != NULL)
-	#define EXP_VarAccGetAttributeByIndex  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VarAccGetAttributeByIndex", (RTS_UINTPTR)VarAccGetAttributeByIndex, 0, 0) 
 #endif
 
 
@@ -5093,16 +4359,6 @@ typedef struct
  	PFVARACCGETENUMMEMBERATTRIBUTELIST IVarAccGetEnumMemberAttributeList;
  	PFVARACCGETNUMOFTYPEATTRIBUTES IVarAccGetNumOfTypeAttributes;
  	PFVARACCGETTYPEATTRIBUTEBYINDEX IVarAccGetTypeAttributeByIndex;
- 	PFVARACCGETCONTENTFEATUREFLAGS IVarAccGetContentFeatureFlags;
- 	PFVARACCGETRANGE IVarAccGetRange;
- 	PFVARACCBROWSEUP3 IVarAccBrowseUp3;
- 	PFVARACCGETACCESSRIGHTS2 IVarAccGetAccessRights2;
- 	PFVARACCBROWSEGETCHILDBYINDEX2 IVarAccBrowseGetChildByIndex2;
- 	PFVARACCBROWSEGETNEXT3 IVarAccBrowseGetNext3;
- 	PFVARACCINITVARINFO2 IVarAccInitVarInfo2;
- 	PFVARACCGETAPPLICATIONNAME IVarAccGetApplicationName;
- 	PFVARACCBROWSEGETROOT2 IVarAccBrowseGetRoot2;
- 	PFVARACCBROWSEDOWN3 IVarAccBrowseDown3;
  	PFVARACCGETSWAPSIZE IVarAccGetSwapSize;
  	PFVARACCENDVARIABLECONFIGURATION IVarAccEndVariableConfiguration;
  	PFVARACCSWAP IVarAccSwap;
@@ -5130,26 +4386,26 @@ typedef struct
  	PFVARACCGETNODE IVarAccGetNode;
  	PFVARACCGETTYPECLASS IVarAccGetTypeClass;
  	PFVARACCGETSIZE3 IVarAccGetSize3;
- 	PFVARACCREMOVEVARIABLE3 IVarAccRemoveVariable3;
+ 	PFVARACCGETNODEFULLPATH3 IVarAccGetNodeFullPath3;
  	PFVARACCSETVALUE3 IVarAccSetValue3;
- 	PFVARACCAPPENDVARIABLE3 IVarAccAppendVariable3;
  	PFVARACCGETADDRESS3 IVarAccGetAddress3;
- 	PFVARACCGETTYPENODE3 IVarAccGetTypeNode3;
+ 	PFVARACCAPPENDVARIABLE3 IVarAccAppendVariable3;
  	PFVARACCGETVALUE3 IVarAccGetValue3;
  	PFVARACCGETNODE3 IVarAccGetNode3;
- 	PFVARACCGETNODEFULLPATH3 IVarAccGetNodeFullPath3;
+ 	PFVARACCGETTYPENODE3 IVarAccGetTypeNode3;
  	PFVARACCGETTYPECLASS3 IVarAccGetTypeClass3;
+ 	PFVARACCREMOVEVARIABLE3 IVarAccRemoveVariable3;
  	PFVARACCSWAP3 IVarAccSwap3;
  	PFVARACCGETNODENAME3 IVarAccGetNodeName3;
  	PFVARACCBROWSEGETCHILDBYINDEX IVarAccBrowseGetChildByIndex;
- 	PFVARACCGETNUMOFATTRIBUTES IVarAccGetNumOfAttributes;
  	PFVARACCENTERACCESS IVarAccEnterAccess;
+ 	PFVARACCGETNUMOFATTRIBUTES IVarAccGetNumOfAttributes;
+ 	PFVARACCGETATTRIBUTEBYINDEX IVarAccGetAttributeByIndex;
  	PFVARACCGETNODEFLAGS IVarAccGetNodeFlags;
  	PFVARACCGETNUMOFTYPES IVarAccGetNumOfTypes;
  	PFVARACCGETENUMVALUES IVarAccGetEnumValues;
  	PFVARACCGETTYPENAME IVarAccGetTypeName;
  	PFVARACCGETTYPENODEBYINDEX IVarAccGetTypeNodeByIndex;
- 	PFVARACCGETATTRIBUTEBYINDEX IVarAccGetAttributeByIndex;
  	PFVARACCGETTYPECLASSFROMTYPE IVarAccGetTypeClassFromType;
  	PFVARACCLEAVEACCESS IVarAccLeaveAccess;
  	PFVARACCGETBASETYPE IVarAccGetBaseType;
@@ -5175,16 +4431,6 @@ class IIecVarAccess_Itfs : public IBase
 		virtual void CDECL IVarAccGetEnumMemberAttributeList(iiecvaraccess11_varaccgetenummemberattributelist_struct *p) =0;
 		virtual void CDECL IVarAccGetNumOfTypeAttributes(iiecvaraccess11_varaccgetnumoftypeattributes_struct *p) =0;
 		virtual void CDECL IVarAccGetTypeAttributeByIndex(iiecvaraccess11_varaccgettypeattributebyindex_struct *p) =0;
-		virtual void CDECL IVarAccGetContentFeatureFlags(iiecvaraccess12_varaccgetcontentfeatureflags_struct *p) =0;
-		virtual void CDECL IVarAccGetRange(iiecvaraccess12_varaccgetrange_struct *p) =0;
-		virtual void CDECL IVarAccBrowseUp3(iiecvaraccess13_varaccbrowseup3_struct *p) =0;
-		virtual void CDECL IVarAccGetAccessRights2(iiecvaraccess13_varaccgetaccessrights2_struct *p) =0;
-		virtual void CDECL IVarAccBrowseGetChildByIndex2(iiecvaraccess13_varaccbrowsegetchildbyindex2_struct *p) =0;
-		virtual void CDECL IVarAccBrowseGetNext3(iiecvaraccess13_varaccbrowsegetnext3_struct *p) =0;
-		virtual void CDECL IVarAccInitVarInfo2(iiecvaraccess13_varaccinitvarinfo2_struct *p) =0;
-		virtual void CDECL IVarAccGetApplicationName(iiecvaraccess13_varaccgetapplicationname_struct *p) =0;
-		virtual void CDECL IVarAccBrowseGetRoot2(iiecvaraccess13_varaccbrowsegetroot2_struct *p) =0;
-		virtual void CDECL IVarAccBrowseDown3(iiecvaraccess13_varaccbrowsedown3_struct *p) =0;
 		virtual void CDECL IVarAccGetSwapSize(iiecvaraccess4_varaccgetswapsize_struct *p) =0;
 		virtual void CDECL IVarAccEndVariableConfiguration(iiecvaraccess4_varaccendvariableconfiguration_struct *p) =0;
 		virtual void CDECL IVarAccSwap(iiecvaraccess4_varaccswap_struct *p) =0;
@@ -5212,26 +4458,26 @@ class IIecVarAccess_Itfs : public IBase
 		virtual void CDECL IVarAccGetNode(iiecvaraccess4_varaccgetnode_struct *p) =0;
 		virtual void CDECL IVarAccGetTypeClass(iiecvaraccess4_varaccgettypeclass_struct *p) =0;
 		virtual void CDECL IVarAccGetSize3(iiecvaraccess5_varaccgetsize3_struct *p) =0;
-		virtual void CDECL IVarAccRemoveVariable3(iiecvaraccess5_varaccremovevariable3_struct *p) =0;
+		virtual void CDECL IVarAccGetNodeFullPath3(iiecvaraccess5_varaccgetnodefullpath3_struct *p) =0;
 		virtual void CDECL IVarAccSetValue3(iiecvaraccess5_varaccsetvalue3_struct *p) =0;
-		virtual void CDECL IVarAccAppendVariable3(iiecvaraccess5_varaccappendvariable3_struct *p) =0;
 		virtual void CDECL IVarAccGetAddress3(iiecvaraccess5_varaccgetaddress3_struct *p) =0;
-		virtual void CDECL IVarAccGetTypeNode3(iiecvaraccess5_varaccgettypenode3_struct *p) =0;
+		virtual void CDECL IVarAccAppendVariable3(iiecvaraccess5_varaccappendvariable3_struct *p) =0;
 		virtual void CDECL IVarAccGetValue3(iiecvaraccess5_varaccgetvalue3_struct *p) =0;
 		virtual void CDECL IVarAccGetNode3(iiecvaraccess5_varaccgetnode3_struct *p) =0;
-		virtual void CDECL IVarAccGetNodeFullPath3(iiecvaraccess5_varaccgetnodefullpath3_struct *p) =0;
+		virtual void CDECL IVarAccGetTypeNode3(iiecvaraccess5_varaccgettypenode3_struct *p) =0;
 		virtual void CDECL IVarAccGetTypeClass3(iiecvaraccess5_varaccgettypeclass3_struct *p) =0;
+		virtual void CDECL IVarAccRemoveVariable3(iiecvaraccess5_varaccremovevariable3_struct *p) =0;
 		virtual void CDECL IVarAccSwap3(iiecvaraccess5_varaccswap3_struct *p) =0;
 		virtual void CDECL IVarAccGetNodeName3(iiecvaraccess5_varaccgetnodename3_struct *p) =0;
 		virtual void CDECL IVarAccBrowseGetChildByIndex(iiecvaraccess6_varaccbrowsegetchildbyindex_struct *p) =0;
-		virtual void CDECL IVarAccGetNumOfAttributes(iiecvaraccess7_varaccgetnumofattributes_struct *p) =0;
 		virtual void CDECL IVarAccEnterAccess(iiecvaraccess7_varaccenteraccess_struct *p) =0;
+		virtual void CDECL IVarAccGetNumOfAttributes(iiecvaraccess7_varaccgetnumofattributes_struct *p) =0;
+		virtual void CDECL IVarAccGetAttributeByIndex(iiecvaraccess7_varaccgetattributebyindex_struct *p) =0;
 		virtual void CDECL IVarAccGetNodeFlags(iiecvaraccess7_varaccgetnodeflags_struct *p) =0;
 		virtual void CDECL IVarAccGetNumOfTypes(iiecvaraccess7_varaccgetnumoftypes_struct *p) =0;
 		virtual void CDECL IVarAccGetEnumValues(iiecvaraccess7_varaccgetenumvalues_struct *p) =0;
 		virtual void CDECL IVarAccGetTypeName(iiecvaraccess7_varaccgettypename_struct *p) =0;
 		virtual void CDECL IVarAccGetTypeNodeByIndex(iiecvaraccess7_varaccgettypenodebyindex_struct *p) =0;
-		virtual void CDECL IVarAccGetAttributeByIndex(iiecvaraccess7_varaccgetattributebyindex_struct *p) =0;
 		virtual void CDECL IVarAccGetTypeClassFromType(iiecvaraccess7_varaccgettypeclassfromtype_struct *p) =0;
 		virtual void CDECL IVarAccLeaveAccess(iiecvaraccess7_varaccleaveaccess_struct *p) =0;
 		virtual void CDECL IVarAccGetBaseType(iiecvaraccess8_varaccgetbasetype_struct *p) =0;

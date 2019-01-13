@@ -6,9 +6,7 @@
  *	in sysdefines.h dependant of the compiler specific options (see category "Processor ID" in SysTargetItf.h)</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -107,7 +105,7 @@
 	#elif defined(TRG_ARM)
 		#define SYSCPU_EXTLIBCALL_REGISTER_SAVE_AREA	1
 	#elif defined(TRG_CORTEX)
-		#define SYSCPU_EXTLIBCALL_REGISTER_SAVE_AREA	0
+		#define SYSCPU_EXTLIBCALL_REGISTER_SAVE_AREA	1
 	#elif defined(TRG_PPC)
 		#define SYSCPU_EXTLIBCALL_REGISTER_SAVE_AREA	8
 	#elif defined(TRG_MIPS)
@@ -169,68 +167,6 @@
 #endif
 
 
-/**
- * <category>Platform defines</category>	
- * <description>
- *	Alignment of 2-byte data types will be checked and handled according to this define.
- * </description> 					  
- */
-#ifndef SYSCPU_ALIGNMENT_CHECK_16
-	#ifdef TRG_X86
-		#define SYSCPU_ALIGNMENT_CHECK_16 1
-	#else
-		#define SYSCPU_ALIGNMENT_CHECK_16 2
-	#endif
-#endif
-
-
-/**
- * <category>Platform defines</category>	
- * <description>
- *	Alignment of 4-byte data types will be checked and handled according to this define.
- * </description> 					  
- */
-#ifndef SYSCPU_ALIGNMENT_CHECK_32
-	#ifdef TRG_X86
-		#define SYSCPU_ALIGNMENT_CHECK_32 1
-	#else
-		#define SYSCPU_ALIGNMENT_CHECK_32 4
-	#endif
-#endif
-
-
-/**
- * <category>Platform defines</category>	
- * <description>
- *	Alignment of 8-byte data types will be checked and handled according to this define.
- * </description> 					  
- */
-#ifndef SYSCPU_ALIGNMENT_CHECK_64
-	#ifdef TRG_X86
-		#define SYSCPU_ALIGNMENT_CHECK_64 1
-	#else
-		#define SYSCPU_ALIGNMENT_CHECK_64 8
-	#endif
-#endif
-
-
-/**
- * <category>Register Offsets</category>
- * <description>
- *	The syscpudebughandler function stores the register context to stack on enty and calls
- *	AppDebugHandler2() function with the register context, which is system specific.
- *	According to the currently used CPU one of those stored registers, which is addressed
- *	by register number, is tried to be set in the SysCpuSetRegisterValue() function.
- *	Depending to the system adaptation and the syscpudebughandler implementation, the 
- *	register context may have different layouts and the offset to the given register number
- *	may vary and this macro may be used to specify the pointer size wide offset to the 
- *	given register number in the stored register context. 
- * </description>
- */
-#ifndef SYSCPU_REGISTER_OFFSET
-	#define SYSCPU_REGISTER_OFFSET(regNumber)	(regNumber)
-#endif
-
 /** EXTERN LIB SECTION BEGIN **/
 
 #ifdef __cplusplus
@@ -239,7 +175,7 @@ extern "C" {
 
 /**
  * <description>
- *  Function to increment the content of the given pointer by nSum in one atomic operation (task safe).
+ *  Function to increment the content of the given pointer by 1 in one atomic operation (task safe).
  *  IMPLEMENTATION NOTE:
  *  - Add/Sub the value to the content of the pointer
  *  - Return the value after the Add/Sub operation
@@ -272,167 +208,35 @@ typedef void (CDECL CDECL_EXT* PFSYSCPUATOMICADD_IEC) (syscpuatomicadd_struct *p
 	#define GET_syscpuatomicadd(fl)  CAL_CMGETAPI( "syscpuatomicadd" ) 
 	#define CAL_syscpuatomicadd  syscpuatomicadd
 	#define CHK_syscpuatomicadd  TRUE
-	#define EXP_syscpuatomicadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd", (RTS_UINTPTR)syscpuatomicadd, 1, 0x414E4706, 0x03050D00) 
+	#define EXP_syscpuatomicadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd", (RTS_UINTPTR)syscpuatomicadd, 1, 0x414E4706, 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSCPUHANDLING_EXTERNAL)
 	#define USE_syscpuatomicadd
 	#define EXT_syscpuatomicadd
 	#define GET_syscpuatomicadd(fl)  CAL_CMGETAPI( "syscpuatomicadd" ) 
 	#define CAL_syscpuatomicadd  syscpuatomicadd
 	#define CHK_syscpuatomicadd  TRUE
-	#define EXP_syscpuatomicadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd", (RTS_UINTPTR)syscpuatomicadd, 1, 0x414E4706, 0x03050D00) 
+	#define EXP_syscpuatomicadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd", (RTS_UINTPTR)syscpuatomicadd, 1, 0x414E4706, 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysCpuHandlingsyscpuatomicadd
 	#define EXT_SysCpuHandlingsyscpuatomicadd
 	#define GET_SysCpuHandlingsyscpuatomicadd  ERR_OK
 	#define CAL_SysCpuHandlingsyscpuatomicadd  syscpuatomicadd
 	#define CHK_SysCpuHandlingsyscpuatomicadd  TRUE
-	#define EXP_SysCpuHandlingsyscpuatomicadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd", (RTS_UINTPTR)syscpuatomicadd, 1, 0x414E4706, 0x03050D00) 
+	#define EXP_SysCpuHandlingsyscpuatomicadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd", (RTS_UINTPTR)syscpuatomicadd, 1, 0x414E4706, 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_syscpuatomicadd
 	#define EXT_syscpuatomicadd
 	#define GET_syscpuatomicadd(fl)  CAL_CMGETAPI( "syscpuatomicadd" ) 
 	#define CAL_syscpuatomicadd  syscpuatomicadd
 	#define CHK_syscpuatomicadd  TRUE
-	#define EXP_syscpuatomicadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd", (RTS_UINTPTR)syscpuatomicadd, 1, 0x414E4706, 0x03050D00) 
+	#define EXP_syscpuatomicadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd", (RTS_UINTPTR)syscpuatomicadd, 1, 0x414E4706, 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_syscpuatomicadd  PFSYSCPUATOMICADD_IEC pfsyscpuatomicadd;
 	#define EXT_syscpuatomicadd  extern PFSYSCPUATOMICADD_IEC pfsyscpuatomicadd;
-	#define GET_syscpuatomicadd(fl)  s_pfCMGetAPI2( "syscpuatomicadd", (RTS_VOID_FCTPTR *)&pfsyscpuatomicadd, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x414E4706, 0x03050D00)
+	#define GET_syscpuatomicadd(fl)  s_pfCMGetAPI2( "syscpuatomicadd", (RTS_VOID_FCTPTR *)&pfsyscpuatomicadd, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x414E4706, 0x03050500)
 	#define CAL_syscpuatomicadd  pfsyscpuatomicadd
 	#define CHK_syscpuatomicadd  (pfsyscpuatomicadd != NULL)
-	#define EXP_syscpuatomicadd   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd", (RTS_UINTPTR)syscpuatomicadd, 1, 0x414E4706, 0x03050D00) 
-#endif
-
-
-/**
- * <description>
- *  Function to increment the content of the given pointer by nSum in one atomic operation (task safe).
- *  IMPLEMENTATION NOTE:
- *  - Add/Sub the value to the content of the pointer
- *  - Return the value after the Add/Sub operation
- *  Both things must be done atomic!
- * </description>
- * <result><p>RESULT: Returns the value after the increment operation in an atomic way!
- * </p></result>
- * <SIL2/>
- */
-typedef struct tagsyscpuatomicadd64_struct
-{
-	RTS_IEC_LINT *piValue;				/* VAR_INPUT */	/* <param name="piValue" type="INOUT">Pointer to the value to increment</param> */
-	RTS_IEC_LINT nSum;					/* VAR_INPUT */	/* <param name="nSum" type="IN">Summand for the operation. &gt;0 to increment, &lt;0 to decrement</param> */
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* <param name="pResult" type="OUT">Pointer to runtime system error code (see CmpErrors.library)</param> */
-	RTS_IEC_LINT SysCpuAtomicAdd64;		/* VAR_OUTPUT */	
-} syscpuatomicadd64_struct;
-
-void CDECL CDECL_EXT syscpuatomicadd64(syscpuatomicadd64_struct *p);
-typedef void (CDECL CDECL_EXT* PFSYSCPUATOMICADD64_IEC) (syscpuatomicadd64_struct *p);
-#if defined(SYSCPUHANDLING_NOTIMPLEMENTED) || defined(SYSCPUATOMICADD64_NOTIMPLEMENTED)
-	#define USE_syscpuatomicadd64
-	#define EXT_syscpuatomicadd64
-	#define GET_syscpuatomicadd64(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_syscpuatomicadd64(p0) 
-	#define CHK_syscpuatomicadd64  FALSE
-	#define EXP_syscpuatomicadd64  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_syscpuatomicadd64
-	#define EXT_syscpuatomicadd64
-	#define GET_syscpuatomicadd64(fl)  CAL_CMGETAPI( "syscpuatomicadd64" ) 
-	#define CAL_syscpuatomicadd64  syscpuatomicadd64
-	#define CHK_syscpuatomicadd64  TRUE
-	#define EXP_syscpuatomicadd64  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd64", (RTS_UINTPTR)syscpuatomicadd64, 1, 0xA535E8A0, 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUHANDLING_EXTERNAL)
-	#define USE_syscpuatomicadd64
-	#define EXT_syscpuatomicadd64
-	#define GET_syscpuatomicadd64(fl)  CAL_CMGETAPI( "syscpuatomicadd64" ) 
-	#define CAL_syscpuatomicadd64  syscpuatomicadd64
-	#define CHK_syscpuatomicadd64  TRUE
-	#define EXP_syscpuatomicadd64  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd64", (RTS_UINTPTR)syscpuatomicadd64, 1, 0xA535E8A0, 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuHandlingsyscpuatomicadd64
-	#define EXT_SysCpuHandlingsyscpuatomicadd64
-	#define GET_SysCpuHandlingsyscpuatomicadd64  ERR_OK
-	#define CAL_SysCpuHandlingsyscpuatomicadd64  syscpuatomicadd64
-	#define CHK_SysCpuHandlingsyscpuatomicadd64  TRUE
-	#define EXP_SysCpuHandlingsyscpuatomicadd64  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd64", (RTS_UINTPTR)syscpuatomicadd64, 1, 0xA535E8A0, 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_syscpuatomicadd64
-	#define EXT_syscpuatomicadd64
-	#define GET_syscpuatomicadd64(fl)  CAL_CMGETAPI( "syscpuatomicadd64" ) 
-	#define CAL_syscpuatomicadd64  syscpuatomicadd64
-	#define CHK_syscpuatomicadd64  TRUE
-	#define EXP_syscpuatomicadd64  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd64", (RTS_UINTPTR)syscpuatomicadd64, 1, 0xA535E8A0, 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_syscpuatomicadd64  PFSYSCPUATOMICADD64_IEC pfsyscpuatomicadd64;
-	#define EXT_syscpuatomicadd64  extern PFSYSCPUATOMICADD64_IEC pfsyscpuatomicadd64;
-	#define GET_syscpuatomicadd64(fl)  s_pfCMGetAPI2( "syscpuatomicadd64", (RTS_VOID_FCTPTR *)&pfsyscpuatomicadd64, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xA535E8A0, 0x03050D00)
-	#define CAL_syscpuatomicadd64  pfsyscpuatomicadd64
-	#define CHK_syscpuatomicadd64  (pfsyscpuatomicadd64 != NULL)
-	#define EXP_syscpuatomicadd64   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd64", (RTS_UINTPTR)syscpuatomicadd64, 1, 0xA535E8A0, 0x03050D00) 
-#endif
-
-
-/**
- * <description>
- * Function for compare-and-swap in one atomic operation (task safe).
- * Supports only 32- and 64-bit types 
- * </description>
- * <result><p>RESULT: Returns ERR_OK if the swap was successful
- * </p></result>
- * <SIL2/>
- */
-typedef struct tagsyscpuatomiccompareandswap_struct
-{
-	RTS_IEC_BYTE *pAddress;				/* VAR_INPUT */	/* pointer to the value to test */
-	RTS_IEC_BYTE *pSwapValue;			/* VAR_INPUT */	/* pointer to new valie */
-	RTS_IEC_BYTE *pCompareValue;		/* VAR_INPUT */	/* pointer to compare value */
-	RTS_IEC_USINT valueSize;			/* VAR_INPUT */	/* size of the value */
-	RTS_IEC_RESULT SysCpuAtomicCompareAndSwap;	/* VAR_OUTPUT */	
-} syscpuatomiccompareandswap_struct;
-
-void CDECL CDECL_EXT syscpuatomiccompareandswap(syscpuatomiccompareandswap_struct *p);
-typedef void (CDECL CDECL_EXT* PFSYSCPUATOMICCOMPAREANDSWAP_IEC) (syscpuatomiccompareandswap_struct *p);
-#if defined(SYSCPUHANDLING_NOTIMPLEMENTED) || defined(SYSCPUATOMICCOMPAREANDSWAP_NOTIMPLEMENTED)
-	#define USE_syscpuatomiccompareandswap
-	#define EXT_syscpuatomiccompareandswap
-	#define GET_syscpuatomiccompareandswap(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_syscpuatomiccompareandswap(p0) 
-	#define CHK_syscpuatomiccompareandswap  FALSE
-	#define EXP_syscpuatomiccompareandswap  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_syscpuatomiccompareandswap
-	#define EXT_syscpuatomiccompareandswap
-	#define GET_syscpuatomiccompareandswap(fl)  CAL_CMGETAPI( "syscpuatomiccompareandswap" ) 
-	#define CAL_syscpuatomiccompareandswap  syscpuatomiccompareandswap
-	#define CHK_syscpuatomiccompareandswap  TRUE
-	#define EXP_syscpuatomiccompareandswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomiccompareandswap", (RTS_UINTPTR)syscpuatomiccompareandswap, 1, 0xCBB4ED00, 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUHANDLING_EXTERNAL)
-	#define USE_syscpuatomiccompareandswap
-	#define EXT_syscpuatomiccompareandswap
-	#define GET_syscpuatomiccompareandswap(fl)  CAL_CMGETAPI( "syscpuatomiccompareandswap" ) 
-	#define CAL_syscpuatomiccompareandswap  syscpuatomiccompareandswap
-	#define CHK_syscpuatomiccompareandswap  TRUE
-	#define EXP_syscpuatomiccompareandswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomiccompareandswap", (RTS_UINTPTR)syscpuatomiccompareandswap, 1, 0xCBB4ED00, 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuHandlingsyscpuatomiccompareandswap
-	#define EXT_SysCpuHandlingsyscpuatomiccompareandswap
-	#define GET_SysCpuHandlingsyscpuatomiccompareandswap  ERR_OK
-	#define CAL_SysCpuHandlingsyscpuatomiccompareandswap  syscpuatomiccompareandswap
-	#define CHK_SysCpuHandlingsyscpuatomiccompareandswap  TRUE
-	#define EXP_SysCpuHandlingsyscpuatomiccompareandswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomiccompareandswap", (RTS_UINTPTR)syscpuatomiccompareandswap, 1, 0xCBB4ED00, 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_syscpuatomiccompareandswap
-	#define EXT_syscpuatomiccompareandswap
-	#define GET_syscpuatomiccompareandswap(fl)  CAL_CMGETAPI( "syscpuatomiccompareandswap" ) 
-	#define CAL_syscpuatomiccompareandswap  syscpuatomiccompareandswap
-	#define CHK_syscpuatomiccompareandswap  TRUE
-	#define EXP_syscpuatomiccompareandswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomiccompareandswap", (RTS_UINTPTR)syscpuatomiccompareandswap, 1, 0xCBB4ED00, 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_syscpuatomiccompareandswap  PFSYSCPUATOMICCOMPAREANDSWAP_IEC pfsyscpuatomiccompareandswap;
-	#define EXT_syscpuatomiccompareandswap  extern PFSYSCPUATOMICCOMPAREANDSWAP_IEC pfsyscpuatomiccompareandswap;
-	#define GET_syscpuatomiccompareandswap(fl)  s_pfCMGetAPI2( "syscpuatomiccompareandswap", (RTS_VOID_FCTPTR *)&pfsyscpuatomiccompareandswap, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xCBB4ED00, 0x03050D00)
-	#define CAL_syscpuatomiccompareandswap  pfsyscpuatomiccompareandswap
-	#define CHK_syscpuatomiccompareandswap  (pfsyscpuatomiccompareandswap != NULL)
-	#define EXP_syscpuatomiccompareandswap   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomiccompareandswap", (RTS_UINTPTR)syscpuatomiccompareandswap, 1, 0xCBB4ED00, 0x03050D00) 
+	#define EXP_syscpuatomicadd   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscpuatomicadd", (RTS_UINTPTR)syscpuatomicadd, 1, 0x414E4706, 0x03050500) 
 #endif
 
 
@@ -681,35 +485,35 @@ typedef void (CDECL CDECL_EXT* PFSYSCPUTESTANDSETBIT_IEC) (syscputestandsetbit_s
 	#define GET_syscputestandsetbit(fl)  CAL_CMGETAPI( "syscputestandsetbit" ) 
 	#define CAL_syscputestandsetbit  syscputestandsetbit
 	#define CHK_syscputestandsetbit  TRUE
-	#define EXP_syscputestandsetbit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscputestandsetbit", (RTS_UINTPTR)syscputestandsetbit, 1, 0x6A76133F, 0x03050D00) 
+	#define EXP_syscputestandsetbit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscputestandsetbit", (RTS_UINTPTR)syscputestandsetbit, 1, 0x6A76133F, 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSCPUHANDLING_EXTERNAL)
 	#define USE_syscputestandsetbit
 	#define EXT_syscputestandsetbit
 	#define GET_syscputestandsetbit(fl)  CAL_CMGETAPI( "syscputestandsetbit" ) 
 	#define CAL_syscputestandsetbit  syscputestandsetbit
 	#define CHK_syscputestandsetbit  TRUE
-	#define EXP_syscputestandsetbit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscputestandsetbit", (RTS_UINTPTR)syscputestandsetbit, 1, 0x6A76133F, 0x03050D00) 
+	#define EXP_syscputestandsetbit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscputestandsetbit", (RTS_UINTPTR)syscputestandsetbit, 1, 0x6A76133F, 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysCpuHandlingsyscputestandsetbit
 	#define EXT_SysCpuHandlingsyscputestandsetbit
 	#define GET_SysCpuHandlingsyscputestandsetbit  ERR_OK
 	#define CAL_SysCpuHandlingsyscputestandsetbit  syscputestandsetbit
 	#define CHK_SysCpuHandlingsyscputestandsetbit  TRUE
-	#define EXP_SysCpuHandlingsyscputestandsetbit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscputestandsetbit", (RTS_UINTPTR)syscputestandsetbit, 1, 0x6A76133F, 0x03050D00) 
+	#define EXP_SysCpuHandlingsyscputestandsetbit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscputestandsetbit", (RTS_UINTPTR)syscputestandsetbit, 1, 0x6A76133F, 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_syscputestandsetbit
 	#define EXT_syscputestandsetbit
 	#define GET_syscputestandsetbit(fl)  CAL_CMGETAPI( "syscputestandsetbit" ) 
 	#define CAL_syscputestandsetbit  syscputestandsetbit
 	#define CHK_syscputestandsetbit  TRUE
-	#define EXP_syscputestandsetbit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscputestandsetbit", (RTS_UINTPTR)syscputestandsetbit, 1, 0x6A76133F, 0x03050D00) 
+	#define EXP_syscputestandsetbit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscputestandsetbit", (RTS_UINTPTR)syscputestandsetbit, 1, 0x6A76133F, 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_syscputestandsetbit  PFSYSCPUTESTANDSETBIT_IEC pfsyscputestandsetbit;
 	#define EXT_syscputestandsetbit  extern PFSYSCPUTESTANDSETBIT_IEC pfsyscputestandsetbit;
-	#define GET_syscputestandsetbit(fl)  s_pfCMGetAPI2( "syscputestandsetbit", (RTS_VOID_FCTPTR *)&pfsyscputestandsetbit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6A76133F, 0x03050D00)
+	#define GET_syscputestandsetbit(fl)  s_pfCMGetAPI2( "syscputestandsetbit", (RTS_VOID_FCTPTR *)&pfsyscputestandsetbit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6A76133F, 0x03050500)
 	#define CAL_syscputestandsetbit  pfsyscputestandsetbit
 	#define CHK_syscputestandsetbit  (pfsyscputestandsetbit != NULL)
-	#define EXP_syscputestandsetbit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscputestandsetbit", (RTS_UINTPTR)syscputestandsetbit, 1, 0x6A76133F, 0x03050D00) 
+	#define EXP_syscputestandsetbit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syscputestandsetbit", (RTS_UINTPTR)syscputestandsetbit, 1, 0x6A76133F, 0x03050500) 
 #endif
 
 
@@ -792,10 +596,7 @@ typedef int (CDECL * PFSYSCPUFLUSHINSTRUCTIONCACHE) (void * pBaseAddress, unsign
  * <description>
  *	<p>Call an IEC function from plain C code.
  *	Since different CPU's/systems use different calling conventions, this function 
- *	should be used as a wrapper. But this function respectively the IEC callback code is not synchronized against an OnlineChange of the corresponding application!</p>
- *
- *  <p>ATTENTION: To be safe on multitasking and muticore systems you have to use IecTaskCallIecFuncWithParams() instead (see CmpIecTaskItf.h)!</p>
- *
+ *	should be used as a wrapper.</p>
  *  <p>IEC functions or methods of function block use all the same calling convention:
  *	They have no return value and exactly one parameter, which is a pointer to a struct that contains all required
  *  IN and OUT parameters.</p>
@@ -862,64 +663,6 @@ typedef RTS_RESULT (CDECL * PFSYSCPUCALLIECFUNCWITHPARAMS) (RTS_VOID_FCTPTR pfIE
 	#define CAL_SysCpuCallIecFuncWithParams  pfSysCpuCallIecFuncWithParams
 	#define CHK_SysCpuCallIecFuncWithParams  (pfSysCpuCallIecFuncWithParams != NULL)
 	#define EXP_SysCpuCallIecFuncWithParams  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuCallIecFuncWithParams", (RTS_UINTPTR)SysCpuCallIecFuncWithParams, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- *	Sets the specified register to the given value inside the 'syscpudebughandler'
- * </description>
- * <param name="pRegBuff" type="IN">Pointer to start of saved registers</param>
- * <param name="nRegisterNumber" type="IN">Register number to be set. See category "Register offsets" for details</param>
- * <param name="newValue" type="IN">The new value</param>
- * <result>error code</result>
- */
-RTS_RESULT CDECL SysCpuSetRegisterValue(RTS_UINTPTR *pRegBuff, RTS_I32 nRegisterNumber, RTS_UINTPTR newValue);
-typedef RTS_RESULT (CDECL * PFSYSCPUSETREGISTERVALUE) (RTS_UINTPTR *pRegBuff, RTS_I32 nRegisterNumber, RTS_UINTPTR newValue);
-#if defined(SYSCPUHANDLING_NOTIMPLEMENTED) || defined(SYSCPUSETREGISTERVALUE_NOTIMPLEMENTED)
-	#define USE_SysCpuSetRegisterValue
-	#define EXT_SysCpuSetRegisterValue
-	#define GET_SysCpuSetRegisterValue(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysCpuSetRegisterValue(p0,p1,p2)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysCpuSetRegisterValue  FALSE
-	#define EXP_SysCpuSetRegisterValue  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysCpuSetRegisterValue
-	#define EXT_SysCpuSetRegisterValue
-	#define GET_SysCpuSetRegisterValue(fl)  CAL_CMGETAPI( "SysCpuSetRegisterValue" ) 
-	#define CAL_SysCpuSetRegisterValue  SysCpuSetRegisterValue
-	#define CHK_SysCpuSetRegisterValue  TRUE
-	#define EXP_SysCpuSetRegisterValue  CAL_CMEXPAPI( "SysCpuSetRegisterValue" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUHANDLING_EXTERNAL)
-	#define USE_SysCpuSetRegisterValue
-	#define EXT_SysCpuSetRegisterValue
-	#define GET_SysCpuSetRegisterValue(fl)  CAL_CMGETAPI( "SysCpuSetRegisterValue" ) 
-	#define CAL_SysCpuSetRegisterValue  SysCpuSetRegisterValue
-	#define CHK_SysCpuSetRegisterValue  TRUE
-	#define EXP_SysCpuSetRegisterValue  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuSetRegisterValue", (RTS_UINTPTR)SysCpuSetRegisterValue, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuHandlingSysCpuSetRegisterValue
-	#define EXT_SysCpuHandlingSysCpuSetRegisterValue
-	#define GET_SysCpuHandlingSysCpuSetRegisterValue  ERR_OK
-	#define CAL_SysCpuHandlingSysCpuSetRegisterValue pISysCpuHandling->ISysCpuSetRegisterValue
-	#define CHK_SysCpuHandlingSysCpuSetRegisterValue (pISysCpuHandling != NULL)
-	#define EXP_SysCpuHandlingSysCpuSetRegisterValue  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysCpuSetRegisterValue
-	#define EXT_SysCpuSetRegisterValue
-	#define GET_SysCpuSetRegisterValue(fl)  CAL_CMGETAPI( "SysCpuSetRegisterValue" ) 
-	#define CAL_SysCpuSetRegisterValue pISysCpuHandling->ISysCpuSetRegisterValue
-	#define CHK_SysCpuSetRegisterValue (pISysCpuHandling != NULL)
-	#define EXP_SysCpuSetRegisterValue  CAL_CMEXPAPI( "SysCpuSetRegisterValue" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysCpuSetRegisterValue  PFSYSCPUSETREGISTERVALUE pfSysCpuSetRegisterValue;
-	#define EXT_SysCpuSetRegisterValue  extern PFSYSCPUSETREGISTERVALUE pfSysCpuSetRegisterValue;
-	#define GET_SysCpuSetRegisterValue(fl)  s_pfCMGetAPI2( "SysCpuSetRegisterValue", (RTS_VOID_FCTPTR *)&pfSysCpuSetRegisterValue, (fl), 0, 0)
-	#define CAL_SysCpuSetRegisterValue  pfSysCpuSetRegisterValue
-	#define CHK_SysCpuSetRegisterValue  (pfSysCpuSetRegisterValue != NULL)
-	#define EXP_SysCpuSetRegisterValue  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuSetRegisterValue", (RTS_UINTPTR)SysCpuSetRegisterValue, 0, 0) 
 #endif
 
 
@@ -1720,7 +1463,7 @@ typedef RTS_RESULT (CDECL * PFSYSCPUGETCONTEXT) (RegContext *pContext);
  * <param name="nSum" type="IN" range="[RTS_RANGE_OF_RTS_I32]">Summand for the operation. greater 0 to increment, lower 0 to decrement</param>
  * <param name="pResult" type="OUT">Pointer to error code</param>
  * <result>Returns the value after the increment operation in an atomic way!</result>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Call was sucessful</errorcode>
+ * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Call was sucessfull</errorcode>
  * <errorcode name="RTS_RESULT pResult" type="ERR_PARAMETER">piValue was NULL</errorcode>
  * <errorcode name="RTS_RESULT pResult" type="ERR_NOTIMPLEMENTED">Function is not supported</errorcode>
  */
@@ -1773,499 +1516,6 @@ typedef RTS_I32 (CDECL * PFSYSCPUATOMICADD) (RTS_I32 *piValue, RTS_I32 nSum, RTS
 
 
 
-/**
- * <description>
- * <p>Function to increment the content of the given pointer by nSum in one atomic operation (task safe).</p>
- * <p>IMPLEMENTATION NOTE: Add or substract the value to/from the content of the pointer,
- * and return the value after this operation atomically.</p>
- * </description>
- * <param name="pi64Value" type="INOUT">Pointer to the value to increment</param>
- * <param name="nSum" type="IN">Summand for the operation. greater 0 to increment, lower 0 to decrement</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Returns the value after the increment operation in an atomic way!</result>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_PARAMETER">pi64Value was NULL</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_NOT_SUPPORTED">Function is not supported</errorcode>
- */
-RTS_I64 CDECL SysCpuAtomicAdd64(RTS_I64 *pi64Value, RTS_I64 nSum, RTS_RESULT *pResult);
-typedef RTS_I64 (CDECL * PFSYSCPUATOMICADD64) (RTS_I64 *pi64Value, RTS_I64 nSum, RTS_RESULT *pResult);
-#if defined(SYSCPUHANDLING_NOTIMPLEMENTED) || defined(SYSCPUATOMICADD64_NOTIMPLEMENTED)
-	#define USE_SysCpuAtomicAdd64
-	#define EXT_SysCpuAtomicAdd64
-	#define GET_SysCpuAtomicAdd64(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysCpuAtomicAdd64(p0,p1,p2)  (RTS_I64)ERR_NOTIMPLEMENTED
-	#define CHK_SysCpuAtomicAdd64  FALSE
-	#define EXP_SysCpuAtomicAdd64  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysCpuAtomicAdd64
-	#define EXT_SysCpuAtomicAdd64
-	#define GET_SysCpuAtomicAdd64(fl)  CAL_CMGETAPI( "SysCpuAtomicAdd64" ) 
-	#define CAL_SysCpuAtomicAdd64  SysCpuAtomicAdd64
-	#define CHK_SysCpuAtomicAdd64  TRUE
-	#define EXP_SysCpuAtomicAdd64  CAL_CMEXPAPI( "SysCpuAtomicAdd64" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUHANDLING_EXTERNAL)
-	#define USE_SysCpuAtomicAdd64
-	#define EXT_SysCpuAtomicAdd64
-	#define GET_SysCpuAtomicAdd64(fl)  CAL_CMGETAPI( "SysCpuAtomicAdd64" ) 
-	#define CAL_SysCpuAtomicAdd64  SysCpuAtomicAdd64
-	#define CHK_SysCpuAtomicAdd64  TRUE
-	#define EXP_SysCpuAtomicAdd64  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuAtomicAdd64", (RTS_UINTPTR)SysCpuAtomicAdd64, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuHandlingSysCpuAtomicAdd64
-	#define EXT_SysCpuHandlingSysCpuAtomicAdd64
-	#define GET_SysCpuHandlingSysCpuAtomicAdd64  ERR_OK
-	#define CAL_SysCpuHandlingSysCpuAtomicAdd64 pISysCpuHandling->ISysCpuAtomicAdd64
-	#define CHK_SysCpuHandlingSysCpuAtomicAdd64 (pISysCpuHandling != NULL)
-	#define EXP_SysCpuHandlingSysCpuAtomicAdd64  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysCpuAtomicAdd64
-	#define EXT_SysCpuAtomicAdd64
-	#define GET_SysCpuAtomicAdd64(fl)  CAL_CMGETAPI( "SysCpuAtomicAdd64" ) 
-	#define CAL_SysCpuAtomicAdd64 pISysCpuHandling->ISysCpuAtomicAdd64
-	#define CHK_SysCpuAtomicAdd64 (pISysCpuHandling != NULL)
-	#define EXP_SysCpuAtomicAdd64  CAL_CMEXPAPI( "SysCpuAtomicAdd64" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysCpuAtomicAdd64  PFSYSCPUATOMICADD64 pfSysCpuAtomicAdd64;
-	#define EXT_SysCpuAtomicAdd64  extern PFSYSCPUATOMICADD64 pfSysCpuAtomicAdd64;
-	#define GET_SysCpuAtomicAdd64(fl)  s_pfCMGetAPI2( "SysCpuAtomicAdd64", (RTS_VOID_FCTPTR *)&pfSysCpuAtomicAdd64, (fl), 0, 0)
-	#define CAL_SysCpuAtomicAdd64  pfSysCpuAtomicAdd64
-	#define CHK_SysCpuAtomicAdd64  (pfSysCpuAtomicAdd64 != NULL)
-	#define EXP_SysCpuAtomicAdd64  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuAtomicAdd64", (RTS_UINTPTR)SysCpuAtomicAdd64, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * Function for compare-and-swap in one atomic operation (task safe).
- * Supports only 32- and 64-bit types (i.e. a valid valueSize is 4 or 8)
- * </description>
- * <param name="pAddress" type="INOUT">Pointer to the value to handle</param>
- * <param name="pSwapValue" type="IN">Pointer to the swap value</param>
- * <param name="pCompareValue" type="IN">Pointer to the compare value</param>
- * <param name="valueSize" type="IN">Size of the value in bytes (a valid valueSize is 4 or 8)</param>
- * <result>Returns errorcode</result>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Swap was successful</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_FAILED">Swap was not successful</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_PARAMETER">At least one of the pointers was NULL</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_NOT_SUPPORTED">Swap not supported for this byte size or on this platform</errorcode>
- */
-RTS_RESULT CDECL SysCpuAtomicCompareAndSwap(void *pAddress, void *pSwapValue, void *pCompareValue, RTS_UI8 valueSize);
-typedef RTS_RESULT (CDECL * PFSYSCPUATOMICCOMPAREANDSWAP) (void *pAddress, void *pSwapValue, void *pCompareValue, RTS_UI8 valueSize);
-#if defined(SYSCPUHANDLING_NOTIMPLEMENTED) || defined(SYSCPUATOMICCOMPAREANDSWAP_NOTIMPLEMENTED)
-	#define USE_SysCpuAtomicCompareAndSwap
-	#define EXT_SysCpuAtomicCompareAndSwap
-	#define GET_SysCpuAtomicCompareAndSwap(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysCpuAtomicCompareAndSwap(p0,p1,p2,p3)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysCpuAtomicCompareAndSwap  FALSE
-	#define EXP_SysCpuAtomicCompareAndSwap  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysCpuAtomicCompareAndSwap
-	#define EXT_SysCpuAtomicCompareAndSwap
-	#define GET_SysCpuAtomicCompareAndSwap(fl)  CAL_CMGETAPI( "SysCpuAtomicCompareAndSwap" ) 
-	#define CAL_SysCpuAtomicCompareAndSwap  SysCpuAtomicCompareAndSwap
-	#define CHK_SysCpuAtomicCompareAndSwap  TRUE
-	#define EXP_SysCpuAtomicCompareAndSwap  CAL_CMEXPAPI( "SysCpuAtomicCompareAndSwap" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUHANDLING_EXTERNAL)
-	#define USE_SysCpuAtomicCompareAndSwap
-	#define EXT_SysCpuAtomicCompareAndSwap
-	#define GET_SysCpuAtomicCompareAndSwap(fl)  CAL_CMGETAPI( "SysCpuAtomicCompareAndSwap" ) 
-	#define CAL_SysCpuAtomicCompareAndSwap  SysCpuAtomicCompareAndSwap
-	#define CHK_SysCpuAtomicCompareAndSwap  TRUE
-	#define EXP_SysCpuAtomicCompareAndSwap  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuAtomicCompareAndSwap", (RTS_UINTPTR)SysCpuAtomicCompareAndSwap, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuHandlingSysCpuAtomicCompareAndSwap
-	#define EXT_SysCpuHandlingSysCpuAtomicCompareAndSwap
-	#define GET_SysCpuHandlingSysCpuAtomicCompareAndSwap  ERR_OK
-	#define CAL_SysCpuHandlingSysCpuAtomicCompareAndSwap pISysCpuHandling->ISysCpuAtomicCompareAndSwap
-	#define CHK_SysCpuHandlingSysCpuAtomicCompareAndSwap (pISysCpuHandling != NULL)
-	#define EXP_SysCpuHandlingSysCpuAtomicCompareAndSwap  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysCpuAtomicCompareAndSwap
-	#define EXT_SysCpuAtomicCompareAndSwap
-	#define GET_SysCpuAtomicCompareAndSwap(fl)  CAL_CMGETAPI( "SysCpuAtomicCompareAndSwap" ) 
-	#define CAL_SysCpuAtomicCompareAndSwap pISysCpuHandling->ISysCpuAtomicCompareAndSwap
-	#define CHK_SysCpuAtomicCompareAndSwap (pISysCpuHandling != NULL)
-	#define EXP_SysCpuAtomicCompareAndSwap  CAL_CMEXPAPI( "SysCpuAtomicCompareAndSwap" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysCpuAtomicCompareAndSwap  PFSYSCPUATOMICCOMPAREANDSWAP pfSysCpuAtomicCompareAndSwap;
-	#define EXT_SysCpuAtomicCompareAndSwap  extern PFSYSCPUATOMICCOMPAREANDSWAP pfSysCpuAtomicCompareAndSwap;
-	#define GET_SysCpuAtomicCompareAndSwap(fl)  s_pfCMGetAPI2( "SysCpuAtomicCompareAndSwap", (RTS_VOID_FCTPTR *)&pfSysCpuAtomicCompareAndSwap, (fl), 0, 0)
-	#define CAL_SysCpuAtomicCompareAndSwap  pfSysCpuAtomicCompareAndSwap
-	#define CHK_SysCpuAtomicCompareAndSwap  (pfSysCpuAtomicCompareAndSwap != NULL)
-	#define EXP_SysCpuAtomicCompareAndSwap  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuAtomicCompareAndSwap", (RTS_UINTPTR)SysCpuAtomicCompareAndSwap, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * Function to read a 64bit integer value atomic / consistent.
- * </description>
- * <param name="pSrc" type="IN">Pointer to the value to read</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Returns the read value</result>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_PARAMETER">pSrc is NULL</errorcode> 
- * <errorcode name="RTS_RESULT pResult" type="ERR_NOT_SUPPORTED">Atomic function is not supported!</errorcode>
- */
-RTS_I64 CDECL SysCpuReadInt64(RTS_I64 *pSrc, RTS_RESULT *pResult);
-typedef RTS_I64 (CDECL * PFSYSCPUREADINT64) (RTS_I64 *pSrc, RTS_RESULT *pResult);
-#if defined(SYSCPUHANDLING_NOTIMPLEMENTED) || defined(SYSCPUREADINT64_NOTIMPLEMENTED)
-	#define USE_SysCpuReadInt64
-	#define EXT_SysCpuReadInt64
-	#define GET_SysCpuReadInt64(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysCpuReadInt64(p0,p1)  (RTS_I64)ERR_NOTIMPLEMENTED
-	#define CHK_SysCpuReadInt64  FALSE
-	#define EXP_SysCpuReadInt64  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysCpuReadInt64
-	#define EXT_SysCpuReadInt64
-	#define GET_SysCpuReadInt64(fl)  CAL_CMGETAPI( "SysCpuReadInt64" ) 
-	#define CAL_SysCpuReadInt64  SysCpuReadInt64
-	#define CHK_SysCpuReadInt64  TRUE
-	#define EXP_SysCpuReadInt64  CAL_CMEXPAPI( "SysCpuReadInt64" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUHANDLING_EXTERNAL)
-	#define USE_SysCpuReadInt64
-	#define EXT_SysCpuReadInt64
-	#define GET_SysCpuReadInt64(fl)  CAL_CMGETAPI( "SysCpuReadInt64" ) 
-	#define CAL_SysCpuReadInt64  SysCpuReadInt64
-	#define CHK_SysCpuReadInt64  TRUE
-	#define EXP_SysCpuReadInt64  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuReadInt64", (RTS_UINTPTR)SysCpuReadInt64, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuHandlingSysCpuReadInt64
-	#define EXT_SysCpuHandlingSysCpuReadInt64
-	#define GET_SysCpuHandlingSysCpuReadInt64  ERR_OK
-	#define CAL_SysCpuHandlingSysCpuReadInt64 pISysCpuHandling->ISysCpuReadInt64
-	#define CHK_SysCpuHandlingSysCpuReadInt64 (pISysCpuHandling != NULL)
-	#define EXP_SysCpuHandlingSysCpuReadInt64  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysCpuReadInt64
-	#define EXT_SysCpuReadInt64
-	#define GET_SysCpuReadInt64(fl)  CAL_CMGETAPI( "SysCpuReadInt64" ) 
-	#define CAL_SysCpuReadInt64 pISysCpuHandling->ISysCpuReadInt64
-	#define CHK_SysCpuReadInt64 (pISysCpuHandling != NULL)
-	#define EXP_SysCpuReadInt64  CAL_CMEXPAPI( "SysCpuReadInt64" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysCpuReadInt64  PFSYSCPUREADINT64 pfSysCpuReadInt64;
-	#define EXT_SysCpuReadInt64  extern PFSYSCPUREADINT64 pfSysCpuReadInt64;
-	#define GET_SysCpuReadInt64(fl)  s_pfCMGetAPI2( "SysCpuReadInt64", (RTS_VOID_FCTPTR *)&pfSysCpuReadInt64, (fl), 0, 0)
-	#define CAL_SysCpuReadInt64  pfSysCpuReadInt64
-	#define CHK_SysCpuReadInt64  (pfSysCpuReadInt64 != NULL)
-	#define EXP_SysCpuReadInt64  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuReadInt64", (RTS_UINTPTR)SysCpuReadInt64, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * Function to write a 64bit integer value atomic / consistent.
- * </description>
- * <param name="pDest" type="IN">Pointer to the value to write</param>
- * <param name="i64Value" type="IN">Value to write</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">pDest is NULL</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Atomic function is not supported!</errorcode>
- */
-RTS_RESULT CDECL SysCpuWriteInt64(RTS_I64 *pDest, RTS_I64 i64Value);
-typedef RTS_RESULT (CDECL * PFSYSCPUWRITEINT64) (RTS_I64 *pDest, RTS_I64 i64Value);
-#if defined(SYSCPUHANDLING_NOTIMPLEMENTED) || defined(SYSCPUWRITEINT64_NOTIMPLEMENTED)
-	#define USE_SysCpuWriteInt64
-	#define EXT_SysCpuWriteInt64
-	#define GET_SysCpuWriteInt64(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysCpuWriteInt64(p0,p1)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysCpuWriteInt64  FALSE
-	#define EXP_SysCpuWriteInt64  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysCpuWriteInt64
-	#define EXT_SysCpuWriteInt64
-	#define GET_SysCpuWriteInt64(fl)  CAL_CMGETAPI( "SysCpuWriteInt64" ) 
-	#define CAL_SysCpuWriteInt64  SysCpuWriteInt64
-	#define CHK_SysCpuWriteInt64  TRUE
-	#define EXP_SysCpuWriteInt64  CAL_CMEXPAPI( "SysCpuWriteInt64" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUHANDLING_EXTERNAL)
-	#define USE_SysCpuWriteInt64
-	#define EXT_SysCpuWriteInt64
-	#define GET_SysCpuWriteInt64(fl)  CAL_CMGETAPI( "SysCpuWriteInt64" ) 
-	#define CAL_SysCpuWriteInt64  SysCpuWriteInt64
-	#define CHK_SysCpuWriteInt64  TRUE
-	#define EXP_SysCpuWriteInt64  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuWriteInt64", (RTS_UINTPTR)SysCpuWriteInt64, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuHandlingSysCpuWriteInt64
-	#define EXT_SysCpuHandlingSysCpuWriteInt64
-	#define GET_SysCpuHandlingSysCpuWriteInt64  ERR_OK
-	#define CAL_SysCpuHandlingSysCpuWriteInt64 pISysCpuHandling->ISysCpuWriteInt64
-	#define CHK_SysCpuHandlingSysCpuWriteInt64 (pISysCpuHandling != NULL)
-	#define EXP_SysCpuHandlingSysCpuWriteInt64  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysCpuWriteInt64
-	#define EXT_SysCpuWriteInt64
-	#define GET_SysCpuWriteInt64(fl)  CAL_CMGETAPI( "SysCpuWriteInt64" ) 
-	#define CAL_SysCpuWriteInt64 pISysCpuHandling->ISysCpuWriteInt64
-	#define CHK_SysCpuWriteInt64 (pISysCpuHandling != NULL)
-	#define EXP_SysCpuWriteInt64  CAL_CMEXPAPI( "SysCpuWriteInt64" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysCpuWriteInt64  PFSYSCPUWRITEINT64 pfSysCpuWriteInt64;
-	#define EXT_SysCpuWriteInt64  extern PFSYSCPUWRITEINT64 pfSysCpuWriteInt64;
-	#define GET_SysCpuWriteInt64(fl)  s_pfCMGetAPI2( "SysCpuWriteInt64", (RTS_VOID_FCTPTR *)&pfSysCpuWriteInt64, (fl), 0, 0)
-	#define CAL_SysCpuWriteInt64  pfSysCpuWriteInt64
-	#define CHK_SysCpuWriteInt64  (pfSysCpuWriteInt64 != NULL)
-	#define EXP_SysCpuWriteInt64  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuWriteInt64", (RTS_UINTPTR)SysCpuWriteInt64, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * Function to read a 64bit real value atomic / consistent.
- * </description>
- * <param name="pSrc" type="IN">Pointer to the value to read</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Returns the read value</result>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_PARAMETER">pSrc is NULL</errorcode> 
- * <errorcode name="RTS_RESULT pResult" type="ERR_NOT_SUPPORTED">Atomic function is not supported!</errorcode>
- */
-RTS_REAL64 CDECL SysCpuReadReal64(RTS_REAL64 *pSrc, RTS_RESULT *pResult);
-typedef RTS_REAL64 (CDECL * PFSYSCPUREADREAL64) (RTS_REAL64 *pSrc, RTS_RESULT *pResult);
-#if defined(SYSCPUHANDLING_NOTIMPLEMENTED) || defined(SYSCPUREADREAL64_NOTIMPLEMENTED)
-	#define USE_SysCpuReadReal64
-	#define EXT_SysCpuReadReal64
-	#define GET_SysCpuReadReal64(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysCpuReadReal64(p0,p1)  (RTS_REAL64)ERR_NOTIMPLEMENTED
-	#define CHK_SysCpuReadReal64  FALSE
-	#define EXP_SysCpuReadReal64  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysCpuReadReal64
-	#define EXT_SysCpuReadReal64
-	#define GET_SysCpuReadReal64(fl)  CAL_CMGETAPI( "SysCpuReadReal64" ) 
-	#define CAL_SysCpuReadReal64  SysCpuReadReal64
-	#define CHK_SysCpuReadReal64  TRUE
-	#define EXP_SysCpuReadReal64  CAL_CMEXPAPI( "SysCpuReadReal64" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUHANDLING_EXTERNAL)
-	#define USE_SysCpuReadReal64
-	#define EXT_SysCpuReadReal64
-	#define GET_SysCpuReadReal64(fl)  CAL_CMGETAPI( "SysCpuReadReal64" ) 
-	#define CAL_SysCpuReadReal64  SysCpuReadReal64
-	#define CHK_SysCpuReadReal64  TRUE
-	#define EXP_SysCpuReadReal64  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuReadReal64", (RTS_UINTPTR)SysCpuReadReal64, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuHandlingSysCpuReadReal64
-	#define EXT_SysCpuHandlingSysCpuReadReal64
-	#define GET_SysCpuHandlingSysCpuReadReal64  ERR_OK
-	#define CAL_SysCpuHandlingSysCpuReadReal64 pISysCpuHandling->ISysCpuReadReal64
-	#define CHK_SysCpuHandlingSysCpuReadReal64 (pISysCpuHandling != NULL)
-	#define EXP_SysCpuHandlingSysCpuReadReal64  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysCpuReadReal64
-	#define EXT_SysCpuReadReal64
-	#define GET_SysCpuReadReal64(fl)  CAL_CMGETAPI( "SysCpuReadReal64" ) 
-	#define CAL_SysCpuReadReal64 pISysCpuHandling->ISysCpuReadReal64
-	#define CHK_SysCpuReadReal64 (pISysCpuHandling != NULL)
-	#define EXP_SysCpuReadReal64  CAL_CMEXPAPI( "SysCpuReadReal64" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysCpuReadReal64  PFSYSCPUREADREAL64 pfSysCpuReadReal64;
-	#define EXT_SysCpuReadReal64  extern PFSYSCPUREADREAL64 pfSysCpuReadReal64;
-	#define GET_SysCpuReadReal64(fl)  s_pfCMGetAPI2( "SysCpuReadReal64", (RTS_VOID_FCTPTR *)&pfSysCpuReadReal64, (fl), 0, 0)
-	#define CAL_SysCpuReadReal64  pfSysCpuReadReal64
-	#define CHK_SysCpuReadReal64  (pfSysCpuReadReal64 != NULL)
-	#define EXP_SysCpuReadReal64  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuReadReal64", (RTS_UINTPTR)SysCpuReadReal64, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * Function to write a 64bit real value atomic / consistent.
- * </description>
- * <param name="pDest" type="IN">Pointer to the value to write</param>
- * <param name="r64Value" type="IN">Value to write</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">pDest is NULL</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Atomic function is not supported!</errorcode>
- */
-RTS_RESULT CDECL SysCpuWriteReal64(RTS_REAL64 *pDest, RTS_REAL64 r64Value);
-typedef RTS_RESULT (CDECL * PFSYSCPUWRITEREAL64) (RTS_REAL64 *pDest, RTS_REAL64 r64Value);
-#if defined(SYSCPUHANDLING_NOTIMPLEMENTED) || defined(SYSCPUWRITEREAL64_NOTIMPLEMENTED)
-	#define USE_SysCpuWriteReal64
-	#define EXT_SysCpuWriteReal64
-	#define GET_SysCpuWriteReal64(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysCpuWriteReal64(p0,p1)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysCpuWriteReal64  FALSE
-	#define EXP_SysCpuWriteReal64  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysCpuWriteReal64
-	#define EXT_SysCpuWriteReal64
-	#define GET_SysCpuWriteReal64(fl)  CAL_CMGETAPI( "SysCpuWriteReal64" ) 
-	#define CAL_SysCpuWriteReal64  SysCpuWriteReal64
-	#define CHK_SysCpuWriteReal64  TRUE
-	#define EXP_SysCpuWriteReal64  CAL_CMEXPAPI( "SysCpuWriteReal64" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUHANDLING_EXTERNAL)
-	#define USE_SysCpuWriteReal64
-	#define EXT_SysCpuWriteReal64
-	#define GET_SysCpuWriteReal64(fl)  CAL_CMGETAPI( "SysCpuWriteReal64" ) 
-	#define CAL_SysCpuWriteReal64  SysCpuWriteReal64
-	#define CHK_SysCpuWriteReal64  TRUE
-	#define EXP_SysCpuWriteReal64  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuWriteReal64", (RTS_UINTPTR)SysCpuWriteReal64, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuHandlingSysCpuWriteReal64
-	#define EXT_SysCpuHandlingSysCpuWriteReal64
-	#define GET_SysCpuHandlingSysCpuWriteReal64  ERR_OK
-	#define CAL_SysCpuHandlingSysCpuWriteReal64 pISysCpuHandling->ISysCpuWriteReal64
-	#define CHK_SysCpuHandlingSysCpuWriteReal64 (pISysCpuHandling != NULL)
-	#define EXP_SysCpuHandlingSysCpuWriteReal64  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysCpuWriteReal64
-	#define EXT_SysCpuWriteReal64
-	#define GET_SysCpuWriteReal64(fl)  CAL_CMGETAPI( "SysCpuWriteReal64" ) 
-	#define CAL_SysCpuWriteReal64 pISysCpuHandling->ISysCpuWriteReal64
-	#define CHK_SysCpuWriteReal64 (pISysCpuHandling != NULL)
-	#define EXP_SysCpuWriteReal64  CAL_CMEXPAPI( "SysCpuWriteReal64" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysCpuWriteReal64  PFSYSCPUWRITEREAL64 pfSysCpuWriteReal64;
-	#define EXT_SysCpuWriteReal64  extern PFSYSCPUWRITEREAL64 pfSysCpuWriteReal64;
-	#define GET_SysCpuWriteReal64(fl)  s_pfCMGetAPI2( "SysCpuWriteReal64", (RTS_VOID_FCTPTR *)&pfSysCpuWriteReal64, (fl), 0, 0)
-	#define CAL_SysCpuWriteReal64  pfSysCpuWriteReal64
-	#define CHK_SysCpuWriteReal64  (pfSysCpuWriteReal64 != NULL)
-	#define EXP_SysCpuWriteReal64  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuWriteReal64", (RTS_UINTPTR)SysCpuWriteReal64, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * This function will write values with with 1, 2, 4 or 8 byte size as an atomic operation.
- * Note: pDest has to be aligned according to the nLen parameter. If the alignment isn't correct the function will fail.
- * </description>
- * <param name="pDest" type="IN">Pointer to the destination address. The value will be written to this address. The write operation to this address will be atomic.</param>
- * <param name="pSrc" type="IN">Pointer to the source address. The value will be read from this address.</param>
- * <param name="nLen" type="IN">Size of the value to be written. 1, 2, 4 and 8 will be accepted.</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">pDest, pSrc is NULL or nLen isn't supported.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Atomic function is not supported!</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_ALIGNMENT">pDest was not aligned according to nLen.</errorcode>
- */
-RTS_RESULT CDECL SysCpuWriteValueAtomic(void* pDest, void* pSrc, RTS_UI32 nLen);
-typedef RTS_RESULT (CDECL * PFSYSCPUWRITEVALUEATOMIC) (void* pDest, void* pSrc, RTS_UI32 nLen);
-#if defined(SYSCPUHANDLING_NOTIMPLEMENTED) || defined(SYSCPUWRITEVALUEATOMIC_NOTIMPLEMENTED)
-	#define USE_SysCpuWriteValueAtomic
-	#define EXT_SysCpuWriteValueAtomic
-	#define GET_SysCpuWriteValueAtomic(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysCpuWriteValueAtomic(p0,p1,p2)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysCpuWriteValueAtomic  FALSE
-	#define EXP_SysCpuWriteValueAtomic  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysCpuWriteValueAtomic
-	#define EXT_SysCpuWriteValueAtomic
-	#define GET_SysCpuWriteValueAtomic(fl)  CAL_CMGETAPI( "SysCpuWriteValueAtomic" ) 
-	#define CAL_SysCpuWriteValueAtomic  SysCpuWriteValueAtomic
-	#define CHK_SysCpuWriteValueAtomic  TRUE
-	#define EXP_SysCpuWriteValueAtomic  CAL_CMEXPAPI( "SysCpuWriteValueAtomic" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUHANDLING_EXTERNAL)
-	#define USE_SysCpuWriteValueAtomic
-	#define EXT_SysCpuWriteValueAtomic
-	#define GET_SysCpuWriteValueAtomic(fl)  CAL_CMGETAPI( "SysCpuWriteValueAtomic" ) 
-	#define CAL_SysCpuWriteValueAtomic  SysCpuWriteValueAtomic
-	#define CHK_SysCpuWriteValueAtomic  TRUE
-	#define EXP_SysCpuWriteValueAtomic  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuWriteValueAtomic", (RTS_UINTPTR)SysCpuWriteValueAtomic, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuHandlingSysCpuWriteValueAtomic
-	#define EXT_SysCpuHandlingSysCpuWriteValueAtomic
-	#define GET_SysCpuHandlingSysCpuWriteValueAtomic  ERR_OK
-	#define CAL_SysCpuHandlingSysCpuWriteValueAtomic pISysCpuHandling->ISysCpuWriteValueAtomic
-	#define CHK_SysCpuHandlingSysCpuWriteValueAtomic (pISysCpuHandling != NULL)
-	#define EXP_SysCpuHandlingSysCpuWriteValueAtomic  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysCpuWriteValueAtomic
-	#define EXT_SysCpuWriteValueAtomic
-	#define GET_SysCpuWriteValueAtomic(fl)  CAL_CMGETAPI( "SysCpuWriteValueAtomic" ) 
-	#define CAL_SysCpuWriteValueAtomic pISysCpuHandling->ISysCpuWriteValueAtomic
-	#define CHK_SysCpuWriteValueAtomic (pISysCpuHandling != NULL)
-	#define EXP_SysCpuWriteValueAtomic  CAL_CMEXPAPI( "SysCpuWriteValueAtomic" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysCpuWriteValueAtomic  PFSYSCPUWRITEVALUEATOMIC pfSysCpuWriteValueAtomic;
-	#define EXT_SysCpuWriteValueAtomic  extern PFSYSCPUWRITEVALUEATOMIC pfSysCpuWriteValueAtomic;
-	#define GET_SysCpuWriteValueAtomic(fl)  s_pfCMGetAPI2( "SysCpuWriteValueAtomic", (RTS_VOID_FCTPTR *)&pfSysCpuWriteValueAtomic, (fl), 0, 0)
-	#define CAL_SysCpuWriteValueAtomic  pfSysCpuWriteValueAtomic
-	#define CHK_SysCpuWriteValueAtomic  (pfSysCpuWriteValueAtomic != NULL)
-	#define EXP_SysCpuWriteValueAtomic  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuWriteValueAtomic", (RTS_UINTPTR)SysCpuWriteValueAtomic, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * This function will read values with with 1, 2, 4 or 8 byte size as an atomic operation.
- * Note: pSrc has to be aligned according to the nLen parameter. If the alignment isn't correct the function will fail.
- * </description>
- * <param name="pSrc" type="IN">Pointer to the source address. The value will be read from this address. The read operation from this address will be atomic.</param>
- * <param name="pDst" type="IN">Pointer to the destination address. The value will be written to this address.</param>
- * <param name="nLen" type="IN">Size of the value to be read. 1, 2, 4 and 8 will be accepted.</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was sucessful</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">pSrc or pDest is NULL or nLen isn't supported.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Atomic function is not supported!</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_ALIGNMENT">pSrc was not aligned according to nLen.</errorcode>
- */
-RTS_RESULT CDECL SysCpuReadValueAtomic(void* pSrc, void* pDest, RTS_UI32 nLen);
-typedef RTS_RESULT (CDECL * PFSYSCPUREADVALUEATOMIC) (void* pSrc, void* pDest, RTS_UI32 nLen);
-#if defined(SYSCPUHANDLING_NOTIMPLEMENTED) || defined(SYSCPUREADVALUEATOMIC_NOTIMPLEMENTED)
-	#define USE_SysCpuReadValueAtomic
-	#define EXT_SysCpuReadValueAtomic
-	#define GET_SysCpuReadValueAtomic(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysCpuReadValueAtomic(p0,p1,p2)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysCpuReadValueAtomic  FALSE
-	#define EXP_SysCpuReadValueAtomic  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysCpuReadValueAtomic
-	#define EXT_SysCpuReadValueAtomic
-	#define GET_SysCpuReadValueAtomic(fl)  CAL_CMGETAPI( "SysCpuReadValueAtomic" ) 
-	#define CAL_SysCpuReadValueAtomic  SysCpuReadValueAtomic
-	#define CHK_SysCpuReadValueAtomic  TRUE
-	#define EXP_SysCpuReadValueAtomic  CAL_CMEXPAPI( "SysCpuReadValueAtomic" ) 
-#elif defined(MIXED_LINK) && !defined(SYSCPUHANDLING_EXTERNAL)
-	#define USE_SysCpuReadValueAtomic
-	#define EXT_SysCpuReadValueAtomic
-	#define GET_SysCpuReadValueAtomic(fl)  CAL_CMGETAPI( "SysCpuReadValueAtomic" ) 
-	#define CAL_SysCpuReadValueAtomic  SysCpuReadValueAtomic
-	#define CHK_SysCpuReadValueAtomic  TRUE
-	#define EXP_SysCpuReadValueAtomic  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuReadValueAtomic", (RTS_UINTPTR)SysCpuReadValueAtomic, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysCpuHandlingSysCpuReadValueAtomic
-	#define EXT_SysCpuHandlingSysCpuReadValueAtomic
-	#define GET_SysCpuHandlingSysCpuReadValueAtomic  ERR_OK
-	#define CAL_SysCpuHandlingSysCpuReadValueAtomic pISysCpuHandling->ISysCpuReadValueAtomic
-	#define CHK_SysCpuHandlingSysCpuReadValueAtomic (pISysCpuHandling != NULL)
-	#define EXP_SysCpuHandlingSysCpuReadValueAtomic  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysCpuReadValueAtomic
-	#define EXT_SysCpuReadValueAtomic
-	#define GET_SysCpuReadValueAtomic(fl)  CAL_CMGETAPI( "SysCpuReadValueAtomic" ) 
-	#define CAL_SysCpuReadValueAtomic pISysCpuHandling->ISysCpuReadValueAtomic
-	#define CHK_SysCpuReadValueAtomic (pISysCpuHandling != NULL)
-	#define EXP_SysCpuReadValueAtomic  CAL_CMEXPAPI( "SysCpuReadValueAtomic" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysCpuReadValueAtomic  PFSYSCPUREADVALUEATOMIC pfSysCpuReadValueAtomic;
-	#define EXT_SysCpuReadValueAtomic  extern PFSYSCPUREADVALUEATOMIC pfSysCpuReadValueAtomic;
-	#define GET_SysCpuReadValueAtomic(fl)  s_pfCMGetAPI2( "SysCpuReadValueAtomic", (RTS_VOID_FCTPTR *)&pfSysCpuReadValueAtomic, (fl), 0, 0)
-	#define CAL_SysCpuReadValueAtomic  pfSysCpuReadValueAtomic
-	#define CHK_SysCpuReadValueAtomic  (pfSysCpuReadValueAtomic != NULL)
-	#define EXP_SysCpuReadValueAtomic  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysCpuReadValueAtomic", (RTS_UINTPTR)SysCpuReadValueAtomic, 0, 0) 
-#endif
-
-
-
-
 #ifdef __cplusplus
 }
 #endif
@@ -2278,7 +1528,6 @@ typedef struct
 	IBase_C *pBase;
 	PFSYSCPUFLUSHINSTRUCTIONCACHE ISysCpuFlushInstructionCache;
  	PFSYSCPUCALLIECFUNCWITHPARAMS ISysCpuCallIecFuncWithParams;
- 	PFSYSCPUSETREGISTERVALUE ISysCpuSetRegisterValue;
  	PFSYSCPUGETBREAKPOINTCODE ISysCpuGetBreakpointCode;
  	PFSYSCPUGETCALLSTACKENTRY ISysCpuGetCallstackEntry;
  	PFSYSCPUGETCALLSTACKENTRY2 ISysCpuGetCallstackEntry2;
@@ -2291,14 +1540,6 @@ typedef struct
  	PFSYSCPUTESTANDSETBIT ISysCpuTestAndSetBit;
  	PFSYSCPUGETCONTEXT ISysCpuGetContext;
  	PFSYSCPUATOMICADD ISysCpuAtomicAdd;
- 	PFSYSCPUATOMICADD64 ISysCpuAtomicAdd64;
- 	PFSYSCPUATOMICCOMPAREANDSWAP ISysCpuAtomicCompareAndSwap;
- 	PFSYSCPUREADINT64 ISysCpuReadInt64;
- 	PFSYSCPUWRITEINT64 ISysCpuWriteInt64;
- 	PFSYSCPUREADREAL64 ISysCpuReadReal64;
- 	PFSYSCPUWRITEREAL64 ISysCpuWriteReal64;
- 	PFSYSCPUWRITEVALUEATOMIC ISysCpuWriteValueAtomic;
- 	PFSYSCPUREADVALUEATOMIC ISysCpuReadValueAtomic;
  } ISysCpuHandling_C;
 
 #ifdef CPLUSPLUS
@@ -2307,7 +1548,6 @@ class ISysCpuHandling : public IBase
 	public:
 		virtual int CDECL ISysCpuFlushInstructionCache(void * pBaseAddress, unsigned long ulSize) =0;
 		virtual RTS_RESULT CDECL ISysCpuCallIecFuncWithParams(RTS_VOID_FCTPTR pfIECFunc, void* pParam, int iSize) =0;
-		virtual RTS_RESULT CDECL ISysCpuSetRegisterValue(RTS_UINTPTR *pRegBuff, RTS_I32 nRegisterNumber, RTS_UINTPTR newValue) =0;
 		virtual RTS_RESULT CDECL ISysCpuGetBreakpointCode(unsigned char* pbyAreaStart, unsigned char* pbyBPAddress, unsigned char* pbyOpCode, int *piOpcodeSize) =0;
 		virtual RTS_RESULT CDECL ISysCpuGetCallstackEntry(RTS_UINTPTR *pBP, void **ppAddress) =0;
 		virtual RTS_RESULT CDECL ISysCpuGetCallstackEntry2(RTS_I32 bIecCode, RTS_UINTPTR *pBP, void **ppAddress) =0;
@@ -2320,14 +1560,6 @@ class ISysCpuHandling : public IBase
 		virtual RTS_RESULT CDECL ISysCpuTestAndSetBit(void* pAddress, int nLen, int iBit, int bSet) =0;
 		virtual RTS_RESULT CDECL ISysCpuGetContext(RegContext *pContext) =0;
 		virtual RTS_I32 CDECL ISysCpuAtomicAdd(RTS_I32 *piValue, RTS_I32 nSum, RTS_RESULT *pResult) =0;
-		virtual RTS_I64 CDECL ISysCpuAtomicAdd64(RTS_I64 *pi64Value, RTS_I64 nSum, RTS_RESULT *pResult) =0;
-		virtual RTS_RESULT CDECL ISysCpuAtomicCompareAndSwap(void *pAddress, void *pSwapValue, void *pCompareValue, RTS_UI8 valueSize) =0;
-		virtual RTS_I64 CDECL ISysCpuReadInt64(RTS_I64 *pSrc, RTS_RESULT *pResult) =0;
-		virtual RTS_RESULT CDECL ISysCpuWriteInt64(RTS_I64 *pDest, RTS_I64 i64Value) =0;
-		virtual RTS_REAL64 CDECL ISysCpuReadReal64(RTS_REAL64 *pSrc, RTS_RESULT *pResult) =0;
-		virtual RTS_RESULT CDECL ISysCpuWriteReal64(RTS_REAL64 *pDest, RTS_REAL64 r64Value) =0;
-		virtual RTS_RESULT CDECL ISysCpuWriteValueAtomic(void* pDest, void* pSrc, RTS_UI32 nLen) =0;
-		virtual RTS_RESULT CDECL ISysCpuReadValueAtomic(void* pSrc, void* pDest, RTS_UI32 nLen) =0;
 };
 	#ifndef ITF_SysCpuHandling
 		#define ITF_SysCpuHandling static ISysCpuHandling *pISysCpuHandling = NULL;

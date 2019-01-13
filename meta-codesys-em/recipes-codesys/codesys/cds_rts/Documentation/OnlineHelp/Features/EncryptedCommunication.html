@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Encrypted communication &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    <title>Encrypted communication &mdash; RuntimeSystemOnlineHelp V3.5.10.0</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.5.13.10',
+        VERSION:     '3.5.10.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,52 +24,50 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.10.0" href="../index.html" /> 
   </head>
-  <body role="document">
+  <body>
 	<div id="header">
 		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
 		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
 	</div>
 
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Encrypted communication</a><ul>
-<li><a class="reference internal" href="#security-settings">Security settings</a></li>
 <li><a class="reference internal" href="#diffie-hellman-parameter">Diffie Hellman parameter</a></li>
 <li><a class="reference internal" href="#requirements">Requirements</a></li>
 </ul>
 </li>
 </ul>
 
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/Features/EncryptedCommunication.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/Features/EncryptedCommunication.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -78,7 +76,7 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body" role="main">
+          <div class="body">
             
   <div class="section" id="encrypted-communication">
 <h1>Encrypted communication<a class="headerlink" href="#encrypted-communication" title="Permalink to this headline">¶</a></h1>
@@ -89,10 +87,6 @@ network. Additional the encrypted communication can be used with any supported t
 overhead and the signing and decryption needs some time. So the effective transfer rate will be decreased.</p>
 <p>For encrypted communication an X509 certificate and key for the component &#8220;CmpSecureChannel&#8221; is necessary on the PLC.
 That is a certificate with the extended key usage &#8220;TLS Web Server Authentication&#8221;.</p>
-<div class="section" id="security-settings">
-<h2>Security settings<a class="headerlink" href="#security-settings" title="Permalink to this headline">¶</a></h2>
-<p>The secure channel registers a number of security settings to change the security configuration. See: <a class="reference internal" href="../Reference/group___cmp_secure_channel_itf___security_settings.html#group-cmp-secure-channel-itf-security-settings"><span class="std std-ref">SecuritySettings</span></a></p>
-</div>
 <div class="section" id="diffie-hellman-parameter">
 <h2>Diffie Hellman parameter<a class="headerlink" href="#diffie-hellman-parameter" title="Permalink to this headline">¶</a></h2>
 <p>For forward security, it is possible to use a DH (Diffie Hellman) parameter to securely exchange the keys used by the communication partners.
@@ -105,8 +99,8 @@ This might be changed in future to ensure better security.</p>
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>The following runtime system components are necessary for this feature:</p>
 <ul class="simple">
-<li>CmpSecureChannel: <a class="reference internal" href="../Reference/group___cmp_secure_channel_itf.html#group-cmp-secure-channel-itf"><span class="std std-ref">CmpSecureChannelItf</span></a></li>
-<li>CmpSecurityManager: <a class="reference internal" href="../Reference/group___cmp_security_manager_itf.html#group-cmp-security-manager-itf"><span class="std std-ref">CmpSecurityManagerItf</span></a></li>
+<li>CmpSecureChannel: <a class="reference internal" href="../Reference/group___cmp_secure_channel_itf.html#group-cmp-secure-channel-itf"><em>CmpSecureChannelItf</em></a></li>
+<li>CmpSecurityManager: <a class="reference internal" href="../Reference/group___cmp_security_manager_itf.html#group-cmp-security-manager-itf"><em>CmpSecurityManagerItf</em></a></li>
 <li><a href="#id2"><span class="problematic" id="id3">`OpenSSL &lt;tag_openssl_&gt;`_</span></a> or equivalent crypto component</li>
 </ul>
 </div>
@@ -118,18 +112,18 @@ This might be changed in future to ensure better security.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    <div class="footer">
+        &copy; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

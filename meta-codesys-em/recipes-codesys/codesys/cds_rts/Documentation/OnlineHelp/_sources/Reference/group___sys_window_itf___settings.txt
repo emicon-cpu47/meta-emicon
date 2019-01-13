@@ -37,14 +37,6 @@ Macros
 
 - #define :ref:`SYSWINDOW_INT_WINCE_SETCARETBLINKTIME_DEFAULT <group___sys_window_itf___settings_1gaf340a460b472679e85fbade13b806ae3>` 0
 
-- #define :ref:`SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN <group___sys_window_itf___settings_1gac53681ecfa8c814d332522995e80b0b6>` "Linux.KeepMainWindowOpen"
-
-- #define :ref:`SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_DEFAULT <group___sys_window_itf___settings_1gac9fd0aea606c49ddb9747ef0bee22e1a>` 0
-
-- #define :ref:`SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY <group___sys_window_itf___settings_1ga4d63e5d40517ebe946f232f44e1883cc>` "Linux.KeepMainWindowOpenShowImmediately"
-
-- #define :ref:`SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY_DEFAULT <group___sys_window_itf___settings_1gaecb1c17fe3e233a5d3fedca982789734>` 1
-
 .. _group___sys_window_itf___settings-details:
 
 Detailed Description
@@ -133,30 +125,6 @@ Set Caret Blink Time in Visualization on WinCE in milliseconds. Set -1 to deacti
 
 #define SYSWINDOW_INT_WINCE_SETCARETBLINKTIME_DEFAULT 0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf___settings_1gac53681ecfa8c814d332522995e80b0b6:
-
-#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN "Linux.KeepMainWindowOpen"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The Targetvisualization in Linux operating systems supports two different modes of operation. The classical mode (value == 0) opens a window only while the targetvisualization is running. After a deletion of an application or between reset and start of a targetvisu application, there is no open window. Additionally it is possible to keep the main window open until shutdown of the application (value == 1). This prevents problems on systems based on the Qt5 platform plugin "EGLFS" (for details see http://doc.qt.io/qt-5/embedded-linux.html for example). Nevertheless in this mode there is no possibility for opening several concurrent targetvisu windows as it is possible at least in X-server based installations using the classical mode (value == 0). It is not recommended to use a value != 0 together with X-server based installations as the resulting behaviour will not be the one that users of X-server based systems are expecting.
-
-.. _group___sys_window_itf___settings_1gac9fd0aea606c49ddb9747ef0bee22e1a:
-
-#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_DEFAULT 0
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf___settings_1ga4d63e5d40517ebe946f232f44e1883cc:
-
-#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY "Linux.KeepMainWindowOpenShowImmediately"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Only relevant if Linux.KeepMainWindowOpen == 1. To reduce the number of states the targetvisualization window can be in (before showing the window, targetvisu displayed, targetvisu not displayed), this setting can be used to remove the state "before showing the window". If this setting has the value 1, then the window will be displayed immediately at startup without showing a targetvisualization yet. As this mode is recommended only for embedded devices (see SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN too) the initial window is opened in full screen mode.
-
-.. _group___sys_window_itf___settings_1gaecb1c17fe3e233a5d3fedca982789734:
-
-#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY_DEFAULT 1
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. last line of group.rst template
 .. last line of composition.rst template

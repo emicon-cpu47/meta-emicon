@@ -27,9 +27,7 @@
  *	stored in one sector.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -110,15 +108,12 @@
 /**
  * <category>Settings</category>
  * <type>String</type>
- * <description><p>Setting to configure the standard path for file access, for all filenames with no specified path or for directory access.
+ * <description><p>Setting to get the standard file path for all filenames with no specified path.
  *	Several file paths could be entered, if they were indexed, e.g.:</p>
- *	<p>FilePath=D:/Temp/Default
- *	FilePath.1=./Boot, *.app, *.ap_, *.ret, *.frc
- *	FilePath.2=D:/Temp/Wildcards, *.txw</p>
+ *	<p>FilePath.1=./Boot, *.app, *.ap_, *.ret, *.frc</p>
  *	<p>In this case, files with special extensions could be separated into several directories. File
  *	extensions can be specified with the wildcards '*'.</p>
  *	<p>If a file extension is not configured, the standard path (FilePath= or FilePath.1=) is used.</p>
- *	NOTE: Indexing starts with .1
  * </description>
  */
 #define SYSFILE_KEY_STRING_GET_FILEPATH						"FilePath"
@@ -129,9 +124,8 @@
 /**
  * <category>Settings</category>
  * <type>Int</type>
- * <description>Setting to put the PLC into a sandbox for file access, i.e. file access is only allowed inside the configured paths.
- *	If an absolute file path is requested, which is not a configured path, or a directory traversal path an error is returned at this operation (ERR_OPERATION_DENIED).
- *	NOTE: This setting controls all file access from C, from IEC and online.
+ * <description>Setting to force the configured file path to every file access.
+ *	If an absolute file path is requested and error is returned at this operation (ERR_OPERATION_DENIED).
  * </description>
  */
 #define SYSFILE_KEY_INT_FORCE_FILEPATH						"ForceFilePath"
@@ -143,16 +137,13 @@
 /**
  * <category>Settings</category>
  * <type>String</type>
- * <description><p>Setting to configure the standard IEC path for file access, for all filenames with no specified path or for directory access.
+ * <description><p>Setting to get the standard file path for file access for all filenames with no specified path or for directory access.
  *	NOTE: THIS IS USED ONLY FOR ALL FILE ACCESS ROUTINES OUT OF THE IEC PROGRAM!
  *	Several file paths could be entered, if they were indexed, e.g.:</p>
- *	<p>IecFilePath=D:/Temp/IEC
- *	IecFilePath.1=./Boot, *.app, *.ap_, *.ret, *.frc
- *	IecFilePath.2=D:/Temp/Wildcards, *.txw</p>
+ *	<p>IecFilePath.1=./Boot, *.app, *.ap_, *.ret, *.frc</p>
  *	<p>In this case, files with special extensions could be separated into several directories. File
  *	extensions can be specified with the wildcards '*'.</p>
  *	<p>If a file extension is not configured, the standard path (IecFilePath= or IecFilePath.1=) is used.</p>
- *	NOTE: Indexing starts with .1
  *	</description>
  */
 #define SYSFILE_KEY_STRING_GET_IEC_FILEPATH					"IecFilePath"
@@ -163,9 +154,8 @@
 /**
  * <category>Settings</category>
  * <type>Int</type>
- * <description>Setting to put the PLC into a sandbox for file access from IEC, i.e. file access is only allowed inside the configured paths.
- *	If an absolute file path is requested, which is not a configured path, or a directory traversal path an error is returned at this operation (ERR_OPERATION_DENIED).
- *	NOTE: This setting controls all file access from IEC but ForceFilePath (if set) dominates this setting.
+ * <description>Setting to force the configured file path to every file access.
+ *	If an absolute file path is requested and error is returned at this operation (ERR_OPERATION_DENIED).
  * </description>
  */
 #define SYSFILE_KEY_INT_FORCE_IECFILEPATH					"ForceIecFilePath"
@@ -175,45 +165,15 @@
 
 /**
  * <category>Settings</category>
- * <type>Int</type>
- * <description>Setting to put the PLC into a sandbox for online file access, i.e. file access is only allowed inside the configured paths.
- *	If an absolute file path is requested, which is not a configured path, or a directory traversal path an error is returned at this operation (ERR_OPERATION_DENIED).
- *	NOTE: This setting controls all online file access but ForceFilePath (if set) dominates this setting.
- * </description>
- */
-#define SYSFILE_KEY_INT_FORCE_ONLINEFILEPATH					"ForceOnlineFilePath"
-#ifndef SYSFILE_VALUE_INT_FORCE_ONLINEFILEPATH_DEFAULT
-	#define SYSFILE_VALUE_INT_FORCE_ONLINEFILEPATH_DEFAULT		1
-#endif
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>Setting to deny online access to all configuration files.
- *	If a configuration file is requested, an error is returned at this operation (ERR_OPERATION_DENIED).
- *	NOTE: This setting is independent of any Force settings.
- * </description>
- */
-#define SYSFILE_KEY_INT_DENYONLINEACCESSCFGFILE					"DenyOnlineAccessCfgFile"
-#ifndef SYSFILE_VALUE_INT_DENYONLINEACCESSCFGFILE_DEFAULT
-	#define SYSFILE_VALUE_INT_DENYONLINEACCESSCFGFILE_DEFAULT		1
-#endif
-
-
-/**
- * <category>Settings</category>
  * <type>String</type>
  * <description><p>Setting to get the placeholder file path for file access. A placeholder is defined like a relative path, but with special placeholder marks, e.g.:
  *		$visu$/mainwindows.bmp
  * The setting has the following structure:
  *		PlaceholderFilePath=[directory, relative or absolute], [placeholder]
  * Example:
- *		PlaceholderFilePath=visu, $visu$
+ *		PlaceholderFilePath.1=visu/, $visu$
  *	Several file paths could be entered, if they were indexed, e.g.:</p>
- *	<p>PlaceholderFilePath=PlcLogic, $PlcLogic$
- *	PlaceholderFilePath.1=visu, $visu$</p>
- *	PlaceholderFilePath.2=D:\Temp, $Temp$</p>
- *	NOTE: Indexing starts with .1
+ *	<p>PlaceholderFilePath.1=visu/, $visu$</p>
  *	</description>
  */
 #define SYSFILE_KEY_STRING_GET_PLACEHOLDER_FILEPATH					"PlaceholderFilePath"
@@ -471,21 +431,6 @@ typedef struct
 #define EVTVERSION_SysFileClose						0x0001
 
 /**
- * <category>Event parameter</category>
- * <element name="szFileName" type="OUT">name of founded file</element>
- * <element name="byIndex" type="IN/OUT">index of file in file mapping list</element>
- */
- #define MAX_FILENAME 32
-typedef struct
-{
-	char * pbyExecute;
-  int * pintIndex;
-}EVTPARAM_SysFileFlashGetFileMapIndex;
-#define EVTPARAMID_SysFileFlashGetFileMapIndex					0x0003
-#define EVTVERSION_SysFileFlashGetFileMapIndex					0x0001
-
-
-/**
  * <category>Events</category>
  * <description>Event is sent when a file is opened. It is sent directly after the file was opened.
  * Note: The event is set only with SysFile, it is not set with SysFileFlash.
@@ -502,16 +447,6 @@ typedef struct
  * <param name="pEventParam" type="IN">EVTPARAM_SysFileClose</param>
  */
 #define EVT_SysFileClose					MAKE_EVENTID(EVTCLASS_INFO, 2)
-
-/**
- * <category>Events</category>
- * <description>The event is sent if the function GetFileMapIndex is called
- *	NOTE:
- *	This event is fired for every call and every loop call of count of files
- * </description>
- * <param name="pEventParam" type="IN/OUT">EVTPARAM_SysFileFlashGetFileMapIndex</param>
- */
-#define EVT_SysFileFlashGetFileMapIndex					MAKE_EVENTID(EVTCLASS_INFO, 3)
 
 /**
  * Close a file specified by handle
@@ -1994,14 +1929,14 @@ typedef RTS_RESULT (CDECL * PFSYSFILECLOSE) (RTS_HANDLE hFile);
 	#define USE_SysFileSysFileClose
 	#define EXT_SysFileSysFileClose
 	#define GET_SysFileSysFileClose  ERR_OK
-	#define CAL_SysFileSysFileClose(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysFile*)p0)->ISysFileClose())
+	#define CAL_SysFileSysFileClose(p0) ((ISysFile*)p0)->ISysFileClose()
 	#define CHK_SysFileSysFileClose  TRUE
 	#define EXP_SysFileSysFileClose  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysFileClose
 	#define EXT_SysFileClose
 	#define GET_SysFileClose(fl)  CAL_CMGETAPI( "SysFileClose" ) 
-	#define CAL_SysFileClose(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysFile*)p0)->ISysFileClose())
+	#define CAL_SysFileClose(p0) ((ISysFile*)p0)->ISysFileClose()
 	#define CHK_SysFileClose  TRUE
 	#define EXP_SysFileClose  CAL_CMEXPAPI( "SysFileClose" ) 
 #else /* DYNAMIC_LINK */
@@ -3569,7 +3504,7 @@ typedef RTS_RESULT (CDECL * PFSYSFILEGETIECPATH2) (char *pszFileName, RTS_I32 nO
 /**
  * <description>
  *	Generate the CRC32 of a file. Can be used to check file integrity.
- *	ATTENTION: Only for backward compatibility! CRC is implemented not independent from buffer size!
+ *	ATTENTION: Only for backward compatibility! CRC is implemented not independant from buffer size!
  * </description>
  * <param name="pszFile" type="IN">File name. Can contain an absolute or relative path</param>
  * <param name="ulSize" type="IN">Size to calculate checksum. 0 if real size of file should be used [default]</param>
@@ -3737,65 +3672,6 @@ typedef RTS_RESULT (CDECL * PFSYSFILEGENERATECRC3) (char *pszFile, RTS_SIZE ulSi
 	#define CAL_SysFileGenerateCRC3  pfSysFileGenerateCRC3
 	#define CHK_SysFileGenerateCRC3  (pfSysFileGenerateCRC3 != NULL)
 	#define EXP_SysFileGenerateCRC3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysFileGenerateCRC3", (RTS_UINTPTR)SysFileGenerateCRC3, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- *	Generate the CRC32 of a file. Can be used to check file integrity. No standard path will be added.
- * </description>
- * <param name="pszFile" type="IN">File name. Can contain an absolute or relative path</param>
- * <param name="ulSize" type="IN">Size to calculate checksum. 0 if real size of file should be used [default]</param>
- * <param name="pulCRC" type="OUT">Pointer to get CRC32 result</param>
- * <param name="bUseCache type="IN">Flag whether to use the SysFileMap cache. In case there is no cache this flag is ignored.</param>
- * <result>error code</result>
- */
-RTS_RESULT CDECL SysFileGenerateCRC3_(char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC, RTS_BOOL bUseCache);
-typedef RTS_RESULT (CDECL * PFSYSFILEGENERATECRC3_) (char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC, RTS_BOOL bUseCache);
-#if defined(SYSFILE_NOTIMPLEMENTED) || defined(SYSFILEGENERATECRC3__NOTIMPLEMENTED)
-	#define USE_SysFileGenerateCRC3_
-	#define EXT_SysFileGenerateCRC3_
-	#define GET_SysFileGenerateCRC3_(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysFileGenerateCRC3_(p0,p1,p2,p3)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysFileGenerateCRC3_  FALSE
-	#define EXP_SysFileGenerateCRC3_  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysFileGenerateCRC3_
-	#define EXT_SysFileGenerateCRC3_
-	#define GET_SysFileGenerateCRC3_(fl)  CAL_CMGETAPI( "SysFileGenerateCRC3_" ) 
-	#define CAL_SysFileGenerateCRC3_  SysFileGenerateCRC3_
-	#define CHK_SysFileGenerateCRC3_  TRUE
-	#define EXP_SysFileGenerateCRC3_  CAL_CMEXPAPI( "SysFileGenerateCRC3_" ) 
-#elif defined(MIXED_LINK) && !defined(SYSFILE_EXTERNAL)
-	#define USE_SysFileGenerateCRC3_
-	#define EXT_SysFileGenerateCRC3_
-	#define GET_SysFileGenerateCRC3_(fl)  CAL_CMGETAPI( "SysFileGenerateCRC3_" ) 
-	#define CAL_SysFileGenerateCRC3_  SysFileGenerateCRC3_
-	#define CHK_SysFileGenerateCRC3_  TRUE
-	#define EXP_SysFileGenerateCRC3_  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysFileGenerateCRC3_", (RTS_UINTPTR)SysFileGenerateCRC3_, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysFileSysFileGenerateCRC3_
-	#define EXT_SysFileSysFileGenerateCRC3_
-	#define GET_SysFileSysFileGenerateCRC3_  ERR_OK
-	#define CAL_SysFileSysFileGenerateCRC3_ pISysFile->ISysFileGenerateCRC3_
-	#define CHK_SysFileSysFileGenerateCRC3_ (pISysFile != NULL)
-	#define EXP_SysFileSysFileGenerateCRC3_  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysFileGenerateCRC3_
-	#define EXT_SysFileGenerateCRC3_
-	#define GET_SysFileGenerateCRC3_(fl)  CAL_CMGETAPI( "SysFileGenerateCRC3_" ) 
-	#define CAL_SysFileGenerateCRC3_ pISysFile->ISysFileGenerateCRC3_
-	#define CHK_SysFileGenerateCRC3_ (pISysFile != NULL)
-	#define EXP_SysFileGenerateCRC3_  CAL_CMEXPAPI( "SysFileGenerateCRC3_" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysFileGenerateCRC3_  PFSYSFILEGENERATECRC3_ pfSysFileGenerateCRC3_;
-	#define EXT_SysFileGenerateCRC3_  extern PFSYSFILEGENERATECRC3_ pfSysFileGenerateCRC3_;
-	#define GET_SysFileGenerateCRC3_(fl)  s_pfCMGetAPI2( "SysFileGenerateCRC3_", (RTS_VOID_FCTPTR *)&pfSysFileGenerateCRC3_, (fl), 0, 0)
-	#define CAL_SysFileGenerateCRC3_  pfSysFileGenerateCRC3_
-	#define CHK_SysFileGenerateCRC3_  (pfSysFileGenerateCRC3_ != NULL)
-	#define EXP_SysFileGenerateCRC3_  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysFileGenerateCRC3_", (RTS_UINTPTR)SysFileGenerateCRC3_, 0, 0) 
 #endif
 
 
@@ -4408,194 +4284,6 @@ typedef RTS_RESULT (CDECL * PFSYSFILEPLCLOGICPREFIX) (char *pszPathOut, RTS_SIZE
 
 
 
-/**
- * <description>
- * Check whether a given file and/or path is blacklisted
- * On a blacklisted file or path it is intended to deny all operations
- * NOTE: SysFile uses this blacklist to deny file access from IEC.
- * NOTE: Other components may use this blacklist too (currently CmpFileTransfer).
- * </description>
- * <param name="pszPath" type="IN">File and/or path to check</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">The checked file/path is blacklisted</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">The checked file/path not blacklisted.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">The file/path to check is empty or the pointer is NULL</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">List is not initialized</errorcode>
- */
-RTS_RESULT CDECL SysFileIsBlacklisted(char *pszPath);
-typedef RTS_RESULT (CDECL * PFSYSFILEISBLACKLISTED) (char *pszPath);
-#if defined(SYSFILE_NOTIMPLEMENTED) || defined(SYSFILEISBLACKLISTED_NOTIMPLEMENTED)
-	#define USE_SysFileIsBlacklisted
-	#define EXT_SysFileIsBlacklisted
-	#define GET_SysFileIsBlacklisted(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysFileIsBlacklisted(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysFileIsBlacklisted  FALSE
-	#define EXP_SysFileIsBlacklisted  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysFileIsBlacklisted
-	#define EXT_SysFileIsBlacklisted
-	#define GET_SysFileIsBlacklisted(fl)  CAL_CMGETAPI( "SysFileIsBlacklisted" ) 
-	#define CAL_SysFileIsBlacklisted  SysFileIsBlacklisted
-	#define CHK_SysFileIsBlacklisted  TRUE
-	#define EXP_SysFileIsBlacklisted  CAL_CMEXPAPI( "SysFileIsBlacklisted" ) 
-#elif defined(MIXED_LINK) && !defined(SYSFILE_EXTERNAL)
-	#define USE_SysFileIsBlacklisted
-	#define EXT_SysFileIsBlacklisted
-	#define GET_SysFileIsBlacklisted(fl)  CAL_CMGETAPI( "SysFileIsBlacklisted" ) 
-	#define CAL_SysFileIsBlacklisted  SysFileIsBlacklisted
-	#define CHK_SysFileIsBlacklisted  TRUE
-	#define EXP_SysFileIsBlacklisted  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysFileIsBlacklisted", (RTS_UINTPTR)SysFileIsBlacklisted, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysFileSysFileIsBlacklisted
-	#define EXT_SysFileSysFileIsBlacklisted
-	#define GET_SysFileSysFileIsBlacklisted  ERR_OK
-	#define CAL_SysFileSysFileIsBlacklisted pISysFile->ISysFileIsBlacklisted
-	#define CHK_SysFileSysFileIsBlacklisted (pISysFile != NULL)
-	#define EXP_SysFileSysFileIsBlacklisted  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysFileIsBlacklisted
-	#define EXT_SysFileIsBlacklisted
-	#define GET_SysFileIsBlacklisted(fl)  CAL_CMGETAPI( "SysFileIsBlacklisted" ) 
-	#define CAL_SysFileIsBlacklisted pISysFile->ISysFileIsBlacklisted
-	#define CHK_SysFileIsBlacklisted (pISysFile != NULL)
-	#define EXP_SysFileIsBlacklisted  CAL_CMEXPAPI( "SysFileIsBlacklisted" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysFileIsBlacklisted  PFSYSFILEISBLACKLISTED pfSysFileIsBlacklisted;
-	#define EXT_SysFileIsBlacklisted  extern PFSYSFILEISBLACKLISTED pfSysFileIsBlacklisted;
-	#define GET_SysFileIsBlacklisted(fl)  s_pfCMGetAPI2( "SysFileIsBlacklisted", (RTS_VOID_FCTPTR *)&pfSysFileIsBlacklisted, (fl), 0, 0)
-	#define CAL_SysFileIsBlacklisted  pfSysFileIsBlacklisted
-	#define CHK_SysFileIsBlacklisted  (pfSysFileIsBlacklisted != NULL)
-	#define EXP_SysFileIsBlacklisted  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysFileIsBlacklisted", (RTS_UINTPTR)SysFileIsBlacklisted, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * Add a given file and/or path to the blacklist
- * NOTE: SysFile uses this blacklist to deny file access from IEC.
- * NOTE: Other components may use this blacklist too (currently CmpFileTransfer).
- * </description>
- * <param name="pszPath" type="IN">File and/or path to add</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">The file/path is successfully added to the list.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOMEMORY">Not enough memory to add the file/path</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOBUFFER">Copy failure, file/path is to long</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">The file/path to add is empty or the pointer is NULL</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">List is not initialized</errorcode>
- */
-RTS_RESULT CDECL SysFileAddToBlacklist(char *pszPath);
-typedef RTS_RESULT (CDECL * PFSYSFILEADDTOBLACKLIST) (char *pszPath);
-#if defined(SYSFILE_NOTIMPLEMENTED) || defined(SYSFILEADDTOBLACKLIST_NOTIMPLEMENTED)
-	#define USE_SysFileAddToBlacklist
-	#define EXT_SysFileAddToBlacklist
-	#define GET_SysFileAddToBlacklist(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysFileAddToBlacklist(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysFileAddToBlacklist  FALSE
-	#define EXP_SysFileAddToBlacklist  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysFileAddToBlacklist
-	#define EXT_SysFileAddToBlacklist
-	#define GET_SysFileAddToBlacklist(fl)  CAL_CMGETAPI( "SysFileAddToBlacklist" ) 
-	#define CAL_SysFileAddToBlacklist  SysFileAddToBlacklist
-	#define CHK_SysFileAddToBlacklist  TRUE
-	#define EXP_SysFileAddToBlacklist  CAL_CMEXPAPI( "SysFileAddToBlacklist" ) 
-#elif defined(MIXED_LINK) && !defined(SYSFILE_EXTERNAL)
-	#define USE_SysFileAddToBlacklist
-	#define EXT_SysFileAddToBlacklist
-	#define GET_SysFileAddToBlacklist(fl)  CAL_CMGETAPI( "SysFileAddToBlacklist" ) 
-	#define CAL_SysFileAddToBlacklist  SysFileAddToBlacklist
-	#define CHK_SysFileAddToBlacklist  TRUE
-	#define EXP_SysFileAddToBlacklist  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysFileAddToBlacklist", (RTS_UINTPTR)SysFileAddToBlacklist, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysFileSysFileAddToBlacklist
-	#define EXT_SysFileSysFileAddToBlacklist
-	#define GET_SysFileSysFileAddToBlacklist  ERR_OK
-	#define CAL_SysFileSysFileAddToBlacklist pISysFile->ISysFileAddToBlacklist
-	#define CHK_SysFileSysFileAddToBlacklist (pISysFile != NULL)
-	#define EXP_SysFileSysFileAddToBlacklist  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysFileAddToBlacklist
-	#define EXT_SysFileAddToBlacklist
-	#define GET_SysFileAddToBlacklist(fl)  CAL_CMGETAPI( "SysFileAddToBlacklist" ) 
-	#define CAL_SysFileAddToBlacklist pISysFile->ISysFileAddToBlacklist
-	#define CHK_SysFileAddToBlacklist (pISysFile != NULL)
-	#define EXP_SysFileAddToBlacklist  CAL_CMEXPAPI( "SysFileAddToBlacklist" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysFileAddToBlacklist  PFSYSFILEADDTOBLACKLIST pfSysFileAddToBlacklist;
-	#define EXT_SysFileAddToBlacklist  extern PFSYSFILEADDTOBLACKLIST pfSysFileAddToBlacklist;
-	#define GET_SysFileAddToBlacklist(fl)  s_pfCMGetAPI2( "SysFileAddToBlacklist", (RTS_VOID_FCTPTR *)&pfSysFileAddToBlacklist, (fl), 0, 0)
-	#define CAL_SysFileAddToBlacklist  pfSysFileAddToBlacklist
-	#define CHK_SysFileAddToBlacklist  (pfSysFileAddToBlacklist != NULL)
-	#define EXP_SysFileAddToBlacklist  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysFileAddToBlacklist", (RTS_UINTPTR)SysFileAddToBlacklist, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * Check whether online access of a given file/path is denied
- *	If ForceOnlineFilePath (s.a) is set, which is default, this check works as follows:
- *	If an absolute file path is requested, which is not a configured path, or a directory traversal path ERR_OK is returned.
- * </description>
- * <param name="pszPath" type="IN">File path</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">The file path is not accessible</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">The file path is accessible</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">The file path is empty or the pointer is NULL</errorcode>
- */
-RTS_RESULT CDECL SysFileIsOnlineAccessDenied(char *pszPath);
-typedef RTS_RESULT (CDECL * PFSYSFILEISONLINEACCESSDENIED) (char *pszPath);
-#if defined(SYSFILE_NOTIMPLEMENTED) || defined(SYSFILEISONLINEACCESSDENIED_NOTIMPLEMENTED)
-	#define USE_SysFileIsOnlineAccessDenied
-	#define EXT_SysFileIsOnlineAccessDenied
-	#define GET_SysFileIsOnlineAccessDenied(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysFileIsOnlineAccessDenied(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysFileIsOnlineAccessDenied  FALSE
-	#define EXP_SysFileIsOnlineAccessDenied  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysFileIsOnlineAccessDenied
-	#define EXT_SysFileIsOnlineAccessDenied
-	#define GET_SysFileIsOnlineAccessDenied(fl)  CAL_CMGETAPI( "SysFileIsOnlineAccessDenied" ) 
-	#define CAL_SysFileIsOnlineAccessDenied  SysFileIsOnlineAccessDenied
-	#define CHK_SysFileIsOnlineAccessDenied  TRUE
-	#define EXP_SysFileIsOnlineAccessDenied  CAL_CMEXPAPI( "SysFileIsOnlineAccessDenied" ) 
-#elif defined(MIXED_LINK) && !defined(SYSFILE_EXTERNAL)
-	#define USE_SysFileIsOnlineAccessDenied
-	#define EXT_SysFileIsOnlineAccessDenied
-	#define GET_SysFileIsOnlineAccessDenied(fl)  CAL_CMGETAPI( "SysFileIsOnlineAccessDenied" ) 
-	#define CAL_SysFileIsOnlineAccessDenied  SysFileIsOnlineAccessDenied
-	#define CHK_SysFileIsOnlineAccessDenied  TRUE
-	#define EXP_SysFileIsOnlineAccessDenied  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysFileIsOnlineAccessDenied", (RTS_UINTPTR)SysFileIsOnlineAccessDenied, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysFileSysFileIsOnlineAccessDenied
-	#define EXT_SysFileSysFileIsOnlineAccessDenied
-	#define GET_SysFileSysFileIsOnlineAccessDenied  ERR_OK
-	#define CAL_SysFileSysFileIsOnlineAccessDenied pISysFile->ISysFileIsOnlineAccessDenied
-	#define CHK_SysFileSysFileIsOnlineAccessDenied (pISysFile != NULL)
-	#define EXP_SysFileSysFileIsOnlineAccessDenied  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysFileIsOnlineAccessDenied
-	#define EXT_SysFileIsOnlineAccessDenied
-	#define GET_SysFileIsOnlineAccessDenied(fl)  CAL_CMGETAPI( "SysFileIsOnlineAccessDenied" ) 
-	#define CAL_SysFileIsOnlineAccessDenied pISysFile->ISysFileIsOnlineAccessDenied
-	#define CHK_SysFileIsOnlineAccessDenied (pISysFile != NULL)
-	#define EXP_SysFileIsOnlineAccessDenied  CAL_CMEXPAPI( "SysFileIsOnlineAccessDenied" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysFileIsOnlineAccessDenied  PFSYSFILEISONLINEACCESSDENIED pfSysFileIsOnlineAccessDenied;
-	#define EXT_SysFileIsOnlineAccessDenied  extern PFSYSFILEISONLINEACCESSDENIED pfSysFileIsOnlineAccessDenied;
-	#define GET_SysFileIsOnlineAccessDenied(fl)  s_pfCMGetAPI2( "SysFileIsOnlineAccessDenied", (RTS_VOID_FCTPTR *)&pfSysFileIsOnlineAccessDenied, (fl), 0, 0)
-	#define CAL_SysFileIsOnlineAccessDenied  pfSysFileIsOnlineAccessDenied
-	#define CHK_SysFileIsOnlineAccessDenied  (pfSysFileIsOnlineAccessDenied != NULL)
-	#define EXP_SysFileIsOnlineAccessDenied  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysFileIsOnlineAccessDenied", (RTS_UINTPTR)SysFileIsOnlineAccessDenied, 0, 0) 
-#endif
-
-
-
-
-
 #ifdef __cplusplus
 }
 #endif
@@ -4637,7 +4325,6 @@ typedef struct
  	PFSYSFILEGENERATECRC ISysFileGenerateCRC;
  	PFSYSFILEGENERATECRC2 ISysFileGenerateCRC2;
  	PFSYSFILEGENERATECRC3 ISysFileGenerateCRC3;
- 	PFSYSFILEGENERATECRC3_ ISysFileGenerateCRC3_;
  	PFSYSFILEGENERATECRC2_ ISysFileGenerateCRC2_;
  	PFSYSFILEFLUSH ISysFileFlush;
  	PFSYSFILEISINVISIBLE ISysFileIsInvisible;
@@ -4648,9 +4335,6 @@ typedef struct
  	PFSYSFILESETIECPATH ISysFileSetIecPath;
  	PFSYSFILEGETPLCLOGICPREFIX ISysFileGetPlcLogicPrefix;
  	PFSYSFILEPLCLOGICPREFIX ISysFilePlcLogicPrefix;
- 	PFSYSFILEISBLACKLISTED ISysFileIsBlacklisted;
- 	PFSYSFILEADDTOBLACKLIST ISysFileAddToBlacklist;
- 	PFSYSFILEISONLINEACCESSDENIED ISysFileIsOnlineAccessDenied;
  } ISysFile_C;
 
 #ifdef CPLUSPLUS
@@ -4689,7 +4373,6 @@ class ISysFile : public IBase
 		virtual RTS_RESULT CDECL ISysFileGenerateCRC(char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC) =0;
 		virtual RTS_RESULT CDECL ISysFileGenerateCRC2(char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC) =0;
 		virtual RTS_RESULT CDECL ISysFileGenerateCRC3(char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC, RTS_BOOL bUseCache) =0;
-		virtual RTS_RESULT CDECL ISysFileGenerateCRC3_(char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC, RTS_BOOL bUseCache) =0;
 		virtual RTS_RESULT CDECL ISysFileGenerateCRC2_(char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC) =0;
 		virtual RTS_RESULT CDECL ISysFileFlush(void) =0;
 		virtual RTS_RESULT CDECL ISysFileIsInvisible(char *pszFileName) =0;
@@ -4700,9 +4383,6 @@ class ISysFile : public IBase
 		virtual RTS_RESULT CDECL ISysFileSetIecPath(char *pszPath) =0;
 		virtual char * CDECL ISysFileGetPlcLogicPrefix(void) =0;
 		virtual RTS_RESULT CDECL ISysFilePlcLogicPrefix(char *pszPathOut, RTS_SIZE ulPathOutSize, char *pszSubDir, char *pszName, const char *pszExt) =0;
-		virtual RTS_RESULT CDECL ISysFileIsBlacklisted(char *pszPath) =0;
-		virtual RTS_RESULT CDECL ISysFileAddToBlacklist(char *pszPath) =0;
-		virtual RTS_RESULT CDECL ISysFileIsOnlineAccessDenied(char *pszPath) =0;
 };
 	#ifndef ITF_SysFile
 		#define ITF_SysFile static ISysFile *pISysFile = NULL;

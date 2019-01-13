@@ -26,8 +26,6 @@ Data Structures
 
 - struct :ref:`tagRtsX509CertName <structtag_rts_x509_cert_name>`
 
-- struct :ref:`tagRtsX509ExKeyUsage <structtag_rts_x509_ex_key_usage>`
-
 - struct :ref:`RtsX509CertFilterContent <union_rts_x509_cert_filter_content>`
 
 - struct :ref:`tagRtsX509CertFilter <structtag_rts_x509_cert_filter>`
@@ -76,8 +74,6 @@ Data Structures
 
 - struct :ref:`tagx509certstoregetnextcert_struct <structtagx509certstoregetnextcert__struct>`
 
-- struct :ref:`tagx509certstoregetregisteredcert_struct <structtagx509certstoregetregisteredcert__struct>`
-
 - struct :ref:`tagx509certstoreopen_struct <structtagx509certstoreopen__struct>`
 
 - struct :ref:`tagx509certstoreregister_struct <structtagx509certstoreregister__struct>`
@@ -94,13 +90,15 @@ Data Structures
 
 - struct :ref:`tagx509parsecertificate_struct <structtagx509parsecertificate__struct>`
 
-- struct :ref:`X509CertCreateSelfSignedAsyncResult <struct_x509_cert_create_self_signed_async_result>`
+- struct :ref:`X509CertCreateSelfSignedAsyncStruct <struct_x509_cert_create_self_signed_async_struct>`
 
-- struct :ref:`X509CertCreateCSRAsyncResult <struct_x509_cert_create_c_s_r_async_result>`
+- struct :ref:`X509CertCreateCSRAsyncStruct <struct_x509_cert_create_c_s_r_async_struct>`
 
-- struct :ref:`X509AsyncOperationResult <union_x509_async_operation_result>`
+- struct :ref:`X509CertCreateDHParamsyncStruct <struct_x509_cert_create_d_h_paramsync_struct>`
 
-- struct :ref:`X509AsyncResult <struct_x509_async_result>`
+- struct :ref:`X509AsyncParameterStruct <union_x509_async_parameter_struct>`
+
+- struct :ref:`_X509AsyncStruct <struct___x509_async_struct>`
 
 - struct :ref:`RtsCertBackendInfo_ <struct_rts_cert_backend_info__>`
 
@@ -131,104 +129,6 @@ Macros
 - #define :ref:`RTS_CMPX509CERT_SECURITY_ID_DHPARAM <group___cmp_x509_cert_itf___security_settings_1ga3011c44ab85cebdcdb3ac30524f0fe82>` :ref:`RTS_SECURITY_ID_SELFSIGNEDCERT <_cmp_security_manager_itf_8h_1aba174e53acc672385fac7fb780beda2a>`
 
 - #define :ref:`RTS_X509_DIFFIEHELLMAN_DEFAULT_LEN <group___cmp_x509_cert_itf___staticdefines_1gab149a9ccd2436b98483f7311d84f8d4e>` 2048
-
-- #define :ref:`SRV_X509_IMPORT_CERT <group___cmp_x509_cert_itf___onlineservices_1gae93c629eb28c54bccbd2e6e1db882695>` 0x01
-
-- #define :ref:`SRV_X509_EXPORT_CERT <group___cmp_x509_cert_itf___onlineservices_1gaf593c68593196fe289ac617d79b2a164>` 0x02
-
-- #define :ref:`SRV_X509_DELETE_CERT <group___cmp_x509_cert_itf___onlineservices_1gaef6f2bb3ab5cc8b7d3d568b0a5882c20>` 0x03
-
-- #define :ref:`SRV_X509_MOVE_CERT <group___cmp_x509_cert_itf___onlineservices_1gaaeeb6cfccff7719c9c20e997e8826593>` 0x04
-
-- #define :ref:`SRV_X509_LIST_CERTS <group___cmp_x509_cert_itf___onlineservices_1gab9510d9aa228ac68fc1d963ed4bfce06>` 0x05
-
-- #define :ref:`SRV_X509_LIST_USECASES <group___cmp_x509_cert_itf___onlineservices_1ga03cd5cbcfba47d19e718869e0b6e2bca>` 0x06
-
-- #define :ref:`SRV_X509_CREATE_SELFSIGNED <group___cmp_x509_cert_itf___onlineservices_1ga9d9a95d3e389f26f88ebdb7d18b0ebad>` 0x07
-
-- #define :ref:`SRV_X509_CREATE_REQUEST <group___cmp_x509_cert_itf___onlineservices_1ga0ecdf63f64170c71c714218c596dde88>` 0x08
-
-- #define :ref:`SRV_X509_GET_STATUS <group___cmp_x509_cert_itf___onlineservices_1gacf1552a86c385f6f41e80b4839674a48>` 0x09
-
-- #define :ref:`TAG_X509_TRUSTLEVEL <group___cmp_x509_cert_itf___onlineservicetags_1gab0c7b55a8beb1a3f6088107042751ba6>` 0x01
-
-- #define :ref:`TAG_X509_BACKEND <group___cmp_x509_cert_itf___onlineservicetags_1ga87d1ad0fe3ad4683bb391c3045ebf204>` 0x02
-
-- #define :ref:`TAG_X509_USECASE <group___cmp_x509_cert_itf___onlineservicetags_1gadd8f514bab05310a95f46dbeff72ed85>` 0x03
-
-- #define :ref:`TAG_X509_THUMBPRINT <group___cmp_x509_cert_itf___onlineservicetags_1ga1bed4eda34976c4415abb48a7e8d7d3a>` 0x04
-
-- #define :ref:`TAG_X509_CERT <group___cmp_x509_cert_itf___onlineservicetags_1ga91331bd4ea8fee6fae37be4a2506fe93>` 0x05
-
-- #define :ref:`TAG_X509_CSR <group___cmp_x509_cert_itf___onlineservicetags_1ga421287e7b5c244bb0fc91e760dffcf32>` 0x06
-
-- #define :ref:`TAG_X509_DEST_TRUSTLEVEL <group___cmp_x509_cert_itf___onlineservicetags_1gaa3aeae46a5c58a165e3ba5b159b740d0>` 0x07
-
-- #define :ref:`TAG_X509_DEST_BACKEND <group___cmp_x509_cert_itf___onlineservicetags_1ga8adfafbe3f9620c13d28bb261df75599>` 0x08
-
-- #define :ref:`TAG_X509_KEY_LENGTH <group___cmp_x509_cert_itf___onlineservicetags_1gaebf5c882d96eea328c53243bf4dfbcaa>` 0x09
-
-- #define :ref:`TAG_X509_USECASE_NAME <group___cmp_x509_cert_itf___onlineservicetags_1ga7469e14933ea0f2ab788dcf51471793d>` 0x0A
-
-- #define :ref:`TAG_X509_USECASE_DESC <group___cmp_x509_cert_itf___onlineservicetags_1ga5f0db31983b223197e0eae9969d19e3e>` 0x0B
-
-- #define :ref:`TAG_X509_SUBJECT_ID <group___cmp_x509_cert_itf___onlineservicetags_1gab951748e9ff5be217b478c435131b112>` 0x0C
-
-- #define :ref:`TAG_X509_SUBJECT_VALUE <group___cmp_x509_cert_itf___onlineservicetags_1gac6ae3db0301c60139bb4f47306b89686>` 0x0D
-
-- #define :ref:`TAG_X509_ALT_NAME_EMAIL <group___cmp_x509_cert_itf___onlineservicetags_1gaab7642da6e563055a658280a6d4653b6>` 0x0E
-
-- #define :ref:`TAG_X509_ALT_NAME_DNSNAME <group___cmp_x509_cert_itf___onlineservicetags_1ga5df79df43793e7f4b69dbe832c3eb736>` 0x0F
-
-- #define :ref:`TAG_X509_ALT_NAME_URI <group___cmp_x509_cert_itf___onlineservicetags_1gaeec4a1ce2b3e9c350a37919974ee2645>` 0x10
-
-- #define :ref:`TAG_X509_ALT_NAME_IPADDRESS <group___cmp_x509_cert_itf___onlineservicetags_1ga537733f29fad12de61e5bb84364aebcb>` 0x12
-
-- #define :ref:`TAG_X509_ALT_NAME_REGISTEREDID <group___cmp_x509_cert_itf___onlineservicetags_1gad36f20d5979fefbbf452fd746a8a3c8a>` 0x13
-
-- #define :ref:`TAG_X509_KEYUSAGE <group___cmp_x509_cert_itf___onlineservicetags_1ga64498bd92c8ff89c10fa2b31d3728e33>` 0x14
-
-- #define :ref:`TAG_X509_EXT_KEYUSAGE <group___cmp_x509_cert_itf___onlineservicetags_1gae59f83fe29a6c822830685c47388e4d5>` 0x15
-
-- #define :ref:`TAG_X509_USECASE_COMPONENT <group___cmp_x509_cert_itf___onlineservicetags_1gad0be51eadb87a6ce3df83e1b9e2d31ba>` 0x16
-
-- #define :ref:`TAG_X509_DELETE_PKEY <group___cmp_x509_cert_itf___onlineservicetags_1ga5fbf6fbc3c4d0fc7e894c79c7ee55d58>` 0x17
-
-- #define :ref:`TAG_X509_DAYS_VALID <group___cmp_x509_cert_itf___onlineservicetags_1gab0305529a400d2189524fd9b44127e3a>` 0x18
-
-- #define :ref:`TAG_X509_GEN_SELF_SIGNED <group___cmp_x509_cert_itf___onlineservicetags_1ga33a64c2c264b28e637c2732788de318b>` 0x19
-
-- #define :ref:`TAG_X509_GEN_CSR <group___cmp_x509_cert_itf___onlineservicetags_1ga6a0ca73fdb9849684f64fdf0b06f761c>` 0x1A
-
-- #define :ref:`TAG_X509_STATUS_HANDLE <group___cmp_x509_cert_itf___onlineservicetags_1ga807f62c7b1c186a9425e28c2a1df2a59>` 0x1B
-
-- #define :ref:`TAG_X509_OPERATION <group___cmp_x509_cert_itf___onlineservicetags_1ga14cc9fcd93f10204567b82576570098d>` 0x1C
-
-- #define :ref:`TAG_X509_RESULT <group___cmp_x509_cert_itf___onlineservicetags_1gaf99312159024ffe0696f914eb692d66c>` :ref:`TAG_ERROR <group___cmp_srv_itf___servicereplytags_1gad1414fd0d54e87e0f3881dde41c09f88>`
-
-- #define :ref:`TAG_X509_USECASE_DETAILS <group___cmp_x509_cert_itf___onlineservicetags_1ga3633e5ecef519d6c851c00e298e53f51>` 0x81
-
-- #define :ref:`USERDB_OBJECT_X509 <group___cmp_x509_cert_itf___staticdefines_1gab4500585687cc6717caf0e56ce0a60f6>` "Device.X509"
-
-- #define :ref:`USERDB_OBJECT_X509_IMPORT_CERT <group___cmp_x509_cert_itf___staticdefines_1ga44fad9424de506d3594a657fdb65dbf0>` "Device.X509.ImportCertificate"
-
-- #define :ref:`USERDB_OBJECT_X509_EXPORT_CERT <group___cmp_x509_cert_itf___staticdefines_1gae05e67e194cff6645c77da93f4ba47ce>` "Device.X509.ExportCertificate"
-
-- #define :ref:`USERDB_OBJECT_X509_DELETE_CERT <group___cmp_x509_cert_itf___staticdefines_1gaacecb543b612833b6cbf9870182fac1e>` "Device.X509.DeleteCertificate"
-
-- #define :ref:`USERDB_OBJECT_X509_MOVE_CERT <group___cmp_x509_cert_itf___staticdefines_1gadc92828ddeca430ab737e6165b75853a>` "Device.X509.MoveCertificate"
-
-- #define :ref:`USERDB_OBJECT_X509_LIST_CERTS <group___cmp_x509_cert_itf___staticdefines_1ga9d4b1a72529fbf8c4d549b66e89b2e39>` "Device.X509.ListCertificates"
-
-- #define :ref:`USERDB_OBJECT_X509_LIST_USE_CASES <group___cmp_x509_cert_itf___staticdefines_1ga2365c433de0847fc3e36d500fb18f6fd>` "Device.X509.ListUseCases"
-
-- #define :ref:`USERDB_OBJECT_X509_CREATE_SELFSIGNED <group___cmp_x509_cert_itf___staticdefines_1ga9633117cdb2386409b3beef6348fa32d>` "Device.X509.CreateSelfSignedCertificate"
-
-- #define :ref:`USERDB_OBJECT_X509_CREATE_CSR <group___cmp_x509_cert_itf___staticdefines_1ga4cd94441060ca561bdc6dbaaa93c6d1f>` "Device.X509.CreateCertificateSigningRequest"
-
-- #define :ref:`USERDB_OBJECT_X509_GET_STAUTS <group___cmp_x509_cert_itf___staticdefines_1gae31d0f5b5462b249fbe77abb7950330b>` "Device.X509.GetStatus"
-
-- #define :ref:`USERDB_OBJECT_X509_UNKNOWN <group___cmp_x509_cert_itf___staticdefines_1ga8fb4d28aa9b59a04fd14cf9569cc7b32>` "Device.X509.Unknown"
 
 - #define :ref:`RTSCERTENCODING_ASN1 <group___cmp_x509_cert_itf_1ga991b92ffd3bcb0a4b72b2ceece3002cb>` RTS_IEC_INT_C(0x0)
 
@@ -274,19 +174,13 @@ Macros
 
 - #define :ref:`RTSX509CERTFILTERTYPE_SUBJECT_MATCHALL <group___cmp_x509_cert_itf_1gaa3ff13c9a299e6ccd9f7cbe1afb3e188>` RTS_IEC_INT_C(0x2)
 
-- #define :ref:`RTSX509CERTFILTERTYPE_CERT_DATEVALID <group___cmp_x509_cert_itf_1gac7b31ce4ddfac3ac0e6cc7f5a65666fd>` RTS_IEC_INT_C(0x3)
-
-- #define :ref:`RTSX509CERTFILTERTYPE_CERT_KEYUSAGE <group___cmp_x509_cert_itf_1ga2ea9b2e7c3ad29968a8d0d0a9615d7ee>` RTS_IEC_INT_C(0x4)
-
-- #define :ref:`RTSX509CERTFILTERTYPE_CERT_EXKEYUSAGE <group___cmp_x509_cert_itf_1gaab202d9e5acaac9ef6f1afe50e6cfa3f>` RTS_IEC_INT_C(0x5)
-
-- #define :ref:`RTSX509CERTFILTERTYPE_CERT_THUMBPRINT <group___cmp_x509_cert_itf_1ga397b6bf8f86f99d29b1a3e94b92e66f2>` RTS_IEC_INT_C(0x6)
-
 - #define :ref:`RTSX509CERTFILTERTYPE <group___cmp_x509_cert_itf_1gac0a940a207e99d841b157b5abdacd067>` RTS_IEC_INT
 
-- #define :ref:`CMPX509CERT_ASYNC_FUNCTION_CREATESELFSIGNED <group___cmp_x509_cert_itf_1gab0c3674136331ef3d08683692ebdf477>` 1
+- #define :ref:`OPENSSL_ASYNC_FUNCTION_CREATESELFSIGNED <group___cmp_x509_cert_itf_1gaba61ba34964e62eac530d72b81090998>` 1
 
-- #define :ref:`CMPX509CERT_ASYNC_FUNCTION_CREATECSR <group___cmp_x509_cert_itf_1gae389919c688154c0cbb5452d1507550c>` 2
+- #define :ref:`OPENSSL_ASYNC_FUNCTION_CREATECSR <group___cmp_x509_cert_itf_1ga1910c98bb53021b0816b9999d720e862>` 2
+
+- #define :ref:`OPENSSL_ASYNC_FUNCTION_CREATEDHPARAMS <group___cmp_x509_cert_itf_1ga0d1398e172dead1d6ccfa8a5d530004e>` 3
 
 - #define :ref:`RTS_KEY_USAGE_DIGITAL_SIGNATURE <group___cmp_x509_cert_itf___key_usage_1ga5cddb50e5f2b0049347af42bbd2194a8>` 0x1
 
@@ -360,7 +254,7 @@ Macros
 
 - #define :ref:`RTS_OID_TLS_WEBCLIENT_AUTHENTICATION <group___cmp_x509_cert_itf___object_identifiers_1gaea7491887fc3f01d5c734f4b06de3627>` "1.3.6.1.5.5.7.3.2"
 
-- #define :ref:`EVT_GetCertificatInfo <group___cmp_x509_cert_itf___events_1ga10b7d86f5f369d0100c0f74db1d50236>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+- #define :ref:`EVT_GetCertificatInfo <group___cmp_x509_cert_itf___events_1ga10b7d86f5f369d0100c0f74db1d50236>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
 
 - #define :ref:`ITF_CmpX509Cert <group___cmp_x509_cert_itf_1gad93ddb1893238f0723892dc36b8f625b>`
 
@@ -376,8 +270,6 @@ Typedefs
 - typedef struct :ref:`tagRtsX509NameEntry <structtag_rts_x509_name_entry>` :ref:`RtsX509NameEntry <group___cmp_x509_cert_itf_1ga949c43a2f0a07ec7103b293f375cfed3>`
 
 - typedef struct :ref:`tagRtsX509CertName <structtag_rts_x509_cert_name>` :ref:`RtsX509CertName <group___cmp_x509_cert_itf_1ga7471487b9fc63f37d2049e302cefeb2e>`
-
-- typedef struct :ref:`tagRtsX509ExKeyUsage <structtag_rts_x509_ex_key_usage>` :ref:`RtsX509ExKeyUsage <group___cmp_x509_cert_itf_1ga31519dff2498615bbe9dc17755351f33>`
 
 - typedef struct :ref:`tagRtsX509CertFilter <structtag_rts_x509_cert_filter>` :ref:`RtsX509CertFilter <group___cmp_x509_cert_itf_1ga72a12c7d19ffabbf04660a3566a8bda2>`
 
@@ -425,8 +317,6 @@ Typedefs
 
 - typedef struct :ref:`tagx509certstoregetnextcert_struct <structtagx509certstoregetnextcert__struct>` :ref:`x509certstoregetnextcert_struct <group___cmp_x509_cert_itf_1ga9dc17d300dd4982b26af1640e2230bcf>`
 
-- typedef struct :ref:`tagx509certstoregetregisteredcert_struct <structtagx509certstoregetregisteredcert__struct>` :ref:`x509certstoregetregisteredcert_struct <group___cmp_x509_cert_itf_1ga75ecd0f0652a89353ca5b60ec2a1ba0b>`
-
 - typedef struct :ref:`tagx509certstoreopen_struct <structtagx509certstoreopen__struct>` :ref:`x509certstoreopen_struct <group___cmp_x509_cert_itf_1gaeb1cecb322bff68041a6652448ec19a0>`
 
 - typedef struct :ref:`tagx509certstoreregister_struct <structtagx509certstoreregister__struct>` :ref:`x509certstoreregister_struct <group___cmp_x509_cert_itf_1ga4fb20cd1398f5e3bbc040d1958b18382>`
@@ -443,7 +333,9 @@ Typedefs
 
 - typedef struct :ref:`tagx509parsecertificate_struct <structtagx509parsecertificate__struct>` :ref:`x509parsecertificate_struct <group___cmp_x509_cert_itf_1ga0a52e762be835bab4c3428725a6df8e6>`
 
-- typedef void HUGEPTR(* :ref:`PFX509ASYNCCALLBACK <group___cmp_x509_cert_itf_1ga2ae20ef388388cf7cd68cc7faeab6401>`)(X509AsyncResult *pAsyncStruct)
+- typedef void HUGEPTR(* :ref:`PFX509ASYNCCALLBACK <group___cmp_x509_cert_itf_1gacedc17c2cfb2f1a8e9c51862ce46dfb1>`)(struct _X509AsyncStruct *pAsyncStruct)
+
+- typedef struct :ref:`_X509AsyncStruct <struct___x509_async_struct>` :ref:`X509AsyncStruct <group___cmp_x509_cert_itf_1ga3c2d496633e4cdebc1948c5d409a23ff>`
 
 - typedef struct :ref:`RtsCertBackendInfo_ <struct_rts_cert_backend_info__>` :ref:`RtsCertBackendInfo <group___cmp_x509_cert_itf___object_identifiers_1ga11dd55c6d85ce9e9bcbf5c54f7eae7be>`
 
@@ -493,8 +385,6 @@ Functions
 - void :ref:`x509certstoregetfirstcert <group___cmp_x509_cert_itf_1gac14fc5af262d185948ace8263b10733b>` (:ref:`x509certstoregetfirstcert_struct <group___cmp_x509_cert_itf_1ga9178369e5850a911fba9b9c35103acbf>` * p)
 
 - void :ref:`x509certstoregetnextcert <group___cmp_x509_cert_itf_1ga32f7fe3f9239d0d4d4ee63aea7800f26>` (:ref:`x509certstoregetnextcert_struct <group___cmp_x509_cert_itf_1ga9dc17d300dd4982b26af1640e2230bcf>` * p)
-
-- void :ref:`x509certstoregetregisteredcert <group___cmp_x509_cert_itf_1gac2d54f292ae981f158a7604b65eceeba>` (:ref:`x509certstoregetregisteredcert_struct <group___cmp_x509_cert_itf_1ga75ecd0f0652a89353ca5b60ec2a1ba0b>` * p)
 
 - void :ref:`x509certstoreopen <group___cmp_x509_cert_itf_1ga5f443868c7ddcd00562d400ad1933b85>` (:ref:`x509certstoreopen_struct <group___cmp_x509_cert_itf_1gaeb1cecb322bff68041a6652448ec19a0>` * p)
 
@@ -552,6 +442,8 @@ Functions
 
 - RTS_RESULT :ref:`X509CertCmsDecrypt <group___cmp_x509_cert_itf_1gaebc8225f7eb1f386c6e24732d53494ec>` (RTS_HANDLE hCertStore, RTS_HANDLE hRecipientCert, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCms, RTS_IEC_INT encoding, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pOutData)
 
+- RTS_RESULT :ref:`X509SplitCertificateChain <group___cmp_x509_cert_itf_1gaf8e485926efbf1b4ee64495fdee7f192>` (:ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCertificateChain, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCertificates, RTS_UI32 * pui32NumOfCertificates)
+
 - RTS_RESULT :ref:`RtsOIDCreate <group___cmp_x509_cert_itf_1gac62d802c208e5937b00033c2288b0c63>` (char * id, :ref:`RtsOID <group___cmp_x509_cert_itf_1gafb230e6dc978609d7aed4d3f75777dd4>` * oid)
 
 - RTS_RESULT :ref:`RtsOIDGetID <group___cmp_x509_cert_itf_1gaff3a425033e2d1a475c6623f99829d1b>` (:ref:`RtsOID <group___cmp_x509_cert_itf_1gafb230e6dc978609d7aed4d3f75777dd4>` * oid, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pBuffer)
@@ -572,11 +464,11 @@ Functions
 
 - RTS_HANDLE :ref:`X509CertCreateSelfSigned <group___cmp_x509_cert_itf_1gaf0d551e9529268467ac55cd5f244166e>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo, RTS_UI32 ui32KeySize, RTS_RESULT * pResult)
 
-- RTS_RESULT :ref:`X509CertCreateSelfSignedAsync <group___cmp_x509_cert_itf_1gafa3352932820f31bffb651567d200f5c>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo, RTS_UI32 ui32KeySize, void * pCallbackParam, :ref:`PFX509ASYNCCALLBACK <group___cmp_x509_cert_itf_1ga2ae20ef388388cf7cd68cc7faeab6401>`  pfCallback)
+- RTS_RESULT :ref:`X509CertCreateSelfSignedAsync <group___cmp_x509_cert_itf_1gab243d259781bf52349c821d27e05a4af>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo, RTS_UI32 ui32KeySize, RTS_UI32 nIndex, :ref:`PFX509ASYNCCALLBACK <group___cmp_x509_cert_itf_1gacedc17c2cfb2f1a8e9c51862ce46dfb1>`  pfCallback)
 
 - RTS_RESULT :ref:`X509CertCreateCSR <group___cmp_x509_cert_itf_1gae352d99fc4f1b840c570aab5d2991caf>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo, RTS_UI32 ui32KeySize, RTS_IEC_INT encoding, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCSR)
 
-- RTS_RESULT :ref:`X509CertCreateCSRAsync <group___cmp_x509_cert_itf_1ga11c9602a184532a470c199fe50be7c13>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTS_IEC_INT encoding, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCSR, void * pCallbackParam, :ref:`PFX509ASYNCCALLBACK <group___cmp_x509_cert_itf_1ga2ae20ef388388cf7cd68cc7faeab6401>`  pfCallback)
+- RTS_RESULT :ref:`X509CertCreateCSRAsync <group___cmp_x509_cert_itf_1ga3932382911a59919f7cff98f6c3a32b5>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTS_IEC_INT encoding, :ref:`RtsByteString <group___cmp_crypto_itf_1ga0d96060febb92297b9262b8cd1d3a1e6>` * pCSR, RTS_UI32 nIndex, :ref:`PFX509ASYNCCALLBACK <group___cmp_x509_cert_itf_1gacedc17c2cfb2f1a8e9c51862ce46dfb1>`  pfCallback)
 
 - RTS_RESULT :ref:`X509CertStoreAddCert <group___cmp_x509_cert_itf_1ga01ee2bd1985de5a20ab80cc616d9b6a6>` (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RTS_HANDLE hCert, RTS_IEC_INT trustLevel)
 
@@ -590,12 +482,10 @@ Functions
 
 - RTS_RESULT :ref:`X509CertStoreUnregister <group___cmp_x509_cert_itf_1ga8545f584011c653ac8baa957d1020bc0>` (RTS_HANDLE hCertStore, RTS_HANDLE hRegisteredComponent)
 
-- RTS_HANDLE :ref:`X509CertStoreGetRegisteredCert <group___cmp_x509_cert_itf_1ga1d36aa91065172a577af54736687fb4e>` (RTS_HANDLE hCertStore, RTS_HANDLE hUseCase, RTS_RESULT * pResult)
-
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpX509CertItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpX509CertItf.h
 
  
 .. last line of file.rst template

@@ -4,9 +4,7 @@
  *	Interface for the communication library.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -64,7 +62,6 @@
 /* Name service package flags 
  * These flags are used to describe device features in the name service answer. 
  */
-#define NSPF_NONE							0x00000000 /* empty flag field */
 #define NSPF_ENCRYPTED_COMM_SUPPORTED		0x00000001 /* device supports encrypted online communication */
 #define NSPF_ENCRYPTED_COMM_REQUIRED		0x00000002 /* device requires encrypted online communication */
 
@@ -158,7 +155,7 @@ typedef struct
 		   (e.g. "-1" to move up one level).
 		   This field specifies the initial value of AdrIndex in router package header.
 		*/
-	RTS_I32 nAddrOffset;
+	int nAddrOffset; 
 
 		/* Number of valid elements in array pointed to by pAddress */
 	RTS_UI32 nLength;
@@ -203,13 +200,13 @@ typedef struct
  *	Returns TRUE if addr1 == addr2, FALSE else 
  * </result>
  */
-RTS_BOOL CDECL AddrEquals(NODEADDRESS addr1, NODEADDRESS addr2);
-typedef RTS_BOOL (CDECL * PFADDREQUALS) (NODEADDRESS addr1, NODEADDRESS addr2);
+int CDECL AddrEquals(NODEADDRESS addr1, NODEADDRESS addr2);
+typedef int (CDECL * PFADDREQUALS) (NODEADDRESS addr1, NODEADDRESS addr2);
 #if defined(CMPCOMMUNICATIONLIB_NOTIMPLEMENTED) || defined(ADDREQUALS_NOTIMPLEMENTED)
 	#define USE_AddrEquals
 	#define EXT_AddrEquals
 	#define GET_AddrEquals(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_AddrEquals(p0,p1)  (RTS_BOOL)ERR_NOTIMPLEMENTED
+	#define CAL_AddrEquals(p0,p1)  (int)ERR_NOTIMPLEMENTED
 	#define CHK_AddrEquals  FALSE
 	#define EXP_AddrEquals  ERR_OK
 #elif defined(STATIC_LINK)
@@ -259,13 +256,13 @@ typedef RTS_BOOL (CDECL * PFADDREQUALS) (NODEADDRESS addr1, NODEADDRESS addr2);
  *  Returns TRUE, if addr1 equals the address described by pBufAddr2 and nlenAddr2
  * </result>
  */
-RTS_BOOL CDECL AddrEqualsBuffer(NODEADDRESS addr1, ADDRESSCOMPONENT *pBufAddr2, RTS_UI32 nLenAddr2);
-typedef RTS_BOOL (CDECL * PFADDREQUALSBUFFER) (NODEADDRESS addr1, ADDRESSCOMPONENT *pBufAddr2, RTS_UI32 nLenAddr2);
+int CDECL AddrEqualsBuffer(NODEADDRESS addr1, ADDRESSCOMPONENT *pBufAddr2, RTS_UI32 nLenAddr2);
+typedef int (CDECL * PFADDREQUALSBUFFER) (NODEADDRESS addr1, ADDRESSCOMPONENT *pBufAddr2, RTS_UI32 nLenAddr2);
 #if defined(CMPCOMMUNICATIONLIB_NOTIMPLEMENTED) || defined(ADDREQUALSBUFFER_NOTIMPLEMENTED)
 	#define USE_AddrEqualsBuffer
 	#define EXT_AddrEqualsBuffer
 	#define GET_AddrEqualsBuffer(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_AddrEqualsBuffer(p0,p1,p2)  (RTS_BOOL)ERR_NOTIMPLEMENTED
+	#define CAL_AddrEqualsBuffer(p0,p1,p2)  (int)ERR_NOTIMPLEMENTED
 	#define CHK_AddrEqualsBuffer  FALSE
 	#define EXP_AddrEqualsBuffer  ERR_OK
 #elif defined(STATIC_LINK)
@@ -321,13 +318,13 @@ typedef RTS_BOOL (CDECL * PFADDREQUALSBUFFER) (NODEADDRESS addr1, ADDRESSCOMPONE
  * <result>
  * </result>
 */
-RTS_RESULT CDECL CopyAddrToBuffer(ADDRESSCOMPONENT *pBufDest, RTS_UI32 *pnLenDest, const ADDRESSCOMPONENT *pBufSrc, RTS_UI32 nLenSrc);
-typedef RTS_RESULT (CDECL * PFCOPYADDRTOBUFFER) (ADDRESSCOMPONENT *pBufDest, RTS_UI32 *pnLenDest, const ADDRESSCOMPONENT *pBufSrc, RTS_UI32 nLenSrc);
+int CDECL CopyAddrToBuffer(ADDRESSCOMPONENT *pBufDest, RTS_UI32 *pnLenDest, const ADDRESSCOMPONENT *pBufSrc, RTS_UI32 nLenSrc);
+typedef int (CDECL * PFCOPYADDRTOBUFFER) (ADDRESSCOMPONENT *pBufDest, RTS_UI32 *pnLenDest, const ADDRESSCOMPONENT *pBufSrc, RTS_UI32 nLenSrc);
 #if defined(CMPCOMMUNICATIONLIB_NOTIMPLEMENTED) || defined(COPYADDRTOBUFFER_NOTIMPLEMENTED)
 	#define USE_CopyAddrToBuffer
 	#define EXT_CopyAddrToBuffer
 	#define GET_CopyAddrToBuffer(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_CopyAddrToBuffer(p0,p1,p2,p3)  (RTS_RESULT)ERR_NOTIMPLEMENTED
+	#define CAL_CopyAddrToBuffer(p0,p1,p2,p3)  (int)ERR_NOTIMPLEMENTED
 	#define CHK_CopyAddrToBuffer  FALSE
 	#define EXP_CopyAddrToBuffer  ERR_OK
 #elif defined(STATIC_LINK)
@@ -389,9 +386,9 @@ typedef struct
 class ICmpCommunicationLib : public IBase
 {
 	public:
-		virtual RTS_BOOL CDECL IAddrEquals(NODEADDRESS addr1, NODEADDRESS addr2) =0;
-		virtual RTS_BOOL CDECL IAddrEqualsBuffer(NODEADDRESS addr1, ADDRESSCOMPONENT *pBufAddr2, RTS_UI32 nLenAddr2) =0;
-		virtual RTS_RESULT CDECL ICopyAddrToBuffer(ADDRESSCOMPONENT *pBufDest, RTS_UI32 *pnLenDest, const ADDRESSCOMPONENT *pBufSrc, RTS_UI32 nLenSrc) =0;
+		virtual int CDECL IAddrEquals(NODEADDRESS addr1, NODEADDRESS addr2) =0;
+		virtual int CDECL IAddrEqualsBuffer(NODEADDRESS addr1, ADDRESSCOMPONENT *pBufAddr2, RTS_UI32 nLenAddr2) =0;
+		virtual int CDECL ICopyAddrToBuffer(ADDRESSCOMPONENT *pBufDest, RTS_UI32 *pnLenDest, const ADDRESSCOMPONENT *pBufSrc, RTS_UI32 nLenSrc) =0;
 };
 	#ifndef ITF_CmpCommunicationLib
 		#define ITF_CmpCommunicationLib static ICmpCommunicationLib *pICmpCommunicationLib = NULL;

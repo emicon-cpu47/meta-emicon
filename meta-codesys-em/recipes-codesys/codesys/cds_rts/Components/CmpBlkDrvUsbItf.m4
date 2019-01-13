@@ -4,9 +4,7 @@
  *	Block driver interface. This interface could be implemented by different components.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpBlkDrvUsb')
@@ -40,9 +38,9 @@ SET_INTERFACE_NAME(`CmpBlkDrvUsb')
 
 
 
-#define TYPE_NONE			0x00
-#define TYPE_AUTO_ADDR		0x01
-#define TYPE_HALFDUPLEX		0x02
+#define HEADERTYPE_NONE			0x00
+#define HEADERTYPE_AUTO_ADDR	0x01
+#define HEADERTYPE_HALFDUPLEX	0x02
 
 /* Definitions for HDX extension */
 #define USB_HDX_NEGOTIATION_MIN_WAITTIME	500		/*HDX Init Wait time*/
@@ -91,14 +89,14 @@ typedef enum
 	USBOP_OPEN,
 	USBOP_CLOSE,
 	USBOP_REREGISTER,
+	USBOP_PORT_UNUSED,
 	USBOP_ACTIVE,
 	USBOP_HDX_INIT,
 	USBOP_HDX_WAIT_ADDR_REQ,
 	USBOP_HDX_WAIT_ADDR_ANSW,
 	USBOP_HDX_WAIT_SEND,  /* not used anymore */
 	USBOP_HDX_SEND,
-	USBOP_HDX_RECEIVE,
-	USBOP_PORT_UNUSED
+	USBOP_HDX_RECEIVE
 }USBDEV_OPERATION;
 
 typedef struct tagUsbMpd
@@ -143,21 +141,20 @@ typedef struct tagUSBDEVICE
 	RTS_HANDLE hNetwork;
 	SENDBUFFER send;
 	RECBUFFER rec;
-	RTS_UI32 ulLastAction;
-	RTS_UI32 ulSendDelay;
-	RTS_BOOL bAddrRequestReceived;
-	RTS_BOOL bForceReregister;			/* another protocol type was requested from peer, reregistering at router is needed later on */
-	RTS_UI32 ui32ProtocolExtensionType;	/* currently used protocol type: see TYPE_xxx */
-	RTS_I32 i32EnableAutoAddressing;
-	RTS_I32 i32EnableHalfDuplexMode;	/* enable strict half-duplex communication */
-	RTS_UI16 usHdxTokenId;				/* TokenID for the current communication */
-	RTS_UI8 ucHdxRole;					/* Device is Master, Slave or undefined */
-	RTS_UI8 ucPeerAddr;
-	RTS_UI8 ucLocalAddr;				/* configured or negotiated local address */
+	unsigned long ulLastSend;
+	unsigned long ulSendDelay;
+	int bAddrRequestReceived;
+	RTS_I32 bEnableAutoAddressing;
+	unsigned char ucPeerAddr;
+	unsigned char ucLocalAddr;
 	MINIPORTDRVUSB2* pDrv;
 	char szName[MAX_PORT_NAME];
 	char szDriverName[MAX_PORT_NAME];
-	RTS_UI8 ucHdxRetries;
+	unsigned long ulLastAction;
+	int bEnableHalfDuplexMode;		/* enable strict half-duplex communication */
+	unsigned short usHdxTokenId;	/* TokenID for the current communication */
+	unsigned char ucHdxRole;        /* Device is Master, Slave or undefined */
+	unsigned char ucHdxRetries;
 	char szInitToken[30];
 }USBDEVICE;
 

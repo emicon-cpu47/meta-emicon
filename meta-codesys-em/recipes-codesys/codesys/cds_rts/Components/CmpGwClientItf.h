@@ -4,9 +4,7 @@
  *	Interface of the gateway client as an entry point in the plc network.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -67,14 +65,14 @@ enum
 typedef struct
 {
 	ADDRESSCOMPONENT *pAddress;
-	RTS_UI16 nLength;
+	unsigned short nLength;
 }NODEADDRESS_OLD;
 
 #define MAX_CHANNEL_NAME 19
 
 typedef struct 
 {
-	RTS_UI32 dwCommBuffer;
+	unsigned long dwCommBuffer;
 	RTS_WCHAR wszName[MAX_CHANNEL_NAME + 1];
 }CHANNELQOS;
 
@@ -85,8 +83,8 @@ typedef struct
 typedef struct
 {
 	RTS_WCHAR pwszName[MAX_PARAM_NAME+1];
-	RTS_UI32 dwParamId;
-	RTS_UI32 dwType; /* PT_xxx */
+	unsigned long dwParamId;
+	unsigned long dwType; /* PT_xxx */
 	void *pDefaultValue; /* points to the default value of this parameter. May be null */
 }PARAMETERDEFINITION;
 
@@ -96,20 +94,20 @@ typedef struct
 */
 typedef struct
 {
-	RTS_UI32 dwParamId;
-	RTS_UI32 type;
+	unsigned long dwParamId;
+	unsigned long type;
 	void * pValue; /* Pointer to the value */
 }PARAMETER;
 
 typedef struct
 {
-	RTS_I32 nNumParams;
+	int nNumParams;
 	PARAMETERDEFINITION *pParam; /* An array of nNumParams parameter definitions*/
 }PARAMDEFLIST;
 
 typedef struct
 {
-	RTS_I32 nNumParams;
+	int nNumParams;
 	PARAMETER *pParam; /* An array of nNumParams parameters */
 }PARAMLIST;
 
@@ -151,7 +149,7 @@ typedef struct tagASYNCRESULT
 		/* This event will be set when the asynchronous call completes. 
 		   Is set by the BeginXXX function
 		*/
-	RTS_UI32 ulRequestId;
+	unsigned long ulRequestId;
 		/* Internally used. To be ignored by the application */
 }ASYNCRESULT;
 
@@ -162,40 +160,40 @@ typedef struct tagASYNCRESULT
    bytes. 
    NOTE: This function must not block and it must not call any functions of the 
          gateway, since this may lead to deadlocks.
-   hConnHandle    IN  identifies the connection.
+   dwConnHandle   IN  identifies the connection.
    data           IN  The data to be sent
    pdwSent        OUT The number of bytes the could actually be sent.
 */
-typedef RTS_RESULT (CDECL *PFCOMMDRVSEND)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent);
+typedef int (CDECL *PFCOMMDRVSEND)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, unsigned long *pdwSent);
 
 /* Receive data from an existent connection. 
    NOTE: This function must not block and it must not call any functions of the 
          gateway, since this may lead to deadlocks.
-   hConnHandle  IN      identifies the connection
+   dwConnHandle IN      identifies the connection
    pData        OUT  The data to be received.
    dwReceive    IN   Number of bytes to receive.
 */
-typedef RTS_RESULT (CDECL *PFCOMMDRVRECEIVE)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData, RTS_UI32 dwReceive);
+typedef int (CDECL *PFCOMMDRVRECEIVE)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData, unsigned long dwReceive);
 
 /* Open a connection as described by pParams
    pParams        IN  
-   phConnHandle   OUT    If successfull phConnHandle is set to the handle for the connection.
+   pdwConnHandle  OUT    If successfull pdwConnHandle is set to the handle for the connection.
    pAsyncRes      IN/OUT Async result.
  */
-typedef RTS_RESULT (CDECL *PFCOMMDRVBEGINCONNECT)( PARAMLIST *pParams, RTS_HANDLE *phConnHandle, ASYNCRESULT *pAsyncRes);
+typedef int (CDECL *PFCOMMDRVBEGINCONNECT)( PARAMLIST *pParams, RTS_HANDLE *phConnHandle, ASYNCRESULT *pAsyncRes);
 
 /* Wait until the BeginConnect call identified by pAsyncRes has completed. 
    pAsyncRes     IN   Identifies the matching BeginConnect call.
-   phConnHandle  OUT  If the call was successfull, then this parameter is set to the 
+   pdwConnHandle OUT  If the call was successfull, then this parameter is set to the 
                       handle for the newly created connection.
 */
-typedef RTS_RESULT (CDECL *PFCOMMDRVENDCONNECT) ( ASYNCRESULT *pAsyncRes, RTS_HANDLE *phConnHandle);
+typedef int (CDECL *PFCOMMDRVENDCONNECT) ( ASYNCRESULT *pAsyncRes, RTS_HANDLE *phConnHandle);
 
 /* Close a connection 
    NOTE: This function must not block and it must not call any functions of the 
          gateway client, since this may lead to deadlocks.
 */
-typedef RTS_RESULT (CDECL *PFCOMMDRVCLOSE)(RTS_HANDLE hConnHandle);
+typedef int (CDECL *PFCOMMDRVCLOSE)(RTS_HANDLE hConnHandle);
 
 typedef struct 
 {
@@ -236,18 +234,18 @@ typedef struct
  * <param name="pDrvInfo" type="IN">
  *  Information about the driver. The hDriver field is unused in this call.
  * </param>
- * <param name="phDriverHandle" type="OUT">
+ * <param name="pulDriverHandle" type="OUT">
  *  Will be set with the handle assigned to the communication-driver.
- *  The driver must use this handle in all callbacks (eg. GWClientConnectionReady).
+ *  The driver must use this handle in all callbacks (eg. GWClientSendReady).
  * </param>
 */
-RTS_RESULT CDECL GWClientRegisterCommDrv(COMMDRVITF *pItf, COMMDRVINFO *pDrvInfo, RTS_HANDLE *phDriverHandle);
-typedef RTS_RESULT (CDECL * PFGWCLIENTREGISTERCOMMDRV) (COMMDRVITF *pItf, COMMDRVINFO *pDrvInfo, RTS_HANDLE *phDriverHandle);
+int CDECL GWClientRegisterCommDrv(COMMDRVITF *pItf, COMMDRVINFO *pDrvInfo, RTS_HANDLE *phDriverHandle);
+typedef int (CDECL * PFGWCLIENTREGISTERCOMMDRV) (COMMDRVITF *pItf, COMMDRVINFO *pDrvInfo, RTS_HANDLE *phDriverHandle);
 #if defined(CMPGWCLIENT_NOTIMPLEMENTED) || defined(GWCLIENTREGISTERCOMMDRV_NOTIMPLEMENTED)
 	#define USE_GWClientRegisterCommDrv
 	#define EXT_GWClientRegisterCommDrv
 	#define GET_GWClientRegisterCommDrv(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_GWClientRegisterCommDrv(p0,p1,p2) (RTS_RESULT)ERR_NOTIMPLEMENTED
+	#define CAL_GWClientRegisterCommDrv(p0,p1,p2) (int)ERR_NOTIMPLEMENTED
 	#define CHK_GWClientRegisterCommDrv  FALSE
 	#define EXP_GWClientRegisterCommDrv  ERR_OK
 #elif defined(STATIC_LINK)
@@ -304,23 +302,23 @@ enum
  *  The gwclient must not rely on this function to be called but may use 
  *  it to increase the performance of the connection.
  * </description>
- * <param name="hDriverHandle" type="IN">
+ * <param name="dwDriverHandle" type="IN">
  *  The driver handle returned by GWClientRegisterCommDrv.
  * </param>
- * <param name="hConnHandle" type="IN">
+ * <param name="dwConnHandle" type="IN">
  *  The handle to the connection.
  * </param>
  * <param name="nAction" type="IN">
  *  The action that is ready on this connection - eg. COMMDRV_ACTION_SEND, COMMDRV_ACTION_RECEIVE
  * </param>
  */
-RTS_RESULT CDECL GWClientConnectionReady(RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction);
-typedef RTS_RESULT (CDECL * PFGWCLIENTCONNECTIONREADY) (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction);
+int CDECL GWClientConnectionReady(RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, int nAction);
+typedef int (CDECL * PFGWCLIENTCONNECTIONREADY) (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, int nAction);
 #if defined(CMPGWCLIENT_NOTIMPLEMENTED) || defined(GWCLIENTCONNECTIONREADY_NOTIMPLEMENTED)
 	#define USE_GWClientConnectionReady
 	#define EXT_GWClientConnectionReady
 	#define GET_GWClientConnectionReady(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_GWClientConnectionReady(p0,p1,p2) (RTS_RESULT)ERR_NOTIMPLEMENTED
+	#define CAL_GWClientConnectionReady(p0,p1,p2) (int)ERR_NOTIMPLEMENTED
 	#define CHK_GWClientConnectionReady  FALSE
 	#define EXP_GWClientConnectionReady  ERR_OK
 #elif defined(STATIC_LINK)
@@ -361,8 +359,8 @@ typedef RTS_RESULT (CDECL * PFGWCLIENTCONNECTIONREADY) (RTS_HANDLE hDriverHandle
 #endif
 
 
-typedef void (STDCALL *PFENUMCOMMDRVCALLBACK)(RTS_HANDLE hDriver, RTS_GUID *guid, RTS_WCHAR *pwszName, PARAMDEFLIST *pParams, RTS_I8 bLast, RTS_I32 nMinPingInterval);
-typedef void (STDCALL *PFENUMCOMMDRVCALLBACK2)(RTS_UINTPTR dwUser, RTS_HANDLE hDriver, RTS_GUID *guid, RTS_WCHAR *pwszName, PARAMDEFLIST *pParams, RTS_I8 bLast, RTS_I32 nMinPingInterval);
+typedef void (STDCALL *PFENUMCOMMDRVCALLBACK)(RTS_HANDLE hDriver, RTS_GUID *guid, RTS_WCHAR *pwszName, PARAMDEFLIST *pParams, char bLast, int nMinPingInterval);
+typedef void (STDCALL *PFENUMCOMMDRVCALLBACK2)(unsigned long dwUser, RTS_HANDLE hDriver, RTS_GUID *guid, RTS_WCHAR *pwszName, PARAMDEFLIST *pParams, char bLast, int nMinPingInterval);
 
 /* This callback is called by the nameservice functions (e.g. ResolveAllNodes) for each 
    answering node.
@@ -374,7 +372,7 @@ typedef void (STDCALL *PFENUMCOMMDRVCALLBACK2)(RTS_UINTPTR dwUser, RTS_HANDLE hD
    wszNodeName  IN  The name of the node.
    wszTargetName IN The description of the target
 */
-typedef void (STDCALL *PFNODEINFOCALLBACK)(RTS_UINTPTR dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, RTS_I32 nMaxChannels, RTS_UI32 dwTargetId, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszTargetName);
+typedef void (STDCALL *PFNODEINFOCALLBACK)( unsigned long dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, int nMaxChannels, unsigned long dwTargetId, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszTargetName);
 
 /* This callback is called by the nameservice functions (e.g. ResolveAllNodes) for each 
    answering node.
@@ -389,7 +387,7 @@ typedef void (STDCALL *PFNODEINFOCALLBACK)(RTS_UINTPTR dwUser, NODEADDRESS_OLD a
    wszDeviceName IN The name of the device
    wszVendorName IN The name of the vendor
 */
-typedef void (STDCALL *PFNODEINFOCALLBACK2)(RTS_UINTPTR dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, RTS_I32 nMaxChannels, RTS_UI32 dwTargetType, RTS_UI32 dwTargetId, RTS_UI32 dwTargetVersion, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszDeviceName, RTS_WCHAR *wszVendorName);
+typedef void (STDCALL *PFNODEINFOCALLBACK2)( unsigned long dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, int nMaxChannels, unsigned long dwTargetType, unsigned long dwTargetId, unsigned long dwTargetVersion, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszDeviceName, RTS_WCHAR *wszVendorName);
 
 /* This callback is called by the nameservice functions (e.g. ResolveAllNodes) for each
 answering node.
@@ -499,8 +497,8 @@ typedef RTS_RESULT (CDECL * PFGWCLIENTENUMCOMMDRIVERS) (PFENUMCOMMDRVCALLBACK pf
 	#define EXP_GWClientEnumCommDrivers   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWClientEnumCommDrivers", (RTS_UINTPTR)GWClientEnumCommDrivers, 0, 0) 
 #endif
 
-RTS_RESULT CDECL GWClientEnumCommDrivers2(PFENUMCOMMDRVCALLBACK2 pfCallback, RTS_UINTPTR dwUser);
-typedef RTS_RESULT (CDECL * PFGWCLIENTENUMCOMMDRIVERS2) (PFENUMCOMMDRVCALLBACK2 pfCallback, RTS_UINTPTR dwUser);
+RTS_RESULT CDECL GWClientEnumCommDrivers2(PFENUMCOMMDRVCALLBACK2 pfCallback, unsigned long dwUser);
+typedef RTS_RESULT (CDECL * PFGWCLIENTENUMCOMMDRIVERS2) (PFENUMCOMMDRVCALLBACK2 pfCallback, unsigned long dwUser);
 #if defined(CMPGWCLIENT_NOTIMPLEMENTED) || defined(GWCLIENTENUMCOMMDRIVERS2_NOTIMPLEMENTED)
 	#define USE_GWClientEnumCommDrivers2
 	#define EXT_GWClientEnumCommDrivers2
@@ -545,8 +543,8 @@ typedef RTS_RESULT (CDECL * PFGWCLIENTENUMCOMMDRIVERS2) (PFENUMCOMMDRVCALLBACK2 
 	#define EXP_GWClientEnumCommDrivers2   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWClientEnumCommDrivers2", (RTS_UINTPTR)GWClientEnumCommDrivers2, 0, 0) 
 #endif
 
-RTS_RESULT CDECL GWClientBeginConnectToGateway(RTS_HANDLE hDriver, RTS_I32 nNumParams, PARAMETER *pParams, RTS_HANDLE *phGateway, ASYNCRESULT *pAsyncRes);
-typedef RTS_RESULT (CDECL * PFGWCLIENTBEGINCONNECTTOGATEWAY) (RTS_HANDLE hDriver, RTS_I32 nNumParams, PARAMETER *pParams, RTS_HANDLE *phGateway, ASYNCRESULT *pAsyncRes);
+RTS_RESULT CDECL GWClientBeginConnectToGateway(RTS_HANDLE hDriver, int nNumParams, PARAMETER *pParams, RTS_HANDLE *phGateway, ASYNCRESULT *pAsyncRes);
+typedef RTS_RESULT (CDECL * PFGWCLIENTBEGINCONNECTTOGATEWAY) (RTS_HANDLE hDriver, int nNumParams, PARAMETER *pParams, RTS_HANDLE *phGateway, ASYNCRESULT *pAsyncRes);
 #if defined(CMPGWCLIENT_NOTIMPLEMENTED) || defined(GWCLIENTBEGINCONNECTTOGATEWAY_NOTIMPLEMENTED)
 	#define USE_GWClientBeginConnectToGateway
 	#define EXT_GWClientBeginConnectToGateway
@@ -729,8 +727,8 @@ typedef RTS_RESULT (CDECL * PFGWCLIENTDISCONNECTFROMGATEWAY) (RTS_HANDLE hGatewa
 	#define EXP_GWClientDisconnectFromGateway   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWClientDisconnectFromGateway", (RTS_UINTPTR)GWClientDisconnectFromGateway, 0, 0) 
 #endif
 
-RTS_RESULT CDECL GWClientBeginIncrementalResolveAllNodes(RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes);
-typedef RTS_RESULT (CDECL * PFGWCLIENTBEGININCREMENTALRESOLVEALLNODES) (RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes);
+RTS_RESULT CDECL GWClientBeginIncrementalResolveAllNodes(RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes);
+typedef RTS_RESULT (CDECL * PFGWCLIENTBEGININCREMENTALRESOLVEALLNODES) (RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes);
 #if defined(CMPGWCLIENT_NOTIMPLEMENTED) || defined(GWCLIENTBEGININCREMENTALRESOLVEALLNODES_NOTIMPLEMENTED)
 	#define USE_GWClientBeginIncrementalResolveAllNodes
 	#define EXT_GWClientBeginIncrementalResolveAllNodes
@@ -775,8 +773,8 @@ typedef RTS_RESULT (CDECL * PFGWCLIENTBEGININCREMENTALRESOLVEALLNODES) (RTS_HAND
 	#define EXP_GWClientBeginIncrementalResolveAllNodes   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWClientBeginIncrementalResolveAllNodes", (RTS_UINTPTR)GWClientBeginIncrementalResolveAllNodes, 0, 0) 
 #endif
 
-RTS_RESULT CDECL GWClientBeginIncrementalResolveAllNodes2(RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK2 pfCallback2, ASYNCRESULT *pAsyncRes);
-typedef RTS_RESULT (CDECL * PFGWCLIENTBEGININCREMENTALRESOLVEALLNODES2) (RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK2 pfCallback2, ASYNCRESULT *pAsyncRes);
+RTS_RESULT CDECL GWClientBeginIncrementalResolveAllNodes2(RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK2 pfCallback2, ASYNCRESULT *pAsyncRes);
+typedef RTS_RESULT (CDECL * PFGWCLIENTBEGININCREMENTALRESOLVEALLNODES2) (RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK2 pfCallback2, ASYNCRESULT *pAsyncRes);
 #if defined(CMPGWCLIENT_NOTIMPLEMENTED) || defined(GWCLIENTBEGININCREMENTALRESOLVEALLNODES2_NOTIMPLEMENTED)
 	#define USE_GWClientBeginIncrementalResolveAllNodes2
 	#define EXT_GWClientBeginIncrementalResolveAllNodes2
@@ -959,8 +957,8 @@ typedef RTS_RESULT (CDECL * PFGWCLIENTENDINCREMENTALRESOLVEALLNODES) (ASYNCRESUL
 	#define EXP_GWClientEndIncrementalResolveAllNodes   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWClientEndIncrementalResolveAllNodes", (RTS_UINTPTR)GWClientEndIncrementalResolveAllNodes, 0, 0) 
 #endif
 
-RTS_RESULT CDECL GWClientBeginIncrementalResolveName(const RTS_WCHAR *pwszNodeName, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes);
-typedef RTS_RESULT (CDECL * PFGWCLIENTBEGININCREMENTALRESOLVENAME) (const RTS_WCHAR *pwszNodeName, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes);
+RTS_RESULT CDECL GWClientBeginIncrementalResolveName(const RTS_WCHAR *pwszNodeName, RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes);
+typedef RTS_RESULT (CDECL * PFGWCLIENTBEGININCREMENTALRESOLVENAME) (const RTS_WCHAR *pwszNodeName, RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes);
 #if defined(CMPGWCLIENT_NOTIMPLEMENTED) || defined(GWCLIENTBEGININCREMENTALRESOLVENAME_NOTIMPLEMENTED)
 	#define USE_GWClientBeginIncrementalResolveName
 	#define EXT_GWClientBeginIncrementalResolveName
@@ -1143,8 +1141,8 @@ typedef RTS_RESULT (CDECL * PFGWCLIENTENDINCREMENTALRESOLVENAME) (ASYNCRESULT *p
 	#define EXP_GWClientEndIncrementalResolveName   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWClientEndIncrementalResolveName", (RTS_UINTPTR)GWClientEndIncrementalResolveName, 0, 0) 
 #endif
 
-RTS_RESULT CDECL GWClientBeginResolveBlockDriverAddress(RTS_UI8 byBlkDrvType, RTS_UI8 byBlkDrvFlags, RTS_UI8 byAddrBitLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes);
-typedef RTS_RESULT (CDECL * PFGWCLIENTBEGINRESOLVEBLOCKDRIVERADDRESS) (RTS_UI8 byBlkDrvType, RTS_UI8 byBlkDrvFlags, RTS_UI8 byAddrBitLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes);
+RTS_RESULT CDECL GWClientBeginResolveBlockDriverAddress(RTS_UI8 byBlkDrvType, RTS_UI8 byBlkDrvFlags, RTS_UI8 byAddrBitLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes);
+typedef RTS_RESULT (CDECL * PFGWCLIENTBEGINRESOLVEBLOCKDRIVERADDRESS) (RTS_UI8 byBlkDrvType, RTS_UI8 byBlkDrvFlags, RTS_UI8 byAddrBitLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes);
 #if defined(CMPGWCLIENT_NOTIMPLEMENTED) || defined(GWCLIENTBEGINRESOLVEBLOCKDRIVERADDRESS_NOTIMPLEMENTED)
 	#define USE_GWClientBeginResolveBlockDriverAddress
 	#define EXT_GWClientBeginResolveBlockDriverAddress
@@ -1327,8 +1325,8 @@ typedef RTS_RESULT (CDECL * PFGWCLIENTENDRESOLVEBLOCKDRIVERADDRESS) (ASYNCRESULT
 	#define EXP_GWClientEndResolveBlockDriverAddress   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWClientEndResolveBlockDriverAddress", (RTS_UINTPTR)GWClientEndResolveBlockDriverAddress, 0, 0) 
 #endif
 
-RTS_RESULT CDECL GWClientBeginResolveAddress(RTS_UI8 byAddrComponentLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes);
-typedef RTS_RESULT (CDECL * PFGWCLIENTBEGINRESOLVEADDRESS) (RTS_UI8 byAddrComponentLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes);
+RTS_RESULT CDECL GWClientBeginResolveAddress(RTS_UI8 byAddrComponentLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes);
+typedef RTS_RESULT (CDECL * PFGWCLIENTBEGINRESOLVEADDRESS) (RTS_UI8 byAddrComponentLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes);
 #if defined(CMPGWCLIENT_NOTIMPLEMENTED) || defined(GWCLIENTBEGINRESOLVEADDRESS_NOTIMPLEMENTED)
 	#define USE_GWClientBeginResolveAddress
 	#define EXT_GWClientBeginResolveAddress
@@ -1603,54 +1601,8 @@ typedef RTS_RESULT (CDECL * PFGWCLIENTENDSENDREQUEST) (ASYNCRESULT *pAsyncRes, P
 	#define EXP_GWClientEndSendRequest   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWClientEndSendRequest", (RTS_UINTPTR)GWClientEndSendRequest, 0, 0) 
 #endif
 
-RTS_RESULT CDECL GWClientGetRequestStatus(ASYNCRESULT *pAsyncRes, RTS_UI16 *pwStatus, RTS_UI8 *pbyScaling, RTS_I32 *pnItemsComplete, RTS_I32 *pnTotalItems);
-typedef RTS_RESULT (CDECL * PFGWCLIENTGETREQUESTSTATUS) (ASYNCRESULT *pAsyncRes, RTS_UI16 *pwStatus, RTS_UI8 *pbyScaling, RTS_I32 *pnItemsComplete, RTS_I32 *pnTotalItems);
-#if defined(CMPGWCLIENT_NOTIMPLEMENTED) || defined(GWCLIENTGETREQUESTSTATUS_NOTIMPLEMENTED)
-	#define USE_GWClientGetRequestStatus
-	#define EXT_GWClientGetRequestStatus
-	#define GET_GWClientGetRequestStatus(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_GWClientGetRequestStatus(p0,p1,p2,p3,p4) (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_GWClientGetRequestStatus  FALSE
-	#define EXP_GWClientGetRequestStatus  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_GWClientGetRequestStatus
-	#define EXT_GWClientGetRequestStatus
-	#define GET_GWClientGetRequestStatus(fl)  CAL_CMGETAPI( "GWClientGetRequestStatus" ) 
-	#define CAL_GWClientGetRequestStatus  GWClientGetRequestStatus
-	#define CHK_GWClientGetRequestStatus  TRUE
-	#define EXP_GWClientGetRequestStatus  CAL_CMEXPAPI( "GWClientGetRequestStatus" ) 
-#elif defined(MIXED_LINK) && !defined(CMPGWCLIENT_EXTERNAL)
-	#define USE_GWClientGetRequestStatus
-	#define EXT_GWClientGetRequestStatus
-	#define GET_GWClientGetRequestStatus(fl)  CAL_CMGETAPI( "GWClientGetRequestStatus" ) 
-	#define CAL_GWClientGetRequestStatus  GWClientGetRequestStatus
-	#define CHK_GWClientGetRequestStatus  TRUE
-	#define EXP_GWClientGetRequestStatus  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWClientGetRequestStatus", (RTS_UINTPTR)GWClientGetRequestStatus, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpGwClientGWClientGetRequestStatus
-	#define EXT_CmpGwClientGWClientGetRequestStatus
-	#define GET_CmpGwClientGWClientGetRequestStatus  ERR_OK
-	#define CAL_CmpGwClientGWClientGetRequestStatus  GWClientGetRequestStatus
-	#define CHK_CmpGwClientGWClientGetRequestStatus  TRUE
-	#define EXP_CmpGwClientGWClientGetRequestStatus  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_GWClientGetRequestStatus
-	#define EXT_GWClientGetRequestStatus
-	#define GET_GWClientGetRequestStatus(fl)  CAL_CMGETAPI( "GWClientGetRequestStatus" ) 
-	#define CAL_GWClientGetRequestStatus  GWClientGetRequestStatus
-	#define CHK_GWClientGetRequestStatus  TRUE
-	#define EXP_GWClientGetRequestStatus  CAL_CMEXPAPI( "GWClientGetRequestStatus" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_GWClientGetRequestStatus  PFGWCLIENTGETREQUESTSTATUS pfGWClientGetRequestStatus;
-	#define EXT_GWClientGetRequestStatus  extern PFGWCLIENTGETREQUESTSTATUS pfGWClientGetRequestStatus;
-	#define GET_GWClientGetRequestStatus(fl)  s_pfCMGetAPI2( "GWClientGetRequestStatus", (RTS_VOID_FCTPTR *)&pfGWClientGetRequestStatus, (fl), 0, 0)
-	#define CAL_GWClientGetRequestStatus  pfGWClientGetRequestStatus
-	#define CHK_GWClientGetRequestStatus  (pfGWClientGetRequestStatus != NULL)
-	#define EXP_GWClientGetRequestStatus   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWClientGetRequestStatus", (RTS_UINTPTR)GWClientGetRequestStatus, 0, 0) 
-#endif
-
-RTS_RESULT CDECL GWClientBeginOpenChannel(RTS_HANDLE hGateway, NODEADDRESS_OLD addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, RTS_UI32 *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes);
-typedef RTS_RESULT (CDECL * PFGWCLIENTBEGINOPENCHANNEL) (RTS_HANDLE hGateway, NODEADDRESS_OLD addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, RTS_UI32 *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes);
+RTS_RESULT CDECL GWClientBeginOpenChannel(RTS_HANDLE hGateway, NODEADDRESS_OLD addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, unsigned long *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes);
+typedef RTS_RESULT (CDECL * PFGWCLIENTBEGINOPENCHANNEL) (RTS_HANDLE hGateway, NODEADDRESS_OLD addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, unsigned long *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes);
 #if defined(CMPGWCLIENT_NOTIMPLEMENTED) || defined(GWCLIENTBEGINOPENCHANNEL_NOTIMPLEMENTED)
 	#define USE_GWClientBeginOpenChannel
 	#define EXT_GWClientBeginOpenChannel
@@ -1695,8 +1647,8 @@ typedef RTS_RESULT (CDECL * PFGWCLIENTBEGINOPENCHANNEL) (RTS_HANDLE hGateway, NO
 	#define EXP_GWClientBeginOpenChannel   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWClientBeginOpenChannel", (RTS_UINTPTR)GWClientBeginOpenChannel, 0, 0) 
 #endif
 
-RTS_RESULT CDECL GWClientBeginOpenChannel2(RTS_HANDLE hGateway, PEERADDRESS addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, RTS_UI32 *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes);
-typedef RTS_RESULT (CDECL * PFGWCLIENTBEGINOPENCHANNEL2) (RTS_HANDLE hGateway, PEERADDRESS addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, RTS_UI32 *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes);
+RTS_RESULT CDECL GWClientBeginOpenChannel2(RTS_HANDLE hGateway, PEERADDRESS addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, unsigned long *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes);
+typedef RTS_RESULT (CDECL * PFGWCLIENTBEGINOPENCHANNEL2) (RTS_HANDLE hGateway, PEERADDRESS addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, unsigned long *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes);
 #if defined(CMPGWCLIENT_NOTIMPLEMENTED) || defined(GWCLIENTBEGINOPENCHANNEL2_NOTIMPLEMENTED)
 	#define USE_GWClientBeginOpenChannel2
 	#define EXT_GWClientBeginOpenChannel2
@@ -1741,8 +1693,8 @@ typedef RTS_RESULT (CDECL * PFGWCLIENTBEGINOPENCHANNEL2) (RTS_HANDLE hGateway, P
 	#define EXP_GWClientBeginOpenChannel2   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWClientBeginOpenChannel2", (RTS_UINTPTR)GWClientBeginOpenChannel2, 0, 0) 
 #endif
 
-RTS_RESULT CDECL GWClientEndOpenChannel(ASYNCRESULT *pAsyncRes, RTS_HANDLE *phChannel, RTS_UI32 *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget);
-typedef RTS_RESULT (CDECL * PFGWCLIENTENDOPENCHANNEL) (ASYNCRESULT *pAsyncRes, RTS_HANDLE *phChannel, RTS_UI32 *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget);
+RTS_RESULT CDECL GWClientEndOpenChannel(ASYNCRESULT *pAsyncRes, RTS_HANDLE *phChannel, unsigned long *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget);
+typedef RTS_RESULT (CDECL * PFGWCLIENTENDOPENCHANNEL) (ASYNCRESULT *pAsyncRes, RTS_HANDLE *phChannel, unsigned long *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget);
 #if defined(CMPGWCLIENT_NOTIMPLEMENTED) || defined(GWCLIENTENDOPENCHANNEL_NOTIMPLEMENTED)
 	#define USE_GWClientEndOpenChannel
 	#define EXT_GWClientEndOpenChannel

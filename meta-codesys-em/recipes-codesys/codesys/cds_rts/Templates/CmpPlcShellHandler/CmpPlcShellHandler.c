@@ -16,12 +16,8 @@ static void CDECL PlcCmdSimple(EventParam *pEventParam);
 static void CDECL PlcCmdAdvanced(EventParam *pEventParam);
 
 static void Init_PLCShellCommands(void);
-static void Exit_PLCShellCommands(void);
-static void Init_EventHandler(void);
-static void Exit_EventHandler(void);
-static void CDECL CBPlcShellCommandRegister(EventParam *pEventParam);
 
-static RTS_HANDLE s_hCommandRegisterEvent = RTS_INVALID_HANDLE;
+static void Exit_PLCShellCommands(void);
 
 /* Entry of the PLC Command Table */
 typedef struct PlcShellCommand_s {
@@ -132,11 +128,8 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 		case CH_INIT:
 			break;
 		case CH_INIT3:
-		{
 			Init_PLCShellCommands();
-			Init_EventHandler();
 			break;
-		}
 		case CH_INIT_TASKS:
 			break;
 		case CH_INIT_COMM:
@@ -152,11 +145,8 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 		case CH_EXIT_TASKS:
 			break;
 		case CH_EXIT3:
-		{
 			Exit_PLCShellCommands();
-			Exit_EventHandler();
 			break;
-		}
 		case CH_EXIT:
 		{
 			EXIT_STMT;
@@ -271,40 +261,5 @@ static void Exit_PLCShellCommands(void)
 	for (i = 0; s_shellCommands[i].pszName != NULL; i++)
 	{
 		CAL_PlcShellUnregister(s_shellCommands[i].pfCallback);
-	}
-}
-
-static void Init_EventHandler(void)
-{
-	RTS_RESULT Result;
-
-	if (CHK_EventOpen && CHK_EventRegisterCallbackFunction)
-	{
-		s_hCommandRegisterEvent = CAL_EventOpen(EVT_PlcShellCommandRegister, CMPID_CmpPlcShell, &Result);
-		CAL_EventRegisterCallbackFunction(s_hCommandRegisterEvent, CBPlcShellCommandRegister, 0);
-	}
-}
-static void Exit_EventHandler(void)
-{
-	if (CHK_EventUnregisterCallbackFunction)
-		CAL_EventUnregisterCallbackFunction(s_hCommandRegisterEvent, CBPlcShellCommandRegister);
-}
-
-static void CDECL CBPlcShellCommandRegister(EventParam *pEventParam)
-{
-	switch (pEventParam->EventId)
-	{
-	case EVT_PlcShellCommandRegister:
-		{
-			EVTPARAM_PlcShellCommandRegister *pParam = (EVTPARAM_PlcShellCommandRegister *)pEventParam->pParameter;
-
-			/* disable the command "mem" in the PlcShell */
-			if (strcmp(pParam->pszCommand, "mem") == 0)
-				pParam->bDisable = 1;
-
-			break;
-		}
-	default:
-		break;
 	}
 }

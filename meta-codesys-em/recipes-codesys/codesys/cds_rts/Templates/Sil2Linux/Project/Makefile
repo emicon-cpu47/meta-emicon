@@ -6,7 +6,7 @@
 ## Author:
 #######################################################################################
 
-CDSDIR?=/svn/CodesysSpV3/trunk/CodesysSpV3/
+CDSDIR?=/home/mhaas/svn/CodesysSpV3/trunk/CodesysSpV3/
 
 TESTFRAMEWORKDIR=$(CDSDIR)/Test/Moduletests/Testframework/
 CFLAGS += -I$(TESTFRAMEWORKDIR) -I$(TESTFRAMEWORKDIR)/../Projects/Linux/Testframework/

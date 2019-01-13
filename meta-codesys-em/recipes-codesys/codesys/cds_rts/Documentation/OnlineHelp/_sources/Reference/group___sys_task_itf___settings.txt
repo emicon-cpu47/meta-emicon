@@ -21,9 +21,9 @@ Macros
 
 - #define :ref:`SYSTASKVALUE_INT_TASK_STACKSIZE_DEFAULT <group___sys_task_itf___settings_1gac04ba49cdc3616978984f3c712eae00c>` 0
 
-- #define :ref:`SYSTASKKEY_INT_QNX_CLOCKPERIOD <group___sys_task_itf___settings_1ga9de461b46c688bb97a9099cc7ca2c028>` "QNX.ClockPeriod"
+- #define :ref:`SYSTASKKEY_INT_QNX_SETSYSTEMTICK <group___sys_task_itf___settings_1ga50e9bac14bd2db238000581d269fb425>` "QNX.SetSystemTick"
 
-- #define :ref:`SYSTASKVALUE_INT_QNX_CLOCKPERIOD_DEFAULT <group___sys_task_itf___settings_1gab881e98c3a30804d8f671b3103bb5160>` 0
+- #define :ref:`SYSTASKVALUE_INT_QNX_SETSYSTEMTICK_DEFAULT <group___sys_task_itf___settings_1gaf5c63b536eb613e2cc49fcd099dce727>` 1
 
 - #define :ref:`PFTASKEXCEPTIONHANDLER <group___sys_task_itf___settings_1ga292ffd009d5a17d2499c8a6e2b14669b>` :ref:`PFSYS_TASK_EXCEPTIONHANDLER <group___sys_task_itf___settings_1ga31aa6ad834f16cedb1c03889f5e7340a>`
 
@@ -72,17 +72,17 @@ Setting to specify the OS specifiy task stacksize. For smaller embedded systems 
 #define SYSTASKVALUE_INT_TASK_STACKSIZE_DEFAULT 0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___sys_task_itf___settings_1ga9de461b46c688bb97a9099cc7ca2c028:
+.. _group___sys_task_itf___settings_1ga50e9bac14bd2db238000581d269fb425:
 
-#define SYSTASKKEY_INT_QNX_CLOCKPERIOD "QNX.ClockPeriod"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#define SYSTASKKEY_INT_QNX_SETSYSTEMTICK "QNX.SetSystemTick"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default CODESYS doesn't change the clock period of the QNX system tick. To reduce the jitter of the tasks, or to support "distributed clocks", one might want to have a higher resolution of the timer. With this setting you can adjust the clock period at CODESYS startup. The period is defined in nanoseconds and is passed as is to the QNX neutrino function ClockPeriod().
+1: the runtime sets the QNX system tick to 1ms on startup (default). 0: the QNX system tick is left unchanged. NOTE: For usage of distributed clocks in ethercat a value of "1" is required here
 
-.. _group___sys_task_itf___settings_1gab881e98c3a30804d8f671b3103bb5160:
+.. _group___sys_task_itf___settings_1gaf5c63b536eb613e2cc49fcd099dce727:
 
-#define SYSTASKVALUE_INT_QNX_CLOCKPERIOD_DEFAULT 0
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#define SYSTASKVALUE_INT_QNX_SETSYSTEMTICK_DEFAULT 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___sys_task_itf___settings_1ga292ffd009d5a17d2499c8a6e2b14669b:
 

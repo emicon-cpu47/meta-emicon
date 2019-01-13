@@ -7,9 +7,6 @@
  * <copyright>(c) 2003-2010 3S-Smart Software Solutions</copyright>
  */
 
-#ifndef _RTSSIL2PSPITF_H_
-#define _RTSSIL2PSPITF_H_
- 
 /**
  * <SIL2/>
  * <category>Typedef</category>
@@ -549,5 +546,3 @@ SIL2PSP_RESULT SIL2PSP_LeaveContext(unsigned int *pui32Flags);
  * <result>OperationMode. See category Operation Mode.</result>
  */
 SIL2PSP_OPMODE SIL2PSP_GetOperationMode(void);
-
-#endif /* _RTSSIL2PSPITF_H_ */

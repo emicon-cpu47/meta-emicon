@@ -59,7 +59,7 @@ rbuf.uiReadPos = (rbuf.uiReadPos + sizeToRead) % sizeof(rbuf.ucBuf);\
 }while(0)
 
 - #define :ref:`RTS_RINGBUFFER_READB <group___c_m_utils_itf_1gafaf454f281b6434037b6dfbfc0f5509a>` do{\
-:ref:`c <group___cmp_c_a_a_storage_dep_1gacd88f945c2d129ce6a734b5952d90324>` = rbuf.ucBuf[rbuf.uiReadPos];\
+:ref:`c <group___cmp_c_a_a_storage_dep_1ga0f8d5044c3ab491b6e15453ab19a3f92>` = rbuf.ucBuf[rbuf.uiReadPos];\
 rbuf.uiReadPos = (rbuf.uiReadPos + 1) % sizeof(rbuf.ucBuf);\
 }while(0)
 
@@ -73,7 +73,7 @@ rbuf.uiWritePos = (rbuf.uiWritePos + sizeToWrite) % sizeof(rbuf.ucBuf);\
 }while(0)
 
 - #define :ref:`RTS_RINGBUFFER_WRITEB <group___c_m_utils_itf_1gae91514facba590a7e1784392df417ab8>` do{\
-rbuf.ucBuf[rbuf.uiWritePos] = :ref:`c <group___cmp_c_a_a_storage_dep_1gacd88f945c2d129ce6a734b5952d90324>` ;\
+rbuf.ucBuf[rbuf.uiWritePos] = :ref:`c <group___cmp_c_a_a_storage_dep_1ga0f8d5044c3ab491b6e15453ab19a3f92>` ;\
 rbuf.uiWritePos = (rbuf.uiWritePos + 1) % sizeof(rbuf.ucBuf);\
 }while(0)
 
@@ -91,9 +91,9 @@ rbuf.uiWritePos = (rbuf.uiWritePos + 1) % sizeof(rbuf.ucBuf);\
 
 - #define :ref:`MAX_GUID_STRING_LEN <group___c_m_utils_itf_1gab20b0ac701361d7d77c3149900bf69e2>` 38
 
-- #define :ref:`CM_STRING_GET_CONTENT <group___c_m_utils_itf_1gab79193aa2113a89173602828a40348e0>` (pString == NULL ? default : ( ((( :ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->ulFlags & :ref:`RTS_STRING_DYNAMIC <group___c_m_utils_itf___component_name_flags_1gafc4946f3306228537866e9df2642730a>` ) ? (( :ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->name.psz : (( :ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->name.sz) )
+- #define :ref:`CM_STRING_GET_CONTENT <group___c_m_utils_itf_1gab79193aa2113a89173602828a40348e0>` (pString == NULL ? default : ( (((:ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->ulFlags & :ref:`RTS_STRING_DYNAMIC <group___c_m_utils_itf___component_name_flags_1gafc4946f3306228537866e9df2642730a>` ) ? ((:ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->name.psz : ((:ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->name.sz) )
 
-- #define :ref:`CM_STRING_GET_SIZE <group___c_m_utils_itf_1ga925f73506e804082d56884f5e15a287a>` (pString == NULL ? 0 : (( :ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->size)
+- #define :ref:`CM_STRING_GET_SIZE <group___c_m_utils_itf_1ga925f73506e804082d56884f5e15a287a>` (pString == NULL ? 0 : ((:ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->size)
 
 - #define :ref:`ITF_CMUtils <group___c_m_utils_itf_1ga4ff85fe8755eb599454b7dc813211102>`
 
@@ -187,10 +187,6 @@ Functions
 
 - RTS_WCHAR * :ref:`CMUtlwstrchr <group___c_m_utils_itf_1ga7e6c9f82ee7609a35bb23318e16c1ec5>` (const RTS_WCHAR * pwsz, RTS_WCHAR w)
 
-- RTS_RESULT :ref:`CMUtlWToUtf8 <group___c_m_utils_itf_1ga3f1edd84a32b6a9f0a00266a6b140399>` (RTS_WCHAR * pwsz, RTS_SIZE wstrLen, RTS_UI8 * pUtf8Str, RTS_SIZE bufferSize)
-
-- RTS_RESULT :ref:`CMUtlUtf8ToW <group___c_m_utils_itf_1ga5f6e129b157774bfdace4e9d32f803d9>` (RTS_UI8 * pUtf8Str, RTS_SIZE utf8BufferSize, RTS_WCHAR * pwsz, RTS_SIZE wstrLen)
-
 - int :ref:`CMUtlcwstrcmp <group___c_m_utils_itf_1ga19f32fabee7740573b95085e0dcf1ffe>` (const RTS_CWCHAR * pwsz1, const RTS_CWCHAR * pwsz2)
 
 - RTS_RESULT :ref:`CMUtlcwstrcpy <group___c_m_utils_itf_1ga45e8180fa576440b486ba75aa8bcaecd>` (RTS_CWCHAR * pwszDest, RTS_SIZE nDestSize, const RTS_CWCHAR * pwszSrc)
@@ -226,7 +222,7 @@ The utility functions can be used by all components, because they are always inc
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -306,7 +302,7 @@ Get the length of available space in ring buffer, must be called before writing 
     rbuf.uiReadPos = (rbuf.uiReadPos + sizeToRead) % sizeof(rbuf.ucBuf);\\
     }while(0)
 
-Read data from ring buffer. sizeToRead is the actual data length to be read from the buffer! Comparison between filled data length in buffer and the length needs to be read must be done before calling this function! Example: sizeToRead = MIN( :ref:`RTS_RINGBUFFER_GET_FILL_SIZE(rbuf) <group___c_m_utils_itf_1gad47d89c0308e09d36eac69cc3f0bd644>` , usSize); :ref:`RTS_RINGBUFFER_READ(dest, rbuf, sizeToRead) <group___c_m_utils_itf_1ga958863b3c3b878ffd954ebd15d4dd436>` ;
+Read data from ring buffer. sizeToRead is the actual data length to be read from the buffer! Comparison between filled data length in buffer and the length needs to be read must be done before calling this function! Example: sizeToRead = MIN(:ref:`RTS_RINGBUFFER_GET_FILL_SIZE(rbuf) <group___c_m_utils_itf_1gad47d89c0308e09d36eac69cc3f0bd644>` , usSize); :ref:`RTS_RINGBUFFER_READ(dest, rbuf, sizeToRead) <group___c_m_utils_itf_1ga958863b3c3b878ffd954ebd15d4dd436>` ;
 
 .. _group___c_m_utils_itf_1gafaf454f281b6434037b6dfbfc0f5509a:
 
@@ -318,7 +314,7 @@ Read data from ring buffer. sizeToRead is the actual data length to be read from
 .. parsed-literal::
 
     do{\\
-    :ref:`c <group___cmp_c_a_a_storage_dep_1gacd88f945c2d129ce6a734b5952d90324>` = rbuf.ucBuf[rbuf.uiReadPos];\\
+    :ref:`c <group___cmp_c_a_a_storage_dep_1ga0f8d5044c3ab491b6e15453ab19a3f92>` = rbuf.ucBuf[rbuf.uiReadPos];\\
     rbuf.uiReadPos = (rbuf.uiReadPos + 1) % sizeof(rbuf.ucBuf);\\
     }while(0)
 
@@ -342,7 +338,7 @@ Read single byte of data from ring buffer.
     rbuf.uiWritePos = (rbuf.uiWritePos + sizeToWrite) % sizeof(rbuf.ucBuf);\\
     }while(0)
 
-Write data into ring buffer. sizeToWrite is the actual data length to be written into the buffer! Comparison between free buffer length and the length needs to be written must be done before calling this function! Example: sizeToWrite = MIN( :ref:`RTS_RINGBUFFER_GET_FREE_SIZE(rbuf) <group___c_m_utils_itf_1gab3464fee8a13d1f36c297cb5d0ad4a77>` , usSize); :ref:`RTS_RINGBUFFER_WRITE(src, rbuf, sizeToWrite) <group___c_m_utils_itf_1ga6bb0ba7a08ce9eb3f1c7f4d3ef7e6529>` ;
+Write data into ring buffer. sizeToWrite is the actual data length to be written into the buffer! Comparison between free buffer length and the length needs to be written must be done before calling this function! Example: sizeToWrite = MIN(:ref:`RTS_RINGBUFFER_GET_FREE_SIZE(rbuf) <group___c_m_utils_itf_1gab3464fee8a13d1f36c297cb5d0ad4a77>` , usSize); :ref:`RTS_RINGBUFFER_WRITE(src, rbuf, sizeToWrite) <group___c_m_utils_itf_1ga6bb0ba7a08ce9eb3f1c7f4d3ef7e6529>` ;
 
 .. _group___c_m_utils_itf_1gae91514facba590a7e1784392df417ab8:
 
@@ -354,7 +350,7 @@ Write data into ring buffer. sizeToWrite is the actual data length to be written
 .. parsed-literal::
 
     do{\\
-    rbuf.ucBuf[rbuf.uiWritePos] = :ref:`c <group___cmp_c_a_a_storage_dep_1gacd88f945c2d129ce6a734b5952d90324>` ;\\
+    rbuf.ucBuf[rbuf.uiWritePos] = :ref:`c <group___cmp_c_a_a_storage_dep_1ga0f8d5044c3ab491b6e15453ab19a3f92>` ;\\
     rbuf.uiWritePos = (rbuf.uiWritePos + 1) % sizeof(rbuf.ucBuf);\\
     }while(0)
 
@@ -411,8 +407,8 @@ Maximum legth of the GUID string
 
 .. _group___c_m_utils_itf_1gab79193aa2113a89173602828a40348e0:
 
-#define CM_STRING_GET_CONTENT (pString == NULL ? default : ( ((( :ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->ulFlags & :ref:`RTS_STRING_DYNAMIC <group___c_m_utils_itf___component_name_flags_1gafc4946f3306228537866e9df2642730a>` ) ? (( :ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->name.psz : (( :ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->name.sz) )
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#define CM_STRING_GET_CONTENT (pString == NULL ? default : ( (((:ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->ulFlags & :ref:`RTS_STRING_DYNAMIC <group___c_m_utils_itf___component_name_flags_1gafc4946f3306228537866e9df2642730a>` ) ? ((:ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->name.psz : ((:ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->name.sz) )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Macro to get the string content out of a string class.
 
@@ -430,8 +426,8 @@ Pointer to content
 
 .. _group___c_m_utils_itf_1ga925f73506e804082d56884f5e15a287a:
 
-#define CM_STRING_GET_SIZE (pString == NULL ? 0 : (( :ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->size)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#define CM_STRING_GET_SIZE (pString == NULL ? 0 : ((:ref:`RTS_STRING_CLASS <group___c_m_utils_itf___r_t_s___s_t_r_i_n_g___c_l_a_s_s_1gadd8358e9845261633158109ee2d721b0>` *)pString)->size)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Macro to get the size in bytes of the content of a string class.
 
@@ -1327,64 +1323,6 @@ Find a character in a unicode string.
 **Returns:**
 
 Returns the find position or NULL if not found
-
-.. _group___c_m_utils_itf_1ga3f1edd84a32b6a9f0a00266a6b140399:
-
-RTS_RESULT CMUtlWToUtf8 (RTS_WCHAR *pwsz, RTS_SIZE wstrLen, RTS_UI8 *pUtf8Str, RTS_SIZE bufferSize)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This function converts a UTF-16 encoded WSTRING to a sequenze of UTF-8 code points. If a codepoint cannot be converted this codepoint will be replaced with the Unicode REPLACEMENT CHARACTER (U+FFFD).
-
-**Parameters**
-
-+---------+------------+------------------------------------------------------+
-| [in]    | pwsz       | Pointer to WSTRING to be converted.                  |
-+---------+------------+------------------------------------------------------+
-| [in]    | wstrLen    | Size of readbuffer in WCHARs. Set to -1 if unknown.  |
-+---------+------------+------------------------------------------------------+
-| [in]    | pUtf8Str   | Pointer to buffer where to store the UTF-8 sequence. |
-+---------+------------+------------------------------------------------------+
-| [in]    | bufferSize | Buffersize of UTF-8 buffer.                          |
-+---------+------------+------------------------------------------------------+
-
-**Returns:**
-
-On of these error codes:
-
-- ERR_OK: Everything went fine. No errors occured.
-
-- ERR_PARAMETER: The parameterchecks failed.
-
-- ERR_CONVERSION_INCOMPLETE: The conversion failed because of some codepoints. These where replaced with U+FFFD.
-
-.. _group___c_m_utils_itf_1ga5f6e129b157774bfdace4e9d32f803d9:
-
-RTS_RESULT CMUtlUtf8ToW (RTS_UI8 *pUtf8Str, RTS_SIZE utf8BufferSize, RTS_WCHAR *pwsz, RTS_SIZE wstrLen)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This function converts a UTF-8 string to a UTF-16 encoded WSTRING. The conversion inserts the REPLACEMENT CHARACTER (U+FFFD) if a UTF-8 codepoint or invalid.
-
-**Parameters**
-
-+---------+-----------------+------------------------------------------+
-| [in]    | pUtf8Str        | Pointer to UTF-8 string to be converted. |
-+---------+-----------------+------------------------------------------+
-| [in]    | pUtf8BufferSize | Read buffer size. Set to -1 if unknown.  |
-+---------+-----------------+------------------------------------------+
-| [in]    | pwsz            | Pointer to WSTRING buffer.               |
-+---------+-----------------+------------------------------------------+
-| [in]    | wstrLen         | Number of WCHARs in pwsz.                |
-+---------+-----------------+------------------------------------------+
-
-**Returns:**
-
-On of these error codes:
-
-- ERR_OK: Everything went fine. No errors occured.
-
-- ERR_PARAMETER: The parameterchecks failed.
-
-- ERR_CONVERSION_INCOMPLETE: The conversion failed because of some codepoints. These where replaced with U+FFFD.
 
 .. _group___c_m_utils_itf_1ga19f32fabee7740573b95085e0dcf1ffe:
 

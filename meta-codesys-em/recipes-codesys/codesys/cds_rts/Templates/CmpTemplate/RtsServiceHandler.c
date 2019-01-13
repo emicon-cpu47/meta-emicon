@@ -1,15 +1,14 @@
-/**
- * <name>RtsDisableOperations.c</name>
- * <description> 
- *	Template component to handle layer7 services
- *
- *	- CH_INIT3: call InitServiceHandler() from your component hook function
- *	- CH_EXIT3: call ExitServiceHandler() from your component hook function
- *	- TempServiceHandler(): Implements service routines
- * </description>
- *
- * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
- */
+/*************************************************************************************
+*
+*	Copyright:		© 3S - Smart Software Solutions GmbH, Kempten
+*	Program:		Runtime System for the CoDeSys Soft-Plc
+*	Module: 		Template component to handle layer7 services
+*	Version:
+*	Description:
+*		- CH_INIT3: call InitServiceHandler() from your component hook function
+*		- CH_EXIT3: call ExitServiceHandler() from your component hook function
+*		- TempServiceHandler(): Implements service routines
+**************************************************************************************/
 
 #include "CmpStd.h"
 

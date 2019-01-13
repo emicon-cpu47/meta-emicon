@@ -9,7 +9,6 @@ CmpScheduleItf.h File Reference
 ===============================
 
 | #include ":ref:`CmpIecTaskItf.h <_cmp_iec_task_itf_8h>`"
-| #include ":ref:`SysCpuMultiCoreItf.h <_sys_cpu_multi_core_itf_8h>`"
 
 Data Structures
 ---------------
@@ -17,8 +16,6 @@ Data Structures
 - struct :ref:`EVTPARAM_CmpSchedule <struct_e_v_t_p_a_r_a_m___cmp_schedule>`
 
 - struct :ref:`EVTPARAM_CmpScheduleTick <struct_e_v_t_p_a_r_a_m___cmp_schedule_tick>`
-
-- struct :ref:`EVTPARAM_CmpScheduleTaskGapApp <struct_e_v_t_p_a_r_a_m___cmp_schedule_task_gap_app>`
 
 - struct :ref:`tagschedgetcurrenttask_struct <structtagschedgetcurrenttask__struct>`
 
@@ -39,10 +36,6 @@ Data Structures
 - struct :ref:`tagschedregisterexternalevent_struct <structtagschedregisterexternalevent__struct>`
 
 - struct :ref:`tagschedsettaskinterval_struct <structtagschedsettaskinterval__struct>`
-
-- struct :ref:`tagschedtaskresume_struct <structtagschedtaskresume__struct>`
-
-- struct :ref:`tagschedtasksuspend_struct <structtagschedtasksuspend__struct>`
 
 - struct :ref:`tagschedunregisterexternalevent_struct <structtagschedunregisterexternalevent__struct>`
 
@@ -181,27 +174,21 @@ Macros
 
 - #define :ref:`EVTVERSION_CmpSchedule <group___cmp_schedule_itf___eventparameter_1ga559d54ad96c7858e1cd830a520561a67>` 0x0001
 
-- #define :ref:`EVT_TaskCreateDone <group___cmp_schedule_itf___events_1ga42d4a39bfaa20fb7719a0084ae29c0d9>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+- #define :ref:`EVT_TaskCreateDone <group___cmp_schedule_itf___events_1ga42d4a39bfaa20fb7719a0084ae29c0d9>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
 
-- #define :ref:`EVT_PrepareTaskDelete <group___cmp_schedule_itf___events_1gad44fc0229dab6e5f1757565e83700e9c>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
+- #define :ref:`EVT_PrepareTaskDelete <group___cmp_schedule_itf___events_1gad44fc0229dab6e5f1757565e83700e9c>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
 
-- #define :ref:`EVT_ExternalEventTaskCreateDone <group___cmp_schedule_itf___events_1ga6ed9346a5d281e19022a004083eb538c>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
+- #define :ref:`EVT_ExternalEventTaskCreateDone <group___cmp_schedule_itf___events_1ga6ed9346a5d281e19022a004083eb538c>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 3)
 
-- #define :ref:`EVT_PrepareExternalEventTaskDelete <group___cmp_schedule_itf___events_1gad895b79014f58c6c051fc6f6277e614a>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 4)
+- #define :ref:`EVT_PrepareExternalEventTaskDelete <group___cmp_schedule_itf___events_1gad895b79014f58c6c051fc6f6277e614a>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 4)
 
 - #define :ref:`EVTPARAMID_CmpScheduleTick <group___cmp_schedule_itf___eventparameter_1gac7c6194c91306fc5f46a02230b42839f>` 0x0002
 
 - #define :ref:`EVTVERSION_CmpScheduleTick <group___cmp_schedule_itf___eventparameter_1gabeea13e5e13320f6b0495294105749a8>` 0x0002
 
-- #define :ref:`EVT_ScheduleTick <group___cmp_schedule_itf___events_1gaaf2e66110da2bab5546340ca3461b75d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 5)
+- #define :ref:`EVT_ScheduleTick <group___cmp_schedule_itf___events_1gaaf2e66110da2bab5546340ca3461b75d>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 5)
 
-- #define :ref:`EVT_ScheduleTaskGap <group___cmp_schedule_itf___events_1gaa62d05bd705c653ddfa8fd54a3253045>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 6)
-
-- #define :ref:`EVTPARAMID_CmpScheduleTaskGapApp <group___cmp_schedule_itf___eventparameter_1ga7a1482b2641aaaf6c717028d3d84164c>` 0x0003
-
-- #define :ref:`EVTVERSION_CmpScheduleTaskGapApp <group___cmp_schedule_itf___eventparameter_1ga005d5f56573ce4ab65b9e626c8e2567f>` 0x0001
-
-- #define :ref:`EVT_ScheduleTaskGapApp <group___cmp_schedule_itf___events_1ga9c10fcbc8376b51847a5e821964611c5>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 7)
+- #define :ref:`EVT_ScheduleTaskGap <group___cmp_schedule_itf___events_1gaa62d05bd705c653ddfa8fd54a3253045>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 6)
 
 - #define :ref:`ITF_CmpSchedule <_cmp_schedule_itf_8h_1aca2b296ed52c28ccc7788fb047a6fb4f>`
 
@@ -229,10 +216,6 @@ Typedefs
 - typedef struct :ref:`tagschedregisterexternalevent_struct <structtagschedregisterexternalevent__struct>` :ref:`schedregisterexternalevent_struct <_cmp_schedule_itf_8h_1a7bd7eed96c074b258f900b392ab77f20>`
 
 - typedef struct :ref:`tagschedsettaskinterval_struct <structtagschedsettaskinterval__struct>` :ref:`schedsettaskinterval_struct <_cmp_schedule_itf_8h_1a75f8282b38572a0e401ee7ea98ee5254>`
-
-- typedef struct :ref:`tagschedtaskresume_struct <structtagschedtaskresume__struct>` :ref:`schedtaskresume_struct <_cmp_schedule_itf_8h_1a0dc06ba1ab92ed754f0f2c1c975c2df0>`
-
-- typedef struct :ref:`tagschedtasksuspend_struct <structtagschedtasksuspend__struct>` :ref:`schedtasksuspend_struct <_cmp_schedule_itf_8h_1a2653c718ba5a1b8db842e7b42181ab55>`
 
 - typedef struct :ref:`tagschedunregisterexternalevent_struct <structtagschedunregisterexternalevent__struct>` :ref:`schedunregisterexternalevent_struct <_cmp_schedule_itf_8h_1abb9cf62279ca09d1da4ee623231744fc>`
 
@@ -264,10 +247,6 @@ Functions
 - void :ref:`schedregisterexternalevent <_cmp_schedule_itf_8h_1a7965bc04a67c08866afbaa14f1cea387>` (:ref:`schedregisterexternalevent_struct <_cmp_schedule_itf_8h_1a7bd7eed96c074b258f900b392ab77f20>` * p)
 
 - void :ref:`schedsettaskinterval <_cmp_schedule_itf_8h_1a5ffe8f94a0b6421c9f832b6002d6154d>` (:ref:`schedsettaskinterval_struct <_cmp_schedule_itf_8h_1a75f8282b38572a0e401ee7ea98ee5254>` * p)
-
-- void :ref:`schedtaskresume <_cmp_schedule_itf_8h_1a9fc3788a0efe44fcf2d0d419aa836c08>` (:ref:`schedtaskresume_struct <_cmp_schedule_itf_8h_1a0dc06ba1ab92ed754f0f2c1c975c2df0>` * p)
-
-- void :ref:`schedtasksuspend <_cmp_schedule_itf_8h_1aa0a18d08a0321f9d42657ced7279984f>` (:ref:`schedtasksuspend_struct <_cmp_schedule_itf_8h_1a2653c718ba5a1b8db842e7b42181ab55>` * p)
 
 - void :ref:`schedunregisterexternalevent <_cmp_schedule_itf_8h_1ae37e41df2ee4e942d571e2a386640316>` (:ref:`schedunregisterexternalevent_struct <_cmp_schedule_itf_8h_1abb9cf62279ca09d1da4ee623231744fc>` * p)
 
@@ -319,8 +298,6 @@ Functions
 
 - unsigned long :ref:`SchedGetProcessorLoad <_cmp_schedule_itf_8h_1a169a5f9c17c6f3f081ae8f41805ce03c>` (RTS_RESULT * pResult)
 
-- RTS_UI32 :ref:`SchedGetProcessorLoadOnCore <_cmp_schedule_itf_8h_1acb31419874816156d95b2e34d7b70de2>` (RTS_UI32 uCoreID, RTS_RESULT * pResult)
-
 - RTS_RESULT :ref:`SchedGetTaskInterval <_cmp_schedule_itf_8h_1ae1b1d213d9942794b33076899b0ac467>` (RTS_HANDLE hSchedTask, RTS_UI32 * pulInterval)
 
 - RTS_RESULT :ref:`SchedSetTaskInterval <_cmp_schedule_itf_8h_1a38343a42c411c3764583e0f56ef4bcee>` (RTS_HANDLE hSchedTask, RTS_UI32 ulInterval)
@@ -343,16 +320,10 @@ Functions
 
 - RTS_RESULT :ref:`SchedPostExternalEvent <_cmp_schedule_itf_8h_1a03afb1d011f53d849b974e43e3b936ab>` (RTS_HANDLE hExtEvent)
 
-- RTS_HANDLE :ref:`SchedGetTaskHandleBackend <_cmp_schedule_itf_8h_1ae067e3cf856fc14d51bb2ca2a60a7d88>` (RTS_HANDLE hSchedTask, CMPID * pCmpIdBackend, RTS_RESULT * pResult)
-
-- RTS_RESULT :ref:`SchedTaskSuspend <_cmp_schedule_itf_8h_1a307e0291a968f1af5552886ee418a03d>` (RTS_HANDLE hSchedTask)
-
-- RTS_RESULT :ref:`SchedTaskResume <_cmp_schedule_itf_8h_1a69e5a612d3c08549674665cc66c12911>` (RTS_HANDLE hSchedTask)
-
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpScheduleItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpScheduleItf.h
 
  
 .. last line of file.rst template

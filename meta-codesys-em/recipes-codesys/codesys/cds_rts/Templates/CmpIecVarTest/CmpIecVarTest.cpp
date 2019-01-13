@@ -8,8 +8,6 @@
 
 
 
-
-
 #include "CmpIecVarTest.c"
 
 

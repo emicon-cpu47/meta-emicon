@@ -4,9 +4,7 @@
  *	<p>Interface of the web server V3 handler component.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -69,18 +67,6 @@
  */
 #define CMPWEBSERVERHANDLERV3_KEY_WEBSERVERCLOSECHANNEL_WAITTIME				"CloseChannelTimeMs"
 #define CMPWEBSERVERHANDLERV3_VALUE_WEBSERVERCLOSECHANNEL_WAITTIME_DEFAULT		INT32_C(60000)
-
-/**
- * <category>Settings</category>
- * <description>Allow file transfer services in the webserver handler. 
- * Attention if the webserver could be accessed by hostile traffic:
- * If this setting is activated (!= 0) a runtime user management should be established to protect access to files. 
- * Additionally the usage of the setting "ForceFilePath" of the component "SysFile" is recommended to restrict access 
- * to folders outside the runtime system environment.</description>
-*/
-
-#define CMPWEBSERVERHANDLERV3_KEY_WEBSERVER_ALLOW_FILE_TRANSFER_SERVICES				"AllowFileTransferServices"
-#define CMPWEBSERVERHANDLERV3_VALUE_WEBSERVER_ALLOW_FILE_TRANSFER_SERVICES_DEFAULT		0
 
 #ifdef __cplusplus
 extern "C" {

@@ -94,7 +94,7 @@
 #define RTS_IEC_LINT_C(x)	(INT64_C(x))
 #define RTS_IEC_ULINT_C(x)	(UINT64_C(x))
 #define RTS_IEC_WORD_C(x)	(UINT16_C(x))
-#define RTS_IEC_DWORD_C(x)	(UINT32_C(x))
+#define RTS_IEC_DWORD_C(x)	(UINT32_C(x)
 #define RTS_IEC_LWORD_C(x)	(UINT64_C(x))
 #define RTS_IEC_REAL_C(x)	(x)
 #define RTS_IEC_LREAL_C(x)	(x)

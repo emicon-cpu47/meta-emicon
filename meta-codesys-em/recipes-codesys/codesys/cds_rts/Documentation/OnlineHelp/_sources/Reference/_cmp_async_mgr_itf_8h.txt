@@ -29,8 +29,6 @@ Data Structures
 
 - struct :ref:`ASYNCJOB_INFO2 <struct_a_s_y_n_c_j_o_b___i_n_f_o2>`
 
-- struct :ref:`ASYNCJOB_INFO3 <struct_a_s_y_n_c_j_o_b___i_n_f_o3>`
-
 - struct :ref:`tagasyncadd_struct <structtagasyncadd__struct>`
 
 - struct :ref:`tagasyncgetjobreturnvalue_struct <structtagasyncgetjobreturnvalue__struct>`
@@ -64,15 +62,11 @@ Macros
 
 - #define :ref:`ASYNCSTATE_TIMEOUT <group___cmp_async_mgr_itf_1ga199c49dcdf48afb03757d1a753728971>` 4
 
-- #define :ref:`ASYNCSTATE_CANCELED <group___cmp_async_mgr_itf_1ga0973a0840c5b5e7e85ecec017c88a9ee>` 6
+- #define :ref:`ASYNCSTATE_READY_TO_REMOVE <group___cmp_async_mgr_itf_1gadf00444b81074149f8eef29f65771f9a>` 5	/* Do not use! Will be removed again in future! */
 
 - #define :ref:`ASYNC_TIMEOUT_INFINITE <group___cmp_async_mgr_itf_1gaeb9731a10800e60ff81b506a53ed21a4>` 0
 
-- #define :ref:`ASYNCMGR_NUM_OF_STATIC_JOBS <group___cmp_async_mgr_itf_1ga3c30a6cc51e34cf5c0ea9fcbdf675e7a>` 10
-
-- #define :ref:`CMPASYNCMGR_INT_DEFAULT_TASK_PRIORITY_IEC <group___cmp_async_mgr_itf___settings_1ga18f61c27e83e06a87aa58539a05de022>` "DefaultTaskPriorityIEC"
-
-- #define :ref:`CMPASYNCMGR_INT_DEFAULT_TASK_PRIORITY_IEC_DEFAULT <group___cmp_async_mgr_itf___settings_1ga1c3e1c5c4fe9291451b6c5ba3899a0e0>` :ref:`TASKPRIO_IDLE <group___sys_task_itf___priorityranges_1ga3b4df50386a0218e7f2a6d9bb24700c2>`
+- #define :ref:`ASYNCMGR_NUM_OF_STATIC_JOBS <group___cmp_async_mgr_itf_1ga3c30a6cc51e34cf5c0ea9fcbdf675e7a>` 5
 
 - #define :ref:`ITF_CmpAsyncMgr <group___cmp_async_mgr_itf_1gaa54366a207d4045fc0e9cd0585e95dca>`
 
@@ -81,9 +75,7 @@ Macros
 Typedefs
 --------
 
-- typedef void HUGEPTR(* :ref:`PFASYNCJOBFUNCTION <group___cmp_async_mgr_itf___settings_1ga74bf21ba5e09221f0dbbb97735a8f28a>`)(void *pParam)
-
-- typedef void(* :ref:`PFASYNCMGREXCEPTIONHANDLER <group___cmp_async_mgr_itf_1gaee66e6c8a158a74cefe9a91bf39018d4>`)(PFASYNCJOBFUNCTION pAsynFunction, void *pParam, RTS_UI32 ulException, RegContext Context)
+- typedef void HUGEPTR(* :ref:`PFASYNCJOBFUNCTION <group___cmp_async_mgr_itf_1ga74bf21ba5e09221f0dbbb97735a8f28a>`)(void *pParam)
 
 - typedef struct :ref:`tagasyncadd_struct <structtagasyncadd__struct>` :ref:`asyncadd_struct <group___cmp_async_mgr_itf_1ga805857f13b7b05e1a4cabca1d7946148>`
 
@@ -110,11 +102,9 @@ Functions
 
 - void :ref:`asyncremoveall <group___cmp_async_mgr_itf_1ga28fc734fee6c02c6607011ee673c810f>` (:ref:`asyncremoveall_struct <group___cmp_async_mgr_itf_1gaf4821b290613076a766c62561ffccc71>` * p)
 
-- RTS_HANDLE :ref:`AsyncAdd <group___cmp_async_mgr_itf_1ga24a8861cf4e1ab703c05b50a3c57fc2d>` (:ref:`PFASYNCJOBFUNCTION <group___cmp_async_mgr_itf___settings_1ga74bf21ba5e09221f0dbbb97735a8f28a>`  pfAsyncJobFunc, void * pParam, void * pInstance, RTS_UI32 * pulState, RTS_I32 bIecFunc, RTS_UI32 ulType, RTS_UI32 ulTimeout, :ref:`ASYNCJOB_PARAM <union_a_s_y_n_c_j_o_b___p_a_r_a_m>` * pAsyncJobParam, RTS_RESULT * pResult)
+- RTS_HANDLE :ref:`AsyncAdd <group___cmp_async_mgr_itf_1ga24a8861cf4e1ab703c05b50a3c57fc2d>` (:ref:`PFASYNCJOBFUNCTION <group___cmp_async_mgr_itf_1ga74bf21ba5e09221f0dbbb97735a8f28a>`  pfAsyncJobFunc, void * pParam, void * pInstance, RTS_UI32 * pulState, RTS_I32 bIecFunc, RTS_UI32 ulType, RTS_UI32 ulTimeout, :ref:`ASYNCJOB_PARAM <union_a_s_y_n_c_j_o_b___p_a_r_a_m>` * pAsyncJobParam, RTS_RESULT * pResult)
 
 - RTS_RESULT :ref:`AsyncAdd2 <group___cmp_async_mgr_itf_1ga1eaf8d0b636628842f328bd6db34e36e>` (:ref:`ASYNCJOB_INFO2 <struct_a_s_y_n_c_j_o_b___i_n_f_o2>` * pJob)
-
-- RTS_RESULT :ref:`AsyncAdd3 <group___cmp_async_mgr_itf_1ga22e67fdfd4c239d83636642389640d40>` (:ref:`ASYNCJOB_INFO3 <struct_a_s_y_n_c_j_o_b___i_n_f_o3>` * pJob)
 
 - RTS_RESULT :ref:`AsyncRemove <group___cmp_async_mgr_itf_1gaa8908f5354a8722d127fdbf24b11ba5f>` (RTS_HANDLE hJob)
 
@@ -127,7 +117,7 @@ Functions
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpAsyncMgrItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpAsyncMgrItf.h
 
  
 .. last line of file.rst template

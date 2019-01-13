@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>CmpScheduleTimerDep &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    <title>CmpScheduleTimerDep &mdash; RuntimeSystemOnlineHelp V3.5.10.0</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.5.13.10',
+        VERSION:     '3.5.10.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,26 +24,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.10.0" href="../index.html" /> 
   </head>
-  <body role="document">
+  <body>
 	<div id="header">
 		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
 		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
 	</div>
 
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
@@ -54,21 +52,22 @@
 </li>
 </ul>
 
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/Reference/group___cmp_schedule_timer_dep.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/Reference/group___cmp_schedule_timer_dep.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -77,16 +76,16 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body" role="main">
+          <div class="body">
             
   <div class="section" id="cmpscheduletimerdep">
 <span id="group-cmp-schedule-timer-dep"></span><h1>CmpScheduleTimerDep<a class="headerlink" href="#cmpscheduletimerdep" title="Permalink to this headline">¶</a></h1>
 <blockquote>
-<div><a class="reference internal" href="#group-cmp-schedule-timer-dep-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div><a class="reference internal" href="#group-cmp-schedule-timer-dep-details"><em>More...</em></a></div></blockquote>
 <div class="section" id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="group___cmp_schedule_timer_dep___staticdefines.html#group-cmp-schedule-timer-dep-staticdefines"><span class="std std-ref">Static defines</span></a></li>
+<li><a class="reference internal" href="group___cmp_schedule_timer_dep___staticdefines.html#group-cmp-schedule-timer-dep-staticdefines"><em>Static defines</em></a></li>
 </ul>
 </div>
 <div class="section" id="detailed-description">
@@ -103,142 +102,142 @@
 <p>Contrary to this, the Cyclic Tasks are set up on hardware Timers, using the Interface of the component &#8220;SysTimer&#8221;.</p>
 <p>The &#8220;SysTimer&#8221; component just needs to provide some kind of cyclic callback. It don&#8217;t essentially needs to be a real hardware timer, but can also be emulated by software. The only prerequisit that the cyclic callback from SysTimer needs to fullfill is that the callbacks can only be preempted in a priorized way and that they don&#8217;t block in between a cycle. This is necessary, because the locking scheme of the &#8220;Timer Scheduler&#8221; relys on this behavior.</p>
 <p>The simplest solution to implement those cyclic tasks, would be, to call the task code directly out of the ISR of the hardware timer, and that&#8217;s it. But this solution reaches it&#8217;s limits, when we want to do debugging in one task. To do this, we need to jump actively out of the task code and resume later at the same position.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span>                            <span class="o">.</span>           <span class="n">prio</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">^</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>         <span class="n">ISR</span> <span class="o">|</span>      <span class="n">XXXXXXXXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>      <span class="o">|</span>       <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>      <span class="o">|</span>       <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="n">Comm</span> <span class="n">Cycle</span> <span class="o">|</span><span class="n">XXXXXX</span><span class="p">:::::::::</span><span class="n">XXXXXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="s1">&#39;----------------------&gt; t</span>
-<span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre>*                            .           prio
+*                            .             ^
+*                            .             |
+*                            .         ISR |      XXXXXXXXX
+*                            .             |      |       |
+*                            .             |      |       |
+*                            .  Comm Cycle |XXXXXX:::::::::XXXXXX
+*                            .             |
+*                            .             &#39;----------------------&gt; t
+*
 </pre></div>
 </div>
 <p>This debugging scenario can be solved easily with the standard calls setjump and longjump.</p>
 <p>This is the first IEC cycle, where we set up the Task context:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span>                            <span class="o">.</span>                               <span class="n">_</span><span class="p">,</span><span class="o">.</span><span class="n">_</span>
-<span class="o">*</span>                            <span class="o">.</span>                              <span class="o">/</span>    <span class="s1">&#39;-.</span>
-<span class="o">*</span>                            <span class="o">.</span>                             <span class="o">/</span>        <span class="s1">&#39;-.</span>
-<span class="o">*</span>                            <span class="o">.</span>                            <span class="o">|</span>            <span class="s1">&#39;</span>
-<span class="o">*</span>                            <span class="o">.</span>                            <span class="o">|</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>        <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="o">*</span>                            <span class="o">.</span>    <span class="n">IEC</span> <span class="n">Task</span> <span class="o">|</span>              <span class="o">|</span> <span class="n">XXXXXXXXXXXXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>              <span class="n">v</span> <span class="o">|</span>           <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>             <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">|</span>           <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>         <span class="n">ISR</span> <span class="o">|</span>             <span class="n">XXX</span><span class="p">:::::::::::::</span><span class="n">XXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>             <span class="o">|</span>                 <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>             <span class="o">|</span>                 <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="n">Comm</span> <span class="n">Cycle</span> <span class="o">|</span><span class="n">XXXXXXXXXXXXX</span><span class="p">:::::::::::::::::::</span><span class="n">XXXXXXXXXXXXXXXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="s1">&#39;------------------------------------------------&gt; t</span>
-<span class="o">*</span>                            <span class="o">.</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="n">Index</span><span class="p">:</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">setjump</span> <span class="n">ContextFrame</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">setjump</span> <span class="n">ContextIecTask</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">longjump</span> <span class="n">ContextFrame</span>
-<span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre>*                            .                               _,._
+*                            .                              /    &#39;-.
+*                            .                             /        &#39;-.
+*                            .                            |            &#39;
+*                            .                            | [2]        (1)
+*                            .    IEC Task |              | XXXXXXXXXXXXX
+*                            .             |              v |           |
+*                            .             |             [1]|           |
+*                            .         ISR |             XXX:::::::::::::XXX
+*                            .             |             |                 |
+*                            .             |             |                 |
+*                            .  Comm Cycle |XXXXXXXXXXXXX:::::::::::::::::::XXXXXXXXXXXXXXXX
+*                            .             |
+*                            .             &#39;------------------------------------------------&gt; t
+*                            .
+*                            .  Index:
+*                            .  [1] setjump ContextFrame
+*                            .  [2] setjump ContextIecTask
+*                            .  (1) longjump ContextFrame
+*
 </pre></div>
 </div>
 <p>On the first switch between the ISR context and the IEC task context, we have to switch the task stack. We do this with a call to the macro RTS_CPU_CALL_ON_STACK(), which needs to be implemented platform specifically.</p>
 <p>On every next call of the ISR, we don&#8217;t switch the stack anymore, but simply make a longjump into the saved context number two (ContextIecTask).</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span>                            <span class="o">.</span>                             <span class="n">_</span><span class="p">,</span><span class="o">.</span><span class="n">_</span>
-<span class="o">*</span>                            <span class="o">.</span>                           <span class="p">,</span><span class="s1">&#39;    &#39;</span><span class="o">-.</span>
-<span class="o">*</span>                            <span class="o">.</span>                          <span class="o">/</span>         <span class="s1">&#39;.</span>
-<span class="o">*</span>                            <span class="o">.</span>                         <span class="o">/</span>   <span class="o">-.</span>       <span class="s1">&#39;.</span>
-<span class="o">*</span>                            <span class="o">.</span>                        <span class="o">/</span>   <span class="o">/</span>  \        \
-<span class="o">*</span>                            <span class="o">.</span>                       <span class="o">|</span>   <span class="o">|</span>   <span class="n">v</span>         <span class="s1">&#39;.</span>
-<span class="o">*</span>                            <span class="o">.</span>                      <span class="o">|</span>   <span class="o">|</span>   <span class="p">[</span><span class="mi">2</span><span class="p">]</span>        <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="o">*</span>                            <span class="o">.</span>    <span class="n">IEC</span> <span class="n">Task</span> <span class="o">|</span>        <span class="o">.</span>   <span class="o">|</span>   <span class="n">XXXXXXXXXXXXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>        <span class="n">v</span>   <span class="o">|</span>   <span class="o">|</span>           <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>       <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="o">|</span>           <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>         <span class="n">ISR</span> <span class="o">|</span>       <span class="n">XXXXXXXXX</span><span class="p">:::::::::::::</span><span class="n">XXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>       <span class="o">|</span>                       <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>       <span class="o">|</span>                       <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="n">Comm</span> <span class="n">Cycle</span> <span class="o">|</span><span class="n">XXXXXXX</span><span class="p">:::::::::::::::::::::::::</span><span class="n">XXXXXXXXXXXXXXXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="s1">&#39;------------------------------------------------&gt; t</span>
-<span class="o">*</span>                            <span class="o">.</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="n">Index</span><span class="p">:</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">setjump</span> <span class="n">ContextFrame</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">setjump</span> <span class="n">ContextIecTask</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">longjump</span> <span class="n">ContextFrame</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">longjump</span> <span class="n">ContextIecTask</span>
-<span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre>*                            .                             _,._
+*                            .                           ,&#39;    &#39;-.
+*                            .                          /         &#39;.
+*                            .                         /   -.       &#39;.
+*                            .                        /   /  \        \
+*                            .                       |   |   v         &#39;.
+*                            .                      |   |   [2]        (1)
+*                            .    IEC Task |        .   |   XXXXXXXXXXXXX
+*                            .             |        v   |   |           |
+*                            .             |       [1] (2)  |           |
+*                            .         ISR |       XXXXXXXXX:::::::::::::XXX
+*                            .             |       |                       |
+*                            .             |       |                       |
+*                            .  Comm Cycle |XXXXXXX:::::::::::::::::::::::::XXXXXXXXXXXXXXXX
+*                            .             |
+*                            .             &#39;------------------------------------------------&gt; t
+*                            .
+*                            .  Index:
+*                            .  [1] setjump ContextFrame
+*                            .  [2] setjump ContextIecTask
+*                            .  (1) longjump ContextFrame
+*                            .  (2) longjump ContextIecTask
+*
 </pre></div>
 </div>
 <p>The reason, why we have to jump in and out of the IEC task context every time is, that later in the debug case, our calling context may have changed when we leave the task.</p>
 <p>When we are running on a breakpoint, our IEC task saves the breakpoint context and jumps out of the task.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span>                            <span class="o">.</span>                            <span class="n">__</span>
-<span class="o">*</span>                            <span class="o">.</span>                          <span class="p">,</span><span class="s1">&#39;  &#39;</span><span class="o">-.</span>
-<span class="o">*</span>                            <span class="o">.</span>                         <span class="o">/</span>   <span class="o">-.</span>  <span class="s1">&#39;.</span>
-<span class="o">*</span>                            <span class="o">.</span>                        <span class="o">|</span>   <span class="o">/</span>  \   \
-<span class="o">*</span>                            <span class="o">.</span>                       <span class="o">|</span>   <span class="o">|</span>   <span class="n">v</span>    <span class="s1">&#39;.</span>
-<span class="o">*</span>                            <span class="o">.</span>                       <span class="o">|</span>   <span class="o">|</span>  <span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">](</span><span class="mi">1</span><span class="p">)</span>
-<span class="o">*</span>                            <span class="o">.</span>    <span class="n">IEC</span> <span class="n">Task</span> <span class="o">|</span>        <span class="o">|</span>   <span class="o">|</span>   <span class="n">XXXXXXXXXXXXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>        <span class="n">v</span>   <span class="o">|</span>   <span class="o">|</span>           <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>       <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="o">|</span>           <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>         <span class="n">ISR</span> <span class="o">|</span>       <span class="n">XXXXXXXXX</span><span class="p">:::::::::::::</span><span class="n">XXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>       <span class="o">|</span>                       <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>       <span class="o">|</span>                       <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="n">Comm</span> <span class="n">Cycle</span> <span class="o">|</span><span class="n">XXXXXXXX</span><span class="p">::::::::::::::::::::::::</span><span class="n">XXXXXXXXXXXXXXXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="s1">&#39;------------------------------------------------&gt; t</span>
-<span class="o">*</span>                            <span class="o">.</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="n">Index</span><span class="p">:</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">setjump</span> <span class="n">ContextFrame</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">setjump</span> <span class="n">ContextIecTask</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">setjump</span> <span class="n">ContextIecTaskBP</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">longjump</span> <span class="n">ContextFrame</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">longjump</span> <span class="n">ContextIecTask</span>
-<span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre>*                            .                            __
+*                            .                          ,&#39;  &#39;-.
+*                            .                         /   -.  &#39;.
+*                            .                        |   /  \   \
+*                            .                       |   |   v    &#39;.
+*                            .                       |   |  [2][3](1)
+*                            .    IEC Task |        |   |   XXXXXXXXXXXXX
+*                            .             |        v   |   |           |
+*                            .             |       [1] (2)  |           |
+*                            .         ISR |       XXXXXXXXX:::::::::::::XXX
+*                            .             |       |                       |
+*                            .             |       |                       |
+*                            .  Comm Cycle |XXXXXXXX::::::::::::::::::::::::XXXXXXXXXXXXXXXX
+*                            .             |
+*                            .             &#39;------------------------------------------------&gt; t
+*                            .
+*                            .  Index:
+*                            .  [1] setjump ContextFrame
+*                            .  [2] setjump ContextIecTask
+*                            .  [3] setjump ContextIecTaskBP
+*                            .  (1) longjump ContextFrame
+*                            .  (2) longjump ContextIecTask
+*
 </pre></div>
 </div>
 <p>As long as the task is waiting on the breakpoint, we are jumping into the stored breakpoint context. The breakpoint handling code there is checking by it&#8217;s own, if it has to continue the task execution or if it has to jump back to the ContextFrame again.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span>                            <span class="o">.</span>                            <span class="n">__</span>
-<span class="o">*</span>                            <span class="o">.</span>                          <span class="p">,</span><span class="s1">&#39;  &#39;</span><span class="o">-.</span>
-<span class="o">*</span>                            <span class="o">.</span>                         <span class="o">/</span>   <span class="p">,</span><span class="o">..</span> <span class="s1">&#39;.</span>
-<span class="o">*</span>                            <span class="o">.</span>                        <span class="o">|</span>   <span class="o">/</span>   <span class="s1">&#39;. </span><span class="se">\</span>
-<span class="s1">*                            .                       |   /      v &#39;</span><span class="o">.</span>
-<span class="o">*</span>                            <span class="o">.</span>                       <span class="o">|</span>  <span class="o">|</span>   <span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">](</span><span class="mi">1</span><span class="p">)</span>
-<span class="o">*</span>                            <span class="o">.</span>    <span class="n">IEC</span> <span class="n">Task</span> <span class="o">|</span>        <span class="o">|</span>   <span class="o">|</span>   <span class="n">XXXXXXXXXXXXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>        <span class="n">v</span>   <span class="o">|</span>   <span class="o">|</span>           <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>       <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="o">|</span>           <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>         <span class="n">ISR</span> <span class="o">|</span>       <span class="n">XXXXXXXXX</span><span class="p">:::::::::::::</span><span class="n">XXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>       <span class="o">|</span>                       <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>       <span class="o">|</span>                       <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="n">Comm</span> <span class="n">Cycle</span> <span class="o">|</span><span class="n">XXXXXXXX</span><span class="p">::::::::::::::::::::::::</span><span class="n">XXXXXXXXXXXXXXXX</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="o">|</span>
-<span class="o">*</span>                            <span class="o">.</span>             <span class="s1">&#39;------------------------------------------------&gt; t</span>
-<span class="o">*</span>                            <span class="o">.</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="n">Index</span><span class="p">:</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">setjump</span> <span class="n">ContextFrame</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">setjump</span> <span class="n">ContextIecTask</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">setjump</span> <span class="n">ContextIecTaskBP</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">longjump</span> <span class="n">ContextFrame</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">longjump</span> <span class="n">ContextIecTask</span>
-<span class="o">*</span>                            <span class="o">.</span>  <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">longjump</span> <span class="n">ContextIecTaskBP</span>
-<span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre>*                            .                            __
+*                            .                          ,&#39;  &#39;-.
+*                            .                         /   ,.. &#39;.
+*                            .                        |   /   &#39;. \
+*                            .                       |   /      v &#39;.
+*                            .                       |  |   [2][3](1)
+*                            .    IEC Task |        |   |   XXXXXXXXXXXXX
+*                            .             |        v   |   |           |
+*                            .             |       [1] (3)  |           |
+*                            .         ISR |       XXXXXXXXX:::::::::::::XXX
+*                            .             |       |                       |
+*                            .             |       |                       |
+*                            .  Comm Cycle |XXXXXXXX::::::::::::::::::::::::XXXXXXXXXXXXXXXX
+*                            .             |
+*                            .             &#39;------------------------------------------------&gt; t
+*                            .
+*                            .  Index:
+*                            .  [1] setjump ContextFrame
+*                            .  [2] setjump ContextIecTask
+*                            .  [3] setjump ContextIecTaskBP
+*                            .  (1) longjump ContextFrame
+*                            .  (2) longjump ContextIecTask
+*                            .  (3) longjump ContextIecTaskBP
+*
 </pre></div>
 </div>
 <p>The command CMD_TICK checks itself if the period in which it was called matches the configured period, which is set by the define SCHEDULEKEY_INT_SCHEDULER_INTERVAL_DEFAULT. If it missed one tick, it imediately generates an exception.</p>
 <p>This implies, that SysTimer and SysTime are synchronized or are based on the same timer source.</p>
 <p>This is a design pattern for the synchronization in pseudocode:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span>                            <span class="n">static</span> <span class="n">variable</span> <span class="n">s_Time</span>
-<span class="o">*</span>
-<span class="o">*</span>                            <span class="n">TIMER_ISR</span><span class="p">()</span>
-<span class="o">*</span>                              <span class="n">IF</span> <span class="n">s_LastTime</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="o">*</span>                                <span class="n">s_LastTime</span> <span class="o">=</span> <span class="n">current</span> <span class="n">time</span>
-<span class="o">*</span>
-<span class="o">*</span>                              <span class="n">WHILE</span> <span class="p">(</span><span class="n">current</span> <span class="n">time</span> <span class="o">-</span> <span class="n">s_LastTime</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">Period</span>
-<span class="o">*</span>                                <span class="n">CALL</span> <span class="n">Schedule</span><span class="p">(</span> <span class="n">CMD_TICK</span> <span class="p">)</span>
-<span class="o">*</span>                                <span class="n">s_LastTime</span> <span class="o">+=</span> <span class="n">Period</span>
-<span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre>*                            static variable s_Time
+*
+*                            TIMER_ISR()
+*                              IF s_LastTime = 0
+*                                s_LastTime = current time
+*
+*                              WHILE (current time - s_LastTime) &gt; Period
+*                                CALL Schedule( CMD_TICK )
+*                                s_LastTime += Period
+*
 </pre></div>
 </div>
 <p>This design pattern will base the call on the frequency of the hardware timer, but synchronizes it with another timer. This might lead to a jitter when the algorithm regulates a timer drift, but it takes care that no tick is missed. What is important when doing a watchdog check.</p>
 <p>If the both components SysTime and SysTimer are based on the same hardware frequency, it is not necessary to synchronize.</p>
 <p><strong>Copyright:</strong></p>
-<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+<p>(c) 2003-2016 3S-Smart Software Solutions</p>
 </div>
 </div>
 
@@ -248,18 +247,18 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    <div class="footer">
+        &copy; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

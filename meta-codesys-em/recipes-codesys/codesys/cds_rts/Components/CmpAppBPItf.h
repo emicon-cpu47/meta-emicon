@@ -4,9 +4,7 @@
  *	This is the interface of the IEC application manager to handle breakpoints
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -140,7 +138,6 @@ typedef struct
 #define EVTPARAMID_CmpAppBP_CodePatch		0x0001
 #define EVTVERSION_CmpAppBP_CodePatch		0x0001
 
-
 /**
  * <category>Events</category>
  * <description>Event is sent before and after patching the code for breakpoints/flowpoints</description>
@@ -155,7 +152,6 @@ typedef struct
  */
 #define EVT_CmpAppBP_CodeSave				MAKE_EVENTID(EVTCLASS_INFO, 2)
 
-
 /**
  * <category>Breakpoint types</category>
  * <description>
@@ -167,11 +163,8 @@ typedef struct
 #define BP_FLOWREAD			4
 #define BP_FLOWWRITE		5
 #define BP_FLOWFORCE		6
-#define BP_CODE_EXECUTIONPOINT	7
+#define BP_EXECUTIONPOINT	7
 #define BP_SUSPEND_TASK		8
-#define BP_DATA_BREAKPOINT	   	9
-#define BP_DATA_EXECUTIONPOINT 10
-#define BP_INVALID	0xFFFFFFFF
 
 
 /**
@@ -235,26 +228,8 @@ typedef struct BreakpointDesc_
 	RTS_UI8 abyOpCode[APP_MAX_BP_OPCODE_SIZE];
 	APPBP_ENTER_BREAKPOINT_HANDLER pfBpEnterHandler;
 	APPBP_LEAVE_BREAKPOINT_HANDLER pfBpLeaveHandler;
-	RTS_UI16 usDataBPSize;
 } BreakpointDesc;
 
-/**
- * <category>Breakpoint context</category>
- * <description>
- *	Low level context information of a breakpoint
- * </description>
- * <element name="context" type="IN">Exception context, containing IP, BP, SP</element>
- * <element name="pRegBuff" type="IN">Pointer to start of saved registers</element>
- * <element name="pDataBPAddress" type="IN">Pointer to observed memory</element>
- * <element name="uiDataBPSize" type="IN">Size of the memory to be observed</element>
- */
-typedef struct BreakpointContext_
-{
-	RegContext regContext;
-	RTS_UINTPTR *pRegBuff;
-	RTS_UINTPTR pDataBPAddress;
-	RTS_UI32 uiDataBPSize;
-}BreakpointContext;
 
 typedef struct Breakpoint_
 {
@@ -309,7 +284,7 @@ typedef struct DebugContext_
 	Breakpoint *pbp;
 	RTS_UI32 ulType;
 	RTS_BOOL bConditionOK;
-	BreakpointContext BPContext;
+	RegContext context;
 	RTS_UINTPTR ReturnIP;
 	Breakpoint bpHelp;
 	RTS_BOOL bUpdateDone;
@@ -342,88 +317,13 @@ typedef struct
 }FLOW_INFO;
 
 
-/** EXTERN LIB SECTION BEGIN **/
-/*  Comments are ignored for m4 compiler so restructured text can be used.  */
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-/**
- * <description>CallstackEntry</description>
- */
-typedef struct tagCallstackEntry
+typedef struct
 {
-	RTS_IEC_XWORD ulOffset;		
-	RTS_IEC_XWORD ulOffsetInstance;		
-	RTS_IEC_UINT usArea;		
-	RTS_IEC_UINT usAreaInstance;		
+	RTS_SIZE ulOffset;
+	RTS_SIZE ulOffsetInstance;
+	RTS_UI16 usArea;
+	RTS_UI16 usAreaInstance;
 } CallstackEntry;
-
-/**
- * <description>appbpgetcallstack</description>
- */
-typedef struct tagappbpgetcallstack_struct
-{
-	APPLICATION *pApp;					/* VAR_INPUT */	
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	
-	CallstackEntry *pCallstackentries;	/* VAR_INPUT */	
-	RTS_IEC_BYTE byMaxEntries;			/* VAR_INPUT */	
-	RTS_IEC_BYTE AppBPGetCallstack;		/* VAR_OUTPUT */	
-} appbpgetcallstack_struct;
-
-void CDECL CDECL_EXT appbpgetcallstack(appbpgetcallstack_struct *p);
-typedef void (CDECL CDECL_EXT* PFAPPBPGETCALLSTACK_IEC) (appbpgetcallstack_struct *p);
-#if defined(CMPAPPBP_NOTIMPLEMENTED) || defined(APPBPGETCALLSTACK_NOTIMPLEMENTED)
-	#define USE_appbpgetcallstack
-	#define EXT_appbpgetcallstack
-	#define GET_appbpgetcallstack(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_appbpgetcallstack(p0) 
-	#define CHK_appbpgetcallstack  FALSE
-	#define EXP_appbpgetcallstack  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_appbpgetcallstack
-	#define EXT_appbpgetcallstack
-	#define GET_appbpgetcallstack(fl)  CAL_CMGETAPI( "appbpgetcallstack" ) 
-	#define CAL_appbpgetcallstack  appbpgetcallstack
-	#define CHK_appbpgetcallstack  TRUE
-	#define EXP_appbpgetcallstack  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appbpgetcallstack", (RTS_UINTPTR)appbpgetcallstack, 1, RTSITF_GET_SIGNATURE(0x8E104280, 0xC4227279), 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPAPPBP_EXTERNAL)
-	#define USE_appbpgetcallstack
-	#define EXT_appbpgetcallstack
-	#define GET_appbpgetcallstack(fl)  CAL_CMGETAPI( "appbpgetcallstack" ) 
-	#define CAL_appbpgetcallstack  appbpgetcallstack
-	#define CHK_appbpgetcallstack  TRUE
-	#define EXP_appbpgetcallstack  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appbpgetcallstack", (RTS_UINTPTR)appbpgetcallstack, 1, RTSITF_GET_SIGNATURE(0x8E104280, 0xC4227279), 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpAppBPappbpgetcallstack
-	#define EXT_CmpAppBPappbpgetcallstack
-	#define GET_CmpAppBPappbpgetcallstack  ERR_OK
-	#define CAL_CmpAppBPappbpgetcallstack  appbpgetcallstack
-	#define CHK_CmpAppBPappbpgetcallstack  TRUE
-	#define EXP_CmpAppBPappbpgetcallstack  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appbpgetcallstack", (RTS_UINTPTR)appbpgetcallstack, 1, RTSITF_GET_SIGNATURE(0x8E104280, 0xC4227279), 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_appbpgetcallstack
-	#define EXT_appbpgetcallstack
-	#define GET_appbpgetcallstack(fl)  CAL_CMGETAPI( "appbpgetcallstack" ) 
-	#define CAL_appbpgetcallstack  appbpgetcallstack
-	#define CHK_appbpgetcallstack  TRUE
-	#define EXP_appbpgetcallstack  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appbpgetcallstack", (RTS_UINTPTR)appbpgetcallstack, 1, RTSITF_GET_SIGNATURE(0x8E104280, 0xC4227279), 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_appbpgetcallstack  PFAPPBPGETCALLSTACK_IEC pfappbpgetcallstack;
-	#define EXT_appbpgetcallstack  extern PFAPPBPGETCALLSTACK_IEC pfappbpgetcallstack;
-	#define GET_appbpgetcallstack(fl)  s_pfCMGetAPI2( "appbpgetcallstack", (RTS_VOID_FCTPTR *)&pfappbpgetcallstack, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x8E104280, 0xC4227279), 0x03050D00)
-	#define CAL_appbpgetcallstack  pfappbpgetcallstack
-	#define CHK_appbpgetcallstack  (pfappbpgetcallstack != NULL)
-	#define EXP_appbpgetcallstack   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appbpgetcallstack", (RTS_UINTPTR)appbpgetcallstack, 1, RTSITF_GET_SIGNATURE(0x8E104280, 0xC4227279), 0x03050D00) 
-#endif
-
-
-#ifdef __cplusplus
-}
-#endif
-
-/** EXTERN LIB SECTION END **/
 
 
 #ifdef __cplusplus
@@ -593,61 +493,6 @@ typedef RTS_UINTPTR (CDECL * PFAPPDEBUGHANDLER) (RTS_UINTPTR IP, RTS_UINTPTR SP,
 	#define CAL_AppDebugHandler  pfAppDebugHandler
 	#define CHK_AppDebugHandler  (pfAppDebugHandler != NULL)
 	#define EXP_AppDebugHandler  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"AppDebugHandler", (RTS_UINTPTR)AppDebugHandler, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>See AppDebugHandler. AppDebugHandler2 supports also data breakpoints</description>
- * <param name="pBPContext" type="IN">Low level register context of the breakpoint.</param>
- * <result>Return address, to which we would like to return right after leaving this function.
- *	NOTE: This must be adopted by the caller!</result>
- */
-RTS_UINTPTR CDECL AppDebugHandler2(BreakpointContext *pBPContext);
-typedef RTS_UINTPTR (CDECL * PFAPPDEBUGHANDLER2) (BreakpointContext *pBPContext);
-#if defined(CMPAPPBP_NOTIMPLEMENTED) || defined(APPDEBUGHANDLER2_NOTIMPLEMENTED)
-	#define USE_AppDebugHandler2
-	#define EXT_AppDebugHandler2
-	#define GET_AppDebugHandler2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_AppDebugHandler2(p0)  (RTS_UINTPTR)ERR_NOTIMPLEMENTED
-	#define CHK_AppDebugHandler2  FALSE
-	#define EXP_AppDebugHandler2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_AppDebugHandler2
-	#define EXT_AppDebugHandler2
-	#define GET_AppDebugHandler2(fl)  CAL_CMGETAPI( "AppDebugHandler2" ) 
-	#define CAL_AppDebugHandler2  AppDebugHandler2
-	#define CHK_AppDebugHandler2  TRUE
-	#define EXP_AppDebugHandler2  CAL_CMEXPAPI( "AppDebugHandler2" ) 
-#elif defined(MIXED_LINK) && !defined(CMPAPPBP_EXTERNAL)
-	#define USE_AppDebugHandler2
-	#define EXT_AppDebugHandler2
-	#define GET_AppDebugHandler2(fl)  CAL_CMGETAPI( "AppDebugHandler2" ) 
-	#define CAL_AppDebugHandler2  AppDebugHandler2
-	#define CHK_AppDebugHandler2  TRUE
-	#define EXP_AppDebugHandler2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"AppDebugHandler2", (RTS_UINTPTR)AppDebugHandler2, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpAppBPAppDebugHandler2
-	#define EXT_CmpAppBPAppDebugHandler2
-	#define GET_CmpAppBPAppDebugHandler2  ERR_OK
-	#define CAL_CmpAppBPAppDebugHandler2 pICmpAppBP->IAppDebugHandler2
-	#define CHK_CmpAppBPAppDebugHandler2 (pICmpAppBP != NULL)
-	#define EXP_CmpAppBPAppDebugHandler2  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_AppDebugHandler2
-	#define EXT_AppDebugHandler2
-	#define GET_AppDebugHandler2(fl)  CAL_CMGETAPI( "AppDebugHandler2" ) 
-	#define CAL_AppDebugHandler2 pICmpAppBP->IAppDebugHandler2
-	#define CHK_AppDebugHandler2 (pICmpAppBP != NULL)
-	#define EXP_AppDebugHandler2  CAL_CMEXPAPI( "AppDebugHandler2" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_AppDebugHandler2  PFAPPDEBUGHANDLER2 pfAppDebugHandler2;
-	#define EXT_AppDebugHandler2  extern PFAPPDEBUGHANDLER2 pfAppDebugHandler2;
-	#define GET_AppDebugHandler2(fl)  s_pfCMGetAPI2( "AppDebugHandler2", (RTS_VOID_FCTPTR *)&pfAppDebugHandler2, (fl), 0, 0)
-	#define CAL_AppDebugHandler2  pfAppDebugHandler2
-	#define CHK_AppDebugHandler2  (pfAppDebugHandler2 != NULL)
-	#define EXP_AppDebugHandler2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"AppDebugHandler2", (RTS_UINTPTR)AppDebugHandler2, 0, 0) 
 #endif
 
 
@@ -1325,63 +1170,6 @@ typedef RTS_RESULT (CDECL * PFAPPBPGETNEXTCALLSTACKENTRY2) (APPLICATION *pApp, i
 
 
 /**
- * <description>Retrieves the callstack of the current task.</description>
- * <param name="pApp" type="IN">Pointer to the specified application description</param>
- * <param name="hIecTask" type="IN">Handle of the IEC task to get the callstack from.</param>
- * <param name="pCallstackentries" type="INOUT">Pointer to an array of callstack entries.</param>
- * <param name="byMaxEntries" type="IN">Number of callstack entries within the array.</param>
- * <result>Number of callstack entries filled up (Depth of the callstack).</result>
- */
-RTS_UI8 CDECL AppBPGetCallStack(APPLICATION* pApp, RTS_HANDLE hIecTask, CallstackEntry* pCallstackentries, RTS_UI8 byMaxEntries);
-typedef RTS_UI8 (CDECL * PFAPPBPGETCALLSTACK) (APPLICATION* pApp, RTS_HANDLE hIecTask, CallstackEntry* pCallstackentries, RTS_UI8 byMaxEntries);
-#if defined(CMPAPPBP_NOTIMPLEMENTED) || defined(APPBPGETCALLSTACK_NOTIMPLEMENTED)
-	#define USE_AppBPGetCallStack
-	#define EXT_AppBPGetCallStack
-	#define GET_AppBPGetCallStack(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_AppBPGetCallStack(p0,p1,p2,p3)  (RTS_UI8)ERR_NOTIMPLEMENTED
-	#define CHK_AppBPGetCallStack  FALSE
-	#define EXP_AppBPGetCallStack  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_AppBPGetCallStack
-	#define EXT_AppBPGetCallStack
-	#define GET_AppBPGetCallStack(fl)  CAL_CMGETAPI( "AppBPGetCallStack" ) 
-	#define CAL_AppBPGetCallStack  AppBPGetCallStack
-	#define CHK_AppBPGetCallStack  TRUE
-	#define EXP_AppBPGetCallStack  CAL_CMEXPAPI( "AppBPGetCallStack" ) 
-#elif defined(MIXED_LINK) && !defined(CMPAPPBP_EXTERNAL)
-	#define USE_AppBPGetCallStack
-	#define EXT_AppBPGetCallStack
-	#define GET_AppBPGetCallStack(fl)  CAL_CMGETAPI( "AppBPGetCallStack" ) 
-	#define CAL_AppBPGetCallStack  AppBPGetCallStack
-	#define CHK_AppBPGetCallStack  TRUE
-	#define EXP_AppBPGetCallStack  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"AppBPGetCallStack", (RTS_UINTPTR)AppBPGetCallStack, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpAppBPAppBPGetCallStack
-	#define EXT_CmpAppBPAppBPGetCallStack
-	#define GET_CmpAppBPAppBPGetCallStack  ERR_OK
-	#define CAL_CmpAppBPAppBPGetCallStack pICmpAppBP->IAppBPGetCallStack
-	#define CHK_CmpAppBPAppBPGetCallStack (pICmpAppBP != NULL)
-	#define EXP_CmpAppBPAppBPGetCallStack  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_AppBPGetCallStack
-	#define EXT_AppBPGetCallStack
-	#define GET_AppBPGetCallStack(fl)  CAL_CMGETAPI( "AppBPGetCallStack" ) 
-	#define CAL_AppBPGetCallStack pICmpAppBP->IAppBPGetCallStack
-	#define CHK_AppBPGetCallStack (pICmpAppBP != NULL)
-	#define EXP_AppBPGetCallStack  CAL_CMEXPAPI( "AppBPGetCallStack" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_AppBPGetCallStack  PFAPPBPGETCALLSTACK pfAppBPGetCallStack;
-	#define EXT_AppBPGetCallStack  extern PFAPPBPGETCALLSTACK pfAppBPGetCallStack;
-	#define GET_AppBPGetCallStack(fl)  s_pfCMGetAPI2( "AppBPGetCallStack", (RTS_VOID_FCTPTR *)&pfAppBPGetCallStack, (fl), 0, 0)
-	#define CAL_AppBPGetCallStack  pfAppBPGetCallStack
-	#define CHK_AppBPGetCallStack  (pfAppBPGetCallStack != NULL)
-	#define EXP_AppBPGetCallStack  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"AppBPGetCallStack", (RTS_UINTPTR)AppBPGetCallStack, 0, 0) 
-#endif
-
-
-
-
-/**
  * <description>Handler for all breakpoint services</description>
  * <param name="ulChannelId" type="IN">ChannelID of the communication channel</param>
  * <param name="pHeaderTag" type="IN">Pointer to the service header</param>
@@ -1570,7 +1358,6 @@ typedef struct
 	PFAPPBPINIT IAppBPInit;
  	PFAPPBPEXIT IAppBPExit;
  	PFAPPDEBUGHANDLER IAppDebugHandler;
- 	PFAPPDEBUGHANDLER2 IAppDebugHandler2;
  	PFAPPBPGETFIRST IAppBPGetFirst;
  	PFAPPBPGETNEXT IAppBPGetNext;
  	PFAPPBPDELETEALL IAppBPDeleteAll;
@@ -1583,7 +1370,6 @@ typedef struct
  	PFAPPBPGETFIRSTCALLSTACKENTRY2 IAppBPGetFirstCallstackEntry2;
  	PFAPPBPGETNEXTCALLSTACKENTRY IAppBPGetNextCallstackEntry;
  	PFAPPBPGETNEXTCALLSTACKENTRY2 IAppBPGetNextCallstackEntry2;
- 	PFAPPBPGETCALLSTACK IAppBPGetCallStack;
  	PFAPPBPSERVICEHANDLER2 IAppBPServiceHandler2;
  	PFAPPBPSET IAppBPSet;
  	PFAPPBPDELETE IAppBPDelete;
@@ -1596,7 +1382,6 @@ class ICmpAppBP : public IBase
 		virtual RTS_RESULT CDECL IAppBPInit(APPLICATION *pApp) =0;
 		virtual RTS_RESULT CDECL IAppBPExit(APPLICATION *pApp) =0;
 		virtual RTS_UINTPTR CDECL IAppDebugHandler(RTS_UINTPTR IP, RTS_UINTPTR SP, RTS_UINTPTR BP) =0;
-		virtual RTS_UINTPTR CDECL IAppDebugHandler2(BreakpointContext *pBPContext) =0;
 		virtual Breakpoint * CDECL IAppBPGetFirst(APPLICATION *pApp, RTS_RESULT *pResult) =0;
 		virtual Breakpoint * CDECL IAppBPGetNext(APPLICATION *pApp, Breakpoint *pPrevBreakpoint, RTS_RESULT *pResult) =0;
 		virtual RTS_RESULT CDECL IAppBPDeleteAll(APPLICATION *pApp, RTS_UI32 ulSessionId) =0;
@@ -1609,7 +1394,6 @@ class ICmpAppBP : public IBase
 		virtual RTS_RESULT CDECL IAppBPGetFirstCallstackEntry2(APPLICATION *pApp, RTS_HANDLE hIecTask, RegContext *pContext, CallstackEntry *pCallstackEntry) =0;
 		virtual RTS_RESULT CDECL IAppBPGetNextCallstackEntry(APPLICATION *pApp, RegContext *pContext, CallstackEntry *pCallstackEntry) =0;
 		virtual RTS_RESULT CDECL IAppBPGetNextCallstackEntry2(APPLICATION *pApp, int bIecCode, RegContext *pContext, CallstackEntry *pCallstackEntry) =0;
-		virtual RTS_UI8 CDECL IAppBPGetCallStack(APPLICATION* pApp, RTS_HANDLE hIecTask, CallstackEntry* pCallstackentries, RTS_UI8 byMaxEntries) =0;
 		virtual RTS_RESULT CDECL IAppBPServiceHandler2(RTS_UI32 ulChannelId, HEADER_TAG *pHeaderTag, PROTOCOL_DATA_UNIT pduData, PROTOCOL_DATA_UNIT *pduSendBuffer) =0;
 		virtual RTS_RESULT CDECL IAppBPSet(BreakpointDesc *pBpDesc, RTS_BOOL bPatchCode, Breakpoint** ppbpOut) =0;
 		virtual RTS_RESULT CDECL IAppBPDelete(Breakpoint *pbp) =0;

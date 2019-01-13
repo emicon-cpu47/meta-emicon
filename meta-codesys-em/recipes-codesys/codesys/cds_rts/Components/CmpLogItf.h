@@ -18,9 +18,7 @@
  * bit more limited. For example, no events are supported.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -271,13 +269,6 @@
 
 /* Predefined logger handles */
 #define STD_LOGGER					0
-
-/* Predefined logger used for the Component manager profiling. */
-#if defined RTS_ENABLE_PROFILING
-#define PROFILER_LOGGER				(RTS_HANDLE)1
-#define PROFILER_LOGGER_NAME		"Profiler"
-#define PROFILER_LOGGER_MAX_ENTRIES 1000
-#endif
 
 #ifndef STD_LOGGER_NAME
 	#define STD_LOGGER_NAME				"PlcLog"

@@ -28,9 +28,7 @@
  *	</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -293,7 +291,6 @@
  * <element name="TRACE_PACKET_FLAGS_TIMESTAMP_MS" type="IN">Timestamp for the trace values have milliseonds reaolution (ticks)</element>
  * <element name="TRACE_PACKET_FLAGS_TIMESTAMP_US" type="IN">Timestamp for the trace values have microseonds reaolution (ticks)</element>
  * <element name="TRACE_PACKET_FLAGS_STORE_IN_FILE" type="IN">Is used to initiate to store trace persistent in file. Only used, if TRACE_PACKET_FLAGS_AUTOSTART is set.</element>
- * <element name="TRACE_PACKET_FLAGS_SYSTEM_TRACE" type="IN">Is used to mark a trace as system trace.</element>
  */
 #define TRACE_PACKET_FLAGS_NOT_INITIALIZED			0x00000000
 #define TRACE_PACKET_FLAGS_COMPLETED				0x00000001
@@ -302,7 +299,6 @@
 #define TRACE_PACKET_FLAGS_TIMESTAMP_MS				0x00000010
 #define TRACE_PACKET_FLAGS_TIMESTAMP_US				0x00000020
 #define TRACE_PACKET_FLAGS_STORE_IN_FILE			0x00000040
-#define TRACE_PACKET_FLAGS_SYSTEM_TRACE				0x00010000
 
 
 /**
@@ -481,7 +477,7 @@ typedef struct tagEVTPARAM_CmpTraceMgr_Record
 typedef union
 {
 	RTS_IEC_BYTE *pbyByteCode;		
-	RTS_IEC_BYTE aByteCode[TRACE_MONITORING2_STATIC_BYTECODE_SIZE_CHARS];		/* see: |TRACE_MONITORING2_STATIC_BYTECODE_SIZE_CHARS| */
+	RTS_IEC_BYTE aByteCode[TRACE_MONITORING2_STATIC_BYTECODE_SIZE_CHARS];		
 } Monitoring2ByteCodeUnion;
 
 /**
@@ -560,7 +556,7 @@ typedef union
  */
 typedef struct tagTraceVariableAddress
 {
-	RTS_IEC_UDINT ulAddressFlags;		/* Address flags. See |TRACE_VAR_ADDRESS_FLAGS| */
+	RTS_IEC_UDINT ulAddressFlags;		/* Address flags. See TRACE_VAR_ADDRESS_FLAGS */
 	TraceAddress taAddress;		/* Trace address definition */
 } TraceVariableAddress;
 
@@ -599,11 +595,11 @@ typedef struct tagTraceTrigger
 {
 	TraceVariable tvVariable;		/* Specification of the trigger variable */
 	TriggerValue ttvLevel;		/* Holds the trigger level for analog (i.e. non-boolean) triggers */
-	RTS_IEC_UDINT ulFlags;		/* Trigger flags. See |TRACE_TRIGGER_FLAGS|. */
-	RTS_IEC_BYTE byEdge;		/* Trigger edge. See |TRACE_TRIGGER_EDGE|. */
+	RTS_IEC_UDINT ulFlags;		/* Trigger flags. See TRACE_TRIGGER_FLAGS. */
+	RTS_IEC_BYTE byEdge;		/* Trigger edge. See TRACE_TRIGGER_EDGE. */
 	RTS_IEC_BYTE byPosition;		/* Number of samples to record after the trigger has fired in percent (0..100) of the buffer size.  Deprecated, use ulUpdatesAfterTrigger instead. */
 	RTS_IEC_WORD wAlignmentDummy;		/* Alignment bytes */
-	RTS_IEC_UDINT ulUpdatesAfterTrigger;		/* Number of samples to record after the trigger has fired. Note: |TRACE_TRIGGER_FLAGS_UPDATESAFTERTRIGGER| must be set in ulFlags, if this entry is used instead of byPosition. */
+	RTS_IEC_UDINT ulUpdatesAfterTrigger;		/* Number of samples to record after the trigger has fired. Note: TRACE_TRIGGER_FLAGS_UPDATESAFTERTRIGGER must be set in ulFlags, if this entry is used instead of byPosition. */
 } TraceTrigger;
 
 /**
@@ -623,15 +619,7 @@ typedef struct tagTraceRecordConfiguration
 	RTS_IEC_UDINT tcClass;		/* Type class of the variable. See enum IBase.TypeClass for the possible values. */
 	RTS_IEC_UDINT ulSize;		/* Size in bytes of a single sample */
 	RTS_IEC_UDINT ulGraphColor;		/* Color in which the trace curve for the variable should be displayed */
-	RTS_IEC_UDINT ulGraphType;		/* | Graph type:
- | 1: line (with points)    
- | 2: cross    
- | 4: step (with points)    
- | 5: point    
- | 8: line (without points)    
- | 9: step (without points)    
- | 10: line (with crosses)    
- | 11: steps (with crosses)) */
+	RTS_IEC_UDINT ulGraphType;		/* Graph type (1: line (with points), 2: cross, 4: step (with points), 5: point, 8: line (without points), 9: step (without points), 10: line (with crosses), 11: steps (with crosses)) */
 	RTS_IEC_UDINT ulMinWarningColor;		/* Color to use if a sample is <= fCriticalLowerLimit */
 	RTS_IEC_UDINT ulMaxWarningColor;		/* Color to use if a sample is >= fCriticalUpperLimit */
 	RTS_IEC_REAL fCriticalLowerLimit;		/* The lower limit */
@@ -657,7 +645,7 @@ typedef struct tagTraceRecordEntry
  */
 typedef struct tagTriggerState
 {
-	RTS_IEC_UDINT ulState;		/* The state. See |TRACE_TRIGGER_STATE| */
+	RTS_IEC_UDINT ulState;		/* The state. See TRACE_TRIGGER_STATE */
 	RTS_IEC_UDINT dtTriggerDate;		/* The date of the trigger event (in UTC) */
 	RTS_IEC_ULINT tTriggerReached;		/* The time of the trigger event */
 } TriggerState;
@@ -667,7 +655,7 @@ typedef struct tagTriggerState
  */
 typedef struct tagTraceState
 {
-	RTS_IEC_UDINT ulState;		/* The state.  See |TRACE_PACKET_STATE| */
+	RTS_IEC_UDINT ulState;		/* The state.  See TRACE_PACKET_STATE */
 	RTS_IEC_UDINT ulFillLevel;		/* The number of recorded samples */
 	RTS_IEC_ULINT tStartTime;		/* The time of the first start of the trace, all time stamps are relative to this value. */
 	TriggerState tsTriggerState;		/* The state of the trigger. */
@@ -675,20 +663,20 @@ typedef struct tagTraceState
 
 /**
  * Loads a given trace file and returns the configuration it contains. After this function
- * call a call to function |TraceMgrGetConfigFromFileRelease| is necessary to free the dynamically allocated
+ * call a call to function <c>TraceMgrGetConfigFromFileRelease</c> is necessary to free the dynamically allocated
  * memory.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if pszFileName is not a valid file path
  *   - ERR_NOMEMORY if the memory is not sufficient for opening the file
  *   - ERR_NOT_SUPPORTED if reading from files is not supported by the runtime system
- *     or if an addressing mode is not supported (e.g. symbolic access)
+ *       or if an addressing mode is not supported (e.g. symbolic access)
  *   - ERR_NO_OBJECT if opening the file failed
  *   - ERR_FAILED if opening the file failed
  *   - ERR_END_OF_OBJECT if either the packet configuration or the record configuration is incomplete
  *   - ERR_NO_CHANGE if a NULL pointer was passed to parameter
- *   - ERR_OUT_OF_LIMITS if the parameters ``pRecordConfiguration`` and ``iMaxRecordCount``
- *     do not have enough memory to hold all the records from the file
+ *   - ERR_OUT_OF_LIMITS if the parameters <c>pRecordConfiguration</c> and <c>iMaxRecordCount</c>
+ *       do not have enough memory to hold all the records from the file
  */
 typedef struct tagtracemgrgetconfigfromfile_struct
 {
@@ -718,40 +706,40 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRGETCONFIGFROMFILE_IEC) (tracemgrgetconf
 	#define GET_tracemgrgetconfigfromfile(fl)  CAL_CMGETAPI( "tracemgrgetconfigfromfile" ) 
 	#define CAL_tracemgrgetconfigfromfile  tracemgrgetconfigfromfile
 	#define CHK_tracemgrgetconfigfromfile  TRUE
-	#define EXP_tracemgrgetconfigfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfile", (RTS_UINTPTR)tracemgrgetconfigfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x6FE07E94), 0x03050B00) 
+	#define EXP_tracemgrgetconfigfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfile", (RTS_UINTPTR)tracemgrgetconfigfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x6FE07E94), 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrgetconfigfromfile
 	#define EXT_tracemgrgetconfigfromfile
 	#define GET_tracemgrgetconfigfromfile(fl)  CAL_CMGETAPI( "tracemgrgetconfigfromfile" ) 
 	#define CAL_tracemgrgetconfigfromfile  tracemgrgetconfigfromfile
 	#define CHK_tracemgrgetconfigfromfile  TRUE
-	#define EXP_tracemgrgetconfigfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfile", (RTS_UINTPTR)tracemgrgetconfigfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x6FE07E94), 0x03050B00) 
+	#define EXP_tracemgrgetconfigfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfile", (RTS_UINTPTR)tracemgrgetconfigfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x6FE07E94), 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrgetconfigfromfile
 	#define EXT_CmpTraceMgrtracemgrgetconfigfromfile
 	#define GET_CmpTraceMgrtracemgrgetconfigfromfile  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrgetconfigfromfile  tracemgrgetconfigfromfile
 	#define CHK_CmpTraceMgrtracemgrgetconfigfromfile  TRUE
-	#define EXP_CmpTraceMgrtracemgrgetconfigfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfile", (RTS_UINTPTR)tracemgrgetconfigfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x6FE07E94), 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrgetconfigfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfile", (RTS_UINTPTR)tracemgrgetconfigfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x6FE07E94), 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrgetconfigfromfile
 	#define EXT_tracemgrgetconfigfromfile
 	#define GET_tracemgrgetconfigfromfile(fl)  CAL_CMGETAPI( "tracemgrgetconfigfromfile" ) 
 	#define CAL_tracemgrgetconfigfromfile  tracemgrgetconfigfromfile
 	#define CHK_tracemgrgetconfigfromfile  TRUE
-	#define EXP_tracemgrgetconfigfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfile", (RTS_UINTPTR)tracemgrgetconfigfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x6FE07E94), 0x03050B00) 
+	#define EXP_tracemgrgetconfigfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfile", (RTS_UINTPTR)tracemgrgetconfigfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x6FE07E94), 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrgetconfigfromfile  PFTRACEMGRGETCONFIGFROMFILE_IEC pftracemgrgetconfigfromfile;
 	#define EXT_tracemgrgetconfigfromfile  extern PFTRACEMGRGETCONFIGFROMFILE_IEC pftracemgrgetconfigfromfile;
-	#define GET_tracemgrgetconfigfromfile(fl)  s_pfCMGetAPI2( "tracemgrgetconfigfromfile", (RTS_VOID_FCTPTR *)&pftracemgrgetconfigfromfile, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x6FE07E94), 0x03050B00)
+	#define GET_tracemgrgetconfigfromfile(fl)  s_pfCMGetAPI2( "tracemgrgetconfigfromfile", (RTS_VOID_FCTPTR *)&pftracemgrgetconfigfromfile, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x6FE07E94), 0x03050700)
 	#define CAL_tracemgrgetconfigfromfile  pftracemgrgetconfigfromfile
 	#define CHK_tracemgrgetconfigfromfile  (pftracemgrgetconfigfromfile != NULL)
-	#define EXP_tracemgrgetconfigfromfile   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfile", (RTS_UINTPTR)tracemgrgetconfigfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x6FE07E94), 0x03050B00) 
+	#define EXP_tracemgrgetconfigfromfile   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfile", (RTS_UINTPTR)tracemgrgetconfigfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x6FE07E94), 0x03050700) 
 #endif
 
 
 /**
- * This function has to be called after |TraceMgrGetConfigFromFile|. It frees
+ * This function has to be called after <c>TraceMgrGetConfigFromFile</c>. It frees
  * the dynamically allocated memory for the strings of the packet resp. record configuration.
  * :return: Returns the runtime system error code (see CmpErrors.library) 
  */
@@ -779,35 +767,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRGETCONFIGFROMFILERELEASE_IEC) (tracemgr
 	#define GET_tracemgrgetconfigfromfilerelease(fl)  CAL_CMGETAPI( "tracemgrgetconfigfromfilerelease" ) 
 	#define CAL_tracemgrgetconfigfromfilerelease  tracemgrgetconfigfromfilerelease
 	#define CHK_tracemgrgetconfigfromfilerelease  TRUE
-	#define EXP_tracemgrgetconfigfromfilerelease  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfilerelease", (RTS_UINTPTR)tracemgrgetconfigfromfilerelease, 1, RTSITF_GET_SIGNATURE(0, 0x1E24AEEF), 0x03050B00) 
+	#define EXP_tracemgrgetconfigfromfilerelease  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfilerelease", (RTS_UINTPTR)tracemgrgetconfigfromfilerelease, 1, RTSITF_GET_SIGNATURE(0, 0x1E24AEEF), 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrgetconfigfromfilerelease
 	#define EXT_tracemgrgetconfigfromfilerelease
 	#define GET_tracemgrgetconfigfromfilerelease(fl)  CAL_CMGETAPI( "tracemgrgetconfigfromfilerelease" ) 
 	#define CAL_tracemgrgetconfigfromfilerelease  tracemgrgetconfigfromfilerelease
 	#define CHK_tracemgrgetconfigfromfilerelease  TRUE
-	#define EXP_tracemgrgetconfigfromfilerelease  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfilerelease", (RTS_UINTPTR)tracemgrgetconfigfromfilerelease, 1, RTSITF_GET_SIGNATURE(0, 0x1E24AEEF), 0x03050B00) 
+	#define EXP_tracemgrgetconfigfromfilerelease  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfilerelease", (RTS_UINTPTR)tracemgrgetconfigfromfilerelease, 1, RTSITF_GET_SIGNATURE(0, 0x1E24AEEF), 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrgetconfigfromfilerelease
 	#define EXT_CmpTraceMgrtracemgrgetconfigfromfilerelease
 	#define GET_CmpTraceMgrtracemgrgetconfigfromfilerelease  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrgetconfigfromfilerelease  tracemgrgetconfigfromfilerelease
 	#define CHK_CmpTraceMgrtracemgrgetconfigfromfilerelease  TRUE
-	#define EXP_CmpTraceMgrtracemgrgetconfigfromfilerelease  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfilerelease", (RTS_UINTPTR)tracemgrgetconfigfromfilerelease, 1, RTSITF_GET_SIGNATURE(0, 0x1E24AEEF), 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrgetconfigfromfilerelease  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfilerelease", (RTS_UINTPTR)tracemgrgetconfigfromfilerelease, 1, RTSITF_GET_SIGNATURE(0, 0x1E24AEEF), 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrgetconfigfromfilerelease
 	#define EXT_tracemgrgetconfigfromfilerelease
 	#define GET_tracemgrgetconfigfromfilerelease(fl)  CAL_CMGETAPI( "tracemgrgetconfigfromfilerelease" ) 
 	#define CAL_tracemgrgetconfigfromfilerelease  tracemgrgetconfigfromfilerelease
 	#define CHK_tracemgrgetconfigfromfilerelease  TRUE
-	#define EXP_tracemgrgetconfigfromfilerelease  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfilerelease", (RTS_UINTPTR)tracemgrgetconfigfromfilerelease, 1, RTSITF_GET_SIGNATURE(0, 0x1E24AEEF), 0x03050B00) 
+	#define EXP_tracemgrgetconfigfromfilerelease  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfilerelease", (RTS_UINTPTR)tracemgrgetconfigfromfilerelease, 1, RTSITF_GET_SIGNATURE(0, 0x1E24AEEF), 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrgetconfigfromfilerelease  PFTRACEMGRGETCONFIGFROMFILERELEASE_IEC pftracemgrgetconfigfromfilerelease;
 	#define EXT_tracemgrgetconfigfromfilerelease  extern PFTRACEMGRGETCONFIGFROMFILERELEASE_IEC pftracemgrgetconfigfromfilerelease;
-	#define GET_tracemgrgetconfigfromfilerelease(fl)  s_pfCMGetAPI2( "tracemgrgetconfigfromfilerelease", (RTS_VOID_FCTPTR *)&pftracemgrgetconfigfromfilerelease, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x1E24AEEF), 0x03050B00)
+	#define GET_tracemgrgetconfigfromfilerelease(fl)  s_pfCMGetAPI2( "tracemgrgetconfigfromfilerelease", (RTS_VOID_FCTPTR *)&pftracemgrgetconfigfromfilerelease, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x1E24AEEF), 0x03050700)
 	#define CAL_tracemgrgetconfigfromfilerelease  pftracemgrgetconfigfromfilerelease
 	#define CHK_tracemgrgetconfigfromfilerelease  (pftracemgrgetconfigfromfilerelease != NULL)
-	#define EXP_tracemgrgetconfigfromfilerelease   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfilerelease", (RTS_UINTPTR)tracemgrgetconfigfromfilerelease, 1, RTSITF_GET_SIGNATURE(0, 0x1E24AEEF), 0x03050B00) 
+	#define EXP_tracemgrgetconfigfromfilerelease   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrgetconfigfromfilerelease", (RTS_UINTPTR)tracemgrgetconfigfromfilerelease, 1, RTSITF_GET_SIGNATURE(0, 0x1E24AEEF), 0x03050700) 
 #endif
 
 
@@ -847,35 +835,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETCHECKTRIGGER_IEC) (tracemgrpacket
 	#define GET_tracemgrpacketchecktrigger(fl)  CAL_CMGETAPI( "tracemgrpacketchecktrigger" ) 
 	#define CAL_tracemgrpacketchecktrigger  tracemgrpacketchecktrigger
 	#define CHK_tracemgrpacketchecktrigger  TRUE
-	#define EXP_tracemgrpacketchecktrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketchecktrigger", (RTS_UINTPTR)tracemgrpacketchecktrigger, 1, 0xD2E54704, 0x03050B00) 
+	#define EXP_tracemgrpacketchecktrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketchecktrigger", (RTS_UINTPTR)tracemgrpacketchecktrigger, 1, 0xD2E54704, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketchecktrigger
 	#define EXT_tracemgrpacketchecktrigger
 	#define GET_tracemgrpacketchecktrigger(fl)  CAL_CMGETAPI( "tracemgrpacketchecktrigger" ) 
 	#define CAL_tracemgrpacketchecktrigger  tracemgrpacketchecktrigger
 	#define CHK_tracemgrpacketchecktrigger  TRUE
-	#define EXP_tracemgrpacketchecktrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketchecktrigger", (RTS_UINTPTR)tracemgrpacketchecktrigger, 1, 0xD2E54704, 0x03050B00) 
+	#define EXP_tracemgrpacketchecktrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketchecktrigger", (RTS_UINTPTR)tracemgrpacketchecktrigger, 1, 0xD2E54704, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketchecktrigger
 	#define EXT_CmpTraceMgrtracemgrpacketchecktrigger
 	#define GET_CmpTraceMgrtracemgrpacketchecktrigger  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketchecktrigger  tracemgrpacketchecktrigger
 	#define CHK_CmpTraceMgrtracemgrpacketchecktrigger  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketchecktrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketchecktrigger", (RTS_UINTPTR)tracemgrpacketchecktrigger, 1, 0xD2E54704, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketchecktrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketchecktrigger", (RTS_UINTPTR)tracemgrpacketchecktrigger, 1, 0xD2E54704, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketchecktrigger
 	#define EXT_tracemgrpacketchecktrigger
 	#define GET_tracemgrpacketchecktrigger(fl)  CAL_CMGETAPI( "tracemgrpacketchecktrigger" ) 
 	#define CAL_tracemgrpacketchecktrigger  tracemgrpacketchecktrigger
 	#define CHK_tracemgrpacketchecktrigger  TRUE
-	#define EXP_tracemgrpacketchecktrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketchecktrigger", (RTS_UINTPTR)tracemgrpacketchecktrigger, 1, 0xD2E54704, 0x03050B00) 
+	#define EXP_tracemgrpacketchecktrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketchecktrigger", (RTS_UINTPTR)tracemgrpacketchecktrigger, 1, 0xD2E54704, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketchecktrigger  PFTRACEMGRPACKETCHECKTRIGGER_IEC pftracemgrpacketchecktrigger;
 	#define EXT_tracemgrpacketchecktrigger  extern PFTRACEMGRPACKETCHECKTRIGGER_IEC pftracemgrpacketchecktrigger;
-	#define GET_tracemgrpacketchecktrigger(fl)  s_pfCMGetAPI2( "tracemgrpacketchecktrigger", (RTS_VOID_FCTPTR *)&pftracemgrpacketchecktrigger, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xD2E54704, 0x03050B00)
+	#define GET_tracemgrpacketchecktrigger(fl)  s_pfCMGetAPI2( "tracemgrpacketchecktrigger", (RTS_VOID_FCTPTR *)&pftracemgrpacketchecktrigger, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xD2E54704, 0x03050700)
 	#define CAL_tracemgrpacketchecktrigger  pftracemgrpacketchecktrigger
 	#define CHK_tracemgrpacketchecktrigger  (pftracemgrpacketchecktrigger != NULL)
-	#define EXP_tracemgrpacketchecktrigger   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketchecktrigger", (RTS_UINTPTR)tracemgrpacketchecktrigger, 1, 0xD2E54704, 0x03050B00) 
+	#define EXP_tracemgrpacketchecktrigger   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketchecktrigger", (RTS_UINTPTR)tracemgrpacketchecktrigger, 1, 0xD2E54704, 0x03050700) 
 #endif
 
 
@@ -906,35 +894,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETCLOSE_IEC) (tracemgrpacketclose_s
 	#define GET_tracemgrpacketclose(fl)  CAL_CMGETAPI( "tracemgrpacketclose" ) 
 	#define CAL_tracemgrpacketclose  tracemgrpacketclose
 	#define CHK_tracemgrpacketclose  TRUE
-	#define EXP_tracemgrpacketclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketclose", (RTS_UINTPTR)tracemgrpacketclose, 1, 0xBF67CDD5, 0x03050B00) 
+	#define EXP_tracemgrpacketclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketclose", (RTS_UINTPTR)tracemgrpacketclose, 1, 0xBF67CDD5, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketclose
 	#define EXT_tracemgrpacketclose
 	#define GET_tracemgrpacketclose(fl)  CAL_CMGETAPI( "tracemgrpacketclose" ) 
 	#define CAL_tracemgrpacketclose  tracemgrpacketclose
 	#define CHK_tracemgrpacketclose  TRUE
-	#define EXP_tracemgrpacketclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketclose", (RTS_UINTPTR)tracemgrpacketclose, 1, 0xBF67CDD5, 0x03050B00) 
+	#define EXP_tracemgrpacketclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketclose", (RTS_UINTPTR)tracemgrpacketclose, 1, 0xBF67CDD5, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketclose
 	#define EXT_CmpTraceMgrtracemgrpacketclose
 	#define GET_CmpTraceMgrtracemgrpacketclose  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketclose  tracemgrpacketclose
 	#define CHK_CmpTraceMgrtracemgrpacketclose  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketclose", (RTS_UINTPTR)tracemgrpacketclose, 1, 0xBF67CDD5, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketclose", (RTS_UINTPTR)tracemgrpacketclose, 1, 0xBF67CDD5, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketclose
 	#define EXT_tracemgrpacketclose
 	#define GET_tracemgrpacketclose(fl)  CAL_CMGETAPI( "tracemgrpacketclose" ) 
 	#define CAL_tracemgrpacketclose  tracemgrpacketclose
 	#define CHK_tracemgrpacketclose  TRUE
-	#define EXP_tracemgrpacketclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketclose", (RTS_UINTPTR)tracemgrpacketclose, 1, 0xBF67CDD5, 0x03050B00) 
+	#define EXP_tracemgrpacketclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketclose", (RTS_UINTPTR)tracemgrpacketclose, 1, 0xBF67CDD5, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketclose  PFTRACEMGRPACKETCLOSE_IEC pftracemgrpacketclose;
 	#define EXT_tracemgrpacketclose  extern PFTRACEMGRPACKETCLOSE_IEC pftracemgrpacketclose;
-	#define GET_tracemgrpacketclose(fl)  s_pfCMGetAPI2( "tracemgrpacketclose", (RTS_VOID_FCTPTR *)&pftracemgrpacketclose, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xBF67CDD5, 0x03050B00)
+	#define GET_tracemgrpacketclose(fl)  s_pfCMGetAPI2( "tracemgrpacketclose", (RTS_VOID_FCTPTR *)&pftracemgrpacketclose, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xBF67CDD5, 0x03050700)
 	#define CAL_tracemgrpacketclose  pftracemgrpacketclose
 	#define CHK_tracemgrpacketclose  (pftracemgrpacketclose != NULL)
-	#define EXP_tracemgrpacketclose   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketclose", (RTS_UINTPTR)tracemgrpacketclose, 1, 0xBF67CDD5, 0x03050B00) 
+	#define EXP_tracemgrpacketclose   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketclose", (RTS_UINTPTR)tracemgrpacketclose, 1, 0xBF67CDD5, 0x03050700) 
 #endif
 
 
@@ -966,35 +954,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETCOMPLETE_IEC) (tracemgrpacketcomp
 	#define GET_tracemgrpacketcomplete(fl)  CAL_CMGETAPI( "tracemgrpacketcomplete" ) 
 	#define CAL_tracemgrpacketcomplete  tracemgrpacketcomplete
 	#define CHK_tracemgrpacketcomplete  TRUE
-	#define EXP_tracemgrpacketcomplete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcomplete", (RTS_UINTPTR)tracemgrpacketcomplete, 1, 0x77ED2847, 0x03050B00) 
+	#define EXP_tracemgrpacketcomplete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcomplete", (RTS_UINTPTR)tracemgrpacketcomplete, 1, 0x77ED2847, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketcomplete
 	#define EXT_tracemgrpacketcomplete
 	#define GET_tracemgrpacketcomplete(fl)  CAL_CMGETAPI( "tracemgrpacketcomplete" ) 
 	#define CAL_tracemgrpacketcomplete  tracemgrpacketcomplete
 	#define CHK_tracemgrpacketcomplete  TRUE
-	#define EXP_tracemgrpacketcomplete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcomplete", (RTS_UINTPTR)tracemgrpacketcomplete, 1, 0x77ED2847, 0x03050B00) 
+	#define EXP_tracemgrpacketcomplete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcomplete", (RTS_UINTPTR)tracemgrpacketcomplete, 1, 0x77ED2847, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketcomplete
 	#define EXT_CmpTraceMgrtracemgrpacketcomplete
 	#define GET_CmpTraceMgrtracemgrpacketcomplete  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketcomplete  tracemgrpacketcomplete
 	#define CHK_CmpTraceMgrtracemgrpacketcomplete  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketcomplete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcomplete", (RTS_UINTPTR)tracemgrpacketcomplete, 1, 0x77ED2847, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketcomplete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcomplete", (RTS_UINTPTR)tracemgrpacketcomplete, 1, 0x77ED2847, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketcomplete
 	#define EXT_tracemgrpacketcomplete
 	#define GET_tracemgrpacketcomplete(fl)  CAL_CMGETAPI( "tracemgrpacketcomplete" ) 
 	#define CAL_tracemgrpacketcomplete  tracemgrpacketcomplete
 	#define CHK_tracemgrpacketcomplete  TRUE
-	#define EXP_tracemgrpacketcomplete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcomplete", (RTS_UINTPTR)tracemgrpacketcomplete, 1, 0x77ED2847, 0x03050B00) 
+	#define EXP_tracemgrpacketcomplete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcomplete", (RTS_UINTPTR)tracemgrpacketcomplete, 1, 0x77ED2847, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketcomplete  PFTRACEMGRPACKETCOMPLETE_IEC pftracemgrpacketcomplete;
 	#define EXT_tracemgrpacketcomplete  extern PFTRACEMGRPACKETCOMPLETE_IEC pftracemgrpacketcomplete;
-	#define GET_tracemgrpacketcomplete(fl)  s_pfCMGetAPI2( "tracemgrpacketcomplete", (RTS_VOID_FCTPTR *)&pftracemgrpacketcomplete, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x77ED2847, 0x03050B00)
+	#define GET_tracemgrpacketcomplete(fl)  s_pfCMGetAPI2( "tracemgrpacketcomplete", (RTS_VOID_FCTPTR *)&pftracemgrpacketcomplete, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x77ED2847, 0x03050700)
 	#define CAL_tracemgrpacketcomplete  pftracemgrpacketcomplete
 	#define CHK_tracemgrpacketcomplete  (pftracemgrpacketcomplete != NULL)
-	#define EXP_tracemgrpacketcomplete   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcomplete", (RTS_UINTPTR)tracemgrpacketcomplete, 1, 0x77ED2847, 0x03050B00) 
+	#define EXP_tracemgrpacketcomplete   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcomplete", (RTS_UINTPTR)tracemgrpacketcomplete, 1, 0x77ED2847, 0x03050700) 
 #endif
 
 
@@ -1010,7 +998,7 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETCOMPLETE_IEC) (tracemgrpacketcomp
 typedef struct tagtracemgrpacketcreate_struct
 {
 	TracePacketConfiguration *pConfiguration;	/* VAR_IN_OUT */	/* The trace packet configuration (in) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrPacketCreate;	/* VAR_OUTPUT */	/* The trace packet handle or RTS_INVALID_HANDLE on failure */
 } tracemgrpacketcreate_struct;
 
@@ -1029,35 +1017,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETCREATE_IEC) (tracemgrpacketcreate
 	#define GET_tracemgrpacketcreate(fl)  CAL_CMGETAPI( "tracemgrpacketcreate" ) 
 	#define CAL_tracemgrpacketcreate  tracemgrpacketcreate
 	#define CHK_tracemgrpacketcreate  TRUE
-	#define EXP_tracemgrpacketcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcreate", (RTS_UINTPTR)tracemgrpacketcreate, 1, RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7), 0x03050B00) 
+	#define EXP_tracemgrpacketcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcreate", (RTS_UINTPTR)tracemgrpacketcreate, 1, RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7), 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketcreate
 	#define EXT_tracemgrpacketcreate
 	#define GET_tracemgrpacketcreate(fl)  CAL_CMGETAPI( "tracemgrpacketcreate" ) 
 	#define CAL_tracemgrpacketcreate  tracemgrpacketcreate
 	#define CHK_tracemgrpacketcreate  TRUE
-	#define EXP_tracemgrpacketcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcreate", (RTS_UINTPTR)tracemgrpacketcreate, 1, RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7), 0x03050B00) 
+	#define EXP_tracemgrpacketcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcreate", (RTS_UINTPTR)tracemgrpacketcreate, 1, RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7), 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketcreate
 	#define EXT_CmpTraceMgrtracemgrpacketcreate
 	#define GET_CmpTraceMgrtracemgrpacketcreate  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketcreate  tracemgrpacketcreate
 	#define CHK_CmpTraceMgrtracemgrpacketcreate  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcreate", (RTS_UINTPTR)tracemgrpacketcreate, 1, RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7), 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcreate", (RTS_UINTPTR)tracemgrpacketcreate, 1, RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7), 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketcreate
 	#define EXT_tracemgrpacketcreate
 	#define GET_tracemgrpacketcreate(fl)  CAL_CMGETAPI( "tracemgrpacketcreate" ) 
 	#define CAL_tracemgrpacketcreate  tracemgrpacketcreate
 	#define CHK_tracemgrpacketcreate  TRUE
-	#define EXP_tracemgrpacketcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcreate", (RTS_UINTPTR)tracemgrpacketcreate, 1, RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7), 0x03050B00) 
+	#define EXP_tracemgrpacketcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcreate", (RTS_UINTPTR)tracemgrpacketcreate, 1, RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7), 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketcreate  PFTRACEMGRPACKETCREATE_IEC pftracemgrpacketcreate;
 	#define EXT_tracemgrpacketcreate  extern PFTRACEMGRPACKETCREATE_IEC pftracemgrpacketcreate;
-	#define GET_tracemgrpacketcreate(fl)  s_pfCMGetAPI2( "tracemgrpacketcreate", (RTS_VOID_FCTPTR *)&pftracemgrpacketcreate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7), 0x03050B00)
+	#define GET_tracemgrpacketcreate(fl)  s_pfCMGetAPI2( "tracemgrpacketcreate", (RTS_VOID_FCTPTR *)&pftracemgrpacketcreate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7), 0x03050700)
 	#define CAL_tracemgrpacketcreate  pftracemgrpacketcreate
 	#define CHK_tracemgrpacketcreate  (pftracemgrpacketcreate != NULL)
-	#define EXP_tracemgrpacketcreate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcreate", (RTS_UINTPTR)tracemgrpacketcreate, 1, RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7), 0x03050B00) 
+	#define EXP_tracemgrpacketcreate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketcreate", (RTS_UINTPTR)tracemgrpacketcreate, 1, RTSITF_GET_SIGNATURE(0, 0x9F6D0ED7), 0x03050700) 
 #endif
 
 
@@ -1089,35 +1077,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETDELETE_IEC) (tracemgrpacketdelete
 	#define GET_tracemgrpacketdelete(fl)  CAL_CMGETAPI( "tracemgrpacketdelete" ) 
 	#define CAL_tracemgrpacketdelete  tracemgrpacketdelete
 	#define CHK_tracemgrpacketdelete  TRUE
-	#define EXP_tracemgrpacketdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdelete", (RTS_UINTPTR)tracemgrpacketdelete, 1, 0x0BCF729C, 0x03050B00) 
+	#define EXP_tracemgrpacketdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdelete", (RTS_UINTPTR)tracemgrpacketdelete, 1, 0x0BCF729C, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketdelete
 	#define EXT_tracemgrpacketdelete
 	#define GET_tracemgrpacketdelete(fl)  CAL_CMGETAPI( "tracemgrpacketdelete" ) 
 	#define CAL_tracemgrpacketdelete  tracemgrpacketdelete
 	#define CHK_tracemgrpacketdelete  TRUE
-	#define EXP_tracemgrpacketdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdelete", (RTS_UINTPTR)tracemgrpacketdelete, 1, 0x0BCF729C, 0x03050B00) 
+	#define EXP_tracemgrpacketdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdelete", (RTS_UINTPTR)tracemgrpacketdelete, 1, 0x0BCF729C, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketdelete
 	#define EXT_CmpTraceMgrtracemgrpacketdelete
 	#define GET_CmpTraceMgrtracemgrpacketdelete  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketdelete  tracemgrpacketdelete
 	#define CHK_CmpTraceMgrtracemgrpacketdelete  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdelete", (RTS_UINTPTR)tracemgrpacketdelete, 1, 0x0BCF729C, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdelete", (RTS_UINTPTR)tracemgrpacketdelete, 1, 0x0BCF729C, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketdelete
 	#define EXT_tracemgrpacketdelete
 	#define GET_tracemgrpacketdelete(fl)  CAL_CMGETAPI( "tracemgrpacketdelete" ) 
 	#define CAL_tracemgrpacketdelete  tracemgrpacketdelete
 	#define CHK_tracemgrpacketdelete  TRUE
-	#define EXP_tracemgrpacketdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdelete", (RTS_UINTPTR)tracemgrpacketdelete, 1, 0x0BCF729C, 0x03050B00) 
+	#define EXP_tracemgrpacketdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdelete", (RTS_UINTPTR)tracemgrpacketdelete, 1, 0x0BCF729C, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketdelete  PFTRACEMGRPACKETDELETE_IEC pftracemgrpacketdelete;
 	#define EXT_tracemgrpacketdelete  extern PFTRACEMGRPACKETDELETE_IEC pftracemgrpacketdelete;
-	#define GET_tracemgrpacketdelete(fl)  s_pfCMGetAPI2( "tracemgrpacketdelete", (RTS_VOID_FCTPTR *)&pftracemgrpacketdelete, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x0BCF729C, 0x03050B00)
+	#define GET_tracemgrpacketdelete(fl)  s_pfCMGetAPI2( "tracemgrpacketdelete", (RTS_VOID_FCTPTR *)&pftracemgrpacketdelete, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x0BCF729C, 0x03050700)
 	#define CAL_tracemgrpacketdelete  pftracemgrpacketdelete
 	#define CHK_tracemgrpacketdelete  (pftracemgrpacketdelete != NULL)
-	#define EXP_tracemgrpacketdelete   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdelete", (RTS_UINTPTR)tracemgrpacketdelete, 1, 0x0BCF729C, 0x03050B00) 
+	#define EXP_tracemgrpacketdelete   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdelete", (RTS_UINTPTR)tracemgrpacketdelete, 1, 0x0BCF729C, 0x03050700) 
 #endif
 
 
@@ -1149,35 +1137,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETDISABLE_IEC) (tracemgrpacketdisab
 	#define GET_tracemgrpacketdisable(fl)  CAL_CMGETAPI( "tracemgrpacketdisable" ) 
 	#define CAL_tracemgrpacketdisable  tracemgrpacketdisable
 	#define CHK_tracemgrpacketdisable  TRUE
-	#define EXP_tracemgrpacketdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisable", (RTS_UINTPTR)tracemgrpacketdisable, 1, 0x05DBBAFD, 0x03050B00) 
+	#define EXP_tracemgrpacketdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisable", (RTS_UINTPTR)tracemgrpacketdisable, 1, 0x05DBBAFD, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketdisable
 	#define EXT_tracemgrpacketdisable
 	#define GET_tracemgrpacketdisable(fl)  CAL_CMGETAPI( "tracemgrpacketdisable" ) 
 	#define CAL_tracemgrpacketdisable  tracemgrpacketdisable
 	#define CHK_tracemgrpacketdisable  TRUE
-	#define EXP_tracemgrpacketdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisable", (RTS_UINTPTR)tracemgrpacketdisable, 1, 0x05DBBAFD, 0x03050B00) 
+	#define EXP_tracemgrpacketdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisable", (RTS_UINTPTR)tracemgrpacketdisable, 1, 0x05DBBAFD, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketdisable
 	#define EXT_CmpTraceMgrtracemgrpacketdisable
 	#define GET_CmpTraceMgrtracemgrpacketdisable  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketdisable  tracemgrpacketdisable
 	#define CHK_CmpTraceMgrtracemgrpacketdisable  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisable", (RTS_UINTPTR)tracemgrpacketdisable, 1, 0x05DBBAFD, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisable", (RTS_UINTPTR)tracemgrpacketdisable, 1, 0x05DBBAFD, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketdisable
 	#define EXT_tracemgrpacketdisable
 	#define GET_tracemgrpacketdisable(fl)  CAL_CMGETAPI( "tracemgrpacketdisable" ) 
 	#define CAL_tracemgrpacketdisable  tracemgrpacketdisable
 	#define CHK_tracemgrpacketdisable  TRUE
-	#define EXP_tracemgrpacketdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisable", (RTS_UINTPTR)tracemgrpacketdisable, 1, 0x05DBBAFD, 0x03050B00) 
+	#define EXP_tracemgrpacketdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisable", (RTS_UINTPTR)tracemgrpacketdisable, 1, 0x05DBBAFD, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketdisable  PFTRACEMGRPACKETDISABLE_IEC pftracemgrpacketdisable;
 	#define EXT_tracemgrpacketdisable  extern PFTRACEMGRPACKETDISABLE_IEC pftracemgrpacketdisable;
-	#define GET_tracemgrpacketdisable(fl)  s_pfCMGetAPI2( "tracemgrpacketdisable", (RTS_VOID_FCTPTR *)&pftracemgrpacketdisable, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x05DBBAFD, 0x03050B00)
+	#define GET_tracemgrpacketdisable(fl)  s_pfCMGetAPI2( "tracemgrpacketdisable", (RTS_VOID_FCTPTR *)&pftracemgrpacketdisable, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x05DBBAFD, 0x03050700)
 	#define CAL_tracemgrpacketdisable  pftracemgrpacketdisable
 	#define CHK_tracemgrpacketdisable  (pftracemgrpacketdisable != NULL)
-	#define EXP_tracemgrpacketdisable   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisable", (RTS_UINTPTR)tracemgrpacketdisable, 1, 0x05DBBAFD, 0x03050B00) 
+	#define EXP_tracemgrpacketdisable   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisable", (RTS_UINTPTR)tracemgrpacketdisable, 1, 0x05DBBAFD, 0x03050700) 
 #endif
 
 
@@ -1208,35 +1196,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETDISABLETRIGGER_IEC) (tracemgrpack
 	#define GET_tracemgrpacketdisabletrigger(fl)  CAL_CMGETAPI( "tracemgrpacketdisabletrigger" ) 
 	#define CAL_tracemgrpacketdisabletrigger  tracemgrpacketdisabletrigger
 	#define CHK_tracemgrpacketdisabletrigger  TRUE
-	#define EXP_tracemgrpacketdisabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisabletrigger", (RTS_UINTPTR)tracemgrpacketdisabletrigger, 1, 0x293C8EA4, 0x03050B00) 
+	#define EXP_tracemgrpacketdisabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisabletrigger", (RTS_UINTPTR)tracemgrpacketdisabletrigger, 1, 0x293C8EA4, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketdisabletrigger
 	#define EXT_tracemgrpacketdisabletrigger
 	#define GET_tracemgrpacketdisabletrigger(fl)  CAL_CMGETAPI( "tracemgrpacketdisabletrigger" ) 
 	#define CAL_tracemgrpacketdisabletrigger  tracemgrpacketdisabletrigger
 	#define CHK_tracemgrpacketdisabletrigger  TRUE
-	#define EXP_tracemgrpacketdisabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisabletrigger", (RTS_UINTPTR)tracemgrpacketdisabletrigger, 1, 0x293C8EA4, 0x03050B00) 
+	#define EXP_tracemgrpacketdisabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisabletrigger", (RTS_UINTPTR)tracemgrpacketdisabletrigger, 1, 0x293C8EA4, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketdisabletrigger
 	#define EXT_CmpTraceMgrtracemgrpacketdisabletrigger
 	#define GET_CmpTraceMgrtracemgrpacketdisabletrigger  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketdisabletrigger  tracemgrpacketdisabletrigger
 	#define CHK_CmpTraceMgrtracemgrpacketdisabletrigger  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketdisabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisabletrigger", (RTS_UINTPTR)tracemgrpacketdisabletrigger, 1, 0x293C8EA4, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketdisabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisabletrigger", (RTS_UINTPTR)tracemgrpacketdisabletrigger, 1, 0x293C8EA4, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketdisabletrigger
 	#define EXT_tracemgrpacketdisabletrigger
 	#define GET_tracemgrpacketdisabletrigger(fl)  CAL_CMGETAPI( "tracemgrpacketdisabletrigger" ) 
 	#define CAL_tracemgrpacketdisabletrigger  tracemgrpacketdisabletrigger
 	#define CHK_tracemgrpacketdisabletrigger  TRUE
-	#define EXP_tracemgrpacketdisabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisabletrigger", (RTS_UINTPTR)tracemgrpacketdisabletrigger, 1, 0x293C8EA4, 0x03050B00) 
+	#define EXP_tracemgrpacketdisabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisabletrigger", (RTS_UINTPTR)tracemgrpacketdisabletrigger, 1, 0x293C8EA4, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketdisabletrigger  PFTRACEMGRPACKETDISABLETRIGGER_IEC pftracemgrpacketdisabletrigger;
 	#define EXT_tracemgrpacketdisabletrigger  extern PFTRACEMGRPACKETDISABLETRIGGER_IEC pftracemgrpacketdisabletrigger;
-	#define GET_tracemgrpacketdisabletrigger(fl)  s_pfCMGetAPI2( "tracemgrpacketdisabletrigger", (RTS_VOID_FCTPTR *)&pftracemgrpacketdisabletrigger, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x293C8EA4, 0x03050B00)
+	#define GET_tracemgrpacketdisabletrigger(fl)  s_pfCMGetAPI2( "tracemgrpacketdisabletrigger", (RTS_VOID_FCTPTR *)&pftracemgrpacketdisabletrigger, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x293C8EA4, 0x03050700)
 	#define CAL_tracemgrpacketdisabletrigger  pftracemgrpacketdisabletrigger
 	#define CHK_tracemgrpacketdisabletrigger  (pftracemgrpacketdisabletrigger != NULL)
-	#define EXP_tracemgrpacketdisabletrigger   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisabletrigger", (RTS_UINTPTR)tracemgrpacketdisabletrigger, 1, 0x293C8EA4, 0x03050B00) 
+	#define EXP_tracemgrpacketdisabletrigger   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketdisabletrigger", (RTS_UINTPTR)tracemgrpacketdisabletrigger, 1, 0x293C8EA4, 0x03050700) 
 #endif
 
 
@@ -1268,44 +1256,44 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETENABLE_IEC) (tracemgrpacketenable
 	#define GET_tracemgrpacketenable(fl)  CAL_CMGETAPI( "tracemgrpacketenable" ) 
 	#define CAL_tracemgrpacketenable  tracemgrpacketenable
 	#define CHK_tracemgrpacketenable  TRUE
-	#define EXP_tracemgrpacketenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenable", (RTS_UINTPTR)tracemgrpacketenable, 1, 0x3B8A1A22, 0x03050B00) 
+	#define EXP_tracemgrpacketenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenable", (RTS_UINTPTR)tracemgrpacketenable, 1, 0x3B8A1A22, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketenable
 	#define EXT_tracemgrpacketenable
 	#define GET_tracemgrpacketenable(fl)  CAL_CMGETAPI( "tracemgrpacketenable" ) 
 	#define CAL_tracemgrpacketenable  tracemgrpacketenable
 	#define CHK_tracemgrpacketenable  TRUE
-	#define EXP_tracemgrpacketenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenable", (RTS_UINTPTR)tracemgrpacketenable, 1, 0x3B8A1A22, 0x03050B00) 
+	#define EXP_tracemgrpacketenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenable", (RTS_UINTPTR)tracemgrpacketenable, 1, 0x3B8A1A22, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketenable
 	#define EXT_CmpTraceMgrtracemgrpacketenable
 	#define GET_CmpTraceMgrtracemgrpacketenable  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketenable  tracemgrpacketenable
 	#define CHK_CmpTraceMgrtracemgrpacketenable  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenable", (RTS_UINTPTR)tracemgrpacketenable, 1, 0x3B8A1A22, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenable", (RTS_UINTPTR)tracemgrpacketenable, 1, 0x3B8A1A22, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketenable
 	#define EXT_tracemgrpacketenable
 	#define GET_tracemgrpacketenable(fl)  CAL_CMGETAPI( "tracemgrpacketenable" ) 
 	#define CAL_tracemgrpacketenable  tracemgrpacketenable
 	#define CHK_tracemgrpacketenable  TRUE
-	#define EXP_tracemgrpacketenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenable", (RTS_UINTPTR)tracemgrpacketenable, 1, 0x3B8A1A22, 0x03050B00) 
+	#define EXP_tracemgrpacketenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenable", (RTS_UINTPTR)tracemgrpacketenable, 1, 0x3B8A1A22, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketenable  PFTRACEMGRPACKETENABLE_IEC pftracemgrpacketenable;
 	#define EXT_tracemgrpacketenable  extern PFTRACEMGRPACKETENABLE_IEC pftracemgrpacketenable;
-	#define GET_tracemgrpacketenable(fl)  s_pfCMGetAPI2( "tracemgrpacketenable", (RTS_VOID_FCTPTR *)&pftracemgrpacketenable, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x3B8A1A22, 0x03050B00)
+	#define GET_tracemgrpacketenable(fl)  s_pfCMGetAPI2( "tracemgrpacketenable", (RTS_VOID_FCTPTR *)&pftracemgrpacketenable, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x3B8A1A22, 0x03050700)
 	#define CAL_tracemgrpacketenable  pftracemgrpacketenable
 	#define CHK_tracemgrpacketenable  (pftracemgrpacketenable != NULL)
-	#define EXP_tracemgrpacketenable   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenable", (RTS_UINTPTR)tracemgrpacketenable, 1, 0x3B8A1A22, 0x03050B00) 
+	#define EXP_tracemgrpacketenable   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenable", (RTS_UINTPTR)tracemgrpacketenable, 1, 0x3B8A1A22, 0x03050700) 
 #endif
 
 
 /**
  * Enables the trigger of a trace packet.
  * 
- * .. note:: This function should be called if the trigger is currently disabled.
- *    If the trigger has already fired, call |TraceMgrPacketResetTrigger|
- *    to reset the trigger, instead.
+ * Note: This function should be called if the trigger is currently disabled.
+ * If the trigger has already fired, call TraceMgrPacketResetTrigger
+ * to reset the trigger, instead.
  * 
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -1331,35 +1319,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETENABLETRIGGER_IEC) (tracemgrpacke
 	#define GET_tracemgrpacketenabletrigger(fl)  CAL_CMGETAPI( "tracemgrpacketenabletrigger" ) 
 	#define CAL_tracemgrpacketenabletrigger  tracemgrpacketenabletrigger
 	#define CHK_tracemgrpacketenabletrigger  TRUE
-	#define EXP_tracemgrpacketenabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenabletrigger", (RTS_UINTPTR)tracemgrpacketenabletrigger, 1, 0x9E0738EB, 0x03050B00) 
+	#define EXP_tracemgrpacketenabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenabletrigger", (RTS_UINTPTR)tracemgrpacketenabletrigger, 1, 0x9E0738EB, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketenabletrigger
 	#define EXT_tracemgrpacketenabletrigger
 	#define GET_tracemgrpacketenabletrigger(fl)  CAL_CMGETAPI( "tracemgrpacketenabletrigger" ) 
 	#define CAL_tracemgrpacketenabletrigger  tracemgrpacketenabletrigger
 	#define CHK_tracemgrpacketenabletrigger  TRUE
-	#define EXP_tracemgrpacketenabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenabletrigger", (RTS_UINTPTR)tracemgrpacketenabletrigger, 1, 0x9E0738EB, 0x03050B00) 
+	#define EXP_tracemgrpacketenabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenabletrigger", (RTS_UINTPTR)tracemgrpacketenabletrigger, 1, 0x9E0738EB, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketenabletrigger
 	#define EXT_CmpTraceMgrtracemgrpacketenabletrigger
 	#define GET_CmpTraceMgrtracemgrpacketenabletrigger  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketenabletrigger  tracemgrpacketenabletrigger
 	#define CHK_CmpTraceMgrtracemgrpacketenabletrigger  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketenabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenabletrigger", (RTS_UINTPTR)tracemgrpacketenabletrigger, 1, 0x9E0738EB, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketenabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenabletrigger", (RTS_UINTPTR)tracemgrpacketenabletrigger, 1, 0x9E0738EB, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketenabletrigger
 	#define EXT_tracemgrpacketenabletrigger
 	#define GET_tracemgrpacketenabletrigger(fl)  CAL_CMGETAPI( "tracemgrpacketenabletrigger" ) 
 	#define CAL_tracemgrpacketenabletrigger  tracemgrpacketenabletrigger
 	#define CHK_tracemgrpacketenabletrigger  TRUE
-	#define EXP_tracemgrpacketenabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenabletrigger", (RTS_UINTPTR)tracemgrpacketenabletrigger, 1, 0x9E0738EB, 0x03050B00) 
+	#define EXP_tracemgrpacketenabletrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenabletrigger", (RTS_UINTPTR)tracemgrpacketenabletrigger, 1, 0x9E0738EB, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketenabletrigger  PFTRACEMGRPACKETENABLETRIGGER_IEC pftracemgrpacketenabletrigger;
 	#define EXT_tracemgrpacketenabletrigger  extern PFTRACEMGRPACKETENABLETRIGGER_IEC pftracemgrpacketenabletrigger;
-	#define GET_tracemgrpacketenabletrigger(fl)  s_pfCMGetAPI2( "tracemgrpacketenabletrigger", (RTS_VOID_FCTPTR *)&pftracemgrpacketenabletrigger, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x9E0738EB, 0x03050B00)
+	#define GET_tracemgrpacketenabletrigger(fl)  s_pfCMGetAPI2( "tracemgrpacketenabletrigger", (RTS_VOID_FCTPTR *)&pftracemgrpacketenabletrigger, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x9E0738EB, 0x03050700)
 	#define CAL_tracemgrpacketenabletrigger  pftracemgrpacketenabletrigger
 	#define CHK_tracemgrpacketenabletrigger  (pftracemgrpacketenabletrigger != NULL)
-	#define EXP_tracemgrpacketenabletrigger   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenabletrigger", (RTS_UINTPTR)tracemgrpacketenabletrigger, 1, 0x9E0738EB, 0x03050B00) 
+	#define EXP_tracemgrpacketenabletrigger   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketenabletrigger", (RTS_UINTPTR)tracemgrpacketenabletrigger, 1, 0x9E0738EB, 0x03050700) 
 #endif
 
 
@@ -1367,7 +1355,8 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETENABLETRIGGER_IEC) (tracemgrpacke
  * Returns the absolute start time of a trace packet or 0 if trace packet has not
  * been started yet.
  *
- * .. note:: The start time is the time when the packet was started for the first time.
+ * Note: the start time is the time when the packet was started for the first
+ * time.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid handle
@@ -1394,35 +1383,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETGETABSOLUTESTARTTIME_IEC) (tracem
 	#define GET_tracemgrpacketgetabsolutestarttime(fl)  CAL_CMGETAPI( "tracemgrpacketgetabsolutestarttime" ) 
 	#define CAL_tracemgrpacketgetabsolutestarttime  tracemgrpacketgetabsolutestarttime
 	#define CHK_tracemgrpacketgetabsolutestarttime  TRUE
-	#define EXP_tracemgrpacketgetabsolutestarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetabsolutestarttime", (RTS_UINTPTR)tracemgrpacketgetabsolutestarttime, 1, 0x4D6D7E87, 0x03050B00) 
+	#define EXP_tracemgrpacketgetabsolutestarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetabsolutestarttime", (RTS_UINTPTR)tracemgrpacketgetabsolutestarttime, 1, 0x4D6D7E87, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketgetabsolutestarttime
 	#define EXT_tracemgrpacketgetabsolutestarttime
 	#define GET_tracemgrpacketgetabsolutestarttime(fl)  CAL_CMGETAPI( "tracemgrpacketgetabsolutestarttime" ) 
 	#define CAL_tracemgrpacketgetabsolutestarttime  tracemgrpacketgetabsolutestarttime
 	#define CHK_tracemgrpacketgetabsolutestarttime  TRUE
-	#define EXP_tracemgrpacketgetabsolutestarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetabsolutestarttime", (RTS_UINTPTR)tracemgrpacketgetabsolutestarttime, 1, 0x4D6D7E87, 0x03050B00) 
+	#define EXP_tracemgrpacketgetabsolutestarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetabsolutestarttime", (RTS_UINTPTR)tracemgrpacketgetabsolutestarttime, 1, 0x4D6D7E87, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketgetabsolutestarttime
 	#define EXT_CmpTraceMgrtracemgrpacketgetabsolutestarttime
 	#define GET_CmpTraceMgrtracemgrpacketgetabsolutestarttime  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketgetabsolutestarttime  tracemgrpacketgetabsolutestarttime
 	#define CHK_CmpTraceMgrtracemgrpacketgetabsolutestarttime  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketgetabsolutestarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetabsolutestarttime", (RTS_UINTPTR)tracemgrpacketgetabsolutestarttime, 1, 0x4D6D7E87, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketgetabsolutestarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetabsolutestarttime", (RTS_UINTPTR)tracemgrpacketgetabsolutestarttime, 1, 0x4D6D7E87, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketgetabsolutestarttime
 	#define EXT_tracemgrpacketgetabsolutestarttime
 	#define GET_tracemgrpacketgetabsolutestarttime(fl)  CAL_CMGETAPI( "tracemgrpacketgetabsolutestarttime" ) 
 	#define CAL_tracemgrpacketgetabsolutestarttime  tracemgrpacketgetabsolutestarttime
 	#define CHK_tracemgrpacketgetabsolutestarttime  TRUE
-	#define EXP_tracemgrpacketgetabsolutestarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetabsolutestarttime", (RTS_UINTPTR)tracemgrpacketgetabsolutestarttime, 1, 0x4D6D7E87, 0x03050B00) 
+	#define EXP_tracemgrpacketgetabsolutestarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetabsolutestarttime", (RTS_UINTPTR)tracemgrpacketgetabsolutestarttime, 1, 0x4D6D7E87, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketgetabsolutestarttime  PFTRACEMGRPACKETGETABSOLUTESTARTTIME_IEC pftracemgrpacketgetabsolutestarttime;
 	#define EXT_tracemgrpacketgetabsolutestarttime  extern PFTRACEMGRPACKETGETABSOLUTESTARTTIME_IEC pftracemgrpacketgetabsolutestarttime;
-	#define GET_tracemgrpacketgetabsolutestarttime(fl)  s_pfCMGetAPI2( "tracemgrpacketgetabsolutestarttime", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetabsolutestarttime, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x4D6D7E87, 0x03050B00)
+	#define GET_tracemgrpacketgetabsolutestarttime(fl)  s_pfCMGetAPI2( "tracemgrpacketgetabsolutestarttime", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetabsolutestarttime, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x4D6D7E87, 0x03050700)
 	#define CAL_tracemgrpacketgetabsolutestarttime  pftracemgrpacketgetabsolutestarttime
 	#define CHK_tracemgrpacketgetabsolutestarttime  (pftracemgrpacketgetabsolutestarttime != NULL)
-	#define EXP_tracemgrpacketgetabsolutestarttime   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetabsolutestarttime", (RTS_UINTPTR)tracemgrpacketgetabsolutestarttime, 1, 0x4D6D7E87, 0x03050B00) 
+	#define EXP_tracemgrpacketgetabsolutestarttime   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetabsolutestarttime", (RTS_UINTPTR)tracemgrpacketgetabsolutestarttime, 1, 0x4D6D7E87, 0x03050700) 
 #endif
 
 
@@ -1454,35 +1443,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETGETCHANGETIMESTAMP_IEC) (tracemgr
 	#define GET_tracemgrpacketgetchangetimestamp(fl)  CAL_CMGETAPI( "tracemgrpacketgetchangetimestamp" ) 
 	#define CAL_tracemgrpacketgetchangetimestamp  tracemgrpacketgetchangetimestamp
 	#define CHK_tracemgrpacketgetchangetimestamp  TRUE
-	#define EXP_tracemgrpacketgetchangetimestamp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetchangetimestamp", (RTS_UINTPTR)tracemgrpacketgetchangetimestamp, 1, 0x47F49777, 0x03050B00) 
+	#define EXP_tracemgrpacketgetchangetimestamp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetchangetimestamp", (RTS_UINTPTR)tracemgrpacketgetchangetimestamp, 1, 0x47F49777, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketgetchangetimestamp
 	#define EXT_tracemgrpacketgetchangetimestamp
 	#define GET_tracemgrpacketgetchangetimestamp(fl)  CAL_CMGETAPI( "tracemgrpacketgetchangetimestamp" ) 
 	#define CAL_tracemgrpacketgetchangetimestamp  tracemgrpacketgetchangetimestamp
 	#define CHK_tracemgrpacketgetchangetimestamp  TRUE
-	#define EXP_tracemgrpacketgetchangetimestamp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetchangetimestamp", (RTS_UINTPTR)tracemgrpacketgetchangetimestamp, 1, 0x47F49777, 0x03050B00) 
+	#define EXP_tracemgrpacketgetchangetimestamp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetchangetimestamp", (RTS_UINTPTR)tracemgrpacketgetchangetimestamp, 1, 0x47F49777, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketgetchangetimestamp
 	#define EXT_CmpTraceMgrtracemgrpacketgetchangetimestamp
 	#define GET_CmpTraceMgrtracemgrpacketgetchangetimestamp  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketgetchangetimestamp  tracemgrpacketgetchangetimestamp
 	#define CHK_CmpTraceMgrtracemgrpacketgetchangetimestamp  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketgetchangetimestamp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetchangetimestamp", (RTS_UINTPTR)tracemgrpacketgetchangetimestamp, 1, 0x47F49777, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketgetchangetimestamp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetchangetimestamp", (RTS_UINTPTR)tracemgrpacketgetchangetimestamp, 1, 0x47F49777, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketgetchangetimestamp
 	#define EXT_tracemgrpacketgetchangetimestamp
 	#define GET_tracemgrpacketgetchangetimestamp(fl)  CAL_CMGETAPI( "tracemgrpacketgetchangetimestamp" ) 
 	#define CAL_tracemgrpacketgetchangetimestamp  tracemgrpacketgetchangetimestamp
 	#define CHK_tracemgrpacketgetchangetimestamp  TRUE
-	#define EXP_tracemgrpacketgetchangetimestamp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetchangetimestamp", (RTS_UINTPTR)tracemgrpacketgetchangetimestamp, 1, 0x47F49777, 0x03050B00) 
+	#define EXP_tracemgrpacketgetchangetimestamp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetchangetimestamp", (RTS_UINTPTR)tracemgrpacketgetchangetimestamp, 1, 0x47F49777, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketgetchangetimestamp  PFTRACEMGRPACKETGETCHANGETIMESTAMP_IEC pftracemgrpacketgetchangetimestamp;
 	#define EXT_tracemgrpacketgetchangetimestamp  extern PFTRACEMGRPACKETGETCHANGETIMESTAMP_IEC pftracemgrpacketgetchangetimestamp;
-	#define GET_tracemgrpacketgetchangetimestamp(fl)  s_pfCMGetAPI2( "tracemgrpacketgetchangetimestamp", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetchangetimestamp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x47F49777, 0x03050B00)
+	#define GET_tracemgrpacketgetchangetimestamp(fl)  s_pfCMGetAPI2( "tracemgrpacketgetchangetimestamp", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetchangetimestamp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x47F49777, 0x03050700)
 	#define CAL_tracemgrpacketgetchangetimestamp  pftracemgrpacketgetchangetimestamp
 	#define CHK_tracemgrpacketgetchangetimestamp  (pftracemgrpacketgetchangetimestamp != NULL)
-	#define EXP_tracemgrpacketgetchangetimestamp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetchangetimestamp", (RTS_UINTPTR)tracemgrpacketgetchangetimestamp, 1, 0x47F49777, 0x03050B00) 
+	#define EXP_tracemgrpacketgetchangetimestamp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetchangetimestamp", (RTS_UINTPTR)tracemgrpacketgetchangetimestamp, 1, 0x47F49777, 0x03050700) 
 #endif
 
 
@@ -1514,41 +1503,41 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETGETCONFIG_IEC) (tracemgrpacketget
 	#define GET_tracemgrpacketgetconfig(fl)  CAL_CMGETAPI( "tracemgrpacketgetconfig" ) 
 	#define CAL_tracemgrpacketgetconfig  tracemgrpacketgetconfig
 	#define CHK_tracemgrpacketgetconfig  TRUE
-	#define EXP_tracemgrpacketgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetconfig", (RTS_UINTPTR)tracemgrpacketgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xF96CF7C8), 0x03050B00) 
+	#define EXP_tracemgrpacketgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetconfig", (RTS_UINTPTR)tracemgrpacketgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xF96CF7C8), 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketgetconfig
 	#define EXT_tracemgrpacketgetconfig
 	#define GET_tracemgrpacketgetconfig(fl)  CAL_CMGETAPI( "tracemgrpacketgetconfig" ) 
 	#define CAL_tracemgrpacketgetconfig  tracemgrpacketgetconfig
 	#define CHK_tracemgrpacketgetconfig  TRUE
-	#define EXP_tracemgrpacketgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetconfig", (RTS_UINTPTR)tracemgrpacketgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xF96CF7C8), 0x03050B00) 
+	#define EXP_tracemgrpacketgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetconfig", (RTS_UINTPTR)tracemgrpacketgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xF96CF7C8), 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketgetconfig
 	#define EXT_CmpTraceMgrtracemgrpacketgetconfig
 	#define GET_CmpTraceMgrtracemgrpacketgetconfig  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketgetconfig  tracemgrpacketgetconfig
 	#define CHK_CmpTraceMgrtracemgrpacketgetconfig  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetconfig", (RTS_UINTPTR)tracemgrpacketgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xF96CF7C8), 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetconfig", (RTS_UINTPTR)tracemgrpacketgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xF96CF7C8), 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketgetconfig
 	#define EXT_tracemgrpacketgetconfig
 	#define GET_tracemgrpacketgetconfig(fl)  CAL_CMGETAPI( "tracemgrpacketgetconfig" ) 
 	#define CAL_tracemgrpacketgetconfig  tracemgrpacketgetconfig
 	#define CHK_tracemgrpacketgetconfig  TRUE
-	#define EXP_tracemgrpacketgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetconfig", (RTS_UINTPTR)tracemgrpacketgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xF96CF7C8), 0x03050B00) 
+	#define EXP_tracemgrpacketgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetconfig", (RTS_UINTPTR)tracemgrpacketgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xF96CF7C8), 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketgetconfig  PFTRACEMGRPACKETGETCONFIG_IEC pftracemgrpacketgetconfig;
 	#define EXT_tracemgrpacketgetconfig  extern PFTRACEMGRPACKETGETCONFIG_IEC pftracemgrpacketgetconfig;
-	#define GET_tracemgrpacketgetconfig(fl)  s_pfCMGetAPI2( "tracemgrpacketgetconfig", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetconfig, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xF96CF7C8), 0x03050B00)
+	#define GET_tracemgrpacketgetconfig(fl)  s_pfCMGetAPI2( "tracemgrpacketgetconfig", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetconfig, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xF96CF7C8), 0x03050700)
 	#define CAL_tracemgrpacketgetconfig  pftracemgrpacketgetconfig
 	#define CHK_tracemgrpacketgetconfig  (pftracemgrpacketgetconfig != NULL)
-	#define EXP_tracemgrpacketgetconfig   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetconfig", (RTS_UINTPTR)tracemgrpacketgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xF96CF7C8), 0x03050B00) 
+	#define EXP_tracemgrpacketgetconfig   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetconfig", (RTS_UINTPTR)tracemgrpacketgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xF96CF7C8), 0x03050700) 
 #endif
 
 
 /**
  * Returns the first trace packet.
- * This function can be used together with |TraceMgrPacketGetNext| to iterate
+ * This function can be used together with TraceMgrPacketGetNext to iterate
  * through all trace packets.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
@@ -1556,7 +1545,7 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETGETCONFIG_IEC) (tracemgrpacketget
  */
 typedef struct tagtracemgrpacketgetfirst_struct
 {
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrPacketGetFirst;	/* VAR_OUTPUT */	/* The packet handle or RTS_INVALID_HANDLE if there is no packet */
 } tracemgrpacketgetfirst_struct;
 
@@ -1575,41 +1564,41 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETGETFIRST_IEC) (tracemgrpacketgetf
 	#define GET_tracemgrpacketgetfirst(fl)  CAL_CMGETAPI( "tracemgrpacketgetfirst" ) 
 	#define CAL_tracemgrpacketgetfirst  tracemgrpacketgetfirst
 	#define CHK_tracemgrpacketgetfirst  TRUE
-	#define EXP_tracemgrpacketgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetfirst", (RTS_UINTPTR)tracemgrpacketgetfirst, 1, 0xA4D19325, 0x03050B00) 
+	#define EXP_tracemgrpacketgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetfirst", (RTS_UINTPTR)tracemgrpacketgetfirst, 1, 0xA4D19325, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketgetfirst
 	#define EXT_tracemgrpacketgetfirst
 	#define GET_tracemgrpacketgetfirst(fl)  CAL_CMGETAPI( "tracemgrpacketgetfirst" ) 
 	#define CAL_tracemgrpacketgetfirst  tracemgrpacketgetfirst
 	#define CHK_tracemgrpacketgetfirst  TRUE
-	#define EXP_tracemgrpacketgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetfirst", (RTS_UINTPTR)tracemgrpacketgetfirst, 1, 0xA4D19325, 0x03050B00) 
+	#define EXP_tracemgrpacketgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetfirst", (RTS_UINTPTR)tracemgrpacketgetfirst, 1, 0xA4D19325, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketgetfirst
 	#define EXT_CmpTraceMgrtracemgrpacketgetfirst
 	#define GET_CmpTraceMgrtracemgrpacketgetfirst  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketgetfirst  tracemgrpacketgetfirst
 	#define CHK_CmpTraceMgrtracemgrpacketgetfirst  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetfirst", (RTS_UINTPTR)tracemgrpacketgetfirst, 1, 0xA4D19325, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetfirst", (RTS_UINTPTR)tracemgrpacketgetfirst, 1, 0xA4D19325, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketgetfirst
 	#define EXT_tracemgrpacketgetfirst
 	#define GET_tracemgrpacketgetfirst(fl)  CAL_CMGETAPI( "tracemgrpacketgetfirst" ) 
 	#define CAL_tracemgrpacketgetfirst  tracemgrpacketgetfirst
 	#define CHK_tracemgrpacketgetfirst  TRUE
-	#define EXP_tracemgrpacketgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetfirst", (RTS_UINTPTR)tracemgrpacketgetfirst, 1, 0xA4D19325, 0x03050B00) 
+	#define EXP_tracemgrpacketgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetfirst", (RTS_UINTPTR)tracemgrpacketgetfirst, 1, 0xA4D19325, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketgetfirst  PFTRACEMGRPACKETGETFIRST_IEC pftracemgrpacketgetfirst;
 	#define EXT_tracemgrpacketgetfirst  extern PFTRACEMGRPACKETGETFIRST_IEC pftracemgrpacketgetfirst;
-	#define GET_tracemgrpacketgetfirst(fl)  s_pfCMGetAPI2( "tracemgrpacketgetfirst", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetfirst, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xA4D19325, 0x03050B00)
+	#define GET_tracemgrpacketgetfirst(fl)  s_pfCMGetAPI2( "tracemgrpacketgetfirst", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetfirst, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xA4D19325, 0x03050700)
 	#define CAL_tracemgrpacketgetfirst  pftracemgrpacketgetfirst
 	#define CHK_tracemgrpacketgetfirst  (pftracemgrpacketgetfirst != NULL)
-	#define EXP_tracemgrpacketgetfirst   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetfirst", (RTS_UINTPTR)tracemgrpacketgetfirst, 1, 0xA4D19325, 0x03050B00) 
+	#define EXP_tracemgrpacketgetfirst   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetfirst", (RTS_UINTPTR)tracemgrpacketgetfirst, 1, 0xA4D19325, 0x03050700) 
 #endif
 
 
 /**
  * Returns the next trace packet.
- * This function can be used together with |TraceMgrPacketGetFirst| to iterate
+ * This function can be used together with TraceMgrPacketGetFirst to iterate
  * through all trace packets.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
@@ -1619,7 +1608,7 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETGETFIRST_IEC) (tracemgrpacketgetf
 typedef struct tagtracemgrpacketgetnext_struct
 {
 	RTS_IEC_HANDLE hPrevPacket;			/* VAR_INPUT */	/* The packet handle of the current trace packet */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code */
 	RTS_IEC_HANDLE TraceMgrPacketGetNext;	/* VAR_OUTPUT */	/* The packet handle or RTS_INVALID_HANDLE if there is no further packet */
 } tracemgrpacketgetnext_struct;
 
@@ -1638,35 +1627,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETGETNEXT_IEC) (tracemgrpacketgetne
 	#define GET_tracemgrpacketgetnext(fl)  CAL_CMGETAPI( "tracemgrpacketgetnext" ) 
 	#define CAL_tracemgrpacketgetnext  tracemgrpacketgetnext
 	#define CHK_tracemgrpacketgetnext  TRUE
-	#define EXP_tracemgrpacketgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetnext", (RTS_UINTPTR)tracemgrpacketgetnext, 1, 0x1E3AD1B8, 0x03050B00) 
+	#define EXP_tracemgrpacketgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetnext", (RTS_UINTPTR)tracemgrpacketgetnext, 1, 0x1E3AD1B8, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketgetnext
 	#define EXT_tracemgrpacketgetnext
 	#define GET_tracemgrpacketgetnext(fl)  CAL_CMGETAPI( "tracemgrpacketgetnext" ) 
 	#define CAL_tracemgrpacketgetnext  tracemgrpacketgetnext
 	#define CHK_tracemgrpacketgetnext  TRUE
-	#define EXP_tracemgrpacketgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetnext", (RTS_UINTPTR)tracemgrpacketgetnext, 1, 0x1E3AD1B8, 0x03050B00) 
+	#define EXP_tracemgrpacketgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetnext", (RTS_UINTPTR)tracemgrpacketgetnext, 1, 0x1E3AD1B8, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketgetnext
 	#define EXT_CmpTraceMgrtracemgrpacketgetnext
 	#define GET_CmpTraceMgrtracemgrpacketgetnext  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketgetnext  tracemgrpacketgetnext
 	#define CHK_CmpTraceMgrtracemgrpacketgetnext  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetnext", (RTS_UINTPTR)tracemgrpacketgetnext, 1, 0x1E3AD1B8, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetnext", (RTS_UINTPTR)tracemgrpacketgetnext, 1, 0x1E3AD1B8, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketgetnext
 	#define EXT_tracemgrpacketgetnext
 	#define GET_tracemgrpacketgetnext(fl)  CAL_CMGETAPI( "tracemgrpacketgetnext" ) 
 	#define CAL_tracemgrpacketgetnext  tracemgrpacketgetnext
 	#define CHK_tracemgrpacketgetnext  TRUE
-	#define EXP_tracemgrpacketgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetnext", (RTS_UINTPTR)tracemgrpacketgetnext, 1, 0x1E3AD1B8, 0x03050B00) 
+	#define EXP_tracemgrpacketgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetnext", (RTS_UINTPTR)tracemgrpacketgetnext, 1, 0x1E3AD1B8, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketgetnext  PFTRACEMGRPACKETGETNEXT_IEC pftracemgrpacketgetnext;
 	#define EXT_tracemgrpacketgetnext  extern PFTRACEMGRPACKETGETNEXT_IEC pftracemgrpacketgetnext;
-	#define GET_tracemgrpacketgetnext(fl)  s_pfCMGetAPI2( "tracemgrpacketgetnext", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetnext, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x1E3AD1B8, 0x03050B00)
+	#define GET_tracemgrpacketgetnext(fl)  s_pfCMGetAPI2( "tracemgrpacketgetnext", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetnext, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x1E3AD1B8, 0x03050700)
 	#define CAL_tracemgrpacketgetnext  pftracemgrpacketgetnext
 	#define CHK_tracemgrpacketgetnext  (pftracemgrpacketgetnext != NULL)
-	#define EXP_tracemgrpacketgetnext   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetnext", (RTS_UINTPTR)tracemgrpacketgetnext, 1, 0x1E3AD1B8, 0x03050B00) 
+	#define EXP_tracemgrpacketgetnext   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetnext", (RTS_UINTPTR)tracemgrpacketgetnext, 1, 0x1E3AD1B8, 0x03050700) 
 #endif
 
 
@@ -1674,7 +1663,8 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETGETNEXT_IEC) (tracemgrpacketgetne
  * Returns the start time of a trace packet or 0 if trace packet has not
  * been started yet.
  *
- * .. note:: the start time is the time when the packet was started for the first time.
+ * Note: the start time is the time when the packet was started for the first
+ * time.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid handle
@@ -1701,35 +1691,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETGETSTARTTIME_IEC) (tracemgrpacket
 	#define GET_tracemgrpacketgetstarttime(fl)  CAL_CMGETAPI( "tracemgrpacketgetstarttime" ) 
 	#define CAL_tracemgrpacketgetstarttime  tracemgrpacketgetstarttime
 	#define CHK_tracemgrpacketgetstarttime  TRUE
-	#define EXP_tracemgrpacketgetstarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstarttime", (RTS_UINTPTR)tracemgrpacketgetstarttime, 1, 0x8FC2D61B, 0x03050B00) 
+	#define EXP_tracemgrpacketgetstarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstarttime", (RTS_UINTPTR)tracemgrpacketgetstarttime, 1, 0x8FC2D61B, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketgetstarttime
 	#define EXT_tracemgrpacketgetstarttime
 	#define GET_tracemgrpacketgetstarttime(fl)  CAL_CMGETAPI( "tracemgrpacketgetstarttime" ) 
 	#define CAL_tracemgrpacketgetstarttime  tracemgrpacketgetstarttime
 	#define CHK_tracemgrpacketgetstarttime  TRUE
-	#define EXP_tracemgrpacketgetstarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstarttime", (RTS_UINTPTR)tracemgrpacketgetstarttime, 1, 0x8FC2D61B, 0x03050B00) 
+	#define EXP_tracemgrpacketgetstarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstarttime", (RTS_UINTPTR)tracemgrpacketgetstarttime, 1, 0x8FC2D61B, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketgetstarttime
 	#define EXT_CmpTraceMgrtracemgrpacketgetstarttime
 	#define GET_CmpTraceMgrtracemgrpacketgetstarttime  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketgetstarttime  tracemgrpacketgetstarttime
 	#define CHK_CmpTraceMgrtracemgrpacketgetstarttime  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketgetstarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstarttime", (RTS_UINTPTR)tracemgrpacketgetstarttime, 1, 0x8FC2D61B, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketgetstarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstarttime", (RTS_UINTPTR)tracemgrpacketgetstarttime, 1, 0x8FC2D61B, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketgetstarttime
 	#define EXT_tracemgrpacketgetstarttime
 	#define GET_tracemgrpacketgetstarttime(fl)  CAL_CMGETAPI( "tracemgrpacketgetstarttime" ) 
 	#define CAL_tracemgrpacketgetstarttime  tracemgrpacketgetstarttime
 	#define CHK_tracemgrpacketgetstarttime  TRUE
-	#define EXP_tracemgrpacketgetstarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstarttime", (RTS_UINTPTR)tracemgrpacketgetstarttime, 1, 0x8FC2D61B, 0x03050B00) 
+	#define EXP_tracemgrpacketgetstarttime  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstarttime", (RTS_UINTPTR)tracemgrpacketgetstarttime, 1, 0x8FC2D61B, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketgetstarttime  PFTRACEMGRPACKETGETSTARTTIME_IEC pftracemgrpacketgetstarttime;
 	#define EXT_tracemgrpacketgetstarttime  extern PFTRACEMGRPACKETGETSTARTTIME_IEC pftracemgrpacketgetstarttime;
-	#define GET_tracemgrpacketgetstarttime(fl)  s_pfCMGetAPI2( "tracemgrpacketgetstarttime", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetstarttime, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x8FC2D61B, 0x03050B00)
+	#define GET_tracemgrpacketgetstarttime(fl)  s_pfCMGetAPI2( "tracemgrpacketgetstarttime", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetstarttime, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x8FC2D61B, 0x03050700)
 	#define CAL_tracemgrpacketgetstarttime  pftracemgrpacketgetstarttime
 	#define CHK_tracemgrpacketgetstarttime  (pftracemgrpacketgetstarttime != NULL)
-	#define EXP_tracemgrpacketgetstarttime   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstarttime", (RTS_UINTPTR)tracemgrpacketgetstarttime, 1, 0x8FC2D61B, 0x03050B00) 
+	#define EXP_tracemgrpacketgetstarttime   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstarttime", (RTS_UINTPTR)tracemgrpacketgetstarttime, 1, 0x8FC2D61B, 0x03050700) 
 #endif
 
 
@@ -1761,42 +1751,41 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETGETSTATE_IEC) (tracemgrpacketgets
 	#define GET_tracemgrpacketgetstate(fl)  CAL_CMGETAPI( "tracemgrpacketgetstate" ) 
 	#define CAL_tracemgrpacketgetstate  tracemgrpacketgetstate
 	#define CHK_tracemgrpacketgetstate  TRUE
-	#define EXP_tracemgrpacketgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstate", (RTS_UINTPTR)tracemgrpacketgetstate, 1, 0x998E4A5E, 0x03050B00) 
+	#define EXP_tracemgrpacketgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstate", (RTS_UINTPTR)tracemgrpacketgetstate, 1, 0x998E4A5E, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketgetstate
 	#define EXT_tracemgrpacketgetstate
 	#define GET_tracemgrpacketgetstate(fl)  CAL_CMGETAPI( "tracemgrpacketgetstate" ) 
 	#define CAL_tracemgrpacketgetstate  tracemgrpacketgetstate
 	#define CHK_tracemgrpacketgetstate  TRUE
-	#define EXP_tracemgrpacketgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstate", (RTS_UINTPTR)tracemgrpacketgetstate, 1, 0x998E4A5E, 0x03050B00) 
+	#define EXP_tracemgrpacketgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstate", (RTS_UINTPTR)tracemgrpacketgetstate, 1, 0x998E4A5E, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketgetstate
 	#define EXT_CmpTraceMgrtracemgrpacketgetstate
 	#define GET_CmpTraceMgrtracemgrpacketgetstate  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketgetstate  tracemgrpacketgetstate
 	#define CHK_CmpTraceMgrtracemgrpacketgetstate  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstate", (RTS_UINTPTR)tracemgrpacketgetstate, 1, 0x998E4A5E, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstate", (RTS_UINTPTR)tracemgrpacketgetstate, 1, 0x998E4A5E, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketgetstate
 	#define EXT_tracemgrpacketgetstate
 	#define GET_tracemgrpacketgetstate(fl)  CAL_CMGETAPI( "tracemgrpacketgetstate" ) 
 	#define CAL_tracemgrpacketgetstate  tracemgrpacketgetstate
 	#define CHK_tracemgrpacketgetstate  TRUE
-	#define EXP_tracemgrpacketgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstate", (RTS_UINTPTR)tracemgrpacketgetstate, 1, 0x998E4A5E, 0x03050B00) 
+	#define EXP_tracemgrpacketgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstate", (RTS_UINTPTR)tracemgrpacketgetstate, 1, 0x998E4A5E, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketgetstate  PFTRACEMGRPACKETGETSTATE_IEC pftracemgrpacketgetstate;
 	#define EXT_tracemgrpacketgetstate  extern PFTRACEMGRPACKETGETSTATE_IEC pftracemgrpacketgetstate;
-	#define GET_tracemgrpacketgetstate(fl)  s_pfCMGetAPI2( "tracemgrpacketgetstate", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetstate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x998E4A5E, 0x03050B00)
+	#define GET_tracemgrpacketgetstate(fl)  s_pfCMGetAPI2( "tracemgrpacketgetstate", (RTS_VOID_FCTPTR *)&pftracemgrpacketgetstate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x998E4A5E, 0x03050700)
 	#define CAL_tracemgrpacketgetstate  pftracemgrpacketgetstate
 	#define CHK_tracemgrpacketgetstate  (pftracemgrpacketgetstate != NULL)
-	#define EXP_tracemgrpacketgetstate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstate", (RTS_UINTPTR)tracemgrpacketgetstate, 1, 0x998E4A5E, 0x03050B00) 
+	#define EXP_tracemgrpacketgetstate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketgetstate", (RTS_UINTPTR)tracemgrpacketgetstate, 1, 0x998E4A5E, 0x03050700) 
 #endif
 
 
 /**
  * Opens a trace packet specified by name.
- *
- * .. note:: Comparison of packet names is case-insensitive.
+ * Note: Comparison of packet names is case-insensitive.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_NO_OBJECT if no packet with the given name is found. 
@@ -1804,7 +1793,7 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETGETSTATE_IEC) (tracemgrpacketgets
 typedef struct tagtracemgrpacketopen_struct
 {
 	RTS_IEC_STRING *pszName;			/* VAR_IN_OUT */	/* The name of the trace packet to open (in) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrPacketOpen;	/* VAR_OUTPUT */	/* The packet handle if found, RTS_INVALID_HANDLE otherwise */
 } tracemgrpacketopen_struct;
 
@@ -1823,35 +1812,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETOPEN_IEC) (tracemgrpacketopen_str
 	#define GET_tracemgrpacketopen(fl)  CAL_CMGETAPI( "tracemgrpacketopen" ) 
 	#define CAL_tracemgrpacketopen  tracemgrpacketopen
 	#define CHK_tracemgrpacketopen  TRUE
-	#define EXP_tracemgrpacketopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketopen", (RTS_UINTPTR)tracemgrpacketopen, 1, 0x32667B41, 0x03050B00) 
+	#define EXP_tracemgrpacketopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketopen", (RTS_UINTPTR)tracemgrpacketopen, 1, 0x32667B41, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketopen
 	#define EXT_tracemgrpacketopen
 	#define GET_tracemgrpacketopen(fl)  CAL_CMGETAPI( "tracemgrpacketopen" ) 
 	#define CAL_tracemgrpacketopen  tracemgrpacketopen
 	#define CHK_tracemgrpacketopen  TRUE
-	#define EXP_tracemgrpacketopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketopen", (RTS_UINTPTR)tracemgrpacketopen, 1, 0x32667B41, 0x03050B00) 
+	#define EXP_tracemgrpacketopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketopen", (RTS_UINTPTR)tracemgrpacketopen, 1, 0x32667B41, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketopen
 	#define EXT_CmpTraceMgrtracemgrpacketopen
 	#define GET_CmpTraceMgrtracemgrpacketopen  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketopen  tracemgrpacketopen
 	#define CHK_CmpTraceMgrtracemgrpacketopen  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketopen", (RTS_UINTPTR)tracemgrpacketopen, 1, 0x32667B41, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketopen", (RTS_UINTPTR)tracemgrpacketopen, 1, 0x32667B41, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketopen
 	#define EXT_tracemgrpacketopen
 	#define GET_tracemgrpacketopen(fl)  CAL_CMGETAPI( "tracemgrpacketopen" ) 
 	#define CAL_tracemgrpacketopen  tracemgrpacketopen
 	#define CHK_tracemgrpacketopen  TRUE
-	#define EXP_tracemgrpacketopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketopen", (RTS_UINTPTR)tracemgrpacketopen, 1, 0x32667B41, 0x03050B00) 
+	#define EXP_tracemgrpacketopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketopen", (RTS_UINTPTR)tracemgrpacketopen, 1, 0x32667B41, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketopen  PFTRACEMGRPACKETOPEN_IEC pftracemgrpacketopen;
 	#define EXT_tracemgrpacketopen  extern PFTRACEMGRPACKETOPEN_IEC pftracemgrpacketopen;
-	#define GET_tracemgrpacketopen(fl)  s_pfCMGetAPI2( "tracemgrpacketopen", (RTS_VOID_FCTPTR *)&pftracemgrpacketopen, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x32667B41, 0x03050B00)
+	#define GET_tracemgrpacketopen(fl)  s_pfCMGetAPI2( "tracemgrpacketopen", (RTS_VOID_FCTPTR *)&pftracemgrpacketopen, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x32667B41, 0x03050700)
 	#define CAL_tracemgrpacketopen  pftracemgrpacketopen
 	#define CHK_tracemgrpacketopen  (pftracemgrpacketopen != NULL)
-	#define EXP_tracemgrpacketopen   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketopen", (RTS_UINTPTR)tracemgrpacketopen, 1, 0x32667B41, 0x03050B00) 
+	#define EXP_tracemgrpacketopen   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketopen", (RTS_UINTPTR)tracemgrpacketopen, 1, 0x32667B41, 0x03050700) 
 #endif
 
 
@@ -1859,15 +1848,15 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETOPEN_IEC) (tracemgrpacketopen_str
  * Start reading trace packet.
  * 
  * The purpose of this function is to trigger the event
- * EVT_TRACEMGR_PACKET_SAMPLE.
+ *  EVT_TRACEMGR_PACKET_SAMPLE.
  * In response to the event, any outstanding trace samples will be written
  * by runtime system components and IEC applications that provide trace
  * values for system parameters.
  *
- * .. note:: Normally, there is no need to call this function. It should be
- *    called before |TraceMgrPacketReadFirst| and |TraceMgrPacketReadFirst2| to
- *    make sure all trace values are present before reading.  When finished
- *    with reading, TraceMgrPacketReadEnd should be called.
+ * Note: Normally, there is no need to call this function. It should be
+ * called before TraceMgrPacketReadFirst and TraceMgrPacketReadFirst2 to
+ * make sure all trace values are present before reading.  When finished
+ * with reading, TraceMgrPacketReadEnd should be called.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -1894,42 +1883,42 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETREADBEGIN_IEC) (tracemgrpacketrea
 	#define GET_tracemgrpacketreadbegin(fl)  CAL_CMGETAPI( "tracemgrpacketreadbegin" ) 
 	#define CAL_tracemgrpacketreadbegin  tracemgrpacketreadbegin
 	#define CHK_tracemgrpacketreadbegin  TRUE
-	#define EXP_tracemgrpacketreadbegin  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadbegin", (RTS_UINTPTR)tracemgrpacketreadbegin, 1, 0xDD2F3F8A, 0x03050B00) 
+	#define EXP_tracemgrpacketreadbegin  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadbegin", (RTS_UINTPTR)tracemgrpacketreadbegin, 1, 0xDD2F3F8A, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketreadbegin
 	#define EXT_tracemgrpacketreadbegin
 	#define GET_tracemgrpacketreadbegin(fl)  CAL_CMGETAPI( "tracemgrpacketreadbegin" ) 
 	#define CAL_tracemgrpacketreadbegin  tracemgrpacketreadbegin
 	#define CHK_tracemgrpacketreadbegin  TRUE
-	#define EXP_tracemgrpacketreadbegin  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadbegin", (RTS_UINTPTR)tracemgrpacketreadbegin, 1, 0xDD2F3F8A, 0x03050B00) 
+	#define EXP_tracemgrpacketreadbegin  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadbegin", (RTS_UINTPTR)tracemgrpacketreadbegin, 1, 0xDD2F3F8A, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketreadbegin
 	#define EXT_CmpTraceMgrtracemgrpacketreadbegin
 	#define GET_CmpTraceMgrtracemgrpacketreadbegin  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketreadbegin  tracemgrpacketreadbegin
 	#define CHK_CmpTraceMgrtracemgrpacketreadbegin  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketreadbegin  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadbegin", (RTS_UINTPTR)tracemgrpacketreadbegin, 1, 0xDD2F3F8A, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketreadbegin  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadbegin", (RTS_UINTPTR)tracemgrpacketreadbegin, 1, 0xDD2F3F8A, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketreadbegin
 	#define EXT_tracemgrpacketreadbegin
 	#define GET_tracemgrpacketreadbegin(fl)  CAL_CMGETAPI( "tracemgrpacketreadbegin" ) 
 	#define CAL_tracemgrpacketreadbegin  tracemgrpacketreadbegin
 	#define CHK_tracemgrpacketreadbegin  TRUE
-	#define EXP_tracemgrpacketreadbegin  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadbegin", (RTS_UINTPTR)tracemgrpacketreadbegin, 1, 0xDD2F3F8A, 0x03050B00) 
+	#define EXP_tracemgrpacketreadbegin  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadbegin", (RTS_UINTPTR)tracemgrpacketreadbegin, 1, 0xDD2F3F8A, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketreadbegin  PFTRACEMGRPACKETREADBEGIN_IEC pftracemgrpacketreadbegin;
 	#define EXT_tracemgrpacketreadbegin  extern PFTRACEMGRPACKETREADBEGIN_IEC pftracemgrpacketreadbegin;
-	#define GET_tracemgrpacketreadbegin(fl)  s_pfCMGetAPI2( "tracemgrpacketreadbegin", (RTS_VOID_FCTPTR *)&pftracemgrpacketreadbegin, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xDD2F3F8A, 0x03050B00)
+	#define GET_tracemgrpacketreadbegin(fl)  s_pfCMGetAPI2( "tracemgrpacketreadbegin", (RTS_VOID_FCTPTR *)&pftracemgrpacketreadbegin, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xDD2F3F8A, 0x03050700)
 	#define CAL_tracemgrpacketreadbegin  pftracemgrpacketreadbegin
 	#define CHK_tracemgrpacketreadbegin  (pftracemgrpacketreadbegin != NULL)
-	#define EXP_tracemgrpacketreadbegin   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadbegin", (RTS_UINTPTR)tracemgrpacketreadbegin, 1, 0xDD2F3F8A, 0x03050B00) 
+	#define EXP_tracemgrpacketreadbegin   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadbegin", (RTS_UINTPTR)tracemgrpacketreadbegin, 1, 0xDD2F3F8A, 0x03050700) 
 #endif
 
 
 /**
  * End reading trace packet.
  *
- * See description of function |TraceMgrPacketReadBegin|.
+ * See description of function TraceMgrPacketReadBegin.
  * 
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -1956,52 +1945,52 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETREADEND_IEC) (tracemgrpacketreade
 	#define GET_tracemgrpacketreadend(fl)  CAL_CMGETAPI( "tracemgrpacketreadend" ) 
 	#define CAL_tracemgrpacketreadend  tracemgrpacketreadend
 	#define CHK_tracemgrpacketreadend  TRUE
-	#define EXP_tracemgrpacketreadend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadend", (RTS_UINTPTR)tracemgrpacketreadend, 1, 0x96F691B2, 0x03050B00) 
+	#define EXP_tracemgrpacketreadend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadend", (RTS_UINTPTR)tracemgrpacketreadend, 1, 0x96F691B2, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketreadend
 	#define EXT_tracemgrpacketreadend
 	#define GET_tracemgrpacketreadend(fl)  CAL_CMGETAPI( "tracemgrpacketreadend" ) 
 	#define CAL_tracemgrpacketreadend  tracemgrpacketreadend
 	#define CHK_tracemgrpacketreadend  TRUE
-	#define EXP_tracemgrpacketreadend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadend", (RTS_UINTPTR)tracemgrpacketreadend, 1, 0x96F691B2, 0x03050B00) 
+	#define EXP_tracemgrpacketreadend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadend", (RTS_UINTPTR)tracemgrpacketreadend, 1, 0x96F691B2, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketreadend
 	#define EXT_CmpTraceMgrtracemgrpacketreadend
 	#define GET_CmpTraceMgrtracemgrpacketreadend  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketreadend  tracemgrpacketreadend
 	#define CHK_CmpTraceMgrtracemgrpacketreadend  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketreadend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadend", (RTS_UINTPTR)tracemgrpacketreadend, 1, 0x96F691B2, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketreadend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadend", (RTS_UINTPTR)tracemgrpacketreadend, 1, 0x96F691B2, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketreadend
 	#define EXT_tracemgrpacketreadend
 	#define GET_tracemgrpacketreadend(fl)  CAL_CMGETAPI( "tracemgrpacketreadend" ) 
 	#define CAL_tracemgrpacketreadend  tracemgrpacketreadend
 	#define CHK_tracemgrpacketreadend  TRUE
-	#define EXP_tracemgrpacketreadend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadend", (RTS_UINTPTR)tracemgrpacketreadend, 1, 0x96F691B2, 0x03050B00) 
+	#define EXP_tracemgrpacketreadend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadend", (RTS_UINTPTR)tracemgrpacketreadend, 1, 0x96F691B2, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketreadend  PFTRACEMGRPACKETREADEND_IEC pftracemgrpacketreadend;
 	#define EXT_tracemgrpacketreadend  extern PFTRACEMGRPACKETREADEND_IEC pftracemgrpacketreadend;
-	#define GET_tracemgrpacketreadend(fl)  s_pfCMGetAPI2( "tracemgrpacketreadend", (RTS_VOID_FCTPTR *)&pftracemgrpacketreadend, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x96F691B2, 0x03050B00)
+	#define GET_tracemgrpacketreadend(fl)  s_pfCMGetAPI2( "tracemgrpacketreadend", (RTS_VOID_FCTPTR *)&pftracemgrpacketreadend, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x96F691B2, 0x03050700)
 	#define CAL_tracemgrpacketreadend  pftracemgrpacketreadend
 	#define CHK_tracemgrpacketreadend  (pftracemgrpacketreadend != NULL)
-	#define EXP_tracemgrpacketreadend   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadend", (RTS_UINTPTR)tracemgrpacketreadend, 1, 0x96F691B2, 0x03050B00) 
+	#define EXP_tracemgrpacketreadend   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadend", (RTS_UINTPTR)tracemgrpacketreadend, 1, 0x96F691B2, 0x03050700) 
 #endif
 
 
 /**
  * Reads the contents of the first record.
  *
- * .. note:: if the result code is ERR_ENTRIES_REMAINING, data has been
- *    successfully copied to pTraceBuffer, but more data can be read
- *    by a subsequent call.  (Either because the destination buffer was
- *    too small, or because new data has been recorded in the mean time.)
+ * Note: if the result code is ERR_ENTRIES_REMAINING, data has been
+ * successfully copied to pTraceBuffer, but more data can be read
+ * by a subsequent call.  (Either because the destination buffer was
+ * too small, or because new data has been recorded in the mean time.)
  *
- * .. note:: You should call |TraceMgrPacketReadBegin| before calling
- *    this function, to make sure any outstanding trace values are written
- *    to the trace buffers.
+ * Note 2: You should call TraceMgrPacketReadBegin before calling
+ * this function, to make sure any outstanding trace values are written
+ * to the trace buffers.
  * 
- * .. note:: Data is always returned in little endian byte order even if 
- *    the device has big endian byte order.
+ * Note 3: Data is always returned in little endian byte order even if 
+ * the device has big endian byte order.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -2015,7 +2004,7 @@ typedef struct tagtracemgrpacketreadfirst_struct
 	RTS_IEC_HANDLE hPacket;				/* VAR_INPUT */	/* The trace packet handle */
 	TraceRecordEntry *pTraceBuffer;		/* VAR_IN_OUT */	/* Pointer to the destination buffer */
 	RTS_IEC_UDINT *pulReadBytes;		/* VAR_IN_OUT */	/* Size of the destination buffer in bytes (in), number of bytes copied (out) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code */
 	RTS_IEC_HANDLE TraceMgrPacketReadFirst;	/* VAR_OUTPUT */	/* The handle of the first trace record or RTS_INVALID_HANLDE on error */
 } tracemgrpacketreadfirst_struct;
 
@@ -2034,35 +2023,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETREADFIRST_IEC) (tracemgrpacketrea
 	#define GET_tracemgrpacketreadfirst(fl)  CAL_CMGETAPI( "tracemgrpacketreadfirst" ) 
 	#define CAL_tracemgrpacketreadfirst  tracemgrpacketreadfirst
 	#define CHK_tracemgrpacketreadfirst  TRUE
-	#define EXP_tracemgrpacketreadfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst", (RTS_UINTPTR)tracemgrpacketreadfirst, 1, 0x074AB535, 0x03050B00) 
+	#define EXP_tracemgrpacketreadfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst", (RTS_UINTPTR)tracemgrpacketreadfirst, 1, 0x074AB535, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketreadfirst
 	#define EXT_tracemgrpacketreadfirst
 	#define GET_tracemgrpacketreadfirst(fl)  CAL_CMGETAPI( "tracemgrpacketreadfirst" ) 
 	#define CAL_tracemgrpacketreadfirst  tracemgrpacketreadfirst
 	#define CHK_tracemgrpacketreadfirst  TRUE
-	#define EXP_tracemgrpacketreadfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst", (RTS_UINTPTR)tracemgrpacketreadfirst, 1, 0x074AB535, 0x03050B00) 
+	#define EXP_tracemgrpacketreadfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst", (RTS_UINTPTR)tracemgrpacketreadfirst, 1, 0x074AB535, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketreadfirst
 	#define EXT_CmpTraceMgrtracemgrpacketreadfirst
 	#define GET_CmpTraceMgrtracemgrpacketreadfirst  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketreadfirst  tracemgrpacketreadfirst
 	#define CHK_CmpTraceMgrtracemgrpacketreadfirst  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketreadfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst", (RTS_UINTPTR)tracemgrpacketreadfirst, 1, 0x074AB535, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketreadfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst", (RTS_UINTPTR)tracemgrpacketreadfirst, 1, 0x074AB535, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketreadfirst
 	#define EXT_tracemgrpacketreadfirst
 	#define GET_tracemgrpacketreadfirst(fl)  CAL_CMGETAPI( "tracemgrpacketreadfirst" ) 
 	#define CAL_tracemgrpacketreadfirst  tracemgrpacketreadfirst
 	#define CHK_tracemgrpacketreadfirst  TRUE
-	#define EXP_tracemgrpacketreadfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst", (RTS_UINTPTR)tracemgrpacketreadfirst, 1, 0x074AB535, 0x03050B00) 
+	#define EXP_tracemgrpacketreadfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst", (RTS_UINTPTR)tracemgrpacketreadfirst, 1, 0x074AB535, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketreadfirst  PFTRACEMGRPACKETREADFIRST_IEC pftracemgrpacketreadfirst;
 	#define EXT_tracemgrpacketreadfirst  extern PFTRACEMGRPACKETREADFIRST_IEC pftracemgrpacketreadfirst;
-	#define GET_tracemgrpacketreadfirst(fl)  s_pfCMGetAPI2( "tracemgrpacketreadfirst", (RTS_VOID_FCTPTR *)&pftracemgrpacketreadfirst, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x074AB535, 0x03050B00)
+	#define GET_tracemgrpacketreadfirst(fl)  s_pfCMGetAPI2( "tracemgrpacketreadfirst", (RTS_VOID_FCTPTR *)&pftracemgrpacketreadfirst, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x074AB535, 0x03050700)
 	#define CAL_tracemgrpacketreadfirst  pftracemgrpacketreadfirst
 	#define CHK_tracemgrpacketreadfirst  (pftracemgrpacketreadfirst != NULL)
-	#define EXP_tracemgrpacketreadfirst   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst", (RTS_UINTPTR)tracemgrpacketreadfirst, 1, 0x074AB535, 0x03050B00) 
+	#define EXP_tracemgrpacketreadfirst   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst", (RTS_UINTPTR)tracemgrpacketreadfirst, 1, 0x074AB535, 0x03050700) 
 #endif
 
 
@@ -2071,19 +2060,19 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETREADFIRST_IEC) (tracemgrpacketrea
  *
  * Only entries with a time stamp greater than or equal to ulTimestamp are
  * copied.  If the time stamp is zero, the function behaves like
- * |TraceMgrPacketReadFirst|.
+ * TraceMgrPacketReadFirst.
  *
- * .. note:: if the result code is ERR_ENTRIES_REMAINING, data has been
- *    successfully copied to pTraceBuffer, but more data can be read
- *    by a subsequent call.  (Either because the destination buffer was
- *    too small, or because new data has been recorded in the mean time.)
+ * Note: if the result code is ERR_ENTRIES_REMAINING, data has been
+ * successfully copied to pTraceBuffer, but more data can be read
+ * by a subsequent call.  (Either because the destination buffer was
+ * too small, or because new data has been recorded in the mean time.)
  *
- * .. note:: You should call |TraceMgrPacketReadBegin| before calling
- *    this function, to make sure any outstanding trace values are written
- *    to the trace buffers.
+ * Note 2: You should call TraceMgrPacketReadBegin before calling
+ * this function, to make sure any outstanding trace values are written
+ * to the trace buffers.
  *
- * .. note:: Data is always returned in little endian byte order even if
- *    the device has big endian byte order.
+ * Note 3: Data is always returned in little endian byte order even if
+ * the device has big endian byte order.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -2098,7 +2087,7 @@ typedef struct tagtracemgrpacketreadfirst2_struct
 	RTS_IEC_UDINT ulTimestamp;			/* VAR_INPUT */	/* The time stamp (relative to the trace start time) from where to start copying */
 	TraceRecordEntry *pTraceBuffer;		/* VAR_IN_OUT */	/* Pointer to the destination buffer */
 	RTS_IEC_UDINT *pulReadBytes;		/* VAR_IN_OUT */	/* Size of the destination buffer in bytes (in), number of bytes copied (out) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code */
 	RTS_IEC_HANDLE TraceMgrPacketReadFirst2;	/* VAR_OUTPUT */	/* The handle of the first trace record or RTS_INVALID_HANLDE on error */
 } tracemgrpacketreadfirst2_struct;
 
@@ -2117,48 +2106,48 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETREADFIRST2_IEC) (tracemgrpacketre
 	#define GET_tracemgrpacketreadfirst2(fl)  CAL_CMGETAPI( "tracemgrpacketreadfirst2" ) 
 	#define CAL_tracemgrpacketreadfirst2  tracemgrpacketreadfirst2
 	#define CHK_tracemgrpacketreadfirst2  TRUE
-	#define EXP_tracemgrpacketreadfirst2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst2", (RTS_UINTPTR)tracemgrpacketreadfirst2, 1, 0x8F85D7AF, 0x03050B00) 
+	#define EXP_tracemgrpacketreadfirst2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst2", (RTS_UINTPTR)tracemgrpacketreadfirst2, 1, 0x8F85D7AF, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketreadfirst2
 	#define EXT_tracemgrpacketreadfirst2
 	#define GET_tracemgrpacketreadfirst2(fl)  CAL_CMGETAPI( "tracemgrpacketreadfirst2" ) 
 	#define CAL_tracemgrpacketreadfirst2  tracemgrpacketreadfirst2
 	#define CHK_tracemgrpacketreadfirst2  TRUE
-	#define EXP_tracemgrpacketreadfirst2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst2", (RTS_UINTPTR)tracemgrpacketreadfirst2, 1, 0x8F85D7AF, 0x03050B00) 
+	#define EXP_tracemgrpacketreadfirst2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst2", (RTS_UINTPTR)tracemgrpacketreadfirst2, 1, 0x8F85D7AF, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketreadfirst2
 	#define EXT_CmpTraceMgrtracemgrpacketreadfirst2
 	#define GET_CmpTraceMgrtracemgrpacketreadfirst2  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketreadfirst2  tracemgrpacketreadfirst2
 	#define CHK_CmpTraceMgrtracemgrpacketreadfirst2  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketreadfirst2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst2", (RTS_UINTPTR)tracemgrpacketreadfirst2, 1, 0x8F85D7AF, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketreadfirst2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst2", (RTS_UINTPTR)tracemgrpacketreadfirst2, 1, 0x8F85D7AF, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketreadfirst2
 	#define EXT_tracemgrpacketreadfirst2
 	#define GET_tracemgrpacketreadfirst2(fl)  CAL_CMGETAPI( "tracemgrpacketreadfirst2" ) 
 	#define CAL_tracemgrpacketreadfirst2  tracemgrpacketreadfirst2
 	#define CHK_tracemgrpacketreadfirst2  TRUE
-	#define EXP_tracemgrpacketreadfirst2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst2", (RTS_UINTPTR)tracemgrpacketreadfirst2, 1, 0x8F85D7AF, 0x03050B00) 
+	#define EXP_tracemgrpacketreadfirst2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst2", (RTS_UINTPTR)tracemgrpacketreadfirst2, 1, 0x8F85D7AF, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketreadfirst2  PFTRACEMGRPACKETREADFIRST2_IEC pftracemgrpacketreadfirst2;
 	#define EXT_tracemgrpacketreadfirst2  extern PFTRACEMGRPACKETREADFIRST2_IEC pftracemgrpacketreadfirst2;
-	#define GET_tracemgrpacketreadfirst2(fl)  s_pfCMGetAPI2( "tracemgrpacketreadfirst2", (RTS_VOID_FCTPTR *)&pftracemgrpacketreadfirst2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x8F85D7AF, 0x03050B00)
+	#define GET_tracemgrpacketreadfirst2(fl)  s_pfCMGetAPI2( "tracemgrpacketreadfirst2", (RTS_VOID_FCTPTR *)&pftracemgrpacketreadfirst2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x8F85D7AF, 0x03050700)
 	#define CAL_tracemgrpacketreadfirst2  pftracemgrpacketreadfirst2
 	#define CHK_tracemgrpacketreadfirst2  (pftracemgrpacketreadfirst2 != NULL)
-	#define EXP_tracemgrpacketreadfirst2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst2", (RTS_UINTPTR)tracemgrpacketreadfirst2, 1, 0x8F85D7AF, 0x03050B00) 
+	#define EXP_tracemgrpacketreadfirst2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadfirst2", (RTS_UINTPTR)tracemgrpacketreadfirst2, 1, 0x8F85D7AF, 0x03050700) 
 #endif
 
 
 /**
  * Reads the contents of the next record.
  *
- * .. note:: if the result code is ERR_ENTRIES_REMAINING, data has been
- *    successfully copied to pTraceBuffer, but more data can be read
- *    by a subsequent call.  (Either because the destination buffer was
- *    too small, or because new data has been recorded in the mean time.)
+ * Note: if the result code is ERR_ENTRIES_REMAINING, data has been
+ * successfully copied to pTraceBuffer, but more data can be read
+ * by a subsequent call.  (Either because the destination buffer was
+ * too small, or because new data has been recorded in the mean time.)
  *
- * .. note:: Data is always returned in little endian byte order even if
- *    the device has big endian byte order.
+ * Note 2: Data is always returned in little endian byte order even if
+ * the device has big endian byte order.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle or if hPrevRecord is not a valid record handle
@@ -2173,7 +2162,7 @@ typedef struct tagtracemgrpacketreadnext_struct
 	RTS_IEC_HANDLE hPrevRecord;			/* VAR_INPUT */	/* The trace record handle of the current record */
 	TraceRecordEntry *pTraceBuffer;		/* VAR_IN_OUT */	/* Pointer to the destination buffer */
 	RTS_IEC_UDINT *pulReadBytes;		/* VAR_IN_OUT */	/* Size of the destination buffer in bytes (in), number of bytes copied (out) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code */
 	RTS_IEC_HANDLE TraceMgrPacketReadNext;	/* VAR_OUTPUT */	/* The handle of the next trace record or RTS_INVALID_HANLDE on error */
 } tracemgrpacketreadnext_struct;
 
@@ -2192,35 +2181,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETREADNEXT_IEC) (tracemgrpacketread
 	#define GET_tracemgrpacketreadnext(fl)  CAL_CMGETAPI( "tracemgrpacketreadnext" ) 
 	#define CAL_tracemgrpacketreadnext  tracemgrpacketreadnext
 	#define CHK_tracemgrpacketreadnext  TRUE
-	#define EXP_tracemgrpacketreadnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext", (RTS_UINTPTR)tracemgrpacketreadnext, 1, 0xDA5B316F, 0x03050B00) 
+	#define EXP_tracemgrpacketreadnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext", (RTS_UINTPTR)tracemgrpacketreadnext, 1, 0xDA5B316F, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketreadnext
 	#define EXT_tracemgrpacketreadnext
 	#define GET_tracemgrpacketreadnext(fl)  CAL_CMGETAPI( "tracemgrpacketreadnext" ) 
 	#define CAL_tracemgrpacketreadnext  tracemgrpacketreadnext
 	#define CHK_tracemgrpacketreadnext  TRUE
-	#define EXP_tracemgrpacketreadnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext", (RTS_UINTPTR)tracemgrpacketreadnext, 1, 0xDA5B316F, 0x03050B00) 
+	#define EXP_tracemgrpacketreadnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext", (RTS_UINTPTR)tracemgrpacketreadnext, 1, 0xDA5B316F, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketreadnext
 	#define EXT_CmpTraceMgrtracemgrpacketreadnext
 	#define GET_CmpTraceMgrtracemgrpacketreadnext  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketreadnext  tracemgrpacketreadnext
 	#define CHK_CmpTraceMgrtracemgrpacketreadnext  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketreadnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext", (RTS_UINTPTR)tracemgrpacketreadnext, 1, 0xDA5B316F, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketreadnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext", (RTS_UINTPTR)tracemgrpacketreadnext, 1, 0xDA5B316F, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketreadnext
 	#define EXT_tracemgrpacketreadnext
 	#define GET_tracemgrpacketreadnext(fl)  CAL_CMGETAPI( "tracemgrpacketreadnext" ) 
 	#define CAL_tracemgrpacketreadnext  tracemgrpacketreadnext
 	#define CHK_tracemgrpacketreadnext  TRUE
-	#define EXP_tracemgrpacketreadnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext", (RTS_UINTPTR)tracemgrpacketreadnext, 1, 0xDA5B316F, 0x03050B00) 
+	#define EXP_tracemgrpacketreadnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext", (RTS_UINTPTR)tracemgrpacketreadnext, 1, 0xDA5B316F, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketreadnext  PFTRACEMGRPACKETREADNEXT_IEC pftracemgrpacketreadnext;
 	#define EXT_tracemgrpacketreadnext  extern PFTRACEMGRPACKETREADNEXT_IEC pftracemgrpacketreadnext;
-	#define GET_tracemgrpacketreadnext(fl)  s_pfCMGetAPI2( "tracemgrpacketreadnext", (RTS_VOID_FCTPTR *)&pftracemgrpacketreadnext, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xDA5B316F, 0x03050B00)
+	#define GET_tracemgrpacketreadnext(fl)  s_pfCMGetAPI2( "tracemgrpacketreadnext", (RTS_VOID_FCTPTR *)&pftracemgrpacketreadnext, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xDA5B316F, 0x03050700)
 	#define CAL_tracemgrpacketreadnext  pftracemgrpacketreadnext
 	#define CHK_tracemgrpacketreadnext  (pftracemgrpacketreadnext != NULL)
-	#define EXP_tracemgrpacketreadnext   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext", (RTS_UINTPTR)tracemgrpacketreadnext, 1, 0xDA5B316F, 0x03050B00) 
+	#define EXP_tracemgrpacketreadnext   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext", (RTS_UINTPTR)tracemgrpacketreadnext, 1, 0xDA5B316F, 0x03050700) 
 #endif
 
 
@@ -2229,15 +2218,15 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETREADNEXT_IEC) (tracemgrpacketread
  *
  * Only entries with a time stamp greater than or equal to ulTimestamp are
  * copied.  If the time stamp is zero, the function behaves like
- * |TraceMgrPacketReadNext|.
+ * TraceMgrPacketReadNext.
  *
- * .. note:: if the result code is ERR_ENTRIES_REMAINING, data has been
- *    successfully copied to pTraceBuffer, but more data can be read
- *    by a subsequent call.  (Either because the destination buffer was
- *    too small, or because new data has been recorded in the mean time.)
+ * Note: if the result code is ERR_ENTRIES_REMAINING, data has been
+ * successfully copied to pTraceBuffer, but more data can be read
+ * by a subsequent call.  (Either because the destination buffer was
+ * too small, or because new data has been recorded in the mean time.)
  *
- * .. note:: Data is always returned in little endian byte order even if
- *    the device has big endian byte order.
+ * Note 2: Data is always returned in little endian byte order even if
+ * the device has big endian byte order.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle or if hPrevRecord is not a valid record handle
@@ -2253,7 +2242,7 @@ typedef struct tagtracemgrpacketreadnext2_struct
 	RTS_IEC_UDINT ulTimestamp;			/* VAR_INPUT */	/* The time stamp (relative to the trace start time) from where to start copying */
 	TraceRecordEntry *pTraceBuffer;		/* VAR_IN_OUT */	/* Pointer to the destination buffer */
 	RTS_IEC_UDINT *pulReadBytes;		/* VAR_IN_OUT */	/* Size of the destination buffer in bytes (in), number of bytes copied (out) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code */
 	RTS_IEC_HANDLE TraceMgrPacketReadNext2;	/* VAR_OUTPUT */	/* The handle of the next trace record or RTS_INVALID_HANLDE on error */
 } tracemgrpacketreadnext2_struct;
 
@@ -2272,35 +2261,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETREADNEXT2_IEC) (tracemgrpacketrea
 	#define GET_tracemgrpacketreadnext2(fl)  CAL_CMGETAPI( "tracemgrpacketreadnext2" ) 
 	#define CAL_tracemgrpacketreadnext2  tracemgrpacketreadnext2
 	#define CHK_tracemgrpacketreadnext2  TRUE
-	#define EXP_tracemgrpacketreadnext2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext2", (RTS_UINTPTR)tracemgrpacketreadnext2, 1, 0xE91DB9CD, 0x03050B00) 
+	#define EXP_tracemgrpacketreadnext2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext2", (RTS_UINTPTR)tracemgrpacketreadnext2, 1, 0xE91DB9CD, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketreadnext2
 	#define EXT_tracemgrpacketreadnext2
 	#define GET_tracemgrpacketreadnext2(fl)  CAL_CMGETAPI( "tracemgrpacketreadnext2" ) 
 	#define CAL_tracemgrpacketreadnext2  tracemgrpacketreadnext2
 	#define CHK_tracemgrpacketreadnext2  TRUE
-	#define EXP_tracemgrpacketreadnext2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext2", (RTS_UINTPTR)tracemgrpacketreadnext2, 1, 0xE91DB9CD, 0x03050B00) 
+	#define EXP_tracemgrpacketreadnext2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext2", (RTS_UINTPTR)tracemgrpacketreadnext2, 1, 0xE91DB9CD, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketreadnext2
 	#define EXT_CmpTraceMgrtracemgrpacketreadnext2
 	#define GET_CmpTraceMgrtracemgrpacketreadnext2  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketreadnext2  tracemgrpacketreadnext2
 	#define CHK_CmpTraceMgrtracemgrpacketreadnext2  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketreadnext2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext2", (RTS_UINTPTR)tracemgrpacketreadnext2, 1, 0xE91DB9CD, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketreadnext2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext2", (RTS_UINTPTR)tracemgrpacketreadnext2, 1, 0xE91DB9CD, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketreadnext2
 	#define EXT_tracemgrpacketreadnext2
 	#define GET_tracemgrpacketreadnext2(fl)  CAL_CMGETAPI( "tracemgrpacketreadnext2" ) 
 	#define CAL_tracemgrpacketreadnext2  tracemgrpacketreadnext2
 	#define CHK_tracemgrpacketreadnext2  TRUE
-	#define EXP_tracemgrpacketreadnext2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext2", (RTS_UINTPTR)tracemgrpacketreadnext2, 1, 0xE91DB9CD, 0x03050B00) 
+	#define EXP_tracemgrpacketreadnext2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext2", (RTS_UINTPTR)tracemgrpacketreadnext2, 1, 0xE91DB9CD, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketreadnext2  PFTRACEMGRPACKETREADNEXT2_IEC pftracemgrpacketreadnext2;
 	#define EXT_tracemgrpacketreadnext2  extern PFTRACEMGRPACKETREADNEXT2_IEC pftracemgrpacketreadnext2;
-	#define GET_tracemgrpacketreadnext2(fl)  s_pfCMGetAPI2( "tracemgrpacketreadnext2", (RTS_VOID_FCTPTR *)&pftracemgrpacketreadnext2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE91DB9CD, 0x03050B00)
+	#define GET_tracemgrpacketreadnext2(fl)  s_pfCMGetAPI2( "tracemgrpacketreadnext2", (RTS_VOID_FCTPTR *)&pftracemgrpacketreadnext2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE91DB9CD, 0x03050700)
 	#define CAL_tracemgrpacketreadnext2  pftracemgrpacketreadnext2
 	#define CHK_tracemgrpacketreadnext2  (pftracemgrpacketreadnext2 != NULL)
-	#define EXP_tracemgrpacketreadnext2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext2", (RTS_UINTPTR)tracemgrpacketreadnext2, 1, 0xE91DB9CD, 0x03050B00) 
+	#define EXP_tracemgrpacketreadnext2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketreadnext2", (RTS_UINTPTR)tracemgrpacketreadnext2, 1, 0xE91DB9CD, 0x03050700) 
 #endif
 
 
@@ -2309,8 +2298,8 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETREADNEXT2_IEC) (tracemgrpacketrea
  * of the trigger is reset to 0 and the trigger is set to state enabled
  * (if it is not disabled).
  * 
- * .. note: if the trigger is currently disabled, it stays disabled.  To enable
- *    it, call TraceMgrPacketEnableTrigger.
+ * Note: if the trigger is currently disabled, it stays disabled.  To enable
+ * it, call TraceMgrPacketEnableTrigger.
  * 
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -2336,35 +2325,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETRESETTRIGGER_IEC) (tracemgrpacket
 	#define GET_tracemgrpacketresettrigger(fl)  CAL_CMGETAPI( "tracemgrpacketresettrigger" ) 
 	#define CAL_tracemgrpacketresettrigger  tracemgrpacketresettrigger
 	#define CHK_tracemgrpacketresettrigger  TRUE
-	#define EXP_tracemgrpacketresettrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketresettrigger", (RTS_UINTPTR)tracemgrpacketresettrigger, 1, 0xE73A7FCC, 0x03050B00) 
+	#define EXP_tracemgrpacketresettrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketresettrigger", (RTS_UINTPTR)tracemgrpacketresettrigger, 1, 0xE73A7FCC, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketresettrigger
 	#define EXT_tracemgrpacketresettrigger
 	#define GET_tracemgrpacketresettrigger(fl)  CAL_CMGETAPI( "tracemgrpacketresettrigger" ) 
 	#define CAL_tracemgrpacketresettrigger  tracemgrpacketresettrigger
 	#define CHK_tracemgrpacketresettrigger  TRUE
-	#define EXP_tracemgrpacketresettrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketresettrigger", (RTS_UINTPTR)tracemgrpacketresettrigger, 1, 0xE73A7FCC, 0x03050B00) 
+	#define EXP_tracemgrpacketresettrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketresettrigger", (RTS_UINTPTR)tracemgrpacketresettrigger, 1, 0xE73A7FCC, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketresettrigger
 	#define EXT_CmpTraceMgrtracemgrpacketresettrigger
 	#define GET_CmpTraceMgrtracemgrpacketresettrigger  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketresettrigger  tracemgrpacketresettrigger
 	#define CHK_CmpTraceMgrtracemgrpacketresettrigger  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketresettrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketresettrigger", (RTS_UINTPTR)tracemgrpacketresettrigger, 1, 0xE73A7FCC, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketresettrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketresettrigger", (RTS_UINTPTR)tracemgrpacketresettrigger, 1, 0xE73A7FCC, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketresettrigger
 	#define EXT_tracemgrpacketresettrigger
 	#define GET_tracemgrpacketresettrigger(fl)  CAL_CMGETAPI( "tracemgrpacketresettrigger" ) 
 	#define CAL_tracemgrpacketresettrigger  tracemgrpacketresettrigger
 	#define CHK_tracemgrpacketresettrigger  TRUE
-	#define EXP_tracemgrpacketresettrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketresettrigger", (RTS_UINTPTR)tracemgrpacketresettrigger, 1, 0xE73A7FCC, 0x03050B00) 
+	#define EXP_tracemgrpacketresettrigger  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketresettrigger", (RTS_UINTPTR)tracemgrpacketresettrigger, 1, 0xE73A7FCC, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketresettrigger  PFTRACEMGRPACKETRESETTRIGGER_IEC pftracemgrpacketresettrigger;
 	#define EXT_tracemgrpacketresettrigger  extern PFTRACEMGRPACKETRESETTRIGGER_IEC pftracemgrpacketresettrigger;
-	#define GET_tracemgrpacketresettrigger(fl)  s_pfCMGetAPI2( "tracemgrpacketresettrigger", (RTS_VOID_FCTPTR *)&pftracemgrpacketresettrigger, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE73A7FCC, 0x03050B00)
+	#define GET_tracemgrpacketresettrigger(fl)  s_pfCMGetAPI2( "tracemgrpacketresettrigger", (RTS_VOID_FCTPTR *)&pftracemgrpacketresettrigger, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE73A7FCC, 0x03050700)
 	#define CAL_tracemgrpacketresettrigger  pftracemgrpacketresettrigger
 	#define CHK_tracemgrpacketresettrigger  (pftracemgrpacketresettrigger != NULL)
-	#define EXP_tracemgrpacketresettrigger   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketresettrigger", (RTS_UINTPTR)tracemgrpacketresettrigger, 1, 0xE73A7FCC, 0x03050B00) 
+	#define EXP_tracemgrpacketresettrigger   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketresettrigger", (RTS_UINTPTR)tracemgrpacketresettrigger, 1, 0xE73A7FCC, 0x03050700) 
 #endif
 
 
@@ -2399,35 +2388,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETRESTART_IEC) (tracemgrpacketresta
 	#define GET_tracemgrpacketrestart(fl)  CAL_CMGETAPI( "tracemgrpacketrestart" ) 
 	#define CAL_tracemgrpacketrestart  tracemgrpacketrestart
 	#define CHK_tracemgrpacketrestart  TRUE
-	#define EXP_tracemgrpacketrestart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestart", (RTS_UINTPTR)tracemgrpacketrestart, 1, 0xAD7F1200, 0x03050B00) 
+	#define EXP_tracemgrpacketrestart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestart", (RTS_UINTPTR)tracemgrpacketrestart, 1, 0xAD7F1200, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketrestart
 	#define EXT_tracemgrpacketrestart
 	#define GET_tracemgrpacketrestart(fl)  CAL_CMGETAPI( "tracemgrpacketrestart" ) 
 	#define CAL_tracemgrpacketrestart  tracemgrpacketrestart
 	#define CHK_tracemgrpacketrestart  TRUE
-	#define EXP_tracemgrpacketrestart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestart", (RTS_UINTPTR)tracemgrpacketrestart, 1, 0xAD7F1200, 0x03050B00) 
+	#define EXP_tracemgrpacketrestart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestart", (RTS_UINTPTR)tracemgrpacketrestart, 1, 0xAD7F1200, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketrestart
 	#define EXT_CmpTraceMgrtracemgrpacketrestart
 	#define GET_CmpTraceMgrtracemgrpacketrestart  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketrestart  tracemgrpacketrestart
 	#define CHK_CmpTraceMgrtracemgrpacketrestart  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketrestart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestart", (RTS_UINTPTR)tracemgrpacketrestart, 1, 0xAD7F1200, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketrestart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestart", (RTS_UINTPTR)tracemgrpacketrestart, 1, 0xAD7F1200, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketrestart
 	#define EXT_tracemgrpacketrestart
 	#define GET_tracemgrpacketrestart(fl)  CAL_CMGETAPI( "tracemgrpacketrestart" ) 
 	#define CAL_tracemgrpacketrestart  tracemgrpacketrestart
 	#define CHK_tracemgrpacketrestart  TRUE
-	#define EXP_tracemgrpacketrestart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestart", (RTS_UINTPTR)tracemgrpacketrestart, 1, 0xAD7F1200, 0x03050B00) 
+	#define EXP_tracemgrpacketrestart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestart", (RTS_UINTPTR)tracemgrpacketrestart, 1, 0xAD7F1200, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketrestart  PFTRACEMGRPACKETRESTART_IEC pftracemgrpacketrestart;
 	#define EXT_tracemgrpacketrestart  extern PFTRACEMGRPACKETRESTART_IEC pftracemgrpacketrestart;
-	#define GET_tracemgrpacketrestart(fl)  s_pfCMGetAPI2( "tracemgrpacketrestart", (RTS_VOID_FCTPTR *)&pftracemgrpacketrestart, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xAD7F1200, 0x03050B00)
+	#define GET_tracemgrpacketrestart(fl)  s_pfCMGetAPI2( "tracemgrpacketrestart", (RTS_VOID_FCTPTR *)&pftracemgrpacketrestart, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xAD7F1200, 0x03050700)
 	#define CAL_tracemgrpacketrestart  pftracemgrpacketrestart
 	#define CHK_tracemgrpacketrestart  (pftracemgrpacketrestart != NULL)
-	#define EXP_tracemgrpacketrestart   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestart", (RTS_UINTPTR)tracemgrpacketrestart, 1, 0xAD7F1200, 0x03050B00) 
+	#define EXP_tracemgrpacketrestart   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestart", (RTS_UINTPTR)tracemgrpacketrestart, 1, 0xAD7F1200, 0x03050700) 
 #endif
 
 
@@ -2439,14 +2428,14 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETRESTART_IEC) (tracemgrpacketresta
  *   - ERR_PARAMETER if hPacket is not a valid handle, or if pszFileName is not a valid file path
  *   - ERR_NOMEMORY if the memory is not sufficient for opening the file
  *   - ERR_NOT_SUPPORTED if reading from files is not supported by the runtime system
- *     or if an addressing mode is not supported (e.g. symbolic access)
+ *       or if an addressing mode is not supported (e.g. symbolic access)
  *   - ERR_NO_OBJECT if opening the file failed
  *   - ERR_FAILED if opening the file failed
  */
 typedef struct tagtracemgrpacketrestore_struct
 {
 	RTS_IEC_STRING *pszFileName;		/* VAR_IN_OUT */	/* The file path (in) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrPacketRestore;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrpacketrestore_struct;
 
@@ -2465,43 +2454,44 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETRESTORE_IEC) (tracemgrpacketresto
 	#define GET_tracemgrpacketrestore(fl)  CAL_CMGETAPI( "tracemgrpacketrestore" ) 
 	#define CAL_tracemgrpacketrestore  tracemgrpacketrestore
 	#define CHK_tracemgrpacketrestore  TRUE
-	#define EXP_tracemgrpacketrestore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestore", (RTS_UINTPTR)tracemgrpacketrestore, 1, 0xE1899ACC, 0x03050B00) 
+	#define EXP_tracemgrpacketrestore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestore", (RTS_UINTPTR)tracemgrpacketrestore, 1, 0xE1899ACC, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketrestore
 	#define EXT_tracemgrpacketrestore
 	#define GET_tracemgrpacketrestore(fl)  CAL_CMGETAPI( "tracemgrpacketrestore" ) 
 	#define CAL_tracemgrpacketrestore  tracemgrpacketrestore
 	#define CHK_tracemgrpacketrestore  TRUE
-	#define EXP_tracemgrpacketrestore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestore", (RTS_UINTPTR)tracemgrpacketrestore, 1, 0xE1899ACC, 0x03050B00) 
+	#define EXP_tracemgrpacketrestore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestore", (RTS_UINTPTR)tracemgrpacketrestore, 1, 0xE1899ACC, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketrestore
 	#define EXT_CmpTraceMgrtracemgrpacketrestore
 	#define GET_CmpTraceMgrtracemgrpacketrestore  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketrestore  tracemgrpacketrestore
 	#define CHK_CmpTraceMgrtracemgrpacketrestore  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketrestore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestore", (RTS_UINTPTR)tracemgrpacketrestore, 1, 0xE1899ACC, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketrestore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestore", (RTS_UINTPTR)tracemgrpacketrestore, 1, 0xE1899ACC, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketrestore
 	#define EXT_tracemgrpacketrestore
 	#define GET_tracemgrpacketrestore(fl)  CAL_CMGETAPI( "tracemgrpacketrestore" ) 
 	#define CAL_tracemgrpacketrestore  tracemgrpacketrestore
 	#define CHK_tracemgrpacketrestore  TRUE
-	#define EXP_tracemgrpacketrestore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestore", (RTS_UINTPTR)tracemgrpacketrestore, 1, 0xE1899ACC, 0x03050B00) 
+	#define EXP_tracemgrpacketrestore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestore", (RTS_UINTPTR)tracemgrpacketrestore, 1, 0xE1899ACC, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketrestore  PFTRACEMGRPACKETRESTORE_IEC pftracemgrpacketrestore;
 	#define EXT_tracemgrpacketrestore  extern PFTRACEMGRPACKETRESTORE_IEC pftracemgrpacketrestore;
-	#define GET_tracemgrpacketrestore(fl)  s_pfCMGetAPI2( "tracemgrpacketrestore", (RTS_VOID_FCTPTR *)&pftracemgrpacketrestore, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE1899ACC, 0x03050B00)
+	#define GET_tracemgrpacketrestore(fl)  s_pfCMGetAPI2( "tracemgrpacketrestore", (RTS_VOID_FCTPTR *)&pftracemgrpacketrestore, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE1899ACC, 0x03050700)
 	#define CAL_tracemgrpacketrestore  pftracemgrpacketrestore
 	#define CHK_tracemgrpacketrestore  (pftracemgrpacketrestore != NULL)
-	#define EXP_tracemgrpacketrestore   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestore", (RTS_UINTPTR)tracemgrpacketrestore, 1, 0xE1899ACC, 0x03050B00) 
+	#define EXP_tracemgrpacketrestore   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketrestore", (RTS_UINTPTR)tracemgrpacketrestore, 1, 0xE1899ACC, 0x03050700) 
 #endif
 
 
 /**
  * Starts a trace packet and resets the trigger.
  *
- * .. note:: if the packet is started for the first time, the start
- *    time of the packet is set to the current time. See: |TraceMgrPacketGetStartTime|.
+ * Note: if the packet is started for the first time, the start
+ * time of the packet is set to the current time. See
+ * TraceGetStartTime.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket is not a valid packet handle
@@ -2527,35 +2517,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETSTART_IEC) (tracemgrpacketstart_s
 	#define GET_tracemgrpacketstart(fl)  CAL_CMGETAPI( "tracemgrpacketstart" ) 
 	#define CAL_tracemgrpacketstart  tracemgrpacketstart
 	#define CHK_tracemgrpacketstart  TRUE
-	#define EXP_tracemgrpacketstart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstart", (RTS_UINTPTR)tracemgrpacketstart, 1, 0xDCA4F311, 0x03050B00) 
+	#define EXP_tracemgrpacketstart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstart", (RTS_UINTPTR)tracemgrpacketstart, 1, 0xDCA4F311, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketstart
 	#define EXT_tracemgrpacketstart
 	#define GET_tracemgrpacketstart(fl)  CAL_CMGETAPI( "tracemgrpacketstart" ) 
 	#define CAL_tracemgrpacketstart  tracemgrpacketstart
 	#define CHK_tracemgrpacketstart  TRUE
-	#define EXP_tracemgrpacketstart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstart", (RTS_UINTPTR)tracemgrpacketstart, 1, 0xDCA4F311, 0x03050B00) 
+	#define EXP_tracemgrpacketstart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstart", (RTS_UINTPTR)tracemgrpacketstart, 1, 0xDCA4F311, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketstart
 	#define EXT_CmpTraceMgrtracemgrpacketstart
 	#define GET_CmpTraceMgrtracemgrpacketstart  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketstart  tracemgrpacketstart
 	#define CHK_CmpTraceMgrtracemgrpacketstart  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketstart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstart", (RTS_UINTPTR)tracemgrpacketstart, 1, 0xDCA4F311, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketstart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstart", (RTS_UINTPTR)tracemgrpacketstart, 1, 0xDCA4F311, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketstart
 	#define EXT_tracemgrpacketstart
 	#define GET_tracemgrpacketstart(fl)  CAL_CMGETAPI( "tracemgrpacketstart" ) 
 	#define CAL_tracemgrpacketstart  tracemgrpacketstart
 	#define CHK_tracemgrpacketstart  TRUE
-	#define EXP_tracemgrpacketstart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstart", (RTS_UINTPTR)tracemgrpacketstart, 1, 0xDCA4F311, 0x03050B00) 
+	#define EXP_tracemgrpacketstart  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstart", (RTS_UINTPTR)tracemgrpacketstart, 1, 0xDCA4F311, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketstart  PFTRACEMGRPACKETSTART_IEC pftracemgrpacketstart;
 	#define EXT_tracemgrpacketstart  extern PFTRACEMGRPACKETSTART_IEC pftracemgrpacketstart;
-	#define GET_tracemgrpacketstart(fl)  s_pfCMGetAPI2( "tracemgrpacketstart", (RTS_VOID_FCTPTR *)&pftracemgrpacketstart, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xDCA4F311, 0x03050B00)
+	#define GET_tracemgrpacketstart(fl)  s_pfCMGetAPI2( "tracemgrpacketstart", (RTS_VOID_FCTPTR *)&pftracemgrpacketstart, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xDCA4F311, 0x03050700)
 	#define CAL_tracemgrpacketstart  pftracemgrpacketstart
 	#define CHK_tracemgrpacketstart  (pftracemgrpacketstart != NULL)
-	#define EXP_tracemgrpacketstart   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstart", (RTS_UINTPTR)tracemgrpacketstart, 1, 0xDCA4F311, 0x03050B00) 
+	#define EXP_tracemgrpacketstart   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstart", (RTS_UINTPTR)tracemgrpacketstart, 1, 0xDCA4F311, 0x03050700) 
 #endif
 
 
@@ -2586,35 +2576,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETSTOP_IEC) (tracemgrpacketstop_str
 	#define GET_tracemgrpacketstop(fl)  CAL_CMGETAPI( "tracemgrpacketstop" ) 
 	#define CAL_tracemgrpacketstop  tracemgrpacketstop
 	#define CHK_tracemgrpacketstop  TRUE
-	#define EXP_tracemgrpacketstop  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstop", (RTS_UINTPTR)tracemgrpacketstop, 1, 0x3C28C22F, 0x03050B00) 
+	#define EXP_tracemgrpacketstop  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstop", (RTS_UINTPTR)tracemgrpacketstop, 1, 0x3C28C22F, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketstop
 	#define EXT_tracemgrpacketstop
 	#define GET_tracemgrpacketstop(fl)  CAL_CMGETAPI( "tracemgrpacketstop" ) 
 	#define CAL_tracemgrpacketstop  tracemgrpacketstop
 	#define CHK_tracemgrpacketstop  TRUE
-	#define EXP_tracemgrpacketstop  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstop", (RTS_UINTPTR)tracemgrpacketstop, 1, 0x3C28C22F, 0x03050B00) 
+	#define EXP_tracemgrpacketstop  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstop", (RTS_UINTPTR)tracemgrpacketstop, 1, 0x3C28C22F, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketstop
 	#define EXT_CmpTraceMgrtracemgrpacketstop
 	#define GET_CmpTraceMgrtracemgrpacketstop  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketstop  tracemgrpacketstop
 	#define CHK_CmpTraceMgrtracemgrpacketstop  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketstop  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstop", (RTS_UINTPTR)tracemgrpacketstop, 1, 0x3C28C22F, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketstop  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstop", (RTS_UINTPTR)tracemgrpacketstop, 1, 0x3C28C22F, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketstop
 	#define EXT_tracemgrpacketstop
 	#define GET_tracemgrpacketstop(fl)  CAL_CMGETAPI( "tracemgrpacketstop" ) 
 	#define CAL_tracemgrpacketstop  tracemgrpacketstop
 	#define CHK_tracemgrpacketstop  TRUE
-	#define EXP_tracemgrpacketstop  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstop", (RTS_UINTPTR)tracemgrpacketstop, 1, 0x3C28C22F, 0x03050B00) 
+	#define EXP_tracemgrpacketstop  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstop", (RTS_UINTPTR)tracemgrpacketstop, 1, 0x3C28C22F, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketstop  PFTRACEMGRPACKETSTOP_IEC pftracemgrpacketstop;
 	#define EXT_tracemgrpacketstop  extern PFTRACEMGRPACKETSTOP_IEC pftracemgrpacketstop;
-	#define GET_tracemgrpacketstop(fl)  s_pfCMGetAPI2( "tracemgrpacketstop", (RTS_VOID_FCTPTR *)&pftracemgrpacketstop, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x3C28C22F, 0x03050B00)
+	#define GET_tracemgrpacketstop(fl)  s_pfCMGetAPI2( "tracemgrpacketstop", (RTS_VOID_FCTPTR *)&pftracemgrpacketstop, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x3C28C22F, 0x03050700)
 	#define CAL_tracemgrpacketstop  pftracemgrpacketstop
 	#define CHK_tracemgrpacketstop  (pftracemgrpacketstop != NULL)
-	#define EXP_tracemgrpacketstop   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstop", (RTS_UINTPTR)tracemgrpacketstop, 1, 0x3C28C22F, 0x03050B00) 
+	#define EXP_tracemgrpacketstop   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstop", (RTS_UINTPTR)tracemgrpacketstop, 1, 0x3C28C22F, 0x03050700) 
 #endif
 
 
@@ -2651,35 +2641,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRPACKETSTORE_IEC) (tracemgrpacketstore_s
 	#define GET_tracemgrpacketstore(fl)  CAL_CMGETAPI( "tracemgrpacketstore" ) 
 	#define CAL_tracemgrpacketstore  tracemgrpacketstore
 	#define CHK_tracemgrpacketstore  TRUE
-	#define EXP_tracemgrpacketstore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstore", (RTS_UINTPTR)tracemgrpacketstore, 1, 0x705D2F68, 0x03050B00) 
+	#define EXP_tracemgrpacketstore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstore", (RTS_UINTPTR)tracemgrpacketstore, 1, 0x705D2F68, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrpacketstore
 	#define EXT_tracemgrpacketstore
 	#define GET_tracemgrpacketstore(fl)  CAL_CMGETAPI( "tracemgrpacketstore" ) 
 	#define CAL_tracemgrpacketstore  tracemgrpacketstore
 	#define CHK_tracemgrpacketstore  TRUE
-	#define EXP_tracemgrpacketstore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstore", (RTS_UINTPTR)tracemgrpacketstore, 1, 0x705D2F68, 0x03050B00) 
+	#define EXP_tracemgrpacketstore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstore", (RTS_UINTPTR)tracemgrpacketstore, 1, 0x705D2F68, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrpacketstore
 	#define EXT_CmpTraceMgrtracemgrpacketstore
 	#define GET_CmpTraceMgrtracemgrpacketstore  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrpacketstore  tracemgrpacketstore
 	#define CHK_CmpTraceMgrtracemgrpacketstore  TRUE
-	#define EXP_CmpTraceMgrtracemgrpacketstore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstore", (RTS_UINTPTR)tracemgrpacketstore, 1, 0x705D2F68, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrpacketstore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstore", (RTS_UINTPTR)tracemgrpacketstore, 1, 0x705D2F68, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrpacketstore
 	#define EXT_tracemgrpacketstore
 	#define GET_tracemgrpacketstore(fl)  CAL_CMGETAPI( "tracemgrpacketstore" ) 
 	#define CAL_tracemgrpacketstore  tracemgrpacketstore
 	#define CHK_tracemgrpacketstore  TRUE
-	#define EXP_tracemgrpacketstore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstore", (RTS_UINTPTR)tracemgrpacketstore, 1, 0x705D2F68, 0x03050B00) 
+	#define EXP_tracemgrpacketstore  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstore", (RTS_UINTPTR)tracemgrpacketstore, 1, 0x705D2F68, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrpacketstore  PFTRACEMGRPACKETSTORE_IEC pftracemgrpacketstore;
 	#define EXT_tracemgrpacketstore  extern PFTRACEMGRPACKETSTORE_IEC pftracemgrpacketstore;
-	#define GET_tracemgrpacketstore(fl)  s_pfCMGetAPI2( "tracemgrpacketstore", (RTS_VOID_FCTPTR *)&pftracemgrpacketstore, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x705D2F68, 0x03050B00)
+	#define GET_tracemgrpacketstore(fl)  s_pfCMGetAPI2( "tracemgrpacketstore", (RTS_VOID_FCTPTR *)&pftracemgrpacketstore, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x705D2F68, 0x03050700)
 	#define CAL_tracemgrpacketstore  pftracemgrpacketstore
 	#define CHK_tracemgrpacketstore  (pftracemgrpacketstore != NULL)
-	#define EXP_tracemgrpacketstore   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstore", (RTS_UINTPTR)tracemgrpacketstore, 1, 0x705D2F68, 0x03050B00) 
+	#define EXP_tracemgrpacketstore   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrpacketstore", (RTS_UINTPTR)tracemgrpacketstore, 1, 0x705D2F68, 0x03050700) 
 #endif
 
 
@@ -2694,7 +2684,7 @@ typedef struct tagtracemgrrecordadd_struct
 {
 	RTS_IEC_HANDLE hPacket;				/* VAR_INPUT */	/* The trace packet handle */
 	TraceRecordConfiguration *pConfiguration;	/* VAR_IN_OUT */	/* The record configuration (in) */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrRecordAdd;	/* VAR_OUTPUT */	/* The record handle or RTS_INVALID_HANDLE on failure */
 } tracemgrrecordadd_struct;
 
@@ -2713,35 +2703,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRRECORDADD_IEC) (tracemgrrecordadd_struc
 	#define GET_tracemgrrecordadd(fl)  CAL_CMGETAPI( "tracemgrrecordadd" ) 
 	#define CAL_tracemgrrecordadd  tracemgrrecordadd
 	#define CHK_tracemgrrecordadd  TRUE
-	#define EXP_tracemgrrecordadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordadd", (RTS_UINTPTR)tracemgrrecordadd, 1, RTSITF_GET_SIGNATURE(0, 0x68ACB311), 0x03050B00) 
+	#define EXP_tracemgrrecordadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordadd", (RTS_UINTPTR)tracemgrrecordadd, 1, RTSITF_GET_SIGNATURE(0, 0x68ACB311), 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrrecordadd
 	#define EXT_tracemgrrecordadd
 	#define GET_tracemgrrecordadd(fl)  CAL_CMGETAPI( "tracemgrrecordadd" ) 
 	#define CAL_tracemgrrecordadd  tracemgrrecordadd
 	#define CHK_tracemgrrecordadd  TRUE
-	#define EXP_tracemgrrecordadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordadd", (RTS_UINTPTR)tracemgrrecordadd, 1, RTSITF_GET_SIGNATURE(0, 0x68ACB311), 0x03050B00) 
+	#define EXP_tracemgrrecordadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordadd", (RTS_UINTPTR)tracemgrrecordadd, 1, RTSITF_GET_SIGNATURE(0, 0x68ACB311), 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrrecordadd
 	#define EXT_CmpTraceMgrtracemgrrecordadd
 	#define GET_CmpTraceMgrtracemgrrecordadd  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrrecordadd  tracemgrrecordadd
 	#define CHK_CmpTraceMgrtracemgrrecordadd  TRUE
-	#define EXP_CmpTraceMgrtracemgrrecordadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordadd", (RTS_UINTPTR)tracemgrrecordadd, 1, RTSITF_GET_SIGNATURE(0, 0x68ACB311), 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrrecordadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordadd", (RTS_UINTPTR)tracemgrrecordadd, 1, RTSITF_GET_SIGNATURE(0, 0x68ACB311), 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrrecordadd
 	#define EXT_tracemgrrecordadd
 	#define GET_tracemgrrecordadd(fl)  CAL_CMGETAPI( "tracemgrrecordadd" ) 
 	#define CAL_tracemgrrecordadd  tracemgrrecordadd
 	#define CHK_tracemgrrecordadd  TRUE
-	#define EXP_tracemgrrecordadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordadd", (RTS_UINTPTR)tracemgrrecordadd, 1, RTSITF_GET_SIGNATURE(0, 0x68ACB311), 0x03050B00) 
+	#define EXP_tracemgrrecordadd  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordadd", (RTS_UINTPTR)tracemgrrecordadd, 1, RTSITF_GET_SIGNATURE(0, 0x68ACB311), 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrrecordadd  PFTRACEMGRRECORDADD_IEC pftracemgrrecordadd;
 	#define EXT_tracemgrrecordadd  extern PFTRACEMGRRECORDADD_IEC pftracemgrrecordadd;
-	#define GET_tracemgrrecordadd(fl)  s_pfCMGetAPI2( "tracemgrrecordadd", (RTS_VOID_FCTPTR *)&pftracemgrrecordadd, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x68ACB311), 0x03050B00)
+	#define GET_tracemgrrecordadd(fl)  s_pfCMGetAPI2( "tracemgrrecordadd", (RTS_VOID_FCTPTR *)&pftracemgrrecordadd, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x68ACB311), 0x03050700)
 	#define CAL_tracemgrrecordadd  pftracemgrrecordadd
 	#define CHK_tracemgrrecordadd  (pftracemgrrecordadd != NULL)
-	#define EXP_tracemgrrecordadd   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordadd", (RTS_UINTPTR)tracemgrrecordadd, 1, RTSITF_GET_SIGNATURE(0, 0x68ACB311), 0x03050B00) 
+	#define EXP_tracemgrrecordadd   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordadd", (RTS_UINTPTR)tracemgrrecordadd, 1, RTSITF_GET_SIGNATURE(0, 0x68ACB311), 0x03050700) 
 #endif
 
 
@@ -2774,41 +2764,41 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRRECORDGETCONFIG_IEC) (tracemgrrecordget
 	#define GET_tracemgrrecordgetconfig(fl)  CAL_CMGETAPI( "tracemgrrecordgetconfig" ) 
 	#define CAL_tracemgrrecordgetconfig  tracemgrrecordgetconfig
 	#define CHK_tracemgrrecordgetconfig  TRUE
-	#define EXP_tracemgrrecordgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetconfig", (RTS_UINTPTR)tracemgrrecordgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xDAF803A5), 0x03050B00) 
+	#define EXP_tracemgrrecordgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetconfig", (RTS_UINTPTR)tracemgrrecordgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xDAF803A5), 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrrecordgetconfig
 	#define EXT_tracemgrrecordgetconfig
 	#define GET_tracemgrrecordgetconfig(fl)  CAL_CMGETAPI( "tracemgrrecordgetconfig" ) 
 	#define CAL_tracemgrrecordgetconfig  tracemgrrecordgetconfig
 	#define CHK_tracemgrrecordgetconfig  TRUE
-	#define EXP_tracemgrrecordgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetconfig", (RTS_UINTPTR)tracemgrrecordgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xDAF803A5), 0x03050B00) 
+	#define EXP_tracemgrrecordgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetconfig", (RTS_UINTPTR)tracemgrrecordgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xDAF803A5), 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrrecordgetconfig
 	#define EXT_CmpTraceMgrtracemgrrecordgetconfig
 	#define GET_CmpTraceMgrtracemgrrecordgetconfig  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrrecordgetconfig  tracemgrrecordgetconfig
 	#define CHK_CmpTraceMgrtracemgrrecordgetconfig  TRUE
-	#define EXP_CmpTraceMgrtracemgrrecordgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetconfig", (RTS_UINTPTR)tracemgrrecordgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xDAF803A5), 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrrecordgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetconfig", (RTS_UINTPTR)tracemgrrecordgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xDAF803A5), 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrrecordgetconfig
 	#define EXT_tracemgrrecordgetconfig
 	#define GET_tracemgrrecordgetconfig(fl)  CAL_CMGETAPI( "tracemgrrecordgetconfig" ) 
 	#define CAL_tracemgrrecordgetconfig  tracemgrrecordgetconfig
 	#define CHK_tracemgrrecordgetconfig  TRUE
-	#define EXP_tracemgrrecordgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetconfig", (RTS_UINTPTR)tracemgrrecordgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xDAF803A5), 0x03050B00) 
+	#define EXP_tracemgrrecordgetconfig  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetconfig", (RTS_UINTPTR)tracemgrrecordgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xDAF803A5), 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrrecordgetconfig  PFTRACEMGRRECORDGETCONFIG_IEC pftracemgrrecordgetconfig;
 	#define EXT_tracemgrrecordgetconfig  extern PFTRACEMGRRECORDGETCONFIG_IEC pftracemgrrecordgetconfig;
-	#define GET_tracemgrrecordgetconfig(fl)  s_pfCMGetAPI2( "tracemgrrecordgetconfig", (RTS_VOID_FCTPTR *)&pftracemgrrecordgetconfig, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xDAF803A5), 0x03050B00)
+	#define GET_tracemgrrecordgetconfig(fl)  s_pfCMGetAPI2( "tracemgrrecordgetconfig", (RTS_VOID_FCTPTR *)&pftracemgrrecordgetconfig, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xDAF803A5), 0x03050700)
 	#define CAL_tracemgrrecordgetconfig  pftracemgrrecordgetconfig
 	#define CHK_tracemgrrecordgetconfig  (pftracemgrrecordgetconfig != NULL)
-	#define EXP_tracemgrrecordgetconfig   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetconfig", (RTS_UINTPTR)tracemgrrecordgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xDAF803A5), 0x03050B00) 
+	#define EXP_tracemgrrecordgetconfig   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetconfig", (RTS_UINTPTR)tracemgrrecordgetconfig, 1, RTSITF_GET_SIGNATURE(0, 0xDAF803A5), 0x03050700) 
 #endif
 
 
 /**
  * Returns the first trace record of a trace packet.
- * This function can be used together with |TraceMgrRecordGetNext| to iterate
+ * This function can be used together with TraceMgrRecordGetNext to iterate
  * through all trace records of a packet.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
@@ -2818,7 +2808,7 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRRECORDGETCONFIG_IEC) (tracemgrrecordget
 typedef struct tagtracemgrrecordgetfirst_struct
 {
 	RTS_IEC_HANDLE hPacket;				/* VAR_INPUT */	/* The trace packet handle */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrRecordGetFirst;	/* VAR_OUTPUT */	/* The record handle, or RTS_INVALID_HANDLE on failure */
 } tracemgrrecordgetfirst_struct;
 
@@ -2837,41 +2827,41 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRRECORDGETFIRST_IEC) (tracemgrrecordgetf
 	#define GET_tracemgrrecordgetfirst(fl)  CAL_CMGETAPI( "tracemgrrecordgetfirst" ) 
 	#define CAL_tracemgrrecordgetfirst  tracemgrrecordgetfirst
 	#define CHK_tracemgrrecordgetfirst  TRUE
-	#define EXP_tracemgrrecordgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetfirst", (RTS_UINTPTR)tracemgrrecordgetfirst, 1, 0xDE6CF5CE, 0x03050B00) 
+	#define EXP_tracemgrrecordgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetfirst", (RTS_UINTPTR)tracemgrrecordgetfirst, 1, 0xDE6CF5CE, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrrecordgetfirst
 	#define EXT_tracemgrrecordgetfirst
 	#define GET_tracemgrrecordgetfirst(fl)  CAL_CMGETAPI( "tracemgrrecordgetfirst" ) 
 	#define CAL_tracemgrrecordgetfirst  tracemgrrecordgetfirst
 	#define CHK_tracemgrrecordgetfirst  TRUE
-	#define EXP_tracemgrrecordgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetfirst", (RTS_UINTPTR)tracemgrrecordgetfirst, 1, 0xDE6CF5CE, 0x03050B00) 
+	#define EXP_tracemgrrecordgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetfirst", (RTS_UINTPTR)tracemgrrecordgetfirst, 1, 0xDE6CF5CE, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrrecordgetfirst
 	#define EXT_CmpTraceMgrtracemgrrecordgetfirst
 	#define GET_CmpTraceMgrtracemgrrecordgetfirst  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrrecordgetfirst  tracemgrrecordgetfirst
 	#define CHK_CmpTraceMgrtracemgrrecordgetfirst  TRUE
-	#define EXP_CmpTraceMgrtracemgrrecordgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetfirst", (RTS_UINTPTR)tracemgrrecordgetfirst, 1, 0xDE6CF5CE, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrrecordgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetfirst", (RTS_UINTPTR)tracemgrrecordgetfirst, 1, 0xDE6CF5CE, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrrecordgetfirst
 	#define EXT_tracemgrrecordgetfirst
 	#define GET_tracemgrrecordgetfirst(fl)  CAL_CMGETAPI( "tracemgrrecordgetfirst" ) 
 	#define CAL_tracemgrrecordgetfirst  tracemgrrecordgetfirst
 	#define CHK_tracemgrrecordgetfirst  TRUE
-	#define EXP_tracemgrrecordgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetfirst", (RTS_UINTPTR)tracemgrrecordgetfirst, 1, 0xDE6CF5CE, 0x03050B00) 
+	#define EXP_tracemgrrecordgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetfirst", (RTS_UINTPTR)tracemgrrecordgetfirst, 1, 0xDE6CF5CE, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrrecordgetfirst  PFTRACEMGRRECORDGETFIRST_IEC pftracemgrrecordgetfirst;
 	#define EXT_tracemgrrecordgetfirst  extern PFTRACEMGRRECORDGETFIRST_IEC pftracemgrrecordgetfirst;
-	#define GET_tracemgrrecordgetfirst(fl)  s_pfCMGetAPI2( "tracemgrrecordgetfirst", (RTS_VOID_FCTPTR *)&pftracemgrrecordgetfirst, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xDE6CF5CE, 0x03050B00)
+	#define GET_tracemgrrecordgetfirst(fl)  s_pfCMGetAPI2( "tracemgrrecordgetfirst", (RTS_VOID_FCTPTR *)&pftracemgrrecordgetfirst, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xDE6CF5CE, 0x03050700)
 	#define CAL_tracemgrrecordgetfirst  pftracemgrrecordgetfirst
 	#define CHK_tracemgrrecordgetfirst  (pftracemgrrecordgetfirst != NULL)
-	#define EXP_tracemgrrecordgetfirst   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetfirst", (RTS_UINTPTR)tracemgrrecordgetfirst, 1, 0xDE6CF5CE, 0x03050B00) 
+	#define EXP_tracemgrrecordgetfirst   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetfirst", (RTS_UINTPTR)tracemgrrecordgetfirst, 1, 0xDE6CF5CE, 0x03050700) 
 #endif
 
 
 /**
  * Returns the next trace record of a trace packet.
- * This function can be used together with |TraceMgrRecordGetFirst| to iterate
+ * This function can be used together with TraceMgrRecordGetFirst to iterate
  * through all trace records of a packet.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
@@ -2882,7 +2872,7 @@ typedef struct tagtracemgrrecordgetnext_struct
 {
 	RTS_IEC_HANDLE hPacket;				/* VAR_INPUT */	/* The trace packet handle */
 	RTS_IEC_HANDLE hPrevRecord;			/* VAR_INPUT */	/* The trace record handle of the current record */
-	RTS_IEC_RESULT *pResult;			/* VAR_IN_OUT */	/* The result code (out) */
+	RTS_IEC_RESULT *pResult;	/* VAR_IN_OUT */	/* The result code (out) */
 	RTS_IEC_HANDLE TraceMgrRecordGetNext;	/* VAR_OUTPUT */	/* The handle of the next record or RTS_INVALID_HANDLE on failure */
 } tracemgrrecordgetnext_struct;
 
@@ -2901,35 +2891,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRRECORDGETNEXT_IEC) (tracemgrrecordgetne
 	#define GET_tracemgrrecordgetnext(fl)  CAL_CMGETAPI( "tracemgrrecordgetnext" ) 
 	#define CAL_tracemgrrecordgetnext  tracemgrrecordgetnext
 	#define CHK_tracemgrrecordgetnext  TRUE
-	#define EXP_tracemgrrecordgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetnext", (RTS_UINTPTR)tracemgrrecordgetnext, 1, 0xA7463D33, 0x03050B00) 
+	#define EXP_tracemgrrecordgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetnext", (RTS_UINTPTR)tracemgrrecordgetnext, 1, 0xA7463D33, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrrecordgetnext
 	#define EXT_tracemgrrecordgetnext
 	#define GET_tracemgrrecordgetnext(fl)  CAL_CMGETAPI( "tracemgrrecordgetnext" ) 
 	#define CAL_tracemgrrecordgetnext  tracemgrrecordgetnext
 	#define CHK_tracemgrrecordgetnext  TRUE
-	#define EXP_tracemgrrecordgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetnext", (RTS_UINTPTR)tracemgrrecordgetnext, 1, 0xA7463D33, 0x03050B00) 
+	#define EXP_tracemgrrecordgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetnext", (RTS_UINTPTR)tracemgrrecordgetnext, 1, 0xA7463D33, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrrecordgetnext
 	#define EXT_CmpTraceMgrtracemgrrecordgetnext
 	#define GET_CmpTraceMgrtracemgrrecordgetnext  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrrecordgetnext  tracemgrrecordgetnext
 	#define CHK_CmpTraceMgrtracemgrrecordgetnext  TRUE
-	#define EXP_CmpTraceMgrtracemgrrecordgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetnext", (RTS_UINTPTR)tracemgrrecordgetnext, 1, 0xA7463D33, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrrecordgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetnext", (RTS_UINTPTR)tracemgrrecordgetnext, 1, 0xA7463D33, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrrecordgetnext
 	#define EXT_tracemgrrecordgetnext
 	#define GET_tracemgrrecordgetnext(fl)  CAL_CMGETAPI( "tracemgrrecordgetnext" ) 
 	#define CAL_tracemgrrecordgetnext  tracemgrrecordgetnext
 	#define CHK_tracemgrrecordgetnext  TRUE
-	#define EXP_tracemgrrecordgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetnext", (RTS_UINTPTR)tracemgrrecordgetnext, 1, 0xA7463D33, 0x03050B00) 
+	#define EXP_tracemgrrecordgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetnext", (RTS_UINTPTR)tracemgrrecordgetnext, 1, 0xA7463D33, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrrecordgetnext  PFTRACEMGRRECORDGETNEXT_IEC pftracemgrrecordgetnext;
 	#define EXT_tracemgrrecordgetnext  extern PFTRACEMGRRECORDGETNEXT_IEC pftracemgrrecordgetnext;
-	#define GET_tracemgrrecordgetnext(fl)  s_pfCMGetAPI2( "tracemgrrecordgetnext", (RTS_VOID_FCTPTR *)&pftracemgrrecordgetnext, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xA7463D33, 0x03050B00)
+	#define GET_tracemgrrecordgetnext(fl)  s_pfCMGetAPI2( "tracemgrrecordgetnext", (RTS_VOID_FCTPTR *)&pftracemgrrecordgetnext, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xA7463D33, 0x03050700)
 	#define CAL_tracemgrrecordgetnext  pftracemgrrecordgetnext
 	#define CHK_tracemgrrecordgetnext  (pftracemgrrecordgetnext != NULL)
-	#define EXP_tracemgrrecordgetnext   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetnext", (RTS_UINTPTR)tracemgrrecordgetnext, 1, 0xA7463D33, 0x03050B00) 
+	#define EXP_tracemgrrecordgetnext   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordgetnext", (RTS_UINTPTR)tracemgrrecordgetnext, 1, 0xA7463D33, 0x03050700) 
 #endif
 
 
@@ -2961,35 +2951,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRRECORDREMOVE_IEC) (tracemgrrecordremove
 	#define GET_tracemgrrecordremove(fl)  CAL_CMGETAPI( "tracemgrrecordremove" ) 
 	#define CAL_tracemgrrecordremove  tracemgrrecordremove
 	#define CHK_tracemgrrecordremove  TRUE
-	#define EXP_tracemgrrecordremove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordremove", (RTS_UINTPTR)tracemgrrecordremove, 1, 0xA0864F53, 0x03050B00) 
+	#define EXP_tracemgrrecordremove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordremove", (RTS_UINTPTR)tracemgrrecordremove, 1, 0xA0864F53, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrrecordremove
 	#define EXT_tracemgrrecordremove
 	#define GET_tracemgrrecordremove(fl)  CAL_CMGETAPI( "tracemgrrecordremove" ) 
 	#define CAL_tracemgrrecordremove  tracemgrrecordremove
 	#define CHK_tracemgrrecordremove  TRUE
-	#define EXP_tracemgrrecordremove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordremove", (RTS_UINTPTR)tracemgrrecordremove, 1, 0xA0864F53, 0x03050B00) 
+	#define EXP_tracemgrrecordremove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordremove", (RTS_UINTPTR)tracemgrrecordremove, 1, 0xA0864F53, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrrecordremove
 	#define EXT_CmpTraceMgrtracemgrrecordremove
 	#define GET_CmpTraceMgrtracemgrrecordremove  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrrecordremove  tracemgrrecordremove
 	#define CHK_CmpTraceMgrtracemgrrecordremove  TRUE
-	#define EXP_CmpTraceMgrtracemgrrecordremove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordremove", (RTS_UINTPTR)tracemgrrecordremove, 1, 0xA0864F53, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrrecordremove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordremove", (RTS_UINTPTR)tracemgrrecordremove, 1, 0xA0864F53, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrrecordremove
 	#define EXT_tracemgrrecordremove
 	#define GET_tracemgrrecordremove(fl)  CAL_CMGETAPI( "tracemgrrecordremove" ) 
 	#define CAL_tracemgrrecordremove  tracemgrrecordremove
 	#define CHK_tracemgrrecordremove  TRUE
-	#define EXP_tracemgrrecordremove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordremove", (RTS_UINTPTR)tracemgrrecordremove, 1, 0xA0864F53, 0x03050B00) 
+	#define EXP_tracemgrrecordremove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordremove", (RTS_UINTPTR)tracemgrrecordremove, 1, 0xA0864F53, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrrecordremove  PFTRACEMGRRECORDREMOVE_IEC pftracemgrrecordremove;
 	#define EXT_tracemgrrecordremove  extern PFTRACEMGRRECORDREMOVE_IEC pftracemgrrecordremove;
-	#define GET_tracemgrrecordremove(fl)  s_pfCMGetAPI2( "tracemgrrecordremove", (RTS_VOID_FCTPTR *)&pftracemgrrecordremove, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xA0864F53, 0x03050B00)
+	#define GET_tracemgrrecordremove(fl)  s_pfCMGetAPI2( "tracemgrrecordremove", (RTS_VOID_FCTPTR *)&pftracemgrrecordremove, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xA0864F53, 0x03050700)
 	#define CAL_tracemgrrecordremove  pftracemgrrecordremove
 	#define CHK_tracemgrrecordremove  (pftracemgrrecordremove != NULL)
-	#define EXP_tracemgrrecordremove   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordremove", (RTS_UINTPTR)tracemgrrecordremove, 1, 0xA0864F53, 0x03050B00) 
+	#define EXP_tracemgrrecordremove   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordremove", (RTS_UINTPTR)tracemgrrecordremove, 1, 0xA0864F53, 0x03050700) 
 #endif
 
 
@@ -2997,8 +2987,8 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRRECORDREMOVE_IEC) (tracemgrrecordremove
  * Records the current value of the trace variable of a record
  * together with the current time stamp.
  *
- * .. note:: This function is called cyclically by CmpTraceMgr.  It
- *    should not be called by the application.
+ * Note: this function is called cyclically by CmpTraceMgr.  It
+ * should not be called by the application.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle
@@ -3028,35 +3018,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRRECORDUPDATE_IEC) (tracemgrrecordupdate
 	#define GET_tracemgrrecordupdate(fl)  CAL_CMGETAPI( "tracemgrrecordupdate" ) 
 	#define CAL_tracemgrrecordupdate  tracemgrrecordupdate
 	#define CHK_tracemgrrecordupdate  TRUE
-	#define EXP_tracemgrrecordupdate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate", (RTS_UINTPTR)tracemgrrecordupdate, 1, 0xD9B5E571, 0x03050B00) 
+	#define EXP_tracemgrrecordupdate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate", (RTS_UINTPTR)tracemgrrecordupdate, 1, 0xD9B5E571, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrrecordupdate
 	#define EXT_tracemgrrecordupdate
 	#define GET_tracemgrrecordupdate(fl)  CAL_CMGETAPI( "tracemgrrecordupdate" ) 
 	#define CAL_tracemgrrecordupdate  tracemgrrecordupdate
 	#define CHK_tracemgrrecordupdate  TRUE
-	#define EXP_tracemgrrecordupdate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate", (RTS_UINTPTR)tracemgrrecordupdate, 1, 0xD9B5E571, 0x03050B00) 
+	#define EXP_tracemgrrecordupdate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate", (RTS_UINTPTR)tracemgrrecordupdate, 1, 0xD9B5E571, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrrecordupdate
 	#define EXT_CmpTraceMgrtracemgrrecordupdate
 	#define GET_CmpTraceMgrtracemgrrecordupdate  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrrecordupdate  tracemgrrecordupdate
 	#define CHK_CmpTraceMgrtracemgrrecordupdate  TRUE
-	#define EXP_CmpTraceMgrtracemgrrecordupdate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate", (RTS_UINTPTR)tracemgrrecordupdate, 1, 0xD9B5E571, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrrecordupdate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate", (RTS_UINTPTR)tracemgrrecordupdate, 1, 0xD9B5E571, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrrecordupdate
 	#define EXT_tracemgrrecordupdate
 	#define GET_tracemgrrecordupdate(fl)  CAL_CMGETAPI( "tracemgrrecordupdate" ) 
 	#define CAL_tracemgrrecordupdate  tracemgrrecordupdate
 	#define CHK_tracemgrrecordupdate  TRUE
-	#define EXP_tracemgrrecordupdate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate", (RTS_UINTPTR)tracemgrrecordupdate, 1, 0xD9B5E571, 0x03050B00) 
+	#define EXP_tracemgrrecordupdate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate", (RTS_UINTPTR)tracemgrrecordupdate, 1, 0xD9B5E571, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrrecordupdate  PFTRACEMGRRECORDUPDATE_IEC pftracemgrrecordupdate;
 	#define EXT_tracemgrrecordupdate  extern PFTRACEMGRRECORDUPDATE_IEC pftracemgrrecordupdate;
-	#define GET_tracemgrrecordupdate(fl)  s_pfCMGetAPI2( "tracemgrrecordupdate", (RTS_VOID_FCTPTR *)&pftracemgrrecordupdate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xD9B5E571, 0x03050B00)
+	#define GET_tracemgrrecordupdate(fl)  s_pfCMGetAPI2( "tracemgrrecordupdate", (RTS_VOID_FCTPTR *)&pftracemgrrecordupdate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xD9B5E571, 0x03050700)
 	#define CAL_tracemgrrecordupdate  pftracemgrrecordupdate
 	#define CHK_tracemgrrecordupdate  (pftracemgrrecordupdate != NULL)
-	#define EXP_tracemgrrecordupdate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate", (RTS_UINTPTR)tracemgrrecordupdate, 1, 0xD9B5E571, 0x03050B00) 
+	#define EXP_tracemgrrecordupdate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate", (RTS_UINTPTR)tracemgrrecordupdate, 1, 0xD9B5E571, 0x03050700) 
 #endif
 
 
@@ -3064,8 +3054,8 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRRECORDUPDATE_IEC) (tracemgrrecordupdate
  * Stores entries in the ring buffer of a trace record.
  *
  * This function can be used to provide the data for so called system parameters
- * from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.)
- * If only a single entry is to be added, consider using |TraceMgrRecordUpdate3|
+ * from the IEC application. (See TRACE_VAR_ADDRESS_FLAGS_SYSTEM.)
+ * If only a single entry is to be added, consider using TraceMgrRecordUpdate3
  * instead.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
@@ -3098,35 +3088,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRRECORDUPDATE2_IEC) (tracemgrrecordupdat
 	#define GET_tracemgrrecordupdate2(fl)  CAL_CMGETAPI( "tracemgrrecordupdate2" ) 
 	#define CAL_tracemgrrecordupdate2  tracemgrrecordupdate2
 	#define CHK_tracemgrrecordupdate2  TRUE
-	#define EXP_tracemgrrecordupdate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate2", (RTS_UINTPTR)tracemgrrecordupdate2, 1, 0x3FE213B2, 0x03050B00) 
+	#define EXP_tracemgrrecordupdate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate2", (RTS_UINTPTR)tracemgrrecordupdate2, 1, 0x3FE213B2, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrrecordupdate2
 	#define EXT_tracemgrrecordupdate2
 	#define GET_tracemgrrecordupdate2(fl)  CAL_CMGETAPI( "tracemgrrecordupdate2" ) 
 	#define CAL_tracemgrrecordupdate2  tracemgrrecordupdate2
 	#define CHK_tracemgrrecordupdate2  TRUE
-	#define EXP_tracemgrrecordupdate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate2", (RTS_UINTPTR)tracemgrrecordupdate2, 1, 0x3FE213B2, 0x03050B00) 
+	#define EXP_tracemgrrecordupdate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate2", (RTS_UINTPTR)tracemgrrecordupdate2, 1, 0x3FE213B2, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrrecordupdate2
 	#define EXT_CmpTraceMgrtracemgrrecordupdate2
 	#define GET_CmpTraceMgrtracemgrrecordupdate2  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrrecordupdate2  tracemgrrecordupdate2
 	#define CHK_CmpTraceMgrtracemgrrecordupdate2  TRUE
-	#define EXP_CmpTraceMgrtracemgrrecordupdate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate2", (RTS_UINTPTR)tracemgrrecordupdate2, 1, 0x3FE213B2, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrrecordupdate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate2", (RTS_UINTPTR)tracemgrrecordupdate2, 1, 0x3FE213B2, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrrecordupdate2
 	#define EXT_tracemgrrecordupdate2
 	#define GET_tracemgrrecordupdate2(fl)  CAL_CMGETAPI( "tracemgrrecordupdate2" ) 
 	#define CAL_tracemgrrecordupdate2  tracemgrrecordupdate2
 	#define CHK_tracemgrrecordupdate2  TRUE
-	#define EXP_tracemgrrecordupdate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate2", (RTS_UINTPTR)tracemgrrecordupdate2, 1, 0x3FE213B2, 0x03050B00) 
+	#define EXP_tracemgrrecordupdate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate2", (RTS_UINTPTR)tracemgrrecordupdate2, 1, 0x3FE213B2, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrrecordupdate2  PFTRACEMGRRECORDUPDATE2_IEC pftracemgrrecordupdate2;
 	#define EXT_tracemgrrecordupdate2  extern PFTRACEMGRRECORDUPDATE2_IEC pftracemgrrecordupdate2;
-	#define GET_tracemgrrecordupdate2(fl)  s_pfCMGetAPI2( "tracemgrrecordupdate2", (RTS_VOID_FCTPTR *)&pftracemgrrecordupdate2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x3FE213B2, 0x03050B00)
+	#define GET_tracemgrrecordupdate2(fl)  s_pfCMGetAPI2( "tracemgrrecordupdate2", (RTS_VOID_FCTPTR *)&pftracemgrrecordupdate2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x3FE213B2, 0x03050700)
 	#define CAL_tracemgrrecordupdate2  pftracemgrrecordupdate2
 	#define CHK_tracemgrrecordupdate2  (pftracemgrrecordupdate2 != NULL)
-	#define EXP_tracemgrrecordupdate2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate2", (RTS_UINTPTR)tracemgrrecordupdate2, 1, 0x3FE213B2, 0x03050B00) 
+	#define EXP_tracemgrrecordupdate2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate2", (RTS_UINTPTR)tracemgrrecordupdate2, 1, 0x3FE213B2, 0x03050700) 
 #endif
 
 
@@ -3134,15 +3124,15 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRRECORDUPDATE2_IEC) (tracemgrrecordupdat
  * Stores one entry in the ring buffer of a trace record.
  *
  * This function can be used to provide the data for so called system parameters
- * from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.)
- * If more than one single entry is to be added, consider using |TraceMgrRecordUpdate2|
+ * from the IEC application. (See TRACE_VAR_ADDRESS_FLAGS_SYSTEM.)
+ * If more than onesingle entry is to be added, consider using TraceMgrRecordUpdate2
  * instead.
  *
- * .. note:: in contrast to |TraceMgrRecordUpdate2|, the time stamp of the entry is not
- *    provided by the caller but set inside |TraceMgrRecordUpdate3|.
+ * Note: in contrast to TraceMgrRecordUpdate2, the time stamp of the entry is not
+ * provided by the caller but set inside TraceMgrRecordUpdate3.
  *
- * .. note:: If pData is 0, the current value of the trace variable is read, i.e. the
- *    function behaves TraceMgrRecordUpdate.
+ * Note 2: If pData is 0, the current value of the trace variable is read, i.e. the
+ * function behaves TraceMgrRecordUpdate.
  *
  * :return: Returns the runtime system error code (see CmpErrors.library):
  *   - ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle, or if ulLen differs from the size of the trace variable
@@ -3154,7 +3144,7 @@ typedef struct tagtracemgrrecordupdate3_struct
 {
 	RTS_IEC_HANDLE hPacket;				/* VAR_INPUT */	/* The trace packet handle */
 	RTS_IEC_HANDLE hRecord;				/* VAR_INPUT */	/* The trace record handle */
-	RTS_IEC_BYTE *pData;				/* VAR_INPUT */	/* The address of the variable value to copy, if pData is null the function behaves like |TraceMgrRecordUpdate| */
+	RTS_IEC_BYTE *pData;				/* VAR_INPUT */	/* The address of the variable value to copy, if pData is null the function behaves like TraceMgrRecordUpdate */
 	RTS_IEC_UDINT ulLen;				/* VAR_INPUT */	/* The length (in bytes) of the variable value */
 	RTS_IEC_RESULT TraceMgrRecordUpdate3;	/* VAR_OUTPUT */	/* The result code */
 } tracemgrrecordupdate3_struct;
@@ -3174,108 +3164,35 @@ typedef void (CDECL CDECL_EXT* PFTRACEMGRRECORDUPDATE3_IEC) (tracemgrrecordupdat
 	#define GET_tracemgrrecordupdate3(fl)  CAL_CMGETAPI( "tracemgrrecordupdate3" ) 
 	#define CAL_tracemgrrecordupdate3  tracemgrrecordupdate3
 	#define CHK_tracemgrrecordupdate3  TRUE
-	#define EXP_tracemgrrecordupdate3  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate3", (RTS_UINTPTR)tracemgrrecordupdate3, 1, 0xA5C60449, 0x03050B00) 
+	#define EXP_tracemgrrecordupdate3  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate3", (RTS_UINTPTR)tracemgrrecordupdate3, 1, 0xA5C60449, 0x03050700) 
 #elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
 	#define USE_tracemgrrecordupdate3
 	#define EXT_tracemgrrecordupdate3
 	#define GET_tracemgrrecordupdate3(fl)  CAL_CMGETAPI( "tracemgrrecordupdate3" ) 
 	#define CAL_tracemgrrecordupdate3  tracemgrrecordupdate3
 	#define CHK_tracemgrrecordupdate3  TRUE
-	#define EXP_tracemgrrecordupdate3  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate3", (RTS_UINTPTR)tracemgrrecordupdate3, 1, 0xA5C60449, 0x03050B00) 
+	#define EXP_tracemgrrecordupdate3  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate3", (RTS_UINTPTR)tracemgrrecordupdate3, 1, 0xA5C60449, 0x03050700) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpTraceMgrtracemgrrecordupdate3
 	#define EXT_CmpTraceMgrtracemgrrecordupdate3
 	#define GET_CmpTraceMgrtracemgrrecordupdate3  ERR_OK
 	#define CAL_CmpTraceMgrtracemgrrecordupdate3  tracemgrrecordupdate3
 	#define CHK_CmpTraceMgrtracemgrrecordupdate3  TRUE
-	#define EXP_CmpTraceMgrtracemgrrecordupdate3  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate3", (RTS_UINTPTR)tracemgrrecordupdate3, 1, 0xA5C60449, 0x03050B00) 
+	#define EXP_CmpTraceMgrtracemgrrecordupdate3  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate3", (RTS_UINTPTR)tracemgrrecordupdate3, 1, 0xA5C60449, 0x03050700) 
 #elif defined(CPLUSPLUS)
 	#define USE_tracemgrrecordupdate3
 	#define EXT_tracemgrrecordupdate3
 	#define GET_tracemgrrecordupdate3(fl)  CAL_CMGETAPI( "tracemgrrecordupdate3" ) 
 	#define CAL_tracemgrrecordupdate3  tracemgrrecordupdate3
 	#define CHK_tracemgrrecordupdate3  TRUE
-	#define EXP_tracemgrrecordupdate3  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate3", (RTS_UINTPTR)tracemgrrecordupdate3, 1, 0xA5C60449, 0x03050B00) 
+	#define EXP_tracemgrrecordupdate3  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate3", (RTS_UINTPTR)tracemgrrecordupdate3, 1, 0xA5C60449, 0x03050700) 
 #else /* DYNAMIC_LINK */
 	#define USE_tracemgrrecordupdate3  PFTRACEMGRRECORDUPDATE3_IEC pftracemgrrecordupdate3;
 	#define EXT_tracemgrrecordupdate3  extern PFTRACEMGRRECORDUPDATE3_IEC pftracemgrrecordupdate3;
-	#define GET_tracemgrrecordupdate3(fl)  s_pfCMGetAPI2( "tracemgrrecordupdate3", (RTS_VOID_FCTPTR *)&pftracemgrrecordupdate3, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xA5C60449, 0x03050B00)
+	#define GET_tracemgrrecordupdate3(fl)  s_pfCMGetAPI2( "tracemgrrecordupdate3", (RTS_VOID_FCTPTR *)&pftracemgrrecordupdate3, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xA5C60449, 0x03050700)
 	#define CAL_tracemgrrecordupdate3  pftracemgrrecordupdate3
 	#define CHK_tracemgrrecordupdate3  (pftracemgrrecordupdate3 != NULL)
-	#define EXP_tracemgrrecordupdate3   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate3", (RTS_UINTPTR)tracemgrrecordupdate3, 1, 0xA5C60449, 0x03050B00) 
-#endif
-
-
-/**
- * Stores multiple values with seperate timestamps in the ring buffer of a trace record.
- *
- * This function can be used to provide the data for so called system parameters
- * from the IEC application. (See |TRACE_VAR_ADDRESS_FLAGS_SYSTEM|.)
- *
- * .. note:: in contrast to |TraceMgrRecordUpdate2|, the timestamp of the values and the
- *    values itself are provided in seperate lists by the caller.
- *
- * .. note:: the number of timestamps must be the same as the number of data values. ulEntries must match to this number.
- *
- * :return: Returns the runtime system error code (see CmpErrors.library):
- *   - ERR_PARAMETER if hPacket or hPrevRecord is not a valid handle
- *   - ERR_NOTINITIALIZED if the packet is not currently recording (not started, trigger reached, ...)
- *   - ERR_PENDING if no value is recorded for this cycle due to TracePacketConfiguration.ulEveryNCycles
- */
-typedef struct tagtracemgrrecordupdate4_struct
-{
-	RTS_IEC_HANDLE hPacket;				/* VAR_INPUT */	/* The trace packet handle */
-	RTS_IEC_HANDLE hRecord;				/* VAR_INPUT */	/* The trace record handle */
-	RTS_IEC_UDINT *pTimestamps;			/* VAR_INPUT */	/* The address of the first timestamp of the variable values */
-	RTS_IEC_BYTE *pDataValues;			/* VAR_INPUT */	/* The address of the first variable value of the list to copy */
-	RTS_IEC_UDINT ulEntries;			/* VAR_INPUT */	/* The number of variables to be updated */
-	RTS_IEC_RESULT TraceMgrRecordUpdate4;	/* VAR_OUTPUT */	/* The result code */
-} tracemgrrecordupdate4_struct;
-
-void CDECL CDECL_EXT tracemgrrecordupdate4(tracemgrrecordupdate4_struct *p);
-typedef void (CDECL CDECL_EXT* PFTRACEMGRRECORDUPDATE4_IEC) (tracemgrrecordupdate4_struct *p);
-#if defined(CMPTRACEMGR_NOTIMPLEMENTED) || defined(TRACEMGRRECORDUPDATE4_NOTIMPLEMENTED)
-	#define USE_tracemgrrecordupdate4
-	#define EXT_tracemgrrecordupdate4
-	#define GET_tracemgrrecordupdate4(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_tracemgrrecordupdate4(p0) 
-	#define CHK_tracemgrrecordupdate4  FALSE
-	#define EXP_tracemgrrecordupdate4  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_tracemgrrecordupdate4
-	#define EXT_tracemgrrecordupdate4
-	#define GET_tracemgrrecordupdate4(fl)  CAL_CMGETAPI( "tracemgrrecordupdate4" ) 
-	#define CAL_tracemgrrecordupdate4  tracemgrrecordupdate4
-	#define CHK_tracemgrrecordupdate4  TRUE
-	#define EXP_tracemgrrecordupdate4  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate4", (RTS_UINTPTR)tracemgrrecordupdate4, 1, 0x72F1828D, 0x03050B00) 
-#elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
-	#define USE_tracemgrrecordupdate4
-	#define EXT_tracemgrrecordupdate4
-	#define GET_tracemgrrecordupdate4(fl)  CAL_CMGETAPI( "tracemgrrecordupdate4" ) 
-	#define CAL_tracemgrrecordupdate4  tracemgrrecordupdate4
-	#define CHK_tracemgrrecordupdate4  TRUE
-	#define EXP_tracemgrrecordupdate4  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate4", (RTS_UINTPTR)tracemgrrecordupdate4, 1, 0x72F1828D, 0x03050B00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpTraceMgrtracemgrrecordupdate4
-	#define EXT_CmpTraceMgrtracemgrrecordupdate4
-	#define GET_CmpTraceMgrtracemgrrecordupdate4  ERR_OK
-	#define CAL_CmpTraceMgrtracemgrrecordupdate4  tracemgrrecordupdate4
-	#define CHK_CmpTraceMgrtracemgrrecordupdate4  TRUE
-	#define EXP_CmpTraceMgrtracemgrrecordupdate4  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate4", (RTS_UINTPTR)tracemgrrecordupdate4, 1, 0x72F1828D, 0x03050B00) 
-#elif defined(CPLUSPLUS)
-	#define USE_tracemgrrecordupdate4
-	#define EXT_tracemgrrecordupdate4
-	#define GET_tracemgrrecordupdate4(fl)  CAL_CMGETAPI( "tracemgrrecordupdate4" ) 
-	#define CAL_tracemgrrecordupdate4  tracemgrrecordupdate4
-	#define CHK_tracemgrrecordupdate4  TRUE
-	#define EXP_tracemgrrecordupdate4  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate4", (RTS_UINTPTR)tracemgrrecordupdate4, 1, 0x72F1828D, 0x03050B00) 
-#else /* DYNAMIC_LINK */
-	#define USE_tracemgrrecordupdate4  PFTRACEMGRRECORDUPDATE4_IEC pftracemgrrecordupdate4;
-	#define EXT_tracemgrrecordupdate4  extern PFTRACEMGRRECORDUPDATE4_IEC pftracemgrrecordupdate4;
-	#define GET_tracemgrrecordupdate4(fl)  s_pfCMGetAPI2( "tracemgrrecordupdate4", (RTS_VOID_FCTPTR *)&pftracemgrrecordupdate4, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x72F1828D, 0x03050B00)
-	#define CAL_tracemgrrecordupdate4  pftracemgrrecordupdate4
-	#define CHK_tracemgrrecordupdate4  (pftracemgrrecordupdate4 != NULL)
-	#define EXP_tracemgrrecordupdate4   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate4", (RTS_UINTPTR)tracemgrrecordupdate4, 1, 0x72F1828D, 0x03050B00) 
+	#define EXP_tracemgrrecordupdate3   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"tracemgrrecordupdate3", (RTS_UINTPTR)tracemgrrecordupdate3, 1, 0xA5C60449, 0x03050700) 
 #endif
 
 
@@ -5718,64 +5635,6 @@ typedef RTS_RESULT (CDECL * PFTRACEMGRRECORDUPDATE3) (RTS_HANDLE hPacket, RTS_HA
 
 
 /**
- * <description>Update multiple values with seperate timestamps in the trace record</description>
- * <param name="hPacket" type="IN">Handle to the trace packet</param>
- * <param name="hRecord" type="IN">Handle to the trace record</param>
- * <param name="pTimestamps" type="IN">Pointer to the array of timestamps</param>
- * <param name="pDataValues" type="IN">Pointer to the array of record values</param>
- * <param name="ulEntries" type="IN">Number of timestamp and value pairs</param>
- * <result>error code</result>
- */
-RTS_RESULT CDECL TraceMgrRecordUpdate4(RTS_HANDLE hPacket, RTS_HANDLE hRecord, RTS_UI32 *pTimestamps, void *pDataValues, RTS_UI32 ulEntries);
-typedef RTS_RESULT (CDECL * PFTRACEMGRRECORDUPDATE4) (RTS_HANDLE hPacket, RTS_HANDLE hRecord, RTS_UI32 *pTimestamps, void *pDataValues, RTS_UI32 ulEntries);
-#if defined(CMPTRACEMGR_NOTIMPLEMENTED) || defined(TRACEMGRRECORDUPDATE4_NOTIMPLEMENTED)
-	#define USE_TraceMgrRecordUpdate4
-	#define EXT_TraceMgrRecordUpdate4
-	#define GET_TraceMgrRecordUpdate4(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_TraceMgrRecordUpdate4(p0,p1,p2,p3,p4)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_TraceMgrRecordUpdate4  FALSE
-	#define EXP_TraceMgrRecordUpdate4  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_TraceMgrRecordUpdate4
-	#define EXT_TraceMgrRecordUpdate4
-	#define GET_TraceMgrRecordUpdate4(fl)  CAL_CMGETAPI( "TraceMgrRecordUpdate4" ) 
-	#define CAL_TraceMgrRecordUpdate4  TraceMgrRecordUpdate4
-	#define CHK_TraceMgrRecordUpdate4  TRUE
-	#define EXP_TraceMgrRecordUpdate4  CAL_CMEXPAPI( "TraceMgrRecordUpdate4" ) 
-#elif defined(MIXED_LINK) && !defined(CMPTRACEMGR_EXTERNAL)
-	#define USE_TraceMgrRecordUpdate4
-	#define EXT_TraceMgrRecordUpdate4
-	#define GET_TraceMgrRecordUpdate4(fl)  CAL_CMGETAPI( "TraceMgrRecordUpdate4" ) 
-	#define CAL_TraceMgrRecordUpdate4  TraceMgrRecordUpdate4
-	#define CHK_TraceMgrRecordUpdate4  TRUE
-	#define EXP_TraceMgrRecordUpdate4  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"TraceMgrRecordUpdate4", (RTS_UINTPTR)TraceMgrRecordUpdate4, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpTraceMgrTraceMgrRecordUpdate4
-	#define EXT_CmpTraceMgrTraceMgrRecordUpdate4
-	#define GET_CmpTraceMgrTraceMgrRecordUpdate4  ERR_OK
-	#define CAL_CmpTraceMgrTraceMgrRecordUpdate4 pICmpTraceMgr->ITraceMgrRecordUpdate4
-	#define CHK_CmpTraceMgrTraceMgrRecordUpdate4 (pICmpTraceMgr != NULL)
-	#define EXP_CmpTraceMgrTraceMgrRecordUpdate4  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_TraceMgrRecordUpdate4
-	#define EXT_TraceMgrRecordUpdate4
-	#define GET_TraceMgrRecordUpdate4(fl)  CAL_CMGETAPI( "TraceMgrRecordUpdate4" ) 
-	#define CAL_TraceMgrRecordUpdate4 pICmpTraceMgr->ITraceMgrRecordUpdate4
-	#define CHK_TraceMgrRecordUpdate4 (pICmpTraceMgr != NULL)
-	#define EXP_TraceMgrRecordUpdate4  CAL_CMEXPAPI( "TraceMgrRecordUpdate4" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_TraceMgrRecordUpdate4  PFTRACEMGRRECORDUPDATE4 pfTraceMgrRecordUpdate4;
-	#define EXT_TraceMgrRecordUpdate4  extern PFTRACEMGRRECORDUPDATE4 pfTraceMgrRecordUpdate4;
-	#define GET_TraceMgrRecordUpdate4(fl)  s_pfCMGetAPI2( "TraceMgrRecordUpdate4", (RTS_VOID_FCTPTR *)&pfTraceMgrRecordUpdate4, (fl), 0, 0)
-	#define CAL_TraceMgrRecordUpdate4  pfTraceMgrRecordUpdate4
-	#define CHK_TraceMgrRecordUpdate4  (pfTraceMgrRecordUpdate4 != NULL)
-	#define EXP_TraceMgrRecordUpdate4  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"TraceMgrRecordUpdate4", (RTS_UINTPTR)TraceMgrRecordUpdate4, 0, 0) 
-#endif
-
-
-
-
-/**
  * <description>Update all trace packets at the task specified by name</description>
  * <param name="pszTaskName" type="IN">Pointer to the task name</param>
  * <result>error code</result>
@@ -5945,7 +5804,6 @@ typedef struct
  	PFTRACEMGRRECORDUPDATE ITraceMgrRecordUpdate;
  	PFTRACEMGRRECORDUPDATE2 ITraceMgrRecordUpdate2;
  	PFTRACEMGRRECORDUPDATE3 ITraceMgrRecordUpdate3;
- 	PFTRACEMGRRECORDUPDATE4 ITraceMgrRecordUpdate4;
  	PFTRACEMGRDEVICETASKUPDATE ITraceMgrDeviceTaskUpdate;
  	PFTRACEMGRHASFEATURE ITraceMgrHasFeature;
  } ICmpTraceMgr_C;
@@ -5996,7 +5854,6 @@ class ICmpTraceMgr : public IBase
 		virtual RTS_RESULT CDECL ITraceMgrRecordUpdate(RTS_HANDLE hPacket, RTS_HANDLE hRecord) =0;
 		virtual RTS_RESULT CDECL ITraceMgrRecordUpdate2(RTS_HANDLE hPacket, RTS_HANDLE hRecord, TraceRecordEntry *pBuffer, RTS_UI32 ulLen) =0;
 		virtual RTS_RESULT CDECL ITraceMgrRecordUpdate3(RTS_HANDLE hPacket, RTS_HANDLE hRecord, void *pData, RTS_UI32 ulLen) =0;
-		virtual RTS_RESULT CDECL ITraceMgrRecordUpdate4(RTS_HANDLE hPacket, RTS_HANDLE hRecord, RTS_UI32 *pTimestamps, void *pDataValues, RTS_UI32 ulEntries) =0;
 		virtual RTS_RESULT CDECL ITraceMgrDeviceTaskUpdate(char *pszTaskName) =0;
 		virtual RTS_RESULT CDECL ITraceMgrHasFeature(RTS_UI32 ulFeatures) =0;
 };

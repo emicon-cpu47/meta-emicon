@@ -37,7 +37,7 @@
 
 #define SYS_ATOMIC_COMPARE_AND_SWAP(piValue, iExchangeValue, iCompareValue, Result) \
 	do { \
-		if (InterlockedCompareExchange((volatile LONG *)piValue, iExchangeValue, iCompareValue) == iCompareValue) \
+		if (InterlockedCompareExchange(piValue, iExchangeValue, iCompareValue) == iCompareValue) \
 			Result = ERR_OK; \
 		else \
 			Result = ERR_FAILED; \

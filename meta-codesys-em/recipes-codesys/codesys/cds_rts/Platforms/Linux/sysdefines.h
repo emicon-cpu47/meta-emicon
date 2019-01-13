@@ -26,7 +26,7 @@
 	#define SYSTARGET_OS_LINUX
 #endif
 
-#define FILE_END_OF_LINE_DELIMITER "\n"
+#define FILE_END_OF_LINE_DELIMITER 		"\n"
 #define  SOCK_BIND_TWO_SOCKETS
 #ifndef NO_SETVBUF
 	#define UNBUFFERED_FILE_IO
@@ -40,12 +40,7 @@
 #define RTS_JMP_BUF 	sigjmp_buf
 #define RTS_SETJMP(x)	sigsetjmp(x,1)
 #define RTS_LONGJMP		siglongjmp
-#ifndef NO_FENV
-	#include <fenv.h>
-	#define RTS_FP_BUF			fenv_t
-	#define RTS_GET_FPENV(buf)	fegetenv(buf);
-	#define RTS_SET_FPENV(buf)	fesetenv(buf);
-#endif
+
 /*** types ***/
 
 #ifndef STDINT_H_UINTPTR_T_DEFINED
@@ -53,7 +48,9 @@
 #endif
 typedef unsigned short RTS_WCHAR;
 #define RTS_WCHAR_DEFINED
-
+#ifndef PLC_HANDLER
+	#define RTS_UNICODE
+#endif
 #ifndef MEMPOOL_8BYTE_ALIGNED
 	#define MEMPOOL_8BYTE_ALIGNED
 #endif
@@ -79,8 +76,6 @@ typedef unsigned short RTS_WCHAR;
 	#define NETSERVER_MAXCHANNELS 4
 #endif
 
-#define NUM_OF_STATIC_IEC_EVENTS		10
-
 /*** some useful default settings ***/
 
 #ifdef LINUX
@@ -89,14 +84,12 @@ typedef unsigned short RTS_WCHAR;
 	#define SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_DEFAULT	SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_SCHEDULETICK_TASK
 #endif
 #ifdef QNX
-	#define SCHEDULEVALUE_STRING_SCHEDULING_MODE_DEFAULT SCHEDULEVALUE_STRING_SCHEDULING_MODE_OS_SCHEDULE
-	#define SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_DEFAULT	SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_SCHEDULETICK_TASK
+	#define SCHEDULEVALUE_STRING_SCHEDULING_MODE_DEFAULT SCHEDULEVALUE_STRING_SCHEDULING_MODE_TICK
+	#define SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_DEFAULT		SCHEDULEVALUE_STRING_SCHEDULING_SUPERVISOR_SCHEDULETICK_TASK
 #endif
 
-/* SYSTARGET_TYPE_HMI - define not known yet */
-#if SYSTARGET_DEVICE_TYPE == 0x1005
-	#define APPVALUE_INT_ASYNC_SERVICES_DEFAULT 1
-#endif 
+#define NUM_OF_STATIC_IEC_EVENTS		10
+
 			
 /*** NOTIMPLEMENTED ***/
 
@@ -107,9 +100,6 @@ typedef unsigned short RTS_WCHAR;
 #ifdef QNX
 	#define SYSFLASH_NOTIMPLEMENTED
 	#define CMPCODEMETER_NOTIMPLEMENTED
-#endif
-#if !defined (SYSTARGET_INTERNAL) && !defined (SYSTARGET_EXTERNAL)
-	#define SYSTARGET_EXTERNAL
 #endif
 
 
@@ -123,33 +113,12 @@ typedef unsigned short RTS_WCHAR;
 	#define SYSWINDOWNATIVE_NOTIMPLEMENTED
 #endif
 
-/* must be set for runtime, so that TV works properly */
-#define RTS_UNICODE
-
 /*** plchandler ***/
-#ifdef PLC_HANDLER
 
-    /* PLC Handler standalone build from makefile */
+#ifdef PLC_HANDLER
 	#define SYSCPUDEBUGHANDLER_NOTIMPLEMENTED
 	#define SYSCPUCALLIECFUNCWITHPARAMS_NOTIMPLEMENTED
-	#define CMPPLCHANDLER_DISABLE_EXTREF
 	#undef RTS_UNICODE
-#endif
-
-#ifdef PLC_HANDLER_COMPONENT    
-    /* for PLCHandler as component build with delivery manager*/    
-
-    #ifndef RTS_CWTEXT
-        #define	RTS_CWTEXT(s)			(RTS_WCHAR*) __RTS_CWTEXT(s)
-        #define	__RTS_CWTEXT(s)			L ## s
-    #endif
-
-    #define RTS_CWCHAR_DEFINED
-    typedef unsigned short	RTS_CWCHAR;
-
-    #define CMPPLCHANDLER_ENABLE_EXTREF
-    #define CMPLPLCHANDLERMAIN_NOTIMPLEMENTED
-    
 #endif
 
 /*** cpu specific ***/

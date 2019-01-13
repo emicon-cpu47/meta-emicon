@@ -6,9 +6,7 @@
  *	Here for example the target identification is checked.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -153,7 +151,6 @@
 #define SRV_DEV_SET_OPERATION_MODE			0x06
 #define SRV_DEV_GET_OPERATION_MODE			0x07
 #define SRV_DEV_INTERACTIVE_LOGIN			0x08
-#define SRV_DEV_SET_NODE_NAME				0x09
 
 /**
  * <category>Online service tags</category>
@@ -177,8 +174,6 @@
 #define TAG_DEV_CRYPT_CHALLENGE				0x23
 #define TAG_DEV_REPLY_SETTINGS				0x24
 
-#define TAG_DEV_RESET_ORIGIN_CONFIG			0x31
-
 #define TAG_DEV_REPLY_LOGOUT				0x00
 
 #define TAG_DEV_CREDENTIALS					0x81
@@ -194,9 +189,6 @@
 #define TAG_DEV_INTERACTIVE_LOGIN_MODE		0x55
 #define TAG_DEV_INTERACTIVE_LOGIN_DATA		0x56
 #define TAG_DEV_INTERACTIVE_LOGIN_COMMAND	0x57
-#define TAG_DEV_NODE_NAME					0x58
-
-
 /**
  * <category>Online services</category>
  * <Description>
@@ -275,37 +267,6 @@
  * </service>
  */
  
- /**
- * <category>Online services</category>
- * <Description>
- *	Sets a new UTF-16 node name for the device.
- * </Description>
- * <service name="SRV_DEV_SET_NODE_NAME">
- *	<Request>
- *		<tag name="TAG_DEV_NODE_NAME" required="mandatory">[RTS_UI32]: New UTF-16 node name. By passing an empty string, the node name settings are
- *      deleted and so the default node name is set again.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_SERVICE_RESULT" required="mandatory">[RTS_UI6]: Result code of online operation. See description of SysTargetSetNodeName for details.</tag>
- *	</Response>
- * </service>
- */
-
- /**
- * <category>Online services</category>
- * <Description>
- *  Reset Origin [Device]. Reset the device to factory settings.
- * </Description>
- * <service name="SRV_DEV_RESET_ORIGIN">
- *	<Request>
- *		<tag name="TAG_DEV_RESET_ORIGIN_CONFIG" required="optional">[RTS_UI32]: See category "Reset Origin Configuration". If this tag is omitted DEV_ROC_RESET_ALL is assumed.</tag>
- *	</Request>
- *	<Response>
- *		None
- *	</Response>
- * </service>
- */
-
 /**
  * <category>Event parameter</category>
  * <element name="ui32LoginCommand" type="IN">Login command. See category "Interactive login commands" (look for DEV_ILC_xxx defines).</element>
@@ -329,25 +290,6 @@ typedef struct
 #define EVTPARAMID_CmpDevice_InteractiveLogin	0x0001
 #define EVTVERSION_CmpDevice_InteractiveLogin	0x0001
 
-/**
- * <category>Event parameter</category>
- * <element name="ui32ResetOriginConfig" type="IN">Configuration bit vector. See category "Reset Origin Configuration"</element>
- * </element>
- */
-typedef struct
-{
-	RTS_UI32 ui32ResetOriginConfig;
-} EVTPARAM_CmpDevice_ResetOrigin;
-#define EVTPARAMID_CmpDevice_ResetOrigin	0x0001
-#define EVTVERSION_CmpDevice_ResetOrigin	0x0001
-
-
-/**
- * <category>Reset Origin Configuration</category>
- * <description>Configuration of the Reset Origin service & event</description>
- */
-#define DEV_ROC_RESET_ALL		 0x00000000
-#define DEV_ROC_KEEP_USERDB		 0x00000001
 
 /**
  * <category>Events</category>
@@ -364,7 +306,7 @@ typedef struct
 /**
  * <category>Events</category>
  * <description>Event is sent at reset origin device is executed online from a user in CODESYS</description>
- * <param name="pEventParam" type="IN">EVTPARAM_CmpDevice_ResetOrigin</param>
+ * <param name="pEventParam" type="IN">NULL</param>
  */
 #define EVT_CmpDevice_ResetOrigin 				MAKE_EVENTID(EVTCLASS_INFO, 2)
 

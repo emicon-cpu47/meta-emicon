@@ -38,13 +38,13 @@ Macros
 
 - #define :ref:`BLKDRVUSB_MAX_BLOCK_SIZE <group___cmp_blk_drv_usb_itf_1ga6e63a465dd4e7f7f9deca13bf4cc4bfb>` 512
 
-- #define :ref:`BLKDRVUSB_MAX_RX_SIZE <group___cmp_blk_drv_usb_itf_1gafacd61218565077f699a25d0aa6bd549>` ( :ref:`BLKDRVUSB_MAX_BLOCK_SIZE <group___cmp_blk_drv_usb_itf_1ga6e63a465dd4e7f7f9deca13bf4cc4bfb>` + 2)
+- #define :ref:`BLKDRVUSB_MAX_RX_SIZE <group___cmp_blk_drv_usb_itf_1gafacd61218565077f699a25d0aa6bd549>` (:ref:`BLKDRVUSB_MAX_BLOCK_SIZE <group___cmp_blk_drv_usb_itf_1ga6e63a465dd4e7f7f9deca13bf4cc4bfb>` + 2)
 
-- #define :ref:`TYPE_NONE <group___cmp_blk_drv_usb_itf_1gaa47d3c2fa05e95455d76cf052f9cca68>` 0x00
+- #define :ref:`HEADERTYPE_NONE <group___cmp_blk_drv_usb_itf_1ga97be467c348b2fc69eed360ce505a31a>` 0x00
 
-- #define :ref:`TYPE_AUTO_ADDR <group___cmp_blk_drv_usb_itf_1ga58548861ea35c4a57d5d942a2f5a8573>` 0x01
+- #define :ref:`HEADERTYPE_AUTO_ADDR <group___cmp_blk_drv_usb_itf_1ga0ac5dc7e7b4647a88ab47c2b993123bf>` 0x01
 
-- #define :ref:`TYPE_HALFDUPLEX <group___cmp_blk_drv_usb_itf_1gae3e3769e03fb8f3714bc21fe54edc3bd>` 0x02
+- #define :ref:`HEADERTYPE_HALFDUPLEX <group___cmp_blk_drv_usb_itf_1gaa181a16f60de46f574d0cc0769ec4f0c>` 0x02
 
 - #define :ref:`USB_HDX_NEGOTIATION_MIN_WAITTIME <group___cmp_blk_drv_usb_itf_1ga081e9ca5f9238e1c7840a0dc4fa1520b>` 500		/*HDX Init Wait time*/
 
@@ -102,7 +102,7 @@ Typedefs
 Enumerations
 ------------
 
-- enum :ref:`USBDEV_OPERATION <group___cmp_blk_drv_usb_itf_1ga54df9cfab5d6483124176355cac9336f>` { :ref:`USBOP_NONE <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa6ce001e0de966fd3cb7729ca4717719a>`, :ref:`USBOP_OPEN <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa784bd7c7c27fa377bb31eb1035b58d89>`, :ref:`USBOP_CLOSE <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa21cec47d3f69ecfea5e22c39b83f8d1a>`, :ref:`USBOP_REREGISTER <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa6732dd1fe8a423b76ea3ef39732967ef>`, :ref:`USBOP_ACTIVE <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa5fa42748b69a7d51988e2340bb27d446>`, :ref:`USBOP_HDX_INIT <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa6c5faa186bfe30a0cb2e179e1ad1e70c>`, :ref:`USBOP_HDX_WAIT_ADDR_REQ <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fac09441e730b87bf8066707ca8b687695>`, :ref:`USBOP_HDX_WAIT_ADDR_ANSW <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa7f7815d26bdb0f477e25e84a2f747b74>`, :ref:`USBOP_HDX_WAIT_SEND <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa5d4c4d3a887c1fccfb9d4df6b561a7f1>`, :ref:`USBOP_HDX_SEND <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa0b39b1b5f893f18878a374c587d7dc1b>`, :ref:`USBOP_HDX_RECEIVE <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fac7d2441351d26ca634879e372d2688ed>`, :ref:`USBOP_PORT_UNUSED <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa90878bef52c2956d8155907d35b58d31>` }
+- enum :ref:`USBDEV_OPERATION <group___cmp_blk_drv_usb_itf_1ga54df9cfab5d6483124176355cac9336f>` { :ref:`USBOP_NONE <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa6ce001e0de966fd3cb7729ca4717719a>`, :ref:`USBOP_OPEN <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa784bd7c7c27fa377bb31eb1035b58d89>`, :ref:`USBOP_CLOSE <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa21cec47d3f69ecfea5e22c39b83f8d1a>`, :ref:`USBOP_REREGISTER <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa6732dd1fe8a423b76ea3ef39732967ef>`, :ref:`USBOP_PORT_UNUSED <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa90878bef52c2956d8155907d35b58d31>`, :ref:`USBOP_ACTIVE <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa5fa42748b69a7d51988e2340bb27d446>`, :ref:`USBOP_HDX_INIT <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa6c5faa186bfe30a0cb2e179e1ad1e70c>`, :ref:`USBOP_HDX_WAIT_ADDR_REQ <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fac09441e730b87bf8066707ca8b687695>`, :ref:`USBOP_HDX_WAIT_ADDR_ANSW <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa7f7815d26bdb0f477e25e84a2f747b74>`, :ref:`USBOP_HDX_WAIT_SEND <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa5d4c4d3a887c1fccfb9d4df6b561a7f1>`, :ref:`USBOP_HDX_SEND <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fa0b39b1b5f893f18878a374c587d7dc1b>`, :ref:`USBOP_HDX_RECEIVE <group___cmp_blk_drv_usb_itf_1gga54df9cfab5d6483124176355cac9336fac7d2441351d26ca634879e372d2688ed>` }
 
 Functions
 ---------
@@ -114,7 +114,7 @@ Functions
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpBlkDrvUsbItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpBlkDrvUsbItf.h
 
  
 .. last line of file.rst template

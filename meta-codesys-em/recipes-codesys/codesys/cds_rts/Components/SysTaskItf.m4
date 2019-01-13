@@ -2,14 +2,12 @@
  * <interfacename>SysTask</interfacename>
  * <description> 
  *	<p>The SysTask interface is projected to handle all system dependant task operations.
- *	This interface can only be implemented typically on targets with an operating system.</p>
+ *	This interface can only be imoplemented typically on targets with an operating system.</p>
  *
- *	All task that are created by this interface must have the same prototype.
- *	Here are examples for implementing a cyclic task and example how to create and delete a task.
+ *	All tasks that uses this SysTask interface must have the same structure.
+ *	Here are two examples for a cyclic task.
  *	
- *	1. TaskFrame:
- *
- *	1.1 Cyclic task that sets itself into sleep for cyclic execution:
+ *	1. Cyclic task that sets itself into sleep for cyclic execution:
  *
  *		int iTaskParameter = 123;
  *		RTS_RESULT Result;
@@ -31,7 +29,7 @@
  *			CAL_SysTaskEnd(hTask, 0);
  *		}
  *
- *	1.2 Cyclic task that uses the cyclic mechanism of the operating system
+ *	2. Cyclic task that uses the cyclic mechanism of the operating system
  *		for cyclic execution:
  *		
  *		int iTaskParameter = 123;
@@ -54,43 +52,9 @@
  *			CAL_SysTaskEnd(hTask, 0);
  *		}
  *
- *	2. Creating and deleting a task:
- *
- *	To create and delete a task you shoud use the following sequences: 
- *
- *	2.1 Creating a task:
- *		There are 2 different interface functions to create a task:
- *
- *		a) RTS_HANDLE CDECL SysTaskCreate(char* pszTaskName, PFSYS_TASK_FUNCTION pFunction, void *pParam, RTS_UI32 ulPriority, RTS_UI32 ulInterval, RTS_UI32 ulStackSize, PFTASKEXCEPTIONHANDLER pExceptionHandler, RTS_RESULT *pResult);
- *			This function creates a typical task. See intzerface descriptions for details.
- *
- *		b) RTS_HANDLE CDECL SysTaskCreate2(char* pszTaskName, char *pszTaskGroup, PFSYS_TASK_FUNCTION pFunction, void *pParam, RTS_UI32 ulPriority, RTS_UI32 ulInterval, RTS_UI32 ulStackSize, PFTASKEXCEPTIONHANDLER pExceptionHandler, RTS_RESULT *pResult);
- *			This function creates a task, which is automatically added to a so called taskgroup. See intzerface descriptions for details.
- *
- *	2.2 Deleting a task:
- *		There are 2 ways to delete a task:
- *
- *		a) Implicitly be the task itself:
- *			Here the task will release itself after callging SysTaskSetExit(). The task must be specified with the flag SYSTASK_FF_AUTORELEASEONEXIT by calling SysTaskAutoReleaseOnExit():
- *			Example:
- *				
- *				Create the task:
- *					RTS_HANDLE hTask = CAL_SysTaskCreate("MyTask", MyTaskFrame, NULL, TASKPRIO_NORMAL_BASE, 0, 0, NULL, NULL);
- *					CAL_SysTaskAutoReleaseOnExit(hTask);
- *
- *				Release the task:
- *					CAL_SysTaskSetExit(hTask);
- *
- *		b) Explicitly by the creator of a task:
- *				CAL_SysTaskSetExit(hTask);
- *				CAL_SysTaskExit(hTask, 10000);
- *			The timeout should be the double of the cycle time of the task, if it is a cyclic task.
- *
  * </description>
  *	
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysTask')
@@ -340,6 +304,9 @@ REF_ITF(`SysTimeItf.m4')
 #define SYSTASKKEY_INT_PRIORITY_LOWEST_END				"OSPriority.Lowest.End"
 #define SYSTASKVALUE_INT_PRIORITY_LOWEST_END_DEFAULT	TASKPRIO_LOWEST_END
 
+#define SYSTASKKEY_INT_VXWORKS_LOADBALANCING				"VxWorks.LoadBalancing"
+#define SYSTASKVALUE_INT_VXWORKS_LOADBALANCING_DEFAULT	0
+
 #define SYSTASKKEY_INT_VXWORKS_CPU					"VxWorks.CPU"
 #define SYSTASKVALUE_INT_VXWORKS_CPU_DEFAULT		0
 
@@ -376,16 +343,13 @@ REF_ITF(`SysTimeItf.m4')
  * <category>Settings</category>
  * <type>Int</type>
  * <description>
- *	By default CODESYS doesn't change the clock period of the QNX system tick. To reduce the jitter of
- *	the tasks, or to support "distributed clocks", one might want to have a higher resolution of the
- *	timer. With this setting you can adjust the clock period at CODESYS startup.
- *	The period is defined in nanoseconds and is passed as is to the QNX neutrino function ClockPeriod().
+ *	1: the runtime sets the QNX system tick to 1ms on startup (default).
+ *	0: the QNX system tick is left unchanged.
+ *	NOTE: For usage of distributed clocks in ethercat a value of "1" is required here
  * </description>
  */
-#define SYSTASKKEY_INT_QNX_CLOCKPERIOD							"QNX.ClockPeriod"
-#ifndef SYSTASKVALUE_INT_QNX_CLOCKPERIOD_DEFAULT
-#define SYSTASKVALUE_INT_QNX_CLOCKPERIOD_DEFAULT			0
-#endif
+#define SYSTASKKEY_INT_QNX_SETSYSTEMTICK				"QNX.SetSystemTick"
+#define SYSTASKVALUE_INT_QNX_SETSYSTEMTICK_DEFAULT		1
 
 RTS_RESULT CDECL TaskExceptionHandler(RTS_HANDLE hTask, RTS_UI32 ulException, RegContext Context);
 typedef RTS_RESULT (CDECL *PFSYS_TASK_EXCEPTIONHANDLER)(RTS_HANDLE hTask, RTS_UI32 ulException, RegContext Context);
@@ -395,7 +359,7 @@ typedef RTS_RESULT (CDECL *PFSYS_TASK_EXCEPTIONHANDLER)(RTS_HANDLE hTask, RTS_UI
 /**
  * <category>Event parameter</category>
  * <element name="pSysTaskInfo" type="IN">Pointer to task info structure</element>
-im */
+ */
 typedef struct
 {
 	struct tagSYS_TASK_INFO *pSysTaskInfo;
@@ -510,7 +474,6 @@ typedef struct tagSYS_TASK_INFO
 	RTS_IEC_DWORD ulFeature;		/* <element name="ulFeature" type="IN">Features flags of the task. See category "FeatureFlags" for details.</element> */
 	SEHContext *pSEHContextHead;    /* <element name="pSEHContextHead" type="IN">Points to the head of the registered exception frames</element> */
 	RTS_IEC_STRING *pszLongName;	/* <element name="pszLongName" type="IN">Long name of the task</element> */
-	RTS_IEC_HANDLE hTaskGroup;		/* <element name="hTaskGroup" type="IN">Optional task group handle</element> */
 } SYS_TASK_INFO;
 
 /** EXTERN LIB SECTION BEGIN **/
@@ -968,14 +931,6 @@ DEF_ITF_API2(`RTS_HANDLE',`CDECL',`SysTaskGetNext',`(RTS_HANDLE hPrevTask, RTS_R
  * <result>Handle to the created task</result>
  */
 DEF_CREATEITF_API(`RTS_HANDLE',`CDECL',`SysTaskCreate',`(char* pszTaskName, PFSYS_TASK_FUNCTION pFunction, void *pParam, RTS_UI32 ulPriority, RTS_UI32 ulInterval, RTS_UI32 ulStackSize, PFTASKEXCEPTIONHANDLER pExceptionHandler, RTS_RESULT *pResult)')
-
-/**
- * <description>
- *  This call extends SysTaskCreate (s.a.) with the name of the task group in order to add this task to the group.
- * </description>
- * <param name="pszTaskGroup" type="IN">Name of the task group</param>
- */
-DEF_ITF_API(`RTS_HANDLE',`CDECL',`SysTaskCreate2',`(char* pszTaskName, char *pszTaskGroup, PFSYS_TASK_FUNCTION pFunction, void *pParam, RTS_UI32 ulPriority, RTS_UI32 ulInterval, RTS_UI32 ulStackSize, PFTASKEXCEPTIONHANDLER pExceptionHandler, RTS_RESULT *pResult)')
 
 /**
  * <description>

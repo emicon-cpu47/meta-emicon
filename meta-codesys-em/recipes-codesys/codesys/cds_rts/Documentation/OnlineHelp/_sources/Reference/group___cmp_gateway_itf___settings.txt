@@ -25,11 +25,11 @@ Macros
 Typedefs
 --------
 
-- typedef RTS_RESULT(* :ref:`PFCOMMDRVSEND <group___cmp_gateway_itf___settings_1ga736042c5e6e3b724693e276d53dbbef9>`)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent)
+- typedef int(* :ref:`PFCOMMDRVSEND <group___cmp_gateway_itf___settings_1ga33de2ae0b80e25830b402b93eeedc433>`)(RTS_UI32 dwConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent)
 
-- typedef RTS_RESULT(* :ref:`PFCOMMDRVRECEIVE <group___cmp_gateway_itf___settings_1ga41ec7304e9ea656dbd967dce9d9e0096>`)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData)
+- typedef int(* :ref:`PFCOMMDRVRECEIVE <group___cmp_gateway_itf___settings_1ga1df3282aaf2d8c0574021f3e98013803>`)(RTS_UI32 dwConnHandle, PROTOCOL_DATA_UNIT *pData)
 
-- typedef RTS_RESULT(* :ref:`PFCOMMDRVCLOSE <group___cmp_gateway_itf___settings_1ga88061d5df63058166a1d7adba5c4f31e>`)(RTS_HANDLE hConnHandle)
+- typedef int(* :ref:`PFCOMMDRVCLOSE <group___cmp_gateway_itf___settings_1ga14cfc8528627096f5133bc5cdd99899d>`)(RTS_UI32 dwConnHandle)
 
 Enumerations
 ------------
@@ -39,7 +39,7 @@ Enumerations
 Functions
 ---------
 
-- RTS_RESULT :ref:`GWRegisterCommDrv <group___cmp_gateway_itf___settings_1gadcf2c836ef802732b339f5b78693b3a8>` (:ref:`COMMDRVINFO <struct_c_o_m_m_d_r_v_i_n_f_o>` * pInfo, RTS_HANDLE * phDriverHandle)
+- int :ref:`GWRegisterCommDrv <group___cmp_gateway_itf___settings_1ga0b0f6b7740cdf7400c0b4f40f5683a90>` (:ref:`COMMDRVINFO <struct_c_o_m_m_d_r_v_i_n_f_o>` * pInfo, unsigned long * pdwDriverId)
 
 .. _group___cmp_gateway_itf___settings-details:
 
@@ -67,20 +67,20 @@ Setting to modify the client inactivity timeout in ms. If no piece of data (also
 Typedef Documentation
 ---------------------
 
-.. _group___cmp_gateway_itf___settings_1ga736042c5e6e3b724693e276d53dbbef9:
+.. _group___cmp_gateway_itf___settings_1ga33de2ae0b80e25830b402b93eeedc433:
 
-typedef RTS_RESULT( * PFCOMMDRVSEND)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+typedef int( * PFCOMMDRVSEND)(RTS_UI32 dwConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_gateway_itf___settings_1ga41ec7304e9ea656dbd967dce9d9e0096:
+.. _group___cmp_gateway_itf___settings_1ga1df3282aaf2d8c0574021f3e98013803:
 
-typedef RTS_RESULT( * PFCOMMDRVRECEIVE)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+typedef int( * PFCOMMDRVRECEIVE)(RTS_UI32 dwConnHandle, PROTOCOL_DATA_UNIT *pData)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_gateway_itf___settings_1ga88061d5df63058166a1d7adba5c4f31e:
+.. _group___cmp_gateway_itf___settings_1ga14cfc8528627096f5133bc5cdd99899d:
 
-typedef RTS_RESULT( * PFCOMMDRVCLOSE)(RTS_HANDLE hConnHandle)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+typedef int( * PFCOMMDRVCLOSE)(RTS_UI32 dwConnHandle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Enumeration Type Documentation
 ------------------------------
@@ -102,10 +102,10 @@ enum @5
 Function Documentation
 ----------------------
 
-.. _group___cmp_gateway_itf___settings_1gadcf2c836ef802732b339f5b78693b3a8:
+.. _group___cmp_gateway_itf___settings_1ga0b0f6b7740cdf7400c0b4f40f5683a90:
 
-RTS_RESULT GWRegisterCommDrv (COMMDRVINFO *pInfo, RTS_HANDLE *phDriverHandle)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+int GWRegisterCommDrv (COMMDRVINFO *pInfo, unsigned long *pdwDriverId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. last line of group.rst template
 .. last line of composition.rst template

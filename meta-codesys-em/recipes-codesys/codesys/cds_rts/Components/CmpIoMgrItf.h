@@ -122,9 +122,7 @@
  * <p>The component CmpIoDrvC manages all C drivers and CmpIoDrvIec manages all
  * IEC drivers.</p>
  * </description>
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -140,17 +138,6 @@
  
 
 
-
-
-/**
- * <category>Compiler switch</category>
- * <description>
- *	Compiler switches to enable/disable single features in the component.
- * </description>
- * <element name="CMPIECTASK_DONT_REGISTER_WATCHDOG_AT_SUPERVISOR">Switch to disable registering all hardware supported fieldbus watchdogs (e.g. Hilscher CIFX masters) at the CmpSupervisor!
- *	If this defined is set, the hardware supported fieldbus watchdogs are always enabled and cannot selectively be disabled via the CmpSupervisor!
- * </element>
- */
 
 
 /**
@@ -270,28 +257,14 @@
 *     Setting to enable full IO-update consistency resp. disable DRVPROP_CONSISTENCY for all IO-drivers! This setting must be used, if consistency cannot be
 *     realized on this target by the IO-driver itself.
 *  NOTE:
-*     This settings must be enabled on targets with no strict priority scheduling for the IO-update tasks (for MultiCore targets) or on systems with 2 buscycle tasks (for SIL3).
+*     This settings must be enabled on targets with no strict priority scheduling for the IO-update tasks (for example for MultiCore systems).
 * </description>
 */
 #define IOMGRKEY_INT_ENABLE_FULL_CONSISTENCY					"EnableFullConsistency"
 #ifndef IOMGRVALUE_INT_ENABLE_FULL_CONSISTENCY
-	#if !defined(SYSCPUMULTICORE_NOTIMPLEMENTED)				/* IOMGRVALUE_INT_ENABLE_FULL_CONSISTENCY must be activate on MultiCore targets! */
-       #define IOMGRVALUE_INT_ENABLE_FULL_CONSISTENCY			1
-	#else
        #define IOMGRVALUE_INT_ENABLE_FULL_CONSISTENCY			0
-	#endif
 #endif
 
-/**
- * <category>Task map types</category>
- * <description>
- * <p>Types of IO-channels in a task map</p>
- * </description>
- * <element name="TMT_INPUTS">Input connector maps</element>
- * <element name="TMT_OUTPUTS">Output connector maps</element>
- */
-#define TMT_INPUTS				0x0001
-#define TMT_OUTPUTS				0x0002
 
 /** EXTERN LIB SECTION BEGIN **/
 /*  Comments are ignored for m4 compiler so restructured text can be used.  */
@@ -4097,67 +4070,6 @@ typedef RTS_RESULT (CDECL * PFIOMGRUPDATECONFIGURATION2) (IoConfigConnector *pCo
 
 /**
  * <description>
- * Function to check, if specified IEC task has mapped inputs or outputs.
- * </description>
- * <param name="dwTaskId" type="IN">Index of the IEC task</param>
- * <param name="taskMapType" type="IN">Input or output type. See category "Task map types" for detailed information.</param>
- * <param name="pResult" type="OUT">Pointer to the error code</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">TaskID could be verified</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid taskid or maptype</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Interface function not implemented</errorcode>
- * <result>TRUE=Task has mapped requested IO types; FALSE=Task has _no_ mapped requested IO types</result>
- */
-RTS_BOOL CDECL IoMgrHasTaskIOs(RTS_UI32 dwTaskId, RTS_UI16 taskMapType, RTS_RESULT *pResult);
-typedef RTS_BOOL (CDECL * PFIOMGRHASTASKIOS) (RTS_UI32 dwTaskId, RTS_UI16 taskMapType, RTS_RESULT *pResult);
-#if defined(CMPIOMGR_NOTIMPLEMENTED) || defined(IOMGRHASTASKIOS_NOTIMPLEMENTED)
-	#define USE_IoMgrHasTaskIOs
-	#define EXT_IoMgrHasTaskIOs
-	#define GET_IoMgrHasTaskIOs(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_IoMgrHasTaskIOs(p0,p1,p2)  (RTS_BOOL)ERR_NOTIMPLEMENTED
-	#define CHK_IoMgrHasTaskIOs  FALSE
-	#define EXP_IoMgrHasTaskIOs  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_IoMgrHasTaskIOs
-	#define EXT_IoMgrHasTaskIOs
-	#define GET_IoMgrHasTaskIOs(fl)  CAL_CMGETAPI( "IoMgrHasTaskIOs" ) 
-	#define CAL_IoMgrHasTaskIOs  IoMgrHasTaskIOs
-	#define CHK_IoMgrHasTaskIOs  TRUE
-	#define EXP_IoMgrHasTaskIOs  CAL_CMEXPAPI( "IoMgrHasTaskIOs" ) 
-#elif defined(MIXED_LINK) && !defined(CMPIOMGR_EXTERNAL)
-	#define USE_IoMgrHasTaskIOs
-	#define EXT_IoMgrHasTaskIOs
-	#define GET_IoMgrHasTaskIOs(fl)  CAL_CMGETAPI( "IoMgrHasTaskIOs" ) 
-	#define CAL_IoMgrHasTaskIOs  IoMgrHasTaskIOs
-	#define CHK_IoMgrHasTaskIOs  TRUE
-	#define EXP_IoMgrHasTaskIOs  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"IoMgrHasTaskIOs", (RTS_UINTPTR)IoMgrHasTaskIOs, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIoMgrIoMgrHasTaskIOs
-	#define EXT_CmpIoMgrIoMgrHasTaskIOs
-	#define GET_CmpIoMgrIoMgrHasTaskIOs  ERR_OK
-	#define CAL_CmpIoMgrIoMgrHasTaskIOs pICmpIoMgr->IIoMgrHasTaskIOs
-	#define CHK_CmpIoMgrIoMgrHasTaskIOs (pICmpIoMgr != NULL)
-	#define EXP_CmpIoMgrIoMgrHasTaskIOs  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_IoMgrHasTaskIOs
-	#define EXT_IoMgrHasTaskIOs
-	#define GET_IoMgrHasTaskIOs(fl)  CAL_CMGETAPI( "IoMgrHasTaskIOs" ) 
-	#define CAL_IoMgrHasTaskIOs pICmpIoMgr->IIoMgrHasTaskIOs
-	#define CHK_IoMgrHasTaskIOs (pICmpIoMgr != NULL)
-	#define EXP_IoMgrHasTaskIOs  CAL_CMEXPAPI( "IoMgrHasTaskIOs" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_IoMgrHasTaskIOs  PFIOMGRHASTASKIOS pfIoMgrHasTaskIOs;
-	#define EXT_IoMgrHasTaskIOs  extern PFIOMGRHASTASKIOS pfIoMgrHasTaskIOs;
-	#define GET_IoMgrHasTaskIOs(fl)  s_pfCMGetAPI2( "IoMgrHasTaskIOs", (RTS_VOID_FCTPTR *)&pfIoMgrHasTaskIOs, (fl), 0, 0)
-	#define CAL_IoMgrHasTaskIOs  pfIoMgrHasTaskIOs
-	#define CHK_IoMgrHasTaskIOs  (pfIoMgrHasTaskIOs != NULL)
-	#define EXP_IoMgrHasTaskIOs  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"IoMgrHasTaskIOs", (RTS_UINTPTR)IoMgrHasTaskIOs, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
  * <p>Interface to inform all IO-drivers about a new IO-mapping.</p>
  * </description>
  * <param name="pTaskMapList" type="IN" range="[NULL,VALID_TASKMAPLIST,INVALID_TASKMAPLIST]">Pointer to the complete task map list</param>
@@ -6260,7 +6172,6 @@ typedef struct
  	PFIOMGRGETCONFIGAPPLICATION IIoMgrGetConfigApplication;
  	PFIOMGRUPDATECONFIGURATION IIoMgrUpdateConfiguration;
  	PFIOMGRUPDATECONFIGURATION2 IIoMgrUpdateConfiguration2;
- 	PFIOMGRHASTASKIOS IIoMgrHasTaskIOs;
  	PFIOMGRUPDATEMAPPING IIoMgrUpdateMapping;
  	PFIOMGRUPDATEMAPPING2 IIoMgrUpdateMapping2;
  	PFIOMGRRECONFIGURE IIoMgrReconfigure;
@@ -6315,7 +6226,6 @@ class ICmpIoMgr : public IBase
 		virtual RTS_RESULT CDECL IIoMgrGetConfigApplication(char *pszConfigApplication, int *pnMaxLen) =0;
 		virtual RTS_RESULT CDECL IIoMgrUpdateConfiguration(IoConfigConnector *pConnectorList, int nCount) =0;
 		virtual RTS_RESULT CDECL IIoMgrUpdateConfiguration2(IoConfigConnector *pConnectorList, int nCount, char *pszConfigApplication) =0;
-		virtual RTS_BOOL CDECL IIoMgrHasTaskIOs(RTS_UI32 dwTaskId, RTS_UI16 taskMapType, RTS_RESULT *pResult) =0;
 		virtual RTS_RESULT CDECL IIoMgrUpdateMapping(IoConfigTaskMap *pTaskMapList, int nCount) =0;
 		virtual RTS_RESULT CDECL IIoMgrUpdateMapping2(IoConfigTaskMap *pTaskMapList, int nCount, char *pszConfigApplication) =0;
 		virtual RTS_RESULT CDECL IIoMgrReconfigure(IoConfigConnector *pConnector, RTS_UI32 *pui32State) =0;

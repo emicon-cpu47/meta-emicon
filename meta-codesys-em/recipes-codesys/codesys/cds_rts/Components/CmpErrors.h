@@ -55,15 +55,7 @@
 #define ERR_CALL_AGAIN			0x0037	/* Operation is not yet finished, call function again to proceed */
 #define ERR_NOTHING_TO_DO		0x0038	/* Operation has nothing to do. No execution. */
 #define ERR_SECURITY_CHECKS_FAILED 0x0039	/* Some security checks have failed. This is a generic error code to report this error over public channels. In this case the error code doesn't provide a detailed cause for the error. */
-#define ERR_INVALID_SEQUENCE	0x003A
-#define ERR_INVALID_REFERENCE	0x003B	/* Dereferencing an IEC reference in IecVarAccess failed due to invalid destination address, e. G. NULL. */
-#define ERR_CONVERSION_INCOMPLETE 0x003C /* Conversion of string encodings was not lossless. */
-#define ERR_TOO_MANY_RETRIES	0x003D	/* Too many retries of an action */
-#define ERR_ALIGNMENT			0x003E /* There is an unaligned access on memory detected. */
-#define ERR_CHANGE_PASSWORD		0x003F /* The password has to be changed */
-#define ERR_REAUTHENTICATE		0x0040 /* The user has to reauthenticate oneself */
-#define ERR_RELOGIN				0x0041 /* The user has to relogin */
-
+   
 /* General network errors 
   (range: 0x0100 - 0x010F)
 */
@@ -185,7 +177,7 @@
 #define ERR_APP_EXISTS					0x0500 /* Application with same name exists */
 #define ERR_APP_NOT_EXIST				0x0501 /* Application not available */
 #define ERR_APP_INVALID_SESSIONID		0x0502 /* Invalid sessionid */
-#define ERR_APP_INVALID_DATAID			0x0503 /* Invalid dataid of application. Data don't match! */
+#define ERR_APP_INVALID_DATAID			0x0503 /* Invalid dataíd of application. Data don't match! */
 #define ERR_APP_NOT_LOADED				0x0504 /* Application not loaded */
 #define ERR_APP_NO_SESSIONID			0x0505 /* no sessionid specified */
 #define ERR_APP_UNRESOLVED_REFERENCE	0x0506 /* unresolved external function */
@@ -202,11 +194,6 @@
 #define ERR_APP_LOADING_CINTEGRATION_MODULES	0x0511 /* Loading any of the C-Integration modules failed */
 #define ERR_APP_DONT_INIT_AREA			0x0512 /* Don't initialize area */
 #define ERR_APP_MAPPED_AREA_NOT_FOUND	0x0513 /* A data segment has been mapped to an area that could not be found */
-#define ERR_APP_SIGNATURE_MISSING		0x0514 /* The digital signature of the download is missing. This is requried by the runtime configuration */
-#define ERR_APP_DECRYPTION_FAILED		0x0515 /* The decrytion of the application code failed */
-#define ERR_APP_ENCRYPTION_MISSING		0x0516 /* The application code is not encrypted. This is required by the runtime */
-#define ERR_APP_SIGNATURE_AND_ENCRYPTION_MISSING 0x0517 /* The application code is not signed and encrypted */
-#define ERR_APP_BP_BREAKPOINT_NOT_DELETED   0x0518   /* Breakpoint could not be deleted */
 
 /* TLS errors
  * (range: 0x0600 - 0x06FF)
@@ -291,8 +278,6 @@
 
 /* The application is not happy */
 #define ERR_CERT_APPLICATION_VERIFICATION				0x735
-
-#define ERR_CERT_MISSING								0x736
 
 /* Monitoring errors - 
 	For use in the monitoring reply packages only. Not to be mixed with the

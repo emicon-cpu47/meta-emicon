@@ -33,7 +33,7 @@ void *qt_create_dialog(void *handle, int tx, int ty, int bx, int by)
 {
   QWidget *pQWidget =(QWidget *)handle;
 
-  QFileDialog *pdialog = new QFileDialog(pQWidget);
+  QFileDialog::QFileDialog *pdialog = new QFileDialog(pQWidget);
   pdialog->setFileMode(QFileDialog::AnyFile);
   pdialog->setGeometry( tx, ty, bx-tx, by-ty );
   pdialog->setModal(0);

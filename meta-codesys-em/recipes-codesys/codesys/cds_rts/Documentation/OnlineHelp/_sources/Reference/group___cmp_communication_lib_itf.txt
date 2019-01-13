@@ -51,8 +51,6 @@ Macros
 
 - #define :ref:`RTS_BLK_DRV_FLAGS_DIRECT_ADDRESS <group___cmp_communication_lib_itf_1gae5331b11ae8f8376eef9e2bca76c0b3e>` 2
 
-- #define :ref:`NSPF_NONE <group___cmp_communication_lib_itf_1gafc728f691939cd727ec62c27fcdcfb0f>` 0x00000000 /* empty flag field */
-
 - #define :ref:`NSPF_ENCRYPTED_COMM_SUPPORTED <group___cmp_communication_lib_itf_1gafda05a24c6929e1274673cae46adede0>` 0x00000001 /* device supports encrypted online communication */
 
 - #define :ref:`NSPF_ENCRYPTED_COMM_REQUIRED <group___cmp_communication_lib_itf_1ga8b93fac3d2f128672e9891b8f57c5cf4>` 0x00000002 /* device requires encrypted online communication */
@@ -95,11 +93,11 @@ Typedefs
 Functions
 ---------
 
-- RTS_BOOL :ref:`AddrEquals <group___cmp_communication_lib_itf_1ga3f0d7314b387a554cfb866bda017d272>` (:ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>`  addr1, :ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>`  addr2)
+- int :ref:`AddrEquals <group___cmp_communication_lib_itf_1ga1a889635b6e9befa271e284e539f4e0b>` (:ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>`  addr1, :ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>`  addr2)
 
-- RTS_BOOL :ref:`AddrEqualsBuffer <group___cmp_communication_lib_itf_1ga78ae63e53aea4b99101d8dc9d3963844>` (:ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>`  addr1, :ref:`ADDRESSCOMPONENT <group___cmp_communication_lib_itf_1ga81bb0ac00cc0ee9e5866fe0720696d29>` * pBufAddr2, RTS_UI32 nLenAddr2)
+- int :ref:`AddrEqualsBuffer <group___cmp_communication_lib_itf_1gac0f8c89d48b82e607ed0921507eede30>` (:ref:`NODEADDRESS <struct_n_o_d_e_a_d_d_r_e_s_s>`  addr1, :ref:`ADDRESSCOMPONENT <group___cmp_communication_lib_itf_1ga81bb0ac00cc0ee9e5866fe0720696d29>` * pBufAddr2, RTS_UI32 nLenAddr2)
 
-- RTS_RESULT :ref:`CopyAddrToBuffer <group___cmp_communication_lib_itf_1ga6ecb95dd7f990fa4e9bcc628fad8560b>` (:ref:`ADDRESSCOMPONENT <group___cmp_communication_lib_itf_1ga81bb0ac00cc0ee9e5866fe0720696d29>` * pBufDest, RTS_UI32 * pnLenDest, const :ref:`ADDRESSCOMPONENT <group___cmp_communication_lib_itf_1ga81bb0ac00cc0ee9e5866fe0720696d29>` * pBufSrc, RTS_UI32 nLenSrc)
+- int :ref:`CopyAddrToBuffer <group___cmp_communication_lib_itf_1gab933dfcbae0e9e62f51cced43f43a917>` (:ref:`ADDRESSCOMPONENT <group___cmp_communication_lib_itf_1ga81bb0ac00cc0ee9e5866fe0720696d29>` * pBufDest, RTS_UI32 * pnLenDest, const :ref:`ADDRESSCOMPONENT <group___cmp_communication_lib_itf_1ga81bb0ac00cc0ee9e5866fe0720696d29>` * pBufSrc, RTS_UI32 nLenSrc)
 
 .. _group___cmp_communication_lib_itf-details:
 
@@ -112,7 +110,7 @@ Interface for the communication library.
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -185,11 +183,6 @@ Macro Definition Documentation
 
 #define RTS_BLK_DRV_FLAGS_DIRECT_ADDRESS 2
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_communication_lib_itf_1gafc728f691939cd727ec62c27fcdcfb0f:
-
-#define NSPF_NONE 0x00000000 /* empty flag field */
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___cmp_communication_lib_itf_1gafda05a24c6929e1274673cae46adede0:
 
@@ -287,28 +280,28 @@ typedef ICmpCommunicationLib_C ICmpCommunicationLib
 Function Documentation
 ----------------------
 
-.. _group___cmp_communication_lib_itf_1ga3f0d7314b387a554cfb866bda017d272:
+.. _group___cmp_communication_lib_itf_1ga1a889635b6e9befa271e284e539f4e0b:
 
-RTS_BOOL AddrEquals (NODEADDRESS addr1, NODEADDRESS addr2)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+int AddrEquals (NODEADDRESS addr1, NODEADDRESS addr2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Returns:**
 
 *Returns TRUE if addr1 == addr2, FALSE else
 
-.. _group___cmp_communication_lib_itf_1ga78ae63e53aea4b99101d8dc9d3963844:
+.. _group___cmp_communication_lib_itf_1gac0f8c89d48b82e607ed0921507eede30:
 
-RTS_BOOL AddrEqualsBuffer (NODEADDRESS addr1, ADDRESSCOMPONENT *pBufAddr2, RTS_UI32 nLenAddr2)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+int AddrEqualsBuffer (NODEADDRESS addr1, ADDRESSCOMPONENT *pBufAddr2, RTS_UI32 nLenAddr2)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Returns:**
 
 *Returns TRUE, if addr1 equals the address described by pBufAddr2 and nlenAddr2
 
-.. _group___cmp_communication_lib_itf_1ga6ecb95dd7f990fa4e9bcc628fad8560b:
+.. _group___cmp_communication_lib_itf_1gab933dfcbae0e9e62f51cced43f43a917:
 
-RTS_RESULT CopyAddrToBuffer (ADDRESSCOMPONENT *pBufDest, RTS_UI32 *pnLenDest, const ADDRESSCOMPONENT *pBufSrc, RTS_UI32 nLenSrc)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+int CopyAddrToBuffer (ADDRESSCOMPONENT *pBufDest, RTS_UI32 *pnLenDest, const ADDRESSCOMPONENT *pBufSrc, RTS_UI32 nLenSrc)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. last line of group.rst template
 .. last line of composition.rst template

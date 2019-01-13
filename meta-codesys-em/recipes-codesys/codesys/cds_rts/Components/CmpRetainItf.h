@@ -15,9 +15,7 @@
  *	retain area and can be checked after the next restore.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -286,59 +284,6 @@ typedef RTS_RESULT (CDECL * PFRETAINFREE) (char *pszName, RTS_UI8 *pbyRetain, in
 	#define CAL_RetainFree  pfRetainFree
 	#define CHK_RetainFree  (pfRetainFree != NULL)
 	#define EXP_RetainFree  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"RetainFree", (RTS_UINTPTR)RetainFree, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>Release all retain memory</description>
- * <result>error code</result>
- */
-RTS_RESULT CDECL RetainFreeAll(void);
-typedef RTS_RESULT (CDECL * PFRETAINFREEALL) (void);
-#if defined(CMPRETAIN_NOTIMPLEMENTED) || defined(RETAINFREEALL_NOTIMPLEMENTED)
-	#define USE_RetainFreeAll
-	#define EXT_RetainFreeAll
-	#define GET_RetainFreeAll(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_RetainFreeAll()  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_RetainFreeAll  FALSE
-	#define EXP_RetainFreeAll  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_RetainFreeAll
-	#define EXT_RetainFreeAll
-	#define GET_RetainFreeAll(fl)  CAL_CMGETAPI( "RetainFreeAll" ) 
-	#define CAL_RetainFreeAll  RetainFreeAll
-	#define CHK_RetainFreeAll  TRUE
-	#define EXP_RetainFreeAll  CAL_CMEXPAPI( "RetainFreeAll" ) 
-#elif defined(MIXED_LINK) && !defined(CMPRETAIN_EXTERNAL)
-	#define USE_RetainFreeAll
-	#define EXT_RetainFreeAll
-	#define GET_RetainFreeAll(fl)  CAL_CMGETAPI( "RetainFreeAll" ) 
-	#define CAL_RetainFreeAll  RetainFreeAll
-	#define CHK_RetainFreeAll  TRUE
-	#define EXP_RetainFreeAll  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"RetainFreeAll", (RTS_UINTPTR)RetainFreeAll, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpRetainRetainFreeAll
-	#define EXT_CmpRetainRetainFreeAll
-	#define GET_CmpRetainRetainFreeAll  ERR_OK
-	#define CAL_CmpRetainRetainFreeAll pICmpRetain->IRetainFreeAll
-	#define CHK_CmpRetainRetainFreeAll (pICmpRetain != NULL)
-	#define EXP_CmpRetainRetainFreeAll  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_RetainFreeAll
-	#define EXT_RetainFreeAll
-	#define GET_RetainFreeAll(fl)  CAL_CMGETAPI( "RetainFreeAll" ) 
-	#define CAL_RetainFreeAll pICmpRetain->IRetainFreeAll
-	#define CHK_RetainFreeAll (pICmpRetain != NULL)
-	#define EXP_RetainFreeAll  CAL_CMEXPAPI( "RetainFreeAll" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_RetainFreeAll  PFRETAINFREEALL pfRetainFreeAll;
-	#define EXT_RetainFreeAll  extern PFRETAINFREEALL pfRetainFreeAll;
-	#define GET_RetainFreeAll(fl)  s_pfCMGetAPI2( "RetainFreeAll", (RTS_VOID_FCTPTR *)&pfRetainFreeAll, (fl), 0, 0)
-	#define CAL_RetainFreeAll  pfRetainFreeAll
-	#define CHK_RetainFreeAll  (pfRetainFreeAll != NULL)
-	#define EXP_RetainFreeAll  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"RetainFreeAll", (RTS_UINTPTR)RetainFreeAll, 0, 0) 
 #endif
 
 
@@ -814,7 +759,6 @@ typedef struct
 	IBase_C *pBase;
 	PFRETAINALLOC IRetainAlloc;
  	PFRETAINFREE IRetainFree;
- 	PFRETAINFREEALL IRetainFreeAll;
  	PFRETAINUPDATEGUID IRetainUpdateGuid;
  	PFRETAINCHECKGUID IRetainCheckGuid;
  	PFRETAINUPDATE IRetainUpdate;
@@ -831,7 +775,6 @@ class ICmpRetain : public IBase
 	public:
 		virtual RTS_RESULT CDECL IRetainAlloc(char *pszName, RTS_GUID *pDataGUID, RetainType rtType, RTS_UI16 usAreaType, RTS_SIZE iSize, int bRestore, RTS_UI8 **ppbyRetain) =0;
 		virtual RTS_RESULT CDECL IRetainFree(char *pszName, RTS_UI8 *pbyRetain, int nDeleteOption) =0;
-		virtual RTS_RESULT CDECL IRetainFreeAll(void) =0;
 		virtual RTS_RESULT CDECL IRetainUpdateGuid(char *pszName, RTS_UI8 *pbyRetain, RTS_GUID *pDataGuidOld, RTS_GUID *pDataGuidNew) =0;
 		virtual RTS_RESULT CDECL IRetainCheckGuid(char *pszName, RTS_UI8 *pbyRetain, RTS_GUID *pDataGuid, RTS_UI16 usAreaType) =0;
 		virtual RTS_RESULT CDECL IRetainUpdate(void) =0;

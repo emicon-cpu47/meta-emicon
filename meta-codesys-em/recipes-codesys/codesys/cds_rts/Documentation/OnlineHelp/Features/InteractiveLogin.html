@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Interactive Login &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    <title>Interactive Login &mdash; RuntimeSystemOnlineHelp V3.5.10.0</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.5.13.10',
+        VERSION:     '3.5.10.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,58 +24,57 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.10.0" href="../index.html" />
     <link rel="up" title="Features" href="index.html" />
-    <link rel="next" title="MultiCore Support" href="MultiCore.html" />
+    <link rel="next" title="OPC UA" href="OPCUA.html" />
     <link rel="prev" title="Codegenerator" href="CPU.html" /> 
   </head>
-  <body role="document">
+  <body>
 	<div id="header">
 		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
 		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
 	</div>
 
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="MultiCore.html" title="MultiCore Support"
+          <a href="OPCUA.html" title="OPC UA"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="CPU.html" title="Codegenerator"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Features</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Features</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="CPU.html"
                         title="previous chapter">Codegenerator</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="MultiCore.html"
-                        title="next chapter">MultiCore Support</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/Features/InteractiveLogin.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
+  <p class="topless"><a href="OPCUA.html"
+                        title="next chapter">OPC UA</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/Features/InteractiveLogin.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -84,7 +83,7 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body" role="main">
+          <div class="body">
             
   <div class="section" id="interactive-login">
 <h1>Interactive Login<a class="headerlink" href="#interactive-login" title="Permalink to this headline">¶</a></h1>
@@ -95,20 +94,23 @@ The user can select a device in the Gateway dialog, and let it &#8220;blink&#822
 During login, it can be guaranteed that the user is connecting to the correct PLC.</p>
 <hr class="docutils" />
 <p>The following target settings are necessary for this feature:</p>
-<ul class="simple">
+<ul>
 <li><dl class="first docutils">
-<dt><a class="reference internal" href="../TargetSettings/runtime_features/s-interactive_login_mode.html#runtime-features-interactive-login-mode"><span class="std std-ref">interactive_login_mode</span></a></dt>
-<dd>The mode to be used for logins. 0 = DISABLED (=default), 1 = ID_STRING, 2 = PRESS_KEY, 4 = BLINK.</dd>
+<dt><a class="reference internal" href="../TargetSettings/runtime_features/s-interactive_login_mode.html#runtime-features-interactive-login-mode"><em>interactive_login_mode</em></a></dt>
+<dd><p class="first last">The mode to be used for logins. 0 = DISABLED (=default), 1 = ID_STRING, 2 = PRESS_KEY, 4 = BLINK.</p>
+</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><a class="reference internal" href="../TargetSettings/runtime_features/s-interactive_login_timeout_seconds.html#runtime-features-interactive-login-timeout-seconds"><span class="std std-ref">interactive_login_timeout_seconds</span></a></dt>
-<dd>The timeout for interactive login. (with confirmation)</dd>
+<dt><a class="reference internal" href="../TargetSettings/runtime_features/s-interactive_login_timeout_seconds.html#runtime-features-interactive-login-timeout-seconds"><em>interactive_login_timeout_seconds</em></a></dt>
+<dd><p class="first last">The timeout for interactive login. (with confirmation)</p>
+</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><a class="reference internal" href="../TargetSettings/runtime_features/s-interactive_login_wink.html#runtime-features-interactive-login-wink"><span class="std std-ref">interactive_login_wink</span></a></dt>
-<dd>The feature to show the active device the user is currently logged in. Typically a blinking LED on the device.</dd>
+<dt><a class="reference internal" href="../TargetSettings/runtime_features/s-interactive_login_wink.html#runtime-features-interactive-login-wink"><em>interactive_login_wink</em></a></dt>
+<dd><p class="first last">The feature to show the active device the user is currently logged in. Typically a blinking LED on the device.</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -119,7 +121,7 @@ During login, it can be guaranteed that the user is connecting to the correct PL
 <li>interactivelogin_blink</li>
 </ul>
 <p>Example:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;Strings</span> <span class="na">namespace=</span><span class="s">&quot;security&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;Strings</span> <span class="na">namespace=</span><span class="s">&quot;security&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;Language</span> <span class="na">lang=</span><span class="s">&quot;de&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;String</span> <span class="na">identifier=</span><span class="s">&quot;interactivelogin_id_string&quot;</span><span class="nt">&gt;</span>Bitte geben Sie die Seriennummer des Ger?tes in das Eingabefeld unten ein.<span class="nt">&lt;/String&gt;</span>
     <span class="nt">&lt;String</span> <span class="na">identifier=</span><span class="s">&quot;interactivelogin_key_press&quot;</span><span class="nt">&gt;</span>Bitte dr?cken Sie den Identifikationsknopf des Ger?tes.<span class="nt">&lt;/String&gt;</span>
@@ -136,9 +138,9 @@ During login, it can be guaranteed that the user is connecting to the correct PL
 <hr class="docutils" />
 <p>CODESYS will send online services to the runtime if enabled. The runtime will send a runtime system event when such a message is received.
 An OEM can react on these events by creating an OEM specific runtime component.
-The OEM specific runtime component is informed by this runtime system event: EVT_CmpDevice_InteractiveLogin (see <a class="reference internal" href="../Reference/group___cmp_device_itf___events.html#group-cmp-device-itf-events"><span class="std std-ref">Events</span></a>), issued by CMPID_CmpDevice.</p>
+The OEM specific runtime component is informed by this runtime system event: EVT_CmpDevice_InteractiveLogin (see <a class="reference internal" href="../Reference/group___cmp_device_itf___events.html#group-cmp-device-itf-events"><em>Events</em></a>), issued by CMPID_CmpDevice.</p>
 <p>This structure is passed with the event:</p>
-<div class="highlight-c"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">struct</span>
 <span class="p">{</span>
     <span class="n">RTS_UI32</span> <span class="n">ui32LoginCommand</span><span class="p">;</span>  <span class="cm">/* See category Interactive login commands */</span>
     <span class="n">RTS_UI32</span> <span class="n">ui32LoginMode</span><span class="p">;</span>     <span class="cm">/* See category Interactive login mode flags. Only used for command DEV_ILC_LOGIN_REQUEST */</span>
@@ -150,7 +152,7 @@ The OEM specific runtime component is informed by this runtime system event: EVT
 <span class="cp">#define EVTVERSION_CmpDevice_InteractiveLogin 0x0001</span>
 </pre></div>
 </div>
-<p>An example implementation can be found in the template component CmpTemplate, in file <a class="reference internal" href="../Examples/group___rts_interactive_login.html#group-rts-interactive-login"><span class="std std-ref">RtsInteractiveLogin</span></a> (Templates/CmpTemplate/RtsInteractiveLogin.c). See here how to register the event callback function, and how to react on the events.
+<p>An example implementation can be found in the template component CmpTemplate, in file <a class="reference internal" href="../Examples/group___rts_interactive_login.html#group-rts-interactive-login"><em>RtsInteractiveLogin</em></a> (Templates/CmpTemplate/RtsInteractiveLogin.c). See here how to register the event callback function, and how to react on the events.
 In the template, a log message is written on every event.</p>
 </div>
 
@@ -160,25 +162,25 @@ In the template, a log message is written on every event.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="MultiCore.html" title="MultiCore Support"
+          <a href="OPCUA.html" title="OPC UA"
              >next</a> |</li>
         <li class="right" >
           <a href="CPU.html" title="Codegenerator"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Features</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li>
+          <li><a href="index.html" >Features</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    <div class="footer">
+        &copy; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

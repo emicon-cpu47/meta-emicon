@@ -8,13 +8,13 @@
  *  <description> 
  *  </description>
  *  <copyright>
- *  Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+ *  (c) 2003-2016 3S-Smart Software Solutions
  *  </copyright>
  */
 #ifndef _SYSGRAPHICFBCSTADAPTIONDEP_H_
 #define _SYSGRAPHICFBCSTADAPTIONDEP_H_
 
-#define COMPONENT_NAME "SysGraphicFBCstAdaption" COMPONENT_NAME_POSTFIX
+#define COMPONENT_NAME "SysGraphicFBCstAdaption"COMPONENT_NAME_POSTFIX
 #define COMPONENT_ID    ADDVENDORID(CMP_VENDORID, CMPID_SysGraphicFBCstAdaption)
 #define COMPONENT_NAME_UNQUOTED SysGraphicFBCstAdaption
 
@@ -23,9 +23,9 @@
 
 
 
-#define CMP_VERSION         UINT32_C(0x03050D00)
-#define CMP_VERSION_STRING "3.5.13.0"
-#define CMP_VERSION_RC      3,5,13,0
+#define CMP_VERSION         UINT32_C(0x03050A00)
+#define CMP_VERSION_STRING "3.5.10.0"
+#define CMP_VERSION_RC      3,5,10,0
 
 /* NOTE: REPLACE 0x0001 BY YOUR VENDORID */
 #define CMP_VENDORID       0x0001

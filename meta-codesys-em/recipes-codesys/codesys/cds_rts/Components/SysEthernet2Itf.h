@@ -6,9 +6,7 @@
  *	<p>All other ethernet communciation components use higher level routines (see SysSocket interface).</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -70,22 +68,6 @@ typedef struct
 	EthernetAdapterDesc** ppAdapterDesc;
 	long nReturnVal;
 }GetAdapterDescription;
-
-typedef struct
-{
-	long iMasterNum;
-	unsigned char **ppFrame;
-	RTS_I32* pnSize;
-	RTS_I32 nReturnVal;
-}GetIPEthernetInterface2;
-
-typedef struct
-{
-	long iMasterNum;
-	Ethernetframe *pFrame;
-	RTS_I32 nSize;
-	RTS_I32 nReturnVal;
-}SendIPEthernetInterface2;
 
 #ifdef __cplusplus
 extern "C" {
@@ -247,115 +229,6 @@ typedef void (CDECL * PFGETADAPTERDESCRIPTION) (GetAdapterDescription* pgad);
 #endif
 
 
-
-/**
- * <description>Send IP etherpacket (EoE)</description>
- * <param name="psfi" type="IN">Pointer to parameters</param>
- * <result>error code</result>
- */
-void CDECL CDECL_EXT sendIPethframe2(SendIPEthernetInterface2* psfi);
-typedef void (CDECL * PFSENDIPETHFRAME2) (SendIPEthernetInterface2* psfi);
-#if defined(SYSETHERNET2_NOTIMPLEMENTED) || defined(SENDIPETHFRAME2_NOTIMPLEMENTED)
-	#define USE_sendIPethframe2
-	#define EXT_sendIPethframe2
-	#define GET_sendIPethframe2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_sendIPethframe2(p0)  
-	#define CHK_sendIPethframe2  FALSE
-	#define EXP_sendIPethframe2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_sendIPethframe2
-	#define EXT_sendIPethframe2
-	#define GET_sendIPethframe2(fl)  CAL_CMGETAPI( "sendIPethframe2" ) 
-	#define CAL_sendIPethframe2  sendIPethframe2
-	#define CHK_sendIPethframe2  TRUE
-	#define EXP_sendIPethframe2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"sendIPethframe2", (RTS_UINTPTR)sendIPethframe2, 1, 0) 
-#elif defined(MIXED_LINK) && !defined(SYSETHERNET2_EXTERNAL)
-	#define USE_sendIPethframe2
-	#define EXT_sendIPethframe2
-	#define GET_sendIPethframe2(fl)  CAL_CMGETAPI( "sendIPethframe2" ) 
-	#define CAL_sendIPethframe2  sendIPethframe2
-	#define CHK_sendIPethframe2  TRUE
-	#define EXP_sendIPethframe2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"sendIPethframe2", (RTS_UINTPTR)sendIPethframe2, 1, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysEthernet2sendIPethframe2
-	#define EXT_SysEthernet2sendIPethframe2
-	#define GET_SysEthernet2sendIPethframe2  ERR_OK
-	#define CAL_SysEthernet2sendIPethframe2 pISysEthernet2->IsendIPethframe2
-	#define CHK_SysEthernet2sendIPethframe2 (pISysEthernet2 != NULL)
-	#define EXP_SysEthernet2sendIPethframe2  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_sendIPethframe2
-	#define EXT_sendIPethframe2
-	#define GET_sendIPethframe2(fl)  CAL_CMGETAPI( "sendIPethframe2" ) 
-	#define CAL_sendIPethframe2 pISysEthernet2->IsendIPethframe2
-	#define CHK_sendIPethframe2 (pISysEthernet2 != NULL)
-	#define EXP_sendIPethframe2  CAL_CMEXPAPI( "sendIPethframe2" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_sendIPethframe2  PFSENDIPETHFRAME2 pfsendIPethframe2;
-	#define EXT_sendIPethframe2  extern PFSENDIPETHFRAME2 pfsendIPethframe2;
-	#define GET_sendIPethframe2(fl)  s_pfCMGetAPI2( "sendIPethframe2", (RTS_VOID_FCTPTR *)&pfsendIPethframe2, (fl), 0, 0)
-	#define CAL_sendIPethframe2  pfsendIPethframe2
-	#define CHK_sendIPethframe2  (pfsendIPethframe2 != NULL)
-	#define EXP_sendIPethframe2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"sendIPethframe2", (RTS_UINTPTR)sendIPethframe2, 1, 0) 
-#endif
-
-
-
-
-/**
- * <description>Get IP ethernet packet</description>
- * <param name="pgei" type="IN">Pointer to parameters</param>
- * <result>error code</result>
- */
-void CDECL CDECL_EXT getIPethframe2(GetIPEthernetInterface2* pgei);
-typedef void (CDECL * PFGETIPETHFRAME2) (GetIPEthernetInterface2* pgei);
-#if defined(SYSETHERNET2_NOTIMPLEMENTED) || defined(GETIPETHFRAME2_NOTIMPLEMENTED)
-	#define USE_getIPethframe2
-	#define EXT_getIPethframe2
-	#define GET_getIPethframe2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_getIPethframe2(p0)  
-	#define CHK_getIPethframe2  FALSE
-	#define EXP_getIPethframe2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_getIPethframe2
-	#define EXT_getIPethframe2
-	#define GET_getIPethframe2(fl)  CAL_CMGETAPI( "getIPethframe2" ) 
-	#define CAL_getIPethframe2  getIPethframe2
-	#define CHK_getIPethframe2  TRUE
-	#define EXP_getIPethframe2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"getIPethframe2", (RTS_UINTPTR)getIPethframe2, 1, 0) 
-#elif defined(MIXED_LINK) && !defined(SYSETHERNET2_EXTERNAL)
-	#define USE_getIPethframe2
-	#define EXT_getIPethframe2
-	#define GET_getIPethframe2(fl)  CAL_CMGETAPI( "getIPethframe2" ) 
-	#define CAL_getIPethframe2  getIPethframe2
-	#define CHK_getIPethframe2  TRUE
-	#define EXP_getIPethframe2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"getIPethframe2", (RTS_UINTPTR)getIPethframe2, 1, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysEthernet2getIPethframe2
-	#define EXT_SysEthernet2getIPethframe2
-	#define GET_SysEthernet2getIPethframe2  ERR_OK
-	#define CAL_SysEthernet2getIPethframe2 pISysEthernet2->IgetIPethframe2
-	#define CHK_SysEthernet2getIPethframe2 (pISysEthernet2 != NULL)
-	#define EXP_SysEthernet2getIPethframe2  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_getIPethframe2
-	#define EXT_getIPethframe2
-	#define GET_getIPethframe2(fl)  CAL_CMGETAPI( "getIPethframe2" ) 
-	#define CAL_getIPethframe2 pISysEthernet2->IgetIPethframe2
-	#define CHK_getIPethframe2 (pISysEthernet2 != NULL)
-	#define EXP_getIPethframe2  CAL_CMEXPAPI( "getIPethframe2" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_getIPethframe2  PFGETIPETHFRAME2 pfgetIPethframe2;
-	#define EXT_getIPethframe2  extern PFGETIPETHFRAME2 pfgetIPethframe2;
-	#define GET_getIPethframe2(fl)  s_pfCMGetAPI2( "getIPethframe2", (RTS_VOID_FCTPTR *)&pfgetIPethframe2, (fl), 0, 0)
-	#define CAL_getIPethframe2  pfgetIPethframe2
-	#define CHK_getIPethframe2  (pfgetIPethframe2 != NULL)
-	#define EXP_getIPethframe2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"getIPethframe2", (RTS_UINTPTR)getIPethframe2, 1, 0) 
-#endif
-
-
-
-
 typedef void (CDECL * PFETHFRAMERECEIVED)(void);
 
 typedef struct _EthernetAdapterDescription
@@ -377,8 +250,6 @@ typedef struct _EthernetAdapterDescription
 	PFRESETADAPTER pfresetadapter;
 	PFETHFRAMERECEIVED pfEthFrameReceived;
 	char szDriverName[32];
-	PFGETIPETHFRAME2 pfgetIPethframe2;
-	PFSENDIPETHFRAME2 pfsendIPethframe2;
 }EthernetAdapterDescription;
 RTS_RESULT CDECL CDECL_EXT SysEthernetRegisterEthernetAdapter(EthernetAdapterDescription* pAdapterDesc, int bUnregister);
 typedef RTS_RESULT (CDECL * PFSYSETHERNETREGISTERETHERNETADAPTER) (EthernetAdapterDescription* pAdapterDesc, int bUnregister);
@@ -426,6 +297,8 @@ typedef RTS_RESULT (CDECL * PFSYSETHERNETREGISTERETHERNETADAPTER) (EthernetAdapt
 	#define EXP_SysEthernetRegisterEthernetAdapter   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysEthernetRegisterEthernetAdapter", (RTS_UINTPTR)SysEthernetRegisterEthernetAdapter, 1, 0) 
 #endif
 
+
+
 #ifdef __cplusplus
 }
 #endif
@@ -435,16 +308,12 @@ typedef RTS_RESULT (CDECL * PFSYSETHERNETREGISTERETHERNETADAPTER) (EthernetAdapt
 typedef struct
 {
 	IBase_C *pBase;
-	PFSENDIPETHFRAME2 IsendIPethframe2;
- 	PFGETIPETHFRAME2 IgetIPethframe2;
- } ISysEthernet2_C;
+} ISysEthernet2_C;
 
 #ifdef CPLUSPLUS
 class ISysEthernet2 : public IBase
 {
 	public:
-		virtual void CDECL IsendIPethframe2(SendIPEthernetInterface2* psfi) =0;
-		virtual void CDECL IgetIPethframe2(GetIPEthernetInterface2* pgei) =0;
 };
 	#ifndef ITF_SysEthernet2
 		#define ITF_SysEthernet2 static ISysEthernet2 *pISysEthernet2 = NULL;

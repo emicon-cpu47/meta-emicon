@@ -17,9 +17,7 @@
  *
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpSecurityManager')
@@ -53,21 +51,12 @@ REF_ITF(`CmpX509CertItf.m4')
  *	Flags to specify properties of an application
  * </description>
  */
-#define CMPSECMAN_FLAGS_NONE		        0
-#define CMPSECMAN_FLAGS_DEFAULT		        0x00000001
+#define CMPSECMAN_FLAGS_NONE		0
+#define CMPSECMAN_FLAGS_DEFAULT		0x00000001
 
-#define CMPSECMAN_FLAGS_SELECTABLESETTING	0x00000002
-#define CMPSECMAN_FLAGS_EDITABLESETTING		0x00000004
-
-#define CMPSECMAN_FLAGS_STRINGSETTING		0x00000010
-#define CMPSECMAN_FLAGS_INTSETTING		    0x00000020
- 
 /**
  * <description>
- *	This structure stores a single selection of a selectable settings. Each 
- *  possible selection is a single struture element when registering the setting.
- *  The registration can be done using SecManRegisterSettings function. The 
- *  selected setting can be retrieved by using SecManGetSetting.
+ *	SecuritySetting to safe .
  * </description>
  * <element name="secID" type="IN">ID of the security setting. Must be unique per ComponentID and UsageID</element>
  * <element name="flags" type="IN">Flags of the entry. See "SecuritySettingFlags" for details.</element>
@@ -81,36 +70,6 @@ typedef struct _SecuritySetting
 	char *pszSecName;
 	char *pszDescription;
 } SecuritySetting;
-
-
-typedef union _SecuritySettingValue
-{
-    RTS_I32 intSetting;
-    char *stringSetting;
-} SecuritySettingValue;
-
-/**
- * <description>
- *	This structure stores a editable setting. The setting can be registerd using
- *  SecManRegisterEditableSetting function. The default value given when registring
- *  will be returned until the setting has been changed by the someone. Then the
- *  changed value will be returned. To indicate if a string or an intager is stored
- *  use either CMPSECMAN_FLAGS_STRINGSETTING or CMPSECMAN_FLAGS_INTSETTING. The
- *  corresponding field in the secValue union is then used.
- *  Use the function SecManGetSettingValue to retrieve the valued stored.
- * </description>
- * <element name="secID" type="IN">ID of the security setting. Must be unique per ComponentID and UsageID</element>
- * <element name="flags" type="IN">Flags of the entry. See "SecuritySettingFlags" for details.</element>
- * <element name="pszSecName" type="IN">Name of the security setting</element>
- * <element name="pszDescription" type="IN">Description of the security setting</element>
- */
-typedef struct _SecurityEditableSetting
-{
-	RTS_UI32 flags;
-	char *pszSecName;
-	char *pszDescription;
-	SecuritySettingValue secValue;
-} SecurityEditableSetting;
 
 
 /**
@@ -167,28 +126,13 @@ extern "C" {
  * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Settings could be registered</errorcode>
  * <errorcode name="RTS_RESULT pResult" type="ERR_NOTINITIALIZED">CmpSecurityManager is not yet initialized</errorcode>
  * <errorcode name="RTS_RESULT pResult" type="ERR_NO_MEMORY">No memory to register security settings</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_DUPLICATE">The setting was registered already. The handle of the existing is returned.</errorcode>
  * <result>Handle to the registered security settings</result>
  */
 DEF_ITF_API(`RTS_HANDLE',`CDECL',`SecManRegisterSettings',`(CMPID cmpId, RTS_UI32 ui32UsageID, SecuritySetting *pSettings, RTS_UI32 ui32Settings, RTS_RESULT *pResult)')
 
 /**
- * <description>Function to register a editable security setting of a component</description>
- * <param name="cmpId" type="IN">ComponentID of the server that provides security features</settings</param>
- * <param name="nUsageID" type="IN">UsageID. This must only be unique for one component</param>
- * <param name="pSetting" type="IN">Pointer to the editable security settings</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Settings could be registered</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_NOTINITIALIZED">CmpSecurityManager is not yet initialized</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_NO_MEMORY">No memory to register security settings</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_DUPLICATE">The setting was registered already. The handle of the existing is returned.</errorcode>
- * <result>Handle to the registered security settings</result>
- */
-DEF_ITF_API(`RTS_HANDLE',`CDECL',`SecManRegisterEditableSetting',`(CMPID cmpId, RTS_UI32 ui32UsageID, SecurityEditableSetting *pSetting, RTS_RESULT *pResult)')
-
-/**
  * <description>Unregister security settings</description>
- * <param name="hSecuritySettings" type="IN">Handle to the security settings returned by SecManRegisterSettings() or SecManFindSettings() or SecManRegisterEditableSetting()</param>
+ * <param name="hSecuritySettings" type="IN">Handle to the security settings returned by SecManRegisterSettings() or SecManFindSettings()</param>
  * <result>Result of the operation</result>
  * <errorcode name="RTS_RESULT" type="ERR_OK">Unregister succeeded</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">hSecuritySettings invalid</errorcode>
@@ -217,17 +161,6 @@ DEF_ITF_API(`RTS_HANDLE',`CDECL',`SecManFindSettings',`(CMPID cmpId, RTS_UI32 ui
  * <result>Pointer to the security setting which is selected on the target</result>
  */
 DEF_ITF_API(`SecuritySetting *',`CDECL',`SecManGetSetting',`(RTS_HANDLE hSecuritySettings, RTS_RESULT *pResult)')
-
-/**
- * <description>Get the edited value setting because of the security policy of the target!</description>
- * <param name="hSecuritySettings" type="IN">Handle to the security settings returned by SecManRegisterSettings() or SecManFindSettings()</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">One setting is returned</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_PARAMETER">hSecuritySettings is invalid</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_NO_OBJECT">No setting selected</errorcode>
- * <result>Pointer to the security setting which is selected on the target</result>
- */
-DEF_ITF_API(`SecurityEditableSetting *',`CDECL',`SecManGetEditableSetting',`(RTS_HANDLE hSecuritySettings, RTS_RESULT *pResult)')
 
 /**
  * <description>Function to overload the certificate info from a specified server resp. for a usage</description>

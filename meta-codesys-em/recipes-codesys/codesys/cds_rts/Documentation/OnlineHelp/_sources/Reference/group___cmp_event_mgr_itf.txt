@@ -19,10 +19,6 @@ Modules
 
 - :ref:`Event classes <group___cmp_event_mgr_itf___eventclasses>`
 
-- :ref:`Event manager flags <group___cmp_event_mgr_itf___eventmanagerflags>`
-
-- :ref:`Event options <group___cmp_event_mgr_itf___eventoptions>`
-
 - :ref:`Event parameter <group___cmp_event_mgr_itf___eventparameter>`
 
 - :ref:`Events <group___cmp_event_mgr_itf___events>`
@@ -76,8 +72,6 @@ Data Structures
 
 - struct :ref:`tageventunregistercallbackfunction_struct <structtageventunregistercallbackfunction__struct>`
 
-- struct :ref:`tageventunregistercallbackfunction2_struct <structtageventunregistercallbackfunction2__struct>`
-
 - struct :ref:`ICmpEventMgr_C <struct_i_cmp_event_mgr___c>`
 
 Macros
@@ -128,8 +122,6 @@ Typedefs
 
 - typedef struct :ref:`tageventunregistercallbackfunction_struct <structtageventunregistercallbackfunction__struct>` :ref:`eventunregistercallbackfunction_struct <group___cmp_event_mgr_itf_1ga8ef30b67b3ee04001bd40094f91b25fa>`
 
-- typedef struct :ref:`tageventunregistercallbackfunction2_struct <structtageventunregistercallbackfunction2__struct>` :ref:`eventunregistercallbackfunction2_struct <group___cmp_event_mgr_itf_1gac3020fae9ca103c60b6b985104a618fe>`
-
 - typedef :ref:`ICmpEventMgr_C <struct_i_cmp_event_mgr___c>` :ref:`ICmpEventMgr <group___cmp_event_mgr_itf_1gaddb27114577b319b983678219172c543>`
 
 Functions
@@ -171,13 +163,9 @@ Functions
 
 - void :ref:`eventunregistercallbackfunction <group___cmp_event_mgr_itf_1ga09a6c3101242f985bbdf34580d230435>` (:ref:`eventunregistercallbackfunction_struct <group___cmp_event_mgr_itf_1ga8ef30b67b3ee04001bd40094f91b25fa>` * p)
 
-- void :ref:`eventunregistercallbackfunction2 <group___cmp_event_mgr_itf_1ga0de01ddf99042d3c71866d6155df02f1>` (:ref:`eventunregistercallbackfunction2_struct <group___cmp_event_mgr_itf_1gac3020fae9ca103c60b6b985104a618fe>` * p)
-
 - RTS_HANDLE :ref:`EventCreate <group___cmp_event_mgr_itf_1ga6d63f00d5bce0b4125c266dd37bee048>` (:ref:`EVENTID <group___cmp_event_callback_itf_1ga01e77e79206096b36fae0f8b3bf05ed4>`  EventId, CMPID CmpIdProvider, RTS_RESULT * pResult)
 
 - RTS_HANDLE :ref:`EventCreate2 <group___cmp_event_mgr_itf_1ga5b5f843105b4c1b7997ffbe066fdc493>` (:ref:`EVENTID <group___cmp_event_callback_itf_1ga01e77e79206096b36fae0f8b3bf05ed4>`  EventId, CMPID CmpIdProvider, RTS_UI32 nCallbacksPossible, RTS_RESULT * pResult)
-
-- RTS_HANDLE :ref:`EventCreate3 <group___cmp_event_mgr_itf_1gad246cb6f243b196a3362cb265f3eadcb>` (:ref:`EVENTID <group___cmp_event_callback_itf_1ga01e77e79206096b36fae0f8b3bf05ed4>`  EventId, CMPID CmpIdProvider, :ref:`EventOptions <group___cmp_event_mgr_itf___eventoptions_1ga28e8a6e8821a62bc983dba997cea5bb7>` * pEventOptions, RTS_RESULT * pResult)
 
 - RTS_RESULT :ref:`EventDelete <group___cmp_event_mgr_itf_1ga46db17c2283a873758be432ba1b3c705>` (RTS_HANDLE hEvent)
 
@@ -204,8 +192,6 @@ Functions
 - RTS_RESULT :ref:`EventRegisterCallbackFunction2 <group___cmp_event_mgr_itf_1ga5aa610df15014fd7a4379e0a1c39b3cb>` (RTS_HANDLE hEvent, :ref:`PFEVENTCALLBACKFUNCTION <group___cmp_event_callback_itf_1ga66fcdd6103915e80e60e526bd4ad4dcf>`  pfCallbackFunction, int bIec, void * pUserParameter)
 
 - RTS_RESULT :ref:`EventUnregisterCallbackFunction <group___cmp_event_mgr_itf_1ga4af436d4a7636f183f8aefd388ba00c6>` (RTS_HANDLE hEvent, :ref:`PFEVENTCALLBACKFUNCTION <group___cmp_event_callback_itf_1ga66fcdd6103915e80e60e526bd4ad4dcf>`  pfCallbackFunction)
-
-- RTS_RESULT :ref:`EventUnregisterCallbackFunction2 <group___cmp_event_mgr_itf_1ga93b438a1806e0a7751df719d951724bf>` (RTS_HANDLE hEvent, :ref:`PFEVENTCALLBACKFUNCTION <group___cmp_event_callback_itf_1ga66fcdd6103915e80e60e526bd4ad4dcf>`  pfCallbackFunction, void * pUserParameter)
 
 - unsigned long :ref:`EventRegisteredCallbacks <group___cmp_event_mgr_itf_1ga96364151374eb2eab3374c453744b546>` (RTS_HANDLE hEvent, RTS_RESULT * pResult)
 
@@ -258,7 +244,7 @@ If an event is unregistred by a provider, the event EVT_EventDelete is sent. If 
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -408,13 +394,6 @@ typedef struct tageventunregistercallbackfunction_struct  eventunregistercallbac
 
 Unregister a callback function from an event specified by handle and callback
 
-.. _group___cmp_event_mgr_itf_1gac3020fae9ca103c60b6b985104a618fe:
-
-typedef struct tageventunregistercallbackfunction2_struct  eventunregistercallbackfunction2_struct
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Unregister a callback function with a specific user parameter from an event specified by handle and callback and parameter
-
 .. _group___cmp_event_mgr_itf_1gaddb27114577b319b983678219172c543:
 
 typedef ICmpEventMgr_C ICmpEventMgr
@@ -513,11 +492,6 @@ void eventunregistercallback (eventunregistercallback_struct *p)
 void eventunregistercallbackfunction (eventunregistercallbackfunction_struct *p)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_event_mgr_itf_1ga0de01ddf99042d3c71866d6155df02f1:
-
-void eventunregistercallbackfunction2 (eventunregistercallbackfunction2_struct *p)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. _group___cmp_event_mgr_itf_1ga6d63f00d5bce0b4125c266dd37bee048:
 
 RTS_HANDLE EventCreate (EVENTID EventId, CMPID CmpIdProvider, RTS_RESULT *pResult)
@@ -559,29 +533,6 @@ Creates a new event object. If event still exists, a handle to this object will 
 +---------+--------------------+---------------------------------------------------------------------------------------------+
 | [out]   | pResult            | Pointer to the error code                                                                   |
 +---------+--------------------+---------------------------------------------------------------------------------------------+
-
-**Returns:**
-
-Handle to the event object
-
-.. _group___cmp_event_mgr_itf_1gad246cb6f243b196a3362cb265f3eadcb:
-
-RTS_HANDLE EventCreate3 (EVENTID EventId, CMPID CmpIdProvider, EventOptions *pEventOptions, RTS_RESULT *pResult)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Creates a new event object. If event still exists, a handle to this object will be returned. An event is typically created by the provider of an event in the CH_INIT_DONE hook.
-
-**Parameters**
-
-+---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | EventId       | Event ID of the event. Contains the class and the event                                                                                                                |
-+---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | CmpIdProvider | Component ID of the provider                                                                                                                                           |
-+---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pEventOptions | Pointer to the EventOptions. May be NULL, then :ref:`EventCreate() <group___cmp_app_b_p_dep_1gabd08fad40d0fcbbb8692e660985f462d>` will be called without EventOptions. |
-+---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [out]   | pResult       | Pointer to the error code                                                                                                                                              |
-+---------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Returns:**
 
@@ -828,29 +779,6 @@ Unregister a callback function from an event specified by handle and callback
 +---------+--------------------+------------------------------+
 | [in]    | pfCallbackFunction | Pointer to callback function |
 +---------+--------------------+------------------------------+
-
-**Returns:**
-
-Error code
-
-.. _group___cmp_event_mgr_itf_1ga93b438a1806e0a7751df719d951724bf:
-
-RTS_RESULT EventUnregisterCallbackFunction2 (RTS_HANDLE hEvent, PFEVENTCALLBACKFUNCTION pfCallbackFunction, void *pUserParameter)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Unregister a callback function with a specific user parameter from an event specified by handle and callback and parameter
-
-**Parameters**
-
-+---------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | hEvent             | Handle to event                                                                                                                                                 |
-+---------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pfCallbackFunction | Pointer to callback function                                                                                                                                    |
-+---------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | bIec               | 1=Iec function, 0=C function                                                                                                                                    |
-+---------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pUserParameter     | Pointer to user parameter, that was specified as a parameter at :ref:`EventRegisterCallback2() <group___cmp_event_mgr_itf_1gafe4769fad1c2c127880e186c33946dc6>` |
-+---------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Returns:**
 

@@ -252,6 +252,8 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 		case CH_EXIT3:
 			break;
 		case CH_EXIT2:
+			break;
+		case CH_EXIT:
 		{
 			/* Delete instance */
 			ICmpIoDrv *pI;
@@ -260,10 +262,8 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 			pI = (ICmpIoDrv *)s_pIBase->QueryInterface(s_pIBase, ITFID_ICmpIoDrv, NULL);
 			s_pIBase->Release(s_pIBase);
 			CAL_IoDrvDelete((RTS_HANDLE)pI, (RTS_HANDLE)pI);
-			break;
-		}
-		case CH_EXIT:
-		{
+			DeleteInstance(s_pIBase);
+
 			EXIT_STMT;
 			break;
 		}
@@ -293,8 +293,7 @@ STATICITF RTS_HANDLE CDECL IoDrvCreate(RTS_HANDLE hIIoDrv, CLASSID ClassId, int 
 	RTS_SETRESULT(pResult, ERR_OK);
 
 	/* Only one instance allowed */
-	if (iId > 0)
-	{
+	if (iId > 0) {
 		RTS_SETRESULT(pResult, ERR_NOMEMORY);
 		return RTS_INVALID_HANDLE;
 	}
@@ -324,12 +323,10 @@ STATICITF RTS_RESULT CDECL IoDrvDelete(RTS_HANDLE hIoDrv, RTS_HANDLE hIIoDrv)
 
 STATICITF RTS_RESULT CDECL IoDrvGetInfo(RTS_HANDLE hIoDrv, IoDrvInfo **ppInfo)
 {
-	IoDrvVerySimple *pIoDrvVerySimple = (IoDrvVerySimple *)hIoDrv;
-
 	if (ppInfo == NULL || hIoDrv == RTS_INVALID_HANDLE)
 		return ERR_PARAMETER;
 
-	*ppInfo = (IoDrvInfo *)&pIoDrvVerySimple->Info;
+	*ppInfo = (IoDrvInfo *)hIoDrv;
 	return ERR_OK;
 }
 

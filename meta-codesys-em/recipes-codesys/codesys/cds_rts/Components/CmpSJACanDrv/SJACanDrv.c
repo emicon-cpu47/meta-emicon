@@ -831,28 +831,25 @@ void SjaInitAllControllersForUse(void)
 			/*Issue a hard reset on the controller.*/
 			s_Can[iCtrl].pCanRegs[0x100] = 0;
 			
-			if (iCtrl < SJA_NNET-1)
+			/* 2nd channel 512 bytes behind the first */
+			iCtrl++;
+			s_Can[iCtrl].hShmSja = s_Can[iCtrl-1].hShmSja; 
+			s_Can[iCtrl].pCanRegs = s_Can[iCtrl-1].pCanRegs + 0x200;
+
+			IntDesc.BusType = BT_PCI;
+			IntDesc.InterruptMode = IM_LevelSensitive; /*IM_Level_Sensitiv as always on the PCI.*/
+			IntDesc.busSpecific.pciInterrupt.ulBusNumber = s_Can[iCtrl].ulBusNr;
+			IntDesc.busSpecific.pciInterrupt.ulDevciceNumber = s_Can[iCtrl].ulDevice;
+			IntDesc.busSpecific.pciInterrupt.ulFunctionNumber = s_Can[iCtrl].ulFunction;
+			IntDesc.busSpecific.pciInterrupt.ulIntLine = s_Can[iCtrl].ulIntVec;
+			s_Can[iCtrl].hInt = CAL_SysIntOpen(s_Can[iCtrl].ulIntVec, &IntDesc, &Result);
+			if(s_Can[iCtrl].hInt != RTS_INVALID_HANDLE)
 			{
-				/* 2nd channel 512 bytes behind the first */
-				iCtrl++;
-				s_Can[iCtrl].hShmSja = s_Can[iCtrl-1].hShmSja; 
-				s_Can[iCtrl].pCanRegs = s_Can[iCtrl-1].pCanRegs + 0x200;
-
-				IntDesc.BusType = BT_PCI;
-				IntDesc.InterruptMode = IM_LevelSensitive; /*IM_Level_Sensitiv as always on the PCI.*/
-				IntDesc.busSpecific.pciInterrupt.ulBusNumber = s_Can[iCtrl].ulBusNr;
-				IntDesc.busSpecific.pciInterrupt.ulDevciceNumber = s_Can[iCtrl].ulDevice;
-				IntDesc.busSpecific.pciInterrupt.ulFunctionNumber = s_Can[iCtrl].ulFunction;
-				IntDesc.busSpecific.pciInterrupt.ulIntLine = s_Can[iCtrl].ulIntVec;
-				s_Can[iCtrl].hInt = CAL_SysIntOpen(s_Can[iCtrl].ulIntVec, &IntDesc, &Result);
-				if(s_Can[iCtrl].hInt != RTS_INVALID_HANDLE)
-				{
-					Result = CAL_SysIntRegister(s_Can[iCtrl].hInt, SYS_INT_C, SJA_Interrupt_Handler, (RTS_UINTPTR)&s_Can[iCtrl]);
-				}
-
-				/*Issue a hard reset on the controller.*/
-				s_Can[iCtrl].pCanRegs[0x100] = 0;
+				Result = CAL_SysIntRegister(s_Can[iCtrl].hInt, SYS_INT_C, SJA_Interrupt_Handler, (RTS_UINTPTR)&s_Can[iCtrl]);
 			}
+
+			/*Issue a hard reset on the controller.*/
+			s_Can[iCtrl].pCanRegs[0x100] = 0;
 		}
 		else if(s_Can[iCtrl].usVendorID == VENDOR_ID && 
 			s_Can[iCtrl].usDeviceID == DEVICE_ID_PCI &&
@@ -1907,6 +1904,8 @@ void CAAFKT SJA_CanMiniDriver_Handler(void)
 					/* Receive Interrupt */
 					if(istate & SJA_INT_BIT_RXINT)
 					{
+						CAA_BOOL xRes;
+
 						if (s_Can[byDriver].usVendorID == VENDOR_ID && 
 							s_Can[byDriver].usDeviceID == DEVICE_ID_PCI_9030 &&
 							s_Can[byDriver].usSubVendorID == PCI_JANZ_SUBVENDOR_ID &&
@@ -1918,7 +1917,7 @@ void CAAFKT SJA_CanMiniDriver_Handler(void)
 						while((SjaReadRegister(byDriver,pNet,SJA_SR) & 1) == 1)
 						{
 							hBlock = CAL_CL2_MsgAlloc(s_byNet[byDriver], CAA_pNULL);
-							(void)CMD_Receive(s_byNet[byDriver], hBlock, CAA_pNULL);
+							xRes = CMD_Receive(s_byNet[byDriver], hBlock, CAA_pNULL);
 							if(hBlock)
 							{
 								pInfo->ctMessagesReceived++;

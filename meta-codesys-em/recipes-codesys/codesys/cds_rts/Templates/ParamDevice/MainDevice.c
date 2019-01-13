@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-RTS_RESULT CDECL MainLoadComponent(char *pszName, char *pszPath, RTS_HANDLE *phModule, PF_COMPONENT_ENTRY* ppfComponentEntry)
+RTS_RESULT CDECL MainLoadComponent(char *pszName, RTS_HANDLE *phModule, PF_COMPONENT_ENTRY* ppfComponentEntry)
 {
 	return ERR_OK;
 }

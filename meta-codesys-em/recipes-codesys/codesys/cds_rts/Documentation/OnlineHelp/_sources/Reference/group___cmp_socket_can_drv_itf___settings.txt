@@ -46,10 +46,6 @@ Macros
 
 - #define :ref:`SOCKETCAN_INT_ERRMASK_DEFAULT <group___cmp_socket_can_drv_itf___settings_1ga986e16e31fca7d452290f865a487d5be>` 0x7F
 
-- #define :ref:`SOCKETCAN_INT_ASYNCSEND <group___cmp_socket_can_drv_itf___settings_1ga9d713e70852f6119a4dfbdf9e52b5fac>` "AsyncSend"
-
-- #define :ref:`SOCKETCAN_INT_ASYNCSEND_DEFAULT <group___cmp_socket_can_drv_itf___settings_1gae284a3e34702492449dc3be5165c1df7>` 0
-
 - #define :ref:`ITF_CmpSocketCanDrv <group___cmp_socket_can_drv_itf___settings_1ga92ed9436d22791ad693d19e33897934f>`
 
 - #define :ref:`EXTITF_CmpSocketCanDrv <group___cmp_socket_can_drv_itf___settings_1ga163d2645337888edf05e3437725aa5c7>`
@@ -75,7 +71,9 @@ Macro Definition Documentation
 #define SOCKETCAN_STRING_INTERFACENAME "InterfaceName"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Devicefile for CAN interface.
+Settings to set the baudrate.
+
+Example: InterfaceName=can ScriptPath=./ ScriptName=rts_set_baud
 
 .. _group___cmp_socket_can_drv_itf___settings_1ga61f6d300b847ccb1d0ce7839bb6d17d1:
 
@@ -87,8 +85,6 @@ Devicefile for CAN interface.
 #define SOCKETCAN_STRING_SCRIPTPATH "ScriptPath"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Path to baudrate script (rts_set_baud.sh).
-
 .. _group___cmp_socket_can_drv_itf___settings_1ga81a7e558c12be5ef6f6beb58c542118a:
 
 #define SOCKETCAN_STRING_SCRIPTPATH_DEFAULT "./"
@@ -98,8 +94,6 @@ Path to baudrate script (rts_set_baud.sh).
 
 #define SOCKETCAN_STRING_SCRIPTNAME "ScriptName"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Name of script to set the CAN baudrate.
 
 .. _group___cmp_socket_can_drv_itf___settings_1ga26b2fae4dd40497bcc90ecaa30513380:
 
@@ -111,8 +105,6 @@ Name of script to set the CAN baudrate.
 #define SOCKETCAN_INT_TIMESTAMPS "Timestamps"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-add a timestamp on sending/receiving to every Tx/Rx Message
-
 .. _group___cmp_socket_can_drv_itf___settings_1ga4e4c7bd25bac92d1826ac4e990b15506:
 
 #define SOCKETCAN_INT_TIMESTAMPS_DEFAULT 0
@@ -122,8 +114,6 @@ add a timestamp on sending/receiving to every Tx/Rx Message
 
 #define SOCKETCAN_INT_LOOPBACK "Loopback"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-set the socketoption CAN_RAW_LOOPBACK for Tx Messages
 
 .. _group___cmp_socket_can_drv_itf___settings_1gaaf11530bdba6266b9f81f89b3d8de551:
 
@@ -135,8 +125,6 @@ set the socketoption CAN_RAW_LOOPBACK for Tx Messages
 #define SOCKETCAN_INT_RECV_OWN_MSGS "RecvOwnMsgs"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-set the socketoption CAN_RAW_RECV_OWN_MSGS for Rx Messages
-
 .. _group___cmp_socket_can_drv_itf___settings_1ga7fbe291590b7c12db7177a9ce62c5544:
 
 #define SOCKETCAN_INT_RECV_OWN_MSGS_DEFAULT 1
@@ -147,24 +135,10 @@ set the socketoption CAN_RAW_RECV_OWN_MSGS for Rx Messages
 #define SOCKETCAN_INT_ERRMASK "ErrorMask"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-value of socketoption CAN_RAW_ERR_FILTER
-
 .. _group___cmp_socket_can_drv_itf___settings_1ga986e16e31fca7d452290f865a487d5be:
 
 #define SOCKETCAN_INT_ERRMASK_DEFAULT 0x7F
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_socket_can_drv_itf___settings_1ga9d713e70852f6119a4dfbdf9e52b5fac:
-
-#define SOCKETCAN_INT_ASYNCSEND "AsyncSend"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-value 0: All CAN messages are sent synchronously in the context of the thread calling CL2_Write value 1: All CAN messages are sent asynchronously in a dedicated CanTxThread. CL2_Write returns immediately
-
-.. _group___cmp_socket_can_drv_itf___settings_1gae284a3e34702492449dc3be5165c1df7:
-
-#define SOCKETCAN_INT_ASYNCSEND_DEFAULT 0
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___cmp_socket_can_drv_itf___settings_1ga92ed9436d22791ad693d19e33897934f:
 

@@ -21,9 +21,7 @@
  *	</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysSemCount')
@@ -46,11 +44,6 @@ RTS_RESULT CDECL SysSemCountOSHookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1
  * <description>
  *	Create a new counting semaphore object 
  * </description>
- * <param name="ui32InitialValue" type="IN">Initial semaphore value. Value is counted down by each SysSemCountEnter() call and blocks, if internal counter is 0!
- *	At each SysSemCountLeave() call, the counter is counting up. So the initial value is the number of critical sections, which can be entered at the same time!
- *  NOTE:
- *	A SysSemCount semaphore is typically not inversion safe and is not thread local (multiple eneter in one task blocks the semaphore, if internal counter reaches 0)!
- * </param>
  * <param name="pResult" type="OUT">
  * One of:
  * ERR_OK: The semaphore was created.
@@ -91,7 +84,7 @@ DEF_DELETEITF_API(`RTS_RESULT',`CDECL',`SysSemCountDelete',`(RTS_HANDLE hSemapho
  * <result>e
  * One of:
  * - ERR_OK: The semaphore was enterd.
- * - ERR_FAILED: The semaphore couldn't be entered.
+ * - ERR_FAILED: The semaphore couldn't be enterd.
  * - ERR_TIMEOUT: The given timeout expired.
  * - ERR_INVALID_HANDLE: The given semaphore isn't a valid semaphore handle.
  * - ERR_PARAMETER: Error within the given parameters.

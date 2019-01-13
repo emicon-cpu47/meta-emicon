@@ -8,8 +8,6 @@
 
 
 
-
-
 #include "CmpPlcShellHandler.c"
 
 
@@ -20,7 +18,6 @@
 #define CMPID_CmpPlcShellHandler		0x2000		/* NOTE: START HERE WITH YOUR COMPONENTIDS (see CmpItf.h */
 #define CLASSID_CCmpPlcShellHandler	0x2000		/* NOTE: START HERE WITH YOUR CLASSIDS (see CmpItf.h */
 #define ITFID_ICmpPlcShellHandler		0x2000		/* NOTE: START HERE WITH YOUR INTERFACEIDS (see CmpItf.h */
-
 
 
 

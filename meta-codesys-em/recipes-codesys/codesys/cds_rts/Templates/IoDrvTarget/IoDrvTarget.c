@@ -212,10 +212,12 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 			RTS_HANDLE hIoDrv = 0;
 			RTS_HANDLE h = 0;
 
-			s_pIBase = (IBase *)CAL_IoDrvCreate(hIoDrv, CLASSID_CIoDrvTarget, 0, &Result);
+			s_pIBase = (IBase *)IoDrvCreate(hIoDrv, CLASSID_CIoDrvTarget, 0, &Result);
 			CAL_IoMgrRegisterInstance(s_pIBase, NULL);
 			break;
 		}
+		case CH_INIT2:
+			break;
 		case CH_INIT_TASKS:
 			break;
 		case CH_INIT_COMM:
@@ -231,6 +233,8 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 		case CH_EXIT_TASKS:
 			break;
 		case CH_EXIT2:
+			break;
+		case CH_EXIT:
 		{
 			/* Delete instance */
 			ICmpIoDrv *pI;
@@ -239,10 +243,8 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 			pI = (ICmpIoDrv *)s_pIBase->QueryInterface(s_pIBase, ITFID_ICmpIoDrv, NULL);
 			s_pIBase->Release(s_pIBase);
 			CAL_IoDrvDelete((RTS_HANDLE)pI, (RTS_HANDLE)pI);
-			break;
-		}
-		case CH_EXIT:
-		{
+			DeleteInstance(s_pIBase);
+
 			EXIT_STMT;
 			break;
 		}
@@ -294,32 +296,40 @@ STATICITF RTS_HANDLE CDECL IoDrvCreate(RTS_HANDLE hIIoDrv, CLASSID ClassId, int 
 	strcpy(pInfo->szDeviceName, "MyCard");
 	strcpy(pInfo->szVendorName, "MyCompany");
 	strcpy(pInfo->szFirmwareVersion, "Rev. 1.0.0.0");
-	return (RTS_HANDLE)pIoDrvTarget;
+	return (RTS_HANDLE)pInfo;
 }
 
 STATICITF RTS_RESULT CDECL IoDrvDelete(RTS_HANDLE hIoDrv, RTS_HANDLE hIIoDrv)
 {
-	IoDrvTarget *pIoDrvTarget = (IoDrvTarget *)hIoDrv;
-	CAL_SysMemFreeData(COMPONENT_NAME, pIoDrvTarget);
+#ifdef CPLUSPLUS
+	CAL_SysMemFreeData(COMPONENT_NAME, (void *)hIoDrv);
+	DeleteInstance((RTS_HANDLE)(IBase *)(ICmpIoDrv*)this);
+#else
+	DeleteInstance((RTS_HANDLE)((ICmpIoDrv *)hIIoDrv)->pBase);
+#endif
 	return ERR_OK;
 }
 
 STATICITF RTS_RESULT CDECL IoDrvGetInfo(RTS_HANDLE hIoDrv, IoDrvInfo **ppInfo)
 {
-	IoDrvTarget *pIoDrvTarget = (IoDrvTarget *)hIoDrv;
-
 	if (ppInfo == NULL || hIoDrv == RTS_INVALID_HANDLE)
 		return ERR_PARAMETER;
 
-	*ppInfo = (IoDrvInfo *)&pIoDrvTarget->Info;
+	*ppInfo = (IoDrvInfo *)hIoDrv;
 	return ERR_OK;
 }
 
 STATICITF RTS_RESULT CDECL IoDrvUpdateConfiguration(RTS_HANDLE hIoDrv, IoConfigConnector *pConnectorList, int nCount)
 {
-	IoConfigConnector *pConnector = pConnectorList;	
-	IoDrvTarget *pIoDrvTarget = (IoDrvTarget *)hIoDrv;
-	IBase *pIBase = pIoDrvTarget->pIBase;
+	IoConfigConnector *pConnector = pConnectorList;
+	IBase *pIBase;
+
+#ifdef CPLUSPLUS
+	pIBase = (IBase *)QueryInterface((IBase*)(ICmpIoDrv *)this, ITFID_IBase, NULL);
+#else
+	IoDrvTarget *pIoDrvTarget = (IoDrvTarget *)((unsigned char *)hIoDrv - sizeof(IoDrvTarget) + sizeof(IoDrvInfo));
+	pIBase = pIoDrvTarget->pIBase;
+#endif
 
 #if 0
 	while (pConnector != NULL)
@@ -426,7 +436,7 @@ STATICITF RTS_RESULT CDECL IoDrvWatchdogTrigger(RTS_HANDLE hIoDrv, IoConfigConne
 	return ERR_OK;
 }
 
-STATICITF RTS_RESULT CDECL IoDrvReadParameter(RTS_HANDLE hDevice, IoConfigConnector *pConnector, IoConfigParameter *pParameter, void *pData, RTS_SIZE ulBitSize, RTS_SIZE ulBitOffset)
+STATICITF RTS_RESULT CDECL IoDrvReadParameter(RTS_HANDLE hIoDrv, IoConfigConnector *pConnector, IoConfigParameter *pParameter, void *pData, unsigned long ulBitSize, unsigned long ulBitOffset)
 {
 	if (pParameter == NULL)
 		return ERR_PARAMETER;
@@ -434,7 +444,7 @@ STATICITF RTS_RESULT CDECL IoDrvReadParameter(RTS_HANDLE hDevice, IoConfigConnec
 	return ERR_OK;
 }
 
-STATICITF RTS_RESULT CDECL IoDrvWriteParameter(RTS_HANDLE hDevice, IoConfigConnector *pConnector, IoConfigParameter *pParameter, void *pData, RTS_SIZE ulBitSize, RTS_SIZE ulBitOffset)
+STATICITF RTS_RESULT CDECL IoDrvWriteParameter(RTS_HANDLE hIoDrv, IoConfigConnector *pConnector, IoConfigParameter *pParameter, void *pData, unsigned long ulBitSize, unsigned long ulBitOffset)
 {
 	if (pParameter == NULL)
 		return ERR_PARAMETER;

@@ -4,9 +4,7 @@
  *	Interface for the remote visu handler.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -152,16 +150,6 @@
 
 /**
  * <category>Settings</category>
- * <description>This setting specifies whether an application login is done during connecting to the plc. This login
- * is necessary to check for a currently executing download that might take a longer time to prevent followup issues like
- * missing images. In case this application login is not possible (maybe due to accessrights) and therefore should
- * be omitted at all, this value can be set to 0.</description>
- */
-#define CMPVISUHANDLERREMOTE_KEY_VISUCOMM_EXECUTE_APPLOGIN					"Communication.ExecuteApplicationLogin"
-#define CMPVISUHANDLERREMOTE_KEY_VISUCOMM_EXECUTE_APPLOGIN_DEFAULT			INT32_C(1)
-
-/**
- * <category>Settings</category>
  * <description>The size of the paintbuffer for the visualization that should be used. This size should be at 
  *	least the size of the communication buffer</description>
  */
@@ -196,13 +184,6 @@
  */
 #define CMPVISUHANDLERREMOTE_KEY_VISUCLIENT_BESTFIT							"VisuClient.BestFit"
 #define CMPVISUHANDLERREMOTE_KEY_VISUCLIENT_BESTFIT_DEFAULT					0
-
-/**
- * <category>Settings</category>
- * <description>The setting bestfit for dialogs. Currently supported are 1 for activate bestfit for dialogs mode and 0 for deactivated best fit for dialogs. If this setting is set dialogs are scaled in the same way as top level visualizations</description>
- */
-#define CMPVISUHANDLERREMOTE_KEY_VISUCLIENT_BESTFITFORDIALOGS							"VisuClient.BestFitForDialogs"
-#define CMPVISUHANDLERREMOTE_KEY_VISUCLIENT_BESTFITFORDIALOGS_DEFAULT					0
 
 /**
  * <category>Settings</category>
@@ -320,18 +301,6 @@ typedef struct
  * <param name="pEventParam" type="IN">EVTPARAM_CmpVisuHandlerRemoteEventArgs</param>
  */
 #define EVT_CmpVisuHandlerRemote_VisuRunning				MAKE_EVENTID(EVTCLASS_INFO, 1)
-
-/**
- * <category>Settings</category>
- * <description>This setting is relevant for platforms, that show a systray icon, that
- * allows access to the remote target visualization, e.g. to display the error messages.
- *  The values have the following meaning:
- *  - 0: Systray icon will be used
- *  - 1: Systray icon will be not used, a window will be displayed instead of
- * </description>
- */
-#define CMPVISUHANDLERREMOTE_KEY_VISUCLIENT_NOSYSTRAY					"VisuClient.NoSysTray"
-#define CMPVISUHANDLERREMOTE_KEY_VISUCLIENT_NOSYSTRAY_DEFAULT			0
 
 /**
  * <category>Settings</category>

@@ -5,9 +5,7 @@
  *	<p>This allocator implements a well-known buddy algorithm.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
  
 SET_INTERFACE_NAME(`CmpHeapPool')

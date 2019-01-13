@@ -8,8 +8,6 @@
 
 
 
-
-
 #include "CmpOpenSSLOEM.c"
 
 
@@ -298,9 +296,9 @@ RTS_RESULT CDECL CCmpOpenSSLOEM::ICryptoAsymmetricDecrypt(RTS_HANDLE hAlgo, RtsB
 	return CryptoAsymmetricDecrypt(hAlgo,pCipherText,privateKey,pPlainText);
 }
 
-RTS_UI32 CDECL CCmpOpenSSLOEM::ICryptoGetAsymmetricKeyLength(RtsCryptoKey asymmetricKey, RTS_RESULT* pResult)
+RTS_UI32 CDECL CCmpOpenSSLOEM::ICryptoGetAsymmetricKeyLength(RtsCryptoKey privateKey, RTS_RESULT* pResult)
 {
-	return CryptoGetAsymmetricKeyLength(asymmetricKey,pResult);
+	return CryptoGetAsymmetricKeyLength(privateKey,pResult);
 }
 
 RTS_RESULT CDECL CCmpOpenSSLOEM::ICryptoGenerateHash(RTS_HANDLE hAlgo, RtsByteString* pData, RtsByteString* pHash)
@@ -357,7 +355,6 @@ RTS_RESULT CDECL CCmpOpenSSLOEM::ICryptoRtsByteStringExit(RtsByteString* pByteSt
 {
 	return CryptoRtsByteStringExit(pByteString);
 }
-
 
 
 
@@ -492,6 +489,11 @@ RTS_RESULT CDECL CCmpOpenSSLOEM::IX509CertCmsDecrypt(RTS_HANDLE hCertStore, RTS_
 	return X509CertCmsDecrypt(hCertStore,hRecipientCert,pCms,encoding,pOutData);
 }
 
+RTS_RESULT CDECL CCmpOpenSSLOEM::IX509SplitCertificateChain(RtsByteString* pCertificateChain, RtsByteString* pCertificates, RTS_UI32* pui32NumOfCertificates)
+{
+	return X509SplitCertificateChain(pCertificateChain,pCertificates,pui32NumOfCertificates);
+}
+
 RTS_RESULT CDECL CCmpOpenSSLOEM::IRtsOIDCreate(char* id, RtsOID* oid)
 {
 	return RtsOIDCreate(id,oid);
@@ -542,9 +544,9 @@ RTS_HANDLE CDECL CCmpOpenSSLOEM::IX509CertCreateSelfSigned(RTS_HANDLE hCertStore
 	return X509CertCreateSelfSigned(hCertStore,hBackend,pCertInfo,ui32KeySize,pResult);
 }
 
-RTS_RESULT CDECL CCmpOpenSSLOEM::IX509CertCreateSelfSignedAsync(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, void* pCallbackParam, PFX509ASYNCCALLBACK pfCallback)
+RTS_RESULT CDECL CCmpOpenSSLOEM::IX509CertCreateSelfSignedAsync(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, RTS_UI32 nIndex, PFX509ASYNCCALLBACK pfCallback)
 {
-	return X509CertCreateSelfSignedAsync(hCertStore,hBackend,pCertInfo,ui32KeySize,pCallbackParam,pfCallback);
+	return X509CertCreateSelfSignedAsync(hCertStore,hBackend,pCertInfo,ui32KeySize,nIndex,pfCallback);
 }
 
 RTS_RESULT CDECL CCmpOpenSSLOEM::IX509CertCreateCSR(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, RTSCERTENCODING encoding, RtsByteString* pCSR)
@@ -552,9 +554,9 @@ RTS_RESULT CDECL CCmpOpenSSLOEM::IX509CertCreateCSR(RTS_HANDLE hCertStore, RTS_H
 	return X509CertCreateCSR(hCertStore,hBackend,pCertInfo,ui32KeySize,encoding,pCSR);
 }
 
-RTS_RESULT CDECL CCmpOpenSSLOEM::IX509CertCreateCSRAsync(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTSCERTENCODING encoding, RtsByteString* pCSR, void* pCallbackParam, PFX509ASYNCCALLBACK pfCallback)
+RTS_RESULT CDECL CCmpOpenSSLOEM::IX509CertCreateCSRAsync(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTSCERTENCODING encoding, RtsByteString* pCSR, RTS_UI32 nIndex, PFX509ASYNCCALLBACK pfCallback)
 {
-	return X509CertCreateCSRAsync(hCertStore,hBackend,pCertInfo,cmpID,ui32KeySize,encoding,pCSR,pCallbackParam,pfCallback);
+	return X509CertCreateCSRAsync(hCertStore,hBackend,pCertInfo,cmpID,ui32KeySize,encoding,pCSR,nIndex,pfCallback);
 }
 
 RTS_RESULT CDECL CCmpOpenSSLOEM::IX509CertStoreAddCert(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RTS_HANDLE hCert, RTSCERTTRUSTLEVEL trustLevel)
@@ -585,11 +587,6 @@ RTS_HANDLE CDECL CCmpOpenSSLOEM::IX509CertStoreRegister(RTS_HANDLE hCertStore, C
 RTS_RESULT CDECL CCmpOpenSSLOEM::IX509CertStoreUnregister(RTS_HANDLE hCertStore, RTS_HANDLE hRegisteredComponent)
 {
 	return X509CertStoreUnregister(hCertStore,hRegisteredComponent);
-}
-
-RTS_HANDLE CDECL CCmpOpenSSLOEM::IX509CertStoreGetRegisteredCert(RTS_HANDLE hCertStore, RTS_HANDLE hUseCase, RTS_RESULT* pResult)
-{
-	return X509CertStoreGetRegisteredCert(hCertStore,hUseCase,pResult);
 }
 
 

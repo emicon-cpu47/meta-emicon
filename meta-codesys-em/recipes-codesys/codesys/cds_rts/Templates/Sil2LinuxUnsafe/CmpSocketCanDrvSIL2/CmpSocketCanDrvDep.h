@@ -8,13 +8,13 @@
  *  <description> 
  *  </description>
  *  <copyright>
- *  (c) 2008-2018 3S-Smart Software Solutions
+ *  (c) 2008-2016 3S-Smart Software Solutions
  *  </copyright>
  */
 #ifndef _CMPSOCKETCANDRVDEP_H_
 #define _CMPSOCKETCANDRVDEP_H_
 
-#define COMPONENT_NAME "CmpSocketCanDrv" COMPONENT_NAME_POSTFIX
+#define COMPONENT_NAME "CmpSocketCanDrv"COMPONENT_NAME_POSTFIX
 #define COMPONENT_ID    ADDVENDORID(CMP_VENDORID, CMPID_CmpSocketCanDrv)
 #define COMPONENT_NAME_UNQUOTED CmpSocketCanDrv
 
@@ -23,9 +23,9 @@
 
 
 
-#define CMP_VERSION         UINT32_C(0x03050D00)
-#define CMP_VERSION_STRING "3.5.13.0"
-#define CMP_VERSION_RC      3,5,13,0
+#define CMP_VERSION         UINT32_C(0x03050A00)
+#define CMP_VERSION_STRING "3.5.10.0"
+#define CMP_VERSION_RC      3,5,10,0
 #define CMP_VENDORID       RTS_VENDORID_3S
 
 #ifndef WIN32_RESOURCES
@@ -86,7 +86,6 @@
 #endif
 
 
-
 /**
  * <category>Task</category>
  * <description>
@@ -99,7 +98,6 @@
 #ifndef RTS_TASKPRIO_SOCKETTXTHREAD
     #define RTS_TASKPRIO_SOCKETTXTHREAD           TASKPRIO_SYSTEM_END
 #endif
-
 
 
 

@@ -5,9 +5,7 @@
  *	memory areas for the plc program.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -169,7 +167,6 @@
 
 
 /** EXTERN LIB SECTION BEGIN **/
-/*  Comments are ignored for m4 compiler so restructured text can be used.  */
 
 #ifdef __cplusplus
 extern "C" {
@@ -202,35 +199,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMALLOCAREA_IEC) (sysmemallocarea_struct *p
 	#define GET_sysmemallocarea(fl)  CAL_CMGETAPI( "sysmemallocarea" ) 
 	#define CAL_sysmemallocarea  sysmemallocarea
 	#define CHK_sysmemallocarea  TRUE
-	#define EXP_sysmemallocarea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocarea", (RTS_UINTPTR)sysmemallocarea, 1, RTSITF_GET_SIGNATURE(0, 0x140ECCD0), 0x03050C00) 
+	#define EXP_sysmemallocarea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocarea", (RTS_UINTPTR)sysmemallocarea, 1, RTSITF_GET_SIGNATURE(0, 0x140ECCD0), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemallocarea
 	#define EXT_sysmemallocarea
 	#define GET_sysmemallocarea(fl)  CAL_CMGETAPI( "sysmemallocarea" ) 
 	#define CAL_sysmemallocarea  sysmemallocarea
 	#define CHK_sysmemallocarea  TRUE
-	#define EXP_sysmemallocarea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocarea", (RTS_UINTPTR)sysmemallocarea, 1, RTSITF_GET_SIGNATURE(0, 0x140ECCD0), 0x03050C00) 
+	#define EXP_sysmemallocarea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocarea", (RTS_UINTPTR)sysmemallocarea, 1, RTSITF_GET_SIGNATURE(0, 0x140ECCD0), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemallocarea
 	#define EXT_SysMemsysmemallocarea
 	#define GET_SysMemsysmemallocarea  ERR_OK
 	#define CAL_SysMemsysmemallocarea  sysmemallocarea
 	#define CHK_SysMemsysmemallocarea  TRUE
-	#define EXP_SysMemsysmemallocarea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocarea", (RTS_UINTPTR)sysmemallocarea, 1, RTSITF_GET_SIGNATURE(0, 0x140ECCD0), 0x03050C00) 
+	#define EXP_SysMemsysmemallocarea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocarea", (RTS_UINTPTR)sysmemallocarea, 1, RTSITF_GET_SIGNATURE(0, 0x140ECCD0), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemallocarea
 	#define EXT_sysmemallocarea
 	#define GET_sysmemallocarea(fl)  CAL_CMGETAPI( "sysmemallocarea" ) 
 	#define CAL_sysmemallocarea  sysmemallocarea
 	#define CHK_sysmemallocarea  TRUE
-	#define EXP_sysmemallocarea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocarea", (RTS_UINTPTR)sysmemallocarea, 1, RTSITF_GET_SIGNATURE(0, 0x140ECCD0), 0x03050C00) 
+	#define EXP_sysmemallocarea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocarea", (RTS_UINTPTR)sysmemallocarea, 1, RTSITF_GET_SIGNATURE(0, 0x140ECCD0), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemallocarea  PFSYSMEMALLOCAREA_IEC pfsysmemallocarea;
 	#define EXT_sysmemallocarea  extern PFSYSMEMALLOCAREA_IEC pfsysmemallocarea;
-	#define GET_sysmemallocarea(fl)  s_pfCMGetAPI2( "sysmemallocarea", (RTS_VOID_FCTPTR *)&pfsysmemallocarea, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x140ECCD0), 0x03050C00)
+	#define GET_sysmemallocarea(fl)  s_pfCMGetAPI2( "sysmemallocarea", (RTS_VOID_FCTPTR *)&pfsysmemallocarea, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x140ECCD0), 0x03050500)
 	#define CAL_sysmemallocarea  pfsysmemallocarea
 	#define CHK_sysmemallocarea  (pfsysmemallocarea != NULL)
-	#define EXP_sysmemallocarea   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocarea", (RTS_UINTPTR)sysmemallocarea, 1, RTSITF_GET_SIGNATURE(0, 0x140ECCD0), 0x03050C00) 
+	#define EXP_sysmemallocarea   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocarea", (RTS_UINTPTR)sysmemallocarea, 1, RTSITF_GET_SIGNATURE(0, 0x140ECCD0), 0x03050500) 
 #endif
 
 
@@ -260,35 +257,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMALLOCCODE_IEC) (sysmemalloccode_struct *p
 	#define GET_sysmemalloccode(fl)  CAL_CMGETAPI( "sysmemalloccode" ) 
 	#define CAL_sysmemalloccode  sysmemalloccode
 	#define CHK_sysmemalloccode  TRUE
-	#define EXP_sysmemalloccode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemalloccode", (RTS_UINTPTR)sysmemalloccode, 1, RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3), 0x03050C00) 
+	#define EXP_sysmemalloccode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemalloccode", (RTS_UINTPTR)sysmemalloccode, 1, RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemalloccode
 	#define EXT_sysmemalloccode
 	#define GET_sysmemalloccode(fl)  CAL_CMGETAPI( "sysmemalloccode" ) 
 	#define CAL_sysmemalloccode  sysmemalloccode
 	#define CHK_sysmemalloccode  TRUE
-	#define EXP_sysmemalloccode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemalloccode", (RTS_UINTPTR)sysmemalloccode, 1, RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3), 0x03050C00) 
+	#define EXP_sysmemalloccode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemalloccode", (RTS_UINTPTR)sysmemalloccode, 1, RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemalloccode
 	#define EXT_SysMemsysmemalloccode
 	#define GET_SysMemsysmemalloccode  ERR_OK
 	#define CAL_SysMemsysmemalloccode  sysmemalloccode
 	#define CHK_SysMemsysmemalloccode  TRUE
-	#define EXP_SysMemsysmemalloccode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemalloccode", (RTS_UINTPTR)sysmemalloccode, 1, RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3), 0x03050C00) 
+	#define EXP_SysMemsysmemalloccode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemalloccode", (RTS_UINTPTR)sysmemalloccode, 1, RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemalloccode
 	#define EXT_sysmemalloccode
 	#define GET_sysmemalloccode(fl)  CAL_CMGETAPI( "sysmemalloccode" ) 
 	#define CAL_sysmemalloccode  sysmemalloccode
 	#define CHK_sysmemalloccode  TRUE
-	#define EXP_sysmemalloccode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemalloccode", (RTS_UINTPTR)sysmemalloccode, 1, RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3), 0x03050C00) 
+	#define EXP_sysmemalloccode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemalloccode", (RTS_UINTPTR)sysmemalloccode, 1, RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemalloccode  PFSYSMEMALLOCCODE_IEC pfsysmemalloccode;
 	#define EXT_sysmemalloccode  extern PFSYSMEMALLOCCODE_IEC pfsysmemalloccode;
-	#define GET_sysmemalloccode(fl)  s_pfCMGetAPI2( "sysmemalloccode", (RTS_VOID_FCTPTR *)&pfsysmemalloccode, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3), 0x03050C00)
+	#define GET_sysmemalloccode(fl)  s_pfCMGetAPI2( "sysmemalloccode", (RTS_VOID_FCTPTR *)&pfsysmemalloccode, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3), 0x03050500)
 	#define CAL_sysmemalloccode  pfsysmemalloccode
 	#define CHK_sysmemalloccode  (pfsysmemalloccode != NULL)
-	#define EXP_sysmemalloccode   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemalloccode", (RTS_UINTPTR)sysmemalloccode, 1, RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3), 0x03050C00) 
+	#define EXP_sysmemalloccode   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemalloccode", (RTS_UINTPTR)sysmemalloccode, 1, RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3), 0x03050500) 
 #endif
 
 
@@ -319,35 +316,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMALLOCDATA_IEC) (sysmemallocdata_struct *p
 	#define GET_sysmemallocdata(fl)  CAL_CMGETAPI( "sysmemallocdata" ) 
 	#define CAL_sysmemallocdata  sysmemallocdata
 	#define CHK_sysmemallocdata  TRUE
-	#define EXP_sysmemallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocdata", (RTS_UINTPTR)sysmemallocdata, 1, RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF), 0x03050C00) 
+	#define EXP_sysmemallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocdata", (RTS_UINTPTR)sysmemallocdata, 1, RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemallocdata
 	#define EXT_sysmemallocdata
 	#define GET_sysmemallocdata(fl)  CAL_CMGETAPI( "sysmemallocdata" ) 
 	#define CAL_sysmemallocdata  sysmemallocdata
 	#define CHK_sysmemallocdata  TRUE
-	#define EXP_sysmemallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocdata", (RTS_UINTPTR)sysmemallocdata, 1, RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF), 0x03050C00) 
+	#define EXP_sysmemallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocdata", (RTS_UINTPTR)sysmemallocdata, 1, RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemallocdata
 	#define EXT_SysMemsysmemallocdata
 	#define GET_SysMemsysmemallocdata  ERR_OK
 	#define CAL_SysMemsysmemallocdata  sysmemallocdata
 	#define CHK_SysMemsysmemallocdata  TRUE
-	#define EXP_SysMemsysmemallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocdata", (RTS_UINTPTR)sysmemallocdata, 1, RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF), 0x03050C00) 
+	#define EXP_SysMemsysmemallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocdata", (RTS_UINTPTR)sysmemallocdata, 1, RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemallocdata
 	#define EXT_sysmemallocdata
 	#define GET_sysmemallocdata(fl)  CAL_CMGETAPI( "sysmemallocdata" ) 
 	#define CAL_sysmemallocdata  sysmemallocdata
 	#define CHK_sysmemallocdata  TRUE
-	#define EXP_sysmemallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocdata", (RTS_UINTPTR)sysmemallocdata, 1, RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF), 0x03050C00) 
+	#define EXP_sysmemallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocdata", (RTS_UINTPTR)sysmemallocdata, 1, RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemallocdata  PFSYSMEMALLOCDATA_IEC pfsysmemallocdata;
 	#define EXT_sysmemallocdata  extern PFSYSMEMALLOCDATA_IEC pfsysmemallocdata;
-	#define GET_sysmemallocdata(fl)  s_pfCMGetAPI2( "sysmemallocdata", (RTS_VOID_FCTPTR *)&pfsysmemallocdata, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF), 0x03050C00)
+	#define GET_sysmemallocdata(fl)  s_pfCMGetAPI2( "sysmemallocdata", (RTS_VOID_FCTPTR *)&pfsysmemallocdata, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF), 0x03050500)
 	#define CAL_sysmemallocdata  pfsysmemallocdata
 	#define CHK_sysmemallocdata  (pfsysmemallocdata != NULL)
-	#define EXP_sysmemallocdata   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocdata", (RTS_UINTPTR)sysmemallocdata, 1, RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF), 0x03050C00) 
+	#define EXP_sysmemallocdata   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemallocdata", (RTS_UINTPTR)sysmemallocdata, 1, RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF), 0x03050500) 
 #endif
 
 
@@ -378,35 +375,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMCMP_IEC) (sysmemcmp_struct *p);
 	#define GET_sysmemcmp(fl)  CAL_CMGETAPI( "sysmemcmp" ) 
 	#define CAL_sysmemcmp  sysmemcmp
 	#define CHK_sysmemcmp  TRUE
-	#define EXP_sysmemcmp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcmp", (RTS_UINTPTR)sysmemcmp, 1, RTSITF_GET_SIGNATURE(0, 0x40048CD7), 0x03050C00) 
+	#define EXP_sysmemcmp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcmp", (RTS_UINTPTR)sysmemcmp, 1, RTSITF_GET_SIGNATURE(0, 0x40048CD7), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemcmp
 	#define EXT_sysmemcmp
 	#define GET_sysmemcmp(fl)  CAL_CMGETAPI( "sysmemcmp" ) 
 	#define CAL_sysmemcmp  sysmemcmp
 	#define CHK_sysmemcmp  TRUE
-	#define EXP_sysmemcmp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcmp", (RTS_UINTPTR)sysmemcmp, 1, RTSITF_GET_SIGNATURE(0, 0x40048CD7), 0x03050C00) 
+	#define EXP_sysmemcmp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcmp", (RTS_UINTPTR)sysmemcmp, 1, RTSITF_GET_SIGNATURE(0, 0x40048CD7), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemcmp
 	#define EXT_SysMemsysmemcmp
 	#define GET_SysMemsysmemcmp  ERR_OK
 	#define CAL_SysMemsysmemcmp  sysmemcmp
 	#define CHK_SysMemsysmemcmp  TRUE
-	#define EXP_SysMemsysmemcmp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcmp", (RTS_UINTPTR)sysmemcmp, 1, RTSITF_GET_SIGNATURE(0, 0x40048CD7), 0x03050C00) 
+	#define EXP_SysMemsysmemcmp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcmp", (RTS_UINTPTR)sysmemcmp, 1, RTSITF_GET_SIGNATURE(0, 0x40048CD7), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemcmp
 	#define EXT_sysmemcmp
 	#define GET_sysmemcmp(fl)  CAL_CMGETAPI( "sysmemcmp" ) 
 	#define CAL_sysmemcmp  sysmemcmp
 	#define CHK_sysmemcmp  TRUE
-	#define EXP_sysmemcmp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcmp", (RTS_UINTPTR)sysmemcmp, 1, RTSITF_GET_SIGNATURE(0, 0x40048CD7), 0x03050C00) 
+	#define EXP_sysmemcmp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcmp", (RTS_UINTPTR)sysmemcmp, 1, RTSITF_GET_SIGNATURE(0, 0x40048CD7), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemcmp  PFSYSMEMCMP_IEC pfsysmemcmp;
 	#define EXT_sysmemcmp  extern PFSYSMEMCMP_IEC pfsysmemcmp;
-	#define GET_sysmemcmp(fl)  s_pfCMGetAPI2( "sysmemcmp", (RTS_VOID_FCTPTR *)&pfsysmemcmp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x40048CD7), 0x03050C00)
+	#define GET_sysmemcmp(fl)  s_pfCMGetAPI2( "sysmemcmp", (RTS_VOID_FCTPTR *)&pfsysmemcmp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x40048CD7), 0x03050500)
 	#define CAL_sysmemcmp  pfsysmemcmp
 	#define CHK_sysmemcmp  (pfsysmemcmp != NULL)
-	#define EXP_sysmemcmp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcmp", (RTS_UINTPTR)sysmemcmp, 1, RTSITF_GET_SIGNATURE(0, 0x40048CD7), 0x03050C00) 
+	#define EXP_sysmemcmp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcmp", (RTS_UINTPTR)sysmemcmp, 1, RTSITF_GET_SIGNATURE(0, 0x40048CD7), 0x03050500) 
 #endif
 
 
@@ -437,35 +434,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMCPY_IEC) (sysmemcpy_struct *p);
 	#define GET_sysmemcpy(fl)  CAL_CMGETAPI( "sysmemcpy" ) 
 	#define CAL_sysmemcpy  sysmemcpy
 	#define CHK_sysmemcpy  TRUE
-	#define EXP_sysmemcpy  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcpy", (RTS_UINTPTR)sysmemcpy, 1, RTSITF_GET_SIGNATURE(0, 0x4B2D0668), 0x03050C00) 
+	#define EXP_sysmemcpy  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcpy", (RTS_UINTPTR)sysmemcpy, 1, RTSITF_GET_SIGNATURE(0, 0x4B2D0668), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemcpy
 	#define EXT_sysmemcpy
 	#define GET_sysmemcpy(fl)  CAL_CMGETAPI( "sysmemcpy" ) 
 	#define CAL_sysmemcpy  sysmemcpy
 	#define CHK_sysmemcpy  TRUE
-	#define EXP_sysmemcpy  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcpy", (RTS_UINTPTR)sysmemcpy, 1, RTSITF_GET_SIGNATURE(0, 0x4B2D0668), 0x03050C00) 
+	#define EXP_sysmemcpy  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcpy", (RTS_UINTPTR)sysmemcpy, 1, RTSITF_GET_SIGNATURE(0, 0x4B2D0668), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemcpy
 	#define EXT_SysMemsysmemcpy
 	#define GET_SysMemsysmemcpy  ERR_OK
 	#define CAL_SysMemsysmemcpy  sysmemcpy
 	#define CHK_SysMemsysmemcpy  TRUE
-	#define EXP_SysMemsysmemcpy  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcpy", (RTS_UINTPTR)sysmemcpy, 1, RTSITF_GET_SIGNATURE(0, 0x4B2D0668), 0x03050C00) 
+	#define EXP_SysMemsysmemcpy  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcpy", (RTS_UINTPTR)sysmemcpy, 1, RTSITF_GET_SIGNATURE(0, 0x4B2D0668), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemcpy
 	#define EXT_sysmemcpy
 	#define GET_sysmemcpy(fl)  CAL_CMGETAPI( "sysmemcpy" ) 
 	#define CAL_sysmemcpy  sysmemcpy
 	#define CHK_sysmemcpy  TRUE
-	#define EXP_sysmemcpy  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcpy", (RTS_UINTPTR)sysmemcpy, 1, RTSITF_GET_SIGNATURE(0, 0x4B2D0668), 0x03050C00) 
+	#define EXP_sysmemcpy  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcpy", (RTS_UINTPTR)sysmemcpy, 1, RTSITF_GET_SIGNATURE(0, 0x4B2D0668), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemcpy  PFSYSMEMCPY_IEC pfsysmemcpy;
 	#define EXT_sysmemcpy  extern PFSYSMEMCPY_IEC pfsysmemcpy;
-	#define GET_sysmemcpy(fl)  s_pfCMGetAPI2( "sysmemcpy", (RTS_VOID_FCTPTR *)&pfsysmemcpy, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x4B2D0668), 0x03050C00)
+	#define GET_sysmemcpy(fl)  s_pfCMGetAPI2( "sysmemcpy", (RTS_VOID_FCTPTR *)&pfsysmemcpy, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x4B2D0668), 0x03050500)
 	#define CAL_sysmemcpy  pfsysmemcpy
 	#define CHK_sysmemcpy  (pfsysmemcpy != NULL)
-	#define EXP_sysmemcpy   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcpy", (RTS_UINTPTR)sysmemcpy, 1, RTSITF_GET_SIGNATURE(0, 0x4B2D0668), 0x03050C00) 
+	#define EXP_sysmemcpy   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemcpy", (RTS_UINTPTR)sysmemcpy, 1, RTSITF_GET_SIGNATURE(0, 0x4B2D0668), 0x03050500) 
 #endif
 
 
@@ -498,35 +495,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMFORCESWAP_IEC) (sysmemforceswap_struct *p
 	#define GET_sysmemforceswap(fl)  CAL_CMGETAPI( "sysmemforceswap" ) 
 	#define CAL_sysmemforceswap  sysmemforceswap
 	#define CHK_sysmemforceswap  TRUE
-	#define EXP_sysmemforceswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemforceswap", (RTS_UINTPTR)sysmemforceswap, 1, RTSITF_GET_SIGNATURE(0, 0x1718FBB3), 0x03050C00) 
+	#define EXP_sysmemforceswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemforceswap", (RTS_UINTPTR)sysmemforceswap, 1, RTSITF_GET_SIGNATURE(0, 0x1718FBB3), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemforceswap
 	#define EXT_sysmemforceswap
 	#define GET_sysmemforceswap(fl)  CAL_CMGETAPI( "sysmemforceswap" ) 
 	#define CAL_sysmemforceswap  sysmemforceswap
 	#define CHK_sysmemforceswap  TRUE
-	#define EXP_sysmemforceswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemforceswap", (RTS_UINTPTR)sysmemforceswap, 1, RTSITF_GET_SIGNATURE(0, 0x1718FBB3), 0x03050C00) 
+	#define EXP_sysmemforceswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemforceswap", (RTS_UINTPTR)sysmemforceswap, 1, RTSITF_GET_SIGNATURE(0, 0x1718FBB3), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemforceswap
 	#define EXT_SysMemsysmemforceswap
 	#define GET_SysMemsysmemforceswap  ERR_OK
 	#define CAL_SysMemsysmemforceswap  sysmemforceswap
 	#define CHK_SysMemsysmemforceswap  TRUE
-	#define EXP_SysMemsysmemforceswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemforceswap", (RTS_UINTPTR)sysmemforceswap, 1, RTSITF_GET_SIGNATURE(0, 0x1718FBB3), 0x03050C00) 
+	#define EXP_SysMemsysmemforceswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemforceswap", (RTS_UINTPTR)sysmemforceswap, 1, RTSITF_GET_SIGNATURE(0, 0x1718FBB3), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemforceswap
 	#define EXT_sysmemforceswap
 	#define GET_sysmemforceswap(fl)  CAL_CMGETAPI( "sysmemforceswap" ) 
 	#define CAL_sysmemforceswap  sysmemforceswap
 	#define CHK_sysmemforceswap  TRUE
-	#define EXP_sysmemforceswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemforceswap", (RTS_UINTPTR)sysmemforceswap, 1, RTSITF_GET_SIGNATURE(0, 0x1718FBB3), 0x03050C00) 
+	#define EXP_sysmemforceswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemforceswap", (RTS_UINTPTR)sysmemforceswap, 1, RTSITF_GET_SIGNATURE(0, 0x1718FBB3), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemforceswap  PFSYSMEMFORCESWAP_IEC pfsysmemforceswap;
 	#define EXT_sysmemforceswap  extern PFSYSMEMFORCESWAP_IEC pfsysmemforceswap;
-	#define GET_sysmemforceswap(fl)  s_pfCMGetAPI2( "sysmemforceswap", (RTS_VOID_FCTPTR *)&pfsysmemforceswap, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x1718FBB3), 0x03050C00)
+	#define GET_sysmemforceswap(fl)  s_pfCMGetAPI2( "sysmemforceswap", (RTS_VOID_FCTPTR *)&pfsysmemforceswap, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x1718FBB3), 0x03050500)
 	#define CAL_sysmemforceswap  pfsysmemforceswap
 	#define CHK_sysmemforceswap  (pfsysmemforceswap != NULL)
-	#define EXP_sysmemforceswap   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemforceswap", (RTS_UINTPTR)sysmemforceswap, 1, RTSITF_GET_SIGNATURE(0, 0x1718FBB3), 0x03050C00) 
+	#define EXP_sysmemforceswap   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemforceswap", (RTS_UINTPTR)sysmemforceswap, 1, RTSITF_GET_SIGNATURE(0, 0x1718FBB3), 0x03050500) 
 #endif
 
 
@@ -556,35 +553,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMFREEAREA_IEC) (sysmemfreearea_struct *p);
 	#define GET_sysmemfreearea(fl)  CAL_CMGETAPI( "sysmemfreearea" ) 
 	#define CAL_sysmemfreearea  sysmemfreearea
 	#define CHK_sysmemfreearea  TRUE
-	#define EXP_sysmemfreearea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreearea", (RTS_UINTPTR)sysmemfreearea, 1, RTSITF_GET_SIGNATURE(0, 0x46CA745C), 0x03050C00) 
+	#define EXP_sysmemfreearea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreearea", (RTS_UINTPTR)sysmemfreearea, 1, RTSITF_GET_SIGNATURE(0, 0x46CA745C), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemfreearea
 	#define EXT_sysmemfreearea
 	#define GET_sysmemfreearea(fl)  CAL_CMGETAPI( "sysmemfreearea" ) 
 	#define CAL_sysmemfreearea  sysmemfreearea
 	#define CHK_sysmemfreearea  TRUE
-	#define EXP_sysmemfreearea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreearea", (RTS_UINTPTR)sysmemfreearea, 1, RTSITF_GET_SIGNATURE(0, 0x46CA745C), 0x03050C00) 
+	#define EXP_sysmemfreearea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreearea", (RTS_UINTPTR)sysmemfreearea, 1, RTSITF_GET_SIGNATURE(0, 0x46CA745C), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemfreearea
 	#define EXT_SysMemsysmemfreearea
 	#define GET_SysMemsysmemfreearea  ERR_OK
 	#define CAL_SysMemsysmemfreearea  sysmemfreearea
 	#define CHK_SysMemsysmemfreearea  TRUE
-	#define EXP_SysMemsysmemfreearea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreearea", (RTS_UINTPTR)sysmemfreearea, 1, RTSITF_GET_SIGNATURE(0, 0x46CA745C), 0x03050C00) 
+	#define EXP_SysMemsysmemfreearea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreearea", (RTS_UINTPTR)sysmemfreearea, 1, RTSITF_GET_SIGNATURE(0, 0x46CA745C), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemfreearea
 	#define EXT_sysmemfreearea
 	#define GET_sysmemfreearea(fl)  CAL_CMGETAPI( "sysmemfreearea" ) 
 	#define CAL_sysmemfreearea  sysmemfreearea
 	#define CHK_sysmemfreearea  TRUE
-	#define EXP_sysmemfreearea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreearea", (RTS_UINTPTR)sysmemfreearea, 1, RTSITF_GET_SIGNATURE(0, 0x46CA745C), 0x03050C00) 
+	#define EXP_sysmemfreearea  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreearea", (RTS_UINTPTR)sysmemfreearea, 1, RTSITF_GET_SIGNATURE(0, 0x46CA745C), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemfreearea  PFSYSMEMFREEAREA_IEC pfsysmemfreearea;
 	#define EXT_sysmemfreearea  extern PFSYSMEMFREEAREA_IEC pfsysmemfreearea;
-	#define GET_sysmemfreearea(fl)  s_pfCMGetAPI2( "sysmemfreearea", (RTS_VOID_FCTPTR *)&pfsysmemfreearea, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x46CA745C), 0x03050C00)
+	#define GET_sysmemfreearea(fl)  s_pfCMGetAPI2( "sysmemfreearea", (RTS_VOID_FCTPTR *)&pfsysmemfreearea, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x46CA745C), 0x03050500)
 	#define CAL_sysmemfreearea  pfsysmemfreearea
 	#define CHK_sysmemfreearea  (pfsysmemfreearea != NULL)
-	#define EXP_sysmemfreearea   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreearea", (RTS_UINTPTR)sysmemfreearea, 1, RTSITF_GET_SIGNATURE(0, 0x46CA745C), 0x03050C00) 
+	#define EXP_sysmemfreearea   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreearea", (RTS_UINTPTR)sysmemfreearea, 1, RTSITF_GET_SIGNATURE(0, 0x46CA745C), 0x03050500) 
 #endif
 
 
@@ -614,35 +611,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMFREECODE_IEC) (sysmemfreecode_struct *p);
 	#define GET_sysmemfreecode(fl)  CAL_CMGETAPI( "sysmemfreecode" ) 
 	#define CAL_sysmemfreecode  sysmemfreecode
 	#define CHK_sysmemfreecode  TRUE
-	#define EXP_sysmemfreecode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreecode", (RTS_UINTPTR)sysmemfreecode, 1, RTSITF_GET_SIGNATURE(0, 0x92B98F40), 0x03050C00) 
+	#define EXP_sysmemfreecode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreecode", (RTS_UINTPTR)sysmemfreecode, 1, RTSITF_GET_SIGNATURE(0, 0x92B98F40), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemfreecode
 	#define EXT_sysmemfreecode
 	#define GET_sysmemfreecode(fl)  CAL_CMGETAPI( "sysmemfreecode" ) 
 	#define CAL_sysmemfreecode  sysmemfreecode
 	#define CHK_sysmemfreecode  TRUE
-	#define EXP_sysmemfreecode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreecode", (RTS_UINTPTR)sysmemfreecode, 1, RTSITF_GET_SIGNATURE(0, 0x92B98F40), 0x03050C00) 
+	#define EXP_sysmemfreecode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreecode", (RTS_UINTPTR)sysmemfreecode, 1, RTSITF_GET_SIGNATURE(0, 0x92B98F40), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemfreecode
 	#define EXT_SysMemsysmemfreecode
 	#define GET_SysMemsysmemfreecode  ERR_OK
 	#define CAL_SysMemsysmemfreecode  sysmemfreecode
 	#define CHK_SysMemsysmemfreecode  TRUE
-	#define EXP_SysMemsysmemfreecode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreecode", (RTS_UINTPTR)sysmemfreecode, 1, RTSITF_GET_SIGNATURE(0, 0x92B98F40), 0x03050C00) 
+	#define EXP_SysMemsysmemfreecode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreecode", (RTS_UINTPTR)sysmemfreecode, 1, RTSITF_GET_SIGNATURE(0, 0x92B98F40), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemfreecode
 	#define EXT_sysmemfreecode
 	#define GET_sysmemfreecode(fl)  CAL_CMGETAPI( "sysmemfreecode" ) 
 	#define CAL_sysmemfreecode  sysmemfreecode
 	#define CHK_sysmemfreecode  TRUE
-	#define EXP_sysmemfreecode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreecode", (RTS_UINTPTR)sysmemfreecode, 1, RTSITF_GET_SIGNATURE(0, 0x92B98F40), 0x03050C00) 
+	#define EXP_sysmemfreecode  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreecode", (RTS_UINTPTR)sysmemfreecode, 1, RTSITF_GET_SIGNATURE(0, 0x92B98F40), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemfreecode  PFSYSMEMFREECODE_IEC pfsysmemfreecode;
 	#define EXT_sysmemfreecode  extern PFSYSMEMFREECODE_IEC pfsysmemfreecode;
-	#define GET_sysmemfreecode(fl)  s_pfCMGetAPI2( "sysmemfreecode", (RTS_VOID_FCTPTR *)&pfsysmemfreecode, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x92B98F40), 0x03050C00)
+	#define GET_sysmemfreecode(fl)  s_pfCMGetAPI2( "sysmemfreecode", (RTS_VOID_FCTPTR *)&pfsysmemfreecode, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x92B98F40), 0x03050500)
 	#define CAL_sysmemfreecode  pfsysmemfreecode
 	#define CHK_sysmemfreecode  (pfsysmemfreecode != NULL)
-	#define EXP_sysmemfreecode   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreecode", (RTS_UINTPTR)sysmemfreecode, 1, RTSITF_GET_SIGNATURE(0, 0x92B98F40), 0x03050C00) 
+	#define EXP_sysmemfreecode   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreecode", (RTS_UINTPTR)sysmemfreecode, 1, RTSITF_GET_SIGNATURE(0, 0x92B98F40), 0x03050500) 
 #endif
 
 
@@ -672,92 +669,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMFREEDATA_IEC) (sysmemfreedata_struct *p);
 	#define GET_sysmemfreedata(fl)  CAL_CMGETAPI( "sysmemfreedata" ) 
 	#define CAL_sysmemfreedata  sysmemfreedata
 	#define CHK_sysmemfreedata  TRUE
-	#define EXP_sysmemfreedata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreedata", (RTS_UINTPTR)sysmemfreedata, 1, RTSITF_GET_SIGNATURE(0, 0xFC9A307C), 0x03050C00) 
+	#define EXP_sysmemfreedata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreedata", (RTS_UINTPTR)sysmemfreedata, 1, RTSITF_GET_SIGNATURE(0, 0xFC9A307C), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemfreedata
 	#define EXT_sysmemfreedata
 	#define GET_sysmemfreedata(fl)  CAL_CMGETAPI( "sysmemfreedata" ) 
 	#define CAL_sysmemfreedata  sysmemfreedata
 	#define CHK_sysmemfreedata  TRUE
-	#define EXP_sysmemfreedata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreedata", (RTS_UINTPTR)sysmemfreedata, 1, RTSITF_GET_SIGNATURE(0, 0xFC9A307C), 0x03050C00) 
+	#define EXP_sysmemfreedata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreedata", (RTS_UINTPTR)sysmemfreedata, 1, RTSITF_GET_SIGNATURE(0, 0xFC9A307C), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemfreedata
 	#define EXT_SysMemsysmemfreedata
 	#define GET_SysMemsysmemfreedata  ERR_OK
 	#define CAL_SysMemsysmemfreedata  sysmemfreedata
 	#define CHK_SysMemsysmemfreedata  TRUE
-	#define EXP_SysMemsysmemfreedata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreedata", (RTS_UINTPTR)sysmemfreedata, 1, RTSITF_GET_SIGNATURE(0, 0xFC9A307C), 0x03050C00) 
+	#define EXP_SysMemsysmemfreedata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreedata", (RTS_UINTPTR)sysmemfreedata, 1, RTSITF_GET_SIGNATURE(0, 0xFC9A307C), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemfreedata
 	#define EXT_sysmemfreedata
 	#define GET_sysmemfreedata(fl)  CAL_CMGETAPI( "sysmemfreedata" ) 
 	#define CAL_sysmemfreedata  sysmemfreedata
 	#define CHK_sysmemfreedata  TRUE
-	#define EXP_sysmemfreedata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreedata", (RTS_UINTPTR)sysmemfreedata, 1, RTSITF_GET_SIGNATURE(0, 0xFC9A307C), 0x03050C00) 
+	#define EXP_sysmemfreedata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreedata", (RTS_UINTPTR)sysmemfreedata, 1, RTSITF_GET_SIGNATURE(0, 0xFC9A307C), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemfreedata  PFSYSMEMFREEDATA_IEC pfsysmemfreedata;
 	#define EXT_sysmemfreedata  extern PFSYSMEMFREEDATA_IEC pfsysmemfreedata;
-	#define GET_sysmemfreedata(fl)  s_pfCMGetAPI2( "sysmemfreedata", (RTS_VOID_FCTPTR *)&pfsysmemfreedata, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xFC9A307C), 0x03050C00)
+	#define GET_sysmemfreedata(fl)  s_pfCMGetAPI2( "sysmemfreedata", (RTS_VOID_FCTPTR *)&pfsysmemfreedata, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xFC9A307C), 0x03050500)
 	#define CAL_sysmemfreedata  pfsysmemfreedata
 	#define CHK_sysmemfreedata  (pfsysmemfreedata != NULL)
-	#define EXP_sysmemfreedata   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreedata", (RTS_UINTPTR)sysmemfreedata, 1, RTSITF_GET_SIGNATURE(0, 0xFC9A307C), 0x03050C00) 
-#endif
-
-
-/**
- * Routine to get total size of the currently allocated heap memory
- * RETURN: Size of the memory in bytes that is currently allocated from the heap
- */
-typedef struct tagsysmemgetcurrentheapsize_struct
-{
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to runtime system error code (see CmpErrors_Itfs.library) */
-	RTS_IEC_XWORD SysMemGetCurrentHeapSize;	/* VAR_OUTPUT */
-} sysmemgetcurrentheapsize_struct;
-
-void CDECL CDECL_EXT sysmemgetcurrentheapsize(sysmemgetcurrentheapsize_struct *p);
-typedef void (CDECL CDECL_EXT* PFSYSMEMGETCURRENTHEAPSIZE_IEC) (sysmemgetcurrentheapsize_struct *p);
-#if defined(SYSMEM_NOTIMPLEMENTED) || defined(SYSMEMGETCURRENTHEAPSIZE_NOTIMPLEMENTED)
-	#define USE_sysmemgetcurrentheapsize
-	#define EXT_sysmemgetcurrentheapsize
-	#define GET_sysmemgetcurrentheapsize(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_sysmemgetcurrentheapsize(p0) 
-	#define CHK_sysmemgetcurrentheapsize  FALSE
-	#define EXP_sysmemgetcurrentheapsize  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_sysmemgetcurrentheapsize
-	#define EXT_sysmemgetcurrentheapsize
-	#define GET_sysmemgetcurrentheapsize(fl)  CAL_CMGETAPI( "sysmemgetcurrentheapsize" ) 
-	#define CAL_sysmemgetcurrentheapsize  sysmemgetcurrentheapsize
-	#define CHK_sysmemgetcurrentheapsize  TRUE
-	#define EXP_sysmemgetcurrentheapsize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemgetcurrentheapsize", (RTS_UINTPTR)sysmemgetcurrentheapsize, 1, RTSITF_GET_SIGNATURE(0xFA1C1A89, 0x55C8863E), 0x03050C00) 
-#elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
-	#define USE_sysmemgetcurrentheapsize
-	#define EXT_sysmemgetcurrentheapsize
-	#define GET_sysmemgetcurrentheapsize(fl)  CAL_CMGETAPI( "sysmemgetcurrentheapsize" ) 
-	#define CAL_sysmemgetcurrentheapsize  sysmemgetcurrentheapsize
-	#define CHK_sysmemgetcurrentheapsize  TRUE
-	#define EXP_sysmemgetcurrentheapsize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemgetcurrentheapsize", (RTS_UINTPTR)sysmemgetcurrentheapsize, 1, RTSITF_GET_SIGNATURE(0xFA1C1A89, 0x55C8863E), 0x03050C00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysMemsysmemgetcurrentheapsize
-	#define EXT_SysMemsysmemgetcurrentheapsize
-	#define GET_SysMemsysmemgetcurrentheapsize  ERR_OK
-	#define CAL_SysMemsysmemgetcurrentheapsize  sysmemgetcurrentheapsize
-	#define CHK_SysMemsysmemgetcurrentheapsize  TRUE
-	#define EXP_SysMemsysmemgetcurrentheapsize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemgetcurrentheapsize", (RTS_UINTPTR)sysmemgetcurrentheapsize, 1, RTSITF_GET_SIGNATURE(0xFA1C1A89, 0x55C8863E), 0x03050C00) 
-#elif defined(CPLUSPLUS)
-	#define USE_sysmemgetcurrentheapsize
-	#define EXT_sysmemgetcurrentheapsize
-	#define GET_sysmemgetcurrentheapsize(fl)  CAL_CMGETAPI( "sysmemgetcurrentheapsize" ) 
-	#define CAL_sysmemgetcurrentheapsize  sysmemgetcurrentheapsize
-	#define CHK_sysmemgetcurrentheapsize  TRUE
-	#define EXP_sysmemgetcurrentheapsize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemgetcurrentheapsize", (RTS_UINTPTR)sysmemgetcurrentheapsize, 1, RTSITF_GET_SIGNATURE(0xFA1C1A89, 0x55C8863E), 0x03050C00) 
-#else /* DYNAMIC_LINK */
-	#define USE_sysmemgetcurrentheapsize  PFSYSMEMGETCURRENTHEAPSIZE_IEC pfsysmemgetcurrentheapsize;
-	#define EXT_sysmemgetcurrentheapsize  extern PFSYSMEMGETCURRENTHEAPSIZE_IEC pfsysmemgetcurrentheapsize;
-	#define GET_sysmemgetcurrentheapsize(fl)  s_pfCMGetAPI2( "sysmemgetcurrentheapsize", (RTS_VOID_FCTPTR *)&pfsysmemgetcurrentheapsize, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0xFA1C1A89, 0x55C8863E), 0x03050C00)
-	#define CAL_sysmemgetcurrentheapsize  pfsysmemgetcurrentheapsize
-	#define CHK_sysmemgetcurrentheapsize  (pfsysmemgetcurrentheapsize != NULL)
-	#define EXP_sysmemgetcurrentheapsize   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemgetcurrentheapsize", (RTS_UINTPTR)sysmemgetcurrentheapsize, 1, RTSITF_GET_SIGNATURE(0xFA1C1A89, 0x55C8863E), 0x03050C00) 
+	#define EXP_sysmemfreedata   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemfreedata", (RTS_UINTPTR)sysmemfreedata, 1, RTSITF_GET_SIGNATURE(0, 0xFC9A307C), 0x03050500) 
 #endif
 
 
@@ -790,35 +730,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMISVALIDPOINTER_IEC) (sysmemisvalidpointer
 	#define GET_sysmemisvalidpointer(fl)  CAL_CMGETAPI( "sysmemisvalidpointer" ) 
 	#define CAL_sysmemisvalidpointer  sysmemisvalidpointer
 	#define CHK_sysmemisvalidpointer  TRUE
-	#define EXP_sysmemisvalidpointer  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemisvalidpointer", (RTS_UINTPTR)sysmemisvalidpointer, 1, RTSITF_GET_SIGNATURE(0, 0x2B9D06D6), 0x03050C00) 
+	#define EXP_sysmemisvalidpointer  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemisvalidpointer", (RTS_UINTPTR)sysmemisvalidpointer, 1, RTSITF_GET_SIGNATURE(0, 0x2B9D06D6), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemisvalidpointer
 	#define EXT_sysmemisvalidpointer
 	#define GET_sysmemisvalidpointer(fl)  CAL_CMGETAPI( "sysmemisvalidpointer" ) 
 	#define CAL_sysmemisvalidpointer  sysmemisvalidpointer
 	#define CHK_sysmemisvalidpointer  TRUE
-	#define EXP_sysmemisvalidpointer  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemisvalidpointer", (RTS_UINTPTR)sysmemisvalidpointer, 1, RTSITF_GET_SIGNATURE(0, 0x2B9D06D6), 0x03050C00) 
+	#define EXP_sysmemisvalidpointer  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemisvalidpointer", (RTS_UINTPTR)sysmemisvalidpointer, 1, RTSITF_GET_SIGNATURE(0, 0x2B9D06D6), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemisvalidpointer
 	#define EXT_SysMemsysmemisvalidpointer
 	#define GET_SysMemsysmemisvalidpointer  ERR_OK
 	#define CAL_SysMemsysmemisvalidpointer  sysmemisvalidpointer
 	#define CHK_SysMemsysmemisvalidpointer  TRUE
-	#define EXP_SysMemsysmemisvalidpointer  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemisvalidpointer", (RTS_UINTPTR)sysmemisvalidpointer, 1, RTSITF_GET_SIGNATURE(0, 0x2B9D06D6), 0x03050C00) 
+	#define EXP_SysMemsysmemisvalidpointer  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemisvalidpointer", (RTS_UINTPTR)sysmemisvalidpointer, 1, RTSITF_GET_SIGNATURE(0, 0x2B9D06D6), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemisvalidpointer
 	#define EXT_sysmemisvalidpointer
 	#define GET_sysmemisvalidpointer(fl)  CAL_CMGETAPI( "sysmemisvalidpointer" ) 
 	#define CAL_sysmemisvalidpointer  sysmemisvalidpointer
 	#define CHK_sysmemisvalidpointer  TRUE
-	#define EXP_sysmemisvalidpointer  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemisvalidpointer", (RTS_UINTPTR)sysmemisvalidpointer, 1, RTSITF_GET_SIGNATURE(0, 0x2B9D06D6), 0x03050C00) 
+	#define EXP_sysmemisvalidpointer  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemisvalidpointer", (RTS_UINTPTR)sysmemisvalidpointer, 1, RTSITF_GET_SIGNATURE(0, 0x2B9D06D6), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemisvalidpointer  PFSYSMEMISVALIDPOINTER_IEC pfsysmemisvalidpointer;
 	#define EXT_sysmemisvalidpointer  extern PFSYSMEMISVALIDPOINTER_IEC pfsysmemisvalidpointer;
-	#define GET_sysmemisvalidpointer(fl)  s_pfCMGetAPI2( "sysmemisvalidpointer", (RTS_VOID_FCTPTR *)&pfsysmemisvalidpointer, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x2B9D06D6), 0x03050C00)
+	#define GET_sysmemisvalidpointer(fl)  s_pfCMGetAPI2( "sysmemisvalidpointer", (RTS_VOID_FCTPTR *)&pfsysmemisvalidpointer, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x2B9D06D6), 0x03050500)
 	#define CAL_sysmemisvalidpointer  pfsysmemisvalidpointer
 	#define CHK_sysmemisvalidpointer  (pfsysmemisvalidpointer != NULL)
-	#define EXP_sysmemisvalidpointer   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemisvalidpointer", (RTS_UINTPTR)sysmemisvalidpointer, 1, RTSITF_GET_SIGNATURE(0, 0x2B9D06D6), 0x03050C00) 
+	#define EXP_sysmemisvalidpointer   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemisvalidpointer", (RTS_UINTPTR)sysmemisvalidpointer, 1, RTSITF_GET_SIGNATURE(0, 0x2B9D06D6), 0x03050500) 
 #endif
 
 
@@ -849,35 +789,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMMOVE_IEC) (sysmemmove_struct *p);
 	#define GET_sysmemmove(fl)  CAL_CMGETAPI( "sysmemmove" ) 
 	#define CAL_sysmemmove  sysmemmove
 	#define CHK_sysmemmove  TRUE
-	#define EXP_sysmemmove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemmove", (RTS_UINTPTR)sysmemmove, 1, RTSITF_GET_SIGNATURE(0, 0x9837ABBD), 0x03050C00) 
+	#define EXP_sysmemmove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemmove", (RTS_UINTPTR)sysmemmove, 1, RTSITF_GET_SIGNATURE(0, 0x9837ABBD), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemmove
 	#define EXT_sysmemmove
 	#define GET_sysmemmove(fl)  CAL_CMGETAPI( "sysmemmove" ) 
 	#define CAL_sysmemmove  sysmemmove
 	#define CHK_sysmemmove  TRUE
-	#define EXP_sysmemmove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemmove", (RTS_UINTPTR)sysmemmove, 1, RTSITF_GET_SIGNATURE(0, 0x9837ABBD), 0x03050C00) 
+	#define EXP_sysmemmove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemmove", (RTS_UINTPTR)sysmemmove, 1, RTSITF_GET_SIGNATURE(0, 0x9837ABBD), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemmove
 	#define EXT_SysMemsysmemmove
 	#define GET_SysMemsysmemmove  ERR_OK
 	#define CAL_SysMemsysmemmove  sysmemmove
 	#define CHK_SysMemsysmemmove  TRUE
-	#define EXP_SysMemsysmemmove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemmove", (RTS_UINTPTR)sysmemmove, 1, RTSITF_GET_SIGNATURE(0, 0x9837ABBD), 0x03050C00) 
+	#define EXP_SysMemsysmemmove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemmove", (RTS_UINTPTR)sysmemmove, 1, RTSITF_GET_SIGNATURE(0, 0x9837ABBD), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemmove
 	#define EXT_sysmemmove
 	#define GET_sysmemmove(fl)  CAL_CMGETAPI( "sysmemmove" ) 
 	#define CAL_sysmemmove  sysmemmove
 	#define CHK_sysmemmove  TRUE
-	#define EXP_sysmemmove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemmove", (RTS_UINTPTR)sysmemmove, 1, RTSITF_GET_SIGNATURE(0, 0x9837ABBD), 0x03050C00) 
+	#define EXP_sysmemmove  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemmove", (RTS_UINTPTR)sysmemmove, 1, RTSITF_GET_SIGNATURE(0, 0x9837ABBD), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemmove  PFSYSMEMMOVE_IEC pfsysmemmove;
 	#define EXT_sysmemmove  extern PFSYSMEMMOVE_IEC pfsysmemmove;
-	#define GET_sysmemmove(fl)  s_pfCMGetAPI2( "sysmemmove", (RTS_VOID_FCTPTR *)&pfsysmemmove, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x9837ABBD), 0x03050C00)
+	#define GET_sysmemmove(fl)  s_pfCMGetAPI2( "sysmemmove", (RTS_VOID_FCTPTR *)&pfsysmemmove, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x9837ABBD), 0x03050500)
 	#define CAL_sysmemmove  pfsysmemmove
 	#define CHK_sysmemmove  (pfsysmemmove != NULL)
-	#define EXP_sysmemmove   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemmove", (RTS_UINTPTR)sysmemmove, 1, RTSITF_GET_SIGNATURE(0, 0x9837ABBD), 0x03050C00) 
+	#define EXP_sysmemmove   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemmove", (RTS_UINTPTR)sysmemmove, 1, RTSITF_GET_SIGNATURE(0, 0x9837ABBD), 0x03050500) 
 #endif
 
 
@@ -912,35 +852,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMREALLOCDATA_IEC) (sysmemreallocdata_struc
 	#define GET_sysmemreallocdata(fl)  CAL_CMGETAPI( "sysmemreallocdata" ) 
 	#define CAL_sysmemreallocdata  sysmemreallocdata
 	#define CHK_sysmemreallocdata  TRUE
-	#define EXP_sysmemreallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemreallocdata", (RTS_UINTPTR)sysmemreallocdata, 1, RTSITF_GET_SIGNATURE(0, 0x574ABCC0), 0x03050C00) 
+	#define EXP_sysmemreallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemreallocdata", (RTS_UINTPTR)sysmemreallocdata, 1, RTSITF_GET_SIGNATURE(0, 0x574ABCC0), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemreallocdata
 	#define EXT_sysmemreallocdata
 	#define GET_sysmemreallocdata(fl)  CAL_CMGETAPI( "sysmemreallocdata" ) 
 	#define CAL_sysmemreallocdata  sysmemreallocdata
 	#define CHK_sysmemreallocdata  TRUE
-	#define EXP_sysmemreallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemreallocdata", (RTS_UINTPTR)sysmemreallocdata, 1, RTSITF_GET_SIGNATURE(0, 0x574ABCC0), 0x03050C00) 
+	#define EXP_sysmemreallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemreallocdata", (RTS_UINTPTR)sysmemreallocdata, 1, RTSITF_GET_SIGNATURE(0, 0x574ABCC0), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemreallocdata
 	#define EXT_SysMemsysmemreallocdata
 	#define GET_SysMemsysmemreallocdata  ERR_OK
 	#define CAL_SysMemsysmemreallocdata  sysmemreallocdata
 	#define CHK_SysMemsysmemreallocdata  TRUE
-	#define EXP_SysMemsysmemreallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemreallocdata", (RTS_UINTPTR)sysmemreallocdata, 1, RTSITF_GET_SIGNATURE(0, 0x574ABCC0), 0x03050C00) 
+	#define EXP_SysMemsysmemreallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemreallocdata", (RTS_UINTPTR)sysmemreallocdata, 1, RTSITF_GET_SIGNATURE(0, 0x574ABCC0), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemreallocdata
 	#define EXT_sysmemreallocdata
 	#define GET_sysmemreallocdata(fl)  CAL_CMGETAPI( "sysmemreallocdata" ) 
 	#define CAL_sysmemreallocdata  sysmemreallocdata
 	#define CHK_sysmemreallocdata  TRUE
-	#define EXP_sysmemreallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemreallocdata", (RTS_UINTPTR)sysmemreallocdata, 1, RTSITF_GET_SIGNATURE(0, 0x574ABCC0), 0x03050C00) 
+	#define EXP_sysmemreallocdata  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemreallocdata", (RTS_UINTPTR)sysmemreallocdata, 1, RTSITF_GET_SIGNATURE(0, 0x574ABCC0), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemreallocdata  PFSYSMEMREALLOCDATA_IEC pfsysmemreallocdata;
 	#define EXT_sysmemreallocdata  extern PFSYSMEMREALLOCDATA_IEC pfsysmemreallocdata;
-	#define GET_sysmemreallocdata(fl)  s_pfCMGetAPI2( "sysmemreallocdata", (RTS_VOID_FCTPTR *)&pfsysmemreallocdata, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x574ABCC0), 0x03050C00)
+	#define GET_sysmemreallocdata(fl)  s_pfCMGetAPI2( "sysmemreallocdata", (RTS_VOID_FCTPTR *)&pfsysmemreallocdata, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x574ABCC0), 0x03050500)
 	#define CAL_sysmemreallocdata  pfsysmemreallocdata
 	#define CHK_sysmemreallocdata  (pfsysmemreallocdata != NULL)
-	#define EXP_sysmemreallocdata   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemreallocdata", (RTS_UINTPTR)sysmemreallocdata, 1, RTSITF_GET_SIGNATURE(0, 0x574ABCC0), 0x03050C00) 
+	#define EXP_sysmemreallocdata   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemreallocdata", (RTS_UINTPTR)sysmemreallocdata, 1, RTSITF_GET_SIGNATURE(0, 0x574ABCC0), 0x03050500) 
 #endif
 
 
@@ -971,35 +911,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMSET_IEC) (sysmemset_struct *p);
 	#define GET_sysmemset(fl)  CAL_CMGETAPI( "sysmemset" ) 
 	#define CAL_sysmemset  sysmemset
 	#define CHK_sysmemset  TRUE
-	#define EXP_sysmemset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemset", (RTS_UINTPTR)sysmemset, 1, RTSITF_GET_SIGNATURE(0, 0x663CE5DB), 0x03050C00) 
+	#define EXP_sysmemset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemset", (RTS_UINTPTR)sysmemset, 1, RTSITF_GET_SIGNATURE(0, 0x663CE5DB), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemset
 	#define EXT_sysmemset
 	#define GET_sysmemset(fl)  CAL_CMGETAPI( "sysmemset" ) 
 	#define CAL_sysmemset  sysmemset
 	#define CHK_sysmemset  TRUE
-	#define EXP_sysmemset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemset", (RTS_UINTPTR)sysmemset, 1, RTSITF_GET_SIGNATURE(0, 0x663CE5DB), 0x03050C00) 
+	#define EXP_sysmemset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemset", (RTS_UINTPTR)sysmemset, 1, RTSITF_GET_SIGNATURE(0, 0x663CE5DB), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemset
 	#define EXT_SysMemsysmemset
 	#define GET_SysMemsysmemset  ERR_OK
 	#define CAL_SysMemsysmemset  sysmemset
 	#define CHK_SysMemsysmemset  TRUE
-	#define EXP_SysMemsysmemset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemset", (RTS_UINTPTR)sysmemset, 1, RTSITF_GET_SIGNATURE(0, 0x663CE5DB), 0x03050C00) 
+	#define EXP_SysMemsysmemset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemset", (RTS_UINTPTR)sysmemset, 1, RTSITF_GET_SIGNATURE(0, 0x663CE5DB), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemset
 	#define EXT_sysmemset
 	#define GET_sysmemset(fl)  CAL_CMGETAPI( "sysmemset" ) 
 	#define CAL_sysmemset  sysmemset
 	#define CHK_sysmemset  TRUE
-	#define EXP_sysmemset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemset", (RTS_UINTPTR)sysmemset, 1, RTSITF_GET_SIGNATURE(0, 0x663CE5DB), 0x03050C00) 
+	#define EXP_sysmemset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemset", (RTS_UINTPTR)sysmemset, 1, RTSITF_GET_SIGNATURE(0, 0x663CE5DB), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemset  PFSYSMEMSET_IEC pfsysmemset;
 	#define EXT_sysmemset  extern PFSYSMEMSET_IEC pfsysmemset;
-	#define GET_sysmemset(fl)  s_pfCMGetAPI2( "sysmemset", (RTS_VOID_FCTPTR *)&pfsysmemset, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x663CE5DB), 0x03050C00)
+	#define GET_sysmemset(fl)  s_pfCMGetAPI2( "sysmemset", (RTS_VOID_FCTPTR *)&pfsysmemset, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x663CE5DB), 0x03050500)
 	#define CAL_sysmemset  pfsysmemset
 	#define CHK_sysmemset  (pfsysmemset != NULL)
-	#define EXP_sysmemset   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemset", (RTS_UINTPTR)sysmemset, 1, RTSITF_GET_SIGNATURE(0, 0x663CE5DB), 0x03050C00) 
+	#define EXP_sysmemset   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemset", (RTS_UINTPTR)sysmemset, 1, RTSITF_GET_SIGNATURE(0, 0x663CE5DB), 0x03050500) 
 #endif
 
 
@@ -1034,35 +974,35 @@ typedef void (CDECL CDECL_EXT* PFSYSMEMSWAP_IEC) (sysmemswap_struct *p);
 	#define GET_sysmemswap(fl)  CAL_CMGETAPI( "sysmemswap" ) 
 	#define CAL_sysmemswap  sysmemswap
 	#define CHK_sysmemswap  TRUE
-	#define EXP_sysmemswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemswap", (RTS_UINTPTR)sysmemswap, 1, RTSITF_GET_SIGNATURE(0, 0x77D02AA2), 0x03050C00) 
+	#define EXP_sysmemswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemswap", (RTS_UINTPTR)sysmemswap, 1, RTSITF_GET_SIGNATURE(0, 0x77D02AA2), 0x03050500) 
 #elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
 	#define USE_sysmemswap
 	#define EXT_sysmemswap
 	#define GET_sysmemswap(fl)  CAL_CMGETAPI( "sysmemswap" ) 
 	#define CAL_sysmemswap  sysmemswap
 	#define CHK_sysmemswap  TRUE
-	#define EXP_sysmemswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemswap", (RTS_UINTPTR)sysmemswap, 1, RTSITF_GET_SIGNATURE(0, 0x77D02AA2), 0x03050C00) 
+	#define EXP_sysmemswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemswap", (RTS_UINTPTR)sysmemswap, 1, RTSITF_GET_SIGNATURE(0, 0x77D02AA2), 0x03050500) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysMemsysmemswap
 	#define EXT_SysMemsysmemswap
 	#define GET_SysMemsysmemswap  ERR_OK
 	#define CAL_SysMemsysmemswap  sysmemswap
 	#define CHK_SysMemsysmemswap  TRUE
-	#define EXP_SysMemsysmemswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemswap", (RTS_UINTPTR)sysmemswap, 1, RTSITF_GET_SIGNATURE(0, 0x77D02AA2), 0x03050C00) 
+	#define EXP_SysMemsysmemswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemswap", (RTS_UINTPTR)sysmemswap, 1, RTSITF_GET_SIGNATURE(0, 0x77D02AA2), 0x03050500) 
 #elif defined(CPLUSPLUS)
 	#define USE_sysmemswap
 	#define EXT_sysmemswap
 	#define GET_sysmemswap(fl)  CAL_CMGETAPI( "sysmemswap" ) 
 	#define CAL_sysmemswap  sysmemswap
 	#define CHK_sysmemswap  TRUE
-	#define EXP_sysmemswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemswap", (RTS_UINTPTR)sysmemswap, 1, RTSITF_GET_SIGNATURE(0, 0x77D02AA2), 0x03050C00) 
+	#define EXP_sysmemswap  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemswap", (RTS_UINTPTR)sysmemswap, 1, RTSITF_GET_SIGNATURE(0, 0x77D02AA2), 0x03050500) 
 #else /* DYNAMIC_LINK */
 	#define USE_sysmemswap  PFSYSMEMSWAP_IEC pfsysmemswap;
 	#define EXT_sysmemswap  extern PFSYSMEMSWAP_IEC pfsysmemswap;
-	#define GET_sysmemswap(fl)  s_pfCMGetAPI2( "sysmemswap", (RTS_VOID_FCTPTR *)&pfsysmemswap, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x77D02AA2), 0x03050C00)
+	#define GET_sysmemswap(fl)  s_pfCMGetAPI2( "sysmemswap", (RTS_VOID_FCTPTR *)&pfsysmemswap, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x77D02AA2), 0x03050500)
 	#define CAL_sysmemswap  pfsysmemswap
 	#define CHK_sysmemswap  (pfsysmemswap != NULL)
-	#define EXP_sysmemswap   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemswap", (RTS_UINTPTR)sysmemswap, 1, RTSITF_GET_SIGNATURE(0, 0x77D02AA2), 0x03050C00) 
+	#define EXP_sysmemswap   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sysmemswap", (RTS_UINTPTR)sysmemswap, 1, RTSITF_GET_SIGNATURE(0, 0x77D02AA2), 0x03050500) 
 #endif
 
 
@@ -1707,64 +1647,6 @@ typedef int (CDECL * PFSYSMEMFORCESWAP) (unsigned char *pbyBuffer, int iSize, in
 
 
 
-/**
- * <description>
- *	Routine to get total size of the currently allocated heap memory.
- * </description>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <errorcode name="pResult" type="ERR_OK">Current heap size is available</errorcode>
- * <errorcode name="pResult" type="ERR_NOT_SUPPORTED">Determination of current heap size not supported. CmpMemGC is necessary!</errorcode>
- * <result>Size of the memory in bytes that is currently allocated from the heap</result>
- */
-RTS_SIZE CDECL SysMemGetCurrentHeapSize(RTS_RESULT *pResult);
-typedef RTS_SIZE (CDECL * PFSYSMEMGETCURRENTHEAPSIZE) (RTS_RESULT *pResult);
-#if defined(SYSMEM_NOTIMPLEMENTED) || defined(SYSMEMGETCURRENTHEAPSIZE_NOTIMPLEMENTED)
-	#define USE_SysMemGetCurrentHeapSize
-	#define EXT_SysMemGetCurrentHeapSize
-	#define GET_SysMemGetCurrentHeapSize(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysMemGetCurrentHeapSize(p0)  (RTS_SIZE)ERR_NOTIMPLEMENTED
-	#define CHK_SysMemGetCurrentHeapSize  FALSE
-	#define EXP_SysMemGetCurrentHeapSize  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysMemGetCurrentHeapSize
-	#define EXT_SysMemGetCurrentHeapSize
-	#define GET_SysMemGetCurrentHeapSize(fl)  CAL_CMGETAPI( "SysMemGetCurrentHeapSize" ) 
-	#define CAL_SysMemGetCurrentHeapSize  SysMemGetCurrentHeapSize
-	#define CHK_SysMemGetCurrentHeapSize  TRUE
-	#define EXP_SysMemGetCurrentHeapSize  CAL_CMEXPAPI( "SysMemGetCurrentHeapSize" ) 
-#elif defined(MIXED_LINK) && !defined(SYSMEM_EXTERNAL)
-	#define USE_SysMemGetCurrentHeapSize
-	#define EXT_SysMemGetCurrentHeapSize
-	#define GET_SysMemGetCurrentHeapSize(fl)  CAL_CMGETAPI( "SysMemGetCurrentHeapSize" ) 
-	#define CAL_SysMemGetCurrentHeapSize  SysMemGetCurrentHeapSize
-	#define CHK_SysMemGetCurrentHeapSize  TRUE
-	#define EXP_SysMemGetCurrentHeapSize  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMemGetCurrentHeapSize", (RTS_UINTPTR)SysMemGetCurrentHeapSize, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysMemSysMemGetCurrentHeapSize
-	#define EXT_SysMemSysMemGetCurrentHeapSize
-	#define GET_SysMemSysMemGetCurrentHeapSize  ERR_OK
-	#define CAL_SysMemSysMemGetCurrentHeapSize pISysMem->ISysMemGetCurrentHeapSize
-	#define CHK_SysMemSysMemGetCurrentHeapSize (pISysMem != NULL)
-	#define EXP_SysMemSysMemGetCurrentHeapSize  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysMemGetCurrentHeapSize
-	#define EXT_SysMemGetCurrentHeapSize
-	#define GET_SysMemGetCurrentHeapSize(fl)  CAL_CMGETAPI( "SysMemGetCurrentHeapSize" ) 
-	#define CAL_SysMemGetCurrentHeapSize pISysMem->ISysMemGetCurrentHeapSize
-	#define CHK_SysMemGetCurrentHeapSize (pISysMem != NULL)
-	#define EXP_SysMemGetCurrentHeapSize  CAL_CMEXPAPI( "SysMemGetCurrentHeapSize" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysMemGetCurrentHeapSize  PFSYSMEMGETCURRENTHEAPSIZE pfSysMemGetCurrentHeapSize;
-	#define EXT_SysMemGetCurrentHeapSize  extern PFSYSMEMGETCURRENTHEAPSIZE pfSysMemGetCurrentHeapSize;
-	#define GET_SysMemGetCurrentHeapSize(fl)  s_pfCMGetAPI2( "SysMemGetCurrentHeapSize", (RTS_VOID_FCTPTR *)&pfSysMemGetCurrentHeapSize, (fl), 0, 0)
-	#define CAL_SysMemGetCurrentHeapSize  pfSysMemGetCurrentHeapSize
-	#define CHK_SysMemGetCurrentHeapSize  (pfSysMemGetCurrentHeapSize != NULL)
-	#define EXP_SysMemGetCurrentHeapSize  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysMemGetCurrentHeapSize", (RTS_UINTPTR)SysMemGetCurrentHeapSize, 0, 0) 
-#endif
-
-
-
-
 #ifdef __cplusplus
 }
 #endif
@@ -1784,7 +1666,6 @@ typedef struct
  	PFSYSMEMISVALIDPOINTER ISysMemIsValidPointer;
  	PFSYSMEMSWAP ISysMemSwap;
  	PFSYSMEMFORCESWAP ISysMemForceSwap;
- 	PFSYSMEMGETCURRENTHEAPSIZE ISysMemGetCurrentHeapSize;
  } ISysMem_C;
 
 #ifdef CPLUSPLUS
@@ -1801,7 +1682,6 @@ class ISysMem : public IBase
 		virtual RTS_RESULT CDECL ISysMemIsValidPointer(void* ptr, RTS_SIZE ulSize, int bWrite) =0;
 		virtual int CDECL ISysMemSwap(unsigned char *pbyBuffer, int iSize, int iCount) =0;
 		virtual int CDECL ISysMemForceSwap(unsigned char *pbyBuffer, int iSize, int iCount) =0;
-		virtual RTS_SIZE CDECL ISysMemGetCurrentHeapSize(RTS_RESULT *pResult) =0;
 };
 	#ifndef ITF_SysMem
 		#define ITF_SysMem static ISysMem *pISysMem = NULL;

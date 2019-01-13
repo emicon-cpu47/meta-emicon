@@ -229,6 +229,8 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 			break;
 		}
 		case CH_EXIT2:
+			break;
+		case CH_EXIT:
 		{
 			/* Delete both instances */
 			ICmpIoDrv *pI;
@@ -237,15 +239,14 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 			pI = (ICmpIoDrv *)s_pIBase->QueryInterface(s_pIBase, ITFID_ICmpIoDrv, NULL);
 			s_pIBase->Release(s_pIBase);
 			CAL_IoDrvDelete((RTS_HANDLE)pI, (RTS_HANDLE)pI);
+			DeleteInstance(s_pIBase);
 			
 			CAL_IoMgrUnregisterInstance(s_pIBase2);
 			pI = (ICmpIoDrv *)s_pIBase2->QueryInterface(s_pIBase2, ITFID_ICmpIoDrv, NULL);
 			s_pIBase2->Release(s_pIBase2);
 			CAL_IoDrvDelete((RTS_HANDLE)pI, (RTS_HANDLE)pI);
-			break;
-		}
-		case CH_EXIT:
-		{
+			DeleteInstance(s_pIBase2);
+
 			EXIT_STMT;
 			break;
 		}
@@ -289,24 +290,20 @@ STATICITF RTS_HANDLE CDECL IoDrvCreate(RTS_HANDLE hIIoDrv, CLASSID ClassId, int 
 	strcpy(pInfo->szDeviceName, "SoundCard");
 	strcpy(pInfo->szVendorName, "Sound Company");
 	strcpy(pInfo->szFirmwareVersion, "Rev. 1.0.0.0");
-	return (RTS_HANDLE)pIoDrvSoundDemo;
+	return (RTS_HANDLE)pInfo;
 }
 
 STATICITF RTS_RESULT CDECL IoDrvDelete(RTS_HANDLE hIoDrv, RTS_HANDLE hIIoDrv)
 {
-	IoDrvSoundDemo *pIoDrvSoundDemo = (IoDrvSoundDemo *)hIoDrv;
-	CAL_SysMemFreeData(COMPONENT_NAME, pIoDrvSoundDemo);
 	return ERR_OK;
 }
 
 STATICITF RTS_RESULT CDECL IoDrvGetInfo(RTS_HANDLE hIoDrv, IoDrvInfo **ppInfo)
 {
-	IoDrvSoundDemo *pIoDrvSoundDemo = (IoDrvSoundDemo *)hIoDrv;
-
 	if (ppInfo == NULL || hIoDrv == RTS_INVALID_HANDLE)
 		return ERR_PARAMETER;
 
-	*ppInfo = (IoDrvInfo *)&pIoDrvSoundDemo->Info;
+	*ppInfo = (IoDrvInfo *)hIoDrv;
 	return ERR_OK;
 }
 
@@ -315,7 +312,7 @@ STATICITF RTS_RESULT CDECL IoDrvGetInfo(RTS_HANDLE hIoDrv, IoDrvInfo **ppInfo)
 STATICITF RTS_RESULT CDECL IoDrvUpdateConfiguration(RTS_HANDLE hIoDrv, IoConfigConnector *pConnectorList, int nCount)
 {
 	IoConfigConnector *pConnector = CAL_IoMgrConfigGetFirstConnector(pConnectorList, &nCount, 40100);
-	IoDrvSoundDemo *pIoDrvSoundDemo = (IoDrvSoundDemo *)hIoDrv;
+	IoDrvSoundDemo *pIoDrvSoundDemo = (IoDrvSoundDemo *)((unsigned char *)hIoDrv - sizeof(IoDrvSoundDemo) + sizeof(IoDrvInfo));
 	IBase *pIBase = pIoDrvSoundDemo->pIBase;
 	ICmpIoDrv *pIIoDrv = pIoDrvSoundDemo->pIoDrv;
 	int i;
@@ -485,8 +482,8 @@ STATICITF RTS_RESULT CDECL IoDrvWriteOutputs(RTS_HANDLE hIoDrv, IoConfigConnecto
 	int i;
 	unsigned long j;
 	int k;
-	IoDrvSoundDemo *pIoDrvSoundDemo = (IoDrvSoundDemo *)hIoDrv;
-	IoDrvInfo *pInfo = &pIoDrvSoundDemo->Info;
+
+	IoDrvInfo *pInfo = (IoDrvInfo *)hIoDrv;
 	unsigned short wBitOffset;
 
 	if (pConnectorMapList == NULL)

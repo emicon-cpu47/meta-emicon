@@ -9,14 +9,12 @@
  *	Target specific functions
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 #ifndef _SYSTARGETDEP_H_
 #define _SYSTARGETDEP_H_
 
-#define COMPONENT_NAME "SysTarget" COMPONENT_NAME_POSTFIX
+#define COMPONENT_NAME "SysTarget"COMPONENT_NAME_POSTFIX
 #define COMPONENT_ID    ADDVENDORID(CMP_VENDORID, CMPID_SysTarget)
 #define COMPONENT_NAME_UNQUOTED SysTarget
 
@@ -25,9 +23,9 @@
 
 
 
-#define CMP_VERSION         UINT32_C(0x03050D0A)
-#define CMP_VERSION_STRING "3.5.13.10"
-#define CMP_VERSION_RC      3,5,13,10
+#define CMP_VERSION         UINT32_C(0x03050A00)
+#define CMP_VERSION_STRING "3.5.10.0"
+#define CMP_VERSION_RC      3,5,10,0
 #define CMP_VENDORID       RTS_VENDORID_3S
 
 #ifndef WIN32_RESOURCES
@@ -60,12 +58,6 @@
 #include "CmpChecksumItf.h"
 
 
-#include "CmpEventMgrItf.h"
-
-
-#include "SysSocketItf.h"
-
-
 
 
 
@@ -83,17 +75,7 @@
 
 
 
-
-
-
-
-
       
-
-
-
-
-
 
 
 
@@ -115,11 +97,7 @@
 
 
 
-
-
      
-
-
 
 
 
@@ -161,25 +139,7 @@
                 pIBase->Release(pIBase); \
             } \
         } \
-        if (pISysSocket == NULL && s_pfCMCreateInstance != NULL) \
-        { \
-            pIBase = (IBase *)s_pfCMCreateInstance(CLASSID_CSysSocket, &initResult); \
-            if (pIBase != NULL) \
-            { \
-                pISysSocket = (ISysSocket *)pIBase->QueryInterface(pIBase, ITFID_ISysSocket, &initResult); \
-                pIBase->Release(pIBase); \
-            } \
-        } \
-          if (pICmpEventMgr == NULL && s_pfCMCreateInstance != NULL) \
-        { \
-            pIBase = (IBase *)s_pfCMCreateInstance(CLASSID_CCmpEventMgr, &initResult); \
-            if (pIBase != NULL) \
-            { \
-                pICmpEventMgr = (ICmpEventMgr *)pIBase->QueryInterface(pIBase, ITFID_ICmpEventMgr, &initResult); \
-                pIBase->Release(pIBase); \
-            } \
-        } \
-          if (pICmpChecksum == NULL && s_pfCMCreateInstance != NULL) \
+        if (pICmpChecksum == NULL && s_pfCMCreateInstance != NULL) \
         { \
             pIBase = (IBase *)s_pfCMCreateInstance(CLASSID_CCmpChecksum, &initResult); \
             if (pIBase != NULL) \
@@ -249,9 +209,7 @@
     {\
         pICmpLog = NULL; \
         pICMUtils = NULL; \
-        pISysSocket = NULL; \
-          pICmpEventMgr = NULL; \
-          pICmpChecksum = NULL; \
+        pICmpChecksum = NULL; \
           pICmpSIL2 = NULL; \
           pISysCpuHandling = NULL; \
           pISysTarget = NULL; \
@@ -285,27 +243,7 @@
                     pICMUtils = NULL; \
             } \
         } \
-        if (pISysSocket != NULL) \
-        { \
-            pIBase = (IBase *)pISysSocket->QueryInterface(pISysSocket, ITFID_IBase, &exitResult); \
-            if (pIBase != NULL) \
-            { \
-                 pIBase->Release(pIBase); \
-                 if (pIBase->Release(pIBase) == 0) /* The object will be deleted here! */ \
-                    pISysSocket = NULL; \
-            } \
-        } \
-          if (pICmpEventMgr != NULL) \
-        { \
-            pIBase = (IBase *)pICmpEventMgr->QueryInterface(pICmpEventMgr, ITFID_IBase, &exitResult); \
-            if (pIBase != NULL) \
-            { \
-                 pIBase->Release(pIBase); \
-                 if (pIBase->Release(pIBase) == 0) /* The object will be deleted here! */ \
-                    pICmpEventMgr = NULL; \
-            } \
-        } \
-          if (pICmpChecksum != NULL) \
+        if (pICmpChecksum != NULL) \
         { \
             pIBase = (IBase *)pICmpChecksum->QueryInterface(pICmpChecksum, ITFID_IBase, &exitResult); \
             if (pIBase != NULL) \
@@ -401,8 +339,6 @@
           if (ERR_OK == importResult ) importResult = GET_SysTargetGetType(0);\
           if (ERR_OK == importResult ) importResult = GET_SysTargetGetConfiguredNodeName(0);\
           if (ERR_OK == importResult ) importResult = GET_SysMemSwap(0);\
-          if (ERR_OK == importResult ) importResult = GET_SettgRemoveKey(0);\
-          if (ERR_OK == importResult ) importResult = GET_SettgSetWStringValue(0);\
           if (ERR_OK == importResult ) importResult = GET_SettgGetIntValue(0);\
           if (ERR_OK == importResult ) importResult = GET_SettgGetStringValue(0);\
           if (ERR_OK == importResult ) importResult = GET_SettgGetWStringValue(0);\
@@ -414,11 +350,6 @@
           if (ERR_OK == importResult ) importResult = GET_CMUtlSafeStrCat(0);\
           if (ERR_OK == importResult ) importResult = GET_CMUtlsnprintf(0);\
           if (ERR_OK == importResult ) importResult = GET_CMUtlSafeStrCpy(0);\
-          if (ERR_OK == importResult ) TempResult = GET_SysSockGetNextAdapterInfo(CM_IMPORT_OPTIONAL_FUNCTION);\
-          if (ERR_OK == importResult ) TempResult = GET_SysSockGetFirstAdapterInfo(CM_IMPORT_OPTIONAL_FUNCTION);\
-          if (ERR_OK == importResult ) TempResult = GET_EventPost2(CM_IMPORT_OPTIONAL_FUNCTION);\
-          if (ERR_OK == importResult ) TempResult = GET_EventDelete(CM_IMPORT_OPTIONAL_FUNCTION);\
-          if (ERR_OK == importResult ) TempResult = GET_EventCreate3(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_CRC32Finish(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_CRC32Update(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_CRC32Init(CM_IMPORT_OPTIONAL_FUNCTION);\
@@ -434,7 +365,7 @@
 
 #ifndef SYSTARGET_DISABLE_EXTREF
 #define EXPORT_EXTREF_STMT \
-                                        { (RTS_VOID_FCTPTR)systargetgetversion2, "systargetgetversion2", 0x183560B4, 0x03050500 },\
+                                    { (RTS_VOID_FCTPTR)systargetgetversion2, "systargetgetversion2", 0x183560B4, 0x03050500 },\
           { (RTS_VOID_FCTPTR)systargetgetversion, "systargetgetversion", 0x03C80949, 0x03050500 },\
           { (RTS_VOID_FCTPTR)systargetgetvendorname2, "systargetgetvendorname2", 0xECA5949D, 0x03050500 },\
           { (RTS_VOID_FCTPTR)systargetgetvendorname, "systargetgetvendorname", 0xC7C8EF60, 0x03050500 },\
@@ -455,16 +386,14 @@
 #endif
 #ifndef SYSTARGET_DISABLE_EXTREF2
 #define EXPORT_EXTREF2_STMT \
-                                                                      
+                                                                  
 #else
 #define EXPORT_EXTREF2_STMT
 #endif
 #if !defined(STATIC_LINK) && !defined(CPLUSPLUS) && !defined(CPLUSPLUS_ONLY)
 #define EXPORT_CMPITF_STMT \
     {\
-        { (RTS_VOID_FCTPTR)SysTargetSetNodeName, "SysTargetSetNodeName", 0, 0 },\
-          { (RTS_VOID_FCTPTR)SysTargetGetAPI, "SysTargetGetAPI", 0, 0 },\
-          { (RTS_VOID_FCTPTR)SysTargetCheckIdent, "SysTargetCheckIdent", 0, 0 },\
+        { (RTS_VOID_FCTPTR)SysTargetCheckIdent, "SysTargetCheckIdent", 0, 0 },\
           { (RTS_VOID_FCTPTR)SysTargetGetDeviceMask, "SysTargetGetDeviceMask", 0, 0 },\
           { (RTS_VOID_FCTPTR)SysTargetGetSignature, "SysTargetGetSignature", 0, 0 },\
           { (RTS_VOID_FCTPTR)SysTargetGetSerialNumber_Secure, "SysTargetGetSerialNumber_Secure", 0, 0 },\
@@ -549,18 +478,11 @@
 	ITF_SysTarget     \
 	ITF_SysCpuHandling     \
 	ITF_CmpSIL2     \
-	ITF_CmpChecksum     \
-	ITF_CmpEventMgr     \
-	ITF_SysSocket      \
+	ITF_CmpChecksum      \
     USE_SIL2CheckCallerContext      \
     USE_CRC32Init      \
     USE_CRC32Update      \
     USE_CRC32Finish      \
-    USE_EventCreate3      \
-    USE_EventDelete      \
-    USE_EventPost2      \
-    USE_SysSockGetFirstAdapterInfo      \
-    USE_SysSockGetNextAdapterInfo      \
     USE_CMUtlSafeStrCpy      \
     USE_CMUtlsnprintf      \
     USE_CMUtlSafeStrCat      \
@@ -572,8 +494,6 @@
     USE_SettgGetWStringValue      \
     USE_SettgGetStringValue      \
     USE_SettgGetIntValue      \
-    USE_SettgSetWStringValue      \
-    USE_SettgRemoveKey      \
     USE_SysMemSwap      \
     USE_SysTargetGetConfiguredNodeName      \
     USE_SysTargetGetType      \
@@ -600,18 +520,11 @@
 	ITF_SysTarget    \
 	ITF_SysCpuHandling    \
 	ITF_CmpSIL2    \
-	ITF_CmpChecksum    \
-	ITF_CmpEventMgr    \
-	ITF_SysSocket     \
+	ITF_CmpChecksum     \
     USE_SIL2CheckCallerContext      \
     USE_CRC32Init      \
     USE_CRC32Update      \
     USE_CRC32Finish      \
-    USE_EventCreate3      \
-    USE_EventDelete      \
-    USE_EventPost2      \
-    USE_SysSockGetFirstAdapterInfo      \
-    USE_SysSockGetNextAdapterInfo      \
     USE_CMUtlSafeStrCpy      \
     USE_CMUtlsnprintf      \
     USE_CMUtlSafeStrCat      \
@@ -623,8 +536,6 @@
     USE_SettgGetWStringValue      \
     USE_SettgGetStringValue      \
     USE_SettgGetIntValue      \
-    USE_SettgSetWStringValue      \
-    USE_SettgRemoveKey      \
     USE_SysMemSwap      \
     USE_SysTargetGetConfiguredNodeName      \
     USE_SysTargetGetType      \
@@ -640,18 +551,11 @@
 	EXTITF_SysTarget    \
 	EXTITF_SysCpuHandling    \
 	EXTITF_CmpSIL2    \
-	EXTITF_CmpChecksum    \
-	EXTITF_CmpEventMgr    \
-	EXTITF_SysSocket     \
+	EXTITF_CmpChecksum     \
     EXT_SIL2CheckCallerContext  \
     EXT_CRC32Init  \
     EXT_CRC32Update  \
     EXT_CRC32Finish  \
-    EXT_EventCreate3  \
-    EXT_EventDelete  \
-    EXT_EventPost2  \
-    EXT_SysSockGetFirstAdapterInfo  \
-    EXT_SysSockGetNextAdapterInfo  \
     EXT_CMUtlSafeStrCpy  \
     EXT_CMUtlsnprintf  \
     EXT_CMUtlSafeStrCat  \
@@ -663,8 +567,6 @@
     EXT_SettgGetWStringValue  \
     EXT_SettgGetStringValue  \
     EXT_SettgGetIntValue  \
-    EXT_SettgSetWStringValue  \
-    EXT_SettgRemoveKey  \
     EXT_SysMemSwap  \
     EXT_SysTargetGetConfiguredNodeName  \
     EXT_SysTargetGetType  \
@@ -743,8 +645,6 @@ class CSysTarget : public ISysTarget
         virtual RTS_RESULT CDECL ISysTargetGetSignature(RTS_UI32 ulChallenge, RTS_UI32 *pulSignature);
         virtual RTS_RESULT CDECL ISysTargetGetDeviceMask(RTS_UI16 *pusDeviceMask);
         virtual RTS_RESULT CDECL ISysTargetCheckIdent(SysTargetIdent *pTargetIdentReq, SysTargetIdent *pTargetIdent);
-        virtual RTS_RESULT CDECL ISysTargetGetAPI(API_RESOLVE_INFO apiInfo, RTS_VOID_FCTPTR *ppfAPIFunction);
-        virtual RTS_RESULT CDECL ISysTargetSetNodeName(RTS_WCHAR *pwszName);
 
     public:
         RTS_HANDLE hSysTarget;

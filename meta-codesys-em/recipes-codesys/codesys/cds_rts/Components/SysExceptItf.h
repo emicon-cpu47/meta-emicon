@@ -102,9 +102,7 @@
  * </pre>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -199,16 +197,6 @@
 	#define RTS_LONGJMP(buf, val)
 #endif
 
-#ifndef RTS_FP_BUF
-	#define RTS_FP_BUF			void*
-#endif
-#ifndef RTS_GET_FPENV
-	#define RTS_GET_FPENV(buf)
-#endif
-#ifndef RTS_SET_FPENV
-	#define RTS_SET_FPENV(buf)
-#endif
-
 /**
  * <category>Exception code</category>
  * <description></description>
@@ -224,6 +212,7 @@ typedef struct tagExceptionCode
 	int bOSException;
 } ExceptionCode;
 
+
 /**
  * <SIL2/>
  * <category>Exception context</category>
@@ -236,7 +225,7 @@ typedef struct RegContexttag
 {
 	RTS_UINTPTR IP;
 	RTS_UINTPTR BP;
-	RTS_UINTPTR SP;	
+	RTS_UINTPTR SP;
 } RegContext;
 
 /**
@@ -256,7 +245,6 @@ typedef struct tagSEHCOntext
 	RegContext  context;
 	RTS_BOOL    bHandled;
 	RTS_BOOL    bRegistered;
-	RTS_FP_BUF	fpenvbuf;
 } SEHContext;
 
 #define SEH_CONTEXT_PATTERN 0xA5A5ACDC
@@ -283,16 +271,10 @@ typedef void (CDECL*PFEXCEPTIONHANDLERIEC)(excpthandler_struct *p);
 
 
 /**
- * <category>Exception pseudo code</category>
- * <description>Exception pseudo code to prepare exception handling. Can be used e.g. to release locking objects in the context of the task!</description>
- */
-#define RTSEXCPT_FIRST_LEVEL				0x80000000
-
-/**
  * <category>Exception code</category>
  * <description>Invalid</description>
  */
-#define RTSEXCPT_UNKNOWN					(UINT32_MAX & ~RTSEXCPT_FIRST_LEVEL) 
+#define RTSEXCPT_UNKNOWN					(UINT32_MAX)
 
 /**
  * <category>Exception code</category>
@@ -1513,10 +1495,7 @@ typedef void (CDECL CDECL_EXT* PFSYSEXCEPTENABLESEH2_IEC) (sysexceptenableseh2_s
 		{ \
 			SEHContext __SEHContext; \
 			__SEHContext.bRegistered = 0; \
-			RTS_GET_FPENV(&__SEHContext.fpenvbuf) \
 			__SEHContext.ui32ExceptionCode = RTS_SETJMP(__SEHContext.jmpbuf); \
-			if(__SEHContext.ui32ExceptionCode != 0) \
-				{RTS_SET_FPENV(&__SEHContext.fpenvbuf)} \
 			while (CAL_SysExceptTry(&__SEHContext) == ERR_OK)
 
 	#endif

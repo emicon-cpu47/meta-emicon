@@ -4,9 +4,7 @@
  *	Interface for the dynamic text component.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpDynamicText')
@@ -32,10 +30,6 @@ SET_INTERFACE_NAME(`CmpDynamicText')
 
 #ifndef DYNAMICTEXT_MAX_SYMBOLS
 	#define DYNAMICTEXT_MAX_SYMBOLS 10000
-#endif
-
-#ifndef DYNAMICTEXT_MAX_SYMBOLS_TEXTLISTS
-#define DYNAMICTEXT_MAX_SYMBOLS_TEXTLISTS 100
 #endif
 
 typedef struct

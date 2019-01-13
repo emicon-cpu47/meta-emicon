@@ -61,48 +61,6 @@ Macros
 
 - #define :ref:`WCB_RETURN_ABORT <group___sys_window_itf_1gaf2a9807f2730f6c4be645358174571d3>` 0x0001		/* if a callback returns this, the window will be killed and the messageloop leaved */
 
-- #define :ref:`MB_TYPE_OK <group___sys_window_itf_1gae30c23b06698cd2cded32aa7096294b0>` 0x0000
-
-- #define :ref:`MB_TYPE_OKCANCEL <group___sys_window_itf_1ga5707769e2b56c7dab32db60e6f63bf14>` 0x0001
-
-- #define :ref:`MB_TYPE_ABORTRETRYIGNORE <group___sys_window_itf_1ga64c6696007d4fc07336d2ea1076cd797>` 0x0002
-
-- #define :ref:`MB_TYPE_YESNOCANCEL <group___sys_window_itf_1gab33281584e6b708a3dfb115f2ea3d6b9>` 0x0003
-
-- #define :ref:`MB_TYPE_YESNO <group___sys_window_itf_1ga2cfda5f0396f1f5e287dd031f85f43f7>` 0x0004
-
-- #define :ref:`MB_TYPE_RETRYCANCEL <group___sys_window_itf_1ga7549dba7eaa85aef07abe0e6b3c66102>` 0x0005
-
-- #define :ref:`MB_TYPE_ICONERROR <group___sys_window_itf_1ga225320aa59c4d8cbc0106657737a92da>` 0x0010
-
-- #define :ref:`MB_TYPE_ICONQUESTION <group___sys_window_itf_1ga83b9b46378d5cbf7e5961113e9b9c938>` 0x0020
-
-- #define :ref:`MB_TYPE_ICONWARNING <group___sys_window_itf_1ga08b3e231dbfc36d1ebddda769878c0bf>` 0x0030
-
-- #define :ref:`MB_TYPE_ICONINFORMATION <group___sys_window_itf_1ga2ea9fda75ddc2f77dbf15c8531755fe3>` 0x0040
-
-- #define :ref:`MB_TYPE_DEFBUTTON1 <group___sys_window_itf_1gaad1b4adb540fab2cd5c842732727db27>` 0x0000
-
-- #define :ref:`MB_TYPE_DEFBUTTON2 <group___sys_window_itf_1gad6f7311903ffe2d5ec5724ac632ab3ec>` 0x0100
-
-- #define :ref:`MB_TYPE_DEFBUTTON3 <group___sys_window_itf_1gaeeb01e2274b239040e35bf9547936e47>` 0x0200
-
-- #define :ref:`MB_TYPE_DEFBUTTON4 <group___sys_window_itf_1ga239288d6f5f25d539a28f2f867e50da3>` 0x0300
-
-- #define :ref:`MB_RESULT_OK <group___sys_window_itf_1ga1cb19c31af2c39f46ea4f54d0dd0ff24>` 0x0001
-
-- #define :ref:`MB_RESULT_CANCEL <group___sys_window_itf_1gada79ee03c18c5d475571e348b7a7f55a>` 0x0002
-
-- #define :ref:`MB_RESULT_ABORT <group___sys_window_itf_1gac57b31a8554d8a0bc1bc979193265143>` 0x0003
-
-- #define :ref:`MB_RESULT_RETRY <group___sys_window_itf_1ga5e81b403d255b89415bdee455d44989e>` 0x0004
-
-- #define :ref:`MB_RESULT_IGNORE <group___sys_window_itf_1gab9921dc7bbe0dfda7b3d3a2975be6d6d>` 0x0005
-
-- #define :ref:`MB_RESULT_YES <group___sys_window_itf_1ga006c6e93af5f722bdd72f169c720fecc>` 0x0006
-
-- #define :ref:`MB_RESULT_NO <group___sys_window_itf_1ga79b41081ed6bbf1afd7f804876d12e97>` 0x0007
-
 - #define :ref:`ITF_SysWindow <group___sys_window_itf_1ga00f0defeb6e8911e8e0de9ffc1132a0d>`
 
 - #define :ref:`EXTITF_SysWindow <group___sys_window_itf_1ga9240c541674517e2744eeee6d2631e87>`
@@ -111,8 +69,6 @@ Typedefs
 --------
 
 - typedef int(* :ref:`PFWINDOWCALLBACK <group___sys_window_itf_1ga97e3b14b02d966bfe43f600d0aa3b2e9>`)(RTS_HANDLE hWindow, WindowCallbacks wcb, RTS_UINTPTR ulCallbackParam, RTS_UINTPTR ulParam1, RTS_UINTPTR ulParam2)
-
-- typedef void(* :ref:`SysWindowTimerCallback <group___sys_window_itf_1gaa6aad92bd734ac0c13baf29a8d41183c>`)(RTS_HANDLE hWindow, void *pParams)
 
 - typedef :ref:`ISysWindow_C <struct_i_sys_window___c>` :ref:`ISysWindow <group___sys_window_itf_1ga779fd14943d2899a472eafbfb6af432a>`
 
@@ -196,14 +152,6 @@ Functions
 
 - RTS_UI32 :ref:`SysWindowSupportInfo <group___sys_window_itf_1ga9ae5a6595c61b0ee8901f0e365a23092>` (RTS_HANDLE hWindow, RTS_RESULT * pResult)
 
-- RTS_HANDLE :ref:`SysWindowCreateTimer <group___sys_window_itf_1ga42684268921b6cdc67e87954a3d5e9e3>` (RTS_HANDLE hWindow, RTS_UI32 interval, :ref:`SysWindowTimerCallback <group___sys_window_itf_1gaa6aad92bd734ac0c13baf29a8d41183c>`  callback, void * pCallbackParams, RTS_RESULT * pResult)
-
-- RTS_RESULT :ref:`SysWindowDestroyTimer <group___sys_window_itf_1gaa2fc98c8609b731d99da73554f362153>` (RTS_HANDLE hWindow, RTS_HANDLE hTimer)
-
-- RTS_RESULT :ref:`SysWindowOpenMessageBox <group___sys_window_itf_1gabd8b2d4b675054524047824d8bf64fc6>` (RTS_HANDLE hWindow, char * pszText, char * pszCaption, RTS_UI32 uiType)
-
-- RTS_RESULT :ref:`SysWindowOpenMessageBoxW <group___sys_window_itf_1gaa18975023b51d7de146080c69162f20c>` (RTS_HANDLE hWindow, RTS_WCHAR * pwsText, RTS_WCHAR * pwsCaption, RTS_UI32 uiType)
-
 .. _group___sys_window_itf-details:
 
 Detailed Description
@@ -215,7 +163,7 @@ SysWindow interfaces is porjected to get access to the window manager of a graph
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -290,111 +238,6 @@ An editcontrol that can be used by the targetvisualizaton. This control must rea
 #define WCB_RETURN_ABORT 0x0001		/* if a callback returns this, the window will be killed and the messageloop leaved */
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___sys_window_itf_1gae30c23b06698cd2cded32aa7096294b0:
-
-#define MB_TYPE_OK 0x0000
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1ga5707769e2b56c7dab32db60e6f63bf14:
-
-#define MB_TYPE_OKCANCEL 0x0001
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1ga64c6696007d4fc07336d2ea1076cd797:
-
-#define MB_TYPE_ABORTRETRYIGNORE 0x0002
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1gab33281584e6b708a3dfb115f2ea3d6b9:
-
-#define MB_TYPE_YESNOCANCEL 0x0003
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1ga2cfda5f0396f1f5e287dd031f85f43f7:
-
-#define MB_TYPE_YESNO 0x0004
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1ga7549dba7eaa85aef07abe0e6b3c66102:
-
-#define MB_TYPE_RETRYCANCEL 0x0005
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1ga225320aa59c4d8cbc0106657737a92da:
-
-#define MB_TYPE_ICONERROR 0x0010
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1ga83b9b46378d5cbf7e5961113e9b9c938:
-
-#define MB_TYPE_ICONQUESTION 0x0020
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1ga08b3e231dbfc36d1ebddda769878c0bf:
-
-#define MB_TYPE_ICONWARNING 0x0030
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1ga2ea9fda75ddc2f77dbf15c8531755fe3:
-
-#define MB_TYPE_ICONINFORMATION 0x0040
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1gaad1b4adb540fab2cd5c842732727db27:
-
-#define MB_TYPE_DEFBUTTON1 0x0000
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1gad6f7311903ffe2d5ec5724ac632ab3ec:
-
-#define MB_TYPE_DEFBUTTON2 0x0100
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1gaeeb01e2274b239040e35bf9547936e47:
-
-#define MB_TYPE_DEFBUTTON3 0x0200
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1ga239288d6f5f25d539a28f2f867e50da3:
-
-#define MB_TYPE_DEFBUTTON4 0x0300
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1ga1cb19c31af2c39f46ea4f54d0dd0ff24:
-
-#define MB_RESULT_OK 0x0001
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1gada79ee03c18c5d475571e348b7a7f55a:
-
-#define MB_RESULT_CANCEL 0x0002
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1gac57b31a8554d8a0bc1bc979193265143:
-
-#define MB_RESULT_ABORT 0x0003
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1ga5e81b403d255b89415bdee455d44989e:
-
-#define MB_RESULT_RETRY 0x0004
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1gab9921dc7bbe0dfda7b3d3a2975be6d6d:
-
-#define MB_RESULT_IGNORE 0x0005
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1ga006c6e93af5f722bdd72f169c720fecc:
-
-#define MB_RESULT_YES 0x0006
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_window_itf_1ga79b41081ed6bbf1afd7f804876d12e97:
-
-#define MB_RESULT_NO 0x0007
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. _group___sys_window_itf_1ga00f0defeb6e8911e8e0de9ffc1132a0d:
 
 #define ITF_SysWindow
@@ -424,13 +267,6 @@ Callback prototype
 **Returns:**
 
 error code
-
-.. _group___sys_window_itf_1gaa6aad92bd734ac0c13baf29a8d41183c:
-
-typedef void(* SysWindowTimerCallback)(RTS_HANDLE hWindow, void *pParams)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Signature of the callback passed to SysWindowCreateTimer.
 
 .. _group___sys_window_itf_1ga779fd14943d2899a472eafbfb6af432a:
 
@@ -1112,92 +948,6 @@ Retrieves information about the support of specific features from the current wi
 **Returns:**
 
 The result is a flat combination of the values SYSWINSUPPORT_FLAG_
-
-.. _group___sys_window_itf_1ga42684268921b6cdc67e87954a3d5e9e3:
-
-RTS_HANDLE SysWindowCreateTimer (RTS_HANDLE hWindow, RTS_UI32 interval, SysWindowTimerCallback callback, void *pCallbackParams, RTS_RESULT *pResult)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Creates a timer that periodically calls a function.
-
-**Parameters**
-
-+---------+----------------+----------------------------------------------------------------+
-| [in]    | hWindow        | Handle to the window                                           |
-+---------+----------------+----------------------------------------------------------------+
-| [in]    | interval       | The timer interval in milliseconds.                            |
-+---------+----------------+----------------------------------------------------------------+
-| [in]    | callback       | The function to call after every interval.                     |
-+---------+----------------+----------------------------------------------------------------+
-| [in]    | callbackParams | The paramaters that should be passed to the callback function. |
-+---------+----------------+----------------------------------------------------------------+
-
-**Returns:**
-
-Identifier for the timer that can be used to destroy it.
-
-.. _group___sys_window_itf_1gaa2fc98c8609b731d99da73554f362153:
-
-RTS_RESULT SysWindowDestroyTimer (RTS_HANDLE hWindow, RTS_HANDLE hTimer)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Creates a timer that periodically calls a function.
-
-**Parameters**
-
-+---------+--------+-----------------------+
-| [in]    | hTimer | The timer to destroy. |
-+---------+--------+-----------------------+
-
-**Returns:**
-
-Error code.
-
-.. _group___sys_window_itf_1gabd8b2d4b675054524047824d8bf64fc6:
-
-RTS_RESULT SysWindowOpenMessageBox (RTS_HANDLE hWindow, char *pszText, char *pszCaption, RTS_UI32 uiType)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Function to open a message box.
-
-**Parameters**
-
-+---------+------------+----------------------------------------------+
-| [in]    | hWindow    | Handle to the window                         |
-+---------+------------+----------------------------------------------+
-| [in]    | pszText    | The message to show                          |
-+---------+------------+----------------------------------------------+
-| [in]    | pszCaption | The caption to show                          |
-+---------+------------+----------------------------------------------+
-| [in]    | uiType     | The type of message box. See MB_TYPE defines |
-+---------+------------+----------------------------------------------+
-
-**Returns:**
-
-see MB_RESULT defines
-
-.. _group___sys_window_itf_1gaa18975023b51d7de146080c69162f20c:
-
-RTS_RESULT SysWindowOpenMessageBoxW (RTS_HANDLE hWindow, RTS_WCHAR *pwsText, RTS_WCHAR *pwsCaption, RTS_UI32 uiType)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Function to open a message box.
-
-**Parameters**
-
-+---------+------------+----------------------------------------------+
-| [in]    | hWindow    | Handle to the window                         |
-+---------+------------+----------------------------------------------+
-| [in]    | pwsText    | The message to show                          |
-+---------+------------+----------------------------------------------+
-| [in]    | pwsCaption | The caption to show                          |
-+---------+------------+----------------------------------------------+
-| [in]    | uiType     | The type of message box. See MB_TYPE defines |
-+---------+------------+----------------------------------------------+
-
-**Returns:**
-
-see MB_RESULT defines
 
 .. last line of group.rst template
 .. last line of composition.rst template

@@ -3,13 +3,13 @@
  *  <description> 
  *  </description>
  *  <copyright>
- *  (c) 2008-2018 3S-Smart Software Solutions
+ *  (c) 2008-2016 3S-Smart Software Solutions
  *  </copyright>
  */
 SET_COMPONENT_NAME(`CmpSocketCanDrv')
 COMPONENT_SOURCES(`CmpSocketCanDrv.c', `SocketCanDrv.c')
 
-COMPONENT_VERSION(`0x03050D00')
+COMPONENT_VERSION(`0x03050A00')
 COMPONENT_VENDORID(`RTS_VENDORID_3S')
 
 CATEGORY(`Application.IO.IoDriver.CAN.Socket')

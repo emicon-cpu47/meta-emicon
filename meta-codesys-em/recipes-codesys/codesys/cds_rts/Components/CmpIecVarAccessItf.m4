@@ -39,9 +39,7 @@
  *
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpIecVarAccess')
@@ -175,11 +173,6 @@ typedef struct EVTPARAM_CmpIecVarAccess_WriteVar_
  */
 #define EVT_CmpIecVarAccess_WriteVariableDone					MAKE_EVENTID(EVTCLASS_INFO, 2)
 
-/**
- * <category>Static defines</category>
- * <description>Objects used by the OPC UA server to check basic access rights.</description>
- */
-#define USERDB_OBJECT_SYMBOLSET		        "__SymbolSets"
 
 /**
  * <category>Category online services</category>
@@ -196,8 +189,6 @@ typedef struct EVTPARAM_CmpIecVarAccess_WriteVar_
 #define SRV_IECVARACC_BROWSE_GET_TYPE_DESCS	0x09
 #define SRV_IECVARACC_GET_ADDRESS_INFO		0x0A
 #define SRV_IECVARACC_REMOVE_VARS_FROM_LIST	0x0B
-#define SRV_IECVARACC_GET_SYMBOLSETS        0x0C
-#define SRV_IECVARACC_CONFIGURE_SYMBOLSET   0x0D
 
 
 /**
@@ -227,7 +218,6 @@ typedef struct EVTPARAM_CmpIecVarAccess_WriteVar_
 #define TAG_IECVARACC_VAR_CLIENTHANDLE		0x23
 #define TAG_IECVARACC_NAMELIST_OPT			0x24
 #define TAG_IECVARACC_FIRST_VAR_HANDLE		0x25
-#define TAG_IECVARACC_COMPLETE_VAR_DESC		0x26
 
 #define TAG_IECVARACC_BROWSE_BRANCH_NODE	0x30
 #define TAG_IECVARACC_BROWSE_LEAF_NODE		0x31
@@ -251,59 +241,6 @@ typedef struct EVTPARAM_CmpIecVarAccess_WriteVar_
 #define TAG_IECVARACC_VAR_FLAGS				0x44
 #define TAG_IECVARACC_VAR_PIECE_OFFSET		0x45
 #define TAG_IECVARACC_VAR_PIECE_SIZE		0x46
-
-#define TAG_IECVARACC_SYMBOLSET             0x81
-#define TAG_IECVARACC_SYMBOLSET_NAME        0x50
-#define TAG_IECVARACC_SYMBOLSET_APPLICATION 0x51
-#define TAG_IECVARACC_SYBMOLSET_GROUP       0x52
-#define TAG_IECVARACC_SYMBOLSET_EXTEND_CONFIG 0x53
-#define TAG_IECVARACC_SYMBOLSET_RESULT      TAG_ERROR
-
-/**
- * <category>Online services</category>
- * <Description>
- *	Get all SymbolsSets available within the PLC. If the SymbolsSets can't be transmitted within one online service ERR_ENTRIES_REMAINING will be returned as a result.
- *  To get the next bunch of entries setup the TAG_SYMBOLSET within the request to the last received symbol set.
- * </Description>
- * <service name="SRV_IECVARACC_GET_SYMBOLSETS">
- *	<Request>
- *		<tag name="TAG_IECVARACC_SYMBOLSET" optional="required">
- *		    <tag name="TAG_IECVARACC_SYMBOLSET_NAME" required="optional">[String]: Name of the last symbols set.</tag>
- *		    <tag name="TAG_IECVARACC_SYMBOLSET_APPLICATION" required="optional">[String]: Application name of the last symbol set.</tag>
- *		    <tag name="TAG_IECVARACC_SYBMOLSET_GROUP" required="optional">[String]: The last group that has been uploaded. If empty start with the first group.</tag>
- *      </tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_IECVARACC_SYMBOLSET" optional="required"> This tag descripts a symbol set. This tag may appear multiple times in this service.
- *		    <tag name="TAG_IECVARACC_SYMBOLSET_NAME" required="required">[String]: Name of the symbols set.</tag>
- *		    <tag name="TAG_IECVARACC_SYMBOLSET_APPLICATION" required="required">[String]: Name of the application where the symbol set was defined.</tag>
- *		    <tag name="TAG_IECVARACC_SYBMOLSET_GROUP" required="optional">[String]: Group(s) that have access to this symbol set. This tag may appear multiple times</tag>
- *      </tag>
- *		<tag name="TAG_IECVARACC_SYMBOLSET_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *	</Response>
- * </service>
- */
- 
- /**
- * <category>Online services</category>
- * <Description>
- *	Configure a symbols sets. This means the groups that have access to this symbols set will be configured. By now only one symbols set can be configured within this online service.
- *  If more symbol sets are transmitted only the first one will be handled. The others are ignored silently.
- * </Description>
- * <service name="SRV_IECVARACC_CONFIGURE_SYMBOLSET">
- *	<Request>
- *		<tag name="TAG_IECVARACC_SYMBOLSET" optional="required">
- *		    <tag name="TAG_IECVARACC_SYMBOLSET_NAME" required="optional">[String]: Name of the last symbols set.</tag>
- *		    <tag name="TAG_IECVARACC_SYMBOLSET_APPLICATION" required="optional">[String]: Application name of the last symbol set.</tag>
- *		    <tag name="TAG_IECVARACC_SYMBOLSET_EXTEND_CONFIG" required="optional">[BOOL]: Switch to select if the configuration of thie symbols set should be extended. If false the group assignment will be cleard before adding the groups.</tag>
- *		    <tag name="TAG_IECVARACC_SYBMOLSET_GROUP" required="optional">[String]: Group(s) that have access to this symbol set. This tag may appear multiple times</tag>
- *      </tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_IECVARACC_SYMBOLSET_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *	</Response>
- * </service>
- */
 
 /**
  * <category>Client options</category>
@@ -329,7 +266,6 @@ typedef struct EVTPARAM_CmpIecVarAccess_WriteVar_
  *	<element name="VLF_CONSISTENCY_SUPPORTED">PLC supports the requested consistency (VLF_CONSISTENT_BACKGROUND_READ, VLF_CONSISTENT_SYNCHRONIZED_READ or VLF_CONSISTENT_SYNCHRONIZED_WRITE)</element>
  *	<element name="VLF_EXECUTE_CONSISTENT_READ">Flag to mark the first read service of a variable list to read in all values consistent in the cache</element>
  *	<element name="VLF_EXECUTE_CONSISTENT_WRITE">Flag to mark the last write service of a variable list to write out all values consistent from the cache into the IEC variables</element>
- *	<element name="VLF_RETURN_VARINFO">Return complete VarInfo to client, to let the client retrieve the variable the next time by varinfo instead of name</element>
  *	<element name="VLF_TIMESTAMP_UTC">Timestamp in UTC (Universal Time Coordinated), at which the values are read</element>
  *	<element name="VLF_TIMESTAMP_MS">Timestamp in millisecond, at which the values are read</element>
  *	<element name="VLF_TIMESTAMP_US">Timestamp in microseconds, at which the values are read</element>
@@ -348,7 +284,6 @@ typedef struct EVTPARAM_CmpIecVarAccess_WriteVar_
 #define VLF_CONSISTENCY_SUPPORTED			0x00000200
 #define VLF_EXECUTE_CONSISTENT_READ			0x00000400
 #define VLF_EXECUTE_CONSISTENT_WRITE		0x00000800
-#define VLF_RETURN_VARINFO					0x00001000
 #define VLF_TIMESTAMP_UTC					0x00010000
 #define VLF_TIMESTAMP_TIMEDATE				0x00020000
 #define VLF_TIMESTAMP_MS					0x00040000
@@ -512,9 +447,6 @@ typedef enum _POUClass
  *	<element name="LTNF_VAR_INPUT">input variable</element>
  *	<element name="LTNF_VAR_OUTPUT">output variable</element>
  *	<element name="LTNF_VAR_IN_OUT">in_out variable</element>
- *	<element name="LTNF_VAR_EXEC">Executable member (representing __Main(), method, action etc...)</element>
- *	<element name="LTNF_VAR_PROP">Property with monitoring-type "variable"</element>
- *	<element name="LTNF_CALL_PROP">Property with monitoring-type "call"</element>
  *	<element name="LTNF_INHERITED_MEMBER">The member is inherited from a base type.</element>
  */
 #define LTNF_NONE				0x00000000
@@ -522,9 +454,6 @@ typedef enum _POUClass
 #define LTNF_VAR_INPUT			0x00000002
 #define LTNF_VAR_OUTPUT			0x00000004
 #define LTNF_VAR_IN_OUT			0x00000008
-#define LTNF_VAR_EXEC           0x00000010
-#define LTNF_VAR_PROP           0x00000020
-#define LTNF_CALL_PROP          0x00000040
 #define LTNF_INHERITED_MEMBER   0x00010000
 
 
@@ -552,7 +481,7 @@ typedef struct tagiecvaraccbrowsedown2_struct
 	IBaseTreeNode *IecVarAccBrowseDown2;	/* VAR_OUTPUT */	
 } iecvaraccbrowsedown2_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccbrowsedown2',`(iecvaraccbrowsedown2_struct *p)',1,0,0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccbrowsedown2',`(iecvaraccbrowsedown2_struct *p)',1,0,0x03050A00)
 
 /**
  * <description>iecvaraccbrowsegetnext2</description>
@@ -566,7 +495,7 @@ typedef struct tagiecvaraccbrowsegetnext2_struct
 	IBaseTreeNode *IecVarAccBrowseGetNext2;	/* VAR_OUTPUT */	
 } iecvaraccbrowsegetnext2_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccbrowsegetnext2',`(iecvaraccbrowsegetnext2_struct *p)',1,0,0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccbrowsegetnext2',`(iecvaraccbrowsegetnext2_struct *p)',1,0,0x03050A00)
 
 /**
  * <description>iecvaraccbrowserecursive</description>
@@ -581,7 +510,7 @@ typedef struct tagiecvaraccbrowserecursive_struct
 	RTS_IEC_RESULT IecVarAccBrowseRecursive;	/* VAR_OUTPUT */	
 } iecvaraccbrowserecursive_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccbrowserecursive',`(iecvaraccbrowserecursive_struct *p)',1,0,0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccbrowserecursive',`(iecvaraccbrowserecursive_struct *p)',1,0,0x03050A00)
 
 /**
  * <description>iecvaraccbrowseup2</description>
@@ -595,7 +524,7 @@ typedef struct tagiecvaraccbrowseup2_struct
 	IBaseTreeNode *IecVarAccBrowseUp2;	/* VAR_OUTPUT */	
 } iecvaraccbrowseup2_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccbrowseup2',`(iecvaraccbrowseup2_struct *p)',1,0,0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccbrowseup2',`(iecvaraccbrowseup2_struct *p)',1,0,0x03050A00)
 
 /**
  * <description>iecvaraccexitvarinfo</description>
@@ -606,7 +535,7 @@ typedef struct tagiecvaraccexitvarinfo_struct
 	RTS_IEC_RESULT IecVarAccExitVarInfo;	/* VAR_OUTPUT */	
 } iecvaraccexitvarinfo_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccexitvarinfo',`(iecvaraccexitvarinfo_struct *p)',1,0,0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccexitvarinfo',`(iecvaraccexitvarinfo_struct *p)',1,0,0x03050A00)
 
 /**
  * <description>iecvaraccgetfirstinterface</description>
@@ -617,7 +546,7 @@ typedef struct tagiecvaraccgetfirstinterface_struct
 	IIecVarAccess3 *IecVarAccGetFirstInterface;	/* VAR_OUTPUT */	
 } iecvaraccgetfirstinterface_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccgetfirstinterface',`(iecvaraccgetfirstinterface_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xDAF18C6C),0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccgetfirstinterface',`(iecvaraccgetfirstinterface_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xDAF18C6C),0x03050A00)
 
 /**
  * <description>iecvaraccgetfirstinterface2</description>
@@ -628,7 +557,7 @@ typedef struct tagiecvaraccgetfirstinterface2_struct
 	IBase *IecVarAccGetFirstInterface2;	/* VAR_OUTPUT */	
 } iecvaraccgetfirstinterface2_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccgetfirstinterface2',`(iecvaraccgetfirstinterface2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x35A559A4),0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccgetfirstinterface2',`(iecvaraccgetfirstinterface2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x35A559A4),0x03050A00)
 
 /**
  * <description>iecvaraccgetnextinterface</description>
@@ -640,7 +569,7 @@ typedef struct tagiecvaraccgetnextinterface_struct
 	IIecVarAccess3 *IecVarAccGetNextInterface;	/* VAR_OUTPUT */	
 } iecvaraccgetnextinterface_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccgetnextinterface',`(iecvaraccgetnextinterface_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x7143BBE4),0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccgetnextinterface',`(iecvaraccgetnextinterface_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x7143BBE4),0x03050A00)
 
 /**
  * <description>iecvaraccgetnextinterface2</description>
@@ -652,7 +581,7 @@ typedef struct tagiecvaraccgetnextinterface2_struct
 	IBase *IecVarAccGetNextInterface2;	/* VAR_OUTPUT */	
 } iecvaraccgetnextinterface2_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccgetnextinterface2',`(iecvaraccgetnextinterface2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xDCA77F90),0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccgetnextinterface2',`(iecvaraccgetnextinterface2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xDCA77F90),0x03050A00)
 
 /**
  * <description>iecvaraccgetnode4</description>
@@ -666,7 +595,7 @@ typedef struct tagiecvaraccgetnode4_struct
 	IBaseTreeNode *IecVarAccGetNode4;	/* VAR_OUTPUT */	
 } iecvaraccgetnode4_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccgetnode4',`(iecvaraccgetnode4_struct *p)',1,0,0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccgetnode4',`(iecvaraccgetnode4_struct *p)',1,0,0x03050A00)
 
 /**
  * <description>iecvaraccgetnodefullpath4</description>
@@ -682,7 +611,7 @@ typedef struct tagiecvaraccgetnodefullpath4_struct
 	RTS_IEC_DINT IecVarAccGetNodeFullPath4;	/* VAR_OUTPUT */	
 } iecvaraccgetnodefullpath4_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccgetnodefullpath4',`(iecvaraccgetnodefullpath4_struct *p)',1,0,0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccgetnodefullpath4',`(iecvaraccgetnodefullpath4_struct *p)',1,0,0x03050A00)
 
 /**
  * <description>iecvaraccgetnodename4</description>
@@ -697,49 +626,19 @@ typedef struct tagiecvaraccgetnodename4_struct
 	RTS_IEC_RESULT IecVarAccGetNodeName4;	/* VAR_OUTPUT */	
 } iecvaraccgetnodename4_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccgetnodename4',`(iecvaraccgetnodename4_struct *p)',1,0,0x03050D00)
-
-/**
- * <description>iecvaraccgetsymbolsetmask</description>
- */
-typedef struct tagiecvaraccgetsymbolsetmask_struct
-{
-	RTS_IEC_HANDLE hUser;				/* VAR_INPUT */	
-	RTS_IEC_HANDLE hInterface;			/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RTS_IEC_DWORD IecVarAccGetSymbolSetMask;	/* VAR_OUTPUT */	
-} iecvaraccgetsymbolsetmask_struct;
-
-DEF_API(`void',`CDECL',`iecvaraccgetsymbolsetmask',`(iecvaraccgetsymbolsetmask_struct *p)',1,0xCD15F68E,0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccgetnodename4',`(iecvaraccgetnodename4_struct *p)',1,0,0x03050A00)
 
 /**
  * <description>iecvaraccinitvarinfo</description>
  */
 typedef struct tagiecvaraccinitvarinfo_struct
 {
-	VariableInformationStruct3 *pVariableInformation;	/* VAR_INPUT */	/* Pointer to the variable information struct. After using this method for initialization,
- the struct also needs to be freed with IecVarAccExitVarInfo() to prevent memory leaks in
- the runtime data structures. */
+	VariableInformationStruct3 *pVariableInformation;	/* VAR_INPUT */	
 	RTS_IEC_UINT nSizeOfVarInfo;		/* VAR_INPUT */	
 	RTS_IEC_RESULT IecVarAccInitVarInfo;	/* VAR_OUTPUT */	
 } iecvaraccinitvarinfo_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccinitvarinfo',`(iecvaraccinitvarinfo_struct *p)',1,0,0x03050D00)
-
-/**
- * <description>iecvaraccinitvarinfo2</description>
- */
-typedef struct tagiecvaraccinitvarinfo2_struct
-{
-	VariableInformationStruct3 *pVariableInformation;	/* VAR_INPUT */	/* Pointer to the variable information struct. After using this method for initialization,
- the struct also needs to be freed with IecVarAccExitVarInfo() to prevent memory leaks in
- the runtime data structures. */
-	RTS_IEC_UINT nSizeOfVarInfo;		/* VAR_INPUT */	
-	RTS_IEC_HANDLE hUser;				/* VAR_INPUT */	
-	RTS_IEC_RESULT IecVarAccInitVarInfo2;	/* VAR_OUTPUT */	
-} iecvaraccinitvarinfo2_struct;
-
-DEF_API(`void',`CDECL',`iecvaraccinitvarinfo2',`(iecvaraccinitvarinfo2_struct *p)',1,RTSITF_GET_SIGNATURE(0x3533B10B, 0x07C98E8C),0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccinitvarinfo',`(iecvaraccinitvarinfo_struct *p)',1,0,0x03050A00)
 
 /**
  * <description>iecvaraccinvalidatenode</description>
@@ -750,33 +649,14 @@ typedef struct tagiecvaraccinvalidatenode_struct
 	RTS_IEC_RESULT IecVarAccInvalidateNode;	/* VAR_OUTPUT */	
 } iecvaraccinvalidatenode_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccinvalidatenode',`(iecvaraccinvalidatenode_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x0C905F23),0x03050D00)
-
-/**
- * Signature deactivated because of Interface type in RtsBrowseInfo
- */
-typedef struct tagiecvaraccnodeinfoaddbrowseinfo_struct
-{
-	VariableInformationStruct3 *pVariableInformation;	/* VAR_INPUT */	/* Pointer to the variable information.
- Attention: This needs to be initialized with IecVarAccInitVarInfo() or the function
- will return an error code. It also needs to be freed with IecVarAccExitVarInfo() to
- prevent memory leaks. */
-	RtsBrowseInfo *pBrowseInfoData;		/* VAR_INPUT */	/* If this pointer is non-null, the runtime will copy the data into the new buffer.
- If this pointer is null, the new buffer memory will be cleared to zero. */
-	RTS_IEC_RESULT IecVarAccNodeInfoAddBrowseInfo;	/* VAR_OUTPUT */	
-} iecvaraccnodeinfoaddbrowseinfo_struct;
-
-DEF_API(`void',`CDECL',`iecvaraccnodeinfoaddbrowseinfo',`(iecvaraccnodeinfoaddbrowseinfo_struct *p)',1,0,0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccinvalidatenode',`(iecvaraccinvalidatenode_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x0C905F23),0x03050A00)
 
 /**
  * <description>iecvaraccnodeinfoaddreference</description>
  */
 typedef struct tagiecvaraccnodeinfoaddreference_struct
 {
-	VariableInformationStruct3 *pVariableInformation;	/* VAR_INPUT */	/* Pointer to the variable information.
- Attention: This needs to be initialized with IecVarAccInitVarInfo() or the function
- will return an error code. It also needs to be freed with IecVarAccExitVarInfo() to
- prevent memory leaks. */
+	VariableInformationStruct3 *pVariableInformation;	/* VAR_INPUT */	/* Pointer to the variable information. */
 	RTS_IEC_BYTE *pReferenceInfoData;	/* VAR_INPUT */	/* If this pointer is non-null, the runtime will copy the data into the new buffer.
  If this pointer is null, the new buffer memory will be cleared to zero. */
 	RTS_IEC_XWORD nInfoSize;			/* VAR_INPUT */	/* The size of the memory to allocate. */
@@ -786,20 +666,7 @@ typedef struct tagiecvaraccnodeinfoaddreference_struct
 	RTS_IEC_RESULT IecVarAccNodeInfoAddReference;	/* VAR_OUTPUT */	
 } iecvaraccnodeinfoaddreference_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccnodeinfoaddreference',`(iecvaraccnodeinfoaddreference_struct *p)',1,RTSITF_GET_SIGNATURE(0xB66D74DC, 0x54D1E739),0x03050D00)
-
-/**
- * Signature deactivated because of Interface type in RtsBrowseInfo
- */
-typedef struct tagiecvaraccnodeinfogetbrowseinfo_struct
-{
-	VariableInformationStruct3 *pVariableInformation;	/* VAR_INPUT */	
-	RtsBrowseInfo *pLast;				/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RtsBrowseInfo *IecVarAccNodeInfoGetBrowseInfo;	/* VAR_OUTPUT */	
-} iecvaraccnodeinfogetbrowseinfo_struct;
-
-DEF_API(`void',`CDECL',`iecvaraccnodeinfogetbrowseinfo',`(iecvaraccnodeinfogetbrowseinfo_struct *p)',1,0,0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccnodeinfoaddreference',`(iecvaraccnodeinfoaddreference_struct *p)',1,RTSITF_GET_SIGNATURE(0xB66D74DC, 0x54D1E739),0x03050A00)
 
 /**
  * <description>iecvaraccnodeinfogetreference</description>
@@ -811,18 +678,7 @@ typedef struct tagiecvaraccnodeinfogetreference_struct
 	RTS_IEC_BYTE *IecVarAccNodeInfoGetReference;	/* VAR_OUTPUT */	
 } iecvaraccnodeinfogetreference_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccnodeinfogetreference',`(iecvaraccnodeinfogetreference_struct *p)',1,RTSITF_GET_SIGNATURE(0x4ABE0CEB, 0x84253FCA),0x03050D00)
-
-/**
- * <description>iecvaraccnodeinforemovebrowseinfo</description>
- */
-typedef struct tagiecvaraccnodeinforemovebrowseinfo_struct
-{
-	VariableInformationStruct3 *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_RESULT IecVarAccNodeInfoRemoveBrowseInfo;	/* VAR_OUTPUT */	
-} iecvaraccnodeinforemovebrowseinfo_struct;
-
-DEF_API(`void',`CDECL',`iecvaraccnodeinforemovebrowseinfo',`(iecvaraccnodeinforemovebrowseinfo_struct *p)',1,RTSITF_GET_SIGNATURE(0x43FC9F64, 0xC2D7CEF9),0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccnodeinfogetreference',`(iecvaraccnodeinfogetreference_struct *p)',1,RTSITF_GET_SIGNATURE(0x4ABE0CEB, 0x84253FCA),0x03050A00)
 
 /**
  * <description>iecvaraccnodeinforemovereference</description>
@@ -833,7 +689,7 @@ typedef struct tagiecvaraccnodeinforemovereference_struct
 	RTS_IEC_RESULT IecVarAccNodeInfoRemoveReference;	/* VAR_OUTPUT */	
 } iecvaraccnodeinforemovereference_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccnodeinforemovereference',`(iecvaraccnodeinforemovereference_struct *p)',1,RTSITF_GET_SIGNATURE(0xAAD90063, 0x725A147D),0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccnodeinforemovereference',`(iecvaraccnodeinforemovereference_struct *p)',1,RTSITF_GET_SIGNATURE(0xAAD90063, 0x725A147D),0x03050A00)
 
 /**
  * <description>iecvaraccregisterinstance</description>
@@ -845,7 +701,7 @@ typedef struct tagiecvaraccregisterinstance_struct
 	RTS_IEC_HANDLE IecVarAccRegisterInstance;	/* VAR_OUTPUT */	
 } iecvaraccregisterinstance_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccregisterinstance',`(iecvaraccregisterinstance_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x2838418D),0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccregisterinstance',`(iecvaraccregisterinstance_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x2838418D),0x03050A00)
 
 /**
  * <description>iecvaraccregisterinstance2</description>
@@ -857,7 +713,7 @@ typedef struct tagiecvaraccregisterinstance2_struct
 	RTS_IEC_HANDLE IecVarAccRegisterInstance2;	/* VAR_OUTPUT */	
 } iecvaraccregisterinstance2_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccregisterinstance2',`(iecvaraccregisterinstance2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x12CBCF4F),0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccregisterinstance2',`(iecvaraccregisterinstance2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x12CBCF4F),0x03050A00)
 
 /**
  * <description>iecvaraccregisterinstance3</description>
@@ -869,7 +725,7 @@ typedef struct tagiecvaraccregisterinstance3_struct
 	RTS_IEC_HANDLE IecVarAccRegisterInstance3;	/* VAR_OUTPUT */	
 } iecvaraccregisterinstance3_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccregisterinstance3',`(iecvaraccregisterinstance3_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xC1E3F2D6),0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccregisterinstance3',`(iecvaraccregisterinstance3_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xC1E3F2D6),0x03050A00)
 
 /**
  * <description>iecvaraccregisterinstancebase</description>
@@ -881,7 +737,7 @@ typedef struct tagiecvaraccregisterinstancebase_struct
 	RTS_IEC_HANDLE IecVarAccRegisterInstanceBase;	/* VAR_OUTPUT */	
 } iecvaraccregisterinstancebase_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccregisterinstancebase',`(iecvaraccregisterinstancebase_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCD8685B0),0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccregisterinstancebase',`(iecvaraccregisterinstancebase_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCD8685B0),0x03050A00)
 
 /**
  * <description>iecvaraccsetsymbolconfigcrc</description>
@@ -893,7 +749,7 @@ typedef struct tagiecvaraccsetsymbolconfigcrc_struct
 	RTS_IEC_RESULT IecVarAccSetSymbolconfigCrc;	/* VAR_OUTPUT */	
 } iecvaraccsetsymbolconfigcrc_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccsetsymbolconfigcrc',`(iecvaraccsetsymbolconfigcrc_struct *p)',1,0xFDCEC8DA,0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccsetsymbolconfigcrc',`(iecvaraccsetsymbolconfigcrc_struct *p)',1,0xFDCEC8DA,0x03050A00)
 
 /**
  * <description>iecvaraccunregisterinstance</description>
@@ -904,20 +760,7 @@ typedef struct tagiecvaraccunregisterinstance_struct
 	RTS_IEC_RESULT IecVarAccUnregisterInstance;	/* VAR_OUTPUT */	
 } iecvaraccunregisterinstance_struct;
 
-DEF_API(`void',`CDECL',`iecvaraccunregisterinstance',`(iecvaraccunregisterinstance_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xEDB8227D),0x03050D00)
-
-/**
- * <description>iecvaraccupdatesymbolsets</description>
- */
-typedef struct tagiecvaraccupdatesymbolsets_struct
-{
-	RTS_IEC_HANDLE hInterface;			/* VAR_INPUT */	
-	IecVarAccSymbolSetDescription *pSymbolsSets;	/* VAR_INPUT */	
-	RTS_IEC_UDINT numOfSymbolsSets;		/* VAR_INPUT */	
-	RTS_IEC_RESULT IecVarAccUpdateSymbolSets;	/* VAR_OUTPUT */	
-} iecvaraccupdatesymbolsets_struct;
-
-DEF_API(`void',`CDECL',`iecvaraccupdatesymbolsets',`(iecvaraccupdatesymbolsets_struct *p)',1,0xF81481F0,0x03050D00)
+DEF_API(`void',`CDECL',`iecvaraccunregisterinstance',`(iecvaraccunregisterinstance_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xEDB8227D),0x03050A00)
 
 #ifdef __cplusplus
 }
@@ -963,17 +806,6 @@ typedef void (CDECL *PF_IECVARACC_BROWSECALLBACK)(IecVarAccBrowseCallback *pBrow
  * <result>Error code</result>
  */
 DEF_ITF_API(`RTS_RESULT',`CDECL',`IecVarAccInitVarInfo',`(VariableInformationStruct2 *pVarInfo, RTS_UI16 nSizeOfVarInfo)')
-
-/**
- * <description>Initialize the VarInfo.
- *	NOTE:
- *	You can cast any VariableInformationStruct to VariableInformationStruct2, but the nSizeOfVarInfo must match the size of the given structure.</description>
- * <param name="pVarInfo" type="IN">Pointer to varinfo to intialize</param>
- * <param name="nSizeOfVarInfo" type="IN">Size of the varinfo</param>
- * <param name="hUser" type="IN">Handle to user used by this session. Will be used to check access rights.</param>
- * <result>Error code</result>
- */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`IecVarAccInitVarInfo2',`(VariableInformationStruct2 *pVarInfo, RTS_UI16 nSizeOfVarInfo, RTS_HANDLE hUser)')
 
 /**
  * <description>Release the VarInfo.
@@ -1212,15 +1044,6 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`IecVarAccBrowseRecursive',`(RTS_HANDLE hInterf
 DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseGetRoot',`(RTS_HANDLE hInterface, RTS_RESULT *pResult)')
 
 /**
- * <description>Browse routine to get the symbolic root branch node (e.g. "Application1")</description>
- * <param name="hInterface" type="IN">Handle to the symbolic interface</param>
- * <param name="hUser" type="IN">Handle to current user.</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Handle to the root node (called hNode)</result>
- */
-DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseGetRoot2',`(RTS_HANDLE hInterface, RTS_HANDLE hUser, RTS_RESULT *pResult)')
-
-/**
  * <description>Browse routine to browse down to the child node (e.g. "Application1.GVL")</description>
  * <param name="hInterface" type="IN">Handle to the symbolic interface</param>
  * <param name="hNode" type="IN">Handle to the parent node</param>
@@ -1248,27 +1071,6 @@ DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseDown',`(RTS_HANDLE hInterface, 
 DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseDown2',`(RTS_HANDLE hInterface, RTS_HANDLE hNode, VariableInformationStruct3 *pVariableInformation, RTS_RESULT *pResult)')
 
 /**
- * <description>Browse routine to browse down to the child node (e.g. "Application1.GVL"). This function encapsulates the BrowseDown and BrowseDown2 functions.
- * Pay attention to use IecVarAccInitVarInfo2 to initialize the VariableInformationStruct. This allows proper checking of access rights.</description>
- * <param name="hInterface" type="IN">Handle to the symbolic interface</param>
- * <param name="hNode" type="IN">Handle to the parent node</param>
- * <param name="pVariableInformation" type="INOUT">Pointer to the variable information3 to get complete browseinfo!
- *
- *	NOTE:
- *	Please initialize this structure with IecVarAccInitVarInfo() the first time calling this function and deinitialize the this structure with IecVarAccExitVarInfo() 
- *	if you finish browsing!
- *
- *	NOTE:
- *	You can use this as VariableInformation2 for any other interface function like IecVarAccGetValue3() etc.! This is compatible. The only thing is you have to do is to cast explicit:
- *	(VariableInformation2 *)pVariableInformation
- *
- * </param>
- * <param name="bBrowseComplexTypes" type="IN">Parameter to define weather the implementation should behave like BrowseDown or BrowseDown2.</param>
- * <result>Handle to the child node (called hNode)</result>
- */
-DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseDown3',`(RTS_HANDLE hInterface, RTS_HANDLE hNode, VariableInformationStruct2 *pVariableInformation, RTS_BOOL bBrowseComplexTypes, RTS_RESULT *pResult)')
-
-/**
  * <description>Browse routine to browse up to the parent node</description>
  * <param name="hInterface" type="IN">Handle to the symbolic interface</param>
  * <param name="hNode" type="IN">Handle to the child node</param>
@@ -1292,23 +1094,6 @@ DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseUp',`(RTS_HANDLE hInterface, RT
  * <result>Handle to the parent node (called hNode)</result>
  */
 DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseUp2',`(RTS_HANDLE hInterface, RTS_HANDLE hNode, VariableInformationStruct3 *pVariableInformation, RTS_RESULT *pResult)')
-
-/**
- * <description>Browse routine to browse up to the parent node. Pay attention to use IecVarAccInitVarInfo2 to initialize the VariableInformationStruct. This allows proper checking of access rights.</description>
- * <param name="hInterface" type="IN">Handle to the symbolic interface</param>
- * <param name="hNode" type="IN">Handle to the child node</param>
- * <param name="pVariableInformation" type="INOUT">Pointer to the variable information3 to get complete browseinfo!
- *
- *	NOTE:
- *	You can use this as VariableInformation2 for any other interface function like IecVarAccGetValue3() etc.! This is compatible. The only thing is you have to do is to cast explicit:
- *	(VariableInformation2 *)pVariableInformation
- *
- * </param>
- * <param name="bBrowseComplexTypes" type="IN">Parameter to define weather the implementation should behave like BrowseUp or BrowseUp2.</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Handle to the parent node (called hNode)</result>
- */
-DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseUp3',`(RTS_HANDLE hInterface, RTS_HANDLE hNode, VariableInformationStruct2 *pVariableInformation, RTS_BOOL bBrowseComplexTypes, RTS_RESULT *pResult)')
 
 /**
  * <description>Browse routine to get the next sibling node</description>
@@ -1336,23 +1121,6 @@ DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseGetNext',`(RTS_HANDLE hInterfac
 DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseGetNext2',`(RTS_HANDLE hInterface, RTS_HANDLE hNode, VariableInformationStruct3 *pVariableInformation, RTS_RESULT *pResult)')
 
 /**
- * <description>Browse routine to get the next sibling node. Pay attention to use IecVarAccInitVarInfo2 to initialize the VariableInformationStruct. This allows proper checking of access rights.</description>
- * <param name="hInterface" type="IN">Handle to the symbolic interface</param>
- * <param name="hNode" type="IN">Handle to the predecessor node</param>
- * <param name="pVariableInformation" type="INOUT">Pointer to the variable information3 to get complete browseinfo!
- *
- *	NOTE:
- *	You can use this as VariableInformation2 for any other interface function like IecVarAccGetValue3() etc.! This is compatible. The only thing is you have to do is to cast explicit:
- *	(VariableInformation2 *)pVariableInformation
- *
- * </param>
- * <param name="bBrowseComplexTypes" type="IN">Parameter to define weather the implementation should behave like BrowseUp or BrowseUp2.</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Handle to the next sibling node (called hNode)</result>
- */
-DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseGetNext3',`(RTS_HANDLE hInterface, RTS_HANDLE hNode, VariableInformationStruct2 *pVariableInformation, RTS_BOOL bBrowseComplexTypes, RTS_RESULT *pResult)')
-
-/**
  * <description>Browse routine to get a child node by index. Can be used instead of IecVarAccBrowseDown/IecVarAccBrowseGetNext.</description>
  * <param name="hInterface" type="IN">Handle to the symbolic interface</param>
  * <param name="hNode" type="IN">Handle to the parent node</param>
@@ -1361,23 +1129,6 @@ DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseGetNext3',`(RTS_HANDLE hInterfa
  * <result>Handle to the requested child node (called hNode)</result>
  */
 DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseGetChildByIndex',`(RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_UI32 ulIndex, RTS_RESULT *pResult)')
-
-/**
- * <description>Browse routine to get a child node by index. Can be used instead of IecVarAccBrowseDown/IecVarAccBrowseGetNext.</description>
- * <param name="hInterface" type="IN">Handle to the symbolic interface</param>
- * <param name="hNode" type="IN">Handle to the parent node</param>
- * <param name="ulIndex" type="IN">Index of the requested child note node</param>
- * <param name="pVariableInformation" type="INOUT">Pointer to the variable information3 to get complete browseinfo!
- *
- *	NOTE:
- *	You can use this as VariableInformation2 for any other interface function like IecVarAccGetValue3() etc.! This is compatible. The only thing is you have to do is to cast explicit:
- *	(VariableInformation2 *)pVariableInformation
- *
- * </param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Handle to the requested child node (called hNode)</result>
- */
-DEF_ITF_API(`RTS_HANDLE',`CDECL',`IecVarAccBrowseGetChildByIndex2',`(RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_UI32 ulIndex, VariableInformationStruct2* pVariableInformation, RTS_RESULT *pResult)')
 
 /**
  * <description>Get the leaf node handle of a specified variable</description>
@@ -1528,17 +1279,6 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`IecVarAccGetNodeName4',`(RTS_HANDLE hInterface
  * <result>Access rights</result>
  */
 DEF_ITF_API(`AccessRights',`CDECL',`IecVarAccGetAccessRights',`(RTS_HANDLE hInterface, RTS_HANDLE hNode, RTS_RESULT *pResult)')
-
-/**
- * <description>Get access rights of the specified symbolic node</description>
- * <param name="hInterface" type="IN">Handle to the symbolic interface</param>
- * <param name="hNode" type="IN">Handle to the node</param>
- * <param name="pVariableInformation" type="IN">Pointer to the variable information struct. Use IecVarAccInitVarInfo2 for proper access right checks.</param>
- * <param name="bGetUserRights" type="IN">Flag wather the maximum access rights (FALSE) or the access rights according to the user (TRUE) should be retrieved.</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Access rights</result>
- */
-DEF_ITF_API(`AccessRights',`CDECL',`IecVarAccGetAccessRights2',`(RTS_HANDLE hInterface, RTS_HANDLE hNode, VariableInformationStruct2* pVariableInformation, RTS_BOOL bGetUserRights, RTS_RESULT *pResult)')
 
 /**
  * <description>Get address of the variable value
@@ -2031,46 +1771,6 @@ DEF_ITF_API(`RTS_UI16',`CDECL',`IecVarAccGetNumOfTypeAttributes',`(RTS_HANDLE hI
  * <result>Content of attributes</result>
  */
 DEF_ITF_API(`char*',`CDECL',`IecVarAccGetTypeAttributeByIndex',`(RTS_HANDLE hInterface, RTS_HANDLE hTypeNode, RTS_UI16 wIndex, RTS_RESULT* pResult)')
-
-/**
- * <description>Get the upper and lower bounds of a subrange type.</description>
- * <param name="hInterface" type="IN">Handle to the symbolic interface</param>
- * <param name="hTypeNode" type="IN">Handle to the symbolic type node</param>
- * <param name="pLower" type="OUT">Pointer where to store the minimum accepted value.</param>
- * <param name="pUpper" type="OUT">Pointer where to store the maximum accepted value.</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Attributes of enum values are available.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid parameter (one of the handles is invalid)</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">IecVarAccess interface in IEC code not available</errorcode>
- * <result>Content of attributes</result>
- */
-DEF_ITF_API(`RTS_BOOL',`CDECL',`IecVarAccGetRange',`(RTS_HANDLE hInterface, RTS_HANDLE hTypeNode, RTS_UI64* pLower, RTS_UI64* pUpper, RTS_RESULT* pResult)')
-
-/**
- * <description>Gets the content feature flags.</description>
- * <param name="hInterface" type="IN">Handle to the symbolic interface</param>
- * <param name="pContentFeatureFlags" type="OUT">Pointer to the destination variable. May be 0 to just query whether the flags are set or not.</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">if pContentFeatureFlags is not 0, it will be set to the feature flags.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The code generator did not set the flag value.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">IecVarAccess interface in IEC code not available</errorcode>
- * <result>Content of attributes</result>
- */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`IecVarAccGetContentFeatureFlags',`(RTS_HANDLE hInterface, CONTENTFEATUREFLAGS* pContentFeatureFlags)')
-
-/**
- * <description>Call a callable node. This can be a Program, FB, method or function.</description>
- * <param name="hInterface" type="IN">Handle to the symbolic interface</param>
- * <param name="pVariableInformation" type="IN">Pointer to the variable information that is retrieved by IecVarAccGetNode3 or IecVarAccGetNode4</param>
- * <param name="pArgumentBuffer" type="IN">Pointer to the parameter structuer of the object to call.</param>
- * <param name="nArgumentBufferSize" type="IN">Size of the parameter structure</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Call was successful.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">One of the parameters was invalid.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">Symbolconfiguration not initialized</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">Internal error.</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">IecVarAccess interface in IEC code not available</errorcode>
- */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`IecVarAccExecuteCall',`(RTS_HANDLE hInterface, RTS_HANDLE hNode, VariableInformationStruct2 *pVariableInformation, RTS_UI8 *pArgumentBuffer, RTS_SIZE nArgumentBufferSize)')
 
 #ifdef __cplusplus
 }

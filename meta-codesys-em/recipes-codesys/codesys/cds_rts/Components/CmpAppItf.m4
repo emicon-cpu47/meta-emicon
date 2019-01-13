@@ -26,9 +26,7 @@
  *	more memory areas in which the code and data will be administrated.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpApp')
@@ -36,7 +34,6 @@ SET_INTERFACE_NAME(`CmpApp')
 REF_ITF(`SysTaskItf.m4')
 REF_ITF(`SysMemItf.m4')
 REF_ITF(`SysFileItf.m4')
-REF_ITF(`SysCpuHandlingItf.m4')
 REF_ITF(`CmpMemPoolItf.m4')
 REF_ITF(`CmpEventMgrItf.m4')
 REF_ITF(`CmpCommunicationLibItf.m4')
@@ -103,13 +100,6 @@ REF_ITF(`CmpSrvItf.m4')
 	#define APP_NUM_OF_STATIC_ASYNC_SERVICES		8
 #endif
 
-/**
- * <category>Static defines</category>
- * <description>The default compiler version. Programming systems < 3.5.12.0 do not provide the compiler version on download. 
- * In this case the earliest version to expect is 3.0.0.0.
- * </description>
- */
-#define APP_UDINT_COMPILERVERSION_DEFAULT 0x03000000
 
 /**
  * <category>File name definitions</category>
@@ -383,19 +373,12 @@ REF_ITF(`CmpSrvItf.m4')
  * <element name="CCO_INTERRUPT_LOCK" type="IN">OnlineChange code is synchronized via interrupt locks (most invasive mechanism)</element>
  * <element name="CCO_TASK_GAP_SEMAPHORE" type="IN">OnlineChange code is synchronized via a semaphore and is executed in the IEC task in the context of the scheduler tick</element>
  */
-#define CCO_SEMAPHORE				1
-#define CCO_TASK_GAP				2
-#define CCO_INTERRUPT_LOCK			3
-#define CCO_TASK_GAP_SEMAPHORE		4
-
-#ifndef SYSCPUMULTICORE_NOTIMPLEMENTED
-	/* On multi core targets, we have to use the taskgap semaphore to synchronize the onlinechange code against the IEC tasks! This is the only safe way! */
-	#undef CCO_DEFAULT
-	#define CCO_DEFAULT				CCO_TASK_GAP_SEMAPHORE
-#else
-	#ifndef CCO_DEFAULT
-		#define CCO_DEFAULT			CCO_SEMAPHORE
-	#endif
+#define CCO_SEMAPHORE			1
+#define CCO_TASK_GAP			2
+#define CCO_INTERRUPT_LOCK		3
+#define CCO_TASK_GAP_SEMAPHORE	4
+#ifndef CCO_DEFAULT
+	#define CCO_DEFAULT		CCO_SEMAPHORE
 #endif
 
 
@@ -412,7 +395,6 @@ REF_ITF(`CmpSrvItf.m4')
 #define OP_APP_RESET				7
 #define OP_APP_START				8
 #define OP_APP_DELETE_APPLICATION	9
-#define OP_APP_RESET_ORIGIN			10
 
 
 /**
@@ -945,10 +927,9 @@ typedef struct
 	RTS_UI16 usType;
 	RTS_SIZE ulSize;
 	RTS_UI8 *pArea;
-	RTS_RESULT result;
 } EVTPARAM_CmpAppArea;
 #define EVTPARAMID_CmpAppArea				0x0001
-#define EVTVERSION_CmpAppArea				0x0002
+#define EVTVERSION_CmpAppArea				0x0001
 
 /**
  * <category>Events</category>
@@ -1405,8 +1386,6 @@ typedef struct
 #define OS_COREDUMP_LOADED			UINT32_C(0x00020000)
 #define OS_EXECUTIONPOINTS_ACTIVE	UINT32_C(0x00040000)
 #define OS_COREDUMP_CREATING		UINT32_C(0x00080000)
-#define OS_SINGLE_CYCLE_ACTIVE		UINT32_C(0x00100000)
-#define OS_DISABLE_RESET			UINT32_C(0x00200000)
 
 #define APP_SET_OP_STATE(pApp, OpState)		(((APPLICATION *)pApp)->ulOpState |= OpState)
 #define APP_RESET_OP_STATE(pApp, OpState)	(((APPLICATION *)pApp)->ulOpState &= ~OpState)
@@ -1522,9 +1501,8 @@ typedef struct
  * <category>Static defines</category>
  * <description>Predefined objects in the runtime</description>
  */
-#define USERDB_OBJECT_PLCLOGIC					"Device.PlcLogic"
-#define USERDB_OBJECT_PLCLOGIC_BACKUPRESTORE	"Device.PlcLogic.__Backup&Restore"
-#define USERDB_OBJECT_CMODULE_INTEGRATION		"__C-ModuleIntegration__"
+#define USERDB_OBJECT_PLCLOGIC				"Device.PlcLogic"
+#define USERDB_OBJECT_CMODULE_INTEGRATION	"__C-ModuleIntegration__"
 
 /* <SIL2/> 
  * <description>Typedef for Application info at download, containing GUIDs and Application name </description>
@@ -1907,6 +1885,40 @@ typedef struct
 	RTS_IEC_UINT uiPatch;
 } VERSIONPROPERTY;
 
+/**
+ * <category>Application memory segment</category>
+ * <description>
+ *	Describes a memory segment of an application.
+ * </description>
+ * <element name=" wType " type="IN">Type of the segment. See category "Area Types" in SysMemItf.h.</element>
+ * <element name="wArea" type="IN">Area in whcih the segment is residing</element>
+ * <element name="dwOffset" wType="IN">Offset in the area, in which the segment is residing</element>
+ * <element name="dwSize" wType="IN">Size of the segment in bytes</element>
+ * <element name="dwHighestUsedAddress" wType="IN">Highest used address in the segment (has no significance for input, output, memory)</element>
+ */
+typedef struct _APP_MEMORY_SEGMENT
+{
+	RTS_IEC_WORD wType;
+	RTS_IEC_WORD wArea;
+	RTS_IEC_DWORD dwOffset;
+	RTS_IEC_DWORD dwSize;
+	RTS_IEC_DWORD dwHighestUsedAddress;
+} APP_MEMORY_SEGMENT;
+
+/**
+ * <category>Application memory segment information</category>
+ * <description>
+ *	Describes all memory segments of an application.
+ * </description>
+ * <element name="diSegments" type="IN">Number of segments</element>
+ * <element name="pmsList" type="IN">Pointer to memory segment list</element>
+ */
+typedef struct _APP_MEMORY_SEGMENT_INFO
+{
+	RTS_IEC_DINT diSegments;
+	APP_MEMORY_SEGMENT *pmsList;
+} APP_MEMORY_SEGMENT_INFO;
+
 /* FlowControl Flags */
 #define FCF_DO			0x01
 #define FCF_DOATBREAK	0x02
@@ -1955,8 +1967,6 @@ typedef struct
  *      consistent access by CmpIecVarAccess online services (application accepts possible related jitter).</element>
  *	<element name="AF_SIGNED_APPLICATION" type="IN">The application was signed at download time. Only signed online changes are allowed in this application.</element>
  *	<element name="AF_ENCRYPTED_APPLICATION" type="IN">The application was encrypted at download time. Only encrypted online changes are allowed in this application.</element>
- *	<element name="AF_DEVICE_APPLICATION" type="IN">This is a device application.</element>
- *	<element name="AF_APPLICATION_STOP_PARENT_APPS_ON_EXCEPTION" type="IN">All parent applications shall be stopped in case of an exception.</element>
  */ 
 #define AF_SYSTEM_APPLICATION										UINT32_C(0x00010000)
 #define AF_IOCONFIG_BYTE_ADDRESSING									UINT32_C(0x00020000)
@@ -1965,8 +1975,6 @@ typedef struct
 #define AF_ALLOW_SYMBOLIC_VARIABLE_ACCESS_IN_SYNC_WITH_IEC_TASK		UINT32_C(0x00100000)
 #define AF_SIGNED_APPLICATION                               		UINT32_C(0x00200000)
 #define AF_ENCRYPTED_APPLICATION                               		UINT32_C(0x00400000)
-#define AF_DEVICE_APPLICATION										UINT32_C(0x00800000)
-#define AF_APPLICATION_STOP_PARENT_APPS_ON_EXCEPTION				UINT32_C(0x01000000)
 
 /**
  * <category>Download flags</category>
@@ -2043,8 +2051,6 @@ typedef enum
  *  <element name="pVendorExtension" type="IN">Pointer to store vendor specific informations at an application</element>
  *  <element name="hDynamicModulePool" type="IN">A memory pool containing all names of linked modules from the C-Integration</element>
  *  <element name="ausAreaAllocationType" type="IN">Specifies how an area was allocated. Used to call the correct free method</element>
- *  <element name="pBPContext" type="IN">Low level context information of a breakpoint</element>
- *  <element name="ulCompilerVersion" type="IN">The version of the compiler with which the application was created (set in download for PS versions >= 3.5.12.0, default is 3.0.0.0)</element>
  */
 typedef struct tagAPPLICATION
 {
@@ -2120,12 +2126,6 @@ typedef struct tagAPPLICATION
 	RTS_HANDLE hDynamicModulePool;
 	RTS_UI32 ulLastStateChange;
 	AreaAllocationType ausAreaAllocationType[APPL_NUM_OF_STATIC_AREAS];
-	RTS_HANDLE hTaskSync;
-	RTS_I32 writeLocks;
-	
-	void *pBPContext;
-	RTS_UI32 ulCompilerVersion;
-	RTS_I32 i32CBIecRefCounter;
 	/* ATTENTION: Always append new elements at the end of this structure! */
 } APPLICATION;
 
@@ -2142,7 +2142,7 @@ typedef struct tagAPPLICATION
  *	<element name="ulHeaderTag" type="IN">Header tag = COMPACT_DOWNLOAD_HEADER_TAG</element>
  *	<element name="ulHeaderVersion" type="IN">Header version = COMPACT_DOWNLOAD_HEADER_VERSION</element>
  *	<element name="ulHeaderSize" type="IN">Header size</element>
- *	<element name="ulSizeInArea" type="IN">Header size including all download segments in this code area</element>
+ *	<element name="ulTotalSize" type="IN">Header size including all download segments</element>
  *	<element name="ulDeviceType" type="IN">Device type of the selected device</element>
  *	<element name="ulDeviceId" type="IN">Device ID of the selected device</element>
  *	<element name="ulDeviceVersion" type="IN">Device version of the selected device</element>
@@ -2152,7 +2152,7 @@ typedef struct tagAPPLICATION
  *	<element name="usCodeAreaIndex" type="IN">Code area index</element>
  *	<element name="usCodeAreaFlags" type="IN">Code area flags</element>
  *	<element name="ulOffsetCode" type="IN">Offset in bytes, where the code segment begins</element>
- *	<element name="ulTotalSize" type="IN">Header size including all download segments in all code areas</element>
+ *	<element name="ulSizeCode" type="IN">Size in bytes of the code segment</element>
  *	<element name="ulOffsetApplicationInfo" type="IN">Offset in bytes, where the application info segment begins</element>
  *	<element name="ulSizeApplicationInfo" type="IN">Size in bytes of the application info segment</element>
  *	<element name="ulOffsetAreaTable" type="IN">Offset in bytes, where the area table segment begins</element>
@@ -2179,7 +2179,7 @@ typedef struct _COMPACT_CODE_HEADER
     RTS_UI32 ulHeaderTag;
     RTS_UI32 ulHeaderVersion;
     RTS_UI32 ulHeaderSize;
-    RTS_UI32 ulSizeInArea;
+    RTS_UI32 ulTotalSize;
     RTS_UI32 ulDeviceType;
     RTS_UI32 ulDeviceId;
     RTS_UI32 ulDeviceVersion;
@@ -2189,7 +2189,7 @@ typedef struct _COMPACT_CODE_HEADER
     RTS_UI16 usCodeAreaIndex;
     RTS_UI16 usCodeAreaFlags;
     RTS_UI32 ulOffsetCode;
-    RTS_UI32 ulTotalSize;
+    RTS_UI32 ulSizeCode;
     RTS_UI32 ulOffsetApplicationInfo;
     RTS_UI32 ulSizeApplicationInfo;
     RTS_UI32 ulOffsetAreaTable;
@@ -2381,7 +2381,6 @@ typedef struct
 #define TAG_OC_CONCURRENT_AFTER			0x70
 #define TAG_CODE_LOCATION_INFO			0x71
 #define TAG_APPLICATION_DOWNLOAD_CRC    0x72
-#define TAG_CPL_VERSION					0x73
 #define TAG_ENCRYPTIONINFO				0x08
 
 #define TAG_FUNCTION_IEC_SUBT			0x88
@@ -2410,7 +2409,6 @@ typedef struct
 #define TAG_APPL_EXECUTIONPOINT			0x17
 #define TAG_APPL_EP_ACTIVE_STNG			0x18
 #define TAG_APPL_EP_CRC					0x19
-#define TAG_APPL_BPDATAINFO				0x1A
 
 #define TAG_APPL_FLOWINFO				0x82
 #define TAG_MON_VARS					0x15
@@ -2470,10 +2468,7 @@ typedef struct
 #define TAG_APPLIST_RESPONSE_NAME		0x03
 #define TAG_APPLIST_RESPONSE_STATEANDNAME	0x04
 
-#define TAG_FORCELIST_RESPONSE			0x81
-
 #define TAG_ERROR_RESPONSE				0x01
-#define TAG_APP_FILE_CONSISTENCY		0x02
 
 #define READ_STATUS_REPLY				0x82
 #define READ_STATUS_RESULT				0x13
@@ -2485,7 +2480,6 @@ typedef struct
 #define READ_USER_NOTIFY				0x19
 #define TAG_APPL_TASK_INDEX				0x1A
 #define READ_STATUS_LAST_CHANGE			0x1B
-#define READ_STATUS_DATABP_POSITION		0x1C
 #define READ_STATUS_BPHITCOUNTEX		0x20
 #define READ_STATUS_STACKPOINTER		0x21
 #define TAG_OPERATION_MODE				0x32
@@ -2493,7 +2487,6 @@ typedef struct
 #define SRV_SETNEXT_INFO				0x81
 #define SRV_SETNEXT_APPLICATION			0x11
 #define SRV_SETNEXT_POSITION			0x12
-#define SRV_SETNEXT_REGISTERINFO		0x13
 
 /**
  * <category>Online services</category>
@@ -2513,7 +2506,6 @@ typedef struct
  *		<tag name="READ_STATUS_REPLY" required="mandatory">Top level tag may contain the following sub tags</tag>
  *			<tag name="READ_STATUS_RESULT" required="optional">[RTS_UI16, RTS_UI32, RTS_UI32]: Result code, App state, App OpState</tag>
  *			<tag name="READ_STATUS_EXECUTIONPOSITION" required="optional">[RTS_UI16, RTS_UI32]: Area, Offset of callstackEntry</tag>
- *			<tag name="READ_STATUS_DATABP_POSITION" required="optional">[RTS_UI16, RTS_UI32]: Area, Offset of reched data breakpoint</tag>
  *			<tag name="READ_STATUS_BPHITCOUNT" required="optional">[RTS_UI32]: HitCount</tag>
  *			<tag name="READ_STATUS_BPHITCOUNTEX" required="optional">[RTS_UI16, RTS_UI16, RTS_UI32, RTS_UI32]: Area, state, Offset, current hitcount of BP</tag>
  *			<tag name="READ_STATUS_INSTANCEPOSITION" required="optional">[RTS_UI16, RTS_UI32]: AreaInstance, OffsetInstance of callstackEntry</tag>
@@ -2564,26 +2556,6 @@ extern "C" {
 #endif
 
 /**
- * <category>Application memory segment</category>
- * * <description>
- * *	Describes a memory segment of an application.
- * * </description>
- * * <element name="wType" type="IN">Type of the segment. See category "Area Types" in SysMemItf.h.</element>
- * * <element name="wArea" type="IN">Area in which the segment is residing</element>
- * * <element name="dwOffset" wType="IN">Offset in the area, in which the segment is residing</element>
- * * <element name="dwSize" wType="IN">Size of the segment in bytes</element>
- * * <element name="dwHighestUsedAddress" wType="IN">Highest used address in the segment (has no significance for input, output, memory)</element>
- */
-typedef struct tagAPP_MEMORY_SEGMENT
-{
-	RTS_IEC_WORD wType;		
-	RTS_IEC_WORD wArea;		
-	RTS_IEC_DWORD dwOffset;		
-	RTS_IEC_DWORD dwSize;		
-	RTS_IEC_DWORD dwHighestUsedAddress;		
-} APP_MEMORY_SEGMENT;
-
-/**
  * <description>appcallgetproperty</description>
  */
 typedef struct tagappcallgetproperty_struct
@@ -2595,7 +2567,7 @@ typedef struct tagappcallgetproperty_struct
 	RTS_IEC_RESULT AppCallGetProperty;	/* VAR_OUTPUT */	
 } appcallgetproperty_struct;
 
-DEF_API(`void',`CDECL',`appcallgetproperty',`(appcallgetproperty_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xD99D7FC0),0x03050B00)
+DEF_API(`void',`CDECL',`appcallgetproperty',`(appcallgetproperty_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xD99D7FC0),0x03050900)
 
 /**
  * <description>appcallgetproperty2</description>
@@ -2609,7 +2581,7 @@ typedef struct tagappcallgetproperty2_struct
 	RTS_IEC_RESULT AppCallGetProperty2;	/* VAR_OUTPUT */	
 } appcallgetproperty2_struct;
 
-DEF_API(`void',`CDECL',`appcallgetproperty2',`(appcallgetproperty2_struct *p)',1,RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7),0x03050B00)
+DEF_API(`void',`CDECL',`appcallgetproperty2',`(appcallgetproperty2_struct *p)',1,RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7),0x03050900)
 
 /**
  * <description>appcallgetproperty2release</description>
@@ -2620,7 +2592,7 @@ typedef struct tagappcallgetproperty2release_struct
 	RTS_IEC_RESULT AppCallGetProperty2Release;	/* VAR_OUTPUT */	
 } appcallgetproperty2release_struct;
 
-DEF_API(`void',`CDECL',`appcallgetproperty2release',`(appcallgetproperty2release_struct *p)',1,0x664A62E3,0x03050B00)
+DEF_API(`void',`CDECL',`appcallgetproperty2release',`(appcallgetproperty2release_struct *p)',1,0x664A62E3,0x03050900)
 
 /**
  * <description>appcallsetproperty</description>
@@ -2634,7 +2606,7 @@ typedef struct tagappcallsetproperty_struct
 	RTS_IEC_RESULT AppCallSetProperty;	/* VAR_OUTPUT */	
 } appcallsetproperty_struct;
 
-DEF_API(`void',`CDECL',`appcallsetproperty',`(appcallsetproperty_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xF7790D93),0x03050B00)
+DEF_API(`void',`CDECL',`appcallsetproperty',`(appcallsetproperty_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xF7790D93),0x03050900)
 
 /**
  * <description>appfindapplicationbyname</description>
@@ -2646,7 +2618,7 @@ typedef struct tagappfindapplicationbyname_struct
 	APPLICATION *AppFindApplicationByName;	/* VAR_OUTPUT */	
 } appfindapplicationbyname_struct;
 
-DEF_API(`void',`CDECL',`appfindapplicationbyname',`(appfindapplicationbyname_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xDAD101B7),0x03050B00)
+DEF_API(`void',`CDECL',`appfindapplicationbyname',`(appfindapplicationbyname_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xDAD101B7),0x03050900)
 
 /**
  * <description>appgenerateexception</description>
@@ -2658,7 +2630,7 @@ typedef struct tagappgenerateexception_struct
 	RTS_IEC_RESULT AppGenerateException;	/* VAR_OUTPUT */	
 } appgenerateexception_struct;
 
-DEF_API(`void',`CDECL',`appgenerateexception',`(appgenerateexception_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCAFA8E41),0x03050B00)
+DEF_API(`void',`CDECL',`appgenerateexception',`(appgenerateexception_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCAFA8E41),0x03050900)
 
 /**
  * <description>appgetapplicationbyareaaddress</description>
@@ -2669,7 +2641,7 @@ typedef struct tagappgetapplicationbyareaaddress_struct
 	APPLICATION *AppGetApplicationByAreaAddress;	/* VAR_OUTPUT */	
 } appgetapplicationbyareaaddress_struct;
 
-DEF_API(`void',`CDECL',`appgetapplicationbyareaaddress',`(appgetapplicationbyareaaddress_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3),0x03050B00)
+DEF_API(`void',`CDECL',`appgetapplicationbyareaaddress',`(appgetapplicationbyareaaddress_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3),0x03050900)
 
 /**
  * <description>appgetapplicationinfo</description>
@@ -2681,7 +2653,7 @@ typedef struct tagappgetapplicationinfo_struct
 	APPLICATION_INFO *AppGetApplicationInfo;	/* VAR_OUTPUT */	
 } appgetapplicationinfo_struct;
 
-DEF_API(`void',`CDECL',`appgetapplicationinfo',`(appgetapplicationinfo_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x49DD3432),0x03050B00)
+DEF_API(`void',`CDECL',`appgetapplicationinfo',`(appgetapplicationinfo_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x49DD3432),0x03050900)
 
 /**
  * <description>appgetareaaddress</description>
@@ -2694,7 +2666,7 @@ typedef struct tagappgetareaaddress_struct
 	RTS_IEC_BYTE *AppGetAreaAddress;	/* VAR_OUTPUT */	
 } appgetareaaddress_struct;
 
-DEF_API(`void',`CDECL',`appgetareaaddress',`(appgetareaaddress_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x6C9E6C94),0x03050B00)
+DEF_API(`void',`CDECL',`appgetareaaddress',`(appgetareaaddress_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x6C9E6C94),0x03050900)
 
 /**
  * <description>appgetareaoffsetbyaddress</description>
@@ -2708,20 +2680,7 @@ typedef struct tagappgetareaoffsetbyaddress_struct
 	RTS_IEC_RESULT AppGetAreaOffsetByAddress;	/* VAR_OUTPUT */	
 } appgetareaoffsetbyaddress_struct;
 
-DEF_API(`void',`CDECL',`appgetareaoffsetbyaddress',`(appgetareaoffsetbyaddress_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x356243D6),0x03050B00)
-
-/**
- * <description>appgetareapointer</description>
- */
-typedef struct tagappgetareapointer_struct
-{
-	APPLICATION *pApp;					/* VAR_INPUT */	
-	RTS_IEC_DINT diArea;				/* VAR_INPUT */	
-	RTS_IEC_BYTE **ppbyArea;			/* VAR_INPUT */	
-	RTS_IEC_RESULT AppGetAreaPointer;	/* VAR_OUTPUT */	
-} appgetareapointer_struct;
-
-DEF_API(`void',`CDECL',`appgetareapointer',`(appgetareapointer_struct *p)',1,0x6AC4CD9A,0x03050B00)
+DEF_API(`void',`CDECL',`appgetareaoffsetbyaddress',`(appgetareaoffsetbyaddress_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x356243D6),0x03050900)
 
 /**
  * <description>appgetareasize</description>
@@ -2734,7 +2693,7 @@ typedef struct tagappgetareasize_struct
 	RTS_IEC_XWORD AppGetAreaSize;		/* VAR_OUTPUT */	
 } appgetareasize_struct;
 
-DEF_API(`void',`CDECL',`appgetareasize',`(appgetareasize_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x362BAF2A),0x03050B00)
+DEF_API(`void',`CDECL',`appgetareasize',`(appgetareasize_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x362BAF2A),0x03050900)
 
 /**
  * <description>appgetcurrent</description>
@@ -2745,7 +2704,7 @@ typedef struct tagappgetcurrent_struct
 	APPLICATION *AppGetCurrent;			/* VAR_OUTPUT */	
 } appgetcurrent_struct;
 
-DEF_API(`void',`CDECL',`appgetcurrent',`(appgetcurrent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x9EE77745),0x03050B00)
+DEF_API(`void',`CDECL',`appgetcurrent',`(appgetcurrent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x9EE77745),0x03050900)
 
 /**
  * <description>appgetfirstapp</description>
@@ -2756,7 +2715,7 @@ typedef struct tagappgetfirstapp_struct
 	APPLICATION *AppGetFirstApp;		/* VAR_OUTPUT */	
 } appgetfirstapp_struct;
 
-DEF_API(`void',`CDECL',`appgetfirstapp',`(appgetfirstapp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x75BD6F20),0x03050B00)
+DEF_API(`void',`CDECL',`appgetfirstapp',`(appgetfirstapp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x75BD6F20),0x03050900)
 
 /**
  * <description>appgetnextapp</description>
@@ -2768,7 +2727,7 @@ typedef struct tagappgetnextapp_struct
 	APPLICATION *AppGetNextApp;			/* VAR_OUTPUT */	
 } appgetnextapp_struct;
 
-DEF_API(`void',`CDECL',`appgetnextapp',`(appgetnextapp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xD98C0DF3),0x03050B00)
+DEF_API(`void',`CDECL',`appgetnextapp',`(appgetnextapp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xD98C0DF3),0x03050900)
 
 /**
  * <description>appgetprojectinformation</description>
@@ -2780,20 +2739,7 @@ typedef struct tagappgetprojectinformation_struct
 	RTS_IEC_RESULT AppGetProjectInformation;	/* VAR_OUTPUT */	
 } appgetprojectinformation_struct;
 
-DEF_API(`void',`CDECL',`appgetprojectinformation',`(appgetprojectinformation_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xA736D4E6),0x03050B00)
-
-/**
- * <description>appgetsegment</description>
- */
-typedef struct tagappgetsegment_struct
-{
-	APPLICATION *pApp;					/* VAR_INPUT */	
-	RTS_IEC_UINT uiType;				/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	APP_MEMORY_SEGMENT *AppGetSegment;	/* VAR_OUTPUT */	
-} appgetsegment_struct;
-
-DEF_API(`void',`CDECL',`appgetsegment',`(appgetsegment_struct *p)',1,0xE7291359,0x03050B00)
+DEF_API(`void',`CDECL',`appgetprojectinformation',`(appgetprojectinformation_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xA736D4E6),0x03050900)
 
 /**
  * <description>
@@ -2813,7 +2759,7 @@ typedef struct tagappgetsegmentaddress_struct
 	RTS_IEC_BYTE *AppGetSegmentAddress;	/* VAR_OUTPUT */	
 } appgetsegmentaddress_struct;
 
-DEF_API(`void',`CDECL',`appgetsegmentaddress',`(appgetsegmentaddress_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xA1837EC1),0x03050B00)
+DEF_API(`void',`CDECL',`appgetsegmentaddress',`(appgetsegmentaddress_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xA1837EC1),0x03050900)
 
 /**
  * <description>
@@ -2833,7 +2779,7 @@ typedef struct tagappgetsegmentsize_struct
 	RTS_IEC_UXINT AppGetSegmentSize;	/* VAR_OUTPUT */	
 } appgetsegmentsize_struct;
 
-DEF_API(`void',`CDECL',`appgetsegmentsize',`(appgetsegmentsize_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xC1200062),0x03050B00)
+DEF_API(`void',`CDECL',`appgetsegmentsize',`(appgetsegmentsize_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xC1200062),0x03050900)
 
 /**
  * <description>appnumofactivesessions</description>
@@ -2845,7 +2791,7 @@ typedef struct tagappnumofactivesessions_struct
 	RTS_IEC_RESULT AppNumOfActiveSessions;	/* VAR_OUTPUT */	
 } appnumofactivesessions_struct;
 
-DEF_API(`void',`CDECL',`appnumofactivesessions',`(appnumofactivesessions_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x28A577B6),0x03050B00)
+DEF_API(`void',`CDECL',`appnumofactivesessions',`(appnumofactivesessions_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x28A577B6),0x03050900)
 
 /**
  * <description>appregisterpropaccessfunctions</description>
@@ -2860,7 +2806,7 @@ typedef struct tagappregisterpropaccessfunctions_struct
 	RTS_IEC_RESULT AppRegisterPropAccessFunctions;	/* VAR_OUTPUT */	
 } appregisterpropaccessfunctions_struct;
 
-DEF_API(`void',`CDECL',`appregisterpropaccessfunctions',`(appregisterpropaccessfunctions_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xF72A3B0A),0x03050B00)
+DEF_API(`void',`CDECL',`appregisterpropaccessfunctions',`(appregisterpropaccessfunctions_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xF72A3B0A),0x03050900)
 
 /**
  * <description>appreset</description>
@@ -2872,7 +2818,7 @@ typedef struct tagappreset_struct
 	RTS_IEC_RESULT AppReset;			/* VAR_OUTPUT */	
 } appreset_struct;
 
-DEF_API(`void',`CDECL',`appreset',`(appreset_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x03B85B28),0x03050B00)
+DEF_API(`void',`CDECL',`appreset',`(appreset_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x03B85B28),0x03050900)
 
 /**
  * <description>apprestoreretainsfromfile</description>
@@ -2884,7 +2830,7 @@ typedef struct tagapprestoreretainsfromfile_struct
 	RTS_IEC_RESULT AppRestoreRetainsFromFile;	/* VAR_OUTPUT */	
 } apprestoreretainsfromfile_struct;
 
-DEF_API(`void',`CDECL',`apprestoreretainsfromfile',`(apprestoreretainsfromfile_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x32542AD7),0x03050B00)
+DEF_API(`void',`CDECL',`apprestoreretainsfromfile',`(apprestoreretainsfromfile_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x32542AD7),0x03050900)
 
 /**
  * <description>appstartapplication</description>
@@ -2895,7 +2841,7 @@ typedef struct tagappstartapplication_struct
 	RTS_IEC_RESULT AppStartApplication;	/* VAR_OUTPUT */	
 } appstartapplication_struct;
 
-DEF_API(`void',`CDECL',`appstartapplication',`(appstartapplication_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x71CC8510),0x03050B00)
+DEF_API(`void',`CDECL',`appstartapplication',`(appstartapplication_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x71CC8510),0x03050900)
 
 /**
  * <description>appstopapplication</description>
@@ -2906,7 +2852,7 @@ typedef struct tagappstopapplication_struct
 	RTS_IEC_RESULT AppStopApplication;	/* VAR_OUTPUT */	
 } appstopapplication_struct;
 
-DEF_API(`void',`CDECL',`appstopapplication',`(appstopapplication_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xEE13E070),0x03050B00)
+DEF_API(`void',`CDECL',`appstopapplication',`(appstopapplication_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xEE13E070),0x03050900)
 
 /**
  * <description>appstoreretainsinfile</description>
@@ -2918,7 +2864,7 @@ typedef struct tagappstoreretainsinfile_struct
 	RTS_IEC_RESULT AppStoreRetainsInFile;	/* VAR_OUTPUT */	
 } appstoreretainsinfile_struct;
 
-DEF_API(`void',`CDECL',`appstoreretainsinfile',`(appstoreretainsinfile_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCBCA082E),0x03050B00)
+DEF_API(`void',`CDECL',`appstoreretainsinfile',`(appstoreretainsinfile_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCBCA082E),0x03050900)
 
 #ifdef __cplusplus
 }
@@ -2930,20 +2876,6 @@ DEF_API(`void',`CDECL',`appstoreretainsinfile',`(appstoreretainsinfile_struct *p
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * <category>Application memory segment information</category>
- * <description>
- *	Describes all memory segments of an application.
- * </description>
- * <element name="diSegments" type="IN">Number of segments</element>
- * <element name="pmsList" type="IN">Pointer to memory segment list</element>
- */
-typedef struct _APP_MEMORY_SEGMENT_INFO
-{
-	RTS_IEC_DINT diSegments;
-	APP_MEMORY_SEGMENT *pmsList;
-} APP_MEMORY_SEGMENT_INFO;
 
 typedef struct 
 {

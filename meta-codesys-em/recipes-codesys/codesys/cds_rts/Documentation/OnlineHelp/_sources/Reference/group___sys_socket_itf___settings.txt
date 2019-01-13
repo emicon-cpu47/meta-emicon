@@ -17,7 +17,7 @@ Macros
 
 - #define :ref:`SYSSOCKETKEY_WSTRING_NAME_UNICODE <group___sys_socket_itf___settings_1ga7c2bd56b2fa2f237dc0cef91fc413cb1>` "NameUnicode"
 
-- #define :ref:`SYSSOCKETKEY_STRING_NAME <group___sys_socket_itf___settings_1gaf70423df6d051558ba0cc45d4b14ebc9>` "Name"
+- #define :ref:`SYSSOCKETKEY_WSTRING_NAME <group___sys_socket_itf___settings_1ga48e5a975f8e73de1deae2b9ef4b28bdb>` "Name"
 
 - #define :ref:`SYSSOCKETKEY_INT_ENABLE_SETIPANDMASK <group___sys_socket_itf___settings_1ga820af6f0e30e50b47b6bd901e1862fa8>` "EnableSetIpAndMask"
 
@@ -53,19 +53,19 @@ Macro Definition Documentation
 #define SYSSOCKET_ADAPTER_PREFIX "Adapter"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Settings prefix for network adapter list. Has to be used for all list settings. The index number, separated by dots, have to be increased by one for each configured adapter name. Adapter names can be configured by an ASCII name oder by an unicode name. If for a index number was found a "NameUnicode" setting, the "Name" setting is ignored. Example: Adapter.0.Name=Lan1 Adapter.1.Name=Lan2 Adapter.2.NameUnicode="L\00a\00n\003\00"
+Settings prefix for network adapter list. Has to be used for all list settings. The index number, separated by dots, have to be increased by one for each configured adapter name. Adapter names can be configured by an ASCII name oder by an unicode name. If for a index number was found a "NameUnicode" setting, the "Name" setting is ignored. Example: Adapter.0.Name=Lan1 Adapter.1.Name=Lan2 Adapter.2.NameUnicode="L\00a\00n\003\00\00\00"
 
 .. _group___sys_socket_itf___settings_1ga7c2bd56b2fa2f237dc0cef91fc413cb1:
 
 #define SYSSOCKETKEY_WSTRING_NAME_UNICODE "NameUnicode"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Setting for network adapter list. Adapter name in Unicode. Example: Adapter.0.NameUnicode="L\00a\00n\001\00"
+Setting for network adapter list. Adapter name in Unicode. Example: Adapter.0.NameUnicode="L\00a\00n\001\00\00\00"
 
-.. _group___sys_socket_itf___settings_1gaf70423df6d051558ba0cc45d4b14ebc9:
+.. _group___sys_socket_itf___settings_1ga48e5a975f8e73de1deae2b9ef4b28bdb:
 
-#define SYSSOCKETKEY_STRING_NAME "Name"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#define SYSSOCKETKEY_WSTRING_NAME "Name"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Setting for network adapter list. Adapter name in ASCII. Only evaluted, if no "NameUnicode" setting for the same adapter index exists. Example: Adapter.0.Name="Lan1"
 
@@ -93,12 +93,14 @@ Setting to specify the socket interface name to be used by the runtime. Only for
 #define SYSSOCKETKEY_STRING_IPADDRESS "ipaddress"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Setting to specify the IP address of the target.
+
 .. _group___sys_socket_itf___settings_1ga2422e7764035e656ba004fb894672103:
 
 #define SYSSOCKETKEY_STRING_SUBNETMASK "subnetmask"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Setting to specify the subnet mask of the target. See setting ipaddress for details.
+Setting to specify the subnet mask of the target.
 
 .. _group___sys_socket_itf___settings_1gae80d374eb33295660c9c5b622acd9dd2:
 

@@ -26,9 +26,7 @@
  *	more memory areas in which the code and data will be administrated.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -49,7 +47,6 @@
 #include "SysTaskItf.h"
 #include "SysMemItf.h"
 #include "SysFileItf.h"
-#include "SysCpuHandlingItf.h"
 #include "CmpMemPoolItf.h"
 #include "CmpEventMgrItf.h"
 #include "CmpCommunicationLibItf.h"
@@ -116,13 +113,6 @@
 	#define APP_NUM_OF_STATIC_ASYNC_SERVICES		8
 #endif
 
-/**
- * <category>Static defines</category>
- * <description>The default compiler version. Programming systems < 3.5.12.0 do not provide the compiler version on download. 
- * In this case the earliest version to expect is 3.0.0.0.
- * </description>
- */
-#define APP_UDINT_COMPILERVERSION_DEFAULT 0x03000000
 
 /**
  * <category>File name definitions</category>
@@ -396,19 +386,12 @@
  * <element name="CCO_INTERRUPT_LOCK" type="IN">OnlineChange code is synchronized via interrupt locks (most invasive mechanism)</element>
  * <element name="CCO_TASK_GAP_SEMAPHORE" type="IN">OnlineChange code is synchronized via a semaphore and is executed in the IEC task in the context of the scheduler tick</element>
  */
-#define CCO_SEMAPHORE				1
-#define CCO_TASK_GAP				2
-#define CCO_INTERRUPT_LOCK			3
-#define CCO_TASK_GAP_SEMAPHORE		4
-
-#ifndef SYSCPUMULTICORE_NOTIMPLEMENTED
-	/* On multi core targets, we have to use the taskgap semaphore to synchronize the onlinechange code against the IEC tasks! This is the only safe way! */
-	#undef CCO_DEFAULT
-	#define CCO_DEFAULT				CCO_TASK_GAP_SEMAPHORE
-#else
-	#ifndef CCO_DEFAULT
-		#define CCO_DEFAULT			CCO_SEMAPHORE
-	#endif
+#define CCO_SEMAPHORE			1
+#define CCO_TASK_GAP			2
+#define CCO_INTERRUPT_LOCK		3
+#define CCO_TASK_GAP_SEMAPHORE	4
+#ifndef CCO_DEFAULT
+	#define CCO_DEFAULT		CCO_SEMAPHORE
 #endif
 
 
@@ -425,7 +408,6 @@
 #define OP_APP_RESET				7
 #define OP_APP_START				8
 #define OP_APP_DELETE_APPLICATION	9
-#define OP_APP_RESET_ORIGIN			10
 
 
 /**
@@ -958,10 +940,9 @@ typedef struct
 	RTS_UI16 usType;
 	RTS_SIZE ulSize;
 	RTS_UI8 *pArea;
-	RTS_RESULT result;
 } EVTPARAM_CmpAppArea;
 #define EVTPARAMID_CmpAppArea				0x0001
-#define EVTVERSION_CmpAppArea				0x0002
+#define EVTVERSION_CmpAppArea				0x0001
 
 /**
  * <category>Events</category>
@@ -1418,8 +1399,6 @@ typedef struct
 #define OS_COREDUMP_LOADED			UINT32_C(0x00020000)
 #define OS_EXECUTIONPOINTS_ACTIVE	UINT32_C(0x00040000)
 #define OS_COREDUMP_CREATING		UINT32_C(0x00080000)
-#define OS_SINGLE_CYCLE_ACTIVE		UINT32_C(0x00100000)
-#define OS_DISABLE_RESET			UINT32_C(0x00200000)
 
 #define APP_SET_OP_STATE(pApp, OpState)		(((APPLICATION *)pApp)->ulOpState |= OpState)
 #define APP_RESET_OP_STATE(pApp, OpState)	(((APPLICATION *)pApp)->ulOpState &= ~OpState)
@@ -1535,9 +1514,8 @@ typedef struct
  * <category>Static defines</category>
  * <description>Predefined objects in the runtime</description>
  */
-#define USERDB_OBJECT_PLCLOGIC					"Device.PlcLogic"
-#define USERDB_OBJECT_PLCLOGIC_BACKUPRESTORE	"Device.PlcLogic.__Backup&Restore"
-#define USERDB_OBJECT_CMODULE_INTEGRATION		"__C-ModuleIntegration__"
+#define USERDB_OBJECT_PLCLOGIC				"Device.PlcLogic"
+#define USERDB_OBJECT_CMODULE_INTEGRATION	"__C-ModuleIntegration__"
 
 /* <SIL2/> 
  * <description>Typedef for Application info at download, containing GUIDs and Application name </description>
@@ -1920,6 +1898,40 @@ typedef struct
 	RTS_IEC_UINT uiPatch;
 } VERSIONPROPERTY;
 
+/**
+ * <category>Application memory segment</category>
+ * <description>
+ *	Describes a memory segment of an application.
+ * </description>
+ * <element name=" wType " type="IN">Type of the segment. See category "Area Types" in SysMemItf.h.</element>
+ * <element name="wArea" type="IN">Area in whcih the segment is residing</element>
+ * <element name="dwOffset" wType="IN">Offset in the area, in which the segment is residing</element>
+ * <element name="dwSize" wType="IN">Size of the segment in bytes</element>
+ * <element name="dwHighestUsedAddress" wType="IN">Highest used address in the segment (has no significance for input, output, memory)</element>
+ */
+typedef struct _APP_MEMORY_SEGMENT
+{
+	RTS_IEC_WORD wType;
+	RTS_IEC_WORD wArea;
+	RTS_IEC_DWORD dwOffset;
+	RTS_IEC_DWORD dwSize;
+	RTS_IEC_DWORD dwHighestUsedAddress;
+} APP_MEMORY_SEGMENT;
+
+/**
+ * <category>Application memory segment information</category>
+ * <description>
+ *	Describes all memory segments of an application.
+ * </description>
+ * <element name="diSegments" type="IN">Number of segments</element>
+ * <element name="pmsList" type="IN">Pointer to memory segment list</element>
+ */
+typedef struct _APP_MEMORY_SEGMENT_INFO
+{
+	RTS_IEC_DINT diSegments;
+	APP_MEMORY_SEGMENT *pmsList;
+} APP_MEMORY_SEGMENT_INFO;
+
 /* FlowControl Flags */
 #define FCF_DO			0x01
 #define FCF_DOATBREAK	0x02
@@ -1968,8 +1980,6 @@ typedef struct
  *      consistent access by CmpIecVarAccess online services (application accepts possible related jitter).</element>
  *	<element name="AF_SIGNED_APPLICATION" type="IN">The application was signed at download time. Only signed online changes are allowed in this application.</element>
  *	<element name="AF_ENCRYPTED_APPLICATION" type="IN">The application was encrypted at download time. Only encrypted online changes are allowed in this application.</element>
- *	<element name="AF_DEVICE_APPLICATION" type="IN">This is a device application.</element>
- *	<element name="AF_APPLICATION_STOP_PARENT_APPS_ON_EXCEPTION" type="IN">All parent applications shall be stopped in case of an exception.</element>
  */ 
 #define AF_SYSTEM_APPLICATION										UINT32_C(0x00010000)
 #define AF_IOCONFIG_BYTE_ADDRESSING									UINT32_C(0x00020000)
@@ -1978,8 +1988,6 @@ typedef struct
 #define AF_ALLOW_SYMBOLIC_VARIABLE_ACCESS_IN_SYNC_WITH_IEC_TASK		UINT32_C(0x00100000)
 #define AF_SIGNED_APPLICATION                               		UINT32_C(0x00200000)
 #define AF_ENCRYPTED_APPLICATION                               		UINT32_C(0x00400000)
-#define AF_DEVICE_APPLICATION										UINT32_C(0x00800000)
-#define AF_APPLICATION_STOP_PARENT_APPS_ON_EXCEPTION				UINT32_C(0x01000000)
 
 /**
  * <category>Download flags</category>
@@ -2056,8 +2064,6 @@ typedef enum
  *  <element name="pVendorExtension" type="IN">Pointer to store vendor specific informations at an application</element>
  *  <element name="hDynamicModulePool" type="IN">A memory pool containing all names of linked modules from the C-Integration</element>
  *  <element name="ausAreaAllocationType" type="IN">Specifies how an area was allocated. Used to call the correct free method</element>
- *  <element name="pBPContext" type="IN">Low level context information of a breakpoint</element>
- *  <element name="ulCompilerVersion" type="IN">The version of the compiler with which the application was created (set in download for PS versions >= 3.5.12.0, default is 3.0.0.0)</element>
  */
 typedef struct tagAPPLICATION
 {
@@ -2133,12 +2139,6 @@ typedef struct tagAPPLICATION
 	RTS_HANDLE hDynamicModulePool;
 	RTS_UI32 ulLastStateChange;
 	AreaAllocationType ausAreaAllocationType[APPL_NUM_OF_STATIC_AREAS];
-	RTS_HANDLE hTaskSync;
-	RTS_I32 writeLocks;
-	
-	void *pBPContext;
-	RTS_UI32 ulCompilerVersion;
-	RTS_I32 i32CBIecRefCounter;
 	/* ATTENTION: Always append new elements at the end of this structure! */
 } APPLICATION;
 
@@ -2155,7 +2155,7 @@ typedef struct tagAPPLICATION
  *	<element name="ulHeaderTag" type="IN">Header tag = COMPACT_DOWNLOAD_HEADER_TAG</element>
  *	<element name="ulHeaderVersion" type="IN">Header version = COMPACT_DOWNLOAD_HEADER_VERSION</element>
  *	<element name="ulHeaderSize" type="IN">Header size</element>
- *	<element name="ulSizeInArea" type="IN">Header size including all download segments in this code area</element>
+ *	<element name="ulTotalSize" type="IN">Header size including all download segments</element>
  *	<element name="ulDeviceType" type="IN">Device type of the selected device</element>
  *	<element name="ulDeviceId" type="IN">Device ID of the selected device</element>
  *	<element name="ulDeviceVersion" type="IN">Device version of the selected device</element>
@@ -2165,7 +2165,7 @@ typedef struct tagAPPLICATION
  *	<element name="usCodeAreaIndex" type="IN">Code area index</element>
  *	<element name="usCodeAreaFlags" type="IN">Code area flags</element>
  *	<element name="ulOffsetCode" type="IN">Offset in bytes, where the code segment begins</element>
- *	<element name="ulTotalSize" type="IN">Header size including all download segments in all code areas</element>
+ *	<element name="ulSizeCode" type="IN">Size in bytes of the code segment</element>
  *	<element name="ulOffsetApplicationInfo" type="IN">Offset in bytes, where the application info segment begins</element>
  *	<element name="ulSizeApplicationInfo" type="IN">Size in bytes of the application info segment</element>
  *	<element name="ulOffsetAreaTable" type="IN">Offset in bytes, where the area table segment begins</element>
@@ -2192,7 +2192,7 @@ typedef struct _COMPACT_CODE_HEADER
     RTS_UI32 ulHeaderTag;
     RTS_UI32 ulHeaderVersion;
     RTS_UI32 ulHeaderSize;
-    RTS_UI32 ulSizeInArea;
+    RTS_UI32 ulTotalSize;
     RTS_UI32 ulDeviceType;
     RTS_UI32 ulDeviceId;
     RTS_UI32 ulDeviceVersion;
@@ -2202,7 +2202,7 @@ typedef struct _COMPACT_CODE_HEADER
     RTS_UI16 usCodeAreaIndex;
     RTS_UI16 usCodeAreaFlags;
     RTS_UI32 ulOffsetCode;
-    RTS_UI32 ulTotalSize;
+    RTS_UI32 ulSizeCode;
     RTS_UI32 ulOffsetApplicationInfo;
     RTS_UI32 ulSizeApplicationInfo;
     RTS_UI32 ulOffsetAreaTable;
@@ -2394,7 +2394,6 @@ typedef struct
 #define TAG_OC_CONCURRENT_AFTER			0x70
 #define TAG_CODE_LOCATION_INFO			0x71
 #define TAG_APPLICATION_DOWNLOAD_CRC    0x72
-#define TAG_CPL_VERSION					0x73
 #define TAG_ENCRYPTIONINFO				0x08
 
 #define TAG_FUNCTION_IEC_SUBT			0x88
@@ -2423,7 +2422,6 @@ typedef struct
 #define TAG_APPL_EXECUTIONPOINT			0x17
 #define TAG_APPL_EP_ACTIVE_STNG			0x18
 #define TAG_APPL_EP_CRC					0x19
-#define TAG_APPL_BPDATAINFO				0x1A
 
 #define TAG_APPL_FLOWINFO				0x82
 #define TAG_MON_VARS					0x15
@@ -2483,10 +2481,7 @@ typedef struct
 #define TAG_APPLIST_RESPONSE_NAME		0x03
 #define TAG_APPLIST_RESPONSE_STATEANDNAME	0x04
 
-#define TAG_FORCELIST_RESPONSE			0x81
-
 #define TAG_ERROR_RESPONSE				0x01
-#define TAG_APP_FILE_CONSISTENCY		0x02
 
 #define READ_STATUS_REPLY				0x82
 #define READ_STATUS_RESULT				0x13
@@ -2498,7 +2493,6 @@ typedef struct
 #define READ_USER_NOTIFY				0x19
 #define TAG_APPL_TASK_INDEX				0x1A
 #define READ_STATUS_LAST_CHANGE			0x1B
-#define READ_STATUS_DATABP_POSITION		0x1C
 #define READ_STATUS_BPHITCOUNTEX		0x20
 #define READ_STATUS_STACKPOINTER		0x21
 #define TAG_OPERATION_MODE				0x32
@@ -2506,7 +2500,6 @@ typedef struct
 #define SRV_SETNEXT_INFO				0x81
 #define SRV_SETNEXT_APPLICATION			0x11
 #define SRV_SETNEXT_POSITION			0x12
-#define SRV_SETNEXT_REGISTERINFO		0x13
 
 /**
  * <category>Online services</category>
@@ -2526,7 +2519,6 @@ typedef struct
  *		<tag name="READ_STATUS_REPLY" required="mandatory">Top level tag may contain the following sub tags</tag>
  *			<tag name="READ_STATUS_RESULT" required="optional">[RTS_UI16, RTS_UI32, RTS_UI32]: Result code, App state, App OpState</tag>
  *			<tag name="READ_STATUS_EXECUTIONPOSITION" required="optional">[RTS_UI16, RTS_UI32]: Area, Offset of callstackEntry</tag>
- *			<tag name="READ_STATUS_DATABP_POSITION" required="optional">[RTS_UI16, RTS_UI32]: Area, Offset of reched data breakpoint</tag>
  *			<tag name="READ_STATUS_BPHITCOUNT" required="optional">[RTS_UI32]: HitCount</tag>
  *			<tag name="READ_STATUS_BPHITCOUNTEX" required="optional">[RTS_UI16, RTS_UI16, RTS_UI32, RTS_UI32]: Area, state, Offset, current hitcount of BP</tag>
  *			<tag name="READ_STATUS_INSTANCEPOSITION" required="optional">[RTS_UI16, RTS_UI32]: AreaInstance, OffsetInstance of callstackEntry</tag>
@@ -2577,26 +2569,6 @@ extern "C" {
 #endif
 
 /**
- * <category>Application memory segment</category>
- * * <description>
- * *	Describes a memory segment of an application.
- * * </description>
- * * <element name="wType" type="IN">Type of the segment. See category "Area Types" in SysMemItf.h.</element>
- * * <element name="wArea" type="IN">Area in which the segment is residing</element>
- * * <element name="dwOffset" wType="IN">Offset in the area, in which the segment is residing</element>
- * * <element name="dwSize" wType="IN">Size of the segment in bytes</element>
- * * <element name="dwHighestUsedAddress" wType="IN">Highest used address in the segment (has no significance for input, output, memory)</element>
- */
-typedef struct tagAPP_MEMORY_SEGMENT
-{
-	RTS_IEC_WORD wType;		
-	RTS_IEC_WORD wArea;		
-	RTS_IEC_DWORD dwOffset;		
-	RTS_IEC_DWORD dwSize;		
-	RTS_IEC_DWORD dwHighestUsedAddress;		
-} APP_MEMORY_SEGMENT;
-
-/**
  * <description>appcallgetproperty</description>
  */
 typedef struct tagappcallgetproperty_struct
@@ -2623,35 +2595,35 @@ typedef void (CDECL CDECL_EXT* PFAPPCALLGETPROPERTY_IEC) (appcallgetproperty_str
 	#define GET_appcallgetproperty(fl)  CAL_CMGETAPI( "appcallgetproperty" ) 
 	#define CAL_appcallgetproperty  appcallgetproperty
 	#define CHK_appcallgetproperty  TRUE
-	#define EXP_appcallgetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty", (RTS_UINTPTR)appcallgetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xD99D7FC0), 0x03050B00) 
+	#define EXP_appcallgetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty", (RTS_UINTPTR)appcallgetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xD99D7FC0), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appcallgetproperty
 	#define EXT_appcallgetproperty
 	#define GET_appcallgetproperty(fl)  CAL_CMGETAPI( "appcallgetproperty" ) 
 	#define CAL_appcallgetproperty  appcallgetproperty
 	#define CHK_appcallgetproperty  TRUE
-	#define EXP_appcallgetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty", (RTS_UINTPTR)appcallgetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xD99D7FC0), 0x03050B00) 
+	#define EXP_appcallgetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty", (RTS_UINTPTR)appcallgetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xD99D7FC0), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappcallgetproperty
 	#define EXT_CmpAppappcallgetproperty
 	#define GET_CmpAppappcallgetproperty  ERR_OK
 	#define CAL_CmpAppappcallgetproperty  appcallgetproperty
 	#define CHK_CmpAppappcallgetproperty  TRUE
-	#define EXP_CmpAppappcallgetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty", (RTS_UINTPTR)appcallgetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xD99D7FC0), 0x03050B00) 
+	#define EXP_CmpAppappcallgetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty", (RTS_UINTPTR)appcallgetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xD99D7FC0), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appcallgetproperty
 	#define EXT_appcallgetproperty
 	#define GET_appcallgetproperty(fl)  CAL_CMGETAPI( "appcallgetproperty" ) 
 	#define CAL_appcallgetproperty  appcallgetproperty
 	#define CHK_appcallgetproperty  TRUE
-	#define EXP_appcallgetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty", (RTS_UINTPTR)appcallgetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xD99D7FC0), 0x03050B00) 
+	#define EXP_appcallgetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty", (RTS_UINTPTR)appcallgetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xD99D7FC0), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appcallgetproperty  PFAPPCALLGETPROPERTY_IEC pfappcallgetproperty;
 	#define EXT_appcallgetproperty  extern PFAPPCALLGETPROPERTY_IEC pfappcallgetproperty;
-	#define GET_appcallgetproperty(fl)  s_pfCMGetAPI2( "appcallgetproperty", (RTS_VOID_FCTPTR *)&pfappcallgetproperty, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xD99D7FC0), 0x03050B00)
+	#define GET_appcallgetproperty(fl)  s_pfCMGetAPI2( "appcallgetproperty", (RTS_VOID_FCTPTR *)&pfappcallgetproperty, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xD99D7FC0), 0x03050900)
 	#define CAL_appcallgetproperty  pfappcallgetproperty
 	#define CHK_appcallgetproperty  (pfappcallgetproperty != NULL)
-	#define EXP_appcallgetproperty   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty", (RTS_UINTPTR)appcallgetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xD99D7FC0), 0x03050B00) 
+	#define EXP_appcallgetproperty   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty", (RTS_UINTPTR)appcallgetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xD99D7FC0), 0x03050900) 
 #endif
 
 
@@ -2682,35 +2654,35 @@ typedef void (CDECL CDECL_EXT* PFAPPCALLGETPROPERTY2_IEC) (appcallgetproperty2_s
 	#define GET_appcallgetproperty2(fl)  CAL_CMGETAPI( "appcallgetproperty2" ) 
 	#define CAL_appcallgetproperty2  appcallgetproperty2
 	#define CHK_appcallgetproperty2  TRUE
-	#define EXP_appcallgetproperty2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2", (RTS_UINTPTR)appcallgetproperty2, 1, RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7), 0x03050B00) 
+	#define EXP_appcallgetproperty2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2", (RTS_UINTPTR)appcallgetproperty2, 1, RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appcallgetproperty2
 	#define EXT_appcallgetproperty2
 	#define GET_appcallgetproperty2(fl)  CAL_CMGETAPI( "appcallgetproperty2" ) 
 	#define CAL_appcallgetproperty2  appcallgetproperty2
 	#define CHK_appcallgetproperty2  TRUE
-	#define EXP_appcallgetproperty2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2", (RTS_UINTPTR)appcallgetproperty2, 1, RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7), 0x03050B00) 
+	#define EXP_appcallgetproperty2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2", (RTS_UINTPTR)appcallgetproperty2, 1, RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappcallgetproperty2
 	#define EXT_CmpAppappcallgetproperty2
 	#define GET_CmpAppappcallgetproperty2  ERR_OK
 	#define CAL_CmpAppappcallgetproperty2  appcallgetproperty2
 	#define CHK_CmpAppappcallgetproperty2  TRUE
-	#define EXP_CmpAppappcallgetproperty2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2", (RTS_UINTPTR)appcallgetproperty2, 1, RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7), 0x03050B00) 
+	#define EXP_CmpAppappcallgetproperty2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2", (RTS_UINTPTR)appcallgetproperty2, 1, RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appcallgetproperty2
 	#define EXT_appcallgetproperty2
 	#define GET_appcallgetproperty2(fl)  CAL_CMGETAPI( "appcallgetproperty2" ) 
 	#define CAL_appcallgetproperty2  appcallgetproperty2
 	#define CHK_appcallgetproperty2  TRUE
-	#define EXP_appcallgetproperty2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2", (RTS_UINTPTR)appcallgetproperty2, 1, RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7), 0x03050B00) 
+	#define EXP_appcallgetproperty2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2", (RTS_UINTPTR)appcallgetproperty2, 1, RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appcallgetproperty2  PFAPPCALLGETPROPERTY2_IEC pfappcallgetproperty2;
 	#define EXT_appcallgetproperty2  extern PFAPPCALLGETPROPERTY2_IEC pfappcallgetproperty2;
-	#define GET_appcallgetproperty2(fl)  s_pfCMGetAPI2( "appcallgetproperty2", (RTS_VOID_FCTPTR *)&pfappcallgetproperty2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7), 0x03050B00)
+	#define GET_appcallgetproperty2(fl)  s_pfCMGetAPI2( "appcallgetproperty2", (RTS_VOID_FCTPTR *)&pfappcallgetproperty2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7), 0x03050900)
 	#define CAL_appcallgetproperty2  pfappcallgetproperty2
 	#define CHK_appcallgetproperty2  (pfappcallgetproperty2 != NULL)
-	#define EXP_appcallgetproperty2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2", (RTS_UINTPTR)appcallgetproperty2, 1, RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7), 0x03050B00) 
+	#define EXP_appcallgetproperty2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2", (RTS_UINTPTR)appcallgetproperty2, 1, RTSITF_GET_SIGNATURE(0xD878B9FD, 0x689760F7), 0x03050900) 
 #endif
 
 
@@ -2738,35 +2710,35 @@ typedef void (CDECL CDECL_EXT* PFAPPCALLGETPROPERTY2RELEASE_IEC) (appcallgetprop
 	#define GET_appcallgetproperty2release(fl)  CAL_CMGETAPI( "appcallgetproperty2release" ) 
 	#define CAL_appcallgetproperty2release  appcallgetproperty2release
 	#define CHK_appcallgetproperty2release  TRUE
-	#define EXP_appcallgetproperty2release  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2release", (RTS_UINTPTR)appcallgetproperty2release, 1, 0x664A62E3, 0x03050B00) 
+	#define EXP_appcallgetproperty2release  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2release", (RTS_UINTPTR)appcallgetproperty2release, 1, 0x664A62E3, 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appcallgetproperty2release
 	#define EXT_appcallgetproperty2release
 	#define GET_appcallgetproperty2release(fl)  CAL_CMGETAPI( "appcallgetproperty2release" ) 
 	#define CAL_appcallgetproperty2release  appcallgetproperty2release
 	#define CHK_appcallgetproperty2release  TRUE
-	#define EXP_appcallgetproperty2release  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2release", (RTS_UINTPTR)appcallgetproperty2release, 1, 0x664A62E3, 0x03050B00) 
+	#define EXP_appcallgetproperty2release  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2release", (RTS_UINTPTR)appcallgetproperty2release, 1, 0x664A62E3, 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappcallgetproperty2release
 	#define EXT_CmpAppappcallgetproperty2release
 	#define GET_CmpAppappcallgetproperty2release  ERR_OK
 	#define CAL_CmpAppappcallgetproperty2release  appcallgetproperty2release
 	#define CHK_CmpAppappcallgetproperty2release  TRUE
-	#define EXP_CmpAppappcallgetproperty2release  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2release", (RTS_UINTPTR)appcallgetproperty2release, 1, 0x664A62E3, 0x03050B00) 
+	#define EXP_CmpAppappcallgetproperty2release  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2release", (RTS_UINTPTR)appcallgetproperty2release, 1, 0x664A62E3, 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appcallgetproperty2release
 	#define EXT_appcallgetproperty2release
 	#define GET_appcallgetproperty2release(fl)  CAL_CMGETAPI( "appcallgetproperty2release" ) 
 	#define CAL_appcallgetproperty2release  appcallgetproperty2release
 	#define CHK_appcallgetproperty2release  TRUE
-	#define EXP_appcallgetproperty2release  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2release", (RTS_UINTPTR)appcallgetproperty2release, 1, 0x664A62E3, 0x03050B00) 
+	#define EXP_appcallgetproperty2release  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2release", (RTS_UINTPTR)appcallgetproperty2release, 1, 0x664A62E3, 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appcallgetproperty2release  PFAPPCALLGETPROPERTY2RELEASE_IEC pfappcallgetproperty2release;
 	#define EXT_appcallgetproperty2release  extern PFAPPCALLGETPROPERTY2RELEASE_IEC pfappcallgetproperty2release;
-	#define GET_appcallgetproperty2release(fl)  s_pfCMGetAPI2( "appcallgetproperty2release", (RTS_VOID_FCTPTR *)&pfappcallgetproperty2release, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x664A62E3, 0x03050B00)
+	#define GET_appcallgetproperty2release(fl)  s_pfCMGetAPI2( "appcallgetproperty2release", (RTS_VOID_FCTPTR *)&pfappcallgetproperty2release, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x664A62E3, 0x03050900)
 	#define CAL_appcallgetproperty2release  pfappcallgetproperty2release
 	#define CHK_appcallgetproperty2release  (pfappcallgetproperty2release != NULL)
-	#define EXP_appcallgetproperty2release   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2release", (RTS_UINTPTR)appcallgetproperty2release, 1, 0x664A62E3, 0x03050B00) 
+	#define EXP_appcallgetproperty2release   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallgetproperty2release", (RTS_UINTPTR)appcallgetproperty2release, 1, 0x664A62E3, 0x03050900) 
 #endif
 
 
@@ -2797,35 +2769,35 @@ typedef void (CDECL CDECL_EXT* PFAPPCALLSETPROPERTY_IEC) (appcallsetproperty_str
 	#define GET_appcallsetproperty(fl)  CAL_CMGETAPI( "appcallsetproperty" ) 
 	#define CAL_appcallsetproperty  appcallsetproperty
 	#define CHK_appcallsetproperty  TRUE
-	#define EXP_appcallsetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallsetproperty", (RTS_UINTPTR)appcallsetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xF7790D93), 0x03050B00) 
+	#define EXP_appcallsetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallsetproperty", (RTS_UINTPTR)appcallsetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xF7790D93), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appcallsetproperty
 	#define EXT_appcallsetproperty
 	#define GET_appcallsetproperty(fl)  CAL_CMGETAPI( "appcallsetproperty" ) 
 	#define CAL_appcallsetproperty  appcallsetproperty
 	#define CHK_appcallsetproperty  TRUE
-	#define EXP_appcallsetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallsetproperty", (RTS_UINTPTR)appcallsetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xF7790D93), 0x03050B00) 
+	#define EXP_appcallsetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallsetproperty", (RTS_UINTPTR)appcallsetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xF7790D93), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappcallsetproperty
 	#define EXT_CmpAppappcallsetproperty
 	#define GET_CmpAppappcallsetproperty  ERR_OK
 	#define CAL_CmpAppappcallsetproperty  appcallsetproperty
 	#define CHK_CmpAppappcallsetproperty  TRUE
-	#define EXP_CmpAppappcallsetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallsetproperty", (RTS_UINTPTR)appcallsetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xF7790D93), 0x03050B00) 
+	#define EXP_CmpAppappcallsetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallsetproperty", (RTS_UINTPTR)appcallsetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xF7790D93), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appcallsetproperty
 	#define EXT_appcallsetproperty
 	#define GET_appcallsetproperty(fl)  CAL_CMGETAPI( "appcallsetproperty" ) 
 	#define CAL_appcallsetproperty  appcallsetproperty
 	#define CHK_appcallsetproperty  TRUE
-	#define EXP_appcallsetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallsetproperty", (RTS_UINTPTR)appcallsetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xF7790D93), 0x03050B00) 
+	#define EXP_appcallsetproperty  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallsetproperty", (RTS_UINTPTR)appcallsetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xF7790D93), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appcallsetproperty  PFAPPCALLSETPROPERTY_IEC pfappcallsetproperty;
 	#define EXT_appcallsetproperty  extern PFAPPCALLSETPROPERTY_IEC pfappcallsetproperty;
-	#define GET_appcallsetproperty(fl)  s_pfCMGetAPI2( "appcallsetproperty", (RTS_VOID_FCTPTR *)&pfappcallsetproperty, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xF7790D93), 0x03050B00)
+	#define GET_appcallsetproperty(fl)  s_pfCMGetAPI2( "appcallsetproperty", (RTS_VOID_FCTPTR *)&pfappcallsetproperty, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xF7790D93), 0x03050900)
 	#define CAL_appcallsetproperty  pfappcallsetproperty
 	#define CHK_appcallsetproperty  (pfappcallsetproperty != NULL)
-	#define EXP_appcallsetproperty   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallsetproperty", (RTS_UINTPTR)appcallsetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xF7790D93), 0x03050B00) 
+	#define EXP_appcallsetproperty   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appcallsetproperty", (RTS_UINTPTR)appcallsetproperty, 1, RTSITF_GET_SIGNATURE(0, 0xF7790D93), 0x03050900) 
 #endif
 
 
@@ -2854,35 +2826,35 @@ typedef void (CDECL CDECL_EXT* PFAPPFINDAPPLICATIONBYNAME_IEC) (appfindapplicati
 	#define GET_appfindapplicationbyname(fl)  CAL_CMGETAPI( "appfindapplicationbyname" ) 
 	#define CAL_appfindapplicationbyname  appfindapplicationbyname
 	#define CHK_appfindapplicationbyname  TRUE
-	#define EXP_appfindapplicationbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appfindapplicationbyname", (RTS_UINTPTR)appfindapplicationbyname, 1, RTSITF_GET_SIGNATURE(0, 0xDAD101B7), 0x03050B00) 
+	#define EXP_appfindapplicationbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appfindapplicationbyname", (RTS_UINTPTR)appfindapplicationbyname, 1, RTSITF_GET_SIGNATURE(0, 0xDAD101B7), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appfindapplicationbyname
 	#define EXT_appfindapplicationbyname
 	#define GET_appfindapplicationbyname(fl)  CAL_CMGETAPI( "appfindapplicationbyname" ) 
 	#define CAL_appfindapplicationbyname  appfindapplicationbyname
 	#define CHK_appfindapplicationbyname  TRUE
-	#define EXP_appfindapplicationbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appfindapplicationbyname", (RTS_UINTPTR)appfindapplicationbyname, 1, RTSITF_GET_SIGNATURE(0, 0xDAD101B7), 0x03050B00) 
+	#define EXP_appfindapplicationbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appfindapplicationbyname", (RTS_UINTPTR)appfindapplicationbyname, 1, RTSITF_GET_SIGNATURE(0, 0xDAD101B7), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappfindapplicationbyname
 	#define EXT_CmpAppappfindapplicationbyname
 	#define GET_CmpAppappfindapplicationbyname  ERR_OK
 	#define CAL_CmpAppappfindapplicationbyname  appfindapplicationbyname
 	#define CHK_CmpAppappfindapplicationbyname  TRUE
-	#define EXP_CmpAppappfindapplicationbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appfindapplicationbyname", (RTS_UINTPTR)appfindapplicationbyname, 1, RTSITF_GET_SIGNATURE(0, 0xDAD101B7), 0x03050B00) 
+	#define EXP_CmpAppappfindapplicationbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appfindapplicationbyname", (RTS_UINTPTR)appfindapplicationbyname, 1, RTSITF_GET_SIGNATURE(0, 0xDAD101B7), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appfindapplicationbyname
 	#define EXT_appfindapplicationbyname
 	#define GET_appfindapplicationbyname(fl)  CAL_CMGETAPI( "appfindapplicationbyname" ) 
 	#define CAL_appfindapplicationbyname  appfindapplicationbyname
 	#define CHK_appfindapplicationbyname  TRUE
-	#define EXP_appfindapplicationbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appfindapplicationbyname", (RTS_UINTPTR)appfindapplicationbyname, 1, RTSITF_GET_SIGNATURE(0, 0xDAD101B7), 0x03050B00) 
+	#define EXP_appfindapplicationbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appfindapplicationbyname", (RTS_UINTPTR)appfindapplicationbyname, 1, RTSITF_GET_SIGNATURE(0, 0xDAD101B7), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appfindapplicationbyname  PFAPPFINDAPPLICATIONBYNAME_IEC pfappfindapplicationbyname;
 	#define EXT_appfindapplicationbyname  extern PFAPPFINDAPPLICATIONBYNAME_IEC pfappfindapplicationbyname;
-	#define GET_appfindapplicationbyname(fl)  s_pfCMGetAPI2( "appfindapplicationbyname", (RTS_VOID_FCTPTR *)&pfappfindapplicationbyname, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xDAD101B7), 0x03050B00)
+	#define GET_appfindapplicationbyname(fl)  s_pfCMGetAPI2( "appfindapplicationbyname", (RTS_VOID_FCTPTR *)&pfappfindapplicationbyname, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xDAD101B7), 0x03050900)
 	#define CAL_appfindapplicationbyname  pfappfindapplicationbyname
 	#define CHK_appfindapplicationbyname  (pfappfindapplicationbyname != NULL)
-	#define EXP_appfindapplicationbyname   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appfindapplicationbyname", (RTS_UINTPTR)appfindapplicationbyname, 1, RTSITF_GET_SIGNATURE(0, 0xDAD101B7), 0x03050B00) 
+	#define EXP_appfindapplicationbyname   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appfindapplicationbyname", (RTS_UINTPTR)appfindapplicationbyname, 1, RTSITF_GET_SIGNATURE(0, 0xDAD101B7), 0x03050900) 
 #endif
 
 
@@ -2911,35 +2883,35 @@ typedef void (CDECL CDECL_EXT* PFAPPGENERATEEXCEPTION_IEC) (appgenerateexception
 	#define GET_appgenerateexception(fl)  CAL_CMGETAPI( "appgenerateexception" ) 
 	#define CAL_appgenerateexception  appgenerateexception
 	#define CHK_appgenerateexception  TRUE
-	#define EXP_appgenerateexception  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgenerateexception", (RTS_UINTPTR)appgenerateexception, 1, RTSITF_GET_SIGNATURE(0, 0xCAFA8E41), 0x03050B00) 
+	#define EXP_appgenerateexception  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgenerateexception", (RTS_UINTPTR)appgenerateexception, 1, RTSITF_GET_SIGNATURE(0, 0xCAFA8E41), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appgenerateexception
 	#define EXT_appgenerateexception
 	#define GET_appgenerateexception(fl)  CAL_CMGETAPI( "appgenerateexception" ) 
 	#define CAL_appgenerateexception  appgenerateexception
 	#define CHK_appgenerateexception  TRUE
-	#define EXP_appgenerateexception  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgenerateexception", (RTS_UINTPTR)appgenerateexception, 1, RTSITF_GET_SIGNATURE(0, 0xCAFA8E41), 0x03050B00) 
+	#define EXP_appgenerateexception  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgenerateexception", (RTS_UINTPTR)appgenerateexception, 1, RTSITF_GET_SIGNATURE(0, 0xCAFA8E41), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappgenerateexception
 	#define EXT_CmpAppappgenerateexception
 	#define GET_CmpAppappgenerateexception  ERR_OK
 	#define CAL_CmpAppappgenerateexception  appgenerateexception
 	#define CHK_CmpAppappgenerateexception  TRUE
-	#define EXP_CmpAppappgenerateexception  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgenerateexception", (RTS_UINTPTR)appgenerateexception, 1, RTSITF_GET_SIGNATURE(0, 0xCAFA8E41), 0x03050B00) 
+	#define EXP_CmpAppappgenerateexception  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgenerateexception", (RTS_UINTPTR)appgenerateexception, 1, RTSITF_GET_SIGNATURE(0, 0xCAFA8E41), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appgenerateexception
 	#define EXT_appgenerateexception
 	#define GET_appgenerateexception(fl)  CAL_CMGETAPI( "appgenerateexception" ) 
 	#define CAL_appgenerateexception  appgenerateexception
 	#define CHK_appgenerateexception  TRUE
-	#define EXP_appgenerateexception  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgenerateexception", (RTS_UINTPTR)appgenerateexception, 1, RTSITF_GET_SIGNATURE(0, 0xCAFA8E41), 0x03050B00) 
+	#define EXP_appgenerateexception  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgenerateexception", (RTS_UINTPTR)appgenerateexception, 1, RTSITF_GET_SIGNATURE(0, 0xCAFA8E41), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appgenerateexception  PFAPPGENERATEEXCEPTION_IEC pfappgenerateexception;
 	#define EXT_appgenerateexception  extern PFAPPGENERATEEXCEPTION_IEC pfappgenerateexception;
-	#define GET_appgenerateexception(fl)  s_pfCMGetAPI2( "appgenerateexception", (RTS_VOID_FCTPTR *)&pfappgenerateexception, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xCAFA8E41), 0x03050B00)
+	#define GET_appgenerateexception(fl)  s_pfCMGetAPI2( "appgenerateexception", (RTS_VOID_FCTPTR *)&pfappgenerateexception, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xCAFA8E41), 0x03050900)
 	#define CAL_appgenerateexception  pfappgenerateexception
 	#define CHK_appgenerateexception  (pfappgenerateexception != NULL)
-	#define EXP_appgenerateexception   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgenerateexception", (RTS_UINTPTR)appgenerateexception, 1, RTSITF_GET_SIGNATURE(0, 0xCAFA8E41), 0x03050B00) 
+	#define EXP_appgenerateexception   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgenerateexception", (RTS_UINTPTR)appgenerateexception, 1, RTSITF_GET_SIGNATURE(0, 0xCAFA8E41), 0x03050900) 
 #endif
 
 
@@ -2967,35 +2939,35 @@ typedef void (CDECL CDECL_EXT* PFAPPGETAPPLICATIONBYAREAADDRESS_IEC) (appgetappl
 	#define GET_appgetapplicationbyareaaddress(fl)  CAL_CMGETAPI( "appgetapplicationbyareaaddress" ) 
 	#define CAL_appgetapplicationbyareaaddress  appgetapplicationbyareaaddress
 	#define CHK_appgetapplicationbyareaaddress  TRUE
-	#define EXP_appgetapplicationbyareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationbyareaaddress", (RTS_UINTPTR)appgetapplicationbyareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3), 0x03050B00) 
+	#define EXP_appgetapplicationbyareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationbyareaaddress", (RTS_UINTPTR)appgetapplicationbyareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appgetapplicationbyareaaddress
 	#define EXT_appgetapplicationbyareaaddress
 	#define GET_appgetapplicationbyareaaddress(fl)  CAL_CMGETAPI( "appgetapplicationbyareaaddress" ) 
 	#define CAL_appgetapplicationbyareaaddress  appgetapplicationbyareaaddress
 	#define CHK_appgetapplicationbyareaaddress  TRUE
-	#define EXP_appgetapplicationbyareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationbyareaaddress", (RTS_UINTPTR)appgetapplicationbyareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3), 0x03050B00) 
+	#define EXP_appgetapplicationbyareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationbyareaaddress", (RTS_UINTPTR)appgetapplicationbyareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappgetapplicationbyareaaddress
 	#define EXT_CmpAppappgetapplicationbyareaaddress
 	#define GET_CmpAppappgetapplicationbyareaaddress  ERR_OK
 	#define CAL_CmpAppappgetapplicationbyareaaddress  appgetapplicationbyareaaddress
 	#define CHK_CmpAppappgetapplicationbyareaaddress  TRUE
-	#define EXP_CmpAppappgetapplicationbyareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationbyareaaddress", (RTS_UINTPTR)appgetapplicationbyareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3), 0x03050B00) 
+	#define EXP_CmpAppappgetapplicationbyareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationbyareaaddress", (RTS_UINTPTR)appgetapplicationbyareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appgetapplicationbyareaaddress
 	#define EXT_appgetapplicationbyareaaddress
 	#define GET_appgetapplicationbyareaaddress(fl)  CAL_CMGETAPI( "appgetapplicationbyareaaddress" ) 
 	#define CAL_appgetapplicationbyareaaddress  appgetapplicationbyareaaddress
 	#define CHK_appgetapplicationbyareaaddress  TRUE
-	#define EXP_appgetapplicationbyareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationbyareaaddress", (RTS_UINTPTR)appgetapplicationbyareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3), 0x03050B00) 
+	#define EXP_appgetapplicationbyareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationbyareaaddress", (RTS_UINTPTR)appgetapplicationbyareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appgetapplicationbyareaaddress  PFAPPGETAPPLICATIONBYAREAADDRESS_IEC pfappgetapplicationbyareaaddress;
 	#define EXT_appgetapplicationbyareaaddress  extern PFAPPGETAPPLICATIONBYAREAADDRESS_IEC pfappgetapplicationbyareaaddress;
-	#define GET_appgetapplicationbyareaaddress(fl)  s_pfCMGetAPI2( "appgetapplicationbyareaaddress", (RTS_VOID_FCTPTR *)&pfappgetapplicationbyareaaddress, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3), 0x03050B00)
+	#define GET_appgetapplicationbyareaaddress(fl)  s_pfCMGetAPI2( "appgetapplicationbyareaaddress", (RTS_VOID_FCTPTR *)&pfappgetapplicationbyareaaddress, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3), 0x03050900)
 	#define CAL_appgetapplicationbyareaaddress  pfappgetapplicationbyareaaddress
 	#define CHK_appgetapplicationbyareaaddress  (pfappgetapplicationbyareaaddress != NULL)
-	#define EXP_appgetapplicationbyareaaddress   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationbyareaaddress", (RTS_UINTPTR)appgetapplicationbyareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3), 0x03050B00) 
+	#define EXP_appgetapplicationbyareaaddress   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationbyareaaddress", (RTS_UINTPTR)appgetapplicationbyareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x7EE9B1A3), 0x03050900) 
 #endif
 
 
@@ -3024,35 +2996,35 @@ typedef void (CDECL CDECL_EXT* PFAPPGETAPPLICATIONINFO_IEC) (appgetapplicationin
 	#define GET_appgetapplicationinfo(fl)  CAL_CMGETAPI( "appgetapplicationinfo" ) 
 	#define CAL_appgetapplicationinfo  appgetapplicationinfo
 	#define CHK_appgetapplicationinfo  TRUE
-	#define EXP_appgetapplicationinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationinfo", (RTS_UINTPTR)appgetapplicationinfo, 1, RTSITF_GET_SIGNATURE(0, 0x49DD3432), 0x03050B00) 
+	#define EXP_appgetapplicationinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationinfo", (RTS_UINTPTR)appgetapplicationinfo, 1, RTSITF_GET_SIGNATURE(0, 0x49DD3432), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appgetapplicationinfo
 	#define EXT_appgetapplicationinfo
 	#define GET_appgetapplicationinfo(fl)  CAL_CMGETAPI( "appgetapplicationinfo" ) 
 	#define CAL_appgetapplicationinfo  appgetapplicationinfo
 	#define CHK_appgetapplicationinfo  TRUE
-	#define EXP_appgetapplicationinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationinfo", (RTS_UINTPTR)appgetapplicationinfo, 1, RTSITF_GET_SIGNATURE(0, 0x49DD3432), 0x03050B00) 
+	#define EXP_appgetapplicationinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationinfo", (RTS_UINTPTR)appgetapplicationinfo, 1, RTSITF_GET_SIGNATURE(0, 0x49DD3432), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappgetapplicationinfo
 	#define EXT_CmpAppappgetapplicationinfo
 	#define GET_CmpAppappgetapplicationinfo  ERR_OK
 	#define CAL_CmpAppappgetapplicationinfo  appgetapplicationinfo
 	#define CHK_CmpAppappgetapplicationinfo  TRUE
-	#define EXP_CmpAppappgetapplicationinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationinfo", (RTS_UINTPTR)appgetapplicationinfo, 1, RTSITF_GET_SIGNATURE(0, 0x49DD3432), 0x03050B00) 
+	#define EXP_CmpAppappgetapplicationinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationinfo", (RTS_UINTPTR)appgetapplicationinfo, 1, RTSITF_GET_SIGNATURE(0, 0x49DD3432), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appgetapplicationinfo
 	#define EXT_appgetapplicationinfo
 	#define GET_appgetapplicationinfo(fl)  CAL_CMGETAPI( "appgetapplicationinfo" ) 
 	#define CAL_appgetapplicationinfo  appgetapplicationinfo
 	#define CHK_appgetapplicationinfo  TRUE
-	#define EXP_appgetapplicationinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationinfo", (RTS_UINTPTR)appgetapplicationinfo, 1, RTSITF_GET_SIGNATURE(0, 0x49DD3432), 0x03050B00) 
+	#define EXP_appgetapplicationinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationinfo", (RTS_UINTPTR)appgetapplicationinfo, 1, RTSITF_GET_SIGNATURE(0, 0x49DD3432), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appgetapplicationinfo  PFAPPGETAPPLICATIONINFO_IEC pfappgetapplicationinfo;
 	#define EXT_appgetapplicationinfo  extern PFAPPGETAPPLICATIONINFO_IEC pfappgetapplicationinfo;
-	#define GET_appgetapplicationinfo(fl)  s_pfCMGetAPI2( "appgetapplicationinfo", (RTS_VOID_FCTPTR *)&pfappgetapplicationinfo, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x49DD3432), 0x03050B00)
+	#define GET_appgetapplicationinfo(fl)  s_pfCMGetAPI2( "appgetapplicationinfo", (RTS_VOID_FCTPTR *)&pfappgetapplicationinfo, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x49DD3432), 0x03050900)
 	#define CAL_appgetapplicationinfo  pfappgetapplicationinfo
 	#define CHK_appgetapplicationinfo  (pfappgetapplicationinfo != NULL)
-	#define EXP_appgetapplicationinfo   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationinfo", (RTS_UINTPTR)appgetapplicationinfo, 1, RTSITF_GET_SIGNATURE(0, 0x49DD3432), 0x03050B00) 
+	#define EXP_appgetapplicationinfo   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetapplicationinfo", (RTS_UINTPTR)appgetapplicationinfo, 1, RTSITF_GET_SIGNATURE(0, 0x49DD3432), 0x03050900) 
 #endif
 
 
@@ -3082,35 +3054,35 @@ typedef void (CDECL CDECL_EXT* PFAPPGETAREAADDRESS_IEC) (appgetareaaddress_struc
 	#define GET_appgetareaaddress(fl)  CAL_CMGETAPI( "appgetareaaddress" ) 
 	#define CAL_appgetareaaddress  appgetareaaddress
 	#define CHK_appgetareaaddress  TRUE
-	#define EXP_appgetareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaaddress", (RTS_UINTPTR)appgetareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x6C9E6C94), 0x03050B00) 
+	#define EXP_appgetareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaaddress", (RTS_UINTPTR)appgetareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x6C9E6C94), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appgetareaaddress
 	#define EXT_appgetareaaddress
 	#define GET_appgetareaaddress(fl)  CAL_CMGETAPI( "appgetareaaddress" ) 
 	#define CAL_appgetareaaddress  appgetareaaddress
 	#define CHK_appgetareaaddress  TRUE
-	#define EXP_appgetareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaaddress", (RTS_UINTPTR)appgetareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x6C9E6C94), 0x03050B00) 
+	#define EXP_appgetareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaaddress", (RTS_UINTPTR)appgetareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x6C9E6C94), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappgetareaaddress
 	#define EXT_CmpAppappgetareaaddress
 	#define GET_CmpAppappgetareaaddress  ERR_OK
 	#define CAL_CmpAppappgetareaaddress  appgetareaaddress
 	#define CHK_CmpAppappgetareaaddress  TRUE
-	#define EXP_CmpAppappgetareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaaddress", (RTS_UINTPTR)appgetareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x6C9E6C94), 0x03050B00) 
+	#define EXP_CmpAppappgetareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaaddress", (RTS_UINTPTR)appgetareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x6C9E6C94), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appgetareaaddress
 	#define EXT_appgetareaaddress
 	#define GET_appgetareaaddress(fl)  CAL_CMGETAPI( "appgetareaaddress" ) 
 	#define CAL_appgetareaaddress  appgetareaaddress
 	#define CHK_appgetareaaddress  TRUE
-	#define EXP_appgetareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaaddress", (RTS_UINTPTR)appgetareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x6C9E6C94), 0x03050B00) 
+	#define EXP_appgetareaaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaaddress", (RTS_UINTPTR)appgetareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x6C9E6C94), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appgetareaaddress  PFAPPGETAREAADDRESS_IEC pfappgetareaaddress;
 	#define EXT_appgetareaaddress  extern PFAPPGETAREAADDRESS_IEC pfappgetareaaddress;
-	#define GET_appgetareaaddress(fl)  s_pfCMGetAPI2( "appgetareaaddress", (RTS_VOID_FCTPTR *)&pfappgetareaaddress, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x6C9E6C94), 0x03050B00)
+	#define GET_appgetareaaddress(fl)  s_pfCMGetAPI2( "appgetareaaddress", (RTS_VOID_FCTPTR *)&pfappgetareaaddress, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x6C9E6C94), 0x03050900)
 	#define CAL_appgetareaaddress  pfappgetareaaddress
 	#define CHK_appgetareaaddress  (pfappgetareaaddress != NULL)
-	#define EXP_appgetareaaddress   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaaddress", (RTS_UINTPTR)appgetareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x6C9E6C94), 0x03050B00) 
+	#define EXP_appgetareaaddress   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaaddress", (RTS_UINTPTR)appgetareaaddress, 1, RTSITF_GET_SIGNATURE(0, 0x6C9E6C94), 0x03050900) 
 #endif
 
 
@@ -3141,93 +3113,35 @@ typedef void (CDECL CDECL_EXT* PFAPPGETAREAOFFSETBYADDRESS_IEC) (appgetareaoffse
 	#define GET_appgetareaoffsetbyaddress(fl)  CAL_CMGETAPI( "appgetareaoffsetbyaddress" ) 
 	#define CAL_appgetareaoffsetbyaddress  appgetareaoffsetbyaddress
 	#define CHK_appgetareaoffsetbyaddress  TRUE
-	#define EXP_appgetareaoffsetbyaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaoffsetbyaddress", (RTS_UINTPTR)appgetareaoffsetbyaddress, 1, RTSITF_GET_SIGNATURE(0, 0x356243D6), 0x03050B00) 
+	#define EXP_appgetareaoffsetbyaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaoffsetbyaddress", (RTS_UINTPTR)appgetareaoffsetbyaddress, 1, RTSITF_GET_SIGNATURE(0, 0x356243D6), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appgetareaoffsetbyaddress
 	#define EXT_appgetareaoffsetbyaddress
 	#define GET_appgetareaoffsetbyaddress(fl)  CAL_CMGETAPI( "appgetareaoffsetbyaddress" ) 
 	#define CAL_appgetareaoffsetbyaddress  appgetareaoffsetbyaddress
 	#define CHK_appgetareaoffsetbyaddress  TRUE
-	#define EXP_appgetareaoffsetbyaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaoffsetbyaddress", (RTS_UINTPTR)appgetareaoffsetbyaddress, 1, RTSITF_GET_SIGNATURE(0, 0x356243D6), 0x03050B00) 
+	#define EXP_appgetareaoffsetbyaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaoffsetbyaddress", (RTS_UINTPTR)appgetareaoffsetbyaddress, 1, RTSITF_GET_SIGNATURE(0, 0x356243D6), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappgetareaoffsetbyaddress
 	#define EXT_CmpAppappgetareaoffsetbyaddress
 	#define GET_CmpAppappgetareaoffsetbyaddress  ERR_OK
 	#define CAL_CmpAppappgetareaoffsetbyaddress  appgetareaoffsetbyaddress
 	#define CHK_CmpAppappgetareaoffsetbyaddress  TRUE
-	#define EXP_CmpAppappgetareaoffsetbyaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaoffsetbyaddress", (RTS_UINTPTR)appgetareaoffsetbyaddress, 1, RTSITF_GET_SIGNATURE(0, 0x356243D6), 0x03050B00) 
+	#define EXP_CmpAppappgetareaoffsetbyaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaoffsetbyaddress", (RTS_UINTPTR)appgetareaoffsetbyaddress, 1, RTSITF_GET_SIGNATURE(0, 0x356243D6), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appgetareaoffsetbyaddress
 	#define EXT_appgetareaoffsetbyaddress
 	#define GET_appgetareaoffsetbyaddress(fl)  CAL_CMGETAPI( "appgetareaoffsetbyaddress" ) 
 	#define CAL_appgetareaoffsetbyaddress  appgetareaoffsetbyaddress
 	#define CHK_appgetareaoffsetbyaddress  TRUE
-	#define EXP_appgetareaoffsetbyaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaoffsetbyaddress", (RTS_UINTPTR)appgetareaoffsetbyaddress, 1, RTSITF_GET_SIGNATURE(0, 0x356243D6), 0x03050B00) 
+	#define EXP_appgetareaoffsetbyaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaoffsetbyaddress", (RTS_UINTPTR)appgetareaoffsetbyaddress, 1, RTSITF_GET_SIGNATURE(0, 0x356243D6), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appgetareaoffsetbyaddress  PFAPPGETAREAOFFSETBYADDRESS_IEC pfappgetareaoffsetbyaddress;
 	#define EXT_appgetareaoffsetbyaddress  extern PFAPPGETAREAOFFSETBYADDRESS_IEC pfappgetareaoffsetbyaddress;
-	#define GET_appgetareaoffsetbyaddress(fl)  s_pfCMGetAPI2( "appgetareaoffsetbyaddress", (RTS_VOID_FCTPTR *)&pfappgetareaoffsetbyaddress, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x356243D6), 0x03050B00)
+	#define GET_appgetareaoffsetbyaddress(fl)  s_pfCMGetAPI2( "appgetareaoffsetbyaddress", (RTS_VOID_FCTPTR *)&pfappgetareaoffsetbyaddress, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x356243D6), 0x03050900)
 	#define CAL_appgetareaoffsetbyaddress  pfappgetareaoffsetbyaddress
 	#define CHK_appgetareaoffsetbyaddress  (pfappgetareaoffsetbyaddress != NULL)
-	#define EXP_appgetareaoffsetbyaddress   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaoffsetbyaddress", (RTS_UINTPTR)appgetareaoffsetbyaddress, 1, RTSITF_GET_SIGNATURE(0, 0x356243D6), 0x03050B00) 
-#endif
-
-
-/**
- * <description>appgetareapointer</description>
- */
-typedef struct tagappgetareapointer_struct
-{
-	APPLICATION *pApp;					/* VAR_INPUT */	
-	RTS_IEC_DINT diArea;				/* VAR_INPUT */	
-	RTS_IEC_BYTE **ppbyArea;			/* VAR_INPUT */	
-	RTS_IEC_RESULT AppGetAreaPointer;	/* VAR_OUTPUT */	
-} appgetareapointer_struct;
-
-void CDECL CDECL_EXT appgetareapointer(appgetareapointer_struct *p);
-typedef void (CDECL CDECL_EXT* PFAPPGETAREAPOINTER_IEC) (appgetareapointer_struct *p);
-#if defined(CMPAPP_NOTIMPLEMENTED) || defined(APPGETAREAPOINTER_NOTIMPLEMENTED)
-	#define USE_appgetareapointer
-	#define EXT_appgetareapointer
-	#define GET_appgetareapointer(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_appgetareapointer(p0) 
-	#define CHK_appgetareapointer  FALSE
-	#define EXP_appgetareapointer  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_appgetareapointer
-	#define EXT_appgetareapointer
-	#define GET_appgetareapointer(fl)  CAL_CMGETAPI( "appgetareapointer" ) 
-	#define CAL_appgetareapointer  appgetareapointer
-	#define CHK_appgetareapointer  TRUE
-	#define EXP_appgetareapointer  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareapointer", (RTS_UINTPTR)appgetareapointer, 1, 0x6AC4CD9A, 0x03050B00) 
-#elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
-	#define USE_appgetareapointer
-	#define EXT_appgetareapointer
-	#define GET_appgetareapointer(fl)  CAL_CMGETAPI( "appgetareapointer" ) 
-	#define CAL_appgetareapointer  appgetareapointer
-	#define CHK_appgetareapointer  TRUE
-	#define EXP_appgetareapointer  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareapointer", (RTS_UINTPTR)appgetareapointer, 1, 0x6AC4CD9A, 0x03050B00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpAppappgetareapointer
-	#define EXT_CmpAppappgetareapointer
-	#define GET_CmpAppappgetareapointer  ERR_OK
-	#define CAL_CmpAppappgetareapointer  appgetareapointer
-	#define CHK_CmpAppappgetareapointer  TRUE
-	#define EXP_CmpAppappgetareapointer  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareapointer", (RTS_UINTPTR)appgetareapointer, 1, 0x6AC4CD9A, 0x03050B00) 
-#elif defined(CPLUSPLUS)
-	#define USE_appgetareapointer
-	#define EXT_appgetareapointer
-	#define GET_appgetareapointer(fl)  CAL_CMGETAPI( "appgetareapointer" ) 
-	#define CAL_appgetareapointer  appgetareapointer
-	#define CHK_appgetareapointer  TRUE
-	#define EXP_appgetareapointer  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareapointer", (RTS_UINTPTR)appgetareapointer, 1, 0x6AC4CD9A, 0x03050B00) 
-#else /* DYNAMIC_LINK */
-	#define USE_appgetareapointer  PFAPPGETAREAPOINTER_IEC pfappgetareapointer;
-	#define EXT_appgetareapointer  extern PFAPPGETAREAPOINTER_IEC pfappgetareapointer;
-	#define GET_appgetareapointer(fl)  s_pfCMGetAPI2( "appgetareapointer", (RTS_VOID_FCTPTR *)&pfappgetareapointer, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6AC4CD9A, 0x03050B00)
-	#define CAL_appgetareapointer  pfappgetareapointer
-	#define CHK_appgetareapointer  (pfappgetareapointer != NULL)
-	#define EXP_appgetareapointer   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareapointer", (RTS_UINTPTR)appgetareapointer, 1, 0x6AC4CD9A, 0x03050B00) 
+	#define EXP_appgetareaoffsetbyaddress   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareaoffsetbyaddress", (RTS_UINTPTR)appgetareaoffsetbyaddress, 1, RTSITF_GET_SIGNATURE(0, 0x356243D6), 0x03050900) 
 #endif
 
 
@@ -3257,35 +3171,35 @@ typedef void (CDECL CDECL_EXT* PFAPPGETAREASIZE_IEC) (appgetareasize_struct *p);
 	#define GET_appgetareasize(fl)  CAL_CMGETAPI( "appgetareasize" ) 
 	#define CAL_appgetareasize  appgetareasize
 	#define CHK_appgetareasize  TRUE
-	#define EXP_appgetareasize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareasize", (RTS_UINTPTR)appgetareasize, 1, RTSITF_GET_SIGNATURE(0, 0x362BAF2A), 0x03050B00) 
+	#define EXP_appgetareasize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareasize", (RTS_UINTPTR)appgetareasize, 1, RTSITF_GET_SIGNATURE(0, 0x362BAF2A), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appgetareasize
 	#define EXT_appgetareasize
 	#define GET_appgetareasize(fl)  CAL_CMGETAPI( "appgetareasize" ) 
 	#define CAL_appgetareasize  appgetareasize
 	#define CHK_appgetareasize  TRUE
-	#define EXP_appgetareasize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareasize", (RTS_UINTPTR)appgetareasize, 1, RTSITF_GET_SIGNATURE(0, 0x362BAF2A), 0x03050B00) 
+	#define EXP_appgetareasize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareasize", (RTS_UINTPTR)appgetareasize, 1, RTSITF_GET_SIGNATURE(0, 0x362BAF2A), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappgetareasize
 	#define EXT_CmpAppappgetareasize
 	#define GET_CmpAppappgetareasize  ERR_OK
 	#define CAL_CmpAppappgetareasize  appgetareasize
 	#define CHK_CmpAppappgetareasize  TRUE
-	#define EXP_CmpAppappgetareasize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareasize", (RTS_UINTPTR)appgetareasize, 1, RTSITF_GET_SIGNATURE(0, 0x362BAF2A), 0x03050B00) 
+	#define EXP_CmpAppappgetareasize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareasize", (RTS_UINTPTR)appgetareasize, 1, RTSITF_GET_SIGNATURE(0, 0x362BAF2A), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appgetareasize
 	#define EXT_appgetareasize
 	#define GET_appgetareasize(fl)  CAL_CMGETAPI( "appgetareasize" ) 
 	#define CAL_appgetareasize  appgetareasize
 	#define CHK_appgetareasize  TRUE
-	#define EXP_appgetareasize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareasize", (RTS_UINTPTR)appgetareasize, 1, RTSITF_GET_SIGNATURE(0, 0x362BAF2A), 0x03050B00) 
+	#define EXP_appgetareasize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareasize", (RTS_UINTPTR)appgetareasize, 1, RTSITF_GET_SIGNATURE(0, 0x362BAF2A), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appgetareasize  PFAPPGETAREASIZE_IEC pfappgetareasize;
 	#define EXT_appgetareasize  extern PFAPPGETAREASIZE_IEC pfappgetareasize;
-	#define GET_appgetareasize(fl)  s_pfCMGetAPI2( "appgetareasize", (RTS_VOID_FCTPTR *)&pfappgetareasize, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x362BAF2A), 0x03050B00)
+	#define GET_appgetareasize(fl)  s_pfCMGetAPI2( "appgetareasize", (RTS_VOID_FCTPTR *)&pfappgetareasize, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x362BAF2A), 0x03050900)
 	#define CAL_appgetareasize  pfappgetareasize
 	#define CHK_appgetareasize  (pfappgetareasize != NULL)
-	#define EXP_appgetareasize   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareasize", (RTS_UINTPTR)appgetareasize, 1, RTSITF_GET_SIGNATURE(0, 0x362BAF2A), 0x03050B00) 
+	#define EXP_appgetareasize   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetareasize", (RTS_UINTPTR)appgetareasize, 1, RTSITF_GET_SIGNATURE(0, 0x362BAF2A), 0x03050900) 
 #endif
 
 
@@ -3313,35 +3227,35 @@ typedef void (CDECL CDECL_EXT* PFAPPGETCURRENT_IEC) (appgetcurrent_struct *p);
 	#define GET_appgetcurrent(fl)  CAL_CMGETAPI( "appgetcurrent" ) 
 	#define CAL_appgetcurrent  appgetcurrent
 	#define CHK_appgetcurrent  TRUE
-	#define EXP_appgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetcurrent", (RTS_UINTPTR)appgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0x9EE77745), 0x03050B00) 
+	#define EXP_appgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetcurrent", (RTS_UINTPTR)appgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0x9EE77745), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appgetcurrent
 	#define EXT_appgetcurrent
 	#define GET_appgetcurrent(fl)  CAL_CMGETAPI( "appgetcurrent" ) 
 	#define CAL_appgetcurrent  appgetcurrent
 	#define CHK_appgetcurrent  TRUE
-	#define EXP_appgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetcurrent", (RTS_UINTPTR)appgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0x9EE77745), 0x03050B00) 
+	#define EXP_appgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetcurrent", (RTS_UINTPTR)appgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0x9EE77745), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappgetcurrent
 	#define EXT_CmpAppappgetcurrent
 	#define GET_CmpAppappgetcurrent  ERR_OK
 	#define CAL_CmpAppappgetcurrent  appgetcurrent
 	#define CHK_CmpAppappgetcurrent  TRUE
-	#define EXP_CmpAppappgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetcurrent", (RTS_UINTPTR)appgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0x9EE77745), 0x03050B00) 
+	#define EXP_CmpAppappgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetcurrent", (RTS_UINTPTR)appgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0x9EE77745), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appgetcurrent
 	#define EXT_appgetcurrent
 	#define GET_appgetcurrent(fl)  CAL_CMGETAPI( "appgetcurrent" ) 
 	#define CAL_appgetcurrent  appgetcurrent
 	#define CHK_appgetcurrent  TRUE
-	#define EXP_appgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetcurrent", (RTS_UINTPTR)appgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0x9EE77745), 0x03050B00) 
+	#define EXP_appgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetcurrent", (RTS_UINTPTR)appgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0x9EE77745), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appgetcurrent  PFAPPGETCURRENT_IEC pfappgetcurrent;
 	#define EXT_appgetcurrent  extern PFAPPGETCURRENT_IEC pfappgetcurrent;
-	#define GET_appgetcurrent(fl)  s_pfCMGetAPI2( "appgetcurrent", (RTS_VOID_FCTPTR *)&pfappgetcurrent, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x9EE77745), 0x03050B00)
+	#define GET_appgetcurrent(fl)  s_pfCMGetAPI2( "appgetcurrent", (RTS_VOID_FCTPTR *)&pfappgetcurrent, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x9EE77745), 0x03050900)
 	#define CAL_appgetcurrent  pfappgetcurrent
 	#define CHK_appgetcurrent  (pfappgetcurrent != NULL)
-	#define EXP_appgetcurrent   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetcurrent", (RTS_UINTPTR)appgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0x9EE77745), 0x03050B00) 
+	#define EXP_appgetcurrent   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetcurrent", (RTS_UINTPTR)appgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0x9EE77745), 0x03050900) 
 #endif
 
 
@@ -3369,35 +3283,35 @@ typedef void (CDECL CDECL_EXT* PFAPPGETFIRSTAPP_IEC) (appgetfirstapp_struct *p);
 	#define GET_appgetfirstapp(fl)  CAL_CMGETAPI( "appgetfirstapp" ) 
 	#define CAL_appgetfirstapp  appgetfirstapp
 	#define CHK_appgetfirstapp  TRUE
-	#define EXP_appgetfirstapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetfirstapp", (RTS_UINTPTR)appgetfirstapp, 1, RTSITF_GET_SIGNATURE(0, 0x75BD6F20), 0x03050B00) 
+	#define EXP_appgetfirstapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetfirstapp", (RTS_UINTPTR)appgetfirstapp, 1, RTSITF_GET_SIGNATURE(0, 0x75BD6F20), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appgetfirstapp
 	#define EXT_appgetfirstapp
 	#define GET_appgetfirstapp(fl)  CAL_CMGETAPI( "appgetfirstapp" ) 
 	#define CAL_appgetfirstapp  appgetfirstapp
 	#define CHK_appgetfirstapp  TRUE
-	#define EXP_appgetfirstapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetfirstapp", (RTS_UINTPTR)appgetfirstapp, 1, RTSITF_GET_SIGNATURE(0, 0x75BD6F20), 0x03050B00) 
+	#define EXP_appgetfirstapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetfirstapp", (RTS_UINTPTR)appgetfirstapp, 1, RTSITF_GET_SIGNATURE(0, 0x75BD6F20), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappgetfirstapp
 	#define EXT_CmpAppappgetfirstapp
 	#define GET_CmpAppappgetfirstapp  ERR_OK
 	#define CAL_CmpAppappgetfirstapp  appgetfirstapp
 	#define CHK_CmpAppappgetfirstapp  TRUE
-	#define EXP_CmpAppappgetfirstapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetfirstapp", (RTS_UINTPTR)appgetfirstapp, 1, RTSITF_GET_SIGNATURE(0, 0x75BD6F20), 0x03050B00) 
+	#define EXP_CmpAppappgetfirstapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetfirstapp", (RTS_UINTPTR)appgetfirstapp, 1, RTSITF_GET_SIGNATURE(0, 0x75BD6F20), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appgetfirstapp
 	#define EXT_appgetfirstapp
 	#define GET_appgetfirstapp(fl)  CAL_CMGETAPI( "appgetfirstapp" ) 
 	#define CAL_appgetfirstapp  appgetfirstapp
 	#define CHK_appgetfirstapp  TRUE
-	#define EXP_appgetfirstapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetfirstapp", (RTS_UINTPTR)appgetfirstapp, 1, RTSITF_GET_SIGNATURE(0, 0x75BD6F20), 0x03050B00) 
+	#define EXP_appgetfirstapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetfirstapp", (RTS_UINTPTR)appgetfirstapp, 1, RTSITF_GET_SIGNATURE(0, 0x75BD6F20), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appgetfirstapp  PFAPPGETFIRSTAPP_IEC pfappgetfirstapp;
 	#define EXT_appgetfirstapp  extern PFAPPGETFIRSTAPP_IEC pfappgetfirstapp;
-	#define GET_appgetfirstapp(fl)  s_pfCMGetAPI2( "appgetfirstapp", (RTS_VOID_FCTPTR *)&pfappgetfirstapp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x75BD6F20), 0x03050B00)
+	#define GET_appgetfirstapp(fl)  s_pfCMGetAPI2( "appgetfirstapp", (RTS_VOID_FCTPTR *)&pfappgetfirstapp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x75BD6F20), 0x03050900)
 	#define CAL_appgetfirstapp  pfappgetfirstapp
 	#define CHK_appgetfirstapp  (pfappgetfirstapp != NULL)
-	#define EXP_appgetfirstapp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetfirstapp", (RTS_UINTPTR)appgetfirstapp, 1, RTSITF_GET_SIGNATURE(0, 0x75BD6F20), 0x03050B00) 
+	#define EXP_appgetfirstapp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetfirstapp", (RTS_UINTPTR)appgetfirstapp, 1, RTSITF_GET_SIGNATURE(0, 0x75BD6F20), 0x03050900) 
 #endif
 
 
@@ -3426,35 +3340,35 @@ typedef void (CDECL CDECL_EXT* PFAPPGETNEXTAPP_IEC) (appgetnextapp_struct *p);
 	#define GET_appgetnextapp(fl)  CAL_CMGETAPI( "appgetnextapp" ) 
 	#define CAL_appgetnextapp  appgetnextapp
 	#define CHK_appgetnextapp  TRUE
-	#define EXP_appgetnextapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetnextapp", (RTS_UINTPTR)appgetnextapp, 1, RTSITF_GET_SIGNATURE(0, 0xD98C0DF3), 0x03050B00) 
+	#define EXP_appgetnextapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetnextapp", (RTS_UINTPTR)appgetnextapp, 1, RTSITF_GET_SIGNATURE(0, 0xD98C0DF3), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appgetnextapp
 	#define EXT_appgetnextapp
 	#define GET_appgetnextapp(fl)  CAL_CMGETAPI( "appgetnextapp" ) 
 	#define CAL_appgetnextapp  appgetnextapp
 	#define CHK_appgetnextapp  TRUE
-	#define EXP_appgetnextapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetnextapp", (RTS_UINTPTR)appgetnextapp, 1, RTSITF_GET_SIGNATURE(0, 0xD98C0DF3), 0x03050B00) 
+	#define EXP_appgetnextapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetnextapp", (RTS_UINTPTR)appgetnextapp, 1, RTSITF_GET_SIGNATURE(0, 0xD98C0DF3), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappgetnextapp
 	#define EXT_CmpAppappgetnextapp
 	#define GET_CmpAppappgetnextapp  ERR_OK
 	#define CAL_CmpAppappgetnextapp  appgetnextapp
 	#define CHK_CmpAppappgetnextapp  TRUE
-	#define EXP_CmpAppappgetnextapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetnextapp", (RTS_UINTPTR)appgetnextapp, 1, RTSITF_GET_SIGNATURE(0, 0xD98C0DF3), 0x03050B00) 
+	#define EXP_CmpAppappgetnextapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetnextapp", (RTS_UINTPTR)appgetnextapp, 1, RTSITF_GET_SIGNATURE(0, 0xD98C0DF3), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appgetnextapp
 	#define EXT_appgetnextapp
 	#define GET_appgetnextapp(fl)  CAL_CMGETAPI( "appgetnextapp" ) 
 	#define CAL_appgetnextapp  appgetnextapp
 	#define CHK_appgetnextapp  TRUE
-	#define EXP_appgetnextapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetnextapp", (RTS_UINTPTR)appgetnextapp, 1, RTSITF_GET_SIGNATURE(0, 0xD98C0DF3), 0x03050B00) 
+	#define EXP_appgetnextapp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetnextapp", (RTS_UINTPTR)appgetnextapp, 1, RTSITF_GET_SIGNATURE(0, 0xD98C0DF3), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appgetnextapp  PFAPPGETNEXTAPP_IEC pfappgetnextapp;
 	#define EXT_appgetnextapp  extern PFAPPGETNEXTAPP_IEC pfappgetnextapp;
-	#define GET_appgetnextapp(fl)  s_pfCMGetAPI2( "appgetnextapp", (RTS_VOID_FCTPTR *)&pfappgetnextapp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xD98C0DF3), 0x03050B00)
+	#define GET_appgetnextapp(fl)  s_pfCMGetAPI2( "appgetnextapp", (RTS_VOID_FCTPTR *)&pfappgetnextapp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xD98C0DF3), 0x03050900)
 	#define CAL_appgetnextapp  pfappgetnextapp
 	#define CHK_appgetnextapp  (pfappgetnextapp != NULL)
-	#define EXP_appgetnextapp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetnextapp", (RTS_UINTPTR)appgetnextapp, 1, RTSITF_GET_SIGNATURE(0, 0xD98C0DF3), 0x03050B00) 
+	#define EXP_appgetnextapp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetnextapp", (RTS_UINTPTR)appgetnextapp, 1, RTSITF_GET_SIGNATURE(0, 0xD98C0DF3), 0x03050900) 
 #endif
 
 
@@ -3483,93 +3397,35 @@ typedef void (CDECL CDECL_EXT* PFAPPGETPROJECTINFORMATION_IEC) (appgetprojectinf
 	#define GET_appgetprojectinformation(fl)  CAL_CMGETAPI( "appgetprojectinformation" ) 
 	#define CAL_appgetprojectinformation  appgetprojectinformation
 	#define CHK_appgetprojectinformation  TRUE
-	#define EXP_appgetprojectinformation  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetprojectinformation", (RTS_UINTPTR)appgetprojectinformation, 1, RTSITF_GET_SIGNATURE(0, 0xA736D4E6), 0x03050B00) 
+	#define EXP_appgetprojectinformation  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetprojectinformation", (RTS_UINTPTR)appgetprojectinformation, 1, RTSITF_GET_SIGNATURE(0, 0xA736D4E6), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appgetprojectinformation
 	#define EXT_appgetprojectinformation
 	#define GET_appgetprojectinformation(fl)  CAL_CMGETAPI( "appgetprojectinformation" ) 
 	#define CAL_appgetprojectinformation  appgetprojectinformation
 	#define CHK_appgetprojectinformation  TRUE
-	#define EXP_appgetprojectinformation  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetprojectinformation", (RTS_UINTPTR)appgetprojectinformation, 1, RTSITF_GET_SIGNATURE(0, 0xA736D4E6), 0x03050B00) 
+	#define EXP_appgetprojectinformation  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetprojectinformation", (RTS_UINTPTR)appgetprojectinformation, 1, RTSITF_GET_SIGNATURE(0, 0xA736D4E6), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappgetprojectinformation
 	#define EXT_CmpAppappgetprojectinformation
 	#define GET_CmpAppappgetprojectinformation  ERR_OK
 	#define CAL_CmpAppappgetprojectinformation  appgetprojectinformation
 	#define CHK_CmpAppappgetprojectinformation  TRUE
-	#define EXP_CmpAppappgetprojectinformation  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetprojectinformation", (RTS_UINTPTR)appgetprojectinformation, 1, RTSITF_GET_SIGNATURE(0, 0xA736D4E6), 0x03050B00) 
+	#define EXP_CmpAppappgetprojectinformation  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetprojectinformation", (RTS_UINTPTR)appgetprojectinformation, 1, RTSITF_GET_SIGNATURE(0, 0xA736D4E6), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appgetprojectinformation
 	#define EXT_appgetprojectinformation
 	#define GET_appgetprojectinformation(fl)  CAL_CMGETAPI( "appgetprojectinformation" ) 
 	#define CAL_appgetprojectinformation  appgetprojectinformation
 	#define CHK_appgetprojectinformation  TRUE
-	#define EXP_appgetprojectinformation  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetprojectinformation", (RTS_UINTPTR)appgetprojectinformation, 1, RTSITF_GET_SIGNATURE(0, 0xA736D4E6), 0x03050B00) 
+	#define EXP_appgetprojectinformation  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetprojectinformation", (RTS_UINTPTR)appgetprojectinformation, 1, RTSITF_GET_SIGNATURE(0, 0xA736D4E6), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appgetprojectinformation  PFAPPGETPROJECTINFORMATION_IEC pfappgetprojectinformation;
 	#define EXT_appgetprojectinformation  extern PFAPPGETPROJECTINFORMATION_IEC pfappgetprojectinformation;
-	#define GET_appgetprojectinformation(fl)  s_pfCMGetAPI2( "appgetprojectinformation", (RTS_VOID_FCTPTR *)&pfappgetprojectinformation, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xA736D4E6), 0x03050B00)
+	#define GET_appgetprojectinformation(fl)  s_pfCMGetAPI2( "appgetprojectinformation", (RTS_VOID_FCTPTR *)&pfappgetprojectinformation, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xA736D4E6), 0x03050900)
 	#define CAL_appgetprojectinformation  pfappgetprojectinformation
 	#define CHK_appgetprojectinformation  (pfappgetprojectinformation != NULL)
-	#define EXP_appgetprojectinformation   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetprojectinformation", (RTS_UINTPTR)appgetprojectinformation, 1, RTSITF_GET_SIGNATURE(0, 0xA736D4E6), 0x03050B00) 
-#endif
-
-
-/**
- * <description>appgetsegment</description>
- */
-typedef struct tagappgetsegment_struct
-{
-	APPLICATION *pApp;					/* VAR_INPUT */	
-	RTS_IEC_UINT uiType;				/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	APP_MEMORY_SEGMENT *AppGetSegment;	/* VAR_OUTPUT */	
-} appgetsegment_struct;
-
-void CDECL CDECL_EXT appgetsegment(appgetsegment_struct *p);
-typedef void (CDECL CDECL_EXT* PFAPPGETSEGMENT_IEC) (appgetsegment_struct *p);
-#if defined(CMPAPP_NOTIMPLEMENTED) || defined(APPGETSEGMENT_NOTIMPLEMENTED)
-	#define USE_appgetsegment
-	#define EXT_appgetsegment
-	#define GET_appgetsegment(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_appgetsegment(p0) 
-	#define CHK_appgetsegment  FALSE
-	#define EXP_appgetsegment  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_appgetsegment
-	#define EXT_appgetsegment
-	#define GET_appgetsegment(fl)  CAL_CMGETAPI( "appgetsegment" ) 
-	#define CAL_appgetsegment  appgetsegment
-	#define CHK_appgetsegment  TRUE
-	#define EXP_appgetsegment  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegment", (RTS_UINTPTR)appgetsegment, 1, 0xE7291359, 0x03050B00) 
-#elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
-	#define USE_appgetsegment
-	#define EXT_appgetsegment
-	#define GET_appgetsegment(fl)  CAL_CMGETAPI( "appgetsegment" ) 
-	#define CAL_appgetsegment  appgetsegment
-	#define CHK_appgetsegment  TRUE
-	#define EXP_appgetsegment  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegment", (RTS_UINTPTR)appgetsegment, 1, 0xE7291359, 0x03050B00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpAppappgetsegment
-	#define EXT_CmpAppappgetsegment
-	#define GET_CmpAppappgetsegment  ERR_OK
-	#define CAL_CmpAppappgetsegment  appgetsegment
-	#define CHK_CmpAppappgetsegment  TRUE
-	#define EXP_CmpAppappgetsegment  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegment", (RTS_UINTPTR)appgetsegment, 1, 0xE7291359, 0x03050B00) 
-#elif defined(CPLUSPLUS)
-	#define USE_appgetsegment
-	#define EXT_appgetsegment
-	#define GET_appgetsegment(fl)  CAL_CMGETAPI( "appgetsegment" ) 
-	#define CAL_appgetsegment  appgetsegment
-	#define CHK_appgetsegment  TRUE
-	#define EXP_appgetsegment  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegment", (RTS_UINTPTR)appgetsegment, 1, 0xE7291359, 0x03050B00) 
-#else /* DYNAMIC_LINK */
-	#define USE_appgetsegment  PFAPPGETSEGMENT_IEC pfappgetsegment;
-	#define EXT_appgetsegment  extern PFAPPGETSEGMENT_IEC pfappgetsegment;
-	#define GET_appgetsegment(fl)  s_pfCMGetAPI2( "appgetsegment", (RTS_VOID_FCTPTR *)&pfappgetsegment, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE7291359, 0x03050B00)
-	#define CAL_appgetsegment  pfappgetsegment
-	#define CHK_appgetsegment  (pfappgetsegment != NULL)
-	#define EXP_appgetsegment   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegment", (RTS_UINTPTR)appgetsegment, 1, 0xE7291359, 0x03050B00) 
+	#define EXP_appgetprojectinformation   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetprojectinformation", (RTS_UINTPTR)appgetprojectinformation, 1, RTSITF_GET_SIGNATURE(0, 0xA736D4E6), 0x03050900) 
 #endif
 
 
@@ -3606,35 +3462,35 @@ typedef void (CDECL CDECL_EXT* PFAPPGETSEGMENTADDRESS_IEC) (appgetsegmentaddress
 	#define GET_appgetsegmentaddress(fl)  CAL_CMGETAPI( "appgetsegmentaddress" ) 
 	#define CAL_appgetsegmentaddress  appgetsegmentaddress
 	#define CHK_appgetsegmentaddress  TRUE
-	#define EXP_appgetsegmentaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentaddress", (RTS_UINTPTR)appgetsegmentaddress, 1, RTSITF_GET_SIGNATURE(0, 0xA1837EC1), 0x03050B00) 
+	#define EXP_appgetsegmentaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentaddress", (RTS_UINTPTR)appgetsegmentaddress, 1, RTSITF_GET_SIGNATURE(0, 0xA1837EC1), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appgetsegmentaddress
 	#define EXT_appgetsegmentaddress
 	#define GET_appgetsegmentaddress(fl)  CAL_CMGETAPI( "appgetsegmentaddress" ) 
 	#define CAL_appgetsegmentaddress  appgetsegmentaddress
 	#define CHK_appgetsegmentaddress  TRUE
-	#define EXP_appgetsegmentaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentaddress", (RTS_UINTPTR)appgetsegmentaddress, 1, RTSITF_GET_SIGNATURE(0, 0xA1837EC1), 0x03050B00) 
+	#define EXP_appgetsegmentaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentaddress", (RTS_UINTPTR)appgetsegmentaddress, 1, RTSITF_GET_SIGNATURE(0, 0xA1837EC1), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappgetsegmentaddress
 	#define EXT_CmpAppappgetsegmentaddress
 	#define GET_CmpAppappgetsegmentaddress  ERR_OK
 	#define CAL_CmpAppappgetsegmentaddress  appgetsegmentaddress
 	#define CHK_CmpAppappgetsegmentaddress  TRUE
-	#define EXP_CmpAppappgetsegmentaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentaddress", (RTS_UINTPTR)appgetsegmentaddress, 1, RTSITF_GET_SIGNATURE(0, 0xA1837EC1), 0x03050B00) 
+	#define EXP_CmpAppappgetsegmentaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentaddress", (RTS_UINTPTR)appgetsegmentaddress, 1, RTSITF_GET_SIGNATURE(0, 0xA1837EC1), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appgetsegmentaddress
 	#define EXT_appgetsegmentaddress
 	#define GET_appgetsegmentaddress(fl)  CAL_CMGETAPI( "appgetsegmentaddress" ) 
 	#define CAL_appgetsegmentaddress  appgetsegmentaddress
 	#define CHK_appgetsegmentaddress  TRUE
-	#define EXP_appgetsegmentaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentaddress", (RTS_UINTPTR)appgetsegmentaddress, 1, RTSITF_GET_SIGNATURE(0, 0xA1837EC1), 0x03050B00) 
+	#define EXP_appgetsegmentaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentaddress", (RTS_UINTPTR)appgetsegmentaddress, 1, RTSITF_GET_SIGNATURE(0, 0xA1837EC1), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appgetsegmentaddress  PFAPPGETSEGMENTADDRESS_IEC pfappgetsegmentaddress;
 	#define EXT_appgetsegmentaddress  extern PFAPPGETSEGMENTADDRESS_IEC pfappgetsegmentaddress;
-	#define GET_appgetsegmentaddress(fl)  s_pfCMGetAPI2( "appgetsegmentaddress", (RTS_VOID_FCTPTR *)&pfappgetsegmentaddress, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xA1837EC1), 0x03050B00)
+	#define GET_appgetsegmentaddress(fl)  s_pfCMGetAPI2( "appgetsegmentaddress", (RTS_VOID_FCTPTR *)&pfappgetsegmentaddress, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xA1837EC1), 0x03050900)
 	#define CAL_appgetsegmentaddress  pfappgetsegmentaddress
 	#define CHK_appgetsegmentaddress  (pfappgetsegmentaddress != NULL)
-	#define EXP_appgetsegmentaddress   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentaddress", (RTS_UINTPTR)appgetsegmentaddress, 1, RTSITF_GET_SIGNATURE(0, 0xA1837EC1), 0x03050B00) 
+	#define EXP_appgetsegmentaddress   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentaddress", (RTS_UINTPTR)appgetsegmentaddress, 1, RTSITF_GET_SIGNATURE(0, 0xA1837EC1), 0x03050900) 
 #endif
 
 
@@ -3671,35 +3527,35 @@ typedef void (CDECL CDECL_EXT* PFAPPGETSEGMENTSIZE_IEC) (appgetsegmentsize_struc
 	#define GET_appgetsegmentsize(fl)  CAL_CMGETAPI( "appgetsegmentsize" ) 
 	#define CAL_appgetsegmentsize  appgetsegmentsize
 	#define CHK_appgetsegmentsize  TRUE
-	#define EXP_appgetsegmentsize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentsize", (RTS_UINTPTR)appgetsegmentsize, 1, RTSITF_GET_SIGNATURE(0, 0xC1200062), 0x03050B00) 
+	#define EXP_appgetsegmentsize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentsize", (RTS_UINTPTR)appgetsegmentsize, 1, RTSITF_GET_SIGNATURE(0, 0xC1200062), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appgetsegmentsize
 	#define EXT_appgetsegmentsize
 	#define GET_appgetsegmentsize(fl)  CAL_CMGETAPI( "appgetsegmentsize" ) 
 	#define CAL_appgetsegmentsize  appgetsegmentsize
 	#define CHK_appgetsegmentsize  TRUE
-	#define EXP_appgetsegmentsize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentsize", (RTS_UINTPTR)appgetsegmentsize, 1, RTSITF_GET_SIGNATURE(0, 0xC1200062), 0x03050B00) 
+	#define EXP_appgetsegmentsize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentsize", (RTS_UINTPTR)appgetsegmentsize, 1, RTSITF_GET_SIGNATURE(0, 0xC1200062), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappgetsegmentsize
 	#define EXT_CmpAppappgetsegmentsize
 	#define GET_CmpAppappgetsegmentsize  ERR_OK
 	#define CAL_CmpAppappgetsegmentsize  appgetsegmentsize
 	#define CHK_CmpAppappgetsegmentsize  TRUE
-	#define EXP_CmpAppappgetsegmentsize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentsize", (RTS_UINTPTR)appgetsegmentsize, 1, RTSITF_GET_SIGNATURE(0, 0xC1200062), 0x03050B00) 
+	#define EXP_CmpAppappgetsegmentsize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentsize", (RTS_UINTPTR)appgetsegmentsize, 1, RTSITF_GET_SIGNATURE(0, 0xC1200062), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appgetsegmentsize
 	#define EXT_appgetsegmentsize
 	#define GET_appgetsegmentsize(fl)  CAL_CMGETAPI( "appgetsegmentsize" ) 
 	#define CAL_appgetsegmentsize  appgetsegmentsize
 	#define CHK_appgetsegmentsize  TRUE
-	#define EXP_appgetsegmentsize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentsize", (RTS_UINTPTR)appgetsegmentsize, 1, RTSITF_GET_SIGNATURE(0, 0xC1200062), 0x03050B00) 
+	#define EXP_appgetsegmentsize  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentsize", (RTS_UINTPTR)appgetsegmentsize, 1, RTSITF_GET_SIGNATURE(0, 0xC1200062), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appgetsegmentsize  PFAPPGETSEGMENTSIZE_IEC pfappgetsegmentsize;
 	#define EXT_appgetsegmentsize  extern PFAPPGETSEGMENTSIZE_IEC pfappgetsegmentsize;
-	#define GET_appgetsegmentsize(fl)  s_pfCMGetAPI2( "appgetsegmentsize", (RTS_VOID_FCTPTR *)&pfappgetsegmentsize, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xC1200062), 0x03050B00)
+	#define GET_appgetsegmentsize(fl)  s_pfCMGetAPI2( "appgetsegmentsize", (RTS_VOID_FCTPTR *)&pfappgetsegmentsize, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xC1200062), 0x03050900)
 	#define CAL_appgetsegmentsize  pfappgetsegmentsize
 	#define CHK_appgetsegmentsize  (pfappgetsegmentsize != NULL)
-	#define EXP_appgetsegmentsize   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentsize", (RTS_UINTPTR)appgetsegmentsize, 1, RTSITF_GET_SIGNATURE(0, 0xC1200062), 0x03050B00) 
+	#define EXP_appgetsegmentsize   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appgetsegmentsize", (RTS_UINTPTR)appgetsegmentsize, 1, RTSITF_GET_SIGNATURE(0, 0xC1200062), 0x03050900) 
 #endif
 
 
@@ -3728,35 +3584,35 @@ typedef void (CDECL CDECL_EXT* PFAPPNUMOFACTIVESESSIONS_IEC) (appnumofactivesess
 	#define GET_appnumofactivesessions(fl)  CAL_CMGETAPI( "appnumofactivesessions" ) 
 	#define CAL_appnumofactivesessions  appnumofactivesessions
 	#define CHK_appnumofactivesessions  TRUE
-	#define EXP_appnumofactivesessions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appnumofactivesessions", (RTS_UINTPTR)appnumofactivesessions, 1, RTSITF_GET_SIGNATURE(0, 0x28A577B6), 0x03050B00) 
+	#define EXP_appnumofactivesessions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appnumofactivesessions", (RTS_UINTPTR)appnumofactivesessions, 1, RTSITF_GET_SIGNATURE(0, 0x28A577B6), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appnumofactivesessions
 	#define EXT_appnumofactivesessions
 	#define GET_appnumofactivesessions(fl)  CAL_CMGETAPI( "appnumofactivesessions" ) 
 	#define CAL_appnumofactivesessions  appnumofactivesessions
 	#define CHK_appnumofactivesessions  TRUE
-	#define EXP_appnumofactivesessions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appnumofactivesessions", (RTS_UINTPTR)appnumofactivesessions, 1, RTSITF_GET_SIGNATURE(0, 0x28A577B6), 0x03050B00) 
+	#define EXP_appnumofactivesessions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appnumofactivesessions", (RTS_UINTPTR)appnumofactivesessions, 1, RTSITF_GET_SIGNATURE(0, 0x28A577B6), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappnumofactivesessions
 	#define EXT_CmpAppappnumofactivesessions
 	#define GET_CmpAppappnumofactivesessions  ERR_OK
 	#define CAL_CmpAppappnumofactivesessions  appnumofactivesessions
 	#define CHK_CmpAppappnumofactivesessions  TRUE
-	#define EXP_CmpAppappnumofactivesessions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appnumofactivesessions", (RTS_UINTPTR)appnumofactivesessions, 1, RTSITF_GET_SIGNATURE(0, 0x28A577B6), 0x03050B00) 
+	#define EXP_CmpAppappnumofactivesessions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appnumofactivesessions", (RTS_UINTPTR)appnumofactivesessions, 1, RTSITF_GET_SIGNATURE(0, 0x28A577B6), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appnumofactivesessions
 	#define EXT_appnumofactivesessions
 	#define GET_appnumofactivesessions(fl)  CAL_CMGETAPI( "appnumofactivesessions" ) 
 	#define CAL_appnumofactivesessions  appnumofactivesessions
 	#define CHK_appnumofactivesessions  TRUE
-	#define EXP_appnumofactivesessions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appnumofactivesessions", (RTS_UINTPTR)appnumofactivesessions, 1, RTSITF_GET_SIGNATURE(0, 0x28A577B6), 0x03050B00) 
+	#define EXP_appnumofactivesessions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appnumofactivesessions", (RTS_UINTPTR)appnumofactivesessions, 1, RTSITF_GET_SIGNATURE(0, 0x28A577B6), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appnumofactivesessions  PFAPPNUMOFACTIVESESSIONS_IEC pfappnumofactivesessions;
 	#define EXT_appnumofactivesessions  extern PFAPPNUMOFACTIVESESSIONS_IEC pfappnumofactivesessions;
-	#define GET_appnumofactivesessions(fl)  s_pfCMGetAPI2( "appnumofactivesessions", (RTS_VOID_FCTPTR *)&pfappnumofactivesessions, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x28A577B6), 0x03050B00)
+	#define GET_appnumofactivesessions(fl)  s_pfCMGetAPI2( "appnumofactivesessions", (RTS_VOID_FCTPTR *)&pfappnumofactivesessions, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x28A577B6), 0x03050900)
 	#define CAL_appnumofactivesessions  pfappnumofactivesessions
 	#define CHK_appnumofactivesessions  (pfappnumofactivesessions != NULL)
-	#define EXP_appnumofactivesessions   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appnumofactivesessions", (RTS_UINTPTR)appnumofactivesessions, 1, RTSITF_GET_SIGNATURE(0, 0x28A577B6), 0x03050B00) 
+	#define EXP_appnumofactivesessions   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appnumofactivesessions", (RTS_UINTPTR)appnumofactivesessions, 1, RTSITF_GET_SIGNATURE(0, 0x28A577B6), 0x03050900) 
 #endif
 
 
@@ -3788,35 +3644,35 @@ typedef void (CDECL CDECL_EXT* PFAPPREGISTERPROPACCESSFUNCTIONS_IEC) (appregiste
 	#define GET_appregisterpropaccessfunctions(fl)  CAL_CMGETAPI( "appregisterpropaccessfunctions" ) 
 	#define CAL_appregisterpropaccessfunctions  appregisterpropaccessfunctions
 	#define CHK_appregisterpropaccessfunctions  TRUE
-	#define EXP_appregisterpropaccessfunctions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appregisterpropaccessfunctions", (RTS_UINTPTR)appregisterpropaccessfunctions, 1, RTSITF_GET_SIGNATURE(0, 0xF72A3B0A), 0x03050B00) 
+	#define EXP_appregisterpropaccessfunctions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appregisterpropaccessfunctions", (RTS_UINTPTR)appregisterpropaccessfunctions, 1, RTSITF_GET_SIGNATURE(0, 0xF72A3B0A), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appregisterpropaccessfunctions
 	#define EXT_appregisterpropaccessfunctions
 	#define GET_appregisterpropaccessfunctions(fl)  CAL_CMGETAPI( "appregisterpropaccessfunctions" ) 
 	#define CAL_appregisterpropaccessfunctions  appregisterpropaccessfunctions
 	#define CHK_appregisterpropaccessfunctions  TRUE
-	#define EXP_appregisterpropaccessfunctions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appregisterpropaccessfunctions", (RTS_UINTPTR)appregisterpropaccessfunctions, 1, RTSITF_GET_SIGNATURE(0, 0xF72A3B0A), 0x03050B00) 
+	#define EXP_appregisterpropaccessfunctions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appregisterpropaccessfunctions", (RTS_UINTPTR)appregisterpropaccessfunctions, 1, RTSITF_GET_SIGNATURE(0, 0xF72A3B0A), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappregisterpropaccessfunctions
 	#define EXT_CmpAppappregisterpropaccessfunctions
 	#define GET_CmpAppappregisterpropaccessfunctions  ERR_OK
 	#define CAL_CmpAppappregisterpropaccessfunctions  appregisterpropaccessfunctions
 	#define CHK_CmpAppappregisterpropaccessfunctions  TRUE
-	#define EXP_CmpAppappregisterpropaccessfunctions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appregisterpropaccessfunctions", (RTS_UINTPTR)appregisterpropaccessfunctions, 1, RTSITF_GET_SIGNATURE(0, 0xF72A3B0A), 0x03050B00) 
+	#define EXP_CmpAppappregisterpropaccessfunctions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appregisterpropaccessfunctions", (RTS_UINTPTR)appregisterpropaccessfunctions, 1, RTSITF_GET_SIGNATURE(0, 0xF72A3B0A), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appregisterpropaccessfunctions
 	#define EXT_appregisterpropaccessfunctions
 	#define GET_appregisterpropaccessfunctions(fl)  CAL_CMGETAPI( "appregisterpropaccessfunctions" ) 
 	#define CAL_appregisterpropaccessfunctions  appregisterpropaccessfunctions
 	#define CHK_appregisterpropaccessfunctions  TRUE
-	#define EXP_appregisterpropaccessfunctions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appregisterpropaccessfunctions", (RTS_UINTPTR)appregisterpropaccessfunctions, 1, RTSITF_GET_SIGNATURE(0, 0xF72A3B0A), 0x03050B00) 
+	#define EXP_appregisterpropaccessfunctions  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appregisterpropaccessfunctions", (RTS_UINTPTR)appregisterpropaccessfunctions, 1, RTSITF_GET_SIGNATURE(0, 0xF72A3B0A), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appregisterpropaccessfunctions  PFAPPREGISTERPROPACCESSFUNCTIONS_IEC pfappregisterpropaccessfunctions;
 	#define EXT_appregisterpropaccessfunctions  extern PFAPPREGISTERPROPACCESSFUNCTIONS_IEC pfappregisterpropaccessfunctions;
-	#define GET_appregisterpropaccessfunctions(fl)  s_pfCMGetAPI2( "appregisterpropaccessfunctions", (RTS_VOID_FCTPTR *)&pfappregisterpropaccessfunctions, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xF72A3B0A), 0x03050B00)
+	#define GET_appregisterpropaccessfunctions(fl)  s_pfCMGetAPI2( "appregisterpropaccessfunctions", (RTS_VOID_FCTPTR *)&pfappregisterpropaccessfunctions, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xF72A3B0A), 0x03050900)
 	#define CAL_appregisterpropaccessfunctions  pfappregisterpropaccessfunctions
 	#define CHK_appregisterpropaccessfunctions  (pfappregisterpropaccessfunctions != NULL)
-	#define EXP_appregisterpropaccessfunctions   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appregisterpropaccessfunctions", (RTS_UINTPTR)appregisterpropaccessfunctions, 1, RTSITF_GET_SIGNATURE(0, 0xF72A3B0A), 0x03050B00) 
+	#define EXP_appregisterpropaccessfunctions   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appregisterpropaccessfunctions", (RTS_UINTPTR)appregisterpropaccessfunctions, 1, RTSITF_GET_SIGNATURE(0, 0xF72A3B0A), 0x03050900) 
 #endif
 
 
@@ -3845,35 +3701,35 @@ typedef void (CDECL CDECL_EXT* PFAPPRESET_IEC) (appreset_struct *p);
 	#define GET_appreset(fl)  CAL_CMGETAPI( "appreset" ) 
 	#define CAL_appreset  appreset
 	#define CHK_appreset  TRUE
-	#define EXP_appreset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appreset", (RTS_UINTPTR)appreset, 1, RTSITF_GET_SIGNATURE(0, 0x03B85B28), 0x03050B00) 
+	#define EXP_appreset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appreset", (RTS_UINTPTR)appreset, 1, RTSITF_GET_SIGNATURE(0, 0x03B85B28), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appreset
 	#define EXT_appreset
 	#define GET_appreset(fl)  CAL_CMGETAPI( "appreset" ) 
 	#define CAL_appreset  appreset
 	#define CHK_appreset  TRUE
-	#define EXP_appreset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appreset", (RTS_UINTPTR)appreset, 1, RTSITF_GET_SIGNATURE(0, 0x03B85B28), 0x03050B00) 
+	#define EXP_appreset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appreset", (RTS_UINTPTR)appreset, 1, RTSITF_GET_SIGNATURE(0, 0x03B85B28), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappreset
 	#define EXT_CmpAppappreset
 	#define GET_CmpAppappreset  ERR_OK
 	#define CAL_CmpAppappreset  appreset
 	#define CHK_CmpAppappreset  TRUE
-	#define EXP_CmpAppappreset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appreset", (RTS_UINTPTR)appreset, 1, RTSITF_GET_SIGNATURE(0, 0x03B85B28), 0x03050B00) 
+	#define EXP_CmpAppappreset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appreset", (RTS_UINTPTR)appreset, 1, RTSITF_GET_SIGNATURE(0, 0x03B85B28), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appreset
 	#define EXT_appreset
 	#define GET_appreset(fl)  CAL_CMGETAPI( "appreset" ) 
 	#define CAL_appreset  appreset
 	#define CHK_appreset  TRUE
-	#define EXP_appreset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appreset", (RTS_UINTPTR)appreset, 1, RTSITF_GET_SIGNATURE(0, 0x03B85B28), 0x03050B00) 
+	#define EXP_appreset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appreset", (RTS_UINTPTR)appreset, 1, RTSITF_GET_SIGNATURE(0, 0x03B85B28), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appreset  PFAPPRESET_IEC pfappreset;
 	#define EXT_appreset  extern PFAPPRESET_IEC pfappreset;
-	#define GET_appreset(fl)  s_pfCMGetAPI2( "appreset", (RTS_VOID_FCTPTR *)&pfappreset, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x03B85B28), 0x03050B00)
+	#define GET_appreset(fl)  s_pfCMGetAPI2( "appreset", (RTS_VOID_FCTPTR *)&pfappreset, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x03B85B28), 0x03050900)
 	#define CAL_appreset  pfappreset
 	#define CHK_appreset  (pfappreset != NULL)
-	#define EXP_appreset   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appreset", (RTS_UINTPTR)appreset, 1, RTSITF_GET_SIGNATURE(0, 0x03B85B28), 0x03050B00) 
+	#define EXP_appreset   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appreset", (RTS_UINTPTR)appreset, 1, RTSITF_GET_SIGNATURE(0, 0x03B85B28), 0x03050900) 
 #endif
 
 
@@ -3902,35 +3758,35 @@ typedef void (CDECL CDECL_EXT* PFAPPRESTORERETAINSFROMFILE_IEC) (apprestoreretai
 	#define GET_apprestoreretainsfromfile(fl)  CAL_CMGETAPI( "apprestoreretainsfromfile" ) 
 	#define CAL_apprestoreretainsfromfile  apprestoreretainsfromfile
 	#define CHK_apprestoreretainsfromfile  TRUE
-	#define EXP_apprestoreretainsfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"apprestoreretainsfromfile", (RTS_UINTPTR)apprestoreretainsfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x32542AD7), 0x03050B00) 
+	#define EXP_apprestoreretainsfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"apprestoreretainsfromfile", (RTS_UINTPTR)apprestoreretainsfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x32542AD7), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_apprestoreretainsfromfile
 	#define EXT_apprestoreretainsfromfile
 	#define GET_apprestoreretainsfromfile(fl)  CAL_CMGETAPI( "apprestoreretainsfromfile" ) 
 	#define CAL_apprestoreretainsfromfile  apprestoreretainsfromfile
 	#define CHK_apprestoreretainsfromfile  TRUE
-	#define EXP_apprestoreretainsfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"apprestoreretainsfromfile", (RTS_UINTPTR)apprestoreretainsfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x32542AD7), 0x03050B00) 
+	#define EXP_apprestoreretainsfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"apprestoreretainsfromfile", (RTS_UINTPTR)apprestoreretainsfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x32542AD7), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppapprestoreretainsfromfile
 	#define EXT_CmpAppapprestoreretainsfromfile
 	#define GET_CmpAppapprestoreretainsfromfile  ERR_OK
 	#define CAL_CmpAppapprestoreretainsfromfile  apprestoreretainsfromfile
 	#define CHK_CmpAppapprestoreretainsfromfile  TRUE
-	#define EXP_CmpAppapprestoreretainsfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"apprestoreretainsfromfile", (RTS_UINTPTR)apprestoreretainsfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x32542AD7), 0x03050B00) 
+	#define EXP_CmpAppapprestoreretainsfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"apprestoreretainsfromfile", (RTS_UINTPTR)apprestoreretainsfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x32542AD7), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_apprestoreretainsfromfile
 	#define EXT_apprestoreretainsfromfile
 	#define GET_apprestoreretainsfromfile(fl)  CAL_CMGETAPI( "apprestoreretainsfromfile" ) 
 	#define CAL_apprestoreretainsfromfile  apprestoreretainsfromfile
 	#define CHK_apprestoreretainsfromfile  TRUE
-	#define EXP_apprestoreretainsfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"apprestoreretainsfromfile", (RTS_UINTPTR)apprestoreretainsfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x32542AD7), 0x03050B00) 
+	#define EXP_apprestoreretainsfromfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"apprestoreretainsfromfile", (RTS_UINTPTR)apprestoreretainsfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x32542AD7), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_apprestoreretainsfromfile  PFAPPRESTORERETAINSFROMFILE_IEC pfapprestoreretainsfromfile;
 	#define EXT_apprestoreretainsfromfile  extern PFAPPRESTORERETAINSFROMFILE_IEC pfapprestoreretainsfromfile;
-	#define GET_apprestoreretainsfromfile(fl)  s_pfCMGetAPI2( "apprestoreretainsfromfile", (RTS_VOID_FCTPTR *)&pfapprestoreretainsfromfile, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x32542AD7), 0x03050B00)
+	#define GET_apprestoreretainsfromfile(fl)  s_pfCMGetAPI2( "apprestoreretainsfromfile", (RTS_VOID_FCTPTR *)&pfapprestoreretainsfromfile, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x32542AD7), 0x03050900)
 	#define CAL_apprestoreretainsfromfile  pfapprestoreretainsfromfile
 	#define CHK_apprestoreretainsfromfile  (pfapprestoreretainsfromfile != NULL)
-	#define EXP_apprestoreretainsfromfile   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"apprestoreretainsfromfile", (RTS_UINTPTR)apprestoreretainsfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x32542AD7), 0x03050B00) 
+	#define EXP_apprestoreretainsfromfile   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"apprestoreretainsfromfile", (RTS_UINTPTR)apprestoreretainsfromfile, 1, RTSITF_GET_SIGNATURE(0, 0x32542AD7), 0x03050900) 
 #endif
 
 
@@ -3958,35 +3814,35 @@ typedef void (CDECL CDECL_EXT* PFAPPSTARTAPPLICATION_IEC) (appstartapplication_s
 	#define GET_appstartapplication(fl)  CAL_CMGETAPI( "appstartapplication" ) 
 	#define CAL_appstartapplication  appstartapplication
 	#define CHK_appstartapplication  TRUE
-	#define EXP_appstartapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstartapplication", (RTS_UINTPTR)appstartapplication, 1, RTSITF_GET_SIGNATURE(0, 0x71CC8510), 0x03050B00) 
+	#define EXP_appstartapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstartapplication", (RTS_UINTPTR)appstartapplication, 1, RTSITF_GET_SIGNATURE(0, 0x71CC8510), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appstartapplication
 	#define EXT_appstartapplication
 	#define GET_appstartapplication(fl)  CAL_CMGETAPI( "appstartapplication" ) 
 	#define CAL_appstartapplication  appstartapplication
 	#define CHK_appstartapplication  TRUE
-	#define EXP_appstartapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstartapplication", (RTS_UINTPTR)appstartapplication, 1, RTSITF_GET_SIGNATURE(0, 0x71CC8510), 0x03050B00) 
+	#define EXP_appstartapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstartapplication", (RTS_UINTPTR)appstartapplication, 1, RTSITF_GET_SIGNATURE(0, 0x71CC8510), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappstartapplication
 	#define EXT_CmpAppappstartapplication
 	#define GET_CmpAppappstartapplication  ERR_OK
 	#define CAL_CmpAppappstartapplication  appstartapplication
 	#define CHK_CmpAppappstartapplication  TRUE
-	#define EXP_CmpAppappstartapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstartapplication", (RTS_UINTPTR)appstartapplication, 1, RTSITF_GET_SIGNATURE(0, 0x71CC8510), 0x03050B00) 
+	#define EXP_CmpAppappstartapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstartapplication", (RTS_UINTPTR)appstartapplication, 1, RTSITF_GET_SIGNATURE(0, 0x71CC8510), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appstartapplication
 	#define EXT_appstartapplication
 	#define GET_appstartapplication(fl)  CAL_CMGETAPI( "appstartapplication" ) 
 	#define CAL_appstartapplication  appstartapplication
 	#define CHK_appstartapplication  TRUE
-	#define EXP_appstartapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstartapplication", (RTS_UINTPTR)appstartapplication, 1, RTSITF_GET_SIGNATURE(0, 0x71CC8510), 0x03050B00) 
+	#define EXP_appstartapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstartapplication", (RTS_UINTPTR)appstartapplication, 1, RTSITF_GET_SIGNATURE(0, 0x71CC8510), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appstartapplication  PFAPPSTARTAPPLICATION_IEC pfappstartapplication;
 	#define EXT_appstartapplication  extern PFAPPSTARTAPPLICATION_IEC pfappstartapplication;
-	#define GET_appstartapplication(fl)  s_pfCMGetAPI2( "appstartapplication", (RTS_VOID_FCTPTR *)&pfappstartapplication, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x71CC8510), 0x03050B00)
+	#define GET_appstartapplication(fl)  s_pfCMGetAPI2( "appstartapplication", (RTS_VOID_FCTPTR *)&pfappstartapplication, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x71CC8510), 0x03050900)
 	#define CAL_appstartapplication  pfappstartapplication
 	#define CHK_appstartapplication  (pfappstartapplication != NULL)
-	#define EXP_appstartapplication   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstartapplication", (RTS_UINTPTR)appstartapplication, 1, RTSITF_GET_SIGNATURE(0, 0x71CC8510), 0x03050B00) 
+	#define EXP_appstartapplication   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstartapplication", (RTS_UINTPTR)appstartapplication, 1, RTSITF_GET_SIGNATURE(0, 0x71CC8510), 0x03050900) 
 #endif
 
 
@@ -4014,35 +3870,35 @@ typedef void (CDECL CDECL_EXT* PFAPPSTOPAPPLICATION_IEC) (appstopapplication_str
 	#define GET_appstopapplication(fl)  CAL_CMGETAPI( "appstopapplication" ) 
 	#define CAL_appstopapplication  appstopapplication
 	#define CHK_appstopapplication  TRUE
-	#define EXP_appstopapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstopapplication", (RTS_UINTPTR)appstopapplication, 1, RTSITF_GET_SIGNATURE(0, 0xEE13E070), 0x03050B00) 
+	#define EXP_appstopapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstopapplication", (RTS_UINTPTR)appstopapplication, 1, RTSITF_GET_SIGNATURE(0, 0xEE13E070), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appstopapplication
 	#define EXT_appstopapplication
 	#define GET_appstopapplication(fl)  CAL_CMGETAPI( "appstopapplication" ) 
 	#define CAL_appstopapplication  appstopapplication
 	#define CHK_appstopapplication  TRUE
-	#define EXP_appstopapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstopapplication", (RTS_UINTPTR)appstopapplication, 1, RTSITF_GET_SIGNATURE(0, 0xEE13E070), 0x03050B00) 
+	#define EXP_appstopapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstopapplication", (RTS_UINTPTR)appstopapplication, 1, RTSITF_GET_SIGNATURE(0, 0xEE13E070), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappstopapplication
 	#define EXT_CmpAppappstopapplication
 	#define GET_CmpAppappstopapplication  ERR_OK
 	#define CAL_CmpAppappstopapplication  appstopapplication
 	#define CHK_CmpAppappstopapplication  TRUE
-	#define EXP_CmpAppappstopapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstopapplication", (RTS_UINTPTR)appstopapplication, 1, RTSITF_GET_SIGNATURE(0, 0xEE13E070), 0x03050B00) 
+	#define EXP_CmpAppappstopapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstopapplication", (RTS_UINTPTR)appstopapplication, 1, RTSITF_GET_SIGNATURE(0, 0xEE13E070), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appstopapplication
 	#define EXT_appstopapplication
 	#define GET_appstopapplication(fl)  CAL_CMGETAPI( "appstopapplication" ) 
 	#define CAL_appstopapplication  appstopapplication
 	#define CHK_appstopapplication  TRUE
-	#define EXP_appstopapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstopapplication", (RTS_UINTPTR)appstopapplication, 1, RTSITF_GET_SIGNATURE(0, 0xEE13E070), 0x03050B00) 
+	#define EXP_appstopapplication  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstopapplication", (RTS_UINTPTR)appstopapplication, 1, RTSITF_GET_SIGNATURE(0, 0xEE13E070), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appstopapplication  PFAPPSTOPAPPLICATION_IEC pfappstopapplication;
 	#define EXT_appstopapplication  extern PFAPPSTOPAPPLICATION_IEC pfappstopapplication;
-	#define GET_appstopapplication(fl)  s_pfCMGetAPI2( "appstopapplication", (RTS_VOID_FCTPTR *)&pfappstopapplication, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xEE13E070), 0x03050B00)
+	#define GET_appstopapplication(fl)  s_pfCMGetAPI2( "appstopapplication", (RTS_VOID_FCTPTR *)&pfappstopapplication, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xEE13E070), 0x03050900)
 	#define CAL_appstopapplication  pfappstopapplication
 	#define CHK_appstopapplication  (pfappstopapplication != NULL)
-	#define EXP_appstopapplication   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstopapplication", (RTS_UINTPTR)appstopapplication, 1, RTSITF_GET_SIGNATURE(0, 0xEE13E070), 0x03050B00) 
+	#define EXP_appstopapplication   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstopapplication", (RTS_UINTPTR)appstopapplication, 1, RTSITF_GET_SIGNATURE(0, 0xEE13E070), 0x03050900) 
 #endif
 
 
@@ -4071,35 +3927,35 @@ typedef void (CDECL CDECL_EXT* PFAPPSTORERETAINSINFILE_IEC) (appstoreretainsinfi
 	#define GET_appstoreretainsinfile(fl)  CAL_CMGETAPI( "appstoreretainsinfile" ) 
 	#define CAL_appstoreretainsinfile  appstoreretainsinfile
 	#define CHK_appstoreretainsinfile  TRUE
-	#define EXP_appstoreretainsinfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstoreretainsinfile", (RTS_UINTPTR)appstoreretainsinfile, 1, RTSITF_GET_SIGNATURE(0, 0xCBCA082E), 0x03050B00) 
+	#define EXP_appstoreretainsinfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstoreretainsinfile", (RTS_UINTPTR)appstoreretainsinfile, 1, RTSITF_GET_SIGNATURE(0, 0xCBCA082E), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(CMPAPP_EXTERNAL)
 	#define USE_appstoreretainsinfile
 	#define EXT_appstoreretainsinfile
 	#define GET_appstoreretainsinfile(fl)  CAL_CMGETAPI( "appstoreretainsinfile" ) 
 	#define CAL_appstoreretainsinfile  appstoreretainsinfile
 	#define CHK_appstoreretainsinfile  TRUE
-	#define EXP_appstoreretainsinfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstoreretainsinfile", (RTS_UINTPTR)appstoreretainsinfile, 1, RTSITF_GET_SIGNATURE(0, 0xCBCA082E), 0x03050B00) 
+	#define EXP_appstoreretainsinfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstoreretainsinfile", (RTS_UINTPTR)appstoreretainsinfile, 1, RTSITF_GET_SIGNATURE(0, 0xCBCA082E), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpAppappstoreretainsinfile
 	#define EXT_CmpAppappstoreretainsinfile
 	#define GET_CmpAppappstoreretainsinfile  ERR_OK
 	#define CAL_CmpAppappstoreretainsinfile  appstoreretainsinfile
 	#define CHK_CmpAppappstoreretainsinfile  TRUE
-	#define EXP_CmpAppappstoreretainsinfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstoreretainsinfile", (RTS_UINTPTR)appstoreretainsinfile, 1, RTSITF_GET_SIGNATURE(0, 0xCBCA082E), 0x03050B00) 
+	#define EXP_CmpAppappstoreretainsinfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstoreretainsinfile", (RTS_UINTPTR)appstoreretainsinfile, 1, RTSITF_GET_SIGNATURE(0, 0xCBCA082E), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_appstoreretainsinfile
 	#define EXT_appstoreretainsinfile
 	#define GET_appstoreretainsinfile(fl)  CAL_CMGETAPI( "appstoreretainsinfile" ) 
 	#define CAL_appstoreretainsinfile  appstoreretainsinfile
 	#define CHK_appstoreretainsinfile  TRUE
-	#define EXP_appstoreretainsinfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstoreretainsinfile", (RTS_UINTPTR)appstoreretainsinfile, 1, RTSITF_GET_SIGNATURE(0, 0xCBCA082E), 0x03050B00) 
+	#define EXP_appstoreretainsinfile  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstoreretainsinfile", (RTS_UINTPTR)appstoreretainsinfile, 1, RTSITF_GET_SIGNATURE(0, 0xCBCA082E), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_appstoreretainsinfile  PFAPPSTORERETAINSINFILE_IEC pfappstoreretainsinfile;
 	#define EXT_appstoreretainsinfile  extern PFAPPSTORERETAINSINFILE_IEC pfappstoreretainsinfile;
-	#define GET_appstoreretainsinfile(fl)  s_pfCMGetAPI2( "appstoreretainsinfile", (RTS_VOID_FCTPTR *)&pfappstoreretainsinfile, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xCBCA082E), 0x03050B00)
+	#define GET_appstoreretainsinfile(fl)  s_pfCMGetAPI2( "appstoreretainsinfile", (RTS_VOID_FCTPTR *)&pfappstoreretainsinfile, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xCBCA082E), 0x03050900)
 	#define CAL_appstoreretainsinfile  pfappstoreretainsinfile
 	#define CHK_appstoreretainsinfile  (pfappstoreretainsinfile != NULL)
-	#define EXP_appstoreretainsinfile   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstoreretainsinfile", (RTS_UINTPTR)appstoreretainsinfile, 1, RTSITF_GET_SIGNATURE(0, 0xCBCA082E), 0x03050B00) 
+	#define EXP_appstoreretainsinfile   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"appstoreretainsinfile", (RTS_UINTPTR)appstoreretainsinfile, 1, RTSITF_GET_SIGNATURE(0, 0xCBCA082E), 0x03050900) 
 #endif
 
 
@@ -4113,20 +3969,6 @@ typedef void (CDECL CDECL_EXT* PFAPPSTORERETAINSINFILE_IEC) (appstoreretainsinfi
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * <category>Application memory segment information</category>
- * <description>
- *	Describes all memory segments of an application.
- * </description>
- * <element name="diSegments" type="IN">Number of segments</element>
- * <element name="pmsList" type="IN">Pointer to memory segment list</element>
- */
-typedef struct _APP_MEMORY_SEGMENT_INFO
-{
-	RTS_IEC_DINT diSegments;
-	APP_MEMORY_SEGMENT *pmsList;
-} APP_MEMORY_SEGMENT_INFO;
 
 typedef struct 
 {

@@ -8,8 +8,6 @@
 
 
 
-
-
 #include "CmpOPCUAProviderTemplate.c"
 
 

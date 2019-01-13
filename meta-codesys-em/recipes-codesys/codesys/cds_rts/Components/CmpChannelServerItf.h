@@ -5,9 +5,7 @@
  *  </p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -76,50 +74,16 @@ typedef struct
 {
 	RTS_UI32   ulChannelHandle;
 	RTS_RESULT  errReason;
-} EVTPARAM_CmpChS_ChannelClosed;
-#define EVTPARAMID_CmpChS_ChannelClosed 0x0001
-#define EVTVERSION_CmpChS_ChannelClosed 0x0001
-
-/* Used for compatability reasons */
-typedef EVTPARAM_CmpChS_ChannelClosed EVTPARAM_ChannelClosed;
-#define EVTPARAMID_CmpChannelServer EVTPARAMID_CmpChS_ChannelClosed
-#define EVTVERSION_CmpChannelServer EVTVERSION_CmpChS_ChannelClosed
-
-/**
- * <category>Event parameter</category>
- * <element name="ulChannelHandle" type="IN">
- *   The channelhandle is always a combination of two words (16 bit).
- *   The low word (ulChannelHandle masked with 0xFFFF) is the id of 
- *   the "physical" channel. The highword is the id of the client using this channel
- *   (multiple clients may use the same channel in a round robbin manner).
- *   A highword of 0xFFFF indicates, that the channel is completely closed
- *   and all clients have disconnected. In all other cases the channel is still
- *   open, only that client has disconnected.
- *   When attaching any resources to a specific channel (eg. open files, logins, ...)
- *   the component should release the resource when the client detaches as
- *   well as release all clients resources when the channel is completely closed.
- * </element>
- */
-typedef struct
-{
-	RTS_UI32   ulChannelHandle;
-} EVTPARAM_CmpChS_ChannelOpened;
-#define EVTPARAMID_CmpChS_ChannelOpened 0x0002
-#define EVTVERSION_CmpChS_ChannelOpened 0x0001
+} EVTPARAM_ChannelClosed;
+#define EVTPARAMID_CmpChannelServer 0x0001
+#define EVTVERSION_CmpChannelServer 0x0001
 
 /**
  * <category>Events</category>
  * <description>Event is sent when a channel is closed.</description>
- * <param name="pEventParam" type="IN">EVTPARAM_CmpChS_ChannelClosed</param>
+ * <param name="pEventParam" type="IN">EVTPARAM_ChannelClosed</param>
  */
 #define EVT_ChSChannelClosed	MAKE_EVENTID(EVTCLASS_INFO, 1)
-
-/**
- * <category>Events</category>
- * <description>Event is sent when a channel is closed.</description>
- * <param name="pEventParam" type="IN">EVTPARAM_CmpChS_ChannelOpened</param>
- */
-#define EVT_ChSChannelOpened	MAKE_EVENTID(EVTCLASS_INFO, 2)
 
 /* -- Functions exported to the runtime system -- */
 

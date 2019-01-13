@@ -39,7 +39,7 @@ static RTS_HANDLE s_hOperationDead = RTS_INVALID_HANDLE;
  * </description>
  * <result>error code</result>
  */
-static RTS_RESULT CDECL RegisterSupervisor(void)
+static RTS_RESULT CDECL RegisterSupervisor()
 {
 	RTS_RESULT Result = ERR_NOT_SUPPORTED;
 	/* Register supervisor */
@@ -68,7 +68,7 @@ static RTS_RESULT CDECL RegisterSupervisor(void)
 * </description>
 * <result>error code</result>
 */
-static RTS_RESULT CDECL DisableSupervisor(void)
+static RTS_RESULT CDECL DisableSupervisor()
 {
 	RTS_RESULT Result = ERR_NOT_SUPPORTED;
 	/* Disable the supervisor operations */
@@ -92,7 +92,7 @@ static RTS_RESULT CDECL DisableSupervisor(void)
 * </description>
 * <result>error code</result>
 */
-static RTS_RESULT CDECL UnregisterSupervisor(void)
+static RTS_RESULT CDECL UnregisterSupervisor()
 {
 	RTS_RESULT Result = ERR_NOT_SUPPORTED;
 	/* Unregister supervisor */
@@ -103,7 +103,7 @@ static RTS_RESULT CDECL UnregisterSupervisor(void)
 
 		if (s_hOperationDead != RTS_INVALID_HANDLE)
 			CAL_SupervisorOperationUnregister(s_hOperationDead);
-	
+
 		Result = ERR_OK;
 	}
 	return Result;
@@ -116,7 +116,7 @@ static RTS_RESULT CDECL UnregisterSupervisor(void)
  * </description>
  * <result>error code</result>
  */
-static RTS_RESULT CDECL CyclicSupervisorOperations(void)
+static RTS_RESULT CDECL CyclicSupervisorOperations()
 {
 	RTS_RESULT Result = ERR_NOT_SUPPORTED;
 
@@ -150,9 +150,7 @@ static RTS_RESULT CDECL CyclicSupervisorOperations(void)
 				CAL_SupervisorOperationDead(s_hOperationDead);
 			}
 		}
-
 		Result = ERR_OK;
 	}
 	return Result;
 }
-

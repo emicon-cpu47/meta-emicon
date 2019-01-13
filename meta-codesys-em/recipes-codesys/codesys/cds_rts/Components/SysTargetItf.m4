@@ -5,40 +5,28 @@
  *	a target can be recognized unique in the complete network.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysTarget')
 
-REF_ITF(`CMItf.m4')
 REF_ITF(`CmpIoDrvItf.m4')
 
 /**
  * <category>Max node name length</category>
- * <description>
- * Specifies the max. number of 16-bit code units allowed for the UTF-16 node name including NULL termination.
- * A single character may consist of 1 or more 16-bit code units.
- * </description>
+ * <description>Specifies the max. number of (wide-char) characters allowed for the node name including NULL termination.</description>
  */
 #define SYSTARGET_MAX_NODE_NAME_LEN 		50
 
 /**
  * <category>Max device name length</category>
- * <description>
- * Specifies the max. number of 16-bit code units allowed for the UTF-16 device name including NULL termination.
- * A single character may consist of 1 or more 16-bit code units.
- * </description>
+ * <description>Specifies the max. number of (wide-char) characters allowed for the device name including NULL termination.</description>
  */
 #define SYSTARGET_MAX_DEVICE_NAME_LEN 		100
 
  /**
  * <category>Max vendor name length</category>
- * <description>
- * Specifies the max. number of 16-bit code units allowed for the UTF-16 vendor name including NULL termination.
- * A single character may consist of 1 or more 16-bit code units.
- * </description>
+ * <description>Specifies the max. number of (wide-char) characters allowed for the vendor name including NULL termination.</description>
  */
 #define SYSTARGET_MAX_VENDOR_NAME_LEN 		100
 
@@ -213,9 +201,9 @@ REF_ITF(`CmpIoDrvItf.m4')
 /**
  * <category>Settings</category>
  * <type>WString</type>
- * <description>Setting to get the target name in UTF-16.
+ * <description>Setting to get the target name in unicode.
  *	Router name could be used as prefix to specify router specific target informations, e.g.:
- *	Router2.NodeNameUnicode="C\00o\00D\00e\00S\00y\00s\00S\00P\00 \00W\00i\00n\00"
+ *	Router2.NodeNameUnicode="C\00o\00D\00e\00S\00y\00s\00S\00P\00 \00W\00i\00n\00\00"
  * </description>
  */
 #define SYSTARGETKEY_WSTRING_GET_NODENAME_UNICODE	"NodeNameUnicode"
@@ -230,7 +218,7 @@ REF_ITF(`CmpIoDrvItf.m4')
 /**
  * <category>Settings</category>
  * <type>WString</type>
- * <description>Setting to get the device name in UTF-16.
+ * <description>Setting to get the device name in unicode
  *	Router name could be used as prefix to specify router specific target informations.
  * </description>
  */
@@ -239,7 +227,7 @@ REF_ITF(`CmpIoDrvItf.m4')
 /**
  * <category>Settings</category>
  * <type>String</type>
- * <description>Setting to get the device name.
+ * <description>Setting to get the device name
  *	Router name could be used as prefix to specify router specific target informations.
  * </description>
  */
@@ -248,7 +236,7 @@ REF_ITF(`CmpIoDrvItf.m4')
 /**
  * <category>Settings</category>
  * <type>WString</type>
- * <description>Setting to get the vendor name in UTF-16.
+ * <description>Setting to get the vendor name in unicode
  *	Router name could be used as prefix to specify router specific target informations.
  * </description>
  */
@@ -257,7 +245,7 @@ REF_ITF(`CmpIoDrvItf.m4')
 /**
  * <category>Settings</category>
  * <type>String</type>
- * <description>Setting to get the vendor name.
+ * <description>Setting to get the vendor name
  *	Router name could be used as prefix to specify router specific target informations.
  * </description>
  */
@@ -382,50 +370,7 @@ REF_ITF(`CmpIoDrvItf.m4')
  *
  */
 #define SYSTARGET_TYPE_COMMUNICATION				0x1007
- 
-/**
- * <category>Device Types</category>
- * <description>Remote targetvisu device</description>
- *
- */
-#define SYSTARGET_TYPE_REMOTETARGETVISU				0x1008
 
- /**
- * <category>Event parameter</category>
- * <element name="pwszName" type="IN">New node name to be set</element>
- * <element name="rResult" type="OUT">Result, see description of event EVTPARAM_SysEvent_SetNodeName for more details.</element>
- *	<ul>
- *		<li>ERR_OK: Event is not handled. SysTargetSetNodeName() will store the name in the settings</li>
- *		<li>ERR_NOTHING_TO_DO: The event handler has already stored the new node name somewhere.</li>
- *		<li>ERR_OPERATION_DENIED: The event handler denies to set the new node name.</li>
- *		<li>ERR_NOT_SUPPORTED: Device does not support to store the node name.</li>
- *	</ul>
- */
-typedef struct
-{
-	RTS_WCHAR* pwszName;
-	RTS_RESULT rResult;
-} EVTPARAM_SysEvent_SetNodeName;
-#define EVTPARAMID_SysTarget_SetNodeName	0x0001
-#define EVTVERSION_SysTarget_SetNodeName	0x0001
-
-/**
-* <category>Events</category>
-* <description>Event is sent in function SysTargetSetNodeName() before the new node 
-* name is stored in the settings. The following results can be returned by the event:
-* - ERR_OK: Event is not handled. SysTargetSetNodeName() will store the name in the
-*   settings.
-* - ERR_NOTHING_TO_DO: The event handler has already stored the new node name somewhere, 
-*   thus SysTargetSetNodeName() shall not store the name. A later call to the OEM-specific
-*   implementation of SysTargetGetNodeName() will return the new node name.
-* - ERR_OPERATION_DENIED: The event handler denies to set the new node name. 
-*   SysTargetSetNodeName() shall not store the name.
-* - ERR_NOT_SUPPORTED: Device does not support to store the node name. 
-*   SysTargetSetNodeName() shall not store the name.
-* </description>
-* <param name="pEventParam" type="IN">EVTPARAM_SysEvent_SetNodeName</param>
-*/
-#define EVT_SysTarget_SetNodeName			MAKE_EVENTID(EVTCLASS_INFO, 1)
 
 /**
  * <category>SysTarget identification</category>
@@ -511,7 +456,7 @@ DEF_API(`void',`CDECL',`systargetgetid2',`(systargetgetid2_struct *p)',1,0xEA1E3
  */
 typedef struct tagsystargetgetnodename_struct
 {
-	RTS_IEC_WSTRING *pwszName;			/* VAR_INPUT */	/* <param name="pwszName" type="IN">Buffer that is filled with the name of the node. Type is UTF-16.</param> */
+	RTS_IEC_WSTRING *pwszName;			/* VAR_INPUT */	/* <param name="pwszName" type="IN">Buffer that is filled with the name of the node. Type is 2 byte unicode!</param> */
 	RTS_IEC_UDINT *pnMaxLength;			/* VAR_INPUT */	/* <param name="nMaxLength" type="IN">Maximum length of the node name including the trailing zero</param> */
 	RTS_IEC_RESULT SysTargetGetNodeName;	/* VAR_OUTPUT */	
 } systargetgetnodename_struct;
@@ -673,13 +618,13 @@ RTS_RESULT CDECL SysTargetOSHookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, 
  *  approach ist to add the official serial number (e.g. "MyController_1234-5678") or the IP-Address of the controller, 
  *  which is most of the time unique (e.g. "MyController_192.168.123.234") as part of the node name. This requirement focused 
  *  on the use case where an end user takes several identical controllers of one vendor and plugs at once into his plant or machine.
- *  And so every controller should show up in the commuication dialog at a scan with a unique node name. Furthermore this is important
+ *  And so every controller should show up in the commuication dialog at a scan with a unique nodename. Furthermore this is important
  *  to allow a client to connect by using the node name.
  *  The length is limited to SYSTARGET_MAX_NODE_NAME_LEN.
  * </description>
- * <param name="pwszName" type="IN" range="[0,VALID_NAME,INVALID_NAME]">Buffer that is filled with the name of the node. Type is UTF-16.</param>
- * <param name="pnMaxLength" type="INOUT" range="[0,VALID_LENGTH,INVALID_LENGTH]">Pointer to maximum length in 16-bit code units (not bytes!).
- *	Returns the number of 16-bit code units copied into the buffer including the trailing zero.</param>
+ * <param name="pwszName" type="IN" range="[0,VALID_NAME,INVALID_NAME]">Buffer that is filled with the name of the node. Type is 2 byte unicode!</param>
+ * <param name="pnMaxLength" type="INOUT" range="[0,VALID_LENGTH,INVALID_LENGTH]">Pointer to maximum length in unicode characters (not bytes!).
+ *	Returns the number of unicode characters copied into the buffer including the trailing zero.</param>
  * <errorcode name="RTS_RESULT Result" type="ERR_OK">Name was retrieved sucessfull</errorcode>
  * <errorcode name="RTS_RESULT Result" type="ERR_PARAMETER">Pointer to MaxLength or Name may not be null</errorcode>
  * <errorcode name="RTS_RESULT Result" type="ERR_FAILED">Name could not be retrieved</errorcode>
@@ -691,9 +636,9 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `SysTargetGetNodeName',`(RTS_WCHAR *pwszName,
  * <description>
  *  Get a human readable name for the target. This can be configured by the name setting (see category above).
  * </description>
- * <param name="pwszName" type="IN" range="[0,VALID_NAME,INVALID_NAME]">Buffer that is filled with the name of the node. Type is UTF-16. Can be NULL to get the necessary length.</param>
- * <param name="pnMaxLength" type="INOUT" range="[0,VALID_LENGTH,INVALID_LENGTH]">Pointer to maximum length in 16-bit code units (not bytes!).
- *	Returns the number of 16-bit code units copied into the buffer including the trailing zero.</param>
+ * <param name="pwszName" type="IN" range="[0,VALID_NAME,INVALID_NAME]">Buffer that is filled with the name of the node. Can be NULL to get the necessary length.</param>
+ * <param name="pnMaxLength" type="INOUT" range="[0,VALID_LENGTH,INVALID_LENGTH]">Pointer to maximum length in unicode characters (not bytes!).
+ *	Returns the number of unicode characters copied into the buffer including the trailing zero.</param>
  * <errorcode name="RTS_RESULT Result" type="ERR_OK">Name was retrieved sucessfull</errorcode>
  * <errorcode name="RTS_RESULT Result" type="ERR_PARAMETER">Pointer to MaxLength or Name may not be null</errorcode>
  * <errorcode name="RTS_RESULT Result" type="ERR_FAILED">Name could not be retrieved</errorcode>
@@ -747,10 +692,10 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `SysTargetGetVersion',`(RTS_UI32 *pulVersion)
  *  The device name is for example displayed in the CODESYS communication dialog scanning all targets.
  * <p>IMPLEMENTATION NOTES:</p>
  *  The length is limited to SYSTARGET_MAX_DEVICE_NAME_LEN. But it is strongly recommended to avoid device names with more than
- *  50 16-bit code units including NULL termination, because there exist use cases which can handle only this shorter length.
- * <param name="pwszName" type="INOUT" range="[0,INVALID_NAME,VALID_NAME]">Pointer to the device name. Type is UTF-16. Can be NULL to get the necessary length.</param>
- * <param name="pnMaxLength" type="INOUT" range="[0,INVALID_LENGTH,VALID_LENGTH]">Pointer to maximum length of the name in 16-bit code units (not bytes!).
- *	Returns the number of 16-bit code units copied into the buffer including the trailing zero.</param>
+ *  50 wide-char characters including NULL termination, because there exist use cases which can handle only this shorter length.
+ * <param name="pwszName" type="INOUT" range="[0,INVALID_NAME,VALID_NAME]">Pointer to the device name. Can be NULL to get the necessary length.</param>
+ * <param name="pnMaxLength" type="INOUT" range="[0,INVALID_LENGTH,VALID_LENGTH]">Pointer to maximum length of the name in unicode characters (not bytes!).
+ *	Returns the number of unicode characters copied into the buffer including the trailing zero.</param>
  * <errorcode name="RTS_RESULT Result" type="ERR_OK">device name was retrieved sucessfull</errorcode>
  * <errorcode name="RTS_RESULT Result" type="ERR_PARAMETER">Pointer to length may not be null</errorcode>
  * <errorcode name="RTS_RESULT Result" type="ERR_FAILED">device name could not be retrieved</errorcode>
@@ -763,10 +708,10 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `SysTargetGetDeviceName',`(RTS_WCHAR *pwszNam
  *  The vendor name is for example displayed in the CODESYS communication dialog scanning all targets.
  * <p>IMPLEMENTATION NOTES:</p>
  *  The length is limited to SYSTARGET_MAX_VENDOR_NAME_LEN. But it is strongly recommended to avoid device names with more than
- *  50 16-bit code units including NULL termination, because there exist use cases which can handle only this shorter length.
- * <param name="pwszName" type="INOUT" range="[0,INVALID_NAME,VALID_NAME]">Pointer to the device name. Type is UTF-16. Can be NULL to get the necessary length.</param>
- * <param name="pnMaxLength" type="INOUT" range="[0,INVALID_LENGTH,VALID_LENGTH]">Pointer to maximum length of the name in 16-bit code units (not bytes!).
- *	Returns the number of 16-bit code units copied into the buffer including the trailing zero.</param>
+ *  50 wide-char characters including NULL termination, because there exist use cases which can handle only this shorter length.
+ * <param name="pwszName" type="INOUT" range="[0,INVALID_NAME,VALID_NAME]">Pointer to the device name. Can be NULL to get the necessary length.</param>
+ * <param name="pnMaxLength" type="INOUT" range="[0,INVALID_LENGTH,VALID_LENGTH]">Pointer to maximum length of the name in unicode characters (not bytes!).
+ *	Returns the number of unicode characters copied into the buffer including the trailing zero.</param>
  * <errorcode name="RTS_RESULT Result" type="ERR_OK">vendor name was retrieved sucessfull</errorcode>
  * <errorcode name="RTS_RESULT Result" type="ERR_PARAMETER">Pointer to length may not be null</errorcode>
  * <errorcode name="RTS_RESULT Result" type="ERR_FAILED">vendor name could not be retrieved</errorcode>
@@ -795,7 +740,7 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `SysTargetGetOperatingSystemId',`(RTS_UI32 *p
 DEF_ITF_API(`RTS_RESULT', `CDECL', `SysTargetGetProcessorId',`(RTS_UI32 *pulProcessorId)')
 
 /**
- * <description>Returns a unique serial number of the target. Unique serial number can be used e.g. for detection or communication needs (e. g. as part of node name).
+ * <description>Returns a unique serial number of the target. Unique serial number can be used e.g. for detection or communication needs (e. g. as part of nodename).
  * <p>IMPLEMENTATION NOTES:</p>
  * The length of the serial number string must be limited to SYSTARGET_MAX_SERIAL_NUMBER_LEN characters including NULL termination! 
  *
@@ -890,40 +835,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `SysTargetGetDeviceMask',`(RTS_UI16 *pusDevic
  * <errorcode name="RTS_RESULT" type="ERR_VERSION_MISMATCH">Version mismatch. Versions not compatible!</errorcode>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `SysTargetCheckIdent',`(SysTargetIdent *pTargetIdentReq, SysTargetIdent *pTargetIdent)')
-
-/**
- * <description>This function is called for all external function calls and can be used to overload external functions.
- * <p>IMPLEMENTATION NOTES:</p> 
- * The OEM can use the implementation in SysTargetOEM to redirect or disable specific functions.
- * </description>
- * <param name="apiInfo" type="IN">API info of the current API function to resolve</param>
- * <param name="ppfAPIFunction" type="INOUT">Pointer to API functionpointer</param>
- * <errorcode name="RTS_RESULT Result" type="ERR_OK">API function successfully redirected to the function that *ppfAPIFunction is pointing to</errorcode>
- * <errorcode name="RTS_RESULT Result" type="ERR_NOT_SUPPORTED">API function is disabled for external calls. Unresolved reference will occur.</errorcode> 
- * <errorcode name="RTS_RESULT Result" type="ERR_PARAMETER">Pointer to API functionpointer is NULL</errorcode>
- * <errorcode name="RTS_RESULT Result" type="ERR_FAILED">API function is not overloaded or redirected by SysTargetGetAPI</errorcode>
- * <errorcode name="RTS_RESULT Result" type="ERR_NOTIMPLEMENTED">No implementation to resolve the API</errorcode>
- * <result>error code</result>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `SysTargetGetAPI',`(API_RESOLVE_INFO apiInfo, RTS_VOID_FCTPTR *ppfAPIFunction)')
-
-/**
-* <description>
-*  Set a human readable name that identifies this device in the network.
-*  The length is limited to SYSTARGET_MAX_NODE_NAME_LEN. By passing an empty string, the node name settings are
-*  deleted and so the default node name is set again.
-* </description>
-* <param name="pwszName" type="IN">Buffer that is filled with the name of the node. Type is UTF-16.</param>
-* <errorcode name="RTS_RESULT Result" type="ERR_OK">Node name was set sucessfully</errorcode>
-* <errorcode name="RTS_RESULT Result" type="ERR_PARAMETER">Pointer to name may not be null</errorcode>
-* <errorcode name="RTS_RESULT Result" type="ERR_OUT_OF_LIMITS">Length of name exceeds SYSTARGET_MAX_NODE_NAME_LEN</errorcode>
-* <errorcode name="RTS_RESULT Result" type="ERR_NO_ACCESS_RIGHTS">Configuration (file) is write protected</errorcode>
-* <errorcode name="RTS_RESULT Result" type="ERR_NOT_SUPPORTED">Device does not support to store the node name</errorcode>
-* <errorcode name="RTS_RESULT Result" type="ERR_OPERATION_DENIED">OEM implementation has denied to store the node name</errorcode>
-* <errorcode name="RTS_RESULT Result" type="ERR_FAILED">Name could not be set because of unknown reason</errorcode>
-* <result>error code</result>
-*/
-DEF_ITF_API(`RTS_RESULT', `CDECL', `SysTargetSetNodeName',`(RTS_WCHAR *pwszName)')
 
 #ifdef __cplusplus
 }

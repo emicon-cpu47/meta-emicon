@@ -1009,74 +1009,6 @@ RTS_BOOL CDECL X509CertIsSelfSigned(RTS_HANDLE hCert, RTS_RESULT *pResult)
 	return FALSE;
 }
 
-RTS_BOOL CDECL X509CertHasExtendedKeyUsage(RTS_HANDLE hCert, RTS_UI32 numOfExKeyUsages, RtsOID *pExKeyUsages, RTS_RESULT *pResult)
-{
-	RtsX509CertInfo certInfo;
-	RTS_IEC_UDINT i, j;
-	RTS_BOOL bKeyUsageFound = FALSE;
-	RTS_RESULT Result = ERR_FAILED;
-
-	X509CertInfoInit(&certInfo, sizeof(certInfo));
-
-	do
-	{
-		if (hCert == RTS_INVALID_HANDLE || hCert == NULL)
-		{
-			Result = ERR_PARAMETER;
-			break;
-		}
-		if (numOfExKeyUsages == 0 || pExKeyUsages == NULL)
-		{
-			Result = ERR_PARAMETER;
-			break;
-		}
-
-
-		Result = X509CertGetContent(hCert, &certInfo);
-		if (Result != ERR_OK)
-			break;
-
-		if (certInfo.numOfExKeyUsages < numOfExKeyUsages)
-		{
-			bKeyUsageFound = FALSE;
-			break;
-		}
-
-		for (i = 0; i < numOfExKeyUsages; i++)
-		{
-			bKeyUsageFound = FALSE;
-			for (j = 0; j < certInfo.numOfExKeyUsages; j++)
-			{
-				if (pExKeyUsages[i].length == certInfo.pExKeyUsages[j].length)
-				{
-					if (pExKeyUsages[i].length > sizeof(RtsOIDStore))
-					{
-						if (memcmp(pExKeyUsages[i].data.pOID, certInfo.pExKeyUsages[j].data.pOID, pExKeyUsages[i].length) == 0)
-						{
-							bKeyUsageFound = TRUE;
-							break;
-						}
-					}
-					else
-					{
-						if (memcmp(pExKeyUsages[i].data.aOID, certInfo.pExKeyUsages[j].data.aOID, pExKeyUsages[i].length) == 0)
-						{
-							bKeyUsageFound = TRUE;
-							break;
-						}
-					}
-				}
-			}
-			if (bKeyUsageFound == FALSE)
-				break;
-		}
-	} while (0);
-
-	X509CertInfoExit(&certInfo);
-	RTS_SETRESULT(pResult, Result);
-	return bKeyUsageFound;
-}
-
 RTS_RESULT CDECL X509CertKeyClose(RtsCryptoKey* pKey)
 {
 	if (pKey == NULL)
@@ -1340,13 +1272,6 @@ RTS_RESULT CDECL X509CertStoreUnregister(RTS_HANDLE hCertStore, RTS_HANDLE hRegi
 	return ERR_OK;
 }
 
-RTS_HANDLE CDECL X509CertStoreGetRegisteredCert(RTS_HANDLE hCertStore, RTS_HANDLE hUseCase, RTS_RESULT* pResult)
-{
-	/* TODO */
-	RTS_SETRESULT(pResult, ERR_NOTIMPLEMENTED);
-	return RTS_INVALID_HANDLE;
-}
-
 
 /* **************************************************************************
  * External library implementation 
@@ -1379,7 +1304,7 @@ void CDECL CDECL_EXT cryptogetalgorithmbyid(cryptogetalgorithmbyid_struct *p)
 
 void CDECL CDECL_EXT cryptogetasymmetrickeylength(cryptogetasymmetrickeylength_struct *p)
 {
-	p->CryptoGetAsymmetricKeyLength = CryptoGetAsymmetricKeyLength(p->asymmetricKey, p->pResult);
+	p->CryptoGetAsymmetricKeyLength = CryptoGetAsymmetricKeyLength(p->privateKey, p->pResult);
 }
 
 void CDECL CDECL_EXT cryptogetfirstalgorithm(cryptogetfirstalgorithm_struct *p)
@@ -1917,7 +1842,7 @@ static void CmpTestCerts(void)
 		Result = X509CertVerify(hCertStore, hResult);
 
 		filters[0].filterType = RTSX509CERTFILTERTYPE_TRUST_LEVEL;
-		filters[0].filterContent.trustLevel = RTSCERTTRUSTLEVEL_OWN;
+		filters[0].filterContent.trusteLevel = RTSCERTTRUSTLEVEL_OWN;
 		filters[1].filterType = RTSX509CERTFILTERTYPE_SUBJECT;
 		filters[1].filterContent.subject = &info.subject;
 		hResult = X509CertStoreSearchGetFirst(hCertStore, filters, 2, &Result);

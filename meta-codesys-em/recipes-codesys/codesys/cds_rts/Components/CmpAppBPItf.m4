@@ -4,9 +4,7 @@
  *	This is the interface of the IEC application manager to handle breakpoints
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpAppBP')
@@ -127,7 +125,6 @@ typedef struct
 #define EVTPARAMID_CmpAppBP_CodePatch		0x0001
 #define EVTVERSION_CmpAppBP_CodePatch		0x0001
 
-
 /**
  * <category>Events</category>
  * <description>Event is sent before and after patching the code for breakpoints/flowpoints</description>
@@ -142,7 +139,6 @@ typedef struct
  */
 #define EVT_CmpAppBP_CodeSave				MAKE_EVENTID(EVTCLASS_INFO, 2)
 
-
 /**
  * <category>Breakpoint types</category>
  * <description>
@@ -154,11 +150,8 @@ typedef struct
 #define BP_FLOWREAD			4
 #define BP_FLOWWRITE		5
 #define BP_FLOWFORCE		6
-#define BP_CODE_EXECUTIONPOINT	7
+#define BP_EXECUTIONPOINT	7
 #define BP_SUSPEND_TASK		8
-#define BP_DATA_BREAKPOINT	   	9
-#define BP_DATA_EXECUTIONPOINT 10
-#define BP_INVALID	0xFFFFFFFF
 
 
 /**
@@ -222,26 +215,8 @@ typedef struct BreakpointDesc_
 	RTS_UI8 abyOpCode[APP_MAX_BP_OPCODE_SIZE];
 	APPBP_ENTER_BREAKPOINT_HANDLER pfBpEnterHandler;
 	APPBP_LEAVE_BREAKPOINT_HANDLER pfBpLeaveHandler;
-	RTS_UI16 usDataBPSize;
 } BreakpointDesc;
 
-/**
- * <category>Breakpoint context</category>
- * <description>
- *	Low level context information of a breakpoint
- * </description>
- * <element name="context" type="IN">Exception context, containing IP, BP, SP</element>
- * <element name="pRegBuff" type="IN">Pointer to start of saved registers</element>
- * <element name="pDataBPAddress" type="IN">Pointer to observed memory</element>
- * <element name="uiDataBPSize" type="IN">Size of the memory to be observed</element>
- */
-typedef struct BreakpointContext_
-{
-	RegContext regContext;
-	RTS_UINTPTR *pRegBuff;
-	RTS_UINTPTR pDataBPAddress;
-	RTS_UI32 uiDataBPSize;
-}BreakpointContext;
 
 typedef struct Breakpoint_
 {
@@ -296,7 +271,7 @@ typedef struct DebugContext_
 	Breakpoint *pbp;
 	RTS_UI32 ulType;
 	RTS_BOOL bConditionOK;
-	BreakpointContext BPContext;
+	RegContext context;
 	RTS_UINTPTR ReturnIP;
 	Breakpoint bpHelp;
 	RTS_BOOL bUpdateDone;
@@ -329,43 +304,13 @@ typedef struct
 }FLOW_INFO;
 
 
-/** EXTERN LIB SECTION BEGIN **/
-/*  Comments are ignored for m4 compiler so restructured text can be used. changecom(`/*', `*/') */
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-/**
- * <description>CallstackEntry</description>
- */
-typedef struct tagCallstackEntry
+typedef struct
 {
-	RTS_IEC_XWORD ulOffset;		
-	RTS_IEC_XWORD ulOffsetInstance;		
-	RTS_IEC_UINT usArea;		
-	RTS_IEC_UINT usAreaInstance;		
+	RTS_SIZE ulOffset;
+	RTS_SIZE ulOffsetInstance;
+	RTS_UI16 usArea;
+	RTS_UI16 usAreaInstance;
 } CallstackEntry;
-
-/**
- * <description>appbpgetcallstack</description>
- */
-typedef struct tagappbpgetcallstack_struct
-{
-	APPLICATION *pApp;					/* VAR_INPUT */	
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	
-	CallstackEntry *pCallstackentries;	/* VAR_INPUT */	
-	RTS_IEC_BYTE byMaxEntries;			/* VAR_INPUT */	
-	RTS_IEC_BYTE AppBPGetCallstack;		/* VAR_OUTPUT */	
-} appbpgetcallstack_struct;
-
-DEF_API(`void',`CDECL',`appbpgetcallstack',`(appbpgetcallstack_struct *p)',1,RTSITF_GET_SIGNATURE(0x8E104280, 0xC4227279),0x03050D00)
-
-#ifdef __cplusplus
-}
-#endif
-
-/** EXTERN LIB SECTION END **/
 
 
 #ifdef __cplusplus
@@ -398,14 +343,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `AppBPExit', `(APPLICATION *pApp)')
  *	NOTE: This must be adopted by the caller!</result>
  */
 DEF_ITF_API(`RTS_UINTPTR', `CDECL', `AppDebugHandler', `(RTS_UINTPTR IP, RTS_UINTPTR SP, RTS_UINTPTR BP)')
-
-/**
- * <description>See AppDebugHandler. AppDebugHandler2 supports also data breakpoints</description>
- * <param name="pBPContext" type="IN">Low level register context of the breakpoint.</param>
- * <result>Return address, to which we would like to return right after leaving this function.
- *	NOTE: This must be adopted by the caller!</result>
- */
-DEF_ITF_API(`RTS_UINTPTR', `CDECL', `AppDebugHandler2', `(BreakpointContext *pBPContext)')
 
 /**
  * <description>Retrieves the first breakpoint (if available)</description>
@@ -513,16 +450,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `AppBPGetNextCallstackEntry', `(APPLICATION *
  * <result>error code</result>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `AppBPGetNextCallstackEntry2', `(APPLICATION *pApp, int bIecCode, RegContext *pContext, CallstackEntry *pCallstackEntry)')
-
-/**
- * <description>Retrieves the callstack of the current task.</description>
- * <param name="pApp" type="IN">Pointer to the specified application description</param>
- * <param name="hIecTask" type="IN">Handle of the IEC task to get the callstack from.</param>
- * <param name="pCallstackentries" type="INOUT">Pointer to an array of callstack entries.</param>
- * <param name="byMaxEntries" type="IN">Number of callstack entries within the array.</param>
- * <result>Number of callstack entries filled up (Depth of the callstack).</result>
- */
-DEF_ITF_API(`RTS_UI8',`CDECL',`AppBPGetCallStack',`(APPLICATION* pApp, RTS_HANDLE hIecTask, CallstackEntry* pCallstackentries, RTS_UI8 byMaxEntries)')
 
 /**
  * <description>Handler for all breakpoint services</description>

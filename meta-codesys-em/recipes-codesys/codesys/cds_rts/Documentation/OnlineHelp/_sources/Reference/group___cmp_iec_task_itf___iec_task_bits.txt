@@ -33,14 +33,6 @@ Macros
 
 - #define :ref:`ITF_BIT_INIT_OUTPUTS <group___cmp_iec_task_itf___iec_task_bits_1ga548eaed85782b209400cff4848b6c2df>` 9
 
-- #define :ref:`ITF_BIT_ENTER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gacbfec466801f94f17441e423a2e1f1f9>` 10
-
-- #define :ref:`ITF_BIT_LEAVE_READER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gaca838322e0933c045c005cbe5a90f7d0>` 11
-
-- #define :ref:`ITF_BIT_SUSPENDED_BY_DEBUG_TASK <group___cmp_iec_task_itf___iec_task_bits_1ga618da858f592f6253d1a2459ac8475cb>` 12
-
-- #define :ref:`ITF_BIT_IN_DEBUG_CONTEXT <group___cmp_iec_task_itf___iec_task_bits_1ga6d7689171de9ea9a1f475378069d62be>` 13
-
 - #define :ref:`IsVisuTask <group___cmp_iec_task_itf___iec_task_bits_1ga4da081d79ff77e8b9a51297f45743d12>` (pTask->ulFlags & :ref:`ITF_VISU_TASK <group___cmp_iec_task_itf___iec_task_flags_1gab40b3faa2d4736b96d4799a581eba46a>` )
 
 - #define :ref:`DontSchedule <group___cmp_iec_task_itf___iec_task_bits_1ga464acb0ee5885dc2736aabb694fd5c64>` (pTask->ulFlags & :ref:`ITF_DONT_SCHEDULE <group___cmp_iec_task_itf___iec_task_flags_1gafeac8ba2dab5958050cf30ce6aa35491>` )
@@ -60,14 +52,6 @@ Macros
 - #define :ref:`IsInIoUpdate <group___cmp_iec_task_itf___iec_task_bits_1gabba2bc1de299f42547da1043c3733197>` (pTask->ulFlags & :ref:`ITF_IN_IO_UPDATE <group___cmp_iec_task_itf___iec_task_flags_1ga1996f83b1e516748f76118cd3a2bf7c3>` )
 
 - #define :ref:`DoInitOutputs <group___cmp_iec_task_itf___iec_task_bits_1gac5ec23143a449e1875c1afdaf17d113c>` (pTask->ulFlags & :ref:`ITF_INIT_OUTPUTS <group___cmp_iec_task_itf___iec_task_flags_1ga75935177009a8d2ecdd780e2a2a4dd53>` )
-
-- #define :ref:`IsEnterLockDisabled <group___cmp_iec_task_itf___iec_task_bits_1ga2cf7538c94a1caa41880b26d5ae4a0f9>` (pTask->ulFlags & :ref:`ITF_ENTER_LOCK <group___cmp_iec_task_itf___iec_task_flags_1ga4f6c482d0652352202a453f74be3db80>` )
-
-- #define :ref:`IsLeaveReaderLock <group___cmp_iec_task_itf___iec_task_bits_1gaec30af0ebd462ec77829d81a3c581a3b>` (pTask->ulFlags & :ref:`ITF_LEAVE_READER_LOCK <group___cmp_iec_task_itf___iec_task_flags_1ga851db9bbdeabd5b2e9b712aa49135d93>` )
-
-- #define :ref:`IsSuspendedByDebugTask <group___cmp_iec_task_itf___iec_task_bits_1ga27db4c11cd9774be5a7453e4f33c3c6a>` (pTask->ulFlags & :ref:`ITF_SUSPENDED_BY_DEBUG_TASK <group___cmp_iec_task_itf___iec_task_flags_1gaef1ce868c039e476fa352f8fb4c4fef2>` )
-
-- #define :ref:`IsInDebugContext <group___cmp_iec_task_itf___iec_task_bits_1gaad6d1b9991e9acc5959218f3213b6df5>` (pTask->ulFlags & :ref:`ITF_IN_DEBUG_CONTEXT <group___cmp_iec_task_itf___iec_task_flags_1ga6d4cfda518c971d3de86bcfe16a6717c>` )
 
 - #define :ref:`SetVisuTask <group___cmp_iec_task_itf___iec_task_bits_1ga5dedcab92cd882984ee619a0f2b36d7b>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_VISU_TASK <group___cmp_iec_task_itf___iec_task_bits_1ga5d744f5fa649f25d39c3d1f551bc8025>` , 1)
 
@@ -106,22 +90,6 @@ Macros
 - #define :ref:`SetInitOutputs <group___cmp_iec_task_itf___iec_task_bits_1ga46f0090d1872dbc91d5a9de46fa99dd6>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_INIT_OUTPUTS <group___cmp_iec_task_itf___iec_task_bits_1ga548eaed85782b209400cff4848b6c2df>` , 1)
 
 - #define :ref:`ResetInitOutputs <group___cmp_iec_task_itf___iec_task_bits_1ga08c6f5c3baa90ed0e4f3ea9f8ed7a550>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_INIT_OUTPUTS <group___cmp_iec_task_itf___iec_task_bits_1ga548eaed85782b209400cff4848b6c2df>` , 0)
-
-- #define :ref:`DisableEnterLock <group___cmp_iec_task_itf___iec_task_bits_1ga346be34dd2f8bbe5f304202ff906cd7d>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_ENTER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gacbfec466801f94f17441e423a2e1f1f9>` , 1)
-
-- #define :ref:`EnableEnterLock <group___cmp_iec_task_itf___iec_task_bits_1ga008a0192d7aeed40bc4ed5246e5ae338>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_ENTER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gacbfec466801f94f17441e423a2e1f1f9>` , 0)
-
-- #define :ref:`SetLeaveReaderLock <group___cmp_iec_task_itf___iec_task_bits_1gade9e06a9cb6ef8cb2b844d8a5b2fe4c2>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_LEAVE_READER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gaca838322e0933c045c005cbe5a90f7d0>` , 1)
-
-- #define :ref:`ResetLeaveReaderLock <group___cmp_iec_task_itf___iec_task_bits_1ga0e14fb5e0cc2c8975e56555eb1a85003>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_LEAVE_READER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gaca838322e0933c045c005cbe5a90f7d0>` , 0)
-
-- #define :ref:`SetSuspendedByDebugTask <group___cmp_iec_task_itf___iec_task_bits_1gac2cd30bab5ce7c79abe591e6454ba828>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_SUSPENDED_BY_DEBUG_TASK <group___cmp_iec_task_itf___iec_task_bits_1ga618da858f592f6253d1a2459ac8475cb>` , 1)
-
-- #define :ref:`ResetSuspendedByDebugTask <group___cmp_iec_task_itf___iec_task_bits_1ga2e7e66e72bf00ad2fbb9b5e547b65da4>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_SUSPENDED_BY_DEBUG_TASK <group___cmp_iec_task_itf___iec_task_bits_1ga618da858f592f6253d1a2459ac8475cb>` , 0)
-
-- #define :ref:`SetInDebugContext <group___cmp_iec_task_itf___iec_task_bits_1ga64f2fd7a3f794d8cca0f99f71efa867a>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_IN_DEBUG_CONTEXT <group___cmp_iec_task_itf___iec_task_bits_1ga6d7689171de9ea9a1f475378069d62be>` , 1)
-
-- #define :ref:`ResetInDebugContext <group___cmp_iec_task_itf___iec_task_bits_1ga2045fe6b2537b89b16e43a00c164eec8>` CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_IN_DEBUG_CONTEXT <group___cmp_iec_task_itf___iec_task_bits_1ga6d7689171de9ea9a1f475378069d62be>` , 0)
 
 .. _group___cmp_iec_task_itf___iec_task_bits-details:
 
@@ -184,26 +152,6 @@ Macro Definition Documentation
 #define ITF_BIT_INIT_OUTPUTS 9
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_iec_task_itf___iec_task_bits_1gacbfec466801f94f17441e423a2e1f1f9:
-
-#define ITF_BIT_ENTER_LOCK 10
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1gaca838322e0933c045c005cbe5a90f7d0:
-
-#define ITF_BIT_LEAVE_READER_LOCK 11
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1ga618da858f592f6253d1a2459ac8475cb:
-
-#define ITF_BIT_SUSPENDED_BY_DEBUG_TASK 12
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1ga6d7689171de9ea9a1f475378069d62be:
-
-#define ITF_BIT_IN_DEBUG_CONTEXT 13
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. _group___cmp_iec_task_itf___iec_task_bits_1ga4da081d79ff77e8b9a51297f45743d12:
 
 #define IsVisuTask (pTask->ulFlags & :ref:`ITF_VISU_TASK <group___cmp_iec_task_itf___iec_task_flags_1gab40b3faa2d4736b96d4799a581eba46a>` )
@@ -255,26 +203,6 @@ This task is a visu task
 
 #define DoInitOutputs (pTask->ulFlags & :ref:`ITF_INIT_OUTPUTS <group___cmp_iec_task_itf___iec_task_flags_1ga75935177009a8d2ecdd780e2a2a4dd53>` )
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1ga2cf7538c94a1caa41880b26d5ae4a0f9:
-
-#define IsEnterLockDisabled (pTask->ulFlags & :ref:`ITF_ENTER_LOCK <group___cmp_iec_task_itf___iec_task_flags_1ga4f6c482d0652352202a453f74be3db80>` )
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1gaec30af0ebd462ec77829d81a3c581a3b:
-
-#define IsLeaveReaderLock (pTask->ulFlags & :ref:`ITF_LEAVE_READER_LOCK <group___cmp_iec_task_itf___iec_task_flags_1ga851db9bbdeabd5b2e9b712aa49135d93>` )
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1ga27db4c11cd9774be5a7453e4f33c3c6a:
-
-#define IsSuspendedByDebugTask (pTask->ulFlags & :ref:`ITF_SUSPENDED_BY_DEBUG_TASK <group___cmp_iec_task_itf___iec_task_flags_1gaef1ce868c039e476fa352f8fb4c4fef2>` )
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1gaad6d1b9991e9acc5959218f3213b6df5:
-
-#define IsInDebugContext (pTask->ulFlags & :ref:`ITF_IN_DEBUG_CONTEXT <group___cmp_iec_task_itf___iec_task_flags_1ga6d4cfda518c971d3de86bcfe16a6717c>` )
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___cmp_iec_task_itf___iec_task_bits_1ga5dedcab92cd882984ee619a0f2b36d7b:
 
@@ -370,46 +298,6 @@ This task is a visu task
 
 #define ResetInitOutputs CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_INIT_OUTPUTS <group___cmp_iec_task_itf___iec_task_bits_1ga548eaed85782b209400cff4848b6c2df>` , 0)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1ga346be34dd2f8bbe5f304202ff906cd7d:
-
-#define DisableEnterLock CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_ENTER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gacbfec466801f94f17441e423a2e1f1f9>` , 1)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1ga008a0192d7aeed40bc4ed5246e5ae338:
-
-#define EnableEnterLock CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_ENTER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gacbfec466801f94f17441e423a2e1f1f9>` , 0)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1gade9e06a9cb6ef8cb2b844d8a5b2fe4c2:
-
-#define SetLeaveReaderLock CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_LEAVE_READER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gaca838322e0933c045c005cbe5a90f7d0>` , 1)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1ga0e14fb5e0cc2c8975e56555eb1a85003:
-
-#define ResetLeaveReaderLock CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_LEAVE_READER_LOCK <group___cmp_iec_task_itf___iec_task_bits_1gaca838322e0933c045c005cbe5a90f7d0>` , 0)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1gac2cd30bab5ce7c79abe591e6454ba828:
-
-#define SetSuspendedByDebugTask CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_SUSPENDED_BY_DEBUG_TASK <group___cmp_iec_task_itf___iec_task_bits_1ga618da858f592f6253d1a2459ac8475cb>` , 1)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1ga2e7e66e72bf00ad2fbb9b5e547b65da4:
-
-#define ResetSuspendedByDebugTask CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_SUSPENDED_BY_DEBUG_TASK <group___cmp_iec_task_itf___iec_task_bits_1ga618da858f592f6253d1a2459ac8475cb>` , 0)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1ga64f2fd7a3f794d8cca0f99f71efa867a:
-
-#define SetInDebugContext CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_IN_DEBUG_CONTEXT <group___cmp_iec_task_itf___iec_task_bits_1ga6d7689171de9ea9a1f475378069d62be>` , 1)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf___iec_task_bits_1ga2045fe6b2537b89b16e43a00c164eec8:
-
-#define ResetInDebugContext CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), :ref:`ITF_BIT_IN_DEBUG_CONTEXT <group___cmp_iec_task_itf___iec_task_bits_1ga6d7689171de9ea9a1f475378069d62be>` , 0)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. last line of group.rst template
 .. last line of composition.rst template

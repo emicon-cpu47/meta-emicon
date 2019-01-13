@@ -16,7 +16,7 @@ Data Fields
 - RTS_UI32 :ref:`ulHeaderTag <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1aef6ac91732401e93a3d47f3f91992ff5>`
 - RTS_UI32 :ref:`ulHeaderVersion <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a337e134df54e8aa37174d0c4c9ea63f3>`
 - RTS_UI32 :ref:`ulHeaderSize <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a41ed397ca30d2283475b1df9803d1375>`
-- RTS_UI32 :ref:`ulSizeInArea <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a2f840ce08d09d92d39af155972440117>`
+- RTS_UI32 :ref:`ulTotalSize <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a970c971678cf55601c2f9ae59ac19e3c>`
 - RTS_UI32 :ref:`ulDeviceType <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a510801f031ee7f00804082d8d5581332>`
 - RTS_UI32 :ref:`ulDeviceId <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1ae2dc75d21b792b0967c86289836ca420>`
 - RTS_UI32 :ref:`ulDeviceVersion <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a1900035faee8b1eaff56ca7cd05845c7>`
@@ -26,7 +26,7 @@ Data Fields
 - RTS_UI16 :ref:`usCodeAreaIndex <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a8a6ebd87523d550f53d40a9ac2fd02e1>`
 - RTS_UI16 :ref:`usCodeAreaFlags <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1ae5a1805d422e03ee95246ed50e37675b>`
 - RTS_UI32 :ref:`ulOffsetCode <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a6ac381234fc70379929b567d091ac835>`
-- RTS_UI32 :ref:`ulTotalSize <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a970c971678cf55601c2f9ae59ac19e3c>`
+- RTS_UI32 :ref:`ulSizeCode <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1acdcdea488b14e8d396dd55266047df15>`
 - RTS_UI32 :ref:`ulOffsetApplicationInfo <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a68d3d3de26287d8199cce5d91643a5eb>`
 - RTS_UI32 :ref:`ulSizeApplicationInfo <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1aabe77b36754537768914160ced3b6d18>`
 - RTS_UI32 :ref:`ulOffsetAreaTable <struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1aa5db04fb9f28b90f6dcc3dfe4e0cb066>`
@@ -70,12 +70,12 @@ RTS_UI32 _COMPACT_CODE_HEADER::ulHeaderSize
 
 Header size
 
-.. _struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a2f840ce08d09d92d39af155972440117:
+.. _struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a970c971678cf55601c2f9ae59ac19e3c:
 
-RTS_UI32 _COMPACT_CODE_HEADER::ulSizeInArea
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RTS_UI32 _COMPACT_CODE_HEADER::ulTotalSize
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Header size including all download segments in this code area
+Header size including all download segments
 
 .. _struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a510801f031ee7f00804082d8d5581332:
 
@@ -140,12 +140,12 @@ RTS_UI32 _COMPACT_CODE_HEADER::ulOffsetCode
 
 Offset in bytes, where the code segment begins
 
-.. _struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a970c971678cf55601c2f9ae59ac19e3c:
+.. _struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1acdcdea488b14e8d396dd55266047df15:
 
-RTS_UI32 _COMPACT_CODE_HEADER::ulTotalSize
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RTS_UI32 _COMPACT_CODE_HEADER::ulSizeCode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Header size including all download segments in all code areas
+Size in bytes of the code segment
 
 .. _struct___c_o_m_p_a_c_t___c_o_d_e___h_e_a_d_e_r_1a68d3d3de26287d8199cce5d91643a5eb:
 
@@ -252,7 +252,7 @@ CRC32 of the complete download stream including the header with ulCRC written to
 
 ------------------------------------------------------------------------
 The documentation for this struct was generated from the following file:
-C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpAppItf.h
+C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpAppItf.h
 
 .. last line of struct.rst template
 .. last line of composition.rst template

@@ -5,9 +5,7 @@
  *	To handle the window of the target visualisation.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysWindow')
@@ -293,45 +291,6 @@ typedef struct
  */
 #define SYSWINDOW_INT_WINCE_SETCARETBLINKTIME				"WinCE.SetCaretBlinkTime"
 #define SYSWINDOW_INT_WINCE_SETCARETBLINKTIME_DEFAULT		0		
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- * The Targetvisualization in Linux operating systems supports two different modes of operation. The classical mode (value == 0)
- * opens a window only while the targetvisualization is running. After a deletion of an application or between reset and start of
- * a targetvisu application, there is no open window. 
- * Additionally it is possible to keep the main window open until shutdown of the application (value == 1). This prevents problems
- * on systems based on the Qt5 platform plugin "EGLFS" (for details see http://doc.qt.io/qt-5/embedded-linux.html for example).
- * Nevertheless in this mode there is no possibility for opening several concurrent targetvisu windows as it is possible at least
- * in X-server based installations using the classical mode (value == 0).
- * It is not recommended to use a value != 0 together with X-server based installations as the resulting behaviour will not be the
- * one that users of X-server based systems are expecting.
- * </description>
- */
-/* take care: if changing the following setting as there might be a copy of that value in the C++ part of the linux targetvisualization */
-#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN				"Linux.KeepMainWindowOpen"
-/* take care: if changing the following default as there might be a copy of that value in the C++ part of the linux targetvisualization */
-#ifndef SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_DEFAULT	
-	#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_DEFAULT		0		
-#endif
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- * Only relevant if Linux.KeepMainWindowOpen == 1.
- * To reduce the number of states the targetvisualization window can be in (before showing the window, targetvisu displayed, targetvisu not displayed),
- * this setting can be used to remove the state "before showing the window". If this setting has the value 1, then
- * the window will be displayed immediately at startup without showing a targetvisualization yet. As this mode is recommended only for embedded devices
- * (see SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN too) the initial window is opened in full screen mode.
- * </description>
- */
-#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY				"Linux.KeepMainWindowOpenShowImmediately"
-/* take care: if changing the following setting as there might be a copy of that value in the C++ part of the linux targetvisualization */
-#ifndef SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY_DEFAULT		
-	#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY_DEFAULT		1
-#endif
 
 /**
  * <description>Notification code that can be sent to a window using <see>SysWindowNotify</see>. The intention of this notification is
@@ -781,77 +740,6 @@ DEF_HANDLEITF_API(`RTS_RESULT',`CDECL',`SysWindowNotify',`(RTS_HANDLE hWindow, R
  * <result>The result is a flat combination of the values SYSWINSUPPORT_FLAG_*</result>
  */
 DEF_HANDLEITF_API(`RTS_UI32',`CDECL',`SysWindowSupportInfo',`(RTS_HANDLE hWindow, RTS_RESULT* pResult)')
-
-/** 
- * <description> Signature of the callback passed to <see>SysWindowCreateTimer</see>. </description>
- */
-typedef void (*SysWindowTimerCallback)(RTS_HANDLE hWindow, void* pParams);
-
-/**
- * <description>Creates a timer that periodically calls a function.</description>
- * <param name="hWindow" type="IN">Handle to the window</param>
- * <param name="interval" type="IN">The timer interval in milliseconds.</param>
- * <param name="callback" type="IN">The function to call after every interval.</param>
- * <param name="callbackParams" type="IN">The paramaters that should be passed to the callback function.</param>
- * <result>Identifier for the timer that can be used to destroy it.</result>
- */
-DEF_HANDLEITF_API(`RTS_HANDLE',`CDECL',`SysWindowCreateTimer',`(RTS_HANDLE hWindow, RTS_UI32 interval, SysWindowTimerCallback callback, void* pCallbackParams, RTS_RESULT* pResult)')
-
-/**
- * <description>Creates a timer that periodically calls a function.</description>
- * <param name="hTimer" type="IN">The timer to destroy.</param>
- * <result>Error code.</result>
- */
-DEF_HANDLEITF_API(`RTS_RESULT',`CDECL',`SysWindowDestroyTimer',`(RTS_HANDLE hWindow, RTS_HANDLE hTimer)')
-
-/**
- * <description>
- *	Function to open a message box.
- * </description>
- * <param name="hWindow" type="IN">Handle to the window</param>
- * <param name="pszText" type="IN">The message to show</param>
- * <param name="pszCaption" type="IN">The caption to show</param>
- * <param name="uiType" type="IN">The type of message box. See MB_TYPE defines</param>
- * <result>see MB_RESULT defines</result>
- */
-DEF_HANDLEITF_API(`RTS_RESULT',`CDECL',`SysWindowOpenMessageBox',`(RTS_HANDLE hWindow, char* pszText, char* pszCaption, RTS_UI32 uiType)')
-
-/**
- * <description>
- *	Function to open a message box.
- * </description>
- * <param name="hWindow" type="IN">Handle to the window</param>
- * <param name="pwsText" type="IN">The message to show</param>
- * <param name="pwsCaption" type="IN">The caption to show</param>
- * <param name="uiType" type="IN">The type of message box. See MB_TYPE defines</param>
- * <result>see MB_RESULT defines</result>
- */
-DEF_HANDLEITF_API(`RTS_RESULT',`CDECL',`SysWindowOpenMessageBoxW',`(RTS_HANDLE hWindow, RTS_WCHAR* pwsText, RTS_WCHAR* pwsCaption, RTS_UI32 uiType)')
-
-#define MB_TYPE_OK					0x0000
-#define MB_TYPE_OKCANCEL			0x0001
-#define MB_TYPE_ABORTRETRYIGNORE	0x0002
-#define MB_TYPE_YESNOCANCEL			0x0003
-#define MB_TYPE_YESNO				0x0004
-#define MB_TYPE_RETRYCANCEL			0x0005
-
-#define MB_TYPE_ICONERROR			0x0010
-#define MB_TYPE_ICONQUESTION		0x0020
-#define MB_TYPE_ICONWARNING			0x0030
-#define MB_TYPE_ICONINFORMATION		0x0040
-
-#define MB_TYPE_DEFBUTTON1			0x0000
-#define MB_TYPE_DEFBUTTON2			0x0100
-#define MB_TYPE_DEFBUTTON3			0x0200
-#define MB_TYPE_DEFBUTTON4			0x0300
-
-#define MB_RESULT_OK				0x0001
-#define MB_RESULT_CANCEL			0x0002
-#define MB_RESULT_ABORT				0x0003
-#define MB_RESULT_RETRY				0x0004
-#define MB_RESULT_IGNORE			0x0005
-#define MB_RESULT_YES				0x0006
-#define MB_RESULT_NO				0x0007
 
 #ifdef __cplusplus
 }

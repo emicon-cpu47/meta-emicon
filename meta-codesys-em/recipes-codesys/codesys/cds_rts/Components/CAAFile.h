@@ -44,8 +44,6 @@ typedef enum
 #define	FILE_ERROR_UNKNOWN		((CAA_ERROR)5110)
 #define	FILE_WRITE_INCOMPLETE	((CAA_ERROR)5111)
 #define	FILE_NOT_IMPLEMENTED	((CAA_ERROR)5112)
-#define ASM_CREATEJOB_FAILED	((CAA_ERROR)5113)
-#define FILE_OPERATION_DENIED	((CAA_ERROR)5114)
 #define	FILE_FIRST_MF			((CAA_ERROR)5150)
 #define	FILE_LAST_ERROR			((CAA_ERROR)5199)
 
@@ -213,13 +211,6 @@ typedef struct
 	CAA_HANDLE hFile;
 }FILE_WFlushParams;
 
-typedef struct
-{
-	CAA_FILENAME sDirNameDest;
-	CAA_FILENAME sDirNameSource;
-	CAA_BOOL xRecursive;
-	CAA_BOOL xOverWrite;
-}FILE_WDirCopyParams;
 
 #endif /*__CAA_FILE_H__*/
 #endif /* CAA_FILE */

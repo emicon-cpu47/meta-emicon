@@ -240,6 +240,8 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 		case CH_EXIT3:
 			break;
 		case CH_EXIT2:
+			break;
+		case CH_EXIT:
 		{
 			/* Delete instance */
 			ICmpIoDrv *pI;
@@ -248,10 +250,8 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 			pI = (ICmpIoDrv *)s_pIBase->QueryInterface(s_pIBase, ITFID_ICmpIoDrv, NULL);
 			s_pIBase->Release(s_pIBase);
 			CAL_IoDrvDelete((RTS_HANDLE)pI, (RTS_HANDLE)pI);
-			break;
-		}
-		case CH_EXIT:
-		{
+			DeleteInstance(s_pIBase);
+
 			EXIT_STMT;
 			break;
 		}
@@ -319,31 +319,31 @@ STATICITF RTS_HANDLE CDECL IoDrvCreate(RTS_HANDLE hIIoDrv, CLASSID ClassId, int 
 	strcpy(pInfo->szDeviceName, "MyCard");
 	strcpy(pInfo->szVendorName, "MyCompany");
 	strcpy(pInfo->szFirmwareVersion, "Rev. 11.22.33.44");
-	return (RTS_HANDLE)pIoDrvSimple;
+	return (RTS_HANDLE)pInfo;
 }
 
 STATICITF RTS_RESULT CDECL IoDrvDelete(RTS_HANDLE hIoDrv, RTS_HANDLE hIIoDrv)
 {
-	IoDrvSimple *pIoDrvSimple = (IoDrvSimple *)hIoDrv;
+#ifdef CPLUSPLUS
+	IoDrvSimple *pIoDrvSimple = (IoDrvSimple *)((unsigned char *)hIoDrv - sizeof(IoDrvSimple) + sizeof(IoDrvInfo));
 	CAL_SysMemFreeData(COMPONENT_NAME, pIoDrvSimple);
+#endif
 	return ERR_OK;
 }
 
 STATICITF RTS_RESULT CDECL IoDrvGetInfo(RTS_HANDLE hIoDrv, IoDrvInfo **ppInfo)
 {
-	IoDrvSimple *pIoDrvSimple = (IoDrvSimple *)hIoDrv;
-
 	if (ppInfo == NULL || hIoDrv == RTS_INVALID_HANDLE)
 		return ERR_PARAMETER;
 
-	*ppInfo = (IoDrvInfo *)&pIoDrvSimple->Info;
+	*ppInfo = (IoDrvInfo *)hIoDrv;
 	return ERR_OK;
 }
 
 STATICITF RTS_RESULT CDECL IoDrvUpdateConfiguration(RTS_HANDLE hIoDrv, IoConfigConnector *pConnectorList, int nCount)
 {
 	IoConfigConnector *pConnector = CAL_IoMgrConfigGetFirstConnector(pConnectorList, &nCount, 40100);
-	IoDrvSimple *pIoDrvSimple = (IoDrvSimple *)hIoDrv;
+	IoDrvSimple *pIoDrvSimple = (IoDrvSimple *)((unsigned char *)hIoDrv - sizeof(IoDrvSimple) + sizeof(IoDrvInfo));
 	IBase *pIBase = pIoDrvSimple->pIBase;
 	/*ICmpIoDrv *pIIoDrv = pIoDrvSimple->pIoDrv;*/
 

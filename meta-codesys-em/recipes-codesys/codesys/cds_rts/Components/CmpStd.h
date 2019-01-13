@@ -14,9 +14,7 @@
  *	</ul>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 #ifndef __RTSSTD_H__
@@ -80,9 +78,9 @@ typedef void*	OBJREF;
 /*
  * The RTS_VERSION below is to be changed only by 3S - Smart Software Solutions. 
  */
-#define RTS_VERSION							UINT32_C(0x03050D0A)
-#define RTS_VERSION_STRING					"3.5.13.10"
-#define RTS_VERSION_RC						3,5,13,10
+#define RTS_VERSION							UINT32_C(0x03050A00)
+#define RTS_VERSION_STRING					"3.5.10.0"
+#define RTS_VERSION_RC						3,5,10,0
 
 #define RTS_GETVERSION_MAJOR(version)		(((version)>>24) & UINT32_C(0x000000FF))
 #define RTS_GETVERSION_SUB(version)			(((version)>>16) & UINT32_C(0x000000FF))
@@ -174,77 +172,69 @@ typedef void*	OBJREF;
 #ifndef BASETYPES_DEFINED
 #	define BASETYPES_DEFINED
 
-	typedef int8_t				RTS_I8;		/* Signed 8 bit value */
-	typedef int16_t				RTS_I16;	/* Signed 16 bit value */
+	typedef int8_t		RTS_I8;		/* Signed 8 bit value */
+	typedef int16_t		RTS_I16;	/* Signed 16 bit value */
 #ifndef RTS_I32_DEFINED
 	#define RTS_I32_DEFINED
-	typedef int32_t				RTS_I32; 	/* Signed 32 bit value */
+	typedef int32_t		RTS_I32; 	/* Signed 32 bit value */
 #endif
 
-	typedef uint8_t				RTS_UI8;	/* Unsigned 8 bit value */
-#	define	RTS_UI8_MAX			(RTS_UI8)(~((RTS_UI8)0))
+	typedef uint8_t		RTS_UI8;	/* Unsigned 8 bit value */
+#	define	RTS_UI8_MAX	(RTS_UI8)(~((RTS_UI8)0))
 
-	typedef uint16_t			RTS_UI16;	/* Unsigned 16 bit value */
-#	define	RTS_UI16_MAX		(RTS_UI16)(~((RTS_UI16)0))
+	typedef uint16_t	RTS_UI16;	/* Unsigned 16 bit value */
+#	define	RTS_UI16_MAX	(RTS_UI16)(~((RTS_UI16)0))
 
 #ifndef RTS_UI32_DEFINED
 	#define RTS_UI32_DEFINED
-	typedef uint32_t			RTS_UI32;	/* Unsigned 32 bit value */
+	typedef uint32_t	RTS_UI32;	/* Unsigned 32 bit value */
 #endif	
-#	define	RTS_UI32_MAX		(RTS_UI32)(~((RTS_UI32)0))
+#	define	RTS_UI32_MAX	(RTS_UI32)(~((RTS_UI32)0))
 
 #ifndef IEEE754TYPES_DEFINED
 #	define IEEE754TYPES_DEFINED
-	typedef float				RTS_REAL32;		/* 32 bit floating point value */
-	typedef double				RTS_REAL64;		/* 64 bit floating point value */
-	#define RTS_REAL32_MAX		3.4028234e+38
-	#define RTS_REAL64_MAX		1.7976931348623157e+308
+	typedef float		RTS_REAL32;		/* 32 bit floating point value */
+	typedef double		RTS_REAL64;		/* 64 bit floating point value */
 #endif
 
-	typedef void*				RTS_HANDLE;		/* Handle for files, semaphores, ... Usually the native integer type of the platform*/
-	#define RTS_INVALID_HANDLE	((RTS_HANDLE)(~((uintptr_t)0)))
+	typedef void*		RTS_HANDLE;		/* Handle for files, semaphores, ... Usually the native integer type of the platform*/
+	#define RTS_INVALID_HANDLE			((RTS_HANDLE)(~((uintptr_t)0)))
 
-	typedef RTS_UI32			RTS_RESULT;		/* Result type for most functions. At least 16 bit. Should be the natural integer of a platform. */
+	typedef RTS_UI32	RTS_RESULT;/* Result type for most functions. At least 16 bit. Should be the natural integer of a platform. */
 
-	typedef uintptr_t			RTS_UINTPTR;	/* Unsigned integral type that can hold a pointer */
-	#define RTS_UINTPTR_MAX		(RTS_UINTPTR)(~((RTS_UINTPTR)0))
+	typedef uintptr_t	RTS_UINTPTR;	/* Unsigned integral type that can hold a pointer */
+	#define RTS_UINTPTR_MAX				(RTS_UINTPTR)(~((RTS_UINTPTR)0))
 
-	typedef intptr_t			RTS_INTPTR;		/* Signed integral type that can hold a pointer */
-	#define RTS_INTPTR_MAX		(RTS_INTPTR)(~((RTS_INTPTR)0))
+	typedef intptr_t	RTS_INTPTR;		/* Signed integral type that can hold a pointer */
+	#define RTS_INTPTR_MAX				(RTS_INTPTR)(~((RTS_INTPTR)0))
 
 #ifndef RTS_SIZE_DEFINED
 #	define RTS_SIZE_DEFINED
-	typedef size_t				RTS_SIZE;	/* Unsigned integral type that can hold a buffer offset */
+	typedef size_t		RTS_SIZE;		/* Unsigned integral type that can hold a buffer offset */
 #endif
-	#define RTS_SIZE_MAX		(RTS_SIZE)(~((RTS_SIZE)0))
+	#define RTS_SIZE_MAX				(RTS_SIZE)(~((RTS_SIZE)0))
 
-	typedef ptrdiff_t			RTS_PTRDIFF;	/* Signed integral type that can hold an array index */
+	typedef ptrdiff_t	RTS_PTRDIFF;	/* Signed integral type that can hold an array index */
 
 #ifndef RTS_SSIZE_DEFINED
 #	define RTS_SSIZE_DEFINED
-	typedef RTS_PTRDIFF	RTS_SSIZE;			/* integral type that can hold a buffer offset */
+	typedef RTS_PTRDIFF	RTS_SSIZE;		/* integral type that can hold a buffer offset */
 #endif
-	#define RTS_SSIZE_MAX		(RTS_SSIZE)(~((RTS_SSIZE)0))
+	#define RTS_SSIZE_MAX				(RTS_SSIZE)(~((RTS_SSIZE)0))
 
-	typedef RTS_UINTPTR	RTS_TIME;			/* Coordinated Universal Time (UTC) */
+	typedef RTS_UINTPTR	RTS_TIME;		/* Coordinated Universal Time (UTC) */
 
-	typedef int					RTS_INT;	/* Data type has no constant size, so be careful in sharing shuch datatypes with IEC! */
-	typedef int					RTS_BOOL;	/* Boolean value (TRUE or FALSE). For best performance use platform specific int.
-											   Data type has no constant size, so be carful in sharing shuch datatypes with IEC! */
-
-#if defined(RTS_DISABLE_64BIT_SUPPORT) && !defined(SYSINTERNAL_DISABLE_64BIT)
-	#define SYSINTERNAL_DISABLE_64BIT
-#endif
+	typedef int RTS_INT;				/* Data type has no constant size, so be careful in sharing shuch datatypes with IEC! */
+	typedef int RTS_BOOL;				/* Boolean value (TRUE or FALSE). For best performance use platform specific int.
+										   Data type has no constant size, so be carful in sharing shuch datatypes with IEC! */
 
 #if !defined(BASE64BITTYPES_DEFINED) && !defined(SYSINTERNAL_DISABLE_64BIT)
 #	define	BASE64BITTYPES_DEFINED
-	typedef uint64_t			RTS_UI64;
-	typedef int64_t				RTS_I64;
-	#define RTS_UI64_MAX		(RTS_UI64)(~((RTS_UI64)0))
-	#define RTS_I64_MAX			(RTS_I64)(~((RTS_I64)0))
+	typedef uint64_t	RTS_UI64;
+	typedef int64_t		RTS_I64;
 #endif
 
-	typedef char				RTS_CSTRING;
+	typedef char		RTS_CSTRING;
 
 #	ifndef RTS_WCHAR_DEFINED
 #		define RTS_WCHAR_DEFINED
@@ -260,62 +250,6 @@ typedef void*	OBJREF;
 #		endif
 #	endif	/*RTS_CWCHAR_DEFINED*/
 #endif /*BASETYPES_DEFINED*/
-
-typedef enum
-{
-    RTSTYPE_I8,
-    RTSTYPE_I16,
-    RTSTYPE_I32,
-    RTSTYPE_UI8,
-    RTSTYPE_UI16,
-    RTSTYPE_UI32,
-    RTSTYPE_REAL32,
-    RTSTYPE_REAL64,
-    RTSTYPE_HANDLE,
-    RTSTYPE_RESULT,
-    RTSTYPE_UINTPTR,
-    RTSTYPE_INTPTR,
-    RTSTYPE_SIZE,
-    RTSTYPE_PTRDIFF,
-    RTSTYPE_INT,
-    RTSTYPE_BOOL,
-    RTSTYPE_UI64,
-    RTSTYPE_I64,
-    RTSTYPE_CSTRING,
-    RTSTYPE_WCHAR,
-    RTSTYPE_CWCHAR
-}RTS_TYPECLASS;
-
-typedef union
-{
-    RTS_I8          i8Value;
-    RTS_I16         i16Value;
-    RTS_I32         i32Value;
-    RTS_UI8         ui8Value;
-    RTS_UI16        ui16Value;
-    RTS_UI32        ui32Value;
-    RTS_REAL32      real32Value;
-    RTS_REAL64      real64Value;
-    RTS_HANDLE      handleValue;
-    RTS_RESULT      resultValue;
-    RTS_UINTPTR     uintptrValue;
-    RTS_INTPTR      intptrValue;
-    RTS_SIZE        sizeValue;
-    RTS_PTRDIFF     ptrdiffValue;
-    RTS_INT         intValue;
-    RTS_BOOL        boolValue;
-    RTS_UI64        ui64Value;
-    RTS_I64         i64Value;
-    RTS_CSTRING     *cstringValue;
-    RTS_WCHAR       *wstringValue;
-    RTS_CWCHAR      *cwstringValue;
-}RTS_VALUE;
-
-typedef struct
-{
-    RTS_TYPECLASS typeClass;
-    RTS_VALUE value;
-}RTS_TYPEDVALUE;
 
 
 /*

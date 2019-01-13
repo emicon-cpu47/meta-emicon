@@ -5,27 +5,12 @@
  *	If there is no filesystem on the target, the interface functions ERR_NOTIMPLEMENTED.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysDir')
 
 #include "CmpItf.h"
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- *	Windows CE: Create a "Dummy.txt" file in directories.
- *	Default value is 0 (no "Dummy.txt" file in directories).
- * </description>
- */	
-#define SYSDIR_WINCE_DUMMYTXT_IN_DIRS					"WinCE.DummyTxtInDirs" 
-#ifndef SYSDIR_WINCE_DUMMYTXT_IN_DIRS_DEFAULT
-	#define SYSDIR_WINCE_DUMMYTXT_IN_DIRS_DEFAULT				0
-#endif
 
 /**
  * <category>Directory file time</category>
@@ -82,25 +67,7 @@ typedef struct tagsysdirclose_struct
 	RTS_IEC_RESULT SysDirClose;			/* VAR_OUTPUT */	
 } sysdirclose_struct;
 
-DEF_API(`void',`CDECL',`sysdirclose',`(sysdirclose_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x7985F4ED),0x03050C00)
-
-/**
- * Copies the contents of szSourceDir to szDestDir.
- * Nonexisting destination path will be created.
- * Depending of the parameters, all subdirectories and its content will be copied too, and existing files will be overwritten.
- * NOTE: Empty direcories will be copied if xRecursive is TRUE.
- * :return: Returns the runtime system error code (see CmpErrors_Itf.library)
- */
-typedef struct tagsysdircopy_struct
-{
-	RTS_IEC_STRING *szDestDir;			/* VAR_INPUT */	/* Name of destination directory */
-	RTS_IEC_STRING *szSourceDir;		/* VAR_INPUT */	/* Name of source directory */
-	RTS_IEC_BOOL xRecursive;			/* VAR_INPUT */	/* TRUE: all subdirectories and their contents are copied, FALSE: subdirectories are omitted */
-	RTS_IEC_BOOL xOverwrite;			/* VAR_INPUT */	/* TRUE: existing files are overwritten, FALSE: existing files are left untouched */
-	RTS_IEC_RESULT SysDirCopy;			/* VAR_OUTPUT */	
-} sysdircopy_struct;
-
-DEF_API(`void',`CDECL',`sysdircopy',`(sysdircopy_struct *p)',1,0xDCC4B146,0x03050C00)
+DEF_API(`void',`CDECL',`sysdirclose',`(sysdirclose_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x7985F4ED),0x03050800)
 
 /**
  * Creates a new directory with the specified name
@@ -112,7 +79,7 @@ typedef struct tagsysdircreate_struct
 	RTS_IEC_RESULT SysDirCreate;		/* VAR_OUTPUT */	
 } sysdircreate_struct;
 
-DEF_API(`void',`CDECL',`sysdircreate',`(sysdircreate_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xC775A9FA),0x03050C00)
+DEF_API(`void',`CDECL',`sysdircreate',`(sysdircreate_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xC775A9FA),0x03050800)
 
 /**
  * Creates a new directory with the specified name.
@@ -126,7 +93,7 @@ typedef struct tagsysdircreate2_struct
 	RTS_IEC_RESULT SysDirCreate2;		/* VAR_OUTPUT */	
 } sysdircreate2_struct;
 
-DEF_API(`void',`CDECL',`sysdircreate2',`(sysdircreate2_struct *p)',1,0x03802B43,0x03050C00)
+DEF_API(`void',`CDECL',`sysdircreate2',`(sysdircreate2_struct *p)',1,0x03802B43,0x03050800)
 
 /**
  * Deletes a directory with the specified name
@@ -138,7 +105,7 @@ typedef struct tagsysdirdelete_struct
 	RTS_IEC_RESULT SysDirDelete;		/* VAR_OUTPUT */	
 } sysdirdelete_struct;
 
-DEF_API(`void',`CDECL',`sysdirdelete',`(sysdirdelete_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x3E032B8B),0x03050C00)
+DEF_API(`void',`CDECL',`sysdirdelete',`(sysdirdelete_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x3E032B8B),0x03050800)
 
 /**
  * Deletes a directory with the specified name
@@ -155,7 +122,7 @@ typedef struct tagsysdirdelete2_struct
 	RTS_IEC_RESULT SysDirDelete2;		/* VAR_OUTPUT */	
 } sysdirdelete2_struct;
 
-DEF_API(`void',`CDECL',`sysdirdelete2',`(sysdirdelete2_struct *p)',1,0xB8EF3C3D,0x03050C00)
+DEF_API(`void',`CDECL',`sysdirdelete2',`(sysdirdelete2_struct *p)',1,0xB8EF3C3D,0x03050800)
 
 /**
  * Get current working directory for IEC file access
@@ -168,7 +135,7 @@ typedef struct tagsysdirgetcurrent_struct
 	RTS_IEC_RESULT SysDirGetCurrent;	/* VAR_OUTPUT */	
 } sysdirgetcurrent_struct;
 
-DEF_API(`void',`CDECL',`sysdirgetcurrent',`(sysdirgetcurrent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x0376B53C),0x03050C00)
+DEF_API(`void',`CDECL',`sysdirgetcurrent',`(sysdirgetcurrent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x0376B53C),0x03050800)
 
 /**
  * Opens a specified directory and returns a handle and the first directory entry
@@ -186,7 +153,7 @@ typedef struct tagsysdiropen_struct
 	RTS_IEC_HANDLE SysDirOpen;			/* VAR_OUTPUT */	
 } sysdiropen_struct;
 
-DEF_API(`void',`CDECL',`sysdiropen',`(sysdiropen_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x05CA15A4),0x03050C00)
+DEF_API(`void',`CDECL',`sysdiropen',`(sysdiropen_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x05CA15A4),0x03050800)
 
 /**
  * Read next directory entry. Writes the entry in pszDirEntry.
@@ -209,7 +176,7 @@ typedef struct tagsysdirread_struct
 	RTS_IEC_RESULT SysDirRead;			/* VAR_OUTPUT */	
 } sysdirread_struct;
 
-DEF_API(`void',`CDECL',`sysdirread',`(sysdirread_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCF257171),0x03050C00)
+DEF_API(`void',`CDECL',`sysdirread',`(sysdirread_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xCF257171),0x03050800)
 
 /**
  * Rename directory
@@ -222,7 +189,7 @@ typedef struct tagsysdirrename_struct
 	RTS_IEC_RESULT SysDirRename;		/* VAR_OUTPUT */	
 } sysdirrename_struct;
 
-DEF_API(`void',`CDECL',`sysdirrename',`(sysdirrename_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xA2EF5E53),0x03050C00)
+DEF_API(`void',`CDECL',`sysdirrename',`(sysdirrename_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xA2EF5E53),0x03050800)
 
 /**
  * Set current working directory on the target. In this directory all following file function are operated.
@@ -236,7 +203,7 @@ typedef struct tagsysdirsetcurrent_struct
 	RTS_IEC_RESULT SysDirSetCurrent;	/* VAR_OUTPUT */	
 } sysdirsetcurrent_struct;
 
-DEF_API(`void',`CDECL',`sysdirsetcurrent',`(sysdirsetcurrent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x92FA36CD),0x03050C00)
+DEF_API(`void',`CDECL',`sysdirsetcurrent',`(sysdirsetcurrent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x92FA36CD),0x03050800)
 
 #ifdef __cplusplus
 }
@@ -468,24 +435,6 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`SysDirSetCurrent',`(char *pszDir)')
  * <result>error code</result>
  */
 DEF_ITF_API(`RTS_RESULT',`CDECL',`SysDirSetCurrent_',`(char *pszDir)')
-
-/**
- * <description> Copies the contents of pszSourceDir to pszDestDir.
- * Depending of the parameters, all subdirectories and its content will be copied too, and existing files will be overwritten.
- * NOTE: Empty direcories will be copied if bRecursive is TRUE.
- * </description>
- * <param name="pszDestDir" type="IN">Name of destination directory</param>
- * <param name="pszSourceDir" type="IN">Name of source directory</param>
- * <param name="bRecursive" type="IN">TRUE: all subdirectories and their contents are copied, FALSE: subdirectories are omitted</param>
- * <param name="bOverwrite" type="IN">TRUE: existing files are overwritten, FALSE: existing files are left untouched</param>
- * <result>error code</result>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">The contents of the source direcory was successfully copied to the destination direcory</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_NO_OBJECT">There were no files to copy, the destination directory is nevertheless created if need be</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OPERATION_DENIED">Source or destination direcory is not accessible</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_FAILED">System error</errorcode>
- */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`SysDirCopy',`(char *pszDestDir, char *pszSourceDir, RTS_BOOL bRecursive, RTS_BOOL bOverwrite)')
-
 
 #ifdef __cplusplus
 }

@@ -5,9 +5,7 @@
  *	memory areas for the plc program.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysMem')
@@ -156,7 +154,6 @@ SET_INTERFACE_NAME(`SysMem')
 
 
 /** EXTERN LIB SECTION BEGIN **/
-/*  Comments are ignored for m4 compiler so restructured text can be used. changecom(`/*', `*/') */
 
 #ifdef __cplusplus
 extern "C" {
@@ -174,7 +171,7 @@ typedef struct tagsysmemallocarea_struct
 	RTS_IEC_BYTE *SysMemAllocArea;		/* VAR_OUTPUT */	
 } sysmemallocarea_struct;
 
-DEF_API(`void',`CDECL',`sysmemallocarea',`(sysmemallocarea_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x140ECCD0),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemallocarea',`(sysmemallocarea_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x140ECCD0),0x03050500)
 
 /**
  * Reserved function for the runtime system! Should not be used by an IEC application!
@@ -187,7 +184,7 @@ typedef struct tagsysmemalloccode_struct
 	RTS_IEC_BYTE *SysMemAllocCode;		/* VAR_OUTPUT */	
 } sysmemalloccode_struct;
 
-DEF_API(`void',`CDECL',`sysmemalloccode',`(sysmemalloccode_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemalloccode',`(sysmemalloccode_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xB0EDB0B3),0x03050500)
 
 /**
  * Allocates data memory of the specified size
@@ -201,7 +198,7 @@ typedef struct tagsysmemallocdata_struct
 	RTS_IEC_BYTE *SysMemAllocData;		/* VAR_OUTPUT */	
 } sysmemallocdata_struct;
 
-DEF_API(`void',`CDECL',`sysmemallocdata',`(sysmemallocdata_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemallocdata',`(sysmemallocdata_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xDF3F1AFF),0x03050500)
 
 /**
  * Compares the content of two buffers
@@ -215,7 +212,7 @@ typedef struct tagsysmemcmp_struct
 	RTS_IEC_DINT SysMemCmp;				/* VAR_OUTPUT */	
 } sysmemcmp_struct;
 
-DEF_API(`void',`CDECL',`sysmemcmp',`(sysmemcmp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x40048CD7),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemcmp',`(sysmemcmp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x40048CD7),0x03050500)
 
 /**
  * Copy the content from source (pSrc) to destination buffer (pDest)
@@ -229,7 +226,7 @@ typedef struct tagsysmemcpy_struct
 	RTS_IEC_BYTE *SysMemCpy;			/* VAR_OUTPUT */	
 } sysmemcpy_struct;
 
-DEF_API(`void',`CDECL',`sysmemcpy',`(sysmemcpy_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x4B2D0668),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemcpy',`(sysmemcpy_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x4B2D0668),0x03050500)
 
 /**
  * Routine to force swapping memory independant of the byteorder of the system!
@@ -245,7 +242,7 @@ typedef struct tagsysmemforceswap_struct
 	RTS_IEC_DINT SysMemForceSwap;		/* VAR_OUTPUT */	
 } sysmemforceswap_struct;
 
-DEF_API(`void',`CDECL',`sysmemforceswap',`(sysmemforceswap_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x1718FBB3),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemforceswap',`(sysmemforceswap_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x1718FBB3),0x03050500)
 
 /**
  * Reserved function for the runtime system! Should not be used by an IEC application!
@@ -258,7 +255,7 @@ typedef struct tagsysmemfreearea_struct
 	RTS_IEC_RESULT SysMemFreeArea;		/* VAR_OUTPUT */	
 } sysmemfreearea_struct;
 
-DEF_API(`void',`CDECL',`sysmemfreearea',`(sysmemfreearea_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x46CA745C),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemfreearea',`(sysmemfreearea_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x46CA745C),0x03050500)
 
 /**
  * Reserved function for the runtime system! Should not be used by an IEC application!
@@ -271,7 +268,7 @@ typedef struct tagsysmemfreecode_struct
 	RTS_IEC_RESULT SysMemFreeCode;		/* VAR_OUTPUT */	
 } sysmemfreecode_struct;
 
-DEF_API(`void',`CDECL',`sysmemfreecode',`(sysmemfreecode_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x92B98F40),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemfreecode',`(sysmemfreecode_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x92B98F40),0x03050500)
 
 /**
  * Release data memory
@@ -284,19 +281,7 @@ typedef struct tagsysmemfreedata_struct
 	RTS_IEC_RESULT SysMemFreeData;		/* VAR_OUTPUT */	
 } sysmemfreedata_struct;
 
-DEF_API(`void',`CDECL',`sysmemfreedata',`(sysmemfreedata_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xFC9A307C),0x03050C00)
-
-/**
- * Routine to get total size of the currently allocated heap memory
- * RETURN: Size of the memory in bytes that is currently allocated from the heap
- */
-typedef struct tagsysmemgetcurrentheapsize_struct
-{
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to runtime system error code (see CmpErrors_Itfs.library) */
-	RTS_IEC_XWORD SysMemGetCurrentHeapSize;	/* VAR_OUTPUT */
-} sysmemgetcurrentheapsize_struct;
-
-DEF_API(`void',`CDECL',`sysmemgetcurrentheapsize',`(sysmemgetcurrentheapsize_struct *p)',1,RTSITF_GET_SIGNATURE(0xFA1C1A89, 0x55C8863E),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemfreedata',`(sysmemfreedata_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xFC9A307C),0x03050500)
 
 /**
  * Check if a pointer points to a valid address
@@ -312,7 +297,7 @@ typedef struct tagsysmemisvalidpointer_struct
 	RTS_IEC_RESULT SysMemIsValidPointer;	/* VAR_OUTPUT */	
 } sysmemisvalidpointer_struct;
 
-DEF_API(`void',`CDECL',`sysmemisvalidpointer',`(sysmemisvalidpointer_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x2B9D06D6),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemisvalidpointer',`(sysmemisvalidpointer_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x2B9D06D6),0x03050500)
 
 /**
  * Copy the content from source (pSrc) to destination buffer (pDest). This routine works for overlapping buffers too in opposite to SysMemCpy!
@@ -326,7 +311,7 @@ typedef struct tagsysmemmove_struct
 	RTS_IEC_BYTE *SysMemMove;			/* VAR_OUTPUT */	
 } sysmemmove_struct;
 
-DEF_API(`void',`CDECL',`sysmemmove',`(sysmemmove_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x9837ABBD),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemmove',`(sysmemmove_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x9837ABBD),0x03050500)
 
 /**
  * Reallocate data memory with the specified size.
@@ -344,7 +329,7 @@ typedef struct tagsysmemreallocdata_struct
 	RTS_IEC_BYTE *SysMemReallocData;	/* VAR_OUTPUT */	
 } sysmemreallocdata_struct;
 
-DEF_API(`void',`CDECL',`sysmemreallocdata',`(sysmemreallocdata_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x574ABCC0),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemreallocdata',`(sysmemreallocdata_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x574ABCC0),0x03050500)
 
 /**
  * By use of this function a memory space is initialized with a specified value
@@ -358,7 +343,7 @@ typedef struct tagsysmemset_struct
 	RTS_IEC_BYTE *SysMemSet;			/* VAR_OUTPUT */	
 } sysmemset_struct;
 
-DEF_API(`void',`CDECL',`sysmemset',`(sysmemset_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x663CE5DB),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemset',`(sysmemset_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x663CE5DB),0x03050500)
 
 /**
  * Routine to swap memory into littel endian. If little endian (intel) byteorder is received and platform has
@@ -376,7 +361,7 @@ typedef struct tagsysmemswap_struct
 	RTS_IEC_DINT SysMemSwap;			/* VAR_OUTPUT */	
 } sysmemswap_struct;
 
-DEF_API(`void',`CDECL',`sysmemswap',`(sysmemswap_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x77D02AA2),0x03050C00)
+DEF_API(`void',`CDECL',`sysmemswap',`(sysmemswap_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x77D02AA2),0x03050500)
 
 #ifdef __cplusplus
 }
@@ -548,17 +533,6 @@ DEF_ITF_API(`int',`CDECL',`SysMemSwap',`(unsigned char *pbyBuffer, int iSize, in
  * </result>
  */
 DEF_ITF_API(`int',`CDECL',`SysMemForceSwap',`(unsigned char *pbyBuffer, int iSize, int iCount)')
-
-/**
- * <description>
- *	Routine to get total size of the currently allocated heap memory.
- * </description>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <errorcode name="pResult" type="ERR_OK">Current heap size is available</errorcode>
- * <errorcode name="pResult" type="ERR_NOT_SUPPORTED">Determination of current heap size not supported. CmpMemGC is necessary!</errorcode>
- * <result>Size of the memory in bytes that is currently allocated from the heap</result>
- */
-DEF_ITF_API(`RTS_SIZE',`CDECL',`SysMemGetCurrentHeapSize',`(RTS_RESULT *pResult)')
 
 #ifdef __cplusplus
 }

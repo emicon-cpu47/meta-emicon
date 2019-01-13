@@ -15,9 +15,7 @@
  *	retain area and can be checked after the next restore.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpRetain')
@@ -183,12 +181,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `RetainAlloc', `(char *pszName, RTS_GUID *pDa
  * <result>error code</result>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `RetainFree', `(char *pszName, RTS_UI8 *pbyRetain, int nDeleteOption)')
-
-/**
- * <description>Release all retain memory</description>
- * <result>error code</result>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `RetainFreeAll', `(void)')
 
 /**
  * <description>Update data GUID in the specified retain area</description>

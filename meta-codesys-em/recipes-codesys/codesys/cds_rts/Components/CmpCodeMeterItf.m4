@@ -3,7 +3,7 @@
  * <description></description>
  *
  * <copyright>
- *  Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+ *  (c) 2003-2016 3S-Smart Software Solutions
  * </copyright>
  */
 
@@ -36,15 +36,10 @@ SET_INTERFACE_NAME(`CmpCodeMeter')
  * <element name="RTS_CODEMETER_LICENSES_FIRMCODE" type="IN">Firmcode for hardkey licenses (CmDongle)</element>
  * <element name="RTS_CODEMETER_ENCRYPTION_FIRMCODE" type="IN">Firmcode for encryption of the bootproject</element>
  */
-#ifndef RTS_CODEMETER_SOFTLICENSES_FIRMCODE
-	#define RTS_CODEMETER_SOFTLICENSES_FIRMCODE		5000304
-#endif
-#ifndef RTS_CODEMETER_LICENSES_FIRMCODE
-	#define RTS_CODEMETER_LICENSES_FIRMCODE			101597
-#endif
-#ifndef RTS_CODEMETER_ENCRYPTION_FIRMCODE
-	#define RTS_CODEMETER_ENCRYPTION_FIRMCODE		101599
-#endif
+#define RTS_CODEMETER_SOFTLICENSES_FIRMCODE		5000304
+#define RTS_CODEMETER_LICENSES_FIRMCODE			101597
+#define RTS_CODEMETER_ENCRYPTION_FIRMCODE		101599
+
 
 /**
  * <category>Settings</category>
@@ -598,7 +593,6 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`CodeMDecryptDirect',`(RTS_UI8 *pKey, RTS_UI32 
  * <description>
  *	Function to generate the export license file for the specified firmcodes
  * </description>
- * <param name="containerSerialNumber" type="IN">Serial number of the specified container from which the context file should be retrieved</param>
  * <param name="paulFirmCodes" type="IN">Pointer to array of firmcodes</param>
  * <param name="ulFirmCodes" type="IN">Number of firmcodes in the array</param>
  * <param name="pszLicenseFile" type="IN">License file to store license information</param>
@@ -610,7 +604,7 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`CodeMDecryptDirect',`(RTS_UI8 *pKey, RTS_UI32 
  *   </ul>
  * </result>
  */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`CodeMGenerateLicenseFile',`(RTS_UI32 ui32SerialNumber, RTS_UI32 *paulFirmCodes, RTS_UI32 ulFirmCodes, const char *pszLicenseFile)')
+DEF_ITF_API(`RTS_RESULT',`CDECL',`CodeMGenerateLicenseFile',`(RTS_UI32 *paulFirmCodes, RTS_UI32 ulFirmCodes, const char *pszLicenseFile)')
 
 /**
  * <description>
@@ -630,17 +624,16 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`CodeMWriteLicenseFile',`(RTS_UI32 ui32SerialNu
 
 /**
  * <description>
- *	Function to read all licenses for a specific firmcode. 
+ *	Function to read all licenses for a specific frimcode. 
  * </description>
  * <param name="ulFirmcode" type="IN">Firmcode to enumerate.</param>
  * <param name="paEntry" type="OUT">Array of RTS_CMBOXENTRY-structures to receive the boxentries.</param>
- * <param name="pnEntries" type="IN OUT">Pointer to an initialized variable. Initvalue is number of structs in paEntry.</param>
+ * <param name="pnEntries" type="IN OUT">Pointer to an initialized variable. Initvalue is number of structs in paEntry</param>
  * <result>Error code:
  *   <ul>
  *     <li>ERR_OK: Successful</li>
  *     <li>ERR_PARAMETER: License entry pointer is NULL</li>
  *     <li>ERR_NOT_SUPPORTED: License entry not found</li> 
- *     <li>ERR_NOBUFFER: Buffer is too small, check output of pnEntries for required number of structs in paEntry.</li> 
  *   </ul>
  * </result>
  */

@@ -1,14 +1,13 @@
-/**
- * <name>RtsExternalLibs.c</name>
- * <description> 
- *	Template component to show some example external IEC libs. See CmpTemplate.library for the declaration.
- *
- *	- The function must be exported from the IEC library in CmpTemplateItf.m4 and the C-Stubs. These Stubs can be integrated here.
- *	  The m4 file must be compile to CmpTemplateItf.h and the corresponding CmpTemplateDep.m4 must be compiled to CmpTemplateDep.h.
- * </description>
- *
- * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
- */
+/*************************************************************************************
+*
+*	Copyright:		© 3S - Smart Software Solutions GmbH, Kempten
+*	Program:		Runtime System for the CoDeSys Soft-Plc
+*	Module: 		Template component to show some example external IEC libs. See CmpTemplate.library for the declaration.
+*	Version:
+*	Description:
+*		- The function must be exported from the IEC library in CmpTemplateItf.m4 and the C-Stubs. These Stubs can be integrated here.
+*		  The m4 file must be compile to CmpTemplateItf.h and the corresponding CmpTemplateDep.m4 must be compiled to CmpTemplateDep.h.
+**************************************************************************************/
 
 #include "CmpStd.h"
 

@@ -4,9 +4,7 @@
  *	Interface of the gateway
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -52,30 +50,30 @@ extern "C" {
    bytes. 
    NOTE: This function must not block and it must not call any functions of the 
          gateway, since this may lead to deadlocks.
-   hConnHandle    IN  identifies the connection.
+   dwConnHandle   IN  identifies the connection.
    data           IN  The data to be sent
    pdwSent        OUT The number of bytes the could actually be sent.
 
    RETURNS: 
 	ERR_NOTCONNECTED if the provided connection handle is not connected.
 */
-typedef RTS_RESULT (CDECL *PFCOMMDRVSEND)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent);
+typedef int (CDECL *PFCOMMDRVSEND)(RTS_UI32 dwConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent);
 
 /* Receive data from an existent connection. 
    NOTE: This function must not block and it must not call any functions of the 
          gateway, since this may lead to deadlocks.
-   hConnHandle  IN    identifies the connection
+   dwConnHandle IN    identifies the connection
    pData        INOUT 
        .pData  (IN) Provides a buffer for the received data.
 	   .nCount (IN) Size of the buffer. (OUT) Number of bytes actually received.
 */
-typedef RTS_RESULT (CDECL *PFCOMMDRVRECEIVE)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData);
+typedef int (CDECL *PFCOMMDRVRECEIVE)(RTS_UI32 dwConnHandle, PROTOCOL_DATA_UNIT *pData);
 
 /* Close a connection 
    NOTE: This function must not block and it must not call any functions of the 
          gateway, since this may lead to deadlocks.
 */
-typedef RTS_RESULT (CDECL *PFCOMMDRVCLOSE)(RTS_HANDLE hConnHandle);
+typedef int (CDECL *PFCOMMDRVCLOSE)(RTS_UI32 dwConnHandle);
 
 /* -- Functions exported to communication drivers -- */
 
@@ -88,18 +86,18 @@ typedef struct
 
 /* Called by a gateway communication driver to register 
    with the gateway. 
-   pInfo          IN  Contains function pointers to the comm driver api.
-   phDriverHandle OUT Set to a unique value for the comm driver. The driver must provide
-                      the assigned value in all other calls to the gateway functions 
-				      in order to identify itself.
+   pInfo       IN  Contains function pointers to the comm driver api.
+   pdwDriverId OUT Set to a unique value for the comm driver. The driver must provide
+                   the assigned value in all other calls to the gateway functions 
+				   in order to identify itself.
 */
-RTS_RESULT CDECL GWRegisterCommDrv(COMMDRVINFO *pInfo, RTS_HANDLE *phDriverHandle);
-typedef RTS_RESULT (CDECL * PFGWREGISTERCOMMDRV) (COMMDRVINFO *pInfo, RTS_HANDLE *phDriverHandle);
+int CDECL GWRegisterCommDrv(COMMDRVINFO *pInfo, unsigned long *pdwDriverId);
+typedef int (CDECL * PFGWREGISTERCOMMDRV) (COMMDRVINFO *pInfo, unsigned long *pdwDriverId);
 #if defined(CMPGATEWAY_NOTIMPLEMENTED) || defined(GWREGISTERCOMMDRV_NOTIMPLEMENTED)
 	#define USE_GWRegisterCommDrv
 	#define EXT_GWRegisterCommDrv
 	#define GET_GWRegisterCommDrv(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_GWRegisterCommDrv(p0,p1)  (RTS_RESULT)ERR_NOTIMPLEMENTED
+	#define CAL_GWRegisterCommDrv(p0,p1)  (int)ERR_NOTIMPLEMENTED
 	#define CHK_GWRegisterCommDrv  FALSE
 	#define EXP_GWRegisterCommDrv  ERR_OK
 #elif defined(STATIC_LINK)
@@ -158,23 +156,23 @@ enum
  *  The gwclient must not rely on this function to be called but may use 
  *  it to increase the performance of the connection.
  * </description>
- * <param name="hDriverHandle" type="IN">
+ * <param name="dwDriverHandle" type="IN">
  *  The driver handle returned by GWRegisterCommDrv.
  * </param>
- * <param name="hConnHandle" type="IN">
+ * <param name="dwConnHandle" type="IN">
  *  The handle to the connection.
  * </param>
  * <param name="nAction" type="IN">
  *  The action that is ready on this connection - eg. COMMDRV_ACTION_SEND, COMMDRV_ACTION_RECEIVE
  * </param>
  */
-RTS_RESULT CDECL GWConnectionReady(RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction);
-typedef RTS_RESULT (CDECL * PFGWCONNECTIONREADY) (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction);
+int CDECL GWConnectionReady(unsigned long dwDriverHandle, unsigned long dwConnHandle, int nAction);
+typedef int (CDECL * PFGWCONNECTIONREADY) (unsigned long dwDriverHandle, unsigned long dwConnHandle, int nAction);
 #if defined(CMPGATEWAY_NOTIMPLEMENTED) || defined(GWCONNECTIONREADY_NOTIMPLEMENTED)
 	#define USE_GWConnectionReady
 	#define EXT_GWConnectionReady
 	#define GET_GWConnectionReady(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_GWConnectionReady(p0,p1,p2)  (RTS_RESULT)ERR_NOTIMPLEMENTED
+	#define CAL_GWConnectionReady(p0,p1,p2)  (int)ERR_NOTIMPLEMENTED
 	#define CHK_GWConnectionReady  FALSE
 	#define EXP_GWConnectionReady  ERR_OK
 #elif defined(STATIC_LINK)
@@ -219,16 +217,16 @@ typedef RTS_RESULT (CDECL * PFGWCONNECTIONREADY) (RTS_HANDLE hDriverHandle, RTS_
 
 /* Called when a client connects. If anything else then ERR_OK is returned
    the communication driver should close the connection immediatly.
-   hDriverHandle   IN  The value assigned during GWRegisterCommDrv.
-   hConnHandle     IN  A handle identifing the new connection.
+   dwDriverId   IN  The value assigned during GWRegisterCommDrv.
+   dwConnHandle IN  A handle identifing the new connection.
 */
-RTS_RESULT CDECL GWClientConnect(RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle);
-typedef RTS_RESULT (CDECL * PFGWCLIENTCONNECT) (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle);
+int CDECL GWClientConnect(unsigned long dwDriverId, unsigned long dwConnHandle);
+typedef int (CDECL * PFGWCLIENTCONNECT) (unsigned long dwDriverId, unsigned long dwConnHandle);
 #if defined(CMPGATEWAY_NOTIMPLEMENTED) || defined(GWCLIENTCONNECT_NOTIMPLEMENTED)
 	#define USE_GWClientConnect
 	#define EXT_GWClientConnect
 	#define GET_GWClientConnect(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_GWClientConnect(p0,p1)  (RTS_RESULT)ERR_NOTIMPLEMENTED
+	#define CAL_GWClientConnect(p0,p1)  (int)ERR_NOTIMPLEMENTED
 	#define CHK_GWClientConnect  FALSE
 	#define EXP_GWClientConnect  ERR_OK
 #elif defined(STATIC_LINK)
@@ -272,16 +270,16 @@ typedef RTS_RESULT (CDECL * PFGWCLIENTCONNECT) (RTS_HANDLE hDriverHandle, RTS_HA
 
 
 /* Called when a client connection has been disconnected.
-   hDriverHandle   IN  The value assigned during GWRegisterCommDrv.
-   hConnHandle     IN  A handle identifing the disconnected connection. 
+   dwDriverId   IN  The value assigned during GWRegisterCommDrv.
+   dwConnHandle IN  A handle identifing the disconnected connection. 
 */
-RTS_RESULT CDECL GWClientDisconnect(RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle);
-typedef RTS_RESULT (CDECL * PFGWCLIENTDISCONNECT) (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle);
+int CDECL GWClientDisconnect(unsigned long dwDriverId, unsigned long dwConnHandle);
+typedef int (CDECL * PFGWCLIENTDISCONNECT) (unsigned long dwDriverId, unsigned long dwConnHandle);
 #if defined(CMPGATEWAY_NOTIMPLEMENTED) || defined(GWCLIENTDISCONNECT_NOTIMPLEMENTED)
 	#define USE_GWClientDisconnect
 	#define EXT_GWClientDisconnect
 	#define GET_GWClientDisconnect(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_GWClientDisconnect(p0,p1)  (RTS_RESULT)ERR_NOTIMPLEMENTED
+	#define CAL_GWClientDisconnect(p0,p1)  (int)ERR_NOTIMPLEMENTED
 	#define CHK_GWClientDisconnect  FALSE
 	#define EXP_GWClientDisconnect  ERR_OK
 #elif defined(STATIC_LINK)
@@ -324,6 +322,110 @@ typedef RTS_RESULT (CDECL * PFGWCLIENTDISCONNECT) (RTS_HANDLE hDriverHandle, RTS
 
 
 
+/* -- Functions exported by authentication modules to the Gateway -- */
+
+/* This function is called after a STARTAUTH message has been received from a connecting 
+   client. Its intention is to make sure the authorisation module has sufficient resources
+   to handle authorisation of the new client. If not, it should return ERR_NO_BUFFER.
+   The auth-module must handle authorisation messages from that client until it calls the
+   GWAuthFinished method.
+   dwClientId  IN  This is the "handle" used for all communication between the gateway and
+                   the auth-module to identify the client.
+   Returns 
+       ERR_OK if the auth-module is ready to handle the new client.
+	   ERR_NO_BUFER otherwise
+*/
+int CDECL AuthModBeginAuth( unsigned long dwClientId);
+typedef int (CDECL *PFAUTHMODBEGINAUTH)( unsigned long dwClientId);
+
+/* Called by the gateway for every message that arrives from a client that
+   is still in authorisation state. 
+   dwClientId   IN  Same as in AuthModBeginAuth
+   wCommand     IN  Auth-module defined command-id
+   dwRequestId  IN  Request-Id as sent by the client. Should be provided in answers.
+   data         IN  Auth-module specific protocol data. 
+*/
+int CDECL AuthModHandleMessage( unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data);
+typedef int (CDECL *PFAUTHMODHANDLEMESSAGE)( unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data);
+
+
+/* -- Functions exported to authentication modules -- */
+
+typedef int (CDECL *PFGWSENDREPLY)(unsigned long dwClientId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data);
+typedef int (CDECL *PFGWAUTHFINISHED) (unsigned long dwClientId, int nResult);
+
+typedef struct
+{
+	RTS_GUID guid;
+		/* This guid identifies the authorisation module. */
+	PFAUTHMODBEGINAUTH pfBeginAuth;
+		/* Function to be called when a client wants to start authorisation. */
+	PFAUTHMODHANDLEMESSAGE pfHandleMessage;
+		/* Called for each authorisation message from a client. */
+}AUTHMODINFO;
+
+typedef struct 
+{
+	PFGWSENDREPLY pfSendReply;
+		/* Authmodule uses this function to send a reply back to a client */
+	PFGWAUTHFINISHED pfGWAuthFinished;
+		/* Auth-module calls this function when the authorisation succeeded or definitly failed. */
+}GWAUTHFUNCS;
+
+/* This function is called on initialization by an autorisation module to register itself
+   with the gateway. 
+   pfAuthModInfo  IN  Function pointer etc. of the authentication module
+   pfGWFuncs      OUT Functions of the gateway exported to the auth-module    
+*/
+int CDECL GWRegisterAuthModule( AUTHMODINFO *pfAuthModInfo, GWAUTHFUNCS *pfGWFuncs );
+typedef int (CDECL * PFGWREGISTERAUTHMODULE) ( AUTHMODINFO *pfAuthModInfo, GWAUTHFUNCS *pfGWFuncs );
+#if defined(CMPGATEWAY_NOTIMPLEMENTED) || defined(GWREGISTERAUTHMODULE_NOTIMPLEMENTED)
+	#define USE_GWRegisterAuthModule
+	#define EXT_GWRegisterAuthModule
+	#define GET_GWRegisterAuthModule(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_GWRegisterAuthModule(p0,p1)  (int)ERR_NOTIMPLEMENTED
+	#define CHK_GWRegisterAuthModule  FALSE
+	#define EXP_GWRegisterAuthModule  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_GWRegisterAuthModule
+	#define EXT_GWRegisterAuthModule
+	#define GET_GWRegisterAuthModule(fl)  CAL_CMGETAPI( "GWRegisterAuthModule" ) 
+	#define CAL_GWRegisterAuthModule  GWRegisterAuthModule
+	#define CHK_GWRegisterAuthModule  TRUE
+	#define EXP_GWRegisterAuthModule  CAL_CMEXPAPI( "GWRegisterAuthModule" ) 
+#elif defined(MIXED_LINK) && !defined(CMPGATEWAY_EXTERNAL)
+	#define USE_GWRegisterAuthModule
+	#define EXT_GWRegisterAuthModule
+	#define GET_GWRegisterAuthModule(fl)  CAL_CMGETAPI( "GWRegisterAuthModule" ) 
+	#define CAL_GWRegisterAuthModule  GWRegisterAuthModule
+	#define CHK_GWRegisterAuthModule  TRUE
+	#define EXP_GWRegisterAuthModule  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWRegisterAuthModule", (RTS_UINTPTR)GWRegisterAuthModule, 0, 0) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpGatewayGWRegisterAuthModule
+	#define EXT_CmpGatewayGWRegisterAuthModule
+	#define GET_CmpGatewayGWRegisterAuthModule  ERR_OK
+	#define CAL_CmpGatewayGWRegisterAuthModule pICmpGateway->IGWRegisterAuthModule
+	#define CHK_CmpGatewayGWRegisterAuthModule (pICmpGateway != NULL)
+	#define EXP_CmpGatewayGWRegisterAuthModule  ERR_OK
+#elif defined(CPLUSPLUS)
+	#define USE_GWRegisterAuthModule
+	#define EXT_GWRegisterAuthModule
+	#define GET_GWRegisterAuthModule(fl)  CAL_CMGETAPI( "GWRegisterAuthModule" ) 
+	#define CAL_GWRegisterAuthModule pICmpGateway->IGWRegisterAuthModule
+	#define CHK_GWRegisterAuthModule (pICmpGateway != NULL)
+	#define EXP_GWRegisterAuthModule  CAL_CMEXPAPI( "GWRegisterAuthModule" ) 
+#else /* DYNAMIC_LINK */
+	#define USE_GWRegisterAuthModule  PFGWREGISTERAUTHMODULE pfGWRegisterAuthModule;
+	#define EXT_GWRegisterAuthModule  extern PFGWREGISTERAUTHMODULE pfGWRegisterAuthModule;
+	#define GET_GWRegisterAuthModule(fl)  s_pfCMGetAPI2( "GWRegisterAuthModule", (RTS_VOID_FCTPTR *)&pfGWRegisterAuthModule, (fl), 0, 0)
+	#define CAL_GWRegisterAuthModule  pfGWRegisterAuthModule
+	#define CHK_GWRegisterAuthModule  (pfGWRegisterAuthModule != NULL)
+	#define EXP_GWRegisterAuthModule  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"GWRegisterAuthModule", (RTS_UINTPTR)GWRegisterAuthModule, 0, 0) 
+#endif
+
+
+
+
 #ifdef __cplusplus
 }
 #endif
@@ -337,16 +439,18 @@ typedef struct
  	PFGWCONNECTIONREADY IGWConnectionReady;
  	PFGWCLIENTCONNECT IGWClientConnect;
  	PFGWCLIENTDISCONNECT IGWClientDisconnect;
+ 	PFGWREGISTERAUTHMODULE IGWRegisterAuthModule;
  } ICmpGateway_C;
 
 #ifdef CPLUSPLUS
 class ICmpGateway : public IBase
 {
 	public:
-		virtual RTS_RESULT CDECL IGWRegisterCommDrv(COMMDRVINFO *pInfo, RTS_HANDLE *phDriverHandle) =0;
-		virtual RTS_RESULT CDECL IGWConnectionReady(RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction) =0;
-		virtual RTS_RESULT CDECL IGWClientConnect(RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle) =0;
-		virtual RTS_RESULT CDECL IGWClientDisconnect(RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle) =0;
+		virtual int CDECL IGWRegisterCommDrv(COMMDRVINFO *pInfo, unsigned long *pdwDriverId) =0;
+		virtual int CDECL IGWConnectionReady(unsigned long dwDriverHandle, unsigned long dwConnHandle, int nAction) =0;
+		virtual int CDECL IGWClientConnect(unsigned long dwDriverId, unsigned long dwConnHandle) =0;
+		virtual int CDECL IGWClientDisconnect(unsigned long dwDriverId, unsigned long dwConnHandle) =0;
+		virtual int CDECL IGWRegisterAuthModule(AUTHMODINFO *pfAuthModInfo, GWAUTHFUNCS *pfGWFuncs ) =0;
 };
 	#ifndef ITF_CmpGateway
 		#define ITF_CmpGateway static ICmpGateway *pICmpGateway = NULL;

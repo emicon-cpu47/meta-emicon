@@ -6,9 +6,7 @@
  *	between several processes or tasks.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -78,34 +76,6 @@
  */
 #define	SYSSHMKEY_INT_WINCE_DISABLE_MAP_PHYSICAL_IN_VIRTUALALLOCCOPYEX					"WinCE.DisableMapPhysicalInVirtualAllocCopyEx"
 #define	SYSSHMVALUE_INT_WINCE_DEFAULT_DISABLE_MAP_PHYSICAL_IN_VIRTUALALLOCCOPYEX		0
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- * Do not use PAGE_PHYSICAL access protection flag for the call of VirtualAllocCopyEx and VirtualCopy in the memory mapping.
- * Default: 0.
- * Only used for WinCE.
- * 0: Use the PAGE_NOCACHE access protection flag for VirtualAllocCopyEx and VirtualCopy.
- * 1: Do not use the PAGE_NOCACHE access protection flag for VirtualAllocCopyEx and VirtualCopy.
- * </description>
- */
-#define	SYSSHMKEY_INT_WINCE_CACHED_MEM_MAPPING					"WinCE.CachedMemMapping"
-#define	SYSSHMVALUE_INT_WINCE_DEFAULT_CACHED_MEM_MAPPING		0
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- * Change the kernel memory's access permissions to "Full access" and its page attributes to "write-through/no write allocate" for direct kernel memory access from user space.
- * Default: 0.
- * Only used for WinCE.
- * 0: Do not set kernel memory attributes "full permission" and "write-through/no write-alloc".
- * 1: Set kernel memory attributes: "full permission" and "write-through/no write-alloc".
- * </description>
- */
-#define	SYSSHMKEY_INT_WINCE_DIRECT_KERNELMEM_ACCESS					"WinCE.DirectKernelMemAccess"
-#define	SYSSHMVALUE_INT_WINCE_DEFAULT_DIRECT_KERNELMEM_ACCESS		0
 
 /**
  * <category>Settings</category>
@@ -870,14 +840,14 @@ typedef RTS_RESULT (CDECL * PFSYSSHAREDMEMORYDELETE) (RTS_HANDLE hShm);
 	#define USE_SysShmSysSharedMemoryDelete
 	#define EXT_SysShmSysSharedMemoryDelete
 	#define GET_SysShmSysSharedMemoryDelete  ERR_OK
-	#define CAL_SysShmSysSharedMemoryDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysShm*)p0)->ISysSharedMemoryDelete())
+	#define CAL_SysShmSysSharedMemoryDelete(p0) ((ISysShm*)p0)->ISysSharedMemoryDelete()
 	#define CHK_SysShmSysSharedMemoryDelete  TRUE
 	#define EXP_SysShmSysSharedMemoryDelete  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysSharedMemoryDelete
 	#define EXT_SysSharedMemoryDelete
 	#define GET_SysSharedMemoryDelete(fl)  CAL_CMGETAPI( "SysSharedMemoryDelete" ) 
-	#define CAL_SysSharedMemoryDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysShm*)p0)->ISysSharedMemoryDelete())
+	#define CAL_SysSharedMemoryDelete(p0) ((ISysShm*)p0)->ISysSharedMemoryDelete()
 	#define CHK_SysSharedMemoryDelete  TRUE
 	#define EXP_SysSharedMemoryDelete  CAL_CMEXPAPI( "SysSharedMemoryDelete" ) 
 #else /* DYNAMIC_LINK */
@@ -999,14 +969,14 @@ typedef RTS_RESULT (CDECL * PFSYSSHAREDMEMORYCLOSE) (RTS_HANDLE hShm);
 	#define USE_SysShmSysSharedMemoryClose
 	#define EXT_SysShmSysSharedMemoryClose
 	#define GET_SysShmSysSharedMemoryClose  ERR_OK
-	#define CAL_SysShmSysSharedMemoryClose(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysShm*)p0)->ISysSharedMemoryClose())
+	#define CAL_SysShmSysSharedMemoryClose(p0) ((ISysShm*)p0)->ISysSharedMemoryClose()
 	#define CHK_SysShmSysSharedMemoryClose  TRUE
 	#define EXP_SysShmSysSharedMemoryClose  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysSharedMemoryClose
 	#define EXT_SysSharedMemoryClose
 	#define GET_SysSharedMemoryClose(fl)  CAL_CMGETAPI( "SysSharedMemoryClose" ) 
-	#define CAL_SysSharedMemoryClose(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysShm*)p0)->ISysSharedMemoryClose())
+	#define CAL_SysSharedMemoryClose(p0) ((ISysShm*)p0)->ISysSharedMemoryClose()
 	#define CHK_SysSharedMemoryClose  TRUE
 	#define EXP_SysSharedMemoryClose  CAL_CMEXPAPI( "SysSharedMemoryClose" ) 
 #else /* DYNAMIC_LINK */

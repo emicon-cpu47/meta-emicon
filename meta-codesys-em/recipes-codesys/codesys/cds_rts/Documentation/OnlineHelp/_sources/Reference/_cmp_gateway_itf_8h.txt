@@ -15,6 +15,10 @@ Data Structures
 
 - struct :ref:`COMMDRVINFO <struct_c_o_m_m_d_r_v_i_n_f_o>`
 
+- struct :ref:`AUTHMODINFO <struct_a_u_t_h_m_o_d_i_n_f_o>`
+
+- struct :ref:`GWAUTHFUNCS <struct_g_w_a_u_t_h_f_u_n_c_s>`
+
 - struct :ref:`ICmpGateway_C <struct_i_cmp_gateway___c>`
 
 Macros
@@ -31,11 +35,19 @@ Macros
 Typedefs
 --------
 
-- typedef RTS_RESULT(* :ref:`PFCOMMDRVSEND <group___cmp_gateway_itf___settings_1ga736042c5e6e3b724693e276d53dbbef9>`)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent)
+- typedef int(* :ref:`PFCOMMDRVSEND <group___cmp_gateway_itf___settings_1ga33de2ae0b80e25830b402b93eeedc433>`)(RTS_UI32 dwConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent)
 
-- typedef RTS_RESULT(* :ref:`PFCOMMDRVRECEIVE <group___cmp_gateway_itf___settings_1ga41ec7304e9ea656dbd967dce9d9e0096>`)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData)
+- typedef int(* :ref:`PFCOMMDRVRECEIVE <group___cmp_gateway_itf___settings_1ga1df3282aaf2d8c0574021f3e98013803>`)(RTS_UI32 dwConnHandle, PROTOCOL_DATA_UNIT *pData)
 
-- typedef RTS_RESULT(* :ref:`PFCOMMDRVCLOSE <group___cmp_gateway_itf___settings_1ga88061d5df63058166a1d7adba5c4f31e>`)(RTS_HANDLE hConnHandle)
+- typedef int(* :ref:`PFCOMMDRVCLOSE <group___cmp_gateway_itf___settings_1ga14cfc8528627096f5133bc5cdd99899d>`)(RTS_UI32 dwConnHandle)
+
+- typedef int(* :ref:`PFAUTHMODBEGINAUTH <group___cmp_gateway_itf_1ga6a8df81eefac730bdd20221cc378849b>`)(unsigned long dwClientId)
+
+- typedef int(* :ref:`PFAUTHMODHANDLEMESSAGE <group___cmp_gateway_itf_1gabe4a2b601ab8a7a24f183b34f5100b2c>`)(unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)
+
+- typedef int(* :ref:`PFGWSENDREPLY <group___cmp_gateway_itf_1ga295c1d68cc415a8d61ab14b10da1f8fe>`)(unsigned long dwClientId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)
+
+- typedef int(* :ref:`PFGWAUTHFINISHED <group___cmp_gateway_itf_1gab835c665a1432a16640856b323a0ee48>`)(unsigned long dwClientId, int nResult)
 
 - typedef :ref:`ICmpGateway_C <struct_i_cmp_gateway___c>` :ref:`ICmpGateway <group___cmp_gateway_itf_1ga94ad6f83424506d92106651fdbfcc441>`
 
@@ -47,18 +59,24 @@ Enumerations
 Functions
 ---------
 
-- RTS_RESULT :ref:`GWRegisterCommDrv <group___cmp_gateway_itf___settings_1gadcf2c836ef802732b339f5b78693b3a8>` (:ref:`COMMDRVINFO <struct_c_o_m_m_d_r_v_i_n_f_o>` * pInfo, RTS_HANDLE * phDriverHandle)
+- int :ref:`GWRegisterCommDrv <group___cmp_gateway_itf___settings_1ga0b0f6b7740cdf7400c0b4f40f5683a90>` (:ref:`COMMDRVINFO <struct_c_o_m_m_d_r_v_i_n_f_o>` * pInfo, unsigned long * pdwDriverId)
 
-- RTS_RESULT :ref:`GWConnectionReady <group___cmp_gateway_itf_1ga8710f436ff795cf02a64516f92c660b5>` (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction)
+- int :ref:`GWConnectionReady <group___cmp_gateway_itf_1ga298f83f482697191fd0b086dc77d54fc>` (unsigned long dwDriverHandle, unsigned long dwConnHandle, int nAction)
 
-- RTS_RESULT :ref:`GWClientConnect <group___cmp_gateway_itf_1ga5ab846bd6ceb2bf35a358f662a48c280>` (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)
+- int :ref:`GWClientConnect <group___cmp_gateway_itf_1gacb5070108907e17f34419eadbe51538b>` (unsigned long dwDriverId, unsigned long dwConnHandle)
 
-- RTS_RESULT :ref:`GWClientDisconnect <group___cmp_gateway_itf_1gaed50886539cfaaa4b160cdb5c02668e6>` (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)
+- int :ref:`GWClientDisconnect <group___cmp_gateway_itf_1ga237efe3c2d0ba14400e50c68ffb11156>` (unsigned long dwDriverId, unsigned long dwConnHandle)
+
+- int :ref:`AuthModBeginAuth <group___cmp_gateway_itf_1ga562165c13f96b46a3eac858d8746ea47>` (unsigned long dwClientId)
+
+- int :ref:`AuthModHandleMessage <group___cmp_gateway_itf_1gad29b6a3a4b4213e99e3c854439a937b9>` (unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, :ref:`PROTOCOL_DATA_UNIT <struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t>`  data)
+
+- int :ref:`GWRegisterAuthModule <group___cmp_gateway_itf_1ga78ae98ca86e1f558b3b62b800ded0d02>` (:ref:`AUTHMODINFO <struct_a_u_t_h_m_o_d_i_n_f_o>` * pfAuthModInfo, :ref:`GWAUTHFUNCS <struct_g_w_a_u_t_h_f_u_n_c_s>` * pfGWFuncs)
 
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpGatewayItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/CmpGatewayItf.h
 
  
 .. last line of file.rst template

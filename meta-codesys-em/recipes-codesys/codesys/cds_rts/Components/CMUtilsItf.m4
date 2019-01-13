@@ -6,9 +6,7 @@
  *	in the component manager.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CMUtils')
@@ -21,14 +19,10 @@ SET_INTERFACE_NAME(`CMUtils')
 #define RTS_WTEXT_EMPTY					RTS_WTEXT("\0")
 
 #ifdef RTS_UNICODE
-	#ifndef RTS_CWTEXT
-		#define	RTS_CWTEXT(s)			__RTS_CWTEXT(s)
-		#define	__RTS_CWTEXT(s)			L ## s
-	#endif
+	#define	RTS_CWTEXT(s)				__RTS_CWTEXT(s)
+	#define	__RTS_CWTEXT(s)				L ## s
 #else
-	#ifndef RTS_CWTEXT
-		#define	RTS_CWTEXT(s) 			s
-	#endif
+	#define	RTS_CWTEXT(s) 			s
 #endif
 
 /**
@@ -746,47 +740,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `CMUtlWToStr', `(const RTS_WCHAR* pwszSrc, ch
  */
 DEF_ITF_API(`RTS_WCHAR*', `CDECL', `CMUtlwstrchr', `(const RTS_WCHAR *pwsz, RTS_WCHAR w)')
 
-
-/*
- *************************************************************************
- * <description> 
- *  Conversion between UTF-8 and RTS_WSTRING (UTF-16). The conversion
- *  can produce the REPLACEMENT CHARACTER (U+FFFD) for invalid sequences.
- * </description>
- *************************************************************************
- */
- 
-/**
- * <description>This function converts a UTF-16 encoded WSTRING to a sequenze of UTF-8 code points.
- * If a codepoint cannot be converted this codepoint will be replaced with the Unicode REPLACEMENT 
- * CHARACTER (U+FFFD).</description>
- * <param name="pwsz" type="IN">Pointer to WSTRING to be converted.</param>
- * <param name="wstrLen" type="IN">Size of readbuffer in WCHARs. Set to -1 if unknown.</param>
- * <param name="pUtf8Str" type="IN">Pointer to buffer where to store the UTF-8 sequence.</param>
- * <param name="bufferSize" type="IN">Buffersize of UTF-8 buffer.</param>
- * <result>On of these error codes: 
- *                                  - ERR_OK: Everything went fine. No errors occured.
- *                                  - ERR_PARAMETER: The parameterchecks failed.
- *                                  - ERR_CONVERSION_INCOMPLETE: The conversion failed because of some codepoints. These where replaced with U+FFFD.
- * </result>
- */
- 
-DEF_ITF_API(`RTS_RESULT', `CDECL', `CMUtlWToUtf8', `(RTS_WCHAR *pwsz, RTS_SIZE wstrLen, RTS_UI8* pUtf8Str, RTS_SIZE bufferSize)')
-
-/**
- * <description>This function converts a UTF-8 string to a UTF-16 encoded WSTRING.
- * The conversion inserts the REPLACEMENT CHARACTER (U+FFFD) if a UTF-8 codepoint or invalid.</description>
- * <param name="pUtf8Str" type="IN">Pointer to UTF-8 string to be converted.</param>
- * <param name="pUtf8BufferSize" type="IN">Read buffer size. Set to -1 if unknown.</param>
- * <param name="pwsz" type="IN">Pointer to WSTRING buffer.</param>
- * <param name="wstrLen" type="IN">Number of WCHARs in pwsz.</param>
- * <result>On of these error codes: 
- *                                  - ERR_OK: Everything went fine. No errors occured.
- *                                  - ERR_PARAMETER: The parameterchecks failed.
- *                                  - ERR_CONVERSION_INCOMPLETE: The conversion failed because of some codepoints. These where replaced with U+FFFD.
- * </result>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `CMUtlUtf8ToW', `(RTS_UI8* pUtf8Str, RTS_SIZE utf8BufferSize, RTS_WCHAR* pwsz, RTS_SIZE wstrLen)')
 
 /**
  *************************************************************************

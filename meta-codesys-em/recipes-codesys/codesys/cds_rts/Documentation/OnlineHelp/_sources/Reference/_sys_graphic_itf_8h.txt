@@ -50,17 +50,9 @@ Macros
 
 - #define :ref:`TF_USE_PREVIOUS_POSITION <group___sys_graphic_itf___t_f_1ga88acc56724c8c66144344da7681022a4>` 0x00000800		/* See comment of VISU_DTF_USE_PREVIOUS_POSITION  in library VisuElemBase. */
 
-- #define :ref:`TF_IGNORE_VERTICAL_ALIGNMENT <group___sys_graphic_itf___t_f_1gafb92c448864969e06169a5d69e5bfc15>` 0x00001000
-
-- #define :ref:`TF_DONT_MODIFY_TEXT_RECT <group___sys_graphic_itf___t_f_1gace67fcbbbc0861c3a517b91b2e13a45c>` 0x00002000
-
 - #define :ref:`TF_BGELEM <group___sys_graphic_itf___t_f_1ga0df8d3d8270843d9314bf4051801d0f7>` 0x80000000
 
 - #define :ref:`TF_WSTRING <group___sys_graphic_itf___t_f_1ga3ad638931c5a8fad1e1489d399e0407f>` 0x40000000
-
-- #define :ref:`TF_MEASURE_ALL <group___sys_graphic_itf___t_f_1ga501a9077ad03ccf241036fb860c3cc79>` 0x00002000		/* Can be used for SysGraphicGetTextExtent: Whole text will be measured and not stopped at first linebreak. */
-
-- #define :ref:`TF_ANTIALIASING_INACTIVE <group___sys_graphic_itf___t_f_1gad12e3cf809573590d1c79d107c80a016>` 0x00004000		/* A special flag, used to deactivate the antialiasing feature temporarily */
 
 - #define :ref:`FF_ITALIC <group___sys_graphic_itf___fontstyle_1ga06da42847ee4f9d814f6c0e4905628ad>` 0x0001
 
@@ -124,8 +116,6 @@ Macros
 
 - #define :ref:`LINEJOIN_ROUND <group___sys_graphic_itf___pen_line_join_style_1gad1a9aba86d08acfb40ec97f03a72e775>` 0x0002  /* round line join */
 
-- #define :ref:`LINEJOIN_MITER_NEW <group___sys_graphic_itf___pen_line_join_style_1ga384828e997731dc54c92dc265ef60acd>` 0x0003  /* new default-value */
-
 - #define :ref:`BF_SOLID <group___sys_graphic_itf___brushstyle_1ga8f2fdbd7eace8c14635924ee10103587>` 0x0000			/* a solid brush */
 
 - #define :ref:`BF_NULL <group___sys_graphic_itf___brushstyle_1ga39ab71d6ad6fa8de6f06d9dcf3bfcfd9>` 0x0001			/* a hollow brush */
@@ -160,19 +150,13 @@ Macros
 
 - #define :ref:`SYSGRAPHIC_WIN32_MAX_JPEG_BYTEARRAY_SIZE_DEFAULT <group___sys_graphic_itf___settings_1gaecf4b109c170ae66bc5c7027a7d4f626>` INT32_C(2359296)
 
-- #define :ref:`SYSGRAPHIC_WIN32_PNG_LOADPALETTE_ASPALETTE <group___sys_graphic_itf___settings_1ga8464761acd0554c0b46a7699155d576c>` "Win32.LoadPNGImagesPalette"
-
-- #define :ref:`SYSGRAPHIC_WIN32_PNG_LOADPALETTE_ASPALETTE_DEFAULT <group___sys_graphic_itf___settings_1ga5e6960f775a9ce0c2dd6e017c86eb1d6>` 0
-
 - #define :ref:`SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD <group___sys_graphic_itf___settings_1ga64dd3e8b8ef1363255fef2f094dc98c7>` "WinCE.UseOldDrawRectMethod"
 
-- #define :ref:`SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD_DEFAULT <group___sys_graphic_itf___settings_1ga6077fdf0d21fa729c93053e7cea4d604>` 1
+- #define :ref:`SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD_DEFAULT <group___sys_graphic_itf___settings_1ga6077fdf0d21fa729c93053e7cea4d604>` 0
 
 - #define :ref:`SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5 <group___sys_graphic_itf___settings_1gadf57a24d40d7e7e119bfc179dd163e0b>` "WinCE.UseOldDrawRectMethodCE5"
 
 - #define :ref:`SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULT <group___sys_graphic_itf___settings_1ga7ec441ffb94e550d27ec413d5dec040d>` 0
-
-- #define :ref:`SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULTCE6 <group___sys_graphic_itf___settings_1ga14fdff3b6c718a97b2d3744a545cf9c7>` 1
 
 - #define :ref:`SYSGRAPHIC_WINGDIPLUS_USESVGPROXY <group___sys_graphic_itf___settings_1ga453eee8046f88ae5c18995e88ae59444>` "WinGDIPlus.UseSVGProxy"
 
@@ -250,8 +234,6 @@ Functions
 
 - RTS_RESULT :ref:`SysGraphicGetFontHeight <group___sys_graphic_itf_1ga3fc974d64fa5b645cebc37b8919592cd>` (RTS_HANDLE hDC, RTS_I16 * piHeight)
 
-- RTS_RESULT :ref:`SysGraphicGetFontHandle <group___sys_graphic_itf_1ga762257cc9c9749d144ce0c6257020208>` (RTS_HANDLE hDC, RTS_HANDLE * phFont)
-
 - RTS_RESULT :ref:`SysGraphicCreateBrush <group___sys_graphic_itf_1ga87b88da8c3d0ace48fbd03c3a401712d>` (RTS_HANDLE hDC, RTS_UI32 ulFillFlags, RTS_UI32 ulFillColor, RTS_HANDLE * phBrush)
 
 - RTS_RESULT :ref:`SysGraphicSetBrush <group___sys_graphic_itf_1gad21369f57e48c12ece7e8b53b47bdced>` (RTS_HANDLE hDC, RTS_HANDLE hBrush, RTS_HANDLE * phOldBrush)
@@ -262,7 +244,7 @@ Functions
 
 - RTS_RESULT :ref:`SysGraphicCreatePatternBrush <group___sys_graphic_itf_1ga57a5e333e02d210f9ef6b9c7f0451ce9>` (RTS_HANDLE hDC, RTS_UI16 patternType, RTS_UI32 color, RTS_HANDLE * phBrush)
 
-- RTS_RESULT :ref:`SysGraphicCreatePenDetailed <group___sys_graphic_itf_1gaad77ff326127752b51ef29daa3e547e8>` (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, RTS_REAL32 rMiterLimit, RTS_HANDLE * phPen)
+- RTS_RESULT :ref:`SysGraphicCreatePenDetailed <group___sys_graphic_itf_1ga37e996dc94ebaa477ada4f893368c745>` (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, RTS_I16 nMiterLimit, RTS_HANDLE * phPen)
 
 - RTS_RESULT :ref:`SysGraphicCreatePen <group___sys_graphic_itf_1gac98afa65facb04e54e062bbb8f3b677f>` (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_HANDLE * phPen)
 
@@ -310,8 +292,6 @@ Functions
 
 - RTS_RESULT :ref:`SysGraphicResetInvalidation <group___sys_graphic_itf_1ga209b5e9be7a1508a627cd4c65855f26a>` (RTS_HANDLE hDC)
 
-- RTS_RESULT :ref:`SysGraphicInvalidateClientArea <group___sys_graphic_itf_1gab4e06f08874da823a924b13228391f03>` (RTS_HANDLE hDC)
-
 - RTS_HANDLE :ref:`SysGraphicCreateTransformation <group___sys_graphic_itf_1ga8a9e4f1d861e20593927748577f251a7>` (RTS_RESULT * pResult)
 
 - RTS_HANDLE :ref:`SysGraphicCreateTransformationByValues <group___sys_graphic_itf_1ga5b9675a578e8be1d9e64c11ca36eb073>` (RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy, RTS_RESULT * pResult)
@@ -328,14 +308,10 @@ Functions
 
 - RTS_HANDLE :ref:`SysGraphicGetActiveTransformation <group___sys_graphic_itf_1ga4330b069437a1f23f4871ce0d1e08b09>` (RTS_HANDLE hdc, RTS_RESULT * pResult)
 
-- RTS_HANDLE :ref:`SysGraphicCloneTransformation <group___sys_graphic_itf_1ga8d9cdfa3bc890e30429817b6bf3f6872>` (RTS_HANDLE hTransform, RTS_RESULT * pResult)
-
-- RTS_RESULT :ref:`SysGraphicTransformationTransform <group___sys_graphic_itf_1gab2b9f9a793623d9be2639f8cd944f740>` (RTS_HANDLE hTransform, RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy)
-
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysGraphicItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysGraphicItf.h
 
  
 .. last line of file.rst template

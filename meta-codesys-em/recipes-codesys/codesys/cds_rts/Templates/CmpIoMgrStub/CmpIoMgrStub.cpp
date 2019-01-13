@@ -8,8 +8,6 @@
 
 
 
-
-
 #include "CmpIoMgrStub.c"
 
 
@@ -138,11 +136,6 @@ RTS_RESULT CDECL CCmpIoMgrStub::IIoMgrUpdateConfiguration(IoConfigConnector *pCo
 RTS_RESULT CDECL CCmpIoMgrStub::IIoMgrUpdateConfiguration2(IoConfigConnector *pConnectorList, int nCount, char *pszConfigApplication)
 {
 	return IoMgrUpdateConfiguration2(pConnectorList,nCount,pszConfigApplication);
-}
-
-RTS_BOOL CDECL CCmpIoMgrStub::IIoMgrHasTaskIOs(RTS_UI32 dwTaskId, RTS_UI16 taskMapType, RTS_RESULT *pResult)
-{
-	return IoMgrHasTaskIOs(dwTaskId,taskMapType,pResult);
 }
 
 RTS_RESULT CDECL CCmpIoMgrStub::IIoMgrUpdateMapping(IoConfigTaskMap *pTaskMapList, int nCount)

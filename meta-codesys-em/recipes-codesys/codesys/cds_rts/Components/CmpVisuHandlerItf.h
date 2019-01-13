@@ -1,12 +1,10 @@
- /**VISU_ET_FILESTREAMINGDLGRESULT
+ /**
  * <interfacename>CmpVisuHandler</interfacename>
  * <description> 
  *	Interface for the visu handler component.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -23,8 +21,6 @@
 
 
 
-
-#include "CmpFileTransferItf.h"
 
 #include "CmpItf.h"
 #include "SysGraphicBase.h"
@@ -61,12 +57,6 @@ typedef RTS_IEC_WORD	IecID;
 #define VISU_ET_CLIENTREQUEST						0x00000205
 #define VISU_ET_MEASURESTRINGRESULT					0x00000206
 #define VISU_ET_MEASURESTRING2RESULT				0x00000207
-#define VISU_ET_FILETRANSFERSTARTED					0x00000209
-#define VISU_ET_FILETRANSFERRESULT					0x00000210
-#define VISU_ET_FILESTREAMINGDLGRESULT				0x00000211
-#define VISU_ET_FILESTREAMINGDATA					0x00000212
-#define VISU_ET_FILESTREAMINGRESULT					0x00000213		/* Sent only in case of failure when streaming data from the plc to the visualization */
-#define VISU_ET_FILESTREAMINGCOUNTTOTALBYTES		0x00000214		/* Sent only in case of streaming data from the visualization to the plc and contains the total amount of bytes to send (used for a simple error processing) */
 #define VISU_ET_PRINT								0x00000400
 #define	VISU_ET_GESTURE_SPREADPINCH					0x00000801		/* all gesture events have the 0x800 bit set; this bit should not be set in other event tags */
 #define	VISU_ET_GESTURE_PAN							0x00000802
@@ -219,7 +209,6 @@ extern "C" {
 #define VISUENUMCLIENTTAG_UNDEFINED    0	
 #define VISUENUMCLIENTTAG_NAME    1	
 #define VISUENUMCLIENTTAG_ADDRESSIPV4    2	
-#define VISUENUMCLIENTTAG_RTVID		3		/* format is encoded in a string, 8 hex digits for the targetid, a space, 8 hex digits for the version */
 /* Typed enum definition */
 #define VISUENUMCLIENTTAG    RTS_IEC_INT
 
@@ -293,15 +282,6 @@ typedef struct tagVish_Starttargetvisu_Params
 	RTS_IEC_INT iHeight;		
 	RTS_IEC_STRING *stApp;		
 } Vish_Starttargetvisu_Params;
-
-/**
- * <description>WebserverInitParameter</description>
- */
-typedef struct tagWebserverInitParameter
-{
-	RTS_IEC_STRING stStartHTMName[81];		/* This string defines a start htm filename, which will be opened,
- when only ip-address and port is entered in the webbrowser. */
-} WebserverInitParameter;
 
 /**
  * <description>Visu_ClientTagData</description>
@@ -1267,7 +1247,7 @@ typedef ExternID (CDECL * PFVISHREGISTERCLIENT2) (char* pszAppName, RTS_IEC_DWOR
 /**
  * <description> Function to obtain the real ID from the IEC-Task. </description>
  * <result>If the ID is not equal to INVALID_IEC_ID it can be used, otherwise this 
- * function has to be called some times more until a valid ID is returned</result>
+ * funtion has to be called some times more until a valid ID is returned</result>
  */
 RTS_UI32 CDECL VishIsRegistered(ExternID extID);
 typedef RTS_UI32 (CDECL * PFVISHISREGISTERED) (ExternID extID);
@@ -1745,195 +1725,6 @@ typedef RTS_RESULT (CDECL * PFVISHSETUPPAINTBUFFER) (ExternID extID, char* pszSh
 	#define EXP_VishSetupPaintBuffer   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VishSetupPaintBuffer", (RTS_UINTPTR)VishSetupPaintBuffer, 0, 0) 
 #endif
 
-
-/**
- * <description>Function to obtain the maximum size of data, that can be read from a file,
- * when transferring data from the visualization to the plc by streaming.</description>
- * <result>The maximum size</result>
- */
-RTS_UI32 CDECL VishGetFileStreamingChunkSize(void);
-typedef RTS_UI32 (CDECL * PFVISHGETFILESTREAMINGCHUNKSIZE) (void);
-#if defined(CMPVISUHANDLER_NOTIMPLEMENTED) || defined(VISHGETFILESTREAMINGCHUNKSIZE_NOTIMPLEMENTED)
-	#define USE_VishGetFileStreamingChunkSize
-	#define EXT_VishGetFileStreamingChunkSize
-	#define GET_VishGetFileStreamingChunkSize(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VishGetFileStreamingChunkSize() (RTS_UI32)ERR_NOTIMPLEMENTED
-	#define CHK_VishGetFileStreamingChunkSize  FALSE
-	#define EXP_VishGetFileStreamingChunkSize  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VishGetFileStreamingChunkSize
-	#define EXT_VishGetFileStreamingChunkSize
-	#define GET_VishGetFileStreamingChunkSize(fl)  CAL_CMGETAPI( "VishGetFileStreamingChunkSize" ) 
-	#define CAL_VishGetFileStreamingChunkSize  VishGetFileStreamingChunkSize
-	#define CHK_VishGetFileStreamingChunkSize  TRUE
-	#define EXP_VishGetFileStreamingChunkSize  CAL_CMEXPAPI( "VishGetFileStreamingChunkSize" ) 
-#elif defined(MIXED_LINK) && !defined(CMPVISUHANDLER_EXTERNAL)
-	#define USE_VishGetFileStreamingChunkSize
-	#define EXT_VishGetFileStreamingChunkSize
-	#define GET_VishGetFileStreamingChunkSize(fl)  CAL_CMGETAPI( "VishGetFileStreamingChunkSize" ) 
-	#define CAL_VishGetFileStreamingChunkSize  VishGetFileStreamingChunkSize
-	#define CHK_VishGetFileStreamingChunkSize  TRUE
-	#define EXP_VishGetFileStreamingChunkSize  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VishGetFileStreamingChunkSize", (RTS_UINTPTR)VishGetFileStreamingChunkSize, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpVisuHandlerVishGetFileStreamingChunkSize
-	#define EXT_CmpVisuHandlerVishGetFileStreamingChunkSize
-	#define GET_CmpVisuHandlerVishGetFileStreamingChunkSize  ERR_OK
-	#define CAL_CmpVisuHandlerVishGetFileStreamingChunkSize  VishGetFileStreamingChunkSize
-	#define CHK_CmpVisuHandlerVishGetFileStreamingChunkSize  TRUE
-	#define EXP_CmpVisuHandlerVishGetFileStreamingChunkSize  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VishGetFileStreamingChunkSize
-	#define EXT_VishGetFileStreamingChunkSize
-	#define GET_VishGetFileStreamingChunkSize(fl)  CAL_CMGETAPI( "VishGetFileStreamingChunkSize" ) 
-	#define CAL_VishGetFileStreamingChunkSize  VishGetFileStreamingChunkSize
-	#define CHK_VishGetFileStreamingChunkSize  TRUE
-	#define EXP_VishGetFileStreamingChunkSize  CAL_CMEXPAPI( "VishGetFileStreamingChunkSize" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VishGetFileStreamingChunkSize  PFVISHGETFILESTREAMINGCHUNKSIZE pfVishGetFileStreamingChunkSize;
-	#define EXT_VishGetFileStreamingChunkSize  extern PFVISHGETFILESTREAMINGCHUNKSIZE pfVishGetFileStreamingChunkSize;
-	#define GET_VishGetFileStreamingChunkSize(fl)  s_pfCMGetAPI2( "VishGetFileStreamingChunkSize", (RTS_VOID_FCTPTR *)&pfVishGetFileStreamingChunkSize, (fl), 0, 0)
-	#define CAL_VishGetFileStreamingChunkSize  pfVishGetFileStreamingChunkSize
-	#define CHK_VishGetFileStreamingChunkSize  (pfVishGetFileStreamingChunkSize != NULL)
-	#define EXP_VishGetFileStreamingChunkSize   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VishGetFileStreamingChunkSize", (RTS_UINTPTR)VishGetFileStreamingChunkSize, 0, 0) 
-#endif
-
-
-typedef enum
-{
-	VishFileTransferDirection_PlcToVisu,
-	VishFileTransferDirection_VisuToPlc
-} VishFileTransferDirection;
-
-typedef enum
-{
-	VishFileTransferType_File,
-	VishFileTransferType_Streaming
-} VishFileTransferType;
-
-/**
- * <description>Enum: VisuEnumFileTransferControlFlags</description>
- */
-#define VISUENUMFILETRANSFERCONTROLFLAGS_USEORIGINALFILENAME    0x00000004	
-#define VISUENUMFILETRANSFERCONTROLFLAGS_CONFIRMFILEOVERWRITEINPLC    0x00000008	
-
-
-typedef struct
-{
-	RTS_IEC_DWORD dwClientID;
-	RTS_IEC_WORD wRequestID;
-	VishFileTransferDirection direction;
-	const char* pszPlcFilename;
-	const char* pszVisuFilename;
-	RTS_IEC_DWORD dwControlFlags;
-	char* pszPlcFilenameCopy;
-} VishFileTransferConfiguration;
-
-
-/**
- * <description> Function to initiate a file transfer between a visu client and the plc.</description>
- * <param name="configuration">The configuration parameters for the file transfer.</param>
- * <result>Error code.</result>
- */
-RTS_RESULT CDECL VishInitiateFileTransfer(const VishFileTransferConfiguration* configuration);
-typedef RTS_RESULT (CDECL * PFVISHINITIATEFILETRANSFER) (const VishFileTransferConfiguration* configuration);
-#if defined(CMPVISUHANDLER_NOTIMPLEMENTED) || defined(VISHINITIATEFILETRANSFER_NOTIMPLEMENTED)
-	#define USE_VishInitiateFileTransfer
-	#define EXT_VishInitiateFileTransfer
-	#define GET_VishInitiateFileTransfer(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VishInitiateFileTransfer(p0) (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_VishInitiateFileTransfer  FALSE
-	#define EXP_VishInitiateFileTransfer  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VishInitiateFileTransfer
-	#define EXT_VishInitiateFileTransfer
-	#define GET_VishInitiateFileTransfer(fl)  CAL_CMGETAPI( "VishInitiateFileTransfer" ) 
-	#define CAL_VishInitiateFileTransfer  VishInitiateFileTransfer
-	#define CHK_VishInitiateFileTransfer  TRUE
-	#define EXP_VishInitiateFileTransfer  CAL_CMEXPAPI( "VishInitiateFileTransfer" ) 
-#elif defined(MIXED_LINK) && !defined(CMPVISUHANDLER_EXTERNAL)
-	#define USE_VishInitiateFileTransfer
-	#define EXT_VishInitiateFileTransfer
-	#define GET_VishInitiateFileTransfer(fl)  CAL_CMGETAPI( "VishInitiateFileTransfer" ) 
-	#define CAL_VishInitiateFileTransfer  VishInitiateFileTransfer
-	#define CHK_VishInitiateFileTransfer  TRUE
-	#define EXP_VishInitiateFileTransfer  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VishInitiateFileTransfer", (RTS_UINTPTR)VishInitiateFileTransfer, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpVisuHandlerVishInitiateFileTransfer
-	#define EXT_CmpVisuHandlerVishInitiateFileTransfer
-	#define GET_CmpVisuHandlerVishInitiateFileTransfer  ERR_OK
-	#define CAL_CmpVisuHandlerVishInitiateFileTransfer  VishInitiateFileTransfer
-	#define CHK_CmpVisuHandlerVishInitiateFileTransfer  TRUE
-	#define EXP_CmpVisuHandlerVishInitiateFileTransfer  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VishInitiateFileTransfer
-	#define EXT_VishInitiateFileTransfer
-	#define GET_VishInitiateFileTransfer(fl)  CAL_CMGETAPI( "VishInitiateFileTransfer" ) 
-	#define CAL_VishInitiateFileTransfer  VishInitiateFileTransfer
-	#define CHK_VishInitiateFileTransfer  TRUE
-	#define EXP_VishInitiateFileTransfer  CAL_CMEXPAPI( "VishInitiateFileTransfer" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VishInitiateFileTransfer  PFVISHINITIATEFILETRANSFER pfVishInitiateFileTransfer;
-	#define EXT_VishInitiateFileTransfer  extern PFVISHINITIATEFILETRANSFER pfVishInitiateFileTransfer;
-	#define GET_VishInitiateFileTransfer(fl)  s_pfCMGetAPI2( "VishInitiateFileTransfer", (RTS_VOID_FCTPTR *)&pfVishInitiateFileTransfer, (fl), 0, 0)
-	#define CAL_VishInitiateFileTransfer  pfVishInitiateFileTransfer
-	#define CHK_VishInitiateFileTransfer  (pfVishInitiateFileTransfer != NULL)
-	#define EXP_VishInitiateFileTransfer   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VishInitiateFileTransfer", (RTS_UINTPTR)VishInitiateFileTransfer, 0, 0) 
-#endif
-
-
-/**
- * <description> Function which is used by a file transfer between a visu client and the plc to ask for the file info.</description>
- * <param name="pszFileName">The file name for which the file info is needed.</param>
- * <param name="pfi">The file info which is the result.</param>
- * <result>Error code.</result>
- */
-RTS_RESULT CDECL VishFileTransferGetFileInfo(const char* pszFileName, FileInfo* pfi);
-typedef RTS_RESULT (CDECL * PFVISHFILETRANSFERGETFILEINFO) (const char* pszFileName, FileInfo* pfi);
-#if defined(CMPVISUHANDLER_NOTIMPLEMENTED) || defined(VISHFILETRANSFERGETFILEINFO_NOTIMPLEMENTED)
-	#define USE_VishFileTransferGetFileInfo
-	#define EXT_VishFileTransferGetFileInfo
-	#define GET_VishFileTransferGetFileInfo(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_VishFileTransferGetFileInfo(p0,p1) (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_VishFileTransferGetFileInfo  FALSE
-	#define EXP_VishFileTransferGetFileInfo  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_VishFileTransferGetFileInfo
-	#define EXT_VishFileTransferGetFileInfo
-	#define GET_VishFileTransferGetFileInfo(fl)  CAL_CMGETAPI( "VishFileTransferGetFileInfo" ) 
-	#define CAL_VishFileTransferGetFileInfo  VishFileTransferGetFileInfo
-	#define CHK_VishFileTransferGetFileInfo  TRUE
-	#define EXP_VishFileTransferGetFileInfo  CAL_CMEXPAPI( "VishFileTransferGetFileInfo" ) 
-#elif defined(MIXED_LINK) && !defined(CMPVISUHANDLER_EXTERNAL)
-	#define USE_VishFileTransferGetFileInfo
-	#define EXT_VishFileTransferGetFileInfo
-	#define GET_VishFileTransferGetFileInfo(fl)  CAL_CMGETAPI( "VishFileTransferGetFileInfo" ) 
-	#define CAL_VishFileTransferGetFileInfo  VishFileTransferGetFileInfo
-	#define CHK_VishFileTransferGetFileInfo  TRUE
-	#define EXP_VishFileTransferGetFileInfo  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VishFileTransferGetFileInfo", (RTS_UINTPTR)VishFileTransferGetFileInfo, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpVisuHandlerVishFileTransferGetFileInfo
-	#define EXT_CmpVisuHandlerVishFileTransferGetFileInfo
-	#define GET_CmpVisuHandlerVishFileTransferGetFileInfo  ERR_OK
-	#define CAL_CmpVisuHandlerVishFileTransferGetFileInfo  VishFileTransferGetFileInfo
-	#define CHK_CmpVisuHandlerVishFileTransferGetFileInfo  TRUE
-	#define EXP_CmpVisuHandlerVishFileTransferGetFileInfo  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_VishFileTransferGetFileInfo
-	#define EXT_VishFileTransferGetFileInfo
-	#define GET_VishFileTransferGetFileInfo(fl)  CAL_CMGETAPI( "VishFileTransferGetFileInfo" ) 
-	#define CAL_VishFileTransferGetFileInfo  VishFileTransferGetFileInfo
-	#define CHK_VishFileTransferGetFileInfo  TRUE
-	#define EXP_VishFileTransferGetFileInfo  CAL_CMEXPAPI( "VishFileTransferGetFileInfo" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_VishFileTransferGetFileInfo  PFVISHFILETRANSFERGETFILEINFO pfVishFileTransferGetFileInfo;
-	#define EXT_VishFileTransferGetFileInfo  extern PFVISHFILETRANSFERGETFILEINFO pfVishFileTransferGetFileInfo;
-	#define GET_VishFileTransferGetFileInfo(fl)  s_pfCMGetAPI2( "VishFileTransferGetFileInfo", (RTS_VOID_FCTPTR *)&pfVishFileTransferGetFileInfo, (fl), 0, 0)
-	#define CAL_VishFileTransferGetFileInfo  pfVishFileTransferGetFileInfo
-	#define CHK_VishFileTransferGetFileInfo  (pfVishFileTransferGetFileInfo != NULL)
-	#define EXP_VishFileTransferGetFileInfo   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"VishFileTransferGetFileInfo", (RTS_UINTPTR)VishFileTransferGetFileInfo, 0, 0) 
-#endif
-
-
 /********************************************************************************
 * END Interface to Visualisationclients
 ********************************************************************************/
@@ -1956,10 +1747,11 @@ typedef RTS_RESULT (CDECL * PFVISHFILETRANSFERGETFILEINFO) (const char* pszFileN
 * END: Function definitions that could be called via IPC
 *********************************************************************************/
 
-
 #ifdef __cplusplus
 }
 #endif
+
+
 
 
 typedef struct

@@ -4,28 +4,12 @@
  *	Interface of the garbage collector, that detects memory leaks and memory overwrite operations.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpMemGC')
 
 REF_ITF(`CMUtilsItf.m4')
-REF_ITF(`CMUtilsHashItf.m4')
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- *	Enable CheckBounds check in comm cycle hook
- *	this leads to additional load if components or applications allocate a lot of dynamic memory
- *  (or if there is a memory leak somewhere)
- * </description>
- */
-#define ENABLE_CYCLIC_MEMGC_CHECK							"EnableCyclicMemGcCheck"
-#define ENABLE_CYCLIC_MEMGC_CHECK_DEFAULT					0
-
 
 typedef struct GARBAGE_COLLECTORtag *PGARBAGE_COLLECTOR;
 
@@ -44,9 +28,6 @@ typedef struct GARBAGE_COLLECTORtag
 	PGARBAGE_COLLECTOR pprev;
 	PGARBAGE_COLLECTOR pnext;
 	RTS_SIZE ulSize;
-#ifndef CMUTILSHASH_NOTIMPLEMENTED
-    CMUtlHashEntry hashEntry;
-#endif
 	RTS_UI8 Mem;
 } GARBAGE_COLLECTOR;
 
@@ -74,15 +55,6 @@ DEF_ITF_API(`RTS_SIZE',`CDECL',`MemGCGetSize',`(RTS_SIZE ulSize)')
 
 /**
  * <description>
- *	Routine to get total size of the currently allocated heap memory.
- * </description>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Size of the memory in bytes that is currently allocated from the heap</result>
- */
-DEF_ITF_API(`RTS_SIZE',`CDECL',`MemGCGetCurrentHeapSize',`(RTS_RESULT *pResult)')
-
-/**
- * <description>
  *	Routine to add a new heap memblock to the garbage collector.	
  * </description>
  * <param name="pszComponentName" type="IN">Component name, that allocates the memory</param>
@@ -98,7 +70,7 @@ DEF_ITF_API(`void *',`CDECL',`MemGCAdd',`(char *pszComponentName, void *pMem, RT
  * </description>
  * <param name="pszComponentName" type="IN">Component name, that allocates the memory</param>
  * <param name="pMem" type="IN">Pointer to the memory data block</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
+ * <param name="ulSizeGc" type="IN">Size of the memory block including the garbage collection overhead (see result of MemGCGetSize)</param>
  * <result>Pointer to the memory block to free</result>
  */
 DEF_ITF_API(`void *',`CDECL',`MemGCRemove',`(char *pszComponentName, void *pMem, RTS_RESULT *pResult)')

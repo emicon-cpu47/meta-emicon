@@ -23,10 +23,6 @@ Modules
 
 - :ref:`DeviceID mask <group___sys_target_itf___device_i_dmask>`
 
-- :ref:`Event parameter <group___sys_target_itf___eventparameter>`
-
-- :ref:`Events <group___sys_target_itf___events>`
-
 - :ref:`Max device name length <group___sys_target_itf___maxdevicenamelength>`
 
 - :ref:`Max node name length <group___sys_target_itf___maxnodenamelength>`
@@ -189,10 +185,6 @@ Functions
 
 - RTS_RESULT :ref:`SysTargetCheckIdent <group___sys_target_itf_1ga0a47b20982061858c1314cc617badd8f>` (:ref:`SysTargetIdent <group___sys_target_itf___sys_targetidentification_1ga9185ae35ee0e94a183c1b725c5c55235>` * pTargetIdentReq, :ref:`SysTargetIdent <group___sys_target_itf___sys_targetidentification_1ga9185ae35ee0e94a183c1b725c5c55235>` * pTargetIdent)
 
-- RTS_RESULT :ref:`SysTargetGetAPI <group___sys_target_itf_1gaaf8d2d45621a98a319fe15e23431f621>` (:ref:`API_RESOLVE_INFO <group___c_m_itf___api_resolve_info_1gab9565a2863d19785c9b52114ceafe72f>`  apiInfo, RTS_VOID_FCTPTR * ppfAPIFunction)
-
-- RTS_RESULT :ref:`SysTargetSetNodeName <group___sys_target_itf_1ga25f49ebea17f5b5568187e4f3d2533e7>` (RTS_WCHAR * pwszName)
-
 .. _group___sys_target_itf-details:
 
 Detailed Description
@@ -204,7 +196,7 @@ The SysTarget interface is projected to get access to target specific informatio
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -473,15 +465,15 @@ Get a human readable name that identifies this node in the network.
 
 IMPLEMENTATION NOTES:
 
-This node name, which is for example displayed in the CODESYS communication dialog scanning all targets, should be unique by default. In first instance this could be the registered host name of the target in the network. Another approach ist to add the official serial number (e.g. "MyController_1234-5678") or the IP-Address of the controller, which is most of the time unique (e.g. "MyController_192.168.123.234") as part of the node name. This requirement focused on the use case where an end user takes several identical controllers of one vendor and plugs at once into his plant or machine. And so every controller should show up in the commuication dialog at a scan with a unique node name. Furthermore this is important to allow a client to connect by using the node name. The length is limited to SYSTARGET_MAX_NODE_NAME_LEN.
+This node name, which is for example displayed in the CODESYS communication dialog scanning all targets, should be unique by default. In first instance this could be the registered host name of the target in the network. Another approach ist to add the official serial number (e.g. "MyController_1234-5678") or the IP-Address of the controller, which is most of the time unique (e.g. "MyController_192.168.123.234") as part of the node name. This requirement focused on the use case where an end user takes several identical controllers of one vendor and plugs at once into his plant or machine. And so every controller should show up in the commuication dialog at a scan with a unique nodename. Furthermore this is important to allow a client to connect by using the node name. The length is limited to SYSTARGET_MAX_NODE_NAME_LEN.
 
 **Parameters**
 
-+---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pwszName    | Buffer that is filled with the name of the node. Type is UTF-16. RANGE=[0,VALID_NAME,INVALID_NAME]                                                                                             |
-+---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [inout] | pnMaxLength | Pointer to maximum length in 16-bit code units (not bytes!). Returns the number of 16-bit code units copied into the buffer including the trailing zero. RANGE=[0,VALID_LENGTH,INVALID_LENGTH] |
-+---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pwszName    | Buffer that is filled with the name of the node. Type is 2 byte unicode! RANGE=[0,VALID_NAME,INVALID_NAME]                                                                                       |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pnMaxLength | Pointer to maximum length in unicode characters (not bytes!). Returns the number of unicode characters copied into the buffer including the trailing zero. RANGE=[0,VALID_LENGTH,INVALID_LENGTH] |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Return values**
 
@@ -506,11 +498,11 @@ Get a human readable name for the target. This can be configured by the name set
 
 **Parameters**
 
-+---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pwszName    | Buffer that is filled with the name of the node. Type is UTF-16. Can be NULL to get the necessary length. RANGE=[0,VALID_NAME,INVALID_NAME]                                                    |
-+---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [inout] | pnMaxLength | Pointer to maximum length in 16-bit code units (not bytes!). Returns the number of 16-bit code units copied into the buffer including the trailing zero. RANGE=[0,VALID_LENGTH,INVALID_LENGTH] |
-+---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pwszName    | Buffer that is filled with the name of the node. Can be NULL to get the necessary length. RANGE=[0,VALID_NAME,INVALID_NAME]                                                                      |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pnMaxLength | Pointer to maximum length in unicode characters (not bytes!). Returns the number of unicode characters copied into the buffer including the trailing zero. RANGE=[0,VALID_LENGTH,INVALID_LENGTH] |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Return values**
 
@@ -628,15 +620,15 @@ The device name is for example displayed in the CODESYS communication dialog sca
 
 IMPLEMENTATION NOTES:
 
-The length is limited to SYSTARGET_MAX_DEVICE_NAME_LEN. But it is strongly recommended to avoid device names with more than 50 16-bit code units including NULL termination, because there exist use cases which can handle only this shorter length.
+The length is limited to SYSTARGET_MAX_DEVICE_NAME_LEN. But it is strongly recommended to avoid device names with more than 50 wide-char characters including NULL termination, because there exist use cases which can handle only this shorter length.
 
 **Parameters**
 
-+---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [inout] | pwszName    | Pointer to the device name. Type is UTF-16. Can be NULL to get the necessary length. RANGE=[0,INVALID_NAME,VALID_NAME]                                                                                     |
-+---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [inout] | pnMaxLength | Pointer to maximum length of the name in 16-bit code units (not bytes!). Returns the number of 16-bit code units copied into the buffer including the trailing zero. RANGE=[0,INVALID_LENGTH,VALID_LENGTH] |
-+---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pwszName    | Pointer to the device name. Can be NULL to get the necessary length. RANGE=[0,INVALID_NAME,VALID_NAME]                                                                                                       |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pnMaxLength | Pointer to maximum length of the name in unicode characters (not bytes!). Returns the number of unicode characters copied into the buffer including the trailing zero. RANGE=[0,INVALID_LENGTH,VALID_LENGTH] |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Return values**
 
@@ -663,15 +655,15 @@ The vendor name is for example displayed in the CODESYS communication dialog sca
 
 IMPLEMENTATION NOTES:
 
-The length is limited to SYSTARGET_MAX_VENDOR_NAME_LEN. But it is strongly recommended to avoid device names with more than 50 16-bit code units including NULL termination, because there exist use cases which can handle only this shorter length.
+The length is limited to SYSTARGET_MAX_VENDOR_NAME_LEN. But it is strongly recommended to avoid device names with more than 50 wide-char characters including NULL termination, because there exist use cases which can handle only this shorter length.
 
 **Parameters**
 
-+---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [inout] | pwszName    | Pointer to the device name. Type is UTF-16. Can be NULL to get the necessary length. RANGE=[0,INVALID_NAME,VALID_NAME]                                                                                     |
-+---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [inout] | pnMaxLength | Pointer to maximum length of the name in 16-bit code units (not bytes!). Returns the number of 16-bit code units copied into the buffer including the trailing zero. RANGE=[0,INVALID_LENGTH,VALID_LENGTH] |
-+---------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pwszName    | Pointer to the device name. Can be NULL to get the necessary length. RANGE=[0,INVALID_NAME,VALID_NAME]                                                                                                       |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pnMaxLength | Pointer to maximum length of the name in unicode characters (not bytes!). Returns the number of unicode characters copied into the buffer including the trailing zero. RANGE=[0,INVALID_LENGTH,VALID_LENGTH] |
++---------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Return values**
 
@@ -746,7 +738,7 @@ error code
 RTS_RESULT SysTargetGetSerialNumber (char **ppszSerialNumber, RTS_I32 *pnMaxLen)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Returns a unique serial number of the target. Unique serial number can be used e.g. for detection or communication needs (e. g. as part of node name).
+Returns a unique serial number of the target. Unique serial number can be used e.g. for detection or communication needs (e. g. as part of nodename).
 
 IMPLEMENTATION NOTES:
 
@@ -925,78 +917,6 @@ error code
 +----------------------+--------------------------------------------+
 | ERR_VERSION_MISMATCH | Version mismatch. Versions not compatible! |
 +----------------------+--------------------------------------------+
-
-.. _group___sys_target_itf_1gaaf8d2d45621a98a319fe15e23431f621:
-
-RTS_RESULT SysTargetGetAPI (API_RESOLVE_INFO apiInfo, RTS_VOID_FCTPTR *ppfAPIFunction)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This function is called for all external function calls and can be used to overload external functions.
-
-IMPLEMENTATION NOTES:
-
-The OEM can use the implementation in SysTargetOEM to redirect or disable specific functions.
-
-**Parameters**
-
-+---------+----------------+-------------------------------------------------+
-| [in]    | apiInfo        | API info of the current API function to resolve |
-+---------+----------------+-------------------------------------------------+
-| [inout] | ppfAPIFunction | Pointer to API functionpointer                  |
-+---------+----------------+-------------------------------------------------+
-
-**Return values**
-
-+--------------------+----------------------------------------------------------------------------------------+
-| ERR_OK             | API function successfully redirected to the function thatppfAPIFunction is pointing to |
-+--------------------+----------------------------------------------------------------------------------------+
-| ERR_NOT_SUPPORTED  | API function is disabled for external calls. Unresolved reference will occur.          |
-+--------------------+----------------------------------------------------------------------------------------+
-| ERR_PARAMETER      | Pointer to API functionpointer is NULL                                                 |
-+--------------------+----------------------------------------------------------------------------------------+
-| ERR_FAILED         | API function is not overloaded or redirected by SysTargetGetAPI                        |
-+--------------------+----------------------------------------------------------------------------------------+
-| ERR_NOTIMPLEMENTED | No implementation to resolve the API                                                   |
-+--------------------+----------------------------------------------------------------------------------------+
-
-**Returns:**
-
-error code
-
-.. _group___sys_target_itf_1ga25f49ebea17f5b5568187e4f3d2533e7:
-
-RTS_RESULT SysTargetSetNodeName (RTS_WCHAR *pwszName)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Set a human readable name that identifies this device in the network. The length is limited to SYSTARGET_MAX_NODE_NAME_LEN. By passing an empty string, the node name settings are deleted and so the default node name is set again.
-
-**Parameters**
-
-+---------+----------+------------------------------------------------------------------+
-| [in]    | pwszName | Buffer that is filled with the name of the node. Type is UTF-16. |
-+---------+----------+------------------------------------------------------------------+
-
-**Return values**
-
-+----------------------+------------------------------------------------------+
-| ERR_OK               | Node name was set sucessfully                        |
-+----------------------+------------------------------------------------------+
-| ERR_PARAMETER        | Pointer to name may not be null                      |
-+----------------------+------------------------------------------------------+
-| ERR_OUT_OF_LIMITS    | Length of name exceeds SYSTARGET_MAX_NODE_NAME_LEN   |
-+----------------------+------------------------------------------------------+
-| ERR_NO_ACCESS_RIGHTS | Configuration (file) is write protected              |
-+----------------------+------------------------------------------------------+
-| ERR_NOT_SUPPORTED    | Device does not support to store the node name       |
-+----------------------+------------------------------------------------------+
-| ERR_OPERATION_DENIED | OEM implementation has denied to store the node name |
-+----------------------+------------------------------------------------------+
-| ERR_FAILED           | Name could not be set because of unknown reason      |
-+----------------------+------------------------------------------------------+
-
-**Returns:**
-
-error code
 
 .. last line of group.rst template
 .. last line of composition.rst template

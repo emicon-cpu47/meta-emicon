@@ -5,9 +5,7 @@
  *	of a system. This is the system interface typically for the CoDeSys target visualization.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -49,12 +47,8 @@
 #define	TF_ELLIPSIS						0x00000200
 #define	TF_SAVE_PREVIOUS_POSITION		0x00000400		/* See comment of VISU_DTF_SAVE_PREVIOUS_POSITION in library VisuElemBase. */
 #define	TF_USE_PREVIOUS_POSITION		0x00000800		/* See comment of VISU_DTF_USE_PREVIOUS_POSITION  in library VisuElemBase. */
-#define TF_IGNORE_VERTICAL_ALIGNMENT	0x00001000
-#define TF_DONT_MODIFY_TEXT_RECT		0x00002000		
 #define TF_BGELEM						0x80000000
 #define TF_WSTRING						0x40000000
-#define TF_MEASURE_ALL					0x00002000		/* Can be used for SysGraphicGetTextExtent: Whole text will be measured and not stopped at first linebreak. */
-#define TF_ANTIALIASING_INACTIVE		0x00004000		/* A special flag, used to deactivate the antialiasing feature temporarily */
 
 /**
  * <category>Font style</category>
@@ -117,7 +111,6 @@
 #define LINEJOIN_MITER		0x0000	/* default-value: sharp line join */
 #define LINEJOIN_BEVEL		0x0001  /* flatened line join */
 #define LINEJOIN_ROUND		0x0002  /* round line join */
-#define LINEJOIN_MITER_NEW	0x0003  /* new default-value */
 
 /**
  * <category>Brush style</category>
@@ -236,31 +229,16 @@
  * <category>Settings</category>
  * <type>Int</type>
  * <description>
- *	Typically PNG images including palette information are converted during loading into flat RGB pixels. This costs
- *  more memory but typically yields better performance when the image is drawn.
- *	If performance is not an issue but the addtional memory consumption of such PNG images (compared to BMP) is, then
- *	this setting can be set to 1.
- * </description>
- */	
-#define SYSGRAPHIC_WIN32_PNG_LOADPALETTE_ASPALETTE					"Win32.LoadPNGImagesPalette" 
-#ifndef SYSGRAPHIC_WIN32_PNG_LOADPALETTE_ASPALETTE_DEFAULT
-	#define SYSGRAPHIC_WIN32_PNG_LOADPALETTE_ASPALETTE_DEFAULT				0
-#endif
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- *  Only relevant for Windows CE: Defines the way how rectangles are drawn.
- *  Starting with 3.5 SP 1 the height and the width of rectangles are decremented by 1, due to a wrong bugfix (paint bug when drawing and invalidating 
- *  rectangles with bar meters, where the origin of the bug was a wrong invalidation and not wrong painting of the rectangles)
- *  Before 3.5 SP 1 the rectangles are drawn correctly.
- *  The default value is 1 to use the correct behaviour before 3.5 SP 1
+ *	Windows CE: when drawing and invalidating rectangles, CE draws slightly differently from XP/7 (1 pixel too much at the right and bottom)
+ *  This causes paint bugs when invalidating is perfectly optimized, e.g with bar meters
+ *  This has been fixed in version 3.5 SP 1 
+ *  This setting can be used to use the old code for drawing (one pixel more at the right and bottom)
+ *	default value is 0 (use the new code)
  * </description>
  */	
 #define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD					"WinCE.UseOldDrawRectMethod" 
 #ifndef SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD_DEFAULT
-	#define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD_DEFAULT				1
+	#define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD_DEFAULT				0
 #endif
 
 /**
@@ -269,16 +247,12 @@
  * <description>
  *  Same as "WinCE.UseOldDrawRectMethod" but not for rectangles without frame.
  *  This might be necessary on CE5 panels as the rectangle is drawn different.
- *	default value is 0. For Windows CE 6 the default value needs to be 1, because
- *  without this active setting rectangles without frame are not drawn correctly
+ *	default value is 0
  * </description>
  */	
 #define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5				"WinCE.UseOldDrawRectMethodCE5" 
 #ifndef SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULT
 	#define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULT				0
-#endif
-#ifndef SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULTCE6
-	#define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULTCE6				1
 #endif
 
 /**
@@ -294,11 +268,7 @@
  */	
 #define SYSGRAPHIC_WINGDIPLUS_USESVGPROXY				"WinGDIPlus.UseSVGProxy" 
 #ifndef SYSGRAPHIC_WINGDIPLUS_USESVGPROXY_DEFAULT
-	#ifdef TRG_64BIT
-		#define SYSGRAPHIC_WINGDIPLUS_USESVGPROXY_DEFAULT	1
-	#else
-		#define SYSGRAPHIC_WINGDIPLUS_USESVGPROXY_DEFAULT	0
-	#endif	
+	#define SYSGRAPHIC_WINGDIPLUS_USESVGPROXY_DEFAULT	0
 #endif
 
 typedef struct
@@ -533,7 +503,7 @@ typedef RTS_RESULT (CDECL * PFSYSGRAPHICGETDEVICECONTEXT) (RTS_HANDLE hWindow, R
 /**
  * <description>Release a device context that has been retrieved using <see>SysGraphicGetDeviceContext</see></description>
  * <param name="hWindow" type="IN">Handle to the actual window</param>
- * <param name="hDC" type="IN">Handle to the device context</param>
+ * <param name="hDC" type="In">Handle to the device context</param>
  * <result>error code</result>
  */
 RTS_RESULT CDECL SysGraphicReleaseDeviceContext(RTS_HANDLE hWindow, RTS_HANDLE hDC);
@@ -653,7 +623,7 @@ typedef RTS_RESULT (CDECL * PFSYSGRAPHICGETDEVICECONTEXTFORWINDOWDEVICECONTEXT) 
 /**
  * <description>Release a device context that has been retrieved using <see>SysGraphicGetDeviceContextForWindowDeviceContext</see></description>
  * <param name="hWindow" type="IN">Handle to the actual window</param>
- * <param name="hDC" type="IN">Handle to the device context</param>
+ * <param name="hDC" type="In">Handle to the device context</param>
  * <result>error code</result>
  */
 RTS_RESULT CDECL SysGraphicReleaseDeviceContextForWindowDeviceContext(RTS_HANDLE hWindow, RTS_HANDLE hDC);
@@ -1368,13 +1338,9 @@ typedef RTS_RESULT (CDECL * PFSYSGRAPHICGETTEXTMETRICS) (RTS_HANDLE hDC, SYS_TEX
 
 /**
  * <description>
- *	Function to calculate the size of a given text with the currently selected font. 
- *  Use case (1): The function will treat the string as a single line string, 
- *  ie. it will cut the string after a possible linefeed and calculate the size of the first line only!
- *  Use case (2): The string will be formated and measured as defined by it's ulDrawFlags.
- *  Here, also text with flag TF_LINEBREAK will be measured, as it will be drawn.
- *  For using this case, the flag TF_MEASURE_ALL has to be used additional.
- *  And the paint rectangle size has to be forwarded by using pSize.
+ *	Function to calculate the size of a given text with the currently selected font. The function will treat
+ *	the string as a single line string, ie. it will cut the string after a possible linefeed and calculate the
+ *	size of the first line only!Get the system metrics of a device context
  * </description>
  * <param name="hDC" type="IN">Handle to device context</param>
  * <param name="pszText" type="IN">Will be either:
@@ -1485,61 +1451,6 @@ typedef RTS_RESULT (CDECL * PFSYSGRAPHICGETFONTHEIGHT) (RTS_HANDLE hDC, RTS_I16*
 	#define CAL_SysGraphicGetFontHeight  pfSysGraphicGetFontHeight
 	#define CHK_SysGraphicGetFontHeight  (pfSysGraphicGetFontHeight != NULL)
 	#define EXP_SysGraphicGetFontHeight   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysGraphicGetFontHeight", (RTS_UINTPTR)SysGraphicGetFontHeight, 0, 0) 
-#endif
-
-
-/**
- * <description>
- *  Function to get the handle of the currently selected font.
- * </description>
- * <param name="hDC" type="IN">Handle to device context</param>
- * <param name="phFont" type="OUT"> Pointer to get the font handle</param>
- * <result>error code</result>
- */
-RTS_RESULT CDECL SysGraphicGetFontHandle(RTS_HANDLE hDC, RTS_HANDLE* phFont);
-typedef RTS_RESULT (CDECL * PFSYSGRAPHICGETFONTHANDLE) (RTS_HANDLE hDC, RTS_HANDLE* phFont);
-#if defined(SYSGRAPHIC_NOTIMPLEMENTED) || defined(SYSGRAPHICGETFONTHANDLE_NOTIMPLEMENTED)
-	#define USE_SysGraphicGetFontHandle
-	#define EXT_SysGraphicGetFontHandle
-	#define GET_SysGraphicGetFontHandle(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysGraphicGetFontHandle(p0,p1) (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysGraphicGetFontHandle  FALSE
-	#define EXP_SysGraphicGetFontHandle  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysGraphicGetFontHandle
-	#define EXT_SysGraphicGetFontHandle
-	#define GET_SysGraphicGetFontHandle(fl)  CAL_CMGETAPI( "SysGraphicGetFontHandle" ) 
-	#define CAL_SysGraphicGetFontHandle  SysGraphicGetFontHandle
-	#define CHK_SysGraphicGetFontHandle  TRUE
-	#define EXP_SysGraphicGetFontHandle  CAL_CMEXPAPI( "SysGraphicGetFontHandle" ) 
-#elif defined(MIXED_LINK) && !defined(SYSGRAPHIC_EXTERNAL)
-	#define USE_SysGraphicGetFontHandle
-	#define EXT_SysGraphicGetFontHandle
-	#define GET_SysGraphicGetFontHandle(fl)  CAL_CMGETAPI( "SysGraphicGetFontHandle" ) 
-	#define CAL_SysGraphicGetFontHandle  SysGraphicGetFontHandle
-	#define CHK_SysGraphicGetFontHandle  TRUE
-	#define EXP_SysGraphicGetFontHandle  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysGraphicGetFontHandle", (RTS_UINTPTR)SysGraphicGetFontHandle, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysGraphicSysGraphicGetFontHandle
-	#define EXT_SysGraphicSysGraphicGetFontHandle
-	#define GET_SysGraphicSysGraphicGetFontHandle  ERR_OK
-	#define CAL_SysGraphicSysGraphicGetFontHandle  SysGraphicGetFontHandle
-	#define CHK_SysGraphicSysGraphicGetFontHandle  TRUE
-	#define EXP_SysGraphicSysGraphicGetFontHandle  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysGraphicGetFontHandle
-	#define EXT_SysGraphicGetFontHandle
-	#define GET_SysGraphicGetFontHandle(fl)  CAL_CMGETAPI( "SysGraphicGetFontHandle" ) 
-	#define CAL_SysGraphicGetFontHandle  SysGraphicGetFontHandle
-	#define CHK_SysGraphicGetFontHandle  TRUE
-	#define EXP_SysGraphicGetFontHandle  CAL_CMEXPAPI( "SysGraphicGetFontHandle" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysGraphicGetFontHandle  PFSYSGRAPHICGETFONTHANDLE pfSysGraphicGetFontHandle;
-	#define EXT_SysGraphicGetFontHandle  extern PFSYSGRAPHICGETFONTHANDLE pfSysGraphicGetFontHandle;
-	#define GET_SysGraphicGetFontHandle(fl)  s_pfCMGetAPI2( "SysGraphicGetFontHandle", (RTS_VOID_FCTPTR *)&pfSysGraphicGetFontHandle, (fl), 0, 0)
-	#define CAL_SysGraphicGetFontHandle  pfSysGraphicGetFontHandle
-	#define CHK_SysGraphicGetFontHandle  (pfSysGraphicGetFontHandle != NULL)
-	#define EXP_SysGraphicGetFontHandle   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysGraphicGetFontHandle", (RTS_UINTPTR)SysGraphicGetFontHandle, 0, 0) 
 #endif
 
 
@@ -1890,16 +1801,16 @@ typedef RTS_RESULT (CDECL * PFSYSGRAPHICCREATEPATTERNBRUSH) (RTS_HANDLE hDC, RTS
  * <param name="ulLineColor" type="IN">Line color.  Defined in IEC-Code for Visualization</param>
  * <param name="nLineCapFlag" type="IN">Line cap.  Defined in IEC-Code for Visualization</param>
  * <param name="nLineJoinFlag" type="IN">Line join.  Defined in IEC-Code for Visualization</param>
- * <param name="rMiterLimit" type="IN">Miter limit.  Defined in IEC-Code for Visualization</param>
+ * <param name="nMiterLimit" type="IN">Miter limit.  Defined in IEC-Code for Visualization</param>
  * <param name="phPen" type="OUT">Pointer to get the pen handle</param>
  * <result>error code</result>
  */
 RTS_RESULT CDECL SysGraphicCreatePenDetailed(RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, 
 										RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, 
-										RTS_REAL32 rMiterLimit, RTS_HANDLE* phPen);
+										RTS_I16 nMiterLimit, RTS_HANDLE* phPen);
 typedef RTS_RESULT (CDECL * PFSYSGRAPHICCREATEPENDETAILED) (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, 
 										RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, 
-										RTS_REAL32 rMiterLimit, RTS_HANDLE* phPen);
+										RTS_I16 nMiterLimit, RTS_HANDLE* phPen);
 #if defined(SYSGRAPHIC_NOTIMPLEMENTED) || defined(SYSGRAPHICCREATEPENDETAILED_NOTIMPLEMENTED)
 	#define USE_SysGraphicCreatePenDetailed
 	#define EXT_SysGraphicCreatePenDetailed
@@ -3250,62 +3161,6 @@ typedef RTS_RESULT (CDECL * PFSYSGRAPHICRESETINVALIDATION) (RTS_HANDLE hDC);
 
 
 /**
- * <description>This function is optional, just as <see>SysGraphicInvalidateRectangle</see>, but should be implemented, if <see>SysGraphicInvalidateRectangle</see> is
- *  implemented. It will be called when the whole client area should be invalidated.</description>
- * <param name="hDC" type="IN">A handle to the device context.</param>
- * <result>An error code</result>
-*/
-RTS_RESULT CDECL SysGraphicInvalidateClientArea(RTS_HANDLE hDC);
-typedef RTS_RESULT (CDECL * PFSYSGRAPHICINVALIDATECLIENTAREA) (RTS_HANDLE hDC);
-#if defined(SYSGRAPHIC_NOTIMPLEMENTED) || defined(SYSGRAPHICINVALIDATECLIENTAREA_NOTIMPLEMENTED)
-	#define USE_SysGraphicInvalidateClientArea
-	#define EXT_SysGraphicInvalidateClientArea
-	#define GET_SysGraphicInvalidateClientArea(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysGraphicInvalidateClientArea(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysGraphicInvalidateClientArea  FALSE
-	#define EXP_SysGraphicInvalidateClientArea  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysGraphicInvalidateClientArea
-	#define EXT_SysGraphicInvalidateClientArea
-	#define GET_SysGraphicInvalidateClientArea(fl)  CAL_CMGETAPI( "SysGraphicInvalidateClientArea" ) 
-	#define CAL_SysGraphicInvalidateClientArea  SysGraphicInvalidateClientArea
-	#define CHK_SysGraphicInvalidateClientArea  TRUE
-	#define EXP_SysGraphicInvalidateClientArea  CAL_CMEXPAPI( "SysGraphicInvalidateClientArea" ) 
-#elif defined(MIXED_LINK) && !defined(SYSGRAPHIC_EXTERNAL)
-	#define USE_SysGraphicInvalidateClientArea
-	#define EXT_SysGraphicInvalidateClientArea
-	#define GET_SysGraphicInvalidateClientArea(fl)  CAL_CMGETAPI( "SysGraphicInvalidateClientArea" ) 
-	#define CAL_SysGraphicInvalidateClientArea  SysGraphicInvalidateClientArea
-	#define CHK_SysGraphicInvalidateClientArea  TRUE
-	#define EXP_SysGraphicInvalidateClientArea  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysGraphicInvalidateClientArea", (RTS_UINTPTR)SysGraphicInvalidateClientArea, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysGraphicSysGraphicInvalidateClientArea
-	#define EXT_SysGraphicSysGraphicInvalidateClientArea
-	#define GET_SysGraphicSysGraphicInvalidateClientArea  ERR_OK
-	#define CAL_SysGraphicSysGraphicInvalidateClientArea pISysGraphic->ISysGraphicInvalidateClientArea
-	#define CHK_SysGraphicSysGraphicInvalidateClientArea (pISysGraphic != NULL)
-	#define EXP_SysGraphicSysGraphicInvalidateClientArea  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysGraphicInvalidateClientArea
-	#define EXT_SysGraphicInvalidateClientArea
-	#define GET_SysGraphicInvalidateClientArea(fl)  CAL_CMGETAPI( "SysGraphicInvalidateClientArea" ) 
-	#define CAL_SysGraphicInvalidateClientArea pISysGraphic->ISysGraphicInvalidateClientArea
-	#define CHK_SysGraphicInvalidateClientArea (pISysGraphic != NULL)
-	#define EXP_SysGraphicInvalidateClientArea  CAL_CMEXPAPI( "SysGraphicInvalidateClientArea" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysGraphicInvalidateClientArea  PFSYSGRAPHICINVALIDATECLIENTAREA pfSysGraphicInvalidateClientArea;
-	#define EXT_SysGraphicInvalidateClientArea  extern PFSYSGRAPHICINVALIDATECLIENTAREA pfSysGraphicInvalidateClientArea;
-	#define GET_SysGraphicInvalidateClientArea(fl)  s_pfCMGetAPI2( "SysGraphicInvalidateClientArea", (RTS_VOID_FCTPTR *)&pfSysGraphicInvalidateClientArea, (fl), 0, 0)
-	#define CAL_SysGraphicInvalidateClientArea  pfSysGraphicInvalidateClientArea
-	#define CHK_SysGraphicInvalidateClientArea  (pfSysGraphicInvalidateClientArea != NULL)
-	#define EXP_SysGraphicInvalidateClientArea  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysGraphicInvalidateClientArea", (RTS_UINTPTR)SysGraphicInvalidateClientArea, 0, 0) 
-#endif
-
-
-
-
-
-/**
  * <description>Creates an affine transformation object. 
  *	Such transformations can be used for client local animations (eg. when
  *	displaying the preview of multitouch gestures) or for drawing transformed elements (eg. rotated images or text).
@@ -3461,14 +3316,14 @@ typedef RTS_RESULT (CDECL * PFSYSGRAPHICFREETRANSFORMATION) (RTS_HANDLE hTransfo
 	#define USE_SysGraphicSysGraphicFreeTransformation
 	#define EXT_SysGraphicSysGraphicFreeTransformation
 	#define GET_SysGraphicSysGraphicFreeTransformation  ERR_OK
-	#define CAL_SysGraphicSysGraphicFreeTransformation(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysGraphic*)p0)->ISysGraphicFreeTransformation())
+	#define CAL_SysGraphicSysGraphicFreeTransformation(p0) ((ISysGraphic*)p0)->ISysGraphicFreeTransformation()
 	#define CHK_SysGraphicSysGraphicFreeTransformation  TRUE
 	#define EXP_SysGraphicSysGraphicFreeTransformation  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysGraphicFreeTransformation
 	#define EXT_SysGraphicFreeTransformation
 	#define GET_SysGraphicFreeTransformation(fl)  CAL_CMGETAPI( "SysGraphicFreeTransformation" ) 
-	#define CAL_SysGraphicFreeTransformation(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysGraphic*)p0)->ISysGraphicFreeTransformation())
+	#define CAL_SysGraphicFreeTransformation(p0) ((ISysGraphic*)p0)->ISysGraphicFreeTransformation()
 	#define CHK_SysGraphicFreeTransformation  TRUE
 	#define EXP_SysGraphicFreeTransformation  CAL_CMEXPAPI( "SysGraphicFreeTransformation" ) 
 #else /* DYNAMIC_LINK */
@@ -3764,122 +3619,6 @@ typedef RTS_HANDLE (CDECL * PFSYSGRAPHICGETACTIVETRANSFORMATION) (RTS_HANDLE hdc
 
 
 
-/**
- * <description>Creates a new affine transformation object that is a copy of an existing affine transformation object.</description>
- * <param name="hTransform" type="IN">A handle to the object to clone.</param>	
- * <param name="pResult" type="OUT">Optional pointer to error code.</param>
- * <result>A handle to the created transformation object or RTS_INVALID_HANDLE if there was an error.</result>
-*/ 
-RTS_HANDLE CDECL SysGraphicCloneTransformation(RTS_HANDLE hTransform, RTS_RESULT* pResult);
-typedef RTS_HANDLE (CDECL * PFSYSGRAPHICCLONETRANSFORMATION) (RTS_HANDLE hTransform, RTS_RESULT* pResult);
-#if defined(SYSGRAPHIC_NOTIMPLEMENTED) || defined(SYSGRAPHICCLONETRANSFORMATION_NOTIMPLEMENTED)
-	#define USE_SysGraphicCloneTransformation
-	#define EXT_SysGraphicCloneTransformation
-	#define GET_SysGraphicCloneTransformation(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysGraphicCloneTransformation(p0,p1)  (RTS_HANDLE)RTS_INVALID_HANDLE
-	#define CHK_SysGraphicCloneTransformation  FALSE
-	#define EXP_SysGraphicCloneTransformation  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysGraphicCloneTransformation
-	#define EXT_SysGraphicCloneTransformation
-	#define GET_SysGraphicCloneTransformation(fl)  CAL_CMGETAPI( "SysGraphicCloneTransformation" ) 
-	#define CAL_SysGraphicCloneTransformation  SysGraphicCloneTransformation
-	#define CHK_SysGraphicCloneTransformation  TRUE
-	#define EXP_SysGraphicCloneTransformation  CAL_CMEXPAPI( "SysGraphicCloneTransformation" ) 
-#elif defined(MIXED_LINK) && !defined(SYSGRAPHIC_EXTERNAL)
-	#define USE_SysGraphicCloneTransformation
-	#define EXT_SysGraphicCloneTransformation
-	#define GET_SysGraphicCloneTransformation(fl)  CAL_CMGETAPI( "SysGraphicCloneTransformation" ) 
-	#define CAL_SysGraphicCloneTransformation  SysGraphicCloneTransformation
-	#define CHK_SysGraphicCloneTransformation  TRUE
-	#define EXP_SysGraphicCloneTransformation  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysGraphicCloneTransformation", (RTS_UINTPTR)SysGraphicCloneTransformation, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysGraphicSysGraphicCloneTransformation
-	#define EXT_SysGraphicSysGraphicCloneTransformation
-	#define GET_SysGraphicSysGraphicCloneTransformation  ERR_OK
-	#define CAL_SysGraphicSysGraphicCloneTransformation  ((ISysGraphic*)s_pfCMCreateInstance(CLASSID_CSysGraphic, NULL))->ISysGraphicCloneTransformation
-	#define CHK_SysGraphicSysGraphicCloneTransformation	(s_pfCMCreateInstance != NULL && pISysGraphic != NULL)
-	#define EXP_SysGraphicSysGraphicCloneTransformation  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysGraphicCloneTransformation
-	#define EXT_SysGraphicCloneTransformation
-	#define GET_SysGraphicCloneTransformation(fl)  CAL_CMGETAPI( "SysGraphicCloneTransformation" ) 
-	#define CAL_SysGraphicCloneTransformation  ((ISysGraphic*)s_pfCMCreateInstance(CLASSID_CSysGraphic, NULL))->ISysGraphicCloneTransformation
-	#define CHK_SysGraphicCloneTransformation	(s_pfCMCreateInstance != NULL && pISysGraphic != NULL)
-	#define EXP_SysGraphicCloneTransformation  CAL_CMEXPAPI( "SysGraphicCloneTransformation" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysGraphicCloneTransformation  PFSYSGRAPHICCLONETRANSFORMATION pfSysGraphicCloneTransformation;
-	#define EXT_SysGraphicCloneTransformation  extern PFSYSGRAPHICCLONETRANSFORMATION pfSysGraphicCloneTransformation;
-	#define GET_SysGraphicCloneTransformation(fl)  s_pfCMGetAPI2( "SysGraphicCloneTransformation", (RTS_VOID_FCTPTR *)&pfSysGraphicCloneTransformation, (fl), 0, 0)
-	#define CAL_SysGraphicCloneTransformation  pfSysGraphicCloneTransformation
-	#define CHK_SysGraphicCloneTransformation  (pfSysGraphicCloneTransformation != NULL)
-	#define EXP_SysGraphicCloneTransformation  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysGraphicCloneTransformation", (RTS_UINTPTR)SysGraphicCloneTransformation, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>Applies a transformation operation to the transformation object. </description>	
- * <param name="hTransform" type="IN">Handle to the transformation object to transform.</param>
- * <param name="m11" type="IN">The transformation matrix value in the first row, first column</param>
- * <param name="m12" type="IN">The transformation matrix value in the first row, second column</param>
- * <param name="m21" type="IN">The transformation matrix value in the second row, first column</param>
- * <param name="m22" type="IN">The transformation matrix value in the second row, second column</param>
- * <param name="dx" type="IN">The transformation matrix value in the third row, first column</param>
- * <param name="dy" type="IN">The transformation matrix value in the third row, second column</param>
- * <result>An error code</result>
-*/ 
-RTS_RESULT CDECL SysGraphicTransformationTransform(RTS_HANDLE hTransform, RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy);
-typedef RTS_RESULT (CDECL * PFSYSGRAPHICTRANSFORMATIONTRANSFORM) (RTS_HANDLE hTransform, RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy);
-#if defined(SYSGRAPHIC_NOTIMPLEMENTED) || defined(SYSGRAPHICTRANSFORMATIONTRANSFORM_NOTIMPLEMENTED)
-	#define USE_SysGraphicTransformationTransform
-	#define EXT_SysGraphicTransformationTransform
-	#define GET_SysGraphicTransformationTransform(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysGraphicTransformationTransform(p0,p1,p2,p3,p4,p5,p6)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysGraphicTransformationTransform  FALSE
-	#define EXP_SysGraphicTransformationTransform  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysGraphicTransformationTransform
-	#define EXT_SysGraphicTransformationTransform
-	#define GET_SysGraphicTransformationTransform(fl)  CAL_CMGETAPI( "SysGraphicTransformationTransform" ) 
-	#define CAL_SysGraphicTransformationTransform  SysGraphicTransformationTransform
-	#define CHK_SysGraphicTransformationTransform  TRUE
-	#define EXP_SysGraphicTransformationTransform  CAL_CMEXPAPI( "SysGraphicTransformationTransform" ) 
-#elif defined(MIXED_LINK) && !defined(SYSGRAPHIC_EXTERNAL)
-	#define USE_SysGraphicTransformationTransform
-	#define EXT_SysGraphicTransformationTransform
-	#define GET_SysGraphicTransformationTransform(fl)  CAL_CMGETAPI( "SysGraphicTransformationTransform" ) 
-	#define CAL_SysGraphicTransformationTransform  SysGraphicTransformationTransform
-	#define CHK_SysGraphicTransformationTransform  TRUE
-	#define EXP_SysGraphicTransformationTransform  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysGraphicTransformationTransform", (RTS_UINTPTR)SysGraphicTransformationTransform, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysGraphicSysGraphicTransformationTransform
-	#define EXT_SysGraphicSysGraphicTransformationTransform
-	#define GET_SysGraphicSysGraphicTransformationTransform  ERR_OK
-	#define CAL_SysGraphicSysGraphicTransformationTransform(p0,p1,p2,p3,p4,p5,p6)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pISysGraphic->ISysGraphicTransformationTransform(p1,p2,p3,p4,p5,p6) : ((ISysGraphic*)p0)->ISysGraphicTransformationTransform(p1,p2,p3,p4,p5,p6))
-	#define CHK_SysGraphicSysGraphicTransformationTransform  (pISysGraphic != NULL)
-	#define EXP_SysGraphicSysGraphicTransformationTransform  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysGraphicTransformationTransform
-	#define EXT_SysGraphicTransformationTransform
-	#define GET_SysGraphicTransformationTransform(fl)  CAL_CMGETAPI( "SysGraphicTransformationTransform" ) 
-	#define CAL_SysGraphicTransformationTransform(p0,p1,p2,p3,p4,p5,p6)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pISysGraphic->ISysGraphicTransformationTransform(p1,p2,p3,p4,p5,p6) : ((ISysGraphic*)p0)->ISysGraphicTransformationTransform(p1,p2,p3,p4,p5,p6))
-	#define CHK_SysGraphicTransformationTransform  (pISysGraphic != NULL)
-	#define EXP_SysGraphicTransformationTransform  CAL_CMEXPAPI( "SysGraphicTransformationTransform" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysGraphicTransformationTransform  PFSYSGRAPHICTRANSFORMATIONTRANSFORM pfSysGraphicTransformationTransform;
-	#define EXT_SysGraphicTransformationTransform  extern PFSYSGRAPHICTRANSFORMATIONTRANSFORM pfSysGraphicTransformationTransform;
-	#define GET_SysGraphicTransformationTransform(fl)  s_pfCMGetAPI2( "SysGraphicTransformationTransform", (RTS_VOID_FCTPTR *)&pfSysGraphicTransformationTransform, (fl), 0, 0)
-	#define CAL_SysGraphicTransformationTransform  pfSysGraphicTransformationTransform
-	#define CHK_SysGraphicTransformationTransform  (pfSysGraphicTransformationTransform != NULL)
-	#define EXP_SysGraphicTransformationTransform  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysGraphicTransformationTransform", (RTS_UINTPTR)SysGraphicTransformationTransform, 0, 0) 
-#endif
-
-
-
-
-
 #ifdef __cplusplus
 }
 #endif
@@ -3895,7 +3634,6 @@ typedef struct
  	PFSYSGRAPHICGETSYSWINDOWFONT ISysGraphicGetSysWindowFont;
  	PFSYSGRAPHICINVALIDATERECTANGLE ISysGraphicInvalidateRectangle;
  	PFSYSGRAPHICRESETINVALIDATION ISysGraphicResetInvalidation;
- 	PFSYSGRAPHICINVALIDATECLIENTAREA ISysGraphicInvalidateClientArea;
  	PFSYSGRAPHICCREATETRANSFORMATION ISysGraphicCreateTransformation;
  	PFSYSGRAPHICCREATETRANSFORMATIONBYVALUES ISysGraphicCreateTransformationByValues;
  	PFSYSGRAPHICFREETRANSFORMATION ISysGraphicFreeTransformation;
@@ -3904,8 +3642,6 @@ typedef struct
  	PFSYSGRAPHICTRANSFORMATIONTRANSLATE ISysGraphicTransformationTranslate;
  	PFSYSGRAPHICSETACTIVETRANSFORMATION ISysGraphicSetActiveTransformation;
  	PFSYSGRAPHICGETACTIVETRANSFORMATION ISysGraphicGetActiveTransformation;
- 	PFSYSGRAPHICCLONETRANSFORMATION ISysGraphicCloneTransformation;
- 	PFSYSGRAPHICTRANSFORMATIONTRANSFORM ISysGraphicTransformationTransform;
  } ISysGraphic_C;
 
 #ifdef CPLUSPLUS
@@ -3918,7 +3654,6 @@ class ISysGraphic : public IBase
 		virtual RTS_RESULT CDECL ISysGraphicGetSysWindowFont(RTS_HANDLE hDC, RTS_HANDLE hSysGraphicFont, RTS_HANDLE* phSysWindowFont) =0;
 		virtual RTS_RESULT CDECL ISysGraphicInvalidateRectangle(RTS_HANDLE hDC, RTS_Rectangle rect) =0;
 		virtual RTS_RESULT CDECL ISysGraphicResetInvalidation(RTS_HANDLE hDC) =0;
-		virtual RTS_RESULT CDECL ISysGraphicInvalidateClientArea(RTS_HANDLE hDC) =0;
 		virtual RTS_HANDLE CDECL ISysGraphicCreateTransformation(RTS_RESULT* pResult) =0;
 		virtual RTS_HANDLE CDECL ISysGraphicCreateTransformationByValues(RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy, RTS_RESULT* pResult) =0;
 		virtual RTS_RESULT CDECL ISysGraphicFreeTransformation(void) =0;
@@ -3927,8 +3662,6 @@ class ISysGraphic : public IBase
 		virtual RTS_RESULT CDECL ISysGraphicTransformationTranslate(RTS_REAL32 x, RTS_REAL32 y) =0;
 		virtual RTS_RESULT CDECL ISysGraphicSetActiveTransformation(RTS_HANDLE hTransform) =0;
 		virtual RTS_HANDLE CDECL ISysGraphicGetActiveTransformation(RTS_RESULT* pResult) =0;
-		virtual RTS_HANDLE CDECL ISysGraphicCloneTransformation(RTS_HANDLE hTransform, RTS_RESULT* pResult) =0;
-		virtual RTS_RESULT CDECL ISysGraphicTransformationTransform(RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy) =0;
 };
 	#ifndef ITF_SysGraphic
 		#define ITF_SysGraphic static ISysGraphic *pISysGraphic = NULL;

@@ -17,9 +17,7 @@
  *
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpMonitor2')
@@ -36,14 +34,6 @@ SET_INTERFACE_NAME(`CmpMonitor2')
 #define TAG_MONITORING2_WF_EXP_LIST		    0x03
 #define TAG_MONITORING2_READ_VALUE_LIST     0x40
 #define TAG_MONITORING2_READ_ERROR			0x41
-
-#define TAG_MONITORING2_READ_EXP_LIST2					0x81
-#define TAG_MONITORING2_READ_EXP_INFO					0x82
-#define TAG_MONITORING2_READ_EXP_LIST2_VARID			0x01
-#define TAG_MONITORING2_READ_EXP_LIST2_DATASIZE			0x02
-#define TAG_MONITORING2_READ_EXP_LIST2_TYPECLASS		0x03
-#define TAG_MONITORING2_READ_EXP_LIST2_BYTECODESIZE		0x04
-#define TAG_MONITORING2_READ_EXP_LIST2_BYTECODE			0x05
 
 
 /**

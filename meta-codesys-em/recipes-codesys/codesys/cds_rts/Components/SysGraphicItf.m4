@@ -5,9 +5,7 @@
  *	of a system. This is the system interface typically for the CoDeSys target visualization.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysGraphic')
@@ -36,12 +34,8 @@ SET_INTERFACE_NAME(`SysGraphic')
 #define	TF_ELLIPSIS						0x00000200
 #define	TF_SAVE_PREVIOUS_POSITION		0x00000400		/* See comment of VISU_DTF_SAVE_PREVIOUS_POSITION in library VisuElemBase. */
 #define	TF_USE_PREVIOUS_POSITION		0x00000800		/* See comment of VISU_DTF_USE_PREVIOUS_POSITION  in library VisuElemBase. */
-#define TF_IGNORE_VERTICAL_ALIGNMENT	0x00001000
-#define TF_DONT_MODIFY_TEXT_RECT		0x00002000		
 #define TF_BGELEM						0x80000000
 #define TF_WSTRING						0x40000000
-#define TF_MEASURE_ALL					0x00002000		/* Can be used for SysGraphicGetTextExtent: Whole text will be measured and not stopped at first linebreak. */
-#define TF_ANTIALIASING_INACTIVE		0x00004000		/* A special flag, used to deactivate the antialiasing feature temporarily */
 
 /**
  * <category>Font style</category>
@@ -104,7 +98,6 @@ SET_INTERFACE_NAME(`SysGraphic')
 #define LINEJOIN_MITER		0x0000	/* default-value: sharp line join */
 #define LINEJOIN_BEVEL		0x0001  /* flatened line join */
 #define LINEJOIN_ROUND		0x0002  /* round line join */
-#define LINEJOIN_MITER_NEW	0x0003  /* new default-value */
 
 /**
  * <category>Brush style</category>
@@ -223,31 +216,16 @@ SET_INTERFACE_NAME(`SysGraphic')
  * <category>Settings</category>
  * <type>Int</type>
  * <description>
- *	Typically PNG images including palette information are converted during loading into flat RGB pixels. This costs
- *  more memory but typically yields better performance when the image is drawn.
- *	If performance is not an issue but the addtional memory consumption of such PNG images (compared to BMP) is, then
- *	this setting can be set to 1.
- * </description>
- */	
-#define SYSGRAPHIC_WIN32_PNG_LOADPALETTE_ASPALETTE					"Win32.LoadPNGImagesPalette" 
-#ifndef SYSGRAPHIC_WIN32_PNG_LOADPALETTE_ASPALETTE_DEFAULT
-	#define SYSGRAPHIC_WIN32_PNG_LOADPALETTE_ASPALETTE_DEFAULT				0
-#endif
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- *  Only relevant for Windows CE: Defines the way how rectangles are drawn.
- *  Starting with 3.5 SP 1 the height and the width of rectangles are decremented by 1, due to a wrong bugfix (paint bug when drawing and invalidating 
- *  rectangles with bar meters, where the origin of the bug was a wrong invalidation and not wrong painting of the rectangles)
- *  Before 3.5 SP 1 the rectangles are drawn correctly.
- *  The default value is 1 to use the correct behaviour before 3.5 SP 1
+ *	Windows CE: when drawing and invalidating rectangles, CE draws slightly differently from XP/7 (1 pixel too much at the right and bottom)
+ *  This causes paint bugs when invalidating is perfectly optimized, e.g with bar meters
+ *  This has been fixed in version 3.5 SP 1 
+ *  This setting can be used to use the old code for drawing (one pixel more at the right and bottom)
+ *	default value is 0 (use the new code)
  * </description>
  */	
 #define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD					"WinCE.UseOldDrawRectMethod" 
 #ifndef SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD_DEFAULT
-	#define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD_DEFAULT				1
+	#define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHOD_DEFAULT				0
 #endif
 
 /**
@@ -256,16 +234,12 @@ SET_INTERFACE_NAME(`SysGraphic')
  * <description>
  *  Same as "WinCE.UseOldDrawRectMethod" but not for rectangles without frame.
  *  This might be necessary on CE5 panels as the rectangle is drawn different.
- *	default value is 0. For Windows CE 6 the default value needs to be 1, because
- *  without this active setting rectangles without frame are not drawn correctly
+ *	default value is 0
  * </description>
  */	
 #define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5				"WinCE.UseOldDrawRectMethodCE5" 
 #ifndef SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULT
 	#define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULT				0
-#endif
-#ifndef SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULTCE6
-	#define SYSGRAPHIC_WINCE_OLD_DRAW_RECT_METHODCE5_DEFAULTCE6				1
 #endif
 
 /**
@@ -281,11 +255,7 @@ SET_INTERFACE_NAME(`SysGraphic')
  */	
 #define SYSGRAPHIC_WINGDIPLUS_USESVGPROXY				"WinGDIPlus.UseSVGProxy" 
 #ifndef SYSGRAPHIC_WINGDIPLUS_USESVGPROXY_DEFAULT
-	#ifdef TRG_64BIT
-		#define SYSGRAPHIC_WINGDIPLUS_USESVGPROXY_DEFAULT	1
-	#else
-		#define SYSGRAPHIC_WINGDIPLUS_USESVGPROXY_DEFAULT	0
-	#endif	
+	#define SYSGRAPHIC_WINGDIPLUS_USESVGPROXY_DEFAULT	0
 #endif
 
 typedef struct
@@ -340,7 +310,7 @@ DEF_API(`RTS_RESULT',`CDECL',`SysGraphicGetDeviceContext',`(RTS_HANDLE hWindow, 
 /**
  * <description>Release a device context that has been retrieved using <see>SysGraphicGetDeviceContext</see></description>
  * <param name="hWindow" type="IN">Handle to the actual window</param>
- * <param name="hDC" type="IN">Handle to the device context</param>
+ * <param name="hDC" type="In">Handle to the device context</param>
  * <result>error code</result>
  */
 DEF_API(`RTS_RESULT',`CDECL',`SysGraphicReleaseDeviceContext',`(RTS_HANDLE hWindow, RTS_HANDLE hDC)')
@@ -370,7 +340,7 @@ DEF_API(`RTS_RESULT',`CDECL',`SysGraphicGetDeviceContextForWindowDeviceContext',
 /**
  * <description>Release a device context that has been retrieved using <see>SysGraphicGetDeviceContextForWindowDeviceContext</see></description>
  * <param name="hWindow" type="IN">Handle to the actual window</param>
- * <param name="hDC" type="IN">Handle to the device context</param>
+ * <param name="hDC" type="In">Handle to the device context</param>
  * <result>error code</result>
  */
 DEF_API(`RTS_RESULT',`CDECL',`SysGraphicReleaseDeviceContextForWindowDeviceContext',`(RTS_HANDLE hWindow, RTS_HANDLE hDC)')
@@ -500,13 +470,9 @@ DEF_API(`RTS_RESULT',`CDECL',`SysGraphicGetTextMetrics',`(RTS_HANDLE hDC, SYS_TE
 
 /**
  * <description>
- *	Function to calculate the size of a given text with the currently selected font. 
- *  Use case (1): The function will treat the string as a single line string, 
- *  ie. it will cut the string after a possible linefeed and calculate the size of the first line only!
- *  Use case (2): The string will be formated and measured as defined by it's ulDrawFlags.
- *  Here, also text with flag TF_LINEBREAK will be measured, as it will be drawn.
- *  For using this case, the flag TF_MEASURE_ALL has to be used additional.
- *  And the paint rectangle size has to be forwarded by using pSize.
+ *	Function to calculate the size of a given text with the currently selected font. The function will treat
+ *	the string as a single line string, ie. it will cut the string after a possible linefeed and calculate the
+ *	size of the first line only!Get the system metrics of a device context
  * </description>
  * <param name="hDC" type="IN">Handle to device context</param>
  * <param name="pszText" type="IN">Will be either:
@@ -529,16 +495,6 @@ DEF_API(`RTS_RESULT',`CDECL',`SysGraphicGetTextExtent',`(RTS_HANDLE hDC, void* p
  * <result>error code</result>
  */
 DEF_API(`RTS_RESULT', `CDECL', `SysGraphicGetFontHeight', `(RTS_HANDLE hDC, RTS_I16* piHeight)')
-
-/**
- * <description>
- *  Function to get the handle of the currently selected font.
- * </description>
- * <param name="hDC" type="IN">Handle to device context</param>
- * <param name="phFont" type="OUT"> Pointer to get the font handle</param>
- * <result>error code</result>
- */
-DEF_API(`RTS_RESULT', `CDECL', `SysGraphicGetFontHandle', `(RTS_HANDLE hDC, RTS_HANDLE* phFont)')
 
 /**
  * <description>Function to set the fill style of the following objects (i.e. the Brush in Win32)</description>
@@ -658,13 +614,13 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`SysGraphicCreatePatternBrush',`(RTS_HANDLE hDC
  * <param name="ulLineColor" type="IN">Line color.  Defined in IEC-Code for Visualization</param>
  * <param name="nLineCapFlag" type="IN">Line cap.  Defined in IEC-Code for Visualization</param>
  * <param name="nLineJoinFlag" type="IN">Line join.  Defined in IEC-Code for Visualization</param>
- * <param name="rMiterLimit" type="IN">Miter limit.  Defined in IEC-Code for Visualization</param>
+ * <param name="nMiterLimit" type="IN">Miter limit.  Defined in IEC-Code for Visualization</param>
  * <param name="phPen" type="OUT">Pointer to get the pen handle</param>
  * <result>error code</result>
  */
 DEF_API(`RTS_RESULT',`CDECL',`SysGraphicCreatePenDetailed',`(RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, 
 										RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, 
-										RTS_REAL32 rMiterLimit, RTS_HANDLE* phPen)')
+										RTS_I16 nMiterLimit, RTS_HANDLE* phPen)')
 
 /**
  * <description>Function to set the line style of the following objects (i.e. the Pen in Win32)</description>
@@ -927,15 +883,6 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`SysGraphicInvalidateRectangle',`(RTS_HANDLE hD
 DEF_ITF_API(`RTS_RESULT',`CDECL',`SysGraphicResetInvalidation',`(RTS_HANDLE hDC)')
 
 /**
- * <description>This function is optional, just as <see>SysGraphicInvalidateRectangle</see>, but should be implemented, if <see>SysGraphicInvalidateRectangle</see> is
- *  implemented. It will be called when the whole client area should be invalidated.</description>
- * <param name="hDC" type="IN">A handle to the device context.</param>
- * <result>An error code</result>
-*/
-DEF_ITF_API(`RTS_RESULT',`CDECL',`SysGraphicInvalidateClientArea',`(RTS_HANDLE hDC)')
-
-
-/**
  * <description>Creates an affine transformation object. 
  *	Such transformations can be used for client local animations (eg. when
  *	displaying the preview of multitouch gestures) or for drawing transformed elements (eg. rotated images or text).
@@ -1017,28 +964,6 @@ DEF_HANDLEITF_API(`RTS_RESULT',`CDECL',`SysGraphicSetActiveTransformation',`(RTS
  * <result>The handle or the active transformation or RTS_INVALID_HANDLE if there was no active one..</result>
 */ 
 DEF_HANDLEITF_API(`RTS_HANDLE',`CDECL',`SysGraphicGetActiveTransformation',`(RTS_HANDLE hdc, RTS_RESULT* pResult)')
-
-/**
- * <description>Creates a new affine transformation object that is a copy of an existing affine transformation object.</description>
- * <param name="hTransform" type="IN">A handle to the object to clone.</param>	
- * <param name="pResult" type="OUT">Optional pointer to error code.</param>
- * <result>A handle to the created transformation object or RTS_INVALID_HANDLE if there was an error.</result>
-*/ 
-DEF_CREATEITF_API(`RTS_HANDLE',`CDECL',`SysGraphicCloneTransformation',`(RTS_HANDLE hTransform, RTS_RESULT* pResult)')
-
-/**
- * <description>Applies a transformation operation to the transformation object. </description>	
- * <param name="hTransform" type="IN">Handle to the transformation object to transform.</param>
- * <param name="m11" type="IN">The transformation matrix value in the first row, first column</param>
- * <param name="m12" type="IN">The transformation matrix value in the first row, second column</param>
- * <param name="m21" type="IN">The transformation matrix value in the second row, first column</param>
- * <param name="m22" type="IN">The transformation matrix value in the second row, second column</param>
- * <param name="dx" type="IN">The transformation matrix value in the third row, first column</param>
- * <param name="dy" type="IN">The transformation matrix value in the third row, second column</param>
- * <result>An error code</result>
-*/ 
-DEF_HANDLEITF_API(`RTS_RESULT',`CDECL',`SysGraphicTransformationTransform',`(RTS_HANDLE hTransform, RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy)')
-
 
 #ifdef __cplusplus
 }

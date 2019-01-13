@@ -4,9 +4,7 @@
  *	<p>Interface for the binary tag utility.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpBinTagUtil')
@@ -641,7 +639,7 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`BTagReaderGetContent',`(BINTAGREADER *pReader,
  * </note>
  * <param name="pReader" type="IN">
  * </param>
- * <param name="ppString" type="OUT">
+ * <param name="ppString" type="Out">
  *   Will be set to the start of the string. Will not necessarily point into the readers buffer.
  *   (see note).
  * </param>

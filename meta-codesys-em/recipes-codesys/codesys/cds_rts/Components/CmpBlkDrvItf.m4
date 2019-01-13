@@ -4,9 +4,7 @@
  *	Block driver interface. This interface could be implemented by different components.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpBlkDrv')
@@ -58,6 +56,7 @@ SET_INTERFACE_NAME(`CmpBlkDrv')
  * </description>
  */
 #define BLKDRVCOMKEY_INT_COM_PORT								"Port"
+#define BLKDRVCOMVALUE_INT_COM_PORT_DEFAULT						1
 
 /**
  * <category>Settings</category>
@@ -117,45 +116,27 @@ SET_INTERFACE_NAME(`CmpBlkDrv')
  * <category>Settings</category>
  * <type>Int</type>
  * <description>
- *	Enables(1) or disables(0) or auto detects(2) the auto addressing feature of the BlkDrvCom. 
- *  The value 0 should not be used anymore for new devices, because this restricts the routing capabilities 
- *  of the device. 
- *  The recommended value 2 (default), let the driver detect the setting of the peer automatically. If both
- *  peers use the value 2, they will both enable the auto addressing feature. Thus in general there is no
- *  need to change this setting.
- *  Example: Com.0.EnableAutoAddressing=2
+ *	Enable/Disable the auto addressing feature of the BlkDrvCom. 
+ *  Example: Com.0.EnableAutoAddressing=1
  *  Only for BlkDrvCom.
  * </description>
  */
 #define BLKDRVCOMKEY_INT_AUTO_ADDRESS							"EnableAutoAddressing"
-#ifndef BLKDRVCOMVALUE_INT_AUTO_ADDRESS_DEFAULT	
-	#define BLKDRVCOMVALUE_INT_AUTO_ADDRESS_DEFAULT				2
-#endif
+#define BLKDRVCOMVALUE_INT_AUTO_ADDRESS_DEFAULT					0
+
 /**
  * <category>Settings</category>
  * <type>Int</type>
  * <description>
- *	Enables(1) or disables(0) or auto detects(2) the half-duplex feature of the BlkDrvCom.
- *  If enabled, the block driver manages the communication in a strict half-duplex way.
- *  The role of the master and also the local addresses are automatically negotiated 
- *  between the two peer devices. Because of the half-duplex protocol, the effective data
- *  throughput is somewhat less than without this feature. So this feature is recommended
- *  for media sharing one physical channel for both directions (e. g. RS485) or if a device
- *  has not the capability of full-duplex communication. Only in this cases the parameter
- *  value shold be set to 1.
- *  The recommended value 2 (default), let the driver detect the setting of the peer automatically.
- *  If both peers use the value 2, they will both enable this feature. 
- *  If EnableAutoAddressing and HalfDuplexAutoNegotiate are set to 2 (auto detection), the
- *  two peers will use auto addressing.
- *  Supports only point-to-point communication.
- *  Example: Com.0.HalfDuplexAutoNegotiate=2
+ *  If enabled (1), the block driver manages the communication in a strict half-duplex
+ *  way. The role of the master and also the local addresses are automaticly negotiated 
+ *  between the two peer devices. Supports only point-to-point communication. 
+ *  Example: Com.0.HalfDuplexAutoNegotiate=0
  *  Only for BlkDrvCom.
  * </description>
  */
 #define BLKDRVCOMKEY_INT_HALF_DUPLEX							"HalfDuplexAutoNegotiate"
-#ifndef BLKDRVCOMVALUE_INT_HALF_DUPLEX_DEFAULT	
-	#define BLKDRVCOMVALUE_INT_HALF_DUPLEX_DEFAULT				2
-#endif
+#define BLKDRVCOMVALUE_INT_HALF_DUPLEX_DEFAULT					0
 
 /**
  * <category>Settings</category>
@@ -253,7 +234,7 @@ SET_INTERFACE_NAME(`CmpBlkDrv')
  * </description>
  */
 #define BLKDRVCOMOLDKEY_INT_BAUDRATE							"Baudrate"
-#define BLKDRVCOMOLDVALUE_INT_BAUDRATE_DEFAULT					BLKDRVCOMVALUE_INT_BAUDRATE_DEFAULT
+#define BLKDRVCOMOLDVALUE_INT_BAUDRATE_DEFAULT					SYS_BR_57600
 
 /**
  * <category>Settings</category>
@@ -278,25 +259,25 @@ SET_INTERFACE_NAME(`CmpBlkDrv')
  * <category>Settings</category>
  * <type>String</type>
  * <description>
- *	Enable/Disable the auto addressing feature auf the BlkDrvCom. See new setting
- *  format above for details.
+ *	Enable/Disable the auto addressing feature auf the BlkDrvCom. 
  *  Only for BlkDrvCom.
  * </description>
  */
 #define BLKDRVCOMOLDKEY_INT_AUTO_ADDRESS						"EnableAutoAddressing"
-#define BLKDRVCOMOLDVALUE_INT_AUTO_ADDRESS_DEFAULT				BLKDRVCOMVALUE_INT_AUTO_ADDRESS_DEFAULT
+#define BLKDRVCOMOLDVALUE_INT_AUTO_ADDRESS_DEFAULT				0
 
 /**
  * <category>Settings</category>
  * <type>Int</type>
  * <description>
- *	Enable/Disable the ahalf-duplex feature auf the BlkDrvCom. See new setting
- *  format above for details.
+ *  If enabled (1), the block driver manages the communication in a strict half-duplex
+ *  way. The role of the master and also the local addresses are automaticly negotiated 
+ *  between the two peer devices. Supports only point-to-point communication. 
  *  Only for BlkDrvCom.
  * </description>
  */
 #define BLKDRVCOMOLDKEY_INT_HALF_DUPLEX							"HalfDuplexAutoNegotiate"
-#define BLKDRVCOMOLDVALUE_INT_HALF_DUPLEX_DEFAULT				BLKDRVCOMVALUE_INT_HALF_DUPLEX_DEFAULT
+#define BLKDRVCOMOLDVALUE_INT_HALF_DUPLEX_DEFAULT				0
 
 
 
@@ -337,7 +318,7 @@ SET_INTERFACE_NAME(`CmpBlkDrv')
  * </description>
  */
 #ifndef MAX_UDP_DEVICES
-	#define MAX_UDP_DEVICES										8
+	#define MAX_UDP_DEVICES										5
 #endif
 
 /**
@@ -347,9 +328,9 @@ SET_INTERFACE_NAME(`CmpBlkDrv')
  *	Defines the maximal number of interfaces (ip addresses), which are used by the CmpBlkDrvUdp. This is also the limitation
  *  for the number of interface configurations.
  *  There are two typical use cases for this setting:
- *	1. Systems on which more than 8 network adapters should be used by this block driver.
+ *	1. Systems on which more than 5 network adapters should be used by this block driver.
  *  Example:
- *	MaxInterfaces=10
+ *	MaxInterfaces=8
  *  2. Define a white list for ip addresses. All other interfaces are ignored by the CmpBlkDrvUdp.
  *	Example:
  *	MaxInterfaces=2
@@ -885,44 +866,24 @@ SET_INTERFACE_NAME(`CmpBlkDrv')
 
 /**
  * <category>Settings</category>
- * <type>String</type>
- * <description>
- *	Enables(1) or disables(0) or auto detects(2) the auto addressing feature of the BlkDrvUsb.
- *  The value 0 should not be used anymore for new devices, because this restricts the routing capabilities
- *  of the device.
- *  The recommended value 2 (default), let the driver detect the setting of the peer automatically. If both
- *  peers use the value 2, they will both enable the auto addressing feature. Thus in general there is no
- *  need to change this setting.
- *  Only for BlkDrvUSB.
- * </description>
- */
-#define BLKDRVUSBKEY_INT_AUTO_ADDRESS							"EnableAutoAddressing"
-#ifndef BLKDRVUSBKEY_INT_AUTO_ADDRESS_DEF
-	#define BLKDRVUSBKEY_INT_AUTO_ADDRESS_DEF					BLKDRVCOMVALUE_INT_AUTO_ADDRESS_DEFAULT
-#endif
-
- /**
- * <category>Settings</category>
  * <type>Int</type>
  * <description>
- *	Enables(1) or disables(0) or auto detects(2) the half-duplex feature of the BlkDrvUsb.
- *  If enabled, the block driver manages the communication in a strict half-duplex way.
- *  The role of the master and also the local addresses are automatically negotiated
- *  between the two peer devices. Because of the half-duplex protocol, the effective data
- *  throughput is somewhat less than without this feature. So this feature is recommended
- *  for media sharing one physical channel for both directions (e. g. RS485) or if a device
- *  has not the capability of full-duplex communication. Only in this cases the parameter
- *  value shold be set to 1.
- *  The recommended value 2 (default), let the driver detect the setting of the peer automatically.
- *  If both peers use the value 2, they will both enable this feature.
- *  If EnableAutoAddressing and HalfDuplexAutoNegotiate are set to 2 (auto detection), the
- *  two peers will use auto addressing.
- *  Supports only point-to-point communication.
+ *  If enabled (1), the block driver manages the communication in a strict half-duplex
+ *  way. The role of the master and also the local addresses are automaticly negotiated 
+ *  between the two peer devices. Supports only point-to-point communication. 
  *  Only for BlkDrvUsb.
  * </description>
  */
 #define BLKDRVUSBKEY_INT_HALF_DUPLEX							"HalfDuplexAutoNegotiate"
-#ifndef BLKDRVUSBKEY_INT_HALF_DUPLEX_DEF
-	#define BLKDRVUSBKEY_INT_HALF_DUPLEX_DEF					BLKDRVCOMVALUE_INT_HALF_DUPLEX_DEFAULT
-#endif
+#define BLKDRVUSBKEY_INT_HALF_DUPLEX_DEF						0
 
+/**
+ * <category>Settings</category>
+ * <type>String</type>
+ * <description>
+ *	Enable/Disable the auto addressing feature of the BlkDrvUsb. 
+ *  Only for BlkDrvUSB.
+ * </description>
+ */
+#define BLKDRVUSBKEY_INT_AUTO_ADDRESS							"EnableAutoAddressing"
+#define BLKDRVUSBKEY_INT_AUTO_ADDRESS_DEF						0

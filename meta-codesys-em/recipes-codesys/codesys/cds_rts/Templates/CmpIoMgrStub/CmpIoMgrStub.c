@@ -425,12 +425,6 @@ RTS_RESULT CDECL IoMgrUpdateConfiguration2(IoConfigConnector *pConnectorList, in
 	return ERR_NOTIMPLEMENTED;
 }
 
-RTS_BOOL CDECL IoMgrHasTaskIOs(RTS_UI32 dwTaskId, RTS_UI16 taskMapType, RTS_RESULT *pResult)
-{
-	RTS_SETRESULT(pResult, ERR_NOTIMPLEMENTED);
-	return FALSE;
-}
-
 RTS_RESULT CDECL IoMgrUpdateMapping(IoConfigTaskMap *pTaskMapList, int nCount)
 {
 	return ERR_NOTIMPLEMENTED;

@@ -4,9 +4,7 @@
  *	<p>Interface of the web server component.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -207,16 +205,6 @@ typedef enum WEBSERVER_CONNECTION_TYPEtag
  */
 #define CMPWEBSERVER_KEY_LOCALADDRESS						"LocalAddress"
 #define CMPWEBSERVER_VALUE_LOCALADDRESS_DEFAULT				""
-
-/**
- * <category>Settings</category>
- * <type>String</type>
- * <description>URL of the webserver. This URL will be used for the certificate as common name if HTTPS is activated. If this setting is empty the hostname of the PLC will be used.</description>
- */
-#define CMPWEBSERVER_KEY_URL						        "URL"
-#ifndef CMPWEBSERVER_VALUE_URL_DEFAULT
-    #define CMPWEBSERVER_VALUE_URL_DEFAULT				""
-#endif
 
 /**
  * <category>Settings</category>
@@ -526,57 +514,6 @@ typedef RTS_RESULT (CDECL * PFWEBSERVERRELEASERUNNING) (void);
 	#define CAL_WebServerReleaseRunning  pfWebServerReleaseRunning
 	#define CHK_WebServerReleaseRunning  (pfWebServerReleaseRunning != NULL)
 	#define EXP_WebServerReleaseRunning   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"WebServerReleaseRunning", (RTS_UINTPTR)WebServerReleaseRunning, 0, 0) 
-#endif
-
-
-/**
- * <description> Sets the htm file name to use. </description>
-  * <param name="pszFileName" type="IN"> contains the htm file name </param>
- */
-void CDECL WebServerSetDefaultPage(char* pszFileName);
-typedef void (CDECL * PFWEBSERVERSETDEFAULTPAGE) (char* pszFileName);
-#if defined(CMPWEBSERVER_NOTIMPLEMENTED) || defined(WEBSERVERSETDEFAULTPAGE_NOTIMPLEMENTED)
-	#define USE_WebServerSetDefaultPage
-	#define EXT_WebServerSetDefaultPage
-	#define GET_WebServerSetDefaultPage(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_WebServerSetDefaultPage(p0) 
-	#define CHK_WebServerSetDefaultPage  FALSE
-	#define EXP_WebServerSetDefaultPage  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_WebServerSetDefaultPage
-	#define EXT_WebServerSetDefaultPage
-	#define GET_WebServerSetDefaultPage(fl)  CAL_CMGETAPI( "WebServerSetDefaultPage" ) 
-	#define CAL_WebServerSetDefaultPage  WebServerSetDefaultPage
-	#define CHK_WebServerSetDefaultPage  TRUE
-	#define EXP_WebServerSetDefaultPage  CAL_CMEXPAPI( "WebServerSetDefaultPage" ) 
-#elif defined(MIXED_LINK) && !defined(CMPWEBSERVER_EXTERNAL)
-	#define USE_WebServerSetDefaultPage
-	#define EXT_WebServerSetDefaultPage
-	#define GET_WebServerSetDefaultPage(fl)  CAL_CMGETAPI( "WebServerSetDefaultPage" ) 
-	#define CAL_WebServerSetDefaultPage  WebServerSetDefaultPage
-	#define CHK_WebServerSetDefaultPage  TRUE
-	#define EXP_WebServerSetDefaultPage  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"WebServerSetDefaultPage", (RTS_UINTPTR)WebServerSetDefaultPage, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpWebServerWebServerSetDefaultPage
-	#define EXT_CmpWebServerWebServerSetDefaultPage
-	#define GET_CmpWebServerWebServerSetDefaultPage  ERR_OK
-	#define CAL_CmpWebServerWebServerSetDefaultPage  WebServerSetDefaultPage
-	#define CHK_CmpWebServerWebServerSetDefaultPage  TRUE
-	#define EXP_CmpWebServerWebServerSetDefaultPage  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_WebServerSetDefaultPage
-	#define EXT_WebServerSetDefaultPage
-	#define GET_WebServerSetDefaultPage(fl)  CAL_CMGETAPI( "WebServerSetDefaultPage" ) 
-	#define CAL_WebServerSetDefaultPage  WebServerSetDefaultPage
-	#define CHK_WebServerSetDefaultPage  TRUE
-	#define EXP_WebServerSetDefaultPage  CAL_CMEXPAPI( "WebServerSetDefaultPage" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_WebServerSetDefaultPage  PFWEBSERVERSETDEFAULTPAGE pfWebServerSetDefaultPage;
-	#define EXT_WebServerSetDefaultPage  extern PFWEBSERVERSETDEFAULTPAGE pfWebServerSetDefaultPage;
-	#define GET_WebServerSetDefaultPage(fl)  s_pfCMGetAPI2( "WebServerSetDefaultPage", (RTS_VOID_FCTPTR *)&pfWebServerSetDefaultPage, (fl), 0, 0)
-	#define CAL_WebServerSetDefaultPage  pfWebServerSetDefaultPage
-	#define CHK_WebServerSetDefaultPage  (pfWebServerSetDefaultPage != NULL)
-	#define EXP_WebServerSetDefaultPage   s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"WebServerSetDefaultPage", (RTS_UINTPTR)WebServerSetDefaultPage, 0, 0) 
 #endif
 
 

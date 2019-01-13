@@ -31,9 +31,7 @@
  *	your own component in C++ and can use all other runtime components object oriented with a C++ interface.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CM')
@@ -109,12 +107,6 @@ REF_ITF(`SysIntItf.m4')
  * <element name="CM_NO_EXIT">Switch to disable definite exit or shutdown process of the runtime system</element>
  * <element name="CM_NO_DYNAMIC_COMPONENTS">Switch to disable dynamic loadable components</element>
  */
-#if defined(RTS_COMPACT) || defined(RTS_SIL2)
-	#define CM_NO_EXIT
-	#define CM_NO_DYNAMIC_COMPONENTS
-#endif
-
-
 
 /**
  * <category>Static defines</category>
@@ -364,21 +356,6 @@ typedef struct
 #define EVTVERSION_CmpMgr_PrepareExitCommProcessing	0x0001
 
 /**
- * <category>Event parameter</category>
- * <element name="ulLicenseID" type="IN">License ID requested.</element>
- * <element name="ulLicenseValue" type="IN">Value of the license.</element>
- */
-typedef struct
-{
-	RTS_IEC_UDINT ulLicenseID;
-	RTS_IEC_UDINT ulLicenseValue;
-} EVTPARAM_CmpMgr_LicenseRequest;
-#define EVTPARAMID_CmpMgr_LicenseRequest			0x0004
-#define EVTVERSION_CmpMgr_LicenseRequest					0x0001
-
-
-
-/**
  * <category>Events</category>
  * <description>Event is sent before shutdown of the runtime system</description>
  * <param name="pEventParam" type="IN">EVTPARAM_CmpMgr_Shutdown</param>
@@ -436,13 +413,6 @@ typedef struct
  */
 #define EVT_CmpMgr_PrepareExitCommProcessing	MAKE_EVENTID(EVTCLASS_INFO, 7)
 
- /**
- * <category>Events</category>
- * <description>Event to get informed when a license was requrested. Only for informational use. 
- * No result of the event will be evaulated.</description>
- * <param name="pEventParam" type="IN">EVTPARAM_CmpMgr_LicenseRequest</param>
- */
-#define EVT_CmpMgr_LicenseRequest				MAKE_EVENTID(EVTCLASS_INFO, 8)
 
 /**
  * <category>CMInit options</category>
@@ -627,8 +597,6 @@ typedef struct tagAPI_RESOLVE_INFO
  * <category>Profiler</category>
  * <description>
  *	- To use profiling, RTS_ENABLE_PROFILING must be set during compile. If it is not set, the code for profiling is empty.
- *  - To enable profile of single component hooks set RTS_ENABLE_PROFILING_COMPONENTS during compile time.
- *  - To use the profiler the SysTime component has to be linked statically to the runtime core.
  *	- All profiling information is stored in a separate logger with name "Profiler"
  *	- Profiling component can be specified in setting "Profiler.ComponentID" or during compile in CMPMGR_VALUE_INT_PROFILER_COMPONENTID_DEFAULT.
  *	- RTS_USE_PROFILING must be specified in the beginning of the file, in which profiling is used. Typically this can be specified right after USE_STMT.
@@ -638,35 +606,19 @@ typedef struct tagAPI_RESOLVE_INFO
  * </description>
  */
 #if defined(RTS_ENABLE_PROFILING)
-#if defined(STATIC_LINK) || defined(MIXED_LINK)	|| defined(CPLUSPLUS)
-    #define RTS_USE_PROFILING		ITF_CM
-#else
-    #define RTS_USE_PROFILING		static PFCMPROFILING pfCMProfiling = NULL;
-#endif
+	#if defined(STATIC_LINK) || defined(MIXED_LINK)	|| defined(CPLUSPLUS)
+		#define RTS_USE_PROFILING		ITF_CM
+	#else
+		#define RTS_USE_PROFILING		static PFCMPROFILING pfCMProfiling = NULL;
+	#endif
 
-#define RTS_PROFILING(s)			{\
-                                        IMPORT_SINGLE_ITF(CM);\
-                                        if (!CHK_CMProfiling)\
-                                            GET_CMProfiling(0);\
-                                        if (CHK_CMProfiling)\
-                                            CAL_CMProfiling(s,COMPONENT_ID,COMPONENT_NAME,__FILE__,__LINE__,-1);\
-                                    }		
-
-#ifdef RTS_ENABLE_PROFILING_COMPONENTS
-#define RTS_PROFILING_COMPONENTS(s,cmp)	{\
+	#define RTS_PROFILING(s)			{\
 											IMPORT_SINGLE_ITF(CM);\
 											if (!CHK_CMProfiling)\
 												GET_CMProfiling(0);\
 											if (CHK_CMProfiling)\
-											{\
-												char tmp[128]; \
-												CAL_CMUtlsnprintf(tmp, sizeof(tmp), s, cmp); \
-												CAL_CMProfiling(tmp,COMPONENT_ID,COMPONENT_NAME,__FILE__,__LINE__,-1);\
-											}\
-										}
-#else
-#define RTS_PROFILING_COMPONENTS(s,cmp)
-#endif
+												CAL_CMProfiling(s,COMPONENT_ID,COMPONENT_NAME,__FILE__,__LINE__,-1);\
+										}		
 
 	#define RTS_PROFILING_BEGIN(s,id)	{\
 											IMPORT_SINGLE_ITF(CM);\
@@ -694,7 +646,6 @@ typedef struct tagAPI_RESOLVE_INFO
 #else
 	#define RTS_USE_PROFILING
 	#define RTS_PROFILING(s)
-	#define RTS_PROFILING_COMPONENTS(s,cmp)
 	#define RTS_PROFILING_BEGIN(s,id)
 	#define RTS_PROFILING2(s,id)
 	#define RTS_PROFILING_END(s,id)
@@ -702,7 +653,6 @@ typedef struct tagAPI_RESOLVE_INFO
 
 
 /** EXTERN LIB SECTION BEGIN **/
-/*  Comments are ignored for m4 compiler so restructured text can be used. changecom(`/*', `*/') */
 
 #ifdef __cplusplus
 extern "C" {
@@ -732,21 +682,7 @@ typedef struct tagcmaddcomponent_struct
 	RTS_IEC_HANDLE CMAddComponent;		/* VAR_OUTPUT */	
 } cmaddcomponent_struct;
 
-DEF_API(`void',`CDECL',`cmaddcomponent',`(cmaddcomponent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x3FB931A6),0x03050D00)
-
-/**
- * <description>cmaddcomponent2</description>
- */
-typedef struct tagcmaddcomponent2_struct
-{
-	RTS_IEC_STRING *pszComponent;		/* VAR_INPUT */	
-	RTS_IEC_UDINT udiVersion;			/* VAR_INPUT */	
-	RTS_IEC_UDINT *udiCmpId;			/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RTS_IEC_HANDLE CMAddComponent2;		/* VAR_OUTPUT */	
-} cmaddcomponent2_struct;
-
-DEF_API(`void',`CDECL',`cmaddcomponent2',`(cmaddcomponent2_struct *p)',1,0x1057D488,0x03050D00)
+DEF_API(`void',`CDECL',`cmaddcomponent',`(cmaddcomponent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x3FB931A6),0x03050500)
 
 /**
  * <description>cmexitcomponent</description>
@@ -757,7 +693,7 @@ typedef struct tagcmexitcomponent_struct
 	RTS_IEC_RESULT CMExitComponent;		/* VAR_OUTPUT */	
 } cmexitcomponent_struct;
 
-DEF_API(`void',`CDECL',`cmexitcomponent',`(cmexitcomponent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x0DDC8E7F),0x03050D00)
+DEF_API(`void',`CDECL',`cmexitcomponent',`(cmexitcomponent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x0DDC8E7F),0x03050500)
 
 /**
  * <description>cmgetcomponentbyname</description>
@@ -769,7 +705,7 @@ typedef struct tagcmgetcomponentbyname_struct
 	RTS_IEC_HANDLE CMGetComponentByName;	/* VAR_OUTPUT */	
 } cmgetcomponentbyname_struct;
 
-DEF_API(`void',`CDECL',`cmgetcomponentbyname',`(cmgetcomponentbyname_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x1C90B550),0x03050D00)
+DEF_API(`void',`CDECL',`cmgetcomponentbyname',`(cmgetcomponentbyname_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x1C90B550),0x03050500)
 
 /**
  * <description>cminitcomponent</description>
@@ -780,7 +716,7 @@ typedef struct tagcminitcomponent_struct
 	RTS_IEC_RESULT CMInitComponent;		/* VAR_OUTPUT */	
 } cminitcomponent_struct;
 
-DEF_API(`void',`CDECL',`cminitcomponent',`(cminitcomponent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xAD863340),0x03050D00)
+DEF_API(`void',`CDECL',`cminitcomponent',`(cminitcomponent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xAD863340),0x03050500)
 
 /**
  * OBSOLETE FUNCTION: Use CMRegisterLicenseFunctions instead
@@ -791,7 +727,7 @@ typedef struct tagcmregistergetuserlicensevalue_struct
 	RTS_IEC_RESULT CMRegisterGetUserLicenseValue;	/* VAR_OUTPUT */	
 } cmregistergetuserlicensevalue_struct;
 
-DEF_API(`void',`CDECL',`cmregistergetuserlicensevalue',`(cmregistergetuserlicensevalue_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x84364FC6),0x03050D00)
+DEF_API(`void',`CDECL',`cmregistergetuserlicensevalue',`(cmregistergetuserlicensevalue_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x84364FC6),0x03050500)
 
 /**
  * <description>cmregisterlicensefunctions</description>
@@ -802,7 +738,7 @@ typedef struct tagcmregisterlicensefunctions_struct
 	RTS_IEC_RESULT CMRegisterLicenseFunctions;	/* VAR_OUTPUT */	
 } cmregisterlicensefunctions_struct;
 
-DEF_API(`void',`CDECL',`cmregisterlicensefunctions',`(cmregisterlicensefunctions_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xC18CCC88),0x03050D00)
+DEF_API(`void',`CDECL',`cmregisterlicensefunctions',`(cmregisterlicensefunctions_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xC18CCC88),0x03050500)
 
 /**
  * <description>cmremovecomponent</description>
@@ -813,7 +749,7 @@ typedef struct tagcmremovecomponent_struct
 	RTS_IEC_RESULT CMRemoveComponent;	/* VAR_OUTPUT */	
 } cmremovecomponent_struct;
 
-DEF_API(`void',`CDECL',`cmremovecomponent',`(cmremovecomponent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xB53B03F4),0x03050D00)
+DEF_API(`void',`CDECL',`cmremovecomponent',`(cmremovecomponent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xB53B03F4),0x03050500)
 
 /**
  * <description>cmshutdown</description>
@@ -824,7 +760,7 @@ typedef struct tagcmshutdown_struct
 	RTS_IEC_RESULT CMShutDown;			/* VAR_OUTPUT */	
 } cmshutdown_struct;
 
-DEF_API(`void',`CDECL',`cmshutdown',`(cmshutdown_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x28C83A52),0x03050D00)
+DEF_API(`void',`CDECL',`cmshutdown',`(cmshutdown_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x28C83A52),0x03050500)
 
 /**
  * OBSOLETE FUNCTION: Use CMUnregisterLicenseFunctions instead
@@ -835,7 +771,7 @@ typedef struct tagcmunregistergetuserlicensevalue_struct
 	RTS_IEC_RESULT CMUnregisterGetUserLicenseValue;	/* VAR_OUTPUT */	
 } cmunregistergetuserlicensevalue_struct;
 
-DEF_API(`void',`CDECL',`cmunregistergetuserlicensevalue',`(cmunregistergetuserlicensevalue_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xE400F55F),0x03050D00)
+DEF_API(`void',`CDECL',`cmunregistergetuserlicensevalue',`(cmunregistergetuserlicensevalue_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xE400F55F),0x03050500)
 
 /**
  * <description>cmunregisterlicensefunctions</description>
@@ -846,7 +782,7 @@ typedef struct tagcmunregisterlicensefunctions_struct
 	RTS_IEC_RESULT CMUnregisterLicenseFunctions;	/* VAR_OUTPUT */	
 } cmunregisterlicensefunctions_struct;
 
-DEF_API(`void',`CDECL',`cmunregisterlicensefunctions',`(cmunregisterlicensefunctions_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x7144A275),0x03050D00)
+DEF_API(`void',`CDECL',`cmunregisterlicensefunctions',`(cmunregisterlicensefunctions_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x7144A275),0x03050500)
 
 /**
  * <description>cmutlcwstrcpy</description>
@@ -859,7 +795,7 @@ typedef struct tagcmutlcwstrcpy_struct
 	RTS_IEC_RESULT CMUtlcwstrcpy;		/* VAR_OUTPUT */	
 } cmutlcwstrcpy_struct;
 
-DEF_API(`void',`CDECL',`cmutlcwstrcpy',`(cmutlcwstrcpy_struct *p)',1,RTSITF_GET_SIGNATURE(0x09DB4923, 0xCCB6DDB5),0x03050D00)
+DEF_API(`void',`CDECL',`cmutlcwstrcpy',`(cmutlcwstrcpy_struct *p)',1,RTSITF_GET_SIGNATURE(0x09DB4923, 0xCCB6DDB5),0x03050500)
 
 /**
  * <description>cmutlsafestrcpy</description>
@@ -872,7 +808,7 @@ typedef struct tagcmutlsafestrcpy_struct
 	RTS_IEC_RESULT CMUtlSafeStrCpy;		/* VAR_OUTPUT */	
 } cmutlsafestrcpy_struct;
 
-DEF_API(`void',`CDECL',`cmutlsafestrcpy',`(cmutlsafestrcpy_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x794C4461),0x03050D00)
+DEF_API(`void',`CDECL',`cmutlsafestrcpy',`(cmutlsafestrcpy_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x794C4461),0x03050500)
 
 /**
  * <description>cmutlstricmp</description>
@@ -884,21 +820,7 @@ typedef struct tagcmutlstricmp_struct
 	RTS_IEC_DINT CMUtlStrICmp;			/* VAR_OUTPUT */	
 } cmutlstricmp_struct;
 
-DEF_API(`void',`CDECL',`cmutlstricmp',`(cmutlstricmp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xF3161529),0x03050D00)
-
-/**
- * <description>cmutlutf8tow</description>
- */
-typedef struct tagcmutlutf8tow_struct
-{
-	RTS_IEC_BYTE *pUtf8Str;				/* VAR_INPUT */	
-	RTS_IEC_UXINT utf8BufferSize;		/* VAR_INPUT */	
-	RTS_IEC_WSTRING *pwsz;				/* VAR_INPUT */	
-	RTS_IEC_UXINT wstrLen;				/* VAR_INPUT */	
-	RTS_IEC_RESULT CMUtlUtf8ToW;		/* VAR_OUTPUT */	
-} cmutlutf8tow_struct;
-
-DEF_API(`void',`CDECL',`cmutlutf8tow',`(cmutlutf8tow_struct *p)',1,RTSITF_GET_SIGNATURE(0xB78A45E0, 0x76EB6470),0x03050D00)
+DEF_API(`void',`CDECL',`cmutlstricmp',`(cmutlstricmp_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xF3161529),0x03050500)
 
 /**
  * <description>cmutlwstrcpy</description>
@@ -911,21 +833,7 @@ typedef struct tagcmutlwstrcpy_struct
 	RTS_IEC_RESULT CMUtlwstrcpy;		/* VAR_OUTPUT */	
 } cmutlwstrcpy_struct;
 
-DEF_API(`void',`CDECL',`cmutlwstrcpy',`(cmutlwstrcpy_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x92BF32B1),0x03050D00)
-
-/**
- * <description>cmutlwtoutf8</description>
- */
-typedef struct tagcmutlwtoutf8_struct
-{
-	RTS_IEC_WSTRING *pwsz;				/* VAR_INPUT */	
-	RTS_IEC_UXINT wstrLen;				/* VAR_INPUT */	
-	RTS_IEC_BYTE *pUtf8Str;				/* VAR_INPUT */	
-	RTS_IEC_UXINT utf8BufferSize;		/* VAR_INPUT */	
-	RTS_IEC_RESULT CMUtlWToUtf8;		/* VAR_OUTPUT */	
-} cmutlwtoutf8_struct;
-
-DEF_API(`void',`CDECL',`cmutlwtoutf8',`(cmutlwtoutf8_struct *p)',1,RTSITF_GET_SIGNATURE(0xAE6E95C8, 0x61F1F05D),0x03050D00)
+DEF_API(`void',`CDECL',`cmutlwstrcpy',`(cmutlwstrcpy_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x92BF32B1),0x03050500)
 
 #ifdef __cplusplus
 }
@@ -1160,19 +1068,6 @@ DEF_API(`void',`CDECL',`cmloadcomponent',`(cmloadcomponent_struct *p)',1,0)
  * <result>Component handle or RTS_INVALID_HANDLE, if an error is occured</result>
  */
 DEF_ITF_API(`RTS_HANDLE', `CDECL', `CMLoadComponent2', `(char *pszComponent, RTS_UI16 iType, RTS_RESULT *pResult)')
-
-/**
- * <description> 
- *   Called to load a component. Can also be called during runtime.
- *	 ATTENTION: If component has references to other components, referenced components must be loaded first!
- * </description>
- * <param name="pszComponent" type="IN">Name of the component</param>
- * <param name="pszFilePath" type="IN">Complete file path of the component</param>
- * <param name="iType" type="IN">Type of the component. See category "ComponentType" for details.</param>
- * <param name="pResult" type="INOUT">Pointer to error code</param>
- * <result>Component handle or RTS_INVALID_HANDLE, if an error is occured</result>
- */
-DEF_ITF_API(`RTS_HANDLE', `CDECL', `CMLoadComponent3', `(char *pszComponent, char *pszFilePath, RTS_UI16 iType, RTS_RESULT *pResult)')
 
 /**
  * <description> 
@@ -1432,6 +1327,20 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `CMInitEnd', `(void)')
  * <result>error code: ERR_OK: SysTarget is signed, ERR_FAILED: SysTarget was modified or is unsigned</result>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `CMCheckSysTargetSignature', `(void)')
+
+/**
+ * <description>Register the IEC function pointers from the license manager lib</description>
+ * <param name="pLicenseFunctions" type="IN">Pointer to all IEC function pointers of the license manager lib</param>
+ * <result>error code</result>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `CMRegisterLicenseFunctions', `(LicenseFunctions *pLicenseFunctions)')
+
+/**
+ * <description>Unregister the IEC function pointers from the license manager lib</description>
+ * <param name="pLicenseFunctions" type="IN">Pointer to all IEC function pointers of the license manager lib</param>
+ * <result>error code</result>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `CMUnregisterLicenseFunctions', `(LicenseFunctions *pLicenseFunctions)')
 
 #define LICENSE_NOT_AVAILABLE	UINT32_C(0xffffffff)
 #define LICENSE_INVALID			UINT32_C(0x00000000)

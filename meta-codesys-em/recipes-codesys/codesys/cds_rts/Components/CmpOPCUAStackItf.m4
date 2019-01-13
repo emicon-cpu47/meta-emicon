@@ -2,9 +2,7 @@
  * <interfacename>CmpOPCUAStack</interfacename>
  * <description></description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
  
 /*
@@ -12,7 +10,12 @@
  */
 
 SET_INTERFACE_NAME(`CmpOPCUAStack')
-REF_ITF(`CmpCryptoItf.m4')
+
+/* OPC UA Stack header files */
+#include "opcua.h"
+#include "opcua_list.h"
+#include "opcua_endpoint.h"
+#include "opcua_timer.h"
 
 /**
  * <category>Settings</category>
@@ -45,39 +48,6 @@ REF_ITF(`CmpCryptoItf.m4')
 #ifndef CMPOPCUAVALUE_INT_TRACE_LEVEL_DEFAULT
 	#define CMPOPCUAVALUE_INT_TRACE_LEVEL_DEFAULT	(OPCUA_TRACE_LEVEL_ERROR | OPCUA_TRACE_LEVEL_WARNING)
 #endif
-
-/**
- * <category>Compiler switches</category>
- * <description>This switch enables or disables the implementation of the OPC UA security
- * policies inside the OPC UA stack. By default the implementation will be there if the
- * requred interfaces are implemented. Other components can use the switch to determin if
- * the security policies of hte UA Stack are availabe at compile time.</description>
- */
-#if !(defined CMPCRYPTO_NOTIMPLEMENTED || defined CMPX509CERT_NOTIMPLEMENTED)
-    #ifndef CMPOPCUASTACK_SUPPORT_SECURE_COMMUNICATION
-        #define CMPOPCUASTACK_SUPPORT_SECURE_COMMUNICATION 1
-    #endif
-#endif
-
-/**
- * <category>Compiler switches</category>
- * <description>This switch enables or disables availability of SHA1 based encryption profiles
- * as defined by the OPC UA specification (Basic128Rsa15, Basic256). These profiles use SHA1 as
- * hashing algorithm. Since 2005 (https://www.schneier.com/blog/archives/2005/02/sha1_broken.html) SHA1
- * is broken. In 2017 the first collision was generated (https://shattered.io/). As a result
- * SHA1 based profiles will be disabled by default.</description>
- */
-#if CMPOPCUASTACK_SUPPORT_SECURE_COMMUNICATION
-    #ifndef CMPOPCUASTACK_ALLOW_SHA1_BASED_SECURITY
-        #define CMPOPCUASTACK_ALLOW_SHA1_BASED_SECURITY 0
-    #endif
-#endif
-
-/* OPC UA Stack header files */
-#include "opcua.h"
-#include "opcua_list.h"
-#include "opcua_endpoint.h"
-#include "opcua_timer.h"
 
 #define CAL_OpcUaStringCompare(xValue1, xValue2) CAL_OpcUaStringStrnCmp(xValue1, xValue2, OPCUA_STRING_LENDONTCARE, OpcUa_False)
 #define CAL_OpcUaStringCopyTo(xSource, xDestination) CAL_OpcUaStringStrnCpy(xDestination, xSource, OPCUA_STRING_LENDONTCARE)
@@ -179,23 +149,6 @@ DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaReferenceDescriptionClear',`(OpcUa_Refere
 DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaUserTokenPolicyInitialize',`(OpcUa_UserTokenPolicy* pValue)')
 DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaUserTokenPolicyClear',`(OpcUa_UserTokenPolicy* pValue)')
 
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaSignatureDataInitialize',`(OpcUa_SignatureData* pValue)')
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaSignatureDataClear',`(OpcUa_SignatureData* pValue)')
-
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaApplicationDescriptionInitialize',`(OpcUa_ApplicationDescription* pValue)')
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaApplicationDescriptionClear',`(OpcUa_ApplicationDescription* pValue)')
-
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaEventNotificationListInitialize',`(OpcUa_EventNotificationList* pValue)')
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaEventNotificationListClear',`(OpcUa_EventNotificationList* pValue)')
-
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaEventFieldListInitialize',`(OpcUa_EventFieldList* pValue)')
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaEventFieldListClear',`(OpcUa_EventFieldList* pValue)')
-
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaSimpleAttributeOperandInitialize',`(OpcUa_SimpleAttributeOperand* pValue)')
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaSimpleAttributeOperandClear',`(OpcUa_SimpleAttributeOperand* pValue)')
-
-
-
 DEF_ITF_API(`OpcUa_StatusCode',`CDECL',`OpcUaListCreate',`(OpcUa_List** ppList)')
 DEF_ITF_API(`OpcUa_StatusCode',`CDECL',`OpcUaListInitialize',`(OpcUa_List* pList)')
 DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaListClear',`(OpcUa_List* pList)')
@@ -247,35 +200,4 @@ DEF_ITF_API(`OpcUa_StatusCode',`CDECL',`OpcUaServerApiCreateFault',`(OpcUa_Reque
  */
 DEF_ITF_API(`OpcUa_EncodeableType*',`CDECL',`OpcUaGetEncodableObjectType',`(OpcUa_UInt32 ui32TypeId)')
 DEF_ITF_API(`OpcUa_PfnBeginInvokeService*',`CDECL',`OpcUaGetBeginServiceFunction',`(OpcUa_UInt32 ui32ServiceId)')
-
-/* OPC UA Crypto interface */
-DEF_ITF_API(`OpcUa_StatusCode',`CDECL',`OpcUaStackConvertAsymmetricKey',`(RtsCryptoKey* rtsKey, OpcUa_Boolean bPrivateKey, OpcUa_Key* opcuaKey)')
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaSignatureInitialize',`(OpcUa_Signature* pSignature)')
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaSignatureClear',`(OpcUa_Signature* pSignature)')
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaKeyInitialize',`(OpcUa_Key* pKey)')
-DEF_ITF_API(`OpcUa_Void',`CDECL',`OpcUaKeyClear',`(OpcUa_Key* pKey)')
-DEF_ITF_API(`OpcUa_StatusCode',`CDECL',`OpcUaCryptoGenerateKey',`(OpcUa_CryptoProvider* pProvider, OpcUa_Int32 keyLen, OpcUa_Key* pKey)')
-DEF_ITF_API(`OpcUa_StatusCode',`CDECL',`OpcUaCryptoDeriveKey',`(OpcUa_CryptoProvider* pProvider, OpcUa_ByteString secret, OpcUa_ByteString seed, OpcUa_Int32 keyLen, OpcUa_Key* pKey)')
-DEF_ITF_API(`OpcUa_StatusCode',`CDECL',`OpcUaCryptoAsymmetricSign',`(OpcUa_CryptoProvider* pProvider, OpcUa_ByteString data, OpcUa_Key* privateKey, OpcUa_ByteString* pSignature)')
-DEF_ITF_API(`OpcUa_StatusCode',`CDECL',`OpcUaCryptoAsymmetricVerify',`(OpcUa_CryptoProvider* pProvider, OpcUa_ByteString data, OpcUa_Key* publicKey, OpcUa_ByteString* pSignature)')
-DEF_ITF_API(`OpcUa_StatusCode',`CDECL',`OpcUaCryptoAsymmetricDecrypt',`(OpcUa_CryptoProvider* pProvider, OpcUa_Byte* pCipherText, OpcUa_UInt32 cipherTextLen, OpcUa_Key* privateKey, OpcUa_Byte* pPlainText, OpcUa_UInt32* pPlainTextLen)')
-DEF_ITF_API(`OpcUa_CharA*',`CDECL',`OpcUaCryptoGetSignatureAlgorithmUri',`(OpcUa_CryptoProvider* pProvider)')
-DEF_ITF_API(`OpcUa_StatusCode',`CDECL',`OpcUaCryptoGetAsymmetricKeyLength',`(OpcUa_CryptoProvider* a_pProvider, OpcUa_Key a_publicKey, OpcUa_UInt32* a_pBits)')
-DEF_ITF_API(`OpcUa_StatusCode',`CDECL',`OpcUaCryptoProviderCreate',`(OpcUa_StringA a_psSecurityProfileUri, OpcUa_CryptoProvider* a_pProvider)')
-DEF_ITF_API(`OpcUa_StatusCode',`CDECL',`OpcUaCryptoProviderDelete',`(OpcUa_CryptoProvider* a_pProvider)')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

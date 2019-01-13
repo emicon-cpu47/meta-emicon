@@ -273,8 +273,6 @@ Functions
 
 - RTS_RESULT :ref:`SysFileGenerateCRC3 <group___sys_file_itf_1ga0be5f7aad5a35feee6e23ed1e20e8a4b>` (char * pszFile, RTS_SIZE ulSize, RTS_UI32 * pulCRC, RTS_BOOL bUseCache)
 
-- RTS_RESULT :ref:`SysFileGenerateCRC3_ <group___sys_file_itf_1ga9fd5f8996b864ee3e58e61ad86078004>` (char * pszFile, RTS_SIZE ulSize, RTS_UI32 * pulCRC, RTS_BOOL bUseCache)
-
 - RTS_RESULT :ref:`SysFileGenerateCRC2_ <group___sys_file_itf_1ga4d28d12f76b503951a9927c03e24e086>` (char * pszFile, RTS_SIZE ulSize, RTS_UI32 * pulCRC)
 
 - RTS_RESULT :ref:`SysFileFlush <group___sys_file_itf_1gaab879175f88d0f1b42862af3e5ce0103>` (RTS_HANDLE hFile)
@@ -295,12 +293,6 @@ Functions
 
 - RTS_RESULT :ref:`SysFilePlcLogicPrefix <group___sys_file_itf_1ga1389feb4f282083cf88a78123482d794>` (char * pszPathOut, RTS_SIZE ulPathOutSize, char * pszSubDir, char * pszName, const char * pszExt)
 
-- RTS_RESULT :ref:`SysFileIsBlacklisted <group___sys_file_itf_1ga5681f6aac97d8c314e2a167db8848a45>` (char * pszPath)
-
-- RTS_RESULT :ref:`SysFileAddToBlacklist <group___sys_file_itf_1ga457a33093cdbc0bd46eec7693e60333a>` (char * pszPath)
-
-- RTS_RESULT :ref:`SysFileIsOnlineAccessDenied <group___sys_file_itf_1ga3e59ed5842dadc542712b5b4b69f0c25>` (char * pszPath)
-
 .. _group___sys_file_itf-details:
 
 Detailed Description
@@ -314,7 +306,7 @@ Please read following notes if using the SysFileFlash with our SysFlash: This co
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -1379,7 +1371,7 @@ error code
 RTS_RESULT SysFileGenerateCRC (char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Generate the CRC32 of a file. Can be used to check file integrity. ATTENTION: Only for backward compatibility! CRC is implemented not independent from buffer size!
+Generate the CRC32 of a file. Can be used to check file integrity. ATTENTION: Only for backward compatibility! CRC is implemented not independant from buffer size!
 
 **Parameters**
 
@@ -1420,11 +1412,6 @@ error code
 
 RTS_RESULT SysFileGenerateCRC3 (char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC, RTS_BOOL bUseCache)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_file_itf_1ga9fd5f8996b864ee3e58e61ad86078004:
-
-RTS_RESULT SysFileGenerateCRC3_ (char *pszFile, RTS_SIZE ulSize, RTS_UI32 *pulCRC, RTS_BOOL bUseCache)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___sys_file_itf_1ga4d28d12f76b503951a9927c03e24e086:
 
@@ -1677,93 +1664,6 @@ Prepends the plc logic prefix to name and ext in the resulting pathOut, makes su
 **Returns:**
 
 Error code
-
-.. _group___sys_file_itf_1ga5681f6aac97d8c314e2a167db8848a45:
-
-RTS_RESULT SysFileIsBlacklisted (char *pszPath)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Check whether a given file and/or path is blacklisted On a blacklisted file or path it is intended to deny all operations NOTE: SysFile uses this blacklist to deny file access from IEC. NOTE: Other components may use this blacklist too (currently CmpFileTransfer).
-
-**Parameters**
-
-+---------+---------+---------------------------+
-| [in]    | pszPath | File and/or path to check |
-+---------+---------+---------------------------+
-
-**Returns:**
-
-Error code
-
-**Return values**
-
-+--------------------+--------------------------------------------------------+
-| ERR_OK             | The checked file/path is blacklisted                   |
-+--------------------+--------------------------------------------------------+
-| ERR_FAILED         | The checked file/path not blacklisted.                 |
-+--------------------+--------------------------------------------------------+
-| ERR_PARAMETER      | The file/path to check is empty or the pointer is NULL |
-+--------------------+--------------------------------------------------------+
-| ERR_NOTINITIALIZED | List is not initialized                                |
-+--------------------+--------------------------------------------------------+
-
-.. _group___sys_file_itf_1ga457a33093cdbc0bd46eec7693e60333a:
-
-RTS_RESULT SysFileAddToBlacklist (char *pszPath)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Add a given file and/or path to the blacklist NOTE: SysFile uses this blacklist to deny file access from IEC. NOTE: Other components may use this blacklist too (currently CmpFileTransfer).
-
-**Parameters**
-
-+---------+---------+-------------------------+
-| [in]    | pszPath | File and/or path to add |
-+---------+---------+-------------------------+
-
-**Returns:**
-
-Error code
-
-**Return values**
-
-+--------------------+------------------------------------------------------+
-| ERR_OK             | The file/path is successfully added to the list.     |
-+--------------------+------------------------------------------------------+
-| ERR_NOMEMORY       | Not enough memory to add the file/path               |
-+--------------------+------------------------------------------------------+
-| ERR_NOBUFFER       | Copy failure, file/path is to long                   |
-+--------------------+------------------------------------------------------+
-| ERR_PARAMETER      | The file/path to add is empty or the pointer is NULL |
-+--------------------+------------------------------------------------------+
-| ERR_NOTINITIALIZED | List is not initialized                              |
-+--------------------+------------------------------------------------------+
-
-.. _group___sys_file_itf_1ga3e59ed5842dadc542712b5b4b69f0c25:
-
-RTS_RESULT SysFileIsOnlineAccessDenied (char *pszPath)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Check whether online access of a given file/path is denied If ForceOnlineFilePath (s.a) is set, which is default, this check works as follows: If an absolute file path is requested, which is not a configured path, or a directory traversal path ERR_OK is returned.
-
-**Parameters**
-
-+---------+---------+-----------+
-| [in]    | pszPath | File path |
-+---------+---------+-----------+
-
-**Returns:**
-
-Error code
-
-**Return values**
-
-+---------------+-----------------------------------------------+
-| ERR_OK        | The file path is not accessible               |
-+---------------+-----------------------------------------------+
-| ERR_FAILED    | The file path is accessible                   |
-+---------------+-----------------------------------------------+
-| ERR_PARAMETER | The file path is empty or the pointer is NULL |
-+---------------+-----------------------------------------------+
 
 .. last line of group.rst template
 .. last line of composition.rst template

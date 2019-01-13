@@ -128,7 +128,7 @@ define(`SET_COMPONENT_NAME',
 `#ifndef _'_UPPERCASE(_COMPONENT_NAME)`DEP_H_'
 `#define _'_UPPERCASE(_COMPONENT_NAME)`DEP_H_'
 
-#define COMPONENT_NAME "$1" COMPONENT_NAME_POSTFIX
+#define COMPONENT_NAME "$1"COMPONENT_NAME_POSTFIX
 #define COMPONENT_ID    ADDVENDORID(CMP_VENDORID, CMPID_$1)
 #define COMPONENT_NAME_UNQUOTED $1
 
@@ -156,8 +156,6 @@ define(`EXTERNAL_SOURCES',`dnl')
 define(`EXTERNAL_INCLUDES',`dnl')
 define(`COMPONENT_INCLUDES',`dnl')
 define(`COMPONENT_SYSSOURCES',`dnl')
-define(`CONTRIB_SOURCES',`dnl')
-define(`CONTRIB_INCLUDES',`dnl')
 ')
 
 % -----------------------------
@@ -622,12 +620,6 @@ define(`DEF_ITF_API',
 divert(-1)'
 )
 
-define(`DEF_ITF_API_OWNCPP',
-`PUSH_ITF($@)' dnl
-`divert(DIVERT_CLASSMEMBERS)        virtual $1 $2 `I'$3(_CONCAT(`_MAKE_ITF_PARAMLIST',_TRIM(`$4')));
-divert(-1)'
-)
-
 define(`DEF_ITF_API2',
 `PUSH_ITF($@)' dnl
 `divert(DIVERT_CLASSMEMBERS)        virtual $1 $2 `I'$3(_CONCAT(`_MAKE_ITF_PARAMLIST',_TRIM(`$4')));
@@ -681,9 +673,6 @@ define(`TASK',`#ifndef RTS_TASKNAME_`'_UPPERCASE($1)
 #ifndef RTS_TASKPRIO_`'_UPPERCASE($1)
     #define RTS_TASKPRIO_`'_UPPERCASE($1)           $2
 #endif
-ifelse($3,`',`', `#ifndef RTS_TASKGROUP_`'_UPPERCASE($1)
-	#define RTS_TASKGROUP_`'_UPPERCASE($1)          $3
-#endif')
 ')
 
 define(`TASKPREFIX',`#ifndef RTS_TASKPREFIX_`'_UPPERCASE($1)
@@ -692,9 +681,6 @@ define(`TASKPREFIX',`#ifndef RTS_TASKPREFIX_`'_UPPERCASE($1)
 #ifndef RTS_TASKPRIO_`'_UPPERCASE($1)
     #define RTS_TASKPRIO_`'_UPPERCASE($1)           $2
 #endif
-ifelse($3,`',`', `#ifndef RTS_TASKGROUP_`'_UPPERCASE($1)
-	#define RTS_TASKGROUP_`'_UPPERCASE($1)          $3
-#endif')
 ')
 
 define(`TASKPLACEHOLDER',`#ifndef RTS_TASKPLACEHOLDER_`'_UPPERCASE($1)
@@ -703,9 +689,6 @@ define(`TASKPLACEHOLDER',`#ifndef RTS_TASKPLACEHOLDER_`'_UPPERCASE($1)
 #ifndef RTS_TASKPRIO_`'_UPPERCASE($1)
     #define RTS_TASKPRIO_`'_UPPERCASE($1)           $2
 #endif
-ifelse($3,`',`', `#ifndef RTS_TASKGROUP_`'_UPPERCASE($1)
-	#define RTS_TASKGROUP_`'_UPPERCASE($1)          $3
-#endif')
 ')
 
 
@@ -825,7 +808,6 @@ pushdef(`DEF_CLASSITF_API',`')
 pushdef(`DEF_RETURNHANDLECLASSITF_API',`')
 pushdef(`DEF_STATICITF_API',`')
 pushdef(`DEF_ITF_API',`')
-pushdef(`DEF_ITF_API_OWNCPP',`')
 pushdef(`DEF_ITF_API2',`')
 pushdef(`DEF_ITF_GLOBAL_API',`')
 include($1)
@@ -847,7 +829,6 @@ popdef(`DEF_CLASSITF_API')
 popdef(`DEF_STATICITF_API')
 popdef(`DEF_ITF_API2')
 popdef(`DEF_ITF_API')
-popdef(`DEF_ITF_API_OWNCPP')
 popdef(`DEF_ITF_GLOBAL_API')
 divert
 ')

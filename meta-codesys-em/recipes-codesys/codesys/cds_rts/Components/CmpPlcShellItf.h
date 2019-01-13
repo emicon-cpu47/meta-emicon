@@ -35,9 +35,7 @@
  *   
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -120,34 +118,11 @@ typedef struct
 #define EVTVERSION_PlcShellCommand 0x0001
 
 /**
- * <category>Event parameter</category>
- * <element name="pszCommand" type="IN">Name of the Command to execute</element>
- * <element name="bDisable" type="IN">Flag to disable the command</element>
- */
-typedef struct
-{
-	char* pszCommand;
-	RTS_BOOL bDisable;
-} EVTPARAM_PlcShellCommandRegister;
-#define EVTPARAMID_PlcShellCommandRegister 0x0001
-#define EVTVERSION_PlcShellCommandRegister 0x0001
-
-/**
  * <category>Events</category>
  * <description>This event is sent to all command handlers. It has to be handled only if the command name matches.</description>
  * <param name="pEventParam" type="IN">EVTPARAM_PlcShellCommand</param>
  */
 #define EVT_PlcShellCommand MAKE_EVENTID(EVTCLASS_INFO, 1)
-
-/**
- * <category>Events</category>
- * <description>
- *  This event is sent in CH_INIT_TASKS for each registered PlcShell command. It can be used to disable the command by setting
- *  the bDisable flag (see EVTPARAM_PlcShellCommandRegister).
- * </description>
- * <param name="pEventParam" type="IN">EVTPARAM_PlcShellCommandRegister</param>
- */
-#define EVT_PlcShellCommandRegister MAKE_EVENTID(EVTCLASS_INFO, 2)
 
 
 /** EXTERN LIB SECTION BEGIN **/

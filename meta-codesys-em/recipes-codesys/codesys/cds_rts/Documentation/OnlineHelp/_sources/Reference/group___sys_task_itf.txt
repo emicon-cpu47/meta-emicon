@@ -241,8 +241,6 @@ Functions
 
 - RTS_HANDLE :ref:`SysTaskCreate <group___sys_task_itf_1ga964f49e68d21683330d1b5cb0c691386>` (char * pszTaskName, :ref:`PFSYS_TASK_FUNCTION <group___sys_task_itf___featureflags_1ga922fb1217289b8b3adb1c502d1d81b29>`  pFunction, void * pParam, RTS_UI32 ulPriority, RTS_UI32 ulInterval, RTS_UI32 ulStackSize, :ref:`PFSYS_TASK_EXCEPTIONHANDLER <group___sys_task_itf___settings_1ga31aa6ad834f16cedb1c03889f5e7340a>`  pExceptionHandler, RTS_RESULT * pResult)
 
-- RTS_HANDLE :ref:`SysTaskCreate2 <group___sys_task_itf_1ga810499522c5e9821c5790298ff52d1cb>` (char * pszTaskName, char * pszTaskGroup, :ref:`PFSYS_TASK_FUNCTION <group___sys_task_itf___featureflags_1ga922fb1217289b8b3adb1c502d1d81b29>`  pFunction, void * pParam, RTS_UI32 ulPriority, RTS_UI32 ulInterval, RTS_UI32 ulStackSize, :ref:`PFSYS_TASK_EXCEPTIONHANDLER <group___sys_task_itf___settings_1ga31aa6ad834f16cedb1c03889f5e7340a>`  pExceptionHandler, RTS_RESULT * pResult)
-
 - RTS_RESULT :ref:`SysTaskExit <group___sys_task_itf_1ga2b66d971cefdb0812f714cd2447727ce>` (RTS_HANDLE hTask, RTS_UI32 ulTimeoutMs)
 
 - RTS_RESULT :ref:`SysTaskSetExit <group___sys_task_itf_1gaec87aea210bbfb32385673ce54827095>` (RTS_HANDLE hTask)
@@ -880,19 +878,6 @@ Is called to create a task in suspended mode. IMPLEMENTATION NOTE: The task must
 **Returns:**
 
 Handle to the created task
-
-.. _group___sys_task_itf_1ga810499522c5e9821c5790298ff52d1cb:
-
-RTS_HANDLE SysTaskCreate2 (char *pszTaskName, char *pszTaskGroup, PFSYS_TASK_FUNCTION pFunction, void *pParam, RTS_UI32 ulPriority, RTS_UI32 ulInterval, RTS_UI32 ulStackSize, PFSYS_TASK_EXCEPTIONHANDLER pExceptionHandler, RTS_RESULT *pResult)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This call extends SysTaskCreate (s.a.) with the name of the task group in order to add this task to the group.
-
-**Parameters**
-
-+---------+--------------+------------------------+
-| [in]    | pszTaskGroup | Name of the task group |
-+---------+--------------+------------------------+
 
 .. _group___sys_task_itf_1ga2b66d971cefdb0812f714cd2447727ce:
 

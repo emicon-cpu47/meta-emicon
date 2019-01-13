@@ -53,15 +53,11 @@ Macros
 
 - #define :ref:`OS_COREDUMP_CREATING <group___cmp_app_itf___applicationoperatingstate_1ga6edba42142d1672bbaf9f347d5fbd472>` UINT32_C(0x00080000)
 
-- #define :ref:`OS_SINGLE_CYCLE_ACTIVE <group___cmp_app_itf___applicationoperatingstate_1ga905866e8832e33ffbb0a6bfbc8643043>` UINT32_C(0x00100000)
+- #define :ref:`APP_SET_OP_STATE <group___cmp_app_itf___applicationoperatingstate_1gac6a48e89d8459ed0dea826ee5839ed67>` (((:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState |= OpState)
 
-- #define :ref:`OS_DISABLE_RESET <group___cmp_app_itf___applicationoperatingstate_1ga92aa9e1f0b08f27f8f8e6017a939df4c>` UINT32_C(0x00200000)
+- #define :ref:`APP_RESET_OP_STATE <group___cmp_app_itf___applicationoperatingstate_1ga5e0ca8698284a7a1ea1b25d9b4cde7e2>` (((:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState &= ~OpState)
 
-- #define :ref:`APP_SET_OP_STATE <group___cmp_app_itf___applicationoperatingstate_1gac6a48e89d8459ed0dea826ee5839ed67>` ((( :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState |= OpState)
-
-- #define :ref:`APP_RESET_OP_STATE <group___cmp_app_itf___applicationoperatingstate_1ga5e0ca8698284a7a1ea1b25d9b4cde7e2>` ((( :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState &= ~OpState)
-
-- #define :ref:`APP_HAS_OP_STATE <group___cmp_app_itf___applicationoperatingstate_1ga74ac88951509bdd669f093816dafa4a6>` ((( :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState & OpState)
+- #define :ref:`APP_HAS_OP_STATE <group___cmp_app_itf___applicationoperatingstate_1ga74ac88951509bdd669f093816dafa4a6>` (((:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState & OpState)
 
 .. _group___cmp_app_itf___applicationoperatingstate-details:
 
@@ -214,30 +210,20 @@ Macro Definition Documentation
 #define OS_COREDUMP_CREATING UINT32_C(0x00080000)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_app_itf___applicationoperatingstate_1ga905866e8832e33ffbb0a6bfbc8643043:
-
-#define OS_SINGLE_CYCLE_ACTIVE UINT32_C(0x00100000)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_app_itf___applicationoperatingstate_1ga92aa9e1f0b08f27f8f8e6017a939df4c:
-
-#define OS_DISABLE_RESET UINT32_C(0x00200000)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. _group___cmp_app_itf___applicationoperatingstate_1gac6a48e89d8459ed0dea826ee5839ed67:
 
-#define APP_SET_OP_STATE ((( :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState |= OpState)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#define APP_SET_OP_STATE (((:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState |= OpState)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___cmp_app_itf___applicationoperatingstate_1ga5e0ca8698284a7a1ea1b25d9b4cde7e2:
 
-#define APP_RESET_OP_STATE ((( :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState &= ~OpState)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#define APP_RESET_OP_STATE (((:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState &= ~OpState)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___cmp_app_itf___applicationoperatingstate_1ga74ac88951509bdd669f093816dafa4a6:
 
-#define APP_HAS_OP_STATE ((( :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState & OpState)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#define APP_HAS_OP_STATE (((:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` *)pApp)->ulOpState & OpState)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. last line of group.rst template
 .. last line of composition.rst template

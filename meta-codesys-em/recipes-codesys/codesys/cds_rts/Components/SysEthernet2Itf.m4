@@ -6,9 +6,7 @@
  *	<p>All other ethernet communciation components use higher level routines (see SysSocket interface).</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysEthernet2')
@@ -58,22 +56,6 @@ typedef struct
 	long nReturnVal;
 }GetAdapterDescription;
 
-typedef struct
-{
-	long iMasterNum;
-	unsigned char **ppFrame;
-	RTS_I32* pnSize;
-	RTS_I32 nReturnVal;
-}GetIPEthernetInterface2;
-
-typedef struct
-{
-	long iMasterNum;
-	Ethernetframe *pFrame;
-	RTS_I32 nSize;
-	RTS_I32 nReturnVal;
-}SendIPEthernetInterface2;
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -99,21 +81,6 @@ DEF_API(`void',`CDECL',`getethframeex',`(GetEthernetInterfaceEx* pgeiex)',1)
  */
 DEF_API(`void',`CDECL',`getadapterdescription',`(GetAdapterDescription* pgad)',1)
 
-
-/**
- * <description>Send IP etherpacket (EoE)</description>
- * <param name="psfi" type="IN">Pointer to parameters</param>
- * <result>error code</result>
- */
-DEF_ITF_API(`void',`CDECL',`sendIPethframe2',`(SendIPEthernetInterface2* psfi)',1)
-
-/**
- * <description>Get IP ethernet packet</description>
- * <param name="pgei" type="IN">Pointer to parameters</param>
- * <result>error code</result>
- */
-DEF_ITF_API(`void',`CDECL',`getIPethframe2',`(GetIPEthernetInterface2* pgei)',1)
-
 typedef void (CDECL * PFETHFRAMERECEIVED)(void);
 
 typedef struct _EthernetAdapterDescription
@@ -135,10 +102,10 @@ typedef struct _EthernetAdapterDescription
 	PFRESETADAPTER pfresetadapter;
 	PFETHFRAMERECEIVED pfEthFrameReceived;
 	char szDriverName[32];
-	PFGETIPETHFRAME2 pfgetIPethframe2;
-	PFSENDIPETHFRAME2 pfsendIPethframe2;
 }EthernetAdapterDescription;
 DEF_API(`RTS_RESULT',`CDECL',`SysEthernetRegisterEthernetAdapter',`(EthernetAdapterDescription* pAdapterDesc, int bUnregister)',1)
+
+
 #ifdef __cplusplus
 }
 #endif

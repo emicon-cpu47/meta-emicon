@@ -8,8 +8,6 @@
 
 
 
-
-
 #include "CmpSJACanDrv.c"
 #include "SJACanDrv.c"
 

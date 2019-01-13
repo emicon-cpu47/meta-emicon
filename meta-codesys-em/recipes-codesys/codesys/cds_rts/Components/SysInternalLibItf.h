@@ -12,9 +12,7 @@
  *	<p>If the define SYSINTERNALLIB_DISABLE_REAL_DIVBYZERO_CHECK is set, you can disable checking all real divisions on a zero divisor.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -582,27 +580,6 @@ typedef struct
 }int64_to_any32_struct;
 
 /**
- * <category>External IEC interface</category>
- * <description>Struct to read a 64-bit integer value atomic.</description>
- */
-typedef struct
-{
-	RTS_IEC_ULINT *pSrc;
-	RTS_IEC_ULINT out;	
-}int64_atomicread_struct;
-
-/**
- * <category>External IEC interface</category>
- * <description>Struct to read a 64-bit integer value atomic.</description>
- */
-typedef struct
-{
-	RTS_IEC_ULINT *pDest;
-	RTS_IEC_ULINT write;
-	RTS_IEC_RESULT out;	
-}int64_atomicwrite_struct;
-
-/**
  * <SIL2/>
  * <category>External IEC interface</category>
  * <description>Struct for conversion of any 32-bit value to a 64-bit integer value.</description>
@@ -734,28 +711,6 @@ typedef struct
 	RTS_IEC_UDINT dummy;
 	RTS_IEC_LREAL out;
 }real32_to_real64_struct;
-
-/**
- * <category>External IEC interface</category>
- * <description>Struct to read a 64-bit integer value atomic.</description>
- */
-typedef struct
-{
-	RTS_IEC_LREAL *pSrc;
-	RTS_IEC_LREAL out;	
-}real64_atomicread_struct;
-
-/**
- * <category>External IEC interface</category>
- * <description>Struct to read a 64-bit integer value atomic.</description>
- */
-typedef struct
-{
-	RTS_IEC_LREAL *pDest;
-	RTS_IEC_LREAL write;
-	RTS_IEC_RESULT out;	
-}real64_atomicwrite_struct;
-
 
 /********** Functions **********/
 /**
@@ -6805,119 +6760,6 @@ typedef void (CDECL CDECL_EXT* PFINT64__TO__ANY32_IEC) (int64_to_any32_struct* p
 
 /**
  * <description>
- *	This function read a 64bit integer value atomic.
- * </description>
- * <param name="p" type="IN">Pointer to the input structure</param>
- * <parampseudo name="pSrc" type="IN">Pointer to source address to read from</parampseudo>
- * <parampseudo name="pResult" type="IN">Pointer to error code</parampseudo>
- * <parampseudo name="out" type="OUT">Read 64bit integer value.</parampseudo>
- */
-void CDECL CDECL_EXT int64__atomicread(int64_atomicread_struct* p);
-typedef void (CDECL CDECL_EXT* PFINT64__ATOMICREAD_IEC) (int64_atomicread_struct* p);
-#if defined(SYSINTERNALLIB_NOTIMPLEMENTED) || defined(INT64__ATOMICREAD_NOTIMPLEMENTED)
-	#define USE_int64__atomicread
-	#define EXT_int64__atomicread
-	#define GET_int64__atomicread(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_int64__atomicread(p0) 
-	#define CHK_int64__atomicread  FALSE
-	#define EXP_int64__atomicread  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_int64__atomicread
-	#define EXT_int64__atomicread
-	#define GET_int64__atomicread(fl)  CAL_CMGETAPI( "int64__atomicread" ) 
-	#define CAL_int64__atomicread  int64__atomicread
-	#define CHK_int64__atomicread  TRUE
-	#define EXP_int64__atomicread  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"int64__atomicread", (RTS_UINTPTR)int64__atomicread, 1, 0, 0) 
-#elif defined(MIXED_LINK) && !defined(SYSINTERNALLIB_EXTERNAL)
-	#define USE_int64__atomicread
-	#define EXT_int64__atomicread
-	#define GET_int64__atomicread(fl)  CAL_CMGETAPI( "int64__atomicread" ) 
-	#define CAL_int64__atomicread  int64__atomicread
-	#define CHK_int64__atomicread  TRUE
-	#define EXP_int64__atomicread  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"int64__atomicread", (RTS_UINTPTR)int64__atomicread, 1, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysInternalLibint64__atomicread
-	#define EXT_SysInternalLibint64__atomicread
-	#define GET_SysInternalLibint64__atomicread  ERR_OK
-	#define CAL_SysInternalLibint64__atomicread  int64__atomicread
-	#define CHK_SysInternalLibint64__atomicread  TRUE
-	#define EXP_SysInternalLibint64__atomicread  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"int64__atomicread", (RTS_UINTPTR)int64__atomicread, 1, 0, 0) 
-#elif defined(CPLUSPLUS)
-	#define USE_int64__atomicread
-	#define EXT_int64__atomicread
-	#define GET_int64__atomicread(fl)  CAL_CMGETAPI( "int64__atomicread" ) 
-	#define CAL_int64__atomicread  int64__atomicread
-	#define CHK_int64__atomicread  TRUE
-	#define EXP_int64__atomicread  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"int64__atomicread", (RTS_UINTPTR)int64__atomicread, 1, 0, 0) 
-#else /* DYNAMIC_LINK */
-	#define USE_int64__atomicread  PFINT64__ATOMICREAD_IEC pfint64__atomicread;
-	#define EXT_int64__atomicread  extern PFINT64__ATOMICREAD_IEC pfint64__atomicread;
-	#define GET_int64__atomicread(fl)  s_pfCMGetAPI2( "int64__atomicread", (RTS_VOID_FCTPTR *)&pfint64__atomicread, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0, 0)
-	#define CAL_int64__atomicread  pfint64__atomicread
-	#define CHK_int64__atomicread  (pfint64__atomicread != NULL)
-	#define EXP_int64__atomicread   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"int64__atomicread", (RTS_UINTPTR)int64__atomicread, 1, 0, 0) 
-#endif
-
-
-/**
- * <description>
- *	This function write a 64bit integer value atomic.
- * </description>
- * <param name="p" type="IN">Pointer to the input structure</param>
- * <parampseudo name="pDest" type="IN">Pointer to destination address to write to</parampseudo>
- * <parampseudo name="write" type="IN">Value to write</parampseudo>
- * <parampseudo name="out" type="OUT">Error code for result.</parampseudo>
- */
-void CDECL CDECL_EXT int64__atomicwrite(int64_atomicwrite_struct* p);
-typedef void (CDECL CDECL_EXT* PFINT64__ATOMICWRITE_IEC) (int64_atomicwrite_struct* p);
-#if defined(SYSINTERNALLIB_NOTIMPLEMENTED) || defined(INT64__ATOMICWRITE_NOTIMPLEMENTED)
-	#define USE_int64__atomicwrite
-	#define EXT_int64__atomicwrite
-	#define GET_int64__atomicwrite(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_int64__atomicwrite(p0) 
-	#define CHK_int64__atomicwrite  FALSE
-	#define EXP_int64__atomicwrite  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_int64__atomicwrite
-	#define EXT_int64__atomicwrite
-	#define GET_int64__atomicwrite(fl)  CAL_CMGETAPI( "int64__atomicwrite" ) 
-	#define CAL_int64__atomicwrite  int64__atomicwrite
-	#define CHK_int64__atomicwrite  TRUE
-	#define EXP_int64__atomicwrite  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"int64__atomicwrite", (RTS_UINTPTR)int64__atomicwrite, 1, 0, 0) 
-#elif defined(MIXED_LINK) && !defined(SYSINTERNALLIB_EXTERNAL)
-	#define USE_int64__atomicwrite
-	#define EXT_int64__atomicwrite
-	#define GET_int64__atomicwrite(fl)  CAL_CMGETAPI( "int64__atomicwrite" ) 
-	#define CAL_int64__atomicwrite  int64__atomicwrite
-	#define CHK_int64__atomicwrite  TRUE
-	#define EXP_int64__atomicwrite  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"int64__atomicwrite", (RTS_UINTPTR)int64__atomicwrite, 1, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysInternalLibint64__atomicwrite
-	#define EXT_SysInternalLibint64__atomicwrite
-	#define GET_SysInternalLibint64__atomicwrite  ERR_OK
-	#define CAL_SysInternalLibint64__atomicwrite  int64__atomicwrite
-	#define CHK_SysInternalLibint64__atomicwrite  TRUE
-	#define EXP_SysInternalLibint64__atomicwrite  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"int64__atomicwrite", (RTS_UINTPTR)int64__atomicwrite, 1, 0, 0) 
-#elif defined(CPLUSPLUS)
-	#define USE_int64__atomicwrite
-	#define EXT_int64__atomicwrite
-	#define GET_int64__atomicwrite(fl)  CAL_CMGETAPI( "int64__atomicwrite" ) 
-	#define CAL_int64__atomicwrite  int64__atomicwrite
-	#define CHK_int64__atomicwrite  TRUE
-	#define EXP_int64__atomicwrite  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"int64__atomicwrite", (RTS_UINTPTR)int64__atomicwrite, 1, 0, 0) 
-#else /* DYNAMIC_LINK */
-	#define USE_int64__atomicwrite  PFINT64__ATOMICWRITE_IEC pfint64__atomicwrite;
-	#define EXT_int64__atomicwrite  extern PFINT64__ATOMICWRITE_IEC pfint64__atomicwrite;
-	#define GET_int64__atomicwrite(fl)  s_pfCMGetAPI2( "int64__atomicwrite", (RTS_VOID_FCTPTR *)&pfint64__atomicwrite, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0, 0)
-	#define CAL_int64__atomicwrite  pfint64__atomicwrite
-	#define CHK_int64__atomicwrite  (pfint64__atomicwrite != NULL)
-	#define EXP_int64__atomicwrite   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"int64__atomicwrite", (RTS_UINTPTR)int64__atomicwrite, 1, 0, 0) 
-#endif
-
-
-
-/**
- * <description>
  * <p>This function Converts a 32-bit real value to any 32-bit numeric data type.</p>
  * <p>Data types with less than 32 bits are allowed but the output value is casted to 32 bits.</p>
  * <p>Only integer datatypes are allowed.</p>
@@ -7491,118 +7333,6 @@ typedef void (CDECL CDECL_EXT* PFREAL32__TO__REAL64_IEC) (real32_to_real64_struc
 
 
 /**
- * <description>
- * <p>This function read a 64bit real value atomic.</p>
- * </description>
- * <param name="p" type="IN"">Pointer to the input structure</param>
- * <parampseudo name="pSrc" type="IN">Pointer to source address to read from</parampseudo>
- * <parampseudo name="pResult" type="IN">Pointer to error code</parampseudo>
- * <parampseudo name="out" type="OUT">Read 64bit integer value.</parampseudo>
- */
-void CDECL CDECL_EXT real64__atomicread(real64_atomicread_struct* p);
-typedef void (CDECL CDECL_EXT* PFREAL64__ATOMICREAD_IEC) (real64_atomicread_struct* p);
-#if defined(SYSINTERNALLIB_NOTIMPLEMENTED) || defined(REAL64__ATOMICREAD_NOTIMPLEMENTED)
-	#define USE_real64__atomicread
-	#define EXT_real64__atomicread
-	#define GET_real64__atomicread(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_real64__atomicread(p0) 
-	#define CHK_real64__atomicread  FALSE
-	#define EXP_real64__atomicread  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_real64__atomicread
-	#define EXT_real64__atomicread
-	#define GET_real64__atomicread(fl)  CAL_CMGETAPI( "real64__atomicread" ) 
-	#define CAL_real64__atomicread  real64__atomicread
-	#define CHK_real64__atomicread  TRUE
-	#define EXP_real64__atomicread  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"real64__atomicread", (RTS_UINTPTR)real64__atomicread, 1, 0, 0) 
-#elif defined(MIXED_LINK) && !defined(SYSINTERNALLIB_EXTERNAL)
-	#define USE_real64__atomicread
-	#define EXT_real64__atomicread
-	#define GET_real64__atomicread(fl)  CAL_CMGETAPI( "real64__atomicread" ) 
-	#define CAL_real64__atomicread  real64__atomicread
-	#define CHK_real64__atomicread  TRUE
-	#define EXP_real64__atomicread  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"real64__atomicread", (RTS_UINTPTR)real64__atomicread, 1, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysInternalLibreal64__atomicread
-	#define EXT_SysInternalLibreal64__atomicread
-	#define GET_SysInternalLibreal64__atomicread  ERR_OK
-	#define CAL_SysInternalLibreal64__atomicread  real64__atomicread
-	#define CHK_SysInternalLibreal64__atomicread  TRUE
-	#define EXP_SysInternalLibreal64__atomicread  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"real64__atomicread", (RTS_UINTPTR)real64__atomicread, 1, 0, 0) 
-#elif defined(CPLUSPLUS)
-	#define USE_real64__atomicread
-	#define EXT_real64__atomicread
-	#define GET_real64__atomicread(fl)  CAL_CMGETAPI( "real64__atomicread" ) 
-	#define CAL_real64__atomicread  real64__atomicread
-	#define CHK_real64__atomicread  TRUE
-	#define EXP_real64__atomicread  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"real64__atomicread", (RTS_UINTPTR)real64__atomicread, 1, 0, 0) 
-#else /* DYNAMIC_LINK */
-	#define USE_real64__atomicread  PFREAL64__ATOMICREAD_IEC pfreal64__atomicread;
-	#define EXT_real64__atomicread  extern PFREAL64__ATOMICREAD_IEC pfreal64__atomicread;
-	#define GET_real64__atomicread(fl)  s_pfCMGetAPI2( "real64__atomicread", (RTS_VOID_FCTPTR *)&pfreal64__atomicread, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0, 0)
-	#define CAL_real64__atomicread  pfreal64__atomicread
-	#define CHK_real64__atomicread  (pfreal64__atomicread != NULL)
-	#define EXP_real64__atomicread   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"real64__atomicread", (RTS_UINTPTR)real64__atomicread, 1, 0, 0) 
-#endif
-
-
-/**
- * <description>
- * <p>This function write a 64bit real value atomic.</p>
- * </description>
- * <param name="p" type="IN"">Pointer to the input structure</param>
- * <parampseudo name="pDest" type="IN">Pointer to destination address to write to</parampseudo>
- * <parampseudo name="write" type="IN">Value to write</parampseudo>
- * <parampseudo name="out" type="OUT">Error code for result.</parampseudo>
- */
-void CDECL CDECL_EXT real64__atomicwrite(real64_atomicwrite_struct* p);
-typedef void (CDECL CDECL_EXT* PFREAL64__ATOMICWRITE_IEC) (real64_atomicwrite_struct* p);
-#if defined(SYSINTERNALLIB_NOTIMPLEMENTED) || defined(REAL64__ATOMICWRITE_NOTIMPLEMENTED)
-	#define USE_real64__atomicwrite
-	#define EXT_real64__atomicwrite
-	#define GET_real64__atomicwrite(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_real64__atomicwrite(p0) 
-	#define CHK_real64__atomicwrite  FALSE
-	#define EXP_real64__atomicwrite  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_real64__atomicwrite
-	#define EXT_real64__atomicwrite
-	#define GET_real64__atomicwrite(fl)  CAL_CMGETAPI( "real64__atomicwrite" ) 
-	#define CAL_real64__atomicwrite  real64__atomicwrite
-	#define CHK_real64__atomicwrite  TRUE
-	#define EXP_real64__atomicwrite  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"real64__atomicwrite", (RTS_UINTPTR)real64__atomicwrite, 1, 0, 0) 
-#elif defined(MIXED_LINK) && !defined(SYSINTERNALLIB_EXTERNAL)
-	#define USE_real64__atomicwrite
-	#define EXT_real64__atomicwrite
-	#define GET_real64__atomicwrite(fl)  CAL_CMGETAPI( "real64__atomicwrite" ) 
-	#define CAL_real64__atomicwrite  real64__atomicwrite
-	#define CHK_real64__atomicwrite  TRUE
-	#define EXP_real64__atomicwrite  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"real64__atomicwrite", (RTS_UINTPTR)real64__atomicwrite, 1, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysInternalLibreal64__atomicwrite
-	#define EXT_SysInternalLibreal64__atomicwrite
-	#define GET_SysInternalLibreal64__atomicwrite  ERR_OK
-	#define CAL_SysInternalLibreal64__atomicwrite  real64__atomicwrite
-	#define CHK_SysInternalLibreal64__atomicwrite  TRUE
-	#define EXP_SysInternalLibreal64__atomicwrite  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"real64__atomicwrite", (RTS_UINTPTR)real64__atomicwrite, 1, 0, 0) 
-#elif defined(CPLUSPLUS)
-	#define USE_real64__atomicwrite
-	#define EXT_real64__atomicwrite
-	#define GET_real64__atomicwrite(fl)  CAL_CMGETAPI( "real64__atomicwrite" ) 
-	#define CAL_real64__atomicwrite  real64__atomicwrite
-	#define CHK_real64__atomicwrite  TRUE
-	#define EXP_real64__atomicwrite  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"real64__atomicwrite", (RTS_UINTPTR)real64__atomicwrite, 1, 0, 0) 
-#else /* DYNAMIC_LINK */
-	#define USE_real64__atomicwrite  PFREAL64__ATOMICWRITE_IEC pfreal64__atomicwrite;
-	#define EXT_real64__atomicwrite  extern PFREAL64__ATOMICWRITE_IEC pfreal64__atomicwrite;
-	#define GET_real64__atomicwrite(fl)  s_pfCMGetAPI2( "real64__atomicwrite", (RTS_VOID_FCTPTR *)&pfreal64__atomicwrite, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0, 0)
-	#define CAL_real64__atomicwrite  pfreal64__atomicwrite
-	#define CHK_real64__atomicwrite  (pfreal64__atomicwrite != NULL)
-	#define EXP_real64__atomicwrite   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"real64__atomicwrite", (RTS_UINTPTR)real64__atomicwrite, 1, 0, 0) 
-#endif
-
-
-/**
  * <description>This function returns a monotonic rising millisecond tick. This tick can be used for timeout and relative time measurements.</description>
  * <param name="p" type="IN" range="[VALID_GET_TIME_STRUCT]">Pointer to the input structure</param>
  * <parampseudo name="out" type="OUT">millisecond tick as 32-Bit value.</parampseudo>
@@ -8036,7 +7766,6 @@ typedef void (CDECL CDECL_EXT* PFSYSTIMEUNSET_IEC) (systimeunset_struct *p);
 	#define CHK_systimeunset  (pfsystimeunset != NULL)
 	#define EXP_systimeunset   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"systimeunset", (RTS_UINTPTR)systimeunset, 1, 0xB274556B, 0x03050500) 
 #endif
-
 
 
 /**

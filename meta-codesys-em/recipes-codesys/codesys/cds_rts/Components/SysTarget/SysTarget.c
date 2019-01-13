@@ -20,7 +20,6 @@ USE_STMT
 static RTS_UI32 s_ulTargetVersionMask = SYSTARGETVALUE_INT_TARGET_VERSION_MASK_DEFAULT;
 static RTS_UI32 s_ulTargetVersionMaskCompatible = SYSTARGETVALUE_INT_TARGET_VERSION_COMPATIBILITY_MASK_DEFAULT;
 static PFSYSTARGETGETSERIALNUMBER_SECURE s_pfSysTargetGetSerialNumber_Secure = NULL;
-static RTS_HANDLE s_hEventSetNodeName = RTS_INVALID_HANDLE;
 
 static RTS_UI32 Pack(RTS_UI32 ulByte0, RTS_UI32 ulByte1, RTS_UI32 ulByte2, RTS_UI32 ulByte3);
 static void Unpack(RTS_UI32 ulInput, RTS_UI32* pulByte0, RTS_UI32* pulByte1, RTS_UI32* pulByte2, RTS_UI32* pulByte3);
@@ -143,15 +142,6 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 			/* Only for backward compatibility! */
 			else if (CAL_SettgGetIntValue("CmpDevice", SYSTARGETKEY_INT_TARGET_VERSION_COMPATIBILITY_MASK, &iValue, (int)SYSTARGETVALUE_INT_TARGET_VERSION_COMPATIBILITY_MASK_DEFAULT, 0) == ERR_OK)
 				s_ulTargetVersionMaskCompatible = (RTS_UI32)iValue;
-
-			s_hEventSetNodeName = RTS_INVALID_HANDLE;
-			if (CHK_EventCreate3)
-			{
-				EventOptions eventOptions;
-				eventOptions.flags = EMF_NO_IEC_CALLBACKS;
-				eventOptions.nCallbacksPossible = 1;
-				s_hEventSetNodeName = CAL_EventCreate3(EVT_SysTarget_SetNodeName, CMPID_SysTarget, &eventOptions, NULL);
-			}
 			break;
 		}
 		case CH_COMM_CYCLE:
@@ -165,15 +155,6 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 			break;
 #endif
 		}
-		case CH_EXIT2:
-		{
-			if (CHK_EventDelete)
-			{
-				CAL_EventDelete(s_hEventSetNodeName);
-				s_hEventSetNodeName = RTS_INVALID_HANDLE;
-			}
-			break;
-		}		
 		case CH_EXIT_SYSTEM:
 		{
 			EXIT_STMT;
@@ -197,30 +178,17 @@ RTS_RESULT CDECL SysTargetGetConfiguredNodeName(RTS_WCHAR *pwszName, RTS_SIZE *p
 	{
 		RTS_I32 iLen = (RTS_I32)*pnMaxLength;
 		RTS_RESULT Result = CAL_SettgGetWStringValue((const char*)COMPONENT_NAME, (const char*)SYSTARGETKEY_WSTRING_GET_NODENAME_UNICODE, (RTS_WCHAR *)pwszName, &iLen, (RTS_WCHAR *)RTS_WTEXT_EMPTY, 0);
-
-		/* if the buffer is too small, the truncated string is ok here */
-		if (Result == ERR_BUFFERSIZE)
-			Result = ERR_OK;
-
 		if (Result == ERR_OK)
 		{
-			if (pwszName != NULL)
-				*pnMaxLength = iLen + 1;
-			else
-				*pnMaxLength = iLen;
+			*pnMaxLength = iLen + 1;
 		}
 		else
 		{
-			char sz[512];
-
+			char sz[100];
+			
 			iLen = sizeof(sz);
 			Result = CAL_SettgGetStringValue(COMPONENT_NAME, SYSTARGETKEY_STRING_GET_NODENAME, sz, &iLen, "", 0);
-
-			/* if the buffer is too small, the truncated string is ok here */
-			if (Result == ERR_BUFFERSIZE)
-				Result = ERR_OK;
-
-			if (Result == ERR_OK)
+			if (Result == ERR_OK && pnMaxLength != NULL)
 			{
 				if (pwszName != NULL)
 				{
@@ -234,74 +202,6 @@ RTS_RESULT CDECL SysTargetGetConfiguredNodeName(RTS_WCHAR *pwszName, RTS_SIZE *p
 		return Result;
 	}
 	return ERR_PARAMETER;
-}
-
-RTS_RESULT CDECL SysTargetSetNodeName(RTS_WCHAR *pwszName)
-{
-	RTS_I32 iNameLen = 0;
-	RTS_RESULT Result;
-	EVTPARAM_SysEvent_SetNodeName Param;
-
-	if (pwszName == NULL)
-	{
-		return ERR_PARAMETER;
-	}
-
-	iNameLen = CAL_CMUtlwstrlen(pwszName);
-	if (iNameLen >= SYSTARGET_MAX_NODE_NAME_LEN)
-	{
-		return ERR_OUT_OF_LIMITS;
-	}
-
-	Param.pwszName = pwszName;
-	Param.rResult = ERR_OK;
-	if (s_hEventSetNodeName != RTS_INVALID_HANDLE && CHK_EventPost2)
-	{
-		(void)CAL_EventPost2(s_hEventSetNodeName, EVTPARAMID_SysTarget_SetNodeName, EVTVERSION_SysTarget_SetNodeName, &Param);
-	}
-
-	if (Param.rResult == ERR_OK)
-	{
-		/* delete names from settings */
-		if (CAL_SettgRemoveKey((const char*)COMPONENT_NAME, (const char*)SYSTARGETKEY_WSTRING_GET_NODENAME_UNICODE) == ERR_NO_ACCESS_RIGHTS)
-		{
-			return ERR_NO_ACCESS_RIGHTS;
-		}
-		if (CAL_SettgRemoveKey((const char*)COMPONENT_NAME, (const char*)SYSTARGETKEY_STRING_GET_NODENAME) == ERR_NO_ACCESS_RIGHTS)
-		{
-			return ERR_NO_ACCESS_RIGHTS;
-		}
-
-		if (pwszName[0] != 0)
-		{
-			Result = CAL_SettgSetWStringValue((const char*)COMPONENT_NAME, (const char*)SYSTARGETKEY_WSTRING_GET_NODENAME_UNICODE, (RTS_WCHAR *)pwszName, iNameLen);
-			if (Result == ERR_NO_ACCESS_RIGHTS)
-			{
-				return ERR_NO_ACCESS_RIGHTS;
-			}
-			else if (Result == ERR_NOTIMPLEMENTED)
-			{
-				return ERR_NOT_SUPPORTED;
-			}
-			else if (Result != ERR_OK)
-			{
-				return ERR_FAILED;
-			}
-		}
-		return ERR_OK;
-	}
-	else if (Param.rResult == ERR_NOTHING_TO_DO)
-	{
-		return ERR_OK;
-	}
-	else if (Param.rResult == ERR_NOT_SUPPORTED || Param.rResult == ERR_OPERATION_DENIED)
-	{
-		return Param.rResult;
-	}
-	else
-	{
-		return ERR_FAILED;
-	}
 }
 
 /* <SIL2/> */
@@ -561,11 +461,6 @@ RTS_RESULT CDECL SysTargetCheckIdent(SysTargetIdent *pTargetIdentReq, SysTargetI
 		((pTargetIdentReq->ulTargetVersion & s_ulTargetVersionMaskCompatible) > (pTargetIdent->ulTargetVersion & s_ulTargetVersionMaskCompatible)))
 		return ERR_VERSION_MISMATCH;
 	return ERR_OK;
-}
-
-RTS_RESULT CDECL SysTargetGetAPI(API_RESOLVE_INFO apiInfo, RTS_VOID_FCTPTR *ppfAPIFunction)
-{
-	return ERR_NOTIMPLEMENTED;
 }
 
 #ifndef SYSTARGET_DISABLE_EXTREF

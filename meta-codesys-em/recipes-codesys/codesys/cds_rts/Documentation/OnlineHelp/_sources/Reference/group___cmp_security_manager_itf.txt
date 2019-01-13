@@ -28,10 +28,6 @@ Data Structures
 
 - struct :ref:`_SecuritySetting <struct___security_setting>`
 
-- struct :ref:`_SecuritySettingValue <union___security_setting_value>`
-
-- struct :ref:`_SecurityEditableSetting <struct___security_editable_setting>`
-
 - struct :ref:`ICmpSecurityManager_C <struct_i_cmp_security_manager___c>`
 
 Macros
@@ -45,10 +41,6 @@ Typedefs
 --------
 
 - typedef struct :ref:`_SecuritySetting <struct___security_setting>` :ref:`SecuritySetting <group___cmp_security_manager_itf_1ga2f1b7f04346c3edc9ea7f6466034dde6>`
-
-- typedef union :ref:`_SecuritySettingValue <union___security_setting_value>` :ref:`SecuritySettingValue <group___cmp_security_manager_itf_1gac5532c61f8490e8516c74d9ecbdce621>`
-
-- typedef struct :ref:`_SecurityEditableSetting <struct___security_editable_setting>` :ref:`SecurityEditableSetting <group___cmp_security_manager_itf_1ga67af4a9d927839a7122ae38e56266cbb>`
 
 - typedef enum :ref:`RTS_SECURITYSETTINGS_SELFSIGNED_CERT <group___cmp_security_manager_itf_1ga5f4aec68439255f2197fa383fdfa3e29>` :ref:`RTS_SECURITYSETTINGS_SELFSIGNED_CERT <group___cmp_security_manager_itf_1ga90262c6c59120cd6d8a7a3bdcb92fd76>`
 
@@ -67,8 +59,6 @@ Functions
 - RTS_HANDLE :ref:`SecManFindSettings <group___cmp_security_manager_itf_1ga47e032026786eccc6261fc4fb1734281>` (CMPID cmpId, RTS_UI32 ui32UsageID, RTS_RESULT * pResult)
 
 - :ref:`SecuritySetting <group___cmp_security_manager_itf_1ga2f1b7f04346c3edc9ea7f6466034dde6>` * :ref:`SecManGetSetting <group___cmp_security_manager_itf_1gaf5af1774af165ab2c5a449532a76e4cb>` (RTS_HANDLE hSecuritySettings, RTS_RESULT * pResult)
-
-- :ref:`SecurityEditableSetting <group___cmp_security_manager_itf_1ga67af4a9d927839a7122ae38e56266cbb>` * :ref:`SecManGetEditableSetting <group___cmp_security_manager_itf_1gab9165ce5d1763563c40685875f9bf751>` (RTS_HANDLE hSecuritySettings, RTS_RESULT * pResult)
 
 - RTS_RESULT :ref:`SecManFillCertificateInfo <group___cmp_security_manager_itf_1ga9358c64f6efe1568056e2b031d01a091>` (CMPID cmpId, :ref:`RtsX509CertInfo <group___cmp_x509_cert_itf_1ga96114d4c034d1905d83ce6d9a53c9a16>` * pCertInfo)
 
@@ -91,7 +81,7 @@ SECURITY-NOTE: The security manager must be linked statically to the runtime sys
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -113,19 +103,7 @@ Typedef Documentation
 typedef struct _SecuritySetting  SecuritySetting
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This structure stores a single selection of a selectable settings. Each possible selection is a single struture element when registering the setting. The registration can be done using SecManRegisterSettings function. The selected setting can be retrieved by using SecManGetSetting.
-
-.. _group___cmp_security_manager_itf_1gac5532c61f8490e8516c74d9ecbdce621:
-
-typedef union _SecuritySettingValue  SecuritySettingValue
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_security_manager_itf_1ga67af4a9d927839a7122ae38e56266cbb:
-
-typedef struct _SecurityEditableSetting  SecurityEditableSetting
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This structure stores a editable setting. The setting can be registerd using SecManRegisterEditableSetting function. The default value given when registring will be returned until the setting has been changed by the someone. Then the changed value will be returned. To indicate if a string or an intager is stored use either CMPSECMAN_FLAGS_STRINGSETTING or CMPSECMAN_FLAGS_INTSETTING. The corresponding field in the secValue union is then used. Use the function SecManGetSettingValue to retrieve the valued stored.
+SecuritySetting to safe .
 
 .. _group___cmp_security_manager_itf_1ga90262c6c59120cd6d8a7a3bdcb92fd76:
 
@@ -165,13 +143,15 @@ Function Documentation
 RTS_RESULT SecManUnregisterSettings (RTS_HANDLE hSecuritySettings)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Don't create a selfsigned cert
+
 Unregister security settings
 
 **Parameters**
 
-+---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | hSecuritySettings | Handle to the security settings returned by :ref:`SecManRegisterSettings() <group___cmp_open_s_s_l_dep___staticdefines_1gac15718151cb4dfc06137bb8ce8f0a15a>` or :ref:`SecManFindSettings() <group___cmp_security_manager_itf_1ga47e032026786eccc6261fc4fb1734281>` or :ref:`SecManRegisterEditableSetting() <group___cmp_security_manager_itf___security_settings_1ga6a6eadd48abde006dbcdaf7ffdec77fe>` |
-+---------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | hSecuritySettings | Handle to the security settings returned by :ref:`SecManRegisterSettings() <group___cmp_open_s_s_l_dep___staticdefines_1gac15718151cb4dfc06137bb8ce8f0a15a>` or :ref:`SecManFindSettings() <group___cmp_security_manager_itf_1ga47e032026786eccc6261fc4fb1734281>` |
++---------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Returns:**
 
@@ -196,35 +176,6 @@ SecuritySetting* SecManGetSetting (RTS_HANDLE hSecuritySettings, RTS_RESULT *pRe
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Get the selected setting because of the security policy of the target!
-
-**Parameters**
-
-+---------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | hSecuritySettings | Handle to the security settings returned by :ref:`SecManRegisterSettings() <group___cmp_open_s_s_l_dep___staticdefines_1gac15718151cb4dfc06137bb8ce8f0a15a>` or :ref:`SecManFindSettings() <group___cmp_security_manager_itf_1ga47e032026786eccc6261fc4fb1734281>` |
-+---------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [out]   | pResult           | Pointer to error code                                                                                                                                                                                                                                              |
-+---------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-**Return values**
-
-+---------------+------------------------------+
-| ERR_OK        | One setting is returned      |
-+---------------+------------------------------+
-| ERR_PARAMETER | hSecuritySettings is invalid |
-+---------------+------------------------------+
-| ERR_NO_OBJECT | No setting selected          |
-+---------------+------------------------------+
-
-**Returns:**
-
-Pointer to the security setting which is selected on the target
-
-.. _group___cmp_security_manager_itf_1gab9165ce5d1763563c40685875f9bf751:
-
-SecurityEditableSetting* SecManGetEditableSetting (RTS_HANDLE hSecuritySettings, RTS_RESULT *pResult)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Get the edited value setting because of the security policy of the target!
 
 **Parameters**
 

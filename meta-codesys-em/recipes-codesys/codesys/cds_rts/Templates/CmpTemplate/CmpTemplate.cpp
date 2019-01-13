@@ -8,8 +8,6 @@
 
 
 
-
-
 #include "CmpTemplate.c"
 
 

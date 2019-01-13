@@ -4,9 +4,7 @@
  *	Interface of the level 7 server.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpSrv')
@@ -77,8 +75,7 @@ REF_ITF(`CmpCommunicationLibItf.m4')
 #define SG_COREDUMP				0x001F
 #define SG_BACKUP				0x0020
 #define SG_RUNTIME_TEST			0x0021  /* Used for test and verification of the runtime */
-#define SG_X509_CERT            0x0022
-#define SG_MAX_DEFINED			0x0023	/* NOTE: Must be adapted, if new service group was added! */
+#define SG_MAX_DEFINED			0x0022	/* NOTE: Must be adapted, if new service group was added! */
 #define SG_MAX_RESERVED			0x00FF
 
 /**

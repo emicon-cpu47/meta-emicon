@@ -5,9 +5,7 @@
  *	TCP, UDP and RAW sockets can be used.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -78,7 +76,6 @@
 #define SOCKET_IPPROTO_UDP              17		/* user datagram protocol */
 #define SOCKET_IPPROTO_IDP              22		/* xns idp */
 #define SOCKET_IPPROTO_ND               77		/* UNOFFICIAL net disk proto */
-#define SOCKET_IPPROTO_TLS             254		/* UNOFFICIAL TCP / TLS protocol */
 #define SOCKET_IPPROTO_RAW             255		/* raw IP packet */
 #define SOCKET_IPPROTO_MAX             256
 
@@ -111,7 +108,6 @@
 #define	SOCKET_SO_ERROR			0x1007		/* get error status and clear */
 #define	SOCKET_SO_TYPE			0x1008		/* get socket type */
 #define SOCKET_SO_PROTOTYPE		0x1009		/* get/set protocol type */
-#define SOCKET_SO_HOSTNAME		0x2001		/* get/set the hostname for TLS connections. Needed for SNI support */
 
 /**
  * <category>Socket TCP options</category>
@@ -423,7 +419,7 @@ typedef struct UDP_REPLYtag
  *  was found a "NameUnicode" setting, the "Name" setting is ignored.
  *  Example: Adapter.0.Name=Lan1
  *           Adapter.1.Name=Lan2
- *           Adapter.2.NameUnicode="L\00a\00n\003\00"
+ *           Adapter.2.NameUnicode="L\00a\00n\003\00\00\00"
  * </description>
  */
 #define SYSSOCKET_ADAPTER_PREFIX								"Adapter"
@@ -432,7 +428,7 @@ typedef struct UDP_REPLYtag
  * <category>Settings</category>
  * <type>WString</type>
  * <description>Setting for network adapter list. Adapter name in Unicode.
- *	Example: Adapter.0.NameUnicode="L\00a\00n\001\00"
+ *	Example: Adapter.0.NameUnicode="L\00a\00n\001\00\00\00"
  * </description>
  */
 #define SYSSOCKETKEY_WSTRING_NAME_UNICODE						"NameUnicode"
@@ -445,7 +441,7 @@ typedef struct UDP_REPLYtag
  *	Example: Adapter.0.Name="Lan1"
  * </description>
  */
-#define SYSSOCKETKEY_STRING_NAME								"Name"
+#define SYSSOCKETKEY_WSTRING_NAME								"Name"
 
 /**
  * <category>Settings</category>
@@ -471,40 +467,14 @@ typedef struct UDP_REPLYtag
 /**
  * <category>Settings</category>
  * <type>String</type>
- * <description>Setting to specify the IP address of the target. Both settings
- *  ipaddress and subnetmask have to be configured. The combination ipaddress=0.0.0.0
- *  and subnetmask=0.0.0.0 can be used to remove the IP address from the adapter. 
- *  With this configuration is no IP based communication possible, until an IP address is set
- *  e. g. by calling SysSockSetIpAddressAndNetMask().
- *	Example: 
- *  Adapter.0.Name="Lan1"
- *  Adapter.0.ipaddress=192.168.2.1
- *  Adapter.0.subnetmask=255.255.255.0
- *  Runtime systems based on SysSocketEmbedded use a simplyfied configuration, 
- *  as these support only a single network adapter: 
- *	ipaddress=192.168.2.1
- *  subnetmask=255.255.255.1
- *  Note: On some operating systems it is neccessary to store this in a non-volatile way to
- *        provide the IP address and the subnet mask for the next boot to the operating system,
- *        before the runtime systems is started. In such cases the system must be booted twice 
- *        after the setting was added or changed. The first boot is needed to read the settings
- *        by the runtime system and to store the information for the operating system. The
- *        second boot activates the setting during the operating system's startup. 
- *  OS-specific information:  
- * 	On Microsoft Windows based runtime systems the following Windows registry key will be written
- *  to disable the IP autoconfiguartion feature for the referenced adapter:
- *  IPAutoconfigurationEnabled = 0 (DWORD)
- *  The key is located here:
- *  HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\<Guid>\
- *  Whereas <Guid> is replaced by the guid, identifying the configured network adapter.
- * </description>
+ * <description>Setting to specify the IP address of the target. </description>
  */
 #define SYSSOCKETKEY_STRING_IPADDRESS							"ipaddress"
 
 /**
  * <category>Settings</category>
  * <type>String</type>
- * <description>Setting to specify the subnet mask of the target. See setting ipaddress for details.</description>
+ * <description>Setting to specify the subnet mask of the target. </description>
  */
 #define SYSSOCKETKEY_STRING_SUBNETMASK							"subnetmask"
 
@@ -719,35 +689,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKACCEPT_IEC) (syssockaccept_struct *p);
 	#define GET_syssockaccept(fl)  CAL_CMGETAPI( "syssockaccept" ) 
 	#define CAL_syssockaccept  syssockaccept
 	#define CHK_syssockaccept  TRUE
-	#define EXP_syssockaccept  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockaccept", (RTS_UINTPTR)syssockaccept, 1, RTSITF_GET_SIGNATURE(0, 0xCA6B3076), 0x03050C00) 
+	#define EXP_syssockaccept  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockaccept", (RTS_UINTPTR)syssockaccept, 1, RTSITF_GET_SIGNATURE(0, 0xCA6B3076), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockaccept
 	#define EXT_syssockaccept
 	#define GET_syssockaccept(fl)  CAL_CMGETAPI( "syssockaccept" ) 
 	#define CAL_syssockaccept  syssockaccept
 	#define CHK_syssockaccept  TRUE
-	#define EXP_syssockaccept  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockaccept", (RTS_UINTPTR)syssockaccept, 1, RTSITF_GET_SIGNATURE(0, 0xCA6B3076), 0x03050C00) 
+	#define EXP_syssockaccept  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockaccept", (RTS_UINTPTR)syssockaccept, 1, RTSITF_GET_SIGNATURE(0, 0xCA6B3076), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockaccept
 	#define EXT_SysSocketsyssockaccept
 	#define GET_SysSocketsyssockaccept  ERR_OK
 	#define CAL_SysSocketsyssockaccept  syssockaccept
 	#define CHK_SysSocketsyssockaccept  TRUE
-	#define EXP_SysSocketsyssockaccept  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockaccept", (RTS_UINTPTR)syssockaccept, 1, RTSITF_GET_SIGNATURE(0, 0xCA6B3076), 0x03050C00) 
+	#define EXP_SysSocketsyssockaccept  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockaccept", (RTS_UINTPTR)syssockaccept, 1, RTSITF_GET_SIGNATURE(0, 0xCA6B3076), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockaccept
 	#define EXT_syssockaccept
 	#define GET_syssockaccept(fl)  CAL_CMGETAPI( "syssockaccept" ) 
 	#define CAL_syssockaccept  syssockaccept
 	#define CHK_syssockaccept  TRUE
-	#define EXP_syssockaccept  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockaccept", (RTS_UINTPTR)syssockaccept, 1, RTSITF_GET_SIGNATURE(0, 0xCA6B3076), 0x03050C00) 
+	#define EXP_syssockaccept  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockaccept", (RTS_UINTPTR)syssockaccept, 1, RTSITF_GET_SIGNATURE(0, 0xCA6B3076), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockaccept  PFSYSSOCKACCEPT_IEC pfsyssockaccept;
 	#define EXT_syssockaccept  extern PFSYSSOCKACCEPT_IEC pfsyssockaccept;
-	#define GET_syssockaccept(fl)  s_pfCMGetAPI2( "syssockaccept", (RTS_VOID_FCTPTR *)&pfsyssockaccept, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xCA6B3076), 0x03050C00)
+	#define GET_syssockaccept(fl)  s_pfCMGetAPI2( "syssockaccept", (RTS_VOID_FCTPTR *)&pfsyssockaccept, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xCA6B3076), 0x03050900)
 	#define CAL_syssockaccept  pfsyssockaccept
 	#define CHK_syssockaccept  (pfsyssockaccept != NULL)
-	#define EXP_syssockaccept   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockaccept", (RTS_UINTPTR)syssockaccept, 1, RTSITF_GET_SIGNATURE(0, 0xCA6B3076), 0x03050C00) 
+	#define EXP_syssockaccept   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockaccept", (RTS_UINTPTR)syssockaccept, 1, RTSITF_GET_SIGNATURE(0, 0xCA6B3076), 0x03050900) 
 #endif
 
 
@@ -781,35 +751,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKBIND_IEC) (syssockbind_struct *p);
 	#define GET_syssockbind(fl)  CAL_CMGETAPI( "syssockbind" ) 
 	#define CAL_syssockbind  syssockbind
 	#define CHK_syssockbind  TRUE
-	#define EXP_syssockbind  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockbind", (RTS_UINTPTR)syssockbind, 1, RTSITF_GET_SIGNATURE(0, 0xCF23D531), 0x03050C00) 
+	#define EXP_syssockbind  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockbind", (RTS_UINTPTR)syssockbind, 1, RTSITF_GET_SIGNATURE(0, 0xCF23D531), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockbind
 	#define EXT_syssockbind
 	#define GET_syssockbind(fl)  CAL_CMGETAPI( "syssockbind" ) 
 	#define CAL_syssockbind  syssockbind
 	#define CHK_syssockbind  TRUE
-	#define EXP_syssockbind  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockbind", (RTS_UINTPTR)syssockbind, 1, RTSITF_GET_SIGNATURE(0, 0xCF23D531), 0x03050C00) 
+	#define EXP_syssockbind  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockbind", (RTS_UINTPTR)syssockbind, 1, RTSITF_GET_SIGNATURE(0, 0xCF23D531), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockbind
 	#define EXT_SysSocketsyssockbind
 	#define GET_SysSocketsyssockbind  ERR_OK
 	#define CAL_SysSocketsyssockbind  syssockbind
 	#define CHK_SysSocketsyssockbind  TRUE
-	#define EXP_SysSocketsyssockbind  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockbind", (RTS_UINTPTR)syssockbind, 1, RTSITF_GET_SIGNATURE(0, 0xCF23D531), 0x03050C00) 
+	#define EXP_SysSocketsyssockbind  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockbind", (RTS_UINTPTR)syssockbind, 1, RTSITF_GET_SIGNATURE(0, 0xCF23D531), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockbind
 	#define EXT_syssockbind
 	#define GET_syssockbind(fl)  CAL_CMGETAPI( "syssockbind" ) 
 	#define CAL_syssockbind  syssockbind
 	#define CHK_syssockbind  TRUE
-	#define EXP_syssockbind  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockbind", (RTS_UINTPTR)syssockbind, 1, RTSITF_GET_SIGNATURE(0, 0xCF23D531), 0x03050C00) 
+	#define EXP_syssockbind  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockbind", (RTS_UINTPTR)syssockbind, 1, RTSITF_GET_SIGNATURE(0, 0xCF23D531), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockbind  PFSYSSOCKBIND_IEC pfsyssockbind;
 	#define EXT_syssockbind  extern PFSYSSOCKBIND_IEC pfsyssockbind;
-	#define GET_syssockbind(fl)  s_pfCMGetAPI2( "syssockbind", (RTS_VOID_FCTPTR *)&pfsyssockbind, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xCF23D531), 0x03050C00)
+	#define GET_syssockbind(fl)  s_pfCMGetAPI2( "syssockbind", (RTS_VOID_FCTPTR *)&pfsyssockbind, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xCF23D531), 0x03050900)
 	#define CAL_syssockbind  pfsyssockbind
 	#define CHK_syssockbind  (pfsyssockbind != NULL)
-	#define EXP_syssockbind   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockbind", (RTS_UINTPTR)syssockbind, 1, RTSITF_GET_SIGNATURE(0, 0xCF23D531), 0x03050C00) 
+	#define EXP_syssockbind   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockbind", (RTS_UINTPTR)syssockbind, 1, RTSITF_GET_SIGNATURE(0, 0xCF23D531), 0x03050900) 
 #endif
 
 
@@ -838,35 +808,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKCLOSE_IEC) (syssockclose_struct *p);
 	#define GET_syssockclose(fl)  CAL_CMGETAPI( "syssockclose" ) 
 	#define CAL_syssockclose  syssockclose
 	#define CHK_syssockclose  TRUE
-	#define EXP_syssockclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockclose", (RTS_UINTPTR)syssockclose, 1, RTSITF_GET_SIGNATURE(0, 0xF72471AA), 0x03050C00) 
+	#define EXP_syssockclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockclose", (RTS_UINTPTR)syssockclose, 1, RTSITF_GET_SIGNATURE(0, 0xF72471AA), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockclose
 	#define EXT_syssockclose
 	#define GET_syssockclose(fl)  CAL_CMGETAPI( "syssockclose" ) 
 	#define CAL_syssockclose  syssockclose
 	#define CHK_syssockclose  TRUE
-	#define EXP_syssockclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockclose", (RTS_UINTPTR)syssockclose, 1, RTSITF_GET_SIGNATURE(0, 0xF72471AA), 0x03050C00) 
+	#define EXP_syssockclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockclose", (RTS_UINTPTR)syssockclose, 1, RTSITF_GET_SIGNATURE(0, 0xF72471AA), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockclose
 	#define EXT_SysSocketsyssockclose
 	#define GET_SysSocketsyssockclose  ERR_OK
 	#define CAL_SysSocketsyssockclose  syssockclose
 	#define CHK_SysSocketsyssockclose  TRUE
-	#define EXP_SysSocketsyssockclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockclose", (RTS_UINTPTR)syssockclose, 1, RTSITF_GET_SIGNATURE(0, 0xF72471AA), 0x03050C00) 
+	#define EXP_SysSocketsyssockclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockclose", (RTS_UINTPTR)syssockclose, 1, RTSITF_GET_SIGNATURE(0, 0xF72471AA), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockclose
 	#define EXT_syssockclose
 	#define GET_syssockclose(fl)  CAL_CMGETAPI( "syssockclose" ) 
 	#define CAL_syssockclose  syssockclose
 	#define CHK_syssockclose  TRUE
-	#define EXP_syssockclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockclose", (RTS_UINTPTR)syssockclose, 1, RTSITF_GET_SIGNATURE(0, 0xF72471AA), 0x03050C00) 
+	#define EXP_syssockclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockclose", (RTS_UINTPTR)syssockclose, 1, RTSITF_GET_SIGNATURE(0, 0xF72471AA), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockclose  PFSYSSOCKCLOSE_IEC pfsyssockclose;
 	#define EXT_syssockclose  extern PFSYSSOCKCLOSE_IEC pfsyssockclose;
-	#define GET_syssockclose(fl)  s_pfCMGetAPI2( "syssockclose", (RTS_VOID_FCTPTR *)&pfsyssockclose, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xF72471AA), 0x03050C00)
+	#define GET_syssockclose(fl)  s_pfCMGetAPI2( "syssockclose", (RTS_VOID_FCTPTR *)&pfsyssockclose, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xF72471AA), 0x03050900)
 	#define CAL_syssockclose  pfsyssockclose
 	#define CHK_syssockclose  (pfsyssockclose != NULL)
-	#define EXP_syssockclose   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockclose", (RTS_UINTPTR)syssockclose, 1, RTSITF_GET_SIGNATURE(0, 0xF72471AA), 0x03050C00) 
+	#define EXP_syssockclose   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockclose", (RTS_UINTPTR)syssockclose, 1, RTSITF_GET_SIGNATURE(0, 0xF72471AA), 0x03050900) 
 #endif
 
 
@@ -897,35 +867,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKCLOSEUDP_IEC) (syssockcloseudp_struct *p
 	#define GET_syssockcloseudp(fl)  CAL_CMGETAPI( "syssockcloseudp" ) 
 	#define CAL_syssockcloseudp  syssockcloseudp
 	#define CHK_syssockcloseudp  TRUE
-	#define EXP_syssockcloseudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcloseudp", (RTS_UINTPTR)syssockcloseudp, 1, RTSITF_GET_SIGNATURE(0, 0x6978E3CC), 0x03050C00) 
+	#define EXP_syssockcloseudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcloseudp", (RTS_UINTPTR)syssockcloseudp, 1, RTSITF_GET_SIGNATURE(0, 0x6978E3CC), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockcloseudp
 	#define EXT_syssockcloseudp
 	#define GET_syssockcloseudp(fl)  CAL_CMGETAPI( "syssockcloseudp" ) 
 	#define CAL_syssockcloseudp  syssockcloseudp
 	#define CHK_syssockcloseudp  TRUE
-	#define EXP_syssockcloseudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcloseudp", (RTS_UINTPTR)syssockcloseudp, 1, RTSITF_GET_SIGNATURE(0, 0x6978E3CC), 0x03050C00) 
+	#define EXP_syssockcloseudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcloseudp", (RTS_UINTPTR)syssockcloseudp, 1, RTSITF_GET_SIGNATURE(0, 0x6978E3CC), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockcloseudp
 	#define EXT_SysSocketsyssockcloseudp
 	#define GET_SysSocketsyssockcloseudp  ERR_OK
 	#define CAL_SysSocketsyssockcloseudp  syssockcloseudp
 	#define CHK_SysSocketsyssockcloseudp  TRUE
-	#define EXP_SysSocketsyssockcloseudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcloseudp", (RTS_UINTPTR)syssockcloseudp, 1, RTSITF_GET_SIGNATURE(0, 0x6978E3CC), 0x03050C00) 
+	#define EXP_SysSocketsyssockcloseudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcloseudp", (RTS_UINTPTR)syssockcloseudp, 1, RTSITF_GET_SIGNATURE(0, 0x6978E3CC), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockcloseudp
 	#define EXT_syssockcloseudp
 	#define GET_syssockcloseudp(fl)  CAL_CMGETAPI( "syssockcloseudp" ) 
 	#define CAL_syssockcloseudp  syssockcloseudp
 	#define CHK_syssockcloseudp  TRUE
-	#define EXP_syssockcloseudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcloseudp", (RTS_UINTPTR)syssockcloseudp, 1, RTSITF_GET_SIGNATURE(0, 0x6978E3CC), 0x03050C00) 
+	#define EXP_syssockcloseudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcloseudp", (RTS_UINTPTR)syssockcloseudp, 1, RTSITF_GET_SIGNATURE(0, 0x6978E3CC), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockcloseudp  PFSYSSOCKCLOSEUDP_IEC pfsyssockcloseudp;
 	#define EXT_syssockcloseudp  extern PFSYSSOCKCLOSEUDP_IEC pfsyssockcloseudp;
-	#define GET_syssockcloseudp(fl)  s_pfCMGetAPI2( "syssockcloseudp", (RTS_VOID_FCTPTR *)&pfsyssockcloseudp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x6978E3CC), 0x03050C00)
+	#define GET_syssockcloseudp(fl)  s_pfCMGetAPI2( "syssockcloseudp", (RTS_VOID_FCTPTR *)&pfsyssockcloseudp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x6978E3CC), 0x03050900)
 	#define CAL_syssockcloseudp  pfsyssockcloseudp
 	#define CHK_syssockcloseudp  (pfsyssockcloseudp != NULL)
-	#define EXP_syssockcloseudp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcloseudp", (RTS_UINTPTR)syssockcloseudp, 1, RTSITF_GET_SIGNATURE(0, 0x6978E3CC), 0x03050C00) 
+	#define EXP_syssockcloseudp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcloseudp", (RTS_UINTPTR)syssockcloseudp, 1, RTSITF_GET_SIGNATURE(0, 0x6978E3CC), 0x03050900) 
 #endif
 
 
@@ -956,35 +926,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKCONNECT_IEC) (syssockconnect_struct *p);
 	#define GET_syssockconnect(fl)  CAL_CMGETAPI( "syssockconnect" ) 
 	#define CAL_syssockconnect  syssockconnect
 	#define CHK_syssockconnect  TRUE
-	#define EXP_syssockconnect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockconnect", (RTS_UINTPTR)syssockconnect, 1, RTSITF_GET_SIGNATURE(0, 0x765FD3AB), 0x03050C00) 
+	#define EXP_syssockconnect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockconnect", (RTS_UINTPTR)syssockconnect, 1, RTSITF_GET_SIGNATURE(0, 0x765FD3AB), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockconnect
 	#define EXT_syssockconnect
 	#define GET_syssockconnect(fl)  CAL_CMGETAPI( "syssockconnect" ) 
 	#define CAL_syssockconnect  syssockconnect
 	#define CHK_syssockconnect  TRUE
-	#define EXP_syssockconnect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockconnect", (RTS_UINTPTR)syssockconnect, 1, RTSITF_GET_SIGNATURE(0, 0x765FD3AB), 0x03050C00) 
+	#define EXP_syssockconnect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockconnect", (RTS_UINTPTR)syssockconnect, 1, RTSITF_GET_SIGNATURE(0, 0x765FD3AB), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockconnect
 	#define EXT_SysSocketsyssockconnect
 	#define GET_SysSocketsyssockconnect  ERR_OK
 	#define CAL_SysSocketsyssockconnect  syssockconnect
 	#define CHK_SysSocketsyssockconnect  TRUE
-	#define EXP_SysSocketsyssockconnect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockconnect", (RTS_UINTPTR)syssockconnect, 1, RTSITF_GET_SIGNATURE(0, 0x765FD3AB), 0x03050C00) 
+	#define EXP_SysSocketsyssockconnect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockconnect", (RTS_UINTPTR)syssockconnect, 1, RTSITF_GET_SIGNATURE(0, 0x765FD3AB), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockconnect
 	#define EXT_syssockconnect
 	#define GET_syssockconnect(fl)  CAL_CMGETAPI( "syssockconnect" ) 
 	#define CAL_syssockconnect  syssockconnect
 	#define CHK_syssockconnect  TRUE
-	#define EXP_syssockconnect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockconnect", (RTS_UINTPTR)syssockconnect, 1, RTSITF_GET_SIGNATURE(0, 0x765FD3AB), 0x03050C00) 
+	#define EXP_syssockconnect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockconnect", (RTS_UINTPTR)syssockconnect, 1, RTSITF_GET_SIGNATURE(0, 0x765FD3AB), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockconnect  PFSYSSOCKCONNECT_IEC pfsyssockconnect;
 	#define EXT_syssockconnect  extern PFSYSSOCKCONNECT_IEC pfsyssockconnect;
-	#define GET_syssockconnect(fl)  s_pfCMGetAPI2( "syssockconnect", (RTS_VOID_FCTPTR *)&pfsyssockconnect, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x765FD3AB), 0x03050C00)
+	#define GET_syssockconnect(fl)  s_pfCMGetAPI2( "syssockconnect", (RTS_VOID_FCTPTR *)&pfsyssockconnect, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x765FD3AB), 0x03050900)
 	#define CAL_syssockconnect  pfsyssockconnect
 	#define CHK_syssockconnect  (pfsyssockconnect != NULL)
-	#define EXP_syssockconnect   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockconnect", (RTS_UINTPTR)syssockconnect, 1, RTSITF_GET_SIGNATURE(0, 0x765FD3AB), 0x03050C00) 
+	#define EXP_syssockconnect   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockconnect", (RTS_UINTPTR)syssockconnect, 1, RTSITF_GET_SIGNATURE(0, 0x765FD3AB), 0x03050900) 
 #endif
 
 
@@ -1017,35 +987,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKCREATE_IEC) (syssockcreate_struct *p);
 	#define GET_syssockcreate(fl)  CAL_CMGETAPI( "syssockcreate" ) 
 	#define CAL_syssockcreate  syssockcreate
 	#define CHK_syssockcreate  TRUE
-	#define EXP_syssockcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreate", (RTS_UINTPTR)syssockcreate, 1, RTSITF_GET_SIGNATURE(0, 0xE8829CB3), 0x03050C00) 
+	#define EXP_syssockcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreate", (RTS_UINTPTR)syssockcreate, 1, RTSITF_GET_SIGNATURE(0, 0xE8829CB3), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockcreate
 	#define EXT_syssockcreate
 	#define GET_syssockcreate(fl)  CAL_CMGETAPI( "syssockcreate" ) 
 	#define CAL_syssockcreate  syssockcreate
 	#define CHK_syssockcreate  TRUE
-	#define EXP_syssockcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreate", (RTS_UINTPTR)syssockcreate, 1, RTSITF_GET_SIGNATURE(0, 0xE8829CB3), 0x03050C00) 
+	#define EXP_syssockcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreate", (RTS_UINTPTR)syssockcreate, 1, RTSITF_GET_SIGNATURE(0, 0xE8829CB3), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockcreate
 	#define EXT_SysSocketsyssockcreate
 	#define GET_SysSocketsyssockcreate  ERR_OK
 	#define CAL_SysSocketsyssockcreate  syssockcreate
 	#define CHK_SysSocketsyssockcreate  TRUE
-	#define EXP_SysSocketsyssockcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreate", (RTS_UINTPTR)syssockcreate, 1, RTSITF_GET_SIGNATURE(0, 0xE8829CB3), 0x03050C00) 
+	#define EXP_SysSocketsyssockcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreate", (RTS_UINTPTR)syssockcreate, 1, RTSITF_GET_SIGNATURE(0, 0xE8829CB3), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockcreate
 	#define EXT_syssockcreate
 	#define GET_syssockcreate(fl)  CAL_CMGETAPI( "syssockcreate" ) 
 	#define CAL_syssockcreate  syssockcreate
 	#define CHK_syssockcreate  TRUE
-	#define EXP_syssockcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreate", (RTS_UINTPTR)syssockcreate, 1, RTSITF_GET_SIGNATURE(0, 0xE8829CB3), 0x03050C00) 
+	#define EXP_syssockcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreate", (RTS_UINTPTR)syssockcreate, 1, RTSITF_GET_SIGNATURE(0, 0xE8829CB3), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockcreate  PFSYSSOCKCREATE_IEC pfsyssockcreate;
 	#define EXT_syssockcreate  extern PFSYSSOCKCREATE_IEC pfsyssockcreate;
-	#define GET_syssockcreate(fl)  s_pfCMGetAPI2( "syssockcreate", (RTS_VOID_FCTPTR *)&pfsyssockcreate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xE8829CB3), 0x03050C00)
+	#define GET_syssockcreate(fl)  s_pfCMGetAPI2( "syssockcreate", (RTS_VOID_FCTPTR *)&pfsyssockcreate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xE8829CB3), 0x03050900)
 	#define CAL_syssockcreate  pfsyssockcreate
 	#define CHK_syssockcreate  (pfsyssockcreate != NULL)
-	#define EXP_syssockcreate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreate", (RTS_UINTPTR)syssockcreate, 1, RTSITF_GET_SIGNATURE(0, 0xE8829CB3), 0x03050C00) 
+	#define EXP_syssockcreate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreate", (RTS_UINTPTR)syssockcreate, 1, RTSITF_GET_SIGNATURE(0, 0xE8829CB3), 0x03050900) 
 #endif
 
 
@@ -1077,35 +1047,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKCREATEUDP_IEC) (syssockcreateudp_struct 
 	#define GET_syssockcreateudp(fl)  CAL_CMGETAPI( "syssockcreateudp" ) 
 	#define CAL_syssockcreateudp  syssockcreateudp
 	#define CHK_syssockcreateudp  TRUE
-	#define EXP_syssockcreateudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreateudp", (RTS_UINTPTR)syssockcreateudp, 1, RTSITF_GET_SIGNATURE(0, 0x4A894324), 0x03050C00) 
+	#define EXP_syssockcreateudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreateudp", (RTS_UINTPTR)syssockcreateudp, 1, RTSITF_GET_SIGNATURE(0, 0x4A894324), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockcreateudp
 	#define EXT_syssockcreateudp
 	#define GET_syssockcreateudp(fl)  CAL_CMGETAPI( "syssockcreateudp" ) 
 	#define CAL_syssockcreateudp  syssockcreateudp
 	#define CHK_syssockcreateudp  TRUE
-	#define EXP_syssockcreateudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreateudp", (RTS_UINTPTR)syssockcreateudp, 1, RTSITF_GET_SIGNATURE(0, 0x4A894324), 0x03050C00) 
+	#define EXP_syssockcreateudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreateudp", (RTS_UINTPTR)syssockcreateudp, 1, RTSITF_GET_SIGNATURE(0, 0x4A894324), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockcreateudp
 	#define EXT_SysSocketsyssockcreateudp
 	#define GET_SysSocketsyssockcreateudp  ERR_OK
 	#define CAL_SysSocketsyssockcreateudp  syssockcreateudp
 	#define CHK_SysSocketsyssockcreateudp  TRUE
-	#define EXP_SysSocketsyssockcreateudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreateudp", (RTS_UINTPTR)syssockcreateudp, 1, RTSITF_GET_SIGNATURE(0, 0x4A894324), 0x03050C00) 
+	#define EXP_SysSocketsyssockcreateudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreateudp", (RTS_UINTPTR)syssockcreateudp, 1, RTSITF_GET_SIGNATURE(0, 0x4A894324), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockcreateudp
 	#define EXT_syssockcreateudp
 	#define GET_syssockcreateudp(fl)  CAL_CMGETAPI( "syssockcreateudp" ) 
 	#define CAL_syssockcreateudp  syssockcreateudp
 	#define CHK_syssockcreateudp  TRUE
-	#define EXP_syssockcreateudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreateudp", (RTS_UINTPTR)syssockcreateudp, 1, RTSITF_GET_SIGNATURE(0, 0x4A894324), 0x03050C00) 
+	#define EXP_syssockcreateudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreateudp", (RTS_UINTPTR)syssockcreateudp, 1, RTSITF_GET_SIGNATURE(0, 0x4A894324), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockcreateudp  PFSYSSOCKCREATEUDP_IEC pfsyssockcreateudp;
 	#define EXT_syssockcreateudp  extern PFSYSSOCKCREATEUDP_IEC pfsyssockcreateudp;
-	#define GET_syssockcreateudp(fl)  s_pfCMGetAPI2( "syssockcreateudp", (RTS_VOID_FCTPTR *)&pfsyssockcreateudp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x4A894324), 0x03050C00)
+	#define GET_syssockcreateudp(fl)  s_pfCMGetAPI2( "syssockcreateudp", (RTS_VOID_FCTPTR *)&pfsyssockcreateudp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x4A894324), 0x03050900)
 	#define CAL_syssockcreateudp  pfsyssockcreateudp
 	#define CHK_syssockcreateudp  (pfsyssockcreateudp != NULL)
-	#define EXP_syssockcreateudp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreateudp", (RTS_UINTPTR)syssockcreateudp, 1, RTSITF_GET_SIGNATURE(0, 0x4A894324), 0x03050C00) 
+	#define EXP_syssockcreateudp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockcreateudp", (RTS_UINTPTR)syssockcreateudp, 1, RTSITF_GET_SIGNATURE(0, 0x4A894324), 0x03050900) 
 #endif
 
 
@@ -1135,35 +1105,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKFDINIT_IEC) (syssockfdinit_struct *p);
 	#define GET_syssockfdinit(fl)  CAL_CMGETAPI( "syssockfdinit" ) 
 	#define CAL_syssockfdinit  syssockfdinit
 	#define CHK_syssockfdinit  TRUE
-	#define EXP_syssockfdinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdinit", (RTS_UINTPTR)syssockfdinit, 1, 0x09C72D7D, 0x03050C00) 
+	#define EXP_syssockfdinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdinit", (RTS_UINTPTR)syssockfdinit, 1, 0x09C72D7D, 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockfdinit
 	#define EXT_syssockfdinit
 	#define GET_syssockfdinit(fl)  CAL_CMGETAPI( "syssockfdinit" ) 
 	#define CAL_syssockfdinit  syssockfdinit
 	#define CHK_syssockfdinit  TRUE
-	#define EXP_syssockfdinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdinit", (RTS_UINTPTR)syssockfdinit, 1, 0x09C72D7D, 0x03050C00) 
+	#define EXP_syssockfdinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdinit", (RTS_UINTPTR)syssockfdinit, 1, 0x09C72D7D, 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockfdinit
 	#define EXT_SysSocketsyssockfdinit
 	#define GET_SysSocketsyssockfdinit  ERR_OK
 	#define CAL_SysSocketsyssockfdinit  syssockfdinit
 	#define CHK_SysSocketsyssockfdinit  TRUE
-	#define EXP_SysSocketsyssockfdinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdinit", (RTS_UINTPTR)syssockfdinit, 1, 0x09C72D7D, 0x03050C00) 
+	#define EXP_SysSocketsyssockfdinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdinit", (RTS_UINTPTR)syssockfdinit, 1, 0x09C72D7D, 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockfdinit
 	#define EXT_syssockfdinit
 	#define GET_syssockfdinit(fl)  CAL_CMGETAPI( "syssockfdinit" ) 
 	#define CAL_syssockfdinit  syssockfdinit
 	#define CHK_syssockfdinit  TRUE
-	#define EXP_syssockfdinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdinit", (RTS_UINTPTR)syssockfdinit, 1, 0x09C72D7D, 0x03050C00) 
+	#define EXP_syssockfdinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdinit", (RTS_UINTPTR)syssockfdinit, 1, 0x09C72D7D, 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockfdinit  PFSYSSOCKFDINIT_IEC pfsyssockfdinit;
 	#define EXT_syssockfdinit  extern PFSYSSOCKFDINIT_IEC pfsyssockfdinit;
-	#define GET_syssockfdinit(fl)  s_pfCMGetAPI2( "syssockfdinit", (RTS_VOID_FCTPTR *)&pfsyssockfdinit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x09C72D7D, 0x03050C00)
+	#define GET_syssockfdinit(fl)  s_pfCMGetAPI2( "syssockfdinit", (RTS_VOID_FCTPTR *)&pfsyssockfdinit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x09C72D7D, 0x03050900)
 	#define CAL_syssockfdinit  pfsyssockfdinit
 	#define CHK_syssockfdinit  (pfsyssockfdinit != NULL)
-	#define EXP_syssockfdinit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdinit", (RTS_UINTPTR)syssockfdinit, 1, 0x09C72D7D, 0x03050C00) 
+	#define EXP_syssockfdinit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdinit", (RTS_UINTPTR)syssockfdinit, 1, 0x09C72D7D, 0x03050900) 
 #endif
 
 
@@ -1193,35 +1163,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKFDISSET_IEC) (syssockfdisset_struct *p);
 	#define GET_syssockfdisset(fl)  CAL_CMGETAPI( "syssockfdisset" ) 
 	#define CAL_syssockfdisset  syssockfdisset
 	#define CHK_syssockfdisset  TRUE
-	#define EXP_syssockfdisset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdisset", (RTS_UINTPTR)syssockfdisset, 1, 0x25248CA6, 0x03050C00) 
+	#define EXP_syssockfdisset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdisset", (RTS_UINTPTR)syssockfdisset, 1, 0x25248CA6, 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockfdisset
 	#define EXT_syssockfdisset
 	#define GET_syssockfdisset(fl)  CAL_CMGETAPI( "syssockfdisset" ) 
 	#define CAL_syssockfdisset  syssockfdisset
 	#define CHK_syssockfdisset  TRUE
-	#define EXP_syssockfdisset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdisset", (RTS_UINTPTR)syssockfdisset, 1, 0x25248CA6, 0x03050C00) 
+	#define EXP_syssockfdisset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdisset", (RTS_UINTPTR)syssockfdisset, 1, 0x25248CA6, 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockfdisset
 	#define EXT_SysSocketsyssockfdisset
 	#define GET_SysSocketsyssockfdisset  ERR_OK
 	#define CAL_SysSocketsyssockfdisset  syssockfdisset
 	#define CHK_SysSocketsyssockfdisset  TRUE
-	#define EXP_SysSocketsyssockfdisset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdisset", (RTS_UINTPTR)syssockfdisset, 1, 0x25248CA6, 0x03050C00) 
+	#define EXP_SysSocketsyssockfdisset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdisset", (RTS_UINTPTR)syssockfdisset, 1, 0x25248CA6, 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockfdisset
 	#define EXT_syssockfdisset
 	#define GET_syssockfdisset(fl)  CAL_CMGETAPI( "syssockfdisset" ) 
 	#define CAL_syssockfdisset  syssockfdisset
 	#define CHK_syssockfdisset  TRUE
-	#define EXP_syssockfdisset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdisset", (RTS_UINTPTR)syssockfdisset, 1, 0x25248CA6, 0x03050C00) 
+	#define EXP_syssockfdisset  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdisset", (RTS_UINTPTR)syssockfdisset, 1, 0x25248CA6, 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockfdisset  PFSYSSOCKFDISSET_IEC pfsyssockfdisset;
 	#define EXT_syssockfdisset  extern PFSYSSOCKFDISSET_IEC pfsyssockfdisset;
-	#define GET_syssockfdisset(fl)  s_pfCMGetAPI2( "syssockfdisset", (RTS_VOID_FCTPTR *)&pfsyssockfdisset, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x25248CA6, 0x03050C00)
+	#define GET_syssockfdisset(fl)  s_pfCMGetAPI2( "syssockfdisset", (RTS_VOID_FCTPTR *)&pfsyssockfdisset, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x25248CA6, 0x03050900)
 	#define CAL_syssockfdisset  pfsyssockfdisset
 	#define CHK_syssockfdisset  (pfsyssockfdisset != NULL)
-	#define EXP_syssockfdisset   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdisset", (RTS_UINTPTR)syssockfdisset, 1, 0x25248CA6, 0x03050C00) 
+	#define EXP_syssockfdisset   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdisset", (RTS_UINTPTR)syssockfdisset, 1, 0x25248CA6, 0x03050900) 
 #endif
 
 
@@ -1250,35 +1220,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKFDZERO_IEC) (syssockfdzero_struct *p);
 	#define GET_syssockfdzero(fl)  CAL_CMGETAPI( "syssockfdzero" ) 
 	#define CAL_syssockfdzero  syssockfdzero
 	#define CHK_syssockfdzero  TRUE
-	#define EXP_syssockfdzero  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdzero", (RTS_UINTPTR)syssockfdzero, 1, 0xD6D9FDA1, 0x03050C00) 
+	#define EXP_syssockfdzero  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdzero", (RTS_UINTPTR)syssockfdzero, 1, 0xD6D9FDA1, 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockfdzero
 	#define EXT_syssockfdzero
 	#define GET_syssockfdzero(fl)  CAL_CMGETAPI( "syssockfdzero" ) 
 	#define CAL_syssockfdzero  syssockfdzero
 	#define CHK_syssockfdzero  TRUE
-	#define EXP_syssockfdzero  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdzero", (RTS_UINTPTR)syssockfdzero, 1, 0xD6D9FDA1, 0x03050C00) 
+	#define EXP_syssockfdzero  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdzero", (RTS_UINTPTR)syssockfdzero, 1, 0xD6D9FDA1, 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockfdzero
 	#define EXT_SysSocketsyssockfdzero
 	#define GET_SysSocketsyssockfdzero  ERR_OK
 	#define CAL_SysSocketsyssockfdzero  syssockfdzero
 	#define CHK_SysSocketsyssockfdzero  TRUE
-	#define EXP_SysSocketsyssockfdzero  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdzero", (RTS_UINTPTR)syssockfdzero, 1, 0xD6D9FDA1, 0x03050C00) 
+	#define EXP_SysSocketsyssockfdzero  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdzero", (RTS_UINTPTR)syssockfdzero, 1, 0xD6D9FDA1, 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockfdzero
 	#define EXT_syssockfdzero
 	#define GET_syssockfdzero(fl)  CAL_CMGETAPI( "syssockfdzero" ) 
 	#define CAL_syssockfdzero  syssockfdzero
 	#define CHK_syssockfdzero  TRUE
-	#define EXP_syssockfdzero  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdzero", (RTS_UINTPTR)syssockfdzero, 1, 0xD6D9FDA1, 0x03050C00) 
+	#define EXP_syssockfdzero  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdzero", (RTS_UINTPTR)syssockfdzero, 1, 0xD6D9FDA1, 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockfdzero  PFSYSSOCKFDZERO_IEC pfsyssockfdzero;
 	#define EXT_syssockfdzero  extern PFSYSSOCKFDZERO_IEC pfsyssockfdzero;
-	#define GET_syssockfdzero(fl)  s_pfCMGetAPI2( "syssockfdzero", (RTS_VOID_FCTPTR *)&pfsyssockfdzero, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xD6D9FDA1, 0x03050C00)
+	#define GET_syssockfdzero(fl)  s_pfCMGetAPI2( "syssockfdzero", (RTS_VOID_FCTPTR *)&pfsyssockfdzero, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xD6D9FDA1, 0x03050900)
 	#define CAL_syssockfdzero  pfsyssockfdzero
 	#define CHK_syssockfdzero  (pfsyssockfdzero != NULL)
-	#define EXP_syssockfdzero   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdzero", (RTS_UINTPTR)syssockfdzero, 1, 0xD6D9FDA1, 0x03050C00) 
+	#define EXP_syssockfdzero   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockfdzero", (RTS_UINTPTR)syssockfdzero, 1, 0xD6D9FDA1, 0x03050900) 
 #endif
 
 
@@ -1310,35 +1280,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKGETFIRSTADAPTERINFO_IEC) (syssockgetfirs
 	#define GET_syssockgetfirstadapterinfo(fl)  CAL_CMGETAPI( "syssockgetfirstadapterinfo" ) 
 	#define CAL_syssockgetfirstadapterinfo  syssockgetfirstadapterinfo
 	#define CHK_syssockgetfirstadapterinfo  TRUE
-	#define EXP_syssockgetfirstadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetfirstadapterinfo", (RTS_UINTPTR)syssockgetfirstadapterinfo, 1, RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5), 0x03050C00) 
+	#define EXP_syssockgetfirstadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetfirstadapterinfo", (RTS_UINTPTR)syssockgetfirstadapterinfo, 1, RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockgetfirstadapterinfo
 	#define EXT_syssockgetfirstadapterinfo
 	#define GET_syssockgetfirstadapterinfo(fl)  CAL_CMGETAPI( "syssockgetfirstadapterinfo" ) 
 	#define CAL_syssockgetfirstadapterinfo  syssockgetfirstadapterinfo
 	#define CHK_syssockgetfirstadapterinfo  TRUE
-	#define EXP_syssockgetfirstadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetfirstadapterinfo", (RTS_UINTPTR)syssockgetfirstadapterinfo, 1, RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5), 0x03050C00) 
+	#define EXP_syssockgetfirstadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetfirstadapterinfo", (RTS_UINTPTR)syssockgetfirstadapterinfo, 1, RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockgetfirstadapterinfo
 	#define EXT_SysSocketsyssockgetfirstadapterinfo
 	#define GET_SysSocketsyssockgetfirstadapterinfo  ERR_OK
 	#define CAL_SysSocketsyssockgetfirstadapterinfo  syssockgetfirstadapterinfo
 	#define CHK_SysSocketsyssockgetfirstadapterinfo  TRUE
-	#define EXP_SysSocketsyssockgetfirstadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetfirstadapterinfo", (RTS_UINTPTR)syssockgetfirstadapterinfo, 1, RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5), 0x03050C00) 
+	#define EXP_SysSocketsyssockgetfirstadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetfirstadapterinfo", (RTS_UINTPTR)syssockgetfirstadapterinfo, 1, RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockgetfirstadapterinfo
 	#define EXT_syssockgetfirstadapterinfo
 	#define GET_syssockgetfirstadapterinfo(fl)  CAL_CMGETAPI( "syssockgetfirstadapterinfo" ) 
 	#define CAL_syssockgetfirstadapterinfo  syssockgetfirstadapterinfo
 	#define CHK_syssockgetfirstadapterinfo  TRUE
-	#define EXP_syssockgetfirstadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetfirstadapterinfo", (RTS_UINTPTR)syssockgetfirstadapterinfo, 1, RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5), 0x03050C00) 
+	#define EXP_syssockgetfirstadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetfirstadapterinfo", (RTS_UINTPTR)syssockgetfirstadapterinfo, 1, RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockgetfirstadapterinfo  PFSYSSOCKGETFIRSTADAPTERINFO_IEC pfsyssockgetfirstadapterinfo;
 	#define EXT_syssockgetfirstadapterinfo  extern PFSYSSOCKGETFIRSTADAPTERINFO_IEC pfsyssockgetfirstadapterinfo;
-	#define GET_syssockgetfirstadapterinfo(fl)  s_pfCMGetAPI2( "syssockgetfirstadapterinfo", (RTS_VOID_FCTPTR *)&pfsyssockgetfirstadapterinfo, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5), 0x03050C00)
+	#define GET_syssockgetfirstadapterinfo(fl)  s_pfCMGetAPI2( "syssockgetfirstadapterinfo", (RTS_VOID_FCTPTR *)&pfsyssockgetfirstadapterinfo, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5), 0x03050900)
 	#define CAL_syssockgetfirstadapterinfo  pfsyssockgetfirstadapterinfo
 	#define CHK_syssockgetfirstadapterinfo  (pfsyssockgetfirstadapterinfo != NULL)
-	#define EXP_syssockgetfirstadapterinfo   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetfirstadapterinfo", (RTS_UINTPTR)syssockgetfirstadapterinfo, 1, RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5), 0x03050C00) 
+	#define EXP_syssockgetfirstadapterinfo   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetfirstadapterinfo", (RTS_UINTPTR)syssockgetfirstadapterinfo, 1, RTSITF_GET_SIGNATURE(0x0FE33BC1, 0xF08189B5), 0x03050900) 
 #endif
 
 
@@ -1368,35 +1338,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKGETHOSTBYNAME_IEC) (syssockgethostbyname
 	#define GET_syssockgethostbyname(fl)  CAL_CMGETAPI( "syssockgethostbyname" ) 
 	#define CAL_syssockgethostbyname  syssockgethostbyname
 	#define CHK_syssockgethostbyname  TRUE
-	#define EXP_syssockgethostbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostbyname", (RTS_UINTPTR)syssockgethostbyname, 1, RTSITF_GET_SIGNATURE(0, 0x05667F90), 0x03050C00) 
+	#define EXP_syssockgethostbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostbyname", (RTS_UINTPTR)syssockgethostbyname, 1, RTSITF_GET_SIGNATURE(0, 0x05667F90), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockgethostbyname
 	#define EXT_syssockgethostbyname
 	#define GET_syssockgethostbyname(fl)  CAL_CMGETAPI( "syssockgethostbyname" ) 
 	#define CAL_syssockgethostbyname  syssockgethostbyname
 	#define CHK_syssockgethostbyname  TRUE
-	#define EXP_syssockgethostbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostbyname", (RTS_UINTPTR)syssockgethostbyname, 1, RTSITF_GET_SIGNATURE(0, 0x05667F90), 0x03050C00) 
+	#define EXP_syssockgethostbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostbyname", (RTS_UINTPTR)syssockgethostbyname, 1, RTSITF_GET_SIGNATURE(0, 0x05667F90), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockgethostbyname
 	#define EXT_SysSocketsyssockgethostbyname
 	#define GET_SysSocketsyssockgethostbyname  ERR_OK
 	#define CAL_SysSocketsyssockgethostbyname  syssockgethostbyname
 	#define CHK_SysSocketsyssockgethostbyname  TRUE
-	#define EXP_SysSocketsyssockgethostbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostbyname", (RTS_UINTPTR)syssockgethostbyname, 1, RTSITF_GET_SIGNATURE(0, 0x05667F90), 0x03050C00) 
+	#define EXP_SysSocketsyssockgethostbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostbyname", (RTS_UINTPTR)syssockgethostbyname, 1, RTSITF_GET_SIGNATURE(0, 0x05667F90), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockgethostbyname
 	#define EXT_syssockgethostbyname
 	#define GET_syssockgethostbyname(fl)  CAL_CMGETAPI( "syssockgethostbyname" ) 
 	#define CAL_syssockgethostbyname  syssockgethostbyname
 	#define CHK_syssockgethostbyname  TRUE
-	#define EXP_syssockgethostbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostbyname", (RTS_UINTPTR)syssockgethostbyname, 1, RTSITF_GET_SIGNATURE(0, 0x05667F90), 0x03050C00) 
+	#define EXP_syssockgethostbyname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostbyname", (RTS_UINTPTR)syssockgethostbyname, 1, RTSITF_GET_SIGNATURE(0, 0x05667F90), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockgethostbyname  PFSYSSOCKGETHOSTBYNAME_IEC pfsyssockgethostbyname;
 	#define EXT_syssockgethostbyname  extern PFSYSSOCKGETHOSTBYNAME_IEC pfsyssockgethostbyname;
-	#define GET_syssockgethostbyname(fl)  s_pfCMGetAPI2( "syssockgethostbyname", (RTS_VOID_FCTPTR *)&pfsyssockgethostbyname, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x05667F90), 0x03050C00)
+	#define GET_syssockgethostbyname(fl)  s_pfCMGetAPI2( "syssockgethostbyname", (RTS_VOID_FCTPTR *)&pfsyssockgethostbyname, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x05667F90), 0x03050900)
 	#define CAL_syssockgethostbyname  pfsyssockgethostbyname
 	#define CHK_syssockgethostbyname  (pfsyssockgethostbyname != NULL)
-	#define EXP_syssockgethostbyname   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostbyname", (RTS_UINTPTR)syssockgethostbyname, 1, RTSITF_GET_SIGNATURE(0, 0x05667F90), 0x03050C00) 
+	#define EXP_syssockgethostbyname   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostbyname", (RTS_UINTPTR)syssockgethostbyname, 1, RTSITF_GET_SIGNATURE(0, 0x05667F90), 0x03050900) 
 #endif
 
 
@@ -1426,35 +1396,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKGETHOSTNAME_IEC) (syssockgethostname_str
 	#define GET_syssockgethostname(fl)  CAL_CMGETAPI( "syssockgethostname" ) 
 	#define CAL_syssockgethostname  syssockgethostname
 	#define CHK_syssockgethostname  TRUE
-	#define EXP_syssockgethostname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostname", (RTS_UINTPTR)syssockgethostname, 1, RTSITF_GET_SIGNATURE(0, 0x68CAC03B), 0x03050C00) 
+	#define EXP_syssockgethostname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostname", (RTS_UINTPTR)syssockgethostname, 1, RTSITF_GET_SIGNATURE(0, 0x68CAC03B), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockgethostname
 	#define EXT_syssockgethostname
 	#define GET_syssockgethostname(fl)  CAL_CMGETAPI( "syssockgethostname" ) 
 	#define CAL_syssockgethostname  syssockgethostname
 	#define CHK_syssockgethostname  TRUE
-	#define EXP_syssockgethostname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostname", (RTS_UINTPTR)syssockgethostname, 1, RTSITF_GET_SIGNATURE(0, 0x68CAC03B), 0x03050C00) 
+	#define EXP_syssockgethostname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostname", (RTS_UINTPTR)syssockgethostname, 1, RTSITF_GET_SIGNATURE(0, 0x68CAC03B), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockgethostname
 	#define EXT_SysSocketsyssockgethostname
 	#define GET_SysSocketsyssockgethostname  ERR_OK
 	#define CAL_SysSocketsyssockgethostname  syssockgethostname
 	#define CHK_SysSocketsyssockgethostname  TRUE
-	#define EXP_SysSocketsyssockgethostname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostname", (RTS_UINTPTR)syssockgethostname, 1, RTSITF_GET_SIGNATURE(0, 0x68CAC03B), 0x03050C00) 
+	#define EXP_SysSocketsyssockgethostname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostname", (RTS_UINTPTR)syssockgethostname, 1, RTSITF_GET_SIGNATURE(0, 0x68CAC03B), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockgethostname
 	#define EXT_syssockgethostname
 	#define GET_syssockgethostname(fl)  CAL_CMGETAPI( "syssockgethostname" ) 
 	#define CAL_syssockgethostname  syssockgethostname
 	#define CHK_syssockgethostname  TRUE
-	#define EXP_syssockgethostname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostname", (RTS_UINTPTR)syssockgethostname, 1, RTSITF_GET_SIGNATURE(0, 0x68CAC03B), 0x03050C00) 
+	#define EXP_syssockgethostname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostname", (RTS_UINTPTR)syssockgethostname, 1, RTSITF_GET_SIGNATURE(0, 0x68CAC03B), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockgethostname  PFSYSSOCKGETHOSTNAME_IEC pfsyssockgethostname;
 	#define EXT_syssockgethostname  extern PFSYSSOCKGETHOSTNAME_IEC pfsyssockgethostname;
-	#define GET_syssockgethostname(fl)  s_pfCMGetAPI2( "syssockgethostname", (RTS_VOID_FCTPTR *)&pfsyssockgethostname, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x68CAC03B), 0x03050C00)
+	#define GET_syssockgethostname(fl)  s_pfCMGetAPI2( "syssockgethostname", (RTS_VOID_FCTPTR *)&pfsyssockgethostname, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x68CAC03B), 0x03050900)
 	#define CAL_syssockgethostname  pfsyssockgethostname
 	#define CHK_syssockgethostname  (pfsyssockgethostname != NULL)
-	#define EXP_syssockgethostname   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostname", (RTS_UINTPTR)syssockgethostname, 1, RTSITF_GET_SIGNATURE(0, 0x68CAC03B), 0x03050C00) 
+	#define EXP_syssockgethostname   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgethostname", (RTS_UINTPTR)syssockgethostname, 1, RTSITF_GET_SIGNATURE(0, 0x68CAC03B), 0x03050900) 
 #endif
 
 
@@ -1487,35 +1457,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKGETNEXTADAPTERINFO_IEC) (syssockgetnexta
 	#define GET_syssockgetnextadapterinfo(fl)  CAL_CMGETAPI( "syssockgetnextadapterinfo" ) 
 	#define CAL_syssockgetnextadapterinfo  syssockgetnextadapterinfo
 	#define CHK_syssockgetnextadapterinfo  TRUE
-	#define EXP_syssockgetnextadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetnextadapterinfo", (RTS_UINTPTR)syssockgetnextadapterinfo, 1, RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3), 0x03050C00) 
+	#define EXP_syssockgetnextadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetnextadapterinfo", (RTS_UINTPTR)syssockgetnextadapterinfo, 1, RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockgetnextadapterinfo
 	#define EXT_syssockgetnextadapterinfo
 	#define GET_syssockgetnextadapterinfo(fl)  CAL_CMGETAPI( "syssockgetnextadapterinfo" ) 
 	#define CAL_syssockgetnextadapterinfo  syssockgetnextadapterinfo
 	#define CHK_syssockgetnextadapterinfo  TRUE
-	#define EXP_syssockgetnextadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetnextadapterinfo", (RTS_UINTPTR)syssockgetnextadapterinfo, 1, RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3), 0x03050C00) 
+	#define EXP_syssockgetnextadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetnextadapterinfo", (RTS_UINTPTR)syssockgetnextadapterinfo, 1, RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockgetnextadapterinfo
 	#define EXT_SysSocketsyssockgetnextadapterinfo
 	#define GET_SysSocketsyssockgetnextadapterinfo  ERR_OK
 	#define CAL_SysSocketsyssockgetnextadapterinfo  syssockgetnextadapterinfo
 	#define CHK_SysSocketsyssockgetnextadapterinfo  TRUE
-	#define EXP_SysSocketsyssockgetnextadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetnextadapterinfo", (RTS_UINTPTR)syssockgetnextadapterinfo, 1, RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3), 0x03050C00) 
+	#define EXP_SysSocketsyssockgetnextadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetnextadapterinfo", (RTS_UINTPTR)syssockgetnextadapterinfo, 1, RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockgetnextadapterinfo
 	#define EXT_syssockgetnextadapterinfo
 	#define GET_syssockgetnextadapterinfo(fl)  CAL_CMGETAPI( "syssockgetnextadapterinfo" ) 
 	#define CAL_syssockgetnextadapterinfo  syssockgetnextadapterinfo
 	#define CHK_syssockgetnextadapterinfo  TRUE
-	#define EXP_syssockgetnextadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetnextadapterinfo", (RTS_UINTPTR)syssockgetnextadapterinfo, 1, RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3), 0x03050C00) 
+	#define EXP_syssockgetnextadapterinfo  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetnextadapterinfo", (RTS_UINTPTR)syssockgetnextadapterinfo, 1, RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockgetnextadapterinfo  PFSYSSOCKGETNEXTADAPTERINFO_IEC pfsyssockgetnextadapterinfo;
 	#define EXT_syssockgetnextadapterinfo  extern PFSYSSOCKGETNEXTADAPTERINFO_IEC pfsyssockgetnextadapterinfo;
-	#define GET_syssockgetnextadapterinfo(fl)  s_pfCMGetAPI2( "syssockgetnextadapterinfo", (RTS_VOID_FCTPTR *)&pfsyssockgetnextadapterinfo, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3), 0x03050C00)
+	#define GET_syssockgetnextadapterinfo(fl)  s_pfCMGetAPI2( "syssockgetnextadapterinfo", (RTS_VOID_FCTPTR *)&pfsyssockgetnextadapterinfo, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3), 0x03050900)
 	#define CAL_syssockgetnextadapterinfo  pfsyssockgetnextadapterinfo
 	#define CHK_syssockgetnextadapterinfo  (pfsyssockgetnextadapterinfo != NULL)
-	#define EXP_syssockgetnextadapterinfo   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetnextadapterinfo", (RTS_UINTPTR)syssockgetnextadapterinfo, 1, RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3), 0x03050C00) 
+	#define EXP_syssockgetnextadapterinfo   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetnextadapterinfo", (RTS_UINTPTR)syssockgetnextadapterinfo, 1, RTSITF_GET_SIGNATURE(0x1BE45D9D, 0x8EB7E5E3), 0x03050900) 
 #endif
 
 
@@ -1548,35 +1518,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKGETOPTION_IEC) (syssockgetoption_struct 
 	#define GET_syssockgetoption(fl)  CAL_CMGETAPI( "syssockgetoption" ) 
 	#define CAL_syssockgetoption  syssockgetoption
 	#define CHK_syssockgetoption  TRUE
-	#define EXP_syssockgetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoption", (RTS_UINTPTR)syssockgetoption, 1, RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8), 0x03050C00) 
+	#define EXP_syssockgetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoption", (RTS_UINTPTR)syssockgetoption, 1, RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockgetoption
 	#define EXT_syssockgetoption
 	#define GET_syssockgetoption(fl)  CAL_CMGETAPI( "syssockgetoption" ) 
 	#define CAL_syssockgetoption  syssockgetoption
 	#define CHK_syssockgetoption  TRUE
-	#define EXP_syssockgetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoption", (RTS_UINTPTR)syssockgetoption, 1, RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8), 0x03050C00) 
+	#define EXP_syssockgetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoption", (RTS_UINTPTR)syssockgetoption, 1, RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockgetoption
 	#define EXT_SysSocketsyssockgetoption
 	#define GET_SysSocketsyssockgetoption  ERR_OK
 	#define CAL_SysSocketsyssockgetoption  syssockgetoption
 	#define CHK_SysSocketsyssockgetoption  TRUE
-	#define EXP_SysSocketsyssockgetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoption", (RTS_UINTPTR)syssockgetoption, 1, RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8), 0x03050C00) 
+	#define EXP_SysSocketsyssockgetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoption", (RTS_UINTPTR)syssockgetoption, 1, RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockgetoption
 	#define EXT_syssockgetoption
 	#define GET_syssockgetoption(fl)  CAL_CMGETAPI( "syssockgetoption" ) 
 	#define CAL_syssockgetoption  syssockgetoption
 	#define CHK_syssockgetoption  TRUE
-	#define EXP_syssockgetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoption", (RTS_UINTPTR)syssockgetoption, 1, RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8), 0x03050C00) 
+	#define EXP_syssockgetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoption", (RTS_UINTPTR)syssockgetoption, 1, RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockgetoption  PFSYSSOCKGETOPTION_IEC pfsyssockgetoption;
 	#define EXT_syssockgetoption  extern PFSYSSOCKGETOPTION_IEC pfsyssockgetoption;
-	#define GET_syssockgetoption(fl)  s_pfCMGetAPI2( "syssockgetoption", (RTS_VOID_FCTPTR *)&pfsyssockgetoption, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8), 0x03050C00)
+	#define GET_syssockgetoption(fl)  s_pfCMGetAPI2( "syssockgetoption", (RTS_VOID_FCTPTR *)&pfsyssockgetoption, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8), 0x03050900)
 	#define CAL_syssockgetoption  pfsyssockgetoption
 	#define CHK_syssockgetoption  (pfsyssockgetoption != NULL)
-	#define EXP_syssockgetoption   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoption", (RTS_UINTPTR)syssockgetoption, 1, RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8), 0x03050C00) 
+	#define EXP_syssockgetoption   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoption", (RTS_UINTPTR)syssockgetoption, 1, RTSITF_GET_SIGNATURE(0, 0xB7ABC5B8), 0x03050900) 
 #endif
 
 
@@ -1605,35 +1575,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKGETOSHANDLE_IEC) (syssockgetoshandle_str
 	#define GET_syssockgetoshandle(fl)  CAL_CMGETAPI( "syssockgetoshandle" ) 
 	#define CAL_syssockgetoshandle  syssockgetoshandle
 	#define CHK_syssockgetoshandle  TRUE
-	#define EXP_syssockgetoshandle  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoshandle", (RTS_UINTPTR)syssockgetoshandle, 1, RTSITF_GET_SIGNATURE(0, 0x784811EB), 0x03050C00) 
+	#define EXP_syssockgetoshandle  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoshandle", (RTS_UINTPTR)syssockgetoshandle, 1, RTSITF_GET_SIGNATURE(0, 0x784811EB), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockgetoshandle
 	#define EXT_syssockgetoshandle
 	#define GET_syssockgetoshandle(fl)  CAL_CMGETAPI( "syssockgetoshandle" ) 
 	#define CAL_syssockgetoshandle  syssockgetoshandle
 	#define CHK_syssockgetoshandle  TRUE
-	#define EXP_syssockgetoshandle  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoshandle", (RTS_UINTPTR)syssockgetoshandle, 1, RTSITF_GET_SIGNATURE(0, 0x784811EB), 0x03050C00) 
+	#define EXP_syssockgetoshandle  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoshandle", (RTS_UINTPTR)syssockgetoshandle, 1, RTSITF_GET_SIGNATURE(0, 0x784811EB), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockgetoshandle
 	#define EXT_SysSocketsyssockgetoshandle
 	#define GET_SysSocketsyssockgetoshandle  ERR_OK
 	#define CAL_SysSocketsyssockgetoshandle  syssockgetoshandle
 	#define CHK_SysSocketsyssockgetoshandle  TRUE
-	#define EXP_SysSocketsyssockgetoshandle  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoshandle", (RTS_UINTPTR)syssockgetoshandle, 1, RTSITF_GET_SIGNATURE(0, 0x784811EB), 0x03050C00) 
+	#define EXP_SysSocketsyssockgetoshandle  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoshandle", (RTS_UINTPTR)syssockgetoshandle, 1, RTSITF_GET_SIGNATURE(0, 0x784811EB), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockgetoshandle
 	#define EXT_syssockgetoshandle
 	#define GET_syssockgetoshandle(fl)  CAL_CMGETAPI( "syssockgetoshandle" ) 
 	#define CAL_syssockgetoshandle  syssockgetoshandle
 	#define CHK_syssockgetoshandle  TRUE
-	#define EXP_syssockgetoshandle  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoshandle", (RTS_UINTPTR)syssockgetoshandle, 1, RTSITF_GET_SIGNATURE(0, 0x784811EB), 0x03050C00) 
+	#define EXP_syssockgetoshandle  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoshandle", (RTS_UINTPTR)syssockgetoshandle, 1, RTSITF_GET_SIGNATURE(0, 0x784811EB), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockgetoshandle  PFSYSSOCKGETOSHANDLE_IEC pfsyssockgetoshandle;
 	#define EXT_syssockgetoshandle  extern PFSYSSOCKGETOSHANDLE_IEC pfsyssockgetoshandle;
-	#define GET_syssockgetoshandle(fl)  s_pfCMGetAPI2( "syssockgetoshandle", (RTS_VOID_FCTPTR *)&pfsyssockgetoshandle, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x784811EB), 0x03050C00)
+	#define GET_syssockgetoshandle(fl)  s_pfCMGetAPI2( "syssockgetoshandle", (RTS_VOID_FCTPTR *)&pfsyssockgetoshandle, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x784811EB), 0x03050900)
 	#define CAL_syssockgetoshandle  pfsyssockgetoshandle
 	#define CHK_syssockgetoshandle  (pfsyssockgetoshandle != NULL)
-	#define EXP_syssockgetoshandle   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoshandle", (RTS_UINTPTR)syssockgetoshandle, 1, RTSITF_GET_SIGNATURE(0, 0x784811EB), 0x03050C00) 
+	#define EXP_syssockgetoshandle   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetoshandle", (RTS_UINTPTR)syssockgetoshandle, 1, RTSITF_GET_SIGNATURE(0, 0x784811EB), 0x03050900) 
 #endif
 
 
@@ -1665,35 +1635,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKGETPEERNAME_IEC) (syssockgetpeername_str
 	#define GET_syssockgetpeername(fl)  CAL_CMGETAPI( "syssockgetpeername" ) 
 	#define CAL_syssockgetpeername  syssockgetpeername
 	#define CHK_syssockgetpeername  TRUE
-	#define EXP_syssockgetpeername  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetpeername", (RTS_UINTPTR)syssockgetpeername, 1, 0xE0A45F4A, 0x03050C00) 
+	#define EXP_syssockgetpeername  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetpeername", (RTS_UINTPTR)syssockgetpeername, 1, 0xE0A45F4A, 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockgetpeername
 	#define EXT_syssockgetpeername
 	#define GET_syssockgetpeername(fl)  CAL_CMGETAPI( "syssockgetpeername" ) 
 	#define CAL_syssockgetpeername  syssockgetpeername
 	#define CHK_syssockgetpeername  TRUE
-	#define EXP_syssockgetpeername  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetpeername", (RTS_UINTPTR)syssockgetpeername, 1, 0xE0A45F4A, 0x03050C00) 
+	#define EXP_syssockgetpeername  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetpeername", (RTS_UINTPTR)syssockgetpeername, 1, 0xE0A45F4A, 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockgetpeername
 	#define EXT_SysSocketsyssockgetpeername
 	#define GET_SysSocketsyssockgetpeername  ERR_OK
 	#define CAL_SysSocketsyssockgetpeername  syssockgetpeername
 	#define CHK_SysSocketsyssockgetpeername  TRUE
-	#define EXP_SysSocketsyssockgetpeername  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetpeername", (RTS_UINTPTR)syssockgetpeername, 1, 0xE0A45F4A, 0x03050C00) 
+	#define EXP_SysSocketsyssockgetpeername  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetpeername", (RTS_UINTPTR)syssockgetpeername, 1, 0xE0A45F4A, 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockgetpeername
 	#define EXT_syssockgetpeername
 	#define GET_syssockgetpeername(fl)  CAL_CMGETAPI( "syssockgetpeername" ) 
 	#define CAL_syssockgetpeername  syssockgetpeername
 	#define CHK_syssockgetpeername  TRUE
-	#define EXP_syssockgetpeername  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetpeername", (RTS_UINTPTR)syssockgetpeername, 1, 0xE0A45F4A, 0x03050C00) 
+	#define EXP_syssockgetpeername  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetpeername", (RTS_UINTPTR)syssockgetpeername, 1, 0xE0A45F4A, 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockgetpeername  PFSYSSOCKGETPEERNAME_IEC pfsyssockgetpeername;
 	#define EXT_syssockgetpeername  extern PFSYSSOCKGETPEERNAME_IEC pfsyssockgetpeername;
-	#define GET_syssockgetpeername(fl)  s_pfCMGetAPI2( "syssockgetpeername", (RTS_VOID_FCTPTR *)&pfsyssockgetpeername, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE0A45F4A, 0x03050C00)
+	#define GET_syssockgetpeername(fl)  s_pfCMGetAPI2( "syssockgetpeername", (RTS_VOID_FCTPTR *)&pfsyssockgetpeername, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE0A45F4A, 0x03050900)
 	#define CAL_syssockgetpeername  pfsyssockgetpeername
 	#define CHK_syssockgetpeername  (pfsyssockgetpeername != NULL)
-	#define EXP_syssockgetpeername   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetpeername", (RTS_UINTPTR)syssockgetpeername, 1, 0xE0A45F4A, 0x03050C00) 
+	#define EXP_syssockgetpeername   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetpeername", (RTS_UINTPTR)syssockgetpeername, 1, 0xE0A45F4A, 0x03050900) 
 #endif
 
 
@@ -1727,35 +1697,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKGETRECVSIZEUDP_IEC) (syssockgetrecvsizeu
 	#define GET_syssockgetrecvsizeudp(fl)  CAL_CMGETAPI( "syssockgetrecvsizeudp" ) 
 	#define CAL_syssockgetrecvsizeudp  syssockgetrecvsizeudp
 	#define CHK_syssockgetrecvsizeudp  TRUE
-	#define EXP_syssockgetrecvsizeudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetrecvsizeudp", (RTS_UINTPTR)syssockgetrecvsizeudp, 1, RTSITF_GET_SIGNATURE(0, 0xDBEEF58B), 0x03050C00) 
+	#define EXP_syssockgetrecvsizeudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetrecvsizeudp", (RTS_UINTPTR)syssockgetrecvsizeudp, 1, RTSITF_GET_SIGNATURE(0, 0xDBEEF58B), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockgetrecvsizeudp
 	#define EXT_syssockgetrecvsizeudp
 	#define GET_syssockgetrecvsizeudp(fl)  CAL_CMGETAPI( "syssockgetrecvsizeudp" ) 
 	#define CAL_syssockgetrecvsizeudp  syssockgetrecvsizeudp
 	#define CHK_syssockgetrecvsizeudp  TRUE
-	#define EXP_syssockgetrecvsizeudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetrecvsizeudp", (RTS_UINTPTR)syssockgetrecvsizeudp, 1, RTSITF_GET_SIGNATURE(0, 0xDBEEF58B), 0x03050C00) 
+	#define EXP_syssockgetrecvsizeudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetrecvsizeudp", (RTS_UINTPTR)syssockgetrecvsizeudp, 1, RTSITF_GET_SIGNATURE(0, 0xDBEEF58B), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockgetrecvsizeudp
 	#define EXT_SysSocketsyssockgetrecvsizeudp
 	#define GET_SysSocketsyssockgetrecvsizeudp  ERR_OK
 	#define CAL_SysSocketsyssockgetrecvsizeudp  syssockgetrecvsizeudp
 	#define CHK_SysSocketsyssockgetrecvsizeudp  TRUE
-	#define EXP_SysSocketsyssockgetrecvsizeudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetrecvsizeudp", (RTS_UINTPTR)syssockgetrecvsizeudp, 1, RTSITF_GET_SIGNATURE(0, 0xDBEEF58B), 0x03050C00) 
+	#define EXP_SysSocketsyssockgetrecvsizeudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetrecvsizeudp", (RTS_UINTPTR)syssockgetrecvsizeudp, 1, RTSITF_GET_SIGNATURE(0, 0xDBEEF58B), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockgetrecvsizeudp
 	#define EXT_syssockgetrecvsizeudp
 	#define GET_syssockgetrecvsizeudp(fl)  CAL_CMGETAPI( "syssockgetrecvsizeudp" ) 
 	#define CAL_syssockgetrecvsizeudp  syssockgetrecvsizeudp
 	#define CHK_syssockgetrecvsizeudp  TRUE
-	#define EXP_syssockgetrecvsizeudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetrecvsizeudp", (RTS_UINTPTR)syssockgetrecvsizeudp, 1, RTSITF_GET_SIGNATURE(0, 0xDBEEF58B), 0x03050C00) 
+	#define EXP_syssockgetrecvsizeudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetrecvsizeudp", (RTS_UINTPTR)syssockgetrecvsizeudp, 1, RTSITF_GET_SIGNATURE(0, 0xDBEEF58B), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockgetrecvsizeudp  PFSYSSOCKGETRECVSIZEUDP_IEC pfsyssockgetrecvsizeudp;
 	#define EXT_syssockgetrecvsizeudp  extern PFSYSSOCKGETRECVSIZEUDP_IEC pfsyssockgetrecvsizeudp;
-	#define GET_syssockgetrecvsizeudp(fl)  s_pfCMGetAPI2( "syssockgetrecvsizeudp", (RTS_VOID_FCTPTR *)&pfsyssockgetrecvsizeudp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xDBEEF58B), 0x03050C00)
+	#define GET_syssockgetrecvsizeudp(fl)  s_pfCMGetAPI2( "syssockgetrecvsizeudp", (RTS_VOID_FCTPTR *)&pfsyssockgetrecvsizeudp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xDBEEF58B), 0x03050900)
 	#define CAL_syssockgetrecvsizeudp  pfsyssockgetrecvsizeudp
 	#define CHK_syssockgetrecvsizeudp  (pfsyssockgetrecvsizeudp != NULL)
-	#define EXP_syssockgetrecvsizeudp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetrecvsizeudp", (RTS_UINTPTR)syssockgetrecvsizeudp, 1, RTSITF_GET_SIGNATURE(0, 0xDBEEF58B), 0x03050C00) 
+	#define EXP_syssockgetrecvsizeudp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetrecvsizeudp", (RTS_UINTPTR)syssockgetrecvsizeudp, 1, RTSITF_GET_SIGNATURE(0, 0xDBEEF58B), 0x03050900) 
 #endif
 
 
@@ -1789,35 +1759,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKGETSOCKNAME_IEC) (syssockgetsockname_str
 	#define GET_syssockgetsockname(fl)  CAL_CMGETAPI( "syssockgetsockname" ) 
 	#define CAL_syssockgetsockname  syssockgetsockname
 	#define CHK_syssockgetsockname  TRUE
-	#define EXP_syssockgetsockname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsockname", (RTS_UINTPTR)syssockgetsockname, 1, 0x7EE86135, 0x03050C00) 
+	#define EXP_syssockgetsockname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsockname", (RTS_UINTPTR)syssockgetsockname, 1, 0x7EE86135, 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockgetsockname
 	#define EXT_syssockgetsockname
 	#define GET_syssockgetsockname(fl)  CAL_CMGETAPI( "syssockgetsockname" ) 
 	#define CAL_syssockgetsockname  syssockgetsockname
 	#define CHK_syssockgetsockname  TRUE
-	#define EXP_syssockgetsockname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsockname", (RTS_UINTPTR)syssockgetsockname, 1, 0x7EE86135, 0x03050C00) 
+	#define EXP_syssockgetsockname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsockname", (RTS_UINTPTR)syssockgetsockname, 1, 0x7EE86135, 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockgetsockname
 	#define EXT_SysSocketsyssockgetsockname
 	#define GET_SysSocketsyssockgetsockname  ERR_OK
 	#define CAL_SysSocketsyssockgetsockname  syssockgetsockname
 	#define CHK_SysSocketsyssockgetsockname  TRUE
-	#define EXP_SysSocketsyssockgetsockname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsockname", (RTS_UINTPTR)syssockgetsockname, 1, 0x7EE86135, 0x03050C00) 
+	#define EXP_SysSocketsyssockgetsockname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsockname", (RTS_UINTPTR)syssockgetsockname, 1, 0x7EE86135, 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockgetsockname
 	#define EXT_syssockgetsockname
 	#define GET_syssockgetsockname(fl)  CAL_CMGETAPI( "syssockgetsockname" ) 
 	#define CAL_syssockgetsockname  syssockgetsockname
 	#define CHK_syssockgetsockname  TRUE
-	#define EXP_syssockgetsockname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsockname", (RTS_UINTPTR)syssockgetsockname, 1, 0x7EE86135, 0x03050C00) 
+	#define EXP_syssockgetsockname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsockname", (RTS_UINTPTR)syssockgetsockname, 1, 0x7EE86135, 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockgetsockname  PFSYSSOCKGETSOCKNAME_IEC pfsyssockgetsockname;
 	#define EXT_syssockgetsockname  extern PFSYSSOCKGETSOCKNAME_IEC pfsyssockgetsockname;
-	#define GET_syssockgetsockname(fl)  s_pfCMGetAPI2( "syssockgetsockname", (RTS_VOID_FCTPTR *)&pfsyssockgetsockname, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x7EE86135, 0x03050C00)
+	#define GET_syssockgetsockname(fl)  s_pfCMGetAPI2( "syssockgetsockname", (RTS_VOID_FCTPTR *)&pfsyssockgetsockname, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x7EE86135, 0x03050900)
 	#define CAL_syssockgetsockname  pfsyssockgetsockname
 	#define CHK_syssockgetsockname  (pfsyssockgetsockname != NULL)
-	#define EXP_syssockgetsockname   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsockname", (RTS_UINTPTR)syssockgetsockname, 1, 0x7EE86135, 0x03050C00) 
+	#define EXP_syssockgetsockname   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsockname", (RTS_UINTPTR)syssockgetsockname, 1, 0x7EE86135, 0x03050900) 
 #endif
 
 
@@ -1848,35 +1818,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKGETSUBNETMASK_IEC) (syssockgetsubnetmask
 	#define GET_syssockgetsubnetmask(fl)  CAL_CMGETAPI( "syssockgetsubnetmask" ) 
 	#define CAL_syssockgetsubnetmask  syssockgetsubnetmask
 	#define CHK_syssockgetsubnetmask  TRUE
-	#define EXP_syssockgetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsubnetmask", (RTS_UINTPTR)syssockgetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x972C29B9), 0x03050C00) 
+	#define EXP_syssockgetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsubnetmask", (RTS_UINTPTR)syssockgetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x972C29B9), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockgetsubnetmask
 	#define EXT_syssockgetsubnetmask
 	#define GET_syssockgetsubnetmask(fl)  CAL_CMGETAPI( "syssockgetsubnetmask" ) 
 	#define CAL_syssockgetsubnetmask  syssockgetsubnetmask
 	#define CHK_syssockgetsubnetmask  TRUE
-	#define EXP_syssockgetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsubnetmask", (RTS_UINTPTR)syssockgetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x972C29B9), 0x03050C00) 
+	#define EXP_syssockgetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsubnetmask", (RTS_UINTPTR)syssockgetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x972C29B9), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockgetsubnetmask
 	#define EXT_SysSocketsyssockgetsubnetmask
 	#define GET_SysSocketsyssockgetsubnetmask  ERR_OK
 	#define CAL_SysSocketsyssockgetsubnetmask  syssockgetsubnetmask
 	#define CHK_SysSocketsyssockgetsubnetmask  TRUE
-	#define EXP_SysSocketsyssockgetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsubnetmask", (RTS_UINTPTR)syssockgetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x972C29B9), 0x03050C00) 
+	#define EXP_SysSocketsyssockgetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsubnetmask", (RTS_UINTPTR)syssockgetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x972C29B9), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockgetsubnetmask
 	#define EXT_syssockgetsubnetmask
 	#define GET_syssockgetsubnetmask(fl)  CAL_CMGETAPI( "syssockgetsubnetmask" ) 
 	#define CAL_syssockgetsubnetmask  syssockgetsubnetmask
 	#define CHK_syssockgetsubnetmask  TRUE
-	#define EXP_syssockgetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsubnetmask", (RTS_UINTPTR)syssockgetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x972C29B9), 0x03050C00) 
+	#define EXP_syssockgetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsubnetmask", (RTS_UINTPTR)syssockgetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x972C29B9), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockgetsubnetmask  PFSYSSOCKGETSUBNETMASK_IEC pfsyssockgetsubnetmask;
 	#define EXT_syssockgetsubnetmask  extern PFSYSSOCKGETSUBNETMASK_IEC pfsyssockgetsubnetmask;
-	#define GET_syssockgetsubnetmask(fl)  s_pfCMGetAPI2( "syssockgetsubnetmask", (RTS_VOID_FCTPTR *)&pfsyssockgetsubnetmask, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x972C29B9), 0x03050C00)
+	#define GET_syssockgetsubnetmask(fl)  s_pfCMGetAPI2( "syssockgetsubnetmask", (RTS_VOID_FCTPTR *)&pfsyssockgetsubnetmask, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x972C29B9), 0x03050900)
 	#define CAL_syssockgetsubnetmask  pfsyssockgetsubnetmask
 	#define CHK_syssockgetsubnetmask  (pfsyssockgetsubnetmask != NULL)
-	#define EXP_syssockgetsubnetmask   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsubnetmask", (RTS_UINTPTR)syssockgetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x972C29B9), 0x03050C00) 
+	#define EXP_syssockgetsubnetmask   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockgetsubnetmask", (RTS_UINTPTR)syssockgetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x972C29B9), 0x03050900) 
 #endif
 
 
@@ -1905,35 +1875,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKHTONL_IEC) (syssockhtonl_struct *p);
 	#define GET_syssockhtonl(fl)  CAL_CMGETAPI( "syssockhtonl" ) 
 	#define CAL_syssockhtonl  syssockhtonl
 	#define CHK_syssockhtonl  TRUE
-	#define EXP_syssockhtonl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtonl", (RTS_UINTPTR)syssockhtonl, 1, RTSITF_GET_SIGNATURE(0, 0x72F6021A), 0x03050C00) 
+	#define EXP_syssockhtonl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtonl", (RTS_UINTPTR)syssockhtonl, 1, RTSITF_GET_SIGNATURE(0, 0x72F6021A), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockhtonl
 	#define EXT_syssockhtonl
 	#define GET_syssockhtonl(fl)  CAL_CMGETAPI( "syssockhtonl" ) 
 	#define CAL_syssockhtonl  syssockhtonl
 	#define CHK_syssockhtonl  TRUE
-	#define EXP_syssockhtonl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtonl", (RTS_UINTPTR)syssockhtonl, 1, RTSITF_GET_SIGNATURE(0, 0x72F6021A), 0x03050C00) 
+	#define EXP_syssockhtonl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtonl", (RTS_UINTPTR)syssockhtonl, 1, RTSITF_GET_SIGNATURE(0, 0x72F6021A), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockhtonl
 	#define EXT_SysSocketsyssockhtonl
 	#define GET_SysSocketsyssockhtonl  ERR_OK
 	#define CAL_SysSocketsyssockhtonl  syssockhtonl
 	#define CHK_SysSocketsyssockhtonl  TRUE
-	#define EXP_SysSocketsyssockhtonl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtonl", (RTS_UINTPTR)syssockhtonl, 1, RTSITF_GET_SIGNATURE(0, 0x72F6021A), 0x03050C00) 
+	#define EXP_SysSocketsyssockhtonl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtonl", (RTS_UINTPTR)syssockhtonl, 1, RTSITF_GET_SIGNATURE(0, 0x72F6021A), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockhtonl
 	#define EXT_syssockhtonl
 	#define GET_syssockhtonl(fl)  CAL_CMGETAPI( "syssockhtonl" ) 
 	#define CAL_syssockhtonl  syssockhtonl
 	#define CHK_syssockhtonl  TRUE
-	#define EXP_syssockhtonl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtonl", (RTS_UINTPTR)syssockhtonl, 1, RTSITF_GET_SIGNATURE(0, 0x72F6021A), 0x03050C00) 
+	#define EXP_syssockhtonl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtonl", (RTS_UINTPTR)syssockhtonl, 1, RTSITF_GET_SIGNATURE(0, 0x72F6021A), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockhtonl  PFSYSSOCKHTONL_IEC pfsyssockhtonl;
 	#define EXT_syssockhtonl  extern PFSYSSOCKHTONL_IEC pfsyssockhtonl;
-	#define GET_syssockhtonl(fl)  s_pfCMGetAPI2( "syssockhtonl", (RTS_VOID_FCTPTR *)&pfsyssockhtonl, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x72F6021A), 0x03050C00)
+	#define GET_syssockhtonl(fl)  s_pfCMGetAPI2( "syssockhtonl", (RTS_VOID_FCTPTR *)&pfsyssockhtonl, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x72F6021A), 0x03050900)
 	#define CAL_syssockhtonl  pfsyssockhtonl
 	#define CHK_syssockhtonl  (pfsyssockhtonl != NULL)
-	#define EXP_syssockhtonl   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtonl", (RTS_UINTPTR)syssockhtonl, 1, RTSITF_GET_SIGNATURE(0, 0x72F6021A), 0x03050C00) 
+	#define EXP_syssockhtonl   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtonl", (RTS_UINTPTR)syssockhtonl, 1, RTSITF_GET_SIGNATURE(0, 0x72F6021A), 0x03050900) 
 #endif
 
 
@@ -1962,35 +1932,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKHTONS_IEC) (syssockhtons_struct *p);
 	#define GET_syssockhtons(fl)  CAL_CMGETAPI( "syssockhtons" ) 
 	#define CAL_syssockhtons  syssockhtons
 	#define CHK_syssockhtons  TRUE
-	#define EXP_syssockhtons  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtons", (RTS_UINTPTR)syssockhtons, 1, RTSITF_GET_SIGNATURE(0, 0xD258956A), 0x03050C00) 
+	#define EXP_syssockhtons  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtons", (RTS_UINTPTR)syssockhtons, 1, RTSITF_GET_SIGNATURE(0, 0xD258956A), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockhtons
 	#define EXT_syssockhtons
 	#define GET_syssockhtons(fl)  CAL_CMGETAPI( "syssockhtons" ) 
 	#define CAL_syssockhtons  syssockhtons
 	#define CHK_syssockhtons  TRUE
-	#define EXP_syssockhtons  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtons", (RTS_UINTPTR)syssockhtons, 1, RTSITF_GET_SIGNATURE(0, 0xD258956A), 0x03050C00) 
+	#define EXP_syssockhtons  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtons", (RTS_UINTPTR)syssockhtons, 1, RTSITF_GET_SIGNATURE(0, 0xD258956A), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockhtons
 	#define EXT_SysSocketsyssockhtons
 	#define GET_SysSocketsyssockhtons  ERR_OK
 	#define CAL_SysSocketsyssockhtons  syssockhtons
 	#define CHK_SysSocketsyssockhtons  TRUE
-	#define EXP_SysSocketsyssockhtons  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtons", (RTS_UINTPTR)syssockhtons, 1, RTSITF_GET_SIGNATURE(0, 0xD258956A), 0x03050C00) 
+	#define EXP_SysSocketsyssockhtons  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtons", (RTS_UINTPTR)syssockhtons, 1, RTSITF_GET_SIGNATURE(0, 0xD258956A), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockhtons
 	#define EXT_syssockhtons
 	#define GET_syssockhtons(fl)  CAL_CMGETAPI( "syssockhtons" ) 
 	#define CAL_syssockhtons  syssockhtons
 	#define CHK_syssockhtons  TRUE
-	#define EXP_syssockhtons  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtons", (RTS_UINTPTR)syssockhtons, 1, RTSITF_GET_SIGNATURE(0, 0xD258956A), 0x03050C00) 
+	#define EXP_syssockhtons  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtons", (RTS_UINTPTR)syssockhtons, 1, RTSITF_GET_SIGNATURE(0, 0xD258956A), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockhtons  PFSYSSOCKHTONS_IEC pfsyssockhtons;
 	#define EXT_syssockhtons  extern PFSYSSOCKHTONS_IEC pfsyssockhtons;
-	#define GET_syssockhtons(fl)  s_pfCMGetAPI2( "syssockhtons", (RTS_VOID_FCTPTR *)&pfsyssockhtons, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xD258956A), 0x03050C00)
+	#define GET_syssockhtons(fl)  s_pfCMGetAPI2( "syssockhtons", (RTS_VOID_FCTPTR *)&pfsyssockhtons, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xD258956A), 0x03050900)
 	#define CAL_syssockhtons  pfsyssockhtons
 	#define CHK_syssockhtons  (pfsyssockhtons != NULL)
-	#define EXP_syssockhtons   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtons", (RTS_UINTPTR)syssockhtons, 1, RTSITF_GET_SIGNATURE(0, 0xD258956A), 0x03050C00) 
+	#define EXP_syssockhtons   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockhtons", (RTS_UINTPTR)syssockhtons, 1, RTSITF_GET_SIGNATURE(0, 0xD258956A), 0x03050900) 
 #endif
 
 
@@ -2020,35 +1990,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKINETADDR_IEC) (syssockinetaddr_struct *p
 	#define GET_syssockinetaddr(fl)  CAL_CMGETAPI( "syssockinetaddr" ) 
 	#define CAL_syssockinetaddr  syssockinetaddr
 	#define CHK_syssockinetaddr  TRUE
-	#define EXP_syssockinetaddr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetaddr", (RTS_UINTPTR)syssockinetaddr, 1, RTSITF_GET_SIGNATURE(0, 0xB8198B8F), 0x03050C00) 
+	#define EXP_syssockinetaddr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetaddr", (RTS_UINTPTR)syssockinetaddr, 1, RTSITF_GET_SIGNATURE(0, 0xB8198B8F), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockinetaddr
 	#define EXT_syssockinetaddr
 	#define GET_syssockinetaddr(fl)  CAL_CMGETAPI( "syssockinetaddr" ) 
 	#define CAL_syssockinetaddr  syssockinetaddr
 	#define CHK_syssockinetaddr  TRUE
-	#define EXP_syssockinetaddr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetaddr", (RTS_UINTPTR)syssockinetaddr, 1, RTSITF_GET_SIGNATURE(0, 0xB8198B8F), 0x03050C00) 
+	#define EXP_syssockinetaddr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetaddr", (RTS_UINTPTR)syssockinetaddr, 1, RTSITF_GET_SIGNATURE(0, 0xB8198B8F), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockinetaddr
 	#define EXT_SysSocketsyssockinetaddr
 	#define GET_SysSocketsyssockinetaddr  ERR_OK
 	#define CAL_SysSocketsyssockinetaddr  syssockinetaddr
 	#define CHK_SysSocketsyssockinetaddr  TRUE
-	#define EXP_SysSocketsyssockinetaddr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetaddr", (RTS_UINTPTR)syssockinetaddr, 1, RTSITF_GET_SIGNATURE(0, 0xB8198B8F), 0x03050C00) 
+	#define EXP_SysSocketsyssockinetaddr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetaddr", (RTS_UINTPTR)syssockinetaddr, 1, RTSITF_GET_SIGNATURE(0, 0xB8198B8F), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockinetaddr
 	#define EXT_syssockinetaddr
 	#define GET_syssockinetaddr(fl)  CAL_CMGETAPI( "syssockinetaddr" ) 
 	#define CAL_syssockinetaddr  syssockinetaddr
 	#define CHK_syssockinetaddr  TRUE
-	#define EXP_syssockinetaddr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetaddr", (RTS_UINTPTR)syssockinetaddr, 1, RTSITF_GET_SIGNATURE(0, 0xB8198B8F), 0x03050C00) 
+	#define EXP_syssockinetaddr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetaddr", (RTS_UINTPTR)syssockinetaddr, 1, RTSITF_GET_SIGNATURE(0, 0xB8198B8F), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockinetaddr  PFSYSSOCKINETADDR_IEC pfsyssockinetaddr;
 	#define EXT_syssockinetaddr  extern PFSYSSOCKINETADDR_IEC pfsyssockinetaddr;
-	#define GET_syssockinetaddr(fl)  s_pfCMGetAPI2( "syssockinetaddr", (RTS_VOID_FCTPTR *)&pfsyssockinetaddr, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xB8198B8F), 0x03050C00)
+	#define GET_syssockinetaddr(fl)  s_pfCMGetAPI2( "syssockinetaddr", (RTS_VOID_FCTPTR *)&pfsyssockinetaddr, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xB8198B8F), 0x03050900)
 	#define CAL_syssockinetaddr  pfsyssockinetaddr
 	#define CHK_syssockinetaddr  (pfsyssockinetaddr != NULL)
-	#define EXP_syssockinetaddr   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetaddr", (RTS_UINTPTR)syssockinetaddr, 1, RTSITF_GET_SIGNATURE(0, 0xB8198B8F), 0x03050C00) 
+	#define EXP_syssockinetaddr   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetaddr", (RTS_UINTPTR)syssockinetaddr, 1, RTSITF_GET_SIGNATURE(0, 0xB8198B8F), 0x03050900) 
 #endif
 
 
@@ -2079,35 +2049,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKINETNTOA_IEC) (syssockinetntoa_struct *p
 	#define GET_syssockinetntoa(fl)  CAL_CMGETAPI( "syssockinetntoa" ) 
 	#define CAL_syssockinetntoa  syssockinetntoa
 	#define CHK_syssockinetntoa  TRUE
-	#define EXP_syssockinetntoa  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetntoa", (RTS_UINTPTR)syssockinetntoa, 1, RTSITF_GET_SIGNATURE(0, 0x5CE722B2), 0x03050C00) 
+	#define EXP_syssockinetntoa  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetntoa", (RTS_UINTPTR)syssockinetntoa, 1, RTSITF_GET_SIGNATURE(0, 0x5CE722B2), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockinetntoa
 	#define EXT_syssockinetntoa
 	#define GET_syssockinetntoa(fl)  CAL_CMGETAPI( "syssockinetntoa" ) 
 	#define CAL_syssockinetntoa  syssockinetntoa
 	#define CHK_syssockinetntoa  TRUE
-	#define EXP_syssockinetntoa  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetntoa", (RTS_UINTPTR)syssockinetntoa, 1, RTSITF_GET_SIGNATURE(0, 0x5CE722B2), 0x03050C00) 
+	#define EXP_syssockinetntoa  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetntoa", (RTS_UINTPTR)syssockinetntoa, 1, RTSITF_GET_SIGNATURE(0, 0x5CE722B2), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockinetntoa
 	#define EXT_SysSocketsyssockinetntoa
 	#define GET_SysSocketsyssockinetntoa  ERR_OK
 	#define CAL_SysSocketsyssockinetntoa  syssockinetntoa
 	#define CHK_SysSocketsyssockinetntoa  TRUE
-	#define EXP_SysSocketsyssockinetntoa  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetntoa", (RTS_UINTPTR)syssockinetntoa, 1, RTSITF_GET_SIGNATURE(0, 0x5CE722B2), 0x03050C00) 
+	#define EXP_SysSocketsyssockinetntoa  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetntoa", (RTS_UINTPTR)syssockinetntoa, 1, RTSITF_GET_SIGNATURE(0, 0x5CE722B2), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockinetntoa
 	#define EXT_syssockinetntoa
 	#define GET_syssockinetntoa(fl)  CAL_CMGETAPI( "syssockinetntoa" ) 
 	#define CAL_syssockinetntoa  syssockinetntoa
 	#define CHK_syssockinetntoa  TRUE
-	#define EXP_syssockinetntoa  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetntoa", (RTS_UINTPTR)syssockinetntoa, 1, RTSITF_GET_SIGNATURE(0, 0x5CE722B2), 0x03050C00) 
+	#define EXP_syssockinetntoa  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetntoa", (RTS_UINTPTR)syssockinetntoa, 1, RTSITF_GET_SIGNATURE(0, 0x5CE722B2), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockinetntoa  PFSYSSOCKINETNTOA_IEC pfsyssockinetntoa;
 	#define EXT_syssockinetntoa  extern PFSYSSOCKINETNTOA_IEC pfsyssockinetntoa;
-	#define GET_syssockinetntoa(fl)  s_pfCMGetAPI2( "syssockinetntoa", (RTS_VOID_FCTPTR *)&pfsyssockinetntoa, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x5CE722B2), 0x03050C00)
+	#define GET_syssockinetntoa(fl)  s_pfCMGetAPI2( "syssockinetntoa", (RTS_VOID_FCTPTR *)&pfsyssockinetntoa, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x5CE722B2), 0x03050900)
 	#define CAL_syssockinetntoa  pfsyssockinetntoa
 	#define CHK_syssockinetntoa  (pfsyssockinetntoa != NULL)
-	#define EXP_syssockinetntoa   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetntoa", (RTS_UINTPTR)syssockinetntoa, 1, RTSITF_GET_SIGNATURE(0, 0x5CE722B2), 0x03050C00) 
+	#define EXP_syssockinetntoa   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockinetntoa", (RTS_UINTPTR)syssockinetntoa, 1, RTSITF_GET_SIGNATURE(0, 0x5CE722B2), 0x03050900) 
 #endif
 
 
@@ -2138,35 +2108,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKIOCTL_IEC) (syssockioctl_struct *p);
 	#define GET_syssockioctl(fl)  CAL_CMGETAPI( "syssockioctl" ) 
 	#define CAL_syssockioctl  syssockioctl
 	#define CHK_syssockioctl  TRUE
-	#define EXP_syssockioctl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockioctl", (RTS_UINTPTR)syssockioctl, 1, RTSITF_GET_SIGNATURE(0, 0x408480FB), 0x03050C00) 
+	#define EXP_syssockioctl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockioctl", (RTS_UINTPTR)syssockioctl, 1, RTSITF_GET_SIGNATURE(0, 0x408480FB), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockioctl
 	#define EXT_syssockioctl
 	#define GET_syssockioctl(fl)  CAL_CMGETAPI( "syssockioctl" ) 
 	#define CAL_syssockioctl  syssockioctl
 	#define CHK_syssockioctl  TRUE
-	#define EXP_syssockioctl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockioctl", (RTS_UINTPTR)syssockioctl, 1, RTSITF_GET_SIGNATURE(0, 0x408480FB), 0x03050C00) 
+	#define EXP_syssockioctl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockioctl", (RTS_UINTPTR)syssockioctl, 1, RTSITF_GET_SIGNATURE(0, 0x408480FB), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockioctl
 	#define EXT_SysSocketsyssockioctl
 	#define GET_SysSocketsyssockioctl  ERR_OK
 	#define CAL_SysSocketsyssockioctl  syssockioctl
 	#define CHK_SysSocketsyssockioctl  TRUE
-	#define EXP_SysSocketsyssockioctl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockioctl", (RTS_UINTPTR)syssockioctl, 1, RTSITF_GET_SIGNATURE(0, 0x408480FB), 0x03050C00) 
+	#define EXP_SysSocketsyssockioctl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockioctl", (RTS_UINTPTR)syssockioctl, 1, RTSITF_GET_SIGNATURE(0, 0x408480FB), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockioctl
 	#define EXT_syssockioctl
 	#define GET_syssockioctl(fl)  CAL_CMGETAPI( "syssockioctl" ) 
 	#define CAL_syssockioctl  syssockioctl
 	#define CHK_syssockioctl  TRUE
-	#define EXP_syssockioctl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockioctl", (RTS_UINTPTR)syssockioctl, 1, RTSITF_GET_SIGNATURE(0, 0x408480FB), 0x03050C00) 
+	#define EXP_syssockioctl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockioctl", (RTS_UINTPTR)syssockioctl, 1, RTSITF_GET_SIGNATURE(0, 0x408480FB), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockioctl  PFSYSSOCKIOCTL_IEC pfsyssockioctl;
 	#define EXT_syssockioctl  extern PFSYSSOCKIOCTL_IEC pfsyssockioctl;
-	#define GET_syssockioctl(fl)  s_pfCMGetAPI2( "syssockioctl", (RTS_VOID_FCTPTR *)&pfsyssockioctl, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x408480FB), 0x03050C00)
+	#define GET_syssockioctl(fl)  s_pfCMGetAPI2( "syssockioctl", (RTS_VOID_FCTPTR *)&pfsyssockioctl, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x408480FB), 0x03050900)
 	#define CAL_syssockioctl  pfsyssockioctl
 	#define CHK_syssockioctl  (pfsyssockioctl != NULL)
-	#define EXP_syssockioctl   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockioctl", (RTS_UINTPTR)syssockioctl, 1, RTSITF_GET_SIGNATURE(0, 0x408480FB), 0x03050C00) 
+	#define EXP_syssockioctl   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockioctl", (RTS_UINTPTR)syssockioctl, 1, RTSITF_GET_SIGNATURE(0, 0x408480FB), 0x03050900) 
 #endif
 
 
@@ -2196,35 +2166,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKLISTEN_IEC) (syssocklisten_struct *p);
 	#define GET_syssocklisten(fl)  CAL_CMGETAPI( "syssocklisten" ) 
 	#define CAL_syssocklisten  syssocklisten
 	#define CHK_syssocklisten  TRUE
-	#define EXP_syssocklisten  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocklisten", (RTS_UINTPTR)syssocklisten, 1, RTSITF_GET_SIGNATURE(0, 0x30FE27C1), 0x03050C00) 
+	#define EXP_syssocklisten  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocklisten", (RTS_UINTPTR)syssocklisten, 1, RTSITF_GET_SIGNATURE(0, 0x30FE27C1), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssocklisten
 	#define EXT_syssocklisten
 	#define GET_syssocklisten(fl)  CAL_CMGETAPI( "syssocklisten" ) 
 	#define CAL_syssocklisten  syssocklisten
 	#define CHK_syssocklisten  TRUE
-	#define EXP_syssocklisten  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocklisten", (RTS_UINTPTR)syssocklisten, 1, RTSITF_GET_SIGNATURE(0, 0x30FE27C1), 0x03050C00) 
+	#define EXP_syssocklisten  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocklisten", (RTS_UINTPTR)syssocklisten, 1, RTSITF_GET_SIGNATURE(0, 0x30FE27C1), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssocklisten
 	#define EXT_SysSocketsyssocklisten
 	#define GET_SysSocketsyssocklisten  ERR_OK
 	#define CAL_SysSocketsyssocklisten  syssocklisten
 	#define CHK_SysSocketsyssocklisten  TRUE
-	#define EXP_SysSocketsyssocklisten  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocklisten", (RTS_UINTPTR)syssocklisten, 1, RTSITF_GET_SIGNATURE(0, 0x30FE27C1), 0x03050C00) 
+	#define EXP_SysSocketsyssocklisten  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocklisten", (RTS_UINTPTR)syssocklisten, 1, RTSITF_GET_SIGNATURE(0, 0x30FE27C1), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssocklisten
 	#define EXT_syssocklisten
 	#define GET_syssocklisten(fl)  CAL_CMGETAPI( "syssocklisten" ) 
 	#define CAL_syssocklisten  syssocklisten
 	#define CHK_syssocklisten  TRUE
-	#define EXP_syssocklisten  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocklisten", (RTS_UINTPTR)syssocklisten, 1, RTSITF_GET_SIGNATURE(0, 0x30FE27C1), 0x03050C00) 
+	#define EXP_syssocklisten  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocklisten", (RTS_UINTPTR)syssocklisten, 1, RTSITF_GET_SIGNATURE(0, 0x30FE27C1), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssocklisten  PFSYSSOCKLISTEN_IEC pfsyssocklisten;
 	#define EXT_syssocklisten  extern PFSYSSOCKLISTEN_IEC pfsyssocklisten;
-	#define GET_syssocklisten(fl)  s_pfCMGetAPI2( "syssocklisten", (RTS_VOID_FCTPTR *)&pfsyssocklisten, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x30FE27C1), 0x03050C00)
+	#define GET_syssocklisten(fl)  s_pfCMGetAPI2( "syssocklisten", (RTS_VOID_FCTPTR *)&pfsyssocklisten, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x30FE27C1), 0x03050900)
 	#define CAL_syssocklisten  pfsyssocklisten
 	#define CHK_syssocklisten  (pfsyssocklisten != NULL)
-	#define EXP_syssocklisten   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocklisten", (RTS_UINTPTR)syssocklisten, 1, RTSITF_GET_SIGNATURE(0, 0x30FE27C1), 0x03050C00) 
+	#define EXP_syssocklisten   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocklisten", (RTS_UINTPTR)syssocklisten, 1, RTSITF_GET_SIGNATURE(0, 0x30FE27C1), 0x03050900) 
 #endif
 
 
@@ -2253,35 +2223,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKNTOHL_IEC) (syssockntohl_struct *p);
 	#define GET_syssockntohl(fl)  CAL_CMGETAPI( "syssockntohl" ) 
 	#define CAL_syssockntohl  syssockntohl
 	#define CHK_syssockntohl  TRUE
-	#define EXP_syssockntohl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohl", (RTS_UINTPTR)syssockntohl, 1, RTSITF_GET_SIGNATURE(0, 0x05B31DF1), 0x03050C00) 
+	#define EXP_syssockntohl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohl", (RTS_UINTPTR)syssockntohl, 1, RTSITF_GET_SIGNATURE(0, 0x05B31DF1), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockntohl
 	#define EXT_syssockntohl
 	#define GET_syssockntohl(fl)  CAL_CMGETAPI( "syssockntohl" ) 
 	#define CAL_syssockntohl  syssockntohl
 	#define CHK_syssockntohl  TRUE
-	#define EXP_syssockntohl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohl", (RTS_UINTPTR)syssockntohl, 1, RTSITF_GET_SIGNATURE(0, 0x05B31DF1), 0x03050C00) 
+	#define EXP_syssockntohl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohl", (RTS_UINTPTR)syssockntohl, 1, RTSITF_GET_SIGNATURE(0, 0x05B31DF1), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockntohl
 	#define EXT_SysSocketsyssockntohl
 	#define GET_SysSocketsyssockntohl  ERR_OK
 	#define CAL_SysSocketsyssockntohl  syssockntohl
 	#define CHK_SysSocketsyssockntohl  TRUE
-	#define EXP_SysSocketsyssockntohl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohl", (RTS_UINTPTR)syssockntohl, 1, RTSITF_GET_SIGNATURE(0, 0x05B31DF1), 0x03050C00) 
+	#define EXP_SysSocketsyssockntohl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohl", (RTS_UINTPTR)syssockntohl, 1, RTSITF_GET_SIGNATURE(0, 0x05B31DF1), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockntohl
 	#define EXT_syssockntohl
 	#define GET_syssockntohl(fl)  CAL_CMGETAPI( "syssockntohl" ) 
 	#define CAL_syssockntohl  syssockntohl
 	#define CHK_syssockntohl  TRUE
-	#define EXP_syssockntohl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohl", (RTS_UINTPTR)syssockntohl, 1, RTSITF_GET_SIGNATURE(0, 0x05B31DF1), 0x03050C00) 
+	#define EXP_syssockntohl  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohl", (RTS_UINTPTR)syssockntohl, 1, RTSITF_GET_SIGNATURE(0, 0x05B31DF1), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockntohl  PFSYSSOCKNTOHL_IEC pfsyssockntohl;
 	#define EXT_syssockntohl  extern PFSYSSOCKNTOHL_IEC pfsyssockntohl;
-	#define GET_syssockntohl(fl)  s_pfCMGetAPI2( "syssockntohl", (RTS_VOID_FCTPTR *)&pfsyssockntohl, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x05B31DF1), 0x03050C00)
+	#define GET_syssockntohl(fl)  s_pfCMGetAPI2( "syssockntohl", (RTS_VOID_FCTPTR *)&pfsyssockntohl, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x05B31DF1), 0x03050900)
 	#define CAL_syssockntohl  pfsyssockntohl
 	#define CHK_syssockntohl  (pfsyssockntohl != NULL)
-	#define EXP_syssockntohl   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohl", (RTS_UINTPTR)syssockntohl, 1, RTSITF_GET_SIGNATURE(0, 0x05B31DF1), 0x03050C00) 
+	#define EXP_syssockntohl   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohl", (RTS_UINTPTR)syssockntohl, 1, RTSITF_GET_SIGNATURE(0, 0x05B31DF1), 0x03050900) 
 #endif
 
 
@@ -2310,35 +2280,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKNTOHS_IEC) (syssockntohs_struct *p);
 	#define GET_syssockntohs(fl)  CAL_CMGETAPI( "syssockntohs" ) 
 	#define CAL_syssockntohs  syssockntohs
 	#define CHK_syssockntohs  TRUE
-	#define EXP_syssockntohs  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohs", (RTS_UINTPTR)syssockntohs, 1, RTSITF_GET_SIGNATURE(0, 0x100E0417), 0x03050C00) 
+	#define EXP_syssockntohs  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohs", (RTS_UINTPTR)syssockntohs, 1, RTSITF_GET_SIGNATURE(0, 0x100E0417), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockntohs
 	#define EXT_syssockntohs
 	#define GET_syssockntohs(fl)  CAL_CMGETAPI( "syssockntohs" ) 
 	#define CAL_syssockntohs  syssockntohs
 	#define CHK_syssockntohs  TRUE
-	#define EXP_syssockntohs  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohs", (RTS_UINTPTR)syssockntohs, 1, RTSITF_GET_SIGNATURE(0, 0x100E0417), 0x03050C00) 
+	#define EXP_syssockntohs  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohs", (RTS_UINTPTR)syssockntohs, 1, RTSITF_GET_SIGNATURE(0, 0x100E0417), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockntohs
 	#define EXT_SysSocketsyssockntohs
 	#define GET_SysSocketsyssockntohs  ERR_OK
 	#define CAL_SysSocketsyssockntohs  syssockntohs
 	#define CHK_SysSocketsyssockntohs  TRUE
-	#define EXP_SysSocketsyssockntohs  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohs", (RTS_UINTPTR)syssockntohs, 1, RTSITF_GET_SIGNATURE(0, 0x100E0417), 0x03050C00) 
+	#define EXP_SysSocketsyssockntohs  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohs", (RTS_UINTPTR)syssockntohs, 1, RTSITF_GET_SIGNATURE(0, 0x100E0417), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockntohs
 	#define EXT_syssockntohs
 	#define GET_syssockntohs(fl)  CAL_CMGETAPI( "syssockntohs" ) 
 	#define CAL_syssockntohs  syssockntohs
 	#define CHK_syssockntohs  TRUE
-	#define EXP_syssockntohs  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohs", (RTS_UINTPTR)syssockntohs, 1, RTSITF_GET_SIGNATURE(0, 0x100E0417), 0x03050C00) 
+	#define EXP_syssockntohs  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohs", (RTS_UINTPTR)syssockntohs, 1, RTSITF_GET_SIGNATURE(0, 0x100E0417), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockntohs  PFSYSSOCKNTOHS_IEC pfsyssockntohs;
 	#define EXT_syssockntohs  extern PFSYSSOCKNTOHS_IEC pfsyssockntohs;
-	#define GET_syssockntohs(fl)  s_pfCMGetAPI2( "syssockntohs", (RTS_VOID_FCTPTR *)&pfsyssockntohs, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x100E0417), 0x03050C00)
+	#define GET_syssockntohs(fl)  s_pfCMGetAPI2( "syssockntohs", (RTS_VOID_FCTPTR *)&pfsyssockntohs, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x100E0417), 0x03050900)
 	#define CAL_syssockntohs  pfsyssockntohs
 	#define CHK_syssockntohs  (pfsyssockntohs != NULL)
-	#define EXP_syssockntohs   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohs", (RTS_UINTPTR)syssockntohs, 1, RTSITF_GET_SIGNATURE(0, 0x100E0417), 0x03050C00) 
+	#define EXP_syssockntohs   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockntohs", (RTS_UINTPTR)syssockntohs, 1, RTSITF_GET_SIGNATURE(0, 0x100E0417), 0x03050900) 
 #endif
 
 
@@ -2372,35 +2342,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKPING_IEC) (syssockping_struct *p);
 	#define GET_syssockping(fl)  CAL_CMGETAPI( "syssockping" ) 
 	#define CAL_syssockping  syssockping
 	#define CHK_syssockping  TRUE
-	#define EXP_syssockping  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockping", (RTS_UINTPTR)syssockping, 1, RTSITF_GET_SIGNATURE(0, 0xB3610A39), 0x03050C00) 
+	#define EXP_syssockping  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockping", (RTS_UINTPTR)syssockping, 1, RTSITF_GET_SIGNATURE(0, 0xB3610A39), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockping
 	#define EXT_syssockping
 	#define GET_syssockping(fl)  CAL_CMGETAPI( "syssockping" ) 
 	#define CAL_syssockping  syssockping
 	#define CHK_syssockping  TRUE
-	#define EXP_syssockping  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockping", (RTS_UINTPTR)syssockping, 1, RTSITF_GET_SIGNATURE(0, 0xB3610A39), 0x03050C00) 
+	#define EXP_syssockping  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockping", (RTS_UINTPTR)syssockping, 1, RTSITF_GET_SIGNATURE(0, 0xB3610A39), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockping
 	#define EXT_SysSocketsyssockping
 	#define GET_SysSocketsyssockping  ERR_OK
 	#define CAL_SysSocketsyssockping  syssockping
 	#define CHK_SysSocketsyssockping  TRUE
-	#define EXP_SysSocketsyssockping  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockping", (RTS_UINTPTR)syssockping, 1, RTSITF_GET_SIGNATURE(0, 0xB3610A39), 0x03050C00) 
+	#define EXP_SysSocketsyssockping  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockping", (RTS_UINTPTR)syssockping, 1, RTSITF_GET_SIGNATURE(0, 0xB3610A39), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockping
 	#define EXT_syssockping
 	#define GET_syssockping(fl)  CAL_CMGETAPI( "syssockping" ) 
 	#define CAL_syssockping  syssockping
 	#define CHK_syssockping  TRUE
-	#define EXP_syssockping  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockping", (RTS_UINTPTR)syssockping, 1, RTSITF_GET_SIGNATURE(0, 0xB3610A39), 0x03050C00) 
+	#define EXP_syssockping  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockping", (RTS_UINTPTR)syssockping, 1, RTSITF_GET_SIGNATURE(0, 0xB3610A39), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockping  PFSYSSOCKPING_IEC pfsyssockping;
 	#define EXT_syssockping  extern PFSYSSOCKPING_IEC pfsyssockping;
-	#define GET_syssockping(fl)  s_pfCMGetAPI2( "syssockping", (RTS_VOID_FCTPTR *)&pfsyssockping, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xB3610A39), 0x03050C00)
+	#define GET_syssockping(fl)  s_pfCMGetAPI2( "syssockping", (RTS_VOID_FCTPTR *)&pfsyssockping, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xB3610A39), 0x03050900)
 	#define CAL_syssockping  pfsyssockping
 	#define CHK_syssockping  (pfsyssockping != NULL)
-	#define EXP_syssockping   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockping", (RTS_UINTPTR)syssockping, 1, RTSITF_GET_SIGNATURE(0, 0xB3610A39), 0x03050C00) 
+	#define EXP_syssockping   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockping", (RTS_UINTPTR)syssockping, 1, RTSITF_GET_SIGNATURE(0, 0xB3610A39), 0x03050900) 
 #endif
 
 
@@ -2436,35 +2406,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKRECV_IEC) (syssockrecv_struct *p);
 	#define GET_syssockrecv(fl)  CAL_CMGETAPI( "syssockrecv" ) 
 	#define CAL_syssockrecv  syssockrecv
 	#define CHK_syssockrecv  TRUE
-	#define EXP_syssockrecv  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecv", (RTS_UINTPTR)syssockrecv, 1, RTSITF_GET_SIGNATURE(0, 0x887FBA6B), 0x03050C00) 
+	#define EXP_syssockrecv  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecv", (RTS_UINTPTR)syssockrecv, 1, RTSITF_GET_SIGNATURE(0, 0x887FBA6B), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockrecv
 	#define EXT_syssockrecv
 	#define GET_syssockrecv(fl)  CAL_CMGETAPI( "syssockrecv" ) 
 	#define CAL_syssockrecv  syssockrecv
 	#define CHK_syssockrecv  TRUE
-	#define EXP_syssockrecv  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecv", (RTS_UINTPTR)syssockrecv, 1, RTSITF_GET_SIGNATURE(0, 0x887FBA6B), 0x03050C00) 
+	#define EXP_syssockrecv  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecv", (RTS_UINTPTR)syssockrecv, 1, RTSITF_GET_SIGNATURE(0, 0x887FBA6B), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockrecv
 	#define EXT_SysSocketsyssockrecv
 	#define GET_SysSocketsyssockrecv  ERR_OK
 	#define CAL_SysSocketsyssockrecv  syssockrecv
 	#define CHK_SysSocketsyssockrecv  TRUE
-	#define EXP_SysSocketsyssockrecv  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecv", (RTS_UINTPTR)syssockrecv, 1, RTSITF_GET_SIGNATURE(0, 0x887FBA6B), 0x03050C00) 
+	#define EXP_SysSocketsyssockrecv  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecv", (RTS_UINTPTR)syssockrecv, 1, RTSITF_GET_SIGNATURE(0, 0x887FBA6B), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockrecv
 	#define EXT_syssockrecv
 	#define GET_syssockrecv(fl)  CAL_CMGETAPI( "syssockrecv" ) 
 	#define CAL_syssockrecv  syssockrecv
 	#define CHK_syssockrecv  TRUE
-	#define EXP_syssockrecv  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecv", (RTS_UINTPTR)syssockrecv, 1, RTSITF_GET_SIGNATURE(0, 0x887FBA6B), 0x03050C00) 
+	#define EXP_syssockrecv  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecv", (RTS_UINTPTR)syssockrecv, 1, RTSITF_GET_SIGNATURE(0, 0x887FBA6B), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockrecv  PFSYSSOCKRECV_IEC pfsyssockrecv;
 	#define EXT_syssockrecv  extern PFSYSSOCKRECV_IEC pfsyssockrecv;
-	#define GET_syssockrecv(fl)  s_pfCMGetAPI2( "syssockrecv", (RTS_VOID_FCTPTR *)&pfsyssockrecv, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x887FBA6B), 0x03050C00)
+	#define GET_syssockrecv(fl)  s_pfCMGetAPI2( "syssockrecv", (RTS_VOID_FCTPTR *)&pfsyssockrecv, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x887FBA6B), 0x03050900)
 	#define CAL_syssockrecv  pfsyssockrecv
 	#define CHK_syssockrecv  (pfsyssockrecv != NULL)
-	#define EXP_syssockrecv   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecv", (RTS_UINTPTR)syssockrecv, 1, RTSITF_GET_SIGNATURE(0, 0x887FBA6B), 0x03050C00) 
+	#define EXP_syssockrecv   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecv", (RTS_UINTPTR)syssockrecv, 1, RTSITF_GET_SIGNATURE(0, 0x887FBA6B), 0x03050900) 
 #endif
 
 
@@ -2502,35 +2472,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKRECVFROM_IEC) (syssockrecvfrom_struct *p
 	#define GET_syssockrecvfrom(fl)  CAL_CMGETAPI( "syssockrecvfrom" ) 
 	#define CAL_syssockrecvfrom  syssockrecvfrom
 	#define CHK_syssockrecvfrom  TRUE
-	#define EXP_syssockrecvfrom  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfrom", (RTS_UINTPTR)syssockrecvfrom, 1, RTSITF_GET_SIGNATURE(0, 0x26DF0362), 0x03050C00) 
+	#define EXP_syssockrecvfrom  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfrom", (RTS_UINTPTR)syssockrecvfrom, 1, RTSITF_GET_SIGNATURE(0, 0x26DF0362), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockrecvfrom
 	#define EXT_syssockrecvfrom
 	#define GET_syssockrecvfrom(fl)  CAL_CMGETAPI( "syssockrecvfrom" ) 
 	#define CAL_syssockrecvfrom  syssockrecvfrom
 	#define CHK_syssockrecvfrom  TRUE
-	#define EXP_syssockrecvfrom  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfrom", (RTS_UINTPTR)syssockrecvfrom, 1, RTSITF_GET_SIGNATURE(0, 0x26DF0362), 0x03050C00) 
+	#define EXP_syssockrecvfrom  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfrom", (RTS_UINTPTR)syssockrecvfrom, 1, RTSITF_GET_SIGNATURE(0, 0x26DF0362), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockrecvfrom
 	#define EXT_SysSocketsyssockrecvfrom
 	#define GET_SysSocketsyssockrecvfrom  ERR_OK
 	#define CAL_SysSocketsyssockrecvfrom  syssockrecvfrom
 	#define CHK_SysSocketsyssockrecvfrom  TRUE
-	#define EXP_SysSocketsyssockrecvfrom  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfrom", (RTS_UINTPTR)syssockrecvfrom, 1, RTSITF_GET_SIGNATURE(0, 0x26DF0362), 0x03050C00) 
+	#define EXP_SysSocketsyssockrecvfrom  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfrom", (RTS_UINTPTR)syssockrecvfrom, 1, RTSITF_GET_SIGNATURE(0, 0x26DF0362), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockrecvfrom
 	#define EXT_syssockrecvfrom
 	#define GET_syssockrecvfrom(fl)  CAL_CMGETAPI( "syssockrecvfrom" ) 
 	#define CAL_syssockrecvfrom  syssockrecvfrom
 	#define CHK_syssockrecvfrom  TRUE
-	#define EXP_syssockrecvfrom  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfrom", (RTS_UINTPTR)syssockrecvfrom, 1, RTSITF_GET_SIGNATURE(0, 0x26DF0362), 0x03050C00) 
+	#define EXP_syssockrecvfrom  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfrom", (RTS_UINTPTR)syssockrecvfrom, 1, RTSITF_GET_SIGNATURE(0, 0x26DF0362), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockrecvfrom  PFSYSSOCKRECVFROM_IEC pfsyssockrecvfrom;
 	#define EXT_syssockrecvfrom  extern PFSYSSOCKRECVFROM_IEC pfsyssockrecvfrom;
-	#define GET_syssockrecvfrom(fl)  s_pfCMGetAPI2( "syssockrecvfrom", (RTS_VOID_FCTPTR *)&pfsyssockrecvfrom, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x26DF0362), 0x03050C00)
+	#define GET_syssockrecvfrom(fl)  s_pfCMGetAPI2( "syssockrecvfrom", (RTS_VOID_FCTPTR *)&pfsyssockrecvfrom, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x26DF0362), 0x03050900)
 	#define CAL_syssockrecvfrom  pfsyssockrecvfrom
 	#define CHK_syssockrecvfrom  (pfsyssockrecvfrom != NULL)
-	#define EXP_syssockrecvfrom   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfrom", (RTS_UINTPTR)syssockrecvfrom, 1, RTSITF_GET_SIGNATURE(0, 0x26DF0362), 0x03050C00) 
+	#define EXP_syssockrecvfrom   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfrom", (RTS_UINTPTR)syssockrecvfrom, 1, RTSITF_GET_SIGNATURE(0, 0x26DF0362), 0x03050900) 
 #endif
 
 
@@ -2563,35 +2533,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKRECVFROMUDP_IEC) (syssockrecvfromudp_str
 	#define GET_syssockrecvfromudp(fl)  CAL_CMGETAPI( "syssockrecvfromudp" ) 
 	#define CAL_syssockrecvfromudp  syssockrecvfromudp
 	#define CHK_syssockrecvfromudp  TRUE
-	#define EXP_syssockrecvfromudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp", (RTS_UINTPTR)syssockrecvfromudp, 1, RTSITF_GET_SIGNATURE(0, 0x86A63EF8), 0x03050C00) 
+	#define EXP_syssockrecvfromudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp", (RTS_UINTPTR)syssockrecvfromudp, 1, RTSITF_GET_SIGNATURE(0, 0x86A63EF8), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockrecvfromudp
 	#define EXT_syssockrecvfromudp
 	#define GET_syssockrecvfromudp(fl)  CAL_CMGETAPI( "syssockrecvfromudp" ) 
 	#define CAL_syssockrecvfromudp  syssockrecvfromudp
 	#define CHK_syssockrecvfromudp  TRUE
-	#define EXP_syssockrecvfromudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp", (RTS_UINTPTR)syssockrecvfromudp, 1, RTSITF_GET_SIGNATURE(0, 0x86A63EF8), 0x03050C00) 
+	#define EXP_syssockrecvfromudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp", (RTS_UINTPTR)syssockrecvfromudp, 1, RTSITF_GET_SIGNATURE(0, 0x86A63EF8), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockrecvfromudp
 	#define EXT_SysSocketsyssockrecvfromudp
 	#define GET_SysSocketsyssockrecvfromudp  ERR_OK
 	#define CAL_SysSocketsyssockrecvfromudp  syssockrecvfromudp
 	#define CHK_SysSocketsyssockrecvfromudp  TRUE
-	#define EXP_SysSocketsyssockrecvfromudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp", (RTS_UINTPTR)syssockrecvfromudp, 1, RTSITF_GET_SIGNATURE(0, 0x86A63EF8), 0x03050C00) 
+	#define EXP_SysSocketsyssockrecvfromudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp", (RTS_UINTPTR)syssockrecvfromudp, 1, RTSITF_GET_SIGNATURE(0, 0x86A63EF8), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockrecvfromudp
 	#define EXT_syssockrecvfromudp
 	#define GET_syssockrecvfromudp(fl)  CAL_CMGETAPI( "syssockrecvfromudp" ) 
 	#define CAL_syssockrecvfromudp  syssockrecvfromudp
 	#define CHK_syssockrecvfromudp  TRUE
-	#define EXP_syssockrecvfromudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp", (RTS_UINTPTR)syssockrecvfromudp, 1, RTSITF_GET_SIGNATURE(0, 0x86A63EF8), 0x03050C00) 
+	#define EXP_syssockrecvfromudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp", (RTS_UINTPTR)syssockrecvfromudp, 1, RTSITF_GET_SIGNATURE(0, 0x86A63EF8), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockrecvfromudp  PFSYSSOCKRECVFROMUDP_IEC pfsyssockrecvfromudp;
 	#define EXT_syssockrecvfromudp  extern PFSYSSOCKRECVFROMUDP_IEC pfsyssockrecvfromudp;
-	#define GET_syssockrecvfromudp(fl)  s_pfCMGetAPI2( "syssockrecvfromudp", (RTS_VOID_FCTPTR *)&pfsyssockrecvfromudp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x86A63EF8), 0x03050C00)
+	#define GET_syssockrecvfromudp(fl)  s_pfCMGetAPI2( "syssockrecvfromudp", (RTS_VOID_FCTPTR *)&pfsyssockrecvfromudp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x86A63EF8), 0x03050900)
 	#define CAL_syssockrecvfromudp  pfsyssockrecvfromudp
 	#define CHK_syssockrecvfromudp  (pfsyssockrecvfromudp != NULL)
-	#define EXP_syssockrecvfromudp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp", (RTS_UINTPTR)syssockrecvfromudp, 1, RTSITF_GET_SIGNATURE(0, 0x86A63EF8), 0x03050C00) 
+	#define EXP_syssockrecvfromudp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp", (RTS_UINTPTR)syssockrecvfromudp, 1, RTSITF_GET_SIGNATURE(0, 0x86A63EF8), 0x03050900) 
 #endif
 
 
@@ -2624,35 +2594,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKRECVFROMUDP2_IEC) (syssockrecvfromudp2_s
 	#define GET_syssockrecvfromudp2(fl)  CAL_CMGETAPI( "syssockrecvfromudp2" ) 
 	#define CAL_syssockrecvfromudp2  syssockrecvfromudp2
 	#define CHK_syssockrecvfromudp2  TRUE
-	#define EXP_syssockrecvfromudp2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp2", (RTS_UINTPTR)syssockrecvfromudp2, 1, RTSITF_GET_SIGNATURE(0, 0xBA3470D3), 0x03050C00) 
+	#define EXP_syssockrecvfromudp2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp2", (RTS_UINTPTR)syssockrecvfromudp2, 1, RTSITF_GET_SIGNATURE(0, 0xBA3470D3), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockrecvfromudp2
 	#define EXT_syssockrecvfromudp2
 	#define GET_syssockrecvfromudp2(fl)  CAL_CMGETAPI( "syssockrecvfromudp2" ) 
 	#define CAL_syssockrecvfromudp2  syssockrecvfromudp2
 	#define CHK_syssockrecvfromudp2  TRUE
-	#define EXP_syssockrecvfromudp2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp2", (RTS_UINTPTR)syssockrecvfromudp2, 1, RTSITF_GET_SIGNATURE(0, 0xBA3470D3), 0x03050C00) 
+	#define EXP_syssockrecvfromudp2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp2", (RTS_UINTPTR)syssockrecvfromudp2, 1, RTSITF_GET_SIGNATURE(0, 0xBA3470D3), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockrecvfromudp2
 	#define EXT_SysSocketsyssockrecvfromudp2
 	#define GET_SysSocketsyssockrecvfromudp2  ERR_OK
 	#define CAL_SysSocketsyssockrecvfromudp2  syssockrecvfromudp2
 	#define CHK_SysSocketsyssockrecvfromudp2  TRUE
-	#define EXP_SysSocketsyssockrecvfromudp2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp2", (RTS_UINTPTR)syssockrecvfromudp2, 1, RTSITF_GET_SIGNATURE(0, 0xBA3470D3), 0x03050C00) 
+	#define EXP_SysSocketsyssockrecvfromudp2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp2", (RTS_UINTPTR)syssockrecvfromudp2, 1, RTSITF_GET_SIGNATURE(0, 0xBA3470D3), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockrecvfromudp2
 	#define EXT_syssockrecvfromudp2
 	#define GET_syssockrecvfromudp2(fl)  CAL_CMGETAPI( "syssockrecvfromudp2" ) 
 	#define CAL_syssockrecvfromudp2  syssockrecvfromudp2
 	#define CHK_syssockrecvfromudp2  TRUE
-	#define EXP_syssockrecvfromudp2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp2", (RTS_UINTPTR)syssockrecvfromudp2, 1, RTSITF_GET_SIGNATURE(0, 0xBA3470D3), 0x03050C00) 
+	#define EXP_syssockrecvfromudp2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp2", (RTS_UINTPTR)syssockrecvfromudp2, 1, RTSITF_GET_SIGNATURE(0, 0xBA3470D3), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockrecvfromudp2  PFSYSSOCKRECVFROMUDP2_IEC pfsyssockrecvfromudp2;
 	#define EXT_syssockrecvfromudp2  extern PFSYSSOCKRECVFROMUDP2_IEC pfsyssockrecvfromudp2;
-	#define GET_syssockrecvfromudp2(fl)  s_pfCMGetAPI2( "syssockrecvfromudp2", (RTS_VOID_FCTPTR *)&pfsyssockrecvfromudp2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xBA3470D3), 0x03050C00)
+	#define GET_syssockrecvfromudp2(fl)  s_pfCMGetAPI2( "syssockrecvfromudp2", (RTS_VOID_FCTPTR *)&pfsyssockrecvfromudp2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xBA3470D3), 0x03050900)
 	#define CAL_syssockrecvfromudp2  pfsyssockrecvfromudp2
 	#define CHK_syssockrecvfromudp2  (pfsyssockrecvfromudp2 != NULL)
-	#define EXP_syssockrecvfromudp2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp2", (RTS_UINTPTR)syssockrecvfromudp2, 1, RTSITF_GET_SIGNATURE(0, 0xBA3470D3), 0x03050C00) 
+	#define EXP_syssockrecvfromudp2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockrecvfromudp2", (RTS_UINTPTR)syssockrecvfromudp2, 1, RTSITF_GET_SIGNATURE(0, 0xBA3470D3), 0x03050900) 
 #endif
 
 
@@ -2694,35 +2664,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKSELECT_IEC) (syssockselect_struct *p);
 	#define GET_syssockselect(fl)  CAL_CMGETAPI( "syssockselect" ) 
 	#define CAL_syssockselect  syssockselect
 	#define CHK_syssockselect  TRUE
-	#define EXP_syssockselect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockselect", (RTS_UINTPTR)syssockselect, 1, RTSITF_GET_SIGNATURE(0, 0x59125CA7), 0x03050C00) 
+	#define EXP_syssockselect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockselect", (RTS_UINTPTR)syssockselect, 1, RTSITF_GET_SIGNATURE(0, 0x59125CA7), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockselect
 	#define EXT_syssockselect
 	#define GET_syssockselect(fl)  CAL_CMGETAPI( "syssockselect" ) 
 	#define CAL_syssockselect  syssockselect
 	#define CHK_syssockselect  TRUE
-	#define EXP_syssockselect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockselect", (RTS_UINTPTR)syssockselect, 1, RTSITF_GET_SIGNATURE(0, 0x59125CA7), 0x03050C00) 
+	#define EXP_syssockselect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockselect", (RTS_UINTPTR)syssockselect, 1, RTSITF_GET_SIGNATURE(0, 0x59125CA7), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockselect
 	#define EXT_SysSocketsyssockselect
 	#define GET_SysSocketsyssockselect  ERR_OK
 	#define CAL_SysSocketsyssockselect  syssockselect
 	#define CHK_SysSocketsyssockselect  TRUE
-	#define EXP_SysSocketsyssockselect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockselect", (RTS_UINTPTR)syssockselect, 1, RTSITF_GET_SIGNATURE(0, 0x59125CA7), 0x03050C00) 
+	#define EXP_SysSocketsyssockselect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockselect", (RTS_UINTPTR)syssockselect, 1, RTSITF_GET_SIGNATURE(0, 0x59125CA7), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockselect
 	#define EXT_syssockselect
 	#define GET_syssockselect(fl)  CAL_CMGETAPI( "syssockselect" ) 
 	#define CAL_syssockselect  syssockselect
 	#define CHK_syssockselect  TRUE
-	#define EXP_syssockselect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockselect", (RTS_UINTPTR)syssockselect, 1, RTSITF_GET_SIGNATURE(0, 0x59125CA7), 0x03050C00) 
+	#define EXP_syssockselect  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockselect", (RTS_UINTPTR)syssockselect, 1, RTSITF_GET_SIGNATURE(0, 0x59125CA7), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockselect  PFSYSSOCKSELECT_IEC pfsyssockselect;
 	#define EXT_syssockselect  extern PFSYSSOCKSELECT_IEC pfsyssockselect;
-	#define GET_syssockselect(fl)  s_pfCMGetAPI2( "syssockselect", (RTS_VOID_FCTPTR *)&pfsyssockselect, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x59125CA7), 0x03050C00)
+	#define GET_syssockselect(fl)  s_pfCMGetAPI2( "syssockselect", (RTS_VOID_FCTPTR *)&pfsyssockselect, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x59125CA7), 0x03050900)
 	#define CAL_syssockselect  pfsyssockselect
 	#define CHK_syssockselect  (pfsyssockselect != NULL)
-	#define EXP_syssockselect   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockselect", (RTS_UINTPTR)syssockselect, 1, RTSITF_GET_SIGNATURE(0, 0x59125CA7), 0x03050C00) 
+	#define EXP_syssockselect   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockselect", (RTS_UINTPTR)syssockselect, 1, RTSITF_GET_SIGNATURE(0, 0x59125CA7), 0x03050900) 
 #endif
 
 
@@ -2758,35 +2728,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKSEND_IEC) (syssocksend_struct *p);
 	#define GET_syssocksend(fl)  CAL_CMGETAPI( "syssocksend" ) 
 	#define CAL_syssocksend  syssocksend
 	#define CHK_syssocksend  TRUE
-	#define EXP_syssocksend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksend", (RTS_UINTPTR)syssocksend, 1, RTSITF_GET_SIGNATURE(0, 0xA73C5F51), 0x03050C00) 
+	#define EXP_syssocksend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksend", (RTS_UINTPTR)syssocksend, 1, RTSITF_GET_SIGNATURE(0, 0xA73C5F51), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssocksend
 	#define EXT_syssocksend
 	#define GET_syssocksend(fl)  CAL_CMGETAPI( "syssocksend" ) 
 	#define CAL_syssocksend  syssocksend
 	#define CHK_syssocksend  TRUE
-	#define EXP_syssocksend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksend", (RTS_UINTPTR)syssocksend, 1, RTSITF_GET_SIGNATURE(0, 0xA73C5F51), 0x03050C00) 
+	#define EXP_syssocksend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksend", (RTS_UINTPTR)syssocksend, 1, RTSITF_GET_SIGNATURE(0, 0xA73C5F51), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssocksend
 	#define EXT_SysSocketsyssocksend
 	#define GET_SysSocketsyssocksend  ERR_OK
 	#define CAL_SysSocketsyssocksend  syssocksend
 	#define CHK_SysSocketsyssocksend  TRUE
-	#define EXP_SysSocketsyssocksend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksend", (RTS_UINTPTR)syssocksend, 1, RTSITF_GET_SIGNATURE(0, 0xA73C5F51), 0x03050C00) 
+	#define EXP_SysSocketsyssocksend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksend", (RTS_UINTPTR)syssocksend, 1, RTSITF_GET_SIGNATURE(0, 0xA73C5F51), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssocksend
 	#define EXT_syssocksend
 	#define GET_syssocksend(fl)  CAL_CMGETAPI( "syssocksend" ) 
 	#define CAL_syssocksend  syssocksend
 	#define CHK_syssocksend  TRUE
-	#define EXP_syssocksend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksend", (RTS_UINTPTR)syssocksend, 1, RTSITF_GET_SIGNATURE(0, 0xA73C5F51), 0x03050C00) 
+	#define EXP_syssocksend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksend", (RTS_UINTPTR)syssocksend, 1, RTSITF_GET_SIGNATURE(0, 0xA73C5F51), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssocksend  PFSYSSOCKSEND_IEC pfsyssocksend;
 	#define EXT_syssocksend  extern PFSYSSOCKSEND_IEC pfsyssocksend;
-	#define GET_syssocksend(fl)  s_pfCMGetAPI2( "syssocksend", (RTS_VOID_FCTPTR *)&pfsyssocksend, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xA73C5F51), 0x03050C00)
+	#define GET_syssocksend(fl)  s_pfCMGetAPI2( "syssocksend", (RTS_VOID_FCTPTR *)&pfsyssocksend, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xA73C5F51), 0x03050900)
 	#define CAL_syssocksend  pfsyssocksend
 	#define CHK_syssocksend  (pfsyssocksend != NULL)
-	#define EXP_syssocksend   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksend", (RTS_UINTPTR)syssocksend, 1, RTSITF_GET_SIGNATURE(0, 0xA73C5F51), 0x03050C00) 
+	#define EXP_syssocksend   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksend", (RTS_UINTPTR)syssocksend, 1, RTSITF_GET_SIGNATURE(0, 0xA73C5F51), 0x03050900) 
 #endif
 
 
@@ -2824,35 +2794,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKSENDTO_IEC) (syssocksendto_struct *p);
 	#define GET_syssocksendto(fl)  CAL_CMGETAPI( "syssocksendto" ) 
 	#define CAL_syssocksendto  syssocksendto
 	#define CHK_syssocksendto  TRUE
-	#define EXP_syssocksendto  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendto", (RTS_UINTPTR)syssocksendto, 1, RTSITF_GET_SIGNATURE(0, 0xEE37CAFA), 0x03050C00) 
+	#define EXP_syssocksendto  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendto", (RTS_UINTPTR)syssocksendto, 1, RTSITF_GET_SIGNATURE(0, 0xEE37CAFA), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssocksendto
 	#define EXT_syssocksendto
 	#define GET_syssocksendto(fl)  CAL_CMGETAPI( "syssocksendto" ) 
 	#define CAL_syssocksendto  syssocksendto
 	#define CHK_syssocksendto  TRUE
-	#define EXP_syssocksendto  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendto", (RTS_UINTPTR)syssocksendto, 1, RTSITF_GET_SIGNATURE(0, 0xEE37CAFA), 0x03050C00) 
+	#define EXP_syssocksendto  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendto", (RTS_UINTPTR)syssocksendto, 1, RTSITF_GET_SIGNATURE(0, 0xEE37CAFA), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssocksendto
 	#define EXT_SysSocketsyssocksendto
 	#define GET_SysSocketsyssocksendto  ERR_OK
 	#define CAL_SysSocketsyssocksendto  syssocksendto
 	#define CHK_SysSocketsyssocksendto  TRUE
-	#define EXP_SysSocketsyssocksendto  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendto", (RTS_UINTPTR)syssocksendto, 1, RTSITF_GET_SIGNATURE(0, 0xEE37CAFA), 0x03050C00) 
+	#define EXP_SysSocketsyssocksendto  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendto", (RTS_UINTPTR)syssocksendto, 1, RTSITF_GET_SIGNATURE(0, 0xEE37CAFA), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssocksendto
 	#define EXT_syssocksendto
 	#define GET_syssocksendto(fl)  CAL_CMGETAPI( "syssocksendto" ) 
 	#define CAL_syssocksendto  syssocksendto
 	#define CHK_syssocksendto  TRUE
-	#define EXP_syssocksendto  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendto", (RTS_UINTPTR)syssocksendto, 1, RTSITF_GET_SIGNATURE(0, 0xEE37CAFA), 0x03050C00) 
+	#define EXP_syssocksendto  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendto", (RTS_UINTPTR)syssocksendto, 1, RTSITF_GET_SIGNATURE(0, 0xEE37CAFA), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssocksendto  PFSYSSOCKSENDTO_IEC pfsyssocksendto;
 	#define EXT_syssocksendto  extern PFSYSSOCKSENDTO_IEC pfsyssocksendto;
-	#define GET_syssocksendto(fl)  s_pfCMGetAPI2( "syssocksendto", (RTS_VOID_FCTPTR *)&pfsyssocksendto, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xEE37CAFA), 0x03050C00)
+	#define GET_syssocksendto(fl)  s_pfCMGetAPI2( "syssocksendto", (RTS_VOID_FCTPTR *)&pfsyssocksendto, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xEE37CAFA), 0x03050900)
 	#define CAL_syssocksendto  pfsyssocksendto
 	#define CHK_syssocksendto  (pfsyssocksendto != NULL)
-	#define EXP_syssocksendto   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendto", (RTS_UINTPTR)syssocksendto, 1, RTSITF_GET_SIGNATURE(0, 0xEE37CAFA), 0x03050C00) 
+	#define EXP_syssocksendto   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendto", (RTS_UINTPTR)syssocksendto, 1, RTSITF_GET_SIGNATURE(0, 0xEE37CAFA), 0x03050900) 
 #endif
 
 
@@ -2886,35 +2856,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKSENDTOUDP_IEC) (syssocksendtoudp_struct 
 	#define GET_syssocksendtoudp(fl)  CAL_CMGETAPI( "syssocksendtoudp" ) 
 	#define CAL_syssocksendtoudp  syssocksendtoudp
 	#define CHK_syssocksendtoudp  TRUE
-	#define EXP_syssocksendtoudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendtoudp", (RTS_UINTPTR)syssocksendtoudp, 1, RTSITF_GET_SIGNATURE(0, 0x81DCE32E), 0x03050C00) 
+	#define EXP_syssocksendtoudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendtoudp", (RTS_UINTPTR)syssocksendtoudp, 1, RTSITF_GET_SIGNATURE(0, 0x81DCE32E), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssocksendtoudp
 	#define EXT_syssocksendtoudp
 	#define GET_syssocksendtoudp(fl)  CAL_CMGETAPI( "syssocksendtoudp" ) 
 	#define CAL_syssocksendtoudp  syssocksendtoudp
 	#define CHK_syssocksendtoudp  TRUE
-	#define EXP_syssocksendtoudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendtoudp", (RTS_UINTPTR)syssocksendtoudp, 1, RTSITF_GET_SIGNATURE(0, 0x81DCE32E), 0x03050C00) 
+	#define EXP_syssocksendtoudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendtoudp", (RTS_UINTPTR)syssocksendtoudp, 1, RTSITF_GET_SIGNATURE(0, 0x81DCE32E), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssocksendtoudp
 	#define EXT_SysSocketsyssocksendtoudp
 	#define GET_SysSocketsyssocksendtoudp  ERR_OK
 	#define CAL_SysSocketsyssocksendtoudp  syssocksendtoudp
 	#define CHK_SysSocketsyssocksendtoudp  TRUE
-	#define EXP_SysSocketsyssocksendtoudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendtoudp", (RTS_UINTPTR)syssocksendtoudp, 1, RTSITF_GET_SIGNATURE(0, 0x81DCE32E), 0x03050C00) 
+	#define EXP_SysSocketsyssocksendtoudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendtoudp", (RTS_UINTPTR)syssocksendtoudp, 1, RTSITF_GET_SIGNATURE(0, 0x81DCE32E), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssocksendtoudp
 	#define EXT_syssocksendtoudp
 	#define GET_syssocksendtoudp(fl)  CAL_CMGETAPI( "syssocksendtoudp" ) 
 	#define CAL_syssocksendtoudp  syssocksendtoudp
 	#define CHK_syssocksendtoudp  TRUE
-	#define EXP_syssocksendtoudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendtoudp", (RTS_UINTPTR)syssocksendtoudp, 1, RTSITF_GET_SIGNATURE(0, 0x81DCE32E), 0x03050C00) 
+	#define EXP_syssocksendtoudp  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendtoudp", (RTS_UINTPTR)syssocksendtoudp, 1, RTSITF_GET_SIGNATURE(0, 0x81DCE32E), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssocksendtoudp  PFSYSSOCKSENDTOUDP_IEC pfsyssocksendtoudp;
 	#define EXT_syssocksendtoudp  extern PFSYSSOCKSENDTOUDP_IEC pfsyssocksendtoudp;
-	#define GET_syssocksendtoudp(fl)  s_pfCMGetAPI2( "syssocksendtoudp", (RTS_VOID_FCTPTR *)&pfsyssocksendtoudp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x81DCE32E), 0x03050C00)
+	#define GET_syssocksendtoudp(fl)  s_pfCMGetAPI2( "syssocksendtoudp", (RTS_VOID_FCTPTR *)&pfsyssocksendtoudp, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x81DCE32E), 0x03050900)
 	#define CAL_syssocksendtoudp  pfsyssocksendtoudp
 	#define CHK_syssocksendtoudp  (pfsyssocksendtoudp != NULL)
-	#define EXP_syssocksendtoudp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendtoudp", (RTS_UINTPTR)syssocksendtoudp, 1, RTSITF_GET_SIGNATURE(0, 0x81DCE32E), 0x03050C00) 
+	#define EXP_syssocksendtoudp   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksendtoudp", (RTS_UINTPTR)syssocksendtoudp, 1, RTSITF_GET_SIGNATURE(0, 0x81DCE32E), 0x03050900) 
 #endif
 
 
@@ -2945,44 +2915,42 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKSETIPADDRESS_IEC) (syssocksetipaddress_s
 	#define GET_syssocksetipaddress(fl)  CAL_CMGETAPI( "syssocksetipaddress" ) 
 	#define CAL_syssocksetipaddress  syssocksetipaddress
 	#define CHK_syssocksetipaddress  TRUE
-	#define EXP_syssocksetipaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddress", (RTS_UINTPTR)syssocksetipaddress, 1, RTSITF_GET_SIGNATURE(0, 0x955CE64B), 0x03050C00) 
+	#define EXP_syssocksetipaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddress", (RTS_UINTPTR)syssocksetipaddress, 1, RTSITF_GET_SIGNATURE(0, 0x955CE64B), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssocksetipaddress
 	#define EXT_syssocksetipaddress
 	#define GET_syssocksetipaddress(fl)  CAL_CMGETAPI( "syssocksetipaddress" ) 
 	#define CAL_syssocksetipaddress  syssocksetipaddress
 	#define CHK_syssocksetipaddress  TRUE
-	#define EXP_syssocksetipaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddress", (RTS_UINTPTR)syssocksetipaddress, 1, RTSITF_GET_SIGNATURE(0, 0x955CE64B), 0x03050C00) 
+	#define EXP_syssocksetipaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddress", (RTS_UINTPTR)syssocksetipaddress, 1, RTSITF_GET_SIGNATURE(0, 0x955CE64B), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssocksetipaddress
 	#define EXT_SysSocketsyssocksetipaddress
 	#define GET_SysSocketsyssocksetipaddress  ERR_OK
 	#define CAL_SysSocketsyssocksetipaddress  syssocksetipaddress
 	#define CHK_SysSocketsyssocksetipaddress  TRUE
-	#define EXP_SysSocketsyssocksetipaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddress", (RTS_UINTPTR)syssocksetipaddress, 1, RTSITF_GET_SIGNATURE(0, 0x955CE64B), 0x03050C00) 
+	#define EXP_SysSocketsyssocksetipaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddress", (RTS_UINTPTR)syssocksetipaddress, 1, RTSITF_GET_SIGNATURE(0, 0x955CE64B), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssocksetipaddress
 	#define EXT_syssocksetipaddress
 	#define GET_syssocksetipaddress(fl)  CAL_CMGETAPI( "syssocksetipaddress" ) 
 	#define CAL_syssocksetipaddress  syssocksetipaddress
 	#define CHK_syssocksetipaddress  TRUE
-	#define EXP_syssocksetipaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddress", (RTS_UINTPTR)syssocksetipaddress, 1, RTSITF_GET_SIGNATURE(0, 0x955CE64B), 0x03050C00) 
+	#define EXP_syssocksetipaddress  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddress", (RTS_UINTPTR)syssocksetipaddress, 1, RTSITF_GET_SIGNATURE(0, 0x955CE64B), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssocksetipaddress  PFSYSSOCKSETIPADDRESS_IEC pfsyssocksetipaddress;
 	#define EXT_syssocksetipaddress  extern PFSYSSOCKSETIPADDRESS_IEC pfsyssocksetipaddress;
-	#define GET_syssocksetipaddress(fl)  s_pfCMGetAPI2( "syssocksetipaddress", (RTS_VOID_FCTPTR *)&pfsyssocksetipaddress, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x955CE64B), 0x03050C00)
+	#define GET_syssocksetipaddress(fl)  s_pfCMGetAPI2( "syssocksetipaddress", (RTS_VOID_FCTPTR *)&pfsyssocksetipaddress, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x955CE64B), 0x03050900)
 	#define CAL_syssocksetipaddress  pfsyssocksetipaddress
 	#define CHK_syssocksetipaddress  (pfsyssocksetipaddress != NULL)
-	#define EXP_syssocksetipaddress   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddress", (RTS_UINTPTR)syssocksetipaddress, 1, RTSITF_GET_SIGNATURE(0, 0x955CE64B), 0x03050C00) 
+	#define EXP_syssocksetipaddress   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddress", (RTS_UINTPTR)syssocksetipaddress, 1, RTSITF_GET_SIGNATURE(0, 0x955CE64B), 0x03050900) 
 #endif
 
 
 /**
- * | Set IP address and subnet mask of an adapter. 
+ * | Set ip address and subnet mask of an adapter. 
  * | It depends on the device, whether the new ip address and subnet mask is reset during reboot or
- *   if it is retained. In general the caller should consider these as volatile. The combination 
- *   IP address = 0.0.0.0 and subnet mask = 0.0.0.0 can be used to remove the IP address from the adapter.
- *   After this there is no IP based communication possible anymore, until a new IP address is set.
+ *   if it is retained. In general the caller should consider these as volatile. 
  *   Replaces the functions SysSockSetIPAddress() and SysSockSetSubnetMask().
  * :return: Runtime system error code (see CmpErrors.library).
  */
@@ -3009,35 +2977,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKSETIPADDRESSANDNETMASK_IEC) (syssockseti
 	#define GET_syssocksetipaddressandnetmask(fl)  CAL_CMGETAPI( "syssocksetipaddressandnetmask" ) 
 	#define CAL_syssocksetipaddressandnetmask  syssocksetipaddressandnetmask
 	#define CHK_syssocksetipaddressandnetmask  TRUE
-	#define EXP_syssocksetipaddressandnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddressandnetmask", (RTS_UINTPTR)syssocksetipaddressandnetmask, 1, 0x01D16C55, 0x03050C00) 
+	#define EXP_syssocksetipaddressandnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddressandnetmask", (RTS_UINTPTR)syssocksetipaddressandnetmask, 1, 0x01D16C55, 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssocksetipaddressandnetmask
 	#define EXT_syssocksetipaddressandnetmask
 	#define GET_syssocksetipaddressandnetmask(fl)  CAL_CMGETAPI( "syssocksetipaddressandnetmask" ) 
 	#define CAL_syssocksetipaddressandnetmask  syssocksetipaddressandnetmask
 	#define CHK_syssocksetipaddressandnetmask  TRUE
-	#define EXP_syssocksetipaddressandnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddressandnetmask", (RTS_UINTPTR)syssocksetipaddressandnetmask, 1, 0x01D16C55, 0x03050C00) 
+	#define EXP_syssocksetipaddressandnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddressandnetmask", (RTS_UINTPTR)syssocksetipaddressandnetmask, 1, 0x01D16C55, 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssocksetipaddressandnetmask
 	#define EXT_SysSocketsyssocksetipaddressandnetmask
 	#define GET_SysSocketsyssocksetipaddressandnetmask  ERR_OK
 	#define CAL_SysSocketsyssocksetipaddressandnetmask  syssocksetipaddressandnetmask
 	#define CHK_SysSocketsyssocksetipaddressandnetmask  TRUE
-	#define EXP_SysSocketsyssocksetipaddressandnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddressandnetmask", (RTS_UINTPTR)syssocksetipaddressandnetmask, 1, 0x01D16C55, 0x03050C00) 
+	#define EXP_SysSocketsyssocksetipaddressandnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddressandnetmask", (RTS_UINTPTR)syssocksetipaddressandnetmask, 1, 0x01D16C55, 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssocksetipaddressandnetmask
 	#define EXT_syssocksetipaddressandnetmask
 	#define GET_syssocksetipaddressandnetmask(fl)  CAL_CMGETAPI( "syssocksetipaddressandnetmask" ) 
 	#define CAL_syssocksetipaddressandnetmask  syssocksetipaddressandnetmask
 	#define CHK_syssocksetipaddressandnetmask  TRUE
-	#define EXP_syssocksetipaddressandnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddressandnetmask", (RTS_UINTPTR)syssocksetipaddressandnetmask, 1, 0x01D16C55, 0x03050C00) 
+	#define EXP_syssocksetipaddressandnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddressandnetmask", (RTS_UINTPTR)syssocksetipaddressandnetmask, 1, 0x01D16C55, 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssocksetipaddressandnetmask  PFSYSSOCKSETIPADDRESSANDNETMASK_IEC pfsyssocksetipaddressandnetmask;
 	#define EXT_syssocksetipaddressandnetmask  extern PFSYSSOCKSETIPADDRESSANDNETMASK_IEC pfsyssocksetipaddressandnetmask;
-	#define GET_syssocksetipaddressandnetmask(fl)  s_pfCMGetAPI2( "syssocksetipaddressandnetmask", (RTS_VOID_FCTPTR *)&pfsyssocksetipaddressandnetmask, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x01D16C55, 0x03050C00)
+	#define GET_syssocksetipaddressandnetmask(fl)  s_pfCMGetAPI2( "syssocksetipaddressandnetmask", (RTS_VOID_FCTPTR *)&pfsyssocksetipaddressandnetmask, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x01D16C55, 0x03050900)
 	#define CAL_syssocksetipaddressandnetmask  pfsyssocksetipaddressandnetmask
 	#define CHK_syssocksetipaddressandnetmask  (pfsyssocksetipaddressandnetmask != NULL)
-	#define EXP_syssocksetipaddressandnetmask   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddressandnetmask", (RTS_UINTPTR)syssocksetipaddressandnetmask, 1, 0x01D16C55, 0x03050C00) 
+	#define EXP_syssocksetipaddressandnetmask   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetipaddressandnetmask", (RTS_UINTPTR)syssocksetipaddressandnetmask, 1, 0x01D16C55, 0x03050900) 
 #endif
 
 
@@ -3070,35 +3038,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKSETOPTION_IEC) (syssocksetoption_struct 
 	#define GET_syssocksetoption(fl)  CAL_CMGETAPI( "syssocksetoption" ) 
 	#define CAL_syssocksetoption  syssocksetoption
 	#define CHK_syssocksetoption  TRUE
-	#define EXP_syssocksetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetoption", (RTS_UINTPTR)syssocksetoption, 1, RTSITF_GET_SIGNATURE(0, 0xFBCD9B23), 0x03050C00) 
+	#define EXP_syssocksetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetoption", (RTS_UINTPTR)syssocksetoption, 1, RTSITF_GET_SIGNATURE(0, 0xFBCD9B23), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssocksetoption
 	#define EXT_syssocksetoption
 	#define GET_syssocksetoption(fl)  CAL_CMGETAPI( "syssocksetoption" ) 
 	#define CAL_syssocksetoption  syssocksetoption
 	#define CHK_syssocksetoption  TRUE
-	#define EXP_syssocksetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetoption", (RTS_UINTPTR)syssocksetoption, 1, RTSITF_GET_SIGNATURE(0, 0xFBCD9B23), 0x03050C00) 
+	#define EXP_syssocksetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetoption", (RTS_UINTPTR)syssocksetoption, 1, RTSITF_GET_SIGNATURE(0, 0xFBCD9B23), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssocksetoption
 	#define EXT_SysSocketsyssocksetoption
 	#define GET_SysSocketsyssocksetoption  ERR_OK
 	#define CAL_SysSocketsyssocksetoption  syssocksetoption
 	#define CHK_SysSocketsyssocksetoption  TRUE
-	#define EXP_SysSocketsyssocksetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetoption", (RTS_UINTPTR)syssocksetoption, 1, RTSITF_GET_SIGNATURE(0, 0xFBCD9B23), 0x03050C00) 
+	#define EXP_SysSocketsyssocksetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetoption", (RTS_UINTPTR)syssocksetoption, 1, RTSITF_GET_SIGNATURE(0, 0xFBCD9B23), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssocksetoption
 	#define EXT_syssocksetoption
 	#define GET_syssocksetoption(fl)  CAL_CMGETAPI( "syssocksetoption" ) 
 	#define CAL_syssocksetoption  syssocksetoption
 	#define CHK_syssocksetoption  TRUE
-	#define EXP_syssocksetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetoption", (RTS_UINTPTR)syssocksetoption, 1, RTSITF_GET_SIGNATURE(0, 0xFBCD9B23), 0x03050C00) 
+	#define EXP_syssocksetoption  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetoption", (RTS_UINTPTR)syssocksetoption, 1, RTSITF_GET_SIGNATURE(0, 0xFBCD9B23), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssocksetoption  PFSYSSOCKSETOPTION_IEC pfsyssocksetoption;
 	#define EXT_syssocksetoption  extern PFSYSSOCKSETOPTION_IEC pfsyssocksetoption;
-	#define GET_syssocksetoption(fl)  s_pfCMGetAPI2( "syssocksetoption", (RTS_VOID_FCTPTR *)&pfsyssocksetoption, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xFBCD9B23), 0x03050C00)
+	#define GET_syssocksetoption(fl)  s_pfCMGetAPI2( "syssocksetoption", (RTS_VOID_FCTPTR *)&pfsyssocksetoption, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xFBCD9B23), 0x03050900)
 	#define CAL_syssocksetoption  pfsyssocksetoption
 	#define CHK_syssocksetoption  (pfsyssocksetoption != NULL)
-	#define EXP_syssocksetoption   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetoption", (RTS_UINTPTR)syssocksetoption, 1, RTSITF_GET_SIGNATURE(0, 0xFBCD9B23), 0x03050C00) 
+	#define EXP_syssocksetoption   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetoption", (RTS_UINTPTR)syssocksetoption, 1, RTSITF_GET_SIGNATURE(0, 0xFBCD9B23), 0x03050900) 
 #endif
 
 
@@ -3129,35 +3097,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKSETSUBNETMASK_IEC) (syssocksetsubnetmask
 	#define GET_syssocksetsubnetmask(fl)  CAL_CMGETAPI( "syssocksetsubnetmask" ) 
 	#define CAL_syssocksetsubnetmask  syssocksetsubnetmask
 	#define CHK_syssocksetsubnetmask  TRUE
-	#define EXP_syssocksetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetsubnetmask", (RTS_UINTPTR)syssocksetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x0185BC67), 0x03050C00) 
+	#define EXP_syssocksetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetsubnetmask", (RTS_UINTPTR)syssocksetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x0185BC67), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssocksetsubnetmask
 	#define EXT_syssocksetsubnetmask
 	#define GET_syssocksetsubnetmask(fl)  CAL_CMGETAPI( "syssocksetsubnetmask" ) 
 	#define CAL_syssocksetsubnetmask  syssocksetsubnetmask
 	#define CHK_syssocksetsubnetmask  TRUE
-	#define EXP_syssocksetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetsubnetmask", (RTS_UINTPTR)syssocksetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x0185BC67), 0x03050C00) 
+	#define EXP_syssocksetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetsubnetmask", (RTS_UINTPTR)syssocksetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x0185BC67), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssocksetsubnetmask
 	#define EXT_SysSocketsyssocksetsubnetmask
 	#define GET_SysSocketsyssocksetsubnetmask  ERR_OK
 	#define CAL_SysSocketsyssocksetsubnetmask  syssocksetsubnetmask
 	#define CHK_SysSocketsyssocksetsubnetmask  TRUE
-	#define EXP_SysSocketsyssocksetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetsubnetmask", (RTS_UINTPTR)syssocksetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x0185BC67), 0x03050C00) 
+	#define EXP_SysSocketsyssocksetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetsubnetmask", (RTS_UINTPTR)syssocksetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x0185BC67), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssocksetsubnetmask
 	#define EXT_syssocksetsubnetmask
 	#define GET_syssocksetsubnetmask(fl)  CAL_CMGETAPI( "syssocksetsubnetmask" ) 
 	#define CAL_syssocksetsubnetmask  syssocksetsubnetmask
 	#define CHK_syssocksetsubnetmask  TRUE
-	#define EXP_syssocksetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetsubnetmask", (RTS_UINTPTR)syssocksetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x0185BC67), 0x03050C00) 
+	#define EXP_syssocksetsubnetmask  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetsubnetmask", (RTS_UINTPTR)syssocksetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x0185BC67), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssocksetsubnetmask  PFSYSSOCKSETSUBNETMASK_IEC pfsyssocksetsubnetmask;
 	#define EXT_syssocksetsubnetmask  extern PFSYSSOCKSETSUBNETMASK_IEC pfsyssocksetsubnetmask;
-	#define GET_syssocksetsubnetmask(fl)  s_pfCMGetAPI2( "syssocksetsubnetmask", (RTS_VOID_FCTPTR *)&pfsyssocksetsubnetmask, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x0185BC67), 0x03050C00)
+	#define GET_syssocksetsubnetmask(fl)  s_pfCMGetAPI2( "syssocksetsubnetmask", (RTS_VOID_FCTPTR *)&pfsyssocksetsubnetmask, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x0185BC67), 0x03050900)
 	#define CAL_syssocksetsubnetmask  pfsyssocksetsubnetmask
 	#define CHK_syssocksetsubnetmask  (pfsyssocksetsubnetmask != NULL)
-	#define EXP_syssocksetsubnetmask   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetsubnetmask", (RTS_UINTPTR)syssocksetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x0185BC67), 0x03050C00) 
+	#define EXP_syssocksetsubnetmask   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssocksetsubnetmask", (RTS_UINTPTR)syssocksetsubnetmask, 1, RTSITF_GET_SIGNATURE(0, 0x0185BC67), 0x03050900) 
 #endif
 
 
@@ -3187,35 +3155,35 @@ typedef void (CDECL CDECL_EXT* PFSYSSOCKSHUTDOWN_IEC) (syssockshutdown_struct *p
 	#define GET_syssockshutdown(fl)  CAL_CMGETAPI( "syssockshutdown" ) 
 	#define CAL_syssockshutdown  syssockshutdown
 	#define CHK_syssockshutdown  TRUE
-	#define EXP_syssockshutdown  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockshutdown", (RTS_UINTPTR)syssockshutdown, 1, RTSITF_GET_SIGNATURE(0, 0xCB0E612E), 0x03050C00) 
+	#define EXP_syssockshutdown  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockshutdown", (RTS_UINTPTR)syssockshutdown, 1, RTSITF_GET_SIGNATURE(0, 0xCB0E612E), 0x03050900) 
 #elif defined(MIXED_LINK) && !defined(SYSSOCKET_EXTERNAL)
 	#define USE_syssockshutdown
 	#define EXT_syssockshutdown
 	#define GET_syssockshutdown(fl)  CAL_CMGETAPI( "syssockshutdown" ) 
 	#define CAL_syssockshutdown  syssockshutdown
 	#define CHK_syssockshutdown  TRUE
-	#define EXP_syssockshutdown  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockshutdown", (RTS_UINTPTR)syssockshutdown, 1, RTSITF_GET_SIGNATURE(0, 0xCB0E612E), 0x03050C00) 
+	#define EXP_syssockshutdown  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockshutdown", (RTS_UINTPTR)syssockshutdown, 1, RTSITF_GET_SIGNATURE(0, 0xCB0E612E), 0x03050900) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_SysSocketsyssockshutdown
 	#define EXT_SysSocketsyssockshutdown
 	#define GET_SysSocketsyssockshutdown  ERR_OK
 	#define CAL_SysSocketsyssockshutdown  syssockshutdown
 	#define CHK_SysSocketsyssockshutdown  TRUE
-	#define EXP_SysSocketsyssockshutdown  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockshutdown", (RTS_UINTPTR)syssockshutdown, 1, RTSITF_GET_SIGNATURE(0, 0xCB0E612E), 0x03050C00) 
+	#define EXP_SysSocketsyssockshutdown  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockshutdown", (RTS_UINTPTR)syssockshutdown, 1, RTSITF_GET_SIGNATURE(0, 0xCB0E612E), 0x03050900) 
 #elif defined(CPLUSPLUS)
 	#define USE_syssockshutdown
 	#define EXT_syssockshutdown
 	#define GET_syssockshutdown(fl)  CAL_CMGETAPI( "syssockshutdown" ) 
 	#define CAL_syssockshutdown  syssockshutdown
 	#define CHK_syssockshutdown  TRUE
-	#define EXP_syssockshutdown  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockshutdown", (RTS_UINTPTR)syssockshutdown, 1, RTSITF_GET_SIGNATURE(0, 0xCB0E612E), 0x03050C00) 
+	#define EXP_syssockshutdown  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockshutdown", (RTS_UINTPTR)syssockshutdown, 1, RTSITF_GET_SIGNATURE(0, 0xCB0E612E), 0x03050900) 
 #else /* DYNAMIC_LINK */
 	#define USE_syssockshutdown  PFSYSSOCKSHUTDOWN_IEC pfsyssockshutdown;
 	#define EXT_syssockshutdown  extern PFSYSSOCKSHUTDOWN_IEC pfsyssockshutdown;
-	#define GET_syssockshutdown(fl)  s_pfCMGetAPI2( "syssockshutdown", (RTS_VOID_FCTPTR *)&pfsyssockshutdown, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xCB0E612E), 0x03050C00)
+	#define GET_syssockshutdown(fl)  s_pfCMGetAPI2( "syssockshutdown", (RTS_VOID_FCTPTR *)&pfsyssockshutdown, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xCB0E612E), 0x03050900)
 	#define CAL_syssockshutdown  pfsyssockshutdown
 	#define CHK_syssockshutdown  (pfsyssockshutdown != NULL)
-	#define EXP_syssockshutdown   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockshutdown", (RTS_UINTPTR)syssockshutdown, 1, RTSITF_GET_SIGNATURE(0, 0xCB0E612E), 0x03050C00) 
+	#define EXP_syssockshutdown   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"syssockshutdown", (RTS_UINTPTR)syssockshutdown, 1, RTSITF_GET_SIGNATURE(0, 0xCB0E612E), 0x03050900) 
 #endif
 
 
@@ -3234,7 +3202,6 @@ extern "C" {
  * <category>Internal flags for adapter management</category>
  * <description></description>
  */
-#define SOCK_IFLAG_AF_INETFOUND				0x00000001	/* Adapter information for AF_INET already found - to be used internally in SysSocketOS implementation */
 #define SOCK_IFLAG_IN_PROGRESS				0x00000002	/* Adapter information is currently checked for update - to be used internally in SysSocketOS implementation */
 #define SOCK_IFLAG_FREE_STRINGS_ON_EXIT		0x00000004	/* On shutdown SysSocket.c checks this flag and if set it frees all referenced strings by calling SysMemFree() */
 #define SOCK_IFLAG_FREE_HOSSPECIFIC_ON_EXIT	0x00000008	/* On shutdown SysSocket.c checks this flag and if set it frees hOsSpecific by calling SysMemFree() */
@@ -3425,14 +3392,14 @@ typedef RTS_RESULT (CDECL * PFSYSSOCKCLOSE) (RTS_HANDLE hSocket);
 	#define USE_SysSocketSysSockClose
 	#define EXT_SysSocketSysSockClose
 	#define GET_SysSocketSysSockClose  ERR_OK
-	#define CAL_SysSocketSysSockClose(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysSocket*)p0)->ISysSockClose())
+	#define CAL_SysSocketSysSockClose(p0) ((ISysSocket*)p0)->ISysSockClose()
 	#define CHK_SysSocketSysSockClose  TRUE
 	#define EXP_SysSocketSysSockClose  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysSockClose
 	#define EXT_SysSockClose
 	#define GET_SysSockClose(fl)  CAL_CMGETAPI( "SysSockClose" ) 
-	#define CAL_SysSockClose(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysSocket*)p0)->ISysSockClose())
+	#define CAL_SysSockClose(p0) ((ISysSocket*)p0)->ISysSockClose()
 	#define CHK_SysSockClose  TRUE
 	#define EXP_SysSockClose  CAL_CMEXPAPI( "SysSockClose" ) 
 #else /* DYNAMIC_LINK */
@@ -5571,11 +5538,9 @@ typedef SOCK_ADAPTER_INFO* (CDECL * PFSYSSOCKGETNEXTADAPTERINFO) (SOCK_ADAPTER_I
 
 /**
  * <description>
- *	Set IP address and subnet mask of an adapter. 
+ *	Set ip address and subnet mask of an adapter. 
  *  It depends on the device, whether the new ip address and subnet mask is reset during reboot or
- *  if it is retained. In general the caller should consider these as volatile. The combination 
- *  IP address = 0.0.0.0 and subnet mask = 0.0.0.0 can be used to remove the IP address from the adapter.
- *  After this there is no IP based communication possible anymore, until a new IP address is set.
+ *  if it is retained. In general the caller should consider these as volatile. 
  *  Replaces the functions SysSockSetIPAddress() and SysSockSetSubnetMask().
  * </description>
  * <param name="pwszAdapterName" type="IN">Adapter name provided by SysSockGetFirstAdapter() / SysSockGetNextAdapter()</param>

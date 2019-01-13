@@ -79,7 +79,7 @@ int MainExitLoop(RTS_UINTPTR ulPar)
 	return ERR_OK;
 }
 
-RTS_RESULT CDECL MainLoadComponent(char *pszName, char *pszPath, RTS_HANDLE *phModule, PF_COMPONENT_ENTRY* ppfComponentEntry)
+RTS_RESULT CDECL MainLoadComponent(char *pszName, RTS_HANDLE *phModule, PF_COMPONENT_ENTRY* ppfComponentEntry)
 {
 	return ERR_FAILED;
 }

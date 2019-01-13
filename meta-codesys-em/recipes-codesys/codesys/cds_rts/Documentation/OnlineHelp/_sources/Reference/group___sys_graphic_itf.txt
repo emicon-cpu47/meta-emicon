@@ -115,8 +115,6 @@ Functions
 
 - RTS_RESULT :ref:`SysGraphicGetFontHeight <group___sys_graphic_itf_1ga3fc974d64fa5b645cebc37b8919592cd>` (RTS_HANDLE hDC, RTS_I16 * piHeight)
 
-- RTS_RESULT :ref:`SysGraphicGetFontHandle <group___sys_graphic_itf_1ga762257cc9c9749d144ce0c6257020208>` (RTS_HANDLE hDC, RTS_HANDLE * phFont)
-
 - RTS_RESULT :ref:`SysGraphicCreateBrush <group___sys_graphic_itf_1ga87b88da8c3d0ace48fbd03c3a401712d>` (RTS_HANDLE hDC, RTS_UI32 ulFillFlags, RTS_UI32 ulFillColor, RTS_HANDLE * phBrush)
 
 - RTS_RESULT :ref:`SysGraphicSetBrush <group___sys_graphic_itf_1gad21369f57e48c12ece7e8b53b47bdced>` (RTS_HANDLE hDC, RTS_HANDLE hBrush, RTS_HANDLE * phOldBrush)
@@ -127,7 +125,7 @@ Functions
 
 - RTS_RESULT :ref:`SysGraphicCreatePatternBrush <group___sys_graphic_itf_1ga57a5e333e02d210f9ef6b9c7f0451ce9>` (RTS_HANDLE hDC, RTS_UI16 patternType, RTS_UI32 color, RTS_HANDLE * phBrush)
 
-- RTS_RESULT :ref:`SysGraphicCreatePenDetailed <group___sys_graphic_itf_1gaad77ff326127752b51ef29daa3e547e8>` (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, RTS_REAL32 rMiterLimit, RTS_HANDLE * phPen)
+- RTS_RESULT :ref:`SysGraphicCreatePenDetailed <group___sys_graphic_itf_1ga37e996dc94ebaa477ada4f893368c745>` (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, RTS_I16 nMiterLimit, RTS_HANDLE * phPen)
 
 - RTS_RESULT :ref:`SysGraphicCreatePen <group___sys_graphic_itf_1gac98afa65facb04e54e062bbb8f3b677f>` (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_HANDLE * phPen)
 
@@ -175,8 +173,6 @@ Functions
 
 - RTS_RESULT :ref:`SysGraphicResetInvalidation <group___sys_graphic_itf_1ga209b5e9be7a1508a627cd4c65855f26a>` (RTS_HANDLE hDC)
 
-- RTS_RESULT :ref:`SysGraphicInvalidateClientArea <group___sys_graphic_itf_1gab4e06f08874da823a924b13228391f03>` (RTS_HANDLE hDC)
-
 - RTS_HANDLE :ref:`SysGraphicCreateTransformation <group___sys_graphic_itf_1ga8a9e4f1d861e20593927748577f251a7>` (RTS_RESULT * pResult)
 
 - RTS_HANDLE :ref:`SysGraphicCreateTransformationByValues <group___sys_graphic_itf_1ga5b9675a578e8be1d9e64c11ca36eb073>` (RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy, RTS_RESULT * pResult)
@@ -193,10 +189,6 @@ Functions
 
 - RTS_HANDLE :ref:`SysGraphicGetActiveTransformation <group___sys_graphic_itf_1ga4330b069437a1f23f4871ce0d1e08b09>` (RTS_HANDLE hdc, RTS_RESULT * pResult)
 
-- RTS_HANDLE :ref:`SysGraphicCloneTransformation <group___sys_graphic_itf_1ga8d9cdfa3bc890e30429817b6bf3f6872>` (RTS_HANDLE hTransform, RTS_RESULT * pResult)
-
-- RTS_RESULT :ref:`SysGraphicTransformationTransform <group___sys_graphic_itf_1gab2b9f9a793623d9be2639f8cd944f740>` (RTS_HANDLE hTransform, RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy)
-
 .. _group___sys_graphic_itf-details:
 
 Detailed Description
@@ -208,7 +200,7 @@ The SysGraphic interface is projected to get access to the graphic library routi
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -709,7 +701,7 @@ error code
 RTS_RESULT SysGraphicGetTextExtent (RTS_HANDLE hDC, void *pszText, RTS_UI32 ulDrawFlags, RTS_Size *pSize)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Function to calculate the size of a given text with the currently selected font. Use case (1): The function will treat the string as a single line string, ie. it will cut the string after a possible linefeed and calculate the size of the first line only! Use case (2): The string will be formated and measured as defined by it's ulDrawFlags. Here, also text with flag TF_LINEBREAK will be measured, as it will be drawn. For using this case, the flag TF_MEASURE_ALL has to be used additional. And the paint rectangle size has to be forwarded by using pSize.
+Function to calculate the size of a given text with the currently selected font. The function will treat the string as a single line string, ie. it will cut the string after a possible linefeed and calculate the size of the first line only!Get the system metrics of a device context
 
 **Parameters**
 
@@ -743,25 +735,6 @@ Function to get the height of the currently selected font.
 +---------+----------+--------------------------+
 | [out]   | piHeight | Height of the text       |
 +---------+----------+--------------------------+
-
-**Returns:**
-
-error code
-
-.. _group___sys_graphic_itf_1ga762257cc9c9749d144ce0c6257020208:
-
-RTS_RESULT SysGraphicGetFontHandle (RTS_HANDLE hDC, RTS_HANDLE *phFont)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Function to get the handle of the currently selected font.
-
-**Parameters**
-
-+---------+--------+--------------------------------+
-| [in]    | hDC    | Handle to device context       |
-+---------+--------+--------------------------------+
-| [out]   | phFont | Pointer to get the font handle |
-+---------+--------+--------------------------------+
 
 **Returns:**
 
@@ -876,10 +849,10 @@ Creates a brush representing a spedific repeating pattern that can be used to fi
 
 An error code
 
-.. _group___sys_graphic_itf_1gaad77ff326127752b51ef29daa3e547e8:
+.. _group___sys_graphic_itf_1ga37e996dc94ebaa477ada4f893368c745:
 
-RTS_RESULT SysGraphicCreatePenDetailed (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, RTS_REAL32 rMiterLimit, RTS_HANDLE *phPen)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RTS_RESULT SysGraphicCreatePenDetailed (RTS_HANDLE hDC, RTS_I16 nLineWidth, RTS_UI32 ulLineFlags, RTS_UI32 ulLineColor, RTS_I16 nLineCapFlag, RTS_I16 nLineJoinFlag, RTS_I16 nMiterLimit, RTS_HANDLE *phPen)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Function to set the line style of the following objects (i.e. the Pen in Win32)
 
@@ -898,7 +871,7 @@ Function to set the line style of the following objects (i.e. the Pen in Win32)
 +---------+---------------+----------------------------------------------------+
 | [in]    | nLineJoinFlag | Line join. Defined in IEC-Code for Visualization   |
 +---------+---------------+----------------------------------------------------+
-| [in]    | rMiterLimit   | Miter limit. Defined in IEC-Code for Visualization |
+| [in]    | nMiterLimit   | Miter limit. Defined in IEC-Code for Visualization |
 +---------+---------------+----------------------------------------------------+
 | [out]   | phPen         | Pointer to get the pen handle                      |
 +---------+---------------+----------------------------------------------------+
@@ -1380,23 +1353,6 @@ This function is optional in the same way than SysGraphicInvalidateRectangle. Ne
 
 An error code
 
-.. _group___sys_graphic_itf_1gab4e06f08874da823a924b13228391f03:
-
-RTS_RESULT SysGraphicInvalidateClientArea (RTS_HANDLE hDC)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This function is optional, just as SysGraphicInvalidateRectangle, but should be implemented, if SysGraphicInvalidateRectangle is implemented. It will be called when the whole client area should be invalidated.
-
-**Parameters**
-
-+---------+-----+---------------------------------+
-| [in]    | hDC | A handle to the device context. |
-+---------+-----+---------------------------------+
-
-**Returns:**
-
-An error code
-
 .. _group___sys_graphic_itf_1ga8a9e4f1d861e20593927748577f251a7:
 
 RTS_HANDLE SysGraphicCreateTransformation (RTS_RESULT *pResult)
@@ -1560,54 +1516,6 @@ Returns the currently active affine transformation object on the given device co
 **Returns:**
 
 The handle or the active transformation or RTS_INVALID_HANDLE if there was no active one..
-
-.. _group___sys_graphic_itf_1ga8d9cdfa3bc890e30429817b6bf3f6872:
-
-RTS_HANDLE SysGraphicCloneTransformation (RTS_HANDLE hTransform, RTS_RESULT *pResult)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Creates a new affine transformation object that is a copy of an existing affine transformation object.
-
-**Parameters**
-
-+---------+------------+----------------------------------+
-| [in]    | hTransform | A handle to the object to clone. |
-+---------+------------+----------------------------------+
-| [out]   | pResult    | Optional pointer to error code.  |
-+---------+------------+----------------------------------+
-
-**Returns:**
-
-A handle to the created transformation object or RTS_INVALID_HANDLE if there was an error.
-
-.. _group___sys_graphic_itf_1gab2b9f9a793623d9be2639f8cd944f740:
-
-RTS_RESULT SysGraphicTransformationTransform (RTS_HANDLE hTransform, RTS_REAL32 m11, RTS_REAL32 m12, RTS_REAL32 m21, RTS_REAL32 m22, RTS_REAL32 dx, RTS_REAL32 dy)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Applies a transformation operation to the transformation object.
-
-**Parameters**
-
-+---------+------------+------------------------------------------------------------------+
-| [in]    | hTransform | Handle to the transformation object to transform.                |
-+---------+------------+------------------------------------------------------------------+
-| [in]    | m11        | The transformation matrix value in the first row, first column   |
-+---------+------------+------------------------------------------------------------------+
-| [in]    | m12        | The transformation matrix value in the first row, second column  |
-+---------+------------+------------------------------------------------------------------+
-| [in]    | m21        | The transformation matrix value in the second row, first column  |
-+---------+------------+------------------------------------------------------------------+
-| [in]    | m22        | The transformation matrix value in the second row, second column |
-+---------+------------+------------------------------------------------------------------+
-| [in]    | dx         | The transformation matrix value in the third row, first column   |
-+---------+------------+------------------------------------------------------------------+
-| [in]    | dy         | The transformation matrix value in the third row, second column  |
-+---------+------------+------------------------------------------------------------------+
-
-**Returns:**
-
-An error code
 
 .. last line of group.rst template
 .. last line of composition.rst template

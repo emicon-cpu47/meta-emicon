@@ -4,9 +4,7 @@
  *	Interface of the gateway client as an entry point in the plc network.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpGwClient')
@@ -54,14 +52,14 @@ enum
 typedef struct
 {
 	ADDRESSCOMPONENT *pAddress;
-	RTS_UI16 nLength;
+	unsigned short nLength;
 }NODEADDRESS_OLD;
 
 #define MAX_CHANNEL_NAME 19
 
 typedef struct 
 {
-	RTS_UI32 dwCommBuffer;
+	unsigned long dwCommBuffer;
 	RTS_WCHAR wszName[MAX_CHANNEL_NAME + 1];
 }CHANNELQOS;
 
@@ -72,8 +70,8 @@ typedef struct
 typedef struct
 {
 	RTS_WCHAR pwszName[MAX_PARAM_NAME+1];
-	RTS_UI32 dwParamId;
-	RTS_UI32 dwType; /* PT_xxx */
+	unsigned long dwParamId;
+	unsigned long dwType; /* PT_xxx */
 	void *pDefaultValue; /* points to the default value of this parameter. May be null */
 }PARAMETERDEFINITION;
 
@@ -83,20 +81,20 @@ typedef struct
 */
 typedef struct
 {
-	RTS_UI32 dwParamId;
-	RTS_UI32 type;
+	unsigned long dwParamId;
+	unsigned long type;
 	void * pValue; /* Pointer to the value */
 }PARAMETER;
 
 typedef struct
 {
-	RTS_I32 nNumParams;
+	int nNumParams;
 	PARAMETERDEFINITION *pParam; /* An array of nNumParams parameter definitions*/
 }PARAMDEFLIST;
 
 typedef struct
 {
-	RTS_I32 nNumParams;
+	int nNumParams;
 	PARAMETER *pParam; /* An array of nNumParams parameters */
 }PARAMLIST;
 
@@ -138,7 +136,7 @@ typedef struct tagASYNCRESULT
 		/* This event will be set when the asynchronous call completes. 
 		   Is set by the BeginXXX function
 		*/
-	RTS_UI32 ulRequestId;
+	unsigned long ulRequestId;
 		/* Internally used. To be ignored by the application */
 }ASYNCRESULT;
 
@@ -149,40 +147,40 @@ typedef struct tagASYNCRESULT
    bytes. 
    NOTE: This function must not block and it must not call any functions of the 
          gateway, since this may lead to deadlocks.
-   hConnHandle    IN  identifies the connection.
+   dwConnHandle   IN  identifies the connection.
    data           IN  The data to be sent
    pdwSent        OUT The number of bytes the could actually be sent.
 */
-typedef RTS_RESULT (CDECL *PFCOMMDRVSEND)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, RTS_UI32 *pdwSent);
+typedef int (CDECL *PFCOMMDRVSEND)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT data, unsigned long *pdwSent);
 
 /* Receive data from an existent connection. 
    NOTE: This function must not block and it must not call any functions of the 
          gateway, since this may lead to deadlocks.
-   hConnHandle  IN      identifies the connection
+   dwConnHandle IN      identifies the connection
    pData        OUT  The data to be received.
    dwReceive    IN   Number of bytes to receive.
 */
-typedef RTS_RESULT (CDECL *PFCOMMDRVRECEIVE)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData, RTS_UI32 dwReceive);
+typedef int (CDECL *PFCOMMDRVRECEIVE)(RTS_HANDLE hConnHandle, PROTOCOL_DATA_UNIT *pData, unsigned long dwReceive);
 
 /* Open a connection as described by pParams
    pParams        IN  
-   phConnHandle   OUT    If successfull phConnHandle is set to the handle for the connection.
+   pdwConnHandle  OUT    If successfull pdwConnHandle is set to the handle for the connection.
    pAsyncRes      IN/OUT Async result.
  */
-typedef RTS_RESULT (CDECL *PFCOMMDRVBEGINCONNECT)( PARAMLIST *pParams, RTS_HANDLE *phConnHandle, ASYNCRESULT *pAsyncRes);
+typedef int (CDECL *PFCOMMDRVBEGINCONNECT)( PARAMLIST *pParams, RTS_HANDLE *phConnHandle, ASYNCRESULT *pAsyncRes);
 
 /* Wait until the BeginConnect call identified by pAsyncRes has completed. 
    pAsyncRes     IN   Identifies the matching BeginConnect call.
-   phConnHandle  OUT  If the call was successfull, then this parameter is set to the 
+   pdwConnHandle OUT  If the call was successfull, then this parameter is set to the 
                       handle for the newly created connection.
 */
-typedef RTS_RESULT (CDECL *PFCOMMDRVENDCONNECT) ( ASYNCRESULT *pAsyncRes, RTS_HANDLE *phConnHandle);
+typedef int (CDECL *PFCOMMDRVENDCONNECT) ( ASYNCRESULT *pAsyncRes, RTS_HANDLE *phConnHandle);
 
 /* Close a connection 
    NOTE: This function must not block and it must not call any functions of the 
          gateway client, since this may lead to deadlocks.
 */
-typedef RTS_RESULT (CDECL *PFCOMMDRVCLOSE)(RTS_HANDLE hConnHandle);
+typedef int (CDECL *PFCOMMDRVCLOSE)(RTS_HANDLE hConnHandle);
 
 typedef struct 
 {
@@ -223,12 +221,12 @@ typedef struct
  * <param name="pDrvInfo" type="IN">
  *  Information about the driver. The hDriver field is unused in this call.
  * </param>
- * <param name="phDriverHandle" type="OUT">
+ * <param name="pulDriverHandle" type="OUT">
  *  Will be set with the handle assigned to the communication-driver.
- *  The driver must use this handle in all callbacks (eg. GWClientConnectionReady).
+ *  The driver must use this handle in all callbacks (eg. GWClientSendReady).
  * </param>
 */
-DEF_API(`RTS_RESULT',`CDECL',`GWClientRegisterCommDrv',`(COMMDRVITF *pItf, COMMDRVINFO *pDrvInfo, RTS_HANDLE *phDriverHandle)')
+DEF_API(`int',`CDECL',`GWClientRegisterCommDrv',`(COMMDRVITF *pItf, COMMDRVINFO *pDrvInfo, RTS_HANDLE *phDriverHandle)')
 
 enum
 {
@@ -246,20 +244,20 @@ enum
  *  The gwclient must not rely on this function to be called but may use 
  *  it to increase the performance of the connection.
  * </description>
- * <param name="hDriverHandle" type="IN">
+ * <param name="dwDriverHandle" type="IN">
  *  The driver handle returned by GWClientRegisterCommDrv.
  * </param>
- * <param name="hConnHandle" type="IN">
+ * <param name="dwConnHandle" type="IN">
  *  The handle to the connection.
  * </param>
  * <param name="nAction" type="IN">
  *  The action that is ready on this connection - eg. COMMDRV_ACTION_SEND, COMMDRV_ACTION_RECEIVE
  * </param>
  */
-DEF_API(`RTS_RESULT',`CDECL',`GWClientConnectionReady',`(RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction)')
+DEF_API(`int',`CDECL',`GWClientConnectionReady',`(RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, int nAction)')
 
-typedef void (STDCALL *PFENUMCOMMDRVCALLBACK)(RTS_HANDLE hDriver, RTS_GUID *guid, RTS_WCHAR *pwszName, PARAMDEFLIST *pParams, RTS_I8 bLast, RTS_I32 nMinPingInterval);
-typedef void (STDCALL *PFENUMCOMMDRVCALLBACK2)(RTS_UINTPTR dwUser, RTS_HANDLE hDriver, RTS_GUID *guid, RTS_WCHAR *pwszName, PARAMDEFLIST *pParams, RTS_I8 bLast, RTS_I32 nMinPingInterval);
+typedef void (STDCALL *PFENUMCOMMDRVCALLBACK)(RTS_HANDLE hDriver, RTS_GUID *guid, RTS_WCHAR *pwszName, PARAMDEFLIST *pParams, char bLast, int nMinPingInterval);
+typedef void (STDCALL *PFENUMCOMMDRVCALLBACK2)(unsigned long dwUser, RTS_HANDLE hDriver, RTS_GUID *guid, RTS_WCHAR *pwszName, PARAMDEFLIST *pParams, char bLast, int nMinPingInterval);
 
 /* This callback is called by the nameservice functions (e.g. ResolveAllNodes) for each 
    answering node.
@@ -271,7 +269,7 @@ typedef void (STDCALL *PFENUMCOMMDRVCALLBACK2)(RTS_UINTPTR dwUser, RTS_HANDLE hD
    wszNodeName  IN  The name of the node.
    wszTargetName IN The description of the target
 */
-typedef void (STDCALL *PFNODEINFOCALLBACK)(RTS_UINTPTR dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, RTS_I32 nMaxChannels, RTS_UI32 dwTargetId, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszTargetName);
+typedef void (STDCALL *PFNODEINFOCALLBACK)( unsigned long dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, int nMaxChannels, unsigned long dwTargetId, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszTargetName);
 
 /* This callback is called by the nameservice functions (e.g. ResolveAllNodes) for each 
    answering node.
@@ -286,7 +284,7 @@ typedef void (STDCALL *PFNODEINFOCALLBACK)(RTS_UINTPTR dwUser, NODEADDRESS_OLD a
    wszDeviceName IN The name of the device
    wszVendorName IN The name of the vendor
 */
-typedef void (STDCALL *PFNODEINFOCALLBACK2)(RTS_UINTPTR dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, RTS_I32 nMaxChannels, RTS_UI32 dwTargetType, RTS_UI32 dwTargetId, RTS_UI32 dwTargetVersion, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszDeviceName, RTS_WCHAR *wszVendorName);
+typedef void (STDCALL *PFNODEINFOCALLBACK2)( unsigned long dwUser, NODEADDRESS_OLD addrNode, NODEADDRESS_OLD addrParent, int nMaxChannels, unsigned long dwTargetType, unsigned long dwTargetId, unsigned long dwTargetVersion, RTS_WCHAR *wszNodeName, RTS_WCHAR *wszDeviceName, RTS_WCHAR *wszVendorName);
 
 /* This callback is called by the nameservice functions (e.g. ResolveAllNodes) for each
 answering node.
@@ -306,34 +304,33 @@ typedef void (STDCALL *PFNODEINFOCALLBACK3)(RTS_UINTPTR dwUser, NODEADDRESS_OLD 
 
 DEF_API(`RTS_RESULT',`CDECL',`GWClientGetInterfaceVersion',`(RTS_UI16 *pwMajor, RTS_UI16 *pwMinor)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientEnumCommDrivers',`(PFENUMCOMMDRVCALLBACK pfCallback)')
-DEF_API(`RTS_RESULT',`CDECL',`GWClientEnumCommDrivers2',`(PFENUMCOMMDRVCALLBACK2 pfCallback, RTS_UINTPTR dwUser)')
-DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginConnectToGateway',`(RTS_HANDLE hDriver, RTS_I32 nNumParams, PARAMETER *pParams, RTS_HANDLE *phGateway, ASYNCRESULT *pAsyncRes)')
+DEF_API(`RTS_RESULT',`CDECL',`GWClientEnumCommDrivers2',`(PFENUMCOMMDRVCALLBACK2 pfCallback, unsigned long dwUser)')
+DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginConnectToGateway',`(RTS_HANDLE hDriver, int nNumParams, PARAMETER *pParams, RTS_HANDLE *phGateway, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginConnectToGateway2',`(RTS_HANDLE hDriver, RTS_I32 nNumParams, PARAMETER *pParams, RTS_UI32 ui32GwInactivityTimeout, RTS_HANDLE *phGateway, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientEndConnectToGateway',`(ASYNCRESULT *pAsyncRes, RTS_HANDLE *phGateway)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientDisconnectFromGateway',`(RTS_HANDLE hGateway)')
-DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginIncrementalResolveAllNodes',`(RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes)')
-DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginIncrementalResolveAllNodes2',`(RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK2 pfCallback2, ASYNCRESULT *pAsyncRes)')
+DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginIncrementalResolveAllNodes',`(RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes)')
+DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginIncrementalResolveAllNodes2',`(RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK2 pfCallback2, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginIncrementalResolveAllNodes3',`(RTS_HANDLE hGateway, RTS_UI32 dwTimeout, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK3 pfCallback3, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientAdjustIncrementalResolveAllNodesTimeout',`(RTS_UI32 dwRemainingTimeout, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientEndIncrementalResolveAllNodes',`(ASYNCRESULT *pAsyncRes)')
-DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginIncrementalResolveName',`(const RTS_WCHAR *pwszNodeName, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes)')
+DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginIncrementalResolveName',`(const RTS_WCHAR *pwszNodeName, RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK pfCallback, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginIncrementalResolveName3',`(const RTS_WCHAR *pwszNodeName, RTS_HANDLE hGateway, RTS_UI32 dwTimeout, RTS_BOOL bFinishWithFirstNode, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK3 pfCallback3, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientAdjustIncrementalResolveNameTimeout',`(RTS_UI32 dwRemainingTimeout, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientEndIncrementalResolveName',`(ASYNCRESULT *pAsyncRes)')
-DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginResolveBlockDriverAddress',`(RTS_UI8 byBlkDrvType, RTS_UI8 byBlkDrvFlags, RTS_UI8 byAddrBitLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes)')
+DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginResolveBlockDriverAddress',`(RTS_UI8 byBlkDrvType, RTS_UI8 byBlkDrvFlags, RTS_UI8 byAddrBitLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginResolveBlockDriverAddress3',`(RTS_UI8 byBlkDrvType, RTS_UI8 byBlkDrvFlags, RTS_UI8 byAddrBitLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, RTS_UI32 dwTimeout, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK3 pfCallback3, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientAdjustResolveBlockDriverAddressTimeout',`(RTS_UI32 dwRemainingTimeout, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientEndResolveBlockDriverAddress',`(ASYNCRESULT *pAsyncRes)')
-DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginResolveAddress',`(RTS_UI8 byAddrComponentLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes)')
+DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginResolveAddress',`(RTS_UI8 byAddrComponentLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, unsigned long dwUser, PFNODEINFOCALLBACK2 pfCallback, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginResolveAddress3',`(RTS_UI8 byAddrComponentLength, RTS_UI8 *pbyAddress, RTS_HANDLE hGateway, RTS_UI32 dwTimeout, RTS_UINTPTR dwUser, PFNODEINFOCALLBACK3 pfCallback3, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientAdjustResolveAddressTimeout',`(RTS_UI32 dwRemainingTimeout, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientEndResolveAddress',`(ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginSendRequest',`(RTS_HANDLE hGateway, RTS_HANDLE hChannel, PROTOCOL_DATA_UNIT pduReq, PROTOCOL_DATA_UNIT *ppduResp, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientEndSendRequest',`(ASYNCRESULT *pAsyncRes, PROTOCOL_DATA_UNIT *ppduResp)')
-DEF_API(`RTS_RESULT',`CDECL',`GWClientGetRequestStatus',`(ASYNCRESULT *pAsyncRes, RTS_UI16 *pwStatus, RTS_UI8 *pbyScaling, RTS_I32 *pnItemsComplete, RTS_I32 *pnTotalItems)')
-DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginOpenChannel',`(RTS_HANDLE hGateway, NODEADDRESS_OLD addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, RTS_UI32 *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes)')
-DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginOpenChannel2',`(RTS_HANDLE hGateway, PEERADDRESS addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, RTS_UI32 *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes)')
-DEF_API(`RTS_RESULT',`CDECL',`GWClientEndOpenChannel',`(ASYNCRESULT *pAsyncRes, RTS_HANDLE *phChannel, RTS_UI32 *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget)')
+DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginOpenChannel',`(RTS_HANDLE hGateway, NODEADDRESS_OLD addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, unsigned long *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes)')
+DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginOpenChannel2',`(RTS_HANDLE hGateway, PEERADDRESS addrTo, CHANNELQOS qosChannel, RTS_HANDLE *phChannel, unsigned long *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget, ASYNCRESULT *pAsyncRes)')
+DEF_API(`RTS_RESULT',`CDECL',`GWClientEndOpenChannel',`(ASYNCRESULT *pAsyncRes, RTS_HANDLE *phChannel, unsigned long *pdwCommBufferSize, RTS_UI8 *pbBigEndianTarget)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientBeginCloseChannel',`(RTS_HANDLE hGateway, RTS_HANDLE hChannel, ASYNCRESULT *pAsyncRes)')
 DEF_API(`RTS_RESULT',`CDECL',`GWClientEndCloseChannel',`(ASYNCRESULT *pAsyncRes)')
 

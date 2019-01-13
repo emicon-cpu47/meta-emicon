@@ -573,9 +573,7 @@ typedef RTS_HANDLE (CDECL * PFSYSSOCK2ACCEPT) (RTS_HANDLE hISysSocket, CLASSID C
 
 /**
  * <description>
- *	Connect as a client to a TCP server.
- *  Note: If you are connecting to a TLS server that requires SNI (Server Name Indication) use SysSock2SetOption with 
- *  level SOCKET_IPPROTO_TLS and option SOCKET_SO_HOSTNAME to set the hostname.
+ *	Connect as a client to a TCP server
  * </description>
  * <param name="hSocket" type="IN">Handle to the socket</param>
  * <param name="pSockAddr" type="IN">Socket address of the client, who is connected</param>

@@ -8,13 +8,13 @@
  *  <description> 
  *  </description>
  *  <copyright>
- *  Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+ *  (c) 2003-2016 3S-Smart Software Solutions
  *  </copyright>
  */
 #ifndef _CMPOPCUAPROVIDERTEMPLATEDEP_H_
 #define _CMPOPCUAPROVIDERTEMPLATEDEP_H_
 
-#define COMPONENT_NAME "CmpOPCUAProviderTemplate" COMPONENT_NAME_POSTFIX
+#define COMPONENT_NAME "CmpOPCUAProviderTemplate"COMPONENT_NAME_POSTFIX
 #define COMPONENT_ID    ADDVENDORID(CMP_VENDORID, CMPID_CmpOPCUAProviderTemplate)
 #define COMPONENT_NAME_UNQUOTED CmpOPCUAProviderTemplate
 
@@ -24,9 +24,9 @@
 
 
 
-#define CMP_VERSION         UINT32_C(0x03050D00)
-#define CMP_VERSION_STRING "3.5.13.0"
-#define CMP_VERSION_RC      3,5,13,0
+#define CMP_VERSION         UINT32_C(0x03050A00)
+#define CMP_VERSION_STRING "3.5.10.0"
+#define CMP_VERSION_RC      3,5,10,0
 #define CMP_VENDORID       9999
 
 #ifndef WIN32_RESOURCES
@@ -107,17 +107,7 @@
 
 
 
-
-
-
-
-
      
-
-
-
-
-
 
 
 
@@ -305,12 +295,7 @@
         INIT_STMT   \
         TempResult = GET_LogAdd(CM_IMPORT_OPTIONAL_FUNCTION); \
         TempResult = GET_CMUtlMemCpy(CM_IMPORT_OPTIONAL_FUNCTION); \
-        if (ERR_OK == importResult ) importResult = GET_OpcUaServerFireEvent(0);\
-          if (ERR_OK == importResult ) importResult = GET_OpcUaServerUnregisterEvent(0);\
-          if (ERR_OK == importResult ) importResult = GET_OpcUaServerRegisterEvent(0);\
-          if (ERR_OK == importResult ) importResult = GET_OpcUaServerUnregisterEventNotifier(0);\
-          if (ERR_OK == importResult ) importResult = GET_OpcUaServerRegisterEventNotifier(0);\
-          if (ERR_OK == importResult ) importResult = GET_OpcUaServerCheckReferenceRecursive(0);\
+        if (ERR_OK == importResult ) importResult = GET_OpcUaServerCheckReferenceRecursive(0);\
           if (ERR_OK == importResult ) importResult = GET_OpcUaServerCheckIfReferenceIsValid(0);\
           if (ERR_OK == importResult ) importResult = GET_OpcUaServerRegisterNamespace(0);\
           if (ERR_OK == importResult ) importResult = GET_OpcUaServerGetNamespaceIndex(0);\
@@ -500,12 +485,7 @@
     USE_OpcUaServerGetNamespaceIndex      \
     USE_OpcUaServerRegisterNamespace      \
     USE_OpcUaServerCheckIfReferenceIsValid      \
-    USE_OpcUaServerCheckReferenceRecursive      \
-    USE_OpcUaServerRegisterEventNotifier      \
-    USE_OpcUaServerUnregisterEventNotifier      \
-    USE_OpcUaServerRegisterEvent      \
-    USE_OpcUaServerUnregisterEvent      \
-    USE_OpcUaServerFireEvent     
+    USE_OpcUaServerCheckReferenceRecursive     
 #define USEIMPORT_STMT \
     /*lint -save --e{551} */ \
     static volatile PF_REGISTER_API s_pfCMRegisterAPI; \
@@ -572,12 +552,7 @@
     USE_OpcUaServerGetNamespaceIndex      \
     USE_OpcUaServerRegisterNamespace      \
     USE_OpcUaServerCheckIfReferenceIsValid      \
-    USE_OpcUaServerCheckReferenceRecursive      \
-    USE_OpcUaServerRegisterEventNotifier      \
-    USE_OpcUaServerUnregisterEventNotifier      \
-    USE_OpcUaServerRegisterEvent      \
-    USE_OpcUaServerUnregisterEvent      \
-    USE_OpcUaServerFireEvent     
+    USE_OpcUaServerCheckReferenceRecursive     
 #define USEEXTERN_STMT \
     EXT_CMUtlMemCpy  \
     EXT_LogAdd \
@@ -633,12 +608,7 @@
     EXT_OpcUaServerGetNamespaceIndex  \
     EXT_OpcUaServerRegisterNamespace  \
     EXT_OpcUaServerCheckIfReferenceIsValid  \
-    EXT_OpcUaServerCheckReferenceRecursive  \
-    EXT_OpcUaServerRegisterEventNotifier  \
-    EXT_OpcUaServerUnregisterEventNotifier  \
-    EXT_OpcUaServerRegisterEvent  \
-    EXT_OpcUaServerUnregisterEvent  \
-    EXT_OpcUaServerFireEvent 
+    EXT_OpcUaServerCheckReferenceRecursive 
 #ifndef COMPONENT_NAME
     #error COMPONENT_NAME is not defined. This prevents the component from being linked statically. Use SET_COMPONENT_NAME(<name_of_your_component>) to set the name of the component in your .m4 component description.
 #endif

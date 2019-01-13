@@ -27,6 +27,8 @@ Modules
 
 - :ref:`Parameter value flags <group___cmp_io_drv_itf___parametervalueflags>`
 
+- :ref:`Task map types <group___cmp_io_drv_itf___taskmaptypes>`
+
 Data Structures
 ---------------
 
@@ -86,7 +88,7 @@ To be able to access this IEC interface from C (which is for example necessary f
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -440,7 +442,9 @@ Error code
 STATICITF_DEF RTS_RESULT IoDrvWatchdogTrigger (RTS_HANDLE hIoDrv, IoConfigConnector *pConnector)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Trigger the hardware watchdog of this fieldbus master / IO system.
+Trigger the hardware watchdog of a driver.
+
+This function is depricated and not used anymore.
 
 **Parameters**
 
@@ -452,17 +456,7 @@ Trigger the hardware watchdog of this fieldbus master / IO system.
 
 **Returns:**
 
-Error code
-
-**Return values**
-
-+--------------------+------------------------------------+
-| ERR_OK             | Watchdog successfully retriggered  |
-+--------------------+------------------------------------+
-| ERR_NOT_SUPPORTED  | Watchdog not available             |
-+--------------------+------------------------------------+
-| ERR_NOTIMPLEMENTED | Watchdog interface not implemented |
-+--------------------+------------------------------------+
+Should return ERR_NOTIMPLEMENTED
 
 .. _group___cmp_io_drv_itf_1gae25ad6b1f53f6935b17125d9757aad45:
 

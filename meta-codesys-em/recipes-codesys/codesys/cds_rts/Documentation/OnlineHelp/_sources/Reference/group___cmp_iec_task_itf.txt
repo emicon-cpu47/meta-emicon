@@ -13,7 +13,7 @@ Interface of CmpIecTask. :ref:`More... <group___cmp_iec_task_itf-details>`
 Modules
 -------
 
-- :ref:`Compiler switch <group___cmp_iec_task_itf___compilerswitch>`
+- :ref:`Compile options <group___cmp_iec_task_itf___compileoptions>`
 
 - :ref:`Event parameter <group___cmp_iec_task_itf___eventparameter>`
 
@@ -25,11 +25,7 @@ Modules
 
 - :ref:`Iec Task Flags <group___cmp_iec_task_itf___iec_task_flags>`
 
-- :ref:`OperationID <group___cmp_iec_task_itf___operation_i_d>`
-
 - :ref:`Settings <group___cmp_iec_task_itf___settings>`
-
-- :ref:`Stop reason option <group___cmp_iec_task_itf___stopreasonoption>`
 
 - :ref:`Task status bits <group___cmp_iec_task_itf___taskstatusbits>`
 
@@ -50,8 +46,6 @@ Data Structures
 
 - struct :ref:`sys_register_slot_pou_struct <structsys__register__slot__pou__struct>`
 
-- struct :ref:`TaskGroup_Info <struct_task_group___info>`
-
 - struct :ref:`tagLDATAREF_TYPE <structtag_l_d_a_t_a_r_e_f___t_y_p_e>`
 
 - struct :ref:`tagSYSIECTASKCONFENTRY <structtag_s_y_s_i_e_c_t_a_s_k_c_o_n_f_e_n_t_r_y>`
@@ -63,6 +57,8 @@ Data Structures
 - struct :ref:`tagiectaskgetinfo_struct <structtagiectaskgetinfo__struct>`
 
 - struct :ref:`tagJitter_Distribution <structtag_jitter___distribution>`
+
+- struct :ref:`tagTask_Info <structtag_task___info>`
 
 - struct :ref:`tagiectaskcreate_struct <structtagiectaskcreate__struct>`
 
@@ -82,8 +78,6 @@ Data Structures
 
 - struct :ref:`tagiectaskgetcurrent_struct <structtagiectaskgetcurrent__struct>`
 
-- struct :ref:`tagiectaskgetdesc_struct <structtagiectaskgetdesc__struct>`
-
 - struct :ref:`tagiectaskgetfirst_struct <structtagiectaskgetfirst__struct>`
 
 - struct :ref:`tagiectaskgetinfo2_struct <structtagiectaskgetinfo2__struct>`
@@ -96,22 +90,10 @@ Data Structures
 
 - struct :ref:`tagiectaskresetstatistics_struct <structtagiectaskresetstatistics__struct>`
 
-- struct :ref:`tagTask_Info <structtag_task___info>`
-
 - struct :ref:`ICmpIecTask_C <struct_i_cmp_iec_task___c>`
 
 Macros
 ------
-
-- #define :ref:`RTS_IECTASK_ENABLE_TASK_TRACE <group___cmp_iec_task_itf_1gaa7357a39213c30478c394ec17b8843e3>`
-
-- #define :ref:`IECTASK_USE_ATOMIC_BITACCESS <group___cmp_iec_task_itf_1ga6d97ec721af30a7bc52406696e076755>`
-
-- #define :ref:`CMPIECTASK_STACK_SIZE <group___cmp_iec_task_itf_1ga56cd627a23d446e4adf43a1e73f9511e>` 0
-
-- #define :ref:`CMPIECTASK_STACK_SIZE_ADDITIONAL <group___cmp_iec_task_itf_1ga2b58fa388ece90533e3d9ced40115eff>` 0
-
-- #define :ref:`CMPIECTASK_SYNCHRONIZATION_USE_SYSSEM <group___cmp_iec_task_itf_1gab52e6822120f99ebd8d6f24980b43a18>`
 
 - #define :ref:`NUM_OF_STATIC_IEC_TASKS <group___cmp_iec_task_itf_1ga657450891a8816e7bf4e1ff8179793f5>` 5
 
@@ -123,9 +105,7 @@ Macros
 
 - #define :ref:`MAX_IEC_SLOTS <group___cmp_iec_task_itf_1ga3a29c1ccb3c5663c7f367377ba958e4e>` (-1)
 
-- #define :ref:`IECTASK_TASK_INFO_VERSION <group___cmp_iec_task_itf_1ga39aedd38d5a72e92eb08ee450e28496d>` 5
-
-- #define :ref:`IECTASK_TASK_INFO_GROUPS_VERSION <group___cmp_iec_task_itf_1ga3479963bc690ce02f57178914eddac2e>` 4
+- #define :ref:`IECTASK_TASK_INFO_VERSION <group___cmp_iec_task_itf_1ga39aedd38d5a72e92eb08ee450e28496d>` 2
 
 - #define :ref:`IECTASK_TASK_MAX_PRIO <group___cmp_iec_task_itf_1gafd184ac6058887baab5e504c0cf5700a>` 255
 
@@ -135,8 +115,6 @@ Macros
 
 Typedefs
 --------
-
-- typedef struct :ref:`tagTask_Info <structtag_task___info>` :ref:`Task_Info <group___cmp_iec_task_itf_1ga56b1767676d541fc548c45a73424dd38>`
 
 - typedef struct :ref:`tagTask_Desc <structtag_task___desc>` :ref:`Task_Desc <group___cmp_iec_task_itf_1ga3e7248e4ba098ac4bb720b4a1ac4f6dd>`
 
@@ -153,6 +131,8 @@ Typedefs
 - typedef struct :ref:`tagiectaskgetinfo_struct <structtagiectaskgetinfo__struct>` :ref:`iectaskgetinfo_struct <group___cmp_iec_task_itf_1ga3d7e18184e0d75d830bb301def53cc5d>`
 
 - typedef struct :ref:`tagJitter_Distribution <structtag_jitter___distribution>` :ref:`Jitter_Distribution <group___cmp_iec_task_itf_1ga1fb3c00e50b75ae282034095f49685a2>`
+
+- typedef struct :ref:`tagTask_Info <structtag_task___info>` :ref:`Task_Info <group___cmp_iec_task_itf_1gafd8ed4e7ac9524ae36329e885318d0c7>`
 
 - typedef struct :ref:`tagiectaskcreate_struct <structtagiectaskcreate__struct>` :ref:`iectaskcreate_struct <group___cmp_iec_task_itf_1ga800360dce949a03d470d1f0182c51315>`
 
@@ -171,8 +151,6 @@ Typedefs
 - typedef struct :ref:`tagiectaskenablewatchdog2_struct <structtagiectaskenablewatchdog2__struct>` :ref:`iectaskenablewatchdog2_struct <group___cmp_iec_task_itf_1ga6fd2ec688600b878816a957e876f74dc>`
 
 - typedef struct :ref:`tagiectaskgetcurrent_struct <structtagiectaskgetcurrent__struct>` :ref:`iectaskgetcurrent_struct <group___cmp_iec_task_itf_1gab5ffa43c0bbea15ac2cfc36886b55455>`
-
-- typedef struct :ref:`tagiectaskgetdesc_struct <structtagiectaskgetdesc__struct>` :ref:`iectaskgetdesc_struct <group___cmp_iec_task_itf_1gad788a0725c38d20b15e9aac157704916>`
 
 - typedef struct :ref:`tagiectaskgetfirst_struct <structtagiectaskgetfirst__struct>` :ref:`iectaskgetfirst_struct <group___cmp_iec_task_itf_1gab1a6f5cea7705881e2a5ffc739178702>`
 
@@ -213,8 +191,6 @@ Functions
 
 - void :ref:`iectaskgetcurrent <group___cmp_iec_task_itf_1ga8af7ea168b5a6a73cf03325bf8f9fec0>` (:ref:`iectaskgetcurrent_struct <group___cmp_iec_task_itf_1gab5ffa43c0bbea15ac2cfc36886b55455>` * p)
 
-- void :ref:`iectaskgetdesc <group___cmp_iec_task_itf_1ga01434141623c3c4a1418c0345c3b52da>` (:ref:`iectaskgetdesc_struct <group___cmp_iec_task_itf_1gad788a0725c38d20b15e9aac157704916>` * p)
-
 - void :ref:`iectaskgetfirst <group___cmp_iec_task_itf_1ga835ef14b601fae1f9518ce2e6fa9c042>` (:ref:`iectaskgetfirst_struct <group___cmp_iec_task_itf_1gab1a6f5cea7705881e2a5ffc739178702>` * p)
 
 - void :ref:`iectaskgetinfo2 <group___cmp_iec_task_itf_1ga5005ade6486c3e511c7e09f57655be97>` (:ref:`iectaskgetinfo2_struct <group___cmp_iec_task_itf_1ga624479edf937d2524e9d848e80f552b1>` * p)
@@ -227,7 +203,7 @@ Functions
 
 - void :ref:`iectaskresetstatistics <group___cmp_iec_task_itf_1ga214ffaa11435d6726cfd55cd75399e29>` (:ref:`iectaskresetstatistics_struct <group___cmp_iec_task_itf_1ga88b246c91780d83085b431c25e456d82>` * p)
 
-- RTS_HANDLE :ref:`IecTaskCreate <group___cmp_iec_task_itf_1ga04cd5e02f05231c7e341a08f67bbeb34>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`Task_Info <group___cmp_iec_task_itf_1ga56b1767676d541fc548c45a73424dd38>` * pTaskInfo, RTS_RESULT * pResult)
+- RTS_HANDLE :ref:`IecTaskCreate <group___cmp_iec_task_itf_1ga04cd5e02f05231c7e341a08f67bbeb34>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, :ref:`Task_Info <group___cmp_iec_task_itf_1gafd8ed4e7ac9524ae36329e885318d0c7>` * pTaskInfo, RTS_RESULT * pResult)
 
 - RTS_RESULT :ref:`IecTaskDelete <group___cmp_iec_task_itf_1ga77bb8fc663de256b0fc9e9dc65b7e1c1>` (RTS_HANDLE hIecTask)
 
@@ -249,8 +225,6 @@ Functions
 
 - RTS_RESULT :ref:`IecTasksResetDone <group___cmp_iec_task_itf_1ga476f2757fcf65cc3cc9a308dda7b4c33>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int bResetOrigin)
 
-- RTS_UI32 :ref:`IecTaskGetWaitForStopTimeout <group___cmp_iec_task_itf_1gac988b39607f94a84094ceb1793fc2efa>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
-
 - RTS_RESULT :ref:`IecTasksWaitForStop <group___cmp_iec_task_itf_1ga66ed6fe06051ed5833de2462b045662a>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 ulTimeoutMs, unsigned long ulStopReason)
 
 - RTS_RESULT :ref:`IecTaskInitOutputs <group___cmp_iec_task_itf_1ga531c9c02a1a2c7438c1c2eca5d4ee2e9>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
@@ -260,8 +234,6 @@ Functions
 - RTS_RESULT :ref:`IecTaskLeaveExclusiveSection <group___cmp_iec_task_itf_1ga1c6f2cf08c1fd4a4d7a95c9bfa2927e2>` (void)
 
 - RTS_RESULT :ref:`IecTaskEnterExclusiveSection2 <group___cmp_iec_task_itf_1gabfe38b66d27f2469477968391326f510>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
-
-- RTS_RESULT :ref:`IecTaskTryEnterExclusiveSection2 <group___cmp_iec_task_itf_1gadfaead5f45d92e72a8023a6f1cfc58ce>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_UI32 timeoutMs, RTS_BOOL bForceEnter)
 
 - RTS_RESULT :ref:`IecTaskLeaveExclusiveSection2 <group___cmp_iec_task_itf_1ga4099b8e2c977de54d113bca32ceaff83>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
 
@@ -303,6 +275,8 @@ Functions
 
 - :ref:`Task_Desc <group___cmp_iec_task_itf_1ga3e7248e4ba098ac4bb720b4a1ac4f6dd>` * :ref:`IecTaskGetByIndex <group___cmp_iec_task_itf_1ga9dc414e98485d686021f8e16ce7b0c0c>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int iIndex, RTS_RESULT * pResult)
 
+- RTS_HANDLE :ref:`IecTaskGetHandleByIndex <group___cmp_iec_task_itf_1ga30565e7afcb8e6d4b102638d0fe3c54a>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int iIndex, RTS_RESULT * pResult)
+
 - :ref:`Task_Desc <group___cmp_iec_task_itf_1ga3e7248e4ba098ac4bb720b4a1ac4f6dd>` * :ref:`IecTaskGetById <group___cmp_iec_task_itf_1gaa2c71e5dd0a7a8dc2c33a525635de1e2>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pappl, int iId, RTS_RESULT * pResult)
 
 - int :ref:`IecTaskGetNumOfTasks <group___cmp_iec_task_itf_1gaa28bf143273d1595dc6fc5a686fd0ac3>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pAppl, RTS_RESULT * pResult)
@@ -329,6 +303,10 @@ Functions
 
 - RTS_HANDLE :ref:`IecTaskGetNext <group___cmp_iec_task_itf_1gab1f75eadafc2edd33f4a4ccc57a7b798>` (char * pszAppName, RTS_HANDLE hPrevIecTask, RTS_RESULT * pResult)
 
+- RTS_HANDLE :ref:`IecTaskGetFirst2 <group___cmp_iec_task_itf_1ga1717bf2df3276ec1f79fdb1c31235539>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_RESULT * pResult)
+
+- RTS_HANDLE :ref:`IecTaskGetNext2 <group___cmp_iec_task_itf_1gac7df703743e5dff24c67ce27de296fb3>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_HANDLE hPrevIecTask, RTS_RESULT * pResult)
+
 - RTS_HANDLE :ref:`IecTaskReload <group___cmp_iec_task_itf_1gaf300ff9b039e6f240ff1cfc39a59de9c>` (RTS_HANDLE hIecTask, RTS_UI32 ulTimeoutMs, RTS_RESULT * pResult)
 
 - int :ref:`IecTaskCalculateId <group___cmp_iec_task_itf_1ga2defc0b0b2f479dea946e115b0f900a4>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, int iIndex, RTS_RESULT * pResult)
@@ -338,12 +316,6 @@ Functions
 - RTS_RESULT :ref:`IecTaskSingleCycle <group___cmp_iec_task_itf_1ga50a4ee0ec24c1dd72d62e3af132c2662>` (:ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp)
 
 - RTS_RESULT :ref:`IecTaskResetStatistics <group___cmp_iec_task_itf_1ga622d8e5cc5e7571abbe87d08adc45f62>` (RTS_HANDLE hIecTask)
-
-- RTS_RESULT :ref:`IecTaskDebugHandlerEnter <group___cmp_iec_task_itf_1gaaf7938b3efb461894767443dafebca50>` (RTS_HANDLE hIecTask)
-
-- RTS_RESULT :ref:`IecTaskDebugHandlerLeave <group___cmp_iec_task_itf_1ga16b40497332d4db4155f1d3c7b4eff2f>` (RTS_HANDLE hIecTask)
-
-- RTS_RESULT :ref:`IecTaskCallIecFuncWithParams <group___cmp_iec_task_itf_1ga9a95ae840366f4e31cdae58ca785dd7f>` (RTS_HANDLE hIecTask, :ref:`APPLICATION <group___cmp_app_itf___applicationdescription_1gac7bd19d792c2ff88bf331821dd1978b7>` * pApp, RTS_VOID_FCTPTR pfIECFunc, void * pParam, int iSize)
 
 .. _group___cmp_iec_task_itf-details:
 
@@ -398,35 +370,10 @@ For SIL2 certified systems, those slots are denied, because they potentially cau
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
-.. _group___cmp_iec_task_itf_1gaa7357a39213c30478c394ec17b8843e3:
-
-#define RTS_IECTASK_ENABLE_TASK_TRACE
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf_1ga6d97ec721af30a7bc52406696e076755:
-
-#define IECTASK_USE_ATOMIC_BITACCESS
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf_1ga56cd627a23d446e4adf43a1e73f9511e:
-
-#define CMPIECTASK_STACK_SIZE 0
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf_1ga2b58fa388ece90533e3d9ced40115eff:
-
-#define CMPIECTASK_STACK_SIZE_ADDITIONAL 0
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf_1gab52e6822120f99ebd8d6f24980b43a18:
-
-#define CMPIECTASK_SYNCHRONIZATION_USE_SYSSEM
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. _group___cmp_iec_task_itf_1ga657450891a8816e7bf4e1ff8179793f5:
 
 #define NUM_OF_STATIC_IEC_TASKS 5
@@ -454,13 +401,8 @@ Macro Definition Documentation
 
 .. _group___cmp_iec_task_itf_1ga39aedd38d5a72e92eb08ee450e28496d:
 
-#define IECTASK_TASK_INFO_VERSION 5
+#define IECTASK_TASK_INFO_VERSION 2
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___cmp_iec_task_itf_1ga3479963bc690ce02f57178914eddac2e:
-
-#define IECTASK_TASK_INFO_GROUPS_VERSION 4
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___cmp_iec_task_itf_1gafd184ac6058887baab5e504c0cf5700a:
 
@@ -479,11 +421,6 @@ Macro Definition Documentation
 
 Typedef Documentation
 ---------------------
-
-.. _group___cmp_iec_task_itf_1ga56b1767676d541fc548c45a73424dd38:
-
-typedef struct tagTask_Info Task_Info
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___cmp_iec_task_itf_1ga3e7248e4ba098ac4bb720b4a1ac4f6dd:
 
@@ -543,6 +480,13 @@ EXTERN LIB SECTION BEGIN
 
 Jitter distribution
 
+.. _group___cmp_iec_task_itf_1gafd8ed4e7ac9524ae36329e885318d0c7:
+
+typedef struct tagTask_Info  Task_Info
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Task info Task information out of the task configuration Note for SIL2: This information is already inside of the data area, so we don't need to tag it as safe anywhere.
+
 .. _group___cmp_iec_task_itf_1ga800360dce949a03d470d1f0182c51315:
 
 typedef struct tagiectaskcreate_struct  iectaskcreate_struct
@@ -551,22 +495,6 @@ typedef struct tagiectaskcreate_struct  iectaskcreate_struct
 Create a new IEC Task
 
 IEC Tasks itself are used by the scheduler of the runtime. They don't essentially need a corresponding OS task or timer. They might be handled by the scheduler in a completely different way.
-
-.. note:: | Task_Info2.dwEventFunctionPointer: | Function pointer to the event check routine in case Task_Info2.KindOfTask = TaskEvent
-
-.. code-block:: codesys
-
-FUNCTION CheckEvent : BOOL VAR_INPUT END_VAR
-
-(This function checks wether the event is triggered) (by returning TRUE: raising edge, status, etc.)
-
-| Task_Info2.dwTaskEntryFunctionPointer: | Function pointer to the task code
-
-.. code-block:: codesys
-
-FUNCTION IecTaskCyclic : BOOL VAR_INPUT parameter : IEC_CYCLE_STRUCT; END_VAR VAR udiState : UDINT; hTask : RTS_IEC_HANDLE; END_VAR
-
-( mandatory cyclic task frame code begin ) udiState := parameter.pApplication^.udiState; hTask := parameter.hTaskHandle; IF udiState = AS_STOP THEN RETURN; END_IF IF parameter.pTaskInfo^.bWatchdog THEN IecTaskEnableWatchdog(hTask); END_IF ( mandatory cyclic task frame code end )
 
 Error code: + ERR_OK: The new task was successfully created. + ERR_FAILED: There was an error in a subsystem (e.g. the scheduler could not allocate his task handle). + ERR_PARAMETER: Invalid application- or task info pointer + ERR_OUT_OF_LIMITS: Maximum number of Tasks reached (target specific) + ERR_NOMEMORY: Unable to allocate the memory, that is necessary for the task description
 
@@ -577,15 +505,7 @@ Error code: + ERR_OK: The new task was successfully created. + ERR_FAILED: There
 typedef struct tagiectaskdelete2_struct  iectaskdelete2_struct
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Delete an IEC task with timeout
-
-This function creates an asynchronous job to delete the IEC task with the given handle and timeout value. When the asynchronous job is successfully created the function returns immediately with ERR_PENDING. There is no indication wether the following deletion of the IEC task itself is successful.
-
-.. note:: Due to the asynchronous manner of the deletion a dynamically created IEC task may delete itself.
-
-Error code: + ERR_PENDING: The asynchronous job to delete the IEC task was successfully created. + ERR_FAILED: The asynchronous job to delete the IEC task could not be created. + ERR_PARAMETER: Invalid task handle + ERR_NOT_SUPPORTED: asynchronous jobs are not supported
-
-:return: Error code
+Delete an IEC task with timeout :return: Error code
 
 .. _group___cmp_iec_task_itf_1ga87f721f8e37b9721e8b84c917d091b7c:
 
@@ -669,13 +589,6 @@ typedef struct tagiectaskgetcurrent_struct  iectaskgetcurrent_struct
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Funktion to get own task handle :return: Returns the current IEC task handle
-
-.. _group___cmp_iec_task_itf_1gad788a0725c38d20b15e9aac157704916:
-
-typedef struct tagiectaskgetdesc_struct  iectaskgetdesc_struct
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-iectaskgetdesc
 
 .. _group___cmp_iec_task_itf_1gab1a6f5cea7705881e2a5ffc739178702:
 
@@ -782,11 +695,6 @@ void iectaskenablewatchdog2 (iectaskenablewatchdog2_struct *p)
 void iectaskgetcurrent (iectaskgetcurrent_struct *p)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___cmp_iec_task_itf_1ga01434141623c3c4a1418c0345c3b52da:
-
-void iectaskgetdesc (iectaskgetdesc_struct *p)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. _group___cmp_iec_task_itf_1ga835ef14b601fae1f9518ce2e6fa9c042:
 
 void iectaskgetfirst (iectaskgetfirst_struct *p)
@@ -822,6 +730,8 @@ void iectaskresetstatistics (iectaskresetstatistics_struct *p)
 RTS_HANDLE IecTaskCreate (APPLICATION *pApp, Task_Info *pTaskInfo, RTS_RESULT *pResult)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+EXTERN LIB SECTION END
+
 Create a new IEC Task
 
 IEC Tasks itself are used by the scheduler of the runtime. They don't essentially need a corresponding OS task or timer. They might be handled by the scheduler in a completely different way.
@@ -832,7 +742,7 @@ The Task registers itself at the scheduler, by calling the function :ref:`SchedA
 
 When the define RTS_COMPACT is set, no semaphores are used.
 
-When the define RTS_SIL2 is set, no dynamic memory allocation and no core binding is used.
+When the define RTS_SIL2 is set, no dynamic memory allocation is used.
 
 **Parameters**
 
@@ -854,19 +764,17 @@ Handle to newly created task
 
 **Return values**
 
-+---------------------+--------------------------------------------------------------------------------------------+
-| ERR_OK              | The new task was successfully created.                                                     |
-+---------------------+--------------------------------------------------------------------------------------------+
-| ERR_FAILED          | There was an error in a subsystem (e.g. the scheduler could not allocate his task handle). |
-+---------------------+--------------------------------------------------------------------------------------------+
-| ERR_PARAMETER       | Invalid application- or task info pointer                                                  |
-+---------------------+--------------------------------------------------------------------------------------------+
-| ERR_OUT_OF_LIMITS   | Maximum number of Tasks reached (target specific)                                          |
-+---------------------+--------------------------------------------------------------------------------------------+
-| ERR_NOMEMORY        | Unable to allocate the memory, that is necessary for the task description                  |
-+---------------------+--------------------------------------------------------------------------------------------+
-| ERR_LICENSE_MISSING | License for core binding is missing                                                        |
-+---------------------+--------------------------------------------------------------------------------------------+
++-------------------+--------------------------------------------------------------------------------------------+
+| ERR_OK            | The new task was successfully created.                                                     |
++-------------------+--------------------------------------------------------------------------------------------+
+| ERR_FAILED        | There was an error in a subsystem (e.g. the scheduler could not allocate his task handle). |
++-------------------+--------------------------------------------------------------------------------------------+
+| ERR_PARAMETER     | Invalid application- or task info pointer                                                  |
++-------------------+--------------------------------------------------------------------------------------------+
+| ERR_OUT_OF_LIMITS | Maximum number of Tasks reached (target specific)                                          |
++-------------------+--------------------------------------------------------------------------------------------+
+| ERR_NOMEMORY      | Unable to allocate the memory, that is necessary for the task description                  |
++-------------------+--------------------------------------------------------------------------------------------+
 
 .. _group___cmp_iec_task_itf_1ga77bb8fc663de256b0fc9e9dc65b7e1c1:
 
@@ -894,13 +802,13 @@ Delete an IEC task with timeout
 
 **Parameters**
 
-+---------+-------------+-----------------------------------------------------------------------------------------------------+
-| [in]    | ulTimeoutMs | Timeout in milliseconds to wait for deleting the task Some timeouts are predefined (see CmpStd.h):  |
-|         |             |                                                                                                     |
-|         |             | - RTS_TIMEOUT_DEFAULT: Use default wait time                                                        |
-|         |             |                                                                                                     |
-|         |             | - RTS_TIMEOUT_NO_WAIT: No wait                                                                      |
-+---------+-------------+-----------------------------------------------------------------------------------------------------+
++---------+-------------+----------------------------------------------------------------------------------------------------+
+| [in]    | ulTimeoutMs | Timeout in milliseconds to wait for deleting the task Some timeouts are predefined (see CmpStd.h): |
+|         |             |                                                                                                    |
+|         |             | - RTS_TIMEOUT_DEFAULT: Use default wait time                                                       |
+|         |             |                                                                                                    |
+|         |             | - RTS_TIMEOUT_NO_WAIT: No wait                                                                     |
++---------+-------------+----------------------------------------------------------------------------------------------------+
 
 **Returns:**
 
@@ -1088,33 +996,6 @@ Initialize all IEC tasks after reset specified by application
 
 Error code
 
-.. _group___cmp_iec_task_itf_1gac988b39607f94a84094ceb1793fc2efa:
-
-RTS_UI32 IecTaskGetWaitForStopTimeout (APPLICATION *pApp, RTS_RESULT *pResult)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Get the calculated timeout to wait for stop for specified application
-
-**Parameters**
-
-+---------+---------+----------------------------------+
-| [in]    | pApp    | Pointer to specified application |
-+---------+---------+----------------------------------+
-| [out]   | pResult | Result of operation              |
-+---------+---------+----------------------------------+
-
-**Return values**
-
-+---------------+------------------------------------------+
-| ERR_OK        | Timeout has been calculated successfully |
-+---------------+------------------------------------------+
-| ERR_PARAMETER | Application is not valid                 |
-+---------------+------------------------------------------+
-
-**Returns:**
-
-calculated timeout
-
 .. _group___cmp_iec_task_itf_1ga66ed6fe06051ed5833de2462b045662a:
 
 RTS_RESULT IecTasksWaitForStop (APPLICATION *pApp, RTS_UI32 ulTimeoutMs, unsigned long ulStopReason)
@@ -1124,19 +1005,19 @@ Wait, if all Iec-Tasks has recognized the stop status of the application
 
 **Parameters**
 
-+---------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pApp         | Pointer to specified application                                                                                                     |
-+---------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | ulTimeoutMs  | Timeout in milliseconds to wait for stop. Some timeouts are predefined (see CmpStd.h):                                               |
-|         |              |                                                                                                                                      |
-|         |              | - RTS_TIMEOUT_INFINITE: Endless wait                                                                                                 |
-|         |              |                                                                                                                                      |
-|         |              | - RTS_TIMEOUT_DEFAULT: Use default wait time                                                                                         |
-|         |              |                                                                                                                                      |
-|         |              | - RTS_TIMEOUT_NO_WAIT: No wait                                                                                                       |
-+---------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | ulStopReason | See corresponding category "Stop reason" in :ref:`CmpAppItf.h <_cmp_app_itf_8h>` and additionally "Stop reason option" in this file. |
-+---------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+
++---------+--------------+----------------------------------------------------------------------------------------+
+| [in]    | pApp         | Pointer to specified application                                                       |
++---------+--------------+----------------------------------------------------------------------------------------+
+| [in]    | ulTimeoutMs  | Timeout in milliseconds to wait for stop. Some timeouts are predefined (see CmpStd.h): |
+|         |              |                                                                                        |
+|         |              | - RTS_TIMEOUT_INFINITE: Endless wait                                                   |
+|         |              |                                                                                        |
+|         |              | - RTS_TIMEOUT_DEFAULT: Use default wait time                                           |
+|         |              |                                                                                        |
+|         |              | - RTS_TIMEOUT_NO_WAIT: No wait                                                         |
++---------+--------------+----------------------------------------------------------------------------------------+
+| [in]    | ulStopReason | Stop reason. See corresponding category in :ref:`CmpAppItf.h <_cmp_app_itf_8h>`        |
++---------+--------------+----------------------------------------------------------------------------------------+
 
 **Returns:**
 
@@ -1185,30 +1066,7 @@ Error code
 RTS_RESULT IecTaskEnterExclusiveSection2 (APPLICATION *pApp)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Enter an exclusive section. After this call, no IEC task will be rescheduled of the specified application, if it is not already running. Each call must be matched with a call to TaskLeaveExclusiveSection.
-
-**Returns:**
-
-Error code
-
-.. _group___cmp_iec_task_itf_1gadfaead5f45d92e72a8023a6f1cfc58ce:
-
-RTS_RESULT IecTaskTryEnterExclusiveSection2 (APPLICATION *pApp, RTS_UI32 timeoutMs, RTS_BOOL bForceEnter)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Try to enter an exclusive section. If the exclusive section can not be entered within the specified timeout, it depends on the bForceEnter flag what happens:
-
-- FALSE: ERR_FAILED is returned.
-
-- TRUE: Other tasks belonging to that application are successively suspended and their lock is released, while the try to enter the exclusive section is repeated. Each call must be matched with a call to TaskLeaveExclusiveSection.
-
-**Return values**
-
-+------------+-----------------------------------------------------+
-| ERR_OK     | The exclusive section could be entered successfully |
-+------------+-----------------------------------------------------+
-| ERR_FAILED | The exclusive section could not be entered.         |
-+------------+-----------------------------------------------------+
+Enter an exolusive section. After this call, no IEC task will be rescheduled of the specified application, if it is not already running. Each call must be matched with a call to TaskLeaveExclusiveSection.
 
 **Returns:**
 
@@ -1219,7 +1077,7 @@ Error code
 RTS_RESULT IecTaskLeaveExclusiveSection2 (APPLICATION *pApp)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Leave an exclusive section of the specified application, that has been entered by TaskEnterExclusiveSection or IecTaskTryEnterExclusiveSection2
+Leave an exclusive section of the specified application, that has been entered by TaskEnterExclusiveSection
 **Returns:**
 
 Error code
@@ -1735,10 +1593,10 @@ Pointer to task description, NULL if failed
 | ERR_PARAMETER | Application pointer was NULL            |
 +---------------+-----------------------------------------+
 
-.. _group___cmp_iec_task_itf_1gaa2c71e5dd0a7a8dc2c33a525635de1e2:
+.. _group___cmp_iec_task_itf_1ga30565e7afcb8e6d4b102638d0fe3c54a:
 
-Task_Desc* IecTaskGetById (APPLICATION *pappl, int iId, RTS_RESULT *pResult)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RTS_HANDLE IecTaskGetHandleByIndex (APPLICATION *pApp, int iIndex, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Returns task handle of the task specified by index in an application
 
@@ -1755,6 +1613,12 @@ Returns task handle of the task specified by index in an application
 **Returns:**
 
 Handle to the task or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_iec_task_itf_1gaa2c71e5dd0a7a8dc2c33a525635de1e2:
+
+Task_Desc* IecTaskGetById (APPLICATION *pappl, int iId, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Returns task handle of the task specified by its unique Id
 
 **Parameters**
@@ -2121,10 +1985,10 @@ Return the successor of an IEC task, based on an application and a predecessor.
 
 Handle to the task or RTS_INVALID_HANDLE if failed
 
-.. _group___cmp_iec_task_itf_1gaf300ff9b039e6f240ff1cfc39a59de9c:
+.. _group___cmp_iec_task_itf_1ga1717bf2df3276ec1f79fdb1c31235539:
 
-RTS_HANDLE IecTaskReload (RTS_HANDLE hIecTask, RTS_UI32 ulTimeoutMs, RTS_RESULT *pResult)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RTS_HANDLE IecTaskGetFirst2 (APPLICATION *pApp, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Get the first IEC task of the specified application
 
@@ -2153,6 +2017,12 @@ Get the first IEC task of the specified application
 **Returns:**
 
 Handle to the task or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_iec_task_itf_1gac7df703743e5dff24c67ce27de296fb3:
+
+RTS_HANDLE IecTaskGetNext2 (APPLICATION *pApp, RTS_HANDLE hPrevIecTask, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Get the successor of an IEC task.
 
 Return the successor of an IEC task, based on an application and a predecessor.
@@ -2184,6 +2054,12 @@ Return the successor of an IEC task, based on an application and a predecessor.
 **Returns:**
 
 Handle to the task or RTS_INVALID_HANDLE if failed
+
+.. _group___cmp_iec_task_itf_1gaf300ff9b039e6f240ff1cfc39a59de9c:
+
+RTS_HANDLE IecTaskReload (RTS_HANDLE hIecTask, RTS_UI32 ulTimeoutMs, RTS_RESULT *pResult)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Reload a specified IEC task. Reload means here: Delete the task at the actual position and create it newly.
 
 **Parameters**
@@ -2313,83 +2189,6 @@ Error code
 +---------------+---------------------------+
 | ERR_PARAMETER | Application name was NULL |
 +---------------+---------------------------+
-
-.. _group___cmp_iec_task_itf_1gaaf7938b3efb461894767443dafebca50:
-
-RTS_RESULT IecTaskDebugHandlerEnter (RTS_HANDLE hIecTask)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Is called entering the debug handler, if an IEC task is halted on a breakpoint
-
-**Parameters**
-
-+---------+----------+----------------------------------------------------+
-| [in]    | hIecTask | Handle to the task, which enters the debug handler |
-+---------+----------+----------------------------------------------------+
-
-**Returns:**
-
-Error code
-
-.. _group___cmp_iec_task_itf_1ga16b40497332d4db4155f1d3c7b4eff2f:
-
-RTS_RESULT IecTaskDebugHandlerLeave (RTS_HANDLE hIecTask)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Is called leaving the debug handler, if an IEC task is leaving a breakpoint
-
-**Parameters**
-
-+---------+----------+----------------------------------------------------+
-| [in]    | hIecTask | Handle to the task, which leaves the debug handler |
-+---------+----------+----------------------------------------------------+
-
-**Returns:**
-
-Error code
-
-.. _group___cmp_iec_task_itf_1ga9a95ae840366f4e31cdae58ca785dd7f:
-
-RTS_RESULT IecTaskCallIecFuncWithParams (RTS_HANDLE hIecTask, APPLICATION *pApp, RTS_VOID_FCTPTR pfIECFunc, void *pParam, int iSize)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Call an IEC function from plain C code. Since different CPU's/systems use different calling conventions, this function should be used as a wrapper.
-
-ATTENTION: Instead of :ref:`SysCpuCallIecFuncWithParams() <group___cmp_app_dep___task_1gaf076e5dcece30707310c6bb13230e8d4>` this function is synchronized against an OnlineChange of the corresponding IEC application!!
-
-IEC functions or methods of function block use all the same calling convention: They have no return value and exactly one parameter, which is a pointer to a struct that contains all required IN and OUT parameters.
-
-IMPLEMENTATION NOTE: The content of the parameter structure must be copied completely on the stack as an input parameter! Don't copy only the pointer! Because of this, the size of the structure is provided as a separate parameter to this function. Additionally, the structure of the IEC function must be copied back into the give parameter to return result values of the IEC function! For all this operations you have to ensure the stack alignment, but avoid copying more bytes than iSize
-
-IMPLEMENTATION NOTE: Unused parameter pParam can be NULL, if function has no argument and no result (e.g. CodeInit)!
-
-**Parameters**
-
-+---------+-----------+-----------------------------------------------------------------------------------------------------------------------------+
-| [in]    | hIecTask  | IecTask handle from the calling IEC task or RTS_INVALID_HANDLE, if it is a non IEC task!                                    |
-+---------+-----------+-----------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pApp      | Pointer to the application, in which the pfIECFunc is residing!                                                             |
-+---------+-----------+-----------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pfIECFunc | Pointer to the IEC function that should be called RANGE=[NULL,VALID_IEC_FUNC,INVALID_IEC_FUNC]                              |
-+---------+-----------+-----------------------------------------------------------------------------------------------------------------------------+
-| [inout] | pParam    | Pointer to the parameter struct that contains the function parameters. ATTENTION: Can be NULL! RANGE=[NULL,VALID_PARAMETER] |
-+---------+-----------+-----------------------------------------------------------------------------------------------------------------------------+
-| [in]    | iSize     | Size of the parameter structure to copy the content on stack. ATTENTION: Can be 0! RANGE=[0,VALID_SIZE]                     |
-+---------+-----------+-----------------------------------------------------------------------------------------------------------------------------+
-
-**Return values**
-
-+--------------------+-------------------------------------------------------------+
-| ERR_OK             | Parameter check was successfull and pfIECFunc was called    |
-+--------------------+-------------------------------------------------------------+
-| ERR_PARAMETER      | pfIECFunc is NULL or for a paramter size > 0 pParam is NULL |
-+--------------------+-------------------------------------------------------------+
-| ERR_NOTIMPLEMENTED | Function is not implemented                                 |
-+--------------------+-------------------------------------------------------------+
-
-**Returns:**
-
-error code
 
 .. last line of group.rst template
 .. last line of composition.rst template

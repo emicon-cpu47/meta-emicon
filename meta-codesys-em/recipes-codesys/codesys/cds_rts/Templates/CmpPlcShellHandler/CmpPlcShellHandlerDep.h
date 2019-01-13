@@ -11,13 +11,13 @@
  *  which are intended to be used for anything. Use at your own risk.
  *  </description>
  *  <copyright>
- *  Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+ *  (c) 2003-2016 3S-Smart Software Solutions
  *  </copyright>
  */
 #ifndef _CMPPLCSHELLHANDLERDEP_H_
 #define _CMPPLCSHELLHANDLERDEP_H_
 
-#define COMPONENT_NAME "CmpPlcShellHandler" COMPONENT_NAME_POSTFIX
+#define COMPONENT_NAME "CmpPlcShellHandler"COMPONENT_NAME_POSTFIX
 #define COMPONENT_ID    ADDVENDORID(CMP_VENDORID, CMPID_CmpPlcShellHandler)
 #define COMPONENT_NAME_UNQUOTED CmpPlcShellHandler
 
@@ -26,9 +26,9 @@
 
 
 
-#define CMP_VERSION         UINT32_C(0x03050D00)
-#define CMP_VERSION_STRING "3.5.13.0"
-#define CMP_VERSION_RC      3,5,13,0
+#define CMP_VERSION         UINT32_C(0x03050A00)
+#define CMP_VERSION_STRING "3.5.10.0"
+#define CMP_VERSION_RC      3,5,10,0
 
 /* NOTE: REPLACE 0x0000 BY YOUR VENDORID */
 #define CMP_VENDORID       0x5678
@@ -58,17 +58,6 @@
 #include "CmpPlcShellItf.h"
 
 
-#include "CmpEventMgrItf.h"
-
-
-
-    
-
-
-      
-
-
-     
 
     
 
@@ -107,16 +96,7 @@
                 pIBase->Release(pIBase); \
             } \
         } \
-        if (pICmpEventMgr == NULL && s_pfCMCreateInstance != NULL) \
-        { \
-            pIBase = (IBase *)s_pfCMCreateInstance(CLASSID_CCmpEventMgr, &initResult); \
-            if (pIBase != NULL) \
-            { \
-                pICmpEventMgr = (ICmpEventMgr *)pIBase->QueryInterface(pIBase, ITFID_ICmpEventMgr, &initResult); \
-                pIBase->Release(pIBase); \
-            } \
-        } \
-          if (pICmpPlcShell == NULL && s_pfCMCreateInstance != NULL) \
+        if (pICmpPlcShell == NULL && s_pfCMCreateInstance != NULL) \
         { \
             pIBase = (IBase *)s_pfCMCreateInstance(CLASSID_CCmpPlcShell, &initResult); \
             if (pIBase != NULL) \
@@ -131,8 +111,7 @@
     {\
         pICmpLog = NULL; \
         pICMUtils = NULL; \
-        pICmpEventMgr = NULL; \
-          pICmpPlcShell = NULL; \
+        pICmpPlcShell = NULL; \
            \
     }
     #define EXIT_STMT \
@@ -159,17 +138,7 @@
                     pICMUtils = NULL; \
             } \
         } \
-        if (pICmpEventMgr != NULL) \
-        { \
-            pIBase = (IBase *)pICmpEventMgr->QueryInterface(pICmpEventMgr, ITFID_IBase, &exitResult); \
-            if (pIBase != NULL) \
-            { \
-                 pIBase->Release(pIBase); \
-                 if (pIBase->Release(pIBase) == 0) /* The object will be deleted here! */ \
-                    pICmpEventMgr = NULL; \
-            } \
-        } \
-          if (pICmpPlcShell != NULL) \
+        if (pICmpPlcShell != NULL) \
         { \
             pIBase = (IBase *)pICmpPlcShell->QueryInterface(pICmpPlcShell, ITFID_IBase, &exitResult); \
             if (pIBase != NULL) \
@@ -204,9 +173,6 @@
           if (ERR_OK == importResult ) importResult = GET_PlcShellAppend(0);\
           if (ERR_OK == importResult ) importResult = GET_PlcShellUnregister(0);\
           if (ERR_OK == importResult ) importResult = GET_PlcShellRegister(0);\
-          if (ERR_OK == importResult ) TempResult = GET_EventUnregisterCallbackFunction(CM_IMPORT_OPTIONAL_FUNCTION);\
-          if (ERR_OK == importResult ) TempResult = GET_EventRegisterCallbackFunction(CM_IMPORT_OPTIONAL_FUNCTION);\
-          if (ERR_OK == importResult ) TempResult = GET_EventOpen(CM_IMPORT_OPTIONAL_FUNCTION);\
            \
         /* To make LINT happy */\
         TempResult = TempResult;\
@@ -274,11 +240,7 @@
     ITF_CMUtils  \
     USE_CMUtlMemCpy  \
     USE_LogAdd \
-	ITF_CmpPlcShell     \
-	ITF_CmpEventMgr      \
-    USE_EventOpen      \
-    USE_EventRegisterCallbackFunction      \
-    USE_EventUnregisterCallbackFunction      \
+	ITF_CmpPlcShell      \
     USE_PlcShellRegister      \
     USE_PlcShellUnregister      \
     USE_PlcShellAppend      \
@@ -298,11 +260,7 @@
     ITF_CMUtils  \
     USE_CMUtlMemCpy  \
     USE_LogAdd \
-	ITF_CmpPlcShell    \
-	ITF_CmpEventMgr     \
-    USE_EventOpen      \
-    USE_EventRegisterCallbackFunction      \
-    USE_EventUnregisterCallbackFunction      \
+	ITF_CmpPlcShell     \
     USE_PlcShellRegister      \
     USE_PlcShellUnregister      \
     USE_PlcShellAppend      \
@@ -311,11 +269,7 @@
 #define USEEXTERN_STMT \
     EXT_CMUtlMemCpy  \
     EXT_LogAdd \
-	EXTITF_CmpPlcShell    \
-	EXTITF_CmpEventMgr     \
-    EXT_EventOpen  \
-    EXT_EventRegisterCallbackFunction  \
-    EXT_EventUnregisterCallbackFunction  \
+	EXTITF_CmpPlcShell     \
     EXT_PlcShellRegister  \
     EXT_PlcShellUnregister  \
     EXT_PlcShellAppend  \

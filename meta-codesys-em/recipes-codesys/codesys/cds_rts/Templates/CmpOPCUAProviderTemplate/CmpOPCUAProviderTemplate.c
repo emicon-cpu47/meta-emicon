@@ -22,10 +22,9 @@ USE_STMT
 static OpcUa_Int16 s_NamespaceIndex;
 static OpcUa_String s_Namespace = OPCUA_STRING_STATICINITIALIZEWITH("MyNewProvider", sizeof("MyNewProvider"));
 static OpcUa_String s_ApplicationLocal = OPCUA_STRING_STATICINITIALIZEWITH("en - Us", sizeof("en-Us"));
-static RTS_HANDLE s_hEventNotifier = RTS_INVALID_HANDLE;
-static RTS_HANDLE s_hEvent = RTS_INVALID_HANDLE;
-
 /* Values to sample */
+
+
 OpcUa_UInt32 values[2];
 static OpcUa_UInt32* valueA = &values[0];
 static OpcUa_UInt32* valueB = &values[1];
@@ -65,7 +64,6 @@ static OpcUaProvider_Info s_OpcUaProviderInfo = {
 	CMP_VERSION, /* Provider version*/
 	OPCUA_STRING_STATICINITIALIZEWITH(COMPONENT_NAME, sizeof(COMPONENT_NAME)),
 	RTS_INVALID_HANDLE,
-	COMPONENT_ID
 };
 
 
@@ -246,64 +244,6 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 		case CH_COMM_CYCLE:
 		{
 			(*valueB)++;
-			if ((*valueB % 100) == 0)
-			{
-				OpcUa_Variant evt_values[6];
-				OpcUa_ByteString EventId;
-				OpcUa_NodeId SourceNode;
-				OpcUa_LocalizedText Message;
-				OpcUa_String SourceName;
-				OpcUa_DateTime Time = CAL_OpcUaDateTimeUtcNow();
-				OpcUa_UInt16 Severity = (*valueB % 1000 ) + 1; /* Apply severity range between 1 and 1000 */
-
-				/*
-				 *  1. EventId: Unique Id of the event : Datatype : OpcUa_ByteString
-				 *  2. SourceNode : NodeId of the event source node.Datatype : OpcUa_NodeId
-				 *  3. SourceName : Name of the event source.Datatype : OpcUa_String
-				 *  4. Time : UtcTimestamp when the event occured.Datatype : OpcUa_UtcTime
-				 *  5. Message : Message of the event.Datatype : OpcUa_LocalizedText
-				 *  6. Severity : Severity of the event.Datatype : OpcUa_UInt16.Range from 1 to 1000 is allowed< / param>
-				 */
-				memset(evt_values, 0, sizeof(evt_values));
-				memset(&EventId, 0, sizeof(EventId));
-				memset(&SourceNode, 0, sizeof(SourceNode));
-				memset(&Message, 0, sizeof(Message));
-				memset(&SourceName, 0, sizeof(SourceName));
-
-				EventId.Data = (OpcUa_Byte*)valueB;
-				EventId.Length = sizeof(*valueB);
-
-				SourceNode.Identifier.Numeric = 1001;
-				SourceNode.NamespaceIndex = s_NamespaceIndex;
-
-				CAL_OpcUaStringAttachReadOnly(&Message.Locale, "en-Us");
-				CAL_OpcUaStringAttachReadOnly(&Message.Text, "Sample event provided by MyFolder of CmpOpcUaProviderTemplate!!!");
-
-				CAL_OpcUaStringAttachReadOnly(&SourceName, "MyFolder");
-
-				evt_values[0].Datatype = (OpcUa_Byte)OpcUaType_ByteString;
-				evt_values[0].Value.ByteString = EventId;
-
-				evt_values[1].Datatype = (OpcUa_Byte)OpcUaType_NodeId;
-				evt_values[1].Value.NodeId = &SourceNode;
-
-				evt_values[2].Datatype = (OpcUa_Byte)OpcUaType_String;
-				evt_values[2].Value.String = SourceName;
-
-				evt_values[3].Datatype = (OpcUa_Byte)OpcUaType_DateTime;
-				evt_values[3].Value.DateTime = Time;
-
-				evt_values[4].Datatype = (OpcUa_Byte)OpcUaType_LocalizedText;
-				evt_values[4].Value.LocalizedText = &Message;
-
-
-				evt_values[5].Datatype = (OpcUa_Byte)OpcUaType_UInt16;
-				evt_values[5].Value.UInt16 = Severity;
-
-
-
-				CAL_OpcUaServerFireEvent(s_hEventNotifier, s_hEvent, evt_values);
-			}
 			break;
 		}
 		case CH_EXIT3:
@@ -336,67 +276,47 @@ STATICITF RTS_RESULT CDECL OpcUaProviderDelete(RTS_HANDLE hOpcUaProvider)
 
 STATICITF OpcUa_StatusCode CDECL OpcUaProviderInitialize(RTS_HANDLE hProvider)
 {
-	RTS_RESULT Result = ERR_OK;
 	s_NamespaceIndex = CAL_OpcUaServerRegisterNamespace(&s_Namespace);
-	OpcUa_NodeId nodeId;
-	OpcUa_NodeId serverNode;
-	OpcUa_NodeId baseEventType;
-
-	memset(&nodeId, 0, sizeof(nodeId));
-	memset(&serverNode, 0, sizeof(serverNode));
-	memset(&baseEventType, 0, sizeof(baseEventType));
-
-	nodeId.IdentifierType = OpcUa_IdentifierType_Numeric;
-	nodeId.NamespaceIndex = s_NamespaceIndex;
-	nodeId.Identifier.Numeric = 1001;
-
-	serverNode.IdentifierType = OpcUa_IdentifierType_Numeric;
-	serverNode.NamespaceIndex = 0;
-	serverNode.Identifier.Numeric = OpcUaId_Server;
-
-	baseEventType.IdentifierType = OpcUa_IdentifierType_Numeric;
-	baseEventType.NamespaceIndex = 0;
-	baseEventType.Identifier.Numeric = OpcUaId_BaseEventType;
-
-	s_hEventNotifier = CAL_OpcUaServerRegisterEventNotifier(&nodeId, &serverNode, &Result);
-	s_hEvent = CAL_OpcUaServerRegisterEvent(&s_OpcUaProviderInfo, &baseEventType, 0, NULL, &Result);
 	return OpcUa_Good;
 }
 
 STATICITF OpcUa_StatusCode CDECL OpcUaProviderCleanup(RTS_HANDLE hProvider)
 {
-	CAL_OpcUaServerUnregisterEvent(s_hEvent);
-	CAL_OpcUaServerUnregisterEventNotifier(s_hEventNotifier);
-	return OpcUa_Good;
+	return OpcUa_BadNotImplemented;
 }
 
-OpcUa_StatusCode BrowseObjectsNode(OpcUaProvider_BrowseContext *a_pContext)
+STATICITF OpcUa_StatusCode OpcUaProviderBrowse(RTS_HANDLE hProvider, OpcUaProvider_BrowseContext *a_pContext)
 {
-	OpcUa_StatusCode uStatus = OpcUa_BadNodeIdUnknown;
+
+	OpcUa_StatusCode uStatus = OpcUa_Good;
 	const OpcUa_BrowseDescription* pNodeToBrowse = a_pContext->pNodeToBrowse;
 	OpcUa_NodeId reftypeid;
-
-	CAL_OpcUaNodeIdInitialize(&reftypeid);
-	reftypeid.Identifier.Numeric = OpcUaId_Organizes;
-	reftypeid.NamespaceIndex = 0;
-	reftypeid.IdentifierType = OpcUa_IdentifierType_Numeric;
-
-	if (!CAL_OpcUaServerCheckReferenceRecursive(&pNodeToBrowse->ReferenceTypeId, pNodeToBrowse->IncludeSubtypes, &reftypeid))
-		return OpcUa_BadNodeIdUnknown;
-
-	/* Check result mask */
-	if ((pNodeToBrowse->NodeClassMask & OpcUa_NodeClass_Variable | OpcUa_NodeClass_Object || pNodeToBrowse->NodeClassMask == 0) == 0)
-		return OpcUa_BadNodeIdUnknown;
-
-	/* Check browse direction */
-	if (pNodeToBrowse->BrowseDirection == OpcUa_BrowseDirection_Inverse)
-		return OpcUa_BadNodeIdUnknown;
-
-	/* Add variable nodes */
-	if (pNodeToBrowse->NodeClassMask & OpcUa_NodeClass_Variable || pNodeToBrowse->NodeClassMask == 0)
+	int i;
+	do
 	{
-		int i;
-		uStatus = OpcUa_Good;
+		if (pNodeToBrowse->BrowseDirection != OpcUa_BrowseDirection_Forward)
+			break;
+
+		/* Node where to insert the childs */
+		if (pNodeToBrowse->NodeId.NamespaceIndex != 0)
+			break;
+		if (pNodeToBrowse->NodeId.IdentifierType != OpcUa_IdentifierType_Numeric)
+			break;
+		if (pNodeToBrowse->NodeId.Identifier.Numeric != OpcUaId_ObjectsFolder)
+			break;
+
+		/* Check reference */
+		CAL_OpcUaNodeIdInitialize(&reftypeid);
+		reftypeid.Identifier.Numeric = OpcUaId_Organizes;
+		reftypeid.NamespaceIndex = 0;
+		reftypeid.IdentifierType = OpcUa_IdentifierType_Numeric;
+		if (!CAL_OpcUaServerCheckReferenceRecursive(&pNodeToBrowse->ReferenceTypeId, pNodeToBrowse->IncludeSubtypes, &reftypeid))
+			break;
+
+		/* Check result mask */
+		if ((pNodeToBrowse->NodeClassMask & OpcUa_NodeClass_Variable || pNodeToBrowse->NodeClassMask == 0) == 0)
+			break;
+
 		for (i = 0; i < sizeof(values) / sizeof(OpcUa_UInt32); i++)
 		{
 			/* We have two nodes to add */
@@ -405,7 +325,7 @@ OpcUa_StatusCode BrowseObjectsNode(OpcUaProvider_BrowseContext *a_pContext)
 				if (BrowseContextCheckAddNodes(a_pContext, 1) == OpcUa_False)
 				{
 					BrowseContextSetUnfinishedFlag(a_pContext);
-					return uStatus;
+					break;
 				}
 			}
 			else
@@ -414,6 +334,9 @@ OpcUa_StatusCode BrowseObjectsNode(OpcUaProvider_BrowseContext *a_pContext)
 				{
 					OpcUa_ReferenceDescription* pRefDesc = OpcUa_Null;
 					const OpcUa_BrowseDescription* pBrowseDesc = a_pContext->pNodeToBrowse;
+
+
+
 
 					pRefDesc = BrowseContextGetNextRefDesc(a_pContext);
 					if (pRefDesc != OpcUa_Null)
@@ -432,7 +355,7 @@ OpcUa_StatusCode BrowseObjectsNode(OpcUaProvider_BrowseContext *a_pContext)
 						if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_BrowseName) != 0)
 						{
 							pRefDesc->BrowseName.NamespaceIndex = s_NamespaceIndex;
-							if (i == 0)
+							if(i == 0)
 								CAL_OpcUaStringAttachCopy(&pRefDesc->BrowseName.Name, "ValueA");
 							if (i == 1)
 								CAL_OpcUaStringAttachCopy(&pRefDesc->BrowseName.Name, "ValueB");
@@ -468,477 +391,9 @@ OpcUa_StatusCode BrowseObjectsNode(OpcUaProvider_BrowseContext *a_pContext)
 				else
 				{
 					BrowseContextSetUnfinishedFlag(a_pContext);
-				}
-			}
-		}
-	}
-	/* Add object node */
-	if (pNodeToBrowse->NodeClassMask & OpcUa_NodeClass_Object || pNodeToBrowse->NodeClassMask == 0)
-	{
-		uStatus = OpcUa_Good;
-		if (a_pContext->pReference == OpcUa_Null)
-		{
-			if (BrowseContextCheckAddNodes(a_pContext, 1) == OpcUa_False)
-			{
-				BrowseContextSetUnfinishedFlag(a_pContext);
-				return uStatus;
-			}
-		}
-		else
-		{
-			if (BrowseContextCheckNodes(a_pContext, 1) == OpcUa_True)
-			{
-				OpcUa_ReferenceDescription* pRefDesc = OpcUa_Null;
-				const OpcUa_BrowseDescription* pBrowseDesc = a_pContext->pNodeToBrowse;
-
-				pRefDesc = BrowseContextGetNextRefDesc(a_pContext);
-				if (pRefDesc != OpcUa_Null)
-				{
-					/* Set forward flag */
-					if (pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_IsForward)
-						pRefDesc->IsForward = OpcUa_True;
-
-					/* Set Node id */
-					pRefDesc->NodeId.NodeId.NamespaceIndex = s_NamespaceIndex;
-					pRefDesc->NodeId.NodeId.IdentifierType = (OpcUa_UInt16)OpcUa_IdentifierType_Numeric;
-					pRefDesc->NodeId.NodeId.Identifier.Numeric = 1001;
-
-
-					/* Set browse name and display name */
-					if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_BrowseName) != 0)
-					{
-						pRefDesc->BrowseName.NamespaceIndex = s_NamespaceIndex;
-						CAL_OpcUaStringAttachCopy(&pRefDesc->BrowseName.Name, "MyFolder");
-					}
-					if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_DisplayName) != 0)
-					{
-						CAL_OpcUaStringAttachReadOnly(&pRefDesc->DisplayName.Text, "MyFolder");
-						CAL_OpcUaStringStrnCpy(&pRefDesc->DisplayName.Locale, &s_ApplicationLocal, OPCUA_STRING_LENDONTCARE);
-					}
-
-					/* Set reference type */
-					if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_ReferenceTypeId) != 0)
-					{
-						CAL_OpcUaNodeIdCopyTo(&reftypeid, &pRefDesc->ReferenceTypeId);
-					}
-				}
-				if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_TypeDefinition) != 0)
-				{
-					pRefDesc->TypeDefinition.NodeId.IdentifierType = (OpcUa_UInt16)OpcUa_IdentifierType_Numeric;
-					pRefDesc->TypeDefinition.NodeId.Identifier.Numeric = (OpcUa_UInt32)OpcUaId_FolderType;
-					pRefDesc->TypeDefinition.NodeId.NamespaceIndex = 0;
-					pRefDesc->TypeDefinition.ServerIndex = 0;
-				}
-
-				if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_NodeClass) != 0)
-					pRefDesc->NodeClass = OpcUa_NodeClass_Object;
-			}
-			else
-			{
-				BrowseContextSetUnfinishedFlag(a_pContext);
-				return uStatus;
-			}
-		}
-	}
-	return uStatus;
-}
-
-OpcUa_StatusCode BrowseServerNode(OpcUaProvider_BrowseContext *a_pContext)
-{
-	OpcUa_StatusCode uStatus = OpcUa_BadNodeIdUnknown;
-	const OpcUa_BrowseDescription* pNodeToBrowse = a_pContext->pNodeToBrowse;
-	OpcUa_NodeId reftypeid;
-
-	CAL_OpcUaNodeIdInitialize(&reftypeid);
-	reftypeid.Identifier.Numeric = OpcUaId_HasNotifier;
-	reftypeid.NamespaceIndex = 0;
-	reftypeid.IdentifierType = OpcUa_IdentifierType_Numeric;
-
-	if (!CAL_OpcUaServerCheckReferenceRecursive(&pNodeToBrowse->ReferenceTypeId, pNodeToBrowse->IncludeSubtypes, &reftypeid))
-		return OpcUa_BadNodeIdUnknown;
-
-	/* Check result mask */
-	if ((pNodeToBrowse->NodeClassMask & OpcUa_NodeClass_Variable | OpcUa_NodeClass_Object || pNodeToBrowse->NodeClassMask == 0) == 0)
-		return OpcUa_BadNodeIdUnknown;
-
-	/* Check browse direction */
-	if (pNodeToBrowse->BrowseDirection == OpcUa_BrowseDirection_Inverse)
-		return OpcUa_BadNodeIdUnknown;
-
-	/* Add object node */
-	if (pNodeToBrowse->NodeClassMask & OpcUa_NodeClass_Object || pNodeToBrowse->NodeClassMask == 0)
-	{
-		uStatus = OpcUa_Good;
-		if (a_pContext->pReference == OpcUa_Null)
-		{
-			if (BrowseContextCheckAddNodes(a_pContext, 1) == OpcUa_False)
-			{
-				BrowseContextSetUnfinishedFlag(a_pContext);
-				return uStatus;
-			}
-		}
-		else
-		{
-			if (BrowseContextCheckNodes(a_pContext, 1) == OpcUa_True)
-			{
-				OpcUa_ReferenceDescription* pRefDesc = OpcUa_Null;
-				const OpcUa_BrowseDescription* pBrowseDesc = a_pContext->pNodeToBrowse;
-
-				pRefDesc = BrowseContextGetNextRefDesc(a_pContext);
-				if (pRefDesc != OpcUa_Null)
-				{
-					/* Set forward flag */
-					if (pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_IsForward)
-						pRefDesc->IsForward = OpcUa_True;
-
-					/* Set Node id */
-					pRefDesc->NodeId.NodeId.NamespaceIndex = s_NamespaceIndex;
-					pRefDesc->NodeId.NodeId.IdentifierType = (OpcUa_UInt16)OpcUa_IdentifierType_Numeric;
-					pRefDesc->NodeId.NodeId.Identifier.Numeric = 1001;
-
-
-					/* Set browse name and display name */
-					if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_BrowseName) != 0)
-					{
-						pRefDesc->BrowseName.NamespaceIndex = s_NamespaceIndex;
-						CAL_OpcUaStringAttachCopy(&pRefDesc->BrowseName.Name, "MyFolder");
-					}
-					if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_DisplayName) != 0)
-					{
-						CAL_OpcUaStringAttachReadOnly(&pRefDesc->DisplayName.Text, "MyFolder");
-						CAL_OpcUaStringStrnCpy(&pRefDesc->DisplayName.Locale, &s_ApplicationLocal, OPCUA_STRING_LENDONTCARE);
-					}
-
-					/* Set reference type */
-					if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_ReferenceTypeId) != 0)
-					{
-						CAL_OpcUaNodeIdCopyTo(&reftypeid, &pRefDesc->ReferenceTypeId);
-					}
-				}
-				if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_TypeDefinition) != 0)
-				{
-					pRefDesc->TypeDefinition.NodeId.IdentifierType = (OpcUa_UInt16)OpcUa_IdentifierType_Numeric;
-					pRefDesc->TypeDefinition.NodeId.Identifier.Numeric = (OpcUa_UInt32)OpcUaId_FolderType;
-					pRefDesc->TypeDefinition.NodeId.NamespaceIndex = 0;
-					pRefDesc->TypeDefinition.ServerIndex = 0;
-				}
-
-				if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_NodeClass) != 0)
-					pRefDesc->NodeClass = OpcUa_NodeClass_Object;
-			}
-			else
-			{
-				BrowseContextSetUnfinishedFlag(a_pContext);
-				return uStatus;
-			}
-		}
-	}
-	return uStatus;
-}
-
-OpcUa_StatusCode BrowseOwnNodes(OpcUaProvider_BrowseContext *a_pContext)
-{
-	OpcUa_StatusCode uStatus = OpcUa_BadNodeIdUnknown;
-	const OpcUa_BrowseDescription* pNodeToBrowse = a_pContext->pNodeToBrowse;
-	OpcUa_NodeId reftypeid;
-
-	if (pNodeToBrowse->NodeId.NamespaceIndex != s_NamespaceIndex)
-		return OpcUa_BadNodeIdUnknown;
-
-	if (pNodeToBrowse->NodeId.Identifier.Numeric != 0 && pNodeToBrowse->NodeId.Identifier.Numeric != 1 && pNodeToBrowse->NodeId.Identifier.Numeric != 1001)
-		return OpcUa_BadNodeIdUnknown;
-
-	uStatus = OpcUa_Good;
-
-	/* Fill forward references */
-	if ((pNodeToBrowse->BrowseDirection == OpcUa_BrowseDirection_Forward || pNodeToBrowse->BrowseDirection == OpcUa_BrowseDirection_Both) && 
-		(pNodeToBrowse->NodeClassMask == 0 || pNodeToBrowse->NodeClassMask & (OpcUa_NodeClass_VariableType| OpcUa_NodeClass_ObjectType)
-		))
-	{
-		CAL_OpcUaNodeIdInitialize(&reftypeid);
-		reftypeid.Identifier.Numeric = OpcUaId_HasTypeDefinition;
-		reftypeid.NamespaceIndex = 0;
-		reftypeid.IdentifierType = OpcUa_IdentifierType_Numeric;
-
-		/* Check if the client was intrested in this reference type */
-		if (CAL_OpcUaServerCheckReferenceRecursive(&pNodeToBrowse->ReferenceTypeId, pNodeToBrowse->IncludeSubtypes, &reftypeid) == OpcUa_True)
-		{
-			if (a_pContext->pReference == NULL)
-			{
-				if (BrowseContextCheckAddNodes(a_pContext, 1) == OpcUa_False)
-				{
-					BrowseContextSetUnfinishedFlag(a_pContext);
-					return uStatus;
-				}
-			}
-			else
-			{
-				if (BrowseContextCheckAddNodes(a_pContext, 1) == OpcUa_True)
-				{
-					OpcUa_ReferenceDescription* pRefDesc = OpcUa_Null;
-					const OpcUa_BrowseDescription* pBrowseDesc = a_pContext->pNodeToBrowse;
-
-					pRefDesc = BrowseContextGetNextRefDesc(a_pContext);
-					if (pRefDesc != OpcUa_Null)
-					{
-						/* Set forward flag */
-						if (pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_IsForward)
-							pRefDesc->IsForward = OpcUa_True;
-
-						/* Set Node id */
-						pRefDesc->NodeId.NodeId.NamespaceIndex = 0;
-						pRefDesc->NodeId.NodeId.IdentifierType = (OpcUa_UInt16)OpcUa_IdentifierType_Numeric;
-						if (pNodeToBrowse->NodeId.Identifier.Numeric == 0 || pNodeToBrowse->NodeId.Identifier.Numeric == 0)
-						{
-							pRefDesc->NodeId.NodeId.Identifier.Numeric = OpcUaId_BaseVariableType;
-						}
-						if (pNodeToBrowse->NodeId.Identifier.Numeric == 1001)
-						{
-							pRefDesc->NodeId.NodeId.Identifier.Numeric = OpcUaId_FolderType;
-						}
-						
-
-
-						/* Set browse name and display name */
-						if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_BrowseName) != 0)
-						{
-							pRefDesc->BrowseName.NamespaceIndex = 0;
-							if (pNodeToBrowse->NodeId.Identifier.Numeric == 0 || pNodeToBrowse->NodeId.Identifier.Numeric == 1)
-							{
-								CAL_OpcUaStringAttachCopy(&pRefDesc->BrowseName.Name, OpcUa_BrowseName_BaseVariableType);
-							}
-							if (pNodeToBrowse->NodeId.Identifier.Numeric == 1001)
-							{
-								CAL_OpcUaStringAttachCopy(&pRefDesc->BrowseName.Name, OpcUa_BrowseName_FolderType);
-							}
-						}
-						if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_DisplayName) != 0)
-						{
-							if (pNodeToBrowse->NodeId.Identifier.Numeric == 0 || pNodeToBrowse->NodeId.Identifier.Numeric == 1)
-							{
-								CAL_OpcUaStringAttachReadOnly(&pRefDesc->DisplayName.Text, OpcUa_BrowseName_BaseVariableType);
-							}
-							if (pNodeToBrowse->NodeId.Identifier.Numeric == 1001)
-							{
-								CAL_OpcUaStringAttachReadOnly(&pRefDesc->DisplayName.Text, OpcUa_BrowseName_FolderType);
-							}
-							CAL_OpcUaStringStrnCpy(&pRefDesc->DisplayName.Locale, &s_ApplicationLocal, OPCUA_STRING_LENDONTCARE);
-						}
-
-						/* Set reference type */
-						if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_ReferenceTypeId) != 0)
-						{
-							CAL_OpcUaNodeIdCopyTo(&reftypeid, &pRefDesc->ReferenceTypeId);
-						}
-
-						if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_NodeClass) != 0)
-						{
-							if (pNodeToBrowse->NodeId.Identifier.Numeric == 0 || pNodeToBrowse->NodeId.Identifier.Numeric == 1)
-							{
-								pRefDesc->NodeClass = OpcUa_NodeClass_VariableType;
-							}
-							if (pNodeToBrowse->NodeId.Identifier.Numeric == 1001)
-							{
-								pRefDesc->NodeClass = OpcUa_NodeClass_ObjectType;
-							}
-						}
-
-					}
-				}
-				else
-				{
-					BrowseContextSetUnfinishedFlag(a_pContext);
-					return uStatus;
-				}
-				
-			}
-		}
-
-	}
-
-	/* Fill backward references */
-	if ((pNodeToBrowse->BrowseDirection == OpcUa_BrowseDirection_Inverse || pNodeToBrowse->BrowseDirection == OpcUa_BrowseDirection_Both) &&
-		(pNodeToBrowse->NodeClassMask == 0 || pNodeToBrowse->NodeClassMask & (OpcUa_NodeClass_Object)
-			))
-	{
-
-		/* Fill Reference to Objects node 
-		*/
-		CAL_OpcUaNodeIdInitialize(&reftypeid);
-		reftypeid.Identifier.Numeric = OpcUaId_Organizes;
-		reftypeid.NamespaceIndex = 0;
-		reftypeid.IdentifierType = OpcUa_IdentifierType_Numeric;
-		/* Check if the client was intrested in this reference type */
-		if (CAL_OpcUaServerCheckReferenceRecursive(&pNodeToBrowse->ReferenceTypeId, pNodeToBrowse->IncludeSubtypes, &reftypeid))
-		{
-			if (a_pContext->pReference == NULL)
-			{
-				if (BrowseContextCheckAddNodes(a_pContext, 1) == OpcUa_False)
-				{
-					BrowseContextSetUnfinishedFlag(a_pContext);
-					return uStatus;
-				}
-			}
-			else
-			{
-				/* Add reference to Objects node */
-				if (BrowseContextCheckAddNodes(a_pContext, 1) == OpcUa_True)
-				{
-					OpcUa_ReferenceDescription* pRefDesc = OpcUa_Null;
-					const OpcUa_BrowseDescription* pBrowseDesc = a_pContext->pNodeToBrowse;
-
-					pRefDesc = BrowseContextGetNextRefDesc(a_pContext);
-					if (pRefDesc != OpcUa_Null)
-					{
-						if (pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_IsForward)
-							pRefDesc->IsForward = OpcUa_False;
-
-						/* Set Node id */
-						pRefDesc->NodeId.NodeId.NamespaceIndex = 0;
-						pRefDesc->NodeId.NodeId.IdentifierType = (OpcUa_UInt16)OpcUa_IdentifierType_Numeric;
-						pRefDesc->NodeId.NodeId.Identifier.Numeric = OpcUaId_ObjectsFolder;
-
-
-
-						/* Set browse name and display name */
-						if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_BrowseName) != 0)
-						{
-							CAL_OpcUaStringAttachCopy(&pRefDesc->BrowseName.Name, OpcUa_BrowseName_ObjectsFolder);
-						}
-						if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_DisplayName) != 0)
-						{
-							CAL_OpcUaStringStrnCpy(&pRefDesc->DisplayName.Locale, &s_ApplicationLocal, OPCUA_STRING_LENDONTCARE);
-							CAL_OpcUaStringAttachReadOnly(&pRefDesc->DisplayName.Text, OpcUa_BrowseName_ObjectsFolder);
-						}
-
-						/* Set reference type */
-						if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_ReferenceTypeId) != 0)
-						{
-							CAL_OpcUaNodeIdCopyTo(&reftypeid, &pRefDesc->ReferenceTypeId);
-						}
-
-						if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_NodeClass) != 0)
-						{
-							pRefDesc->NodeClass = OpcUa_NodeClass_Object;
-						}
-
-					}
-				}
-				else
-				{
-					BrowseContextSetUnfinishedFlag(a_pContext);
-					return uStatus;
-				}
-			}
-		}
-
-		/* Add Notifier Of Reference to Server Node */
-		CAL_OpcUaNodeIdInitialize(&reftypeid);
-		reftypeid.Identifier.Numeric = OpcUaId_HasNotifier;
-		reftypeid.NamespaceIndex = 0;
-		reftypeid.IdentifierType = OpcUa_IdentifierType_Numeric;
-		/* Check if the client was intrested in this reference type */
-		if (CAL_OpcUaServerCheckReferenceRecursive(&pNodeToBrowse->ReferenceTypeId, pNodeToBrowse->IncludeSubtypes, &reftypeid))
-		{
-			if (a_pContext->pReference == NULL)
-			{
-				if (BrowseContextCheckAddNodes(a_pContext, 1) == OpcUa_False)
-				{
-					BrowseContextSetUnfinishedFlag(a_pContext);
-					return uStatus;
-				}
-			}
-			else
-			{
-				/* Add reference to Objects node */
-				if (BrowseContextCheckAddNodes(a_pContext, 1) == OpcUa_True)
-				{
-					OpcUa_ReferenceDescription* pRefDesc = OpcUa_Null;
-					const OpcUa_BrowseDescription* pBrowseDesc = a_pContext->pNodeToBrowse;
-
-					pRefDesc = BrowseContextGetNextRefDesc(a_pContext);
-					if (pRefDesc != OpcUa_Null)
-					{
-						if (pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_IsForward)
-							pRefDesc->IsForward = OpcUa_False;
-
-						/* Set Node id */
-						pRefDesc->NodeId.NodeId.NamespaceIndex = 0;
-						pRefDesc->NodeId.NodeId.IdentifierType = (OpcUa_UInt16)OpcUa_IdentifierType_Numeric;
-						pRefDesc->NodeId.NodeId.Identifier.Numeric = OpcUaId_Server;
-
-
-
-						/* Set browse name and display name */
-						if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_BrowseName) != 0)
-						{
-							CAL_OpcUaStringAttachCopy(&pRefDesc->BrowseName.Name, OpcUa_BrowseName_Server);
-						}
-						if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_DisplayName) != 0)
-						{
-							CAL_OpcUaStringStrnCpy(&pRefDesc->DisplayName.Locale, &s_ApplicationLocal, OPCUA_STRING_LENDONTCARE);
-							CAL_OpcUaStringAttachReadOnly(&pRefDesc->DisplayName.Text, OpcUa_BrowseName_Server);
-						}
-
-						/* Set reference type */
-						if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_ReferenceTypeId) != 0)
-						{
-							CAL_OpcUaNodeIdCopyTo(&reftypeid, &pRefDesc->ReferenceTypeId);
-						}
-
-						if ((pBrowseDesc->ResultMask & (OpcUa_UInt32)OpcUa_BrowseResultMask_NodeClass) != 0)
-						{
-							pRefDesc->NodeClass = OpcUa_NodeClass_Object;
-						}
-
-					}
-				}
-				else
-				{
-					BrowseContextSetUnfinishedFlag(a_pContext);
-					return uStatus;
-				}
-			}
-		}
-	}
-
-	return uStatus;
-}
-
-STATICITF OpcUa_StatusCode OpcUaProviderBrowse(RTS_HANDLE hProvider, OpcUaProvider_BrowseContext *a_pContext)
-{
-
-	OpcUa_StatusCode uStatus = OpcUa_Good;
-	const OpcUa_BrowseDescription* pNodeToBrowse = a_pContext->pNodeToBrowse;
-	do
-	{
-		/* Only accept numeric node ids. Only these one are used in the template  */
-		if (pNodeToBrowse->NodeId.IdentifierType != OpcUa_IdentifierType_Numeric)
-			break;
-
-		/* Children nodes of objects folder */
-		if (pNodeToBrowse->NodeId.NamespaceIndex == 0)
-		{
-			switch (pNodeToBrowse->NodeId.Identifier.Numeric)
-			{
-				case OpcUaId_ObjectsFolder:
-					uStatus = BrowseObjectsNode(a_pContext);
 					break;
-					/* Add Has EventNotifier reference */
-				case OpcUaId_Server:
-					uStatus = BrowseServerNode(a_pContext);
-					break;
-				default:
-					break;
+				}
 			}
-				
-			
-		}
-
-		/* Browsing the own nodes */
-		if (pNodeToBrowse->NodeId.NamespaceIndex == s_NamespaceIndex)
-		{
-			uStatus = BrowseOwnNodes(a_pContext);
 		}
 
 	} while (0);
@@ -1005,7 +460,7 @@ STATICITF OpcUa_StatusCode CDECL OpcUaProviderRead(RTS_HANDLE hProvider, OpcUaPr
 			break;
 		if (pNode->NamespaceIndex != s_NamespaceIndex)
 			break;
-		if (pNode->Identifier.Numeric != 0 && pNode->Identifier.Numeric != 1 && pNode->Identifier.Numeric != 1001)
+		if (pNode->Identifier.Numeric != 0 && pNode->Identifier.Numeric != 1)
 			break;
 
 		switch (uAttributeId)
@@ -1023,10 +478,7 @@ STATICITF OpcUa_StatusCode CDECL OpcUaProviderRead(RTS_HANDLE hProvider, OpcUaPr
 			{
 				pValue->Datatype = (OpcUa_Byte)OpcUaType_Int32;
 				uStatus = OpcUa_Good;
-				if(pNode->Identifier.Numeric == 1001)
-					pValue->Value.Int32 = (OpcUa_Int32)OpcUa_NodeClass_Object;
-				else
-					pValue->Value.Int32 = (OpcUa_Int32)OpcUa_NodeClass_Variable;
+				pValue->Value.Int32 = (OpcUa_Int32)OpcUa_NodeClass_Variable;
 				break;
 			}
 			case OpcUa_Attributes_BrowseName:
@@ -1039,8 +491,6 @@ STATICITF OpcUa_StatusCode CDECL OpcUaProviderRead(RTS_HANDLE hProvider, OpcUaPr
 					uStatus = CAL_OpcUaStringAttachReadOnly(&pValue->Value.QualifiedName->Name, "ValueA");
 				if(pNode->Identifier.Numeric == 1)
 					uStatus = CAL_OpcUaStringAttachReadOnly(&pValue->Value.QualifiedName->Name, "ValueB");
-				if (pNode->Identifier.Numeric == 1001)
-					uStatus = CAL_OpcUaStringAttachReadOnly(&pValue->Value.QualifiedName->Name, "MyFolder");
 				break;
 			}
 			case OpcUa_Attributes_DisplayName:
@@ -1053,8 +503,6 @@ STATICITF OpcUa_StatusCode CDECL OpcUaProviderRead(RTS_HANDLE hProvider, OpcUaPr
 					CAL_OpcUaStringAttachReadOnly(&pValue->Value.LocalizedText->Text, "ValueA");
 				if (pNode->Identifier.Numeric == 1)
 					CAL_OpcUaStringAttachReadOnly(&pValue->Value.LocalizedText->Text, "ValueB");
-				if (pNode->Identifier.Numeric == 1001)
-					CAL_OpcUaStringAttachReadOnly(&pValue->Value.LocalizedText->Text, "MyFolder");
 				uStatus = OpcUa_Good;
 				break;
 			}
@@ -1080,11 +528,6 @@ STATICITF OpcUa_StatusCode CDECL OpcUaProviderRead(RTS_HANDLE hProvider, OpcUaPr
 
 			case OpcUa_Attributes_Value:
 			{
-				if (pNode->Identifier.Numeric == 1001)
-				{
-					uStatus = OpcUa_BadAttributeIdInvalid;
-					break;
-				}
 				OpcUa_Variant* pVariant = &a_pContext->pDataValue->Value;
 				if (eTimestampsToReturn == OpcUa_TimestampsToReturn_Both || eTimestampsToReturn == OpcUa_TimestampsToReturn_Server)
 				{
@@ -1104,11 +547,6 @@ STATICITF OpcUa_StatusCode CDECL OpcUaProviderRead(RTS_HANDLE hProvider, OpcUaPr
 				break;
 			}
 			case OpcUa_Attributes_DataType:
-				if (pNode->Identifier.Numeric == 1001)
-				{
-					uStatus = OpcUa_BadAttributeIdInvalid;
-					break;
-				}
 				pValue->Datatype = (OpcUa_Byte)OpcUaType_NodeId;
 				pValue->ArrayType = OpcUa_VariantArrayType_Scalar;
 				pValue->Value.NodeId = (OpcUa_NodeId*)CAL_SysMemAllocData(COMPONENT_NAME, sizeof(OpcUa_NodeId), NULL);
@@ -1119,58 +557,29 @@ STATICITF OpcUa_StatusCode CDECL OpcUaProviderRead(RTS_HANDLE hProvider, OpcUaPr
 				uStatus = OpcUa_Good;
 				break;
 			case OpcUa_Attributes_ValueRank:
-				if (pNode->Identifier.Numeric == 1001)
-				{
-					uStatus = OpcUa_BadAttributeIdInvalid;
-					break;
-				}
 				pValue->Datatype = (OpcUa_Byte)OpcUaType_Int32;
 				pValue->ArrayType = OpcUa_VariantArrayType_Scalar;
 				pValue->Value.Int32 = OpcUa_ValueRanks_Scalar;
 				uStatus = OpcUa_Good;
 				break;
 			case OpcUa_Attributes_AccessLevel:
-				if (pNode->Identifier.Numeric == 1001)
-				{
-					uStatus = OpcUa_BadAttributeIdInvalid;
-					break;
-				}
 				pValue->Datatype = (OpcUa_Byte)OpcUaType_Byte;
 				pValue->ArrayType = OpcUa_VariantArrayType_Scalar;
 				pValue->Value.Byte = OpcUa_AccessLevels_CurrentRead | OpcUa_AccessLevels_CurrentWrite;
 				uStatus = OpcUa_Good;
 				break;
 			case OpcUa_Attributes_UserAccessLevel:
-				if (pNode->Identifier.Numeric == 1001)
-				{
-					uStatus = OpcUa_BadAttributeIdInvalid;
-					break;
-				}
 				pValue->Datatype = (OpcUa_Byte)OpcUaType_Byte;
 				pValue->ArrayType = OpcUa_VariantArrayType_Scalar;
 				pValue->Value.Byte = OpcUa_AccessLevels_CurrentRead | OpcUa_AccessLevels_CurrentWrite;
 				uStatus = OpcUa_Good;
 				break;
 			case OpcUa_Attributes_Historizing:
-				if (pNode->Identifier.Numeric == 1001)
-				{
-					uStatus = OpcUa_BadAttributeIdInvalid;
-					break;
-				}
 				pValue->Datatype = (OpcUa_Byte)OpcUaType_Boolean;
 				pValue->ArrayType = OpcUa_VariantArrayType_Scalar;
 				pValue->Value.Boolean = OpcUa_False;
 				uStatus = OpcUa_Good;
 				break;
-			case OpcUa_Attributes_EventNotifier:
-				if (pNode->Identifier.Numeric == 1001)
-				{
-					pValue->Datatype = (OpcUa_Byte)OpcUaType_Byte;
-					pValue->ArrayType = OpcUa_VariantArrayType_Scalar;
-					pValue->Value.Byte = OpcUa_EventNotifiers_SubscribeToEvents;
-					uStatus = OpcUa_Good;
-					break;
-				}
 			default:
 				uStatus = OpcUa_BadAttributeIdInvalid;
 				break;

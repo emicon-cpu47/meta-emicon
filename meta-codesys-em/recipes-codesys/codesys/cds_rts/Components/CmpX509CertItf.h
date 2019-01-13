@@ -1,12 +1,10 @@
  /**
  * <interfacename>CmpX509Cert</interfacename>
  * <description> 
- *	<p>This interface provides functionality to handle and verify X.509 Certificates</p>
+ *	<p>This interface provides functionaltiy to handle and verify X.509 Certificates</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 	
@@ -85,272 +83,6 @@
 	#define RTS_X509_DIFFIEHELLMAN_DEFAULT_LEN		2048
 #endif
 
-/**
- * <category>Online services</category>
- */ 
-#define SRV_X509_IMPORT_CERT        0x01
-#define SRV_X509_EXPORT_CERT        0x02
-#define SRV_X509_DELETE_CERT        0x03
-#define SRV_X509_MOVE_CERT          0x04
-#define SRV_X509_LIST_CERTS         0x05
-#define SRV_X509_LIST_USECASES      0x06
-#define SRV_X509_CREATE_SELFSIGNED  0x07
-#define SRV_X509_CREATE_REQUEST     0x08
-#define SRV_X509_GET_STATUS         0x09
-
-/**
- * <category>Online service tags</category>
- */
-#define TAG_X509_TRUSTLEVEL		    0x01
-#define TAG_X509_BACKEND            0x02
-#define TAG_X509_USECASE            0x03
-#define TAG_X509_THUMBPRINT         0x04
-#define TAG_X509_CERT               0x05
-#define TAG_X509_CSR                0x06
-#define TAG_X509_DEST_TRUSTLEVEL    0x07
-#define TAG_X509_DEST_BACKEND       0x08
-#define TAG_X509_KEY_LENGTH         0x09
-#define TAG_X509_USECASE_NAME       0x0A
-#define TAG_X509_USECASE_DESC       0x0B
-#define TAG_X509_SUBJECT_ID         0x0C
-#define TAG_X509_SUBJECT_VALUE      0x0D
-#define TAG_X509_ALT_NAME_EMAIL     0x0E
-#define TAG_X509_ALT_NAME_DNSNAME   0x0F
-#define TAG_X509_ALT_NAME_URI       0x10
-#define TAG_X509_ALT_NAME_IPADDRESS 0x12
-#define TAG_X509_ALT_NAME_REGISTEREDID 0x13
-#define TAG_X509_KEYUSAGE           0x14
-#define TAG_X509_EXT_KEYUSAGE       0x15
-#define TAG_X509_USECASE_COMPONENT  0x16
-#define TAG_X509_DELETE_PKEY        0x17
-#define TAG_X509_DAYS_VALID         0x18
-#define TAG_X509_GEN_SELF_SIGNED    0x19
-#define TAG_X509_GEN_CSR            0x1A
-#define TAG_X509_STATUS_HANDLE      0x1B
-#define TAG_X509_OPERATION          0x1C
-/* Leave tags 0x22 - 0x24 empty. Use for user management. */
-#define TAG_X509_RESULT             TAG_ERROR
-
-/* Complex tags */
-#define TAG_X509_USECASE_DETAILS    0x81
-/* Leave TAG 0x082 empty. Is used for user management. */
- 
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Import certificate service. This service imports the given certificate into the corresponding store of the PLC.
- *  Since this service changes the security configuration of the PLC administrator rights are needed to execute this service.
- * </Description>
- * <service name="SRV_X509_IMPORT_CERT">
- *	<Request>
- *		<tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level where to import the certificate. See the RTSCERTTRUSTLEVEL_* defines for details.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend where to store the certificate. Not used by now.</tag>
- *		<tag name="TAG_X509_CERT" required="required">Certificate in ANS.1 encoding to import.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Export certificate service. This service exports a selected certificate from the PLC for use in other applications.
- * </Description>
- * <service name="SRV_X509_EXPORT_CERT">
- *	<Request>
- *		<tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level of the certificate to export. See the RTSCERTTRUSTLEVEL_* defines for details.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend of the certificate. Not used by now.</tag>
- *		<tag name="TAG_X509_THUMBPRINT" required="required">Thumbprint of certificate calculated by the runtime system.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *		<tag name="TAG_X509_CERT" required="optional">Exported certificate in ASN.1 encoding if the certificate was available.</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Delete certificate service. This service deletes a certificate from the PLC.
- *  Since this service changes the security configuration of the PLC administrator rights are needed to execute this service.
- * </Description>
- * <service name="SRV_X509_DELETE_CERT">
- *	<Request>
- *		<tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level of the certificate to delete. See the RTSCERTTRUSTLEVEL_* defines for details.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend of the certificate. Not used by now.</tag>
- *		<tag name="TAG_X509_THUMBPRINT" required="required">Thumbprint of certificate calculated by the runtime system.</tag>
- *		<tag name="TAG_X509_DELETE_PKEY" required="optional">[RTS_UI32]: Flag if the private key should be deleted too. This is only used for trust level 'OWN'.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Move certificate service. This service moves certificates from one place to another.
- *  Since this service changes the security configuration of the PLC administrator rights are needed to execute this service.
- * </Description>
- * <service name="SRV_X509_MOVE_CERT">
- *	<Request>
- *		<tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level of the certificate to move. See the RTSCERTTRUSTLEVEL_* defines for details.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend of the certificate. Not used by now.</tag>
- *		<tag name="TAG_X509_THUMBPRINT" required="required">Thumbprint of certificate calculated by the runtime system.</tag>
- *		<tag name="TAG_X509_DEST_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level where to move the certificate to. See the RTSCERTTRUSTLEVEL_* defines for details.</tag>
- *		<tag name="TAG_X509_DEST_BACKEND" required="optional">[Type not yet defined]:Backend where to move the certificate to. Not used by now.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	List certificate service. This service lists all certificates from one place. Maybe not all certificates can be transmitted in one single online service.
- *  In this case the service return ERR_ENTRIES_REMAINING to indicate that more certificates are available. To get the next junk of certificates put the thumbprint of the
- *  last certificate of the last service as a starting point for the next certificates. The thumbprint tag in the response contains the thumbprint of the certificate 
- *  contained in the previous tag. These tags must always occur as a pair.
- * </Description>
- * <service name="SRV_X509_LIST_CERTS">
- *	<Request>
- *		<tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level of the certificate to list. See the RTSCERTTRUSTLEVEL_* defines for details.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend of the certificate. Not used by now.</tag>
- *		<tag name="TAG_X509_THUMBPRINT" required="optional">Thumbprint of certificate calculated by the runtime system of the last received certificate.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *		<tag name="TAG_X509_CERT" required="required">Certificate in ASN.1 format. This tag may occur multiple times.</tag>
- *		<tag name="TAG_X509_THUMBPRINT" required="required">Thumbprint of certificate calculated by the runtime system.</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	List certificate use service. This service return a list of all registered servers or clients that need their own certificates. This can be used to generate the needed
- *  self signed certificates or to generate the corresponding certificate requests. If a certificate is available for a dedicated use case the thumbprint of this certificate
- *  will be put the the service response. This allows to display the corresponding certificate.
- *  If the complete list of use cases can't be transmitted in one single service it will be split up. In this case the service return ERR_ENTRIES_REMAINING to indicate that more use 
- *  cases are available. The get the next junk of use cases is identified by the last usecases index.
- * </Description>
- * <service name="SRV_X509_LIST_USECASES">
- *	<Request>
- *      <tag name="TAG_X509_USECASE" required="optional">[RTS_UI32]: If the last service returned ERR_ENTRIES_REMAINING this is the ID of the last received use case.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *      <tag name="TAG_X509_USECASE_DETAILS" required="required">
- *		    <tag name="TAG_X509_USECASE" required="required">[RTS_UI32]: ID of the use case.</tag>
- *          <tag name="TAG_X509_USECASE_COMPONENT" required="required">[String]: Component which registered the use case.</tag>
- *          <tag name="TAG_X509_USECASE_NAME" required="optional">[String]: Name of the usecase. Provided by the component.</tag>
- *          <tag name="TAG_X509_USECASE_DESC" required="optional">[String]: Description of the use case. Provided by the component.</tag>
- *          <tag name="TAG_X509_SUBJECT_ID" required="optional">[String]: OID of the current subject field. Always exists with the following TAG_X509_SUBJECT_VALUE field. Sequenz is likley to be repeated</tag>
- *          <tag name="TAG_X509_SUBJECT_VALUE" required="optional">[String]: Value of the current subject field.</tag>
- *          <tag name="TAG_X509_ALT_NAME_EMAIL" required="optional">[String]: Alternative name containing an email address.</tag>
- *          <tag name="TAG_X509_ALT_NAME_DNSNAME" required="optional">[String]: Alternative name containing the DNS name.</tag>
- *          <tag name="TAG_X509_ALT_NAME_URI" required="optional">[String]: Alternative name containing the URI</tag>
- *          <tag name="TAG_X509_ALT_NAME_IPADDRESS" required="optional">[String]: Alternative name containing the IP-Address.</tag>
- *          <tag name="TAG_X509_ALT_NAME_REGISTEREDID" required="optional">[String]: Alternative name containing an OID in textual representation.</tag>
- *          <tag name="TAG_X509_KEYUSAGE" required="optional">[RTS_UI32]: Key usage of the certificate. See: RTS_KEY_USAGE_DIGITAL_* macros.</tag>
- *          <tag name="TAG_X509_EXT_KEYUSAGE" required="optional">[String]: Extended key usage identified by its textual representation. Can occur multiple times.</tag>
- *          <tag name="TAG_X509_THUMBPRINT" required="optional">Thumbprint of the certificate available for this use case. Left out if no certificate is available.</tag>
- *          <tag name="TAG_X509_GEN_SELF_SIGNED" required="optional">[Empty tag]: A self signed certificate is beeing generated at the moment.</tag>
- *          <tag name="TAG_X509_GEN_CSR" required="optional">[Empty tag]: A certificate request is beeing generated at the moment.</tag>
- *      </tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Generate self signed certificate service. This service is used to generate a self signed certificate for a registered use case. 
- *  This service will also generate the private key used by the new certificate.
- *  Since this service changes the security configuration of the PLC administrator rights are needed to execute this service.
- * Repeat this service 
- * </Description>
- * <service name="SRV_X509_CREATE_SELFSIGNED">
- *	<Request>
- *		<tag name="TAG_X509_USECASE" required="required">[RTS_UI32]: Usecase ID which the certificate is generated for.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Backend where to store the certificate. Not used by now.</tag>
- *      <tag name="TAG_X509_KEY_LENGTH" required="optional">[RTS_UI32]: The length of the asymmetric key pair in bits. If left out the default (see MinAsymmetricKeySize) will be used.</tag>
- *      <tag name="TAG_X509_DAYS_VALID" required="optional">[RTS_UI32]: Number of days the self signed certificate is valid.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *		<tag name="TAG_X509_STATUS_HANDLE" required="required">[RTS_UI16]: Result code of online operation</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Generate certificate signing request service. This service is used to generate a certificate signing request (CSR) for a registered use case.
- *  The private key is stored on the PLC. If the certificate has been generated by a CA this certificate has to be imported to the own store.
- * </Description>
- * <service name="SRV_X509_CREATE_REQUEST">
- *	<Request>
- *		<tag name="TAG_X509_USECASE" required="required">[RTS_UI32]: Usecase ID which the CSR is generated for.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Backend where to store the private key. Not used by now.</tag>
- *      <tag name="TAG_X509_KEY_LENGTH" required="optional">[RTS_UI32]: The length of the asymmetric key pair in bits. If left out the default (see MinAsymmetricKeySize) will be used.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *		<tag name="TAG_X509_CSR" required="optional">The generated CSR in ASN.1 encoding.</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Get the status of long lasting operation. Actually this is used for generating self signed certificates.
- * </Description>
- * <service name="SRV_X509_GET_STATUS">
- *	<Request>
- *      <tag name="TAG_X509_OPERATION" required="required">[RTS_UI32]: Identifier of the operation. Use the service wating for as ID.</tag>
- *		<tag name="TAG_X509_STATUS_HANDLE" required="required">[RTS_UI32]: Usecase ID which the CSR is generated for.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation. 
- *              ERR_OK: Operation finished. 
- *              ERR_INVALID_HANDLE: TAG_X509_STATUS_HANDLE was invalid. 
- *              ERR_PENDING: Operations still running. 
- *              ERR_FAILED: Operations failed.
- *      </tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Static defines</category>
- * <description>Predefined objects in the runtime</description>
- */
-#define USERDB_OBJECT_X509				        "Device.X509"
-#define USERDB_OBJECT_X509_IMPORT_CERT          "Device.X509.ImportCertificate"
-#define USERDB_OBJECT_X509_EXPORT_CERT          "Device.X509.ExportCertificate"
-#define USERDB_OBJECT_X509_DELETE_CERT          "Device.X509.DeleteCertificate"
-#define USERDB_OBJECT_X509_MOVE_CERT            "Device.X509.MoveCertificate"
-#define USERDB_OBJECT_X509_LIST_CERTS           "Device.X509.ListCertificates"
-#define USERDB_OBJECT_X509_LIST_USE_CASES       "Device.X509.ListUseCases"
-#define USERDB_OBJECT_X509_CREATE_SELFSIGNED    "Device.X509.CreateSelfSignedCertificate"
-#define USERDB_OBJECT_X509_CREATE_CSR           "Device.X509.CreateCertificateSigningRequest"
-#define USERDB_OBJECT_X509_GET_STAUTS           "Device.X509.GetStatus"
-#define USERDB_OBJECT_X509_UNKNOWN              "Device.X509.Unknown"
-
-
-
-
 
 
 
@@ -403,10 +135,6 @@ extern "C" {
 #define RTSX509CERTFILTERTYPE_TRUST_LEVEL    RTS_IEC_INT_C(0x0)	
 #define RTSX509CERTFILTERTYPE_SUBJECT    RTS_IEC_INT_C(0x1)	
 #define RTSX509CERTFILTERTYPE_SUBJECT_MATCHALL    RTS_IEC_INT_C(0x2)	
-#define RTSX509CERTFILTERTYPE_CERT_DATEVALID    RTS_IEC_INT_C(0x3)	
-#define RTSX509CERTFILTERTYPE_CERT_KEYUSAGE    RTS_IEC_INT_C(0x4)	
-#define RTSX509CERTFILTERTYPE_CERT_EXKEYUSAGE    RTS_IEC_INT_C(0x5)	
-#define RTSX509CERTFILTERTYPE_CERT_THUMBPRINT    RTS_IEC_INT_C(0x6)	
 /* Typed enum definition */
 #define RTSX509CERTFILTERTYPE    RTS_IEC_INT
 
@@ -478,24 +206,12 @@ typedef struct tagRtsX509CertName
 } RtsX509CertName;
 
 /**
- * <description>RtsX509ExKeyUsage</description>
- */
-typedef struct tagRtsX509ExKeyUsage
-{
-	RTS_IEC_UDINT numOfExKeyUsages;		/* Number of extended key usages */
-	RtsOID *pExKeyUsages;		/* Pointer to a list of extended key usages. */
-} RtsX509ExKeyUsage;
-
-/**
  * <description>RtsX509CertFilterContent</description>
  */
 typedef union
 {
 	RTS_IEC_INT trustLevel;		
 	RtsX509CertName *subject;		
-	RTS_IEC_UDINT keyUsage;		
-	RtsX509ExKeyUsage *exKeyUsage;		
-	RtsByteString *thumpbrint;		
 } RtsX509CertFilterContent;
 
 /**
@@ -554,35 +270,35 @@ typedef void (CDECL CDECL_EXT* PFRTSOIDCLEAR_IEC) (rtsoidclear_struct *p);
 	#define GET_rtsoidclear(fl)  CAL_CMGETAPI( "rtsoidclear" ) 
 	#define CAL_rtsoidclear  rtsoidclear
 	#define CHK_rtsoidclear  TRUE
-	#define EXP_rtsoidclear  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidclear", (RTS_UINTPTR)rtsoidclear, 1, 0xB53A1CAF, 0x03050B00) 
+	#define EXP_rtsoidclear  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidclear", (RTS_UINTPTR)rtsoidclear, 1, 0xB53A1CAF, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_rtsoidclear
 	#define EXT_rtsoidclear
 	#define GET_rtsoidclear(fl)  CAL_CMGETAPI( "rtsoidclear" ) 
 	#define CAL_rtsoidclear  rtsoidclear
 	#define CHK_rtsoidclear  TRUE
-	#define EXP_rtsoidclear  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidclear", (RTS_UINTPTR)rtsoidclear, 1, 0xB53A1CAF, 0x03050B00) 
+	#define EXP_rtsoidclear  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidclear", (RTS_UINTPTR)rtsoidclear, 1, 0xB53A1CAF, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certrtsoidclear
 	#define EXT_CmpX509Certrtsoidclear
 	#define GET_CmpX509Certrtsoidclear  ERR_OK
 	#define CAL_CmpX509Certrtsoidclear  rtsoidclear
 	#define CHK_CmpX509Certrtsoidclear  TRUE
-	#define EXP_CmpX509Certrtsoidclear  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidclear", (RTS_UINTPTR)rtsoidclear, 1, 0xB53A1CAF, 0x03050B00) 
+	#define EXP_CmpX509Certrtsoidclear  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidclear", (RTS_UINTPTR)rtsoidclear, 1, 0xB53A1CAF, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_rtsoidclear
 	#define EXT_rtsoidclear
 	#define GET_rtsoidclear(fl)  CAL_CMGETAPI( "rtsoidclear" ) 
 	#define CAL_rtsoidclear  rtsoidclear
 	#define CHK_rtsoidclear  TRUE
-	#define EXP_rtsoidclear  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidclear", (RTS_UINTPTR)rtsoidclear, 1, 0xB53A1CAF, 0x03050B00) 
+	#define EXP_rtsoidclear  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidclear", (RTS_UINTPTR)rtsoidclear, 1, 0xB53A1CAF, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_rtsoidclear  PFRTSOIDCLEAR_IEC pfrtsoidclear;
 	#define EXT_rtsoidclear  extern PFRTSOIDCLEAR_IEC pfrtsoidclear;
-	#define GET_rtsoidclear(fl)  s_pfCMGetAPI2( "rtsoidclear", (RTS_VOID_FCTPTR *)&pfrtsoidclear, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xB53A1CAF, 0x03050B00)
+	#define GET_rtsoidclear(fl)  s_pfCMGetAPI2( "rtsoidclear", (RTS_VOID_FCTPTR *)&pfrtsoidclear, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xB53A1CAF, 0x03050A00)
 	#define CAL_rtsoidclear  pfrtsoidclear
 	#define CHK_rtsoidclear  (pfrtsoidclear != NULL)
-	#define EXP_rtsoidclear   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidclear", (RTS_UINTPTR)rtsoidclear, 1, 0xB53A1CAF, 0x03050B00) 
+	#define EXP_rtsoidclear   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidclear", (RTS_UINTPTR)rtsoidclear, 1, 0xB53A1CAF, 0x03050A00) 
 #endif
 
 
@@ -612,35 +328,35 @@ typedef void (CDECL CDECL_EXT* PFRTSOIDCREATE_IEC) (rtsoidcreate_struct *p);
 	#define GET_rtsoidcreate(fl)  CAL_CMGETAPI( "rtsoidcreate" ) 
 	#define CAL_rtsoidcreate  rtsoidcreate
 	#define CHK_rtsoidcreate  TRUE
-	#define EXP_rtsoidcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidcreate", (RTS_UINTPTR)rtsoidcreate, 1, 0xE11A70BD, 0x03050B00) 
+	#define EXP_rtsoidcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidcreate", (RTS_UINTPTR)rtsoidcreate, 1, 0xE11A70BD, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_rtsoidcreate
 	#define EXT_rtsoidcreate
 	#define GET_rtsoidcreate(fl)  CAL_CMGETAPI( "rtsoidcreate" ) 
 	#define CAL_rtsoidcreate  rtsoidcreate
 	#define CHK_rtsoidcreate  TRUE
-	#define EXP_rtsoidcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidcreate", (RTS_UINTPTR)rtsoidcreate, 1, 0xE11A70BD, 0x03050B00) 
+	#define EXP_rtsoidcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidcreate", (RTS_UINTPTR)rtsoidcreate, 1, 0xE11A70BD, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certrtsoidcreate
 	#define EXT_CmpX509Certrtsoidcreate
 	#define GET_CmpX509Certrtsoidcreate  ERR_OK
 	#define CAL_CmpX509Certrtsoidcreate  rtsoidcreate
 	#define CHK_CmpX509Certrtsoidcreate  TRUE
-	#define EXP_CmpX509Certrtsoidcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidcreate", (RTS_UINTPTR)rtsoidcreate, 1, 0xE11A70BD, 0x03050B00) 
+	#define EXP_CmpX509Certrtsoidcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidcreate", (RTS_UINTPTR)rtsoidcreate, 1, 0xE11A70BD, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_rtsoidcreate
 	#define EXT_rtsoidcreate
 	#define GET_rtsoidcreate(fl)  CAL_CMGETAPI( "rtsoidcreate" ) 
 	#define CAL_rtsoidcreate  rtsoidcreate
 	#define CHK_rtsoidcreate  TRUE
-	#define EXP_rtsoidcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidcreate", (RTS_UINTPTR)rtsoidcreate, 1, 0xE11A70BD, 0x03050B00) 
+	#define EXP_rtsoidcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidcreate", (RTS_UINTPTR)rtsoidcreate, 1, 0xE11A70BD, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_rtsoidcreate  PFRTSOIDCREATE_IEC pfrtsoidcreate;
 	#define EXT_rtsoidcreate  extern PFRTSOIDCREATE_IEC pfrtsoidcreate;
-	#define GET_rtsoidcreate(fl)  s_pfCMGetAPI2( "rtsoidcreate", (RTS_VOID_FCTPTR *)&pfrtsoidcreate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE11A70BD, 0x03050B00)
+	#define GET_rtsoidcreate(fl)  s_pfCMGetAPI2( "rtsoidcreate", (RTS_VOID_FCTPTR *)&pfrtsoidcreate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE11A70BD, 0x03050A00)
 	#define CAL_rtsoidcreate  pfrtsoidcreate
 	#define CHK_rtsoidcreate  (pfrtsoidcreate != NULL)
-	#define EXP_rtsoidcreate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidcreate", (RTS_UINTPTR)rtsoidcreate, 1, 0xE11A70BD, 0x03050B00) 
+	#define EXP_rtsoidcreate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidcreate", (RTS_UINTPTR)rtsoidcreate, 1, 0xE11A70BD, 0x03050A00) 
 #endif
 
 
@@ -670,35 +386,35 @@ typedef void (CDECL CDECL_EXT* PFRTSOIDGETID_IEC) (rtsoidgetid_struct *p);
 	#define GET_rtsoidgetid(fl)  CAL_CMGETAPI( "rtsoidgetid" ) 
 	#define CAL_rtsoidgetid  rtsoidgetid
 	#define CHK_rtsoidgetid  TRUE
-	#define EXP_rtsoidgetid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetid", (RTS_UINTPTR)rtsoidgetid, 1, 0xB69D55FF, 0x03050B00) 
+	#define EXP_rtsoidgetid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetid", (RTS_UINTPTR)rtsoidgetid, 1, 0xB69D55FF, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_rtsoidgetid
 	#define EXT_rtsoidgetid
 	#define GET_rtsoidgetid(fl)  CAL_CMGETAPI( "rtsoidgetid" ) 
 	#define CAL_rtsoidgetid  rtsoidgetid
 	#define CHK_rtsoidgetid  TRUE
-	#define EXP_rtsoidgetid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetid", (RTS_UINTPTR)rtsoidgetid, 1, 0xB69D55FF, 0x03050B00) 
+	#define EXP_rtsoidgetid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetid", (RTS_UINTPTR)rtsoidgetid, 1, 0xB69D55FF, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certrtsoidgetid
 	#define EXT_CmpX509Certrtsoidgetid
 	#define GET_CmpX509Certrtsoidgetid  ERR_OK
 	#define CAL_CmpX509Certrtsoidgetid  rtsoidgetid
 	#define CHK_CmpX509Certrtsoidgetid  TRUE
-	#define EXP_CmpX509Certrtsoidgetid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetid", (RTS_UINTPTR)rtsoidgetid, 1, 0xB69D55FF, 0x03050B00) 
+	#define EXP_CmpX509Certrtsoidgetid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetid", (RTS_UINTPTR)rtsoidgetid, 1, 0xB69D55FF, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_rtsoidgetid
 	#define EXT_rtsoidgetid
 	#define GET_rtsoidgetid(fl)  CAL_CMGETAPI( "rtsoidgetid" ) 
 	#define CAL_rtsoidgetid  rtsoidgetid
 	#define CHK_rtsoidgetid  TRUE
-	#define EXP_rtsoidgetid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetid", (RTS_UINTPTR)rtsoidgetid, 1, 0xB69D55FF, 0x03050B00) 
+	#define EXP_rtsoidgetid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetid", (RTS_UINTPTR)rtsoidgetid, 1, 0xB69D55FF, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_rtsoidgetid  PFRTSOIDGETID_IEC pfrtsoidgetid;
 	#define EXT_rtsoidgetid  extern PFRTSOIDGETID_IEC pfrtsoidgetid;
-	#define GET_rtsoidgetid(fl)  s_pfCMGetAPI2( "rtsoidgetid", (RTS_VOID_FCTPTR *)&pfrtsoidgetid, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xB69D55FF, 0x03050B00)
+	#define GET_rtsoidgetid(fl)  s_pfCMGetAPI2( "rtsoidgetid", (RTS_VOID_FCTPTR *)&pfrtsoidgetid, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xB69D55FF, 0x03050A00)
 	#define CAL_rtsoidgetid  pfrtsoidgetid
 	#define CHK_rtsoidgetid  (pfrtsoidgetid != NULL)
-	#define EXP_rtsoidgetid   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetid", (RTS_UINTPTR)rtsoidgetid, 1, 0xB69D55FF, 0x03050B00) 
+	#define EXP_rtsoidgetid   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetid", (RTS_UINTPTR)rtsoidgetid, 1, 0xB69D55FF, 0x03050A00) 
 #endif
 
 
@@ -729,35 +445,35 @@ typedef void (CDECL CDECL_EXT* PFRTSOIDGETNAME_IEC) (rtsoidgetname_struct *p);
 	#define GET_rtsoidgetname(fl)  CAL_CMGETAPI( "rtsoidgetname" ) 
 	#define CAL_rtsoidgetname  rtsoidgetname
 	#define CHK_rtsoidgetname  TRUE
-	#define EXP_rtsoidgetname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetname", (RTS_UINTPTR)rtsoidgetname, 1, 0xBEA6E204, 0x03050B00) 
+	#define EXP_rtsoidgetname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetname", (RTS_UINTPTR)rtsoidgetname, 1, 0xBEA6E204, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_rtsoidgetname
 	#define EXT_rtsoidgetname
 	#define GET_rtsoidgetname(fl)  CAL_CMGETAPI( "rtsoidgetname" ) 
 	#define CAL_rtsoidgetname  rtsoidgetname
 	#define CHK_rtsoidgetname  TRUE
-	#define EXP_rtsoidgetname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetname", (RTS_UINTPTR)rtsoidgetname, 1, 0xBEA6E204, 0x03050B00) 
+	#define EXP_rtsoidgetname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetname", (RTS_UINTPTR)rtsoidgetname, 1, 0xBEA6E204, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certrtsoidgetname
 	#define EXT_CmpX509Certrtsoidgetname
 	#define GET_CmpX509Certrtsoidgetname  ERR_OK
 	#define CAL_CmpX509Certrtsoidgetname  rtsoidgetname
 	#define CHK_CmpX509Certrtsoidgetname  TRUE
-	#define EXP_CmpX509Certrtsoidgetname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetname", (RTS_UINTPTR)rtsoidgetname, 1, 0xBEA6E204, 0x03050B00) 
+	#define EXP_CmpX509Certrtsoidgetname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetname", (RTS_UINTPTR)rtsoidgetname, 1, 0xBEA6E204, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_rtsoidgetname
 	#define EXT_rtsoidgetname
 	#define GET_rtsoidgetname(fl)  CAL_CMGETAPI( "rtsoidgetname" ) 
 	#define CAL_rtsoidgetname  rtsoidgetname
 	#define CHK_rtsoidgetname  TRUE
-	#define EXP_rtsoidgetname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetname", (RTS_UINTPTR)rtsoidgetname, 1, 0xBEA6E204, 0x03050B00) 
+	#define EXP_rtsoidgetname  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetname", (RTS_UINTPTR)rtsoidgetname, 1, 0xBEA6E204, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_rtsoidgetname  PFRTSOIDGETNAME_IEC pfrtsoidgetname;
 	#define EXT_rtsoidgetname  extern PFRTSOIDGETNAME_IEC pfrtsoidgetname;
-	#define GET_rtsoidgetname(fl)  s_pfCMGetAPI2( "rtsoidgetname", (RTS_VOID_FCTPTR *)&pfrtsoidgetname, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xBEA6E204, 0x03050B00)
+	#define GET_rtsoidgetname(fl)  s_pfCMGetAPI2( "rtsoidgetname", (RTS_VOID_FCTPTR *)&pfrtsoidgetname, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xBEA6E204, 0x03050A00)
 	#define CAL_rtsoidgetname  pfrtsoidgetname
 	#define CHK_rtsoidgetname  (pfrtsoidgetname != NULL)
-	#define EXP_rtsoidgetname   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetname", (RTS_UINTPTR)rtsoidgetname, 1, 0xBEA6E204, 0x03050B00) 
+	#define EXP_rtsoidgetname   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"rtsoidgetname", (RTS_UINTPTR)rtsoidgetname, 1, 0xBEA6E204, 0x03050A00) 
 #endif
 
 
@@ -786,35 +502,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTCLOSE_IEC) (x509certclose_struct *p);
 	#define GET_x509certclose(fl)  CAL_CMGETAPI( "x509certclose" ) 
 	#define CAL_x509certclose  x509certclose
 	#define CHK_x509certclose  TRUE
-	#define EXP_x509certclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certclose", (RTS_UINTPTR)x509certclose, 1, 0x150A5E6B, 0x03050B00) 
+	#define EXP_x509certclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certclose", (RTS_UINTPTR)x509certclose, 1, 0x150A5E6B, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certclose
 	#define EXT_x509certclose
 	#define GET_x509certclose(fl)  CAL_CMGETAPI( "x509certclose" ) 
 	#define CAL_x509certclose  x509certclose
 	#define CHK_x509certclose  TRUE
-	#define EXP_x509certclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certclose", (RTS_UINTPTR)x509certclose, 1, 0x150A5E6B, 0x03050B00) 
+	#define EXP_x509certclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certclose", (RTS_UINTPTR)x509certclose, 1, 0x150A5E6B, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certclose
 	#define EXT_CmpX509Certx509certclose
 	#define GET_CmpX509Certx509certclose  ERR_OK
 	#define CAL_CmpX509Certx509certclose  x509certclose
 	#define CHK_CmpX509Certx509certclose  TRUE
-	#define EXP_CmpX509Certx509certclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certclose", (RTS_UINTPTR)x509certclose, 1, 0x150A5E6B, 0x03050B00) 
+	#define EXP_CmpX509Certx509certclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certclose", (RTS_UINTPTR)x509certclose, 1, 0x150A5E6B, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certclose
 	#define EXT_x509certclose
 	#define GET_x509certclose(fl)  CAL_CMGETAPI( "x509certclose" ) 
 	#define CAL_x509certclose  x509certclose
 	#define CHK_x509certclose  TRUE
-	#define EXP_x509certclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certclose", (RTS_UINTPTR)x509certclose, 1, 0x150A5E6B, 0x03050B00) 
+	#define EXP_x509certclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certclose", (RTS_UINTPTR)x509certclose, 1, 0x150A5E6B, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certclose  PFX509CERTCLOSE_IEC pfx509certclose;
 	#define EXT_x509certclose  extern PFX509CERTCLOSE_IEC pfx509certclose;
-	#define GET_x509certclose(fl)  s_pfCMGetAPI2( "x509certclose", (RTS_VOID_FCTPTR *)&pfx509certclose, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x150A5E6B, 0x03050B00)
+	#define GET_x509certclose(fl)  s_pfCMGetAPI2( "x509certclose", (RTS_VOID_FCTPTR *)&pfx509certclose, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x150A5E6B, 0x03050A00)
 	#define CAL_x509certclose  pfx509certclose
 	#define CHK_x509certclose  (pfx509certclose != NULL)
-	#define EXP_x509certclose   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certclose", (RTS_UINTPTR)x509certclose, 1, 0x150A5E6B, 0x03050B00) 
+	#define EXP_x509certclose   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certclose", (RTS_UINTPTR)x509certclose, 1, 0x150A5E6B, 0x03050A00) 
 #endif
 
 
@@ -846,35 +562,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTCMSDECRYPT_IEC) (x509certcmsdecrypt_str
 	#define GET_x509certcmsdecrypt(fl)  CAL_CMGETAPI( "x509certcmsdecrypt" ) 
 	#define CAL_x509certcmsdecrypt  x509certcmsdecrypt
 	#define CHK_x509certcmsdecrypt  TRUE
-	#define EXP_x509certcmsdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsdecrypt", (RTS_UINTPTR)x509certcmsdecrypt, 1, 0xCCAD85D1, 0x03050B00) 
+	#define EXP_x509certcmsdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsdecrypt", (RTS_UINTPTR)x509certcmsdecrypt, 1, 0xCCAD85D1, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certcmsdecrypt
 	#define EXT_x509certcmsdecrypt
 	#define GET_x509certcmsdecrypt(fl)  CAL_CMGETAPI( "x509certcmsdecrypt" ) 
 	#define CAL_x509certcmsdecrypt  x509certcmsdecrypt
 	#define CHK_x509certcmsdecrypt  TRUE
-	#define EXP_x509certcmsdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsdecrypt", (RTS_UINTPTR)x509certcmsdecrypt, 1, 0xCCAD85D1, 0x03050B00) 
+	#define EXP_x509certcmsdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsdecrypt", (RTS_UINTPTR)x509certcmsdecrypt, 1, 0xCCAD85D1, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certcmsdecrypt
 	#define EXT_CmpX509Certx509certcmsdecrypt
 	#define GET_CmpX509Certx509certcmsdecrypt  ERR_OK
 	#define CAL_CmpX509Certx509certcmsdecrypt  x509certcmsdecrypt
 	#define CHK_CmpX509Certx509certcmsdecrypt  TRUE
-	#define EXP_CmpX509Certx509certcmsdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsdecrypt", (RTS_UINTPTR)x509certcmsdecrypt, 1, 0xCCAD85D1, 0x03050B00) 
+	#define EXP_CmpX509Certx509certcmsdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsdecrypt", (RTS_UINTPTR)x509certcmsdecrypt, 1, 0xCCAD85D1, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certcmsdecrypt
 	#define EXT_x509certcmsdecrypt
 	#define GET_x509certcmsdecrypt(fl)  CAL_CMGETAPI( "x509certcmsdecrypt" ) 
 	#define CAL_x509certcmsdecrypt  x509certcmsdecrypt
 	#define CHK_x509certcmsdecrypt  TRUE
-	#define EXP_x509certcmsdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsdecrypt", (RTS_UINTPTR)x509certcmsdecrypt, 1, 0xCCAD85D1, 0x03050B00) 
+	#define EXP_x509certcmsdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsdecrypt", (RTS_UINTPTR)x509certcmsdecrypt, 1, 0xCCAD85D1, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certcmsdecrypt  PFX509CERTCMSDECRYPT_IEC pfx509certcmsdecrypt;
 	#define EXT_x509certcmsdecrypt  extern PFX509CERTCMSDECRYPT_IEC pfx509certcmsdecrypt;
-	#define GET_x509certcmsdecrypt(fl)  s_pfCMGetAPI2( "x509certcmsdecrypt", (RTS_VOID_FCTPTR *)&pfx509certcmsdecrypt, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xCCAD85D1, 0x03050B00)
+	#define GET_x509certcmsdecrypt(fl)  s_pfCMGetAPI2( "x509certcmsdecrypt", (RTS_VOID_FCTPTR *)&pfx509certcmsdecrypt, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xCCAD85D1, 0x03050A00)
 	#define CAL_x509certcmsdecrypt  pfx509certcmsdecrypt
 	#define CHK_x509certcmsdecrypt  (pfx509certcmsdecrypt != NULL)
-	#define EXP_x509certcmsdecrypt   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsdecrypt", (RTS_UINTPTR)x509certcmsdecrypt, 1, 0xCCAD85D1, 0x03050B00) 
+	#define EXP_x509certcmsdecrypt   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsdecrypt", (RTS_UINTPTR)x509certcmsdecrypt, 1, 0xCCAD85D1, 0x03050A00) 
 #endif
 
 
@@ -906,35 +622,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTCMSVERIFY_IEC) (x509certcmsverify_struc
 	#define GET_x509certcmsverify(fl)  CAL_CMGETAPI( "x509certcmsverify" ) 
 	#define CAL_x509certcmsverify  x509certcmsverify
 	#define CHK_x509certcmsverify  TRUE
-	#define EXP_x509certcmsverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsverify", (RTS_UINTPTR)x509certcmsverify, 1, 0x73653424, 0x03050B00) 
+	#define EXP_x509certcmsverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsverify", (RTS_UINTPTR)x509certcmsverify, 1, 0x73653424, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certcmsverify
 	#define EXT_x509certcmsverify
 	#define GET_x509certcmsverify(fl)  CAL_CMGETAPI( "x509certcmsverify" ) 
 	#define CAL_x509certcmsverify  x509certcmsverify
 	#define CHK_x509certcmsverify  TRUE
-	#define EXP_x509certcmsverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsverify", (RTS_UINTPTR)x509certcmsverify, 1, 0x73653424, 0x03050B00) 
+	#define EXP_x509certcmsverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsverify", (RTS_UINTPTR)x509certcmsverify, 1, 0x73653424, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certcmsverify
 	#define EXT_CmpX509Certx509certcmsverify
 	#define GET_CmpX509Certx509certcmsverify  ERR_OK
 	#define CAL_CmpX509Certx509certcmsverify  x509certcmsverify
 	#define CHK_CmpX509Certx509certcmsverify  TRUE
-	#define EXP_CmpX509Certx509certcmsverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsverify", (RTS_UINTPTR)x509certcmsverify, 1, 0x73653424, 0x03050B00) 
+	#define EXP_CmpX509Certx509certcmsverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsverify", (RTS_UINTPTR)x509certcmsverify, 1, 0x73653424, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certcmsverify
 	#define EXT_x509certcmsverify
 	#define GET_x509certcmsverify(fl)  CAL_CMGETAPI( "x509certcmsverify" ) 
 	#define CAL_x509certcmsverify  x509certcmsverify
 	#define CHK_x509certcmsverify  TRUE
-	#define EXP_x509certcmsverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsverify", (RTS_UINTPTR)x509certcmsverify, 1, 0x73653424, 0x03050B00) 
+	#define EXP_x509certcmsverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsverify", (RTS_UINTPTR)x509certcmsverify, 1, 0x73653424, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certcmsverify  PFX509CERTCMSVERIFY_IEC pfx509certcmsverify;
 	#define EXT_x509certcmsverify  extern PFX509CERTCMSVERIFY_IEC pfx509certcmsverify;
-	#define GET_x509certcmsverify(fl)  s_pfCMGetAPI2( "x509certcmsverify", (RTS_VOID_FCTPTR *)&pfx509certcmsverify, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x73653424, 0x03050B00)
+	#define GET_x509certcmsverify(fl)  s_pfCMGetAPI2( "x509certcmsverify", (RTS_VOID_FCTPTR *)&pfx509certcmsverify, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x73653424, 0x03050A00)
 	#define CAL_x509certcmsverify  pfx509certcmsverify
 	#define CHK_x509certcmsverify  (pfx509certcmsverify != NULL)
-	#define EXP_x509certcmsverify   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsverify", (RTS_UINTPTR)x509certcmsverify, 1, 0x73653424, 0x03050B00) 
+	#define EXP_x509certcmsverify   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcmsverify", (RTS_UINTPTR)x509certcmsverify, 1, 0x73653424, 0x03050A00) 
 #endif
 
 
@@ -967,35 +683,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTCREATECSR_IEC) (x509certcreatecsr_struc
 	#define GET_x509certcreatecsr(fl)  CAL_CMGETAPI( "x509certcreatecsr" ) 
 	#define CAL_x509certcreatecsr  x509certcreatecsr
 	#define CHK_x509certcreatecsr  TRUE
-	#define EXP_x509certcreatecsr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreatecsr", (RTS_UINTPTR)x509certcreatecsr, 1, 0xF64C1D04, 0x03050B00) 
+	#define EXP_x509certcreatecsr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreatecsr", (RTS_UINTPTR)x509certcreatecsr, 1, 0xF64C1D04, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certcreatecsr
 	#define EXT_x509certcreatecsr
 	#define GET_x509certcreatecsr(fl)  CAL_CMGETAPI( "x509certcreatecsr" ) 
 	#define CAL_x509certcreatecsr  x509certcreatecsr
 	#define CHK_x509certcreatecsr  TRUE
-	#define EXP_x509certcreatecsr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreatecsr", (RTS_UINTPTR)x509certcreatecsr, 1, 0xF64C1D04, 0x03050B00) 
+	#define EXP_x509certcreatecsr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreatecsr", (RTS_UINTPTR)x509certcreatecsr, 1, 0xF64C1D04, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certcreatecsr
 	#define EXT_CmpX509Certx509certcreatecsr
 	#define GET_CmpX509Certx509certcreatecsr  ERR_OK
 	#define CAL_CmpX509Certx509certcreatecsr  x509certcreatecsr
 	#define CHK_CmpX509Certx509certcreatecsr  TRUE
-	#define EXP_CmpX509Certx509certcreatecsr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreatecsr", (RTS_UINTPTR)x509certcreatecsr, 1, 0xF64C1D04, 0x03050B00) 
+	#define EXP_CmpX509Certx509certcreatecsr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreatecsr", (RTS_UINTPTR)x509certcreatecsr, 1, 0xF64C1D04, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certcreatecsr
 	#define EXT_x509certcreatecsr
 	#define GET_x509certcreatecsr(fl)  CAL_CMGETAPI( "x509certcreatecsr" ) 
 	#define CAL_x509certcreatecsr  x509certcreatecsr
 	#define CHK_x509certcreatecsr  TRUE
-	#define EXP_x509certcreatecsr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreatecsr", (RTS_UINTPTR)x509certcreatecsr, 1, 0xF64C1D04, 0x03050B00) 
+	#define EXP_x509certcreatecsr  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreatecsr", (RTS_UINTPTR)x509certcreatecsr, 1, 0xF64C1D04, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certcreatecsr  PFX509CERTCREATECSR_IEC pfx509certcreatecsr;
 	#define EXT_x509certcreatecsr  extern PFX509CERTCREATECSR_IEC pfx509certcreatecsr;
-	#define GET_x509certcreatecsr(fl)  s_pfCMGetAPI2( "x509certcreatecsr", (RTS_VOID_FCTPTR *)&pfx509certcreatecsr, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xF64C1D04, 0x03050B00)
+	#define GET_x509certcreatecsr(fl)  s_pfCMGetAPI2( "x509certcreatecsr", (RTS_VOID_FCTPTR *)&pfx509certcreatecsr, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xF64C1D04, 0x03050A00)
 	#define CAL_x509certcreatecsr  pfx509certcreatecsr
 	#define CHK_x509certcreatecsr  (pfx509certcreatecsr != NULL)
-	#define EXP_x509certcreatecsr   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreatecsr", (RTS_UINTPTR)x509certcreatecsr, 1, 0xF64C1D04, 0x03050B00) 
+	#define EXP_x509certcreatecsr   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreatecsr", (RTS_UINTPTR)x509certcreatecsr, 1, 0xF64C1D04, 0x03050A00) 
 #endif
 
 
@@ -1027,35 +743,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTCREATESELFSIGNED_IEC) (x509certcreatese
 	#define GET_x509certcreateselfsigned(fl)  CAL_CMGETAPI( "x509certcreateselfsigned" ) 
 	#define CAL_x509certcreateselfsigned  x509certcreateselfsigned
 	#define CHK_x509certcreateselfsigned  TRUE
-	#define EXP_x509certcreateselfsigned  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreateselfsigned", (RTS_UINTPTR)x509certcreateselfsigned, 1, 0x6765E8BD, 0x03050B00) 
+	#define EXP_x509certcreateselfsigned  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreateselfsigned", (RTS_UINTPTR)x509certcreateselfsigned, 1, 0x6765E8BD, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certcreateselfsigned
 	#define EXT_x509certcreateselfsigned
 	#define GET_x509certcreateselfsigned(fl)  CAL_CMGETAPI( "x509certcreateselfsigned" ) 
 	#define CAL_x509certcreateselfsigned  x509certcreateselfsigned
 	#define CHK_x509certcreateselfsigned  TRUE
-	#define EXP_x509certcreateselfsigned  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreateselfsigned", (RTS_UINTPTR)x509certcreateselfsigned, 1, 0x6765E8BD, 0x03050B00) 
+	#define EXP_x509certcreateselfsigned  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreateselfsigned", (RTS_UINTPTR)x509certcreateselfsigned, 1, 0x6765E8BD, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certcreateselfsigned
 	#define EXT_CmpX509Certx509certcreateselfsigned
 	#define GET_CmpX509Certx509certcreateselfsigned  ERR_OK
 	#define CAL_CmpX509Certx509certcreateselfsigned  x509certcreateselfsigned
 	#define CHK_CmpX509Certx509certcreateselfsigned  TRUE
-	#define EXP_CmpX509Certx509certcreateselfsigned  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreateselfsigned", (RTS_UINTPTR)x509certcreateselfsigned, 1, 0x6765E8BD, 0x03050B00) 
+	#define EXP_CmpX509Certx509certcreateselfsigned  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreateselfsigned", (RTS_UINTPTR)x509certcreateselfsigned, 1, 0x6765E8BD, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certcreateselfsigned
 	#define EXT_x509certcreateselfsigned
 	#define GET_x509certcreateselfsigned(fl)  CAL_CMGETAPI( "x509certcreateselfsigned" ) 
 	#define CAL_x509certcreateselfsigned  x509certcreateselfsigned
 	#define CHK_x509certcreateselfsigned  TRUE
-	#define EXP_x509certcreateselfsigned  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreateselfsigned", (RTS_UINTPTR)x509certcreateselfsigned, 1, 0x6765E8BD, 0x03050B00) 
+	#define EXP_x509certcreateselfsigned  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreateselfsigned", (RTS_UINTPTR)x509certcreateselfsigned, 1, 0x6765E8BD, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certcreateselfsigned  PFX509CERTCREATESELFSIGNED_IEC pfx509certcreateselfsigned;
 	#define EXT_x509certcreateselfsigned  extern PFX509CERTCREATESELFSIGNED_IEC pfx509certcreateselfsigned;
-	#define GET_x509certcreateselfsigned(fl)  s_pfCMGetAPI2( "x509certcreateselfsigned", (RTS_VOID_FCTPTR *)&pfx509certcreateselfsigned, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6765E8BD, 0x03050B00)
+	#define GET_x509certcreateselfsigned(fl)  s_pfCMGetAPI2( "x509certcreateselfsigned", (RTS_VOID_FCTPTR *)&pfx509certcreateselfsigned, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6765E8BD, 0x03050A00)
 	#define CAL_x509certcreateselfsigned  pfx509certcreateselfsigned
 	#define CHK_x509certcreateselfsigned  (pfx509certcreateselfsigned != NULL)
-	#define EXP_x509certcreateselfsigned   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreateselfsigned", (RTS_UINTPTR)x509certcreateselfsigned, 1, 0x6765E8BD, 0x03050B00) 
+	#define EXP_x509certcreateselfsigned   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certcreateselfsigned", (RTS_UINTPTR)x509certcreateselfsigned, 1, 0x6765E8BD, 0x03050A00) 
 #endif
 
 
@@ -1087,35 +803,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTGETBINARY_IEC) (x509certgetbinary_struc
 	#define GET_x509certgetbinary(fl)  CAL_CMGETAPI( "x509certgetbinary" ) 
 	#define CAL_x509certgetbinary  x509certgetbinary
 	#define CHK_x509certgetbinary  TRUE
-	#define EXP_x509certgetbinary  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetbinary", (RTS_UINTPTR)x509certgetbinary, 1, 0x6F7D6C42, 0x03050B00) 
+	#define EXP_x509certgetbinary  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetbinary", (RTS_UINTPTR)x509certgetbinary, 1, 0x6F7D6C42, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certgetbinary
 	#define EXT_x509certgetbinary
 	#define GET_x509certgetbinary(fl)  CAL_CMGETAPI( "x509certgetbinary" ) 
 	#define CAL_x509certgetbinary  x509certgetbinary
 	#define CHK_x509certgetbinary  TRUE
-	#define EXP_x509certgetbinary  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetbinary", (RTS_UINTPTR)x509certgetbinary, 1, 0x6F7D6C42, 0x03050B00) 
+	#define EXP_x509certgetbinary  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetbinary", (RTS_UINTPTR)x509certgetbinary, 1, 0x6F7D6C42, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certgetbinary
 	#define EXT_CmpX509Certx509certgetbinary
 	#define GET_CmpX509Certx509certgetbinary  ERR_OK
 	#define CAL_CmpX509Certx509certgetbinary  x509certgetbinary
 	#define CHK_CmpX509Certx509certgetbinary  TRUE
-	#define EXP_CmpX509Certx509certgetbinary  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetbinary", (RTS_UINTPTR)x509certgetbinary, 1, 0x6F7D6C42, 0x03050B00) 
+	#define EXP_CmpX509Certx509certgetbinary  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetbinary", (RTS_UINTPTR)x509certgetbinary, 1, 0x6F7D6C42, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certgetbinary
 	#define EXT_x509certgetbinary
 	#define GET_x509certgetbinary(fl)  CAL_CMGETAPI( "x509certgetbinary" ) 
 	#define CAL_x509certgetbinary  x509certgetbinary
 	#define CHK_x509certgetbinary  TRUE
-	#define EXP_x509certgetbinary  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetbinary", (RTS_UINTPTR)x509certgetbinary, 1, 0x6F7D6C42, 0x03050B00) 
+	#define EXP_x509certgetbinary  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetbinary", (RTS_UINTPTR)x509certgetbinary, 1, 0x6F7D6C42, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certgetbinary  PFX509CERTGETBINARY_IEC pfx509certgetbinary;
 	#define EXT_x509certgetbinary  extern PFX509CERTGETBINARY_IEC pfx509certgetbinary;
-	#define GET_x509certgetbinary(fl)  s_pfCMGetAPI2( "x509certgetbinary", (RTS_VOID_FCTPTR *)&pfx509certgetbinary, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6F7D6C42, 0x03050B00)
+	#define GET_x509certgetbinary(fl)  s_pfCMGetAPI2( "x509certgetbinary", (RTS_VOID_FCTPTR *)&pfx509certgetbinary, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6F7D6C42, 0x03050A00)
 	#define CAL_x509certgetbinary  pfx509certgetbinary
 	#define CHK_x509certgetbinary  (pfx509certgetbinary != NULL)
-	#define EXP_x509certgetbinary   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetbinary", (RTS_UINTPTR)x509certgetbinary, 1, 0x6F7D6C42, 0x03050B00) 
+	#define EXP_x509certgetbinary   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetbinary", (RTS_UINTPTR)x509certgetbinary, 1, 0x6F7D6C42, 0x03050A00) 
 #endif
 
 
@@ -1145,35 +861,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTGETCONTENT_IEC) (x509certgetcontent_str
 	#define GET_x509certgetcontent(fl)  CAL_CMGETAPI( "x509certgetcontent" ) 
 	#define CAL_x509certgetcontent  x509certgetcontent
 	#define CHK_x509certgetcontent  TRUE
-	#define EXP_x509certgetcontent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetcontent", (RTS_UINTPTR)x509certgetcontent, 1, 0xDA69570E, 0x03050B00) 
+	#define EXP_x509certgetcontent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetcontent", (RTS_UINTPTR)x509certgetcontent, 1, 0xDA69570E, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certgetcontent
 	#define EXT_x509certgetcontent
 	#define GET_x509certgetcontent(fl)  CAL_CMGETAPI( "x509certgetcontent" ) 
 	#define CAL_x509certgetcontent  x509certgetcontent
 	#define CHK_x509certgetcontent  TRUE
-	#define EXP_x509certgetcontent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetcontent", (RTS_UINTPTR)x509certgetcontent, 1, 0xDA69570E, 0x03050B00) 
+	#define EXP_x509certgetcontent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetcontent", (RTS_UINTPTR)x509certgetcontent, 1, 0xDA69570E, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certgetcontent
 	#define EXT_CmpX509Certx509certgetcontent
 	#define GET_CmpX509Certx509certgetcontent  ERR_OK
 	#define CAL_CmpX509Certx509certgetcontent  x509certgetcontent
 	#define CHK_CmpX509Certx509certgetcontent  TRUE
-	#define EXP_CmpX509Certx509certgetcontent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetcontent", (RTS_UINTPTR)x509certgetcontent, 1, 0xDA69570E, 0x03050B00) 
+	#define EXP_CmpX509Certx509certgetcontent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetcontent", (RTS_UINTPTR)x509certgetcontent, 1, 0xDA69570E, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certgetcontent
 	#define EXT_x509certgetcontent
 	#define GET_x509certgetcontent(fl)  CAL_CMGETAPI( "x509certgetcontent" ) 
 	#define CAL_x509certgetcontent  x509certgetcontent
 	#define CHK_x509certgetcontent  TRUE
-	#define EXP_x509certgetcontent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetcontent", (RTS_UINTPTR)x509certgetcontent, 1, 0xDA69570E, 0x03050B00) 
+	#define EXP_x509certgetcontent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetcontent", (RTS_UINTPTR)x509certgetcontent, 1, 0xDA69570E, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certgetcontent  PFX509CERTGETCONTENT_IEC pfx509certgetcontent;
 	#define EXT_x509certgetcontent  extern PFX509CERTGETCONTENT_IEC pfx509certgetcontent;
-	#define GET_x509certgetcontent(fl)  s_pfCMGetAPI2( "x509certgetcontent", (RTS_VOID_FCTPTR *)&pfx509certgetcontent, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xDA69570E, 0x03050B00)
+	#define GET_x509certgetcontent(fl)  s_pfCMGetAPI2( "x509certgetcontent", (RTS_VOID_FCTPTR *)&pfx509certgetcontent, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xDA69570E, 0x03050A00)
 	#define CAL_x509certgetcontent  pfx509certgetcontent
 	#define CHK_x509certgetcontent  (pfx509certgetcontent != NULL)
-	#define EXP_x509certgetcontent   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetcontent", (RTS_UINTPTR)x509certgetcontent, 1, 0xDA69570E, 0x03050B00) 
+	#define EXP_x509certgetcontent   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetcontent", (RTS_UINTPTR)x509certgetcontent, 1, 0xDA69570E, 0x03050A00) 
 #endif
 
 
@@ -1203,35 +919,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTGETPRIVATEKEY_IEC) (x509certgetprivatek
 	#define GET_x509certgetprivatekey(fl)  CAL_CMGETAPI( "x509certgetprivatekey" ) 
 	#define CAL_x509certgetprivatekey  x509certgetprivatekey
 	#define CHK_x509certgetprivatekey  TRUE
-	#define EXP_x509certgetprivatekey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetprivatekey", (RTS_UINTPTR)x509certgetprivatekey, 1, 0x279C9A63, 0x03050B00) 
+	#define EXP_x509certgetprivatekey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetprivatekey", (RTS_UINTPTR)x509certgetprivatekey, 1, 0x279C9A63, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certgetprivatekey
 	#define EXT_x509certgetprivatekey
 	#define GET_x509certgetprivatekey(fl)  CAL_CMGETAPI( "x509certgetprivatekey" ) 
 	#define CAL_x509certgetprivatekey  x509certgetprivatekey
 	#define CHK_x509certgetprivatekey  TRUE
-	#define EXP_x509certgetprivatekey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetprivatekey", (RTS_UINTPTR)x509certgetprivatekey, 1, 0x279C9A63, 0x03050B00) 
+	#define EXP_x509certgetprivatekey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetprivatekey", (RTS_UINTPTR)x509certgetprivatekey, 1, 0x279C9A63, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certgetprivatekey
 	#define EXT_CmpX509Certx509certgetprivatekey
 	#define GET_CmpX509Certx509certgetprivatekey  ERR_OK
 	#define CAL_CmpX509Certx509certgetprivatekey  x509certgetprivatekey
 	#define CHK_CmpX509Certx509certgetprivatekey  TRUE
-	#define EXP_CmpX509Certx509certgetprivatekey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetprivatekey", (RTS_UINTPTR)x509certgetprivatekey, 1, 0x279C9A63, 0x03050B00) 
+	#define EXP_CmpX509Certx509certgetprivatekey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetprivatekey", (RTS_UINTPTR)x509certgetprivatekey, 1, 0x279C9A63, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certgetprivatekey
 	#define EXT_x509certgetprivatekey
 	#define GET_x509certgetprivatekey(fl)  CAL_CMGETAPI( "x509certgetprivatekey" ) 
 	#define CAL_x509certgetprivatekey  x509certgetprivatekey
 	#define CHK_x509certgetprivatekey  TRUE
-	#define EXP_x509certgetprivatekey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetprivatekey", (RTS_UINTPTR)x509certgetprivatekey, 1, 0x279C9A63, 0x03050B00) 
+	#define EXP_x509certgetprivatekey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetprivatekey", (RTS_UINTPTR)x509certgetprivatekey, 1, 0x279C9A63, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certgetprivatekey  PFX509CERTGETPRIVATEKEY_IEC pfx509certgetprivatekey;
 	#define EXT_x509certgetprivatekey  extern PFX509CERTGETPRIVATEKEY_IEC pfx509certgetprivatekey;
-	#define GET_x509certgetprivatekey(fl)  s_pfCMGetAPI2( "x509certgetprivatekey", (RTS_VOID_FCTPTR *)&pfx509certgetprivatekey, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x279C9A63, 0x03050B00)
+	#define GET_x509certgetprivatekey(fl)  s_pfCMGetAPI2( "x509certgetprivatekey", (RTS_VOID_FCTPTR *)&pfx509certgetprivatekey, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x279C9A63, 0x03050A00)
 	#define CAL_x509certgetprivatekey  pfx509certgetprivatekey
 	#define CHK_x509certgetprivatekey  (pfx509certgetprivatekey != NULL)
-	#define EXP_x509certgetprivatekey   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetprivatekey", (RTS_UINTPTR)x509certgetprivatekey, 1, 0x279C9A63, 0x03050B00) 
+	#define EXP_x509certgetprivatekey   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetprivatekey", (RTS_UINTPTR)x509certgetprivatekey, 1, 0x279C9A63, 0x03050A00) 
 #endif
 
 
@@ -1266,35 +982,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTGETPUBLICKEY_IEC) (x509certgetpublickey
 	#define GET_x509certgetpublickey(fl)  CAL_CMGETAPI( "x509certgetpublickey" ) 
 	#define CAL_x509certgetpublickey  x509certgetpublickey
 	#define CHK_x509certgetpublickey  TRUE
-	#define EXP_x509certgetpublickey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetpublickey", (RTS_UINTPTR)x509certgetpublickey, 1, 0x35142E48, 0x03050B00) 
+	#define EXP_x509certgetpublickey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetpublickey", (RTS_UINTPTR)x509certgetpublickey, 1, 0x35142E48, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certgetpublickey
 	#define EXT_x509certgetpublickey
 	#define GET_x509certgetpublickey(fl)  CAL_CMGETAPI( "x509certgetpublickey" ) 
 	#define CAL_x509certgetpublickey  x509certgetpublickey
 	#define CHK_x509certgetpublickey  TRUE
-	#define EXP_x509certgetpublickey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetpublickey", (RTS_UINTPTR)x509certgetpublickey, 1, 0x35142E48, 0x03050B00) 
+	#define EXP_x509certgetpublickey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetpublickey", (RTS_UINTPTR)x509certgetpublickey, 1, 0x35142E48, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certgetpublickey
 	#define EXT_CmpX509Certx509certgetpublickey
 	#define GET_CmpX509Certx509certgetpublickey  ERR_OK
 	#define CAL_CmpX509Certx509certgetpublickey  x509certgetpublickey
 	#define CHK_CmpX509Certx509certgetpublickey  TRUE
-	#define EXP_CmpX509Certx509certgetpublickey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetpublickey", (RTS_UINTPTR)x509certgetpublickey, 1, 0x35142E48, 0x03050B00) 
+	#define EXP_CmpX509Certx509certgetpublickey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetpublickey", (RTS_UINTPTR)x509certgetpublickey, 1, 0x35142E48, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certgetpublickey
 	#define EXT_x509certgetpublickey
 	#define GET_x509certgetpublickey(fl)  CAL_CMGETAPI( "x509certgetpublickey" ) 
 	#define CAL_x509certgetpublickey  x509certgetpublickey
 	#define CHK_x509certgetpublickey  TRUE
-	#define EXP_x509certgetpublickey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetpublickey", (RTS_UINTPTR)x509certgetpublickey, 1, 0x35142E48, 0x03050B00) 
+	#define EXP_x509certgetpublickey  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetpublickey", (RTS_UINTPTR)x509certgetpublickey, 1, 0x35142E48, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certgetpublickey  PFX509CERTGETPUBLICKEY_IEC pfx509certgetpublickey;
 	#define EXT_x509certgetpublickey  extern PFX509CERTGETPUBLICKEY_IEC pfx509certgetpublickey;
-	#define GET_x509certgetpublickey(fl)  s_pfCMGetAPI2( "x509certgetpublickey", (RTS_VOID_FCTPTR *)&pfx509certgetpublickey, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x35142E48, 0x03050B00)
+	#define GET_x509certgetpublickey(fl)  s_pfCMGetAPI2( "x509certgetpublickey", (RTS_VOID_FCTPTR *)&pfx509certgetpublickey, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x35142E48, 0x03050A00)
 	#define CAL_x509certgetpublickey  pfx509certgetpublickey
 	#define CHK_x509certgetpublickey  (pfx509certgetpublickey != NULL)
-	#define EXP_x509certgetpublickey   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetpublickey", (RTS_UINTPTR)x509certgetpublickey, 1, 0x35142E48, 0x03050B00) 
+	#define EXP_x509certgetpublickey   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetpublickey", (RTS_UINTPTR)x509certgetpublickey, 1, 0x35142E48, 0x03050A00) 
 #endif
 
 
@@ -1326,35 +1042,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTGETTHUMBPRINT_IEC) (x509certgetthumbpri
 	#define GET_x509certgetthumbprint(fl)  CAL_CMGETAPI( "x509certgetthumbprint" ) 
 	#define CAL_x509certgetthumbprint  x509certgetthumbprint
 	#define CHK_x509certgetthumbprint  TRUE
-	#define EXP_x509certgetthumbprint  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetthumbprint", (RTS_UINTPTR)x509certgetthumbprint, 1, 0x5B1EA1C5, 0x03050B00) 
+	#define EXP_x509certgetthumbprint  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetthumbprint", (RTS_UINTPTR)x509certgetthumbprint, 1, 0x5B1EA1C5, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certgetthumbprint
 	#define EXT_x509certgetthumbprint
 	#define GET_x509certgetthumbprint(fl)  CAL_CMGETAPI( "x509certgetthumbprint" ) 
 	#define CAL_x509certgetthumbprint  x509certgetthumbprint
 	#define CHK_x509certgetthumbprint  TRUE
-	#define EXP_x509certgetthumbprint  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetthumbprint", (RTS_UINTPTR)x509certgetthumbprint, 1, 0x5B1EA1C5, 0x03050B00) 
+	#define EXP_x509certgetthumbprint  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetthumbprint", (RTS_UINTPTR)x509certgetthumbprint, 1, 0x5B1EA1C5, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certgetthumbprint
 	#define EXT_CmpX509Certx509certgetthumbprint
 	#define GET_CmpX509Certx509certgetthumbprint  ERR_OK
 	#define CAL_CmpX509Certx509certgetthumbprint  x509certgetthumbprint
 	#define CHK_CmpX509Certx509certgetthumbprint  TRUE
-	#define EXP_CmpX509Certx509certgetthumbprint  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetthumbprint", (RTS_UINTPTR)x509certgetthumbprint, 1, 0x5B1EA1C5, 0x03050B00) 
+	#define EXP_CmpX509Certx509certgetthumbprint  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetthumbprint", (RTS_UINTPTR)x509certgetthumbprint, 1, 0x5B1EA1C5, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certgetthumbprint
 	#define EXT_x509certgetthumbprint
 	#define GET_x509certgetthumbprint(fl)  CAL_CMGETAPI( "x509certgetthumbprint" ) 
 	#define CAL_x509certgetthumbprint  x509certgetthumbprint
 	#define CHK_x509certgetthumbprint  TRUE
-	#define EXP_x509certgetthumbprint  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetthumbprint", (RTS_UINTPTR)x509certgetthumbprint, 1, 0x5B1EA1C5, 0x03050B00) 
+	#define EXP_x509certgetthumbprint  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetthumbprint", (RTS_UINTPTR)x509certgetthumbprint, 1, 0x5B1EA1C5, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certgetthumbprint  PFX509CERTGETTHUMBPRINT_IEC pfx509certgetthumbprint;
 	#define EXT_x509certgetthumbprint  extern PFX509CERTGETTHUMBPRINT_IEC pfx509certgetthumbprint;
-	#define GET_x509certgetthumbprint(fl)  s_pfCMGetAPI2( "x509certgetthumbprint", (RTS_VOID_FCTPTR *)&pfx509certgetthumbprint, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x5B1EA1C5, 0x03050B00)
+	#define GET_x509certgetthumbprint(fl)  s_pfCMGetAPI2( "x509certgetthumbprint", (RTS_VOID_FCTPTR *)&pfx509certgetthumbprint, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x5B1EA1C5, 0x03050A00)
 	#define CAL_x509certgetthumbprint  pfx509certgetthumbprint
 	#define CHK_x509certgetthumbprint  (pfx509certgetthumbprint != NULL)
-	#define EXP_x509certgetthumbprint   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetthumbprint", (RTS_UINTPTR)x509certgetthumbprint, 1, 0x5B1EA1C5, 0x03050B00) 
+	#define EXP_x509certgetthumbprint   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certgetthumbprint", (RTS_UINTPTR)x509certgetthumbprint, 1, 0x5B1EA1C5, 0x03050A00) 
 #endif
 
 
@@ -1383,35 +1099,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTINFOEXIT_IEC) (x509certinfoexit_struct 
 	#define GET_x509certinfoexit(fl)  CAL_CMGETAPI( "x509certinfoexit" ) 
 	#define CAL_x509certinfoexit  x509certinfoexit
 	#define CHK_x509certinfoexit  TRUE
-	#define EXP_x509certinfoexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoexit", (RTS_UINTPTR)x509certinfoexit, 1, 0x4F4B0310, 0x03050B00) 
+	#define EXP_x509certinfoexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoexit", (RTS_UINTPTR)x509certinfoexit, 1, 0x4F4B0310, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certinfoexit
 	#define EXT_x509certinfoexit
 	#define GET_x509certinfoexit(fl)  CAL_CMGETAPI( "x509certinfoexit" ) 
 	#define CAL_x509certinfoexit  x509certinfoexit
 	#define CHK_x509certinfoexit  TRUE
-	#define EXP_x509certinfoexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoexit", (RTS_UINTPTR)x509certinfoexit, 1, 0x4F4B0310, 0x03050B00) 
+	#define EXP_x509certinfoexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoexit", (RTS_UINTPTR)x509certinfoexit, 1, 0x4F4B0310, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certinfoexit
 	#define EXT_CmpX509Certx509certinfoexit
 	#define GET_CmpX509Certx509certinfoexit  ERR_OK
 	#define CAL_CmpX509Certx509certinfoexit  x509certinfoexit
 	#define CHK_CmpX509Certx509certinfoexit  TRUE
-	#define EXP_CmpX509Certx509certinfoexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoexit", (RTS_UINTPTR)x509certinfoexit, 1, 0x4F4B0310, 0x03050B00) 
+	#define EXP_CmpX509Certx509certinfoexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoexit", (RTS_UINTPTR)x509certinfoexit, 1, 0x4F4B0310, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certinfoexit
 	#define EXT_x509certinfoexit
 	#define GET_x509certinfoexit(fl)  CAL_CMGETAPI( "x509certinfoexit" ) 
 	#define CAL_x509certinfoexit  x509certinfoexit
 	#define CHK_x509certinfoexit  TRUE
-	#define EXP_x509certinfoexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoexit", (RTS_UINTPTR)x509certinfoexit, 1, 0x4F4B0310, 0x03050B00) 
+	#define EXP_x509certinfoexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoexit", (RTS_UINTPTR)x509certinfoexit, 1, 0x4F4B0310, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certinfoexit  PFX509CERTINFOEXIT_IEC pfx509certinfoexit;
 	#define EXT_x509certinfoexit  extern PFX509CERTINFOEXIT_IEC pfx509certinfoexit;
-	#define GET_x509certinfoexit(fl)  s_pfCMGetAPI2( "x509certinfoexit", (RTS_VOID_FCTPTR *)&pfx509certinfoexit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x4F4B0310, 0x03050B00)
+	#define GET_x509certinfoexit(fl)  s_pfCMGetAPI2( "x509certinfoexit", (RTS_VOID_FCTPTR *)&pfx509certinfoexit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x4F4B0310, 0x03050A00)
 	#define CAL_x509certinfoexit  pfx509certinfoexit
 	#define CHK_x509certinfoexit  (pfx509certinfoexit != NULL)
-	#define EXP_x509certinfoexit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoexit", (RTS_UINTPTR)x509certinfoexit, 1, 0x4F4B0310, 0x03050B00) 
+	#define EXP_x509certinfoexit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoexit", (RTS_UINTPTR)x509certinfoexit, 1, 0x4F4B0310, 0x03050A00) 
 #endif
 
 
@@ -1441,35 +1157,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTINFOINIT_IEC) (x509certinfoinit_struct 
 	#define GET_x509certinfoinit(fl)  CAL_CMGETAPI( "x509certinfoinit" ) 
 	#define CAL_x509certinfoinit  x509certinfoinit
 	#define CHK_x509certinfoinit  TRUE
-	#define EXP_x509certinfoinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoinit", (RTS_UINTPTR)x509certinfoinit, 1, 0xD52F28DD, 0x03050B00) 
+	#define EXP_x509certinfoinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoinit", (RTS_UINTPTR)x509certinfoinit, 1, 0xD52F28DD, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certinfoinit
 	#define EXT_x509certinfoinit
 	#define GET_x509certinfoinit(fl)  CAL_CMGETAPI( "x509certinfoinit" ) 
 	#define CAL_x509certinfoinit  x509certinfoinit
 	#define CHK_x509certinfoinit  TRUE
-	#define EXP_x509certinfoinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoinit", (RTS_UINTPTR)x509certinfoinit, 1, 0xD52F28DD, 0x03050B00) 
+	#define EXP_x509certinfoinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoinit", (RTS_UINTPTR)x509certinfoinit, 1, 0xD52F28DD, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certinfoinit
 	#define EXT_CmpX509Certx509certinfoinit
 	#define GET_CmpX509Certx509certinfoinit  ERR_OK
 	#define CAL_CmpX509Certx509certinfoinit  x509certinfoinit
 	#define CHK_CmpX509Certx509certinfoinit  TRUE
-	#define EXP_CmpX509Certx509certinfoinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoinit", (RTS_UINTPTR)x509certinfoinit, 1, 0xD52F28DD, 0x03050B00) 
+	#define EXP_CmpX509Certx509certinfoinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoinit", (RTS_UINTPTR)x509certinfoinit, 1, 0xD52F28DD, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certinfoinit
 	#define EXT_x509certinfoinit
 	#define GET_x509certinfoinit(fl)  CAL_CMGETAPI( "x509certinfoinit" ) 
 	#define CAL_x509certinfoinit  x509certinfoinit
 	#define CHK_x509certinfoinit  TRUE
-	#define EXP_x509certinfoinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoinit", (RTS_UINTPTR)x509certinfoinit, 1, 0xD52F28DD, 0x03050B00) 
+	#define EXP_x509certinfoinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoinit", (RTS_UINTPTR)x509certinfoinit, 1, 0xD52F28DD, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certinfoinit  PFX509CERTINFOINIT_IEC pfx509certinfoinit;
 	#define EXT_x509certinfoinit  extern PFX509CERTINFOINIT_IEC pfx509certinfoinit;
-	#define GET_x509certinfoinit(fl)  s_pfCMGetAPI2( "x509certinfoinit", (RTS_VOID_FCTPTR *)&pfx509certinfoinit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xD52F28DD, 0x03050B00)
+	#define GET_x509certinfoinit(fl)  s_pfCMGetAPI2( "x509certinfoinit", (RTS_VOID_FCTPTR *)&pfx509certinfoinit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xD52F28DD, 0x03050A00)
 	#define CAL_x509certinfoinit  pfx509certinfoinit
 	#define CHK_x509certinfoinit  (pfx509certinfoinit != NULL)
-	#define EXP_x509certinfoinit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoinit", (RTS_UINTPTR)x509certinfoinit, 1, 0xD52F28DD, 0x03050B00) 
+	#define EXP_x509certinfoinit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certinfoinit", (RTS_UINTPTR)x509certinfoinit, 1, 0xD52F28DD, 0x03050A00) 
 #endif
 
 
@@ -1500,35 +1216,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTKEYCLOSE_IEC) (x509certkeyclose_struct 
 	#define GET_x509certkeyclose(fl)  CAL_CMGETAPI( "x509certkeyclose" ) 
 	#define CAL_x509certkeyclose  x509certkeyclose
 	#define CHK_x509certkeyclose  TRUE
-	#define EXP_x509certkeyclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certkeyclose", (RTS_UINTPTR)x509certkeyclose, 1, 0x6A598D05, 0x03050B00) 
+	#define EXP_x509certkeyclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certkeyclose", (RTS_UINTPTR)x509certkeyclose, 1, 0x6A598D05, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certkeyclose
 	#define EXT_x509certkeyclose
 	#define GET_x509certkeyclose(fl)  CAL_CMGETAPI( "x509certkeyclose" ) 
 	#define CAL_x509certkeyclose  x509certkeyclose
 	#define CHK_x509certkeyclose  TRUE
-	#define EXP_x509certkeyclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certkeyclose", (RTS_UINTPTR)x509certkeyclose, 1, 0x6A598D05, 0x03050B00) 
+	#define EXP_x509certkeyclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certkeyclose", (RTS_UINTPTR)x509certkeyclose, 1, 0x6A598D05, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certkeyclose
 	#define EXT_CmpX509Certx509certkeyclose
 	#define GET_CmpX509Certx509certkeyclose  ERR_OK
 	#define CAL_CmpX509Certx509certkeyclose  x509certkeyclose
 	#define CHK_CmpX509Certx509certkeyclose  TRUE
-	#define EXP_CmpX509Certx509certkeyclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certkeyclose", (RTS_UINTPTR)x509certkeyclose, 1, 0x6A598D05, 0x03050B00) 
+	#define EXP_CmpX509Certx509certkeyclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certkeyclose", (RTS_UINTPTR)x509certkeyclose, 1, 0x6A598D05, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certkeyclose
 	#define EXT_x509certkeyclose
 	#define GET_x509certkeyclose(fl)  CAL_CMGETAPI( "x509certkeyclose" ) 
 	#define CAL_x509certkeyclose  x509certkeyclose
 	#define CHK_x509certkeyclose  TRUE
-	#define EXP_x509certkeyclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certkeyclose", (RTS_UINTPTR)x509certkeyclose, 1, 0x6A598D05, 0x03050B00) 
+	#define EXP_x509certkeyclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certkeyclose", (RTS_UINTPTR)x509certkeyclose, 1, 0x6A598D05, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certkeyclose  PFX509CERTKEYCLOSE_IEC pfx509certkeyclose;
 	#define EXT_x509certkeyclose  extern PFX509CERTKEYCLOSE_IEC pfx509certkeyclose;
-	#define GET_x509certkeyclose(fl)  s_pfCMGetAPI2( "x509certkeyclose", (RTS_VOID_FCTPTR *)&pfx509certkeyclose, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6A598D05, 0x03050B00)
+	#define GET_x509certkeyclose(fl)  s_pfCMGetAPI2( "x509certkeyclose", (RTS_VOID_FCTPTR *)&pfx509certkeyclose, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6A598D05, 0x03050A00)
 	#define CAL_x509certkeyclose  pfx509certkeyclose
 	#define CHK_x509certkeyclose  (pfx509certkeyclose != NULL)
-	#define EXP_x509certkeyclose   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certkeyclose", (RTS_UINTPTR)x509certkeyclose, 1, 0x6A598D05, 0x03050B00) 
+	#define EXP_x509certkeyclose   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certkeyclose", (RTS_UINTPTR)x509certkeyclose, 1, 0x6A598D05, 0x03050A00) 
 #endif
 
 
@@ -1559,35 +1275,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTSTOREADDCERT_IEC) (x509certstoreaddcert
 	#define GET_x509certstoreaddcert(fl)  CAL_CMGETAPI( "x509certstoreaddcert" ) 
 	#define CAL_x509certstoreaddcert  x509certstoreaddcert
 	#define CHK_x509certstoreaddcert  TRUE
-	#define EXP_x509certstoreaddcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreaddcert", (RTS_UINTPTR)x509certstoreaddcert, 1, 0x690E5D79, 0x03050B00) 
+	#define EXP_x509certstoreaddcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreaddcert", (RTS_UINTPTR)x509certstoreaddcert, 1, 0x690E5D79, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certstoreaddcert
 	#define EXT_x509certstoreaddcert
 	#define GET_x509certstoreaddcert(fl)  CAL_CMGETAPI( "x509certstoreaddcert" ) 
 	#define CAL_x509certstoreaddcert  x509certstoreaddcert
 	#define CHK_x509certstoreaddcert  TRUE
-	#define EXP_x509certstoreaddcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreaddcert", (RTS_UINTPTR)x509certstoreaddcert, 1, 0x690E5D79, 0x03050B00) 
+	#define EXP_x509certstoreaddcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreaddcert", (RTS_UINTPTR)x509certstoreaddcert, 1, 0x690E5D79, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certstoreaddcert
 	#define EXT_CmpX509Certx509certstoreaddcert
 	#define GET_CmpX509Certx509certstoreaddcert  ERR_OK
 	#define CAL_CmpX509Certx509certstoreaddcert  x509certstoreaddcert
 	#define CHK_CmpX509Certx509certstoreaddcert  TRUE
-	#define EXP_CmpX509Certx509certstoreaddcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreaddcert", (RTS_UINTPTR)x509certstoreaddcert, 1, 0x690E5D79, 0x03050B00) 
+	#define EXP_CmpX509Certx509certstoreaddcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreaddcert", (RTS_UINTPTR)x509certstoreaddcert, 1, 0x690E5D79, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certstoreaddcert
 	#define EXT_x509certstoreaddcert
 	#define GET_x509certstoreaddcert(fl)  CAL_CMGETAPI( "x509certstoreaddcert" ) 
 	#define CAL_x509certstoreaddcert  x509certstoreaddcert
 	#define CHK_x509certstoreaddcert  TRUE
-	#define EXP_x509certstoreaddcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreaddcert", (RTS_UINTPTR)x509certstoreaddcert, 1, 0x690E5D79, 0x03050B00) 
+	#define EXP_x509certstoreaddcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreaddcert", (RTS_UINTPTR)x509certstoreaddcert, 1, 0x690E5D79, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certstoreaddcert  PFX509CERTSTOREADDCERT_IEC pfx509certstoreaddcert;
 	#define EXT_x509certstoreaddcert  extern PFX509CERTSTOREADDCERT_IEC pfx509certstoreaddcert;
-	#define GET_x509certstoreaddcert(fl)  s_pfCMGetAPI2( "x509certstoreaddcert", (RTS_VOID_FCTPTR *)&pfx509certstoreaddcert, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x690E5D79, 0x03050B00)
+	#define GET_x509certstoreaddcert(fl)  s_pfCMGetAPI2( "x509certstoreaddcert", (RTS_VOID_FCTPTR *)&pfx509certstoreaddcert, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x690E5D79, 0x03050A00)
 	#define CAL_x509certstoreaddcert  pfx509certstoreaddcert
 	#define CHK_x509certstoreaddcert  (pfx509certstoreaddcert != NULL)
-	#define EXP_x509certstoreaddcert   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreaddcert", (RTS_UINTPTR)x509certstoreaddcert, 1, 0x690E5D79, 0x03050B00) 
+	#define EXP_x509certstoreaddcert   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreaddcert", (RTS_UINTPTR)x509certstoreaddcert, 1, 0x690E5D79, 0x03050A00) 
 #endif
 
 
@@ -1615,35 +1331,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTSTORECLOSE_IEC) (x509certstoreclose_str
 	#define GET_x509certstoreclose(fl)  CAL_CMGETAPI( "x509certstoreclose" ) 
 	#define CAL_x509certstoreclose  x509certstoreclose
 	#define CHK_x509certstoreclose  TRUE
-	#define EXP_x509certstoreclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreclose", (RTS_UINTPTR)x509certstoreclose, 1, 0x048C3968, 0x03050B00) 
+	#define EXP_x509certstoreclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreclose", (RTS_UINTPTR)x509certstoreclose, 1, 0x048C3968, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certstoreclose
 	#define EXT_x509certstoreclose
 	#define GET_x509certstoreclose(fl)  CAL_CMGETAPI( "x509certstoreclose" ) 
 	#define CAL_x509certstoreclose  x509certstoreclose
 	#define CHK_x509certstoreclose  TRUE
-	#define EXP_x509certstoreclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreclose", (RTS_UINTPTR)x509certstoreclose, 1, 0x048C3968, 0x03050B00) 
+	#define EXP_x509certstoreclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreclose", (RTS_UINTPTR)x509certstoreclose, 1, 0x048C3968, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certstoreclose
 	#define EXT_CmpX509Certx509certstoreclose
 	#define GET_CmpX509Certx509certstoreclose  ERR_OK
 	#define CAL_CmpX509Certx509certstoreclose  x509certstoreclose
 	#define CHK_CmpX509Certx509certstoreclose  TRUE
-	#define EXP_CmpX509Certx509certstoreclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreclose", (RTS_UINTPTR)x509certstoreclose, 1, 0x048C3968, 0x03050B00) 
+	#define EXP_CmpX509Certx509certstoreclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreclose", (RTS_UINTPTR)x509certstoreclose, 1, 0x048C3968, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certstoreclose
 	#define EXT_x509certstoreclose
 	#define GET_x509certstoreclose(fl)  CAL_CMGETAPI( "x509certstoreclose" ) 
 	#define CAL_x509certstoreclose  x509certstoreclose
 	#define CHK_x509certstoreclose  TRUE
-	#define EXP_x509certstoreclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreclose", (RTS_UINTPTR)x509certstoreclose, 1, 0x048C3968, 0x03050B00) 
+	#define EXP_x509certstoreclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreclose", (RTS_UINTPTR)x509certstoreclose, 1, 0x048C3968, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certstoreclose  PFX509CERTSTORECLOSE_IEC pfx509certstoreclose;
 	#define EXT_x509certstoreclose  extern PFX509CERTSTORECLOSE_IEC pfx509certstoreclose;
-	#define GET_x509certstoreclose(fl)  s_pfCMGetAPI2( "x509certstoreclose", (RTS_VOID_FCTPTR *)&pfx509certstoreclose, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x048C3968, 0x03050B00)
+	#define GET_x509certstoreclose(fl)  s_pfCMGetAPI2( "x509certstoreclose", (RTS_VOID_FCTPTR *)&pfx509certstoreclose, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x048C3968, 0x03050A00)
 	#define CAL_x509certstoreclose  pfx509certstoreclose
 	#define CHK_x509certstoreclose  (pfx509certstoreclose != NULL)
-	#define EXP_x509certstoreclose   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreclose", (RTS_UINTPTR)x509certstoreclose, 1, 0x048C3968, 0x03050B00) 
+	#define EXP_x509certstoreclose   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreclose", (RTS_UINTPTR)x509certstoreclose, 1, 0x048C3968, 0x03050A00) 
 #endif
 
 
@@ -1674,35 +1390,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTSTOREGETFIRSTCERT_IEC) (x509certstorege
 	#define GET_x509certstoregetfirstcert(fl)  CAL_CMGETAPI( "x509certstoregetfirstcert" ) 
 	#define CAL_x509certstoregetfirstcert  x509certstoregetfirstcert
 	#define CHK_x509certstoregetfirstcert  TRUE
-	#define EXP_x509certstoregetfirstcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetfirstcert", (RTS_UINTPTR)x509certstoregetfirstcert, 1, 0x9165907D, 0x03050B00) 
+	#define EXP_x509certstoregetfirstcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetfirstcert", (RTS_UINTPTR)x509certstoregetfirstcert, 1, 0x9165907D, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certstoregetfirstcert
 	#define EXT_x509certstoregetfirstcert
 	#define GET_x509certstoregetfirstcert(fl)  CAL_CMGETAPI( "x509certstoregetfirstcert" ) 
 	#define CAL_x509certstoregetfirstcert  x509certstoregetfirstcert
 	#define CHK_x509certstoregetfirstcert  TRUE
-	#define EXP_x509certstoregetfirstcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetfirstcert", (RTS_UINTPTR)x509certstoregetfirstcert, 1, 0x9165907D, 0x03050B00) 
+	#define EXP_x509certstoregetfirstcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetfirstcert", (RTS_UINTPTR)x509certstoregetfirstcert, 1, 0x9165907D, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certstoregetfirstcert
 	#define EXT_CmpX509Certx509certstoregetfirstcert
 	#define GET_CmpX509Certx509certstoregetfirstcert  ERR_OK
 	#define CAL_CmpX509Certx509certstoregetfirstcert  x509certstoregetfirstcert
 	#define CHK_CmpX509Certx509certstoregetfirstcert  TRUE
-	#define EXP_CmpX509Certx509certstoregetfirstcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetfirstcert", (RTS_UINTPTR)x509certstoregetfirstcert, 1, 0x9165907D, 0x03050B00) 
+	#define EXP_CmpX509Certx509certstoregetfirstcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetfirstcert", (RTS_UINTPTR)x509certstoregetfirstcert, 1, 0x9165907D, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certstoregetfirstcert
 	#define EXT_x509certstoregetfirstcert
 	#define GET_x509certstoregetfirstcert(fl)  CAL_CMGETAPI( "x509certstoregetfirstcert" ) 
 	#define CAL_x509certstoregetfirstcert  x509certstoregetfirstcert
 	#define CHK_x509certstoregetfirstcert  TRUE
-	#define EXP_x509certstoregetfirstcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetfirstcert", (RTS_UINTPTR)x509certstoregetfirstcert, 1, 0x9165907D, 0x03050B00) 
+	#define EXP_x509certstoregetfirstcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetfirstcert", (RTS_UINTPTR)x509certstoregetfirstcert, 1, 0x9165907D, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certstoregetfirstcert  PFX509CERTSTOREGETFIRSTCERT_IEC pfx509certstoregetfirstcert;
 	#define EXT_x509certstoregetfirstcert  extern PFX509CERTSTOREGETFIRSTCERT_IEC pfx509certstoregetfirstcert;
-	#define GET_x509certstoregetfirstcert(fl)  s_pfCMGetAPI2( "x509certstoregetfirstcert", (RTS_VOID_FCTPTR *)&pfx509certstoregetfirstcert, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x9165907D, 0x03050B00)
+	#define GET_x509certstoregetfirstcert(fl)  s_pfCMGetAPI2( "x509certstoregetfirstcert", (RTS_VOID_FCTPTR *)&pfx509certstoregetfirstcert, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x9165907D, 0x03050A00)
 	#define CAL_x509certstoregetfirstcert  pfx509certstoregetfirstcert
 	#define CHK_x509certstoregetfirstcert  (pfx509certstoregetfirstcert != NULL)
-	#define EXP_x509certstoregetfirstcert   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetfirstcert", (RTS_UINTPTR)x509certstoregetfirstcert, 1, 0x9165907D, 0x03050B00) 
+	#define EXP_x509certstoregetfirstcert   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetfirstcert", (RTS_UINTPTR)x509certstoregetfirstcert, 1, 0x9165907D, 0x03050A00) 
 #endif
 
 
@@ -1733,93 +1449,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTSTOREGETNEXTCERT_IEC) (x509certstoreget
 	#define GET_x509certstoregetnextcert(fl)  CAL_CMGETAPI( "x509certstoregetnextcert" ) 
 	#define CAL_x509certstoregetnextcert  x509certstoregetnextcert
 	#define CHK_x509certstoregetnextcert  TRUE
-	#define EXP_x509certstoregetnextcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetnextcert", (RTS_UINTPTR)x509certstoregetnextcert, 1, 0x894377FA, 0x03050B00) 
+	#define EXP_x509certstoregetnextcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetnextcert", (RTS_UINTPTR)x509certstoregetnextcert, 1, 0x894377FA, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certstoregetnextcert
 	#define EXT_x509certstoregetnextcert
 	#define GET_x509certstoregetnextcert(fl)  CAL_CMGETAPI( "x509certstoregetnextcert" ) 
 	#define CAL_x509certstoregetnextcert  x509certstoregetnextcert
 	#define CHK_x509certstoregetnextcert  TRUE
-	#define EXP_x509certstoregetnextcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetnextcert", (RTS_UINTPTR)x509certstoregetnextcert, 1, 0x894377FA, 0x03050B00) 
+	#define EXP_x509certstoregetnextcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetnextcert", (RTS_UINTPTR)x509certstoregetnextcert, 1, 0x894377FA, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certstoregetnextcert
 	#define EXT_CmpX509Certx509certstoregetnextcert
 	#define GET_CmpX509Certx509certstoregetnextcert  ERR_OK
 	#define CAL_CmpX509Certx509certstoregetnextcert  x509certstoregetnextcert
 	#define CHK_CmpX509Certx509certstoregetnextcert  TRUE
-	#define EXP_CmpX509Certx509certstoregetnextcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetnextcert", (RTS_UINTPTR)x509certstoregetnextcert, 1, 0x894377FA, 0x03050B00) 
+	#define EXP_CmpX509Certx509certstoregetnextcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetnextcert", (RTS_UINTPTR)x509certstoregetnextcert, 1, 0x894377FA, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certstoregetnextcert
 	#define EXT_x509certstoregetnextcert
 	#define GET_x509certstoregetnextcert(fl)  CAL_CMGETAPI( "x509certstoregetnextcert" ) 
 	#define CAL_x509certstoregetnextcert  x509certstoregetnextcert
 	#define CHK_x509certstoregetnextcert  TRUE
-	#define EXP_x509certstoregetnextcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetnextcert", (RTS_UINTPTR)x509certstoregetnextcert, 1, 0x894377FA, 0x03050B00) 
+	#define EXP_x509certstoregetnextcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetnextcert", (RTS_UINTPTR)x509certstoregetnextcert, 1, 0x894377FA, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certstoregetnextcert  PFX509CERTSTOREGETNEXTCERT_IEC pfx509certstoregetnextcert;
 	#define EXT_x509certstoregetnextcert  extern PFX509CERTSTOREGETNEXTCERT_IEC pfx509certstoregetnextcert;
-	#define GET_x509certstoregetnextcert(fl)  s_pfCMGetAPI2( "x509certstoregetnextcert", (RTS_VOID_FCTPTR *)&pfx509certstoregetnextcert, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x894377FA, 0x03050B00)
+	#define GET_x509certstoregetnextcert(fl)  s_pfCMGetAPI2( "x509certstoregetnextcert", (RTS_VOID_FCTPTR *)&pfx509certstoregetnextcert, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x894377FA, 0x03050A00)
 	#define CAL_x509certstoregetnextcert  pfx509certstoregetnextcert
 	#define CHK_x509certstoregetnextcert  (pfx509certstoregetnextcert != NULL)
-	#define EXP_x509certstoregetnextcert   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetnextcert", (RTS_UINTPTR)x509certstoregetnextcert, 1, 0x894377FA, 0x03050B00) 
-#endif
-
-
-/**
- * <description>x509certstoregetregisteredcert</description>
- */
-typedef struct tagx509certstoregetregisteredcert_struct
-{
-	RTS_IEC_HANDLE hCertStore;			/* VAR_INPUT */	
-	RTS_IEC_HANDLE hUseCase;			/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RTS_IEC_HANDLE X509CertStoreGetRegisteredCert;	/* VAR_OUTPUT */	
-} x509certstoregetregisteredcert_struct;
-
-void CDECL CDECL_EXT x509certstoregetregisteredcert(x509certstoregetregisteredcert_struct *p);
-typedef void (CDECL CDECL_EXT* PFX509CERTSTOREGETREGISTEREDCERT_IEC) (x509certstoregetregisteredcert_struct *p);
-#if defined(CMPX509CERT_NOTIMPLEMENTED) || defined(X509CERTSTOREGETREGISTEREDCERT_NOTIMPLEMENTED)
-	#define USE_x509certstoregetregisteredcert
-	#define EXT_x509certstoregetregisteredcert
-	#define GET_x509certstoregetregisteredcert(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_x509certstoregetregisteredcert(p0) 
-	#define CHK_x509certstoregetregisteredcert  FALSE
-	#define EXP_x509certstoregetregisteredcert  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_x509certstoregetregisteredcert
-	#define EXT_x509certstoregetregisteredcert
-	#define GET_x509certstoregetregisteredcert(fl)  CAL_CMGETAPI( "x509certstoregetregisteredcert" ) 
-	#define CAL_x509certstoregetregisteredcert  x509certstoregetregisteredcert
-	#define CHK_x509certstoregetregisteredcert  TRUE
-	#define EXP_x509certstoregetregisteredcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetregisteredcert", (RTS_UINTPTR)x509certstoregetregisteredcert, 1, 0x8C0F7D34, 0x03050B00) 
-#elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
-	#define USE_x509certstoregetregisteredcert
-	#define EXT_x509certstoregetregisteredcert
-	#define GET_x509certstoregetregisteredcert(fl)  CAL_CMGETAPI( "x509certstoregetregisteredcert" ) 
-	#define CAL_x509certstoregetregisteredcert  x509certstoregetregisteredcert
-	#define CHK_x509certstoregetregisteredcert  TRUE
-	#define EXP_x509certstoregetregisteredcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetregisteredcert", (RTS_UINTPTR)x509certstoregetregisteredcert, 1, 0x8C0F7D34, 0x03050B00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpX509Certx509certstoregetregisteredcert
-	#define EXT_CmpX509Certx509certstoregetregisteredcert
-	#define GET_CmpX509Certx509certstoregetregisteredcert  ERR_OK
-	#define CAL_CmpX509Certx509certstoregetregisteredcert  x509certstoregetregisteredcert
-	#define CHK_CmpX509Certx509certstoregetregisteredcert  TRUE
-	#define EXP_CmpX509Certx509certstoregetregisteredcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetregisteredcert", (RTS_UINTPTR)x509certstoregetregisteredcert, 1, 0x8C0F7D34, 0x03050B00) 
-#elif defined(CPLUSPLUS)
-	#define USE_x509certstoregetregisteredcert
-	#define EXT_x509certstoregetregisteredcert
-	#define GET_x509certstoregetregisteredcert(fl)  CAL_CMGETAPI( "x509certstoregetregisteredcert" ) 
-	#define CAL_x509certstoregetregisteredcert  x509certstoregetregisteredcert
-	#define CHK_x509certstoregetregisteredcert  TRUE
-	#define EXP_x509certstoregetregisteredcert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetregisteredcert", (RTS_UINTPTR)x509certstoregetregisteredcert, 1, 0x8C0F7D34, 0x03050B00) 
-#else /* DYNAMIC_LINK */
-	#define USE_x509certstoregetregisteredcert  PFX509CERTSTOREGETREGISTEREDCERT_IEC pfx509certstoregetregisteredcert;
-	#define EXT_x509certstoregetregisteredcert  extern PFX509CERTSTOREGETREGISTEREDCERT_IEC pfx509certstoregetregisteredcert;
-	#define GET_x509certstoregetregisteredcert(fl)  s_pfCMGetAPI2( "x509certstoregetregisteredcert", (RTS_VOID_FCTPTR *)&pfx509certstoregetregisteredcert, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x8C0F7D34, 0x03050B00)
-	#define CAL_x509certstoregetregisteredcert  pfx509certstoregetregisteredcert
-	#define CHK_x509certstoregetregisteredcert  (pfx509certstoregetregisteredcert != NULL)
-	#define EXP_x509certstoregetregisteredcert   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetregisteredcert", (RTS_UINTPTR)x509certstoregetregisteredcert, 1, 0x8C0F7D34, 0x03050B00) 
+	#define EXP_x509certstoregetnextcert   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoregetnextcert", (RTS_UINTPTR)x509certstoregetnextcert, 1, 0x894377FA, 0x03050A00) 
 #endif
 
 
@@ -1848,35 +1506,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTSTOREOPEN_IEC) (x509certstoreopen_struc
 	#define GET_x509certstoreopen(fl)  CAL_CMGETAPI( "x509certstoreopen" ) 
 	#define CAL_x509certstoreopen  x509certstoreopen
 	#define CHK_x509certstoreopen  TRUE
-	#define EXP_x509certstoreopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreopen", (RTS_UINTPTR)x509certstoreopen, 1, 0xFE7CCE6C, 0x03050B00) 
+	#define EXP_x509certstoreopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreopen", (RTS_UINTPTR)x509certstoreopen, 1, 0xFE7CCE6C, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certstoreopen
 	#define EXT_x509certstoreopen
 	#define GET_x509certstoreopen(fl)  CAL_CMGETAPI( "x509certstoreopen" ) 
 	#define CAL_x509certstoreopen  x509certstoreopen
 	#define CHK_x509certstoreopen  TRUE
-	#define EXP_x509certstoreopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreopen", (RTS_UINTPTR)x509certstoreopen, 1, 0xFE7CCE6C, 0x03050B00) 
+	#define EXP_x509certstoreopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreopen", (RTS_UINTPTR)x509certstoreopen, 1, 0xFE7CCE6C, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certstoreopen
 	#define EXT_CmpX509Certx509certstoreopen
 	#define GET_CmpX509Certx509certstoreopen  ERR_OK
 	#define CAL_CmpX509Certx509certstoreopen  x509certstoreopen
 	#define CHK_CmpX509Certx509certstoreopen  TRUE
-	#define EXP_CmpX509Certx509certstoreopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreopen", (RTS_UINTPTR)x509certstoreopen, 1, 0xFE7CCE6C, 0x03050B00) 
+	#define EXP_CmpX509Certx509certstoreopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreopen", (RTS_UINTPTR)x509certstoreopen, 1, 0xFE7CCE6C, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certstoreopen
 	#define EXT_x509certstoreopen
 	#define GET_x509certstoreopen(fl)  CAL_CMGETAPI( "x509certstoreopen" ) 
 	#define CAL_x509certstoreopen  x509certstoreopen
 	#define CHK_x509certstoreopen  TRUE
-	#define EXP_x509certstoreopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreopen", (RTS_UINTPTR)x509certstoreopen, 1, 0xFE7CCE6C, 0x03050B00) 
+	#define EXP_x509certstoreopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreopen", (RTS_UINTPTR)x509certstoreopen, 1, 0xFE7CCE6C, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certstoreopen  PFX509CERTSTOREOPEN_IEC pfx509certstoreopen;
 	#define EXT_x509certstoreopen  extern PFX509CERTSTOREOPEN_IEC pfx509certstoreopen;
-	#define GET_x509certstoreopen(fl)  s_pfCMGetAPI2( "x509certstoreopen", (RTS_VOID_FCTPTR *)&pfx509certstoreopen, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xFE7CCE6C, 0x03050B00)
+	#define GET_x509certstoreopen(fl)  s_pfCMGetAPI2( "x509certstoreopen", (RTS_VOID_FCTPTR *)&pfx509certstoreopen, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xFE7CCE6C, 0x03050A00)
 	#define CAL_x509certstoreopen  pfx509certstoreopen
 	#define CHK_x509certstoreopen  (pfx509certstoreopen != NULL)
-	#define EXP_x509certstoreopen   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreopen", (RTS_UINTPTR)x509certstoreopen, 1, 0xFE7CCE6C, 0x03050B00) 
+	#define EXP_x509certstoreopen   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreopen", (RTS_UINTPTR)x509certstoreopen, 1, 0xFE7CCE6C, 0x03050A00) 
 #endif
 
 
@@ -1907,35 +1565,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTSTOREREGISTER_IEC) (x509certstoreregist
 	#define GET_x509certstoreregister(fl)  CAL_CMGETAPI( "x509certstoreregister" ) 
 	#define CAL_x509certstoreregister  x509certstoreregister
 	#define CHK_x509certstoreregister  TRUE
-	#define EXP_x509certstoreregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreregister", (RTS_UINTPTR)x509certstoreregister, 1, 0x35F7F607, 0x03050B00) 
+	#define EXP_x509certstoreregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreregister", (RTS_UINTPTR)x509certstoreregister, 1, 0x35F7F607, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certstoreregister
 	#define EXT_x509certstoreregister
 	#define GET_x509certstoreregister(fl)  CAL_CMGETAPI( "x509certstoreregister" ) 
 	#define CAL_x509certstoreregister  x509certstoreregister
 	#define CHK_x509certstoreregister  TRUE
-	#define EXP_x509certstoreregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreregister", (RTS_UINTPTR)x509certstoreregister, 1, 0x35F7F607, 0x03050B00) 
+	#define EXP_x509certstoreregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreregister", (RTS_UINTPTR)x509certstoreregister, 1, 0x35F7F607, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certstoreregister
 	#define EXT_CmpX509Certx509certstoreregister
 	#define GET_CmpX509Certx509certstoreregister  ERR_OK
 	#define CAL_CmpX509Certx509certstoreregister  x509certstoreregister
 	#define CHK_CmpX509Certx509certstoreregister  TRUE
-	#define EXP_CmpX509Certx509certstoreregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreregister", (RTS_UINTPTR)x509certstoreregister, 1, 0x35F7F607, 0x03050B00) 
+	#define EXP_CmpX509Certx509certstoreregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreregister", (RTS_UINTPTR)x509certstoreregister, 1, 0x35F7F607, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certstoreregister
 	#define EXT_x509certstoreregister
 	#define GET_x509certstoreregister(fl)  CAL_CMGETAPI( "x509certstoreregister" ) 
 	#define CAL_x509certstoreregister  x509certstoreregister
 	#define CHK_x509certstoreregister  TRUE
-	#define EXP_x509certstoreregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreregister", (RTS_UINTPTR)x509certstoreregister, 1, 0x35F7F607, 0x03050B00) 
+	#define EXP_x509certstoreregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreregister", (RTS_UINTPTR)x509certstoreregister, 1, 0x35F7F607, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certstoreregister  PFX509CERTSTOREREGISTER_IEC pfx509certstoreregister;
 	#define EXT_x509certstoreregister  extern PFX509CERTSTOREREGISTER_IEC pfx509certstoreregister;
-	#define GET_x509certstoreregister(fl)  s_pfCMGetAPI2( "x509certstoreregister", (RTS_VOID_FCTPTR *)&pfx509certstoreregister, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x35F7F607, 0x03050B00)
+	#define GET_x509certstoreregister(fl)  s_pfCMGetAPI2( "x509certstoreregister", (RTS_VOID_FCTPTR *)&pfx509certstoreregister, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x35F7F607, 0x03050A00)
 	#define CAL_x509certstoreregister  pfx509certstoreregister
 	#define CHK_x509certstoreregister  (pfx509certstoreregister != NULL)
-	#define EXP_x509certstoreregister   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreregister", (RTS_UINTPTR)x509certstoreregister, 1, 0x35F7F607, 0x03050B00) 
+	#define EXP_x509certstoreregister   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreregister", (RTS_UINTPTR)x509certstoreregister, 1, 0x35F7F607, 0x03050A00) 
 #endif
 
 
@@ -1966,35 +1624,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTSTOREREMOVECERT_IEC) (x509certstoreremo
 	#define GET_x509certstoreremovecert(fl)  CAL_CMGETAPI( "x509certstoreremovecert" ) 
 	#define CAL_x509certstoreremovecert  x509certstoreremovecert
 	#define CHK_x509certstoreremovecert  TRUE
-	#define EXP_x509certstoreremovecert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreremovecert", (RTS_UINTPTR)x509certstoreremovecert, 1, 0x0E795BC4, 0x03050B00) 
+	#define EXP_x509certstoreremovecert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreremovecert", (RTS_UINTPTR)x509certstoreremovecert, 1, 0x0E795BC4, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certstoreremovecert
 	#define EXT_x509certstoreremovecert
 	#define GET_x509certstoreremovecert(fl)  CAL_CMGETAPI( "x509certstoreremovecert" ) 
 	#define CAL_x509certstoreremovecert  x509certstoreremovecert
 	#define CHK_x509certstoreremovecert  TRUE
-	#define EXP_x509certstoreremovecert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreremovecert", (RTS_UINTPTR)x509certstoreremovecert, 1, 0x0E795BC4, 0x03050B00) 
+	#define EXP_x509certstoreremovecert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreremovecert", (RTS_UINTPTR)x509certstoreremovecert, 1, 0x0E795BC4, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certstoreremovecert
 	#define EXT_CmpX509Certx509certstoreremovecert
 	#define GET_CmpX509Certx509certstoreremovecert  ERR_OK
 	#define CAL_CmpX509Certx509certstoreremovecert  x509certstoreremovecert
 	#define CHK_CmpX509Certx509certstoreremovecert  TRUE
-	#define EXP_CmpX509Certx509certstoreremovecert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreremovecert", (RTS_UINTPTR)x509certstoreremovecert, 1, 0x0E795BC4, 0x03050B00) 
+	#define EXP_CmpX509Certx509certstoreremovecert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreremovecert", (RTS_UINTPTR)x509certstoreremovecert, 1, 0x0E795BC4, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certstoreremovecert
 	#define EXT_x509certstoreremovecert
 	#define GET_x509certstoreremovecert(fl)  CAL_CMGETAPI( "x509certstoreremovecert" ) 
 	#define CAL_x509certstoreremovecert  x509certstoreremovecert
 	#define CHK_x509certstoreremovecert  TRUE
-	#define EXP_x509certstoreremovecert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreremovecert", (RTS_UINTPTR)x509certstoreremovecert, 1, 0x0E795BC4, 0x03050B00) 
+	#define EXP_x509certstoreremovecert  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreremovecert", (RTS_UINTPTR)x509certstoreremovecert, 1, 0x0E795BC4, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certstoreremovecert  PFX509CERTSTOREREMOVECERT_IEC pfx509certstoreremovecert;
 	#define EXT_x509certstoreremovecert  extern PFX509CERTSTOREREMOVECERT_IEC pfx509certstoreremovecert;
-	#define GET_x509certstoreremovecert(fl)  s_pfCMGetAPI2( "x509certstoreremovecert", (RTS_VOID_FCTPTR *)&pfx509certstoreremovecert, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x0E795BC4, 0x03050B00)
+	#define GET_x509certstoreremovecert(fl)  s_pfCMGetAPI2( "x509certstoreremovecert", (RTS_VOID_FCTPTR *)&pfx509certstoreremovecert, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x0E795BC4, 0x03050A00)
 	#define CAL_x509certstoreremovecert  pfx509certstoreremovecert
 	#define CHK_x509certstoreremovecert  (pfx509certstoreremovecert != NULL)
-	#define EXP_x509certstoreremovecert   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreremovecert", (RTS_UINTPTR)x509certstoreremovecert, 1, 0x0E795BC4, 0x03050B00) 
+	#define EXP_x509certstoreremovecert   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreremovecert", (RTS_UINTPTR)x509certstoreremovecert, 1, 0x0E795BC4, 0x03050A00) 
 #endif
 
 
@@ -2025,35 +1683,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTSTORESEARCHGETFIRST_IEC) (x509certstore
 	#define GET_x509certstoresearchgetfirst(fl)  CAL_CMGETAPI( "x509certstoresearchgetfirst" ) 
 	#define CAL_x509certstoresearchgetfirst  x509certstoresearchgetfirst
 	#define CHK_x509certstoresearchgetfirst  TRUE
-	#define EXP_x509certstoresearchgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetfirst", (RTS_UINTPTR)x509certstoresearchgetfirst, 1, 0, 0x03050B00) 
+	#define EXP_x509certstoresearchgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetfirst", (RTS_UINTPTR)x509certstoresearchgetfirst, 1, 0x6C956088, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certstoresearchgetfirst
 	#define EXT_x509certstoresearchgetfirst
 	#define GET_x509certstoresearchgetfirst(fl)  CAL_CMGETAPI( "x509certstoresearchgetfirst" ) 
 	#define CAL_x509certstoresearchgetfirst  x509certstoresearchgetfirst
 	#define CHK_x509certstoresearchgetfirst  TRUE
-	#define EXP_x509certstoresearchgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetfirst", (RTS_UINTPTR)x509certstoresearchgetfirst, 1, 0, 0x03050B00) 
+	#define EXP_x509certstoresearchgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetfirst", (RTS_UINTPTR)x509certstoresearchgetfirst, 1, 0x6C956088, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certstoresearchgetfirst
 	#define EXT_CmpX509Certx509certstoresearchgetfirst
 	#define GET_CmpX509Certx509certstoresearchgetfirst  ERR_OK
 	#define CAL_CmpX509Certx509certstoresearchgetfirst  x509certstoresearchgetfirst
 	#define CHK_CmpX509Certx509certstoresearchgetfirst  TRUE
-	#define EXP_CmpX509Certx509certstoresearchgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetfirst", (RTS_UINTPTR)x509certstoresearchgetfirst, 1, 0, 0x03050B00) 
+	#define EXP_CmpX509Certx509certstoresearchgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetfirst", (RTS_UINTPTR)x509certstoresearchgetfirst, 1, 0x6C956088, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certstoresearchgetfirst
 	#define EXT_x509certstoresearchgetfirst
 	#define GET_x509certstoresearchgetfirst(fl)  CAL_CMGETAPI( "x509certstoresearchgetfirst" ) 
 	#define CAL_x509certstoresearchgetfirst  x509certstoresearchgetfirst
 	#define CHK_x509certstoresearchgetfirst  TRUE
-	#define EXP_x509certstoresearchgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetfirst", (RTS_UINTPTR)x509certstoresearchgetfirst, 1, 0, 0x03050B00) 
+	#define EXP_x509certstoresearchgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetfirst", (RTS_UINTPTR)x509certstoresearchgetfirst, 1, 0x6C956088, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certstoresearchgetfirst  PFX509CERTSTORESEARCHGETFIRST_IEC pfx509certstoresearchgetfirst;
 	#define EXT_x509certstoresearchgetfirst  extern PFX509CERTSTORESEARCHGETFIRST_IEC pfx509certstoresearchgetfirst;
-	#define GET_x509certstoresearchgetfirst(fl)  s_pfCMGetAPI2( "x509certstoresearchgetfirst", (RTS_VOID_FCTPTR *)&pfx509certstoresearchgetfirst, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0, 0x03050B00)
+	#define GET_x509certstoresearchgetfirst(fl)  s_pfCMGetAPI2( "x509certstoresearchgetfirst", (RTS_VOID_FCTPTR *)&pfx509certstoresearchgetfirst, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6C956088, 0x03050A00)
 	#define CAL_x509certstoresearchgetfirst  pfx509certstoresearchgetfirst
 	#define CHK_x509certstoresearchgetfirst  (pfx509certstoresearchgetfirst != NULL)
-	#define EXP_x509certstoresearchgetfirst   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetfirst", (RTS_UINTPTR)x509certstoresearchgetfirst, 1, 0, 0x03050B00) 
+	#define EXP_x509certstoresearchgetfirst   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetfirst", (RTS_UINTPTR)x509certstoresearchgetfirst, 1, 0x6C956088, 0x03050A00) 
 #endif
 
 
@@ -2085,35 +1743,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTSTORESEARCHGETNEXT_IEC) (x509certstores
 	#define GET_x509certstoresearchgetnext(fl)  CAL_CMGETAPI( "x509certstoresearchgetnext" ) 
 	#define CAL_x509certstoresearchgetnext  x509certstoresearchgetnext
 	#define CHK_x509certstoresearchgetnext  TRUE
-	#define EXP_x509certstoresearchgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetnext", (RTS_UINTPTR)x509certstoresearchgetnext, 1, 0, 0x03050B00) 
+	#define EXP_x509certstoresearchgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetnext", (RTS_UINTPTR)x509certstoresearchgetnext, 1, 0xB7F16B08, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certstoresearchgetnext
 	#define EXT_x509certstoresearchgetnext
 	#define GET_x509certstoresearchgetnext(fl)  CAL_CMGETAPI( "x509certstoresearchgetnext" ) 
 	#define CAL_x509certstoresearchgetnext  x509certstoresearchgetnext
 	#define CHK_x509certstoresearchgetnext  TRUE
-	#define EXP_x509certstoresearchgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetnext", (RTS_UINTPTR)x509certstoresearchgetnext, 1, 0, 0x03050B00) 
+	#define EXP_x509certstoresearchgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetnext", (RTS_UINTPTR)x509certstoresearchgetnext, 1, 0xB7F16B08, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certstoresearchgetnext
 	#define EXT_CmpX509Certx509certstoresearchgetnext
 	#define GET_CmpX509Certx509certstoresearchgetnext  ERR_OK
 	#define CAL_CmpX509Certx509certstoresearchgetnext  x509certstoresearchgetnext
 	#define CHK_CmpX509Certx509certstoresearchgetnext  TRUE
-	#define EXP_CmpX509Certx509certstoresearchgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetnext", (RTS_UINTPTR)x509certstoresearchgetnext, 1, 0, 0x03050B00) 
+	#define EXP_CmpX509Certx509certstoresearchgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetnext", (RTS_UINTPTR)x509certstoresearchgetnext, 1, 0xB7F16B08, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certstoresearchgetnext
 	#define EXT_x509certstoresearchgetnext
 	#define GET_x509certstoresearchgetnext(fl)  CAL_CMGETAPI( "x509certstoresearchgetnext" ) 
 	#define CAL_x509certstoresearchgetnext  x509certstoresearchgetnext
 	#define CHK_x509certstoresearchgetnext  TRUE
-	#define EXP_x509certstoresearchgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetnext", (RTS_UINTPTR)x509certstoresearchgetnext, 1, 0, 0x03050B00) 
+	#define EXP_x509certstoresearchgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetnext", (RTS_UINTPTR)x509certstoresearchgetnext, 1, 0xB7F16B08, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certstoresearchgetnext  PFX509CERTSTORESEARCHGETNEXT_IEC pfx509certstoresearchgetnext;
 	#define EXT_x509certstoresearchgetnext  extern PFX509CERTSTORESEARCHGETNEXT_IEC pfx509certstoresearchgetnext;
-	#define GET_x509certstoresearchgetnext(fl)  s_pfCMGetAPI2( "x509certstoresearchgetnext", (RTS_VOID_FCTPTR *)&pfx509certstoresearchgetnext, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0, 0x03050B00)
+	#define GET_x509certstoresearchgetnext(fl)  s_pfCMGetAPI2( "x509certstoresearchgetnext", (RTS_VOID_FCTPTR *)&pfx509certstoresearchgetnext, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xB7F16B08, 0x03050A00)
 	#define CAL_x509certstoresearchgetnext  pfx509certstoresearchgetnext
 	#define CHK_x509certstoresearchgetnext  (pfx509certstoresearchgetnext != NULL)
-	#define EXP_x509certstoresearchgetnext   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetnext", (RTS_UINTPTR)x509certstoresearchgetnext, 1, 0, 0x03050B00) 
+	#define EXP_x509certstoresearchgetnext   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoresearchgetnext", (RTS_UINTPTR)x509certstoresearchgetnext, 1, 0xB7F16B08, 0x03050A00) 
 #endif
 
 
@@ -2142,35 +1800,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTSTOREUNREGISTER_IEC) (x509certstoreunre
 	#define GET_x509certstoreunregister(fl)  CAL_CMGETAPI( "x509certstoreunregister" ) 
 	#define CAL_x509certstoreunregister  x509certstoreunregister
 	#define CHK_x509certstoreunregister  TRUE
-	#define EXP_x509certstoreunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreunregister", (RTS_UINTPTR)x509certstoreunregister, 1, 0xE41C13F3, 0x03050B00) 
+	#define EXP_x509certstoreunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreunregister", (RTS_UINTPTR)x509certstoreunregister, 1, 0xE41C13F3, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certstoreunregister
 	#define EXT_x509certstoreunregister
 	#define GET_x509certstoreunregister(fl)  CAL_CMGETAPI( "x509certstoreunregister" ) 
 	#define CAL_x509certstoreunregister  x509certstoreunregister
 	#define CHK_x509certstoreunregister  TRUE
-	#define EXP_x509certstoreunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreunregister", (RTS_UINTPTR)x509certstoreunregister, 1, 0xE41C13F3, 0x03050B00) 
+	#define EXP_x509certstoreunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreunregister", (RTS_UINTPTR)x509certstoreunregister, 1, 0xE41C13F3, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certstoreunregister
 	#define EXT_CmpX509Certx509certstoreunregister
 	#define GET_CmpX509Certx509certstoreunregister  ERR_OK
 	#define CAL_CmpX509Certx509certstoreunregister  x509certstoreunregister
 	#define CHK_CmpX509Certx509certstoreunregister  TRUE
-	#define EXP_CmpX509Certx509certstoreunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreunregister", (RTS_UINTPTR)x509certstoreunregister, 1, 0xE41C13F3, 0x03050B00) 
+	#define EXP_CmpX509Certx509certstoreunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreunregister", (RTS_UINTPTR)x509certstoreunregister, 1, 0xE41C13F3, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certstoreunregister
 	#define EXT_x509certstoreunregister
 	#define GET_x509certstoreunregister(fl)  CAL_CMGETAPI( "x509certstoreunregister" ) 
 	#define CAL_x509certstoreunregister  x509certstoreunregister
 	#define CHK_x509certstoreunregister  TRUE
-	#define EXP_x509certstoreunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreunregister", (RTS_UINTPTR)x509certstoreunregister, 1, 0xE41C13F3, 0x03050B00) 
+	#define EXP_x509certstoreunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreunregister", (RTS_UINTPTR)x509certstoreunregister, 1, 0xE41C13F3, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certstoreunregister  PFX509CERTSTOREUNREGISTER_IEC pfx509certstoreunregister;
 	#define EXT_x509certstoreunregister  extern PFX509CERTSTOREUNREGISTER_IEC pfx509certstoreunregister;
-	#define GET_x509certstoreunregister(fl)  s_pfCMGetAPI2( "x509certstoreunregister", (RTS_VOID_FCTPTR *)&pfx509certstoreunregister, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE41C13F3, 0x03050B00)
+	#define GET_x509certstoreunregister(fl)  s_pfCMGetAPI2( "x509certstoreunregister", (RTS_VOID_FCTPTR *)&pfx509certstoreunregister, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE41C13F3, 0x03050A00)
 	#define CAL_x509certstoreunregister  pfx509certstoreunregister
 	#define CHK_x509certstoreunregister  (pfx509certstoreunregister != NULL)
-	#define EXP_x509certstoreunregister   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreunregister", (RTS_UINTPTR)x509certstoreunregister, 1, 0xE41C13F3, 0x03050B00) 
+	#define EXP_x509certstoreunregister   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certstoreunregister", (RTS_UINTPTR)x509certstoreunregister, 1, 0xE41C13F3, 0x03050A00) 
 #endif
 
 
@@ -2199,35 +1857,35 @@ typedef void (CDECL CDECL_EXT* PFX509CERTVERIFY_IEC) (x509certverify_struct *p);
 	#define GET_x509certverify(fl)  CAL_CMGETAPI( "x509certverify" ) 
 	#define CAL_x509certverify  x509certverify
 	#define CHK_x509certverify  TRUE
-	#define EXP_x509certverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certverify", (RTS_UINTPTR)x509certverify, 1, 0x9822EB29, 0x03050B00) 
+	#define EXP_x509certverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certverify", (RTS_UINTPTR)x509certverify, 1, 0x9822EB29, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509certverify
 	#define EXT_x509certverify
 	#define GET_x509certverify(fl)  CAL_CMGETAPI( "x509certverify" ) 
 	#define CAL_x509certverify  x509certverify
 	#define CHK_x509certverify  TRUE
-	#define EXP_x509certverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certverify", (RTS_UINTPTR)x509certverify, 1, 0x9822EB29, 0x03050B00) 
+	#define EXP_x509certverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certverify", (RTS_UINTPTR)x509certverify, 1, 0x9822EB29, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509certverify
 	#define EXT_CmpX509Certx509certverify
 	#define GET_CmpX509Certx509certverify  ERR_OK
 	#define CAL_CmpX509Certx509certverify  x509certverify
 	#define CHK_CmpX509Certx509certverify  TRUE
-	#define EXP_CmpX509Certx509certverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certverify", (RTS_UINTPTR)x509certverify, 1, 0x9822EB29, 0x03050B00) 
+	#define EXP_CmpX509Certx509certverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certverify", (RTS_UINTPTR)x509certverify, 1, 0x9822EB29, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509certverify
 	#define EXT_x509certverify
 	#define GET_x509certverify(fl)  CAL_CMGETAPI( "x509certverify" ) 
 	#define CAL_x509certverify  x509certverify
 	#define CHK_x509certverify  TRUE
-	#define EXP_x509certverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certverify", (RTS_UINTPTR)x509certverify, 1, 0x9822EB29, 0x03050B00) 
+	#define EXP_x509certverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certverify", (RTS_UINTPTR)x509certverify, 1, 0x9822EB29, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509certverify  PFX509CERTVERIFY_IEC pfx509certverify;
 	#define EXT_x509certverify  extern PFX509CERTVERIFY_IEC pfx509certverify;
-	#define GET_x509certverify(fl)  s_pfCMGetAPI2( "x509certverify", (RTS_VOID_FCTPTR *)&pfx509certverify, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x9822EB29, 0x03050B00)
+	#define GET_x509certverify(fl)  s_pfCMGetAPI2( "x509certverify", (RTS_VOID_FCTPTR *)&pfx509certverify, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x9822EB29, 0x03050A00)
 	#define CAL_x509certverify  pfx509certverify
 	#define CHK_x509certverify  (pfx509certverify != NULL)
-	#define EXP_x509certverify   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certverify", (RTS_UINTPTR)x509certverify, 1, 0x9822EB29, 0x03050B00) 
+	#define EXP_x509certverify   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509certverify", (RTS_UINTPTR)x509certverify, 1, 0x9822EB29, 0x03050A00) 
 #endif
 
 
@@ -2260,35 +1918,35 @@ typedef void (CDECL CDECL_EXT* PFX509PARSECERTIFICATE_IEC) (x509parsecertificate
 	#define GET_x509parsecertificate(fl)  CAL_CMGETAPI( "x509parsecertificate" ) 
 	#define CAL_x509parsecertificate  x509parsecertificate
 	#define CHK_x509parsecertificate  TRUE
-	#define EXP_x509parsecertificate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509parsecertificate", (RTS_UINTPTR)x509parsecertificate, 1, 0x01B27207, 0x03050B00) 
+	#define EXP_x509parsecertificate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509parsecertificate", (RTS_UINTPTR)x509parsecertificate, 1, 0x01B27207, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
 	#define USE_x509parsecertificate
 	#define EXT_x509parsecertificate
 	#define GET_x509parsecertificate(fl)  CAL_CMGETAPI( "x509parsecertificate" ) 
 	#define CAL_x509parsecertificate  x509parsecertificate
 	#define CHK_x509parsecertificate  TRUE
-	#define EXP_x509parsecertificate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509parsecertificate", (RTS_UINTPTR)x509parsecertificate, 1, 0x01B27207, 0x03050B00) 
+	#define EXP_x509parsecertificate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509parsecertificate", (RTS_UINTPTR)x509parsecertificate, 1, 0x01B27207, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpX509Certx509parsecertificate
 	#define EXT_CmpX509Certx509parsecertificate
 	#define GET_CmpX509Certx509parsecertificate  ERR_OK
 	#define CAL_CmpX509Certx509parsecertificate  x509parsecertificate
 	#define CHK_CmpX509Certx509parsecertificate  TRUE
-	#define EXP_CmpX509Certx509parsecertificate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509parsecertificate", (RTS_UINTPTR)x509parsecertificate, 1, 0x01B27207, 0x03050B00) 
+	#define EXP_CmpX509Certx509parsecertificate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509parsecertificate", (RTS_UINTPTR)x509parsecertificate, 1, 0x01B27207, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_x509parsecertificate
 	#define EXT_x509parsecertificate
 	#define GET_x509parsecertificate(fl)  CAL_CMGETAPI( "x509parsecertificate" ) 
 	#define CAL_x509parsecertificate  x509parsecertificate
 	#define CHK_x509parsecertificate  TRUE
-	#define EXP_x509parsecertificate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509parsecertificate", (RTS_UINTPTR)x509parsecertificate, 1, 0x01B27207, 0x03050B00) 
+	#define EXP_x509parsecertificate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509parsecertificate", (RTS_UINTPTR)x509parsecertificate, 1, 0x01B27207, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_x509parsecertificate  PFX509PARSECERTIFICATE_IEC pfx509parsecertificate;
 	#define EXT_x509parsecertificate  extern PFX509PARSECERTIFICATE_IEC pfx509parsecertificate;
-	#define GET_x509parsecertificate(fl)  s_pfCMGetAPI2( "x509parsecertificate", (RTS_VOID_FCTPTR *)&pfx509parsecertificate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x01B27207, 0x03050B00)
+	#define GET_x509parsecertificate(fl)  s_pfCMGetAPI2( "x509parsecertificate", (RTS_VOID_FCTPTR *)&pfx509parsecertificate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x01B27207, 0x03050A00)
 	#define CAL_x509parsecertificate  pfx509parsecertificate
 	#define CHK_x509parsecertificate  (pfx509parsecertificate != NULL)
-	#define EXP_x509parsecertificate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509parsecertificate", (RTS_UINTPTR)x509parsecertificate, 1, 0x01B27207, 0x03050B00) 
+	#define EXP_x509parsecertificate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"x509parsecertificate", (RTS_UINTPTR)x509parsecertificate, 1, 0x01B27207, 0x03050A00) 
 #endif
 
 
@@ -2298,51 +1956,58 @@ typedef void (CDECL CDECL_EXT* PFX509PARSECERTIFICATE_IEC) (x509parsecertificate
 
 /** EXTERN LIB SECTION END **/
 
-/**
- * <element name="Result" type="OUT">Result returned by X509CertCreateSelfSigned</element>
- * <element name="hCert" type="OUT">Handle of the geneatred certificate.</element>
- */
-typedef struct
-{
-	RTS_RESULT Result;
-	RTS_HANDLE hCert;
-} X509CertCreateSelfSignedAsyncResult;
 
-/**
- * <element name="Result" type="OUT">Result returned by X509CertCreateCSR</element>
- * <element name="hCert" type="OUT">Pointer to the RtsByteString given as parameter in X509CertCreateCSR containing the CSR.</element>
- */
 typedef struct
 {
-	RTS_RESULT Result;
+	RTS_HANDLE hCertStore;
+	RTS_HANDLE hBackend;
+	RtsX509CertInfo* pCertInfo;
+	RTS_UI32 ui32KeySize;
+	RTS_HANDLE hCert;
+} X509CertCreateSelfSignedAsyncStruct;
+
+typedef struct
+{
+	RTS_HANDLE hCertStore;
+	RTS_HANDLE hBackend;
+	RtsX509CertInfo* pCertInfo;
+	CMPID cmpID;
+	RTS_UI32 ui32KeySize;
+	RTSCERTENCODING encoding;
 	RtsByteString* pCSR;
-} X509CertCreateCSRAsyncResult;
+} X509CertCreateCSRAsyncStruct;
+
+typedef struct
+{
+	RTS_I32 nLen;
+} X509CertCreateDHParamsyncStruct;
 
 
 typedef union
 {
-	X509CertCreateSelfSignedAsyncResult selfSigned;
-	X509CertCreateCSRAsyncResult csr;
-} X509AsyncOperationResult;
+	X509CertCreateSelfSignedAsyncStruct selfSigned;
+	X509CertCreateCSRAsyncStruct csr;
+	X509CertCreateDHParamsyncStruct dhparams;
+} X509AsyncParameterStruct;
 
-/**
- * <element name="ui32Operation" type="OUT">Identifier which operation was executed.</element>
- * <element name="Result" type="OUT">Result of the operation. Use the field according the ui32Operation.</element>
- * <element name="pCallbackParam" type="OUT">Pointer to callback parameter given in the X509CertCreate...Async function.</element>
- */
-typedef struct
+#define OPENSSL_ASYNC_FUNCTION_CREATESELFSIGNED		1
+#define OPENSSL_ASYNC_FUNCTION_CREATECSR			2
+#define OPENSSL_ASYNC_FUNCTION_CREATEDHPARAMS		3
+
+struct _X509AsyncStruct;
+
+typedef void HUGEPTR(CDECL *PFX509ASYNCCALLBACK)(struct _X509AsyncStruct *pAsyncStruct);
+
+typedef struct _X509AsyncStruct
 {
-	RTS_UI32 ui32Operation;
-	X509AsyncOperationResult Result;
-	void* pCallbackParam;
-} X509AsyncResult;
-
-#define CMPX509CERT_ASYNC_FUNCTION_CREATESELFSIGNED		1
-#define CMPX509CERT_ASYNC_FUNCTION_CREATECSR			2
-
-
-typedef void HUGEPTR(CDECL *PFX509ASYNCCALLBACK)(X509AsyncResult *pAsyncStruct);
-
+	RTS_HANDLE hJob;
+	RTS_UI32 asyncFunction;
+	PFX509ASYNCCALLBACK pfCallback;
+	RTS_UI32 nIndex;
+	RTS_UI32 ulState;
+	RTS_RESULT Result;
+	X509AsyncParameterStruct asyncParam;
+} X509AsyncStruct;
 
 
 /* --------------------------------------------------------------------------- */
@@ -3614,6 +3279,75 @@ typedef RTS_RESULT (CDECL * PFX509CERTCMSDECRYPT) (RTS_HANDLE hCertStore, RTS_HA
 /* --------------------------------------------------------------------------- */
 
 /**
+ * <description>Split up a certificate chain into single certificates.</description>
+ * Usage: 
+	RtsByteString pCertificateChain; // Received from a sender or read from file
+    RTS_UI32 ui32NumOfCertificates = 0;
+	RtsByteString *pCertificates;
+	
+	// Evaluate the number of certificates in the cain
+	X509SplitCertificateChain(pCertificateChain, NULL, &ui32NumOfCertificates);
+	
+	// Get the cert array 
+	pCertificates = (RtsByteString *)malloc(ui32NumOfCertificates * sizeof(RtsByteString));
+	
+	// Split up the certificate chain into single certificates. 
+	X509SplitCertificateChain(pCertificateChain, pCertificates, &ui32NumOfCertificates);
+ 
+ * This function will no allocate new memory to store the splitted certificates. Instead the returned byte strings
+ * will contain a reference to the certificate in the chain.
+ * <result>Result of the operation.</result>
+ */
+RTS_RESULT CDECL X509SplitCertificateChain(RtsByteString* pCertificateChain, RtsByteString* pCertificates, RTS_UI32* pui32NumOfCertificates);
+typedef RTS_RESULT (CDECL * PFX509SPLITCERTIFICATECHAIN) (RtsByteString* pCertificateChain, RtsByteString* pCertificates, RTS_UI32* pui32NumOfCertificates);
+#if defined(CMPX509CERT_NOTIMPLEMENTED) || defined(X509SPLITCERTIFICATECHAIN_NOTIMPLEMENTED)
+	#define USE_X509SplitCertificateChain
+	#define EXT_X509SplitCertificateChain
+	#define GET_X509SplitCertificateChain(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_X509SplitCertificateChain(p0,p1,p2)  (RTS_RESULT)ERR_NOTIMPLEMENTED
+	#define CHK_X509SplitCertificateChain  FALSE
+	#define EXP_X509SplitCertificateChain  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_X509SplitCertificateChain
+	#define EXT_X509SplitCertificateChain
+	#define GET_X509SplitCertificateChain(fl)  CAL_CMGETAPI( "X509SplitCertificateChain" ) 
+	#define CAL_X509SplitCertificateChain  X509SplitCertificateChain
+	#define CHK_X509SplitCertificateChain  TRUE
+	#define EXP_X509SplitCertificateChain  CAL_CMEXPAPI( "X509SplitCertificateChain" ) 
+#elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
+	#define USE_X509SplitCertificateChain
+	#define EXT_X509SplitCertificateChain
+	#define GET_X509SplitCertificateChain(fl)  CAL_CMGETAPI( "X509SplitCertificateChain" ) 
+	#define CAL_X509SplitCertificateChain  X509SplitCertificateChain
+	#define CHK_X509SplitCertificateChain  TRUE
+	#define EXP_X509SplitCertificateChain  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"X509SplitCertificateChain", (RTS_UINTPTR)X509SplitCertificateChain, 0, 0) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpX509CertX509SplitCertificateChain
+	#define EXT_CmpX509CertX509SplitCertificateChain
+	#define GET_CmpX509CertX509SplitCertificateChain  ERR_OK
+	#define CAL_CmpX509CertX509SplitCertificateChain pICmpX509Cert->IX509SplitCertificateChain
+	#define CHK_CmpX509CertX509SplitCertificateChain (pICmpX509Cert != NULL)
+	#define EXP_CmpX509CertX509SplitCertificateChain  ERR_OK
+#elif defined(CPLUSPLUS)
+	#define USE_X509SplitCertificateChain
+	#define EXT_X509SplitCertificateChain
+	#define GET_X509SplitCertificateChain(fl)  CAL_CMGETAPI( "X509SplitCertificateChain" ) 
+	#define CAL_X509SplitCertificateChain pICmpX509Cert->IX509SplitCertificateChain
+	#define CHK_X509SplitCertificateChain (pICmpX509Cert != NULL)
+	#define EXP_X509SplitCertificateChain  CAL_CMEXPAPI( "X509SplitCertificateChain" ) 
+#else /* DYNAMIC_LINK */
+	#define USE_X509SplitCertificateChain  PFX509SPLITCERTIFICATECHAIN pfX509SplitCertificateChain;
+	#define EXT_X509SplitCertificateChain  extern PFX509SPLITCERTIFICATECHAIN pfX509SplitCertificateChain;
+	#define GET_X509SplitCertificateChain(fl)  s_pfCMGetAPI2( "X509SplitCertificateChain", (RTS_VOID_FCTPTR *)&pfX509SplitCertificateChain, (fl), 0, 0)
+	#define CAL_X509SplitCertificateChain  pfX509SplitCertificateChain
+	#define CHK_X509SplitCertificateChain  (pfX509SplitCertificateChain != NULL)
+	#define EXP_X509SplitCertificateChain  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"X509SplitCertificateChain", (RTS_UINTPTR)X509SplitCertificateChain, 0, 0) 
+#endif
+
+
+
+
+/**
  * <description>Create an RtsOID based on a given ID.</description>
  * <param name="id" type="IN">OID as string in dottet format. E.g. (1.2.3.4.5.6.7.8.9.0)</param>
  * <param name="oid" type="OUT">Pointer to an OID to fill up.</param>
@@ -4126,13 +3860,7 @@ typedef RTS_RESULT (CDECL * PFX509CERTSTORGETBACKENDINFO) (RTS_HANDLE hCertStore
  * <param name="hBackend" type="IN">Handle to the backend where to store the generated certificate. RTS_INVALID_HANDLE should be used if no backend is specified.</param>
  * <param name="pCertInfo" type="IN">Information of the certificate to be generated.</param>
  * <param name="ui32KeySize" type="IN">Size in bits of the private key.</param>
- * <param name="pResult" type="OUT">Result of the operation.
- *      - ERR_OK: Everything went fine.
- *      - ERR_INVALID_HANDLE: Some input handle is invalid.
- *      - ERR_PARAMETER: Some input parameter is invalid.
- *      - ERR_OVERFLOW: The timestamps of the certificate would overflow.
- *      - ERR_NOMEMORY: Not enough memory to perform this operation.
- *      - ERR_FAILED: Creation of self signed certificate failed. failed</param>
+ * <param name="pResult" type="OUT">Result of the operation.</param>
  * <result>Handle to the created selfsigned certificate</result>
  */
 RTS_HANDLE CDECL X509CertCreateSelfSigned(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, RTS_RESULT *pResult);
@@ -4191,12 +3919,12 @@ typedef RTS_HANDLE (CDECL * PFX509CERTCREATESELFSIGNED) (RTS_HANDLE hCertStore, 
  * <param name="pCertInfo" type="IN">Information of the certificate to be generated.</param>
  * <param name="ui32KeySize" type="IN">Size in bits of the private key.</param>
  * <param name="ui32KeySize" type="IN">Size in bits of the private key.</param>
- * <param name="pCallbackParam" type="IN">Parameter used when the callback is called when the operation has finished.</param>
+ * <param name="nIndex" type="IN">Optional index of the operation. Is proivided in the callback as an additional parameter.</param>
  * <param name="pfCallback" type="IN">Callback function that is called at the end of the operation</param>
  * <result>Result of the operation</result>
  */
-RTS_RESULT CDECL X509CertCreateSelfSignedAsync(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, void* pCallbackParam, PFX509ASYNCCALLBACK pfCallback);
-typedef RTS_RESULT (CDECL * PFX509CERTCREATESELFSIGNEDASYNC) (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, void* pCallbackParam, PFX509ASYNCCALLBACK pfCallback);
+RTS_RESULT CDECL X509CertCreateSelfSignedAsync(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, RTS_UI32 nIndex, PFX509ASYNCCALLBACK pfCallback);
+typedef RTS_RESULT (CDECL * PFX509CERTCREATESELFSIGNEDASYNC) (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, RTS_UI32 nIndex, PFX509ASYNCCALLBACK pfCallback);
 #if defined(CMPX509CERT_NOTIMPLEMENTED) || defined(X509CERTCREATESELFSIGNEDASYNC_NOTIMPLEMENTED)
 	#define USE_X509CertCreateSelfSignedAsync
 	#define EXT_X509CertCreateSelfSignedAsync
@@ -4316,12 +4044,12 @@ typedef RTS_RESULT (CDECL * PFX509CERTCREATECSR) (RTS_HANDLE hCertStore, RTS_HAN
  * <param name="ui32KeySize" type="IN">Size in bits of the private key.</param>
  * <param name="encoding" type="IN">Encoding of the generated CSR.</param>
  * <param name="pCSR" type="OUT">The signing request in binary form.</param>
- * <param name="pCallbackParam" type="IN">Parameter used when the callback is called when the operation has finished.</param>
+ * <param name="nIndex" type="IN">Optional index of the operation. Is proivided in the callback as an additional parameter.</param>
  * <param name="pfCallback" type="IN">Callback function that is called at the end of the operation</param>
  * <result>Result of the operation</result>
  */
-RTS_RESULT CDECL X509CertCreateCSRAsync(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTSCERTENCODING encoding, RtsByteString* pCSR, void* pCallbackParam, PFX509ASYNCCALLBACK pfCallback);
-typedef RTS_RESULT (CDECL * PFX509CERTCREATECSRASYNC) (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTSCERTENCODING encoding, RtsByteString* pCSR, void* pCallbackParam, PFX509ASYNCCALLBACK pfCallback);
+RTS_RESULT CDECL X509CertCreateCSRAsync(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTSCERTENCODING encoding, RtsByteString* pCSR, RTS_UI32 nIndex, PFX509ASYNCCALLBACK pfCallback);
+typedef RTS_RESULT (CDECL * PFX509CERTCREATECSRASYNC) (RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTSCERTENCODING encoding, RtsByteString* pCSR, RTS_UI32 nIndex, PFX509ASYNCCALLBACK pfCallback);
 #if defined(CMPX509CERT_NOTIMPLEMENTED) || defined(X509CERTCREATECSRASYNC_NOTIMPLEMENTED)
 	#define USE_X509CertCreateCSRAsync
 	#define EXT_X509CertCreateCSRAsync
@@ -4719,70 +4447,6 @@ typedef RTS_RESULT (CDECL * PFX509CERTSTOREUNREGISTER) (RTS_HANDLE hCertStore, R
 
 
 
-/**
- * <description>
- * Get the certificate available for a registered use case. If not certificate is available RTS_INVALID_HANDLE will be returned.
- * The following rules apply for selecting the certificate:
- * - Check if a certificate is configured by the user. (The thumbprint is pinned for component and index). Use this one if available, return error if not available.
- * - If no certificate is configured filter the available certificates by subject, key usage, extended key usage and a valid timestamp. Return error if list is empty.
- * - Split the available certificates by signed and self signed certificates. Prefer the signed certificates over the self signed certificates:
- * - Select the certificate with the longest period of validity.
- * - If some certificates have the same period of validity select the one with the strongest key.
- * </description>
- * <param name="hCertStore" type="IN">Handle of to certificate store.</param>
- * <param name="hUseCase" type="IN">Handle to the registered use case. Retrieved using X509CertStoreRegister.</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Handle to the certificate. Use X509CertClose to close the certificat.</result>
- */
-RTS_HANDLE CDECL X509CertStoreGetRegisteredCert(RTS_HANDLE hCertStore, RTS_HANDLE hUseCase, RTS_RESULT* pResult);
-typedef RTS_HANDLE (CDECL * PFX509CERTSTOREGETREGISTEREDCERT) (RTS_HANDLE hCertStore, RTS_HANDLE hUseCase, RTS_RESULT* pResult);
-#if defined(CMPX509CERT_NOTIMPLEMENTED) || defined(X509CERTSTOREGETREGISTEREDCERT_NOTIMPLEMENTED)
-	#define USE_X509CertStoreGetRegisteredCert
-	#define EXT_X509CertStoreGetRegisteredCert
-	#define GET_X509CertStoreGetRegisteredCert(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_X509CertStoreGetRegisteredCert(p0,p1,p2)  (RTS_HANDLE)RTS_INVALID_HANDLE
-	#define CHK_X509CertStoreGetRegisteredCert  FALSE
-	#define EXP_X509CertStoreGetRegisteredCert  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_X509CertStoreGetRegisteredCert
-	#define EXT_X509CertStoreGetRegisteredCert
-	#define GET_X509CertStoreGetRegisteredCert(fl)  CAL_CMGETAPI( "X509CertStoreGetRegisteredCert" ) 
-	#define CAL_X509CertStoreGetRegisteredCert  X509CertStoreGetRegisteredCert
-	#define CHK_X509CertStoreGetRegisteredCert  TRUE
-	#define EXP_X509CertStoreGetRegisteredCert  CAL_CMEXPAPI( "X509CertStoreGetRegisteredCert" ) 
-#elif defined(MIXED_LINK) && !defined(CMPX509CERT_EXTERNAL)
-	#define USE_X509CertStoreGetRegisteredCert
-	#define EXT_X509CertStoreGetRegisteredCert
-	#define GET_X509CertStoreGetRegisteredCert(fl)  CAL_CMGETAPI( "X509CertStoreGetRegisteredCert" ) 
-	#define CAL_X509CertStoreGetRegisteredCert  X509CertStoreGetRegisteredCert
-	#define CHK_X509CertStoreGetRegisteredCert  TRUE
-	#define EXP_X509CertStoreGetRegisteredCert  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"X509CertStoreGetRegisteredCert", (RTS_UINTPTR)X509CertStoreGetRegisteredCert, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpX509CertX509CertStoreGetRegisteredCert
-	#define EXT_CmpX509CertX509CertStoreGetRegisteredCert
-	#define GET_CmpX509CertX509CertStoreGetRegisteredCert  ERR_OK
-	#define CAL_CmpX509CertX509CertStoreGetRegisteredCert pICmpX509Cert->IX509CertStoreGetRegisteredCert
-	#define CHK_CmpX509CertX509CertStoreGetRegisteredCert (pICmpX509Cert != NULL)
-	#define EXP_CmpX509CertX509CertStoreGetRegisteredCert  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_X509CertStoreGetRegisteredCert
-	#define EXT_X509CertStoreGetRegisteredCert
-	#define GET_X509CertStoreGetRegisteredCert(fl)  CAL_CMGETAPI( "X509CertStoreGetRegisteredCert" ) 
-	#define CAL_X509CertStoreGetRegisteredCert pICmpX509Cert->IX509CertStoreGetRegisteredCert
-	#define CHK_X509CertStoreGetRegisteredCert (pICmpX509Cert != NULL)
-	#define EXP_X509CertStoreGetRegisteredCert  CAL_CMEXPAPI( "X509CertStoreGetRegisteredCert" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_X509CertStoreGetRegisteredCert  PFX509CERTSTOREGETREGISTEREDCERT pfX509CertStoreGetRegisteredCert;
-	#define EXT_X509CertStoreGetRegisteredCert  extern PFX509CERTSTOREGETREGISTEREDCERT pfX509CertStoreGetRegisteredCert;
-	#define GET_X509CertStoreGetRegisteredCert(fl)  s_pfCMGetAPI2( "X509CertStoreGetRegisteredCert", (RTS_VOID_FCTPTR *)&pfX509CertStoreGetRegisteredCert, (fl), 0, 0)
-	#define CAL_X509CertStoreGetRegisteredCert  pfX509CertStoreGetRegisteredCert
-	#define CHK_X509CertStoreGetRegisteredCert  (pfX509CertStoreGetRegisteredCert != NULL)
-	#define EXP_X509CertStoreGetRegisteredCert  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"X509CertStoreGetRegisteredCert", (RTS_UINTPTR)X509CertStoreGetRegisteredCert, 0, 0) 
-#endif
-
-
-
-
 #ifdef __cplusplus
 }
 #endif
@@ -4815,6 +4479,7 @@ typedef struct
  	PFX509CERTCMSVERIFY IX509CertCmsVerify;
  	PFX509CERTCMSVERIFY2 IX509CertCmsVerify2;
  	PFX509CERTCMSDECRYPT IX509CertCmsDecrypt;
+ 	PFX509SPLITCERTIFICATECHAIN IX509SplitCertificateChain;
  	PFRTSOIDCREATE IRtsOIDCreate;
  	PFRTSOIDGETID IRtsOIDGetID;
  	PFRTSOIDGETNAME IRtsOIDGetName;
@@ -4834,7 +4499,6 @@ typedef struct
  	PFX509CERTSTOREGETNEXTCERT IX509CertStoreGetNextCert;
  	PFX509CERTSTOREREGISTER IX509CertStoreRegister;
  	PFX509CERTSTOREUNREGISTER IX509CertStoreUnregister;
- 	PFX509CERTSTOREGETREGISTEREDCERT IX509CertStoreGetRegisteredCert;
  } ICmpX509Cert_C;
 
 #ifdef CPLUSPLUS
@@ -4861,6 +4525,7 @@ class ICmpX509Cert : public IBase
 		virtual RTS_RESULT CDECL IX509CertCmsVerify(RTS_HANDLE hCertStore, RtsByteString* pCms, RTSCERTENCODING encoding, RtsByteString* pInData, RtsByteString* pOutData) =0;
 		virtual RTS_RESULT CDECL IX509CertCmsVerify2(RTS_HANDLE hCertStore, RtsByteString* pCms, RTSCERTENCODING encoding, RtsByteString* pInData, RtsByteString* pOutData, RTS_HANDLE* phSignerCert) =0;
 		virtual RTS_RESULT CDECL IX509CertCmsDecrypt(RTS_HANDLE hCertStore, RTS_HANDLE hRecipientCert, RtsByteString* pCms, RTSCERTENCODING encoding, RtsByteString* pOutData) =0;
+		virtual RTS_RESULT CDECL IX509SplitCertificateChain(RtsByteString* pCertificateChain, RtsByteString* pCertificates, RTS_UI32* pui32NumOfCertificates) =0;
 		virtual RTS_RESULT CDECL IRtsOIDCreate(char* id, RtsOID* oid) =0;
 		virtual RTS_RESULT CDECL IRtsOIDGetID(RtsOID* oid, RtsByteString* pBuffer) =0;
 		virtual RTS_RESULT CDECL IRtsOIDGetName(RtsOID* oid, RtsByteString* pBuffer) =0;
@@ -4871,16 +4536,15 @@ class ICmpX509Cert : public IBase
 		virtual RTS_HANDLE CDECL IX509CertStoreGetNextBackend(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsCertBackendInfo* pInfo, RTS_RESULT* pResult) =0;
 		virtual RTS_RESULT CDECL IX509CertStorGetBackendInfo(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsCertBackendInfo* pInfo) =0;
 		virtual RTS_HANDLE CDECL IX509CertCreateSelfSigned(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, RTS_RESULT *pResult) =0;
-		virtual RTS_RESULT CDECL IX509CertCreateSelfSignedAsync(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, void* pCallbackParam, PFX509ASYNCCALLBACK pfCallback) =0;
+		virtual RTS_RESULT CDECL IX509CertCreateSelfSignedAsync(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, RTS_UI32 nIndex, PFX509ASYNCCALLBACK pfCallback) =0;
 		virtual RTS_RESULT CDECL IX509CertCreateCSR(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, RTSCERTENCODING encoding, RtsByteString* pCSR) =0;
-		virtual RTS_RESULT CDECL IX509CertCreateCSRAsync(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTSCERTENCODING encoding, RtsByteString* pCSR, void* pCallbackParam, PFX509ASYNCCALLBACK pfCallback) =0;
+		virtual RTS_RESULT CDECL IX509CertCreateCSRAsync(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTSCERTENCODING encoding, RtsByteString* pCSR, RTS_UI32 nIndex, PFX509ASYNCCALLBACK pfCallback) =0;
 		virtual RTS_RESULT CDECL IX509CertStoreAddCert(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RTS_HANDLE hCert, RTSCERTTRUSTLEVEL trustLevel) =0;
 		virtual RTS_RESULT CDECL IX509CertStoreRemoveCert(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RTS_HANDLE hCert, RTS_BOOL bRemovePrivateKey) =0;
 		virtual RTS_HANDLE CDECL IX509CertStoreGetFirstCert(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RTSCERTTRUSTLEVEL trustLevel, RTS_RESULT* pResult) =0;
 		virtual RTS_HANDLE CDECL IX509CertStoreGetNextCert(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RTS_HANDLE hCert, RTS_RESULT* pResult) =0;
 		virtual RTS_HANDLE CDECL IX509CertStoreRegister(RTS_HANDLE hCertStore, CMPID cmpID, RtsX509CertInfo* pCertInfo, RTS_RESULT* pResult) =0;
 		virtual RTS_RESULT CDECL IX509CertStoreUnregister(RTS_HANDLE hCertStore, RTS_HANDLE hRegisteredComponent) =0;
-		virtual RTS_HANDLE CDECL IX509CertStoreGetRegisteredCert(RTS_HANDLE hCertStore, RTS_HANDLE hUseCase, RTS_RESULT* pResult) =0;
 };
 	#ifndef ITF_CmpX509Cert
 		#define ITF_CmpX509Cert static ICmpX509Cert *pICmpX509Cert = NULL;

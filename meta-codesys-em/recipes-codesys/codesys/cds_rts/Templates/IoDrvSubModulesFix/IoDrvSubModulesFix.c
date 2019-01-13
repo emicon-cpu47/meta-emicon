@@ -251,6 +251,8 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 		case CH_EXIT3:
 			break;
 		case CH_EXIT2:
+			break;
+		case CH_EXIT:
 		{
 			/* Delete instance */
 			ICmpIoDrv *pI;
@@ -260,10 +262,7 @@ static RTS_RESULT CDECL HookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, RTS_
 			s_pIBase->Release(s_pIBase);
 			CAL_IoDrvDelete((RTS_HANDLE)pI, (RTS_HANDLE)pI);
 			DeleteInstance(s_pIBase);
-			break;
-		}
-		case CH_EXIT:
-		{
+
 			EXIT_STMT;
 			break;
 		}

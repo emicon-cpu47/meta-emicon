@@ -4,9 +4,7 @@
  *	<p>Interface of the web server component.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpWebServer')
@@ -198,16 +196,6 @@ typedef enum WEBSERVER_CONNECTION_TYPEtag
 /**
  * <category>Settings</category>
  * <type>String</type>
- * <description>URL of the webserver. This URL will be used for the certificate as common name if HTTPS is activated. If this setting is empty the hostname of the PLC will be used.</description>
- */
-#define CMPWEBSERVER_KEY_URL						        "URL"
-#ifndef CMPWEBSERVER_VALUE_URL_DEFAULT
-    #define CMPWEBSERVER_VALUE_URL_DEFAULT				""
-#endif
-
-/**
- * <category>Settings</category>
- * <type>String</type>
  * <description>
  *	Name of the network adapter to which the sockets of the webserver will be bound. If set to a valid name, only connection requests received on the
  *  related adapter are accepted by the server. If there is a configuration for "LocalAddress" or "LocalAdapterNameUnicode", this setting will be ignored.
@@ -335,12 +323,6 @@ DEF_API(`RTS_RESULT', `CDECL', `WebServerRequestRunning', `(void)')
  * <result></result>
  */
 DEF_API(`RTS_RESULT', `CDECL', `WebServerReleaseRunning', `(void)')
-
-/**
- * <description> Sets the htm file name to use. </description>
-  * <param name="pszFileName" type="IN"> contains the htm file name </param>
- */
-DEF_API(`void', `CDECL', `WebServerSetDefaultPage', `(char* pszFileName)')
 
 #ifdef __cplusplus
 }

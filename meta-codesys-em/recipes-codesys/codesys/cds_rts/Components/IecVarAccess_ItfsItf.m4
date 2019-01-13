@@ -21,11 +21,28 @@ typedef RTS_IEC_HANDLE	ITypeDesc;
 #define LeafNode		TREENODETYPE_LEAFNODE
 
 /**
-* <category>NamespaceNodeFlags macros</category>
-* <description>Please use this macros to separate Application, GVL, Program, Variable or
-*	ExplicitNamespace nodes (e.g. IsApplicationNode(namespaceNodeFlags) to check if it is an application node).
-*  Namespace node flags are retrieved by IecVarAccGetNamespaceNodeFlags().</description>
-*/
+ * <description>VariableInformationStruct3</description>
+ */
+typedef struct tagVariableInformationStruct3
+{
+	RTS_IEC_WORD wStructSize;		
+	RTS_IEC_WORD wFlags;		
+	RTS_IEC_XWORD dwOffset;		
+	RTS_IEC_BYTE byBitOffset;		
+	RTS_IEC_XWORD xwMonitoringOffset;		
+	RTS_IEC_XWORD xwMonitoringSize;	
+	RTS_IEC_DWORD dwArrayOfArrayNesting;	
+	RTS_HANDLE hBrowseInfo;
+	RTS_IEC_BYTE aBrowseInfoPool[28];	/* OBSOLETE: Only for backward compatibility. Not used anymore because pool is created dynamic */
+} VariableInformationStruct3;
+
+
+/**
+ * <category>NamespaceNodeFlags macros</category>
+ * <description>Please use this macros to separate Application, GVL, Program, Variable or
+ *	ExplicitNamespace nodes (e.g. IsApplicationNode(namespaceNodeFlags) to check if it is an application node).
+ *  Namespace node flags are retrieved by IecVarAccGetNamespaceNodeFlags().</description>
+ */
 #define IsApplicationNode(namespaceNodeFlags)	((namespaceNodeFlags & NAMESPACENODEFLAGS_NODETYPEBRANCHNODE) != 0 && \
 												 (namespaceNodeFlags & NAMESPACENODEFLAGS_NODETYPELEAFNODE) == 0 && \
 												 (namespaceNodeFlags & NAMESPACENODEFLAGS_SIGTYPEGVL) == 0 && \
@@ -58,76 +75,7 @@ typedef RTS_IEC_HANDLE	ITypeDesc;
 												 (namespaceNodeFlags & NAMESPACENODEFLAGS_BRANCHNODEIMPLICITROOTNODE) == 0 && \
 												 (namespaceNodeFlags & NAMESPACENODEFLAGS_BRANCHNODEAPPLICATIONNAME) == 0)
 
-/**
-* WARNING!
-* If you pass this struct to the IecVarAccess or CmpIecVarAccess, it MUST be initialized with
-* IIecVarAccess9.VarAccInitVarInfo() or IecVarAccInitVarInfo() before usage, and it MUST be
-* cleaned up with IIecVarAccess9.VarAccExitVarInfo() or IecVarAccExitVarInfo(). Weird side
-* effects including crashes and memory leaks will result if you do not adhere to this rule.
-*/
-typedef struct tagVariableInformationStruct3
-{
-	RTS_IEC_WORD wStructSize;
-	RTS_IEC_WORD wFlags;
-	RTS_IEC_XWORD dwOffset;
-	RTS_IEC_BYTE byBitOffset;
-	RTS_IEC_XWORD xwMonitoringOffset;
-	RTS_IEC_XWORD xwMonitoringSize;
-	RTS_IEC_DWORD dwArrayOfArrayNesting;
-	RTS_IEC_HANDLE hBrowseInfo;
-	RTS_IEC_BYTE aBrowseInfoPool[28];		/* OBSOLETE: Only for backward compatibility. Not used anymore because data is stored in hBrowseInfo pool. */
-} VariableInformationStruct3;
 
-/**
-* WARNING!
-* If you pass this struct to the IecVarAccess or CmpIecVarAccess, it MUST be initialized with
-* IIecVarAccess9.VarAccInitVarInfo() or IecVarAccInitVarInfo() before usage, and it MUST be
-* cleaned up with IIecVarAccess9.VarAccExitVarInfo() or IecVarAccExitVarInfo(). Weird side
-* effects including crashes and memory leaks will result if you do not adhere to this rule.
-*
-* The new member wMethodMemberIndex nicely fits into an existing gap within the
-* VariableInformationStruct3 struct. Depending on the architecture and global pack mode
-* settings, we either have 3 bytes or 7 bytes gap. wMethodMemberIndex uses 2 bytes, thus
-* a further byte is available for further use. The resulting struct size, which is also stored
-* in the member wStructSize, is unchanged compared to the VariableInformationStruct3 struct.
-* This allows us to implement executables without dynamic allocation in the runtime. Access
-* is additionally guarded by VIF_EXECUTABLE_MEMBER.
-*/
-typedef struct tagVariableInformationStruct4
-{
-	RTS_IEC_WORD wStructSize;
-	RTS_IEC_WORD wFlags;
-	RTS_IEC_XWORD dwOffset;
-	RTS_IEC_BYTE byBitOffset;
-	RTS_IEC_WORD wMethodMemberIndex;
-	RTS_IEC_XWORD xwMonitoringOffset;
-	RTS_IEC_XWORD xwMonitoringSize;
-	RTS_IEC_DWORD dwArrayOfArrayNesting;
-	RTS_IEC_HANDLE hBrowseInfo;
-	RTS_IEC_BYTE aBrowseInfoPool[28];		/* OBSOLETE: Only for backward compatibility. Not used anymore because data is stored in hBrowseInfo pool. */
-} VariableInformationStruct4;
-
-typedef union tagHandleStore
-{
-	RTS_IEC_HANDLE handle;
-	RTS_IEC_DWORD dummy[2];
-} HandleStore;
-
-typedef struct tagVariableInformationStruct5
-{
-	RTS_IEC_WORD wStructSize;
-	RTS_IEC_WORD wFlags;
-	RTS_IEC_XWORD dwOffset;
-	RTS_IEC_BYTE byBitOffset;
-	RTS_IEC_WORD wMethodMemberIndex;
-	RTS_IEC_XWORD xwMonitoringOffset;
-	RTS_IEC_XWORD xwMonitoringSize;
-	RTS_IEC_DWORD dwArrayOfArrayNesting;
-	RTS_IEC_HANDLE hBrowseInfo;
-	HandleStore User;
-    HandleStore varInstance;
-	RTS_IEC_BYTE aBrowseInfoPool[12];		/* Not Used: Only for backward compatibility. */
-} VariableInformationStruct5;
 
 /** EXTERN LIB SECTION BEGIN **/
 /*  Comments are ignored for m4 compiler so restructured text can be used. changecom(`/*', `*/') */
@@ -137,25 +85,15 @@ extern "C" {
 #endif
 
 /**
- * <description>NamespaceNodeFlagsEx</description>
- */
-#define NAMESPACENODEFLAGSEX_EXPORTEDEXECUTABLEVARIABLEFLAG		RTS_IEC_LWORD_C(0x800000000)	/* The variable represents an executable member. */
-#define NAMESPACENODEFLAGSEX_EXPORTEDEXECUTABLEVARIABLE		RTS_IEC_LWORD_C(0x800000002)	/* The variable node represents an exported executable variable.. */
-#define NAMESPACENODEFLAGSEX_NODEHASEXECUTABLECHILDREN		RTS_IEC_LWORD_C(0x200000000000)	/* This node has executable children. Some interfaces (e. g. PLCHandler) need to take special
- precautions for clients which cannot cope with executable children. This flag is mainly for
- optimization purposes, as it allows to skip the workarounds on nodes without executable children. */
-
-/**
  * <description>VariableInformationFlags</description>
  */
-#define VIF_COMPLETE_ACCESS		RTS_IEC_WORD_C(0x1)	/* Complete access to this node, e.g. for array access */
-#define VIF_DONT_MODIFY_OFFSET		RTS_IEC_WORD_C(0x2)	/* Internally used for resolving struct members */
-#define VIF_BITACCESS		RTS_IEC_WORD_C(0x4)	/* A bit access is requested, e. g. for a direct address like %IX0.0 */
-#define VIF_SPLIT_HUGE_VARIABLES		RTS_IEC_WORD_C(0x8)	/* Allow to read/write only a part of the requested variable */
-#define VIF_CLIENT_ADDRESS_RESOLUTION		RTS_IEC_WORD_C(0x10)	/* Address/offset/size was resolved by client */
-#define VIF_NATIVE_SIZE		RTS_IEC_WORD_C(0x20)	/* VarAccGetSize3() should return native size instead of (client) size */
-#define VIF_EXTENDED_INFORMATION		RTS_IEC_WORD_C(0x40)	/* Obsolete, not used anymore */
-#define VIF_EXECUTABLE_MEMBER		RTS_IEC_WORD_C(0x80)	/* Member is executable, since V3.5.11.0 */
+#define VIF_COMPLETE_ACCESS		RTS_IEC_WORD_C(0x1)	/* Complete access to this node (e.g. for array access) */
+#define VIF_DONT_MODIFY_OFFSET		RTS_IEC_WORD_C(0x2)	
+#define VIF_BITACCESS		RTS_IEC_WORD_C(0x4)	
+#define VIF_SPLIT_HUGE_VARIABLES		RTS_IEC_WORD_C(0x8)	
+#define VIF_CLIENT_ADDRESS_RESOLUTION		RTS_IEC_WORD_C(0x10)	
+#define VIF_NATIVE_SIZE		RTS_IEC_WORD_C(0x20)	
+#define VIF_EXTENDED_INFORMATION		RTS_IEC_WORD_C(0x40)	/* VariableInformationStruct3 contains an extend informaiton pool instead of the browseinfo pool */
 
 /**
  * Describing the access rights of a symbol config node.
@@ -174,37 +112,9 @@ extern "C" {
 #define ACCESSRIGHTS    RTS_IEC_INT
 
 /**
- * The feature flags describing the contents of the symbol tables files.
- * This enum corresponds to the runtime subset (lower 16 bit) of the enumeration 
- * _3S.CoDeSys.SymbolConfigObject.SymbolConfigContentFeatureFlags which
- * is defined in the SymbolConfigObject interface assembly in the 
- * automation platform, and has to be kept in sync with it.
- * The presence of those flags only indicates that the feature
- * has been enabled in the symbol configuration, it does not 
- * necessarily indicate that there is actually data of that type
- * within the symbol tables (e. G. a user could just have no configured
- * executables, or no comments, or the filter for attributes rejects
- * everything).
- */
-#define CONTENTFEATUREFLAGS_NONE    RTS_IEC_INT_C(0x0)	/* Nothing configured. */
-#define CONTENTFEATUREFLAGS_SUPPORTOPCUA    RTS_IEC_INT_C(0x1)	/* Support OPC UA features (flag supported since V3.5.8.30).
-
- This is required for IncludeComments, IncludeAttributes, IncludeTypeNodeAttributes and IncludeExecutables. */
-#define CONTENTFEATUREFLAGS_INCLUDECOMMENTS    RTS_IEC_INT_C(0x2)	/* Include comments (flag supported since V3.5.9.0). */
-#define CONTENTFEATUREFLAGS_INCLUDEATTRIBUTES    RTS_IEC_INT_C(0x4)	/* Include attributes (flag supported since V3.5.9.0). */
-#define CONTENTFEATUREFLAGS_INCLUDETYPENODEATTRIBUTES    RTS_IEC_INT_C(0x8)	/* Also include comments / attributes for type nodes (flag supported since V3.5.9.0). */
-#define CONTENTFEATUREFLAGS_INCLUDEEXECUTABLES    RTS_IEC_INT_C(0x10)	/* Inclusion of executable members (flag supported since V3.5.11.0, allows calling of programs, functions, FBs and methods, requires OPC UA support).
-
- If this flag is set, the list of available signatures may also include callables. */
-/* Typed enum definition */
-#define CONTENTFEATUREFLAGS    RTS_IEC_INT
-
-/**
  * The node type of a branch node.
  * Several flags may be set concurrently.
  * Not all of the flags defined here are actually generated yet by the code generator.
- * 
- * NOTE : Due to CDS-54976 we could not add new flags here, so they've been moved to NamespaceNodeFlagsEx!
  */
 #define NAMESPACENODEFLAGS_NONE    RTS_IEC_LWORD_C(0x0)	/* Uninitialized variable. */
 #define NAMESPACENODEFLAGS_NODETYPEMASK    RTS_IEC_LWORD_C(0xFF)	/* The node type mask - 6 Bits for possible node types and flags */
@@ -253,7 +163,8 @@ extern "C" {
 #define NAMESPACENODEFLAGS_EXPORTEDVARIABLE    RTS_IEC_ULINT_C(0x100000002)	/* The variable node represents a normal exported variable. */
 #define NAMESPACENODEFLAGS_EXPORTEDSTATICVARIABLE    RTS_IEC_ULINT_C(0x200000002)	/* The variable node represents an exported static variable. */
 #define NAMESPACENODEFLAGS_EXPORTEDPROPERTYVARIABLE    RTS_IEC_ULINT_C(0x400000002)	/* The variable node represents an exported property with monitoring type 'call'. */
-#define NAMESPACENODEFLAGS_NODEFLAGSMASK    RTS_IEC_LWORD_C(0xFF0000000000)	/* The node property flags mask, those bits show some special properties of the nodes. */
+#define NAMESPACENODEFLAGS_NODEFLAGSMASK    RTS_IEC_LWORD_C(0xFF0000000000)	/* The variable node represents an exported property with monitoring type 'call'.
+ The node property flags mask, those bits show some special properties of the nodes. */
 #define NAMESPACENODEFLAGS_NODEFLAGHIDDEN    RTS_IEC_LWORD_C(0x100000000000)	/* This node is hidden, it should not be shown while browsing using the IecVarAcces or
  CmpIecVarAccess interfaces. (It can still be found by it's node path, and queried using
  the IBaseTreeNode interfaces.)
@@ -300,26 +211,6 @@ typedef struct tagEnumValues
 	RTS_IEC_STRING *pValueName;		
 	RTS_IEC_LWORD value;		
 } EnumValues;
-
-/**
- * <description>IecVarAccSymbolSetDescription</description>
- */
-typedef struct tagIecVarAccSymbolSetDescription
-{
-	RTS_IEC_STRING *pszSymbolsSetName;		
-	RTS_IEC_DWORD dwSymbolsSetBit;		
-} IecVarAccSymbolSetDescription;
-
-/**
- * <description>RtsBrowseInfo</description>
- */
-typedef struct tagRtsBrowseInfo
-{
-	IBaseTreeNode *hNode;		
-	ITypeDesc *hType;		
-	RTS_IEC_DINT nArrayIndex;		
-	RTS_IEC_DINT nStructIndex;		
-} RtsBrowseInfo;
 
 /**
  * <description>TypeDescArrayAsStruct</description>
@@ -475,161 +366,6 @@ typedef struct tagiiecvaraccess11_varaccgettypeattributebyindex_struct
 } iiecvaraccess11_varaccgettypeattributebyindex_struct;
 
 DEF_ITF_API(`void',`CDECL',`VarAccGetTypeAttributeByIndex',`(iiecvaraccess11_varaccgettypeattributebyindex_struct *p)')
-
-typedef struct
-{
-	void* __VFTABLEPOINTER;	/* Pointer to virtual function table */
-} iiecvaraccess12_struct;
-
-/**
- * Gets the content feature flags.
- * Return values:
- * - ERR_OK -> if pContentFeatureFlags is not 0, it will be set to the feature flags.
- * - ERR_NOTINITIALIZED -> The code generator did not set the flag value.
- */
-typedef struct tagiiecvaraccess12_varaccgetcontentfeatureflags_struct
-{
-	iiecvaraccess12_struct *pInstance;	/* VAR_INPUT */	
-	RTS_IEC_INT *pContentFeatureFlags;	/* VAR_INPUT */	/* Pointer to the destination variable. May be 0 to just query whether the flags are set or not. */
-	RTS_IEC_RESULT VarAccGetContentFeatureFlags;	/* VAR_OUTPUT */	
-} iiecvaraccess12_varaccgetcontentfeatureflags_struct;
-
-DEF_ITF_API(`void',`CDECL',`VarAccGetContentFeatureFlags',`(iiecvaraccess12_varaccgetcontentfeatureflags_struct *p)')
-
-/**
- * <description>IIecVarAccess12::VarAccGetRange</description>
- */
-typedef struct tagiiecvaraccess12_varaccgetrange_struct
-{
-	iiecvaraccess12_struct *pInstance;	/* VAR_INPUT */	
-	ITypeDesc *typeDesc;				/* VAR_INPUT */	
-	RTS_IEC_LWORD *pLower;				/* VAR_INPUT */	
-	RTS_IEC_LWORD *pUpper;				/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RTS_IEC_BOOL VarAccGetRange;		/* VAR_OUTPUT */	
-} iiecvaraccess12_varaccgetrange_struct;
-
-DEF_ITF_API(`void',`CDECL',`VarAccGetRange',`(iiecvaraccess12_varaccgetrange_struct *p)')
-
-typedef struct
-{
-	void* __VFTABLEPOINTER;	/* Pointer to virtual function table */
-} iiecvaraccess13_struct;
-
-/**
- * <description>IIecVarAccess13::VarAccBrowseUp3</description>
- */
-typedef struct tagiiecvaraccess13_varaccbrowseup3_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	VariableInformationStruct2 *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_BOOL bBrowseIntoComplexTypes;	/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	IBaseTreeNode *VarAccBrowseUp3;		/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccbrowseup3_struct;
-
-DEF_ITF_API(`void',`CDECL',`VarAccBrowseUp3',`(iiecvaraccess13_varaccbrowseup3_struct *p)')
-
-/**
- * <description>IIecVarAccess13::VarAccGetAccessRights2</description>
- */
-typedef struct tagiiecvaraccess13_varaccgetaccessrights2_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	VariableInformationStruct2 *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_BOOL bGetUserRights;		/* VAR_INPUT */	
-	RTS_IEC_UDINT *pResult;				/* VAR_INPUT */	
-	RTS_IEC_INT VarAccGetAccessRights2;	/* VAR_OUTPUT, Enum: ACCESSRIGHTS */
-} iiecvaraccess13_varaccgetaccessrights2_struct;
-
-DEF_ITF_API(`void',`CDECL',`VarAccGetAccessRights2',`(iiecvaraccess13_varaccgetaccessrights2_struct *p)')
-
-/**
- * <description>IIecVarAccess13::VarAccBrowseGetChildByIndex2</description>
- */
-typedef struct tagiiecvaraccess13_varaccbrowsegetchildbyindex2_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	RTS_IEC_DINT diIndex;				/* VAR_INPUT */	
-	VariableInformationStruct2 *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_UDINT *pResult;				/* VAR_INPUT */	
-	IBaseTreeNode *VarAccBrowseGetChildByIndex2;	/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccbrowsegetchildbyindex2_struct;
-
-DEF_ITF_API(`void',`CDECL',`VarAccBrowseGetChildByIndex2',`(iiecvaraccess13_varaccbrowsegetchildbyindex2_struct *p)')
-
-/**
- * <description>IIecVarAccess13::VarAccBrowseGetNext3</description>
- */
-typedef struct tagiiecvaraccess13_varaccbrowsegetnext3_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	VariableInformationStruct2 *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_BOOL bBrowseIntoComplexTypes;	/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	IBaseTreeNode *VarAccBrowseGetNext3;	/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccbrowsegetnext3_struct;
-
-DEF_ITF_API(`void',`CDECL',`VarAccBrowseGetNext3',`(iiecvaraccess13_varaccbrowsegetnext3_struct *p)')
-
-/**
- * <description>IIecVarAccess13::VarAccInitVarInfo2</description>
- */
-typedef struct tagiiecvaraccess13_varaccinitvarinfo2_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	VariableInformationStruct2 *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_UINT nSizeOfVarInfo;		/* VAR_INPUT */	
-	RTS_IEC_HANDLE hUser;				/* VAR_INPUT */	
-	RTS_IEC_RESULT VarAccInitVarInfo2;	/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccinitvarinfo2_struct;
-
-DEF_ITF_API(`void',`CDECL',`VarAccInitVarInfo2',`(iiecvaraccess13_varaccinitvarinfo2_struct *p)')
-
-/**
- * <description>IIecVarAccess13::VarAccGetApplicationName</description>
- */
-typedef struct tagiiecvaraccess13_varaccgetapplicationname_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	RTS_IEC_STRING *pszApplicationName;	/* VAR_INPUT */	
-	RTS_IEC_DINT nMaxLen;				/* VAR_INPUT */	
-	RTS_IEC_RESULT VarAccGetApplicationName;	/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccgetapplicationname_struct;
-
-DEF_ITF_API(`void',`CDECL',`VarAccGetApplicationName',`(iiecvaraccess13_varaccgetapplicationname_struct *p)')
-
-/**
- * <description>IIecVarAccess13::VarAccBrowseGetRoot2</description>
- */
-typedef struct tagiiecvaraccess13_varaccbrowsegetroot2_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	RTS_IEC_HANDLE hUser;				/* VAR_INPUT */	
-	RTS_IEC_UDINT *pResult;				/* VAR_INPUT */	
-	IBaseTreeNode *VarAccBrowseGetRoot2;	/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccbrowsegetroot2_struct;
-
-DEF_ITF_API(`void',`CDECL',`VarAccBrowseGetRoot2',`(iiecvaraccess13_varaccbrowsegetroot2_struct *p)')
-
-/**
- * <description>IIecVarAccess13::VarAccBrowseDown3</description>
- */
-typedef struct tagiiecvaraccess13_varaccbrowsedown3_struct
-{
-	iiecvaraccess13_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	VariableInformationStruct2 *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_BOOL bBrowseIntoComplexTypes;	/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	IBaseTreeNode *VarAccBrowseDown3;	/* VAR_OUTPUT */	
-} iiecvaraccess13_varaccbrowsedown3_struct;
-
-DEF_ITF_API(`void',`CDECL',`VarAccBrowseDown3',`(iiecvaraccess13_varaccbrowsedown3_struct *p)')
 
 typedef struct
 {
@@ -1006,17 +742,20 @@ typedef struct tagiiecvaraccess5_varaccgetsize3_struct
 DEF_ITF_API(`void',`CDECL',`VarAccGetSize3',`(iiecvaraccess5_varaccgetsize3_struct *p)')
 
 /**
- * <description>IIecVarAccess5::VarAccRemoveVariable3</description>
+ * <description>IIecVarAccess5::VarAccGetNodeFullPath3</description>
  */
-typedef struct tagiiecvaraccess5_varaccremovevariable3_struct
+typedef struct tagiiecvaraccess5_varaccgetnodefullpath3_struct
 {
 	iiecvaraccess5_struct *pInstance;	/* VAR_INPUT */	
 	IBaseTreeNode *pNode;				/* VAR_INPUT */	
 	VariableInformationStruct *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_RESULT VarAccRemoveVariable3;	/* VAR_OUTPUT */	
-} iiecvaraccess5_varaccremovevariable3_struct;
+	RTS_IEC_STRING *pszPath;			/* VAR_INPUT */	
+	RTS_IEC_DINT diMaxPath;				/* VAR_INPUT */	
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
+	RTS_IEC_DINT VarAccGetNodeFullPath3;	/* VAR_OUTPUT */	
+} iiecvaraccess5_varaccgetnodefullpath3_struct;
 
-DEF_ITF_API(`void',`CDECL',`VarAccRemoveVariable3',`(iiecvaraccess5_varaccremovevariable3_struct *p)')
+DEF_ITF_API(`void',`CDECL',`VarAccGetNodeFullPath3',`(iiecvaraccess5_varaccgetnodefullpath3_struct *p)')
 
 /**
  * <description>IIecVarAccess5::VarAccSetValue3</description>
@@ -1035,19 +774,6 @@ typedef struct tagiiecvaraccess5_varaccsetvalue3_struct
 DEF_ITF_API(`void',`CDECL',`VarAccSetValue3',`(iiecvaraccess5_varaccsetvalue3_struct *p)')
 
 /**
- * <description>IIecVarAccess5::VarAccAppendVariable3</description>
- */
-typedef struct tagiiecvaraccess5_varaccappendvariable3_struct
-{
-	iiecvaraccess5_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	VariableInformationStruct *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_RESULT VarAccAppendVariable3;	/* VAR_OUTPUT */	
-} iiecvaraccess5_varaccappendvariable3_struct;
-
-DEF_ITF_API(`void',`CDECL',`VarAccAppendVariable3',`(iiecvaraccess5_varaccappendvariable3_struct *p)')
-
-/**
  * <description>IIecVarAccess5::VarAccGetAddress3</description>
  */
 typedef struct tagiiecvaraccess5_varaccgetaddress3_struct
@@ -1062,18 +788,17 @@ typedef struct tagiiecvaraccess5_varaccgetaddress3_struct
 DEF_ITF_API(`void',`CDECL',`VarAccGetAddress3',`(iiecvaraccess5_varaccgetaddress3_struct *p)')
 
 /**
- * <description>IIecVarAccess5::VarAccGetTypeNode3</description>
+ * <description>IIecVarAccess5::VarAccAppendVariable3</description>
  */
-typedef struct tagiiecvaraccess5_varaccgettypenode3_struct
+typedef struct tagiiecvaraccess5_varaccappendvariable3_struct
 {
 	iiecvaraccess5_struct *pInstance;	/* VAR_INPUT */	
 	IBaseTreeNode *pNode;				/* VAR_INPUT */	
 	VariableInformationStruct *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	ITypeDesc *VarAccGetTypeNode3;		/* VAR_OUTPUT */	
-} iiecvaraccess5_varaccgettypenode3_struct;
+	RTS_IEC_RESULT VarAccAppendVariable3;	/* VAR_OUTPUT */	
+} iiecvaraccess5_varaccappendvariable3_struct;
 
-DEF_ITF_API(`void',`CDECL',`VarAccGetTypeNode3',`(iiecvaraccess5_varaccgettypenode3_struct *p)')
+DEF_ITF_API(`void',`CDECL',`VarAccAppendVariable3',`(iiecvaraccess5_varaccappendvariable3_struct *p)')
 
 /**
  * <description>IIecVarAccess5::VarAccGetValue3</description>
@@ -1106,20 +831,18 @@ typedef struct tagiiecvaraccess5_varaccgetnode3_struct
 DEF_ITF_API(`void',`CDECL',`VarAccGetNode3',`(iiecvaraccess5_varaccgetnode3_struct *p)')
 
 /**
- * <description>IIecVarAccess5::VarAccGetNodeFullPath3</description>
+ * <description>IIecVarAccess5::VarAccGetTypeNode3</description>
  */
-typedef struct tagiiecvaraccess5_varaccgetnodefullpath3_struct
+typedef struct tagiiecvaraccess5_varaccgettypenode3_struct
 {
 	iiecvaraccess5_struct *pInstance;	/* VAR_INPUT */	
 	IBaseTreeNode *pNode;				/* VAR_INPUT */	
 	VariableInformationStruct *pVariableInformation;	/* VAR_INPUT */	
-	RTS_IEC_STRING *pszPath;			/* VAR_INPUT */	
-	RTS_IEC_DINT diMaxPath;				/* VAR_INPUT */	
 	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RTS_IEC_DINT VarAccGetNodeFullPath3;	/* VAR_OUTPUT */	
-} iiecvaraccess5_varaccgetnodefullpath3_struct;
+	ITypeDesc *VarAccGetTypeNode3;		/* VAR_OUTPUT */	
+} iiecvaraccess5_varaccgettypenode3_struct;
 
-DEF_ITF_API(`void',`CDECL',`VarAccGetNodeFullPath3',`(iiecvaraccess5_varaccgetnodefullpath3_struct *p)')
+DEF_ITF_API(`void',`CDECL',`VarAccGetTypeNode3',`(iiecvaraccess5_varaccgettypenode3_struct *p)')
 
 /**
  * <description>IIecVarAccess5::VarAccGetTypeClass3</description>
@@ -1134,6 +857,19 @@ typedef struct tagiiecvaraccess5_varaccgettypeclass3_struct
 } iiecvaraccess5_varaccgettypeclass3_struct;
 
 DEF_ITF_API(`void',`CDECL',`VarAccGetTypeClass3',`(iiecvaraccess5_varaccgettypeclass3_struct *p)')
+
+/**
+ * <description>IIecVarAccess5::VarAccRemoveVariable3</description>
+ */
+typedef struct tagiiecvaraccess5_varaccremovevariable3_struct
+{
+	iiecvaraccess5_struct *pInstance;	/* VAR_INPUT */	
+	IBaseTreeNode *pNode;				/* VAR_INPUT */	
+	VariableInformationStruct *pVariableInformation;	/* VAR_INPUT */	
+	RTS_IEC_RESULT VarAccRemoveVariable3;	/* VAR_OUTPUT */	
+} iiecvaraccess5_varaccremovevariable3_struct;
+
+DEF_ITF_API(`void',`CDECL',`VarAccRemoveVariable3',`(iiecvaraccess5_varaccremovevariable3_struct *p)')
 
 /**
  * <description>IIecVarAccess5::VarAccSwap3</description>
@@ -1190,6 +926,17 @@ typedef struct
 } iiecvaraccess7_struct;
 
 /**
+ * <description>IIecVarAccess7::VarAccEnterAccess</description>
+ */
+typedef struct tagiiecvaraccess7_varaccenteraccess_struct
+{
+	iiecvaraccess7_struct *pInstance;	/* VAR_INPUT */	
+	RTS_IEC_RESULT VarAccEnterAccess;	/* VAR_OUTPUT */	
+} iiecvaraccess7_varaccenteraccess_struct;
+
+DEF_ITF_API(`void',`CDECL',`VarAccEnterAccess',`(iiecvaraccess7_varaccenteraccess_struct *p)')
+
+/**
  * <description>IIecVarAccess7::VarAccGetNumOfAttributes</description>
  */
 typedef struct tagiiecvaraccess7_varaccgetnumofattributes_struct
@@ -1203,15 +950,18 @@ typedef struct tagiiecvaraccess7_varaccgetnumofattributes_struct
 DEF_ITF_API(`void',`CDECL',`VarAccGetNumOfAttributes',`(iiecvaraccess7_varaccgetnumofattributes_struct *p)')
 
 /**
- * <description>IIecVarAccess7::VarAccEnterAccess</description>
+ * <description>IIecVarAccess7::VarAccGetAttributeByIndex</description>
  */
-typedef struct tagiiecvaraccess7_varaccenteraccess_struct
+typedef struct tagiiecvaraccess7_varaccgetattributebyindex_struct
 {
 	iiecvaraccess7_struct *pInstance;	/* VAR_INPUT */	
-	RTS_IEC_RESULT VarAccEnterAccess;	/* VAR_OUTPUT */	
-} iiecvaraccess7_varaccenteraccess_struct;
+	IBaseTreeNode *pNode;				/* VAR_INPUT */	
+	RTS_IEC_WORD wIndex;				/* VAR_INPUT */	
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
+	RTS_IEC_STRING *VarAccGetAttributeByIndex;	/* VAR_OUTPUT */	
+} iiecvaraccess7_varaccgetattributebyindex_struct;
 
-DEF_ITF_API(`void',`CDECL',`VarAccEnterAccess',`(iiecvaraccess7_varaccenteraccess_struct *p)')
+DEF_ITF_API(`void',`CDECL',`VarAccGetAttributeByIndex',`(iiecvaraccess7_varaccgetattributebyindex_struct *p)')
 
 /**
  * <description>IIecVarAccess7::VarAccGetNodeFlags</description>
@@ -1277,20 +1027,6 @@ typedef struct tagiiecvaraccess7_varaccgettypenodebyindex_struct
 } iiecvaraccess7_varaccgettypenodebyindex_struct;
 
 DEF_ITF_API(`void',`CDECL',`VarAccGetTypeNodeByIndex',`(iiecvaraccess7_varaccgettypenodebyindex_struct *p)')
-
-/**
- * <description>IIecVarAccess7::VarAccGetAttributeByIndex</description>
- */
-typedef struct tagiiecvaraccess7_varaccgetattributebyindex_struct
-{
-	iiecvaraccess7_struct *pInstance;	/* VAR_INPUT */	
-	IBaseTreeNode *pNode;				/* VAR_INPUT */	
-	RTS_IEC_WORD wIndex;				/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RTS_IEC_STRING *VarAccGetAttributeByIndex;	/* VAR_OUTPUT */	
-} iiecvaraccess7_varaccgetattributebyindex_struct;
-
-DEF_ITF_API(`void',`CDECL',`VarAccGetAttributeByIndex',`(iiecvaraccess7_varaccgetattributebyindex_struct *p)')
 
 /**
  * <description>IIecVarAccess7::VarAccGetTypeClassFromType</description>

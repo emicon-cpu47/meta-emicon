@@ -12,9 +12,7 @@
  *	<p>If the define SYSINTERNALLIB_DISABLE_REAL_DIVBYZERO_CHECK is set, you can disable checking all real divisions on a zero divisor.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysInternalLib')
@@ -569,27 +567,6 @@ typedef struct
 }int64_to_any32_struct;
 
 /**
- * <category>External IEC interface</category>
- * <description>Struct to read a 64-bit integer value atomic.</description>
- */
-typedef struct
-{
-	RTS_IEC_ULINT *pSrc;
-	RTS_IEC_ULINT out;	
-}int64_atomicread_struct;
-
-/**
- * <category>External IEC interface</category>
- * <description>Struct to read a 64-bit integer value atomic.</description>
- */
-typedef struct
-{
-	RTS_IEC_ULINT *pDest;
-	RTS_IEC_ULINT write;
-	RTS_IEC_RESULT out;	
-}int64_atomicwrite_struct;
-
-/**
  * <SIL2/>
  * <category>External IEC interface</category>
  * <description>Struct for conversion of any 32-bit value to a 64-bit integer value.</description>
@@ -721,28 +698,6 @@ typedef struct
 	RTS_IEC_UDINT dummy;
 	RTS_IEC_LREAL out;
 }real32_to_real64_struct;
-
-/**
- * <category>External IEC interface</category>
- * <description>Struct to read a 64-bit integer value atomic.</description>
- */
-typedef struct
-{
-	RTS_IEC_LREAL *pSrc;
-	RTS_IEC_LREAL out;	
-}real64_atomicread_struct;
-
-/**
- * <category>External IEC interface</category>
- * <description>Struct to read a 64-bit integer value atomic.</description>
- */
-typedef struct
-{
-	RTS_IEC_LREAL *pDest;
-	RTS_IEC_LREAL write;
-	RTS_IEC_RESULT out;	
-}real64_atomicwrite_struct;
-
 
 /********** Functions **********/
 /**
@@ -1887,29 +1842,6 @@ DEF_API(`void',`CDECL',`int64__to__any32',`(int64_to_any32_struct* p)',1,0,0,1)
 
 /**
  * <description>
- *	This function read a 64bit integer value atomic.
- * </description>
- * <param name="p" type="IN">Pointer to the input structure</param>
- * <parampseudo name="pSrc" type="IN">Pointer to source address to read from</parampseudo>
- * <parampseudo name="pResult" type="IN">Pointer to error code</parampseudo>
- * <parampseudo name="out" type="OUT">Read 64bit integer value.</parampseudo>
- */
-DEF_API(`void',`CDECL',`int64__atomicread',`(int64_atomicread_struct* p)',1,0,0,1)
-
-/**
- * <description>
- *	This function write a 64bit integer value atomic.
- * </description>
- * <param name="p" type="IN">Pointer to the input structure</param>
- * <parampseudo name="pDest" type="IN">Pointer to destination address to write to</parampseudo>
- * <parampseudo name="write" type="IN">Value to write</parampseudo>
- * <parampseudo name="out" type="OUT">Error code for result.</parampseudo>
- */
-DEF_API(`void',`CDECL',`int64__atomicwrite',`(int64_atomicwrite_struct* p)',1,0,0,1)
-
-
-/**
- * <description>
  * <p>This function Converts a 32-bit real value to any 32-bit numeric data type.</p>
  * <p>Data types with less than 32 bits are allowed but the output value is casted to 32 bits.</p>
  * <p>Only integer datatypes are allowed.</p>
@@ -2033,28 +1965,6 @@ DEF_API(`void',`CDECL',`real64__to__real32',`(real64_to_real32_struct* p)',1,0,0
 DEF_API(`void',`CDECL',`real32__to__real64',`(real32_to_real64_struct* p)',1,0,0,1)
 
 /**
- * <description>
- * <p>This function read a 64bit real value atomic.</p>
- * </description>
- * <param name="p" type="IN"">Pointer to the input structure</param>
- * <parampseudo name="pSrc" type="IN">Pointer to source address to read from</parampseudo>
- * <parampseudo name="pResult" type="IN">Pointer to error code</parampseudo>
- * <parampseudo name="out" type="OUT">Read 64bit integer value.</parampseudo>
- */
-DEF_API(`void',`CDECL',`real64__atomicread',`(real64_atomicread_struct* p)',1,0,0,1)
-
-/**
- * <description>
- * <p>This function write a 64bit real value atomic.</p>
- * </description>
- * <param name="p" type="IN"">Pointer to the input structure</param>
- * <parampseudo name="pDest" type="IN">Pointer to destination address to write to</parampseudo>
- * <parampseudo name="write" type="IN">Value to write</parampseudo>
- * <parampseudo name="out" type="OUT">Error code for result.</parampseudo>
- */
-DEF_API(`void',`CDECL',`real64__atomicwrite',`(real64_atomicwrite_struct* p)',1,0,0,1)
-
-/**
  * <description>This function returns a monotonic rising millisecond tick. This tick can be used for timeout and relative time measurements.</description>
  * <param name="p" type="IN" range="[VALID_GET_TIME_STRUCT]">Pointer to the input structure</param>
  * <parampseudo name="out" type="OUT">millisecond tick as 32-Bit value.</parampseudo>
@@ -2129,7 +2039,6 @@ typedef struct tagsystimeunset_struct
 } systimeunset_struct;
 
 DEF_API(`void',`CDECL',`systimeunset',`(systimeunset_struct *p)',1,0xB274556B,0x03050500)
-
 
 /**
  * <description>systimeunlock: Use SysTimeLock.libaray</description>

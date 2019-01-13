@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>CmpGwDiagnosticItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    <title>CmpGwDiagnosticItf &mdash; RuntimeSystemOnlineHelp V3.5.10.0</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.5.13.10',
+        VERSION:     '3.5.10.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,20 +24,18 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.10.0" href="../index.html" />
     <link rel="up" title="Reference" href="index.html" />
     <link rel="next" title="CmpHeapPoolItf" href="group___cmp_heap_pool_itf.html" />
     <link rel="prev" title="CmpGwClientItf" href="group___cmp_gw_client_itf.html" /> 
   </head>
-  <body role="document">
+  <body>
 	<div id="header">
 		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
 		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
 	</div>
 
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -49,11 +47,11 @@
         <li class="right" >
           <a href="group___cmp_gw_client_itf.html" title="CmpGwClientItf"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Reference</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
@@ -70,8 +68,8 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
-<li><a class="reference internal" href="#typedef-void-pfobjectadded-rts-handle-hlistenerid-rts-int-nobjtype-gwdobjectinfo-pinfo">typedef void( * PFOBJECTADDED)(RTS_HANDLE hListenerId, RTS_INT nObjType, GWDOBJECTINFO *pInfo)</a></li>
-<li><a class="reference internal" href="#typedef-void-pfobjectremoved-rts-handle-hlistenerid-rts-int-nobjtype-rts-handle-hobjectid">typedef void( * PFOBJECTREMOVED)(RTS_HANDLE hListenerId, RTS_INT nObjType, RTS_HANDLE hObjectId)</a></li>
+<li><a class="reference internal" href="#typedef-void-pfobjectadded-unsigned-long-ullistenerid-int-nobjtype-gwdobjectinfo-pinfo">typedef void( * PFOBJECTADDED)(unsigned long ulListenerId, int nObjType, GWDOBJECTINFO *pInfo)</a></li>
+<li><a class="reference internal" href="#typedef-void-pfobjectremoved-unsigned-long-ullistenerid-int-nobjtype-unsigned-long-ulobjectid">typedef void( * PFOBJECTREMOVED)(unsigned long ulListenerId, int nObjType, unsigned long ulObjectId)</a></li>
 <li><a class="reference internal" href="#typedef-icmpgwdiagnostic-c-icmpgwdiagnostic">typedef ICmpGwDiagnostic_C ICmpGwDiagnostic</a></li>
 </ul>
 </li>
@@ -80,9 +78,9 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
-<li><a class="reference internal" href="#rts-result-gwdregisterlistener-gwdlistenercallbacks-callbacks-rts-handle-phlistenerid">RTS_RESULT GWDRegisterListener (GWDLISTENERCALLBACKS callbacks, RTS_HANDLE *phListenerId)</a></li>
-<li><a class="reference internal" href="#rts-result-gwdunregisterlistener-rts-handle-hlistenerid">RTS_RESULT GWDUnregisterListener (RTS_HANDLE hListenerId)</a></li>
-<li><a class="reference internal" href="#rts-result-gwdgetchannelstate-rts-ui32-ulchannelid-gwdchannelstate-pstate">RTS_RESULT GWDGetChannelState (RTS_UI32 ulChannelId, GWDCHANNELSTATE *pState)</a></li>
+<li><a class="reference internal" href="#int-gwdregisterlistener-gwdlistenercallbacks-callbacks-unsigned-long-pullistenerid">int GWDRegisterListener (GWDLISTENERCALLBACKS callbacks, unsigned long *pulListenerId)</a></li>
+<li><a class="reference internal" href="#int-gwdunregisterlistener-unsigned-long-ullistenerid">int GWDUnregisterListener (unsigned long ulListenerId)</a></li>
+<li><a class="reference internal" href="#int-gwdgetchannelstate-unsigned-long-ulchannelid-gwdchannelstate-pstate">int GWDGetChannelState (unsigned long ulChannelId, GWDCHANNELSTATE *pState)</a></li>
 </ul>
 </li>
 </ul>
@@ -95,21 +93,22 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="group___cmp_heap_pool_itf.html"
                         title="next chapter">CmpHeapPoolItf</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/Reference/group___cmp_gw_diagnostic_itf.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/Reference/group___cmp_gw_diagnostic_itf.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -118,53 +117,53 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body" role="main">
+          <div class="body">
             
   <div class="section" id="cmpgwdiagnosticitf">
 <span id="group-cmp-gw-diagnostic-itf"></span><h1>CmpGwDiagnosticItf<a class="headerlink" href="#cmpgwdiagnosticitf" title="Permalink to this headline">¶</a></h1>
-<p>Interface of CmpGwDiagnostic. <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-details"><span class="std std-ref">More...</span></a></p>
+<p>Interface of CmpGwDiagnostic. <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-details"><em>More...</em></a></p>
 <div class="section" id="data-structures">
 <h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>struct <a class="reference internal" href="struct_g_w_d_p_r_o_p_e_r_t_y.html#struct-g-w-d-p-r-o-p-e-r-t-y"><span class="std std-ref">GWDPROPERTY</span></a></li>
-<li>struct <a class="reference internal" href="struct_g_w_d_o_b_j_e_c_t_i_n_f_o.html#struct-g-w-d-o-b-j-e-c-t-i-n-f-o"><span class="std std-ref">GWDOBJECTINFO</span></a></li>
-<li>struct <a class="reference internal" href="struct_g_w_d_c_o_m_m_d_r_v_i_n_f_o.html#struct-g-w-d-c-o-m-m-d-r-v-i-n-f-o"><span class="std std-ref">GWDCOMMDRVINFO</span></a></li>
-<li>struct <a class="reference internal" href="struct_g_w_d_c_l_i_e_n_t_i_n_f_o.html#struct-g-w-d-c-l-i-e-n-t-i-n-f-o"><span class="std std-ref">GWDCLIENTINFO</span></a></li>
-<li>struct <a class="reference internal" href="struct_g_w_d_c_h_a_n_n_e_l_i_n_f_o.html#struct-g-w-d-c-h-a-n-n-e-l-i-n-f-o"><span class="std std-ref">GWDCHANNELINFO</span></a></li>
-<li>struct <a class="reference internal" href="struct_g_w_d_v_i_r_t_u_a_l_c_h_a_n_n_e_l_i_n_f_o.html#struct-g-w-d-v-i-r-t-u-a-l-c-h-a-n-n-e-l-i-n-f-o"><span class="std std-ref">GWDVIRTUALCHANNELINFO</span></a></li>
-<li>struct <a class="reference internal" href="struct_g_w_d_v_i_r_t_u_a_l_c_h_a_n_n_e_l_r_e_f_i_n_f_o.html#struct-g-w-d-v-i-r-t-u-a-l-c-h-a-n-n-e-l-r-e-f-i-n-f-o"><span class="std std-ref">GWDVIRTUALCHANNELREFINFO</span></a></li>
-<li>struct <a class="reference internal" href="struct_g_w_d_c_h_a_n_n_e_l_s_t_a_t_e.html#struct-g-w-d-c-h-a-n-n-e-l-s-t-a-t-e"><span class="std std-ref">GWDCHANNELSTATE</span></a></li>
-<li>struct <a class="reference internal" href="struct_g_w_d_l_i_s_t_e_n_e_r_c_a_l_l_b_a_c_k_s.html#struct-g-w-d-l-i-s-t-e-n-e-r-c-a-l-l-b-a-c-k-s"><span class="std std-ref">GWDLISTENERCALLBACKS</span></a></li>
-<li>struct <a class="reference internal" href="struct_i_cmp_gw_diagnostic___c.html#struct-i-cmp-gw-diagnostic-c"><span class="std std-ref">ICmpGwDiagnostic_C</span></a></li>
+<li>struct <a class="reference internal" href="struct_g_w_d_p_r_o_p_e_r_t_y.html#struct-g-w-d-p-r-o-p-e-r-t-y"><em>GWDPROPERTY</em></a></li>
+<li>struct <a class="reference internal" href="struct_g_w_d_o_b_j_e_c_t_i_n_f_o.html#struct-g-w-d-o-b-j-e-c-t-i-n-f-o"><em>GWDOBJECTINFO</em></a></li>
+<li>struct <a class="reference internal" href="struct_g_w_d_c_o_m_m_d_r_v_i_n_f_o.html#struct-g-w-d-c-o-m-m-d-r-v-i-n-f-o"><em>GWDCOMMDRVINFO</em></a></li>
+<li>struct <a class="reference internal" href="struct_g_w_d_c_l_i_e_n_t_i_n_f_o.html#struct-g-w-d-c-l-i-e-n-t-i-n-f-o"><em>GWDCLIENTINFO</em></a></li>
+<li>struct <a class="reference internal" href="struct_g_w_d_c_h_a_n_n_e_l_i_n_f_o.html#struct-g-w-d-c-h-a-n-n-e-l-i-n-f-o"><em>GWDCHANNELINFO</em></a></li>
+<li>struct <a class="reference internal" href="struct_g_w_d_v_i_r_t_u_a_l_c_h_a_n_n_e_l_i_n_f_o.html#struct-g-w-d-v-i-r-t-u-a-l-c-h-a-n-n-e-l-i-n-f-o"><em>GWDVIRTUALCHANNELINFO</em></a></li>
+<li>struct <a class="reference internal" href="struct_g_w_d_v_i_r_t_u_a_l_c_h_a_n_n_e_l_r_e_f_i_n_f_o.html#struct-g-w-d-v-i-r-t-u-a-l-c-h-a-n-n-e-l-r-e-f-i-n-f-o"><em>GWDVIRTUALCHANNELREFINFO</em></a></li>
+<li>struct <a class="reference internal" href="struct_g_w_d_c_h_a_n_n_e_l_s_t_a_t_e.html#struct-g-w-d-c-h-a-n-n-e-l-s-t-a-t-e"><em>GWDCHANNELSTATE</em></a></li>
+<li>struct <a class="reference internal" href="struct_g_w_d_l_i_s_t_e_n_e_r_c_a_l_l_b_a_c_k_s.html#struct-g-w-d-l-i-s-t-e-n-e-r-c-a-l-l-b-a-c-k-s"><em>GWDLISTENERCALLBACKS</em></a></li>
+<li>struct <a class="reference internal" href="struct_i_cmp_gw_diagnostic___c.html#struct-i-cmp-gw-diagnostic-c"><em>ICmpGwDiagnostic_C</em></a></li>
 </ul>
 </div>
 <div class="section" id="macros">
 <h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>#define <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1gafc3f4fe9d1620fdb8e2a056d88855bec"><span class="std std-ref">ITF_CmpGwDiagnostic</span></a></li>
-<li>#define <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1gaff8266092a2d725639c7ed4323fc65c8"><span class="std std-ref">EXTITF_CmpGwDiagnostic</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1gafc3f4fe9d1620fdb8e2a056d88855bec"><em>ITF_CmpGwDiagnostic</em></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1gaff8266092a2d725639c7ed4323fc65c8"><em>EXTITF_CmpGwDiagnostic</em></a></li>
 </ul>
 </div>
 <div class="section" id="typedefs">
 <h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>typedef void(* <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1ga3e414c8c7e3eafc115a878a265fcb2ec"><span class="std std-ref">PFOBJECTADDED</span></a>)(RTS_HANDLE hListenerId, RTS_INT nObjType, GWDOBJECTINFO <a href="#id1"><span class="problematic" id="id2">*</span></a>pInfo)</li>
-<li>typedef void(* <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1gaca68b483f6522a52c12acd68bb2e850b"><span class="std std-ref">PFOBJECTREMOVED</span></a>)(RTS_HANDLE hListenerId, RTS_INT nObjType, RTS_HANDLE hObjectId)</li>
-<li>typedef <a class="reference internal" href="struct_i_cmp_gw_diagnostic___c.html#struct-i-cmp-gw-diagnostic-c"><span class="std std-ref">ICmpGwDiagnostic_C</span></a> <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1ga0d77245ab77a822a0ceba13fcdf37106"><span class="std std-ref">ICmpGwDiagnostic</span></a></li>
+<li>typedef void(* <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1ga63bfa915991c43ed378178517e5016f9"><em>PFOBJECTADDED</em></a>)(unsigned long ulListenerId, int nObjType, GWDOBJECTINFO <a href="#id1"><span class="problematic" id="id2">*</span></a>pInfo)</li>
+<li>typedef void(* <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1gadad3c44fbeb4b0dc5b0a4e85491dd9ed"><em>PFOBJECTREMOVED</em></a>)(unsigned long ulListenerId, int nObjType, unsigned long ulObjectId)</li>
+<li>typedef <a class="reference internal" href="struct_i_cmp_gw_diagnostic___c.html#struct-i-cmp-gw-diagnostic-c"><em>ICmpGwDiagnostic_C</em></a> <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1ga0d77245ab77a822a0ceba13fcdf37106"><em>ICmpGwDiagnostic</em></a></li>
 </ul>
 </div>
 <div class="section" id="enumerations">
 <h2>Enumerations<a class="headerlink" href="#enumerations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>enum <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1gabed82baf7f470b522273a3e37c24c600"><span class="std std-ref">&#64;8</span></a> { <span class="xref std std-ref">GWDOT_COMMDRV</span>, <span class="xref std std-ref">GWDOT_CLIENT</span>, <span class="xref std std-ref">GWDOT_CHANNEL</span>, <span class="xref std std-ref">GWDOT_VIRTUALCHANNEL</span>, <span class="xref std std-ref">GWDOT_VIRTUALCHANNELREF</span> }</li>
+<li>enum <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1gabed82baf7f470b522273a3e37c24c600"><em>&#64;8</em></a> { <em class="xref std std-ref">GWDOT_COMMDRV</em>, <em class="xref std std-ref">GWDOT_CLIENT</em>, <em class="xref std std-ref">GWDOT_CHANNEL</em>, <em class="xref std std-ref">GWDOT_VIRTUALCHANNEL</em>, <em class="xref std std-ref">GWDOT_VIRTUALCHANNELREF</em> }</li>
 </ul>
 </div>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>RTS_RESULT <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1gaf28e953694e5387b92746b18ca97ebc2"><span class="std std-ref">GWDRegisterListener</span></a> (<a class="reference internal" href="struct_g_w_d_l_i_s_t_e_n_e_r_c_a_l_l_b_a_c_k_s.html#struct-g-w-d-l-i-s-t-e-n-e-r-c-a-l-l-b-a-c-k-s"><span class="std std-ref">GWDLISTENERCALLBACKS</span></a>  callbacks, RTS_HANDLE * phListenerId)</li>
-<li>RTS_RESULT <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1ga253d1e45e741d28d60231d25f62a46c3"><span class="std std-ref">GWDUnregisterListener</span></a> (RTS_HANDLE hListenerId)</li>
-<li>RTS_RESULT <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1gaa88b449e569ebf3396ec003830eb6f02"><span class="std std-ref">GWDGetChannelState</span></a> (RTS_UI32 ulChannelId, <a class="reference internal" href="struct_g_w_d_c_h_a_n_n_e_l_s_t_a_t_e.html#struct-g-w-d-c-h-a-n-n-e-l-s-t-a-t-e"><span class="std std-ref">GWDCHANNELSTATE</span></a> * pState)</li>
+<li>int <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1ga83edbf1403a6759c235db03eaf0e28c8"><em>GWDRegisterListener</em></a> (<a class="reference internal" href="struct_g_w_d_l_i_s_t_e_n_e_r_c_a_l_l_b_a_c_k_s.html#struct-g-w-d-l-i-s-t-e-n-e-r-c-a-l-l-b-a-c-k-s"><em>GWDLISTENERCALLBACKS</em></a>  callbacks, unsigned long * pulListenerId)</li>
+<li>int <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1ga394752c665ed57dbe86131e5cb71fcb9"><em>GWDUnregisterListener</em></a> (unsigned long ulListenerId)</li>
+<li>int <a class="reference internal" href="#group-cmp-gw-diagnostic-itf-1ga18b146215dbffc27ddc3631bab839807"><em>GWDGetChannelState</em></a> (unsigned long ulChannelId, <a class="reference internal" href="struct_g_w_d_c_h_a_n_n_e_l_s_t_a_t_e.html#struct-g-w-d-c-h-a-n-n-e-l-s-t-a-t-e"><em>GWDCHANNELSTATE</em></a> * pState)</li>
 </ul>
 </div>
 <div class="section" id="detailed-description">
@@ -172,7 +171,7 @@
 <p>Interface of CmpGwDiagnostic.</p>
 <p>This interface provides diagnostic access to the gateway. It allows other components to register as a listener. After that they will be informed about activities in the gateway like addition of new channels, closing of channels, connected clients, etc. It also allows the client to query the state of several objects. The state of a channel for example includes the number of open requests or the current quality (error rate, round-trip-time).</p>
 <p><strong>Copyright:</strong></p>
-<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+<p>(c) 2003-2016 3S-Smart Software Solutions</p>
 </div>
 <div class="section" id="macro-definition-documentation">
 <h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
@@ -185,53 +184,45 @@
 </div>
 <div class="section" id="typedef-documentation">
 <h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="typedef-void-pfobjectadded-rts-handle-hlistenerid-rts-int-nobjtype-gwdobjectinfo-pinfo">
-<span id="group-cmp-gw-diagnostic-itf-1ga3e414c8c7e3eafc115a878a265fcb2ec"></span><h3>typedef void( * PFOBJECTADDED)(RTS_HANDLE hListenerId, RTS_INT nObjType, GWDOBJECTINFO <a href="#id3"><span class="problematic" id="id4">*</span></a>pInfo)<a class="headerlink" href="#typedef-void-pfobjectadded-rts-handle-hlistenerid-rts-int-nobjtype-gwdobjectinfo-pinfo" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="typedef-void-pfobjectadded-unsigned-long-ullistenerid-int-nobjtype-gwdobjectinfo-pinfo">
+<span id="group-cmp-gw-diagnostic-itf-1ga63bfa915991c43ed378178517e5016f9"></span><h3>typedef void( * PFOBJECTADDED)(unsigned long ulListenerId, int nObjType, GWDOBJECTINFO <a href="#id3"><span class="problematic" id="id4">*</span></a>pInfo)<a class="headerlink" href="#typedef-void-pfobjectadded-unsigned-long-ullistenerid-int-nobjtype-gwdobjectinfo-pinfo" title="Permalink to this headline">¶</a></h3>
 <p>Is called every time an object is added in the gateway.</p>
 <p><strong>Parameters</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="4%" />
-<col width="6%" />
-<col width="89%" />
+<col width="5%" />
+<col width="91%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>[in]</td>
-<td>hListenerId</td>
-<td>The id returned by the GWDRegisterListener</td>
-</tr>
-<tr class="row-even"><td>[in]</td>
 <td>nObjType</td>
 <td>The type of the object which is added. One of the GWDOT_xxx constants. Since new object types may be added in the future, implementations should handle unknown objects types gracefully.</td>
 </tr>
-<tr class="row-odd"><td>[in]</td>
+<tr class="row-even"><td>[in]</td>
 <td>pInfo</td>
 <td>Additional information about the added object. Depending on the object type an extension of the GWOBJECTINFO struct will be passed.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="typedef-void-pfobjectremoved-rts-handle-hlistenerid-rts-int-nobjtype-rts-handle-hobjectid">
-<span id="group-cmp-gw-diagnostic-itf-1gaca68b483f6522a52c12acd68bb2e850b"></span><h3>typedef void( * PFOBJECTREMOVED)(RTS_HANDLE hListenerId, RTS_INT nObjType, RTS_HANDLE hObjectId)<a class="headerlink" href="#typedef-void-pfobjectremoved-rts-handle-hlistenerid-rts-int-nobjtype-rts-handle-hobjectid" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="typedef-void-pfobjectremoved-unsigned-long-ullistenerid-int-nobjtype-unsigned-long-ulobjectid">
+<span id="group-cmp-gw-diagnostic-itf-1gadad3c44fbeb4b0dc5b0a4e85491dd9ed"></span><h3>typedef void( * PFOBJECTREMOVED)(unsigned long ulListenerId, int nObjType, unsigned long ulObjectId)<a class="headerlink" href="#typedef-void-pfobjectremoved-unsigned-long-ullistenerid-int-nobjtype-unsigned-long-ulobjectid" title="Permalink to this headline">¶</a></h3>
 <p>Called by the gateway when an object is removed.</p>
 <p><strong>Parameters</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="9%" />
-<col width="13%" />
-<col width="79%" />
+<col width="12%" />
+<col width="80%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>[in]</td>
-<td>hListenerId</td>
-<td>The id returned by the GWDRegisterListener</td>
+<td>nObjType</td>
+<td>Same as in PFOBJECTADDED. ulObjectId is not unique across different object types!</td>
 </tr>
 <tr class="row-even"><td>[in]</td>
-<td>nObjType</td>
-<td>Same as in PFOBJECTADDED. hObjectId is not unique across different object types!</td>
-</tr>
-<tr class="row-odd"><td>[in]</td>
-<td>hObjectId</td>
+<td>ulObjectId</td>
 <td>Refers to the object id passed in the ObjectAdded routines pInfo parameter.</td>
 </tr>
 </tbody>
@@ -267,15 +258,15 @@
 </div>
 <div class="section" id="function-documentation">
 <h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="rts-result-gwdregisterlistener-gwdlistenercallbacks-callbacks-rts-handle-phlistenerid">
-<span id="group-cmp-gw-diagnostic-itf-1gaf28e953694e5387b92746b18ca97ebc2"></span><h3>RTS_RESULT GWDRegisterListener (GWDLISTENERCALLBACKS callbacks, RTS_HANDLE <a href="#id5"><span class="problematic" id="id6">*</span></a>phListenerId)<a class="headerlink" href="#rts-result-gwdregisterlistener-gwdlistenercallbacks-callbacks-rts-handle-phlistenerid" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="int-gwdregisterlistener-gwdlistenercallbacks-callbacks-unsigned-long-pullistenerid">
+<span id="group-cmp-gw-diagnostic-itf-1ga83edbf1403a6759c235db03eaf0e28c8"></span><h3>int GWDRegisterListener (GWDLISTENERCALLBACKS callbacks, unsigned long <a href="#id5"><span class="problematic" id="id6">*</span></a>pulListenerId)<a class="headerlink" href="#int-gwdregisterlistener-gwdlistenercallbacks-callbacks-unsigned-long-pullistenerid" title="Permalink to this headline">¶</a></h3>
 <p>Register a listener for the gateway diagnostics interface. The listener will be informed about activities within the gateway using the provided callbacks. When calling this function, the listener is expected to be in an initial state. Therefore the pfObjectAdded function will be called for each object that exists in the gateway in order to synchronize the listener with the gateway.</p>
 <p><strong>Parameters</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="7%" />
-<col width="11%" />
-<col width="82%" />
+<col width="12%" />
+<col width="81%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>[in]</td>
@@ -283,32 +274,51 @@
 <td>callback functions of the listener</td>
 </tr>
 <tr class="row-even"><td>[out]</td>
-<td>phListenerId</td>
+<td>pulListenerId</td>
 <td>Will be set to a unique number that identifies the listener. Use this value in a call to unsubscribe.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="rts-result-gwdunregisterlistener-rts-handle-hlistenerid">
-<span id="group-cmp-gw-diagnostic-itf-1ga253d1e45e741d28d60231d25f62a46c3"></span><h3>RTS_RESULT GWDUnregisterListener (RTS_HANDLE hListenerId)<a class="headerlink" href="#rts-result-gwdunregisterlistener-rts-handle-hlistenerid" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="int-gwdunregisterlistener-unsigned-long-ullistenerid">
+<span id="group-cmp-gw-diagnostic-itf-1ga394752c665ed57dbe86131e5cb71fcb9"></span><h3>int GWDUnregisterListener (unsigned long ulListenerId)<a class="headerlink" href="#int-gwdunregisterlistener-unsigned-long-ullistenerid" title="Permalink to this headline">¶</a></h3>
 <p>Stop informing the specified listener about activities in the gateway.</p>
 <p><strong>Parameters</strong></p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="14%" />
-<col width="20%" />
-<col width="67%" />
+<col width="13%" />
+<col width="21%" />
+<col width="66%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>[in]</td>
-<td>hListenerId</td>
+<td>ulListenerId</td>
 <td>The id returned by the GWDRegisterListener</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="rts-result-gwdgetchannelstate-rts-ui32-ulchannelid-gwdchannelstate-pstate">
-<span id="group-cmp-gw-diagnostic-itf-1gaa88b449e569ebf3396ec003830eb6f02"></span><h3>RTS_RESULT GWDGetChannelState (RTS_UI32 ulChannelId, GWDCHANNELSTATE <a href="#id7"><span class="problematic" id="id8">*</span></a>pState)<a class="headerlink" href="#rts-result-gwdgetchannelstate-rts-ui32-ulchannelid-gwdchannelstate-pstate" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="int-gwdgetchannelstate-unsigned-long-ulchannelid-gwdchannelstate-pstate">
+<span id="group-cmp-gw-diagnostic-itf-1ga18b146215dbffc27ddc3631bab839807"></span><h3>int GWDGetChannelState (unsigned long ulChannelId, GWDCHANNELSTATE <a href="#id7"><span class="problematic" id="id8">*</span></a>pState)<a class="headerlink" href="#int-gwdgetchannelstate-unsigned-long-ulchannelid-gwdchannelstate-pstate" title="Permalink to this headline">¶</a></h3>
+<p>Fills the pState structure with the current state of a channel.</p>
+<p><strong>Parameters</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="2%" />
+<col width="3%" />
+<col width="95%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>[in]</td>
+<td>ulChannelId</td>
+<td>id of the channel as provided in the addObject callback</td>
+</tr>
+<tr class="row-even"><td>[out]</td>
+<td>pState</td>
+<td>Will be filled with the current channel state. Must not be NULL and the nStructSize member of the struct must be set to thesize of the structure provided. On success this member will be set to the size of the structure actually used, which is less or equal to the provided size. If a component passes in an extension of <a class="reference internal" href="struct_g_w_d_c_h_a_n_n_e_l_s_t_a_t_e.html#struct-g-w-d-c-h-a-n-n-e-l-s-t-a-t-e"><em>GWDCHANNELSTATE</em></a> it must be prepared that the gateway only fills the basic structure.</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -319,7 +329,7 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -331,13 +341,13 @@
         <li class="right" >
           <a href="group___cmp_gw_client_itf.html" title="CmpGwClientItf"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li>
+          <li><a href="index.html" >Reference</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    <div class="footer">
+        &copy; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

@@ -5,9 +5,7 @@
  *	available on systems, that supports dynamically loading and unloading modules.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysModule')
@@ -36,24 +34,6 @@ RTS_RESULT CDECL SysModuleOSHookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1, 
  * <result>Handle to the loaded module or RTS_INVALID_HANDLE if failed.</result>
  */
 DEF_CREATEITF_API(`RTS_HANDLE',`CDECL',`SysModuleLoad',`(char *pszModuleName, RTS_RESULT *pResult)')
-
-/**
- * <description>
- * Load a specified module
- * </description>
- * <param name="pszModuleName" type="IN">Pointer to the module name.
- * NOTE:
- * Module names must _NOT_ include operating system specific endings (e.g. .dll, .o, etc.)</param>
- * <param name="pszModuleFileName" type="IN">Pointer to the module file name.
- * NOTE:
- * Module names _must_ include operating system specific endings (e.g. .dll, .o, etc.) and optional the path of the file!</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Module could be loaded</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">Failed to load module</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid parameter (pszModuleName = NULL/empty or pszModuleFileName = NULL/empty)</errorcode>
- * <result>Handle to the loaded module or RTS_INVALID_HANDLE if failed</result>
- */
-DEF_CREATEITF_API(`RTS_HANDLE',`CDECL',`SysModuleLoad2',`(char *pszModuleName, char *pszModuleFileName, RTS_RESULT *pResult)') 
 
 /**
  * <description>

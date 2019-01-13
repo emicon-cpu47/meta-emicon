@@ -27,8 +27,6 @@ divert
 )
 define(`EXTERNAL_SOURCES',`dnl')
 define(`EXTERNAL_INCLUDES',`dnl')
-define(`CONTRIB_SOURCES',`dnl')
-define(`CONTRIB_INCLUDES',`dnl')
 divert(-1)
 
 define(`SET_COMPONENT_NAME',`define(`_COMPONENT_NAME',`$1')
@@ -95,7 +93,7 @@ define(`DEF_CREATEITF_API',`
 divert
 $1 $2 C`'_COMPONENT_NAME::I$3$4
 {
-	ifelse($3, `SysTimerCreateEvent', `DEF_CREATEITF_API_SYSTIMERCREATE(`$1', `$3', `$4')', `ifelse($3, `SysTimerCreateCallback', `DEF_CREATEITF_API_SYSTIMERCREATE(`$1', `$3', `$4')', `ifelse($3, `SysTimerCreateCallback2', `DEF_CREATEITF_API_SYSTIMERCREATE(`$1', `$3', `$4')', `ifelse($3, `IecTaskCreate', `DEF_CREATEITF_API_CMPIECTASKCREATE(`$1', `$3', `$4')', `ifelse($3, `SysTaskCreate', `DEF_CREATEITF_API_SYSTASKCREATE(`$1', `$3', `$4')', `ifelse($3, `SysTaskCreate2', `DEF_CREATEITF_API_SYSTASKCREATE(`$1', `$3', `$4')', `DEF_CREATEITF_API_STANDARD(`$1', `$3', `$4')')')')')')')
+	ifelse($3, `SysTimerCreateEvent', `DEF_CREATEITF_API_SYSTIMERCREATE(`$1', `$3', `$4')', `ifelse($3, `SysTimerCreateCallback', `DEF_CREATEITF_API_SYSTIMERCREATE(`$1', `$3', `$4')', `ifelse($3, `SysTimerCreateCallback2', `DEF_CREATEITF_API_SYSTIMERCREATE(`$1', `$3', `$4')', `ifelse($3, `IecTaskCreate', `DEF_CREATEITF_API_CMPIECTASKCREATE(`$1', `$3', `$4')', `ifelse($3, `SysTaskCreate', `DEF_CREATEITF_API_SYSTASKCREATE(`$1', `$3', `$4')', `DEF_CREATEITF_API_STANDARD(`$1', `$3', `$4')')')')')')
 	return (RTS_HANDLE)this;
 }
 divert(-1)')
@@ -280,14 +278,6 @@ divert
 $1 $2 C`'_COMPONENT_NAME::I$3$4
 {
 	ifelse(_HAS_VARIABLEPARAMETER(`$4'), -1, `ifelse($3, `IecTaskGetFirst', `DEF_ITF_API_CMPIECTASKGETFIRST(`$1', `$3', `$4')', `ifelse($3, `IecTaskGetNext', `DEF_ITF_API_CMPIECTASKGETNEXT(`$1', `$3', `$4')', `ifelse($3, `IecTaskGetCurrent', `DEF_ITF_API_CMPIECTASKGETCURRENT(`$1', `$3', `$4')', `ifelse($3, `SysTaskGetCurrent', `DEF_ITF_API_SYSTASKGETCURRENT(`$1', `$3', `$4')', `DEF_ITF_API_STANDARD(`$1', `$3', `$4')')')')')', `DEF_ITF_API_VARPARAMETER(`$1', `$3', `$4')')
-}
-divert(-1)')
-
-define(`DEF_ITF_API_OWNCPP',`
-divert
-$1 $2 C`'_COMPONENT_NAME::I$3$4
-{
-	CPP_IMPLEMENTATION_`'$3
 }
 divert(-1)')
 

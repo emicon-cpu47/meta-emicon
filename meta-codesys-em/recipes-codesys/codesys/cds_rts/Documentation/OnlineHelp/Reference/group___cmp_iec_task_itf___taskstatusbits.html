@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Task status bits &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    <title>Task status bits &mdash; RuntimeSystemOnlineHelp V3.5.10.0</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.5.13.10',
+        VERSION:     '3.5.10.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,26 +24,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" /> 
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.10.0" href="../index.html" /> 
   </head>
-  <body role="document">
+  <body>
 	<div id="header">
 		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
 		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
 	</div>
 
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
@@ -61,29 +59,29 @@
 <li><a class="reference internal" href="#define-tf-halt-on-bp-11">#define TF_HALT_ON_BP 11</a></li>
 <li><a class="reference internal" href="#define-tf-single-cycle-12">#define TF_SINGLE_CYCLE 12</a></li>
 <li><a class="reference internal" href="#define-tf-watchdog-enable2-13">#define TF_WATCHDOG_ENABLE2 13</a></li>
-<li><a class="reference internal" href="#define-iswatchdogenabled-ptask-istate-ts-watchdog-enable-ptask-istate-ts-watchdog-enable2">#define IsWatchdogEnabled ((pTask-&gt;iState &amp; <code class="docutils literal"><span class="pre">TS_WATCHDOG_ENABLE</span></code> ) &amp;&amp; (pTask-&gt;iState &amp; <code class="docutils literal"><span class="pre">TS_WATCHDOG_ENABLE2</span></code> ))</a></li>
-<li><a class="reference internal" href="#define-istasktimeenabled-ptask-istate-ts-disable-task-time-0">#define IsTaskTimeEnabled ((pTask-&gt;iState &amp; <code class="docutils literal"><span class="pre">TS_DISABLE_TASK_TIME</span></code> ) == 0)</a></li>
-<li><a class="reference internal" href="#define-isactivated-ptask-istate-ts-activated">#define IsActivated (pTask-&gt;iState &amp; <code class="docutils literal"><span class="pre">TS_ACTIVATED</span></code> )</a></li>
-<li><a class="reference internal" href="#define-toactivate-ptask-istate-ts-toactivate">#define ToActivate (pTask-&gt;iState &amp; <code class="docutils literal"><span class="pre">TS_TOACTIVATE</span></code> )</a></li>
-<li><a class="reference internal" href="#define-isstopped-ptask-istate-ts-stop">#define IsStopped (pTask-&gt;iState &amp; <code class="docutils literal"><span class="pre">TS_STOP</span></code> )</a></li>
-<li><a class="reference internal" href="#define-ishaltonbreakpoint-ptask-istate-ts-halt-on-bp">#define IsHaltOnBreakpoint (pTask-&gt;iState &amp; <code class="docutils literal"><span class="pre">TS_HALT_ON_BP</span></code> )</a></li>
-<li><a class="reference internal" href="#define-issinglecycle-ptask-istate-ts-single-cycle">#define IsSingleCycle (pTask-&gt;iState &amp; <code class="docutils literal"><span class="pre">TS_SINGLE_CYCLE</span></code> )</a></li>
-<li><a class="reference internal" href="#define-setwatchdogenabled-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-watchdog-enable-1">#define SetWatchdogEnabled CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_WATCHDOG_ENABLE</span></code> , 1)</a></li>
-<li><a class="reference internal" href="#define-setwatchdogdisabled-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-watchdog-enable-0">#define SetWatchdogDisabled CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_WATCHDOG_ENABLE</span></code> , 0)</a></li>
-<li><a class="reference internal" href="#define-setwatchdogenabled2-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-watchdog-enable2-1">#define SetWatchdogEnabled2 CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_WATCHDOG_ENABLE2</span></code> , 1)</a></li>
-<li><a class="reference internal" href="#define-setwatchdogdisabled2-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-watchdog-enable2-0">#define SetWatchdogDisabled2 CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_WATCHDOG_ENABLE2</span></code> , 0)</a></li>
-<li><a class="reference internal" href="#define-settasktimedisabled-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-disable-task-time-1">#define SetTaskTimeDisabled CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_DISABLE_TASK_TIME</span></code> , 1)</a></li>
-<li><a class="reference internal" href="#define-settasktimeenabled-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-disable-task-time-0">#define SetTaskTimeEnabled CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_DISABLE_TASK_TIME</span></code> , 0)</a></li>
-<li><a class="reference internal" href="#define-setactivated-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-activated-1">#define SetActivated CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_ACTIVATED</span></code> , 1)</a></li>
-<li><a class="reference internal" href="#define-resetactivated-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-activated-0">#define ResetActivated CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_ACTIVATED</span></code> , 0)</a></li>
-<li><a class="reference internal" href="#define-settoactivate-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-toactivate-1">#define SetToActivate CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_TOACTIVATE</span></code> , 1)</a></li>
-<li><a class="reference internal" href="#define-resettoactivate-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-toactivate-0">#define ResetToActivate CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_TOACTIVATE</span></code> , 0)</a></li>
-<li><a class="reference internal" href="#define-setstopped-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-stop-1">#define SetStopped CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_STOP</span></code> , 1)</a></li>
-<li><a class="reference internal" href="#define-setrunning-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-stop-0">#define SetRunning CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_STOP</span></code> , 0)</a></li>
-<li><a class="reference internal" href="#define-sethaltonbreakpoint-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-halt-on-bp-1">#define SetHaltOnBreakpoint CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_HALT_ON_BP</span></code> , 1)</a></li>
-<li><a class="reference internal" href="#define-resethaltonbreakpoint-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-halt-on-bp-0">#define ResetHaltOnBreakpoint CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_HALT_ON_BP</span></code> , 0)</a></li>
-<li><a class="reference internal" href="#define-setsinglecycle-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-single-cycle-1">#define SetSingleCycle CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_SINGLE_CYCLE</span></code> , 1)</a></li>
-<li><a class="reference internal" href="#define-resetsinglecycle-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-single-cycle-0">#define ResetSingleCycle CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <code class="docutils literal"><span class="pre">TF_SINGLE_CYCLE</span></code> , 0)</a></li>
+<li><a class="reference internal" href="#define-iswatchdogenabled-ptask-istate-ts-watchdog-enable-ptask-istate-ts-watchdog-enable2">#define IsWatchdogEnabled ((pTask-&gt;iState &amp; <tt class="docutils literal"><span class="pre">TS_WATCHDOG_ENABLE</span></tt> ) &amp;&amp; (pTask-&gt;iState &amp; <tt class="docutils literal"><span class="pre">TS_WATCHDOG_ENABLE2</span></tt> ))</a></li>
+<li><a class="reference internal" href="#define-istasktimeenabled-ptask-istate-ts-disable-task-time-0">#define IsTaskTimeEnabled ((pTask-&gt;iState &amp; <tt class="docutils literal"><span class="pre">TS_DISABLE_TASK_TIME</span></tt> ) == 0)</a></li>
+<li><a class="reference internal" href="#define-isactivated-ptask-istate-ts-activated">#define IsActivated (pTask-&gt;iState &amp; <tt class="docutils literal"><span class="pre">TS_ACTIVATED</span></tt> )</a></li>
+<li><a class="reference internal" href="#define-toactivate-ptask-istate-ts-toactivate">#define ToActivate (pTask-&gt;iState &amp; <tt class="docutils literal"><span class="pre">TS_TOACTIVATE</span></tt> )</a></li>
+<li><a class="reference internal" href="#define-isstopped-ptask-istate-ts-stop">#define IsStopped (pTask-&gt;iState &amp; <tt class="docutils literal"><span class="pre">TS_STOP</span></tt> )</a></li>
+<li><a class="reference internal" href="#define-ishaltonbreakpoint-ptask-istate-ts-halt-on-bp">#define IsHaltOnBreakpoint (pTask-&gt;iState &amp; <tt class="docutils literal"><span class="pre">TS_HALT_ON_BP</span></tt> )</a></li>
+<li><a class="reference internal" href="#define-issinglecycle-ptask-istate-ts-single-cycle">#define IsSingleCycle (pTask-&gt;iState &amp; <tt class="docutils literal"><span class="pre">TS_SINGLE_CYCLE</span></tt> )</a></li>
+<li><a class="reference internal" href="#define-setwatchdogenabled-ptask-istate-ts-watchdog-enable">#define SetWatchdogEnabled (pTask-&gt;iState |= <tt class="docutils literal"><span class="pre">TS_WATCHDOG_ENABLE</span></tt> )</a></li>
+<li><a class="reference internal" href="#define-setwatchdogdisabled-ptask-istate-ref-ts-watchdog-enable-group-cmp-iec-task-itf-taskstatusdefinitions-1ga38e4cf07b43b804adde5a3c6e2bd6613">#define SetWatchdogDisabled (pTask-&gt;iState &amp;= ~:ref:<cite>TS_WATCHDOG_ENABLE &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga38e4cf07b43b804adde5a3c6e2bd6613&gt;</cite> )</a></li>
+<li><a class="reference internal" href="#define-setwatchdogenabled2-ptask-istate-ts-watchdog-enable2">#define SetWatchdogEnabled2 (pTask-&gt;iState |= <tt class="docutils literal"><span class="pre">TS_WATCHDOG_ENABLE2</span></tt> )</a></li>
+<li><a class="reference internal" href="#define-setwatchdogdisabled2-ptask-istate-ref-ts-watchdog-enable2-group-cmp-iec-task-itf-taskstatusdefinitions-1ga45f3c424cfb2be2ce4da954d68dfd656">#define SetWatchdogDisabled2 (pTask-&gt;iState &amp;= ~:ref:<cite>TS_WATCHDOG_ENABLE2 &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga45f3c424cfb2be2ce4da954d68dfd656&gt;</cite> )</a></li>
+<li><a class="reference internal" href="#define-settasktimedisabled-ptask-istate-ts-disable-task-time">#define SetTaskTimeDisabled (pTask-&gt;iState |= <tt class="docutils literal"><span class="pre">TS_DISABLE_TASK_TIME</span></tt> )</a></li>
+<li><a class="reference internal" href="#define-settasktimeenabled-ptask-istate-ref-ts-disable-task-time-group-cmp-iec-task-itf-taskstatusdefinitions-1ga6a3591af21dc58e929de048abecbaf9a">#define SetTaskTimeEnabled (pTask-&gt;iState &amp;= ~:ref:<cite>TS_DISABLE_TASK_TIME &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga6a3591af21dc58e929de048abecbaf9a&gt;</cite> )</a></li>
+<li><a class="reference internal" href="#define-setactivated-ptask-istate-ts-activated">#define SetActivated (pTask-&gt;iState |= <tt class="docutils literal"><span class="pre">TS_ACTIVATED</span></tt> )</a></li>
+<li><a class="reference internal" href="#define-resetactivated-ptask-istate-ref-ts-activated-group-cmp-iec-task-itf-taskstatusdefinitions-1ga7a04046244803fb540bf76ac471c6fa0">#define ResetActivated (pTask-&gt;iState &amp;= ~:ref:<cite>TS_ACTIVATED &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga7a04046244803fb540bf76ac471c6fa0&gt;</cite> )</a></li>
+<li><a class="reference internal" href="#define-settoactivate-ptask-istate-ts-toactivate">#define SetToActivate (pTask-&gt;iState |= <tt class="docutils literal"><span class="pre">TS_TOACTIVATE</span></tt> )</a></li>
+<li><a class="reference internal" href="#define-resettoactivate-ptask-istate-ref-ts-toactivate-group-cmp-iec-task-itf-taskstatusdefinitions-1ga3b83ae99a133b548fde9a424f9946fd3">#define ResetToActivate (pTask-&gt;iState &amp;= ~:ref:<cite>TS_TOACTIVATE &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga3b83ae99a133b548fde9a424f9946fd3&gt;</cite> )</a></li>
+<li><a class="reference internal" href="#define-setstopped-ptask-istate-ts-stop">#define SetStopped (pTask-&gt;iState |= <tt class="docutils literal"><span class="pre">TS_STOP</span></tt> )</a></li>
+<li><a class="reference internal" href="#define-setrunning-ptask-istate-ref-ts-stop-group-cmp-iec-task-itf-taskstatusdefinitions-1gacf55d2174435d56f966bdfa647fe6d3e">#define SetRunning (pTask-&gt;iState &amp;= ~:ref:<cite>TS_STOP &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1gacf55d2174435d56f966bdfa647fe6d3e&gt;</cite> )</a></li>
+<li><a class="reference internal" href="#define-sethaltonbreakpoint-ptask-istate-ts-halt-on-bp">#define SetHaltOnBreakpoint (pTask-&gt;iState |= <tt class="docutils literal"><span class="pre">TS_HALT_ON_BP</span></tt> )</a></li>
+<li><a class="reference internal" href="#define-resethaltonbreakpoint-ptask-istate-ref-ts-halt-on-bp-group-cmp-iec-task-itf-taskstatusdefinitions-1gaa7e54955c09fd86561493f5680a4cb10">#define ResetHaltOnBreakpoint (pTask-&gt;iState &amp;= ~:ref:<cite>TS_HALT_ON_BP &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1gaa7e54955c09fd86561493f5680a4cb10&gt;</cite> )</a></li>
+<li><a class="reference internal" href="#define-setsinglecycle-ptask-istate-ts-single-cycle">#define SetSingleCycle (pTask-&gt;iState |= <tt class="docutils literal"><span class="pre">TS_SINGLE_CYCLE</span></tt> )</a></li>
+<li><a class="reference internal" href="#define-resetsinglecycle-ptask-istate-ref-ts-single-cycle-group-cmp-iec-task-itf-taskstatusdefinitions-1ga7ed16770704181e098355f88655b7161">#define ResetSingleCycle (pTask-&gt;iState &amp;= ~:ref:<cite>TS_SINGLE_CYCLE &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga7ed16770704181e098355f88655b7161&gt;</cite> )</a></li>
 <li><a class="reference internal" href="#define-slot-before-read-inputs-50">#define SLOT_BEFORE_READ_INPUTS 50</a></li>
 <li><a class="reference internal" href="#define-slot-read-inputs-100">#define SLOT_READ_INPUTS 100</a></li>
 <li><a class="reference internal" href="#define-slot-after-read-inputs-15000">#define SLOT_AFTER_READ_INPUTS 15000</a></li>
@@ -102,21 +100,22 @@
 </li>
 </ul>
 
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/Reference/group___cmp_iec_task_itf___taskstatusbits.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/Reference/group___cmp_iec_task_itf___taskstatusbits.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -125,66 +124,66 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body" role="main">
+          <div class="body">
             
   <div class="section" id="task-status-bits">
 <span id="group-cmp-iec-task-itf-taskstatusbits"></span><h1>Task status bits<a class="headerlink" href="#task-status-bits" title="Permalink to this headline">¶</a></h1>
 <blockquote>
-<div><a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-details"><span class="std std-ref">More...</span></a></div></blockquote>
+<div><a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-details"><em>More...</em></a></div></blockquote>
 <div class="section" id="data-structures">
 <h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>struct <a class="reference internal" href="struct_slot_p_o_u.html#struct-slot-p-o-u"><span class="std std-ref">SlotPOU</span></a></li>
+<li>struct <a class="reference internal" href="struct_slot_p_o_u.html#struct-slot-p-o-u"><em>SlotPOU</em></a></li>
 </ul>
 </div>
 <div class="section" id="macros">
 <h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gae5a7ef98e6c5d531e4b48201c4bbc905"><span class="std std-ref">TF_WATCHDOG_ENABLE</span></a> 6</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga7821fc0b6711662b2f5e608640f66fdb"><span class="std std-ref">TF_DISABLE_TASK_TIME</span></a> 7</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1a38b6a114d7fe33e8764e8b7d507e2e"><span class="std std-ref">TF_ACTIVATED</span></a> 8</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gabb338450cea63657abae8bb4adf06b56"><span class="std std-ref">TF_TOACTIVATE</span></a> 9</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga641bf582cde86870bcdcc99fcc3e6088"><span class="std std-ref">TF_STOP</span></a> 10</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga5c193893801c3db62ba46464348b8e56"><span class="std std-ref">TF_HALT_ON_BP</span></a> 11</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93"><span class="std std-ref">TF_SINGLE_CYCLE</span></a> 12</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga8d68b82a4e5f1bc8cef62a3e32535464"><span class="std std-ref">TF_WATCHDOG_ENABLE2</span></a> 13</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gadea9d121efb11bd903e18c91dc384e93"><span class="std std-ref">IsWatchdogEnabled</span></a> ((pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga38e4cf07b43b804adde5a3c6e2bd6613"><span class="std std-ref">TS_WATCHDOG_ENABLE</span></a> ) &amp;&amp; (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga45f3c424cfb2be2ce4da954d68dfd656"><span class="std std-ref">TS_WATCHDOG_ENABLE2</span></a> ))</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga7d7baba98475a65751ddd4b8aff1040d"><span class="std std-ref">IsTaskTimeEnabled</span></a> ((pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga6a3591af21dc58e929de048abecbaf9a"><span class="std std-ref">TS_DISABLE_TASK_TIME</span></a> ) == 0)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga522b5cb1d5a150992977470ab32a3d2b"><span class="std std-ref">IsActivated</span></a> (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga7a04046244803fb540bf76ac471c6fa0"><span class="std std-ref">TS_ACTIVATED</span></a> )</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga2d6ae19f6e4ce48b611053aacbbf23b8"><span class="std std-ref">ToActivate</span></a> (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga3b83ae99a133b548fde9a424f9946fd3"><span class="std std-ref">TS_TOACTIVATE</span></a> )</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga924d83747bf443e0fb4b390c408254dc"><span class="std std-ref">IsStopped</span></a> (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1gacf55d2174435d56f966bdfa647fe6d3e"><span class="std std-ref">TS_STOP</span></a> )</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga31592be6b9fdd014330af00a2e7098d6"><span class="std std-ref">IsHaltOnBreakpoint</span></a> (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1gaa7e54955c09fd86561493f5680a4cb10"><span class="std std-ref">TS_HALT_ON_BP</span></a> )</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga371e36b3ee7113fa0bbbcc174c044bdb"><span class="std std-ref">IsSingleCycle</span></a> (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga7ed16770704181e098355f88655b7161"><span class="std std-ref">TS_SINGLE_CYCLE</span></a> )</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga5d509e84b3a90ee712ca99def1e288df"><span class="std std-ref">SetWatchdogEnabled</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gae5a7ef98e6c5d531e4b48201c4bbc905"><span class="std std-ref">TF_WATCHDOG_ENABLE</span></a> , 1)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gaecf2dd2fc102840ca9fe390c2714c766"><span class="std std-ref">SetWatchdogDisabled</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gae5a7ef98e6c5d531e4b48201c4bbc905"><span class="std std-ref">TF_WATCHDOG_ENABLE</span></a> , 0)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gac009ed490336b679fcec69cc9b18bf4d"><span class="std std-ref">SetWatchdogEnabled2</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga8d68b82a4e5f1bc8cef62a3e32535464"><span class="std std-ref">TF_WATCHDOG_ENABLE2</span></a> , 1)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gaf47f248bd7724c0a4b2c04c319c989f5"><span class="std std-ref">SetWatchdogDisabled2</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga8d68b82a4e5f1bc8cef62a3e32535464"><span class="std std-ref">TF_WATCHDOG_ENABLE2</span></a> , 0)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga4993d13e681ff3059be9a0a93258bc55"><span class="std std-ref">SetTaskTimeDisabled</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga7821fc0b6711662b2f5e608640f66fdb"><span class="std std-ref">TF_DISABLE_TASK_TIME</span></a> , 1)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga848503e77256f8933d56d5113c3f04eb"><span class="std std-ref">SetTaskTimeEnabled</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga7821fc0b6711662b2f5e608640f66fdb"><span class="std std-ref">TF_DISABLE_TASK_TIME</span></a> , 0)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gad949de33eda0b32eeabf8b0f1fc9fd03"><span class="std std-ref">SetActivated</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1a38b6a114d7fe33e8764e8b7d507e2e"><span class="std std-ref">TF_ACTIVATED</span></a> , 1)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1c2dd48c04602cc19a8f356e5e82c17a"><span class="std std-ref">ResetActivated</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1a38b6a114d7fe33e8764e8b7d507e2e"><span class="std std-ref">TF_ACTIVATED</span></a> , 0)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga2f7ba09de404e6000b91687eb477d138"><span class="std std-ref">SetToActivate</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gabb338450cea63657abae8bb4adf06b56"><span class="std std-ref">TF_TOACTIVATE</span></a> , 1)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga31d7b26fce4ce14493374ff964247e1c"><span class="std std-ref">ResetToActivate</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gabb338450cea63657abae8bb4adf06b56"><span class="std std-ref">TF_TOACTIVATE</span></a> , 0)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gac8eb7c66eeef3784dc92b0ef9140b66c"><span class="std std-ref">SetStopped</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga641bf582cde86870bcdcc99fcc3e6088"><span class="std std-ref">TF_STOP</span></a> , 1)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga5ab9e75024ac3c56e61179f1293d3c9f"><span class="std std-ref">SetRunning</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga641bf582cde86870bcdcc99fcc3e6088"><span class="std std-ref">TF_STOP</span></a> , 0)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gab10cda1ba9a0e62119d71b6a8b4b402b"><span class="std std-ref">SetHaltOnBreakpoint</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga5c193893801c3db62ba46464348b8e56"><span class="std std-ref">TF_HALT_ON_BP</span></a> , 1)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga746eba1ebbb0e84fb829f4cb15a8bd0a"><span class="std std-ref">ResetHaltOnBreakpoint</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga5c193893801c3db62ba46464348b8e56"><span class="std std-ref">TF_HALT_ON_BP</span></a> , 0)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gaf18c0cde7f011ee017f631a7af75cdc7"><span class="std std-ref">SetSingleCycle</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93"><span class="std std-ref">TF_SINGLE_CYCLE</span></a> , 1)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1faa320efb723b7cf8790731344bc419"><span class="std std-ref">ResetSingleCycle</span></a> CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93"><span class="std std-ref">TF_SINGLE_CYCLE</span></a> , 0)</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gac9441a320aa839536c3262e8a1feebc7"><span class="std std-ref">SLOT_BEFORE_READ_INPUTS</span></a> 50</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga0c81cabcb0083be001d29f8b5ad5af8d"><span class="std std-ref">SLOT_READ_INPUTS</span></a> 100</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gaabe32e61d7108139d13f3644e59733ad"><span class="std std-ref">SLOT_AFTER_READ_INPUTS</span></a> 15000</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga137616508dfbfed9baf8611f3db52545"><span class="std std-ref">SLOT_IEC_CODE</span></a> 30000</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1fe6df6ed87a65005d892cd5cebf348b"><span class="std std-ref">SLOT_BEFORE_WRITE_OUTPUTS</span></a> 45000</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga83514dbd5666f919cd8553acf4fad99c"><span class="std std-ref">SLOT_WRITE_OUTPUTS</span></a> 60000</li>
-<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga33ab349e8169672a0f6a3f6982529692"><span class="std std-ref">SLOT_AFTER_WRITE_OUTPUTS</span></a> 75000</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gae5a7ef98e6c5d531e4b48201c4bbc905"><em>TF_WATCHDOG_ENABLE</em></a> 6</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga7821fc0b6711662b2f5e608640f66fdb"><em>TF_DISABLE_TASK_TIME</em></a> 7</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1a38b6a114d7fe33e8764e8b7d507e2e"><em>TF_ACTIVATED</em></a> 8</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gabb338450cea63657abae8bb4adf06b56"><em>TF_TOACTIVATE</em></a> 9</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga641bf582cde86870bcdcc99fcc3e6088"><em>TF_STOP</em></a> 10</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga5c193893801c3db62ba46464348b8e56"><em>TF_HALT_ON_BP</em></a> 11</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93"><em>TF_SINGLE_CYCLE</em></a> 12</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga8d68b82a4e5f1bc8cef62a3e32535464"><em>TF_WATCHDOG_ENABLE2</em></a> 13</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gadea9d121efb11bd903e18c91dc384e93"><em>IsWatchdogEnabled</em></a> ((pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga38e4cf07b43b804adde5a3c6e2bd6613"><em>TS_WATCHDOG_ENABLE</em></a> ) &amp;&amp; (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga45f3c424cfb2be2ce4da954d68dfd656"><em>TS_WATCHDOG_ENABLE2</em></a> ))</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga7d7baba98475a65751ddd4b8aff1040d"><em>IsTaskTimeEnabled</em></a> ((pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga6a3591af21dc58e929de048abecbaf9a"><em>TS_DISABLE_TASK_TIME</em></a> ) == 0)</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga522b5cb1d5a150992977470ab32a3d2b"><em>IsActivated</em></a> (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga7a04046244803fb540bf76ac471c6fa0"><em>TS_ACTIVATED</em></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga2d6ae19f6e4ce48b611053aacbbf23b8"><em>ToActivate</em></a> (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga3b83ae99a133b548fde9a424f9946fd3"><em>TS_TOACTIVATE</em></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga924d83747bf443e0fb4b390c408254dc"><em>IsStopped</em></a> (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1gacf55d2174435d56f966bdfa647fe6d3e"><em>TS_STOP</em></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga31592be6b9fdd014330af00a2e7098d6"><em>IsHaltOnBreakpoint</em></a> (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1gaa7e54955c09fd86561493f5680a4cb10"><em>TS_HALT_ON_BP</em></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga371e36b3ee7113fa0bbbcc174c044bdb"><em>IsSingleCycle</em></a> (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga7ed16770704181e098355f88655b7161"><em>TS_SINGLE_CYCLE</em></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga5d509e84b3a90ee712ca99def1e288df"><em>SetWatchdogEnabled</em></a> (pTask-&gt;iState <a href="#id1"><span class="problematic" id="id2">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga38e4cf07b43b804adde5a3c6e2bd6613"><em>TS_WATCHDOG_ENABLE</em></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gaecf2dd2fc102840ca9fe390c2714c766"><em>SetWatchdogDisabled</em></a> (pTask-&gt;iState &amp;= ~:ref:<cite>TS_WATCHDOG_ENABLE &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga38e4cf07b43b804adde5a3c6e2bd6613&gt;</cite> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gac009ed490336b679fcec69cc9b18bf4d"><em>SetWatchdogEnabled2</em></a> (pTask-&gt;iState <a href="#id3"><span class="problematic" id="id4">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga45f3c424cfb2be2ce4da954d68dfd656"><em>TS_WATCHDOG_ENABLE2</em></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gaf47f248bd7724c0a4b2c04c319c989f5"><em>SetWatchdogDisabled2</em></a> (pTask-&gt;iState &amp;= ~:ref:<cite>TS_WATCHDOG_ENABLE2 &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga45f3c424cfb2be2ce4da954d68dfd656&gt;</cite> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga4993d13e681ff3059be9a0a93258bc55"><em>SetTaskTimeDisabled</em></a> (pTask-&gt;iState <a href="#id5"><span class="problematic" id="id6">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga6a3591af21dc58e929de048abecbaf9a"><em>TS_DISABLE_TASK_TIME</em></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga848503e77256f8933d56d5113c3f04eb"><em>SetTaskTimeEnabled</em></a> (pTask-&gt;iState &amp;= ~:ref:<cite>TS_DISABLE_TASK_TIME &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga6a3591af21dc58e929de048abecbaf9a&gt;</cite> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gad949de33eda0b32eeabf8b0f1fc9fd03"><em>SetActivated</em></a> (pTask-&gt;iState <a href="#id7"><span class="problematic" id="id8">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga7a04046244803fb540bf76ac471c6fa0"><em>TS_ACTIVATED</em></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1c2dd48c04602cc19a8f356e5e82c17a"><em>ResetActivated</em></a> (pTask-&gt;iState &amp;= ~:ref:<cite>TS_ACTIVATED &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga7a04046244803fb540bf76ac471c6fa0&gt;</cite> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga2f7ba09de404e6000b91687eb477d138"><em>SetToActivate</em></a> (pTask-&gt;iState <a href="#id9"><span class="problematic" id="id10">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga3b83ae99a133b548fde9a424f9946fd3"><em>TS_TOACTIVATE</em></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga31d7b26fce4ce14493374ff964247e1c"><em>ResetToActivate</em></a> (pTask-&gt;iState &amp;= ~:ref:<cite>TS_TOACTIVATE &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga3b83ae99a133b548fde9a424f9946fd3&gt;</cite> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gac8eb7c66eeef3784dc92b0ef9140b66c"><em>SetStopped</em></a> (pTask-&gt;iState <a href="#id11"><span class="problematic" id="id12">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1gacf55d2174435d56f966bdfa647fe6d3e"><em>TS_STOP</em></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga5ab9e75024ac3c56e61179f1293d3c9f"><em>SetRunning</em></a> (pTask-&gt;iState &amp;= ~:ref:<cite>TS_STOP &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1gacf55d2174435d56f966bdfa647fe6d3e&gt;</cite> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gab10cda1ba9a0e62119d71b6a8b4b402b"><em>SetHaltOnBreakpoint</em></a> (pTask-&gt;iState <a href="#id13"><span class="problematic" id="id14">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1gaa7e54955c09fd86561493f5680a4cb10"><em>TS_HALT_ON_BP</em></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga746eba1ebbb0e84fb829f4cb15a8bd0a"><em>ResetHaltOnBreakpoint</em></a> (pTask-&gt;iState &amp;= ~:ref:<cite>TS_HALT_ON_BP &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1gaa7e54955c09fd86561493f5680a4cb10&gt;</cite> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gaf18c0cde7f011ee017f631a7af75cdc7"><em>SetSingleCycle</em></a> (pTask-&gt;iState <a href="#id15"><span class="problematic" id="id16">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga7ed16770704181e098355f88655b7161"><em>TS_SINGLE_CYCLE</em></a> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1faa320efb723b7cf8790731344bc419"><em>ResetSingleCycle</em></a> (pTask-&gt;iState &amp;= ~:ref:<cite>TS_SINGLE_CYCLE &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga7ed16770704181e098355f88655b7161&gt;</cite> )</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gac9441a320aa839536c3262e8a1feebc7"><em>SLOT_BEFORE_READ_INPUTS</em></a> 50</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga0c81cabcb0083be001d29f8b5ad5af8d"><em>SLOT_READ_INPUTS</em></a> 100</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gaabe32e61d7108139d13f3644e59733ad"><em>SLOT_AFTER_READ_INPUTS</em></a> 15000</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga137616508dfbfed9baf8611f3db52545"><em>SLOT_IEC_CODE</em></a> 30000</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1fe6df6ed87a65005d892cd5cebf348b"><em>SLOT_BEFORE_WRITE_OUTPUTS</em></a> 45000</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga83514dbd5666f919cd8553acf4fad99c"><em>SLOT_WRITE_OUTPUTS</em></a> 60000</li>
+<li>#define <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga33ab349e8169672a0f6a3f6982529692"><em>SLOT_AFTER_WRITE_OUTPUTS</em></a> 75000</li>
 </ul>
 </div>
 <div class="section" id="typedefs">
 <h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>typedef void HUGEPTR(** <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga97f1143bf1cc8f75f026c1d53ae81ae5"><span class="std std-ref">PF_SLOT_IEC_CALLBACK</span></a>)(void)</li>
-<li>typedef void HUGEPTR(* <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gaa25511b3021bffa45f1124b84ac100e1"><span class="std std-ref">PF_SLOT_CALLBACK</span></a>)(struct tagTask_Desc <a href="#id1"><span class="problematic" id="id2">*</span></a>pTask)</li>
+<li>typedef void HUGEPTR(** <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga97f1143bf1cc8f75f026c1d53ae81ae5"><em>PF_SLOT_IEC_CALLBACK</em></a>)(void)</li>
+<li>typedef void HUGEPTR(* <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gaa25511b3021bffa45f1124b84ac100e1"><em>PF_SLOT_CALLBACK</em></a>)(struct tagTask_Desc <a href="#id17"><span class="problematic" id="id18">*</span></a>pTask)</li>
 </ul>
 </div>
 <div class="section" id="detailed-description">
@@ -217,73 +216,73 @@
 <span id="group-cmp-iec-task-itf-taskstatusbits-1ga8d68b82a4e5f1bc8cef62a3e32535464"></span><h3>#define TF_WATCHDOG_ENABLE2 13<a class="headerlink" href="#define-tf-watchdog-enable2-13" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="define-iswatchdogenabled-ptask-istate-ts-watchdog-enable-ptask-istate-ts-watchdog-enable2">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1gadea9d121efb11bd903e18c91dc384e93"></span><h3>#define IsWatchdogEnabled ((pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga38e4cf07b43b804adde5a3c6e2bd6613"><span class="std std-ref">TS_WATCHDOG_ENABLE</span></a> ) &amp;&amp; (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga45f3c424cfb2be2ce4da954d68dfd656"><span class="std std-ref">TS_WATCHDOG_ENABLE2</span></a> ))<a class="headerlink" href="#define-iswatchdogenabled-ptask-istate-ts-watchdog-enable-ptask-istate-ts-watchdog-enable2" title="Permalink to this headline">¶</a></h3>
+<span id="group-cmp-iec-task-itf-taskstatusbits-1gadea9d121efb11bd903e18c91dc384e93"></span><h3>#define IsWatchdogEnabled ((pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga38e4cf07b43b804adde5a3c6e2bd6613"><em>TS_WATCHDOG_ENABLE</em></a> ) &amp;&amp; (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga45f3c424cfb2be2ce4da954d68dfd656"><em>TS_WATCHDOG_ENABLE2</em></a> ))<a class="headerlink" href="#define-iswatchdogenabled-ptask-istate-ts-watchdog-enable-ptask-istate-ts-watchdog-enable2" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="define-istasktimeenabled-ptask-istate-ts-disable-task-time-0">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga7d7baba98475a65751ddd4b8aff1040d"></span><h3>#define IsTaskTimeEnabled ((pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga6a3591af21dc58e929de048abecbaf9a"><span class="std std-ref">TS_DISABLE_TASK_TIME</span></a> ) == 0)<a class="headerlink" href="#define-istasktimeenabled-ptask-istate-ts-disable-task-time-0" title="Permalink to this headline">¶</a></h3>
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga7d7baba98475a65751ddd4b8aff1040d"></span><h3>#define IsTaskTimeEnabled ((pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga6a3591af21dc58e929de048abecbaf9a"><em>TS_DISABLE_TASK_TIME</em></a> ) == 0)<a class="headerlink" href="#define-istasktimeenabled-ptask-istate-ts-disable-task-time-0" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="define-isactivated-ptask-istate-ts-activated">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga522b5cb1d5a150992977470ab32a3d2b"></span><h3>#define IsActivated (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga7a04046244803fb540bf76ac471c6fa0"><span class="std std-ref">TS_ACTIVATED</span></a> )<a class="headerlink" href="#define-isactivated-ptask-istate-ts-activated" title="Permalink to this headline">¶</a></h3>
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga522b5cb1d5a150992977470ab32a3d2b"></span><h3>#define IsActivated (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga7a04046244803fb540bf76ac471c6fa0"><em>TS_ACTIVATED</em></a> )<a class="headerlink" href="#define-isactivated-ptask-istate-ts-activated" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="define-toactivate-ptask-istate-ts-toactivate">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga2d6ae19f6e4ce48b611053aacbbf23b8"></span><h3>#define ToActivate (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga3b83ae99a133b548fde9a424f9946fd3"><span class="std std-ref">TS_TOACTIVATE</span></a> )<a class="headerlink" href="#define-toactivate-ptask-istate-ts-toactivate" title="Permalink to this headline">¶</a></h3>
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga2d6ae19f6e4ce48b611053aacbbf23b8"></span><h3>#define ToActivate (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga3b83ae99a133b548fde9a424f9946fd3"><em>TS_TOACTIVATE</em></a> )<a class="headerlink" href="#define-toactivate-ptask-istate-ts-toactivate" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="define-isstopped-ptask-istate-ts-stop">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga924d83747bf443e0fb4b390c408254dc"></span><h3>#define IsStopped (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1gacf55d2174435d56f966bdfa647fe6d3e"><span class="std std-ref">TS_STOP</span></a> )<a class="headerlink" href="#define-isstopped-ptask-istate-ts-stop" title="Permalink to this headline">¶</a></h3>
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga924d83747bf443e0fb4b390c408254dc"></span><h3>#define IsStopped (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1gacf55d2174435d56f966bdfa647fe6d3e"><em>TS_STOP</em></a> )<a class="headerlink" href="#define-isstopped-ptask-istate-ts-stop" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="define-ishaltonbreakpoint-ptask-istate-ts-halt-on-bp">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga31592be6b9fdd014330af00a2e7098d6"></span><h3>#define IsHaltOnBreakpoint (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1gaa7e54955c09fd86561493f5680a4cb10"><span class="std std-ref">TS_HALT_ON_BP</span></a> )<a class="headerlink" href="#define-ishaltonbreakpoint-ptask-istate-ts-halt-on-bp" title="Permalink to this headline">¶</a></h3>
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga31592be6b9fdd014330af00a2e7098d6"></span><h3>#define IsHaltOnBreakpoint (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1gaa7e54955c09fd86561493f5680a4cb10"><em>TS_HALT_ON_BP</em></a> )<a class="headerlink" href="#define-ishaltonbreakpoint-ptask-istate-ts-halt-on-bp" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="define-issinglecycle-ptask-istate-ts-single-cycle">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga371e36b3ee7113fa0bbbcc174c044bdb"></span><h3>#define IsSingleCycle (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga7ed16770704181e098355f88655b7161"><span class="std std-ref">TS_SINGLE_CYCLE</span></a> )<a class="headerlink" href="#define-issinglecycle-ptask-istate-ts-single-cycle" title="Permalink to this headline">¶</a></h3>
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga371e36b3ee7113fa0bbbcc174c044bdb"></span><h3>#define IsSingleCycle (pTask-&gt;iState &amp; <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga7ed16770704181e098355f88655b7161"><em>TS_SINGLE_CYCLE</em></a> )<a class="headerlink" href="#define-issinglecycle-ptask-istate-ts-single-cycle" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-setwatchdogenabled-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-watchdog-enable-1">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga5d509e84b3a90ee712ca99def1e288df"></span><h3>#define SetWatchdogEnabled CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gae5a7ef98e6c5d531e4b48201c4bbc905"><span class="std std-ref">TF_WATCHDOG_ENABLE</span></a> , 1)<a class="headerlink" href="#define-setwatchdogenabled-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-watchdog-enable-1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-setwatchdogenabled-ptask-istate-ts-watchdog-enable">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga5d509e84b3a90ee712ca99def1e288df"></span><h3>#define SetWatchdogEnabled (pTask-&gt;iState <a href="#id19"><span class="problematic" id="id20">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga38e4cf07b43b804adde5a3c6e2bd6613"><em>TS_WATCHDOG_ENABLE</em></a> )<a class="headerlink" href="#define-setwatchdogenabled-ptask-istate-ts-watchdog-enable" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-setwatchdogdisabled-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-watchdog-enable-0">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1gaecf2dd2fc102840ca9fe390c2714c766"></span><h3>#define SetWatchdogDisabled CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gae5a7ef98e6c5d531e4b48201c4bbc905"><span class="std std-ref">TF_WATCHDOG_ENABLE</span></a> , 0)<a class="headerlink" href="#define-setwatchdogdisabled-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-watchdog-enable-0" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-setwatchdogdisabled-ptask-istate-ref-ts-watchdog-enable-group-cmp-iec-task-itf-taskstatusdefinitions-1ga38e4cf07b43b804adde5a3c6e2bd6613">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1gaecf2dd2fc102840ca9fe390c2714c766"></span><h3>#define SetWatchdogDisabled (pTask-&gt;iState &amp;= ~:ref:<cite>TS_WATCHDOG_ENABLE &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga38e4cf07b43b804adde5a3c6e2bd6613&gt;</cite> )<a class="headerlink" href="#define-setwatchdogdisabled-ptask-istate-ref-ts-watchdog-enable-group-cmp-iec-task-itf-taskstatusdefinitions-1ga38e4cf07b43b804adde5a3c6e2bd6613" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-setwatchdogenabled2-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-watchdog-enable2-1">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1gac009ed490336b679fcec69cc9b18bf4d"></span><h3>#define SetWatchdogEnabled2 CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga8d68b82a4e5f1bc8cef62a3e32535464"><span class="std std-ref">TF_WATCHDOG_ENABLE2</span></a> , 1)<a class="headerlink" href="#define-setwatchdogenabled2-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-watchdog-enable2-1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-setwatchdogenabled2-ptask-istate-ts-watchdog-enable2">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1gac009ed490336b679fcec69cc9b18bf4d"></span><h3>#define SetWatchdogEnabled2 (pTask-&gt;iState <a href="#id21"><span class="problematic" id="id22">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga45f3c424cfb2be2ce4da954d68dfd656"><em>TS_WATCHDOG_ENABLE2</em></a> )<a class="headerlink" href="#define-setwatchdogenabled2-ptask-istate-ts-watchdog-enable2" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-setwatchdogdisabled2-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-watchdog-enable2-0">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1gaf47f248bd7724c0a4b2c04c319c989f5"></span><h3>#define SetWatchdogDisabled2 CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga8d68b82a4e5f1bc8cef62a3e32535464"><span class="std std-ref">TF_WATCHDOG_ENABLE2</span></a> , 0)<a class="headerlink" href="#define-setwatchdogdisabled2-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-watchdog-enable2-0" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-setwatchdogdisabled2-ptask-istate-ref-ts-watchdog-enable2-group-cmp-iec-task-itf-taskstatusdefinitions-1ga45f3c424cfb2be2ce4da954d68dfd656">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1gaf47f248bd7724c0a4b2c04c319c989f5"></span><h3>#define SetWatchdogDisabled2 (pTask-&gt;iState &amp;= ~:ref:<cite>TS_WATCHDOG_ENABLE2 &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga45f3c424cfb2be2ce4da954d68dfd656&gt;</cite> )<a class="headerlink" href="#define-setwatchdogdisabled2-ptask-istate-ref-ts-watchdog-enable2-group-cmp-iec-task-itf-taskstatusdefinitions-1ga45f3c424cfb2be2ce4da954d68dfd656" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-settasktimedisabled-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-disable-task-time-1">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga4993d13e681ff3059be9a0a93258bc55"></span><h3>#define SetTaskTimeDisabled CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga7821fc0b6711662b2f5e608640f66fdb"><span class="std std-ref">TF_DISABLE_TASK_TIME</span></a> , 1)<a class="headerlink" href="#define-settasktimedisabled-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-disable-task-time-1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-settasktimedisabled-ptask-istate-ts-disable-task-time">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga4993d13e681ff3059be9a0a93258bc55"></span><h3>#define SetTaskTimeDisabled (pTask-&gt;iState <a href="#id23"><span class="problematic" id="id24">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga6a3591af21dc58e929de048abecbaf9a"><em>TS_DISABLE_TASK_TIME</em></a> )<a class="headerlink" href="#define-settasktimedisabled-ptask-istate-ts-disable-task-time" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-settasktimeenabled-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-disable-task-time-0">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga848503e77256f8933d56d5113c3f04eb"></span><h3>#define SetTaskTimeEnabled CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga7821fc0b6711662b2f5e608640f66fdb"><span class="std std-ref">TF_DISABLE_TASK_TIME</span></a> , 0)<a class="headerlink" href="#define-settasktimeenabled-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-disable-task-time-0" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-settasktimeenabled-ptask-istate-ref-ts-disable-task-time-group-cmp-iec-task-itf-taskstatusdefinitions-1ga6a3591af21dc58e929de048abecbaf9a">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga848503e77256f8933d56d5113c3f04eb"></span><h3>#define SetTaskTimeEnabled (pTask-&gt;iState &amp;= ~:ref:<cite>TS_DISABLE_TASK_TIME &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga6a3591af21dc58e929de048abecbaf9a&gt;</cite> )<a class="headerlink" href="#define-settasktimeenabled-ptask-istate-ref-ts-disable-task-time-group-cmp-iec-task-itf-taskstatusdefinitions-1ga6a3591af21dc58e929de048abecbaf9a" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-setactivated-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-activated-1">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1gad949de33eda0b32eeabf8b0f1fc9fd03"></span><h3>#define SetActivated CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1a38b6a114d7fe33e8764e8b7d507e2e"><span class="std std-ref">TF_ACTIVATED</span></a> , 1)<a class="headerlink" href="#define-setactivated-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-activated-1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-setactivated-ptask-istate-ts-activated">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1gad949de33eda0b32eeabf8b0f1fc9fd03"></span><h3>#define SetActivated (pTask-&gt;iState <a href="#id25"><span class="problematic" id="id26">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga7a04046244803fb540bf76ac471c6fa0"><em>TS_ACTIVATED</em></a> )<a class="headerlink" href="#define-setactivated-ptask-istate-ts-activated" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-resetactivated-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-activated-0">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga1c2dd48c04602cc19a8f356e5e82c17a"></span><h3>#define ResetActivated CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1a38b6a114d7fe33e8764e8b7d507e2e"><span class="std std-ref">TF_ACTIVATED</span></a> , 0)<a class="headerlink" href="#define-resetactivated-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-activated-0" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-resetactivated-ptask-istate-ref-ts-activated-group-cmp-iec-task-itf-taskstatusdefinitions-1ga7a04046244803fb540bf76ac471c6fa0">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga1c2dd48c04602cc19a8f356e5e82c17a"></span><h3>#define ResetActivated (pTask-&gt;iState &amp;= ~:ref:<cite>TS_ACTIVATED &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga7a04046244803fb540bf76ac471c6fa0&gt;</cite> )<a class="headerlink" href="#define-resetactivated-ptask-istate-ref-ts-activated-group-cmp-iec-task-itf-taskstatusdefinitions-1ga7a04046244803fb540bf76ac471c6fa0" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-settoactivate-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-toactivate-1">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga2f7ba09de404e6000b91687eb477d138"></span><h3>#define SetToActivate CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gabb338450cea63657abae8bb4adf06b56"><span class="std std-ref">TF_TOACTIVATE</span></a> , 1)<a class="headerlink" href="#define-settoactivate-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-toactivate-1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-settoactivate-ptask-istate-ts-toactivate">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga2f7ba09de404e6000b91687eb477d138"></span><h3>#define SetToActivate (pTask-&gt;iState <a href="#id27"><span class="problematic" id="id28">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga3b83ae99a133b548fde9a424f9946fd3"><em>TS_TOACTIVATE</em></a> )<a class="headerlink" href="#define-settoactivate-ptask-istate-ts-toactivate" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-resettoactivate-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-toactivate-0">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga31d7b26fce4ce14493374ff964247e1c"></span><h3>#define ResetToActivate CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1gabb338450cea63657abae8bb4adf06b56"><span class="std std-ref">TF_TOACTIVATE</span></a> , 0)<a class="headerlink" href="#define-resettoactivate-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-toactivate-0" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-resettoactivate-ptask-istate-ref-ts-toactivate-group-cmp-iec-task-itf-taskstatusdefinitions-1ga3b83ae99a133b548fde9a424f9946fd3">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga31d7b26fce4ce14493374ff964247e1c"></span><h3>#define ResetToActivate (pTask-&gt;iState &amp;= ~:ref:<cite>TS_TOACTIVATE &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga3b83ae99a133b548fde9a424f9946fd3&gt;</cite> )<a class="headerlink" href="#define-resettoactivate-ptask-istate-ref-ts-toactivate-group-cmp-iec-task-itf-taskstatusdefinitions-1ga3b83ae99a133b548fde9a424f9946fd3" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-setstopped-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-stop-1">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1gac8eb7c66eeef3784dc92b0ef9140b66c"></span><h3>#define SetStopped CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga641bf582cde86870bcdcc99fcc3e6088"><span class="std std-ref">TF_STOP</span></a> , 1)<a class="headerlink" href="#define-setstopped-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-stop-1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-setstopped-ptask-istate-ts-stop">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1gac8eb7c66eeef3784dc92b0ef9140b66c"></span><h3>#define SetStopped (pTask-&gt;iState <a href="#id29"><span class="problematic" id="id30">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1gacf55d2174435d56f966bdfa647fe6d3e"><em>TS_STOP</em></a> )<a class="headerlink" href="#define-setstopped-ptask-istate-ts-stop" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-setrunning-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-stop-0">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga5ab9e75024ac3c56e61179f1293d3c9f"></span><h3>#define SetRunning CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga641bf582cde86870bcdcc99fcc3e6088"><span class="std std-ref">TF_STOP</span></a> , 0)<a class="headerlink" href="#define-setrunning-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-stop-0" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-setrunning-ptask-istate-ref-ts-stop-group-cmp-iec-task-itf-taskstatusdefinitions-1gacf55d2174435d56f966bdfa647fe6d3e">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga5ab9e75024ac3c56e61179f1293d3c9f"></span><h3>#define SetRunning (pTask-&gt;iState &amp;= ~:ref:<cite>TS_STOP &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1gacf55d2174435d56f966bdfa647fe6d3e&gt;</cite> )<a class="headerlink" href="#define-setrunning-ptask-istate-ref-ts-stop-group-cmp-iec-task-itf-taskstatusdefinitions-1gacf55d2174435d56f966bdfa647fe6d3e" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-sethaltonbreakpoint-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-halt-on-bp-1">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1gab10cda1ba9a0e62119d71b6a8b4b402b"></span><h3>#define SetHaltOnBreakpoint CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga5c193893801c3db62ba46464348b8e56"><span class="std std-ref">TF_HALT_ON_BP</span></a> , 1)<a class="headerlink" href="#define-sethaltonbreakpoint-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-halt-on-bp-1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-sethaltonbreakpoint-ptask-istate-ts-halt-on-bp">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1gab10cda1ba9a0e62119d71b6a8b4b402b"></span><h3>#define SetHaltOnBreakpoint (pTask-&gt;iState <a href="#id31"><span class="problematic" id="id32">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1gaa7e54955c09fd86561493f5680a4cb10"><em>TS_HALT_ON_BP</em></a> )<a class="headerlink" href="#define-sethaltonbreakpoint-ptask-istate-ts-halt-on-bp" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-resethaltonbreakpoint-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-halt-on-bp-0">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga746eba1ebbb0e84fb829f4cb15a8bd0a"></span><h3>#define ResetHaltOnBreakpoint CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga5c193893801c3db62ba46464348b8e56"><span class="std std-ref">TF_HALT_ON_BP</span></a> , 0)<a class="headerlink" href="#define-resethaltonbreakpoint-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-halt-on-bp-0" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-resethaltonbreakpoint-ptask-istate-ref-ts-halt-on-bp-group-cmp-iec-task-itf-taskstatusdefinitions-1gaa7e54955c09fd86561493f5680a4cb10">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga746eba1ebbb0e84fb829f4cb15a8bd0a"></span><h3>#define ResetHaltOnBreakpoint (pTask-&gt;iState &amp;= ~:ref:<cite>TS_HALT_ON_BP &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1gaa7e54955c09fd86561493f5680a4cb10&gt;</cite> )<a class="headerlink" href="#define-resethaltonbreakpoint-ptask-istate-ref-ts-halt-on-bp-group-cmp-iec-task-itf-taskstatusdefinitions-1gaa7e54955c09fd86561493f5680a4cb10" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-setsinglecycle-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-single-cycle-1">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1gaf18c0cde7f011ee017f631a7af75cdc7"></span><h3>#define SetSingleCycle CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93"><span class="std std-ref">TF_SINGLE_CYCLE</span></a> , 1)<a class="headerlink" href="#define-setsinglecycle-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-single-cycle-1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-setsinglecycle-ptask-istate-ts-single-cycle">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1gaf18c0cde7f011ee017f631a7af75cdc7"></span><h3>#define SetSingleCycle (pTask-&gt;iState <a href="#id33"><span class="problematic" id="id34">|</span></a>= <a class="reference internal" href="group___cmp_iec_task_itf___taskstatusdefinitions.html#group-cmp-iec-task-itf-taskstatusdefinitions-1ga7ed16770704181e098355f88655b7161"><em>TS_SINGLE_CYCLE</em></a> )<a class="headerlink" href="#define-setsinglecycle-ptask-istate-ts-single-cycle" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="define-resetsinglecycle-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-single-cycle-0">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1ga1faa320efb723b7cf8790731344bc419"></span><h3>#define ResetSingleCycle CAL_SysCpuTestAndSetBit(&amp;pTask-&gt;iState, sizeof(pTask-&gt;iState), <a class="reference internal" href="#group-cmp-iec-task-itf-taskstatusbits-1ga1fc7f1a6da59cc4ab35c4a6d5a5dab93"><span class="std std-ref">TF_SINGLE_CYCLE</span></a> , 0)<a class="headerlink" href="#define-resetsinglecycle-cal-syscputestandsetbit-ptask-istate-sizeof-ptask-istate-tf-single-cycle-0" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-resetsinglecycle-ptask-istate-ref-ts-single-cycle-group-cmp-iec-task-itf-taskstatusdefinitions-1ga7ed16770704181e098355f88655b7161">
+<span id="group-cmp-iec-task-itf-taskstatusbits-1ga1faa320efb723b7cf8790731344bc419"></span><h3>#define ResetSingleCycle (pTask-&gt;iState &amp;= ~:ref:<cite>TS_SINGLE_CYCLE &lt;group___cmp_iec_task_itf___taskstatusdefinitions_1ga7ed16770704181e098355f88655b7161&gt;</cite> )<a class="headerlink" href="#define-resetsinglecycle-ptask-istate-ref-ts-single-cycle-group-cmp-iec-task-itf-taskstatusdefinitions-1ga7ed16770704181e098355f88655b7161" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="define-slot-before-read-inputs-50">
 <span id="group-cmp-iec-task-itf-taskstatusbits-1gac9441a320aa839536c3262e8a1feebc7"></span><h3>#define SLOT_BEFORE_READ_INPUTS 50<a class="headerlink" href="#define-slot-before-read-inputs-50" title="Permalink to this headline">¶</a></h3>
@@ -313,7 +312,7 @@
 <span id="group-cmp-iec-task-itf-taskstatusbits-1ga97f1143bf1cc8f75f026c1d53ae81ae5"></span><h3>typedef void HUGEPTR( ** PF_SLOT_IEC_CALLBACK)(void)<a class="headerlink" href="#typedef-void-hugeptr-pf-slot-iec-callback-void" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="typedef-void-hugeptr-pf-slot-callback-struct-tagtask-desc-ptask">
-<span id="group-cmp-iec-task-itf-taskstatusbits-1gaa25511b3021bffa45f1124b84ac100e1"></span><h3>typedef void HUGEPTR( * PF_SLOT_CALLBACK)(struct tagTask_Desc <a href="#id3"><span class="problematic" id="id4">*</span></a>pTask)<a class="headerlink" href="#typedef-void-hugeptr-pf-slot-callback-struct-tagtask-desc-ptask" title="Permalink to this headline">¶</a></h3>
+<span id="group-cmp-iec-task-itf-taskstatusbits-1gaa25511b3021bffa45f1124b84ac100e1"></span><h3>typedef void HUGEPTR( * PF_SLOT_CALLBACK)(struct tagTask_Desc <a href="#id35"><span class="problematic" id="id36">*</span></a>pTask)<a class="headerlink" href="#typedef-void-hugeptr-pf-slot-callback-struct-tagtask-desc-ptask" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
@@ -324,18 +323,18 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    <div class="footer">
+        &copy; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

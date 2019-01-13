@@ -368,8 +368,10 @@ STATICITF RTS_HANDLE CDECL IoDrvCreate(RTS_HANDLE hIIoDrv, CLASSID ClassId, int 
 
 STATICITF RTS_RESULT CDECL IoDrvDelete(RTS_HANDLE hIoDrv, RTS_HANDLE hIIoDrv)
 {
+#ifdef CPLUSPLUS
 	IoDrvTemplate *pIoDrvTemplate = (IoDrvTemplate *)hIoDrv;
 	CAL_SysMemFreeData(COMPONENT_NAME, pIoDrvTemplate);
+#endif
 	return ERR_OK;
 }
 
@@ -556,117 +558,15 @@ STATICITF RTS_RESULT CDECL IoDrvStartBusCycle(RTS_HANDLE hIoDrv, IoConfigConnect
 	if (pConnector->wType != IODRV_TEMPLATE_MODULE_TYPE)
 		return ERR_OK;
 
-	/* TODO: Start bus cycle (is available) or sync your cached IOs consistent to the physical IOs (see s_abyIO) */
-	
-	/* TODO: Retrigger our watchdog (if available) via IoMgr at least watchdogtimeout / 2 ! */
-	CAL_IoMgrWatchdogTrigger(pConnector);
-
 	/* Update diagnostic information at least every 4 seconds, if it is not supported by the backgground diagnostic task */
 	if ((CAL_SysTimeGetMs() - s_ulLastDiagnosis) > 4000)
 		return IoDrvGetModuleDiagnosis(hIoDrv, pConnector);
 	return ERR_OK;
 }
 
-static RTS_RESULT CDECL ReleaseScanParameters(IoConfigConnector *pConnector)
-{
-	if (pConnector->pParameterList != NULL)
-		CAL_SysMemFreeData(COMPONENT_NAME, pConnector->pParameterList);
-	
-	pConnector->dwNumOfParameters = 0;
-	pConnector->pParameterList = NULL;
-	return ERR_OK;
-}
-
-static RTS_RESULT CDECL ReleaseScanConnectors(IoConfigConnector *pConnectorList)
-{
-	if (pConnectorList != NULL)
-		CAL_SysMemFreeData(COMPONENT_NAME, pConnectorList);
-	return ERR_OK;
-}
-
 STATICITF RTS_RESULT CDECL IoDrvScanModules(RTS_HANDLE hIoDrv, IoConfigConnector *pConnector, IoConfigConnector **ppConnectorList, int *pnCount)
 {
-	RTS_RESULT result = ERR_OK;
-	int n = 0;
-	RTS_BOOL bExit = FALSE;
-	static IoConfigConnector* s_pScanConnector = NULL;
-	static int s_nNumOfModules = 0;
-	static int s_nState = 0;
-	static int s_nModulesPerScan = 0;
-	static int s_nModulesTransmitted = 0;
-
-	if (pConnector == NULL || ppConnectorList == NULL || pnCount == NULL)
-		return ERR_PARAMETER;
-
-	while ((s_nState == 0 || n < s_nModulesPerScan) && !bExit)
-	{
-		switch (s_nState)
-		{
-			case 0:	/* Init step */
-			{
-				s_nNumOfModules = 12;					/* TODO: Here you have to investigate the real scanned number of modules! */
-
-				s_nModulesPerScan = MIN(8, s_nNumOfModules);
-				s_pScanConnector = (IoConfigConnector *)CAL_SysMemAllocData(COMPONENT_NAME, s_nModulesPerScan * sizeof(IoConfigConnector), &result);
-				if (s_pScanConnector == NULL || result != ERR_OK)
-					break;
-
-				memset(s_pScanConnector, 0, s_nModulesPerScan * sizeof(IoConfigConnector));
-				s_nState += 1;
-				break;
-			}
-			case 1:	/* Scan step to transmit all scanned modules. The transmit is done in blocks with number of s_nModulesPerScan modules. */
-			{
-				ReleaseScanParameters(&s_pScanConnector[n]);
-
-				s_pScanConnector[n].wType = CT_OEM_START;	/* TODO: Specify the matching module type ID here */
-				s_pScanConnector[n].dwNumOfParameters = 0;	/* TODO: The number of parameters of the module must be investigated here! */
-				s_pScanConnector[n].pParameterList = NULL;	/* TODO: The parameter list of a module is module specific and must be allocated and filled here! */
-
-				s_pScanConnector[n].wOptions = 0;
-				s_pScanConnector[n].dwFlags = 0;
-				s_pScanConnector[n].hIoDrv = hIoDrv;
-				s_pScanConnector[n].pFather = pConnector;
-				
-				s_nModulesTransmitted += 1;
-				n++;
-
-				if (s_nModulesTransmitted == s_nNumOfModules)
-				{
-					s_nState += 1;
-					bExit = TRUE;
-				}
-				
-				result = ERR_PENDING;
-				break;
-			}
-			case 2:	/* Release step to finish scan sequence */
-			{
-				int k;
-				for (k = 0; k < s_nModulesPerScan; k++)
-				{
-					ReleaseScanParameters(&s_pScanConnector[k]);
-				}
-				ReleaseScanConnectors(s_pScanConnector);
-				s_pScanConnector = NULL;
-
-				s_nNumOfModules = 0;
-				s_nModulesPerScan = 0;
-				s_nModulesTransmitted = 0;
-				s_nState = 0;
-				
-				bExit = TRUE;
-				result = ERR_OK;
-				break;
-			}
-			default:
-				break;
-		}
-	}
-
-	*pnCount = n;
-	*ppConnectorList = s_pScanConnector;
-	return result;
+	return ERR_OK;
 }
 
 STATICITF RTS_RESULT CDECL IoDrvGetModuleDiagnosis(RTS_HANDLE hIoDrv, IoConfigConnector *pConnector)

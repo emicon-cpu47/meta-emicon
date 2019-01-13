@@ -4,15 +4,13 @@
  *	Target specific functions
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 SET_COMPONENT_NAME(`SysTarget')
 COMPONENT_SOURCES(`SysTarget.c')
 COMPONENT_SYSSOURCES(`SysTarget*.c')
 
-COMPONENT_VERSION(`0x03050D0A')
+COMPONENT_VERSION(`0x03050A00')
 COMPONENT_VENDORID(`RTS_VENDORID_3S')
 
 CATEGORY(`System')
@@ -25,8 +23,6 @@ USE_ITF(`SysTargetItf.m4')
 USE_ITF(`SysCpuHandlingItf.m4')
 USE_ITF(`CmpSIL2Itf.m4')
 USE_ITF(`CmpChecksumItf.m4')
-USE_ITF(`CmpEventMgrItf.m4')
-USE_ITF(`SysSocketItf.m4')
 
 IMPLEMENT_ITF(`SysTargetItf.m4')
 
@@ -34,12 +30,7 @@ OPTIONAL_IMPORTS(
 SIL2CheckCallerContext,
 CRC32Init,
 CRC32Update,
-CRC32Finish,
-EventCreate3,
-EventDelete,
-EventPost2,
-SysSockGetFirstAdapterInfo,
-SysSockGetNextAdapterInfo)
+CRC32Finish)
 
 REQUIRED_IMPORTS(
 CMUtlSafeStrCpy,
@@ -53,8 +44,6 @@ CMCheckSysTargetSignature,
 SettgGetWStringValue,
 SettgGetStringValue,
 SettgGetIntValue,
-SettgSetWStringValue,
-SettgRemoveKey,
 SysMemSwap,
 SysTargetGetConfiguredNodeName,
 SysTargetGetType,

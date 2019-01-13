@@ -5,9 +5,7 @@
  *	the system.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -1098,14 +1096,14 @@ typedef RTS_RESULT (CDECL * PFSYSINTCLOSE) (RTS_HANDLE hInt);
 	#define USE_SysIntSysIntClose
 	#define EXT_SysIntSysIntClose
 	#define GET_SysIntSysIntClose  ERR_OK
-	#define CAL_SysIntSysIntClose(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysInt*)p0)->ISysIntClose())
+	#define CAL_SysIntSysIntClose(p0) ((ISysInt*)p0)->ISysIntClose()
 	#define CHK_SysIntSysIntClose  TRUE
 	#define EXP_SysIntSysIntClose  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysIntClose
 	#define EXT_SysIntClose
 	#define GET_SysIntClose(fl)  CAL_CMGETAPI( "SysIntClose" ) 
-	#define CAL_SysIntClose(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysInt*)p0)->ISysIntClose())
+	#define CAL_SysIntClose(p0) ((ISysInt*)p0)->ISysIntClose()
 	#define CHK_SysIntClose  TRUE
 	#define EXP_SysIntClose  CAL_CMEXPAPI( "SysIntClose" ) 
 #else /* DYNAMIC_LINK */

@@ -238,7 +238,6 @@ typedef struct tagIBase_IEC
 #define CMPID_CmpOpenSSL			0x00000033
 
 #define CMPID_CmpSercos3Master		0x0000004C
-#define CMPID_CmpKnxStack			0x0000004D
 
 #define	CMPID_CmpBitmapPool			0x00000050
 #define	CMPID_CmpDynamicText		0x00000051
@@ -296,7 +295,7 @@ typedef struct tagIBase_IEC
 #define CMPID_AppCModuleIntegration	0x00000085	/* Is reserved for all application related C-Modules */
 #define CMPID_CmpBackup				0x00000086
 #define CMPID_CmpBeagleboneBlack	0x00000087
-#define CMPID_CmpPfcx00				0x00000088
+#define CMPID_CmpPfc200				0x00000088
 #define CMPID_CmpRasPi				0x00000089
 #define CMPID_CmpKbus				0x0000008A
 #define	CMPID_CmpEventMgrEmbedded	0x0000008B
@@ -305,8 +304,6 @@ typedef struct tagIBase_IEC
 #define CMPID_CmpSecurityManager    0x0000008E
 #define CMPID_CmpSupervisor			0x0000008F
 #define	CMPID_CmpSecureChannel		0x00000090
-#define	CMPID_CmpUserDBObjects		0x00000091
-#define CMPID_CmpXM					0x00000092
 
 #define	CMPID_SysCom				0x00000100
 #define	CMPID_SysCpuHandling		0x00000101
@@ -370,7 +367,6 @@ typedef struct tagIBase_IEC
 #define CMPID_SysFramebuffer 		0x0000013B
 #define CMPID_SysGraphicLightFramebuffer 0x0000013C
 #define CMPID_SysCpuMultiCore		0x0000013D
-#define CMPID_SysReadWriteLock		0x0000013E
 #define CMPID_IoDrvTarget			0x00000200
 #define CMPID_CmpHilscherCIFX		0x00000201
 #define CMPID_CmpHilscherCIFXlib		0x00000202
@@ -378,10 +374,6 @@ typedef struct tagIBase_IEC
 #define CMPID_SysDirEmbedded        0x00000301
 #define CMPID_SysFileEmbedded       0x00000302
 #define CMPID_SysUserDB		        0x00000303
-#define CMPID_CmpOpenCV 		0x00000304
-#define CMPID_SysCpuBreakpoints		0x00000305
-/* umy: CMPID_CmpBACnet was defined in CmpBACnetDep.m4, so I moved it here, but kept the value */
-#define CMPID_CmpBACnet				0x00000400
 
 /* IEC code components */
 #define CMPID_IecCode				0x00001000
@@ -447,7 +439,6 @@ typedef struct tagIBase_IEC
 #define CMPID_CmpSocketCanDrv		0x00005F0D
 #define CMPID_CmpEMSCanDrv			0x00005F0E
 #define CMPID_CmpPCANBasicDrv		0x00005F0F
-#define CMPID_CmpCANFoxDrv	     	0x00005F10
 
 #define	CMPID_CmpEndCMD				0x00005FFF
 #define	CMPID_CmpEndCAA				0x00005FFF
@@ -457,11 +448,6 @@ typedef struct tagIBase_IEC
 #define CMPID_CmpRuntimeTest		0x00006001
 
 #define CMPID_CmpEndTest            0x000060FF
-
-/* Range reserved for IEC Applications that register as a component.
- * This is needed for logging purposes or for the certificate management */
-#define CMPID_CmpIecApplicationStart    0x00008000
-#define CMPID_CmpIecApplicationEnd      0x00008FFF
 
 /* C++ Class IDs */
 #define	CLASSID_INVALID					0x00000000
@@ -579,9 +565,6 @@ typedef struct tagIBase_IEC
 #define	CLASSID_CCmpSecurityManager		0x0000006E
 #define	CLASSID_CCmpSupervisor			0x0000006F
 #define	CLASSID_CCmpSecureChannel		0x00000070
-#define CLASSID_CCmpMemPoolHash			0x00000071
-#define CLASSID_CCMUtilsHash			0x00000072
-#define CLASSID_CCmpUserDBObjects		0x00000073
 
 #define	CLASSID_CSysCom					0x00000100
 #define	CLASSID_CSysCpuHandling			0x00000101
@@ -649,11 +632,6 @@ typedef struct tagIBase_IEC
 #define CLASSID_CCmpOPCUAStack			0x00000140
 #define CLASSID_CCmpOPCUAServer			0x00000141
 #define CLASSID_CSysUserDB				0x00000142
-#define CLASSID_CCmpOpenCV 				0x00000143
-#define CLASSID_CSysReadWriteLock		0x00000144
-#define CLASSID_CSysCpuBreakpoints		0x00000145
-/* umy: CLASSID_CCmpBACnet was defined in CmpBACnetDep.m4, so I moved it here, but kept the value */
-#define CLASSID_CCmpBACnet				0x00000400
 
 /* No kernel classes */
 #define	CLASSID_CCmpIoDrvHilscher		0x00001001
@@ -665,12 +643,11 @@ typedef struct tagIBase_IEC
 #define	CLASSID_CCmpPlcShell			0x00001007
 #define CLASSID_CCmpRedundancy			0x00001008
 #define CLASSID_CmpSoftingProfibus		0x00001009
-#define CLASSID_CCmpPfcx00				0x0000100A
+#define CLASSID_CCmpPfc200				0x0000100A
 #define CLASSID_CCmpRasPi				0x0000100B
 #define CLASSID_CCmpBeagleboneBlack		0x0000100C
 #define CLASSID_CCmpKbus				0x0000100D
 #define	CLASSID_CCmpHilscherCIFXlib		0x0000100E
-#define CLASSID_CCmpXM21				0x0000100F
 
 /*Safety SIL2 classes*/
 #define CLASSID_CIoDrvUnsafeBridge		0x00001E00
@@ -726,8 +703,6 @@ typedef struct tagIBase_IEC
 #define CLASSID_CCmpEsdCanDrv			0x00005F0C
 #define CLASSID_CCmpSocketCanDrv		0x00005F0D
 #define CLASSID_CCmpEMSCanDrv			0x00005F0E
-#define CLASSID_CCmpPCANBasicDrv		0x00005F0F
-#define CLASSID_CCmpCANFoxDrv			0x00005F10
 
 #define	CLASSID_CCmpEndCMD				0x00005FFF
 #define	CLASSID_CCmpEndCAA				0x00005FFF
@@ -855,7 +830,7 @@ typedef struct tagIBase_IEC
 #define ITFID_IIecVarAccess8			0x00000070
 #define ITFID_ICmpBackup				0x00000071
 #define ITFID_IIecVarAccess9			0x00000072
-#define ITFID_ICmpPfcx00				0x00000073
+#define ITFID_ICmpPfc200				0x00000073
 #define ITFID_ICmpRasPi					0x00000074
 #define ITFID_ICmpBeagleboneBlack		0x00000075
 #define ITFID_ICmpKbus					0x00000076
@@ -867,15 +842,7 @@ typedef struct tagIBase_IEC
 #define ITFID_ICmpSupervisor			0x0000009B
 #define ITFID_ISysSocket2external       0x0000009C
 #define ITFID_ICmpSecureChannel			0x0000009D
-#define ITFID_ICmpMemPoolHash			0x0000009E
-#define ITFID_ICMUtilsHash				0x0000009F
-#define ITFID_IIecVarAccess12			0x000000A0
-#define ITFID_ICmpOPCUAProviderAlarmConfiguration 0x000000A1
-#define ITFID_ICmpUserDBObjects			0x000000A2
-#define ITFID_ICmpXM21					0x000000A3
-#define ITFID_IIecVarAccess13			0x000000A4
 
-/* The following block contains system interfaces */
 #define	ITFID_ISysCom					0x00000100
 #define	ITFID_ISysCpuHandling			0x00000101
 #define	ITFID_ISysEvent					0x00000102
@@ -929,11 +896,6 @@ typedef struct tagIBase_IEC
 #define ITFID_ICmpX509Cert				0x00000138
 #define ITFID_ISysCpuMultiCore			0x0000013D
 #define ITFID_ISysUserDB 				0x0000013E
-#define ITFID_ICmpOpenCV 				0x0000013F
-#define ITFID_ISysReadWriteLock			0x00000140
-#define ITFID_ISysCpuBreakpoints		0x00000141
-/* umy: ITFID_ICmpBACnet was defined in CmpBACnetDep.m4, so I moved it here, but kept the value */
-#define ITFID_ICmpBACnet				0x00000400
 
 
 /*Safety classes*/
@@ -987,8 +949,6 @@ typedef struct tagIBase_IEC
 #define ITFID_ICmpEsdCanDrv				0x00005F0C
 #define ITFID_ICmpSocketCanDrv			0x00005F0D
 #define ITFID_ICmpEMSCanDrv				0x00005F0E
-#define ITFID_ICmpPCANBasicDrv			0x00005F0F
-#define ITFID_ICmpCANFoxDrv				0x00005F10
 
 #define	ITFID_ICmpEndCMD				0x00005FFF
 #define	ITFID_ICmpEndCAA				0x00005FFF
@@ -1056,7 +1016,7 @@ typedef int (CDECL *PF_COMPONENT_ENTRY)(INIT_STRUCT *pInitStruct);
 
 
 /* Functions exported from main */
-RTS_RESULT CDECL MainLoadComponent(char *pszName, char *pszPath, RTS_HANDLE *phModule, PF_COMPONENT_ENTRY* ppfComponentEntry);
+RTS_RESULT CDECL MainLoadComponent(char *pszName, RTS_HANDLE *phModule, PF_COMPONENT_ENTRY* ppfComponentEntry);
 RTS_RESULT CDECL MainUnloadComponent(char *pszName, RTS_HANDLE hModule);
 
 
@@ -1308,14 +1268,8 @@ typedef int (CDECL *PFMAINEXITLOOP)(RTS_UINTPTR ulPar);
 
 #define CH_SAFEMODE							4000
 /*
-	Called when a component fails to resolve its required import functions during startup of the runtime system. In this case, the system is not stable any more.
+	Called when a component fails to resolve its required import functions, i.e. the system is not stable any more.
 	Every component should check safety.
-	After entering the safemode, at least the communication should work and so for example a service engineer can investigate the reason for this error.
-	The logger should work too.
-
-	IMPORTANT NOTE:
-	It is important, that the IEC-application(s) are not loaded or at least are not started after entering the safemode! This is still implemented in the CmpApp component.
-	
 	ulParam1: Not used
 	ulParam2: Not used
 */

@@ -22,9 +22,7 @@
  *	</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -445,14 +443,14 @@ typedef RTS_RESULT (CDECL * PFSYSSEMDELETE) (RTS_HANDLE hSem);
 	#define USE_SysSemSysSemDelete
 	#define EXT_SysSemSysSemDelete
 	#define GET_SysSemSysSemDelete  ERR_OK
-	#define CAL_SysSemSysSemDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysSem*)p0)->ISysSemDelete())
+	#define CAL_SysSemSysSemDelete(p0) ((ISysSem*)p0)->ISysSemDelete()
 	#define CHK_SysSemSysSemDelete  TRUE
 	#define EXP_SysSemSysSemDelete  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysSemDelete
 	#define EXT_SysSemDelete
 	#define GET_SysSemDelete(fl)  CAL_CMGETAPI( "SysSemDelete" ) 
-	#define CAL_SysSemDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysSem*)p0)->ISysSemDelete())
+	#define CAL_SysSemDelete(p0) ((ISysSem*)p0)->ISysSemDelete()
 	#define CHK_SysSemDelete  TRUE
 	#define EXP_SysSemDelete  CAL_CMEXPAPI( "SysSemDelete" ) 
 #else /* DYNAMIC_LINK */

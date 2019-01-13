@@ -6,9 +6,7 @@
  *	in the component manager.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -34,14 +32,10 @@
 #define RTS_WTEXT_EMPTY					RTS_WTEXT("\0")
 
 #ifdef RTS_UNICODE
-	#ifndef RTS_CWTEXT
-		#define	RTS_CWTEXT(s)			__RTS_CWTEXT(s)
-		#define	__RTS_CWTEXT(s)			L ## s
-	#endif
+	#define	RTS_CWTEXT(s)				__RTS_CWTEXT(s)
+	#define	__RTS_CWTEXT(s)				L ## s
 #else
-	#ifndef RTS_CWTEXT
-		#define	RTS_CWTEXT(s) 			s
-	#endif
+	#define	RTS_CWTEXT(s) 			s
 #endif
 
 /**
@@ -2640,141 +2634,6 @@ typedef RTS_WCHAR* (CDECL * PFCMUTLWSTRCHR) (const RTS_WCHAR *pwsz, RTS_WCHAR w)
 
 
 
-/*
- *************************************************************************
- * <description> 
- *  Conversion between UTF-8 and RTS_WSTRING (UTF-16). The conversion
- *  can produce the REPLACEMENT CHARACTER (U+FFFD) for invalid sequences.
- * </description>
- *************************************************************************
- */
- 
-/**
- * <description>This function converts a UTF-16 encoded WSTRING to a sequenze of UTF-8 code points.
- * If a codepoint cannot be converted this codepoint will be replaced with the Unicode REPLACEMENT 
- * CHARACTER (U+FFFD).</description>
- * <param name="pwsz" type="IN">Pointer to WSTRING to be converted.</param>
- * <param name="wstrLen" type="IN">Size of readbuffer in WCHARs. Set to -1 if unknown.</param>
- * <param name="pUtf8Str" type="IN">Pointer to buffer where to store the UTF-8 sequence.</param>
- * <param name="bufferSize" type="IN">Buffersize of UTF-8 buffer.</param>
- * <result>On of these error codes: 
- *                                  - ERR_OK: Everything went fine. No errors occured.
- *                                  - ERR_PARAMETER: The parameterchecks failed.
- *                                  - ERR_CONVERSION_INCOMPLETE: The conversion failed because of some codepoints. These where replaced with U+FFFD.
- * </result>
- */
- 
-RTS_RESULT CDECL CMUtlWToUtf8(RTS_WCHAR *pwsz, RTS_SIZE wstrLen, RTS_UI8* pUtf8Str, RTS_SIZE bufferSize);
-typedef RTS_RESULT (CDECL * PFCMUTLWTOUTF8) (RTS_WCHAR *pwsz, RTS_SIZE wstrLen, RTS_UI8* pUtf8Str, RTS_SIZE bufferSize);
-#if defined(CMUTILS_NOTIMPLEMENTED) || defined(CMUTLWTOUTF8_NOTIMPLEMENTED)
-	#define USE_CMUtlWToUtf8
-	#define EXT_CMUtlWToUtf8
-	#define GET_CMUtlWToUtf8(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_CMUtlWToUtf8(p0,p1,p2,p3)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_CMUtlWToUtf8  FALSE
-	#define EXP_CMUtlWToUtf8  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_CMUtlWToUtf8
-	#define EXT_CMUtlWToUtf8
-	#define GET_CMUtlWToUtf8(fl)  CAL_CMGETAPI( "CMUtlWToUtf8" ) 
-	#define CAL_CMUtlWToUtf8  CMUtlWToUtf8
-	#define CHK_CMUtlWToUtf8  TRUE
-	#define EXP_CMUtlWToUtf8  CAL_CMEXPAPI( "CMUtlWToUtf8" ) 
-#elif defined(MIXED_LINK) && !defined(CMUTILS_EXTERNAL)
-	#define USE_CMUtlWToUtf8
-	#define EXT_CMUtlWToUtf8
-	#define GET_CMUtlWToUtf8(fl)  CAL_CMGETAPI( "CMUtlWToUtf8" ) 
-	#define CAL_CMUtlWToUtf8  CMUtlWToUtf8
-	#define CHK_CMUtlWToUtf8  TRUE
-	#define EXP_CMUtlWToUtf8  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"CMUtlWToUtf8", (RTS_UINTPTR)CMUtlWToUtf8, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CMUtilsCMUtlWToUtf8
-	#define EXT_CMUtilsCMUtlWToUtf8
-	#define GET_CMUtilsCMUtlWToUtf8  ERR_OK
-	#define CAL_CMUtilsCMUtlWToUtf8 pICMUtils->ICMUtlWToUtf8
-	#define CHK_CMUtilsCMUtlWToUtf8 (pICMUtils != NULL)
-	#define EXP_CMUtilsCMUtlWToUtf8  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_CMUtlWToUtf8
-	#define EXT_CMUtlWToUtf8
-	#define GET_CMUtlWToUtf8(fl)  CAL_CMGETAPI( "CMUtlWToUtf8" ) 
-	#define CAL_CMUtlWToUtf8 pICMUtils->ICMUtlWToUtf8
-	#define CHK_CMUtlWToUtf8 (pICMUtils != NULL)
-	#define EXP_CMUtlWToUtf8  CAL_CMEXPAPI( "CMUtlWToUtf8" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_CMUtlWToUtf8  PFCMUTLWTOUTF8 pfCMUtlWToUtf8;
-	#define EXT_CMUtlWToUtf8  extern PFCMUTLWTOUTF8 pfCMUtlWToUtf8;
-	#define GET_CMUtlWToUtf8(fl)  s_pfCMGetAPI2( "CMUtlWToUtf8", (RTS_VOID_FCTPTR *)&pfCMUtlWToUtf8, (fl), 0, 0)
-	#define CAL_CMUtlWToUtf8  pfCMUtlWToUtf8
-	#define CHK_CMUtlWToUtf8  (pfCMUtlWToUtf8 != NULL)
-	#define EXP_CMUtlWToUtf8  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"CMUtlWToUtf8", (RTS_UINTPTR)CMUtlWToUtf8, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>This function converts a UTF-8 string to a UTF-16 encoded WSTRING.
- * The conversion inserts the REPLACEMENT CHARACTER (U+FFFD) if a UTF-8 codepoint or invalid.</description>
- * <param name="pUtf8Str" type="IN">Pointer to UTF-8 string to be converted.</param>
- * <param name="pUtf8BufferSize" type="IN">Read buffer size. Set to -1 if unknown.</param>
- * <param name="pwsz" type="IN">Pointer to WSTRING buffer.</param>
- * <param name="wstrLen" type="IN">Number of WCHARs in pwsz.</param>
- * <result>On of these error codes: 
- *                                  - ERR_OK: Everything went fine. No errors occured.
- *                                  - ERR_PARAMETER: The parameterchecks failed.
- *                                  - ERR_CONVERSION_INCOMPLETE: The conversion failed because of some codepoints. These where replaced with U+FFFD.
- * </result>
- */
-RTS_RESULT CDECL CMUtlUtf8ToW(RTS_UI8* pUtf8Str, RTS_SIZE utf8BufferSize, RTS_WCHAR* pwsz, RTS_SIZE wstrLen);
-typedef RTS_RESULT (CDECL * PFCMUTLUTF8TOW) (RTS_UI8* pUtf8Str, RTS_SIZE utf8BufferSize, RTS_WCHAR* pwsz, RTS_SIZE wstrLen);
-#if defined(CMUTILS_NOTIMPLEMENTED) || defined(CMUTLUTF8TOW_NOTIMPLEMENTED)
-	#define USE_CMUtlUtf8ToW
-	#define EXT_CMUtlUtf8ToW
-	#define GET_CMUtlUtf8ToW(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_CMUtlUtf8ToW(p0,p1,p2,p3)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_CMUtlUtf8ToW  FALSE
-	#define EXP_CMUtlUtf8ToW  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_CMUtlUtf8ToW
-	#define EXT_CMUtlUtf8ToW
-	#define GET_CMUtlUtf8ToW(fl)  CAL_CMGETAPI( "CMUtlUtf8ToW" ) 
-	#define CAL_CMUtlUtf8ToW  CMUtlUtf8ToW
-	#define CHK_CMUtlUtf8ToW  TRUE
-	#define EXP_CMUtlUtf8ToW  CAL_CMEXPAPI( "CMUtlUtf8ToW" ) 
-#elif defined(MIXED_LINK) && !defined(CMUTILS_EXTERNAL)
-	#define USE_CMUtlUtf8ToW
-	#define EXT_CMUtlUtf8ToW
-	#define GET_CMUtlUtf8ToW(fl)  CAL_CMGETAPI( "CMUtlUtf8ToW" ) 
-	#define CAL_CMUtlUtf8ToW  CMUtlUtf8ToW
-	#define CHK_CMUtlUtf8ToW  TRUE
-	#define EXP_CMUtlUtf8ToW  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"CMUtlUtf8ToW", (RTS_UINTPTR)CMUtlUtf8ToW, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CMUtilsCMUtlUtf8ToW
-	#define EXT_CMUtilsCMUtlUtf8ToW
-	#define GET_CMUtilsCMUtlUtf8ToW  ERR_OK
-	#define CAL_CMUtilsCMUtlUtf8ToW pICMUtils->ICMUtlUtf8ToW
-	#define CHK_CMUtilsCMUtlUtf8ToW (pICMUtils != NULL)
-	#define EXP_CMUtilsCMUtlUtf8ToW  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_CMUtlUtf8ToW
-	#define EXT_CMUtlUtf8ToW
-	#define GET_CMUtlUtf8ToW(fl)  CAL_CMGETAPI( "CMUtlUtf8ToW" ) 
-	#define CAL_CMUtlUtf8ToW pICMUtils->ICMUtlUtf8ToW
-	#define CHK_CMUtlUtf8ToW (pICMUtils != NULL)
-	#define EXP_CMUtlUtf8ToW  CAL_CMEXPAPI( "CMUtlUtf8ToW" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_CMUtlUtf8ToW  PFCMUTLUTF8TOW pfCMUtlUtf8ToW;
-	#define EXT_CMUtlUtf8ToW  extern PFCMUTLUTF8TOW pfCMUtlUtf8ToW;
-	#define GET_CMUtlUtf8ToW(fl)  s_pfCMGetAPI2( "CMUtlUtf8ToW", (RTS_VOID_FCTPTR *)&pfCMUtlUtf8ToW, (fl), 0, 0)
-	#define CAL_CMUtlUtf8ToW  pfCMUtlUtf8ToW
-	#define CHK_CMUtlUtf8ToW  (pfCMUtlUtf8ToW != NULL)
-	#define EXP_CMUtlUtf8ToW  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"CMUtlUtf8ToW", (RTS_UINTPTR)CMUtlUtf8ToW, 0, 0) 
-#endif
-
-
-
-
 /**
  *************************************************************************
  * <description> 
@@ -3476,8 +3335,6 @@ typedef struct
  	PFCMUTLSTRTOW ICMUtlStrToW;
  	PFCMUTLWTOSTR ICMUtlWToStr;
  	PFCMUTLWSTRCHR ICMUtlwstrchr;
- 	PFCMUTLWTOUTF8 ICMUtlWToUtf8;
- 	PFCMUTLUTF8TOW ICMUtlUtf8ToW;
  	PFCMUTLCWSTRCMP ICMUtlcwstrcmp;
  	PFCMUTLCWSTRCPY ICMUtlcwstrcpy;
  	PFCMUTLCWSTRCAT ICMUtlcwstrcat;
@@ -3535,8 +3392,6 @@ class ICMUtils : public IBase
 		virtual RTS_RESULT CDECL ICMUtlStrToW(const char* pszSrc, RTS_WCHAR* pwszDest, RTS_SIZE nDestSize) =0;
 		virtual RTS_RESULT CDECL ICMUtlWToStr(const RTS_WCHAR* pwszSrc, char* pszDest, RTS_SIZE nDestSize) =0;
 		virtual RTS_WCHAR* CDECL ICMUtlwstrchr(const RTS_WCHAR *pwsz, RTS_WCHAR w) =0;
-		virtual RTS_RESULT CDECL ICMUtlWToUtf8(RTS_WCHAR *pwsz, RTS_SIZE wstrLen, RTS_UI8* pUtf8Str, RTS_SIZE bufferSize) =0;
-		virtual RTS_RESULT CDECL ICMUtlUtf8ToW(RTS_UI8* pUtf8Str, RTS_SIZE utf8BufferSize, RTS_WCHAR* pwsz, RTS_SIZE wstrLen) =0;
 		virtual int CDECL ICMUtlcwstrcmp(const RTS_CWCHAR *pwsz1, const RTS_CWCHAR *pwsz2) =0;
 		virtual RTS_RESULT CDECL ICMUtlcwstrcpy(RTS_CWCHAR *pwszDest, RTS_SIZE nDestSize, const RTS_CWCHAR *pwszSrc) =0;
 		virtual RTS_RESULT CDECL ICMUtlcwstrcat(RTS_CWCHAR *pwszDest, RTS_SIZE nDestSize, const RTS_CWCHAR *pwszSrc) =0;

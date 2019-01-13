@@ -8,8 +8,6 @@
 
 
 
-
-
 #include "SysTarget.c"
 
 
@@ -103,16 +101,6 @@ RTS_RESULT CDECL CSysTarget::ISysTargetGetDeviceMask(RTS_UI16 *pusDeviceMask)
 RTS_RESULT CDECL CSysTarget::ISysTargetCheckIdent(SysTargetIdent *pTargetIdentReq, SysTargetIdent *pTargetIdent)
 {
 	return SysTargetCheckIdent(pTargetIdentReq,pTargetIdent);
-}
-
-RTS_RESULT CDECL CSysTarget::ISysTargetGetAPI(API_RESOLVE_INFO apiInfo, RTS_VOID_FCTPTR *ppfAPIFunction)
-{
-	return SysTargetGetAPI(apiInfo,ppfAPIFunction);
-}
-
-RTS_RESULT CDECL CSysTarget::ISysTargetSetNodeName(RTS_WCHAR *pwszName)
-{
-	return SysTargetSetNodeName(pwszName);
 }
 
 

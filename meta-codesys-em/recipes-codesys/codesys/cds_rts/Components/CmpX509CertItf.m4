@@ -1,12 +1,10 @@
 /**
  * <interfacename>CmpX509Cert</interfacename>
  * <description> 
- *	<p>This interface provides functionality to handle and verify X.509 Certificates</p>
+ *	<p>This interface provides functionaltiy to handle and verify X.509 Certificates</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 SET_INTERFACE_NAME(`CmpX509Cert')
 REF_ITF(`CmpCryptoItf.m4')
@@ -72,272 +70,6 @@ REF_ITF(`SysSocketItf.m4')
 	#define RTS_X509_DIFFIEHELLMAN_DEFAULT_LEN		2048
 #endif
 
-/**
- * <category>Online services</category>
- */ 
-#define SRV_X509_IMPORT_CERT        0x01
-#define SRV_X509_EXPORT_CERT        0x02
-#define SRV_X509_DELETE_CERT        0x03
-#define SRV_X509_MOVE_CERT          0x04
-#define SRV_X509_LIST_CERTS         0x05
-#define SRV_X509_LIST_USECASES      0x06
-#define SRV_X509_CREATE_SELFSIGNED  0x07
-#define SRV_X509_CREATE_REQUEST     0x08
-#define SRV_X509_GET_STATUS         0x09
-
-/**
- * <category>Online service tags</category>
- */
-#define TAG_X509_TRUSTLEVEL		    0x01
-#define TAG_X509_BACKEND            0x02
-#define TAG_X509_USECASE            0x03
-#define TAG_X509_THUMBPRINT         0x04
-#define TAG_X509_CERT               0x05
-#define TAG_X509_CSR                0x06
-#define TAG_X509_DEST_TRUSTLEVEL    0x07
-#define TAG_X509_DEST_BACKEND       0x08
-#define TAG_X509_KEY_LENGTH         0x09
-#define TAG_X509_USECASE_NAME       0x0A
-#define TAG_X509_USECASE_DESC       0x0B
-#define TAG_X509_SUBJECT_ID         0x0C
-#define TAG_X509_SUBJECT_VALUE      0x0D
-#define TAG_X509_ALT_NAME_EMAIL     0x0E
-#define TAG_X509_ALT_NAME_DNSNAME   0x0F
-#define TAG_X509_ALT_NAME_URI       0x10
-#define TAG_X509_ALT_NAME_IPADDRESS 0x12
-#define TAG_X509_ALT_NAME_REGISTEREDID 0x13
-#define TAG_X509_KEYUSAGE           0x14
-#define TAG_X509_EXT_KEYUSAGE       0x15
-#define TAG_X509_USECASE_COMPONENT  0x16
-#define TAG_X509_DELETE_PKEY        0x17
-#define TAG_X509_DAYS_VALID         0x18
-#define TAG_X509_GEN_SELF_SIGNED    0x19
-#define TAG_X509_GEN_CSR            0x1A
-#define TAG_X509_STATUS_HANDLE      0x1B
-#define TAG_X509_OPERATION          0x1C
-/* Leave tags 0x22 - 0x24 empty. Use for user management. */
-#define TAG_X509_RESULT             TAG_ERROR
-
-/* Complex tags */
-#define TAG_X509_USECASE_DETAILS    0x81
-/* Leave TAG 0x082 empty. Is used for user management. */
- 
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Import certificate service. This service imports the given certificate into the corresponding store of the PLC.
- *  Since this service changes the security configuration of the PLC administrator rights are needed to execute this service.
- * </Description>
- * <service name="SRV_X509_IMPORT_CERT">
- *	<Request>
- *		<tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level where to import the certificate. See the RTSCERTTRUSTLEVEL_* defines for details.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend where to store the certificate. Not used by now.</tag>
- *		<tag name="TAG_X509_CERT" required="required">Certificate in ANS.1 encoding to import.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Export certificate service. This service exports a selected certificate from the PLC for use in other applications.
- * </Description>
- * <service name="SRV_X509_EXPORT_CERT">
- *	<Request>
- *		<tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level of the certificate to export. See the RTSCERTTRUSTLEVEL_* defines for details.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend of the certificate. Not used by now.</tag>
- *		<tag name="TAG_X509_THUMBPRINT" required="required">Thumbprint of certificate calculated by the runtime system.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *		<tag name="TAG_X509_CERT" required="optional">Exported certificate in ASN.1 encoding if the certificate was available.</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Delete certificate service. This service deletes a certificate from the PLC.
- *  Since this service changes the security configuration of the PLC administrator rights are needed to execute this service.
- * </Description>
- * <service name="SRV_X509_DELETE_CERT">
- *	<Request>
- *		<tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level of the certificate to delete. See the RTSCERTTRUSTLEVEL_* defines for details.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend of the certificate. Not used by now.</tag>
- *		<tag name="TAG_X509_THUMBPRINT" required="required">Thumbprint of certificate calculated by the runtime system.</tag>
- *		<tag name="TAG_X509_DELETE_PKEY" required="optional">[RTS_UI32]: Flag if the private key should be deleted too. This is only used for trust level 'OWN'.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Move certificate service. This service moves certificates from one place to another.
- *  Since this service changes the security configuration of the PLC administrator rights are needed to execute this service.
- * </Description>
- * <service name="SRV_X509_MOVE_CERT">
- *	<Request>
- *		<tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level of the certificate to move. See the RTSCERTTRUSTLEVEL_* defines for details.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend of the certificate. Not used by now.</tag>
- *		<tag name="TAG_X509_THUMBPRINT" required="required">Thumbprint of certificate calculated by the runtime system.</tag>
- *		<tag name="TAG_X509_DEST_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level where to move the certificate to. See the RTSCERTTRUSTLEVEL_* defines for details.</tag>
- *		<tag name="TAG_X509_DEST_BACKEND" required="optional">[Type not yet defined]:Backend where to move the certificate to. Not used by now.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	List certificate service. This service lists all certificates from one place. Maybe not all certificates can be transmitted in one single online service.
- *  In this case the service return ERR_ENTRIES_REMAINING to indicate that more certificates are available. To get the next junk of certificates put the thumbprint of the
- *  last certificate of the last service as a starting point for the next certificates. The thumbprint tag in the response contains the thumbprint of the certificate 
- *  contained in the previous tag. These tags must always occur as a pair.
- * </Description>
- * <service name="SRV_X509_LIST_CERTS">
- *	<Request>
- *		<tag name="TAG_X509_TRUSTLEVEL" required="required">[RTS_UI32]: Trust level of the certificate to list. See the RTSCERTTRUSTLEVEL_* defines for details.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Identifier of the backend of the certificate. Not used by now.</tag>
- *		<tag name="TAG_X509_THUMBPRINT" required="optional">Thumbprint of certificate calculated by the runtime system of the last received certificate.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *		<tag name="TAG_X509_CERT" required="required">Certificate in ASN.1 format. This tag may occur multiple times.</tag>
- *		<tag name="TAG_X509_THUMBPRINT" required="required">Thumbprint of certificate calculated by the runtime system.</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	List certificate use service. This service return a list of all registered servers or clients that need their own certificates. This can be used to generate the needed
- *  self signed certificates or to generate the corresponding certificate requests. If a certificate is available for a dedicated use case the thumbprint of this certificate
- *  will be put the the service response. This allows to display the corresponding certificate.
- *  If the complete list of use cases can't be transmitted in one single service it will be split up. In this case the service return ERR_ENTRIES_REMAINING to indicate that more use 
- *  cases are available. The get the next junk of use cases is identified by the last usecases index.
- * </Description>
- * <service name="SRV_X509_LIST_USECASES">
- *	<Request>
- *      <tag name="TAG_X509_USECASE" required="optional">[RTS_UI32]: If the last service returned ERR_ENTRIES_REMAINING this is the ID of the last received use case.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *      <tag name="TAG_X509_USECASE_DETAILS" required="required">
- *		    <tag name="TAG_X509_USECASE" required="required">[RTS_UI32]: ID of the use case.</tag>
- *          <tag name="TAG_X509_USECASE_COMPONENT" required="required">[String]: Component which registered the use case.</tag>
- *          <tag name="TAG_X509_USECASE_NAME" required="optional">[String]: Name of the usecase. Provided by the component.</tag>
- *          <tag name="TAG_X509_USECASE_DESC" required="optional">[String]: Description of the use case. Provided by the component.</tag>
- *          <tag name="TAG_X509_SUBJECT_ID" required="optional">[String]: OID of the current subject field. Always exists with the following TAG_X509_SUBJECT_VALUE field. Sequenz is likley to be repeated</tag>
- *          <tag name="TAG_X509_SUBJECT_VALUE" required="optional">[String]: Value of the current subject field.</tag>
- *          <tag name="TAG_X509_ALT_NAME_EMAIL" required="optional">[String]: Alternative name containing an email address.</tag>
- *          <tag name="TAG_X509_ALT_NAME_DNSNAME" required="optional">[String]: Alternative name containing the DNS name.</tag>
- *          <tag name="TAG_X509_ALT_NAME_URI" required="optional">[String]: Alternative name containing the URI</tag>
- *          <tag name="TAG_X509_ALT_NAME_IPADDRESS" required="optional">[String]: Alternative name containing the IP-Address.</tag>
- *          <tag name="TAG_X509_ALT_NAME_REGISTEREDID" required="optional">[String]: Alternative name containing an OID in textual representation.</tag>
- *          <tag name="TAG_X509_KEYUSAGE" required="optional">[RTS_UI32]: Key usage of the certificate. See: RTS_KEY_USAGE_DIGITAL_* macros.</tag>
- *          <tag name="TAG_X509_EXT_KEYUSAGE" required="optional">[String]: Extended key usage identified by its textual representation. Can occur multiple times.</tag>
- *          <tag name="TAG_X509_THUMBPRINT" required="optional">Thumbprint of the certificate available for this use case. Left out if no certificate is available.</tag>
- *          <tag name="TAG_X509_GEN_SELF_SIGNED" required="optional">[Empty tag]: A self signed certificate is beeing generated at the moment.</tag>
- *          <tag name="TAG_X509_GEN_CSR" required="optional">[Empty tag]: A certificate request is beeing generated at the moment.</tag>
- *      </tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Generate self signed certificate service. This service is used to generate a self signed certificate for a registered use case. 
- *  This service will also generate the private key used by the new certificate.
- *  Since this service changes the security configuration of the PLC administrator rights are needed to execute this service.
- * Repeat this service 
- * </Description>
- * <service name="SRV_X509_CREATE_SELFSIGNED">
- *	<Request>
- *		<tag name="TAG_X509_USECASE" required="required">[RTS_UI32]: Usecase ID which the certificate is generated for.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Backend where to store the certificate. Not used by now.</tag>
- *      <tag name="TAG_X509_KEY_LENGTH" required="optional">[RTS_UI32]: The length of the asymmetric key pair in bits. If left out the default (see MinAsymmetricKeySize) will be used.</tag>
- *      <tag name="TAG_X509_DAYS_VALID" required="optional">[RTS_UI32]: Number of days the self signed certificate is valid.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *		<tag name="TAG_X509_STATUS_HANDLE" required="required">[RTS_UI16]: Result code of online operation</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Generate certificate signing request service. This service is used to generate a certificate signing request (CSR) for a registered use case.
- *  The private key is stored on the PLC. If the certificate has been generated by a CA this certificate has to be imported to the own store.
- * </Description>
- * <service name="SRV_X509_CREATE_REQUEST">
- *	<Request>
- *		<tag name="TAG_X509_USECASE" required="required">[RTS_UI32]: Usecase ID which the CSR is generated for.</tag>
- *		<tag name="TAG_X509_BACKEND" required="optional">[Type not yet defined]: Backend where to store the private key. Not used by now.</tag>
- *      <tag name="TAG_X509_KEY_LENGTH" required="optional">[RTS_UI32]: The length of the asymmetric key pair in bits. If left out the default (see MinAsymmetricKeySize) will be used.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation</tag>
- *		<tag name="TAG_X509_CSR" required="optional">The generated CSR in ASN.1 encoding.</tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Online services</category>
- * <Description>
- *	Get the status of long lasting operation. Actually this is used for generating self signed certificates.
- * </Description>
- * <service name="SRV_X509_GET_STATUS">
- *	<Request>
- *      <tag name="TAG_X509_OPERATION" required="required">[RTS_UI32]: Identifier of the operation. Use the service wating for as ID.</tag>
- *		<tag name="TAG_X509_STATUS_HANDLE" required="required">[RTS_UI32]: Usecase ID which the CSR is generated for.</tag>
- *	</Request>
- *	<Response>
- *		<tag name="TAG_X509_RESULT" required="required">[RTS_UI16]: Result code of online operation. 
- *              ERR_OK: Operation finished. 
- *              ERR_INVALID_HANDLE: TAG_X509_STATUS_HANDLE was invalid. 
- *              ERR_PENDING: Operations still running. 
- *              ERR_FAILED: Operations failed.
- *      </tag>
- *	</Response>
- * </service>
- */
- 
-/**
- * <category>Static defines</category>
- * <description>Predefined objects in the runtime</description>
- */
-#define USERDB_OBJECT_X509				        "Device.X509"
-#define USERDB_OBJECT_X509_IMPORT_CERT          "Device.X509.ImportCertificate"
-#define USERDB_OBJECT_X509_EXPORT_CERT          "Device.X509.ExportCertificate"
-#define USERDB_OBJECT_X509_DELETE_CERT          "Device.X509.DeleteCertificate"
-#define USERDB_OBJECT_X509_MOVE_CERT            "Device.X509.MoveCertificate"
-#define USERDB_OBJECT_X509_LIST_CERTS           "Device.X509.ListCertificates"
-#define USERDB_OBJECT_X509_LIST_USE_CASES       "Device.X509.ListUseCases"
-#define USERDB_OBJECT_X509_CREATE_SELFSIGNED    "Device.X509.CreateSelfSignedCertificate"
-#define USERDB_OBJECT_X509_CREATE_CSR           "Device.X509.CreateCertificateSigningRequest"
-#define USERDB_OBJECT_X509_GET_STAUTS           "Device.X509.GetStatus"
-#define USERDB_OBJECT_X509_UNKNOWN              "Device.X509.Unknown"
-
-
-
-
 
 
 
@@ -390,10 +122,6 @@ extern "C" {
 #define RTSX509CERTFILTERTYPE_TRUST_LEVEL    RTS_IEC_INT_C(0x0)	
 #define RTSX509CERTFILTERTYPE_SUBJECT    RTS_IEC_INT_C(0x1)	
 #define RTSX509CERTFILTERTYPE_SUBJECT_MATCHALL    RTS_IEC_INT_C(0x2)	
-#define RTSX509CERTFILTERTYPE_CERT_DATEVALID    RTS_IEC_INT_C(0x3)	
-#define RTSX509CERTFILTERTYPE_CERT_KEYUSAGE    RTS_IEC_INT_C(0x4)	
-#define RTSX509CERTFILTERTYPE_CERT_EXKEYUSAGE    RTS_IEC_INT_C(0x5)	
-#define RTSX509CERTFILTERTYPE_CERT_THUMBPRINT    RTS_IEC_INT_C(0x6)	
 /* Typed enum definition */
 #define RTSX509CERTFILTERTYPE    RTS_IEC_INT
 
@@ -465,24 +193,12 @@ typedef struct tagRtsX509CertName
 } RtsX509CertName;
 
 /**
- * <description>RtsX509ExKeyUsage</description>
- */
-typedef struct tagRtsX509ExKeyUsage
-{
-	RTS_IEC_UDINT numOfExKeyUsages;		/* Number of extended key usages */
-	RtsOID *pExKeyUsages;		/* Pointer to a list of extended key usages. */
-} RtsX509ExKeyUsage;
-
-/**
  * <description>RtsX509CertFilterContent</description>
  */
 typedef union
 {
 	RTS_IEC_INT trustLevel;		
 	RtsX509CertName *subject;		
-	RTS_IEC_UDINT keyUsage;		
-	RtsX509ExKeyUsage *exKeyUsage;		
-	RtsByteString *thumpbrint;		
 } RtsX509CertFilterContent;
 
 /**
@@ -526,7 +242,7 @@ typedef struct tagrtsoidclear_struct
 	RTS_IEC_RESULT RtsOIDClear;			/* VAR_OUTPUT */	
 } rtsoidclear_struct;
 
-DEF_API(`void',`CDECL',`rtsoidclear',`(rtsoidclear_struct *p)',1,0xB53A1CAF,0x03050B00)
+DEF_API(`void',`CDECL',`rtsoidclear',`(rtsoidclear_struct *p)',1,0xB53A1CAF,0x03050A00)
 
 /**
  * Create an RtsOID based on a given ID.
@@ -539,7 +255,7 @@ typedef struct tagrtsoidcreate_struct
 	RTS_IEC_RESULT RtsOIDCreate;		/* VAR_OUTPUT */	
 } rtsoidcreate_struct;
 
-DEF_API(`void',`CDECL',`rtsoidcreate',`(rtsoidcreate_struct *p)',1,0xE11A70BD,0x03050B00)
+DEF_API(`void',`CDECL',`rtsoidcreate',`(rtsoidcreate_struct *p)',1,0xE11A70BD,0x03050A00)
 
 /**
  * Get the ID of an OID in dottet notation.
@@ -552,7 +268,7 @@ typedef struct tagrtsoidgetid_struct
 	RTS_IEC_RESULT RtsOIDGetID;			/* VAR_OUTPUT */	
 } rtsoidgetid_struct;
 
-DEF_API(`void',`CDECL',`rtsoidgetid',`(rtsoidgetid_struct *p)',1,0xB69D55FF,0x03050B00)
+DEF_API(`void',`CDECL',`rtsoidgetid',`(rtsoidgetid_struct *p)',1,0xB69D55FF,0x03050A00)
 
 /**
  * Get the given name of an OID. If the OID is unknown 
@@ -566,7 +282,7 @@ typedef struct tagrtsoidgetname_struct
 	RTS_IEC_RESULT RtsOIDGetName;		/* VAR_OUTPUT */	
 } rtsoidgetname_struct;
 
-DEF_API(`void',`CDECL',`rtsoidgetname',`(rtsoidgetname_struct *p)',1,0xBEA6E204,0x03050B00)
+DEF_API(`void',`CDECL',`rtsoidgetname',`(rtsoidgetname_struct *p)',1,0xBEA6E204,0x03050A00)
 
 /**
  * Close the certificate.
@@ -578,7 +294,7 @@ typedef struct tagx509certclose_struct
 	RTS_IEC_RESULT X509CertClose;		/* VAR_OUTPUT */	
 } x509certclose_struct;
 
-DEF_API(`void',`CDECL',`x509certclose',`(x509certclose_struct *p)',1,0x150A5E6B,0x03050B00)
+DEF_API(`void',`CDECL',`x509certclose',`(x509certclose_struct *p)',1,0x150A5E6B,0x03050A00)
 
 /**
  * <description>x509certcmsdecrypt</description>
@@ -593,7 +309,7 @@ typedef struct tagx509certcmsdecrypt_struct
 	RTS_IEC_RESULT X509CertCmsDecrypt;	/* VAR_OUTPUT */	
 } x509certcmsdecrypt_struct;
 
-DEF_API(`void',`CDECL',`x509certcmsdecrypt',`(x509certcmsdecrypt_struct *p)',1,0xCCAD85D1,0x03050B00)
+DEF_API(`void',`CDECL',`x509certcmsdecrypt',`(x509certcmsdecrypt_struct *p)',1,0xCCAD85D1,0x03050A00)
 
 /**
  * <description>x509certcmsverify</description>
@@ -608,7 +324,7 @@ typedef struct tagx509certcmsverify_struct
 	RTS_IEC_RESULT X509CertCmsVerify;	/* VAR_OUTPUT */	
 } x509certcmsverify_struct;
 
-DEF_API(`void',`CDECL',`x509certcmsverify',`(x509certcmsverify_struct *p)',1,0x73653424,0x03050B00)
+DEF_API(`void',`CDECL',`x509certcmsverify',`(x509certcmsverify_struct *p)',1,0x73653424,0x03050A00)
 
 /**
  * <description>x509certcreatecsr</description>
@@ -624,7 +340,7 @@ typedef struct tagx509certcreatecsr_struct
 	RTS_IEC_RESULT X509CertCreateCSR;	/* VAR_OUTPUT */	
 } x509certcreatecsr_struct;
 
-DEF_API(`void',`CDECL',`x509certcreatecsr',`(x509certcreatecsr_struct *p)',1,0xF64C1D04,0x03050B00)
+DEF_API(`void',`CDECL',`x509certcreatecsr',`(x509certcreatecsr_struct *p)',1,0xF64C1D04,0x03050A00)
 
 /**
  * <description>x509certcreateselfsigned</description>
@@ -639,7 +355,7 @@ typedef struct tagx509certcreateselfsigned_struct
 	RTS_IEC_HANDLE X509CertCreateSelfSigned;	/* VAR_OUTPUT */	
 } x509certcreateselfsigned_struct;
 
-DEF_API(`void',`CDECL',`x509certcreateselfsigned',`(x509certcreateselfsigned_struct *p)',1,0x6765E8BD,0x03050B00)
+DEF_API(`void',`CDECL',`x509certcreateselfsigned',`(x509certcreateselfsigned_struct *p)',1,0x6765E8BD,0x03050A00)
 
 /**
  * Get the certificate in a binary encoded format. Use the encoding parameter
@@ -654,7 +370,7 @@ typedef struct tagx509certgetbinary_struct
 	RTS_IEC_RESULT X509CertGetBinary;	/* VAR_OUTPUT */	
 } x509certgetbinary_struct;
 
-DEF_API(`void',`CDECL',`x509certgetbinary',`(x509certgetbinary_struct *p)',1,0x6F7D6C42,0x03050B00)
+DEF_API(`void',`CDECL',`x509certgetbinary',`(x509certgetbinary_struct *p)',1,0x6F7D6C42,0x03050A00)
 
 /**
  * Get some common content from the certificate.
@@ -667,7 +383,7 @@ typedef struct tagx509certgetcontent_struct
 	RTS_IEC_RESULT X509CertGetContent;	/* VAR_OUTPUT */	
 } x509certgetcontent_struct;
 
-DEF_API(`void',`CDECL',`x509certgetcontent',`(x509certgetcontent_struct *p)',1,0xDA69570E,0x03050B00)
+DEF_API(`void',`CDECL',`x509certgetcontent',`(x509certgetcontent_struct *p)',1,0xDA69570E,0x03050A00)
 
 /**
  * <description>x509certgetprivatekey</description>
@@ -680,7 +396,7 @@ typedef struct tagx509certgetprivatekey_struct
 	RTS_IEC_RESULT X509CertGetPrivateKey;	/* VAR_OUTPUT */	
 } x509certgetprivatekey_struct;
 
-DEF_API(`void',`CDECL',`x509certgetprivatekey',`(x509certgetprivatekey_struct *p)',1,0x279C9A63,0x03050B00)
+DEF_API(`void',`CDECL',`x509certgetprivatekey',`(x509certgetprivatekey_struct *p)',1,0x279C9A63,0x03050A00)
 
 /**
  * Get the PUBLIC key FROM the certificate.
@@ -698,7 +414,7 @@ typedef struct tagx509certgetpublickey_struct
 	RTS_IEC_RESULT X509CertGetPublicKey;	/* VAR_OUTPUT */	
 } x509certgetpublickey_struct;
 
-DEF_API(`void',`CDECL',`x509certgetpublickey',`(x509certgetpublickey_struct *p)',1,0x35142E48,0x03050B00)
+DEF_API(`void',`CDECL',`x509certgetpublickey',`(x509certgetpublickey_struct *p)',1,0x35142E48,0x03050A00)
 
 /**
  * Generate the certificate thumbprint. The thumbprint will be just the plain bytes of the hash. 
@@ -713,7 +429,7 @@ typedef struct tagx509certgetthumbprint_struct
 	RTS_IEC_RESULT X509CertGetThumbprint;	/* VAR_OUTPUT */	
 } x509certgetthumbprint_struct;
 
-DEF_API(`void',`CDECL',`x509certgetthumbprint',`(x509certgetthumbprint_struct *p)',1,0x5B1EA1C5,0x03050B00)
+DEF_API(`void',`CDECL',`x509certgetthumbprint',`(x509certgetthumbprint_struct *p)',1,0x5B1EA1C5,0x03050A00)
 
 /**
  * Cleanup an RtsX509CertInfo structure. All allocated memory used by this strucutre will be release.
@@ -725,7 +441,7 @@ typedef struct tagx509certinfoexit_struct
 	RTS_IEC_RESULT X509CertInfoExit;	/* VAR_OUTPUT */	
 } x509certinfoexit_struct;
 
-DEF_API(`void',`CDECL',`x509certinfoexit',`(x509certinfoexit_struct *p)',1,0x4F4B0310,0x03050B00)
+DEF_API(`void',`CDECL',`x509certinfoexit',`(x509certinfoexit_struct *p)',1,0x4F4B0310,0x03050A00)
 
 /**
  * Initialize the RtsX509CertInfo structure.
@@ -738,7 +454,7 @@ typedef struct tagx509certinfoinit_struct
 	RTS_IEC_RESULT X509CertInfoInit;	/* VAR_OUTPUT */	
 } x509certinfoinit_struct;
 
-DEF_API(`void',`CDECL',`x509certinfoinit',`(x509certinfoinit_struct *p)',1,0xD52F28DD,0x03050B00)
+DEF_API(`void',`CDECL',`x509certinfoinit',`(x509certinfoinit_struct *p)',1,0xD52F28DD,0x03050A00)
 
 /**
  * Release a PRIVATE OR PUBLIC key with THIS FUNCTION. THIS FUNCTION
@@ -752,7 +468,7 @@ typedef struct tagx509certkeyclose_struct
 	RTS_IEC_RESULT X509CertKeyClose;	/* VAR_OUTPUT */	
 } x509certkeyclose_struct;
 
-DEF_API(`void',`CDECL',`x509certkeyclose',`(x509certkeyclose_struct *p)',1,0x6A598D05,0x03050B00)
+DEF_API(`void',`CDECL',`x509certkeyclose',`(x509certkeyclose_struct *p)',1,0x6A598D05,0x03050A00)
 
 /**
  * <description>x509certstoreaddcert</description>
@@ -766,7 +482,7 @@ typedef struct tagx509certstoreaddcert_struct
 	RTS_IEC_RESULT X509CertStoreAddCert;	/* VAR_OUTPUT */	
 } x509certstoreaddcert_struct;
 
-DEF_API(`void',`CDECL',`x509certstoreaddcert',`(x509certstoreaddcert_struct *p)',1,0x690E5D79,0x03050B00)
+DEF_API(`void',`CDECL',`x509certstoreaddcert',`(x509certstoreaddcert_struct *p)',1,0x690E5D79,0x03050A00)
 
 /**
  * <description>x509certstoreclose</description>
@@ -777,7 +493,7 @@ typedef struct tagx509certstoreclose_struct
 	RTS_IEC_RESULT X509CertStoreClose;	/* VAR_OUTPUT */	
 } x509certstoreclose_struct;
 
-DEF_API(`void',`CDECL',`x509certstoreclose',`(x509certstoreclose_struct *p)',1,0x048C3968,0x03050B00)
+DEF_API(`void',`CDECL',`x509certstoreclose',`(x509certstoreclose_struct *p)',1,0x048C3968,0x03050A00)
 
 /**
  * <description>x509certstoregetfirstcert</description>
@@ -791,7 +507,7 @@ typedef struct tagx509certstoregetfirstcert_struct
 	RTS_IEC_HANDLE X509CertStoreGetFirstCert;	/* VAR_OUTPUT */	
 } x509certstoregetfirstcert_struct;
 
-DEF_API(`void',`CDECL',`x509certstoregetfirstcert',`(x509certstoregetfirstcert_struct *p)',1,0x9165907D,0x03050B00)
+DEF_API(`void',`CDECL',`x509certstoregetfirstcert',`(x509certstoregetfirstcert_struct *p)',1,0x9165907D,0x03050A00)
 
 /**
  * <description>x509certstoregetnextcert</description>
@@ -805,20 +521,7 @@ typedef struct tagx509certstoregetnextcert_struct
 	RTS_IEC_HANDLE X509CertStoreGetNextCert;	/* VAR_OUTPUT */	
 } x509certstoregetnextcert_struct;
 
-DEF_API(`void',`CDECL',`x509certstoregetnextcert',`(x509certstoregetnextcert_struct *p)',1,0x894377FA,0x03050B00)
-
-/**
- * <description>x509certstoregetregisteredcert</description>
- */
-typedef struct tagx509certstoregetregisteredcert_struct
-{
-	RTS_IEC_HANDLE hCertStore;			/* VAR_INPUT */	
-	RTS_IEC_HANDLE hUseCase;			/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	RTS_IEC_HANDLE X509CertStoreGetRegisteredCert;	/* VAR_OUTPUT */	
-} x509certstoregetregisteredcert_struct;
-
-DEF_API(`void',`CDECL',`x509certstoregetregisteredcert',`(x509certstoregetregisteredcert_struct *p)',1,0x8C0F7D34,0x03050B00)
+DEF_API(`void',`CDECL',`x509certstoregetnextcert',`(x509certstoregetnextcert_struct *p)',1,0x894377FA,0x03050A00)
 
 /**
  * <description>x509certstoreopen</description>
@@ -830,7 +533,7 @@ typedef struct tagx509certstoreopen_struct
 	RTS_IEC_HANDLE X509CertStoreOpen;	/* VAR_OUTPUT */	
 } x509certstoreopen_struct;
 
-DEF_API(`void',`CDECL',`x509certstoreopen',`(x509certstoreopen_struct *p)',1,0xFE7CCE6C,0x03050B00)
+DEF_API(`void',`CDECL',`x509certstoreopen',`(x509certstoreopen_struct *p)',1,0xFE7CCE6C,0x03050A00)
 
 /**
  * <description>x509certstoreregister</description>
@@ -844,7 +547,7 @@ typedef struct tagx509certstoreregister_struct
 	RTS_IEC_HANDLE X509CertStoreRegister;	/* VAR_OUTPUT */	
 } x509certstoreregister_struct;
 
-DEF_API(`void',`CDECL',`x509certstoreregister',`(x509certstoreregister_struct *p)',1,0x35F7F607,0x03050B00)
+DEF_API(`void',`CDECL',`x509certstoreregister',`(x509certstoreregister_struct *p)',1,0x35F7F607,0x03050A00)
 
 /**
  * <description>x509certstoreremovecert</description>
@@ -858,7 +561,7 @@ typedef struct tagx509certstoreremovecert_struct
 	RTS_IEC_RESULT X509CertStoreRemoveCert;	/* VAR_OUTPUT */	
 } x509certstoreremovecert_struct;
 
-DEF_API(`void',`CDECL',`x509certstoreremovecert',`(x509certstoreremovecert_struct *p)',1,0x0E795BC4,0x03050B00)
+DEF_API(`void',`CDECL',`x509certstoreremovecert',`(x509certstoreremovecert_struct *p)',1,0x0E795BC4,0x03050A00)
 
 /**
  * <description>x509certstoresearchgetfirst</description>
@@ -872,7 +575,7 @@ typedef struct tagx509certstoresearchgetfirst_struct
 	RTS_IEC_HANDLE X509CertStoreSearchGetFirst;	/* VAR_OUTPUT */	
 } x509certstoresearchgetfirst_struct;
 
-DEF_API(`void',`CDECL',`x509certstoresearchgetfirst',`(x509certstoresearchgetfirst_struct *p)',1,0,0x03050B00)
+DEF_API(`void',`CDECL',`x509certstoresearchgetfirst',`(x509certstoresearchgetfirst_struct *p)',1,0x6C956088,0x03050A00)
 
 /**
  * <description>x509certstoresearchgetnext</description>
@@ -887,7 +590,7 @@ typedef struct tagx509certstoresearchgetnext_struct
 	RTS_IEC_HANDLE X509CertStoreSearchGetNext;	/* VAR_OUTPUT */	
 } x509certstoresearchgetnext_struct;
 
-DEF_API(`void',`CDECL',`x509certstoresearchgetnext',`(x509certstoresearchgetnext_struct *p)',1,0,0x03050B00)
+DEF_API(`void',`CDECL',`x509certstoresearchgetnext',`(x509certstoresearchgetnext_struct *p)',1,0xB7F16B08,0x03050A00)
 
 /**
  * <description>x509certstoreunregister</description>
@@ -899,7 +602,7 @@ typedef struct tagx509certstoreunregister_struct
 	RTS_IEC_RESULT X509CertStoreUnregister;	/* VAR_OUTPUT */	
 } x509certstoreunregister_struct;
 
-DEF_API(`void',`CDECL',`x509certstoreunregister',`(x509certstoreunregister_struct *p)',1,0xE41C13F3,0x03050B00)
+DEF_API(`void',`CDECL',`x509certstoreunregister',`(x509certstoreunregister_struct *p)',1,0xE41C13F3,0x03050A00)
 
 /**
  * <description>x509certverify</description>
@@ -911,7 +614,7 @@ typedef struct tagx509certverify_struct
 	RTS_IEC_RESULT X509CertVerify;		/* VAR_OUTPUT */	
 } x509certverify_struct;
 
-DEF_API(`void',`CDECL',`x509certverify',`(x509certverify_struct *p)',1,0x9822EB29,0x03050B00)
+DEF_API(`void',`CDECL',`x509certverify',`(x509certverify_struct *p)',1,0x9822EB29,0x03050A00)
 
 /**
  * Parse a certificate which is located in the memory (e.g received FROM a
@@ -927,7 +630,7 @@ typedef struct tagx509parsecertificate_struct
 	RTS_IEC_HANDLE X509ParseCertificate;	/* VAR_OUTPUT */	
 } x509parsecertificate_struct;
 
-DEF_API(`void',`CDECL',`x509parsecertificate',`(x509parsecertificate_struct *p)',1,0x01B27207,0x03050B00)
+DEF_API(`void',`CDECL',`x509parsecertificate',`(x509parsecertificate_struct *p)',1,0x01B27207,0x03050A00)
 
 #ifdef __cplusplus
 }
@@ -935,51 +638,58 @@ DEF_API(`void',`CDECL',`x509parsecertificate',`(x509parsecertificate_struct *p)'
 
 /** EXTERN LIB SECTION END **/
 
-/**
- * <element name="Result" type="OUT">Result returned by X509CertCreateSelfSigned</element>
- * <element name="hCert" type="OUT">Handle of the geneatred certificate.</element>
- */
-typedef struct
-{
-	RTS_RESULT Result;
-	RTS_HANDLE hCert;
-} X509CertCreateSelfSignedAsyncResult;
 
-/**
- * <element name="Result" type="OUT">Result returned by X509CertCreateCSR</element>
- * <element name="hCert" type="OUT">Pointer to the RtsByteString given as parameter in X509CertCreateCSR containing the CSR.</element>
- */
 typedef struct
 {
-	RTS_RESULT Result;
+	RTS_HANDLE hCertStore;
+	RTS_HANDLE hBackend;
+	RtsX509CertInfo* pCertInfo;
+	RTS_UI32 ui32KeySize;
+	RTS_HANDLE hCert;
+} X509CertCreateSelfSignedAsyncStruct;
+
+typedef struct
+{
+	RTS_HANDLE hCertStore;
+	RTS_HANDLE hBackend;
+	RtsX509CertInfo* pCertInfo;
+	CMPID cmpID;
+	RTS_UI32 ui32KeySize;
+	RTSCERTENCODING encoding;
 	RtsByteString* pCSR;
-} X509CertCreateCSRAsyncResult;
+} X509CertCreateCSRAsyncStruct;
+
+typedef struct
+{
+	RTS_I32 nLen;
+} X509CertCreateDHParamsyncStruct;
 
 
 typedef union
 {
-	X509CertCreateSelfSignedAsyncResult selfSigned;
-	X509CertCreateCSRAsyncResult csr;
-} X509AsyncOperationResult;
+	X509CertCreateSelfSignedAsyncStruct selfSigned;
+	X509CertCreateCSRAsyncStruct csr;
+	X509CertCreateDHParamsyncStruct dhparams;
+} X509AsyncParameterStruct;
 
-/**
- * <element name="ui32Operation" type="OUT">Identifier which operation was executed.</element>
- * <element name="Result" type="OUT">Result of the operation. Use the field according the ui32Operation.</element>
- * <element name="pCallbackParam" type="OUT">Pointer to callback parameter given in the X509CertCreate...Async function.</element>
- */
-typedef struct
+#define OPENSSL_ASYNC_FUNCTION_CREATESELFSIGNED		1
+#define OPENSSL_ASYNC_FUNCTION_CREATECSR			2
+#define OPENSSL_ASYNC_FUNCTION_CREATEDHPARAMS		3
+
+struct _X509AsyncStruct;
+
+typedef void HUGEPTR(CDECL *PFX509ASYNCCALLBACK)(struct _X509AsyncStruct *pAsyncStruct);
+
+typedef struct _X509AsyncStruct
 {
-	RTS_UI32 ui32Operation;
-	X509AsyncOperationResult Result;
-	void* pCallbackParam;
-} X509AsyncResult;
-
-#define CMPX509CERT_ASYNC_FUNCTION_CREATESELFSIGNED		1
-#define CMPX509CERT_ASYNC_FUNCTION_CREATECSR			2
-
-
-typedef void HUGEPTR(CDECL *PFX509ASYNCCALLBACK)(X509AsyncResult *pAsyncStruct);
-
+	RTS_HANDLE hJob;
+	RTS_UI32 asyncFunction;
+	PFX509ASYNCCALLBACK pfCallback;
+	RTS_UI32 nIndex;
+	RTS_UI32 ulState;
+	RTS_RESULT Result;
+	X509AsyncParameterStruct asyncParam;
+} X509AsyncStruct;
 
 
 /* --------------------------------------------------------------------------- */
@@ -1311,6 +1021,28 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`X509CertCmsDecrypt',`(RTS_HANDLE hCertStore, R
 /* --------------------------------------------------------------------------- */
 
 /**
+ * <description>Split up a certificate chain into single certificates.</description>
+ * Usage: 
+	RtsByteString pCertificateChain; // Received from a sender or read from file
+    RTS_UI32 ui32NumOfCertificates = 0;
+	RtsByteString *pCertificates;
+	
+	// Evaluate the number of certificates in the cain
+	X509SplitCertificateChain(pCertificateChain, NULL, &ui32NumOfCertificates);
+	
+	// Get the cert array 
+	pCertificates = (RtsByteString *)malloc(ui32NumOfCertificates * sizeof(RtsByteString));
+	
+	// Split up the certificate chain into single certificates. 
+	X509SplitCertificateChain(pCertificateChain, pCertificates, &ui32NumOfCertificates);
+ 
+ * This function will no allocate new memory to store the splitted certificates. Instead the returned byte strings
+ * will contain a reference to the certificate in the chain.
+ * <result>Result of the operation.</result>
+ */
+DEF_ITF_API(`RTS_RESULT',`CDECL',`X509SplitCertificateChain',`(RtsByteString* pCertificateChain, RtsByteString* pCertificates, RTS_UI32* pui32NumOfCertificates)')
+
+/**
  * <description>Create an RtsOID based on a given ID.</description>
  * <param name="id" type="IN">OID as string in dottet format. E.g. (1.2.3.4.5.6.7.8.9.0)</param>
  * <param name="oid" type="OUT">Pointer to an OID to fill up.</param>
@@ -1400,13 +1132,7 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`X509CertStorGetBackendInfo',`(RTS_HANDLE hCert
  * <param name="hBackend" type="IN">Handle to the backend where to store the generated certificate. RTS_INVALID_HANDLE should be used if no backend is specified.</param>
  * <param name="pCertInfo" type="IN">Information of the certificate to be generated.</param>
  * <param name="ui32KeySize" type="IN">Size in bits of the private key.</param>
- * <param name="pResult" type="OUT">Result of the operation.
- *      - ERR_OK: Everything went fine.
- *      - ERR_INVALID_HANDLE: Some input handle is invalid.
- *      - ERR_PARAMETER: Some input parameter is invalid.
- *      - ERR_OVERFLOW: The timestamps of the certificate would overflow.
- *      - ERR_NOMEMORY: Not enough memory to perform this operation.
- *      - ERR_FAILED: Creation of self signed certificate failed. failed</param>
+ * <param name="pResult" type="OUT">Result of the operation.</param>
  * <result>Handle to the created selfsigned certificate</result>
  */
 DEF_ITF_API(`RTS_HANDLE',`CDECL',`X509CertCreateSelfSigned',`(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, RTS_RESULT *pResult)')
@@ -1418,11 +1144,11 @@ DEF_ITF_API(`RTS_HANDLE',`CDECL',`X509CertCreateSelfSigned',`(RTS_HANDLE hCertSt
  * <param name="pCertInfo" type="IN">Information of the certificate to be generated.</param>
  * <param name="ui32KeySize" type="IN">Size in bits of the private key.</param>
  * <param name="ui32KeySize" type="IN">Size in bits of the private key.</param>
- * <param name="pCallbackParam" type="IN">Parameter used when the callback is called when the operation has finished.</param>
+ * <param name="nIndex" type="IN">Optional index of the operation. Is proivided in the callback as an additional parameter.</param>
  * <param name="pfCallback" type="IN">Callback function that is called at the end of the operation</param>
  * <result>Result of the operation</result>
  */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`X509CertCreateSelfSignedAsync',`(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, void* pCallbackParam, PFX509ASYNCCALLBACK pfCallback)')
+DEF_ITF_API(`RTS_RESULT',`CDECL',`X509CertCreateSelfSignedAsync',`(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, RTS_UI32 ui32KeySize, RTS_UI32 nIndex, PFX509ASYNCCALLBACK pfCallback)')
 
 /**
  * <description>Create a new certificate request. A new private key will be 
@@ -1449,11 +1175,11 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`X509CertCreateCSR',`(RTS_HANDLE hCertStore, RT
  * <param name="ui32KeySize" type="IN">Size in bits of the private key.</param>
  * <param name="encoding" type="IN">Encoding of the generated CSR.</param>
  * <param name="pCSR" type="OUT">The signing request in binary form.</param>
- * <param name="pCallbackParam" type="IN">Parameter used when the callback is called when the operation has finished.</param>
+ * <param name="nIndex" type="IN">Optional index of the operation. Is proivided in the callback as an additional parameter.</param>
  * <param name="pfCallback" type="IN">Callback function that is called at the end of the operation</param>
  * <result>Result of the operation</result>
  */
-DEF_ITF_API(`RTS_RESULT',`CDECL',`X509CertCreateCSRAsync',`(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTSCERTENCODING encoding, RtsByteString* pCSR, void* pCallbackParam, PFX509ASYNCCALLBACK pfCallback)')
+DEF_ITF_API(`RTS_RESULT',`CDECL',`X509CertCreateCSRAsync',`(RTS_HANDLE hCertStore, RTS_HANDLE hBackend, RtsX509CertInfo* pCertInfo, CMPID cmpID, RTS_UI32 ui32KeySize, RTSCERTENCODING encoding, RtsByteString* pCSR, RTS_UI32 nIndex, PFX509ASYNCCALLBACK pfCallback)')
 
 /**
  * <description>Add the given certificate to the Certificate store</description>
@@ -1522,23 +1248,6 @@ DEF_ITF_API(`RTS_HANDLE',`CDECL',`X509CertStoreRegister',`(RTS_HANDLE hCertStore
  * <result>Result of the operation</result>
  */
 DEF_ITF_API(`RTS_RESULT',`CDECL',`X509CertStoreUnregister',`(RTS_HANDLE hCertStore, RTS_HANDLE hRegisteredComponent)')
-
-/**
- * <description>
- * Get the certificate available for a registered use case. If not certificate is available RTS_INVALID_HANDLE will be returned.
- * The following rules apply for selecting the certificate:
- * - Check if a certificate is configured by the user. (The thumbprint is pinned for component and index). Use this one if available, return error if not available.
- * - If no certificate is configured filter the available certificates by subject, key usage, extended key usage and a valid timestamp. Return error if list is empty.
- * - Split the available certificates by signed and self signed certificates. Prefer the signed certificates over the self signed certificates:
- * - Select the certificate with the longest period of validity.
- * - If some certificates have the same period of validity select the one with the strongest key.
- * </description>
- * <param name="hCertStore" type="IN">Handle of to certificate store.</param>
- * <param name="hUseCase" type="IN">Handle to the registered use case. Retrieved using X509CertStoreRegister.</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Handle to the certificate. Use X509CertClose to close the certificat.</result>
- */
-DEF_ITF_API(`RTS_HANDLE',`CDECL',`X509CertStoreGetRegisteredCert',`(RTS_HANDLE hCertStore, RTS_HANDLE hUseCase, RTS_RESULT* pResult)')
 
 #ifdef __cplusplus
 }

@@ -15,8 +15,6 @@ Modules
 
 - :ref:`Bus Cycle Type <group___cmp_io_mgr_itf___bus_cycle_type>`
 
-- :ref:`Compiler switch <group___cmp_io_mgr_itf___compilerswitch>`
-
 - :ref:`Event parameter <group___cmp_io_mgr_itf___eventparameter>`
 
 - :ref:`Events <group___cmp_io_mgr_itf___events>`
@@ -30,8 +28,6 @@ Modules
 - :ref:`Settings <group___cmp_io_mgr_itf___settings>`
 
 - :ref:`Static defines <group___cmp_io_mgr_itf___staticdefines>`
-
-- :ref:`Task map types <group___cmp_io_mgr_itf___taskmaptypes>`
 
 - :ref:`Watchdog definitions <group___cmp_io_mgr_itf___watchdogdefinitions>`
 
@@ -381,8 +377,6 @@ Functions
 
 - RTS_RESULT :ref:`IoMgrUpdateConfiguration2 <group___cmp_io_mgr_itf_1ga278aa08c80039e36be4bbdddd709dec3>` (:ref:`IoConfigConnector <group___cmp_io_mgr_itf_1ga1c9f05476fb9e57a5583f645a12956be>` * pConnectorList, int nCount, char * pszConfigApplication)
 
-- RTS_BOOL :ref:`IoMgrHasTaskIOs <group___cmp_io_mgr_itf_1ga7f7627a9d5bc801bbba82ad81b122ab0>` (RTS_UI32 dwTaskId, RTS_UI16 taskMapType, RTS_RESULT * pResult)
-
 - RTS_RESULT :ref:`IoMgrUpdateMapping <group___cmp_io_mgr_itf_1ga7f0beba106a4d9079ca733e89a9185cd>` (:ref:`IoConfigTaskMap <group___cmp_io_mgr_itf_1ga24e1b19811629d55c3187dd61411df95>` * pTaskMapList, int nCount)
 
 - RTS_RESULT :ref:`IoMgrUpdateMapping2 <group___cmp_io_mgr_itf_1gacd1c1a4be544d4fce0593b3d8ec235d1>` (:ref:`IoConfigTaskMap <group___cmp_io_mgr_itf_1ga24e1b19811629d55c3187dd61411df95>` * pTaskMapList, int nCount, char * pszConfigApplication)
@@ -571,7 +565,7 @@ The component CmpIoDrvC manages all C drivers and CmpIoDrvIec manages all IEC dr
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -1741,37 +1735,6 @@ error code
 +------------+-----------------------------------------------------+
 | ERR_FAILED | Update Configuration of at least one driver failed  |
 +------------+-----------------------------------------------------+
-
-.. _group___cmp_io_mgr_itf_1ga7f7627a9d5bc801bbba82ad81b122ab0:
-
-RTS_BOOL IoMgrHasTaskIOs (RTS_UI32 dwTaskId, RTS_UI16 taskMapType, RTS_RESULT *pResult)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Function to check, if specified IEC task has mapped inputs or outputs.
-
-**Parameters**
-
-+---------+-------------+-------------------------------------------------------------------------------+
-| [in]    | dwTaskId    | Index of the IEC task                                                         |
-+---------+-------------+-------------------------------------------------------------------------------+
-| [in]    | taskMapType | Input or output type. See category "Task map types" for detailed information. |
-+---------+-------------+-------------------------------------------------------------------------------+
-| [out]   | pResult     | Pointer to the error code                                                     |
-+---------+-------------+-------------------------------------------------------------------------------+
-
-**Return values**
-
-+--------------------+------------------------------------+
-| ERR_OK             | TaskID could be verified           |
-+--------------------+------------------------------------+
-| ERR_PARAMETER      | Invalid taskid or maptype          |
-+--------------------+------------------------------------+
-| ERR_NOTIMPLEMENTED | Interface function not implemented |
-+--------------------+------------------------------------+
-
-**Returns:**
-
-TRUE=Task has mapped requested IO types; FALSE=Task has _no_ mapped requested IO types
 
 .. _group___cmp_io_mgr_itf_1ga7f0beba106a4d9079ca733e89a9185cd:
 

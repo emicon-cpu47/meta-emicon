@@ -47,9 +47,7 @@
  * the IEC task. So we allow those calls only in debug mode.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -71,48 +69,6 @@
 #include "CmpMemPoolItf.h"
 #include "SysTimeItf.h"
 
-
-/**
- * <category>Compiler switch</category>
- * <description>
- *	Compiler switches to enable/disable single features in the component.
- * </description>
- * <element name="RTS_STRUCTURED_EXCEPTION_HANDLING" type="IN">To enable the structured exception handling</element>
- * <element name="RTS_IECTASK_STRUCTURED_EXCEPTION_HANDLING" type="IN">To enable structured exception handling for all IecTasks.
- *		If RTS_STRUCTURED_EXCEPTION_HANDLING is enable and RTS_IECTASK_STRUCTURED_EXCEPTION_HANDLING is disabled, the structured exception handling
- *		out of the IEC program can be used via the SysExcept.library (unusual used feature).
- * </element>
- * <element name="RTS_IECTASK_ENABLE_TASK_TRACE" type="IN">Enable IEC task trace feature. This feature creates a CODESYS system trace with all IEC-tasks to trace the timing.
- *	NOTES:
- *		1. To really activate the task trace, you have to set the setting "EnableTaskTrace=1" in the configuration!
- *		2. CmpSchedule must be built with the same compiler switch to activate additional tracing of the SchedulerTick and optional SchedulerTimeslicing!
- * </element>
- * <element name="CMPIECTASK_STACK_SIZE" type="IN">Define to specify the stack size for all IEC tasks. Default size = 1MB.</element>
- * <element name="CMPIECTASK_STACK_SIZE_ADDITIONAL" type="IN">Define to specify the additional stack size for all IEC tasks (depends on the platform). Default: 0.</element>
- * <element name="CMPIECTASK_SYNCHRONIZATION_USE_SYSSEM" type="IN">Use semaphores (SysSem) instead of using SysReadWriteLock by default! This is because SysReadWriteLock could have 
- *																	priority inversion problems on some platforms and so we use SysSem as a better alternative by default!</element>
- */
-
-#if defined(CMPTRACEMGR_NOTIMPLEMENTED)
-	#undef RTS_IECTASK_ENABLE_TASK_TRACE
-#elif !defined(SYSCPUMULTICORE_NOTIMPLEMENTED) && !defined(RTS_IECTASK_ENABLE_TASK_TRACE)
-	#define RTS_IECTASK_ENABLE_TASK_TRACE
-#endif
-
-#if !defined(SYSCPUMULTICORE_NOTIMPLEMENTED)
-	#define IECTASK_USE_ATOMIC_BITACCESS
-#endif
-
-#ifndef CMPIECTASK_STACK_SIZE
-	#define CMPIECTASK_STACK_SIZE 0
-#endif
-
-#ifndef CMPIECTASK_STACK_SIZE_ADDITIONAL
-	#define CMPIECTASK_STACK_SIZE_ADDITIONAL 0
-#endif
-
-#define CMPIECTASK_SYNCHRONIZATION_USE_SYSSEM
-
 typedef struct
 {
     RTS_IEC_DINT slotLower;
@@ -123,7 +79,6 @@ typedef struct
 
 struct tagTask_Desc;
 struct tagTask_Info;
-typedef struct tagTask_Info Task_Info;
 
 typedef struct
 {
@@ -150,9 +105,23 @@ typedef struct
 	#define MAX_IEC_SLOTS					(-1)
 #endif
 
-#define IECTASK_TASK_INFO_VERSION			5
-#define IECTASK_TASK_INFO_GROUPS_VERSION    4
+#define IECTASK_TASK_INFO_VERSION			2
 #define IECTASK_TASK_MAX_PRIO				255
+
+
+/**
+ * <category>Compile options</category>
+ * <description>
+ *	Default timeout to wait for a task until stop. If a task is not ending execution in this timeout, the
+ *	task will be killed hard and recreated.
+ *	The value is in milliseconds.
+ * </description>
+ * <element name="RTS_STRUCTURED_EXCEPTION_HANDLING" type="IN">To enable the structured exception handling</element>
+ * <element name="RTS_IECTASK_STRUCTURED_EXCEPTION_HANDLING" type="IN">To enable structured exception handling for all IecTasks.
+ *		If RTS_STRUCTURED_EXCEPTION_HANDLING is enable and RTS_IECTASK_STRUCTURED_EXCEPTION_HANDLING is disabled, the structured exception handling
+ *		out of the IEC program can be used via the SysExcept.library (unusual used feature).
+ * </element>
+ */
 
 
 /**
@@ -161,63 +130,13 @@ typedef struct
  * <description>
  *	Default timeout to wait for a task until stop. If a task is not ending execution in this timeout, the
  *	task will be suspended and marked with exception.
- *	This timeout is the maximum reaction time on an application stop to set the machine in a safe state!
+ *	This timeout is the maximum reaction time on an application stop.
  *	The value is in milliseconds.
  * </description>
  */
 #define IECTASKKEY_INT_WAIT_FOR_STOP_TIMEOUT				"WaitForStopTimeoutMs"
 #ifndef IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_DEFAULT
 	#define IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_DEFAULT	INT32_C(10000)
-#endif
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- *	Default timeout to wait for a task until stop, after the safe state is reached! If a task is not ending execution in this timeout, the
- *	task will be suspended and marked with exception.
-  *	The value is in milliseconds.
- * </description>
- */
-#define IECTASKKEY_INT_WAIT_FOR_STOP_TIMEOUT_2				"WaitForStop.TimeoutMs_2"
-#ifndef IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_2_DEFAULT
-	#define IECTASKVALUE_INT_WAIT_FOR_STOP_TIMEOUT_2_DEFAULT	INT32_C(25000)
-#endif
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- * Setting to disable the following feature for the RUN/STOP transition of an application.
- *
- * This feature splits the RUN/STOP transition into 2 phases:
- *
- * - PHASE 1:
- *   This is the phase at the RUN/STOP transition until the safe state of the application/machine will be reached.
- *	 In this phase, we wait only for IEC tasks wich use mapped outputs!
- *	 
- * - PHASE 2:
- *   This is the phase at the RUN/STOP transition after the safe state of the application/machine has been reached.
- *	 In this phase, we wait only for IEC tasks, wich don't use mapped outputs!
- *	 For this phase, there is a new setting for the timeout:
- *	    [CmpIecTask]
- *	    WaitForStop.TimeoutMs_2=25000
- *  
- * Reason for this feature:
- * - This is because typically non IO tasks (AlarmTasks, TrendTasks, etc.) need a much longer cycle time at the RUN/STOP transition than the IO tasks.
- *   And so sometimes a watchdog error occurres at this non IO tasks during normal RUN/STOP transition.
- *  
- * NOTES:
- * - To disable this feature, you can use the following new setting in the cfg-file:
- *     [CmpIecTask]
- *     WaitForStop.SkipTasksWithoutOutputs=0
- * - If your plc does not use the standard CODESYS IO-configuration/IO-mapping, you have to switch off this feature!
- *
- * </description>
- */
-#define IECTASKKEY_INT_WAIT_FOR_STOP_SKIPTASKSWITHOUTOUTPUTS		"WaitForStop.SkipTasksWithoutOutputs"
-#ifndef IECTASKVALUE_INT_WAIT_FOR_STOP_SKIPTASKSWITHOUTOUTPUTS_DEFAULT
-	#define IECTASKVALUE_INT_WAIT_FOR_STOP_SKIPTASKSWITHOUTOUTPUTS_DEFAULT	INT32_C(1)
 #endif
 
 /**
@@ -234,18 +153,6 @@ typedef struct
 
 /**
  * <category>Settings</category>
- * <type>Int</type>
- * <description>
- *	Setting to activate the task trace.
- * </description>
- */
-#define IECTASKKEY_INT_ENABLE_TASK_TRACE					"EnableTaskTrace"
-#ifndef IECTASKVALUE_INT_ENABLE_TASK_TRACE_DEFAULT
-	#define IECTASKVALUE_INT_ENABLE_TASK_TRACE_DEFAULT		0
-#endif
-
-/**
- * <category>Settings</category>
  * <type>String</type>
  * <description>
  *	Name of the task, that controls the target visualization.
@@ -256,18 +163,6 @@ typedef struct
  */
 #define IECTASKKEY_STRING_VISU_TASK							"VisuTask"
 
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- *	Setting enables the feature to fire a watchdog during an IO-update in an IEC task!
- *	Can be disabled if this causes problems in IEC applications and so the behaviour is similar to the runtime system before v3.5.12.0.
- * </description>
- */
-#define IECTASKKEY_INT_ENABLE_WATCHDOG_DURING_IOUPDATE		"EnableWatchdogDuringIOUpdate"
-#ifndef IECTASKVALUE_INT_ENABLE_WATCHDOG_DURING_IOUPDATE
-	#define IECTASKVALUE_INT_ENABLE_WATCHDOG_DURING_IOUPDATE		1
-#endif
 
 /**
  * <category>Event parameter</category>
@@ -338,26 +233,6 @@ typedef struct
 
 
 /**
- * <category>OperationID</category>
- * <description>Operation ID for the supervision of the RUN-STOP transition of an application</description>
- * <param name="RTS_OPID_Application_RunStop" type="IN">The OperationID is the ID of the application (see APPLICATION.iId for details)</param>
- * <param name="RTS_OPID_Application_RunStop_Description" type="IN"></param>
- */
-#define RTS_OPID_IecTask_WatchdogInIO				1
-#define RTS_OPID_IecTask_WatchdogInIO_Description	"Supervision of a watchdog error during IO-update (IEC task must leave IO update)"
-
-
-/**
- * <category>Stop reason option</category>
- * <description>Option that can be specified for IecTasksWaitForStop() in stop reason</description>
- * <element name="IEC_TASK_STOPREASON_OPTION_PREPARE_SAFE_STATE" type="IN">Stop all IEC tasks _before_ setting the outputs to a safe state</element>
- * <element name="IEC_TASK_STOPREASON_OPTION_DONE_SAFE_STATE" type="IN">Stop all IEC tasks _after_ setting the outputs to a safe state. Here we can wait a longer period!</element>
- */
-#define IEC_TASK_STOPREASON_OPTION_PREPARE_SAFE_STATE 			0x00000000
-#define IEC_TASK_STOPREASON_OPTION_DONE_SAFE_STATE	 			0x00010000
-
-
-/**
  * <category>IEC task types</category>
  * <description></description>
  */
@@ -365,8 +240,7 @@ typedef struct
 #define TaskEvent			0x0001
 #define TaskExternal		0x0002
 #define TaskFreewheeling	0x0003
-#define TaskParentSync		0x0004
-#define TaskLastIndex		0x0005
+#define TaskLastIndex		0x0004
 
 
 /**
@@ -491,10 +365,6 @@ typedef struct
 #define ITF_SUSPEND_AT_NEXT_CHANCE	0x00000080
 #define ITF_IN_IO_UPDATE			0x00000100
 #define ITF_INIT_OUTPUTS			0x00000200
-#define ITF_ENTER_LOCK				0x00000400
-#define ITF_LEAVE_READER_LOCK		0x00000800
-#define ITF_SUSPENDED_BY_DEBUG_TASK	0x00001000
-#define ITF_IN_DEBUG_CONTEXT		0x00002000
 
 /**
  * <category>Iec Task Bits</category>
@@ -510,10 +380,6 @@ typedef struct
 #define ITF_BIT_SUSPEND_AT_NEXT_CHANCE	7
 #define ITF_BIT_IN_IO_UPDATE			8
 #define ITF_BIT_INIT_OUTPUTS			9
-#define ITF_BIT_ENTER_LOCK				10
-#define ITF_BIT_LEAVE_READER_LOCK		11
-#define ITF_BIT_SUSPENDED_BY_DEBUG_TASK	12
-#define ITF_BIT_IN_DEBUG_CONTEXT		13
 
 
 #define IsVisuTask(pTask)				(pTask->ulFlags & ITF_VISU_TASK)
@@ -526,11 +392,6 @@ typedef struct
 #define IsSuspendAtNextChance(pTask)	(pTask->ulFlags & ITF_SUSPEND_AT_NEXT_CHANCE)
 #define IsInIoUpdate(pTask)				(pTask->ulFlags & ITF_IN_IO_UPDATE)
 #define DoInitOutputs(pTask)			(pTask->ulFlags & ITF_INIT_OUTPUTS)
-#define IsEnterLockDisabled(pTask)		(pTask->ulFlags & ITF_ENTER_LOCK)
-#define IsLeaveReaderLock(pTask)		(pTask->ulFlags & ITF_LEAVE_READER_LOCK)
-#define IsSuspendedByDebugTask(pTask)	(pTask->ulFlags & ITF_SUSPENDED_BY_DEBUG_TASK)
-#define IsInDebugContext(pTask)			(pTask->ulFlags & ITF_IN_DEBUG_CONTEXT)
-
 
 #ifdef IECTASK_USE_NO_ATOMIC_BITACCESS
 	#define SetVisuTask(pTask)			(pTask->ulFlags |= ITF_VISU_TASK)
@@ -561,18 +422,6 @@ typedef struct
 
 	#define SetInitOutputs(pTask)		(pTask->ulFlags |= ITF_INIT_OUTPUTS)
 	#define ResetInitOutputs(pTask)		(pTask->ulFlags &= ~ITF_INIT_OUTPUTS)
-
-	#define DisableEnterLock(pTask)		(pTask->ulFlags |= ITF_ENTER_LOCK)
-	#define EnableEnterLock(pTask)		(pTask->ulFlags &= ~ITF_ENTER_LOCK)
-
-	#define SetLeaveReaderLock(pTask)	(pTask->ulFlags |= ITF_LEAVE_READER_LOCK)
-	#define ResetLeaveReaderLock(pTask)	(pTask->ulFlags &= ~ITF_LEAVE_READER_LOCK)
-	
-	#define SetSuspendedByDebugTask(pTask)		(pTask->ulFlags |= ITF_SUSPENDED_BY_DEBUG_TASK)
-	#define ResetSuspendedByDebugTask(pTask)	(pTask->ulFlags &= ~ITF_SUSPENDED_BY_DEBUG_TASK)
-
-	#define SetInDebugContext(pTask)	(pTask->ulFlags |= ITF_IN_DEBUG_CONTEXT)
-	#define ResetInDebugContext(pTask)	(pTask->ulFlags &= ~ITF_IN_DEBUG_CONTEXT)
 #else
 	#define SetVisuTask(pTask)			CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_VISU_TASK, 1)
 
@@ -602,18 +451,6 @@ typedef struct
 
 	#define SetInitOutputs(pTask)		CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_INIT_OUTPUTS, 1)
 	#define ResetInitOutputs(pTask)		CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_INIT_OUTPUTS, 0)
-
-	#define DisableEnterLock(pTask)		CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_ENTER_LOCK, 1)
-	#define EnableEnterLock(pTask)		CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_ENTER_LOCK, 0)
-
-	#define SetLeaveReaderLock(pTask)	CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_LEAVE_READER_LOCK, 1)
-	#define ResetLeaveReaderLock(pTask)	CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_LEAVE_READER_LOCK, 0)
-	
-	#define SetSuspendedByDebugTask(pTask)		CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_SUSPENDED_BY_DEBUG_TASK, 1)
-	#define ResetSuspendedByDebugTask(pTask)	CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_SUSPENDED_BY_DEBUG_TASK, 0)
-
-	#define SetInDebugContext(pTask)	CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_IN_DEBUG_CONTEXT, 1)
-	#define ResetInDebugContext(pTask)	CAL_SysCpuTestAndSetBit(&pTask->ulFlags, sizeof(pTask->ulFlags), ITF_BIT_IN_DEBUG_CONTEXT, 0)
 #endif
 
 /**
@@ -639,13 +476,11 @@ typedef struct tagTask_Desc
 	RTS_UI32 ulFlags;
 	int iWatchdogHitCount;
 	RTS_I32 iWatchdogDisable2Ref;
-#ifdef RTS_IECTASK_ENABLE_TASK_TRACE
+#ifdef RTS_ENABLE_TASK_TRACE	
 	RTS_HANDLE hTracePacket;
 	RTS_HANDLE hTraceRecord;
 #endif
 	SEHContext *pSEHContextHead;
-	RTS_I32 nEnterWriteLock;
-	RTS_HANDLE hRWLSync;
 } Task_Desc;
 
 typedef struct tagTASK_LIST
@@ -673,14 +508,6 @@ typedef struct
 	RTS_IEC_DINT nReturnValue;
 } sys_register_slot_pou_struct;
 
-typedef struct
-{
-    RTS_IEC_DWORD dwVersion;
-    RTS_IEC_STRING* pszGroupName;
-    RTS_IEC_DWORD dwTaskGroupOptions;
-    RTS_IEC_DINT diMaxCores;    /* maximum number of cores available in pdwCoreBits */
-    RTS_IEC_DWORD* pdwCoreBits; /* Pointer to an array of DWORDS containing the core bits */
-} TaskGroup_Info;
 
 /*------>>> Functions only for backward compatibility ----------*/
 /**
@@ -838,8 +665,6 @@ typedef void (CDECL CDECL_EXT* PFIECTASKGETINFO_IEC) (iectaskgetinfo_struct *p);
 /*------<<< Functions only for backward compatibility  ----------*/
 
 
-
-
 /** EXTERN LIB SECTION BEGIN **/
 /*  Comments are ignored for m4 compiler so restructured text can be used.  */
 
@@ -858,1033 +683,11 @@ typedef struct tagJitter_Distribution
 } Jitter_Distribution;
 
 /**
- * Create a new IEC Task
- *
- * IEC Tasks itself are used by the scheduler of the runtime. They don't 
- * essentially need a corresponding OS task or timer. They might be handled
- * by the scheduler in a completely different way.
- *
- * .. note::
- *     | Task_Info2.dwEventFunctionPointer:
- *     | Function pointer to the event check routine in case Task_Info2.KindOfTask = TaskEvent
- *
- *     .. code-block:: codesys
- *
- *         FUNCTION CheckEvent : BOOL
- *         VAR_INPUT
- *         END_VAR
- *
- *         (* This function checks wether the event is triggered *)
- *         (* by returning TRUE: raising edge, status, etc. *)
- *
- *     | Task_Info2.dwTaskEntryFunctionPointer: 
- *     | Function pointer to the task code
- *
- *     .. code-block:: codesys
- *
- *         FUNCTION IecTaskCyclic : BOOL
- *         VAR_INPUT
- *             parameter : IEC_CYCLE_STRUCT;
- *         END_VAR
- *         VAR
- *             udiState : UDINT;
- *             hTask : RTS_IEC_HANDLE;
- *         END_VAR
- *
- *         (* ----- mandatory cyclic task frame code begin ----- *)
- *         udiState := parameter.pApplication^.udiState;
- *         hTask := parameter.hTaskHandle;
- *         IF udiState = AS_STOP THEN
- *             RETURN;
- *         END_IF
- *         IF parameter.pTaskInfo^.bWatchdog THEN
- *             IecTaskEnableWatchdog(hTask);
- *         END_IF
- *         (* ------ mandatory cyclic task frame code end ------ *)
- *
- * Error code:
- *     + ERR_OK: The new task was successfully created.
- *     + ERR_FAILED: There was an error in a subsystem (e.g. the scheduler could not allocate his task handle).
- *     + ERR_PARAMETER: Invalid application- or task info pointer
- *     + ERR_OUT_OF_LIMITS: Maximum number of Tasks reached (target specific)
- *     + ERR_NOMEMORY: Unable to allocate the memory, that is necessary for the task description    
- *
- * :return: Handle to newly created task
- */
-typedef struct tagiectaskcreate_struct
-{
-	APPLICATION *pApp;					/* VAR_INPUT */	/* Pointer to application that contains the task */
-	Task_Info *pTaskInfo;				/* VAR_INPUT */	/* Pointer to task information */
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to error code */
-	RTS_IEC_HANDLE IecTaskCreate;		/* VAR_OUTPUT */	
-} iectaskcreate_struct;
-
-void CDECL CDECL_EXT iectaskcreate(iectaskcreate_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKCREATE_IEC) (iectaskcreate_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKCREATE_NOTIMPLEMENTED)
-	#define USE_iectaskcreate
-	#define EXT_iectaskcreate
-	#define GET_iectaskcreate(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskcreate(p0) 
-	#define CHK_iectaskcreate  FALSE
-	#define EXP_iectaskcreate  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskcreate
-	#define EXT_iectaskcreate
-	#define GET_iectaskcreate(fl)  CAL_CMGETAPI( "iectaskcreate" ) 
-	#define CAL_iectaskcreate  iectaskcreate
-	#define CHK_iectaskcreate  TRUE
-	#define EXP_iectaskcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskcreate", (RTS_UINTPTR)iectaskcreate, 1, 0xAF209471, 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskcreate
-	#define EXT_iectaskcreate
-	#define GET_iectaskcreate(fl)  CAL_CMGETAPI( "iectaskcreate" ) 
-	#define CAL_iectaskcreate  iectaskcreate
-	#define CHK_iectaskcreate  TRUE
-	#define EXP_iectaskcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskcreate", (RTS_UINTPTR)iectaskcreate, 1, 0xAF209471, 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskcreate
-	#define EXT_CmpIecTaskiectaskcreate
-	#define GET_CmpIecTaskiectaskcreate  ERR_OK
-	#define CAL_CmpIecTaskiectaskcreate  iectaskcreate
-	#define CHK_CmpIecTaskiectaskcreate  TRUE
-	#define EXP_CmpIecTaskiectaskcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskcreate", (RTS_UINTPTR)iectaskcreate, 1, 0xAF209471, 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskcreate
-	#define EXT_iectaskcreate
-	#define GET_iectaskcreate(fl)  CAL_CMGETAPI( "iectaskcreate" ) 
-	#define CAL_iectaskcreate  iectaskcreate
-	#define CHK_iectaskcreate  TRUE
-	#define EXP_iectaskcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskcreate", (RTS_UINTPTR)iectaskcreate, 1, 0xAF209471, 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskcreate  PFIECTASKCREATE_IEC pfiectaskcreate;
-	#define EXT_iectaskcreate  extern PFIECTASKCREATE_IEC pfiectaskcreate;
-	#define GET_iectaskcreate(fl)  s_pfCMGetAPI2( "iectaskcreate", (RTS_VOID_FCTPTR *)&pfiectaskcreate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xAF209471, 0x03050D00)
-	#define CAL_iectaskcreate  pfiectaskcreate
-	#define CHK_iectaskcreate  (pfiectaskcreate != NULL)
-	#define EXP_iectaskcreate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskcreate", (RTS_UINTPTR)iectaskcreate, 1, 0xAF209471, 0x03050D00) 
-#endif
-
-
-/**
- * Delete an IEC task with timeout
- *
- * This function creates an asynchronous job to delete the IEC task with the given handle and timeout value.
- * When the asynchronous job is successfully created the function returns immediately with ERR_PENDING.
- * There is no indication wether the following deletion of the IEC task itself is successful. 
- *
- * .. note::
- *     Due to the asynchronous manner of the deletion a dynamically created IEC task may delete itself. 
- *
- * Error code:
- *     + ERR_PENDING: The asynchronous job to delete the IEC task was successfully created.
- *     + ERR_FAILED: The asynchronous job to delete the IEC task could not be created.
- *     + ERR_PARAMETER: Invalid task handle
- *     + ERR_NOT_SUPPORTED: asynchronous jobs are not supported
- *
- * :return: Error code 
- */
-typedef struct tagiectaskdelete2_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle to task */
-	RTS_IEC_UDINT ulTimeoutMs;			/* VAR_INPUT */	/* Timeout in milliseconds to wait for deleting the task. Some timeouts are predefined:
-     + RTS_TIMEOUT_DEFAULT: Use default wait time
-     + RTS_TIMEOUT_NO_WAIT: No wait */
-	RTS_IEC_RESULT IecTaskDelete2;		/* VAR_OUTPUT */	
-} iectaskdelete2_struct;
-
-void CDECL CDECL_EXT iectaskdelete2(iectaskdelete2_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKDELETE2_IEC) (iectaskdelete2_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKDELETE2_NOTIMPLEMENTED)
-	#define USE_iectaskdelete2
-	#define EXT_iectaskdelete2
-	#define GET_iectaskdelete2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskdelete2(p0) 
-	#define CHK_iectaskdelete2  FALSE
-	#define EXP_iectaskdelete2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskdelete2
-	#define EXT_iectaskdelete2
-	#define GET_iectaskdelete2(fl)  CAL_CMGETAPI( "iectaskdelete2" ) 
-	#define CAL_iectaskdelete2  iectaskdelete2
-	#define CHK_iectaskdelete2  TRUE
-	#define EXP_iectaskdelete2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdelete2", (RTS_UINTPTR)iectaskdelete2, 1, 0x8269275F, 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskdelete2
-	#define EXT_iectaskdelete2
-	#define GET_iectaskdelete2(fl)  CAL_CMGETAPI( "iectaskdelete2" ) 
-	#define CAL_iectaskdelete2  iectaskdelete2
-	#define CHK_iectaskdelete2  TRUE
-	#define EXP_iectaskdelete2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdelete2", (RTS_UINTPTR)iectaskdelete2, 1, 0x8269275F, 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskdelete2
-	#define EXT_CmpIecTaskiectaskdelete2
-	#define GET_CmpIecTaskiectaskdelete2  ERR_OK
-	#define CAL_CmpIecTaskiectaskdelete2  iectaskdelete2
-	#define CHK_CmpIecTaskiectaskdelete2  TRUE
-	#define EXP_CmpIecTaskiectaskdelete2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdelete2", (RTS_UINTPTR)iectaskdelete2, 1, 0x8269275F, 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskdelete2
-	#define EXT_iectaskdelete2
-	#define GET_iectaskdelete2(fl)  CAL_CMGETAPI( "iectaskdelete2" ) 
-	#define CAL_iectaskdelete2  iectaskdelete2
-	#define CHK_iectaskdelete2  TRUE
-	#define EXP_iectaskdelete2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdelete2", (RTS_UINTPTR)iectaskdelete2, 1, 0x8269275F, 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskdelete2  PFIECTASKDELETE2_IEC pfiectaskdelete2;
-	#define EXT_iectaskdelete2  extern PFIECTASKDELETE2_IEC pfiectaskdelete2;
-	#define GET_iectaskdelete2(fl)  s_pfCMGetAPI2( "iectaskdelete2", (RTS_VOID_FCTPTR *)&pfiectaskdelete2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x8269275F, 0x03050D00)
-	#define CAL_iectaskdelete2  pfiectaskdelete2
-	#define CHK_iectaskdelete2  (pfiectaskdelete2 != NULL)
-	#define EXP_iectaskdelete2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdelete2", (RTS_UINTPTR)iectaskdelete2, 1, 0x8269275F, 0x03050D00) 
-#endif
-
-
-/**
- * Disable scheduling for the specified task
- * :return: Returns the runtime system error code (see CmpErrors.library)
- */
-typedef struct tagiectaskdisablescheduling_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskDisableScheduling;	/* VAR_OUTPUT */	
-} iectaskdisablescheduling_struct;
-
-void CDECL CDECL_EXT iectaskdisablescheduling(iectaskdisablescheduling_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKDISABLESCHEDULING_IEC) (iectaskdisablescheduling_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKDISABLESCHEDULING_NOTIMPLEMENTED)
-	#define USE_iectaskdisablescheduling
-	#define EXT_iectaskdisablescheduling
-	#define GET_iectaskdisablescheduling(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskdisablescheduling(p0) 
-	#define CHK_iectaskdisablescheduling  FALSE
-	#define EXP_iectaskdisablescheduling  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskdisablescheduling
-	#define EXT_iectaskdisablescheduling
-	#define GET_iectaskdisablescheduling(fl)  CAL_CMGETAPI( "iectaskdisablescheduling" ) 
-	#define CAL_iectaskdisablescheduling  iectaskdisablescheduling
-	#define CHK_iectaskdisablescheduling  TRUE
-	#define EXP_iectaskdisablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablescheduling", (RTS_UINTPTR)iectaskdisablescheduling, 1, 0xC3E3F168, 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskdisablescheduling
-	#define EXT_iectaskdisablescheduling
-	#define GET_iectaskdisablescheduling(fl)  CAL_CMGETAPI( "iectaskdisablescheduling" ) 
-	#define CAL_iectaskdisablescheduling  iectaskdisablescheduling
-	#define CHK_iectaskdisablescheduling  TRUE
-	#define EXP_iectaskdisablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablescheduling", (RTS_UINTPTR)iectaskdisablescheduling, 1, 0xC3E3F168, 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskdisablescheduling
-	#define EXT_CmpIecTaskiectaskdisablescheduling
-	#define GET_CmpIecTaskiectaskdisablescheduling  ERR_OK
-	#define CAL_CmpIecTaskiectaskdisablescheduling  iectaskdisablescheduling
-	#define CHK_CmpIecTaskiectaskdisablescheduling  TRUE
-	#define EXP_CmpIecTaskiectaskdisablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablescheduling", (RTS_UINTPTR)iectaskdisablescheduling, 1, 0xC3E3F168, 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskdisablescheduling
-	#define EXT_iectaskdisablescheduling
-	#define GET_iectaskdisablescheduling(fl)  CAL_CMGETAPI( "iectaskdisablescheduling" ) 
-	#define CAL_iectaskdisablescheduling  iectaskdisablescheduling
-	#define CHK_iectaskdisablescheduling  TRUE
-	#define EXP_iectaskdisablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablescheduling", (RTS_UINTPTR)iectaskdisablescheduling, 1, 0xC3E3F168, 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskdisablescheduling  PFIECTASKDISABLESCHEDULING_IEC pfiectaskdisablescheduling;
-	#define EXT_iectaskdisablescheduling  extern PFIECTASKDISABLESCHEDULING_IEC pfiectaskdisablescheduling;
-	#define GET_iectaskdisablescheduling(fl)  s_pfCMGetAPI2( "iectaskdisablescheduling", (RTS_VOID_FCTPTR *)&pfiectaskdisablescheduling, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xC3E3F168, 0x03050D00)
-	#define CAL_iectaskdisablescheduling  pfiectaskdisablescheduling
-	#define CHK_iectaskdisablescheduling  (pfiectaskdisablescheduling != NULL)
-	#define EXP_iectaskdisablescheduling   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablescheduling", (RTS_UINTPTR)iectaskdisablescheduling, 1, 0xC3E3F168, 0x03050D00) 
-#endif
-
-
-/**
- * Disable watchdog for the specified task
- *
- * .. note::
- *     - You have to enable the watchdog of the task with |IecTaskEnableWatchdog| and _not_ with |IecTaskEnableWatchdog2|, because they act on different task flags!
- *     - The watchdog is disabled only for the current cycle! At the next cycle, the watchod is automatically enabled!
- * :return: Returns the runtime system error code (see CmpErrors.library)
- *     + ERR_OK: The watchdog for the task was disabled
- *     + ERR_PARAMETER: The task handle was invalid
- */
-typedef struct tagiectaskdisablewatchdog_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskDisableWatchdog;	/* VAR_OUTPUT */	
-} iectaskdisablewatchdog_struct;
-
-void CDECL CDECL_EXT iectaskdisablewatchdog(iectaskdisablewatchdog_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKDISABLEWATCHDOG_IEC) (iectaskdisablewatchdog_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKDISABLEWATCHDOG_NOTIMPLEMENTED)
-	#define USE_iectaskdisablewatchdog
-	#define EXT_iectaskdisablewatchdog
-	#define GET_iectaskdisablewatchdog(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskdisablewatchdog(p0) 
-	#define CHK_iectaskdisablewatchdog  FALSE
-	#define EXP_iectaskdisablewatchdog  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskdisablewatchdog
-	#define EXT_iectaskdisablewatchdog
-	#define GET_iectaskdisablewatchdog(fl)  CAL_CMGETAPI( "iectaskdisablewatchdog" ) 
-	#define CAL_iectaskdisablewatchdog  iectaskdisablewatchdog
-	#define CHK_iectaskdisablewatchdog  TRUE
-	#define EXP_iectaskdisablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog", (RTS_UINTPTR)iectaskdisablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x2FF63495), 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskdisablewatchdog
-	#define EXT_iectaskdisablewatchdog
-	#define GET_iectaskdisablewatchdog(fl)  CAL_CMGETAPI( "iectaskdisablewatchdog" ) 
-	#define CAL_iectaskdisablewatchdog  iectaskdisablewatchdog
-	#define CHK_iectaskdisablewatchdog  TRUE
-	#define EXP_iectaskdisablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog", (RTS_UINTPTR)iectaskdisablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x2FF63495), 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskdisablewatchdog
-	#define EXT_CmpIecTaskiectaskdisablewatchdog
-	#define GET_CmpIecTaskiectaskdisablewatchdog  ERR_OK
-	#define CAL_CmpIecTaskiectaskdisablewatchdog  iectaskdisablewatchdog
-	#define CHK_CmpIecTaskiectaskdisablewatchdog  TRUE
-	#define EXP_CmpIecTaskiectaskdisablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog", (RTS_UINTPTR)iectaskdisablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x2FF63495), 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskdisablewatchdog
-	#define EXT_iectaskdisablewatchdog
-	#define GET_iectaskdisablewatchdog(fl)  CAL_CMGETAPI( "iectaskdisablewatchdog" ) 
-	#define CAL_iectaskdisablewatchdog  iectaskdisablewatchdog
-	#define CHK_iectaskdisablewatchdog  TRUE
-	#define EXP_iectaskdisablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog", (RTS_UINTPTR)iectaskdisablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x2FF63495), 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskdisablewatchdog  PFIECTASKDISABLEWATCHDOG_IEC pfiectaskdisablewatchdog;
-	#define EXT_iectaskdisablewatchdog  extern PFIECTASKDISABLEWATCHDOG_IEC pfiectaskdisablewatchdog;
-	#define GET_iectaskdisablewatchdog(fl)  s_pfCMGetAPI2( "iectaskdisablewatchdog", (RTS_VOID_FCTPTR *)&pfiectaskdisablewatchdog, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x2FF63495), 0x03050D00)
-	#define CAL_iectaskdisablewatchdog  pfiectaskdisablewatchdog
-	#define CHK_iectaskdisablewatchdog  (pfiectaskdisablewatchdog != NULL)
-	#define EXP_iectaskdisablewatchdog   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog", (RTS_UINTPTR)iectaskdisablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x2FF63495), 0x03050D00) 
-#endif
-
-
-/**
- * Disable watchdog for the specified task
- *
- * .. note::
- *     - You have to enable the watchdog of the task with |IecTaskEnableWatchdog2| and _not_ with |IecTaskEnableWatchdog|, because they act on different task flags!
- *     - The watchdog is disabled until |IecTaskEnableWatchdog2| is called!!! So this is a security issue, if you never enable the watchdog!
- *     - As a consequence, you always have to call |IecTaskDisableWatchdog2| and |IecTaskEnableWatchdog2| symmetrical
- *     - Can be called nested. First call disables the watchdog.
- * :return: Returns the runtime system error code (see CmpErrors.library)
- *     + ERR_OK: The watchdog for the task was disabled
- *     + ERR_PARAMETER: The task handle was invalid
- */
-typedef struct tagiectaskdisablewatchdog2_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskDisableWatchdog2;	/* VAR_OUTPUT */	
-} iectaskdisablewatchdog2_struct;
-
-void CDECL CDECL_EXT iectaskdisablewatchdog2(iectaskdisablewatchdog2_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKDISABLEWATCHDOG2_IEC) (iectaskdisablewatchdog2_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKDISABLEWATCHDOG2_NOTIMPLEMENTED)
-	#define USE_iectaskdisablewatchdog2
-	#define EXT_iectaskdisablewatchdog2
-	#define GET_iectaskdisablewatchdog2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskdisablewatchdog2(p0) 
-	#define CHK_iectaskdisablewatchdog2  FALSE
-	#define EXP_iectaskdisablewatchdog2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskdisablewatchdog2
-	#define EXT_iectaskdisablewatchdog2
-	#define GET_iectaskdisablewatchdog2(fl)  CAL_CMGETAPI( "iectaskdisablewatchdog2" ) 
-	#define CAL_iectaskdisablewatchdog2  iectaskdisablewatchdog2
-	#define CHK_iectaskdisablewatchdog2  TRUE
-	#define EXP_iectaskdisablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog2", (RTS_UINTPTR)iectaskdisablewatchdog2, 1, 0x277BF3FE, 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskdisablewatchdog2
-	#define EXT_iectaskdisablewatchdog2
-	#define GET_iectaskdisablewatchdog2(fl)  CAL_CMGETAPI( "iectaskdisablewatchdog2" ) 
-	#define CAL_iectaskdisablewatchdog2  iectaskdisablewatchdog2
-	#define CHK_iectaskdisablewatchdog2  TRUE
-	#define EXP_iectaskdisablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog2", (RTS_UINTPTR)iectaskdisablewatchdog2, 1, 0x277BF3FE, 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskdisablewatchdog2
-	#define EXT_CmpIecTaskiectaskdisablewatchdog2
-	#define GET_CmpIecTaskiectaskdisablewatchdog2  ERR_OK
-	#define CAL_CmpIecTaskiectaskdisablewatchdog2  iectaskdisablewatchdog2
-	#define CHK_CmpIecTaskiectaskdisablewatchdog2  TRUE
-	#define EXP_CmpIecTaskiectaskdisablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog2", (RTS_UINTPTR)iectaskdisablewatchdog2, 1, 0x277BF3FE, 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskdisablewatchdog2
-	#define EXT_iectaskdisablewatchdog2
-	#define GET_iectaskdisablewatchdog2(fl)  CAL_CMGETAPI( "iectaskdisablewatchdog2" ) 
-	#define CAL_iectaskdisablewatchdog2  iectaskdisablewatchdog2
-	#define CHK_iectaskdisablewatchdog2  TRUE
-	#define EXP_iectaskdisablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog2", (RTS_UINTPTR)iectaskdisablewatchdog2, 1, 0x277BF3FE, 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskdisablewatchdog2  PFIECTASKDISABLEWATCHDOG2_IEC pfiectaskdisablewatchdog2;
-	#define EXT_iectaskdisablewatchdog2  extern PFIECTASKDISABLEWATCHDOG2_IEC pfiectaskdisablewatchdog2;
-	#define GET_iectaskdisablewatchdog2(fl)  s_pfCMGetAPI2( "iectaskdisablewatchdog2", (RTS_VOID_FCTPTR *)&pfiectaskdisablewatchdog2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x277BF3FE, 0x03050D00)
-	#define CAL_iectaskdisablewatchdog2  pfiectaskdisablewatchdog2
-	#define CHK_iectaskdisablewatchdog2  (pfiectaskdisablewatchdog2 != NULL)
-	#define EXP_iectaskdisablewatchdog2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog2", (RTS_UINTPTR)iectaskdisablewatchdog2, 1, 0x277BF3FE, 0x03050D00) 
-#endif
-
-
-/**
- * Enable scheduling for one specified task
- * :return: Returns the runtime system error code (see CmpErrors.library)
- */
-typedef struct tagiectaskenablescheduling_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskEnableScheduling;	/* VAR_OUTPUT */	
-} iectaskenablescheduling_struct;
-
-void CDECL CDECL_EXT iectaskenablescheduling(iectaskenablescheduling_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKENABLESCHEDULING_IEC) (iectaskenablescheduling_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKENABLESCHEDULING_NOTIMPLEMENTED)
-	#define USE_iectaskenablescheduling
-	#define EXT_iectaskenablescheduling
-	#define GET_iectaskenablescheduling(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskenablescheduling(p0) 
-	#define CHK_iectaskenablescheduling  FALSE
-	#define EXP_iectaskenablescheduling  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskenablescheduling
-	#define EXT_iectaskenablescheduling
-	#define GET_iectaskenablescheduling(fl)  CAL_CMGETAPI( "iectaskenablescheduling" ) 
-	#define CAL_iectaskenablescheduling  iectaskenablescheduling
-	#define CHK_iectaskenablescheduling  TRUE
-	#define EXP_iectaskenablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablescheduling", (RTS_UINTPTR)iectaskenablescheduling, 1, 0x4A96918C, 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskenablescheduling
-	#define EXT_iectaskenablescheduling
-	#define GET_iectaskenablescheduling(fl)  CAL_CMGETAPI( "iectaskenablescheduling" ) 
-	#define CAL_iectaskenablescheduling  iectaskenablescheduling
-	#define CHK_iectaskenablescheduling  TRUE
-	#define EXP_iectaskenablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablescheduling", (RTS_UINTPTR)iectaskenablescheduling, 1, 0x4A96918C, 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskenablescheduling
-	#define EXT_CmpIecTaskiectaskenablescheduling
-	#define GET_CmpIecTaskiectaskenablescheduling  ERR_OK
-	#define CAL_CmpIecTaskiectaskenablescheduling  iectaskenablescheduling
-	#define CHK_CmpIecTaskiectaskenablescheduling  TRUE
-	#define EXP_CmpIecTaskiectaskenablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablescheduling", (RTS_UINTPTR)iectaskenablescheduling, 1, 0x4A96918C, 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskenablescheduling
-	#define EXT_iectaskenablescheduling
-	#define GET_iectaskenablescheduling(fl)  CAL_CMGETAPI( "iectaskenablescheduling" ) 
-	#define CAL_iectaskenablescheduling  iectaskenablescheduling
-	#define CHK_iectaskenablescheduling  TRUE
-	#define EXP_iectaskenablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablescheduling", (RTS_UINTPTR)iectaskenablescheduling, 1, 0x4A96918C, 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskenablescheduling  PFIECTASKENABLESCHEDULING_IEC pfiectaskenablescheduling;
-	#define EXT_iectaskenablescheduling  extern PFIECTASKENABLESCHEDULING_IEC pfiectaskenablescheduling;
-	#define GET_iectaskenablescheduling(fl)  s_pfCMGetAPI2( "iectaskenablescheduling", (RTS_VOID_FCTPTR *)&pfiectaskenablescheduling, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x4A96918C, 0x03050D00)
-	#define CAL_iectaskenablescheduling  pfiectaskenablescheduling
-	#define CHK_iectaskenablescheduling  (pfiectaskenablescheduling != NULL)
-	#define EXP_iectaskenablescheduling   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablescheduling", (RTS_UINTPTR)iectaskenablescheduling, 1, 0x4A96918C, 0x03050D00) 
-#endif
-
-
-/**
- * Enable watchdog for the specified task
- *
- * .. note::
- *     - You have to disable the watchdog of the task before with |IecTaskDisableWatchdog| and _not_ with |IecTaskDisableWatchdog2|, because they act on different task flags!
- *     - The watchdog is enabled only at the next IEC cycle and _not_ immediately after calling this function!
- *     - If you disable with |IecTaskDisableWatchdog| and forgot to enable it, at least at the next cycle, the watchdog is automatically enabled!
- * :return: Returns the runtime system error code (see CmpErrors.library)
- *     + ERR_OK: The watchdog for the task was enabled
- *     + ERR_PARAMETER: The task handle was invalid
- */
-typedef struct tagiectaskenablewatchdog_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskEnableWatchdog;	/* VAR_OUTPUT */	
-} iectaskenablewatchdog_struct;
-
-void CDECL CDECL_EXT iectaskenablewatchdog(iectaskenablewatchdog_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKENABLEWATCHDOG_IEC) (iectaskenablewatchdog_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKENABLEWATCHDOG_NOTIMPLEMENTED)
-	#define USE_iectaskenablewatchdog
-	#define EXT_iectaskenablewatchdog
-	#define GET_iectaskenablewatchdog(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskenablewatchdog(p0) 
-	#define CHK_iectaskenablewatchdog  FALSE
-	#define EXP_iectaskenablewatchdog  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskenablewatchdog
-	#define EXT_iectaskenablewatchdog
-	#define GET_iectaskenablewatchdog(fl)  CAL_CMGETAPI( "iectaskenablewatchdog" ) 
-	#define CAL_iectaskenablewatchdog  iectaskenablewatchdog
-	#define CHK_iectaskenablewatchdog  TRUE
-	#define EXP_iectaskenablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog", (RTS_UINTPTR)iectaskenablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x1CDBB730), 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskenablewatchdog
-	#define EXT_iectaskenablewatchdog
-	#define GET_iectaskenablewatchdog(fl)  CAL_CMGETAPI( "iectaskenablewatchdog" ) 
-	#define CAL_iectaskenablewatchdog  iectaskenablewatchdog
-	#define CHK_iectaskenablewatchdog  TRUE
-	#define EXP_iectaskenablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog", (RTS_UINTPTR)iectaskenablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x1CDBB730), 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskenablewatchdog
-	#define EXT_CmpIecTaskiectaskenablewatchdog
-	#define GET_CmpIecTaskiectaskenablewatchdog  ERR_OK
-	#define CAL_CmpIecTaskiectaskenablewatchdog  iectaskenablewatchdog
-	#define CHK_CmpIecTaskiectaskenablewatchdog  TRUE
-	#define EXP_CmpIecTaskiectaskenablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog", (RTS_UINTPTR)iectaskenablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x1CDBB730), 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskenablewatchdog
-	#define EXT_iectaskenablewatchdog
-	#define GET_iectaskenablewatchdog(fl)  CAL_CMGETAPI( "iectaskenablewatchdog" ) 
-	#define CAL_iectaskenablewatchdog  iectaskenablewatchdog
-	#define CHK_iectaskenablewatchdog  TRUE
-	#define EXP_iectaskenablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog", (RTS_UINTPTR)iectaskenablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x1CDBB730), 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskenablewatchdog  PFIECTASKENABLEWATCHDOG_IEC pfiectaskenablewatchdog;
-	#define EXT_iectaskenablewatchdog  extern PFIECTASKENABLEWATCHDOG_IEC pfiectaskenablewatchdog;
-	#define GET_iectaskenablewatchdog(fl)  s_pfCMGetAPI2( "iectaskenablewatchdog", (RTS_VOID_FCTPTR *)&pfiectaskenablewatchdog, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x1CDBB730), 0x03050D00)
-	#define CAL_iectaskenablewatchdog  pfiectaskenablewatchdog
-	#define CHK_iectaskenablewatchdog  (pfiectaskenablewatchdog != NULL)
-	#define EXP_iectaskenablewatchdog   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog", (RTS_UINTPTR)iectaskenablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x1CDBB730), 0x03050D00) 
-#endif
-
-
-/**
- * Enable watchdog for the specified task
- *
- * .. note::
- *     - You have to disable the watchdog of the task before with |IecTaskDisableWatchdog2| and _not_ with |IecTaskDisableWatchdog|, because they act on different task flags!
- *     - The watchdog is enabled only at the next IEC cycle and _not_ immediately after calling this function!
- *       But if you never enable the watchdog after calling |IecTaskDisableWatchdog2|, the watchdog is disabled forever!
- *     - As a consequence, you always have to call |IecTaskDisableWatchdog2| and |IecTaskEnableWatchdog2| symmetrical
- *     - Can be called nested. Last call enables the watchdog.
- * :return: Returns the runtime system error code (see CmpErrors.library)
- *     + ERR_OK: The watchdog for the task was enabled
- *     + ERR_PARAMETER: The task handle was invalid
- */
-typedef struct tagiectaskenablewatchdog2_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskEnableWatchdog2;	/* VAR_OUTPUT */	
-} iectaskenablewatchdog2_struct;
-
-void CDECL CDECL_EXT iectaskenablewatchdog2(iectaskenablewatchdog2_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKENABLEWATCHDOG2_IEC) (iectaskenablewatchdog2_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKENABLEWATCHDOG2_NOTIMPLEMENTED)
-	#define USE_iectaskenablewatchdog2
-	#define EXT_iectaskenablewatchdog2
-	#define GET_iectaskenablewatchdog2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskenablewatchdog2(p0) 
-	#define CHK_iectaskenablewatchdog2  FALSE
-	#define EXP_iectaskenablewatchdog2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskenablewatchdog2
-	#define EXT_iectaskenablewatchdog2
-	#define GET_iectaskenablewatchdog2(fl)  CAL_CMGETAPI( "iectaskenablewatchdog2" ) 
-	#define CAL_iectaskenablewatchdog2  iectaskenablewatchdog2
-	#define CHK_iectaskenablewatchdog2  TRUE
-	#define EXP_iectaskenablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog2", (RTS_UINTPTR)iectaskenablewatchdog2, 1, 0xE71D232F, 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskenablewatchdog2
-	#define EXT_iectaskenablewatchdog2
-	#define GET_iectaskenablewatchdog2(fl)  CAL_CMGETAPI( "iectaskenablewatchdog2" ) 
-	#define CAL_iectaskenablewatchdog2  iectaskenablewatchdog2
-	#define CHK_iectaskenablewatchdog2  TRUE
-	#define EXP_iectaskenablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog2", (RTS_UINTPTR)iectaskenablewatchdog2, 1, 0xE71D232F, 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskenablewatchdog2
-	#define EXT_CmpIecTaskiectaskenablewatchdog2
-	#define GET_CmpIecTaskiectaskenablewatchdog2  ERR_OK
-	#define CAL_CmpIecTaskiectaskenablewatchdog2  iectaskenablewatchdog2
-	#define CHK_CmpIecTaskiectaskenablewatchdog2  TRUE
-	#define EXP_CmpIecTaskiectaskenablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog2", (RTS_UINTPTR)iectaskenablewatchdog2, 1, 0xE71D232F, 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskenablewatchdog2
-	#define EXT_iectaskenablewatchdog2
-	#define GET_iectaskenablewatchdog2(fl)  CAL_CMGETAPI( "iectaskenablewatchdog2" ) 
-	#define CAL_iectaskenablewatchdog2  iectaskenablewatchdog2
-	#define CHK_iectaskenablewatchdog2  TRUE
-	#define EXP_iectaskenablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog2", (RTS_UINTPTR)iectaskenablewatchdog2, 1, 0xE71D232F, 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskenablewatchdog2  PFIECTASKENABLEWATCHDOG2_IEC pfiectaskenablewatchdog2;
-	#define EXT_iectaskenablewatchdog2  extern PFIECTASKENABLEWATCHDOG2_IEC pfiectaskenablewatchdog2;
-	#define GET_iectaskenablewatchdog2(fl)  s_pfCMGetAPI2( "iectaskenablewatchdog2", (RTS_VOID_FCTPTR *)&pfiectaskenablewatchdog2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE71D232F, 0x03050D00)
-	#define CAL_iectaskenablewatchdog2  pfiectaskenablewatchdog2
-	#define CHK_iectaskenablewatchdog2  (pfiectaskenablewatchdog2 != NULL)
-	#define EXP_iectaskenablewatchdog2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog2", (RTS_UINTPTR)iectaskenablewatchdog2, 1, 0xE71D232F, 0x03050D00) 
-#endif
-
-
-/**
- * Funktion to get own task handle
- * :return: Returns the current IEC task handle
- */
-typedef struct tagiectaskgetcurrent_struct
-{
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer that returns the runtime system error code (see CmpErrors.library) */
-	RTS_IEC_HANDLE IecTaskGetCurrent;	/* VAR_OUTPUT */	
-} iectaskgetcurrent_struct;
-
-void CDECL CDECL_EXT iectaskgetcurrent(iectaskgetcurrent_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKGETCURRENT_IEC) (iectaskgetcurrent_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKGETCURRENT_NOTIMPLEMENTED)
-	#define USE_iectaskgetcurrent
-	#define EXT_iectaskgetcurrent
-	#define GET_iectaskgetcurrent(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskgetcurrent(p0) 
-	#define CHK_iectaskgetcurrent  FALSE
-	#define EXP_iectaskgetcurrent  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskgetcurrent
-	#define EXT_iectaskgetcurrent
-	#define GET_iectaskgetcurrent(fl)  CAL_CMGETAPI( "iectaskgetcurrent" ) 
-	#define CAL_iectaskgetcurrent  iectaskgetcurrent
-	#define CHK_iectaskgetcurrent  TRUE
-	#define EXP_iectaskgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetcurrent", (RTS_UINTPTR)iectaskgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0xFD44B5CC), 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskgetcurrent
-	#define EXT_iectaskgetcurrent
-	#define GET_iectaskgetcurrent(fl)  CAL_CMGETAPI( "iectaskgetcurrent" ) 
-	#define CAL_iectaskgetcurrent  iectaskgetcurrent
-	#define CHK_iectaskgetcurrent  TRUE
-	#define EXP_iectaskgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetcurrent", (RTS_UINTPTR)iectaskgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0xFD44B5CC), 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskgetcurrent
-	#define EXT_CmpIecTaskiectaskgetcurrent
-	#define GET_CmpIecTaskiectaskgetcurrent  ERR_OK
-	#define CAL_CmpIecTaskiectaskgetcurrent  iectaskgetcurrent
-	#define CHK_CmpIecTaskiectaskgetcurrent  TRUE
-	#define EXP_CmpIecTaskiectaskgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetcurrent", (RTS_UINTPTR)iectaskgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0xFD44B5CC), 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskgetcurrent
-	#define EXT_iectaskgetcurrent
-	#define GET_iectaskgetcurrent(fl)  CAL_CMGETAPI( "iectaskgetcurrent" ) 
-	#define CAL_iectaskgetcurrent  iectaskgetcurrent
-	#define CHK_iectaskgetcurrent  TRUE
-	#define EXP_iectaskgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetcurrent", (RTS_UINTPTR)iectaskgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0xFD44B5CC), 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskgetcurrent  PFIECTASKGETCURRENT_IEC pfiectaskgetcurrent;
-	#define EXT_iectaskgetcurrent  extern PFIECTASKGETCURRENT_IEC pfiectaskgetcurrent;
-	#define GET_iectaskgetcurrent(fl)  s_pfCMGetAPI2( "iectaskgetcurrent", (RTS_VOID_FCTPTR *)&pfiectaskgetcurrent, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xFD44B5CC), 0x03050D00)
-	#define CAL_iectaskgetcurrent  pfiectaskgetcurrent
-	#define CHK_iectaskgetcurrent  (pfiectaskgetcurrent != NULL)
-	#define EXP_iectaskgetcurrent   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetcurrent", (RTS_UINTPTR)iectaskgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0xFD44B5CC), 0x03050D00) 
-#endif
-
-
-/**
- * <description>iectaskgetdesc</description>
- */
-typedef struct tagiectaskgetdesc_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	
-	Task_Desc *IecTaskGetDesc;			/* VAR_OUTPUT */	
-} iectaskgetdesc_struct;
-
-void CDECL CDECL_EXT iectaskgetdesc(iectaskgetdesc_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKGETDESC_IEC) (iectaskgetdesc_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKGETDESC_NOTIMPLEMENTED)
-	#define USE_iectaskgetdesc
-	#define EXT_iectaskgetdesc
-	#define GET_iectaskgetdesc(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskgetdesc(p0) 
-	#define CHK_iectaskgetdesc  FALSE
-	#define EXP_iectaskgetdesc  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskgetdesc
-	#define EXT_iectaskgetdesc
-	#define GET_iectaskgetdesc(fl)  CAL_CMGETAPI( "iectaskgetdesc" ) 
-	#define CAL_iectaskgetdesc  iectaskgetdesc
-	#define CHK_iectaskgetdesc  TRUE
-	#define EXP_iectaskgetdesc  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetdesc", (RTS_UINTPTR)iectaskgetdesc, 1, 0xCC23A789, 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskgetdesc
-	#define EXT_iectaskgetdesc
-	#define GET_iectaskgetdesc(fl)  CAL_CMGETAPI( "iectaskgetdesc" ) 
-	#define CAL_iectaskgetdesc  iectaskgetdesc
-	#define CHK_iectaskgetdesc  TRUE
-	#define EXP_iectaskgetdesc  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetdesc", (RTS_UINTPTR)iectaskgetdesc, 1, 0xCC23A789, 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskgetdesc
-	#define EXT_CmpIecTaskiectaskgetdesc
-	#define GET_CmpIecTaskiectaskgetdesc  ERR_OK
-	#define CAL_CmpIecTaskiectaskgetdesc  iectaskgetdesc
-	#define CHK_CmpIecTaskiectaskgetdesc  TRUE
-	#define EXP_CmpIecTaskiectaskgetdesc  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetdesc", (RTS_UINTPTR)iectaskgetdesc, 1, 0xCC23A789, 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskgetdesc
-	#define EXT_iectaskgetdesc
-	#define GET_iectaskgetdesc(fl)  CAL_CMGETAPI( "iectaskgetdesc" ) 
-	#define CAL_iectaskgetdesc  iectaskgetdesc
-	#define CHK_iectaskgetdesc  TRUE
-	#define EXP_iectaskgetdesc  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetdesc", (RTS_UINTPTR)iectaskgetdesc, 1, 0xCC23A789, 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskgetdesc  PFIECTASKGETDESC_IEC pfiectaskgetdesc;
-	#define EXT_iectaskgetdesc  extern PFIECTASKGETDESC_IEC pfiectaskgetdesc;
-	#define GET_iectaskgetdesc(fl)  s_pfCMGetAPI2( "iectaskgetdesc", (RTS_VOID_FCTPTR *)&pfiectaskgetdesc, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xCC23A789, 0x03050D00)
-	#define CAL_iectaskgetdesc  pfiectaskgetdesc
-	#define CHK_iectaskgetdesc  (pfiectaskgetdesc != NULL)
-	#define EXP_iectaskgetdesc   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetdesc", (RTS_UINTPTR)iectaskgetdesc, 1, 0xCC23A789, 0x03050D00) 
-#endif
-
-
-/**
- * Get the first IEC task in the specified application
- * :return: Returns the handle to the first IEC task
- */
-typedef struct tagiectaskgetfirst_struct
-{
-	RTS_IEC_STRING *pszAppName;			/* VAR_INPUT */	/* Application name */
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer that returns the runtime system error code (see CmpErrors.library) */
-	RTS_IEC_HANDLE IecTaskGetFirst;		/* VAR_OUTPUT */	
-} iectaskgetfirst_struct;
-
-void CDECL CDECL_EXT iectaskgetfirst(iectaskgetfirst_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKGETFIRST_IEC) (iectaskgetfirst_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKGETFIRST_NOTIMPLEMENTED)
-	#define USE_iectaskgetfirst
-	#define EXT_iectaskgetfirst
-	#define GET_iectaskgetfirst(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskgetfirst(p0) 
-	#define CHK_iectaskgetfirst  FALSE
-	#define EXP_iectaskgetfirst  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskgetfirst
-	#define EXT_iectaskgetfirst
-	#define GET_iectaskgetfirst(fl)  CAL_CMGETAPI( "iectaskgetfirst" ) 
-	#define CAL_iectaskgetfirst  iectaskgetfirst
-	#define CHK_iectaskgetfirst  TRUE
-	#define EXP_iectaskgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetfirst", (RTS_UINTPTR)iectaskgetfirst, 1, RTSITF_GET_SIGNATURE(0, 0xD65D1BF9), 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskgetfirst
-	#define EXT_iectaskgetfirst
-	#define GET_iectaskgetfirst(fl)  CAL_CMGETAPI( "iectaskgetfirst" ) 
-	#define CAL_iectaskgetfirst  iectaskgetfirst
-	#define CHK_iectaskgetfirst  TRUE
-	#define EXP_iectaskgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetfirst", (RTS_UINTPTR)iectaskgetfirst, 1, RTSITF_GET_SIGNATURE(0, 0xD65D1BF9), 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskgetfirst
-	#define EXT_CmpIecTaskiectaskgetfirst
-	#define GET_CmpIecTaskiectaskgetfirst  ERR_OK
-	#define CAL_CmpIecTaskiectaskgetfirst  iectaskgetfirst
-	#define CHK_CmpIecTaskiectaskgetfirst  TRUE
-	#define EXP_CmpIecTaskiectaskgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetfirst", (RTS_UINTPTR)iectaskgetfirst, 1, RTSITF_GET_SIGNATURE(0, 0xD65D1BF9), 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskgetfirst
-	#define EXT_iectaskgetfirst
-	#define GET_iectaskgetfirst(fl)  CAL_CMGETAPI( "iectaskgetfirst" ) 
-	#define CAL_iectaskgetfirst  iectaskgetfirst
-	#define CHK_iectaskgetfirst  TRUE
-	#define EXP_iectaskgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetfirst", (RTS_UINTPTR)iectaskgetfirst, 1, RTSITF_GET_SIGNATURE(0, 0xD65D1BF9), 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskgetfirst  PFIECTASKGETFIRST_IEC pfiectaskgetfirst;
-	#define EXT_iectaskgetfirst  extern PFIECTASKGETFIRST_IEC pfiectaskgetfirst;
-	#define GET_iectaskgetfirst(fl)  s_pfCMGetAPI2( "iectaskgetfirst", (RTS_VOID_FCTPTR *)&pfiectaskgetfirst, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xD65D1BF9), 0x03050D00)
-	#define CAL_iectaskgetfirst  pfiectaskgetfirst
-	#define CHK_iectaskgetfirst  (pfiectaskgetfirst != NULL)
-	#define EXP_iectaskgetfirst   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetfirst", (RTS_UINTPTR)iectaskgetfirst, 1, RTSITF_GET_SIGNATURE(0, 0xD65D1BF9), 0x03050D00) 
-#endif
-
-
-/**
- * OBSOLETE FUNCTION
- */
-typedef struct tagiectaskgetinfo2_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
-	Task_Info *IecTaskGetInfo2;			/* VAR_OUTPUT */	
-} iectaskgetinfo2_struct;
-
-void CDECL CDECL_EXT iectaskgetinfo2(iectaskgetinfo2_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKGETINFO2_IEC) (iectaskgetinfo2_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKGETINFO2_NOTIMPLEMENTED)
-	#define USE_iectaskgetinfo2
-	#define EXT_iectaskgetinfo2
-	#define GET_iectaskgetinfo2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskgetinfo2(p0) 
-	#define CHK_iectaskgetinfo2  FALSE
-	#define EXP_iectaskgetinfo2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskgetinfo2
-	#define EXT_iectaskgetinfo2
-	#define GET_iectaskgetinfo2(fl)  CAL_CMGETAPI( "iectaskgetinfo2" ) 
-	#define CAL_iectaskgetinfo2  iectaskgetinfo2
-	#define CHK_iectaskgetinfo2  TRUE
-	#define EXP_iectaskgetinfo2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetinfo2", (RTS_UINTPTR)iectaskgetinfo2, 1, RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6), 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskgetinfo2
-	#define EXT_iectaskgetinfo2
-	#define GET_iectaskgetinfo2(fl)  CAL_CMGETAPI( "iectaskgetinfo2" ) 
-	#define CAL_iectaskgetinfo2  iectaskgetinfo2
-	#define CHK_iectaskgetinfo2  TRUE
-	#define EXP_iectaskgetinfo2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetinfo2", (RTS_UINTPTR)iectaskgetinfo2, 1, RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6), 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskgetinfo2
-	#define EXT_CmpIecTaskiectaskgetinfo2
-	#define GET_CmpIecTaskiectaskgetinfo2  ERR_OK
-	#define CAL_CmpIecTaskiectaskgetinfo2  iectaskgetinfo2
-	#define CHK_CmpIecTaskiectaskgetinfo2  TRUE
-	#define EXP_CmpIecTaskiectaskgetinfo2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetinfo2", (RTS_UINTPTR)iectaskgetinfo2, 1, RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6), 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskgetinfo2
-	#define EXT_iectaskgetinfo2
-	#define GET_iectaskgetinfo2(fl)  CAL_CMGETAPI( "iectaskgetinfo2" ) 
-	#define CAL_iectaskgetinfo2  iectaskgetinfo2
-	#define CHK_iectaskgetinfo2  TRUE
-	#define EXP_iectaskgetinfo2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetinfo2", (RTS_UINTPTR)iectaskgetinfo2, 1, RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6), 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskgetinfo2  PFIECTASKGETINFO2_IEC pfiectaskgetinfo2;
-	#define EXT_iectaskgetinfo2  extern PFIECTASKGETINFO2_IEC pfiectaskgetinfo2;
-	#define GET_iectaskgetinfo2(fl)  s_pfCMGetAPI2( "iectaskgetinfo2", (RTS_VOID_FCTPTR *)&pfiectaskgetinfo2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6), 0x03050D00)
-	#define CAL_iectaskgetinfo2  pfiectaskgetinfo2
-	#define CHK_iectaskgetinfo2  (pfiectaskgetinfo2 != NULL)
-	#define EXP_iectaskgetinfo2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetinfo2", (RTS_UINTPTR)iectaskgetinfo2, 1, RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6), 0x03050D00) 
-#endif
-
-
-/**
- * Get the first IEC task in the specified application
- * :return: Returns the andle to the first IEC task 
- */
-typedef struct tagiectaskgetnext_struct
-{
-	RTS_IEC_STRING *pszAppName;			/* VAR_INPUT */	/* Application name */
-	RTS_IEC_HANDLE hPrevIecTask;		/* VAR_INPUT */	/* Handle to the previous task */
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer that returns the runtime system error code (see CmpErrors.library) */
-	RTS_IEC_HANDLE IecTaskGetNext;		/* VAR_OUTPUT */	
-} iectaskgetnext_struct;
-
-void CDECL CDECL_EXT iectaskgetnext(iectaskgetnext_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKGETNEXT_IEC) (iectaskgetnext_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKGETNEXT_NOTIMPLEMENTED)
-	#define USE_iectaskgetnext
-	#define EXT_iectaskgetnext
-	#define GET_iectaskgetnext(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskgetnext(p0) 
-	#define CHK_iectaskgetnext  FALSE
-	#define EXP_iectaskgetnext  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskgetnext
-	#define EXT_iectaskgetnext
-	#define GET_iectaskgetnext(fl)  CAL_CMGETAPI( "iectaskgetnext" ) 
-	#define CAL_iectaskgetnext  iectaskgetnext
-	#define CHK_iectaskgetnext  TRUE
-	#define EXP_iectaskgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetnext", (RTS_UINTPTR)iectaskgetnext, 1, RTSITF_GET_SIGNATURE(0, 0xC2306FF5), 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskgetnext
-	#define EXT_iectaskgetnext
-	#define GET_iectaskgetnext(fl)  CAL_CMGETAPI( "iectaskgetnext" ) 
-	#define CAL_iectaskgetnext  iectaskgetnext
-	#define CHK_iectaskgetnext  TRUE
-	#define EXP_iectaskgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetnext", (RTS_UINTPTR)iectaskgetnext, 1, RTSITF_GET_SIGNATURE(0, 0xC2306FF5), 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskgetnext
-	#define EXT_CmpIecTaskiectaskgetnext
-	#define GET_CmpIecTaskiectaskgetnext  ERR_OK
-	#define CAL_CmpIecTaskiectaskgetnext  iectaskgetnext
-	#define CHK_CmpIecTaskiectaskgetnext  TRUE
-	#define EXP_CmpIecTaskiectaskgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetnext", (RTS_UINTPTR)iectaskgetnext, 1, RTSITF_GET_SIGNATURE(0, 0xC2306FF5), 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskgetnext
-	#define EXT_iectaskgetnext
-	#define GET_iectaskgetnext(fl)  CAL_CMGETAPI( "iectaskgetnext" ) 
-	#define CAL_iectaskgetnext  iectaskgetnext
-	#define CHK_iectaskgetnext  TRUE
-	#define EXP_iectaskgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetnext", (RTS_UINTPTR)iectaskgetnext, 1, RTSITF_GET_SIGNATURE(0, 0xC2306FF5), 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskgetnext  PFIECTASKGETNEXT_IEC pfiectaskgetnext;
-	#define EXT_iectaskgetnext  extern PFIECTASKGETNEXT_IEC pfiectaskgetnext;
-	#define GET_iectaskgetnext(fl)  s_pfCMGetAPI2( "iectaskgetnext", (RTS_VOID_FCTPTR *)&pfiectaskgetnext, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xC2306FF5), 0x03050D00)
-	#define CAL_iectaskgetnext  pfiectaskgetnext
-	#define CHK_iectaskgetnext  (pfiectaskgetnext != NULL)
-	#define EXP_iectaskgetnext   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetnext", (RTS_UINTPTR)iectaskgetnext, 1, RTSITF_GET_SIGNATURE(0, 0xC2306FF5), 0x03050D00) 
-#endif
-
-
-/**
- * <description>iectaskgetprofiling</description>
- */
-typedef struct tagiectaskgetprofiling_struct
-{
-	RTS_IEC_BOOL IecTaskGetProfiling;	/* VAR_OUTPUT */	
-} iectaskgetprofiling_struct;
-
-void CDECL CDECL_EXT iectaskgetprofiling(iectaskgetprofiling_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKGETPROFILING_IEC) (iectaskgetprofiling_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKGETPROFILING_NOTIMPLEMENTED)
-	#define USE_iectaskgetprofiling
-	#define EXT_iectaskgetprofiling
-	#define GET_iectaskgetprofiling(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskgetprofiling(p0) 
-	#define CHK_iectaskgetprofiling  FALSE
-	#define EXP_iectaskgetprofiling  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskgetprofiling
-	#define EXT_iectaskgetprofiling
-	#define GET_iectaskgetprofiling(fl)  CAL_CMGETAPI( "iectaskgetprofiling" ) 
-	#define CAL_iectaskgetprofiling  iectaskgetprofiling
-	#define CHK_iectaskgetprofiling  TRUE
-	#define EXP_iectaskgetprofiling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetprofiling", (RTS_UINTPTR)iectaskgetprofiling, 1, RTSITF_GET_SIGNATURE(0, 0x217F24B2), 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskgetprofiling
-	#define EXT_iectaskgetprofiling
-	#define GET_iectaskgetprofiling(fl)  CAL_CMGETAPI( "iectaskgetprofiling" ) 
-	#define CAL_iectaskgetprofiling  iectaskgetprofiling
-	#define CHK_iectaskgetprofiling  TRUE
-	#define EXP_iectaskgetprofiling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetprofiling", (RTS_UINTPTR)iectaskgetprofiling, 1, RTSITF_GET_SIGNATURE(0, 0x217F24B2), 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskgetprofiling
-	#define EXT_CmpIecTaskiectaskgetprofiling
-	#define GET_CmpIecTaskiectaskgetprofiling  ERR_OK
-	#define CAL_CmpIecTaskiectaskgetprofiling  iectaskgetprofiling
-	#define CHK_CmpIecTaskiectaskgetprofiling  TRUE
-	#define EXP_CmpIecTaskiectaskgetprofiling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetprofiling", (RTS_UINTPTR)iectaskgetprofiling, 1, RTSITF_GET_SIGNATURE(0, 0x217F24B2), 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskgetprofiling
-	#define EXT_iectaskgetprofiling
-	#define GET_iectaskgetprofiling(fl)  CAL_CMGETAPI( "iectaskgetprofiling" ) 
-	#define CAL_iectaskgetprofiling  iectaskgetprofiling
-	#define CHK_iectaskgetprofiling  TRUE
-	#define EXP_iectaskgetprofiling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetprofiling", (RTS_UINTPTR)iectaskgetprofiling, 1, RTSITF_GET_SIGNATURE(0, 0x217F24B2), 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskgetprofiling  PFIECTASKGETPROFILING_IEC pfiectaskgetprofiling;
-	#define EXT_iectaskgetprofiling  extern PFIECTASKGETPROFILING_IEC pfiectaskgetprofiling;
-	#define GET_iectaskgetprofiling(fl)  s_pfCMGetAPI2( "iectaskgetprofiling", (RTS_VOID_FCTPTR *)&pfiectaskgetprofiling, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x217F24B2), 0x03050D00)
-	#define CAL_iectaskgetprofiling  pfiectaskgetprofiling
-	#define CHK_iectaskgetprofiling  (pfiectaskgetprofiling != NULL)
-	#define EXP_iectaskgetprofiling   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetprofiling", (RTS_UINTPTR)iectaskgetprofiling, 1, RTSITF_GET_SIGNATURE(0, 0x217F24B2), 0x03050D00) 
-#endif
-
-
-/**
- * Reload a specified IEC task. Reload means here: Delete the task at the actual position and create it newly.
- * :return: Handle to the new created task
- */
-typedef struct tagiectaskreload_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle to the task to reload */
-	RTS_IEC_UDINT udiTimeoutMs;			/* VAR_INPUT */	/* Timeout in milliseconds to wait, until the task deleted itself. Timeout can be one of the following predefined values:
-     + RTS_TIMEOUT_DEFAULT: Default timeout to delete the task
-     + RTS_TIMEOUT_NO_WAIT: Immediate deletion of the task
- See Timeouts details. */
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to error code */
-	RTS_IEC_HANDLE IecTaskReload;		/* VAR_OUTPUT */	
-} iectaskreload_struct;
-
-void CDECL CDECL_EXT iectaskreload(iectaskreload_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKRELOAD_IEC) (iectaskreload_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKRELOAD_NOTIMPLEMENTED)
-	#define USE_iectaskreload
-	#define EXT_iectaskreload
-	#define GET_iectaskreload(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskreload(p0) 
-	#define CHK_iectaskreload  FALSE
-	#define EXP_iectaskreload  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskreload
-	#define EXT_iectaskreload
-	#define GET_iectaskreload(fl)  CAL_CMGETAPI( "iectaskreload" ) 
-	#define CAL_iectaskreload  iectaskreload
-	#define CHK_iectaskreload  TRUE
-	#define EXP_iectaskreload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskreload", (RTS_UINTPTR)iectaskreload, 1, 0x796FC828, 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskreload
-	#define EXT_iectaskreload
-	#define GET_iectaskreload(fl)  CAL_CMGETAPI( "iectaskreload" ) 
-	#define CAL_iectaskreload  iectaskreload
-	#define CHK_iectaskreload  TRUE
-	#define EXP_iectaskreload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskreload", (RTS_UINTPTR)iectaskreload, 1, 0x796FC828, 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskreload
-	#define EXT_CmpIecTaskiectaskreload
-	#define GET_CmpIecTaskiectaskreload  ERR_OK
-	#define CAL_CmpIecTaskiectaskreload  iectaskreload
-	#define CHK_CmpIecTaskiectaskreload  TRUE
-	#define EXP_CmpIecTaskiectaskreload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskreload", (RTS_UINTPTR)iectaskreload, 1, 0x796FC828, 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskreload
-	#define EXT_iectaskreload
-	#define GET_iectaskreload(fl)  CAL_CMGETAPI( "iectaskreload" ) 
-	#define CAL_iectaskreload  iectaskreload
-	#define CHK_iectaskreload  TRUE
-	#define EXP_iectaskreload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskreload", (RTS_UINTPTR)iectaskreload, 1, 0x796FC828, 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskreload  PFIECTASKRELOAD_IEC pfiectaskreload;
-	#define EXT_iectaskreload  extern PFIECTASKRELOAD_IEC pfiectaskreload;
-	#define GET_iectaskreload(fl)  s_pfCMGetAPI2( "iectaskreload", (RTS_VOID_FCTPTR *)&pfiectaskreload, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x796FC828, 0x03050D00)
-	#define CAL_iectaskreload  pfiectaskreload
-	#define CHK_iectaskreload  (pfiectaskreload != NULL)
-	#define EXP_iectaskreload   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskreload", (RTS_UINTPTR)iectaskreload, 1, 0x796FC828, 0x03050D00) 
-#endif
-
-
-/**
- * Reset the task statistics of a task (see Task_Info member e.g. dwCycleTime, dwAverageCycleTime, etc.)
- * :return: Returns the runtime system error code (see CmpErrors.library)
- */
-typedef struct tagiectaskresetstatistics_struct
-{
-	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
-	RTS_IEC_RESULT IecTaskResetStatistics;	/* VAR_OUTPUT */	
-} iectaskresetstatistics_struct;
-
-void CDECL CDECL_EXT iectaskresetstatistics(iectaskresetstatistics_struct *p);
-typedef void (CDECL CDECL_EXT* PFIECTASKRESETSTATISTICS_IEC) (iectaskresetstatistics_struct *p);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKRESETSTATISTICS_NOTIMPLEMENTED)
-	#define USE_iectaskresetstatistics
-	#define EXT_iectaskresetstatistics
-	#define GET_iectaskresetstatistics(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_iectaskresetstatistics(p0) 
-	#define CHK_iectaskresetstatistics  FALSE
-	#define EXP_iectaskresetstatistics  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_iectaskresetstatistics
-	#define EXT_iectaskresetstatistics
-	#define GET_iectaskresetstatistics(fl)  CAL_CMGETAPI( "iectaskresetstatistics" ) 
-	#define CAL_iectaskresetstatistics  iectaskresetstatistics
-	#define CHK_iectaskresetstatistics  TRUE
-	#define EXP_iectaskresetstatistics  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskresetstatistics", (RTS_UINTPTR)iectaskresetstatistics, 1, 0x6291DC5B, 0x03050D00) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_iectaskresetstatistics
-	#define EXT_iectaskresetstatistics
-	#define GET_iectaskresetstatistics(fl)  CAL_CMGETAPI( "iectaskresetstatistics" ) 
-	#define CAL_iectaskresetstatistics  iectaskresetstatistics
-	#define CHK_iectaskresetstatistics  TRUE
-	#define EXP_iectaskresetstatistics  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskresetstatistics", (RTS_UINTPTR)iectaskresetstatistics, 1, 0x6291DC5B, 0x03050D00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskiectaskresetstatistics
-	#define EXT_CmpIecTaskiectaskresetstatistics
-	#define GET_CmpIecTaskiectaskresetstatistics  ERR_OK
-	#define CAL_CmpIecTaskiectaskresetstatistics  iectaskresetstatistics
-	#define CHK_CmpIecTaskiectaskresetstatistics  TRUE
-	#define EXP_CmpIecTaskiectaskresetstatistics  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskresetstatistics", (RTS_UINTPTR)iectaskresetstatistics, 1, 0x6291DC5B, 0x03050D00) 
-#elif defined(CPLUSPLUS)
-	#define USE_iectaskresetstatistics
-	#define EXT_iectaskresetstatistics
-	#define GET_iectaskresetstatistics(fl)  CAL_CMGETAPI( "iectaskresetstatistics" ) 
-	#define CAL_iectaskresetstatistics  iectaskresetstatistics
-	#define CHK_iectaskresetstatistics  TRUE
-	#define EXP_iectaskresetstatistics  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskresetstatistics", (RTS_UINTPTR)iectaskresetstatistics, 1, 0x6291DC5B, 0x03050D00) 
-#else /* DYNAMIC_LINK */
-	#define USE_iectaskresetstatistics  PFIECTASKRESETSTATISTICS_IEC pfiectaskresetstatistics;
-	#define EXT_iectaskresetstatistics  extern PFIECTASKRESETSTATISTICS_IEC pfiectaskresetstatistics;
-	#define GET_iectaskresetstatistics(fl)  s_pfCMGetAPI2( "iectaskresetstatistics", (RTS_VOID_FCTPTR *)&pfiectaskresetstatistics, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6291DC5B, 0x03050D00)
-	#define CAL_iectaskresetstatistics  pfiectaskresetstatistics
-	#define CHK_iectaskresetstatistics  (pfiectaskresetstatistics != NULL)
-	#define EXP_iectaskresetstatistics   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskresetstatistics", (RTS_UINTPTR)iectaskresetstatistics, 1, 0x6291DC5B, 0x03050D00) 
-#endif
-
-
-#ifdef __cplusplus
-}
-#endif
-
-/** EXTERN LIB SECTION END **/
-
-/**
  * Task info
  * Task information out of the task configuration
  * Note for SIL2: This information is already inside of the data area, so we don't need to tag it as safe anywhere.
  */
-struct tagTask_Info
+typedef struct tagTask_Info
 {
 	RTS_IEC_DWORD dwVersion;		/* Version of the structure */
 	RTS_IEC_STRING *pszName;		/* Name of the task */
@@ -1916,11 +719,923 @@ struct tagTask_Info
 	RTS_IEC_BOOL bShouldBlock;		/* Declared in IEC and evaluated there starting with compiler 3.5.6; If TRUE, the task will not call it's POUs */
 	RTS_IEC_BOOL bActive;			/* Declared in IEC and evaluated there starting with compiler 3.5.6; Will be FALSE when the task is not active */
 	RTS_IEC_DWORD dwIECCycleCount;		/* Cycle counter for execution of user code */
-	RTS_IEC_INT nCoreConfigured;	/* Needed for backward compatability for V3.5.11.0 */
-	RTS_IEC_INT nCoreCurrent;		/* Needed for backward compatability for V3.5.11.0 */
-	TaskGroup_Info *pTaskGroup;		/* Pointer to task group description since V3.5.12.0 */
-    RTS_IEC_STRING *pszParentTaskName;		/* Name of the parent task if the type is TaskParentSync */
-};
+	RTS_IEC_INT nCoreConfigured;
+	RTS_IEC_INT nCoreCurrent;
+} Task_Info;
+
+/**
+ * Create a new IEC Task
+ *
+ * IEC Tasks itself are used by the scheduler of the runtime. They don't 
+ *   essentially need a corresponding OS task or timer. They might be handled
+ *   by the scheduler in a completely different way.
+ *
+ * Error code:
+ *    + ERR_OK: The new task was successfully created.
+ *    + ERR_FAILED: There was an error in a subsystem (e.g. the scheduler could not allocate his task handle).
+ *    + ERR_PARAMETER: Invalid application- or task info pointer
+ *    + ERR_OUT_OF_LIMITS: Maximum number of Tasks reached (target specific)
+ *    + ERR_NOMEMORY: Unable to allocate the memory, that is necessary for the task description    
+ *
+ * :return: Handle to newly created task
+ */
+typedef struct tagiectaskcreate_struct
+{
+	APPLICATION *pApp;					/* VAR_INPUT */	/* Pointer to application that contains the task */
+	Task_Info *pTaskInfo;				/* VAR_INPUT */	/* Pointer to task information */
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to error code */
+	RTS_IEC_HANDLE IecTaskCreate;		/* VAR_OUTPUT */	
+} iectaskcreate_struct;
+
+void CDECL CDECL_EXT iectaskcreate(iectaskcreate_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKCREATE_IEC) (iectaskcreate_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKCREATE_NOTIMPLEMENTED)
+	#define USE_iectaskcreate
+	#define EXT_iectaskcreate
+	#define GET_iectaskcreate(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskcreate(p0) 
+	#define CHK_iectaskcreate  FALSE
+	#define EXP_iectaskcreate  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskcreate
+	#define EXT_iectaskcreate
+	#define GET_iectaskcreate(fl)  CAL_CMGETAPI( "iectaskcreate" ) 
+	#define CAL_iectaskcreate  iectaskcreate
+	#define CHK_iectaskcreate  TRUE
+	#define EXP_iectaskcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskcreate", (RTS_UINTPTR)iectaskcreate, 1, 0xAF209471, 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskcreate
+	#define EXT_iectaskcreate
+	#define GET_iectaskcreate(fl)  CAL_CMGETAPI( "iectaskcreate" ) 
+	#define CAL_iectaskcreate  iectaskcreate
+	#define CHK_iectaskcreate  TRUE
+	#define EXP_iectaskcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskcreate", (RTS_UINTPTR)iectaskcreate, 1, 0xAF209471, 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskcreate
+	#define EXT_CmpIecTaskiectaskcreate
+	#define GET_CmpIecTaskiectaskcreate  ERR_OK
+	#define CAL_CmpIecTaskiectaskcreate  iectaskcreate
+	#define CHK_CmpIecTaskiectaskcreate  TRUE
+	#define EXP_CmpIecTaskiectaskcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskcreate", (RTS_UINTPTR)iectaskcreate, 1, 0xAF209471, 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskcreate
+	#define EXT_iectaskcreate
+	#define GET_iectaskcreate(fl)  CAL_CMGETAPI( "iectaskcreate" ) 
+	#define CAL_iectaskcreate  iectaskcreate
+	#define CHK_iectaskcreate  TRUE
+	#define EXP_iectaskcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskcreate", (RTS_UINTPTR)iectaskcreate, 1, 0xAF209471, 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskcreate  PFIECTASKCREATE_IEC pfiectaskcreate;
+	#define EXT_iectaskcreate  extern PFIECTASKCREATE_IEC pfiectaskcreate;
+	#define GET_iectaskcreate(fl)  s_pfCMGetAPI2( "iectaskcreate", (RTS_VOID_FCTPTR *)&pfiectaskcreate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xAF209471, 0x03050800)
+	#define CAL_iectaskcreate  pfiectaskcreate
+	#define CHK_iectaskcreate  (pfiectaskcreate != NULL)
+	#define EXP_iectaskcreate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskcreate", (RTS_UINTPTR)iectaskcreate, 1, 0xAF209471, 0x03050800) 
+#endif
+
+
+/**
+ * Delete an IEC task with timeout
+ * :return: Error code 
+ */
+typedef struct tagiectaskdelete2_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle to task */
+	RTS_IEC_UDINT ulTimeoutMs;			/* VAR_INPUT */	/* Timeout in milliseconds to wait for deleting the task. Some timeouts are predefined:
+     + RTS_TIMEOUT_DEFAULT: Use default wait time
+     + RTS_TIMEOUT_NO_WAIT: No wait */
+	RTS_IEC_RESULT IecTaskDelete2;		/* VAR_OUTPUT */	
+} iectaskdelete2_struct;
+
+void CDECL CDECL_EXT iectaskdelete2(iectaskdelete2_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKDELETE2_IEC) (iectaskdelete2_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKDELETE2_NOTIMPLEMENTED)
+	#define USE_iectaskdelete2
+	#define EXT_iectaskdelete2
+	#define GET_iectaskdelete2(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskdelete2(p0) 
+	#define CHK_iectaskdelete2  FALSE
+	#define EXP_iectaskdelete2  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskdelete2
+	#define EXT_iectaskdelete2
+	#define GET_iectaskdelete2(fl)  CAL_CMGETAPI( "iectaskdelete2" ) 
+	#define CAL_iectaskdelete2  iectaskdelete2
+	#define CHK_iectaskdelete2  TRUE
+	#define EXP_iectaskdelete2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdelete2", (RTS_UINTPTR)iectaskdelete2, 1, 0x8269275F, 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskdelete2
+	#define EXT_iectaskdelete2
+	#define GET_iectaskdelete2(fl)  CAL_CMGETAPI( "iectaskdelete2" ) 
+	#define CAL_iectaskdelete2  iectaskdelete2
+	#define CHK_iectaskdelete2  TRUE
+	#define EXP_iectaskdelete2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdelete2", (RTS_UINTPTR)iectaskdelete2, 1, 0x8269275F, 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskdelete2
+	#define EXT_CmpIecTaskiectaskdelete2
+	#define GET_CmpIecTaskiectaskdelete2  ERR_OK
+	#define CAL_CmpIecTaskiectaskdelete2  iectaskdelete2
+	#define CHK_CmpIecTaskiectaskdelete2  TRUE
+	#define EXP_CmpIecTaskiectaskdelete2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdelete2", (RTS_UINTPTR)iectaskdelete2, 1, 0x8269275F, 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskdelete2
+	#define EXT_iectaskdelete2
+	#define GET_iectaskdelete2(fl)  CAL_CMGETAPI( "iectaskdelete2" ) 
+	#define CAL_iectaskdelete2  iectaskdelete2
+	#define CHK_iectaskdelete2  TRUE
+	#define EXP_iectaskdelete2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdelete2", (RTS_UINTPTR)iectaskdelete2, 1, 0x8269275F, 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskdelete2  PFIECTASKDELETE2_IEC pfiectaskdelete2;
+	#define EXT_iectaskdelete2  extern PFIECTASKDELETE2_IEC pfiectaskdelete2;
+	#define GET_iectaskdelete2(fl)  s_pfCMGetAPI2( "iectaskdelete2", (RTS_VOID_FCTPTR *)&pfiectaskdelete2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x8269275F, 0x03050800)
+	#define CAL_iectaskdelete2  pfiectaskdelete2
+	#define CHK_iectaskdelete2  (pfiectaskdelete2 != NULL)
+	#define EXP_iectaskdelete2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdelete2", (RTS_UINTPTR)iectaskdelete2, 1, 0x8269275F, 0x03050800) 
+#endif
+
+
+/**
+ * Disable scheduling for the specified task
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ */
+typedef struct tagiectaskdisablescheduling_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskDisableScheduling;	/* VAR_OUTPUT */	
+} iectaskdisablescheduling_struct;
+
+void CDECL CDECL_EXT iectaskdisablescheduling(iectaskdisablescheduling_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKDISABLESCHEDULING_IEC) (iectaskdisablescheduling_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKDISABLESCHEDULING_NOTIMPLEMENTED)
+	#define USE_iectaskdisablescheduling
+	#define EXT_iectaskdisablescheduling
+	#define GET_iectaskdisablescheduling(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskdisablescheduling(p0) 
+	#define CHK_iectaskdisablescheduling  FALSE
+	#define EXP_iectaskdisablescheduling  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskdisablescheduling
+	#define EXT_iectaskdisablescheduling
+	#define GET_iectaskdisablescheduling(fl)  CAL_CMGETAPI( "iectaskdisablescheduling" ) 
+	#define CAL_iectaskdisablescheduling  iectaskdisablescheduling
+	#define CHK_iectaskdisablescheduling  TRUE
+	#define EXP_iectaskdisablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablescheduling", (RTS_UINTPTR)iectaskdisablescheduling, 1, 0xC3E3F168, 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskdisablescheduling
+	#define EXT_iectaskdisablescheduling
+	#define GET_iectaskdisablescheduling(fl)  CAL_CMGETAPI( "iectaskdisablescheduling" ) 
+	#define CAL_iectaskdisablescheduling  iectaskdisablescheduling
+	#define CHK_iectaskdisablescheduling  TRUE
+	#define EXP_iectaskdisablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablescheduling", (RTS_UINTPTR)iectaskdisablescheduling, 1, 0xC3E3F168, 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskdisablescheduling
+	#define EXT_CmpIecTaskiectaskdisablescheduling
+	#define GET_CmpIecTaskiectaskdisablescheduling  ERR_OK
+	#define CAL_CmpIecTaskiectaskdisablescheduling  iectaskdisablescheduling
+	#define CHK_CmpIecTaskiectaskdisablescheduling  TRUE
+	#define EXP_CmpIecTaskiectaskdisablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablescheduling", (RTS_UINTPTR)iectaskdisablescheduling, 1, 0xC3E3F168, 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskdisablescheduling
+	#define EXT_iectaskdisablescheduling
+	#define GET_iectaskdisablescheduling(fl)  CAL_CMGETAPI( "iectaskdisablescheduling" ) 
+	#define CAL_iectaskdisablescheduling  iectaskdisablescheduling
+	#define CHK_iectaskdisablescheduling  TRUE
+	#define EXP_iectaskdisablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablescheduling", (RTS_UINTPTR)iectaskdisablescheduling, 1, 0xC3E3F168, 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskdisablescheduling  PFIECTASKDISABLESCHEDULING_IEC pfiectaskdisablescheduling;
+	#define EXT_iectaskdisablescheduling  extern PFIECTASKDISABLESCHEDULING_IEC pfiectaskdisablescheduling;
+	#define GET_iectaskdisablescheduling(fl)  s_pfCMGetAPI2( "iectaskdisablescheduling", (RTS_VOID_FCTPTR *)&pfiectaskdisablescheduling, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xC3E3F168, 0x03050800)
+	#define CAL_iectaskdisablescheduling  pfiectaskdisablescheduling
+	#define CHK_iectaskdisablescheduling  (pfiectaskdisablescheduling != NULL)
+	#define EXP_iectaskdisablescheduling   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablescheduling", (RTS_UINTPTR)iectaskdisablescheduling, 1, 0xC3E3F168, 0x03050800) 
+#endif
+
+
+/**
+ * Disable watchdog for the specified task
+ *
+ * .. note::
+ *     - You have to enable the watchdog of the task with |IecTaskEnableWatchdog| and _not_ with |IecTaskEnableWatchdog2|, because they act on different task flags!
+ * - The watchdog is disabled only for the current cycle! At the next cycle, the watchod is automatically enabled!
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ *	+ ERR_OK: The watchdog for the task was disabled
+ *	+ ERR_PARAMETER: The task handle was invalid
+ */
+typedef struct tagiectaskdisablewatchdog_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskDisableWatchdog;	/* VAR_OUTPUT */	
+} iectaskdisablewatchdog_struct;
+
+void CDECL CDECL_EXT iectaskdisablewatchdog(iectaskdisablewatchdog_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKDISABLEWATCHDOG_IEC) (iectaskdisablewatchdog_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKDISABLEWATCHDOG_NOTIMPLEMENTED)
+	#define USE_iectaskdisablewatchdog
+	#define EXT_iectaskdisablewatchdog
+	#define GET_iectaskdisablewatchdog(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskdisablewatchdog(p0) 
+	#define CHK_iectaskdisablewatchdog  FALSE
+	#define EXP_iectaskdisablewatchdog  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskdisablewatchdog
+	#define EXT_iectaskdisablewatchdog
+	#define GET_iectaskdisablewatchdog(fl)  CAL_CMGETAPI( "iectaskdisablewatchdog" ) 
+	#define CAL_iectaskdisablewatchdog  iectaskdisablewatchdog
+	#define CHK_iectaskdisablewatchdog  TRUE
+	#define EXP_iectaskdisablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog", (RTS_UINTPTR)iectaskdisablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x2FF63495), 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskdisablewatchdog
+	#define EXT_iectaskdisablewatchdog
+	#define GET_iectaskdisablewatchdog(fl)  CAL_CMGETAPI( "iectaskdisablewatchdog" ) 
+	#define CAL_iectaskdisablewatchdog  iectaskdisablewatchdog
+	#define CHK_iectaskdisablewatchdog  TRUE
+	#define EXP_iectaskdisablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog", (RTS_UINTPTR)iectaskdisablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x2FF63495), 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskdisablewatchdog
+	#define EXT_CmpIecTaskiectaskdisablewatchdog
+	#define GET_CmpIecTaskiectaskdisablewatchdog  ERR_OK
+	#define CAL_CmpIecTaskiectaskdisablewatchdog  iectaskdisablewatchdog
+	#define CHK_CmpIecTaskiectaskdisablewatchdog  TRUE
+	#define EXP_CmpIecTaskiectaskdisablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog", (RTS_UINTPTR)iectaskdisablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x2FF63495), 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskdisablewatchdog
+	#define EXT_iectaskdisablewatchdog
+	#define GET_iectaskdisablewatchdog(fl)  CAL_CMGETAPI( "iectaskdisablewatchdog" ) 
+	#define CAL_iectaskdisablewatchdog  iectaskdisablewatchdog
+	#define CHK_iectaskdisablewatchdog  TRUE
+	#define EXP_iectaskdisablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog", (RTS_UINTPTR)iectaskdisablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x2FF63495), 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskdisablewatchdog  PFIECTASKDISABLEWATCHDOG_IEC pfiectaskdisablewatchdog;
+	#define EXT_iectaskdisablewatchdog  extern PFIECTASKDISABLEWATCHDOG_IEC pfiectaskdisablewatchdog;
+	#define GET_iectaskdisablewatchdog(fl)  s_pfCMGetAPI2( "iectaskdisablewatchdog", (RTS_VOID_FCTPTR *)&pfiectaskdisablewatchdog, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x2FF63495), 0x03050800)
+	#define CAL_iectaskdisablewatchdog  pfiectaskdisablewatchdog
+	#define CHK_iectaskdisablewatchdog  (pfiectaskdisablewatchdog != NULL)
+	#define EXP_iectaskdisablewatchdog   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog", (RTS_UINTPTR)iectaskdisablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x2FF63495), 0x03050800) 
+#endif
+
+
+/**
+ * Disable watchdog for the specified task
+ *
+ * .. note::
+ *     - You have to enable the watchdog of the task with |IecTaskEnableWatchdog2| and _not_ with |IecTaskEnableWatchdog|, because they act on different task flags!
+ *     - The watchdog is disabled until |IecTaskEnableWatchdog2| is called!!! So this is a security issue, if you never enable the watchdog!
+ *     - As a consequence, you always have to call |IecTaskDisableWatchdog2| and |IecTaskEnableWatchdog2| symmetrical
+ * - Can be called nested. First call disables the watchdog.
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ *	+ ERR_OK: The watchdog for the task was disabled
+ *	+ ERR_PARAMETER: The task handle was invalid
+ */
+typedef struct tagiectaskdisablewatchdog2_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskDisableWatchdog2;	/* VAR_OUTPUT */	
+} iectaskdisablewatchdog2_struct;
+
+void CDECL CDECL_EXT iectaskdisablewatchdog2(iectaskdisablewatchdog2_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKDISABLEWATCHDOG2_IEC) (iectaskdisablewatchdog2_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKDISABLEWATCHDOG2_NOTIMPLEMENTED)
+	#define USE_iectaskdisablewatchdog2
+	#define EXT_iectaskdisablewatchdog2
+	#define GET_iectaskdisablewatchdog2(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskdisablewatchdog2(p0) 
+	#define CHK_iectaskdisablewatchdog2  FALSE
+	#define EXP_iectaskdisablewatchdog2  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskdisablewatchdog2
+	#define EXT_iectaskdisablewatchdog2
+	#define GET_iectaskdisablewatchdog2(fl)  CAL_CMGETAPI( "iectaskdisablewatchdog2" ) 
+	#define CAL_iectaskdisablewatchdog2  iectaskdisablewatchdog2
+	#define CHK_iectaskdisablewatchdog2  TRUE
+	#define EXP_iectaskdisablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog2", (RTS_UINTPTR)iectaskdisablewatchdog2, 1, 0x277BF3FE, 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskdisablewatchdog2
+	#define EXT_iectaskdisablewatchdog2
+	#define GET_iectaskdisablewatchdog2(fl)  CAL_CMGETAPI( "iectaskdisablewatchdog2" ) 
+	#define CAL_iectaskdisablewatchdog2  iectaskdisablewatchdog2
+	#define CHK_iectaskdisablewatchdog2  TRUE
+	#define EXP_iectaskdisablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog2", (RTS_UINTPTR)iectaskdisablewatchdog2, 1, 0x277BF3FE, 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskdisablewatchdog2
+	#define EXT_CmpIecTaskiectaskdisablewatchdog2
+	#define GET_CmpIecTaskiectaskdisablewatchdog2  ERR_OK
+	#define CAL_CmpIecTaskiectaskdisablewatchdog2  iectaskdisablewatchdog2
+	#define CHK_CmpIecTaskiectaskdisablewatchdog2  TRUE
+	#define EXP_CmpIecTaskiectaskdisablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog2", (RTS_UINTPTR)iectaskdisablewatchdog2, 1, 0x277BF3FE, 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskdisablewatchdog2
+	#define EXT_iectaskdisablewatchdog2
+	#define GET_iectaskdisablewatchdog2(fl)  CAL_CMGETAPI( "iectaskdisablewatchdog2" ) 
+	#define CAL_iectaskdisablewatchdog2  iectaskdisablewatchdog2
+	#define CHK_iectaskdisablewatchdog2  TRUE
+	#define EXP_iectaskdisablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog2", (RTS_UINTPTR)iectaskdisablewatchdog2, 1, 0x277BF3FE, 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskdisablewatchdog2  PFIECTASKDISABLEWATCHDOG2_IEC pfiectaskdisablewatchdog2;
+	#define EXT_iectaskdisablewatchdog2  extern PFIECTASKDISABLEWATCHDOG2_IEC pfiectaskdisablewatchdog2;
+	#define GET_iectaskdisablewatchdog2(fl)  s_pfCMGetAPI2( "iectaskdisablewatchdog2", (RTS_VOID_FCTPTR *)&pfiectaskdisablewatchdog2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x277BF3FE, 0x03050800)
+	#define CAL_iectaskdisablewatchdog2  pfiectaskdisablewatchdog2
+	#define CHK_iectaskdisablewatchdog2  (pfiectaskdisablewatchdog2 != NULL)
+	#define EXP_iectaskdisablewatchdog2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskdisablewatchdog2", (RTS_UINTPTR)iectaskdisablewatchdog2, 1, 0x277BF3FE, 0x03050800) 
+#endif
+
+
+/**
+ * Enable scheduling for one specified task
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ */
+typedef struct tagiectaskenablescheduling_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskEnableScheduling;	/* VAR_OUTPUT */	
+} iectaskenablescheduling_struct;
+
+void CDECL CDECL_EXT iectaskenablescheduling(iectaskenablescheduling_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKENABLESCHEDULING_IEC) (iectaskenablescheduling_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKENABLESCHEDULING_NOTIMPLEMENTED)
+	#define USE_iectaskenablescheduling
+	#define EXT_iectaskenablescheduling
+	#define GET_iectaskenablescheduling(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskenablescheduling(p0) 
+	#define CHK_iectaskenablescheduling  FALSE
+	#define EXP_iectaskenablescheduling  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskenablescheduling
+	#define EXT_iectaskenablescheduling
+	#define GET_iectaskenablescheduling(fl)  CAL_CMGETAPI( "iectaskenablescheduling" ) 
+	#define CAL_iectaskenablescheduling  iectaskenablescheduling
+	#define CHK_iectaskenablescheduling  TRUE
+	#define EXP_iectaskenablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablescheduling", (RTS_UINTPTR)iectaskenablescheduling, 1, 0x4A96918C, 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskenablescheduling
+	#define EXT_iectaskenablescheduling
+	#define GET_iectaskenablescheduling(fl)  CAL_CMGETAPI( "iectaskenablescheduling" ) 
+	#define CAL_iectaskenablescheduling  iectaskenablescheduling
+	#define CHK_iectaskenablescheduling  TRUE
+	#define EXP_iectaskenablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablescheduling", (RTS_UINTPTR)iectaskenablescheduling, 1, 0x4A96918C, 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskenablescheduling
+	#define EXT_CmpIecTaskiectaskenablescheduling
+	#define GET_CmpIecTaskiectaskenablescheduling  ERR_OK
+	#define CAL_CmpIecTaskiectaskenablescheduling  iectaskenablescheduling
+	#define CHK_CmpIecTaskiectaskenablescheduling  TRUE
+	#define EXP_CmpIecTaskiectaskenablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablescheduling", (RTS_UINTPTR)iectaskenablescheduling, 1, 0x4A96918C, 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskenablescheduling
+	#define EXT_iectaskenablescheduling
+	#define GET_iectaskenablescheduling(fl)  CAL_CMGETAPI( "iectaskenablescheduling" ) 
+	#define CAL_iectaskenablescheduling  iectaskenablescheduling
+	#define CHK_iectaskenablescheduling  TRUE
+	#define EXP_iectaskenablescheduling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablescheduling", (RTS_UINTPTR)iectaskenablescheduling, 1, 0x4A96918C, 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskenablescheduling  PFIECTASKENABLESCHEDULING_IEC pfiectaskenablescheduling;
+	#define EXT_iectaskenablescheduling  extern PFIECTASKENABLESCHEDULING_IEC pfiectaskenablescheduling;
+	#define GET_iectaskenablescheduling(fl)  s_pfCMGetAPI2( "iectaskenablescheduling", (RTS_VOID_FCTPTR *)&pfiectaskenablescheduling, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x4A96918C, 0x03050800)
+	#define CAL_iectaskenablescheduling  pfiectaskenablescheduling
+	#define CHK_iectaskenablescheduling  (pfiectaskenablescheduling != NULL)
+	#define EXP_iectaskenablescheduling   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablescheduling", (RTS_UINTPTR)iectaskenablescheduling, 1, 0x4A96918C, 0x03050800) 
+#endif
+
+
+/**
+ * Enable watchdog for the specified task
+ *
+ * .. note::
+ *     - You have to disable the watchdog of the task before with |IecTaskDisableWatchdog| and _not_ with |IecTaskDisableWatchdog2|, because they act on different task flags!
+ * - The watchdog is enabled only at the next IEC cycle and _not_ immediately after calling this function!
+ *     - If you disable with |IecTaskDisableWatchdog| and forgot to enable it, at least at the next cycle, the watchdog is automatically enabled!
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ *	+ ERR_OK: The watchdog for the task was enabled
+ *	+ ERR_PARAMETER: The task handle was invalid
+ */
+typedef struct tagiectaskenablewatchdog_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskEnableWatchdog;	/* VAR_OUTPUT */	
+} iectaskenablewatchdog_struct;
+
+void CDECL CDECL_EXT iectaskenablewatchdog(iectaskenablewatchdog_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKENABLEWATCHDOG_IEC) (iectaskenablewatchdog_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKENABLEWATCHDOG_NOTIMPLEMENTED)
+	#define USE_iectaskenablewatchdog
+	#define EXT_iectaskenablewatchdog
+	#define GET_iectaskenablewatchdog(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskenablewatchdog(p0) 
+	#define CHK_iectaskenablewatchdog  FALSE
+	#define EXP_iectaskenablewatchdog  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskenablewatchdog
+	#define EXT_iectaskenablewatchdog
+	#define GET_iectaskenablewatchdog(fl)  CAL_CMGETAPI( "iectaskenablewatchdog" ) 
+	#define CAL_iectaskenablewatchdog  iectaskenablewatchdog
+	#define CHK_iectaskenablewatchdog  TRUE
+	#define EXP_iectaskenablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog", (RTS_UINTPTR)iectaskenablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x1CDBB730), 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskenablewatchdog
+	#define EXT_iectaskenablewatchdog
+	#define GET_iectaskenablewatchdog(fl)  CAL_CMGETAPI( "iectaskenablewatchdog" ) 
+	#define CAL_iectaskenablewatchdog  iectaskenablewatchdog
+	#define CHK_iectaskenablewatchdog  TRUE
+	#define EXP_iectaskenablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog", (RTS_UINTPTR)iectaskenablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x1CDBB730), 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskenablewatchdog
+	#define EXT_CmpIecTaskiectaskenablewatchdog
+	#define GET_CmpIecTaskiectaskenablewatchdog  ERR_OK
+	#define CAL_CmpIecTaskiectaskenablewatchdog  iectaskenablewatchdog
+	#define CHK_CmpIecTaskiectaskenablewatchdog  TRUE
+	#define EXP_CmpIecTaskiectaskenablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog", (RTS_UINTPTR)iectaskenablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x1CDBB730), 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskenablewatchdog
+	#define EXT_iectaskenablewatchdog
+	#define GET_iectaskenablewatchdog(fl)  CAL_CMGETAPI( "iectaskenablewatchdog" ) 
+	#define CAL_iectaskenablewatchdog  iectaskenablewatchdog
+	#define CHK_iectaskenablewatchdog  TRUE
+	#define EXP_iectaskenablewatchdog  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog", (RTS_UINTPTR)iectaskenablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x1CDBB730), 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskenablewatchdog  PFIECTASKENABLEWATCHDOG_IEC pfiectaskenablewatchdog;
+	#define EXT_iectaskenablewatchdog  extern PFIECTASKENABLEWATCHDOG_IEC pfiectaskenablewatchdog;
+	#define GET_iectaskenablewatchdog(fl)  s_pfCMGetAPI2( "iectaskenablewatchdog", (RTS_VOID_FCTPTR *)&pfiectaskenablewatchdog, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x1CDBB730), 0x03050800)
+	#define CAL_iectaskenablewatchdog  pfiectaskenablewatchdog
+	#define CHK_iectaskenablewatchdog  (pfiectaskenablewatchdog != NULL)
+	#define EXP_iectaskenablewatchdog   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog", (RTS_UINTPTR)iectaskenablewatchdog, 1, RTSITF_GET_SIGNATURE(0, 0x1CDBB730), 0x03050800) 
+#endif
+
+
+/**
+ * Enable watchdog for the specified task
+ *
+ * .. note::
+ *     - You have to disable the watchdog of the task before with |IecTaskDisableWatchdog2| and _not_ with |IecTaskDisableWatchdog|, because they act on different task flags!
+ * - The watchdog is enabled only at the next IEC cycle and _not_ immediately after calling this function!
+ *       But if you never enable the watchdog after calling |IecTaskDisableWatchdog2|, the watchdog is disabled forever!
+ *     - As a consequence, you always have to call |IecTaskDisableWatchdog2| and |IecTaskEnableWatchdog2| symmetrical
+ * - Can be called nested. Last call enables the watchdog.
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ *	+ ERR_OK: The watchdog for the task was enabled
+ *	+ ERR_PARAMETER: The task handle was invalid
+ */
+typedef struct tagiectaskenablewatchdog2_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskEnableWatchdog2;	/* VAR_OUTPUT */	
+} iectaskenablewatchdog2_struct;
+
+void CDECL CDECL_EXT iectaskenablewatchdog2(iectaskenablewatchdog2_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKENABLEWATCHDOG2_IEC) (iectaskenablewatchdog2_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKENABLEWATCHDOG2_NOTIMPLEMENTED)
+	#define USE_iectaskenablewatchdog2
+	#define EXT_iectaskenablewatchdog2
+	#define GET_iectaskenablewatchdog2(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskenablewatchdog2(p0) 
+	#define CHK_iectaskenablewatchdog2  FALSE
+	#define EXP_iectaskenablewatchdog2  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskenablewatchdog2
+	#define EXT_iectaskenablewatchdog2
+	#define GET_iectaskenablewatchdog2(fl)  CAL_CMGETAPI( "iectaskenablewatchdog2" ) 
+	#define CAL_iectaskenablewatchdog2  iectaskenablewatchdog2
+	#define CHK_iectaskenablewatchdog2  TRUE
+	#define EXP_iectaskenablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog2", (RTS_UINTPTR)iectaskenablewatchdog2, 1, 0xE71D232F, 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskenablewatchdog2
+	#define EXT_iectaskenablewatchdog2
+	#define GET_iectaskenablewatchdog2(fl)  CAL_CMGETAPI( "iectaskenablewatchdog2" ) 
+	#define CAL_iectaskenablewatchdog2  iectaskenablewatchdog2
+	#define CHK_iectaskenablewatchdog2  TRUE
+	#define EXP_iectaskenablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog2", (RTS_UINTPTR)iectaskenablewatchdog2, 1, 0xE71D232F, 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskenablewatchdog2
+	#define EXT_CmpIecTaskiectaskenablewatchdog2
+	#define GET_CmpIecTaskiectaskenablewatchdog2  ERR_OK
+	#define CAL_CmpIecTaskiectaskenablewatchdog2  iectaskenablewatchdog2
+	#define CHK_CmpIecTaskiectaskenablewatchdog2  TRUE
+	#define EXP_CmpIecTaskiectaskenablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog2", (RTS_UINTPTR)iectaskenablewatchdog2, 1, 0xE71D232F, 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskenablewatchdog2
+	#define EXT_iectaskenablewatchdog2
+	#define GET_iectaskenablewatchdog2(fl)  CAL_CMGETAPI( "iectaskenablewatchdog2" ) 
+	#define CAL_iectaskenablewatchdog2  iectaskenablewatchdog2
+	#define CHK_iectaskenablewatchdog2  TRUE
+	#define EXP_iectaskenablewatchdog2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog2", (RTS_UINTPTR)iectaskenablewatchdog2, 1, 0xE71D232F, 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskenablewatchdog2  PFIECTASKENABLEWATCHDOG2_IEC pfiectaskenablewatchdog2;
+	#define EXT_iectaskenablewatchdog2  extern PFIECTASKENABLEWATCHDOG2_IEC pfiectaskenablewatchdog2;
+	#define GET_iectaskenablewatchdog2(fl)  s_pfCMGetAPI2( "iectaskenablewatchdog2", (RTS_VOID_FCTPTR *)&pfiectaskenablewatchdog2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE71D232F, 0x03050800)
+	#define CAL_iectaskenablewatchdog2  pfiectaskenablewatchdog2
+	#define CHK_iectaskenablewatchdog2  (pfiectaskenablewatchdog2 != NULL)
+	#define EXP_iectaskenablewatchdog2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskenablewatchdog2", (RTS_UINTPTR)iectaskenablewatchdog2, 1, 0xE71D232F, 0x03050800) 
+#endif
+
+
+/**
+ * Funktion to get own task handle
+ * :return: Returns the current IEC task handle
+ */
+typedef struct tagiectaskgetcurrent_struct
+{
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer that returns the runtime system error code (see CmpErrors.library) */
+	RTS_IEC_HANDLE IecTaskGetCurrent;	/* VAR_OUTPUT */	
+} iectaskgetcurrent_struct;
+
+void CDECL CDECL_EXT iectaskgetcurrent(iectaskgetcurrent_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKGETCURRENT_IEC) (iectaskgetcurrent_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKGETCURRENT_NOTIMPLEMENTED)
+	#define USE_iectaskgetcurrent
+	#define EXT_iectaskgetcurrent
+	#define GET_iectaskgetcurrent(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskgetcurrent(p0) 
+	#define CHK_iectaskgetcurrent  FALSE
+	#define EXP_iectaskgetcurrent  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskgetcurrent
+	#define EXT_iectaskgetcurrent
+	#define GET_iectaskgetcurrent(fl)  CAL_CMGETAPI( "iectaskgetcurrent" ) 
+	#define CAL_iectaskgetcurrent  iectaskgetcurrent
+	#define CHK_iectaskgetcurrent  TRUE
+	#define EXP_iectaskgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetcurrent", (RTS_UINTPTR)iectaskgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0xFD44B5CC), 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskgetcurrent
+	#define EXT_iectaskgetcurrent
+	#define GET_iectaskgetcurrent(fl)  CAL_CMGETAPI( "iectaskgetcurrent" ) 
+	#define CAL_iectaskgetcurrent  iectaskgetcurrent
+	#define CHK_iectaskgetcurrent  TRUE
+	#define EXP_iectaskgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetcurrent", (RTS_UINTPTR)iectaskgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0xFD44B5CC), 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskgetcurrent
+	#define EXT_CmpIecTaskiectaskgetcurrent
+	#define GET_CmpIecTaskiectaskgetcurrent  ERR_OK
+	#define CAL_CmpIecTaskiectaskgetcurrent  iectaskgetcurrent
+	#define CHK_CmpIecTaskiectaskgetcurrent  TRUE
+	#define EXP_CmpIecTaskiectaskgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetcurrent", (RTS_UINTPTR)iectaskgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0xFD44B5CC), 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskgetcurrent
+	#define EXT_iectaskgetcurrent
+	#define GET_iectaskgetcurrent(fl)  CAL_CMGETAPI( "iectaskgetcurrent" ) 
+	#define CAL_iectaskgetcurrent  iectaskgetcurrent
+	#define CHK_iectaskgetcurrent  TRUE
+	#define EXP_iectaskgetcurrent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetcurrent", (RTS_UINTPTR)iectaskgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0xFD44B5CC), 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskgetcurrent  PFIECTASKGETCURRENT_IEC pfiectaskgetcurrent;
+	#define EXT_iectaskgetcurrent  extern PFIECTASKGETCURRENT_IEC pfiectaskgetcurrent;
+	#define GET_iectaskgetcurrent(fl)  s_pfCMGetAPI2( "iectaskgetcurrent", (RTS_VOID_FCTPTR *)&pfiectaskgetcurrent, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xFD44B5CC), 0x03050800)
+	#define CAL_iectaskgetcurrent  pfiectaskgetcurrent
+	#define CHK_iectaskgetcurrent  (pfiectaskgetcurrent != NULL)
+	#define EXP_iectaskgetcurrent   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetcurrent", (RTS_UINTPTR)iectaskgetcurrent, 1, RTSITF_GET_SIGNATURE(0, 0xFD44B5CC), 0x03050800) 
+#endif
+
+
+/**
+ * Get the first IEC task in the specified application
+ * :return: Returns the handle to the first IEC task
+ */
+typedef struct tagiectaskgetfirst_struct
+{
+	RTS_IEC_STRING *pszAppName;			/* VAR_INPUT */	/* Application name */
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer that returns the runtime system error code (see CmpErrors.library) */
+	RTS_IEC_HANDLE IecTaskGetFirst;		/* VAR_OUTPUT */	
+} iectaskgetfirst_struct;
+
+void CDECL CDECL_EXT iectaskgetfirst(iectaskgetfirst_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKGETFIRST_IEC) (iectaskgetfirst_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKGETFIRST_NOTIMPLEMENTED)
+	#define USE_iectaskgetfirst
+	#define EXT_iectaskgetfirst
+	#define GET_iectaskgetfirst(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskgetfirst(p0) 
+	#define CHK_iectaskgetfirst  FALSE
+	#define EXP_iectaskgetfirst  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskgetfirst
+	#define EXT_iectaskgetfirst
+	#define GET_iectaskgetfirst(fl)  CAL_CMGETAPI( "iectaskgetfirst" ) 
+	#define CAL_iectaskgetfirst  iectaskgetfirst
+	#define CHK_iectaskgetfirst  TRUE
+	#define EXP_iectaskgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetfirst", (RTS_UINTPTR)iectaskgetfirst, 1, RTSITF_GET_SIGNATURE(0, 0xD65D1BF9), 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskgetfirst
+	#define EXT_iectaskgetfirst
+	#define GET_iectaskgetfirst(fl)  CAL_CMGETAPI( "iectaskgetfirst" ) 
+	#define CAL_iectaskgetfirst  iectaskgetfirst
+	#define CHK_iectaskgetfirst  TRUE
+	#define EXP_iectaskgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetfirst", (RTS_UINTPTR)iectaskgetfirst, 1, RTSITF_GET_SIGNATURE(0, 0xD65D1BF9), 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskgetfirst
+	#define EXT_CmpIecTaskiectaskgetfirst
+	#define GET_CmpIecTaskiectaskgetfirst  ERR_OK
+	#define CAL_CmpIecTaskiectaskgetfirst  iectaskgetfirst
+	#define CHK_CmpIecTaskiectaskgetfirst  TRUE
+	#define EXP_CmpIecTaskiectaskgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetfirst", (RTS_UINTPTR)iectaskgetfirst, 1, RTSITF_GET_SIGNATURE(0, 0xD65D1BF9), 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskgetfirst
+	#define EXT_iectaskgetfirst
+	#define GET_iectaskgetfirst(fl)  CAL_CMGETAPI( "iectaskgetfirst" ) 
+	#define CAL_iectaskgetfirst  iectaskgetfirst
+	#define CHK_iectaskgetfirst  TRUE
+	#define EXP_iectaskgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetfirst", (RTS_UINTPTR)iectaskgetfirst, 1, RTSITF_GET_SIGNATURE(0, 0xD65D1BF9), 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskgetfirst  PFIECTASKGETFIRST_IEC pfiectaskgetfirst;
+	#define EXT_iectaskgetfirst  extern PFIECTASKGETFIRST_IEC pfiectaskgetfirst;
+	#define GET_iectaskgetfirst(fl)  s_pfCMGetAPI2( "iectaskgetfirst", (RTS_VOID_FCTPTR *)&pfiectaskgetfirst, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xD65D1BF9), 0x03050800)
+	#define CAL_iectaskgetfirst  pfiectaskgetfirst
+	#define CHK_iectaskgetfirst  (pfiectaskgetfirst != NULL)
+	#define EXP_iectaskgetfirst   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetfirst", (RTS_UINTPTR)iectaskgetfirst, 1, RTSITF_GET_SIGNATURE(0, 0xD65D1BF9), 0x03050800) 
+#endif
+
+
+/**
+ * OBSOLETE FUNCTION
+ */
+typedef struct tagiectaskgetinfo2_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
+	Task_Info *IecTaskGetInfo2;			/* VAR_OUTPUT */	
+} iectaskgetinfo2_struct;
+
+void CDECL CDECL_EXT iectaskgetinfo2(iectaskgetinfo2_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKGETINFO2_IEC) (iectaskgetinfo2_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKGETINFO2_NOTIMPLEMENTED)
+	#define USE_iectaskgetinfo2
+	#define EXT_iectaskgetinfo2
+	#define GET_iectaskgetinfo2(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskgetinfo2(p0) 
+	#define CHK_iectaskgetinfo2  FALSE
+	#define EXP_iectaskgetinfo2  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskgetinfo2
+	#define EXT_iectaskgetinfo2
+	#define GET_iectaskgetinfo2(fl)  CAL_CMGETAPI( "iectaskgetinfo2" ) 
+	#define CAL_iectaskgetinfo2  iectaskgetinfo2
+	#define CHK_iectaskgetinfo2  TRUE
+	#define EXP_iectaskgetinfo2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetinfo2", (RTS_UINTPTR)iectaskgetinfo2, 1, RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6), 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskgetinfo2
+	#define EXT_iectaskgetinfo2
+	#define GET_iectaskgetinfo2(fl)  CAL_CMGETAPI( "iectaskgetinfo2" ) 
+	#define CAL_iectaskgetinfo2  iectaskgetinfo2
+	#define CHK_iectaskgetinfo2  TRUE
+	#define EXP_iectaskgetinfo2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetinfo2", (RTS_UINTPTR)iectaskgetinfo2, 1, RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6), 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskgetinfo2
+	#define EXT_CmpIecTaskiectaskgetinfo2
+	#define GET_CmpIecTaskiectaskgetinfo2  ERR_OK
+	#define CAL_CmpIecTaskiectaskgetinfo2  iectaskgetinfo2
+	#define CHK_CmpIecTaskiectaskgetinfo2  TRUE
+	#define EXP_CmpIecTaskiectaskgetinfo2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetinfo2", (RTS_UINTPTR)iectaskgetinfo2, 1, RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6), 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskgetinfo2
+	#define EXT_iectaskgetinfo2
+	#define GET_iectaskgetinfo2(fl)  CAL_CMGETAPI( "iectaskgetinfo2" ) 
+	#define CAL_iectaskgetinfo2  iectaskgetinfo2
+	#define CHK_iectaskgetinfo2  TRUE
+	#define EXP_iectaskgetinfo2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetinfo2", (RTS_UINTPTR)iectaskgetinfo2, 1, RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6), 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskgetinfo2  PFIECTASKGETINFO2_IEC pfiectaskgetinfo2;
+	#define EXT_iectaskgetinfo2  extern PFIECTASKGETINFO2_IEC pfiectaskgetinfo2;
+	#define GET_iectaskgetinfo2(fl)  s_pfCMGetAPI2( "iectaskgetinfo2", (RTS_VOID_FCTPTR *)&pfiectaskgetinfo2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6), 0x03050800)
+	#define CAL_iectaskgetinfo2  pfiectaskgetinfo2
+	#define CHK_iectaskgetinfo2  (pfiectaskgetinfo2 != NULL)
+	#define EXP_iectaskgetinfo2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetinfo2", (RTS_UINTPTR)iectaskgetinfo2, 1, RTSITF_GET_SIGNATURE(0, 0x2A6E9BE6), 0x03050800) 
+#endif
+
+
+/**
+ * Get the first IEC task in the specified application
+ * :return: Returns the andle to the first IEC task 
+ */
+typedef struct tagiectaskgetnext_struct
+{
+	RTS_IEC_STRING *pszAppName;			/* VAR_INPUT */	/* Application name */
+	RTS_IEC_HANDLE hPrevIecTask;		/* VAR_INPUT */	/* Handle to the previous task */
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer that returns the runtime system error code (see CmpErrors.library) */
+	RTS_IEC_HANDLE IecTaskGetNext;		/* VAR_OUTPUT */	
+} iectaskgetnext_struct;
+
+void CDECL CDECL_EXT iectaskgetnext(iectaskgetnext_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKGETNEXT_IEC) (iectaskgetnext_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKGETNEXT_NOTIMPLEMENTED)
+	#define USE_iectaskgetnext
+	#define EXT_iectaskgetnext
+	#define GET_iectaskgetnext(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskgetnext(p0) 
+	#define CHK_iectaskgetnext  FALSE
+	#define EXP_iectaskgetnext  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskgetnext
+	#define EXT_iectaskgetnext
+	#define GET_iectaskgetnext(fl)  CAL_CMGETAPI( "iectaskgetnext" ) 
+	#define CAL_iectaskgetnext  iectaskgetnext
+	#define CHK_iectaskgetnext  TRUE
+	#define EXP_iectaskgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetnext", (RTS_UINTPTR)iectaskgetnext, 1, RTSITF_GET_SIGNATURE(0, 0xC2306FF5), 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskgetnext
+	#define EXT_iectaskgetnext
+	#define GET_iectaskgetnext(fl)  CAL_CMGETAPI( "iectaskgetnext" ) 
+	#define CAL_iectaskgetnext  iectaskgetnext
+	#define CHK_iectaskgetnext  TRUE
+	#define EXP_iectaskgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetnext", (RTS_UINTPTR)iectaskgetnext, 1, RTSITF_GET_SIGNATURE(0, 0xC2306FF5), 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskgetnext
+	#define EXT_CmpIecTaskiectaskgetnext
+	#define GET_CmpIecTaskiectaskgetnext  ERR_OK
+	#define CAL_CmpIecTaskiectaskgetnext  iectaskgetnext
+	#define CHK_CmpIecTaskiectaskgetnext  TRUE
+	#define EXP_CmpIecTaskiectaskgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetnext", (RTS_UINTPTR)iectaskgetnext, 1, RTSITF_GET_SIGNATURE(0, 0xC2306FF5), 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskgetnext
+	#define EXT_iectaskgetnext
+	#define GET_iectaskgetnext(fl)  CAL_CMGETAPI( "iectaskgetnext" ) 
+	#define CAL_iectaskgetnext  iectaskgetnext
+	#define CHK_iectaskgetnext  TRUE
+	#define EXP_iectaskgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetnext", (RTS_UINTPTR)iectaskgetnext, 1, RTSITF_GET_SIGNATURE(0, 0xC2306FF5), 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskgetnext  PFIECTASKGETNEXT_IEC pfiectaskgetnext;
+	#define EXT_iectaskgetnext  extern PFIECTASKGETNEXT_IEC pfiectaskgetnext;
+	#define GET_iectaskgetnext(fl)  s_pfCMGetAPI2( "iectaskgetnext", (RTS_VOID_FCTPTR *)&pfiectaskgetnext, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xC2306FF5), 0x03050800)
+	#define CAL_iectaskgetnext  pfiectaskgetnext
+	#define CHK_iectaskgetnext  (pfiectaskgetnext != NULL)
+	#define EXP_iectaskgetnext   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetnext", (RTS_UINTPTR)iectaskgetnext, 1, RTSITF_GET_SIGNATURE(0, 0xC2306FF5), 0x03050800) 
+#endif
+
+
+/**
+ * <description>iectaskgetprofiling</description>
+ */
+typedef struct tagiectaskgetprofiling_struct
+{
+	RTS_IEC_BOOL IecTaskGetProfiling;	/* VAR_OUTPUT */	
+} iectaskgetprofiling_struct;
+
+void CDECL CDECL_EXT iectaskgetprofiling(iectaskgetprofiling_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKGETPROFILING_IEC) (iectaskgetprofiling_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKGETPROFILING_NOTIMPLEMENTED)
+	#define USE_iectaskgetprofiling
+	#define EXT_iectaskgetprofiling
+	#define GET_iectaskgetprofiling(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskgetprofiling(p0) 
+	#define CHK_iectaskgetprofiling  FALSE
+	#define EXP_iectaskgetprofiling  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskgetprofiling
+	#define EXT_iectaskgetprofiling
+	#define GET_iectaskgetprofiling(fl)  CAL_CMGETAPI( "iectaskgetprofiling" ) 
+	#define CAL_iectaskgetprofiling  iectaskgetprofiling
+	#define CHK_iectaskgetprofiling  TRUE
+	#define EXP_iectaskgetprofiling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetprofiling", (RTS_UINTPTR)iectaskgetprofiling, 1, RTSITF_GET_SIGNATURE(0, 0x217F24B2), 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskgetprofiling
+	#define EXT_iectaskgetprofiling
+	#define GET_iectaskgetprofiling(fl)  CAL_CMGETAPI( "iectaskgetprofiling" ) 
+	#define CAL_iectaskgetprofiling  iectaskgetprofiling
+	#define CHK_iectaskgetprofiling  TRUE
+	#define EXP_iectaskgetprofiling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetprofiling", (RTS_UINTPTR)iectaskgetprofiling, 1, RTSITF_GET_SIGNATURE(0, 0x217F24B2), 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskgetprofiling
+	#define EXT_CmpIecTaskiectaskgetprofiling
+	#define GET_CmpIecTaskiectaskgetprofiling  ERR_OK
+	#define CAL_CmpIecTaskiectaskgetprofiling  iectaskgetprofiling
+	#define CHK_CmpIecTaskiectaskgetprofiling  TRUE
+	#define EXP_CmpIecTaskiectaskgetprofiling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetprofiling", (RTS_UINTPTR)iectaskgetprofiling, 1, RTSITF_GET_SIGNATURE(0, 0x217F24B2), 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskgetprofiling
+	#define EXT_iectaskgetprofiling
+	#define GET_iectaskgetprofiling(fl)  CAL_CMGETAPI( "iectaskgetprofiling" ) 
+	#define CAL_iectaskgetprofiling  iectaskgetprofiling
+	#define CHK_iectaskgetprofiling  TRUE
+	#define EXP_iectaskgetprofiling  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetprofiling", (RTS_UINTPTR)iectaskgetprofiling, 1, RTSITF_GET_SIGNATURE(0, 0x217F24B2), 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskgetprofiling  PFIECTASKGETPROFILING_IEC pfiectaskgetprofiling;
+	#define EXT_iectaskgetprofiling  extern PFIECTASKGETPROFILING_IEC pfiectaskgetprofiling;
+	#define GET_iectaskgetprofiling(fl)  s_pfCMGetAPI2( "iectaskgetprofiling", (RTS_VOID_FCTPTR *)&pfiectaskgetprofiling, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x217F24B2), 0x03050800)
+	#define CAL_iectaskgetprofiling  pfiectaskgetprofiling
+	#define CHK_iectaskgetprofiling  (pfiectaskgetprofiling != NULL)
+	#define EXP_iectaskgetprofiling   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskgetprofiling", (RTS_UINTPTR)iectaskgetprofiling, 1, RTSITF_GET_SIGNATURE(0, 0x217F24B2), 0x03050800) 
+#endif
+
+
+/**
+ * Reload a specified IEC task. Reload means here: Delete the task at the actual position and create it newly.
+ * :return: Handle to the new created task
+ */
+typedef struct tagiectaskreload_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle to the task to reload */
+	RTS_IEC_UDINT udiTimeoutMs;			/* VAR_INPUT */	/* Timeout in milliseconds to wait, until the task deleted itself. Timeout can be one of the following predefined values:
+     + RTS_TIMEOUT_DEFAULT: Default timeout to delete the task
+     + RTS_TIMEOUT_NO_WAIT: Immediate deletion of the task
+     See Timeouts details. */
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to error code */
+	RTS_IEC_HANDLE IecTaskReload;		/* VAR_OUTPUT */	
+} iectaskreload_struct;
+
+void CDECL CDECL_EXT iectaskreload(iectaskreload_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKRELOAD_IEC) (iectaskreload_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKRELOAD_NOTIMPLEMENTED)
+	#define USE_iectaskreload
+	#define EXT_iectaskreload
+	#define GET_iectaskreload(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskreload(p0) 
+	#define CHK_iectaskreload  FALSE
+	#define EXP_iectaskreload  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskreload
+	#define EXT_iectaskreload
+	#define GET_iectaskreload(fl)  CAL_CMGETAPI( "iectaskreload" ) 
+	#define CAL_iectaskreload  iectaskreload
+	#define CHK_iectaskreload  TRUE
+	#define EXP_iectaskreload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskreload", (RTS_UINTPTR)iectaskreload, 1, 0x796FC828, 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskreload
+	#define EXT_iectaskreload
+	#define GET_iectaskreload(fl)  CAL_CMGETAPI( "iectaskreload" ) 
+	#define CAL_iectaskreload  iectaskreload
+	#define CHK_iectaskreload  TRUE
+	#define EXP_iectaskreload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskreload", (RTS_UINTPTR)iectaskreload, 1, 0x796FC828, 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskreload
+	#define EXT_CmpIecTaskiectaskreload
+	#define GET_CmpIecTaskiectaskreload  ERR_OK
+	#define CAL_CmpIecTaskiectaskreload  iectaskreload
+	#define CHK_CmpIecTaskiectaskreload  TRUE
+	#define EXP_CmpIecTaskiectaskreload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskreload", (RTS_UINTPTR)iectaskreload, 1, 0x796FC828, 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskreload
+	#define EXT_iectaskreload
+	#define GET_iectaskreload(fl)  CAL_CMGETAPI( "iectaskreload" ) 
+	#define CAL_iectaskreload  iectaskreload
+	#define CHK_iectaskreload  TRUE
+	#define EXP_iectaskreload  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskreload", (RTS_UINTPTR)iectaskreload, 1, 0x796FC828, 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskreload  PFIECTASKRELOAD_IEC pfiectaskreload;
+	#define EXT_iectaskreload  extern PFIECTASKRELOAD_IEC pfiectaskreload;
+	#define GET_iectaskreload(fl)  s_pfCMGetAPI2( "iectaskreload", (RTS_VOID_FCTPTR *)&pfiectaskreload, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x796FC828, 0x03050800)
+	#define CAL_iectaskreload  pfiectaskreload
+	#define CHK_iectaskreload  (pfiectaskreload != NULL)
+	#define EXP_iectaskreload   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskreload", (RTS_UINTPTR)iectaskreload, 1, 0x796FC828, 0x03050800) 
+#endif
+
+
+/**
+ * Reset the task statistics of a task (see Task_Info member e.g. dwCycleTime, dwAverageCycleTime, etc.)
+ * :return: Returns the runtime system error code (see CmpErrors.library)
+ */
+typedef struct tagiectaskresetstatistics_struct
+{
+	RTS_IEC_HANDLE hIecTask;			/* VAR_INPUT */	/* Handle of the task */
+	RTS_IEC_RESULT IecTaskResetStatistics;	/* VAR_OUTPUT */	
+} iectaskresetstatistics_struct;
+
+void CDECL CDECL_EXT iectaskresetstatistics(iectaskresetstatistics_struct *p);
+typedef void (CDECL CDECL_EXT* PFIECTASKRESETSTATISTICS_IEC) (iectaskresetstatistics_struct *p);
+#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKRESETSTATISTICS_NOTIMPLEMENTED)
+	#define USE_iectaskresetstatistics
+	#define EXT_iectaskresetstatistics
+	#define GET_iectaskresetstatistics(fl)  ERR_NOTIMPLEMENTED
+	#define CAL_iectaskresetstatistics(p0) 
+	#define CHK_iectaskresetstatistics  FALSE
+	#define EXP_iectaskresetstatistics  ERR_OK
+#elif defined(STATIC_LINK)
+	#define USE_iectaskresetstatistics
+	#define EXT_iectaskresetstatistics
+	#define GET_iectaskresetstatistics(fl)  CAL_CMGETAPI( "iectaskresetstatistics" ) 
+	#define CAL_iectaskresetstatistics  iectaskresetstatistics
+	#define CHK_iectaskresetstatistics  TRUE
+	#define EXP_iectaskresetstatistics  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskresetstatistics", (RTS_UINTPTR)iectaskresetstatistics, 1, 0x6291DC5B, 0x03050800) 
+#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
+	#define USE_iectaskresetstatistics
+	#define EXT_iectaskresetstatistics
+	#define GET_iectaskresetstatistics(fl)  CAL_CMGETAPI( "iectaskresetstatistics" ) 
+	#define CAL_iectaskresetstatistics  iectaskresetstatistics
+	#define CHK_iectaskresetstatistics  TRUE
+	#define EXP_iectaskresetstatistics  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskresetstatistics", (RTS_UINTPTR)iectaskresetstatistics, 1, 0x6291DC5B, 0x03050800) 
+#elif defined(CPLUSPLUS_ONLY)
+	#define USE_CmpIecTaskiectaskresetstatistics
+	#define EXT_CmpIecTaskiectaskresetstatistics
+	#define GET_CmpIecTaskiectaskresetstatistics  ERR_OK
+	#define CAL_CmpIecTaskiectaskresetstatistics  iectaskresetstatistics
+	#define CHK_CmpIecTaskiectaskresetstatistics  TRUE
+	#define EXP_CmpIecTaskiectaskresetstatistics  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskresetstatistics", (RTS_UINTPTR)iectaskresetstatistics, 1, 0x6291DC5B, 0x03050800) 
+#elif defined(CPLUSPLUS)
+	#define USE_iectaskresetstatistics
+	#define EXT_iectaskresetstatistics
+	#define GET_iectaskresetstatistics(fl)  CAL_CMGETAPI( "iectaskresetstatistics" ) 
+	#define CAL_iectaskresetstatistics  iectaskresetstatistics
+	#define CHK_iectaskresetstatistics  TRUE
+	#define EXP_iectaskresetstatistics  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskresetstatistics", (RTS_UINTPTR)iectaskresetstatistics, 1, 0x6291DC5B, 0x03050800) 
+#else /* DYNAMIC_LINK */
+	#define USE_iectaskresetstatistics  PFIECTASKRESETSTATISTICS_IEC pfiectaskresetstatistics;
+	#define EXT_iectaskresetstatistics  extern PFIECTASKRESETSTATISTICS_IEC pfiectaskresetstatistics;
+	#define GET_iectaskresetstatistics(fl)  s_pfCMGetAPI2( "iectaskresetstatistics", (RTS_VOID_FCTPTR *)&pfiectaskresetstatistics, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6291DC5B, 0x03050800)
+	#define CAL_iectaskresetstatistics  pfiectaskresetstatistics
+	#define CHK_iectaskresetstatistics  (pfiectaskresetstatistics != NULL)
+	#define EXP_iectaskresetstatistics   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"iectaskresetstatistics", (RTS_UINTPTR)iectaskresetstatistics, 1, 0x6291DC5B, 0x03050800) 
+#endif
+
+
+#ifdef __cplusplus
+}
+#endif
+
+/** EXTERN LIB SECTION END **/
 							  
 
 #ifdef __cplusplus
@@ -1938,7 +1653,7 @@ extern "C" {
  * <p>The Task registers itself at the scheduler, by calling the function
  * SchedAddTask().</p>
  * <p>When the define RTS_COMPACT is set, no semaphores are used.</p>
- * <p>When the define RTS_SIL2 is set, no dynamic memory allocation and no core binding is used.</p>
+ * <p>When the define RTS_SIL2 is set, no dynamic memory allocation is used.</p>
  * </description>
  * <param name="pApp" type="IN" range="[NULL,VALID_APPLICATION]">Pointer to application that contains the task</param>
  * <parampseudo name="pApp.iId" type="IN" range="[0..APPL_NUM_OF_STATIC_APPLS-1,APPL_NUM_OF_STATIC_APPLS..INT_MAX]">Application ID</parampseudo>
@@ -1951,7 +1666,6 @@ extern "C" {
  * <errorcode name="pResult" type="ERR_PARAMETER">Invalid application- or task info pointer</errorcode>
  * <errorcode name="pResult" type="ERR_OUT_OF_LIMITS">Maximum number of Tasks reached (target specific)</errorcode>
  * <errorcode name="pResult" type="ERR_NOMEMORY">Unable to allocate the memory, that is necessary for the task description</errorcode>
- * <errorcode name="pResult" type="ERR_LICENSE_MISSING">License for core binding is missing</errorcode>
  */
 RTS_HANDLE CDECL IecTaskCreate(APPLICATION *pApp, Task_Info *pTaskInfo, RTS_RESULT *pResult);
 typedef RTS_HANDLE (CDECL * PFIECTASKCREATE) (APPLICATION *pApp, Task_Info *pTaskInfo, RTS_RESULT *pResult);
@@ -2034,14 +1748,14 @@ typedef RTS_RESULT (CDECL * PFIECTASKDELETE) (RTS_HANDLE hIecTask);
 	#define USE_CmpIecTaskIecTaskDelete
 	#define EXT_CmpIecTaskIecTaskDelete
 	#define GET_CmpIecTaskIecTaskDelete  ERR_OK
-	#define CAL_CmpIecTaskIecTaskDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ICmpIecTask*)p0)->IIecTaskDelete())
+	#define CAL_CmpIecTaskIecTaskDelete(p0) ((ICmpIecTask*)p0)->IIecTaskDelete()
 	#define CHK_CmpIecTaskIecTaskDelete  TRUE
 	#define EXP_CmpIecTaskIecTaskDelete  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_IecTaskDelete
 	#define EXT_IecTaskDelete
 	#define GET_IecTaskDelete(fl)  CAL_CMGETAPI( "IecTaskDelete" ) 
-	#define CAL_IecTaskDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ICmpIecTask*)p0)->IIecTaskDelete())
+	#define CAL_IecTaskDelete(p0) ((ICmpIecTask*)p0)->IIecTaskDelete()
 	#define CHK_IecTaskDelete  TRUE
 	#define EXP_IecTaskDelete  CAL_CMEXPAPI( "IecTaskDelete" ) 
 #else /* DYNAMIC_LINK */
@@ -2094,14 +1808,14 @@ typedef RTS_RESULT (CDECL * PFIECTASKDELETE2) (RTS_HANDLE hIecTask, RTS_UI32 ulT
 	#define USE_CmpIecTaskIecTaskDelete2
 	#define EXT_CmpIecTaskIecTaskDelete2
 	#define GET_CmpIecTaskIecTaskDelete2  ERR_OK
-	#define CAL_CmpIecTaskIecTaskDelete2(p0,p1) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ICmpIecTask*)p0)->IIecTaskDelete2(p1))
+	#define CAL_CmpIecTaskIecTaskDelete2(p0,p1) ((ICmpIecTask*)p0)->IIecTaskDelete2(p1)
 	#define CHK_CmpIecTaskIecTaskDelete2  TRUE
 	#define EXP_CmpIecTaskIecTaskDelete2  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_IecTaskDelete2
 	#define EXT_IecTaskDelete2
 	#define GET_IecTaskDelete2(fl)  CAL_CMGETAPI( "IecTaskDelete2" ) 
-	#define CAL_IecTaskDelete2(p0,p1) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ICmpIecTask*)p0)->IIecTaskDelete2(p1))
+	#define CAL_IecTaskDelete2(p0,p1) ((ICmpIecTask*)p0)->IIecTaskDelete2(p1)
 	#define CHK_IecTaskDelete2  TRUE
 	#define EXP_IecTaskDelete2  CAL_CMEXPAPI( "IecTaskDelete2" ) 
 #else /* DYNAMIC_LINK */
@@ -2578,63 +2292,6 @@ typedef RTS_RESULT (CDECL * PFIECTASKSRESETDONE) (APPLICATION *pApp, int bResetO
 
 
 /**
- * <description>Get the calculated timeout to wait for stop for specified application</description>
- * <param name="pApp" type="IN">Pointer to specified application</param>
- * <param name="pResult" type="OUT">Result of operation</param>
- * <errorcode name="pResult" type="ERR_OK">Timeout has been calculated successfully</errorcode>
- * <errorcode name="pResult" type="ERR_PARAMETER">Application is not valid</errorcode>
- * <result>calculated timeout</result>
- */
-RTS_UI32 CDECL IecTaskGetWaitForStopTimeout(APPLICATION *pApp, RTS_RESULT *pResult);
-typedef RTS_UI32 (CDECL * PFIECTASKGETWAITFORSTOPTIMEOUT) (APPLICATION *pApp, RTS_RESULT *pResult);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKGETWAITFORSTOPTIMEOUT_NOTIMPLEMENTED)
-	#define USE_IecTaskGetWaitForStopTimeout
-	#define EXT_IecTaskGetWaitForStopTimeout
-	#define GET_IecTaskGetWaitForStopTimeout(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_IecTaskGetWaitForStopTimeout(p0,p1)  (RTS_UI32)ERR_NOTIMPLEMENTED
-	#define CHK_IecTaskGetWaitForStopTimeout  FALSE
-	#define EXP_IecTaskGetWaitForStopTimeout  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_IecTaskGetWaitForStopTimeout
-	#define EXT_IecTaskGetWaitForStopTimeout
-	#define GET_IecTaskGetWaitForStopTimeout(fl)  CAL_CMGETAPI( "IecTaskGetWaitForStopTimeout" ) 
-	#define CAL_IecTaskGetWaitForStopTimeout  IecTaskGetWaitForStopTimeout
-	#define CHK_IecTaskGetWaitForStopTimeout  TRUE
-	#define EXP_IecTaskGetWaitForStopTimeout  CAL_CMEXPAPI( "IecTaskGetWaitForStopTimeout" ) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_IecTaskGetWaitForStopTimeout
-	#define EXT_IecTaskGetWaitForStopTimeout
-	#define GET_IecTaskGetWaitForStopTimeout(fl)  CAL_CMGETAPI( "IecTaskGetWaitForStopTimeout" ) 
-	#define CAL_IecTaskGetWaitForStopTimeout  IecTaskGetWaitForStopTimeout
-	#define CHK_IecTaskGetWaitForStopTimeout  TRUE
-	#define EXP_IecTaskGetWaitForStopTimeout  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"IecTaskGetWaitForStopTimeout", (RTS_UINTPTR)IecTaskGetWaitForStopTimeout, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskIecTaskGetWaitForStopTimeout
-	#define EXT_CmpIecTaskIecTaskGetWaitForStopTimeout
-	#define GET_CmpIecTaskIecTaskGetWaitForStopTimeout  ERR_OK
-	#define CAL_CmpIecTaskIecTaskGetWaitForStopTimeout pICmpIecTask->IIecTaskGetWaitForStopTimeout
-	#define CHK_CmpIecTaskIecTaskGetWaitForStopTimeout (pICmpIecTask != NULL)
-	#define EXP_CmpIecTaskIecTaskGetWaitForStopTimeout  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_IecTaskGetWaitForStopTimeout
-	#define EXT_IecTaskGetWaitForStopTimeout
-	#define GET_IecTaskGetWaitForStopTimeout(fl)  CAL_CMGETAPI( "IecTaskGetWaitForStopTimeout" ) 
-	#define CAL_IecTaskGetWaitForStopTimeout pICmpIecTask->IIecTaskGetWaitForStopTimeout
-	#define CHK_IecTaskGetWaitForStopTimeout (pICmpIecTask != NULL)
-	#define EXP_IecTaskGetWaitForStopTimeout  CAL_CMEXPAPI( "IecTaskGetWaitForStopTimeout" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_IecTaskGetWaitForStopTimeout  PFIECTASKGETWAITFORSTOPTIMEOUT pfIecTaskGetWaitForStopTimeout;
-	#define EXT_IecTaskGetWaitForStopTimeout  extern PFIECTASKGETWAITFORSTOPTIMEOUT pfIecTaskGetWaitForStopTimeout;
-	#define GET_IecTaskGetWaitForStopTimeout(fl)  s_pfCMGetAPI2( "IecTaskGetWaitForStopTimeout", (RTS_VOID_FCTPTR *)&pfIecTaskGetWaitForStopTimeout, (fl), 0, 0)
-	#define CAL_IecTaskGetWaitForStopTimeout  pfIecTaskGetWaitForStopTimeout
-	#define CHK_IecTaskGetWaitForStopTimeout  (pfIecTaskGetWaitForStopTimeout != NULL)
-	#define EXP_IecTaskGetWaitForStopTimeout  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"IecTaskGetWaitForStopTimeout", (RTS_UINTPTR)IecTaskGetWaitForStopTimeout, 0, 0) 
-#endif
-
-
-
-
-/**
  * <description>Wait, if all Iec-Tasks has recognized the stop status of the application</description>
  * <param name="pApp" type="IN">Pointer to specified application</param>
  * <param name="ulTimeoutMs" type="IN">Timeout in milliseconds to wait for stop.
@@ -2645,7 +2302,7 @@ typedef RTS_UI32 (CDECL * PFIECTASKGETWAITFORSTOPTIMEOUT) (APPLICATION *pApp, RT
  *		<li>RTS_TIMEOUT_NO_WAIT: No wait</li>
  *	</ul>
  * </param>
- * <param name="ulStopReason" type="IN">See corresponding category "Stop reason" in CmpAppItf.h and additionally "Stop reason option" in this file.</param>
+ * <param name="ulStopReason" type="IN">Stop reason. See corresponding category in CmpAppItf.h</param>
  * <result>Error code</result>
  */
 RTS_RESULT CDECL IecTasksWaitForStop(APPLICATION *pApp, RTS_UI32 ulTimeoutMs, unsigned long ulStopReason);
@@ -2862,7 +2519,7 @@ typedef RTS_RESULT (CDECL * PFIECTASKLEAVEEXCLUSIVESECTION) (void);
 
 
 /**
- * <description>Enter an exclusive section.
+ * <description>Enter an exolusive section.
  *	After this call, no IEC task will be rescheduled of the specified application, if it is not already running.
  *	Each call must be matched with a call to TaskLeaveExclusiveSection.
  * </description>
@@ -2918,67 +2575,7 @@ typedef RTS_RESULT (CDECL * PFIECTASKENTEREXCLUSIVESECTION2) (APPLICATION *pApp)
 
 
 /**
- * <description>Try to enter an exclusive section.
- *	If the exclusive section can not be entered within the specified timeout, it depends on the bForceEnter flag what happens:
- *	- FALSE: ERR_FAILED is returned.
- *	- TRUE: Other tasks belonging to that application are successively suspended and their lock is released, while the try to enter the exclusive section is repeated.
- *	Each call must be matched with a call to TaskLeaveExclusiveSection.
- * </description>
- * <errorcode name="RTS_RESULT" type="ERR_OK">The exclusive section could be entered successfully</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">The exclusive section could not be entered.</errorcode>
- * <result>Error code</result>
- */
-RTS_RESULT CDECL IecTaskTryEnterExclusiveSection2(APPLICATION *pApp, RTS_UI32 timeoutMs, RTS_BOOL bForceEnter);
-typedef RTS_RESULT (CDECL * PFIECTASKTRYENTEREXCLUSIVESECTION2) (APPLICATION *pApp, RTS_UI32 timeoutMs, RTS_BOOL bForceEnter);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKTRYENTEREXCLUSIVESECTION2_NOTIMPLEMENTED)
-	#define USE_IecTaskTryEnterExclusiveSection2
-	#define EXT_IecTaskTryEnterExclusiveSection2
-	#define GET_IecTaskTryEnterExclusiveSection2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_IecTaskTryEnterExclusiveSection2(p0,p1,p2)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_IecTaskTryEnterExclusiveSection2  FALSE
-	#define EXP_IecTaskTryEnterExclusiveSection2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_IecTaskTryEnterExclusiveSection2
-	#define EXT_IecTaskTryEnterExclusiveSection2
-	#define GET_IecTaskTryEnterExclusiveSection2(fl)  CAL_CMGETAPI( "IecTaskTryEnterExclusiveSection2" ) 
-	#define CAL_IecTaskTryEnterExclusiveSection2  IecTaskTryEnterExclusiveSection2
-	#define CHK_IecTaskTryEnterExclusiveSection2  TRUE
-	#define EXP_IecTaskTryEnterExclusiveSection2  CAL_CMEXPAPI( "IecTaskTryEnterExclusiveSection2" ) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_IecTaskTryEnterExclusiveSection2
-	#define EXT_IecTaskTryEnterExclusiveSection2
-	#define GET_IecTaskTryEnterExclusiveSection2(fl)  CAL_CMGETAPI( "IecTaskTryEnterExclusiveSection2" ) 
-	#define CAL_IecTaskTryEnterExclusiveSection2  IecTaskTryEnterExclusiveSection2
-	#define CHK_IecTaskTryEnterExclusiveSection2  TRUE
-	#define EXP_IecTaskTryEnterExclusiveSection2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"IecTaskTryEnterExclusiveSection2", (RTS_UINTPTR)IecTaskTryEnterExclusiveSection2, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskIecTaskTryEnterExclusiveSection2
-	#define EXT_CmpIecTaskIecTaskTryEnterExclusiveSection2
-	#define GET_CmpIecTaskIecTaskTryEnterExclusiveSection2  ERR_OK
-	#define CAL_CmpIecTaskIecTaskTryEnterExclusiveSection2 pICmpIecTask->IIecTaskTryEnterExclusiveSection2
-	#define CHK_CmpIecTaskIecTaskTryEnterExclusiveSection2 (pICmpIecTask != NULL)
-	#define EXP_CmpIecTaskIecTaskTryEnterExclusiveSection2  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_IecTaskTryEnterExclusiveSection2
-	#define EXT_IecTaskTryEnterExclusiveSection2
-	#define GET_IecTaskTryEnterExclusiveSection2(fl)  CAL_CMGETAPI( "IecTaskTryEnterExclusiveSection2" ) 
-	#define CAL_IecTaskTryEnterExclusiveSection2 pICmpIecTask->IIecTaskTryEnterExclusiveSection2
-	#define CHK_IecTaskTryEnterExclusiveSection2 (pICmpIecTask != NULL)
-	#define EXP_IecTaskTryEnterExclusiveSection2  CAL_CMEXPAPI( "IecTaskTryEnterExclusiveSection2" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_IecTaskTryEnterExclusiveSection2  PFIECTASKTRYENTEREXCLUSIVESECTION2 pfIecTaskTryEnterExclusiveSection2;
-	#define EXT_IecTaskTryEnterExclusiveSection2  extern PFIECTASKTRYENTEREXCLUSIVESECTION2 pfIecTaskTryEnterExclusiveSection2;
-	#define GET_IecTaskTryEnterExclusiveSection2(fl)  s_pfCMGetAPI2( "IecTaskTryEnterExclusiveSection2", (RTS_VOID_FCTPTR *)&pfIecTaskTryEnterExclusiveSection2, (fl), 0, 0)
-	#define CAL_IecTaskTryEnterExclusiveSection2  pfIecTaskTryEnterExclusiveSection2
-	#define CHK_IecTaskTryEnterExclusiveSection2  (pfIecTaskTryEnterExclusiveSection2 != NULL)
-	#define EXP_IecTaskTryEnterExclusiveSection2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"IecTaskTryEnterExclusiveSection2", (RTS_UINTPTR)IecTaskTryEnterExclusiveSection2, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>Leave an exclusive section of the specified application, that has been entered by TaskEnterExclusiveSection or IecTaskTryEnterExclusiveSection2</description>
+ * <description>Leave an exclusive section of the specified application, that has been entered by TaskEnterExclusiveSection</description>
  * <result>Error code</result>
  */
 RTS_RESULT CDECL IecTaskLeaveExclusiveSection2(APPLICATION *pApp);
@@ -5420,195 +5017,6 @@ typedef RTS_RESULT (CDECL * PFIECTASKRESETSTATISTICS) (RTS_HANDLE hIecTask);
 
 
 
-/**
- * <description>Is called entering the debug handler, if an IEC task is halted on a breakpoint</description>
- * <param name="hIecTask" type="IN">Handle to the task, which enters the debug handler</param>
- * <result>Error code</result>
- */
-RTS_RESULT CDECL IecTaskDebugHandlerEnter(RTS_HANDLE hIecTask);
-typedef RTS_RESULT (CDECL * PFIECTASKDEBUGHANDLERENTER) (RTS_HANDLE hIecTask);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKDEBUGHANDLERENTER_NOTIMPLEMENTED)
-	#define USE_IecTaskDebugHandlerEnter
-	#define EXT_IecTaskDebugHandlerEnter
-	#define GET_IecTaskDebugHandlerEnter(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_IecTaskDebugHandlerEnter(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_IecTaskDebugHandlerEnter  FALSE
-	#define EXP_IecTaskDebugHandlerEnter  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_IecTaskDebugHandlerEnter
-	#define EXT_IecTaskDebugHandlerEnter
-	#define GET_IecTaskDebugHandlerEnter(fl)  CAL_CMGETAPI( "IecTaskDebugHandlerEnter" ) 
-	#define CAL_IecTaskDebugHandlerEnter  IecTaskDebugHandlerEnter
-	#define CHK_IecTaskDebugHandlerEnter  TRUE
-	#define EXP_IecTaskDebugHandlerEnter  CAL_CMEXPAPI( "IecTaskDebugHandlerEnter" ) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_IecTaskDebugHandlerEnter
-	#define EXT_IecTaskDebugHandlerEnter
-	#define GET_IecTaskDebugHandlerEnter(fl)  CAL_CMGETAPI( "IecTaskDebugHandlerEnter" ) 
-	#define CAL_IecTaskDebugHandlerEnter  IecTaskDebugHandlerEnter
-	#define CHK_IecTaskDebugHandlerEnter  TRUE
-	#define EXP_IecTaskDebugHandlerEnter  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"IecTaskDebugHandlerEnter", (RTS_UINTPTR)IecTaskDebugHandlerEnter, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskIecTaskDebugHandlerEnter
-	#define EXT_CmpIecTaskIecTaskDebugHandlerEnter
-	#define GET_CmpIecTaskIecTaskDebugHandlerEnter  ERR_OK
-	#define CAL_CmpIecTaskIecTaskDebugHandlerEnter(p0)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pICmpIecTask->IIecTaskDebugHandlerEnter() : ((ICmpIecTask*)p0)->IIecTaskDebugHandlerEnter())
-	#define CHK_CmpIecTaskIecTaskDebugHandlerEnter  (pICmpIecTask != NULL)
-	#define EXP_CmpIecTaskIecTaskDebugHandlerEnter  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_IecTaskDebugHandlerEnter
-	#define EXT_IecTaskDebugHandlerEnter
-	#define GET_IecTaskDebugHandlerEnter(fl)  CAL_CMGETAPI( "IecTaskDebugHandlerEnter" ) 
-	#define CAL_IecTaskDebugHandlerEnter(p0)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pICmpIecTask->IIecTaskDebugHandlerEnter() : ((ICmpIecTask*)p0)->IIecTaskDebugHandlerEnter())
-	#define CHK_IecTaskDebugHandlerEnter  (pICmpIecTask != NULL)
-	#define EXP_IecTaskDebugHandlerEnter  CAL_CMEXPAPI( "IecTaskDebugHandlerEnter" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_IecTaskDebugHandlerEnter  PFIECTASKDEBUGHANDLERENTER pfIecTaskDebugHandlerEnter;
-	#define EXT_IecTaskDebugHandlerEnter  extern PFIECTASKDEBUGHANDLERENTER pfIecTaskDebugHandlerEnter;
-	#define GET_IecTaskDebugHandlerEnter(fl)  s_pfCMGetAPI2( "IecTaskDebugHandlerEnter", (RTS_VOID_FCTPTR *)&pfIecTaskDebugHandlerEnter, (fl), 0, 0)
-	#define CAL_IecTaskDebugHandlerEnter  pfIecTaskDebugHandlerEnter
-	#define CHK_IecTaskDebugHandlerEnter  (pfIecTaskDebugHandlerEnter != NULL)
-	#define EXP_IecTaskDebugHandlerEnter  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"IecTaskDebugHandlerEnter", (RTS_UINTPTR)IecTaskDebugHandlerEnter, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>Is called leaving the debug handler, if an IEC task is leaving a breakpoint</description>
- * <param name="hIecTask" type="IN">Handle to the task, which leaves the debug handler</param>
- * <result>Error code</result>
- */
-RTS_RESULT CDECL IecTaskDebugHandlerLeave(RTS_HANDLE hIecTask);
-typedef RTS_RESULT (CDECL * PFIECTASKDEBUGHANDLERLEAVE) (RTS_HANDLE hIecTask);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKDEBUGHANDLERLEAVE_NOTIMPLEMENTED)
-	#define USE_IecTaskDebugHandlerLeave
-	#define EXT_IecTaskDebugHandlerLeave
-	#define GET_IecTaskDebugHandlerLeave(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_IecTaskDebugHandlerLeave(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_IecTaskDebugHandlerLeave  FALSE
-	#define EXP_IecTaskDebugHandlerLeave  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_IecTaskDebugHandlerLeave
-	#define EXT_IecTaskDebugHandlerLeave
-	#define GET_IecTaskDebugHandlerLeave(fl)  CAL_CMGETAPI( "IecTaskDebugHandlerLeave" ) 
-	#define CAL_IecTaskDebugHandlerLeave  IecTaskDebugHandlerLeave
-	#define CHK_IecTaskDebugHandlerLeave  TRUE
-	#define EXP_IecTaskDebugHandlerLeave  CAL_CMEXPAPI( "IecTaskDebugHandlerLeave" ) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_IecTaskDebugHandlerLeave
-	#define EXT_IecTaskDebugHandlerLeave
-	#define GET_IecTaskDebugHandlerLeave(fl)  CAL_CMGETAPI( "IecTaskDebugHandlerLeave" ) 
-	#define CAL_IecTaskDebugHandlerLeave  IecTaskDebugHandlerLeave
-	#define CHK_IecTaskDebugHandlerLeave  TRUE
-	#define EXP_IecTaskDebugHandlerLeave  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"IecTaskDebugHandlerLeave", (RTS_UINTPTR)IecTaskDebugHandlerLeave, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskIecTaskDebugHandlerLeave
-	#define EXT_CmpIecTaskIecTaskDebugHandlerLeave
-	#define GET_CmpIecTaskIecTaskDebugHandlerLeave  ERR_OK
-	#define CAL_CmpIecTaskIecTaskDebugHandlerLeave(p0)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pICmpIecTask->IIecTaskDebugHandlerLeave() : ((ICmpIecTask*)p0)->IIecTaskDebugHandlerLeave())
-	#define CHK_CmpIecTaskIecTaskDebugHandlerLeave  (pICmpIecTask != NULL)
-	#define EXP_CmpIecTaskIecTaskDebugHandlerLeave  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_IecTaskDebugHandlerLeave
-	#define EXT_IecTaskDebugHandlerLeave
-	#define GET_IecTaskDebugHandlerLeave(fl)  CAL_CMGETAPI( "IecTaskDebugHandlerLeave" ) 
-	#define CAL_IecTaskDebugHandlerLeave(p0)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pICmpIecTask->IIecTaskDebugHandlerLeave() : ((ICmpIecTask*)p0)->IIecTaskDebugHandlerLeave())
-	#define CHK_IecTaskDebugHandlerLeave  (pICmpIecTask != NULL)
-	#define EXP_IecTaskDebugHandlerLeave  CAL_CMEXPAPI( "IecTaskDebugHandlerLeave" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_IecTaskDebugHandlerLeave  PFIECTASKDEBUGHANDLERLEAVE pfIecTaskDebugHandlerLeave;
-	#define EXT_IecTaskDebugHandlerLeave  extern PFIECTASKDEBUGHANDLERLEAVE pfIecTaskDebugHandlerLeave;
-	#define GET_IecTaskDebugHandlerLeave(fl)  s_pfCMGetAPI2( "IecTaskDebugHandlerLeave", (RTS_VOID_FCTPTR *)&pfIecTaskDebugHandlerLeave, (fl), 0, 0)
-	#define CAL_IecTaskDebugHandlerLeave  pfIecTaskDebugHandlerLeave
-	#define CHK_IecTaskDebugHandlerLeave  (pfIecTaskDebugHandlerLeave != NULL)
-	#define EXP_IecTaskDebugHandlerLeave  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"IecTaskDebugHandlerLeave", (RTS_UINTPTR)IecTaskDebugHandlerLeave, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- *	<p>Call an IEC function from plain C code. 
- *	Since different CPU's/systems use different calling conventions, this function 
- *	should be used as a wrapper.</p>
- *
- * <p>ATTENTION: Instead of SysCpuCallIecFuncWithParams() this function is synchronized against an OnlineChange of the corresponding IEC application!!</p>
- *
- *  <p>IEC functions or methods of function block use all the same calling convention:
- *	They have no return value and exactly one parameter, which is a pointer to a struct that contains all required
- *  IN and OUT parameters.</p>
- *
- *	<p>IMPLEMENTATION NOTE: The content of the parameter structure must be copied completely on the stack as 
- *	an input parameter! Don't copy only the pointer! Because of this, the size of the structure is provided as a 
- *	separate parameter to this function. Additionally, the structure of the IEC function must be copied back into the
- *	give parameter to return result values of the IEC function! For all this operations you have to ensure the stack
- *  alignment, but avoid copying more bytes than iSize</p>
- *
- *	<p>IMPLEMENTATION NOTE:
- *	Unused parameter pParam can be NULL, if function has no argument and no result (e.g. CodeInit)!
- *	</p>
- * </description>
- * <param name="hIecTask" type="IN">IecTask handle from the calling IEC task or RTS_INVALID_HANDLE, if it is a non IEC task!</param>
- * <param name="pApp" type="IN">Pointer to the application, in which the pfIECFunc is residing!</param>
- * <param name="pfIECFunc" type="IN" range="[NULL,VALID_IEC_FUNC,INVALID_IEC_FUNC]">Pointer to the IEC function that should be called</param>
- * <param name="pParam" type="INOUT" range="[NULL,VALID_PARAMETER]">Pointer to the parameter struct that contains the function parameters. ATTENTION: Can be NULL!</param>
- * <param name="iSize" type="IN" range="[0,VALID_SIZE]">Size of the parameter structure to copy the content on stack. ATTENTION: Can be 0!</param>
- * <errorcode name="RTS_RESULT Result" type="ERR_OK">Parameter check was successfull and pfIECFunc was called</errorcode>
- * <errorcode name="RTS_RESULT Result" type="ERR_PARAMETER">pfIECFunc is NULL or for a paramter size > 0 pParam is NULL</errorcode>
- * <errorcode name="RTS_RESULT Result" type="ERR_NOTIMPLEMENTED">Function is not implemented</errorcode>
- * <result>error code</result>
- */
-RTS_RESULT CDECL IecTaskCallIecFuncWithParams(RTS_HANDLE hIecTask, APPLICATION *pApp, RTS_VOID_FCTPTR pfIECFunc, void* pParam, int iSize);
-typedef RTS_RESULT (CDECL * PFIECTASKCALLIECFUNCWITHPARAMS) (RTS_HANDLE hIecTask, APPLICATION *pApp, RTS_VOID_FCTPTR pfIECFunc, void* pParam, int iSize);
-#if defined(CMPIECTASK_NOTIMPLEMENTED) || defined(IECTASKCALLIECFUNCWITHPARAMS_NOTIMPLEMENTED)
-	#define USE_IecTaskCallIecFuncWithParams
-	#define EXT_IecTaskCallIecFuncWithParams
-	#define GET_IecTaskCallIecFuncWithParams(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_IecTaskCallIecFuncWithParams(p0,p1,p2,p3,p4)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_IecTaskCallIecFuncWithParams  FALSE
-	#define EXP_IecTaskCallIecFuncWithParams  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_IecTaskCallIecFuncWithParams
-	#define EXT_IecTaskCallIecFuncWithParams
-	#define GET_IecTaskCallIecFuncWithParams(fl)  CAL_CMGETAPI( "IecTaskCallIecFuncWithParams" ) 
-	#define CAL_IecTaskCallIecFuncWithParams  IecTaskCallIecFuncWithParams
-	#define CHK_IecTaskCallIecFuncWithParams  TRUE
-	#define EXP_IecTaskCallIecFuncWithParams  CAL_CMEXPAPI( "IecTaskCallIecFuncWithParams" ) 
-#elif defined(MIXED_LINK) && !defined(CMPIECTASK_EXTERNAL)
-	#define USE_IecTaskCallIecFuncWithParams
-	#define EXT_IecTaskCallIecFuncWithParams
-	#define GET_IecTaskCallIecFuncWithParams(fl)  CAL_CMGETAPI( "IecTaskCallIecFuncWithParams" ) 
-	#define CAL_IecTaskCallIecFuncWithParams  IecTaskCallIecFuncWithParams
-	#define CHK_IecTaskCallIecFuncWithParams  TRUE
-	#define EXP_IecTaskCallIecFuncWithParams  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"IecTaskCallIecFuncWithParams", (RTS_UINTPTR)IecTaskCallIecFuncWithParams, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpIecTaskIecTaskCallIecFuncWithParams
-	#define EXT_CmpIecTaskIecTaskCallIecFuncWithParams
-	#define GET_CmpIecTaskIecTaskCallIecFuncWithParams  ERR_OK
-	#define CAL_CmpIecTaskIecTaskCallIecFuncWithParams pICmpIecTask->IIecTaskCallIecFuncWithParams
-	#define CHK_CmpIecTaskIecTaskCallIecFuncWithParams (pICmpIecTask != NULL)
-	#define EXP_CmpIecTaskIecTaskCallIecFuncWithParams  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_IecTaskCallIecFuncWithParams
-	#define EXT_IecTaskCallIecFuncWithParams
-	#define GET_IecTaskCallIecFuncWithParams(fl)  CAL_CMGETAPI( "IecTaskCallIecFuncWithParams" ) 
-	#define CAL_IecTaskCallIecFuncWithParams pICmpIecTask->IIecTaskCallIecFuncWithParams
-	#define CHK_IecTaskCallIecFuncWithParams (pICmpIecTask != NULL)
-	#define EXP_IecTaskCallIecFuncWithParams  CAL_CMEXPAPI( "IecTaskCallIecFuncWithParams" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_IecTaskCallIecFuncWithParams  PFIECTASKCALLIECFUNCWITHPARAMS pfIecTaskCallIecFuncWithParams;
-	#define EXT_IecTaskCallIecFuncWithParams  extern PFIECTASKCALLIECFUNCWITHPARAMS pfIecTaskCallIecFuncWithParams;
-	#define GET_IecTaskCallIecFuncWithParams(fl)  s_pfCMGetAPI2( "IecTaskCallIecFuncWithParams", (RTS_VOID_FCTPTR *)&pfIecTaskCallIecFuncWithParams, (fl), 0, 0)
-	#define CAL_IecTaskCallIecFuncWithParams  pfIecTaskCallIecFuncWithParams
-	#define CHK_IecTaskCallIecFuncWithParams  (pfIecTaskCallIecFuncWithParams != NULL)
-	#define EXP_IecTaskCallIecFuncWithParams  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"IecTaskCallIecFuncWithParams", (RTS_UINTPTR)IecTaskCallIecFuncWithParams, 0, 0) 
-#endif
-
-
-
-
 #ifdef __cplusplus
 }
 #endif
@@ -5629,13 +5037,11 @@ typedef struct
  	PFIECTASKSRESETALLOWED IIecTasksResetAllowed;
  	PFIECTASKSPREPARERESET IIecTasksPrepareReset;
  	PFIECTASKSRESETDONE IIecTasksResetDone;
- 	PFIECTASKGETWAITFORSTOPTIMEOUT IIecTaskGetWaitForStopTimeout;
  	PFIECTASKSWAITFORSTOP IIecTasksWaitForStop;
  	PFIECTASKINITOUTPUTS IIecTaskInitOutputs;
  	PFIECTASKENTEREXCLUSIVESECTION IIecTaskEnterExclusiveSection;
  	PFIECTASKLEAVEEXCLUSIVESECTION IIecTaskLeaveExclusiveSection;
  	PFIECTASKENTEREXCLUSIVESECTION2 IIecTaskEnterExclusiveSection2;
- 	PFIECTASKTRYENTEREXCLUSIVESECTION2 IIecTaskTryEnterExclusiveSection2;
  	PFIECTASKLEAVEEXCLUSIVESECTION2 IIecTaskLeaveExclusiveSection2;
  	PFIECTASKREGISTERSLOTCALLBACKS IIecTaskRegisterSlotCallbacks;
  	PFIECTASKUNREGISTERSLOTCALLBACKS IIecTaskUnregisterSlotCallbacks;
@@ -5672,9 +5078,6 @@ typedef struct
  	PFIECTASKWAITTASKSACTIVE IIecTaskWaitTasksActive;
  	PFIECTASKSINGLECYCLE IIecTaskSingleCycle;
  	PFIECTASKRESETSTATISTICS IIecTaskResetStatistics;
- 	PFIECTASKDEBUGHANDLERENTER IIecTaskDebugHandlerEnter;
- 	PFIECTASKDEBUGHANDLERLEAVE IIecTaskDebugHandlerLeave;
- 	PFIECTASKCALLIECFUNCWITHPARAMS IIecTaskCallIecFuncWithParams;
  } ICmpIecTask_C;
 
 #ifdef CPLUSPLUS
@@ -5692,13 +5095,11 @@ class ICmpIecTask : public IBase
 		virtual RTS_RESULT CDECL IIecTasksResetAllowed(APPLICATION *pApp) =0;
 		virtual RTS_RESULT CDECL IIecTasksPrepareReset(APPLICATION *pApp, int bResetOrigin) =0;
 		virtual RTS_RESULT CDECL IIecTasksResetDone(APPLICATION *pApp, int bResetOrigin) =0;
-		virtual RTS_UI32 CDECL IIecTaskGetWaitForStopTimeout(APPLICATION *pApp, RTS_RESULT *pResult) =0;
 		virtual RTS_RESULT CDECL IIecTasksWaitForStop(APPLICATION *pApp, RTS_UI32 ulTimeoutMs, unsigned long ulStopReason) =0;
 		virtual RTS_RESULT CDECL IIecTaskInitOutputs(APPLICATION *pApp) =0;
 		virtual RTS_RESULT CDECL IIecTaskEnterExclusiveSection(void) =0;
 		virtual RTS_RESULT CDECL IIecTaskLeaveExclusiveSection(void) =0;
 		virtual RTS_RESULT CDECL IIecTaskEnterExclusiveSection2(APPLICATION *pApp) =0;
-		virtual RTS_RESULT CDECL IIecTaskTryEnterExclusiveSection2(APPLICATION *pApp, RTS_UI32 timeoutMs, RTS_BOOL bForceEnter) =0;
 		virtual RTS_RESULT CDECL IIecTaskLeaveExclusiveSection2(APPLICATION *pApp) =0;
 		virtual RTS_RESULT CDECL IIecTaskRegisterSlotCallbacks(APPLICATION *pApp, RTS_I32 nSlotNr, PF_SLOT_CALLBACK pfSlotCallback, int bIecCallback) =0;
 		virtual RTS_RESULT CDECL IIecTaskUnregisterSlotCallbacks(APPLICATION *pApp, RTS_I32 nSlotNr, PF_SLOT_CALLBACK pfSlotCallback, int bIecCallback) =0;
@@ -5735,9 +5136,6 @@ class ICmpIecTask : public IBase
 		virtual RTS_RESULT CDECL IIecTaskWaitTasksActive(APPLICATION *pApp, RTS_UI32 ulTimeoutMs) =0;
 		virtual RTS_RESULT CDECL IIecTaskSingleCycle(APPLICATION *pApp) =0;
 		virtual RTS_RESULT CDECL IIecTaskResetStatistics(RTS_HANDLE hIecTask) =0;
-		virtual RTS_RESULT CDECL IIecTaskDebugHandlerEnter(void) =0;
-		virtual RTS_RESULT CDECL IIecTaskDebugHandlerLeave(void) =0;
-		virtual RTS_RESULT CDECL IIecTaskCallIecFuncWithParams(RTS_HANDLE hIecTask, APPLICATION *pApp, RTS_VOID_FCTPTR pfIECFunc, void* pParam, int iSize) =0;
 };
 	#ifndef ITF_CmpIecTask
 		#define ITF_CmpIecTask static ICmpIecTask *pICmpIecTask = NULL;

@@ -8,8 +8,6 @@
 
 
 
-
-
 #include "SysGraphicFBCstAdaption.c"
 
 

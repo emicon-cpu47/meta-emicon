@@ -8,7 +8,7 @@
 CmpHilscherCIFXItf
 ==================
 
- :ref:`More... <group___cmp_hilscher_c_i_f_x_itf-details>`
+Interface of CmpHilscherCIFX. :ref:`More... <group___cmp_hilscher_c_i_f_x_itf-details>`
 
 Modules
 -------
@@ -155,7 +155,7 @@ Macros
 
 - #define :ref:`CIFX_MAX_ID <group___cmp_hilscher_c_i_f_x_itf_1gabfd7fa7bcc91621b26d215bf027fa6f1>` 0x100
 
-- #define :ref:`CIFX_QUEUE_MAX_PACKETS <group___cmp_hilscher_c_i_f_x_itf_1ga56b3ffabaec010903f2e394472e00d3d>` 50
+- #define :ref:`CIFX_QUEUE_MAX_PACKETS <group___cmp_hilscher_c_i_f_x_itf_1ga56b3ffabaec010903f2e394472e00d3d>` 100
 
 - #define :ref:`CIFX_QUEUE_FREE_TIMEOUT <group___cmp_hilscher_c_i_f_x_itf_1ga5d506ffbbf5f26333d380572594314b1>` 2000
 
@@ -522,9 +522,35 @@ Functions
 Detailed Description
 --------------------
 
+Interface of CmpHilscherCIFX.
 
+Interface for accessing Hilscher NetX cards.
 
+Hilscher PC cards (CIFX) must be typically loaded with two firmware parts which are provided by Hilscher: 1. Bootloader: Has mostly the ending .bin (e.g. NETX100-BSL.bin) 2. Firmware file: This file contains the fieldbus specific stack. Mostly this file has the format cifx_ _ _.nxf. e.g. "cifxdpm.nxf" for a Profibus DP Master or "cifxdps.nxf" for a Profibus DP Slave firmware.
 
+The configuration of the bootloader and firmware files can be done in several ways. A Hilscher Card is addressed here via its Card Index or Slot Number and optional the so called channel. Some Hilscher Cards has one or optional two separate channels on the NetX to support multi fieldbus strands. In the following examples, the devicenumber [n] starts with 0! All of these configurations must be done under the section: [CmpHilscherCIFX]
+
+1. Global configuiration for all cards: The bootloader can be configured for all cards the folllowing way: BootloaderFile=./HilscherCIFX/Firmware/NETX100-BSL.bin
+
+2. Configuration via Card Index: A card index is the logical number of the card beginning with 0.
+
+- Bootloader: Device.n.BootloaderFile=./HilscherCIFX/Firmware/NETX100-BSL.bin
+
+- Firmware: Device.n.FirmwareFile=./HilscherCIFX/Firmware/cifxdpm.nxf or with specified channel: Device.n.Channel.0.FirmwareFile=./HilscherCIFX/Firmware/cifxdpm.nxf
+
+3. Dynamic configuration out of IO-Configuration in the programming system: For this you have to specify first if all the following settings for a card:
+
+- Globally for all cards: DynamicFirmware=1
+
+- or per single card with: Device.n.DynamicFirmware=1
+
+To specify the firmware matching to the corresponding fieldbus type there are 2 options: 1. Default firmware: You can specify the path to all firmware files: FirmwareFilePath=./HilscherCIFX/Firmware With this we try to match the bustype to the default firmware (e.g. "ProfibusMaster" -> cifxdpm.nxf)!
+
+2. You can specify a firmware matching to the corresponding fieldbus by its name (only one firmware for a fieldbus type can be configured for all cards): FirmwareFile.0=ProfinetMaster, ./HilscherCIFX/Firmware/cifxpnm.nxf or specify the corresponding device number (so different firmwares per device can be configured): Device.n.FirmwareFile.0=ProfinetMaster, ./HilscherCIFX/Firmware/cifxpnm.nxf Device.n.FirmwareFile.1.1=EthernetIPMaster, ./HilscherCIFX/Firmware/cifxeim.nxf For the list of possible fieldbus type names see the defines CIFX_NAME_XXX.
+
+**Copyright:**
+
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -545,8 +571,8 @@ Macro Definition Documentation
 
 .. _group___cmp_hilscher_c_i_f_x_itf_1ga56b3ffabaec010903f2e394472e00d3d:
 
-#define CIFX_QUEUE_MAX_PACKETS 50
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#define CIFX_QUEUE_MAX_PACKETS 100
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___cmp_hilscher_c_i_f_x_itf_1ga5d506ffbbf5f26333d380572594314b1:
 

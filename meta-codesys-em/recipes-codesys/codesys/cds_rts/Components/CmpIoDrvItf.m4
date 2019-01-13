@@ -10,9 +10,7 @@
  * between C and IEC and implements exactly this interface.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpIoDrv')
@@ -242,6 +240,17 @@ REF_ITF(`CmpIoMgrItf.m4')
  */
 #define FIP_NETX_DEVICE			0x70000000
 #define FIP_WATCHDOG			0x70000001
+
+/**
+ * <category>Task map types</category>
+ * <description>
+ * <p>Types of IO-channels in a task map</p>
+ * </description>
+ * <element name="TMT_INPUTS">Input connector maps</element>
+ * <element name="TMT_OUTPUTS">Output connector maps</element>
+ */
+#define TMT_INPUTS				0x0001
+#define TMT_OUTPUTS				0x0002
 
 
 /**
@@ -616,14 +625,12 @@ DEF_CLASSITF_API(`RTS_RESULT', `CDECL', `IoDrvUpdateMapping', `(RTS_HANDLE hIoDr
 
 /**
  * <description>
- * Trigger the hardware watchdog of this fieldbus master / IO system.
+ * <p>Trigger the hardware watchdog of a driver.</p>
+ * <p>This function is depricated and not used anymore.</p>
  * </description>
  * <param name="hIoDrv" type="IN">Handle to the IO-driver instance</param>
  * <param name="pConnector" type="IN">Pointer to the connector, on which the watchdog should be retriggered</param> 
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Watchdog successfully retriggered</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOT_SUPPORTED">Watchdog not available</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Watchdog interface not implemented</errorcode>
+ * <result>Should return ERR_NOTIMPLEMENTED</result>
  */
 DEF_CLASSITF_API(`RTS_RESULT', `CDECL', `IoDrvWatchdogTrigger', `(RTS_HANDLE hIoDrv, IoConfigConnector *pConnector)')
 

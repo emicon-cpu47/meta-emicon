@@ -34,19 +34,6 @@
 
 /**
  * <category>Settings</category>
- * <description>Setting to disable the dynamic memory allocation if the memsys5 memory allocator runs out of memory. The following
- *	values are possible at the moment:
- *		o 1: Dynamic memory allocation by using SysMemAllocData is disabled
- *		o (all other values or if this setting does not exist): Dynamic memory allocation by using SysMemAllocData is active
- * </description>
- */
-#define CMPCAASTORAGE_KEY_DISABLE_DYNAMIC_MEMORY_ALLOCATION					"DisableDynamicMemoryAllocation"
-#ifndef CMPCAASTORAGE_VALUE_DISABLE_DYNAMIC_MEMORY_ALLOCATION_DEFAULT
-	#define CMPCAASTORAGE_VALUE_DISABLE_DYNAMIC_MEMORY_ALLOCATION_DEFAULT	0
-#endif
-
-/**
- * <category>Settings</category>
  * <description>Setting defining the number of MB the memsys5 memory allocator uses.</description>
  */
 #define CMPCAASTORAGE_KEY_MEMSYS5_MEMSIZE								"Memsys5SizeInMB"
@@ -115,15 +102,6 @@ typedef CAA_LREAL STO_REAL8;
 extern "C" {
 #endif
 
-
-/*
- * required for proper struct alignment of 64bit member with Wind River VxWorks GNU compiler
- * ( defined in vxworks <sysdefines.h>, for all other OS'es "dummy" macro )  
- */
-#ifndef VXWORKS_ALIGNATTRIB
-#define VXWORKS_ALIGNATTRIB
-#endif
-
 /**
  * Each value stored in the storage has one of the following types
  */
@@ -160,7 +138,7 @@ extern "C" {
 #define STO_ENCODING    RTS_IEC_INT
 
 /**
- * Every error output of a method or function returns one of these error codes.
+ * Every error output of a methode or function returns one of these error codes.
  */
 #define STO_ERROR_NO_ERROR    0	
 #define STO_ERROR_FIRST_ERROR    30400	
@@ -172,7 +150,6 @@ extern "C" {
 #define STO_ERROR_CURSOR_SEARCH_BEFORE    30406	/* Possible return values of the ICursor.CursorSearch_* methods with the meaning, */
 #define STO_ERROR_CURSOR_SEARCH_AFTER    30407	/* that the value to search for was not found and the cursor's current position */
 #define STO_ERROR_NOT_IMPLEMENTED    30408	/* This return value will be used in case of not implemented functionality */
-#define STO_ERROR_INCOMPLETE_STORAGE_CLOSE    30409	/* A call to STI_StorageClose was done, but was not successful (e.g. by a still open table). All subsequent calls (except a storage close call), that require an open storage, will return error code. */
 #define STO_ERROR_SQLITE_ERROR    30431	/* (1) SQL error or missing database */
 #define STO_ERROR_SQLITE_INTERNAL    30432	/* (2) Internal logic error in SQLite */
 #define STO_ERROR_SQLITE_PERM    30433	/* (3) Access permission denied */
@@ -2398,7 +2375,7 @@ typedef struct tagsti_columngetint64_struct
 	RTS_IEC_XWORD hRow;					/* VAR_INPUT */	
 	RTS_IEC_DWORD idColumn;				/* VAR_INPUT */	
 	RTS_IEC_INT STI_ColumnGetINT64;		/* VAR_OUTPUT, Enum: ERROR */
-	RTS_IEC_LINT liValue VXWORKS_ALIGNATTRIB;	/* VAR_OUTPUT */	
+	RTS_IEC_LINT liValue;				/* VAR_OUTPUT */	
 	RTS_IEC_BOOL xNULL;					/* VAR_OUTPUT */	
 } sti_columngetint64_struct;
 
@@ -2924,7 +2901,7 @@ typedef struct tagsti_columnsetint64_struct
 {
 	RTS_IEC_XWORD hRow;					/* VAR_INPUT */	
 	RTS_IEC_DWORD idColumn;				/* VAR_INPUT */	
-	RTS_IEC_LINT liValue  VXWORKS_ALIGNATTRIB;				/* VAR_INPUT */	
+	RTS_IEC_LINT liValue;				/* VAR_INPUT */	
 	RTS_IEC_INT STI_ColumnSetINT64;		/* VAR_OUTPUT, Enum: ERROR */
 } sti_columnsetint64_struct;
 
@@ -3448,7 +3425,7 @@ typedef struct tagsti_columnupdateint64_struct
 {
 	RTS_IEC_XWORD hRow;					/* VAR_INPUT */	
 	RTS_IEC_DWORD idColumn;				/* VAR_INPUT */	
-	RTS_IEC_LINT *liValue  VXWORKS_ALIGNATTRIB;				/* VAR_IN_OUT */	
+	RTS_IEC_LINT *liValue;				/* VAR_IN_OUT */	
 	RTS_IEC_BOOL *xNULL;				/* VAR_IN_OUT */	
 	RTS_IEC_INT STI_ColumnUpdateINT64;	/* VAR_OUTPUT, Enum: ERROR */
 } sti_columnupdateint64_struct;
@@ -4313,7 +4290,7 @@ typedef void (CDECL CDECL_EXT* PFSTI_CURSORSEARCHINT32_IEC) (sti_cursorsearchint
 typedef struct tagsti_cursorsearchint64_struct
 {
 	RTS_IEC_XWORD hCursor;				/* VAR_INPUT */	
-	RTS_IEC_LINT liValue  VXWORKS_ALIGNATTRIB;				/* VAR_INPUT */	
+	RTS_IEC_LINT liValue;				/* VAR_INPUT */	
 	RTS_IEC_INT STI_CursorSearchINT64;	/* VAR_OUTPUT, Enum: ERROR */
 } sti_cursorsearchint64_struct;
 
@@ -4654,7 +4631,7 @@ typedef void (CDECL CDECL_EXT* PFSTI_CURSORSEARCHROWID_IEC) (sti_cursorsearchrow
 typedef struct tagsti_cursorsearchrowid2_struct
 {
 	RTS_IEC_XWORD hCursor;				/* VAR_INPUT */	
-	RTS_IEC_LINT idRow  VXWORKS_ALIGNATTRIB;					/* VAR_INPUT */	
+	RTS_IEC_LINT idRow;					/* VAR_INPUT */	
 	RTS_IEC_INT STI_CursorSearchRowId2;	/* VAR_OUTPUT, Enum: ERROR */
 } sti_cursorsearchrowid2_struct;
 
@@ -4938,7 +4915,7 @@ typedef void (CDECL CDECL_EXT* PFSTI_ROWDELETE_IEC) (sti_rowdelete_struct *p);
 typedef struct tagsti_rowdelete2_struct
 {
 	RTS_IEC_XWORD hTable;				/* VAR_INPUT */	
-	RTS_IEC_LINT idRow  VXWORKS_ALIGNATTRIB;					/* VAR_INPUT */	
+	RTS_IEC_LINT idRow;					/* VAR_INPUT */	
 	RTS_IEC_INT STI_RowDelete2;			/* VAR_OUTPUT, Enum: ERROR */
 } sti_rowdelete2_struct;
 
@@ -5167,7 +5144,7 @@ typedef void (CDECL CDECL_EXT* PFSTI_ROWGETID_IEC) (sti_rowgetid_struct *p);
 typedef struct tagsti_rowgetid2_struct
 {
 	RTS_IEC_XWORD hRow;					/* VAR_INPUT */	
-	RTS_IEC_LINT STI_RowGetId2  VXWORKS_ALIGNATTRIB;			/* VAR_OUTPUT */	
+	RTS_IEC_LINT STI_RowGetId2;			/* VAR_OUTPUT */	
 	RTS_IEC_INT eError;					/* VAR_OUTPUT, Enum: ERROR */
 } sti_rowgetid2_struct;
 
@@ -5955,63 +5932,6 @@ typedef void (CDECL CDECL_EXT* PFSTI_STORAGECLOSE_IEC) (sti_storageclose_struct 
 
 
 /**
- * <description>sti_storageexecutestatement</description>
- */
-typedef struct tagsti_storageexecutestatement_struct
-{
-	RTS_IEC_XWORD hStorage;				/* VAR_INPUT */	
-	RTS_IEC_STRING *sStatement;			/* VAR_IN_OUT */	
-	RTS_IEC_INT sti_storageexecutestatement;	/* VAR_OUTPUT, Enum: ERROR */
-} sti_storageexecutestatement_struct;
-
-void CDECL CDECL_EXT sti_storageexecutestatement(sti_storageexecutestatement_struct *p);
-typedef void (CDECL CDECL_EXT* PFSTI_STORAGEEXECUTESTATEMENT_IEC) (sti_storageexecutestatement_struct *p);
-#if defined(CMPCAASTORAGE_NOTIMPLEMENTED) || defined(STI_STORAGEEXECUTESTATEMENT_NOTIMPLEMENTED)
-	#define USE_sti_storageexecutestatement
-	#define EXT_sti_storageexecutestatement
-	#define GET_sti_storageexecutestatement(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_sti_storageexecutestatement(p0) 
-	#define CHK_sti_storageexecutestatement  FALSE
-	#define EXP_sti_storageexecutestatement  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_sti_storageexecutestatement
-	#define EXT_sti_storageexecutestatement
-	#define GET_sti_storageexecutestatement(fl)  CAL_CMGETAPI( "sti_storageexecutestatement" ) 
-	#define CAL_sti_storageexecutestatement  sti_storageexecutestatement
-	#define CHK_sti_storageexecutestatement  TRUE
-	#define EXP_sti_storageexecutestatement  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storageexecutestatement", (RTS_UINTPTR)sti_storageexecutestatement, 1, RTSITF_GET_SIGNATURE(0x28B52F50, 0xC3FDFD07), 0x03050C00) 
-#elif defined(MIXED_LINK) && !defined(CMPCAASTORAGE_EXTERNAL)
-	#define USE_sti_storageexecutestatement
-	#define EXT_sti_storageexecutestatement
-	#define GET_sti_storageexecutestatement(fl)  CAL_CMGETAPI( "sti_storageexecutestatement" ) 
-	#define CAL_sti_storageexecutestatement  sti_storageexecutestatement
-	#define CHK_sti_storageexecutestatement  TRUE
-	#define EXP_sti_storageexecutestatement  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storageexecutestatement", (RTS_UINTPTR)sti_storageexecutestatement, 1, RTSITF_GET_SIGNATURE(0x28B52F50, 0xC3FDFD07), 0x03050C00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpCAAStoragesti_storageexecutestatement
-	#define EXT_CmpCAAStoragesti_storageexecutestatement
-	#define GET_CmpCAAStoragesti_storageexecutestatement  ERR_OK
-	#define CAL_CmpCAAStoragesti_storageexecutestatement  sti_storageexecutestatement
-	#define CHK_CmpCAAStoragesti_storageexecutestatement  TRUE
-	#define EXP_CmpCAAStoragesti_storageexecutestatement  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storageexecutestatement", (RTS_UINTPTR)sti_storageexecutestatement, 1, RTSITF_GET_SIGNATURE(0x28B52F50, 0xC3FDFD07), 0x03050C00) 
-#elif defined(CPLUSPLUS)
-	#define USE_sti_storageexecutestatement
-	#define EXT_sti_storageexecutestatement
-	#define GET_sti_storageexecutestatement(fl)  CAL_CMGETAPI( "sti_storageexecutestatement" ) 
-	#define CAL_sti_storageexecutestatement  sti_storageexecutestatement
-	#define CHK_sti_storageexecutestatement  TRUE
-	#define EXP_sti_storageexecutestatement  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storageexecutestatement", (RTS_UINTPTR)sti_storageexecutestatement, 1, RTSITF_GET_SIGNATURE(0x28B52F50, 0xC3FDFD07), 0x03050C00) 
-#else /* DYNAMIC_LINK */
-	#define USE_sti_storageexecutestatement  PFSTI_STORAGEEXECUTESTATEMENT_IEC pfsti_storageexecutestatement;
-	#define EXT_sti_storageexecutestatement  extern PFSTI_STORAGEEXECUTESTATEMENT_IEC pfsti_storageexecutestatement;
-	#define GET_sti_storageexecutestatement(fl)  s_pfCMGetAPI2( "sti_storageexecutestatement", (RTS_VOID_FCTPTR *)&pfsti_storageexecutestatement, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x28B52F50, 0xC3FDFD07), 0x03050C00)
-	#define CAL_sti_storageexecutestatement  pfsti_storageexecutestatement
-	#define CHK_sti_storageexecutestatement  (pfsti_storageexecutestatement != NULL)
-	#define EXP_sti_storageexecutestatement   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storageexecutestatement", (RTS_UINTPTR)sti_storageexecutestatement, 1, RTSITF_GET_SIGNATURE(0x28B52F50, 0xC3FDFD07), 0x03050C00) 
-#endif
-
-
-/**
  * = SignatureFlag.SimulationExternal = link even in simulation mode
  */
 typedef struct tagsti_storagegetencoding_struct
@@ -6065,65 +5985,6 @@ typedef void (CDECL CDECL_EXT* PFSTI_STORAGEGETENCODING_IEC) (sti_storagegetenco
 	#define CAL_sti_storagegetencoding  pfsti_storagegetencoding
 	#define CHK_sti_storagegetencoding  (pfsti_storagegetencoding != NULL)
 	#define EXP_sti_storagegetencoding   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storagegetencoding", (RTS_UINTPTR)sti_storagegetencoding, 1, RTSITF_GET_SIGNATURE(0, 0xBE199139), 0x03050500) 
-#endif
-
-
-/**
- * <description>sti_storagegetindexid</description>
- */
-typedef struct tagsti_storagegetindexid_struct
-{
-	RTS_IEC_XWORD hStorage;				/* VAR_INPUT */	
-	RTS_IEC_STRING *sIndex;				/* VAR_IN_OUT */	
-	RTS_IEC_STRING *sTable;				/* VAR_IN_OUT */	
-	RTS_IEC_INT sti_storagegetindexid;	/* VAR_OUTPUT, Enum: ERROR */
-	RTS_IEC_DWORD idIndex;				/* VAR_OUTPUT */	
-} sti_storagegetindexid_struct;
-
-void CDECL CDECL_EXT sti_storagegetindexid(sti_storagegetindexid_struct *p);
-typedef void (CDECL CDECL_EXT* PFSTI_STORAGEGETINDEXID_IEC) (sti_storagegetindexid_struct *p);
-#if defined(CMPCAASTORAGE_NOTIMPLEMENTED) || defined(STI_STORAGEGETINDEXID_NOTIMPLEMENTED)
-	#define USE_sti_storagegetindexid
-	#define EXT_sti_storagegetindexid
-	#define GET_sti_storagegetindexid(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_sti_storagegetindexid(p0) 
-	#define CHK_sti_storagegetindexid  FALSE
-	#define EXP_sti_storagegetindexid  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_sti_storagegetindexid
-	#define EXT_sti_storagegetindexid
-	#define GET_sti_storagegetindexid(fl)  CAL_CMGETAPI( "sti_storagegetindexid" ) 
-	#define CAL_sti_storagegetindexid  sti_storagegetindexid
-	#define CHK_sti_storagegetindexid  TRUE
-	#define EXP_sti_storagegetindexid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storagegetindexid", (RTS_UINTPTR)sti_storagegetindexid, 1, RTSITF_GET_SIGNATURE(0x08A23D12, 0x227C8789), 0x03050C00) 
-#elif defined(MIXED_LINK) && !defined(CMPCAASTORAGE_EXTERNAL)
-	#define USE_sti_storagegetindexid
-	#define EXT_sti_storagegetindexid
-	#define GET_sti_storagegetindexid(fl)  CAL_CMGETAPI( "sti_storagegetindexid" ) 
-	#define CAL_sti_storagegetindexid  sti_storagegetindexid
-	#define CHK_sti_storagegetindexid  TRUE
-	#define EXP_sti_storagegetindexid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storagegetindexid", (RTS_UINTPTR)sti_storagegetindexid, 1, RTSITF_GET_SIGNATURE(0x08A23D12, 0x227C8789), 0x03050C00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpCAAStoragesti_storagegetindexid
-	#define EXT_CmpCAAStoragesti_storagegetindexid
-	#define GET_CmpCAAStoragesti_storagegetindexid  ERR_OK
-	#define CAL_CmpCAAStoragesti_storagegetindexid  sti_storagegetindexid
-	#define CHK_CmpCAAStoragesti_storagegetindexid  TRUE
-	#define EXP_CmpCAAStoragesti_storagegetindexid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storagegetindexid", (RTS_UINTPTR)sti_storagegetindexid, 1, RTSITF_GET_SIGNATURE(0x08A23D12, 0x227C8789), 0x03050C00) 
-#elif defined(CPLUSPLUS)
-	#define USE_sti_storagegetindexid
-	#define EXT_sti_storagegetindexid
-	#define GET_sti_storagegetindexid(fl)  CAL_CMGETAPI( "sti_storagegetindexid" ) 
-	#define CAL_sti_storagegetindexid  sti_storagegetindexid
-	#define CHK_sti_storagegetindexid  TRUE
-	#define EXP_sti_storagegetindexid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storagegetindexid", (RTS_UINTPTR)sti_storagegetindexid, 1, RTSITF_GET_SIGNATURE(0x08A23D12, 0x227C8789), 0x03050C00) 
-#else /* DYNAMIC_LINK */
-	#define USE_sti_storagegetindexid  PFSTI_STORAGEGETINDEXID_IEC pfsti_storagegetindexid;
-	#define EXT_sti_storagegetindexid  extern PFSTI_STORAGEGETINDEXID_IEC pfsti_storagegetindexid;
-	#define GET_sti_storagegetindexid(fl)  s_pfCMGetAPI2( "sti_storagegetindexid", (RTS_VOID_FCTPTR *)&pfsti_storagegetindexid, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0x08A23D12, 0x227C8789), 0x03050C00)
-	#define CAL_sti_storagegetindexid  pfsti_storagegetindexid
-	#define CHK_sti_storagegetindexid  (pfsti_storagegetindexid != NULL)
-	#define EXP_sti_storagegetindexid   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storagegetindexid", (RTS_UINTPTR)sti_storagegetindexid, 1, RTSITF_GET_SIGNATURE(0x08A23D12, 0x227C8789), 0x03050C00) 
 #endif
 
 
@@ -6466,64 +6327,6 @@ typedef void (CDECL CDECL_EXT* PFSTI_STORAGEGETSTORAGEVERSION_IEC) (sti_storageg
 	#define CAL_sti_storagegetstorageversion  pfsti_storagegetstorageversion
 	#define CHK_sti_storagegetstorageversion  (pfsti_storagegetstorageversion != NULL)
 	#define EXP_sti_storagegetstorageversion   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storagegetstorageversion", (RTS_UINTPTR)sti_storagegetstorageversion, 1, RTSITF_GET_SIGNATURE(0, 0x09CB4CDD), 0x03050500) 
-#endif
-
-
-/**
- * <description>sti_storagegettableid</description>
- */
-typedef struct tagsti_storagegettableid_struct
-{
-	RTS_IEC_XWORD hStorage;				/* VAR_INPUT */	
-	RTS_IEC_STRING *sTable;				/* VAR_IN_OUT */	
-	RTS_IEC_INT sti_storagegettableid;	/* VAR_OUTPUT, Enum: ERROR */
-	RTS_IEC_DWORD idTable;				/* VAR_OUTPUT */	
-} sti_storagegettableid_struct;
-
-void CDECL CDECL_EXT sti_storagegettableid(sti_storagegettableid_struct *p);
-typedef void (CDECL CDECL_EXT* PFSTI_STORAGEGETTABLEID_IEC) (sti_storagegettableid_struct *p);
-#if defined(CMPCAASTORAGE_NOTIMPLEMENTED) || defined(STI_STORAGEGETTABLEID_NOTIMPLEMENTED)
-	#define USE_sti_storagegettableid
-	#define EXT_sti_storagegettableid
-	#define GET_sti_storagegettableid(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_sti_storagegettableid(p0) 
-	#define CHK_sti_storagegettableid  FALSE
-	#define EXP_sti_storagegettableid  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_sti_storagegettableid
-	#define EXT_sti_storagegettableid
-	#define GET_sti_storagegettableid(fl)  CAL_CMGETAPI( "sti_storagegettableid" ) 
-	#define CAL_sti_storagegettableid  sti_storagegettableid
-	#define CHK_sti_storagegettableid  TRUE
-	#define EXP_sti_storagegettableid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storagegettableid", (RTS_UINTPTR)sti_storagegettableid, 1, RTSITF_GET_SIGNATURE(0xCDAB221E, 0xE7759885), 0x03050C00) 
-#elif defined(MIXED_LINK) && !defined(CMPCAASTORAGE_EXTERNAL)
-	#define USE_sti_storagegettableid
-	#define EXT_sti_storagegettableid
-	#define GET_sti_storagegettableid(fl)  CAL_CMGETAPI( "sti_storagegettableid" ) 
-	#define CAL_sti_storagegettableid  sti_storagegettableid
-	#define CHK_sti_storagegettableid  TRUE
-	#define EXP_sti_storagegettableid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storagegettableid", (RTS_UINTPTR)sti_storagegettableid, 1, RTSITF_GET_SIGNATURE(0xCDAB221E, 0xE7759885), 0x03050C00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpCAAStoragesti_storagegettableid
-	#define EXT_CmpCAAStoragesti_storagegettableid
-	#define GET_CmpCAAStoragesti_storagegettableid  ERR_OK
-	#define CAL_CmpCAAStoragesti_storagegettableid  sti_storagegettableid
-	#define CHK_CmpCAAStoragesti_storagegettableid  TRUE
-	#define EXP_CmpCAAStoragesti_storagegettableid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storagegettableid", (RTS_UINTPTR)sti_storagegettableid, 1, RTSITF_GET_SIGNATURE(0xCDAB221E, 0xE7759885), 0x03050C00) 
-#elif defined(CPLUSPLUS)
-	#define USE_sti_storagegettableid
-	#define EXT_sti_storagegettableid
-	#define GET_sti_storagegettableid(fl)  CAL_CMGETAPI( "sti_storagegettableid" ) 
-	#define CAL_sti_storagegettableid  sti_storagegettableid
-	#define CHK_sti_storagegettableid  TRUE
-	#define EXP_sti_storagegettableid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storagegettableid", (RTS_UINTPTR)sti_storagegettableid, 1, RTSITF_GET_SIGNATURE(0xCDAB221E, 0xE7759885), 0x03050C00) 
-#else /* DYNAMIC_LINK */
-	#define USE_sti_storagegettableid  PFSTI_STORAGEGETTABLEID_IEC pfsti_storagegettableid;
-	#define EXT_sti_storagegettableid  extern PFSTI_STORAGEGETTABLEID_IEC pfsti_storagegettableid;
-	#define GET_sti_storagegettableid(fl)  s_pfCMGetAPI2( "sti_storagegettableid", (RTS_VOID_FCTPTR *)&pfsti_storagegettableid, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0xCDAB221E, 0xE7759885), 0x03050C00)
-	#define CAL_sti_storagegettableid  pfsti_storagegettableid
-	#define CHK_sti_storagegettableid  (pfsti_storagegettableid != NULL)
-	#define EXP_sti_storagegettableid   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"sti_storagegettableid", (RTS_UINTPTR)sti_storagegettableid, 1, RTSITF_GET_SIGNATURE(0xCDAB221E, 0xE7759885), 0x03050C00) 
 #endif
 
 
@@ -6931,8 +6734,8 @@ typedef struct tagsti_tablegetminmaxrowids_struct
 {
 	RTS_IEC_XWORD hTable;				/* VAR_INPUT */	
 	RTS_IEC_INT STI_TableGetMinMaxRowIds;	/* VAR_OUTPUT, Enum: ERROR */
-	RTS_IEC_LINT idRowMin  VXWORKS_ALIGNATTRIB;				/* VAR_OUTPUT */	
-	RTS_IEC_LINT idRowMax  VXWORKS_ALIGNATTRIB;				/* VAR_OUTPUT */	
+	RTS_IEC_LINT idRowMin;				/* VAR_OUTPUT */	
+	RTS_IEC_LINT idRowMax;				/* VAR_OUTPUT */	
 } sti_tablegetminmaxrowids_struct;
 
 void CDECL CDECL_EXT sti_tablegetminmaxrowids(sti_tablegetminmaxrowids_struct *p);
@@ -7558,7 +7361,7 @@ typedef void (CDECL CDECL_EXT* PFSTI_TRANSACTIONSETSAVEPOINT_IEC) (sti_transacti
 typedef struct tagsti_utilitygetcurrentdateandtime_struct
 {
 	RTS_IEC_XWORD hStorage;				/* VAR_INPUT */	
-	RTS_IEC_LINT STI_UtilityGetCurrentDateAndTime  VXWORKS_ALIGNATTRIB;	/* VAR_OUTPUT */	
+	RTS_IEC_LINT STI_UtilityGetCurrentDateAndTime;	/* VAR_OUTPUT */	
 	RTS_IEC_INT eError;					/* VAR_OUTPUT, Enum: ERROR */
 } sti_utilitygetcurrentdateandtime_struct;
 
@@ -13541,151 +13344,6 @@ typedef STO_ERROR (CDECL * PFSTI_DELETEFILE) (CAA_FILENAME sPath);
 
 
 
-STO_ERROR CDECL STI_StorageExecuteStatement(STI_STORAGE hStorage, RTS_IEC_STRING *sStatement);
-typedef STO_ERROR (CDECL * PFSTI_STORAGEEXECUTESTATEMENT) (STI_STORAGE hStorage, RTS_IEC_STRING *sStatement);
-#if defined(CMPCAASTORAGE_NOTIMPLEMENTED) || defined(STI_STORAGEEXECUTESTATEMENT_NOTIMPLEMENTED)
-	#define USE_STI_StorageExecuteStatement
-	#define EXT_STI_StorageExecuteStatement
-	#define GET_STI_StorageExecuteStatement(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_STI_StorageExecuteStatement(p0,p1)  (STO_ERROR)ERR_NOTIMPLEMENTED
-	#define CHK_STI_StorageExecuteStatement  FALSE
-	#define EXP_STI_StorageExecuteStatement  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_STI_StorageExecuteStatement
-	#define EXT_STI_StorageExecuteStatement
-	#define GET_STI_StorageExecuteStatement(fl)  CAL_CMGETAPI( "STI_StorageExecuteStatement" ) 
-	#define CAL_STI_StorageExecuteStatement  STI_StorageExecuteStatement
-	#define CHK_STI_StorageExecuteStatement  TRUE
-	#define EXP_STI_StorageExecuteStatement  CAL_CMEXPAPI( "STI_StorageExecuteStatement" ) 
-#elif defined(MIXED_LINK) && !defined(CMPCAASTORAGE_EXTERNAL)
-	#define USE_STI_StorageExecuteStatement
-	#define EXT_STI_StorageExecuteStatement
-	#define GET_STI_StorageExecuteStatement(fl)  CAL_CMGETAPI( "STI_StorageExecuteStatement" ) 
-	#define CAL_STI_StorageExecuteStatement  STI_StorageExecuteStatement
-	#define CHK_STI_StorageExecuteStatement  TRUE
-	#define EXP_STI_StorageExecuteStatement  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"STI_StorageExecuteStatement", (RTS_UINTPTR)STI_StorageExecuteStatement, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpCAAStorageSTI_StorageExecuteStatement
-	#define EXT_CmpCAAStorageSTI_StorageExecuteStatement
-	#define GET_CmpCAAStorageSTI_StorageExecuteStatement  ERR_OK
-	#define CAL_CmpCAAStorageSTI_StorageExecuteStatement pICmpCAAStorage->ISTI_StorageExecuteStatement
-	#define CHK_CmpCAAStorageSTI_StorageExecuteStatement (pICmpCAAStorage != NULL)
-	#define EXP_CmpCAAStorageSTI_StorageExecuteStatement  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_STI_StorageExecuteStatement
-	#define EXT_STI_StorageExecuteStatement
-	#define GET_STI_StorageExecuteStatement(fl)  CAL_CMGETAPI( "STI_StorageExecuteStatement" ) 
-	#define CAL_STI_StorageExecuteStatement pICmpCAAStorage->ISTI_StorageExecuteStatement
-	#define CHK_STI_StorageExecuteStatement (pICmpCAAStorage != NULL)
-	#define EXP_STI_StorageExecuteStatement  CAL_CMEXPAPI( "STI_StorageExecuteStatement" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_STI_StorageExecuteStatement  PFSTI_STORAGEEXECUTESTATEMENT pfSTI_StorageExecuteStatement;
-	#define EXT_STI_StorageExecuteStatement  extern PFSTI_STORAGEEXECUTESTATEMENT pfSTI_StorageExecuteStatement;
-	#define GET_STI_StorageExecuteStatement(fl)  s_pfCMGetAPI2( "STI_StorageExecuteStatement", (RTS_VOID_FCTPTR *)&pfSTI_StorageExecuteStatement, (fl), 0, 0)
-	#define CAL_STI_StorageExecuteStatement  pfSTI_StorageExecuteStatement
-	#define CHK_STI_StorageExecuteStatement  (pfSTI_StorageExecuteStatement != NULL)
-	#define EXP_STI_StorageExecuteStatement  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"STI_StorageExecuteStatement", (RTS_UINTPTR)STI_StorageExecuteStatement, 0, 0) 
-#endif
-
-
-
-STO_ERROR CDECL STI_StorageGetTableId(STI_STORAGE hStorage, RTS_IEC_STRING *sTable, RTS_IEC_DWORD *pidTable);
-typedef STO_ERROR (CDECL * PFSTI_STORAGEGETTABLEID) (STI_STORAGE hStorage, RTS_IEC_STRING *sTable, RTS_IEC_DWORD *pidTable);
-#if defined(CMPCAASTORAGE_NOTIMPLEMENTED) || defined(STI_STORAGEGETTABLEID_NOTIMPLEMENTED)
-	#define USE_STI_StorageGetTableId
-	#define EXT_STI_StorageGetTableId
-	#define GET_STI_StorageGetTableId(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_STI_StorageGetTableId(p0,p1,p2)  (STO_ERROR)ERR_NOTIMPLEMENTED
-	#define CHK_STI_StorageGetTableId  FALSE
-	#define EXP_STI_StorageGetTableId  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_STI_StorageGetTableId
-	#define EXT_STI_StorageGetTableId
-	#define GET_STI_StorageGetTableId(fl)  CAL_CMGETAPI( "STI_StorageGetTableId" ) 
-	#define CAL_STI_StorageGetTableId  STI_StorageGetTableId
-	#define CHK_STI_StorageGetTableId  TRUE
-	#define EXP_STI_StorageGetTableId  CAL_CMEXPAPI( "STI_StorageGetTableId" ) 
-#elif defined(MIXED_LINK) && !defined(CMPCAASTORAGE_EXTERNAL)
-	#define USE_STI_StorageGetTableId
-	#define EXT_STI_StorageGetTableId
-	#define GET_STI_StorageGetTableId(fl)  CAL_CMGETAPI( "STI_StorageGetTableId" ) 
-	#define CAL_STI_StorageGetTableId  STI_StorageGetTableId
-	#define CHK_STI_StorageGetTableId  TRUE
-	#define EXP_STI_StorageGetTableId  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"STI_StorageGetTableId", (RTS_UINTPTR)STI_StorageGetTableId, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpCAAStorageSTI_StorageGetTableId
-	#define EXT_CmpCAAStorageSTI_StorageGetTableId
-	#define GET_CmpCAAStorageSTI_StorageGetTableId  ERR_OK
-	#define CAL_CmpCAAStorageSTI_StorageGetTableId pICmpCAAStorage->ISTI_StorageGetTableId
-	#define CHK_CmpCAAStorageSTI_StorageGetTableId (pICmpCAAStorage != NULL)
-	#define EXP_CmpCAAStorageSTI_StorageGetTableId  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_STI_StorageGetTableId
-	#define EXT_STI_StorageGetTableId
-	#define GET_STI_StorageGetTableId(fl)  CAL_CMGETAPI( "STI_StorageGetTableId" ) 
-	#define CAL_STI_StorageGetTableId pICmpCAAStorage->ISTI_StorageGetTableId
-	#define CHK_STI_StorageGetTableId (pICmpCAAStorage != NULL)
-	#define EXP_STI_StorageGetTableId  CAL_CMEXPAPI( "STI_StorageGetTableId" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_STI_StorageGetTableId  PFSTI_STORAGEGETTABLEID pfSTI_StorageGetTableId;
-	#define EXT_STI_StorageGetTableId  extern PFSTI_STORAGEGETTABLEID pfSTI_StorageGetTableId;
-	#define GET_STI_StorageGetTableId(fl)  s_pfCMGetAPI2( "STI_StorageGetTableId", (RTS_VOID_FCTPTR *)&pfSTI_StorageGetTableId, (fl), 0, 0)
-	#define CAL_STI_StorageGetTableId  pfSTI_StorageGetTableId
-	#define CHK_STI_StorageGetTableId  (pfSTI_StorageGetTableId != NULL)
-	#define EXP_STI_StorageGetTableId  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"STI_StorageGetTableId", (RTS_UINTPTR)STI_StorageGetTableId, 0, 0) 
-#endif
-
-
-
-STO_ERROR CDECL STI_StorageGetIndexId(STI_STORAGE hStorage, RTS_IEC_STRING *sTable, RTS_IEC_STRING *sIndex, RTS_IEC_DWORD *pidIndex);
-typedef STO_ERROR (CDECL * PFSTI_STORAGEGETINDEXID) (STI_STORAGE hStorage, RTS_IEC_STRING *sTable, RTS_IEC_STRING *sIndex, RTS_IEC_DWORD *pidIndex);
-#if defined(CMPCAASTORAGE_NOTIMPLEMENTED) || defined(STI_STORAGEGETINDEXID_NOTIMPLEMENTED)
-	#define USE_STI_StorageGetIndexId
-	#define EXT_STI_StorageGetIndexId
-	#define GET_STI_StorageGetIndexId(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_STI_StorageGetIndexId(p0,p1,p2,p3)  (STO_ERROR)ERR_NOTIMPLEMENTED
-	#define CHK_STI_StorageGetIndexId  FALSE
-	#define EXP_STI_StorageGetIndexId  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_STI_StorageGetIndexId
-	#define EXT_STI_StorageGetIndexId
-	#define GET_STI_StorageGetIndexId(fl)  CAL_CMGETAPI( "STI_StorageGetIndexId" ) 
-	#define CAL_STI_StorageGetIndexId  STI_StorageGetIndexId
-	#define CHK_STI_StorageGetIndexId  TRUE
-	#define EXP_STI_StorageGetIndexId  CAL_CMEXPAPI( "STI_StorageGetIndexId" ) 
-#elif defined(MIXED_LINK) && !defined(CMPCAASTORAGE_EXTERNAL)
-	#define USE_STI_StorageGetIndexId
-	#define EXT_STI_StorageGetIndexId
-	#define GET_STI_StorageGetIndexId(fl)  CAL_CMGETAPI( "STI_StorageGetIndexId" ) 
-	#define CAL_STI_StorageGetIndexId  STI_StorageGetIndexId
-	#define CHK_STI_StorageGetIndexId  TRUE
-	#define EXP_STI_StorageGetIndexId  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"STI_StorageGetIndexId", (RTS_UINTPTR)STI_StorageGetIndexId, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpCAAStorageSTI_StorageGetIndexId
-	#define EXT_CmpCAAStorageSTI_StorageGetIndexId
-	#define GET_CmpCAAStorageSTI_StorageGetIndexId  ERR_OK
-	#define CAL_CmpCAAStorageSTI_StorageGetIndexId pICmpCAAStorage->ISTI_StorageGetIndexId
-	#define CHK_CmpCAAStorageSTI_StorageGetIndexId (pICmpCAAStorage != NULL)
-	#define EXP_CmpCAAStorageSTI_StorageGetIndexId  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_STI_StorageGetIndexId
-	#define EXT_STI_StorageGetIndexId
-	#define GET_STI_StorageGetIndexId(fl)  CAL_CMGETAPI( "STI_StorageGetIndexId" ) 
-	#define CAL_STI_StorageGetIndexId pICmpCAAStorage->ISTI_StorageGetIndexId
-	#define CHK_STI_StorageGetIndexId (pICmpCAAStorage != NULL)
-	#define EXP_STI_StorageGetIndexId  CAL_CMEXPAPI( "STI_StorageGetIndexId" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_STI_StorageGetIndexId  PFSTI_STORAGEGETINDEXID pfSTI_StorageGetIndexId;
-	#define EXT_STI_StorageGetIndexId  extern PFSTI_STORAGEGETINDEXID pfSTI_StorageGetIndexId;
-	#define GET_STI_StorageGetIndexId(fl)  s_pfCMGetAPI2( "STI_StorageGetIndexId", (RTS_VOID_FCTPTR *)&pfSTI_StorageGetIndexId, (fl), 0, 0)
-	#define CAL_STI_StorageGetIndexId  pfSTI_StorageGetIndexId
-	#define CHK_STI_StorageGetIndexId  (pfSTI_StorageGetIndexId != NULL)
-	#define EXP_STI_StorageGetIndexId  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"STI_StorageGetIndexId", (RTS_UINTPTR)STI_StorageGetIndexId, 0, 0) 
-#endif
-
-
-
-
 #ifdef __cplusplus
 }
 #endif
@@ -13817,9 +13475,6 @@ typedef struct
  	PFSTI_UTILITYGETCURRENTDATEANDTIME ISTI_UtilityGetCurrentDateAndTime;
  	PFSTI_UTILITYRANDOMNESS ISTI_UtilityRandomness;
  	PFSTI_DELETEFILE ISTI_DeleteFile;
- 	PFSTI_STORAGEEXECUTESTATEMENT ISTI_StorageExecuteStatement;
- 	PFSTI_STORAGEGETTABLEID ISTI_StorageGetTableId;
- 	PFSTI_STORAGEGETINDEXID ISTI_StorageGetIndexId;
  } ICmpCAAStorage_C;
 
 #ifdef CPLUSPLUS
@@ -13948,9 +13603,6 @@ class ICmpCAAStorage : public IBase
 		virtual STO_INT64 CDECL ISTI_UtilityGetCurrentDateAndTime(STI_STORAGE hStorage, STO_ERROR *peError) =0;
 		virtual STO_ERROR CDECL ISTI_UtilityRandomness(STI_STORAGE hStorage, CAA_SIZE szSize, CAA_PVOID pData) =0;
 		virtual STO_ERROR CDECL ISTI_DeleteFile(CAA_FILENAME sPath) =0;
-		virtual STO_ERROR CDECL ISTI_StorageExecuteStatement(STI_STORAGE hStorage, RTS_IEC_STRING *sStatement) =0;
-		virtual STO_ERROR CDECL ISTI_StorageGetTableId(STI_STORAGE hStorage, RTS_IEC_STRING *sTable, RTS_IEC_DWORD *pidTable) =0;
-		virtual STO_ERROR CDECL ISTI_StorageGetIndexId(STI_STORAGE hStorage, RTS_IEC_STRING *sTable, RTS_IEC_STRING *sIndex, RTS_IEC_DWORD *pidIndex) =0;
 };
 	#ifndef ITF_CmpCAAStorage
 		#define ITF_CmpCAAStorage static ICmpCAAStorage *pICmpCAAStorage = NULL;

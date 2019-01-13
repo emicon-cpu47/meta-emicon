@@ -331,7 +331,6 @@ typedef struct
 {
 	RTS_IEC_DWORD		ulClientId;
 	RTS_HANDLE			hWindow;
-	RTS_HANDLE			hWindowAccessSem;		/* this semaphore should be taken if accessing hWindow when it is possible that the window might be destroy in between by another task */
 	RTS_HANDLE			hEditControl;
 	RTS_HANDLE			hBackbuffer;
 	RTS_HANDLE			hBackground;
@@ -341,13 +340,6 @@ typedef struct
 	TargetvisuCallbacks callbacks;
 	RTS_UI32			ulUpdateTimeMs;
 	void*				pCmpTargetvisuSpecificData;
-
-	/* 
-		This pointer can be used by the system specific implementation to store data relevant only
-		for the concrete implementation.
-		If this information is used by an implementation, it must be allocated using
-		SysMemAllocData. The data will be released automatically when the targetvisu window is closed.
-	*/
 	void*				pSysTargetvisuSpecificData;
 } TargetvisuParams;
 

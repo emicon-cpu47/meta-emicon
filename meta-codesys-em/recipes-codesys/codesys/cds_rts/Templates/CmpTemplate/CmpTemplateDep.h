@@ -11,13 +11,13 @@
  *  which are intended to be used for anything. Use at your own risk.
  *  </description>
  *  <copyright>
- *  Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+ *  (c) 2003-2016 3S-Smart Software Solutions
  *  </copyright>
  */
 #ifndef _CMPTEMPLATEDEP_H_
 #define _CMPTEMPLATEDEP_H_
 
-#define COMPONENT_NAME "CmpTemplate" COMPONENT_NAME_POSTFIX
+#define COMPONENT_NAME "CmpTemplate"COMPONENT_NAME_POSTFIX
 #define COMPONENT_ID    ADDVENDORID(CMP_VENDORID, CMPID_CmpTemplate)
 #define COMPONENT_NAME_UNQUOTED CmpTemplate
 
@@ -26,9 +26,9 @@
 
 
 
-#define CMP_VERSION         UINT32_C(0x03050D00)
-#define CMP_VERSION_STRING "3.5.13.0"
-#define CMP_VERSION_RC      3,5,13,0
+#define CMP_VERSION         UINT32_C(0x03050A00)
+#define CMP_VERSION_STRING "3.5.10.0"
+#define CMP_VERSION_RC      3,5,10,0
 
 /* NOTE: REPLACE 0x0001 BY YOUR VENDORID */
 #define CMP_VENDORID       0x0001
@@ -121,12 +121,8 @@
 #include "CmpSupervisorItf.h"
 
 
-/*Obsolete include: CMUtilsItf.m4*/
-
-
 
     
-
 
 
 
@@ -250,10 +246,7 @@
 
 
 
-
     
-
-
 
 
 
@@ -311,8 +304,6 @@
 
 
 
-
-
      
 
 
@@ -339,8 +330,7 @@
                 pIBase->Release(pIBase); \
             } \
         } \
-        /*Obsolete include CMUtils*/ \
-		  if (pICmpSupervisor == NULL && s_pfCMCreateInstance != NULL) \
+        if (pICmpSupervisor == NULL && s_pfCMCreateInstance != NULL) \
         { \
             pIBase = (IBase *)s_pfCMCreateInstance(CLASSID_CCmpSupervisor, &initResult); \
             if (pIBase != NULL) \
@@ -535,8 +525,7 @@
     {\
         pICmpLog = NULL; \
         pICMUtils = NULL; \
-        /*Obsolete include CMUtils*/ \
-		  pICmpSupervisor = NULL; \
+        pICmpSupervisor = NULL; \
           pICmpUserMgr = NULL; \
           pISysTimeRtc = NULL; \
           pICmpIecVarAccess = NULL; \
@@ -583,8 +572,7 @@
                     pICMUtils = NULL; \
             } \
         } \
-        /*Obsolete include CMUtils*/ \
-		  if (pICmpSupervisor != NULL) \
+        if (pICmpSupervisor != NULL) \
         { \
             pIBase = (IBase *)pICmpSupervisor->QueryInterface(pICmpSupervisor, ITFID_IBase, &exitResult); \
             if (pIBase != NULL) \
@@ -814,15 +802,13 @@
         INIT_STMT   \
         TempResult = GET_LogAdd(CM_IMPORT_OPTIONAL_FUNCTION); \
         TempResult = GET_CMUtlMemCpy(CM_IMPORT_OPTIONAL_FUNCTION); \
-        if (ERR_OK == importResult ) TempResult = GET_SysTaskGetHandleByOSHandle(CM_IMPORT_OPTIONAL_FUNCTION);\
-          if (ERR_OK == importResult ) TempResult = GET_SupervisorOperationGetEntry(CM_IMPORT_OPTIONAL_FUNCTION);\
-          if (ERR_OK == importResult ) TempResult = GET_SupervisorOperationDead(CM_IMPORT_OPTIONAL_FUNCTION);\
+        if (ERR_OK == importResult ) TempResult = GET_SupervisorOperationDead(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_SupervisorOperationAlive(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_SupervisorOperationDisable(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_SupervisorOperationEnable(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_SupervisorOperationUnregister(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_SupervisorOperationRegister(CM_IMPORT_OPTIONAL_FUNCTION);\
-          if (ERR_OK == importResult ) TempResult = GET_SupervisorOperationGetState2(CM_IMPORT_OPTIONAL_FUNCTION);\
+          if (ERR_OK == importResult ) TempResult = GET_SupervisorOperationGetState(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_UserMgrAddOnlineAccessError(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_UserMgrHasAccessRights(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_UserMgrObjectClose(CM_IMPORT_OPTIONAL_FUNCTION);\
@@ -845,7 +831,6 @@
           if (ERR_OK == importResult ) TempResult = GET_SysTaskWaitSleep(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_IecVarAccGetNodeFullPath3(CM_IMPORT_OPTIONAL_FUNCTION);\
           if (ERR_OK == importResult ) TempResult = GET_SysMemIsValidPointer(CM_IMPORT_OPTIONAL_FUNCTION);\
-          if (ERR_OK == importResult ) importResult = GET_CMUtlvsnprintf(0);\
           if (ERR_OK == importResult ) importResult = GET_SchedUnregisterExternalEvent(0);\
           if (ERR_OK == importResult ) importResult = GET_SchedPostExternalEvent(0);\
           if (ERR_OK == importResult ) importResult = GET_SchedRegisterExternalEvent(0);\
@@ -1029,8 +1014,7 @@
 	ITF_CmpIecVarAccess     \
 	ITF_SysTimeRtc     \
 	ITF_CmpUserMgr     \
-	ITF_CmpSupervisor     \
-	/*obsolete entry ITF_CMUtils*/       \
+	ITF_CmpSupervisor      \
     USE_ServerRegisterServiceHandler      \
     USE_ServerUnRegisterServiceHandler      \
     USE_ServerFinishRequest      \
@@ -1092,7 +1076,6 @@
     USE_SchedRegisterExternalEvent      \
     USE_SchedPostExternalEvent      \
     USE_SchedUnregisterExternalEvent      \
-    USE_CMUtlvsnprintf      \
     USE_SysMemIsValidPointer      \
     USE_IecVarAccGetNodeFullPath3      \
     USE_SysTaskWaitSleep      \
@@ -1115,15 +1098,13 @@
     USE_UserMgrObjectClose      \
     USE_UserMgrHasAccessRights      \
     USE_UserMgrAddOnlineAccessError      \
-    USE_SupervisorOperationGetState2      \
+    USE_SupervisorOperationGetState      \
     USE_SupervisorOperationRegister      \
     USE_SupervisorOperationUnregister      \
     USE_SupervisorOperationEnable      \
     USE_SupervisorOperationDisable      \
     USE_SupervisorOperationAlive      \
-    USE_SupervisorOperationDead      \
-    USE_SupervisorOperationGetEntry      \
-    USE_SysTaskGetHandleByOSHandle     
+    USE_SupervisorOperationDead     
 #define USEIMPORT_STMT \
     /*lint -save --e{551} */ \
     static volatile PF_REGISTER_API s_pfCMRegisterAPI; \
@@ -1158,8 +1139,7 @@
 	ITF_CmpIecVarAccess    \
 	ITF_SysTimeRtc    \
 	ITF_CmpUserMgr    \
-	ITF_CmpSupervisor    \
-	/*obsolete entry ITF_CMUtils*/      \
+	ITF_CmpSupervisor     \
     USE_ServerRegisterServiceHandler      \
     USE_ServerUnRegisterServiceHandler      \
     USE_ServerFinishRequest      \
@@ -1221,7 +1201,6 @@
     USE_SchedRegisterExternalEvent      \
     USE_SchedPostExternalEvent      \
     USE_SchedUnregisterExternalEvent      \
-    USE_CMUtlvsnprintf      \
     USE_SysMemIsValidPointer      \
     USE_IecVarAccGetNodeFullPath3      \
     USE_SysTaskWaitSleep      \
@@ -1244,15 +1223,13 @@
     USE_UserMgrObjectClose      \
     USE_UserMgrHasAccessRights      \
     USE_UserMgrAddOnlineAccessError      \
-    USE_SupervisorOperationGetState2      \
+    USE_SupervisorOperationGetState      \
     USE_SupervisorOperationRegister      \
     USE_SupervisorOperationUnregister      \
     USE_SupervisorOperationEnable      \
     USE_SupervisorOperationDisable      \
     USE_SupervisorOperationAlive      \
-    USE_SupervisorOperationDead      \
-    USE_SupervisorOperationGetEntry      \
-    USE_SysTaskGetHandleByOSHandle     
+    USE_SupervisorOperationDead     
 #define USEEXTERN_STMT \
     EXT_CMUtlMemCpy  \
     EXT_LogAdd \
@@ -1276,8 +1253,7 @@
 	EXTITF_CmpIecVarAccess    \
 	EXTITF_SysTimeRtc    \
 	EXTITF_CmpUserMgr    \
-	EXTITF_CmpSupervisor    \
-	/*obsolete entry EXTITF_CMUtils*/      \
+	EXTITF_CmpSupervisor     \
     EXT_ServerRegisterServiceHandler  \
     EXT_ServerUnRegisterServiceHandler  \
     EXT_ServerFinishRequest  \
@@ -1339,7 +1315,6 @@
     EXT_SchedRegisterExternalEvent  \
     EXT_SchedPostExternalEvent  \
     EXT_SchedUnregisterExternalEvent  \
-    EXT_CMUtlvsnprintf  \
     EXT_SysMemIsValidPointer  \
     EXT_IecVarAccGetNodeFullPath3  \
     EXT_SysTaskWaitSleep  \
@@ -1362,15 +1337,13 @@
     EXT_UserMgrObjectClose  \
     EXT_UserMgrHasAccessRights  \
     EXT_UserMgrAddOnlineAccessError  \
-    EXT_SupervisorOperationGetState2  \
+    EXT_SupervisorOperationGetState  \
     EXT_SupervisorOperationRegister  \
     EXT_SupervisorOperationUnregister  \
     EXT_SupervisorOperationEnable  \
     EXT_SupervisorOperationDisable  \
     EXT_SupervisorOperationAlive  \
-    EXT_SupervisorOperationDead  \
-    EXT_SupervisorOperationGetEntry  \
-    EXT_SysTaskGetHandleByOSHandle 
+    EXT_SupervisorOperationDead 
 #ifndef COMPONENT_NAME
     #error COMPONENT_NAME is not defined. This prevents the component from being linked statically. Use SET_COMPONENT_NAME(<name_of_your_component>) to set the name of the component in your .m4 component description.
 #endif

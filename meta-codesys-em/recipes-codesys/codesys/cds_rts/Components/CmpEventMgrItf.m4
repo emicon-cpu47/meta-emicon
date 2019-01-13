@@ -45,9 +45,7 @@
  *	a consumer, the event EVT_EventClose is sent.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpEventMgr')
@@ -135,25 +133,6 @@ REF_ITF(`CmpEventCallbackItf.m4')
  */
 #define EVENT_CALLBACKS_NO_LIMIT			UINT32_MAX
 
-/**
- * <category>Event manager flags</category>
- * <description>
- *	Flags used by the event manager.
- * </description>
- *	<element name="EMF_NO_IEC_CALLBACKS" type="IN">No callbacks in IEC possible</element>
- */
-#define EMF_NO_IEC_CALLBACKS	UINT32_C(0x00000001)
-
-/**
- * <category>Event options</category>
- * <element name="nCallbacksPossible" type="IN">Maximum number of callbacks possible on this event or EVENT_CALLBACKS_NO_LIMIT for no limit</element>
- * <element name="flags" type="IN">Event manager flags</element>
- */
-typedef struct tagEventOptions
-{
-       RTS_UI32 nCallbacksPossible;
-       RTS_UI32 flags;
-} EventOptions;
 
 /**
  * <category>Event parameter</category>
@@ -236,7 +215,7 @@ typedef struct tageventclose_struct
 	RTS_IEC_RESULT EventClose;			/* VAR_OUTPUT */	/* Error code */
 } eventclose_struct;
 
-DEF_API(`void',`CDECL',`eventclose',`(eventclose_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x4668EEC1),0x03050C00)
+DEF_API(`void',`CDECL',`eventclose',`(eventclose_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x4668EEC1),0x03050800)
 
 /**
  * Creates a new event object. If event still exists, a handle to this object will be returned.
@@ -250,7 +229,7 @@ typedef struct tageventcreate_struct
 	RTS_IEC_HANDLE EventCreate;			/* VAR_OUTPUT */	/* Handle to created event */
 } eventcreate_struct;
 
-DEF_API(`void',`CDECL',`eventcreate',`(eventcreate_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xAC9E014A),0x03050C00)
+DEF_API(`void',`CDECL',`eventcreate',`(eventcreate_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xAC9E014A),0x03050800)
 
 /**
  * Creates a new event object. If event still exists, a handle to this object will be returned.
@@ -265,7 +244,7 @@ typedef struct tageventcreate2_struct
 	RTS_IEC_HANDLE EventCreate2;		/* VAR_OUTPUT */	/* Handle to created event */
 } eventcreate2_struct;
 
-DEF_API(`void',`CDECL',`eventcreate2',`(eventcreate2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8),0x03050C00)
+DEF_API(`void',`CDECL',`eventcreate2',`(eventcreate2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8),0x03050800)
 
 /**
  * Deletes an event specified by handle. 
@@ -276,7 +255,7 @@ typedef struct tageventdelete_struct
 	RTS_IEC_RESULT EventDelete;			/* VAR_OUTPUT */	/* Error code */
 } eventdelete_struct;
 
-DEF_API(`void',`CDECL',`eventdelete',`(eventdelete_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x0794C5F5),0x03050C00)
+DEF_API(`void',`CDECL',`eventdelete',`(eventdelete_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x0794C5F5),0x03050800)
 
 /**
  * Extract the event class from eventid. Return value is the event class 
@@ -287,7 +266,7 @@ typedef struct tageventgetclass_struct
 	RTS_IEC_UINT EventGetClass;			/* VAR_OUTPUT */	
 } eventgetclass_struct;
 
-DEF_API(`void',`CDECL',`eventgetclass',`(eventgetclass_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xB0745754),0x03050C00)
+DEF_API(`void',`CDECL',`eventgetclass',`(eventgetclass_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xB0745754),0x03050800)
 
 /**
  * Extract the event from eventid. Return value ist the event 
@@ -298,7 +277,7 @@ typedef struct tageventgetevent_struct
 	RTS_IEC_UINT EventGetEvent;			/* VAR_OUTPUT */	
 } eventgetevent_struct;
 
-DEF_API(`void',`CDECL',`eventgetevent',`(eventgetevent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x0E7E3D61),0x03050C00)
+DEF_API(`void',`CDECL',`eventgetevent',`(eventgetevent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x0E7E3D61),0x03050800)
 
 /**
  * Opens an existing event object. Can be used to check, if the event was created by the provider.
@@ -312,7 +291,7 @@ typedef struct tageventopen_struct
 	RTS_IEC_HANDLE EventOpen;			/* VAR_OUTPUT */	/* Handle to opened event */
 } eventopen_struct;
 
-DEF_API(`void',`CDECL',`eventopen',`(eventopen_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1),0x03050C00)
+DEF_API(`void',`CDECL',`eventopen',`(eventopen_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1),0x03050800)
 
 /**
  * Post or sent an event 
@@ -324,7 +303,7 @@ typedef struct tageventpost_struct
 	RTS_IEC_RESULT EventPost;			/* VAR_OUTPUT */	/* Error code */
 } eventpost_struct;
 
-DEF_API(`void',`CDECL',`eventpost',`(eventpost_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x9FDEA762),0x03050C00)
+DEF_API(`void',`CDECL',`eventpost',`(eventpost_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x9FDEA762),0x03050800)
 
 /**
  * Post or sent an event 
@@ -336,7 +315,7 @@ typedef struct tageventpost2_struct
 	RTS_IEC_RESULT EventPost2;			/* VAR_OUTPUT */	/* Error code */
 } eventpost2_struct;
 
-DEF_API(`void',`CDECL',`eventpost2',`(eventpost2_struct *p)',1,0xCE90F5F0,0x03050C00)
+DEF_API(`void',`CDECL',`eventpost2',`(eventpost2_struct *p)',1,0xCE90F5F0,0x03050800)
 
 /**
  * Post an event direct without the event handle 
@@ -349,7 +328,7 @@ typedef struct tageventpostbyevent_struct
 	RTS_IEC_RESULT EventPostByEvent;	/* VAR_OUTPUT */	/* Error code */
 } eventpostbyevent_struct;
 
-DEF_API(`void',`CDECL',`eventpostbyevent',`(eventpostbyevent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xA33BD23D),0x03050C00)
+DEF_API(`void',`CDECL',`eventpostbyevent',`(eventpostbyevent_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xA33BD23D),0x03050800)
 
 /**
  * Post an event direct without the event handle 
@@ -362,7 +341,7 @@ typedef struct tageventpostbyevent2_struct
 	RTS_IEC_RESULT EventPostByEvent2;	/* VAR_OUTPUT */	/* Error code */
 } eventpostbyevent2_struct;
 
-DEF_API(`void',`CDECL',`eventpostbyevent2',`(eventpostbyevent2_struct *p)',1,0x61F1EA28,0x03050C00)
+DEF_API(`void',`CDECL',`eventpostbyevent2',`(eventpostbyevent2_struct *p)',1,0x61F1EA28,0x03050800)
 
 /**
  * Register an callback method to an event. The callback must be an interface from an Iec function block! 
@@ -375,7 +354,7 @@ typedef struct tageventregistercallback_struct
 	RTS_IEC_HANDLE EventRegisterCallback;	/* VAR_OUTPUT */	/* Handle to the callback that must be used to unregister with EventUnregisterCallback! */
 } eventregistercallback_struct;
 
-DEF_API(`void',`CDECL',`eventregistercallback',`(eventregistercallback_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x5EF9AC91),0x03050C00)
+DEF_API(`void',`CDECL',`eventregistercallback',`(eventregistercallback_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x5EF9AC91),0x03050800)
 
 /**
  * Register an callback method to an event. The callback must be an interface from an Iec function block! 
@@ -389,7 +368,7 @@ typedef struct tageventregistercallback2_struct
 	RTS_IEC_HANDLE EventRegisterCallback2;	/* VAR_OUTPUT */	/* Handle to the callback that must be used to unregister with EventUnregisterCallback! */
 } eventregistercallback2_struct;
 
-DEF_API(`void',`CDECL',`eventregistercallback2',`(eventregistercallback2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x95D8F44C),0x03050C00)
+DEF_API(`void',`CDECL',`eventregistercallback2',`(eventregistercallback2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x95D8F44C),0x03050800)
 
 /**
  * Register a callback function to an event. Callback is the address of an Iec function: ADR(function) 
@@ -402,7 +381,7 @@ typedef struct tageventregistercallbackfunction_struct
 	RTS_IEC_RESULT EventRegisterCallbackFunction;	/* VAR_OUTPUT */	/* Error code */
 } eventregistercallbackfunction_struct;
 
-DEF_API(`void',`CDECL',`eventregistercallbackfunction',`(eventregistercallbackfunction_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x989C8BB3),0x03050C00)
+DEF_API(`void',`CDECL',`eventregistercallbackfunction',`(eventregistercallbackfunction_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x989C8BB3),0x03050800)
 
 /**
  * Register a callback function to an event. Callback is the address of an Iec function: ADR(function) 
@@ -416,7 +395,7 @@ typedef struct tageventregistercallbackfunction2_struct
 	RTS_IEC_RESULT EventRegisterCallbackFunction2;	/* VAR_OUTPUT */	/* Error code */
 } eventregistercallbackfunction2_struct;
 
-DEF_API(`void',`CDECL',`eventregistercallbackfunction2',`(eventregistercallbackfunction2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xBD946DD7),0x03050C00)
+DEF_API(`void',`CDECL',`eventregistercallbackfunction2',`(eventregistercallbackfunction2_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xBD946DD7),0x03050800)
 
 /**
  * Returns the number of registered callbacks on the event 
@@ -428,7 +407,7 @@ typedef struct tageventregisteredcallbacks_struct
 	RTS_IEC_UDINT EventRegisteredCallbacks;	/* VAR_OUTPUT */	
 } eventregisteredcallbacks_struct;
 
-DEF_API(`void',`CDECL',`eventregisteredcallbacks',`(eventregisteredcallbacks_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B),0x03050C00)
+DEF_API(`void',`CDECL',`eventregisteredcallbacks',`(eventregisteredcallbacks_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B),0x03050800)
 
 /**
  * Unregister a callback interface from an event specified by handle and callback interface 
@@ -440,7 +419,7 @@ typedef struct tageventunregistercallback_struct
 	RTS_IEC_RESULT EventUnregisterCallback;	/* VAR_OUTPUT */	/* Error code */
 } eventunregistercallback_struct;
 
-DEF_API(`void',`CDECL',`eventunregistercallback',`(eventunregistercallback_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x80238B4F),0x03050C00)
+DEF_API(`void',`CDECL',`eventunregistercallback',`(eventunregistercallback_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x80238B4F),0x03050800)
 
 /**
  * Unregister a callback function from an event specified by handle and callback 
@@ -452,20 +431,7 @@ typedef struct tageventunregistercallbackfunction_struct
 	RTS_IEC_RESULT EventUnregisterCallbackFunction;	/* VAR_OUTPUT */	/* Error code */
 } eventunregistercallbackfunction_struct;
 
-DEF_API(`void',`CDECL',`eventunregistercallbackfunction',`(eventunregistercallbackfunction_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD),0x03050C00)
-
-/**
- * Unregister a callback function with a specific user parameter from an event specified by handle and callback and parameter 
- */
-typedef struct tageventunregistercallbackfunction2_struct
-{
-	RTS_IEC_HANDLE hEvent;				/* VAR_INPUT */	/* Handle to event */
-	RTS_IEC_BYTE *pfCallbackFunction;	/* VAR_INPUT */	/* Address of callback function. Function pointer is retrieved by the ADR operator: ADR(function) */
-	RTS_IEC_BYTE *pUserParameter;		/* VAR_INPUT */	/* Pointer to user parameter, that is transmitted optional to the callback (see EventParam) */
-	RTS_IEC_RESULT EventUnregisterCallbackFunction2;	/* VAR_OUTPUT */	/* Error code */
-} eventunregistercallbackfunction2_struct;
-
-DEF_API(`void',`CDECL',`eventunregistercallbackfunction2',`(eventunregistercallbackfunction2_struct *p)',1,0x779853A9,0x03050C00)
+DEF_API(`void',`CDECL',`eventunregistercallbackfunction',`(eventunregistercallbackfunction_struct *p)',1,RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD),0x03050800)
 
 #ifdef __cplusplus
 }
@@ -498,17 +464,6 @@ DEF_ITF_API(`RTS_HANDLE', `CDECL', `EventCreate', `(EVENTID EventId, CMPID CmpId
  * <result>Handle to the event object</result>
  */
 DEF_ITF_API(`RTS_HANDLE', `CDECL', `EventCreate2', `(EVENTID EventId, CMPID CmpIdProvider, RTS_UI32 nCallbacksPossible, RTS_RESULT *pResult)')
-
-/**
- * <description>Creates a new event object. If event still exists, a handle to this object will be returned.
- * An event is typically created by the provider of an event in the CH_INIT_DONE hook.</description>
- * <param name="EventId" type="IN">Event ID of the event. Contains the class and the event</param>
- * <param name="CmpIdProvider" type="IN">Component ID of the provider</param>
- * <param name="pEventOptions" type="IN">Pointer to the EventOptions. May be NULL, then EventCreate() will be called without EventOptions.</param>
- * <param name="pResult" type="OUT">Pointer to the error code</param>
- * <result>Handle to the event object</result>
- */
-DEF_ITF_API(`RTS_HANDLE', `CDECL', `EventCreate3', `(EVENTID EventId, CMPID CmpIdProvider, EventOptions *pEventOptions, RTS_RESULT *pResult)')
 
 /**
  * <description>Deletes an event specified by handle </description>
@@ -620,16 +575,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `EventRegisterCallbackFunction2', `(RTS_HANDL
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `EventUnregisterCallbackFunction', `(RTS_HANDLE hEvent, PFEVENTCALLBACKFUNCTION pfCallbackFunction)')
 
-/**
- * <description>Unregister a callback function with a specific user parameter from an event specified by handle and callback and parameter</description>
- * <param name="hEvent" type="IN">Handle to event</param>
- * <param name="pfCallbackFunction" type="IN">Pointer to callback function</param>
- * <param name="bIec" type="IN">1=Iec function, 0=C function</param>
- * <param name="pUserParameter" type="IN">Pointer to user parameter, that was specified as a parameter at EventRegisterCallback2()</param>
- * <result>Error code</result>
- */
-DEF_ITF_API(`RTS_RESULT', `CDECL', `EventUnregisterCallbackFunction2', `(RTS_HANDLE hEvent, PFEVENTCALLBACKFUNCTION pfCallbackFunction, void *pUserParameter)')
- 
 /**
  * <description>Function to evaluate the number of registered callback handlers on a single event</description>
  * <param name="hEvent" type="IN">Handle to event</param>

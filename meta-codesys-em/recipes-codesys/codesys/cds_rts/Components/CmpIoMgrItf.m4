@@ -122,23 +122,10 @@
  * <p>The component CmpIoDrvC manages all C drivers and CmpIoDrvIec manages all
  * IEC drivers.</p>
  * </description>
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpIoMgr')
-
-/**
- * <category>Compiler switch</category>
- * <description>
- *	Compiler switches to enable/disable single features in the component.
- * </description>
- * <element name="CMPIECTASK_DONT_REGISTER_WATCHDOG_AT_SUPERVISOR">Switch to disable registering all hardware supported fieldbus watchdogs (e.g. Hilscher CIFX masters) at the CmpSupervisor!
- *	If this defined is set, the hardware supported fieldbus watchdogs are always enabled and cannot selectively be disabled via the CmpSupervisor!
- * </element>
- */
-
 
 /**
  * <category>Static defines</category>
@@ -257,28 +244,14 @@ SET_INTERFACE_NAME(`CmpIoMgr')
 *     Setting to enable full IO-update consistency resp. disable DRVPROP_CONSISTENCY for all IO-drivers! This setting must be used, if consistency cannot be
 *     realized on this target by the IO-driver itself.
 *  NOTE:
-*     This settings must be enabled on targets with no strict priority scheduling for the IO-update tasks (for MultiCore targets) or on systems with 2 buscycle tasks (for SIL3).
+*     This settings must be enabled on targets with no strict priority scheduling for the IO-update tasks (for example for MultiCore systems).
 * </description>
 */
 #define IOMGRKEY_INT_ENABLE_FULL_CONSISTENCY					"EnableFullConsistency"
 #ifndef IOMGRVALUE_INT_ENABLE_FULL_CONSISTENCY
-	#if !defined(SYSCPUMULTICORE_NOTIMPLEMENTED)				/* IOMGRVALUE_INT_ENABLE_FULL_CONSISTENCY must be activate on MultiCore targets! */
-       #define IOMGRVALUE_INT_ENABLE_FULL_CONSISTENCY			1
-	#else
        #define IOMGRVALUE_INT_ENABLE_FULL_CONSISTENCY			0
-	#endif
 #endif
 
-/**
- * <category>Task map types</category>
- * <description>
- * <p>Types of IO-channels in a task map</p>
- * </description>
- * <element name="TMT_INPUTS">Input connector maps</element>
- * <element name="TMT_OUTPUTS">Output connector maps</element>
- */
-#define TMT_INPUTS				0x0001
-#define TMT_OUTPUTS				0x0002
 
 /** EXTERN LIB SECTION BEGIN **/
 /*  Comments are ignored for m4 compiler so restructured text can be used. changecom(`/*', `*/') */
@@ -1308,20 +1281,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `IoMgrUpdateConfiguration', `(IoConfigConnect
  * <errorcode name="RTS_RESULT" type="ERR_FAILED">Update Configuration of at least one driver failed</errorcode>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `IoMgrUpdateConfiguration2', `(IoConfigConnector *pConnectorList, int nCount, char *pszConfigApplication)')
-
-/**
- * <description>
- * Function to check, if specified IEC task has mapped inputs or outputs.
- * </description>
- * <param name="dwTaskId" type="IN">Index of the IEC task</param>
- * <param name="taskMapType" type="IN">Input or output type. See category "Task map types" for detailed information.</param>
- * <param name="pResult" type="OUT">Pointer to the error code</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">TaskID could be verified</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid taskid or maptype</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Interface function not implemented</errorcode>
- * <result>TRUE=Task has mapped requested IO types; FALSE=Task has _no_ mapped requested IO types</result>
- */
-DEF_ITF_API(`RTS_BOOL', `CDECL', `IoMgrHasTaskIOs', `(RTS_UI32 dwTaskId, RTS_UI16 taskMapType, RTS_RESULT *pResult)')
 
 /**
  * <description>

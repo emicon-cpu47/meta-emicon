@@ -4,9 +4,7 @@
  *	Interface of the scheduler.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -25,7 +23,6 @@
 
 
 #include "CmpIecTaskItf.h"
-#include "SysCpuMultiCoreItf.h"
 
 #define CMD_INIT				0
 #define CMD_TICK				1
@@ -445,32 +442,6 @@ typedef struct
  */
 #define EVT_ScheduleTaskGap									MAKE_EVENTID(EVTCLASS_INFO, 6)
 
-
-/**
-* <category>Event parameter</category>
-* <element name="pSchedTime" type="IN">Actual time value of the scheduler, that is used for activating the tasks</element>
-* <element name="iScheduleIntervalUs" type="IN">Schedule interval in microseconds</element>
-* <element name="pApp" type="IN">Pointer to the application for which the task gap has been detected</element>
-*/
-typedef struct
-{
-	RTS_SYSTIME *pSchedTime;
-	RTS_I32 iScheduleIntervalUs;
-	APPLICATION *pApp;
-} EVTPARAM_CmpScheduleTaskGapApp;
-#define EVTPARAMID_CmpScheduleTaskGapApp	0x0003
-#define EVTVERSION_CmpScheduleTaskGapApp	0x0001
-
-/**
- * <category>Events</category>
- * <description>
- * Event is sent always for each application, if no IEC task in that application is active (task gap).
- * The synchronization for the application has to be done in the callback of the event.
- * </description>
- * <param name="pEventParam" type="IN">EVTPARAM_CmpScheduleTaskGapApp</param>
- */
-#define EVT_ScheduleTaskGapApp								MAKE_EVENTID(EVTCLASS_INFO, 7)
-
 /**
  * <SIL2/>
  * <category>Typedef</category>
@@ -483,7 +454,6 @@ extern RTS_UI32 g_RTS_SIL2_Cycle_LifeCounter_CmpScheduleTimer;
 
 
 /** EXTERN LIB SECTION BEGIN **/
-/*  Comments are ignored for m4 compiler so restructured text can be used.  */
 
 #ifdef __cplusplus
 extern "C" {
@@ -1127,118 +1097,6 @@ typedef void (CDECL CDECL_EXT* PFSCHEDSETTASKINTERVAL_IEC) (schedsettaskinterval
 
 
 /**
- * <description>schedtaskresume</description>
- */
-typedef struct tagschedtaskresume_struct
-{
-	RTS_IEC_HANDLE hSchedTask;			/* VAR_INPUT */	
-	RTS_IEC_RESULT SchedTaskResume;		/* VAR_OUTPUT */	
-} schedtaskresume_struct;
-
-void CDECL CDECL_EXT schedtaskresume(schedtaskresume_struct *p);
-typedef void (CDECL CDECL_EXT* PFSCHEDTASKRESUME_IEC) (schedtaskresume_struct *p);
-#if defined(CMPSCHEDULE_NOTIMPLEMENTED) || defined(SCHEDTASKRESUME_NOTIMPLEMENTED)
-	#define USE_schedtaskresume
-	#define EXT_schedtaskresume
-	#define GET_schedtaskresume(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_schedtaskresume(p0) 
-	#define CHK_schedtaskresume  FALSE
-	#define EXP_schedtaskresume  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_schedtaskresume
-	#define EXT_schedtaskresume
-	#define GET_schedtaskresume(fl)  CAL_CMGETAPI( "schedtaskresume" ) 
-	#define CAL_schedtaskresume  schedtaskresume
-	#define CHK_schedtaskresume  TRUE
-	#define EXP_schedtaskresume  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"schedtaskresume", (RTS_UINTPTR)schedtaskresume, 1, 0x8D82FF00, 0x03050900) 
-#elif defined(MIXED_LINK) && !defined(CMPSCHEDULE_EXTERNAL)
-	#define USE_schedtaskresume
-	#define EXT_schedtaskresume
-	#define GET_schedtaskresume(fl)  CAL_CMGETAPI( "schedtaskresume" ) 
-	#define CAL_schedtaskresume  schedtaskresume
-	#define CHK_schedtaskresume  TRUE
-	#define EXP_schedtaskresume  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"schedtaskresume", (RTS_UINTPTR)schedtaskresume, 1, 0x8D82FF00, 0x03050900) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpScheduleschedtaskresume
-	#define EXT_CmpScheduleschedtaskresume
-	#define GET_CmpScheduleschedtaskresume  ERR_OK
-	#define CAL_CmpScheduleschedtaskresume  schedtaskresume
-	#define CHK_CmpScheduleschedtaskresume  TRUE
-	#define EXP_CmpScheduleschedtaskresume  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"schedtaskresume", (RTS_UINTPTR)schedtaskresume, 1, 0x8D82FF00, 0x03050900) 
-#elif defined(CPLUSPLUS)
-	#define USE_schedtaskresume
-	#define EXT_schedtaskresume
-	#define GET_schedtaskresume(fl)  CAL_CMGETAPI( "schedtaskresume" ) 
-	#define CAL_schedtaskresume  schedtaskresume
-	#define CHK_schedtaskresume  TRUE
-	#define EXP_schedtaskresume  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"schedtaskresume", (RTS_UINTPTR)schedtaskresume, 1, 0x8D82FF00, 0x03050900) 
-#else /* DYNAMIC_LINK */
-	#define USE_schedtaskresume  PFSCHEDTASKRESUME_IEC pfschedtaskresume;
-	#define EXT_schedtaskresume  extern PFSCHEDTASKRESUME_IEC pfschedtaskresume;
-	#define GET_schedtaskresume(fl)  s_pfCMGetAPI2( "schedtaskresume", (RTS_VOID_FCTPTR *)&pfschedtaskresume, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x8D82FF00, 0x03050900)
-	#define CAL_schedtaskresume  pfschedtaskresume
-	#define CHK_schedtaskresume  (pfschedtaskresume != NULL)
-	#define EXP_schedtaskresume   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"schedtaskresume", (RTS_UINTPTR)schedtaskresume, 1, 0x8D82FF00, 0x03050900) 
-#endif
-
-
-/**
- * <description>schedtasksuspend</description>
- */
-typedef struct tagschedtasksuspend_struct
-{
-	RTS_IEC_HANDLE hSchedTask;			/* VAR_INPUT */	
-	RTS_IEC_RESULT SchedTaskSuspend;	/* VAR_OUTPUT */	
-} schedtasksuspend_struct;
-
-void CDECL CDECL_EXT schedtasksuspend(schedtasksuspend_struct *p);
-typedef void (CDECL CDECL_EXT* PFSCHEDTASKSUSPEND_IEC) (schedtasksuspend_struct *p);
-#if defined(CMPSCHEDULE_NOTIMPLEMENTED) || defined(SCHEDTASKSUSPEND_NOTIMPLEMENTED)
-	#define USE_schedtasksuspend
-	#define EXT_schedtasksuspend
-	#define GET_schedtasksuspend(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_schedtasksuspend(p0) 
-	#define CHK_schedtasksuspend  FALSE
-	#define EXP_schedtasksuspend  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_schedtasksuspend
-	#define EXT_schedtasksuspend
-	#define GET_schedtasksuspend(fl)  CAL_CMGETAPI( "schedtasksuspend" ) 
-	#define CAL_schedtasksuspend  schedtasksuspend
-	#define CHK_schedtasksuspend  TRUE
-	#define EXP_schedtasksuspend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"schedtasksuspend", (RTS_UINTPTR)schedtasksuspend, 1, 0x3BC86060, 0x03050900) 
-#elif defined(MIXED_LINK) && !defined(CMPSCHEDULE_EXTERNAL)
-	#define USE_schedtasksuspend
-	#define EXT_schedtasksuspend
-	#define GET_schedtasksuspend(fl)  CAL_CMGETAPI( "schedtasksuspend" ) 
-	#define CAL_schedtasksuspend  schedtasksuspend
-	#define CHK_schedtasksuspend  TRUE
-	#define EXP_schedtasksuspend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"schedtasksuspend", (RTS_UINTPTR)schedtasksuspend, 1, 0x3BC86060, 0x03050900) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpScheduleschedtasksuspend
-	#define EXT_CmpScheduleschedtasksuspend
-	#define GET_CmpScheduleschedtasksuspend  ERR_OK
-	#define CAL_CmpScheduleschedtasksuspend  schedtasksuspend
-	#define CHK_CmpScheduleschedtasksuspend  TRUE
-	#define EXP_CmpScheduleschedtasksuspend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"schedtasksuspend", (RTS_UINTPTR)schedtasksuspend, 1, 0x3BC86060, 0x03050900) 
-#elif defined(CPLUSPLUS)
-	#define USE_schedtasksuspend
-	#define EXT_schedtasksuspend
-	#define GET_schedtasksuspend(fl)  CAL_CMGETAPI( "schedtasksuspend" ) 
-	#define CAL_schedtasksuspend  schedtasksuspend
-	#define CHK_schedtasksuspend  TRUE
-	#define EXP_schedtasksuspend  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"schedtasksuspend", (RTS_UINTPTR)schedtasksuspend, 1, 0x3BC86060, 0x03050900) 
-#else /* DYNAMIC_LINK */
-	#define USE_schedtasksuspend  PFSCHEDTASKSUSPEND_IEC pfschedtasksuspend;
-	#define EXT_schedtasksuspend  extern PFSCHEDTASKSUSPEND_IEC pfschedtasksuspend;
-	#define GET_schedtasksuspend(fl)  s_pfCMGetAPI2( "schedtasksuspend", (RTS_VOID_FCTPTR *)&pfschedtasksuspend, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x3BC86060, 0x03050900)
-	#define CAL_schedtasksuspend  pfschedtasksuspend
-	#define CHK_schedtasksuspend  (pfschedtasksuspend != NULL)
-	#define EXP_schedtasksuspend   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"schedtasksuspend", (RTS_UINTPTR)schedtasksuspend, 1, 0x3BC86060, 0x03050900) 
-#endif
-
-
-/**
  * <description>
  * <p>Unregister an external event, which was registered by
  * SchedRegisterExternalEvent() before.</p>
@@ -1428,6 +1286,7 @@ typedef void (CDECL CDECL_EXT* PFSCHEDWAITSLEEP_IEC) (schedwaitsleep_struct *p);
 #endif
 
 /** EXTERN LIB SECTION END **/
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -2670,9 +2529,7 @@ typedef RTS_RESULT (CDECL * PFSCHEDTIMESLICEPLCEND) (void);
 
 /**
  * <description>Returns the processor load, that is consumed by all IEC tasks in %. Can be in the range of 0..100 [%].
- *	This feature must be enabled with the setting "ProcessorLoad.Maximum" > 0.
- *	On multicore systems, the function returned the average load over all cores!
- * </description>
+ *	This feature must be enabled with the setting "ProcessorLoad.Maximum" > 0.</description>
  * <param name="pResult" type="OUT">Pointer to error code</param>
  * <result>Processor load in percent</result>
  */
@@ -2720,65 +2577,6 @@ typedef unsigned long (CDECL * PFSCHEDGETPROCESSORLOAD) (RTS_RESULT *pResult);
 	#define CAL_SchedGetProcessorLoad  pfSchedGetProcessorLoad
 	#define CHK_SchedGetProcessorLoad  (pfSchedGetProcessorLoad != NULL)
 	#define EXP_SchedGetProcessorLoad  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SchedGetProcessorLoad", (RTS_UINTPTR)SchedGetProcessorLoad, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>Returns the processor load, that is consumed by all IEC tasks in %. Can be in the range of 0..100 [%].
- *	This feature must be enabled with the setting "ProcessorLoad.Maximum" > 0.</description>
- * <param name="uCoreID" type="IN">Identifies a single core. Starting with 0=first core, ...
- *	NOTE:
- *	If uCoreID=RTS_UI32_MAX, average plc load over all cores in percent is returned (see SchedGetProcessorLoad())!
- * </param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Processor load in percent</result>
- */
-RTS_UI32 CDECL SchedGetProcessorLoadOnCore(RTS_UI32 uCoreID, RTS_RESULT *pResult);
-typedef RTS_UI32 (CDECL * PFSCHEDGETPROCESSORLOADONCORE) (RTS_UI32 uCoreID, RTS_RESULT *pResult);
-#if defined(CMPSCHEDULE_NOTIMPLEMENTED) || defined(SCHEDGETPROCESSORLOADONCORE_NOTIMPLEMENTED)
-	#define USE_SchedGetProcessorLoadOnCore
-	#define EXT_SchedGetProcessorLoadOnCore
-	#define GET_SchedGetProcessorLoadOnCore(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SchedGetProcessorLoadOnCore(p0,p1)  (RTS_UI32)ERR_NOTIMPLEMENTED
-	#define CHK_SchedGetProcessorLoadOnCore  FALSE
-	#define EXP_SchedGetProcessorLoadOnCore  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SchedGetProcessorLoadOnCore
-	#define EXT_SchedGetProcessorLoadOnCore
-	#define GET_SchedGetProcessorLoadOnCore(fl)  CAL_CMGETAPI( "SchedGetProcessorLoadOnCore" ) 
-	#define CAL_SchedGetProcessorLoadOnCore  SchedGetProcessorLoadOnCore
-	#define CHK_SchedGetProcessorLoadOnCore  TRUE
-	#define EXP_SchedGetProcessorLoadOnCore  CAL_CMEXPAPI( "SchedGetProcessorLoadOnCore" ) 
-#elif defined(MIXED_LINK) && !defined(CMPSCHEDULE_EXTERNAL)
-	#define USE_SchedGetProcessorLoadOnCore
-	#define EXT_SchedGetProcessorLoadOnCore
-	#define GET_SchedGetProcessorLoadOnCore(fl)  CAL_CMGETAPI( "SchedGetProcessorLoadOnCore" ) 
-	#define CAL_SchedGetProcessorLoadOnCore  SchedGetProcessorLoadOnCore
-	#define CHK_SchedGetProcessorLoadOnCore  TRUE
-	#define EXP_SchedGetProcessorLoadOnCore  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SchedGetProcessorLoadOnCore", (RTS_UINTPTR)SchedGetProcessorLoadOnCore, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpScheduleSchedGetProcessorLoadOnCore
-	#define EXT_CmpScheduleSchedGetProcessorLoadOnCore
-	#define GET_CmpScheduleSchedGetProcessorLoadOnCore  ERR_OK
-	#define CAL_CmpScheduleSchedGetProcessorLoadOnCore pICmpSchedule->ISchedGetProcessorLoadOnCore
-	#define CHK_CmpScheduleSchedGetProcessorLoadOnCore (pICmpSchedule != NULL)
-	#define EXP_CmpScheduleSchedGetProcessorLoadOnCore  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SchedGetProcessorLoadOnCore
-	#define EXT_SchedGetProcessorLoadOnCore
-	#define GET_SchedGetProcessorLoadOnCore(fl)  CAL_CMGETAPI( "SchedGetProcessorLoadOnCore" ) 
-	#define CAL_SchedGetProcessorLoadOnCore pICmpSchedule->ISchedGetProcessorLoadOnCore
-	#define CHK_SchedGetProcessorLoadOnCore (pICmpSchedule != NULL)
-	#define EXP_SchedGetProcessorLoadOnCore  CAL_CMEXPAPI( "SchedGetProcessorLoadOnCore" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SchedGetProcessorLoadOnCore  PFSCHEDGETPROCESSORLOADONCORE pfSchedGetProcessorLoadOnCore;
-	#define EXT_SchedGetProcessorLoadOnCore  extern PFSCHEDGETPROCESSORLOADONCORE pfSchedGetProcessorLoadOnCore;
-	#define GET_SchedGetProcessorLoadOnCore(fl)  s_pfCMGetAPI2( "SchedGetProcessorLoadOnCore", (RTS_VOID_FCTPTR *)&pfSchedGetProcessorLoadOnCore, (fl), 0, 0)
-	#define CAL_SchedGetProcessorLoadOnCore  pfSchedGetProcessorLoadOnCore
-	#define CHK_SchedGetProcessorLoadOnCore  (pfSchedGetProcessorLoadOnCore != NULL)
-	#define EXP_SchedGetProcessorLoadOnCore  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SchedGetProcessorLoadOnCore", (RTS_UINTPTR)SchedGetProcessorLoadOnCore, 0, 0) 
 #endif
 
 
@@ -3125,7 +2923,7 @@ typedef int (CDECL * PFSCHEDGETSCHEDULEINTERVALUS) (RTS_RESULT *pResult);
 
 /**
  * <description>
- *	Set the actual schedule interval in microseconds.
+ *	Get the actual schedule interval in microseconds.
  *  The actual schedule interval (system base tick) has to be adapted accordingly.
  * </description>
  * <param name="iScheduleIntervalUsNew" type="IN">Schedule interval in microseconds to set</param>
@@ -3434,178 +3232,6 @@ typedef RTS_RESULT (CDECL * PFSCHEDPOSTEXTERNALEVENT) (RTS_HANDLE hExtEvent);
 
 
 
-/**
- * <description>
- * Get the task handle of the backend interface
- * </description>
- * <param name="hSchedTask" type="IN">Scheduler task handle</param>
- * <param name="pCmpIdBackend" type="IN">Pointer to the resulting backend componentID</param>
- * <param name="pResult" type="IN">Pointer to the resulting error code</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Backend task handle was successfully retrieved</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid handle hSchedTask</errorcode>
- * <result>Task handle</result>
- */
-RTS_HANDLE CDECL SchedGetTaskHandleBackend(RTS_HANDLE hSchedTask, CMPID *pCmpIdBackend, RTS_RESULT *pResult);
-typedef RTS_HANDLE (CDECL * PFSCHEDGETTASKHANDLEBACKEND) (RTS_HANDLE hSchedTask, CMPID *pCmpIdBackend, RTS_RESULT *pResult);
-#if defined(CMPSCHEDULE_NOTIMPLEMENTED) || defined(SCHEDGETTASKHANDLEBACKEND_NOTIMPLEMENTED)
-	#define USE_SchedGetTaskHandleBackend
-	#define EXT_SchedGetTaskHandleBackend
-	#define GET_SchedGetTaskHandleBackend(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SchedGetTaskHandleBackend(p0,p1,p2)  (RTS_HANDLE)RTS_INVALID_HANDLE
-	#define CHK_SchedGetTaskHandleBackend  FALSE
-	#define EXP_SchedGetTaskHandleBackend  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SchedGetTaskHandleBackend
-	#define EXT_SchedGetTaskHandleBackend
-	#define GET_SchedGetTaskHandleBackend(fl)  CAL_CMGETAPI( "SchedGetTaskHandleBackend" ) 
-	#define CAL_SchedGetTaskHandleBackend  SchedGetTaskHandleBackend
-	#define CHK_SchedGetTaskHandleBackend  TRUE
-	#define EXP_SchedGetTaskHandleBackend  CAL_CMEXPAPI( "SchedGetTaskHandleBackend" ) 
-#elif defined(MIXED_LINK) && !defined(CMPSCHEDULE_EXTERNAL)
-	#define USE_SchedGetTaskHandleBackend
-	#define EXT_SchedGetTaskHandleBackend
-	#define GET_SchedGetTaskHandleBackend(fl)  CAL_CMGETAPI( "SchedGetTaskHandleBackend" ) 
-	#define CAL_SchedGetTaskHandleBackend  SchedGetTaskHandleBackend
-	#define CHK_SchedGetTaskHandleBackend  TRUE
-	#define EXP_SchedGetTaskHandleBackend  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SchedGetTaskHandleBackend", (RTS_UINTPTR)SchedGetTaskHandleBackend, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpScheduleSchedGetTaskHandleBackend
-	#define EXT_CmpScheduleSchedGetTaskHandleBackend
-	#define GET_CmpScheduleSchedGetTaskHandleBackend  ERR_OK
-	#define CAL_CmpScheduleSchedGetTaskHandleBackend pICmpSchedule->ISchedGetTaskHandleBackend
-	#define CHK_CmpScheduleSchedGetTaskHandleBackend (pICmpSchedule != NULL)
-	#define EXP_CmpScheduleSchedGetTaskHandleBackend  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SchedGetTaskHandleBackend
-	#define EXT_SchedGetTaskHandleBackend
-	#define GET_SchedGetTaskHandleBackend(fl)  CAL_CMGETAPI( "SchedGetTaskHandleBackend" ) 
-	#define CAL_SchedGetTaskHandleBackend pICmpSchedule->ISchedGetTaskHandleBackend
-	#define CHK_SchedGetTaskHandleBackend (pICmpSchedule != NULL)
-	#define EXP_SchedGetTaskHandleBackend  CAL_CMEXPAPI( "SchedGetTaskHandleBackend" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SchedGetTaskHandleBackend  PFSCHEDGETTASKHANDLEBACKEND pfSchedGetTaskHandleBackend;
-	#define EXT_SchedGetTaskHandleBackend  extern PFSCHEDGETTASKHANDLEBACKEND pfSchedGetTaskHandleBackend;
-	#define GET_SchedGetTaskHandleBackend(fl)  s_pfCMGetAPI2( "SchedGetTaskHandleBackend", (RTS_VOID_FCTPTR *)&pfSchedGetTaskHandleBackend, (fl), 0, 0)
-	#define CAL_SchedGetTaskHandleBackend  pfSchedGetTaskHandleBackend
-	#define CHK_SchedGetTaskHandleBackend  (pfSchedGetTaskHandleBackend != NULL)
-	#define EXP_SchedGetTaskHandleBackend  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SchedGetTaskHandleBackend", (RTS_UINTPTR)SchedGetTaskHandleBackend, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * Suspend the specified task.
- * </description>
- * <param name="hSchedTask" type="IN">Scheduler task handle</param>
- * <result>Error code</result>
- */
-RTS_RESULT CDECL SchedTaskSuspend(RTS_HANDLE hSchedTask);
-typedef RTS_RESULT (CDECL * PFSCHEDTASKSUSPEND) (RTS_HANDLE hSchedTask);
-#if defined(CMPSCHEDULE_NOTIMPLEMENTED) || defined(SCHEDTASKSUSPEND_NOTIMPLEMENTED)
-	#define USE_SchedTaskSuspend
-	#define EXT_SchedTaskSuspend
-	#define GET_SchedTaskSuspend(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SchedTaskSuspend(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SchedTaskSuspend  FALSE
-	#define EXP_SchedTaskSuspend  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SchedTaskSuspend
-	#define EXT_SchedTaskSuspend
-	#define GET_SchedTaskSuspend(fl)  CAL_CMGETAPI( "SchedTaskSuspend" ) 
-	#define CAL_SchedTaskSuspend  SchedTaskSuspend
-	#define CHK_SchedTaskSuspend  TRUE
-	#define EXP_SchedTaskSuspend  CAL_CMEXPAPI( "SchedTaskSuspend" ) 
-#elif defined(MIXED_LINK) && !defined(CMPSCHEDULE_EXTERNAL)
-	#define USE_SchedTaskSuspend
-	#define EXT_SchedTaskSuspend
-	#define GET_SchedTaskSuspend(fl)  CAL_CMGETAPI( "SchedTaskSuspend" ) 
-	#define CAL_SchedTaskSuspend  SchedTaskSuspend
-	#define CHK_SchedTaskSuspend  TRUE
-	#define EXP_SchedTaskSuspend  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SchedTaskSuspend", (RTS_UINTPTR)SchedTaskSuspend, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpScheduleSchedTaskSuspend
-	#define EXT_CmpScheduleSchedTaskSuspend
-	#define GET_CmpScheduleSchedTaskSuspend  ERR_OK
-	#define CAL_CmpScheduleSchedTaskSuspend pICmpSchedule->ISchedTaskSuspend
-	#define CHK_CmpScheduleSchedTaskSuspend (pICmpSchedule != NULL)
-	#define EXP_CmpScheduleSchedTaskSuspend  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SchedTaskSuspend
-	#define EXT_SchedTaskSuspend
-	#define GET_SchedTaskSuspend(fl)  CAL_CMGETAPI( "SchedTaskSuspend" ) 
-	#define CAL_SchedTaskSuspend pICmpSchedule->ISchedTaskSuspend
-	#define CHK_SchedTaskSuspend (pICmpSchedule != NULL)
-	#define EXP_SchedTaskSuspend  CAL_CMEXPAPI( "SchedTaskSuspend" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SchedTaskSuspend  PFSCHEDTASKSUSPEND pfSchedTaskSuspend;
-	#define EXT_SchedTaskSuspend  extern PFSCHEDTASKSUSPEND pfSchedTaskSuspend;
-	#define GET_SchedTaskSuspend(fl)  s_pfCMGetAPI2( "SchedTaskSuspend", (RTS_VOID_FCTPTR *)&pfSchedTaskSuspend, (fl), 0, 0)
-	#define CAL_SchedTaskSuspend  pfSchedTaskSuspend
-	#define CHK_SchedTaskSuspend  (pfSchedTaskSuspend != NULL)
-	#define EXP_SchedTaskSuspend  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SchedTaskSuspend", (RTS_UINTPTR)SchedTaskSuspend, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * Resume the specified task.
- * </description>
- * <param name="hSchedTask" type="IN">Scheduler task handle</param>
- * <result>Error code</result>
- */
-RTS_RESULT CDECL SchedTaskResume(RTS_HANDLE hSchedTask);
-typedef RTS_RESULT (CDECL * PFSCHEDTASKRESUME) (RTS_HANDLE hSchedTask);
-#if defined(CMPSCHEDULE_NOTIMPLEMENTED) || defined(SCHEDTASKRESUME_NOTIMPLEMENTED)
-	#define USE_SchedTaskResume
-	#define EXT_SchedTaskResume
-	#define GET_SchedTaskResume(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SchedTaskResume(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SchedTaskResume  FALSE
-	#define EXP_SchedTaskResume  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SchedTaskResume
-	#define EXT_SchedTaskResume
-	#define GET_SchedTaskResume(fl)  CAL_CMGETAPI( "SchedTaskResume" ) 
-	#define CAL_SchedTaskResume  SchedTaskResume
-	#define CHK_SchedTaskResume  TRUE
-	#define EXP_SchedTaskResume  CAL_CMEXPAPI( "SchedTaskResume" ) 
-#elif defined(MIXED_LINK) && !defined(CMPSCHEDULE_EXTERNAL)
-	#define USE_SchedTaskResume
-	#define EXT_SchedTaskResume
-	#define GET_SchedTaskResume(fl)  CAL_CMGETAPI( "SchedTaskResume" ) 
-	#define CAL_SchedTaskResume  SchedTaskResume
-	#define CHK_SchedTaskResume  TRUE
-	#define EXP_SchedTaskResume  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SchedTaskResume", (RTS_UINTPTR)SchedTaskResume, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpScheduleSchedTaskResume
-	#define EXT_CmpScheduleSchedTaskResume
-	#define GET_CmpScheduleSchedTaskResume  ERR_OK
-	#define CAL_CmpScheduleSchedTaskResume pICmpSchedule->ISchedTaskResume
-	#define CHK_CmpScheduleSchedTaskResume (pICmpSchedule != NULL)
-	#define EXP_CmpScheduleSchedTaskResume  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SchedTaskResume
-	#define EXT_SchedTaskResume
-	#define GET_SchedTaskResume(fl)  CAL_CMGETAPI( "SchedTaskResume" ) 
-	#define CAL_SchedTaskResume pICmpSchedule->ISchedTaskResume
-	#define CHK_SchedTaskResume (pICmpSchedule != NULL)
-	#define EXP_SchedTaskResume  CAL_CMEXPAPI( "SchedTaskResume" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SchedTaskResume  PFSCHEDTASKRESUME pfSchedTaskResume;
-	#define EXT_SchedTaskResume  extern PFSCHEDTASKRESUME pfSchedTaskResume;
-	#define GET_SchedTaskResume(fl)  s_pfCMGetAPI2( "SchedTaskResume", (RTS_VOID_FCTPTR *)&pfSchedTaskResume, (fl), 0, 0)
-	#define CAL_SchedTaskResume  pfSchedTaskResume
-	#define CHK_SchedTaskResume  (pfSchedTaskResume != NULL)
-	#define EXP_SchedTaskResume  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SchedTaskResume", (RTS_UINTPTR)SchedTaskResume, 0, 0) 
-#endif
-
-
-
-
 #ifdef __cplusplus
 }
 #endif
@@ -3637,7 +3263,6 @@ typedef struct
  	PFSCHEDTIMESLICEPLCBEGIN ISchedTimeslicePlcBegin;
  	PFSCHEDTIMESLICEPLCEND ISchedTimeslicePlcEnd;
  	PFSCHEDGETPROCESSORLOAD ISchedGetProcessorLoad;
- 	PFSCHEDGETPROCESSORLOADONCORE ISchedGetProcessorLoadOnCore;
  	PFSCHEDGETTASKINTERVAL ISchedGetTaskInterval;
  	PFSCHEDSETTASKINTERVAL ISchedSetTaskInterval;
  	PFSCHEDWAITSLEEP ISchedWaitSleep;
@@ -3649,9 +3274,6 @@ typedef struct
  	PFSCHEDREGISTEREXTERNALEVENT ISchedRegisterExternalEvent;
  	PFSCHEDUNREGISTEREXTERNALEVENT ISchedUnregisterExternalEvent;
  	PFSCHEDPOSTEXTERNALEVENT ISchedPostExternalEvent;
- 	PFSCHEDGETTASKHANDLEBACKEND ISchedGetTaskHandleBackend;
- 	PFSCHEDTASKSUSPEND ISchedTaskSuspend;
- 	PFSCHEDTASKRESUME ISchedTaskResume;
  } ICmpSchedule_C;
 
 #ifdef CPLUSPLUS
@@ -3680,7 +3302,6 @@ class ICmpSchedule : public IBase
 		virtual RTS_RESULT CDECL ISchedTimeslicePlcBegin(void) =0;
 		virtual RTS_RESULT CDECL ISchedTimeslicePlcEnd(void) =0;
 		virtual unsigned long CDECL ISchedGetProcessorLoad(RTS_RESULT *pResult) =0;
-		virtual RTS_UI32 CDECL ISchedGetProcessorLoadOnCore(RTS_UI32 uCoreID, RTS_RESULT *pResult) =0;
 		virtual RTS_RESULT CDECL ISchedGetTaskInterval(RTS_HANDLE hSchedTask, RTS_UI32 *pulInterval) =0;
 		virtual RTS_RESULT CDECL ISchedSetTaskInterval(RTS_HANDLE hSchedTask, RTS_UI32 ulInterval) =0;
 		virtual RTS_RESULT CDECL ISchedWaitSleep(RTS_SYSTIME *ptSleepUs) =0;
@@ -3692,9 +3313,6 @@ class ICmpSchedule : public IBase
 		virtual RTS_HANDLE CDECL ISchedRegisterExternalEvent(const char *pszExtEventName, RTS_RESULT *pResult) =0;
 		virtual RTS_RESULT CDECL ISchedUnregisterExternalEvent(RTS_HANDLE hExtEvent) =0;
 		virtual RTS_RESULT CDECL ISchedPostExternalEvent(RTS_HANDLE hExtEvent) =0;
-		virtual RTS_HANDLE CDECL ISchedGetTaskHandleBackend(RTS_HANDLE hSchedTask, CMPID *pCmpIdBackend, RTS_RESULT *pResult) =0;
-		virtual RTS_RESULT CDECL ISchedTaskSuspend(RTS_HANDLE hSchedTask) =0;
-		virtual RTS_RESULT CDECL ISchedTaskResume(RTS_HANDLE hSchedTask) =0;
 };
 	#ifndef ITF_CmpSchedule
 		#define ITF_CmpSchedule static ICmpSchedule *pICmpSchedule = NULL;

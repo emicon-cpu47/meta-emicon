@@ -4,9 +4,7 @@
  *	Interface for the target visu.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -99,6 +97,23 @@
 #define CMPTARGETVISU_KEY_GESTURES_FLICKPANTHRESHOLD_VELOCITY				"GesturesFlickPanThresholdVelocity"
 #ifndef CMPTARGETVISU_VALUE_GESTURES_FLICKPANTHRESHOLD_VELOCITY_DEFAULT
 	#define CMPTARGETVISU_VALUE_GESTURES_FLICKPANTHRESHOLD_VELOCITY_DEFAULT			1000
+#endif
+
+/**
+ * <category>Settings</category>
+ * <description>A setting affecting the evaluation of gestures. As for example gestures depending on a single touch are ambigous to raising "old style"
+ *	mouse events when touching (eg. when having a toggle button within a scrollable frame), a small threashold time is used to distinguish between these 
+ *	possibilities. To support this, before raising mouse events in scrollareas, this amount of time is typically waited (if there are no other conditions
+ *	like quick movement or quick clicking). 
+ *	This minimum waittime in milliseconds is defined by this setting.
+ *  Please remark that an according "onetouch" gesture will be started before this time is elapsed only when there is a movement larger than 
+ *	<see>CMPTARGETVISU_KEY_GESTURES_PANCLICKTHRESHOLD</see>
+ *	Please remark that this value must be non negative.
+ *	</description>
+ */
+#define CMPTARGETVISU_KEY_GESTURES_TOUCHORMOUSE_THRESHOLD_WAITTIME			"GesturesTouchOrMouseThresholdWaitTime"
+#ifndef CMPTARGETVISU_VALUE_GESTURES_TOUCHORMOUSE_THRESHOLD_WAITTIME_DEFAULT
+	#define CMPTARGETVISU_VALUE_GESTURES_TOUCHORMOUSE_THRESHOLD_WAITTIME_DEFAULT			250
 #endif
 
 /**
@@ -246,24 +261,6 @@
 	#define CMPTARGETVISU_MAXCLIENTNAMESIZE 30
 #endif	/* CMPTARGETVISU_MAXCLIENTNAMESIZE */
 
-/**
- * <category>Settings</category>
- * <description>
- * Setting for the initial directory when opening or saving a file. The OS specific file path seperator
- * must be used. The configured path has to end with the seperator.
- * The "FileOpenSavePath" is updated automatically with the path selected in the last file open or save.
- * The "FileOpenSavePathFallback" is used whenever the "FileOpenSavePath" is not available, e.g. if it
- * points to a directory on a storage device that has been removed.
- * </description>
-*/
-#define CMPTARGETVISU_KEY_FILE_OPEN_SAVE_DIR "FileOpenSavePath"
-#define CMPTARGETVISU_KEY_FILE_OPEN_SAVE_DIR_FALLBACK "FileOpenSavePathFallback"
-#ifndef CMPTARGETVISU_VALUE_FILE_OPEN_SAVE_DIR_DEFAULT
-	#define CMPTARGETVISU_VALUE_FILE_OPEN_SAVE_DIR_DEFAULT ""
-#endif
-#define CMPTARGETVISU_MAXLEN_FILE_OPEN_SAVE_DIR 254
-
-
 RTS_RESULT CDECL ExecutePaintCommands(TargetvisuParams* pParams, CommandBuffer* pBuffer);
 typedef RTS_RESULT (CDECL * PFEXECUTEPAINTCOMMANDS) (TargetvisuParams* pParams, CommandBuffer* pBuffer);
 #if defined(CMPTARGETVISU_NOTIMPLEMENTED) || defined(EXECUTEPAINTCOMMANDS_NOTIMPLEMENTED)
@@ -407,12 +404,6 @@ typedef RTS_RESULT (CDECL * PFCREATETARGETVISUINSTANCE) (char* pszApplication, R
  * the paint commands are calculated. If this flag is set, then the visu will be drawn with scale type isotropic when best fit mode is set.</description>
  */
 #define CMPTARGETVISU_FLAGS_REMOTE_SCALETYPEISOTROPIC		0x0080
-
-/**
- * <description>Special flag that can be set when the targetvisualization is executed (ie. drawn) on a different plc than
- * the paint commands are calculated. If this flag is set, then the visu and the visualization dialogs will be drawn in best fit mode.</description>
- */
-#define CMPTARGETVISU_FLAGS_REMOTE_BESTFIT_FOR_DIALOGS		0x0100
 
 /**
  * <description>Notification that can be sent to the targetvisualization to signal that new paint data is available for execution.

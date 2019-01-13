@@ -45,9 +45,7 @@
  *	a consumer, the event EVT_EventClose is sent.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -148,25 +146,6 @@
  */
 #define EVENT_CALLBACKS_NO_LIMIT			UINT32_MAX
 
-/**
- * <category>Event manager flags</category>
- * <description>
- *	Flags used by the event manager.
- * </description>
- *	<element name="EMF_NO_IEC_CALLBACKS" type="IN">No callbacks in IEC possible</element>
- */
-#define EMF_NO_IEC_CALLBACKS	UINT32_C(0x00000001)
-
-/**
- * <category>Event options</category>
- * <element name="nCallbacksPossible" type="IN">Maximum number of callbacks possible on this event or EVENT_CALLBACKS_NO_LIMIT for no limit</element>
- * <element name="flags" type="IN">Event manager flags</element>
- */
-typedef struct tagEventOptions
-{
-       RTS_UI32 nCallbacksPossible;
-       RTS_UI32 flags;
-} EventOptions;
 
 /**
  * <category>Event parameter</category>
@@ -264,35 +243,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTCLOSE_IEC) (eventclose_struct *p);
 	#define GET_eventclose(fl)  CAL_CMGETAPI( "eventclose" ) 
 	#define CAL_eventclose  eventclose
 	#define CHK_eventclose  TRUE
-	#define EXP_eventclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventclose", (RTS_UINTPTR)eventclose, 1, RTSITF_GET_SIGNATURE(0, 0x4668EEC1), 0x03050C00) 
+	#define EXP_eventclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventclose", (RTS_UINTPTR)eventclose, 1, RTSITF_GET_SIGNATURE(0, 0x4668EEC1), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventclose
 	#define EXT_eventclose
 	#define GET_eventclose(fl)  CAL_CMGETAPI( "eventclose" ) 
 	#define CAL_eventclose  eventclose
 	#define CHK_eventclose  TRUE
-	#define EXP_eventclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventclose", (RTS_UINTPTR)eventclose, 1, RTSITF_GET_SIGNATURE(0, 0x4668EEC1), 0x03050C00) 
+	#define EXP_eventclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventclose", (RTS_UINTPTR)eventclose, 1, RTSITF_GET_SIGNATURE(0, 0x4668EEC1), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventclose
 	#define EXT_CmpEventMgreventclose
 	#define GET_CmpEventMgreventclose  ERR_OK
 	#define CAL_CmpEventMgreventclose  eventclose
 	#define CHK_CmpEventMgreventclose  TRUE
-	#define EXP_CmpEventMgreventclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventclose", (RTS_UINTPTR)eventclose, 1, RTSITF_GET_SIGNATURE(0, 0x4668EEC1), 0x03050C00) 
+	#define EXP_CmpEventMgreventclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventclose", (RTS_UINTPTR)eventclose, 1, RTSITF_GET_SIGNATURE(0, 0x4668EEC1), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventclose
 	#define EXT_eventclose
 	#define GET_eventclose(fl)  CAL_CMGETAPI( "eventclose" ) 
 	#define CAL_eventclose  eventclose
 	#define CHK_eventclose  TRUE
-	#define EXP_eventclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventclose", (RTS_UINTPTR)eventclose, 1, RTSITF_GET_SIGNATURE(0, 0x4668EEC1), 0x03050C00) 
+	#define EXP_eventclose  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventclose", (RTS_UINTPTR)eventclose, 1, RTSITF_GET_SIGNATURE(0, 0x4668EEC1), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventclose  PFEVENTCLOSE_IEC pfeventclose;
 	#define EXT_eventclose  extern PFEVENTCLOSE_IEC pfeventclose;
-	#define GET_eventclose(fl)  s_pfCMGetAPI2( "eventclose", (RTS_VOID_FCTPTR *)&pfeventclose, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x4668EEC1), 0x03050C00)
+	#define GET_eventclose(fl)  s_pfCMGetAPI2( "eventclose", (RTS_VOID_FCTPTR *)&pfeventclose, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x4668EEC1), 0x03050800)
 	#define CAL_eventclose  pfeventclose
 	#define CHK_eventclose  (pfeventclose != NULL)
-	#define EXP_eventclose   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventclose", (RTS_UINTPTR)eventclose, 1, RTSITF_GET_SIGNATURE(0, 0x4668EEC1), 0x03050C00) 
+	#define EXP_eventclose   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventclose", (RTS_UINTPTR)eventclose, 1, RTSITF_GET_SIGNATURE(0, 0x4668EEC1), 0x03050800) 
 #endif
 
 
@@ -323,35 +302,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTCREATE_IEC) (eventcreate_struct *p);
 	#define GET_eventcreate(fl)  CAL_CMGETAPI( "eventcreate" ) 
 	#define CAL_eventcreate  eventcreate
 	#define CHK_eventcreate  TRUE
-	#define EXP_eventcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate", (RTS_UINTPTR)eventcreate, 1, RTSITF_GET_SIGNATURE(0, 0xAC9E014A), 0x03050C00) 
+	#define EXP_eventcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate", (RTS_UINTPTR)eventcreate, 1, RTSITF_GET_SIGNATURE(0, 0xAC9E014A), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventcreate
 	#define EXT_eventcreate
 	#define GET_eventcreate(fl)  CAL_CMGETAPI( "eventcreate" ) 
 	#define CAL_eventcreate  eventcreate
 	#define CHK_eventcreate  TRUE
-	#define EXP_eventcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate", (RTS_UINTPTR)eventcreate, 1, RTSITF_GET_SIGNATURE(0, 0xAC9E014A), 0x03050C00) 
+	#define EXP_eventcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate", (RTS_UINTPTR)eventcreate, 1, RTSITF_GET_SIGNATURE(0, 0xAC9E014A), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventcreate
 	#define EXT_CmpEventMgreventcreate
 	#define GET_CmpEventMgreventcreate  ERR_OK
 	#define CAL_CmpEventMgreventcreate  eventcreate
 	#define CHK_CmpEventMgreventcreate  TRUE
-	#define EXP_CmpEventMgreventcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate", (RTS_UINTPTR)eventcreate, 1, RTSITF_GET_SIGNATURE(0, 0xAC9E014A), 0x03050C00) 
+	#define EXP_CmpEventMgreventcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate", (RTS_UINTPTR)eventcreate, 1, RTSITF_GET_SIGNATURE(0, 0xAC9E014A), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventcreate
 	#define EXT_eventcreate
 	#define GET_eventcreate(fl)  CAL_CMGETAPI( "eventcreate" ) 
 	#define CAL_eventcreate  eventcreate
 	#define CHK_eventcreate  TRUE
-	#define EXP_eventcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate", (RTS_UINTPTR)eventcreate, 1, RTSITF_GET_SIGNATURE(0, 0xAC9E014A), 0x03050C00) 
+	#define EXP_eventcreate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate", (RTS_UINTPTR)eventcreate, 1, RTSITF_GET_SIGNATURE(0, 0xAC9E014A), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventcreate  PFEVENTCREATE_IEC pfeventcreate;
 	#define EXT_eventcreate  extern PFEVENTCREATE_IEC pfeventcreate;
-	#define GET_eventcreate(fl)  s_pfCMGetAPI2( "eventcreate", (RTS_VOID_FCTPTR *)&pfeventcreate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xAC9E014A), 0x03050C00)
+	#define GET_eventcreate(fl)  s_pfCMGetAPI2( "eventcreate", (RTS_VOID_FCTPTR *)&pfeventcreate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xAC9E014A), 0x03050800)
 	#define CAL_eventcreate  pfeventcreate
 	#define CHK_eventcreate  (pfeventcreate != NULL)
-	#define EXP_eventcreate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate", (RTS_UINTPTR)eventcreate, 1, RTSITF_GET_SIGNATURE(0, 0xAC9E014A), 0x03050C00) 
+	#define EXP_eventcreate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate", (RTS_UINTPTR)eventcreate, 1, RTSITF_GET_SIGNATURE(0, 0xAC9E014A), 0x03050800) 
 #endif
 
 
@@ -383,35 +362,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTCREATE2_IEC) (eventcreate2_struct *p);
 	#define GET_eventcreate2(fl)  CAL_CMGETAPI( "eventcreate2" ) 
 	#define CAL_eventcreate2  eventcreate2
 	#define CHK_eventcreate2  TRUE
-	#define EXP_eventcreate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate2", (RTS_UINTPTR)eventcreate2, 1, RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8), 0x03050C00) 
+	#define EXP_eventcreate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate2", (RTS_UINTPTR)eventcreate2, 1, RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventcreate2
 	#define EXT_eventcreate2
 	#define GET_eventcreate2(fl)  CAL_CMGETAPI( "eventcreate2" ) 
 	#define CAL_eventcreate2  eventcreate2
 	#define CHK_eventcreate2  TRUE
-	#define EXP_eventcreate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate2", (RTS_UINTPTR)eventcreate2, 1, RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8), 0x03050C00) 
+	#define EXP_eventcreate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate2", (RTS_UINTPTR)eventcreate2, 1, RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventcreate2
 	#define EXT_CmpEventMgreventcreate2
 	#define GET_CmpEventMgreventcreate2  ERR_OK
 	#define CAL_CmpEventMgreventcreate2  eventcreate2
 	#define CHK_CmpEventMgreventcreate2  TRUE
-	#define EXP_CmpEventMgreventcreate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate2", (RTS_UINTPTR)eventcreate2, 1, RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8), 0x03050C00) 
+	#define EXP_CmpEventMgreventcreate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate2", (RTS_UINTPTR)eventcreate2, 1, RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventcreate2
 	#define EXT_eventcreate2
 	#define GET_eventcreate2(fl)  CAL_CMGETAPI( "eventcreate2" ) 
 	#define CAL_eventcreate2  eventcreate2
 	#define CHK_eventcreate2  TRUE
-	#define EXP_eventcreate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate2", (RTS_UINTPTR)eventcreate2, 1, RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8), 0x03050C00) 
+	#define EXP_eventcreate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate2", (RTS_UINTPTR)eventcreate2, 1, RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventcreate2  PFEVENTCREATE2_IEC pfeventcreate2;
 	#define EXT_eventcreate2  extern PFEVENTCREATE2_IEC pfeventcreate2;
-	#define GET_eventcreate2(fl)  s_pfCMGetAPI2( "eventcreate2", (RTS_VOID_FCTPTR *)&pfeventcreate2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8), 0x03050C00)
+	#define GET_eventcreate2(fl)  s_pfCMGetAPI2( "eventcreate2", (RTS_VOID_FCTPTR *)&pfeventcreate2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8), 0x03050800)
 	#define CAL_eventcreate2  pfeventcreate2
 	#define CHK_eventcreate2  (pfeventcreate2 != NULL)
-	#define EXP_eventcreate2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate2", (RTS_UINTPTR)eventcreate2, 1, RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8), 0x03050C00) 
+	#define EXP_eventcreate2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventcreate2", (RTS_UINTPTR)eventcreate2, 1, RTSITF_GET_SIGNATURE(0, 0xD6BF4CE8), 0x03050800) 
 #endif
 
 
@@ -439,35 +418,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTDELETE_IEC) (eventdelete_struct *p);
 	#define GET_eventdelete(fl)  CAL_CMGETAPI( "eventdelete" ) 
 	#define CAL_eventdelete  eventdelete
 	#define CHK_eventdelete  TRUE
-	#define EXP_eventdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventdelete", (RTS_UINTPTR)eventdelete, 1, RTSITF_GET_SIGNATURE(0, 0x0794C5F5), 0x03050C00) 
+	#define EXP_eventdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventdelete", (RTS_UINTPTR)eventdelete, 1, RTSITF_GET_SIGNATURE(0, 0x0794C5F5), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventdelete
 	#define EXT_eventdelete
 	#define GET_eventdelete(fl)  CAL_CMGETAPI( "eventdelete" ) 
 	#define CAL_eventdelete  eventdelete
 	#define CHK_eventdelete  TRUE
-	#define EXP_eventdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventdelete", (RTS_UINTPTR)eventdelete, 1, RTSITF_GET_SIGNATURE(0, 0x0794C5F5), 0x03050C00) 
+	#define EXP_eventdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventdelete", (RTS_UINTPTR)eventdelete, 1, RTSITF_GET_SIGNATURE(0, 0x0794C5F5), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventdelete
 	#define EXT_CmpEventMgreventdelete
 	#define GET_CmpEventMgreventdelete  ERR_OK
 	#define CAL_CmpEventMgreventdelete  eventdelete
 	#define CHK_CmpEventMgreventdelete  TRUE
-	#define EXP_CmpEventMgreventdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventdelete", (RTS_UINTPTR)eventdelete, 1, RTSITF_GET_SIGNATURE(0, 0x0794C5F5), 0x03050C00) 
+	#define EXP_CmpEventMgreventdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventdelete", (RTS_UINTPTR)eventdelete, 1, RTSITF_GET_SIGNATURE(0, 0x0794C5F5), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventdelete
 	#define EXT_eventdelete
 	#define GET_eventdelete(fl)  CAL_CMGETAPI( "eventdelete" ) 
 	#define CAL_eventdelete  eventdelete
 	#define CHK_eventdelete  TRUE
-	#define EXP_eventdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventdelete", (RTS_UINTPTR)eventdelete, 1, RTSITF_GET_SIGNATURE(0, 0x0794C5F5), 0x03050C00) 
+	#define EXP_eventdelete  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventdelete", (RTS_UINTPTR)eventdelete, 1, RTSITF_GET_SIGNATURE(0, 0x0794C5F5), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventdelete  PFEVENTDELETE_IEC pfeventdelete;
 	#define EXT_eventdelete  extern PFEVENTDELETE_IEC pfeventdelete;
-	#define GET_eventdelete(fl)  s_pfCMGetAPI2( "eventdelete", (RTS_VOID_FCTPTR *)&pfeventdelete, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x0794C5F5), 0x03050C00)
+	#define GET_eventdelete(fl)  s_pfCMGetAPI2( "eventdelete", (RTS_VOID_FCTPTR *)&pfeventdelete, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x0794C5F5), 0x03050800)
 	#define CAL_eventdelete  pfeventdelete
 	#define CHK_eventdelete  (pfeventdelete != NULL)
-	#define EXP_eventdelete   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventdelete", (RTS_UINTPTR)eventdelete, 1, RTSITF_GET_SIGNATURE(0, 0x0794C5F5), 0x03050C00) 
+	#define EXP_eventdelete   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventdelete", (RTS_UINTPTR)eventdelete, 1, RTSITF_GET_SIGNATURE(0, 0x0794C5F5), 0x03050800) 
 #endif
 
 
@@ -495,35 +474,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTGETCLASS_IEC) (eventgetclass_struct *p);
 	#define GET_eventgetclass(fl)  CAL_CMGETAPI( "eventgetclass" ) 
 	#define CAL_eventgetclass  eventgetclass
 	#define CHK_eventgetclass  TRUE
-	#define EXP_eventgetclass  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetclass", (RTS_UINTPTR)eventgetclass, 1, RTSITF_GET_SIGNATURE(0, 0xB0745754), 0x03050C00) 
+	#define EXP_eventgetclass  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetclass", (RTS_UINTPTR)eventgetclass, 1, RTSITF_GET_SIGNATURE(0, 0xB0745754), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventgetclass
 	#define EXT_eventgetclass
 	#define GET_eventgetclass(fl)  CAL_CMGETAPI( "eventgetclass" ) 
 	#define CAL_eventgetclass  eventgetclass
 	#define CHK_eventgetclass  TRUE
-	#define EXP_eventgetclass  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetclass", (RTS_UINTPTR)eventgetclass, 1, RTSITF_GET_SIGNATURE(0, 0xB0745754), 0x03050C00) 
+	#define EXP_eventgetclass  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetclass", (RTS_UINTPTR)eventgetclass, 1, RTSITF_GET_SIGNATURE(0, 0xB0745754), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventgetclass
 	#define EXT_CmpEventMgreventgetclass
 	#define GET_CmpEventMgreventgetclass  ERR_OK
 	#define CAL_CmpEventMgreventgetclass  eventgetclass
 	#define CHK_CmpEventMgreventgetclass  TRUE
-	#define EXP_CmpEventMgreventgetclass  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetclass", (RTS_UINTPTR)eventgetclass, 1, RTSITF_GET_SIGNATURE(0, 0xB0745754), 0x03050C00) 
+	#define EXP_CmpEventMgreventgetclass  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetclass", (RTS_UINTPTR)eventgetclass, 1, RTSITF_GET_SIGNATURE(0, 0xB0745754), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventgetclass
 	#define EXT_eventgetclass
 	#define GET_eventgetclass(fl)  CAL_CMGETAPI( "eventgetclass" ) 
 	#define CAL_eventgetclass  eventgetclass
 	#define CHK_eventgetclass  TRUE
-	#define EXP_eventgetclass  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetclass", (RTS_UINTPTR)eventgetclass, 1, RTSITF_GET_SIGNATURE(0, 0xB0745754), 0x03050C00) 
+	#define EXP_eventgetclass  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetclass", (RTS_UINTPTR)eventgetclass, 1, RTSITF_GET_SIGNATURE(0, 0xB0745754), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventgetclass  PFEVENTGETCLASS_IEC pfeventgetclass;
 	#define EXT_eventgetclass  extern PFEVENTGETCLASS_IEC pfeventgetclass;
-	#define GET_eventgetclass(fl)  s_pfCMGetAPI2( "eventgetclass", (RTS_VOID_FCTPTR *)&pfeventgetclass, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xB0745754), 0x03050C00)
+	#define GET_eventgetclass(fl)  s_pfCMGetAPI2( "eventgetclass", (RTS_VOID_FCTPTR *)&pfeventgetclass, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xB0745754), 0x03050800)
 	#define CAL_eventgetclass  pfeventgetclass
 	#define CHK_eventgetclass  (pfeventgetclass != NULL)
-	#define EXP_eventgetclass   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetclass", (RTS_UINTPTR)eventgetclass, 1, RTSITF_GET_SIGNATURE(0, 0xB0745754), 0x03050C00) 
+	#define EXP_eventgetclass   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetclass", (RTS_UINTPTR)eventgetclass, 1, RTSITF_GET_SIGNATURE(0, 0xB0745754), 0x03050800) 
 #endif
 
 
@@ -551,35 +530,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTGETEVENT_IEC) (eventgetevent_struct *p);
 	#define GET_eventgetevent(fl)  CAL_CMGETAPI( "eventgetevent" ) 
 	#define CAL_eventgetevent  eventgetevent
 	#define CHK_eventgetevent  TRUE
-	#define EXP_eventgetevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetevent", (RTS_UINTPTR)eventgetevent, 1, RTSITF_GET_SIGNATURE(0, 0x0E7E3D61), 0x03050C00) 
+	#define EXP_eventgetevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetevent", (RTS_UINTPTR)eventgetevent, 1, RTSITF_GET_SIGNATURE(0, 0x0E7E3D61), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventgetevent
 	#define EXT_eventgetevent
 	#define GET_eventgetevent(fl)  CAL_CMGETAPI( "eventgetevent" ) 
 	#define CAL_eventgetevent  eventgetevent
 	#define CHK_eventgetevent  TRUE
-	#define EXP_eventgetevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetevent", (RTS_UINTPTR)eventgetevent, 1, RTSITF_GET_SIGNATURE(0, 0x0E7E3D61), 0x03050C00) 
+	#define EXP_eventgetevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetevent", (RTS_UINTPTR)eventgetevent, 1, RTSITF_GET_SIGNATURE(0, 0x0E7E3D61), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventgetevent
 	#define EXT_CmpEventMgreventgetevent
 	#define GET_CmpEventMgreventgetevent  ERR_OK
 	#define CAL_CmpEventMgreventgetevent  eventgetevent
 	#define CHK_CmpEventMgreventgetevent  TRUE
-	#define EXP_CmpEventMgreventgetevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetevent", (RTS_UINTPTR)eventgetevent, 1, RTSITF_GET_SIGNATURE(0, 0x0E7E3D61), 0x03050C00) 
+	#define EXP_CmpEventMgreventgetevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetevent", (RTS_UINTPTR)eventgetevent, 1, RTSITF_GET_SIGNATURE(0, 0x0E7E3D61), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventgetevent
 	#define EXT_eventgetevent
 	#define GET_eventgetevent(fl)  CAL_CMGETAPI( "eventgetevent" ) 
 	#define CAL_eventgetevent  eventgetevent
 	#define CHK_eventgetevent  TRUE
-	#define EXP_eventgetevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetevent", (RTS_UINTPTR)eventgetevent, 1, RTSITF_GET_SIGNATURE(0, 0x0E7E3D61), 0x03050C00) 
+	#define EXP_eventgetevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetevent", (RTS_UINTPTR)eventgetevent, 1, RTSITF_GET_SIGNATURE(0, 0x0E7E3D61), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventgetevent  PFEVENTGETEVENT_IEC pfeventgetevent;
 	#define EXT_eventgetevent  extern PFEVENTGETEVENT_IEC pfeventgetevent;
-	#define GET_eventgetevent(fl)  s_pfCMGetAPI2( "eventgetevent", (RTS_VOID_FCTPTR *)&pfeventgetevent, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x0E7E3D61), 0x03050C00)
+	#define GET_eventgetevent(fl)  s_pfCMGetAPI2( "eventgetevent", (RTS_VOID_FCTPTR *)&pfeventgetevent, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x0E7E3D61), 0x03050800)
 	#define CAL_eventgetevent  pfeventgetevent
 	#define CHK_eventgetevent  (pfeventgetevent != NULL)
-	#define EXP_eventgetevent   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetevent", (RTS_UINTPTR)eventgetevent, 1, RTSITF_GET_SIGNATURE(0, 0x0E7E3D61), 0x03050C00) 
+	#define EXP_eventgetevent   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventgetevent", (RTS_UINTPTR)eventgetevent, 1, RTSITF_GET_SIGNATURE(0, 0x0E7E3D61), 0x03050800) 
 #endif
 
 
@@ -610,35 +589,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTOPEN_IEC) (eventopen_struct *p);
 	#define GET_eventopen(fl)  CAL_CMGETAPI( "eventopen" ) 
 	#define CAL_eventopen  eventopen
 	#define CHK_eventopen  TRUE
-	#define EXP_eventopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventopen", (RTS_UINTPTR)eventopen, 1, RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1), 0x03050C00) 
+	#define EXP_eventopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventopen", (RTS_UINTPTR)eventopen, 1, RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventopen
 	#define EXT_eventopen
 	#define GET_eventopen(fl)  CAL_CMGETAPI( "eventopen" ) 
 	#define CAL_eventopen  eventopen
 	#define CHK_eventopen  TRUE
-	#define EXP_eventopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventopen", (RTS_UINTPTR)eventopen, 1, RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1), 0x03050C00) 
+	#define EXP_eventopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventopen", (RTS_UINTPTR)eventopen, 1, RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventopen
 	#define EXT_CmpEventMgreventopen
 	#define GET_CmpEventMgreventopen  ERR_OK
 	#define CAL_CmpEventMgreventopen  eventopen
 	#define CHK_CmpEventMgreventopen  TRUE
-	#define EXP_CmpEventMgreventopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventopen", (RTS_UINTPTR)eventopen, 1, RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1), 0x03050C00) 
+	#define EXP_CmpEventMgreventopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventopen", (RTS_UINTPTR)eventopen, 1, RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventopen
 	#define EXT_eventopen
 	#define GET_eventopen(fl)  CAL_CMGETAPI( "eventopen" ) 
 	#define CAL_eventopen  eventopen
 	#define CHK_eventopen  TRUE
-	#define EXP_eventopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventopen", (RTS_UINTPTR)eventopen, 1, RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1), 0x03050C00) 
+	#define EXP_eventopen  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventopen", (RTS_UINTPTR)eventopen, 1, RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventopen  PFEVENTOPEN_IEC pfeventopen;
 	#define EXT_eventopen  extern PFEVENTOPEN_IEC pfeventopen;
-	#define GET_eventopen(fl)  s_pfCMGetAPI2( "eventopen", (RTS_VOID_FCTPTR *)&pfeventopen, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1), 0x03050C00)
+	#define GET_eventopen(fl)  s_pfCMGetAPI2( "eventopen", (RTS_VOID_FCTPTR *)&pfeventopen, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1), 0x03050800)
 	#define CAL_eventopen  pfeventopen
 	#define CHK_eventopen  (pfeventopen != NULL)
-	#define EXP_eventopen   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventopen", (RTS_UINTPTR)eventopen, 1, RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1), 0x03050C00) 
+	#define EXP_eventopen   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventopen", (RTS_UINTPTR)eventopen, 1, RTSITF_GET_SIGNATURE(0, 0xBC5AE4E1), 0x03050800) 
 #endif
 
 
@@ -667,35 +646,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTPOST_IEC) (eventpost_struct *p);
 	#define GET_eventpost(fl)  CAL_CMGETAPI( "eventpost" ) 
 	#define CAL_eventpost  eventpost
 	#define CHK_eventpost  TRUE
-	#define EXP_eventpost  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost", (RTS_UINTPTR)eventpost, 1, RTSITF_GET_SIGNATURE(0, 0x9FDEA762), 0x03050C00) 
+	#define EXP_eventpost  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost", (RTS_UINTPTR)eventpost, 1, RTSITF_GET_SIGNATURE(0, 0x9FDEA762), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventpost
 	#define EXT_eventpost
 	#define GET_eventpost(fl)  CAL_CMGETAPI( "eventpost" ) 
 	#define CAL_eventpost  eventpost
 	#define CHK_eventpost  TRUE
-	#define EXP_eventpost  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost", (RTS_UINTPTR)eventpost, 1, RTSITF_GET_SIGNATURE(0, 0x9FDEA762), 0x03050C00) 
+	#define EXP_eventpost  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost", (RTS_UINTPTR)eventpost, 1, RTSITF_GET_SIGNATURE(0, 0x9FDEA762), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventpost
 	#define EXT_CmpEventMgreventpost
 	#define GET_CmpEventMgreventpost  ERR_OK
 	#define CAL_CmpEventMgreventpost  eventpost
 	#define CHK_CmpEventMgreventpost  TRUE
-	#define EXP_CmpEventMgreventpost  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost", (RTS_UINTPTR)eventpost, 1, RTSITF_GET_SIGNATURE(0, 0x9FDEA762), 0x03050C00) 
+	#define EXP_CmpEventMgreventpost  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost", (RTS_UINTPTR)eventpost, 1, RTSITF_GET_SIGNATURE(0, 0x9FDEA762), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventpost
 	#define EXT_eventpost
 	#define GET_eventpost(fl)  CAL_CMGETAPI( "eventpost" ) 
 	#define CAL_eventpost  eventpost
 	#define CHK_eventpost  TRUE
-	#define EXP_eventpost  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost", (RTS_UINTPTR)eventpost, 1, RTSITF_GET_SIGNATURE(0, 0x9FDEA762), 0x03050C00) 
+	#define EXP_eventpost  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost", (RTS_UINTPTR)eventpost, 1, RTSITF_GET_SIGNATURE(0, 0x9FDEA762), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventpost  PFEVENTPOST_IEC pfeventpost;
 	#define EXT_eventpost  extern PFEVENTPOST_IEC pfeventpost;
-	#define GET_eventpost(fl)  s_pfCMGetAPI2( "eventpost", (RTS_VOID_FCTPTR *)&pfeventpost, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x9FDEA762), 0x03050C00)
+	#define GET_eventpost(fl)  s_pfCMGetAPI2( "eventpost", (RTS_VOID_FCTPTR *)&pfeventpost, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x9FDEA762), 0x03050800)
 	#define CAL_eventpost  pfeventpost
 	#define CHK_eventpost  (pfeventpost != NULL)
-	#define EXP_eventpost   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost", (RTS_UINTPTR)eventpost, 1, RTSITF_GET_SIGNATURE(0, 0x9FDEA762), 0x03050C00) 
+	#define EXP_eventpost   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost", (RTS_UINTPTR)eventpost, 1, RTSITF_GET_SIGNATURE(0, 0x9FDEA762), 0x03050800) 
 #endif
 
 
@@ -724,35 +703,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTPOST2_IEC) (eventpost2_struct *p);
 	#define GET_eventpost2(fl)  CAL_CMGETAPI( "eventpost2" ) 
 	#define CAL_eventpost2  eventpost2
 	#define CHK_eventpost2  TRUE
-	#define EXP_eventpost2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost2", (RTS_UINTPTR)eventpost2, 1, 0xCE90F5F0, 0x03050C00) 
+	#define EXP_eventpost2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost2", (RTS_UINTPTR)eventpost2, 1, 0xCE90F5F0, 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventpost2
 	#define EXT_eventpost2
 	#define GET_eventpost2(fl)  CAL_CMGETAPI( "eventpost2" ) 
 	#define CAL_eventpost2  eventpost2
 	#define CHK_eventpost2  TRUE
-	#define EXP_eventpost2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost2", (RTS_UINTPTR)eventpost2, 1, 0xCE90F5F0, 0x03050C00) 
+	#define EXP_eventpost2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost2", (RTS_UINTPTR)eventpost2, 1, 0xCE90F5F0, 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventpost2
 	#define EXT_CmpEventMgreventpost2
 	#define GET_CmpEventMgreventpost2  ERR_OK
 	#define CAL_CmpEventMgreventpost2  eventpost2
 	#define CHK_CmpEventMgreventpost2  TRUE
-	#define EXP_CmpEventMgreventpost2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost2", (RTS_UINTPTR)eventpost2, 1, 0xCE90F5F0, 0x03050C00) 
+	#define EXP_CmpEventMgreventpost2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost2", (RTS_UINTPTR)eventpost2, 1, 0xCE90F5F0, 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventpost2
 	#define EXT_eventpost2
 	#define GET_eventpost2(fl)  CAL_CMGETAPI( "eventpost2" ) 
 	#define CAL_eventpost2  eventpost2
 	#define CHK_eventpost2  TRUE
-	#define EXP_eventpost2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost2", (RTS_UINTPTR)eventpost2, 1, 0xCE90F5F0, 0x03050C00) 
+	#define EXP_eventpost2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost2", (RTS_UINTPTR)eventpost2, 1, 0xCE90F5F0, 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventpost2  PFEVENTPOST2_IEC pfeventpost2;
 	#define EXT_eventpost2  extern PFEVENTPOST2_IEC pfeventpost2;
-	#define GET_eventpost2(fl)  s_pfCMGetAPI2( "eventpost2", (RTS_VOID_FCTPTR *)&pfeventpost2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xCE90F5F0, 0x03050C00)
+	#define GET_eventpost2(fl)  s_pfCMGetAPI2( "eventpost2", (RTS_VOID_FCTPTR *)&pfeventpost2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xCE90F5F0, 0x03050800)
 	#define CAL_eventpost2  pfeventpost2
 	#define CHK_eventpost2  (pfeventpost2 != NULL)
-	#define EXP_eventpost2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost2", (RTS_UINTPTR)eventpost2, 1, 0xCE90F5F0, 0x03050C00) 
+	#define EXP_eventpost2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpost2", (RTS_UINTPTR)eventpost2, 1, 0xCE90F5F0, 0x03050800) 
 #endif
 
 
@@ -782,35 +761,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTPOSTBYEVENT_IEC) (eventpostbyevent_struct 
 	#define GET_eventpostbyevent(fl)  CAL_CMGETAPI( "eventpostbyevent" ) 
 	#define CAL_eventpostbyevent  eventpostbyevent
 	#define CHK_eventpostbyevent  TRUE
-	#define EXP_eventpostbyevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent", (RTS_UINTPTR)eventpostbyevent, 1, RTSITF_GET_SIGNATURE(0, 0xA33BD23D), 0x03050C00) 
+	#define EXP_eventpostbyevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent", (RTS_UINTPTR)eventpostbyevent, 1, RTSITF_GET_SIGNATURE(0, 0xA33BD23D), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventpostbyevent
 	#define EXT_eventpostbyevent
 	#define GET_eventpostbyevent(fl)  CAL_CMGETAPI( "eventpostbyevent" ) 
 	#define CAL_eventpostbyevent  eventpostbyevent
 	#define CHK_eventpostbyevent  TRUE
-	#define EXP_eventpostbyevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent", (RTS_UINTPTR)eventpostbyevent, 1, RTSITF_GET_SIGNATURE(0, 0xA33BD23D), 0x03050C00) 
+	#define EXP_eventpostbyevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent", (RTS_UINTPTR)eventpostbyevent, 1, RTSITF_GET_SIGNATURE(0, 0xA33BD23D), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventpostbyevent
 	#define EXT_CmpEventMgreventpostbyevent
 	#define GET_CmpEventMgreventpostbyevent  ERR_OK
 	#define CAL_CmpEventMgreventpostbyevent  eventpostbyevent
 	#define CHK_CmpEventMgreventpostbyevent  TRUE
-	#define EXP_CmpEventMgreventpostbyevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent", (RTS_UINTPTR)eventpostbyevent, 1, RTSITF_GET_SIGNATURE(0, 0xA33BD23D), 0x03050C00) 
+	#define EXP_CmpEventMgreventpostbyevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent", (RTS_UINTPTR)eventpostbyevent, 1, RTSITF_GET_SIGNATURE(0, 0xA33BD23D), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventpostbyevent
 	#define EXT_eventpostbyevent
 	#define GET_eventpostbyevent(fl)  CAL_CMGETAPI( "eventpostbyevent" ) 
 	#define CAL_eventpostbyevent  eventpostbyevent
 	#define CHK_eventpostbyevent  TRUE
-	#define EXP_eventpostbyevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent", (RTS_UINTPTR)eventpostbyevent, 1, RTSITF_GET_SIGNATURE(0, 0xA33BD23D), 0x03050C00) 
+	#define EXP_eventpostbyevent  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent", (RTS_UINTPTR)eventpostbyevent, 1, RTSITF_GET_SIGNATURE(0, 0xA33BD23D), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventpostbyevent  PFEVENTPOSTBYEVENT_IEC pfeventpostbyevent;
 	#define EXT_eventpostbyevent  extern PFEVENTPOSTBYEVENT_IEC pfeventpostbyevent;
-	#define GET_eventpostbyevent(fl)  s_pfCMGetAPI2( "eventpostbyevent", (RTS_VOID_FCTPTR *)&pfeventpostbyevent, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xA33BD23D), 0x03050C00)
+	#define GET_eventpostbyevent(fl)  s_pfCMGetAPI2( "eventpostbyevent", (RTS_VOID_FCTPTR *)&pfeventpostbyevent, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xA33BD23D), 0x03050800)
 	#define CAL_eventpostbyevent  pfeventpostbyevent
 	#define CHK_eventpostbyevent  (pfeventpostbyevent != NULL)
-	#define EXP_eventpostbyevent   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent", (RTS_UINTPTR)eventpostbyevent, 1, RTSITF_GET_SIGNATURE(0, 0xA33BD23D), 0x03050C00) 
+	#define EXP_eventpostbyevent   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent", (RTS_UINTPTR)eventpostbyevent, 1, RTSITF_GET_SIGNATURE(0, 0xA33BD23D), 0x03050800) 
 #endif
 
 
@@ -840,35 +819,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTPOSTBYEVENT2_IEC) (eventpostbyevent2_struc
 	#define GET_eventpostbyevent2(fl)  CAL_CMGETAPI( "eventpostbyevent2" ) 
 	#define CAL_eventpostbyevent2  eventpostbyevent2
 	#define CHK_eventpostbyevent2  TRUE
-	#define EXP_eventpostbyevent2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent2", (RTS_UINTPTR)eventpostbyevent2, 1, 0x61F1EA28, 0x03050C00) 
+	#define EXP_eventpostbyevent2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent2", (RTS_UINTPTR)eventpostbyevent2, 1, 0x61F1EA28, 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventpostbyevent2
 	#define EXT_eventpostbyevent2
 	#define GET_eventpostbyevent2(fl)  CAL_CMGETAPI( "eventpostbyevent2" ) 
 	#define CAL_eventpostbyevent2  eventpostbyevent2
 	#define CHK_eventpostbyevent2  TRUE
-	#define EXP_eventpostbyevent2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent2", (RTS_UINTPTR)eventpostbyevent2, 1, 0x61F1EA28, 0x03050C00) 
+	#define EXP_eventpostbyevent2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent2", (RTS_UINTPTR)eventpostbyevent2, 1, 0x61F1EA28, 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventpostbyevent2
 	#define EXT_CmpEventMgreventpostbyevent2
 	#define GET_CmpEventMgreventpostbyevent2  ERR_OK
 	#define CAL_CmpEventMgreventpostbyevent2  eventpostbyevent2
 	#define CHK_CmpEventMgreventpostbyevent2  TRUE
-	#define EXP_CmpEventMgreventpostbyevent2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent2", (RTS_UINTPTR)eventpostbyevent2, 1, 0x61F1EA28, 0x03050C00) 
+	#define EXP_CmpEventMgreventpostbyevent2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent2", (RTS_UINTPTR)eventpostbyevent2, 1, 0x61F1EA28, 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventpostbyevent2
 	#define EXT_eventpostbyevent2
 	#define GET_eventpostbyevent2(fl)  CAL_CMGETAPI( "eventpostbyevent2" ) 
 	#define CAL_eventpostbyevent2  eventpostbyevent2
 	#define CHK_eventpostbyevent2  TRUE
-	#define EXP_eventpostbyevent2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent2", (RTS_UINTPTR)eventpostbyevent2, 1, 0x61F1EA28, 0x03050C00) 
+	#define EXP_eventpostbyevent2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent2", (RTS_UINTPTR)eventpostbyevent2, 1, 0x61F1EA28, 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventpostbyevent2  PFEVENTPOSTBYEVENT2_IEC pfeventpostbyevent2;
 	#define EXT_eventpostbyevent2  extern PFEVENTPOSTBYEVENT2_IEC pfeventpostbyevent2;
-	#define GET_eventpostbyevent2(fl)  s_pfCMGetAPI2( "eventpostbyevent2", (RTS_VOID_FCTPTR *)&pfeventpostbyevent2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x61F1EA28, 0x03050C00)
+	#define GET_eventpostbyevent2(fl)  s_pfCMGetAPI2( "eventpostbyevent2", (RTS_VOID_FCTPTR *)&pfeventpostbyevent2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x61F1EA28, 0x03050800)
 	#define CAL_eventpostbyevent2  pfeventpostbyevent2
 	#define CHK_eventpostbyevent2  (pfeventpostbyevent2 != NULL)
-	#define EXP_eventpostbyevent2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent2", (RTS_UINTPTR)eventpostbyevent2, 1, 0x61F1EA28, 0x03050C00) 
+	#define EXP_eventpostbyevent2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventpostbyevent2", (RTS_UINTPTR)eventpostbyevent2, 1, 0x61F1EA28, 0x03050800) 
 #endif
 
 
@@ -898,35 +877,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTREGISTERCALLBACK_IEC) (eventregistercallba
 	#define GET_eventregistercallback(fl)  CAL_CMGETAPI( "eventregistercallback" ) 
 	#define CAL_eventregistercallback  eventregistercallback
 	#define CHK_eventregistercallback  TRUE
-	#define EXP_eventregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback", (RTS_UINTPTR)eventregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x5EF9AC91), 0x03050C00) 
+	#define EXP_eventregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback", (RTS_UINTPTR)eventregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x5EF9AC91), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventregistercallback
 	#define EXT_eventregistercallback
 	#define GET_eventregistercallback(fl)  CAL_CMGETAPI( "eventregistercallback" ) 
 	#define CAL_eventregistercallback  eventregistercallback
 	#define CHK_eventregistercallback  TRUE
-	#define EXP_eventregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback", (RTS_UINTPTR)eventregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x5EF9AC91), 0x03050C00) 
+	#define EXP_eventregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback", (RTS_UINTPTR)eventregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x5EF9AC91), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventregistercallback
 	#define EXT_CmpEventMgreventregistercallback
 	#define GET_CmpEventMgreventregistercallback  ERR_OK
 	#define CAL_CmpEventMgreventregistercallback  eventregistercallback
 	#define CHK_CmpEventMgreventregistercallback  TRUE
-	#define EXP_CmpEventMgreventregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback", (RTS_UINTPTR)eventregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x5EF9AC91), 0x03050C00) 
+	#define EXP_CmpEventMgreventregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback", (RTS_UINTPTR)eventregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x5EF9AC91), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventregistercallback
 	#define EXT_eventregistercallback
 	#define GET_eventregistercallback(fl)  CAL_CMGETAPI( "eventregistercallback" ) 
 	#define CAL_eventregistercallback  eventregistercallback
 	#define CHK_eventregistercallback  TRUE
-	#define EXP_eventregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback", (RTS_UINTPTR)eventregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x5EF9AC91), 0x03050C00) 
+	#define EXP_eventregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback", (RTS_UINTPTR)eventregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x5EF9AC91), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventregistercallback  PFEVENTREGISTERCALLBACK_IEC pfeventregistercallback;
 	#define EXT_eventregistercallback  extern PFEVENTREGISTERCALLBACK_IEC pfeventregistercallback;
-	#define GET_eventregistercallback(fl)  s_pfCMGetAPI2( "eventregistercallback", (RTS_VOID_FCTPTR *)&pfeventregistercallback, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x5EF9AC91), 0x03050C00)
+	#define GET_eventregistercallback(fl)  s_pfCMGetAPI2( "eventregistercallback", (RTS_VOID_FCTPTR *)&pfeventregistercallback, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x5EF9AC91), 0x03050800)
 	#define CAL_eventregistercallback  pfeventregistercallback
 	#define CHK_eventregistercallback  (pfeventregistercallback != NULL)
-	#define EXP_eventregistercallback   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback", (RTS_UINTPTR)eventregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x5EF9AC91), 0x03050C00) 
+	#define EXP_eventregistercallback   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback", (RTS_UINTPTR)eventregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x5EF9AC91), 0x03050800) 
 #endif
 
 
@@ -957,35 +936,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTREGISTERCALLBACK2_IEC) (eventregistercallb
 	#define GET_eventregistercallback2(fl)  CAL_CMGETAPI( "eventregistercallback2" ) 
 	#define CAL_eventregistercallback2  eventregistercallback2
 	#define CHK_eventregistercallback2  TRUE
-	#define EXP_eventregistercallback2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback2", (RTS_UINTPTR)eventregistercallback2, 1, RTSITF_GET_SIGNATURE(0, 0x95D8F44C), 0x03050C00) 
+	#define EXP_eventregistercallback2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback2", (RTS_UINTPTR)eventregistercallback2, 1, RTSITF_GET_SIGNATURE(0, 0x95D8F44C), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventregistercallback2
 	#define EXT_eventregistercallback2
 	#define GET_eventregistercallback2(fl)  CAL_CMGETAPI( "eventregistercallback2" ) 
 	#define CAL_eventregistercallback2  eventregistercallback2
 	#define CHK_eventregistercallback2  TRUE
-	#define EXP_eventregistercallback2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback2", (RTS_UINTPTR)eventregistercallback2, 1, RTSITF_GET_SIGNATURE(0, 0x95D8F44C), 0x03050C00) 
+	#define EXP_eventregistercallback2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback2", (RTS_UINTPTR)eventregistercallback2, 1, RTSITF_GET_SIGNATURE(0, 0x95D8F44C), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventregistercallback2
 	#define EXT_CmpEventMgreventregistercallback2
 	#define GET_CmpEventMgreventregistercallback2  ERR_OK
 	#define CAL_CmpEventMgreventregistercallback2  eventregistercallback2
 	#define CHK_CmpEventMgreventregistercallback2  TRUE
-	#define EXP_CmpEventMgreventregistercallback2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback2", (RTS_UINTPTR)eventregistercallback2, 1, RTSITF_GET_SIGNATURE(0, 0x95D8F44C), 0x03050C00) 
+	#define EXP_CmpEventMgreventregistercallback2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback2", (RTS_UINTPTR)eventregistercallback2, 1, RTSITF_GET_SIGNATURE(0, 0x95D8F44C), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventregistercallback2
 	#define EXT_eventregistercallback2
 	#define GET_eventregistercallback2(fl)  CAL_CMGETAPI( "eventregistercallback2" ) 
 	#define CAL_eventregistercallback2  eventregistercallback2
 	#define CHK_eventregistercallback2  TRUE
-	#define EXP_eventregistercallback2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback2", (RTS_UINTPTR)eventregistercallback2, 1, RTSITF_GET_SIGNATURE(0, 0x95D8F44C), 0x03050C00) 
+	#define EXP_eventregistercallback2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback2", (RTS_UINTPTR)eventregistercallback2, 1, RTSITF_GET_SIGNATURE(0, 0x95D8F44C), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventregistercallback2  PFEVENTREGISTERCALLBACK2_IEC pfeventregistercallback2;
 	#define EXT_eventregistercallback2  extern PFEVENTREGISTERCALLBACK2_IEC pfeventregistercallback2;
-	#define GET_eventregistercallback2(fl)  s_pfCMGetAPI2( "eventregistercallback2", (RTS_VOID_FCTPTR *)&pfeventregistercallback2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x95D8F44C), 0x03050C00)
+	#define GET_eventregistercallback2(fl)  s_pfCMGetAPI2( "eventregistercallback2", (RTS_VOID_FCTPTR *)&pfeventregistercallback2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x95D8F44C), 0x03050800)
 	#define CAL_eventregistercallback2  pfeventregistercallback2
 	#define CHK_eventregistercallback2  (pfeventregistercallback2 != NULL)
-	#define EXP_eventregistercallback2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback2", (RTS_UINTPTR)eventregistercallback2, 1, RTSITF_GET_SIGNATURE(0, 0x95D8F44C), 0x03050C00) 
+	#define EXP_eventregistercallback2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallback2", (RTS_UINTPTR)eventregistercallback2, 1, RTSITF_GET_SIGNATURE(0, 0x95D8F44C), 0x03050800) 
 #endif
 
 
@@ -1015,35 +994,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTREGISTERCALLBACKFUNCTION_IEC) (eventregist
 	#define GET_eventregistercallbackfunction(fl)  CAL_CMGETAPI( "eventregistercallbackfunction" ) 
 	#define CAL_eventregistercallbackfunction  eventregistercallbackfunction
 	#define CHK_eventregistercallbackfunction  TRUE
-	#define EXP_eventregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction", (RTS_UINTPTR)eventregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x989C8BB3), 0x03050C00) 
+	#define EXP_eventregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction", (RTS_UINTPTR)eventregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x989C8BB3), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventregistercallbackfunction
 	#define EXT_eventregistercallbackfunction
 	#define GET_eventregistercallbackfunction(fl)  CAL_CMGETAPI( "eventregistercallbackfunction" ) 
 	#define CAL_eventregistercallbackfunction  eventregistercallbackfunction
 	#define CHK_eventregistercallbackfunction  TRUE
-	#define EXP_eventregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction", (RTS_UINTPTR)eventregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x989C8BB3), 0x03050C00) 
+	#define EXP_eventregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction", (RTS_UINTPTR)eventregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x989C8BB3), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventregistercallbackfunction
 	#define EXT_CmpEventMgreventregistercallbackfunction
 	#define GET_CmpEventMgreventregistercallbackfunction  ERR_OK
 	#define CAL_CmpEventMgreventregistercallbackfunction  eventregistercallbackfunction
 	#define CHK_CmpEventMgreventregistercallbackfunction  TRUE
-	#define EXP_CmpEventMgreventregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction", (RTS_UINTPTR)eventregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x989C8BB3), 0x03050C00) 
+	#define EXP_CmpEventMgreventregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction", (RTS_UINTPTR)eventregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x989C8BB3), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventregistercallbackfunction
 	#define EXT_eventregistercallbackfunction
 	#define GET_eventregistercallbackfunction(fl)  CAL_CMGETAPI( "eventregistercallbackfunction" ) 
 	#define CAL_eventregistercallbackfunction  eventregistercallbackfunction
 	#define CHK_eventregistercallbackfunction  TRUE
-	#define EXP_eventregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction", (RTS_UINTPTR)eventregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x989C8BB3), 0x03050C00) 
+	#define EXP_eventregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction", (RTS_UINTPTR)eventregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x989C8BB3), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventregistercallbackfunction  PFEVENTREGISTERCALLBACKFUNCTION_IEC pfeventregistercallbackfunction;
 	#define EXT_eventregistercallbackfunction  extern PFEVENTREGISTERCALLBACKFUNCTION_IEC pfeventregistercallbackfunction;
-	#define GET_eventregistercallbackfunction(fl)  s_pfCMGetAPI2( "eventregistercallbackfunction", (RTS_VOID_FCTPTR *)&pfeventregistercallbackfunction, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x989C8BB3), 0x03050C00)
+	#define GET_eventregistercallbackfunction(fl)  s_pfCMGetAPI2( "eventregistercallbackfunction", (RTS_VOID_FCTPTR *)&pfeventregistercallbackfunction, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x989C8BB3), 0x03050800)
 	#define CAL_eventregistercallbackfunction  pfeventregistercallbackfunction
 	#define CHK_eventregistercallbackfunction  (pfeventregistercallbackfunction != NULL)
-	#define EXP_eventregistercallbackfunction   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction", (RTS_UINTPTR)eventregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x989C8BB3), 0x03050C00) 
+	#define EXP_eventregistercallbackfunction   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction", (RTS_UINTPTR)eventregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x989C8BB3), 0x03050800) 
 #endif
 
 
@@ -1074,35 +1053,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTREGISTERCALLBACKFUNCTION2_IEC) (eventregis
 	#define GET_eventregistercallbackfunction2(fl)  CAL_CMGETAPI( "eventregistercallbackfunction2" ) 
 	#define CAL_eventregistercallbackfunction2  eventregistercallbackfunction2
 	#define CHK_eventregistercallbackfunction2  TRUE
-	#define EXP_eventregistercallbackfunction2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction2", (RTS_UINTPTR)eventregistercallbackfunction2, 1, RTSITF_GET_SIGNATURE(0, 0xBD946DD7), 0x03050C00) 
+	#define EXP_eventregistercallbackfunction2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction2", (RTS_UINTPTR)eventregistercallbackfunction2, 1, RTSITF_GET_SIGNATURE(0, 0xBD946DD7), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventregistercallbackfunction2
 	#define EXT_eventregistercallbackfunction2
 	#define GET_eventregistercallbackfunction2(fl)  CAL_CMGETAPI( "eventregistercallbackfunction2" ) 
 	#define CAL_eventregistercallbackfunction2  eventregistercallbackfunction2
 	#define CHK_eventregistercallbackfunction2  TRUE
-	#define EXP_eventregistercallbackfunction2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction2", (RTS_UINTPTR)eventregistercallbackfunction2, 1, RTSITF_GET_SIGNATURE(0, 0xBD946DD7), 0x03050C00) 
+	#define EXP_eventregistercallbackfunction2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction2", (RTS_UINTPTR)eventregistercallbackfunction2, 1, RTSITF_GET_SIGNATURE(0, 0xBD946DD7), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventregistercallbackfunction2
 	#define EXT_CmpEventMgreventregistercallbackfunction2
 	#define GET_CmpEventMgreventregistercallbackfunction2  ERR_OK
 	#define CAL_CmpEventMgreventregistercallbackfunction2  eventregistercallbackfunction2
 	#define CHK_CmpEventMgreventregistercallbackfunction2  TRUE
-	#define EXP_CmpEventMgreventregistercallbackfunction2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction2", (RTS_UINTPTR)eventregistercallbackfunction2, 1, RTSITF_GET_SIGNATURE(0, 0xBD946DD7), 0x03050C00) 
+	#define EXP_CmpEventMgreventregistercallbackfunction2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction2", (RTS_UINTPTR)eventregistercallbackfunction2, 1, RTSITF_GET_SIGNATURE(0, 0xBD946DD7), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventregistercallbackfunction2
 	#define EXT_eventregistercallbackfunction2
 	#define GET_eventregistercallbackfunction2(fl)  CAL_CMGETAPI( "eventregistercallbackfunction2" ) 
 	#define CAL_eventregistercallbackfunction2  eventregistercallbackfunction2
 	#define CHK_eventregistercallbackfunction2  TRUE
-	#define EXP_eventregistercallbackfunction2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction2", (RTS_UINTPTR)eventregistercallbackfunction2, 1, RTSITF_GET_SIGNATURE(0, 0xBD946DD7), 0x03050C00) 
+	#define EXP_eventregistercallbackfunction2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction2", (RTS_UINTPTR)eventregistercallbackfunction2, 1, RTSITF_GET_SIGNATURE(0, 0xBD946DD7), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventregistercallbackfunction2  PFEVENTREGISTERCALLBACKFUNCTION2_IEC pfeventregistercallbackfunction2;
 	#define EXT_eventregistercallbackfunction2  extern PFEVENTREGISTERCALLBACKFUNCTION2_IEC pfeventregistercallbackfunction2;
-	#define GET_eventregistercallbackfunction2(fl)  s_pfCMGetAPI2( "eventregistercallbackfunction2", (RTS_VOID_FCTPTR *)&pfeventregistercallbackfunction2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xBD946DD7), 0x03050C00)
+	#define GET_eventregistercallbackfunction2(fl)  s_pfCMGetAPI2( "eventregistercallbackfunction2", (RTS_VOID_FCTPTR *)&pfeventregistercallbackfunction2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xBD946DD7), 0x03050800)
 	#define CAL_eventregistercallbackfunction2  pfeventregistercallbackfunction2
 	#define CHK_eventregistercallbackfunction2  (pfeventregistercallbackfunction2 != NULL)
-	#define EXP_eventregistercallbackfunction2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction2", (RTS_UINTPTR)eventregistercallbackfunction2, 1, RTSITF_GET_SIGNATURE(0, 0xBD946DD7), 0x03050C00) 
+	#define EXP_eventregistercallbackfunction2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregistercallbackfunction2", (RTS_UINTPTR)eventregistercallbackfunction2, 1, RTSITF_GET_SIGNATURE(0, 0xBD946DD7), 0x03050800) 
 #endif
 
 
@@ -1131,35 +1110,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTREGISTEREDCALLBACKS_IEC) (eventregisteredc
 	#define GET_eventregisteredcallbacks(fl)  CAL_CMGETAPI( "eventregisteredcallbacks" ) 
 	#define CAL_eventregisteredcallbacks  eventregisteredcallbacks
 	#define CHK_eventregisteredcallbacks  TRUE
-	#define EXP_eventregisteredcallbacks  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregisteredcallbacks", (RTS_UINTPTR)eventregisteredcallbacks, 1, RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B), 0x03050C00) 
+	#define EXP_eventregisteredcallbacks  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregisteredcallbacks", (RTS_UINTPTR)eventregisteredcallbacks, 1, RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventregisteredcallbacks
 	#define EXT_eventregisteredcallbacks
 	#define GET_eventregisteredcallbacks(fl)  CAL_CMGETAPI( "eventregisteredcallbacks" ) 
 	#define CAL_eventregisteredcallbacks  eventregisteredcallbacks
 	#define CHK_eventregisteredcallbacks  TRUE
-	#define EXP_eventregisteredcallbacks  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregisteredcallbacks", (RTS_UINTPTR)eventregisteredcallbacks, 1, RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B), 0x03050C00) 
+	#define EXP_eventregisteredcallbacks  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregisteredcallbacks", (RTS_UINTPTR)eventregisteredcallbacks, 1, RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventregisteredcallbacks
 	#define EXT_CmpEventMgreventregisteredcallbacks
 	#define GET_CmpEventMgreventregisteredcallbacks  ERR_OK
 	#define CAL_CmpEventMgreventregisteredcallbacks  eventregisteredcallbacks
 	#define CHK_CmpEventMgreventregisteredcallbacks  TRUE
-	#define EXP_CmpEventMgreventregisteredcallbacks  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregisteredcallbacks", (RTS_UINTPTR)eventregisteredcallbacks, 1, RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B), 0x03050C00) 
+	#define EXP_CmpEventMgreventregisteredcallbacks  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregisteredcallbacks", (RTS_UINTPTR)eventregisteredcallbacks, 1, RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventregisteredcallbacks
 	#define EXT_eventregisteredcallbacks
 	#define GET_eventregisteredcallbacks(fl)  CAL_CMGETAPI( "eventregisteredcallbacks" ) 
 	#define CAL_eventregisteredcallbacks  eventregisteredcallbacks
 	#define CHK_eventregisteredcallbacks  TRUE
-	#define EXP_eventregisteredcallbacks  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregisteredcallbacks", (RTS_UINTPTR)eventregisteredcallbacks, 1, RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B), 0x03050C00) 
+	#define EXP_eventregisteredcallbacks  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregisteredcallbacks", (RTS_UINTPTR)eventregisteredcallbacks, 1, RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventregisteredcallbacks  PFEVENTREGISTEREDCALLBACKS_IEC pfeventregisteredcallbacks;
 	#define EXT_eventregisteredcallbacks  extern PFEVENTREGISTEREDCALLBACKS_IEC pfeventregisteredcallbacks;
-	#define GET_eventregisteredcallbacks(fl)  s_pfCMGetAPI2( "eventregisteredcallbacks", (RTS_VOID_FCTPTR *)&pfeventregisteredcallbacks, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B), 0x03050C00)
+	#define GET_eventregisteredcallbacks(fl)  s_pfCMGetAPI2( "eventregisteredcallbacks", (RTS_VOID_FCTPTR *)&pfeventregisteredcallbacks, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B), 0x03050800)
 	#define CAL_eventregisteredcallbacks  pfeventregisteredcallbacks
 	#define CHK_eventregisteredcallbacks  (pfeventregisteredcallbacks != NULL)
-	#define EXP_eventregisteredcallbacks   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregisteredcallbacks", (RTS_UINTPTR)eventregisteredcallbacks, 1, RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B), 0x03050C00) 
+	#define EXP_eventregisteredcallbacks   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventregisteredcallbacks", (RTS_UINTPTR)eventregisteredcallbacks, 1, RTSITF_GET_SIGNATURE(0, 0xC4EA0B3B), 0x03050800) 
 #endif
 
 
@@ -1188,35 +1167,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTUNREGISTERCALLBACK_IEC) (eventunregisterca
 	#define GET_eventunregistercallback(fl)  CAL_CMGETAPI( "eventunregistercallback" ) 
 	#define CAL_eventunregistercallback  eventunregistercallback
 	#define CHK_eventunregistercallback  TRUE
-	#define EXP_eventunregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallback", (RTS_UINTPTR)eventunregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x80238B4F), 0x03050C00) 
+	#define EXP_eventunregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallback", (RTS_UINTPTR)eventunregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x80238B4F), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventunregistercallback
 	#define EXT_eventunregistercallback
 	#define GET_eventunregistercallback(fl)  CAL_CMGETAPI( "eventunregistercallback" ) 
 	#define CAL_eventunregistercallback  eventunregistercallback
 	#define CHK_eventunregistercallback  TRUE
-	#define EXP_eventunregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallback", (RTS_UINTPTR)eventunregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x80238B4F), 0x03050C00) 
+	#define EXP_eventunregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallback", (RTS_UINTPTR)eventunregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x80238B4F), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventunregistercallback
 	#define EXT_CmpEventMgreventunregistercallback
 	#define GET_CmpEventMgreventunregistercallback  ERR_OK
 	#define CAL_CmpEventMgreventunregistercallback  eventunregistercallback
 	#define CHK_CmpEventMgreventunregistercallback  TRUE
-	#define EXP_CmpEventMgreventunregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallback", (RTS_UINTPTR)eventunregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x80238B4F), 0x03050C00) 
+	#define EXP_CmpEventMgreventunregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallback", (RTS_UINTPTR)eventunregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x80238B4F), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventunregistercallback
 	#define EXT_eventunregistercallback
 	#define GET_eventunregistercallback(fl)  CAL_CMGETAPI( "eventunregistercallback" ) 
 	#define CAL_eventunregistercallback  eventunregistercallback
 	#define CHK_eventunregistercallback  TRUE
-	#define EXP_eventunregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallback", (RTS_UINTPTR)eventunregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x80238B4F), 0x03050C00) 
+	#define EXP_eventunregistercallback  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallback", (RTS_UINTPTR)eventunregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x80238B4F), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventunregistercallback  PFEVENTUNREGISTERCALLBACK_IEC pfeventunregistercallback;
 	#define EXT_eventunregistercallback  extern PFEVENTUNREGISTERCALLBACK_IEC pfeventunregistercallback;
-	#define GET_eventunregistercallback(fl)  s_pfCMGetAPI2( "eventunregistercallback", (RTS_VOID_FCTPTR *)&pfeventunregistercallback, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x80238B4F), 0x03050C00)
+	#define GET_eventunregistercallback(fl)  s_pfCMGetAPI2( "eventunregistercallback", (RTS_VOID_FCTPTR *)&pfeventunregistercallback, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x80238B4F), 0x03050800)
 	#define CAL_eventunregistercallback  pfeventunregistercallback
 	#define CHK_eventunregistercallback  (pfeventunregistercallback != NULL)
-	#define EXP_eventunregistercallback   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallback", (RTS_UINTPTR)eventunregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x80238B4F), 0x03050C00) 
+	#define EXP_eventunregistercallback   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallback", (RTS_UINTPTR)eventunregistercallback, 1, RTSITF_GET_SIGNATURE(0, 0x80238B4F), 0x03050800) 
 #endif
 
 
@@ -1245,93 +1224,35 @@ typedef void (CDECL CDECL_EXT* PFEVENTUNREGISTERCALLBACKFUNCTION_IEC) (eventunre
 	#define GET_eventunregistercallbackfunction(fl)  CAL_CMGETAPI( "eventunregistercallbackfunction" ) 
 	#define CAL_eventunregistercallbackfunction  eventunregistercallbackfunction
 	#define CHK_eventunregistercallbackfunction  TRUE
-	#define EXP_eventunregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction", (RTS_UINTPTR)eventunregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD), 0x03050C00) 
+	#define EXP_eventunregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction", (RTS_UINTPTR)eventunregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD), 0x03050800) 
 #elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
 	#define USE_eventunregistercallbackfunction
 	#define EXT_eventunregistercallbackfunction
 	#define GET_eventunregistercallbackfunction(fl)  CAL_CMGETAPI( "eventunregistercallbackfunction" ) 
 	#define CAL_eventunregistercallbackfunction  eventunregistercallbackfunction
 	#define CHK_eventunregistercallbackfunction  TRUE
-	#define EXP_eventunregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction", (RTS_UINTPTR)eventunregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD), 0x03050C00) 
+	#define EXP_eventunregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction", (RTS_UINTPTR)eventunregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD), 0x03050800) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpEventMgreventunregistercallbackfunction
 	#define EXT_CmpEventMgreventunregistercallbackfunction
 	#define GET_CmpEventMgreventunregistercallbackfunction  ERR_OK
 	#define CAL_CmpEventMgreventunregistercallbackfunction  eventunregistercallbackfunction
 	#define CHK_CmpEventMgreventunregistercallbackfunction  TRUE
-	#define EXP_CmpEventMgreventunregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction", (RTS_UINTPTR)eventunregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD), 0x03050C00) 
+	#define EXP_CmpEventMgreventunregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction", (RTS_UINTPTR)eventunregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD), 0x03050800) 
 #elif defined(CPLUSPLUS)
 	#define USE_eventunregistercallbackfunction
 	#define EXT_eventunregistercallbackfunction
 	#define GET_eventunregistercallbackfunction(fl)  CAL_CMGETAPI( "eventunregistercallbackfunction" ) 
 	#define CAL_eventunregistercallbackfunction  eventunregistercallbackfunction
 	#define CHK_eventunregistercallbackfunction  TRUE
-	#define EXP_eventunregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction", (RTS_UINTPTR)eventunregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD), 0x03050C00) 
+	#define EXP_eventunregistercallbackfunction  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction", (RTS_UINTPTR)eventunregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD), 0x03050800) 
 #else /* DYNAMIC_LINK */
 	#define USE_eventunregistercallbackfunction  PFEVENTUNREGISTERCALLBACKFUNCTION_IEC pfeventunregistercallbackfunction;
 	#define EXT_eventunregistercallbackfunction  extern PFEVENTUNREGISTERCALLBACKFUNCTION_IEC pfeventunregistercallbackfunction;
-	#define GET_eventunregistercallbackfunction(fl)  s_pfCMGetAPI2( "eventunregistercallbackfunction", (RTS_VOID_FCTPTR *)&pfeventunregistercallbackfunction, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD), 0x03050C00)
+	#define GET_eventunregistercallbackfunction(fl)  s_pfCMGetAPI2( "eventunregistercallbackfunction", (RTS_VOID_FCTPTR *)&pfeventunregistercallbackfunction, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD), 0x03050800)
 	#define CAL_eventunregistercallbackfunction  pfeventunregistercallbackfunction
 	#define CHK_eventunregistercallbackfunction  (pfeventunregistercallbackfunction != NULL)
-	#define EXP_eventunregistercallbackfunction   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction", (RTS_UINTPTR)eventunregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD), 0x03050C00) 
-#endif
-
-
-/**
- * Unregister a callback function with a specific user parameter from an event specified by handle and callback and parameter 
- */
-typedef struct tageventunregistercallbackfunction2_struct
-{
-	RTS_IEC_HANDLE hEvent;				/* VAR_INPUT */	/* Handle to event */
-	RTS_IEC_BYTE *pfCallbackFunction;	/* VAR_INPUT */	/* Address of callback function. Function pointer is retrieved by the ADR operator: ADR(function) */
-	RTS_IEC_BYTE *pUserParameter;		/* VAR_INPUT */	/* Pointer to user parameter, that is transmitted optional to the callback (see EventParam) */
-	RTS_IEC_RESULT EventUnregisterCallbackFunction2;	/* VAR_OUTPUT */	/* Error code */
-} eventunregistercallbackfunction2_struct;
-
-void CDECL CDECL_EXT eventunregistercallbackfunction2(eventunregistercallbackfunction2_struct *p);
-typedef void (CDECL CDECL_EXT* PFEVENTUNREGISTERCALLBACKFUNCTION2_IEC) (eventunregistercallbackfunction2_struct *p);
-#if defined(CMPEVENTMGR_NOTIMPLEMENTED) || defined(EVENTUNREGISTERCALLBACKFUNCTION2_NOTIMPLEMENTED)
-	#define USE_eventunregistercallbackfunction2
-	#define EXT_eventunregistercallbackfunction2
-	#define GET_eventunregistercallbackfunction2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_eventunregistercallbackfunction2(p0) 
-	#define CHK_eventunregistercallbackfunction2  FALSE
-	#define EXP_eventunregistercallbackfunction2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_eventunregistercallbackfunction2
-	#define EXT_eventunregistercallbackfunction2
-	#define GET_eventunregistercallbackfunction2(fl)  CAL_CMGETAPI( "eventunregistercallbackfunction2" ) 
-	#define CAL_eventunregistercallbackfunction2  eventunregistercallbackfunction2
-	#define CHK_eventunregistercallbackfunction2  TRUE
-	#define EXP_eventunregistercallbackfunction2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction2", (RTS_UINTPTR)eventunregistercallbackfunction2, 1, 0x779853A9, 0x03050C00) 
-#elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
-	#define USE_eventunregistercallbackfunction2
-	#define EXT_eventunregistercallbackfunction2
-	#define GET_eventunregistercallbackfunction2(fl)  CAL_CMGETAPI( "eventunregistercallbackfunction2" ) 
-	#define CAL_eventunregistercallbackfunction2  eventunregistercallbackfunction2
-	#define CHK_eventunregistercallbackfunction2  TRUE
-	#define EXP_eventunregistercallbackfunction2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction2", (RTS_UINTPTR)eventunregistercallbackfunction2, 1, 0x779853A9, 0x03050C00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpEventMgreventunregistercallbackfunction2
-	#define EXT_CmpEventMgreventunregistercallbackfunction2
-	#define GET_CmpEventMgreventunregistercallbackfunction2  ERR_OK
-	#define CAL_CmpEventMgreventunregistercallbackfunction2  eventunregistercallbackfunction2
-	#define CHK_CmpEventMgreventunregistercallbackfunction2  TRUE
-	#define EXP_CmpEventMgreventunregistercallbackfunction2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction2", (RTS_UINTPTR)eventunregistercallbackfunction2, 1, 0x779853A9, 0x03050C00) 
-#elif defined(CPLUSPLUS)
-	#define USE_eventunregistercallbackfunction2
-	#define EXT_eventunregistercallbackfunction2
-	#define GET_eventunregistercallbackfunction2(fl)  CAL_CMGETAPI( "eventunregistercallbackfunction2" ) 
-	#define CAL_eventunregistercallbackfunction2  eventunregistercallbackfunction2
-	#define CHK_eventunregistercallbackfunction2  TRUE
-	#define EXP_eventunregistercallbackfunction2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction2", (RTS_UINTPTR)eventunregistercallbackfunction2, 1, 0x779853A9, 0x03050C00) 
-#else /* DYNAMIC_LINK */
-	#define USE_eventunregistercallbackfunction2  PFEVENTUNREGISTERCALLBACKFUNCTION2_IEC pfeventunregistercallbackfunction2;
-	#define EXT_eventunregistercallbackfunction2  extern PFEVENTUNREGISTERCALLBACKFUNCTION2_IEC pfeventunregistercallbackfunction2;
-	#define GET_eventunregistercallbackfunction2(fl)  s_pfCMGetAPI2( "eventunregistercallbackfunction2", (RTS_VOID_FCTPTR *)&pfeventunregistercallbackfunction2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x779853A9, 0x03050C00)
-	#define CAL_eventunregistercallbackfunction2  pfeventunregistercallbackfunction2
-	#define CHK_eventunregistercallbackfunction2  (pfeventunregistercallbackfunction2 != NULL)
-	#define EXP_eventunregistercallbackfunction2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction2", (RTS_UINTPTR)eventunregistercallbackfunction2, 1, 0x779853A9, 0x03050C00) 
+	#define EXP_eventunregistercallbackfunction   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"eventunregistercallbackfunction", (RTS_UINTPTR)eventunregistercallbackfunction, 1, RTSITF_GET_SIGNATURE(0, 0x5E0DD5BD), 0x03050800) 
 #endif
 
 
@@ -1456,64 +1377,6 @@ typedef RTS_HANDLE (CDECL * PFEVENTCREATE2) (EVENTID EventId, CMPID CmpIdProvide
 	#define CAL_EventCreate2  pfEventCreate2
 	#define CHK_EventCreate2  (pfEventCreate2 != NULL)
 	#define EXP_EventCreate2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"EventCreate2", (RTS_UINTPTR)EventCreate2, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>Creates a new event object. If event still exists, a handle to this object will be returned.
- * An event is typically created by the provider of an event in the CH_INIT_DONE hook.</description>
- * <param name="EventId" type="IN">Event ID of the event. Contains the class and the event</param>
- * <param name="CmpIdProvider" type="IN">Component ID of the provider</param>
- * <param name="pEventOptions" type="IN">Pointer to the EventOptions. May be NULL, then EventCreate() will be called without EventOptions.</param>
- * <param name="pResult" type="OUT">Pointer to the error code</param>
- * <result>Handle to the event object</result>
- */
-RTS_HANDLE CDECL EventCreate3(EVENTID EventId, CMPID CmpIdProvider, EventOptions *pEventOptions, RTS_RESULT *pResult);
-typedef RTS_HANDLE (CDECL * PFEVENTCREATE3) (EVENTID EventId, CMPID CmpIdProvider, EventOptions *pEventOptions, RTS_RESULT *pResult);
-#if defined(CMPEVENTMGR_NOTIMPLEMENTED) || defined(EVENTCREATE3_NOTIMPLEMENTED)
-	#define USE_EventCreate3
-	#define EXT_EventCreate3
-	#define GET_EventCreate3(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_EventCreate3(p0,p1,p2,p3)  (RTS_HANDLE)RTS_INVALID_HANDLE
-	#define CHK_EventCreate3  FALSE
-	#define EXP_EventCreate3  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_EventCreate3
-	#define EXT_EventCreate3
-	#define GET_EventCreate3(fl)  CAL_CMGETAPI( "EventCreate3" ) 
-	#define CAL_EventCreate3  EventCreate3
-	#define CHK_EventCreate3  TRUE
-	#define EXP_EventCreate3  CAL_CMEXPAPI( "EventCreate3" ) 
-#elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
-	#define USE_EventCreate3
-	#define EXT_EventCreate3
-	#define GET_EventCreate3(fl)  CAL_CMGETAPI( "EventCreate3" ) 
-	#define CAL_EventCreate3  EventCreate3
-	#define CHK_EventCreate3  TRUE
-	#define EXP_EventCreate3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"EventCreate3", (RTS_UINTPTR)EventCreate3, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpEventMgrEventCreate3
-	#define EXT_CmpEventMgrEventCreate3
-	#define GET_CmpEventMgrEventCreate3  ERR_OK
-	#define CAL_CmpEventMgrEventCreate3 pICmpEventMgr->IEventCreate3
-	#define CHK_CmpEventMgrEventCreate3 (pICmpEventMgr != NULL)
-	#define EXP_CmpEventMgrEventCreate3  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_EventCreate3
-	#define EXT_EventCreate3
-	#define GET_EventCreate3(fl)  CAL_CMGETAPI( "EventCreate3" ) 
-	#define CAL_EventCreate3 pICmpEventMgr->IEventCreate3
-	#define CHK_EventCreate3 (pICmpEventMgr != NULL)
-	#define EXP_EventCreate3  CAL_CMEXPAPI( "EventCreate3" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_EventCreate3  PFEVENTCREATE3 pfEventCreate3;
-	#define EXT_EventCreate3  extern PFEVENTCREATE3 pfEventCreate3;
-	#define GET_EventCreate3(fl)  s_pfCMGetAPI2( "EventCreate3", (RTS_VOID_FCTPTR *)&pfEventCreate3, (fl), 0, 0)
-	#define CAL_EventCreate3  pfEventCreate3
-	#define CHK_EventCreate3  (pfEventCreate3 != NULL)
-	#define EXP_EventCreate3  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"EventCreate3", (RTS_UINTPTR)EventCreate3, 0, 0) 
 #endif
 
 
@@ -2241,63 +2104,6 @@ typedef RTS_RESULT (CDECL * PFEVENTUNREGISTERCALLBACKFUNCTION) (RTS_HANDLE hEven
 
 
 /**
- * <description>Unregister a callback function with a specific user parameter from an event specified by handle and callback and parameter</description>
- * <param name="hEvent" type="IN">Handle to event</param>
- * <param name="pfCallbackFunction" type="IN">Pointer to callback function</param>
- * <param name="bIec" type="IN">1=Iec function, 0=C function</param>
- * <param name="pUserParameter" type="IN">Pointer to user parameter, that was specified as a parameter at EventRegisterCallback2()</param>
- * <result>Error code</result>
- */
-RTS_RESULT CDECL EventUnregisterCallbackFunction2(RTS_HANDLE hEvent, PFEVENTCALLBACKFUNCTION pfCallbackFunction, void *pUserParameter);
-typedef RTS_RESULT (CDECL * PFEVENTUNREGISTERCALLBACKFUNCTION2) (RTS_HANDLE hEvent, PFEVENTCALLBACKFUNCTION pfCallbackFunction, void *pUserParameter);
-#if defined(CMPEVENTMGR_NOTIMPLEMENTED) || defined(EVENTUNREGISTERCALLBACKFUNCTION2_NOTIMPLEMENTED)
-	#define USE_EventUnregisterCallbackFunction2
-	#define EXT_EventUnregisterCallbackFunction2
-	#define GET_EventUnregisterCallbackFunction2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_EventUnregisterCallbackFunction2(p0,p1,p2)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_EventUnregisterCallbackFunction2  FALSE
-	#define EXP_EventUnregisterCallbackFunction2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_EventUnregisterCallbackFunction2
-	#define EXT_EventUnregisterCallbackFunction2
-	#define GET_EventUnregisterCallbackFunction2(fl)  CAL_CMGETAPI( "EventUnregisterCallbackFunction2" ) 
-	#define CAL_EventUnregisterCallbackFunction2  EventUnregisterCallbackFunction2
-	#define CHK_EventUnregisterCallbackFunction2  TRUE
-	#define EXP_EventUnregisterCallbackFunction2  CAL_CMEXPAPI( "EventUnregisterCallbackFunction2" ) 
-#elif defined(MIXED_LINK) && !defined(CMPEVENTMGR_EXTERNAL)
-	#define USE_EventUnregisterCallbackFunction2
-	#define EXT_EventUnregisterCallbackFunction2
-	#define GET_EventUnregisterCallbackFunction2(fl)  CAL_CMGETAPI( "EventUnregisterCallbackFunction2" ) 
-	#define CAL_EventUnregisterCallbackFunction2  EventUnregisterCallbackFunction2
-	#define CHK_EventUnregisterCallbackFunction2  TRUE
-	#define EXP_EventUnregisterCallbackFunction2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"EventUnregisterCallbackFunction2", (RTS_UINTPTR)EventUnregisterCallbackFunction2, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpEventMgrEventUnregisterCallbackFunction2
-	#define EXT_CmpEventMgrEventUnregisterCallbackFunction2
-	#define GET_CmpEventMgrEventUnregisterCallbackFunction2  ERR_OK
-	#define CAL_CmpEventMgrEventUnregisterCallbackFunction2 pICmpEventMgr->IEventUnregisterCallbackFunction2
-	#define CHK_CmpEventMgrEventUnregisterCallbackFunction2 (pICmpEventMgr != NULL)
-	#define EXP_CmpEventMgrEventUnregisterCallbackFunction2  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_EventUnregisterCallbackFunction2
-	#define EXT_EventUnregisterCallbackFunction2
-	#define GET_EventUnregisterCallbackFunction2(fl)  CAL_CMGETAPI( "EventUnregisterCallbackFunction2" ) 
-	#define CAL_EventUnregisterCallbackFunction2 pICmpEventMgr->IEventUnregisterCallbackFunction2
-	#define CHK_EventUnregisterCallbackFunction2 (pICmpEventMgr != NULL)
-	#define EXP_EventUnregisterCallbackFunction2  CAL_CMEXPAPI( "EventUnregisterCallbackFunction2" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_EventUnregisterCallbackFunction2  PFEVENTUNREGISTERCALLBACKFUNCTION2 pfEventUnregisterCallbackFunction2;
-	#define EXT_EventUnregisterCallbackFunction2  extern PFEVENTUNREGISTERCALLBACKFUNCTION2 pfEventUnregisterCallbackFunction2;
-	#define GET_EventUnregisterCallbackFunction2(fl)  s_pfCMGetAPI2( "EventUnregisterCallbackFunction2", (RTS_VOID_FCTPTR *)&pfEventUnregisterCallbackFunction2, (fl), 0, 0)
-	#define CAL_EventUnregisterCallbackFunction2  pfEventUnregisterCallbackFunction2
-	#define CHK_EventUnregisterCallbackFunction2  (pfEventUnregisterCallbackFunction2 != NULL)
-	#define EXP_EventUnregisterCallbackFunction2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"EventUnregisterCallbackFunction2", (RTS_UINTPTR)EventUnregisterCallbackFunction2, 0, 0) 
-#endif
-
-
-
- 
-/**
  * <description>Function to evaluate the number of registered callback handlers on a single event</description>
  * <param name="hEvent" type="IN">Handle to event</param>
  * <param name="pResult" type="OUT">Pointer to error code</param>
@@ -2532,7 +2338,6 @@ typedef struct
 	IBase_C *pBase;
 	PFEVENTCREATE IEventCreate;
  	PFEVENTCREATE2 IEventCreate2;
- 	PFEVENTCREATE3 IEventCreate3;
  	PFEVENTDELETE IEventDelete;
  	PFEVENTDELETEALL IEventDeleteAll;
  	PFEVENTOPEN IEventOpen;
@@ -2546,7 +2351,6 @@ typedef struct
  	PFEVENTREGISTERCALLBACKFUNCTION IEventRegisterCallbackFunction;
  	PFEVENTREGISTERCALLBACKFUNCTION2 IEventRegisterCallbackFunction2;
  	PFEVENTUNREGISTERCALLBACKFUNCTION IEventUnregisterCallbackFunction;
- 	PFEVENTUNREGISTERCALLBACKFUNCTION2 IEventUnregisterCallbackFunction2;
  	PFEVENTREGISTEREDCALLBACKS IEventRegisteredCallbacks;
  	PFEVENTPOST IEventPost;
  	PFEVENTPOST2 IEventPost2;
@@ -2559,7 +2363,6 @@ class ICmpEventMgr : public IBase
 	public:
 		virtual RTS_HANDLE CDECL IEventCreate(EVENTID EventId, CMPID CmpIdProvider, RTS_RESULT *pResult) =0;
 		virtual RTS_HANDLE CDECL IEventCreate2(EVENTID EventId, CMPID CmpIdProvider, RTS_UI32 nCallbacksPossible, RTS_RESULT *pResult) =0;
-		virtual RTS_HANDLE CDECL IEventCreate3(EVENTID EventId, CMPID CmpIdProvider, EventOptions *pEventOptions, RTS_RESULT *pResult) =0;
 		virtual RTS_RESULT CDECL IEventDelete(RTS_HANDLE hEvent) =0;
 		virtual RTS_RESULT CDECL IEventDeleteAll(void) =0;
 		virtual RTS_HANDLE CDECL IEventOpen(EVENTID EventId, CMPID CmpIdProvider, RTS_RESULT *pResult) =0;
@@ -2573,7 +2376,6 @@ class ICmpEventMgr : public IBase
 		virtual RTS_RESULT CDECL IEventRegisterCallbackFunction(RTS_HANDLE hEvent, PFEVENTCALLBACKFUNCTION pfCallbackFunction, int bIec) =0;
 		virtual RTS_RESULT CDECL IEventRegisterCallbackFunction2(RTS_HANDLE hEvent, PFEVENTCALLBACKFUNCTION pfCallbackFunction, int bIec, void *pUserParameter) =0;
 		virtual RTS_RESULT CDECL IEventUnregisterCallbackFunction(RTS_HANDLE hEvent, PFEVENTCALLBACKFUNCTION pfCallbackFunction) =0;
-		virtual RTS_RESULT CDECL IEventUnregisterCallbackFunction2(RTS_HANDLE hEvent, PFEVENTCALLBACKFUNCTION pfCallbackFunction, void *pUserParameter) =0;
 		virtual unsigned long CDECL IEventRegisteredCallbacks(RTS_HANDLE hEvent, RTS_RESULT *pResult) =0;
 		virtual RTS_RESULT CDECL IEventPost(RTS_HANDLE hEvent, EventParam *pEventParam) =0;
 		virtual RTS_RESULT CDECL IEventPost2(RTS_HANDLE hEvent, unsigned short usParamId, unsigned short usVersion, void* pParameter) =0;

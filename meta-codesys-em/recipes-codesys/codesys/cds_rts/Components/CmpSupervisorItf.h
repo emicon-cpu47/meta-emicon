@@ -13,7 +13,7 @@
  * </ul>
  * <p>
  * Use case: Use supervisor to support a hardware watchdog:
- * A cyclic task checks SupervisorOperationGetState2() periodically and retriggers the hardware watchdog. In case the nNumOfFailedOperations is greater than 0 the cyclic task can
+ * A cyclic task checks SupervisorOperationGetState() periodically and retriggers the hardware watchdog. In case the nNumOfFailedOperations is greater than 0 the cyclic task can
  * <ul>
  *		<li>just prevent the retriggering of the hardware watchdog so that it expires or</li>
  *		<li>check the causing operation and in the case it is not that important, give a second chance by reactivating its supervision.
@@ -23,9 +23,7 @@
  * </p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -67,43 +65,11 @@
 
 /**
  * <category>Supervisor flags</category>
- * <element name="RTS_SUPERVISOR_FLAG_NONE" type="IN">No flag specified</element>
+ * <element name="RTS_SUPERVISOR_FLAG_NONE" type="IN">TODO</element>
  * <element name="RTS_SUPERVISOR_FLAG_RESET_NECESSARY" type="IN">TODO</element>
- * <element name="RTS_SUPERVISOR_FLAG_WATCHDOG" type="IN">This is a watchdog (consumer), that uses the supervisor to protect the controller!
- *	NOTE:
- *	This consumer can be disabled via the standard function SupervisorOperationDisable() and so this watchdog will not expire, if any of the supervisor operations will fail!
- * </element>
  */
-#define RTS_SUPERVISOR_FLAG_NONE				0
-#define RTS_SUPERVISOR_FLAG_RESET_NECESSARY		0x00000001
-#define RTS_SUPERVISOR_FLAG_WATCHDOG			0x00010000
-
-
-/**
- * <category>Event parameter</category>
- * <element name="nNumOfOperations" type="IN">Number of operations that are registered and supervised</element>
- * <element name="nNumOfFailedOperations" type="IN">Number of failed operations. 0=All operations alive</element>
- * <element name="nNumOfRegisteredOperations" type="IN">Number of all registered operations</element>
- */
-typedef struct
-{
-	RTS_UI32 nNumOfOperations;
-	RTS_UI32 nNumOfFailedOperations;
-	RTS_UI32 nNumOfRegisteredOperations;
-} EVTPARAM_CmpSupervisor_StateChanged;
-#define EVTPARAMID_CmpSupervisor_StateChanged	0x0001
-#define EVTVERSION_CmpSupervisor_StateChanged	0x0001
-
-/**
- * <category>Events</category>
- * <description>Event is sent if the state of the supervisor has changed:
- *	- if number of operations has changed
- *	- or if at least one failed vital operation is detected
- * </description>
- * <param name="pEventParam" type="IN">EVTPARAM_CmpSupervisor_StateChanged</param>
- */
-#define EVT_Supervisor_StateChanged				MAKE_EVENTID(EVTCLASS_INFO, 1)
-
+#define RTS_SUPERVISOR_FLAG_NONE 0
+#define RTS_SUPERVISOR_FLAG_RESET_NECESSARY 0x00000001
 
 /** EXTERN LIB SECTION BEGIN **/
 /*  Comments are ignored for m4 compiler so restructured text can be used.  */
@@ -111,16 +77,6 @@ typedef struct
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * <description>SupervisorInstance</description>
- */
-typedef struct tagSupervisorInstance
-{
-	RTS_IEC_HANDLE hInstance;		/* Handle to the instance */
-	RTS_IEC_UDINT idInstance;		/* Id of the instance */
-	RTS_IEC_BOOL xIsIECInstance;		/* TRUE=hInstance is an IEC instance, FALSE=hInstance is a runtime handle */
-} SupervisorInstance;
 
 /**
  * Single operation/function that is supervised.
@@ -132,11 +88,9 @@ typedef struct tagSupervisorEntry
 	RTS_IEC_STRING *pszOperationDescription;		/* Description of the operation */
 	RTS_IEC_ULINT stLastActiveUs;		/* Timestamp of last activity in [us] */
 	RTS_IEC_ULINT stTimeoutUs;		/* Optional timeout limit in [us] */
-	RTS_IEC_DWORD flags;		/* See SupervisorFlags for details. Don't modify the other bits!! */
+	RTS_IEC_DWORD flags;		/* Flags to store internal information! Don't modify it! */
 	RTS_IEC_BOOL bEnable;		/* Is supervised, FALSE=Is not supervised */
 	RTS_IEC_BOOL bAlive;		/* TRUE=Alive, FALSE=Dead */
-	SupervisorInstance instance;		/* Instance identification */
-	RTS_IEC_HANDLE hSync;		/* handle to synchronize 64Bit timestamp access */
 } SupervisorEntry;
 
 /**
@@ -144,28 +98,17 @@ typedef struct tagSupervisorEntry
  */
 typedef struct tagSupervisorState
 {
-	RTS_IEC_UDINT nNumOfOperations;		/* Number of registered operations that are supervised/enabled */
+	RTS_IEC_UDINT nNumOfOperations;		/* Number of operations that are registered and supervised */
 	RTS_IEC_UDINT nNumOfFailedOperations;		/* Number of failed operations. 0=All operations alive */
-	RTS_IEC_UDINT nNumOfRegisteredOperations;		/* Number of all registered operations */
 } SupervisorState;
 
 /**
- * Reassures the alive state of the operation with the given timestamp in order to retrigger the hardware watchdog
- *
- * :return: Error code
- *
- * Error code:
- *     + ERR_OK: Alive state was successfully reassured
- *     + ERR_NOTINITIALIZED: The operation memory is not initialized
- *     + ERR_INVALID_HANDLE: The handle to the operation is invalid
- *     + ERR_PARAMETER: The handle to the operation is invalid
- *     + ERR_NO_CHANGE: Supervision is disabled for the operation
- *     + ERR_NOT_SUPPORTED">SysTimeGetUs is not supported
+ * <description>supervisoroperationalive</description>
  */
 typedef struct tagsupervisoroperationalive_struct
 {
-	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */	/* Handle to the operation */
-	RTS_IEC_ULINT *pstTimestampUs;		/* VAR_INPUT */	/* Pointer to timestamp. May be NULL, if time check is enabled timestamp is set to current time. */
+	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */	
+	RTS_IEC_ULINT *pstTimestampUs;		/* VAR_INPUT */	
 	RTS_IEC_RESULT SupervisorOperationAlive;	/* VAR_OUTPUT */	
 } supervisoroperationalive_struct;
 
@@ -184,53 +127,44 @@ typedef void (CDECL CDECL_EXT* PFSUPERVISOROPERATIONALIVE_IEC) (supervisoroperat
 	#define GET_supervisoroperationalive(fl)  CAL_CMGETAPI( "supervisoroperationalive" ) 
 	#define CAL_supervisoroperationalive  supervisoroperationalive
 	#define CHK_supervisoroperationalive  TRUE
-	#define EXP_supervisoroperationalive  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationalive", (RTS_UINTPTR)supervisoroperationalive, 1, 0x33C47EE3, 0x03050C00) 
+	#define EXP_supervisoroperationalive  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationalive", (RTS_UINTPTR)supervisoroperationalive, 1, 0x33C47EE3, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
 	#define USE_supervisoroperationalive
 	#define EXT_supervisoroperationalive
 	#define GET_supervisoroperationalive(fl)  CAL_CMGETAPI( "supervisoroperationalive" ) 
 	#define CAL_supervisoroperationalive  supervisoroperationalive
 	#define CHK_supervisoroperationalive  TRUE
-	#define EXP_supervisoroperationalive  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationalive", (RTS_UINTPTR)supervisoroperationalive, 1, 0x33C47EE3, 0x03050C00) 
+	#define EXP_supervisoroperationalive  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationalive", (RTS_UINTPTR)supervisoroperationalive, 1, 0x33C47EE3, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpSupervisorsupervisoroperationalive
 	#define EXT_CmpSupervisorsupervisoroperationalive
 	#define GET_CmpSupervisorsupervisoroperationalive  ERR_OK
 	#define CAL_CmpSupervisorsupervisoroperationalive  supervisoroperationalive
 	#define CHK_CmpSupervisorsupervisoroperationalive  TRUE
-	#define EXP_CmpSupervisorsupervisoroperationalive  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationalive", (RTS_UINTPTR)supervisoroperationalive, 1, 0x33C47EE3, 0x03050C00) 
+	#define EXP_CmpSupervisorsupervisoroperationalive  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationalive", (RTS_UINTPTR)supervisoroperationalive, 1, 0x33C47EE3, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_supervisoroperationalive
 	#define EXT_supervisoroperationalive
 	#define GET_supervisoroperationalive(fl)  CAL_CMGETAPI( "supervisoroperationalive" ) 
 	#define CAL_supervisoroperationalive  supervisoroperationalive
 	#define CHK_supervisoroperationalive  TRUE
-	#define EXP_supervisoroperationalive  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationalive", (RTS_UINTPTR)supervisoroperationalive, 1, 0x33C47EE3, 0x03050C00) 
+	#define EXP_supervisoroperationalive  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationalive", (RTS_UINTPTR)supervisoroperationalive, 1, 0x33C47EE3, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_supervisoroperationalive  PFSUPERVISOROPERATIONALIVE_IEC pfsupervisoroperationalive;
 	#define EXT_supervisoroperationalive  extern PFSUPERVISOROPERATIONALIVE_IEC pfsupervisoroperationalive;
-	#define GET_supervisoroperationalive(fl)  s_pfCMGetAPI2( "supervisoroperationalive", (RTS_VOID_FCTPTR *)&pfsupervisoroperationalive, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x33C47EE3, 0x03050C00)
+	#define GET_supervisoroperationalive(fl)  s_pfCMGetAPI2( "supervisoroperationalive", (RTS_VOID_FCTPTR *)&pfsupervisoroperationalive, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x33C47EE3, 0x03050A00)
 	#define CAL_supervisoroperationalive  pfsupervisoroperationalive
 	#define CHK_supervisoroperationalive  (pfsupervisoroperationalive != NULL)
-	#define EXP_supervisoroperationalive   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationalive", (RTS_UINTPTR)supervisoroperationalive, 1, 0x33C47EE3, 0x03050C00) 
+	#define EXP_supervisoroperationalive   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationalive", (RTS_UINTPTR)supervisoroperationalive, 1, 0x33C47EE3, 0x03050A00) 
 #endif
 
 
 /**
- * Signals a desperate situation of an operation in order to prevent the retriggering of the hardware watchdog. After this call, the operation is marked immediate as failed!
- *
- * :return: Error code
- *
- * Error code:
- *     + ERR_OK: Dead state was successfully signalled
- *     + ERR_NOTINITIALIZED: The operation memory is not initialized
- *     + ERR_INVALID_HANDLE: The handle to the operation is invalid
- *     + ERR_PARAMETER: The handle to the operation is invalid
- *     + ERR_NO_CHANGE: Supervision is disabled for the operation
+ * <description>supervisoroperationdead</description>
  */
 typedef struct tagsupervisoroperationdead_struct
 {
-	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */	/* Handle to the operation */
+	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */	
 	RTS_IEC_RESULT SupervisorOperationDead;	/* VAR_OUTPUT */	
 } supervisoroperationdead_struct;
 
@@ -249,53 +183,44 @@ typedef void (CDECL CDECL_EXT* PFSUPERVISOROPERATIONDEAD_IEC) (supervisoroperati
 	#define GET_supervisoroperationdead(fl)  CAL_CMGETAPI( "supervisoroperationdead" ) 
 	#define CAL_supervisoroperationdead  supervisoroperationdead
 	#define CHK_supervisoroperationdead  TRUE
-	#define EXP_supervisoroperationdead  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdead", (RTS_UINTPTR)supervisoroperationdead, 1, 0x709DF6D1, 0x03050C00) 
+	#define EXP_supervisoroperationdead  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdead", (RTS_UINTPTR)supervisoroperationdead, 1, 0x709DF6D1, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
 	#define USE_supervisoroperationdead
 	#define EXT_supervisoroperationdead
 	#define GET_supervisoroperationdead(fl)  CAL_CMGETAPI( "supervisoroperationdead" ) 
 	#define CAL_supervisoroperationdead  supervisoroperationdead
 	#define CHK_supervisoroperationdead  TRUE
-	#define EXP_supervisoroperationdead  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdead", (RTS_UINTPTR)supervisoroperationdead, 1, 0x709DF6D1, 0x03050C00) 
+	#define EXP_supervisoroperationdead  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdead", (RTS_UINTPTR)supervisoroperationdead, 1, 0x709DF6D1, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpSupervisorsupervisoroperationdead
 	#define EXT_CmpSupervisorsupervisoroperationdead
 	#define GET_CmpSupervisorsupervisoroperationdead  ERR_OK
 	#define CAL_CmpSupervisorsupervisoroperationdead  supervisoroperationdead
 	#define CHK_CmpSupervisorsupervisoroperationdead  TRUE
-	#define EXP_CmpSupervisorsupervisoroperationdead  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdead", (RTS_UINTPTR)supervisoroperationdead, 1, 0x709DF6D1, 0x03050C00) 
+	#define EXP_CmpSupervisorsupervisoroperationdead  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdead", (RTS_UINTPTR)supervisoroperationdead, 1, 0x709DF6D1, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_supervisoroperationdead
 	#define EXT_supervisoroperationdead
 	#define GET_supervisoroperationdead(fl)  CAL_CMGETAPI( "supervisoroperationdead" ) 
 	#define CAL_supervisoroperationdead  supervisoroperationdead
 	#define CHK_supervisoroperationdead  TRUE
-	#define EXP_supervisoroperationdead  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdead", (RTS_UINTPTR)supervisoroperationdead, 1, 0x709DF6D1, 0x03050C00) 
+	#define EXP_supervisoroperationdead  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdead", (RTS_UINTPTR)supervisoroperationdead, 1, 0x709DF6D1, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_supervisoroperationdead  PFSUPERVISOROPERATIONDEAD_IEC pfsupervisoroperationdead;
 	#define EXT_supervisoroperationdead  extern PFSUPERVISOROPERATIONDEAD_IEC pfsupervisoroperationdead;
-	#define GET_supervisoroperationdead(fl)  s_pfCMGetAPI2( "supervisoroperationdead", (RTS_VOID_FCTPTR *)&pfsupervisoroperationdead, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x709DF6D1, 0x03050C00)
+	#define GET_supervisoroperationdead(fl)  s_pfCMGetAPI2( "supervisoroperationdead", (RTS_VOID_FCTPTR *)&pfsupervisoroperationdead, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x709DF6D1, 0x03050A00)
 	#define CAL_supervisoroperationdead  pfsupervisoroperationdead
 	#define CHK_supervisoroperationdead  (pfsupervisoroperationdead != NULL)
-	#define EXP_supervisoroperationdead   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdead", (RTS_UINTPTR)supervisoroperationdead, 1, 0x709DF6D1, 0x03050C00) 
+	#define EXP_supervisoroperationdead   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdead", (RTS_UINTPTR)supervisoroperationdead, 1, 0x709DF6D1, 0x03050A00) 
 #endif
 
 
 /**
- * Disables supervision for this operation. This operation will never be supervised, until the next SupervisorOperationEnable() call!
- *
- * :return: Error code
- *
- * Error code:
- *     + ERR_OK: Supervision was successfully disabled
- *     + ERR_NOTINITIALIZED: The operation memory is not initialized
- *     + ERR_INVALID_HANDLE: The handle to the operation is invalid
- *     + ERR_PARAMETER: The handle to the operation is invalid
- *     + ERR_NO_CHANGE: The operation is already disabled
+ * <description>supervisoroperationdisable</description>
  */
 typedef struct tagsupervisoroperationdisable_struct
 {
-	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */	/* Handle to the operation */
+	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */	
 	RTS_IEC_RESULT SupervisorOperationDisable;	/* VAR_OUTPUT */	
 } supervisoroperationdisable_struct;
 
@@ -314,54 +239,44 @@ typedef void (CDECL CDECL_EXT* PFSUPERVISOROPERATIONDISABLE_IEC) (supervisoroper
 	#define GET_supervisoroperationdisable(fl)  CAL_CMGETAPI( "supervisoroperationdisable" ) 
 	#define CAL_supervisoroperationdisable  supervisoroperationdisable
 	#define CHK_supervisoroperationdisable  TRUE
-	#define EXP_supervisoroperationdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdisable", (RTS_UINTPTR)supervisoroperationdisable, 1, 0xD5C85590, 0x03050C00) 
+	#define EXP_supervisoroperationdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdisable", (RTS_UINTPTR)supervisoroperationdisable, 1, 0xD5C85590, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
 	#define USE_supervisoroperationdisable
 	#define EXT_supervisoroperationdisable
 	#define GET_supervisoroperationdisable(fl)  CAL_CMGETAPI( "supervisoroperationdisable" ) 
 	#define CAL_supervisoroperationdisable  supervisoroperationdisable
 	#define CHK_supervisoroperationdisable  TRUE
-	#define EXP_supervisoroperationdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdisable", (RTS_UINTPTR)supervisoroperationdisable, 1, 0xD5C85590, 0x03050C00) 
+	#define EXP_supervisoroperationdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdisable", (RTS_UINTPTR)supervisoroperationdisable, 1, 0xD5C85590, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpSupervisorsupervisoroperationdisable
 	#define EXT_CmpSupervisorsupervisoroperationdisable
 	#define GET_CmpSupervisorsupervisoroperationdisable  ERR_OK
 	#define CAL_CmpSupervisorsupervisoroperationdisable  supervisoroperationdisable
 	#define CHK_CmpSupervisorsupervisoroperationdisable  TRUE
-	#define EXP_CmpSupervisorsupervisoroperationdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdisable", (RTS_UINTPTR)supervisoroperationdisable, 1, 0xD5C85590, 0x03050C00) 
+	#define EXP_CmpSupervisorsupervisoroperationdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdisable", (RTS_UINTPTR)supervisoroperationdisable, 1, 0xD5C85590, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_supervisoroperationdisable
 	#define EXT_supervisoroperationdisable
 	#define GET_supervisoroperationdisable(fl)  CAL_CMGETAPI( "supervisoroperationdisable" ) 
 	#define CAL_supervisoroperationdisable  supervisoroperationdisable
 	#define CHK_supervisoroperationdisable  TRUE
-	#define EXP_supervisoroperationdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdisable", (RTS_UINTPTR)supervisoroperationdisable, 1, 0xD5C85590, 0x03050C00) 
+	#define EXP_supervisoroperationdisable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdisable", (RTS_UINTPTR)supervisoroperationdisable, 1, 0xD5C85590, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_supervisoroperationdisable  PFSUPERVISOROPERATIONDISABLE_IEC pfsupervisoroperationdisable;
 	#define EXT_supervisoroperationdisable  extern PFSUPERVISOROPERATIONDISABLE_IEC pfsupervisoroperationdisable;
-	#define GET_supervisoroperationdisable(fl)  s_pfCMGetAPI2( "supervisoroperationdisable", (RTS_VOID_FCTPTR *)&pfsupervisoroperationdisable, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xD5C85590, 0x03050C00)
+	#define GET_supervisoroperationdisable(fl)  s_pfCMGetAPI2( "supervisoroperationdisable", (RTS_VOID_FCTPTR *)&pfsupervisoroperationdisable, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xD5C85590, 0x03050A00)
 	#define CAL_supervisoroperationdisable  pfsupervisoroperationdisable
 	#define CHK_supervisoroperationdisable  (pfsupervisoroperationdisable != NULL)
-	#define EXP_supervisoroperationdisable   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdisable", (RTS_UINTPTR)supervisoroperationdisable, 1, 0xD5C85590, 0x03050C00) 
+	#define EXP_supervisoroperationdisable   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationdisable", (RTS_UINTPTR)supervisoroperationdisable, 1, 0xD5C85590, 0x03050A00) 
 #endif
 
 
 /**
- * Enables supervision for this operation: Sets timestamp to current time and alive flag
- *
- * :return: Error code
- *
- * Error code:
- *     + ERR_OK: Supervision was successfully enabled
- *     + ERR_NOTINITIALIZED: The operation memory is not initialized
- *     + ERR_INVALID_HANDLE: The handle to the operation is invalid
- *     + ERR_PARAMETER: The handle to the operation is invalid
- *     + ERR_NO_CHANGE: The operation is already supervised
- *     + ERR_NOT_SUPPORTED">SysTimeGetUs is not supported
+ * <description>supervisoroperationenable</description>
  */
 typedef struct tagsupervisoroperationenable_struct
 {
-	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */	/* Handle to the operation */
+	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */	
 	RTS_IEC_RESULT SupervisorOperationEnable;	/* VAR_OUTPUT */	
 } supervisoroperationenable_struct;
 
@@ -380,53 +295,45 @@ typedef void (CDECL CDECL_EXT* PFSUPERVISOROPERATIONENABLE_IEC) (supervisoropera
 	#define GET_supervisoroperationenable(fl)  CAL_CMGETAPI( "supervisoroperationenable" ) 
 	#define CAL_supervisoroperationenable  supervisoroperationenable
 	#define CHK_supervisoroperationenable  TRUE
-	#define EXP_supervisoroperationenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationenable", (RTS_UINTPTR)supervisoroperationenable, 1, 0x8FCDAEB8, 0x03050C00) 
+	#define EXP_supervisoroperationenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationenable", (RTS_UINTPTR)supervisoroperationenable, 1, 0x8FCDAEB8, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
 	#define USE_supervisoroperationenable
 	#define EXT_supervisoroperationenable
 	#define GET_supervisoroperationenable(fl)  CAL_CMGETAPI( "supervisoroperationenable" ) 
 	#define CAL_supervisoroperationenable  supervisoroperationenable
 	#define CHK_supervisoroperationenable  TRUE
-	#define EXP_supervisoroperationenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationenable", (RTS_UINTPTR)supervisoroperationenable, 1, 0x8FCDAEB8, 0x03050C00) 
+	#define EXP_supervisoroperationenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationenable", (RTS_UINTPTR)supervisoroperationenable, 1, 0x8FCDAEB8, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpSupervisorsupervisoroperationenable
 	#define EXT_CmpSupervisorsupervisoroperationenable
 	#define GET_CmpSupervisorsupervisoroperationenable  ERR_OK
 	#define CAL_CmpSupervisorsupervisoroperationenable  supervisoroperationenable
 	#define CHK_CmpSupervisorsupervisoroperationenable  TRUE
-	#define EXP_CmpSupervisorsupervisoroperationenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationenable", (RTS_UINTPTR)supervisoroperationenable, 1, 0x8FCDAEB8, 0x03050C00) 
+	#define EXP_CmpSupervisorsupervisoroperationenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationenable", (RTS_UINTPTR)supervisoroperationenable, 1, 0x8FCDAEB8, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_supervisoroperationenable
 	#define EXT_supervisoroperationenable
 	#define GET_supervisoroperationenable(fl)  CAL_CMGETAPI( "supervisoroperationenable" ) 
 	#define CAL_supervisoroperationenable  supervisoroperationenable
 	#define CHK_supervisoroperationenable  TRUE
-	#define EXP_supervisoroperationenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationenable", (RTS_UINTPTR)supervisoroperationenable, 1, 0x8FCDAEB8, 0x03050C00) 
+	#define EXP_supervisoroperationenable  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationenable", (RTS_UINTPTR)supervisoroperationenable, 1, 0x8FCDAEB8, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_supervisoroperationenable  PFSUPERVISOROPERATIONENABLE_IEC pfsupervisoroperationenable;
 	#define EXT_supervisoroperationenable  extern PFSUPERVISOROPERATIONENABLE_IEC pfsupervisoroperationenable;
-	#define GET_supervisoroperationenable(fl)  s_pfCMGetAPI2( "supervisoroperationenable", (RTS_VOID_FCTPTR *)&pfsupervisoroperationenable, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x8FCDAEB8, 0x03050C00)
+	#define GET_supervisoroperationenable(fl)  s_pfCMGetAPI2( "supervisoroperationenable", (RTS_VOID_FCTPTR *)&pfsupervisoroperationenable, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x8FCDAEB8, 0x03050A00)
 	#define CAL_supervisoroperationenable  pfsupervisoroperationenable
 	#define CHK_supervisoroperationenable  (pfsupervisoroperationenable != NULL)
-	#define EXP_supervisoroperationenable   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationenable", (RTS_UINTPTR)supervisoroperationenable, 1, 0x8FCDAEB8, 0x03050C00) 
+	#define EXP_supervisoroperationenable   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationenable", (RTS_UINTPTR)supervisoroperationenable, 1, 0x8FCDAEB8, 0x03050A00) 
 #endif
 
 
 /**
- * Returns the SupervisorEntry of a given operation handle
- *
- * Error code:
- *     + ERR_OK: The SupervisorEntry was successfully retrieved
- *     + ERR_INVALID_HANDLE: The handle to the operation is invalid
- *     + ERR_PARAMETER: The handle to the operation is invalid
- *
- * :return: Pointer to SupervisorEntry of the given operation handle or NULL in case of an error
- * 
+ * <description>supervisoroperationgetentry</description>
  */
 typedef struct tagsupervisoroperationgetentry_struct
 {
-	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */	/* Handle to the operation */
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to error code */
+	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */	
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
 	SupervisorEntry *SupervisorOperationGetEntry;	/* VAR_OUTPUT */	
 } supervisoroperationgetentry_struct;
 
@@ -445,52 +352,44 @@ typedef void (CDECL CDECL_EXT* PFSUPERVISOROPERATIONGETENTRY_IEC) (supervisorope
 	#define GET_supervisoroperationgetentry(fl)  CAL_CMGETAPI( "supervisoroperationgetentry" ) 
 	#define CAL_supervisoroperationgetentry  supervisoroperationgetentry
 	#define CHK_supervisoroperationgetentry  TRUE
-	#define EXP_supervisoroperationgetentry  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetentry", (RTS_UINTPTR)supervisoroperationgetentry, 1, 0, 0x03050C00) 
+	#define EXP_supervisoroperationgetentry  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetentry", (RTS_UINTPTR)supervisoroperationgetentry, 1, 0x990FD81C, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
 	#define USE_supervisoroperationgetentry
 	#define EXT_supervisoroperationgetentry
 	#define GET_supervisoroperationgetentry(fl)  CAL_CMGETAPI( "supervisoroperationgetentry" ) 
 	#define CAL_supervisoroperationgetentry  supervisoroperationgetentry
 	#define CHK_supervisoroperationgetentry  TRUE
-	#define EXP_supervisoroperationgetentry  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetentry", (RTS_UINTPTR)supervisoroperationgetentry, 1, 0, 0x03050C00) 
+	#define EXP_supervisoroperationgetentry  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetentry", (RTS_UINTPTR)supervisoroperationgetentry, 1, 0x990FD81C, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpSupervisorsupervisoroperationgetentry
 	#define EXT_CmpSupervisorsupervisoroperationgetentry
 	#define GET_CmpSupervisorsupervisoroperationgetentry  ERR_OK
 	#define CAL_CmpSupervisorsupervisoroperationgetentry  supervisoroperationgetentry
 	#define CHK_CmpSupervisorsupervisoroperationgetentry  TRUE
-	#define EXP_CmpSupervisorsupervisoroperationgetentry  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetentry", (RTS_UINTPTR)supervisoroperationgetentry, 1, 0, 0x03050C00) 
+	#define EXP_CmpSupervisorsupervisoroperationgetentry  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetentry", (RTS_UINTPTR)supervisoroperationgetentry, 1, 0x990FD81C, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_supervisoroperationgetentry
 	#define EXT_supervisoroperationgetentry
 	#define GET_supervisoroperationgetentry(fl)  CAL_CMGETAPI( "supervisoroperationgetentry" ) 
 	#define CAL_supervisoroperationgetentry  supervisoroperationgetentry
 	#define CHK_supervisoroperationgetentry  TRUE
-	#define EXP_supervisoroperationgetentry  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetentry", (RTS_UINTPTR)supervisoroperationgetentry, 1, 0, 0x03050C00) 
+	#define EXP_supervisoroperationgetentry  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetentry", (RTS_UINTPTR)supervisoroperationgetentry, 1, 0x990FD81C, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_supervisoroperationgetentry  PFSUPERVISOROPERATIONGETENTRY_IEC pfsupervisoroperationgetentry;
 	#define EXT_supervisoroperationgetentry  extern PFSUPERVISOROPERATIONGETENTRY_IEC pfsupervisoroperationgetentry;
-	#define GET_supervisoroperationgetentry(fl)  s_pfCMGetAPI2( "supervisoroperationgetentry", (RTS_VOID_FCTPTR *)&pfsupervisoroperationgetentry, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0, 0x03050C00)
+	#define GET_supervisoroperationgetentry(fl)  s_pfCMGetAPI2( "supervisoroperationgetentry", (RTS_VOID_FCTPTR *)&pfsupervisoroperationgetentry, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x990FD81C, 0x03050A00)
 	#define CAL_supervisoroperationgetentry  pfsupervisoroperationgetentry
 	#define CHK_supervisoroperationgetentry  (pfsupervisoroperationgetentry != NULL)
-	#define EXP_supervisoroperationgetentry   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetentry", (RTS_UINTPTR)supervisoroperationgetentry, 1, 0, 0x03050C00) 
+	#define EXP_supervisoroperationgetentry   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetentry", (RTS_UINTPTR)supervisoroperationgetentry, 1, 0x990FD81C, 0x03050A00) 
 #endif
 
 
 /**
- * Iteration interface to get the first registered operation
- *
- * Error code:
- *     + ERR_OK: The first operation was successfully retrieved
- *     + ERR_NOTINITIALIZED: The operation memory is not initialized
- *     + ERR_NO_OBJECT: There are no registered operations 
- *
- * :return: Handle to the first operation or RTS_INVALID_HANDLE in case of an error
- * 
+ * <description>supervisoroperationgetfirst</description>
  */
 typedef struct tagsupervisoroperationgetfirst_struct
 {
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to error code */
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
 	RTS_IEC_HANDLE SupervisorOperationGetFirst;	/* VAR_OUTPUT */	
 } supervisoroperationgetfirst_struct;
 
@@ -509,53 +408,45 @@ typedef void (CDECL CDECL_EXT* PFSUPERVISOROPERATIONGETFIRST_IEC) (supervisorope
 	#define GET_supervisoroperationgetfirst(fl)  CAL_CMGETAPI( "supervisoroperationgetfirst" ) 
 	#define CAL_supervisoroperationgetfirst  supervisoroperationgetfirst
 	#define CHK_supervisoroperationgetfirst  TRUE
-	#define EXP_supervisoroperationgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetfirst", (RTS_UINTPTR)supervisoroperationgetfirst, 1, 0x33144D0D, 0x03050C00) 
+	#define EXP_supervisoroperationgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetfirst", (RTS_UINTPTR)supervisoroperationgetfirst, 1, 0x33144D0D, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
 	#define USE_supervisoroperationgetfirst
 	#define EXT_supervisoroperationgetfirst
 	#define GET_supervisoroperationgetfirst(fl)  CAL_CMGETAPI( "supervisoroperationgetfirst" ) 
 	#define CAL_supervisoroperationgetfirst  supervisoroperationgetfirst
 	#define CHK_supervisoroperationgetfirst  TRUE
-	#define EXP_supervisoroperationgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetfirst", (RTS_UINTPTR)supervisoroperationgetfirst, 1, 0x33144D0D, 0x03050C00) 
+	#define EXP_supervisoroperationgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetfirst", (RTS_UINTPTR)supervisoroperationgetfirst, 1, 0x33144D0D, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpSupervisorsupervisoroperationgetfirst
 	#define EXT_CmpSupervisorsupervisoroperationgetfirst
 	#define GET_CmpSupervisorsupervisoroperationgetfirst  ERR_OK
 	#define CAL_CmpSupervisorsupervisoroperationgetfirst  supervisoroperationgetfirst
 	#define CHK_CmpSupervisorsupervisoroperationgetfirst  TRUE
-	#define EXP_CmpSupervisorsupervisoroperationgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetfirst", (RTS_UINTPTR)supervisoroperationgetfirst, 1, 0x33144D0D, 0x03050C00) 
+	#define EXP_CmpSupervisorsupervisoroperationgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetfirst", (RTS_UINTPTR)supervisoroperationgetfirst, 1, 0x33144D0D, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_supervisoroperationgetfirst
 	#define EXT_supervisoroperationgetfirst
 	#define GET_supervisoroperationgetfirst(fl)  CAL_CMGETAPI( "supervisoroperationgetfirst" ) 
 	#define CAL_supervisoroperationgetfirst  supervisoroperationgetfirst
 	#define CHK_supervisoroperationgetfirst  TRUE
-	#define EXP_supervisoroperationgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetfirst", (RTS_UINTPTR)supervisoroperationgetfirst, 1, 0x33144D0D, 0x03050C00) 
+	#define EXP_supervisoroperationgetfirst  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetfirst", (RTS_UINTPTR)supervisoroperationgetfirst, 1, 0x33144D0D, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_supervisoroperationgetfirst  PFSUPERVISOROPERATIONGETFIRST_IEC pfsupervisoroperationgetfirst;
 	#define EXT_supervisoroperationgetfirst  extern PFSUPERVISOROPERATIONGETFIRST_IEC pfsupervisoroperationgetfirst;
-	#define GET_supervisoroperationgetfirst(fl)  s_pfCMGetAPI2( "supervisoroperationgetfirst", (RTS_VOID_FCTPTR *)&pfsupervisoroperationgetfirst, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x33144D0D, 0x03050C00)
+	#define GET_supervisoroperationgetfirst(fl)  s_pfCMGetAPI2( "supervisoroperationgetfirst", (RTS_VOID_FCTPTR *)&pfsupervisoroperationgetfirst, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x33144D0D, 0x03050A00)
 	#define CAL_supervisoroperationgetfirst  pfsupervisoroperationgetfirst
 	#define CHK_supervisoroperationgetfirst  (pfsupervisoroperationgetfirst != NULL)
-	#define EXP_supervisoroperationgetfirst   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetfirst", (RTS_UINTPTR)supervisoroperationgetfirst, 1, 0x33144D0D, 0x03050C00) 
+	#define EXP_supervisoroperationgetfirst   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetfirst", (RTS_UINTPTR)supervisoroperationgetfirst, 1, 0x33144D0D, 0x03050A00) 
 #endif
 
 
 /**
- * Iteration interface to get the next registered operation. Must be started with SupervisorOperationGetFirst()
- *
- * Error code:
- *     + ERR_OK: The next operation was successfully retrieved
- *     + ERR_NOTINITIALIZED: The operation memory is not initialized
- *     + ERR_END_OF_OBJECT: There are no registered operations left 
- *
- * :return: Handle to the first operation or RTS_INVALID_HANDLE in case of an error
- * 
+ * <description>supervisoroperationgetnext</description>
  */
 typedef struct tagsupervisoroperationgetnext_struct
 {
-	RTS_IEC_HANDLE hPrevOperation;		/* VAR_INPUT */	/* Handle to the previous operation retrieved via SupervisorOperationGetFirst() or subsequent calls of SupervisorOperationGetNext() */
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to error code */
+	RTS_IEC_HANDLE hPrevOperation;		/* VAR_INPUT */	
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
 	RTS_IEC_HANDLE SupervisorOperationGetNext;	/* VAR_OUTPUT */	
 } supervisoroperationgetnext_struct;
 
@@ -574,53 +465,44 @@ typedef void (CDECL CDECL_EXT* PFSUPERVISOROPERATIONGETNEXT_IEC) (supervisoroper
 	#define GET_supervisoroperationgetnext(fl)  CAL_CMGETAPI( "supervisoroperationgetnext" ) 
 	#define CAL_supervisoroperationgetnext  supervisoroperationgetnext
 	#define CHK_supervisoroperationgetnext  TRUE
-	#define EXP_supervisoroperationgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetnext", (RTS_UINTPTR)supervisoroperationgetnext, 1, 0x45054F88, 0x03050C00) 
+	#define EXP_supervisoroperationgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetnext", (RTS_UINTPTR)supervisoroperationgetnext, 1, 0x45054F88, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
 	#define USE_supervisoroperationgetnext
 	#define EXT_supervisoroperationgetnext
 	#define GET_supervisoroperationgetnext(fl)  CAL_CMGETAPI( "supervisoroperationgetnext" ) 
 	#define CAL_supervisoroperationgetnext  supervisoroperationgetnext
 	#define CHK_supervisoroperationgetnext  TRUE
-	#define EXP_supervisoroperationgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetnext", (RTS_UINTPTR)supervisoroperationgetnext, 1, 0x45054F88, 0x03050C00) 
+	#define EXP_supervisoroperationgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetnext", (RTS_UINTPTR)supervisoroperationgetnext, 1, 0x45054F88, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpSupervisorsupervisoroperationgetnext
 	#define EXT_CmpSupervisorsupervisoroperationgetnext
 	#define GET_CmpSupervisorsupervisoroperationgetnext  ERR_OK
 	#define CAL_CmpSupervisorsupervisoroperationgetnext  supervisoroperationgetnext
 	#define CHK_CmpSupervisorsupervisoroperationgetnext  TRUE
-	#define EXP_CmpSupervisorsupervisoroperationgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetnext", (RTS_UINTPTR)supervisoroperationgetnext, 1, 0x45054F88, 0x03050C00) 
+	#define EXP_CmpSupervisorsupervisoroperationgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetnext", (RTS_UINTPTR)supervisoroperationgetnext, 1, 0x45054F88, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_supervisoroperationgetnext
 	#define EXT_supervisoroperationgetnext
 	#define GET_supervisoroperationgetnext(fl)  CAL_CMGETAPI( "supervisoroperationgetnext" ) 
 	#define CAL_supervisoroperationgetnext  supervisoroperationgetnext
 	#define CHK_supervisoroperationgetnext  TRUE
-	#define EXP_supervisoroperationgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetnext", (RTS_UINTPTR)supervisoroperationgetnext, 1, 0x45054F88, 0x03050C00) 
+	#define EXP_supervisoroperationgetnext  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetnext", (RTS_UINTPTR)supervisoroperationgetnext, 1, 0x45054F88, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_supervisoroperationgetnext  PFSUPERVISOROPERATIONGETNEXT_IEC pfsupervisoroperationgetnext;
 	#define EXT_supervisoroperationgetnext  extern PFSUPERVISOROPERATIONGETNEXT_IEC pfsupervisoroperationgetnext;
-	#define GET_supervisoroperationgetnext(fl)  s_pfCMGetAPI2( "supervisoroperationgetnext", (RTS_VOID_FCTPTR *)&pfsupervisoroperationgetnext, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x45054F88, 0x03050C00)
+	#define GET_supervisoroperationgetnext(fl)  s_pfCMGetAPI2( "supervisoroperationgetnext", (RTS_VOID_FCTPTR *)&pfsupervisoroperationgetnext, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x45054F88, 0x03050A00)
 	#define CAL_supervisoroperationgetnext  pfsupervisoroperationgetnext
 	#define CHK_supervisoroperationgetnext  (pfsupervisoroperationgetnext != NULL)
-	#define EXP_supervisoroperationgetnext   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetnext", (RTS_UINTPTR)supervisoroperationgetnext, 1, 0x45054F88, 0x03050C00) 
+	#define EXP_supervisoroperationgetnext   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetnext", (RTS_UINTPTR)supervisoroperationgetnext, 1, 0x45054F88, 0x03050A00) 
 #endif
 
 
 /**
- *  Deprecated, use SupervisorOperationGetState2 instead.
- *
- *  Returns the global supervisor state for all supervised operations! Here you can check with one call how many operations failed.
- *
- * Error code:
- *     + ERR_OK: The SupervisorState was successfully retrieved
- *     + ERR_NOTINITIALIZED: The operation memory is not initialized
- *     + ERR_NOT_SUPPORTED">SysTimeGetUs is not supported
- *
- * :return: A pointer to the SupervisorState or NULL in case of an error
+ * <description>supervisoroperationgetstate</description>
  */
 typedef struct tagsupervisoroperationgetstate_struct
 {
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to error code */
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
 	SupervisorState *SupervisorOperationGetState;	/* VAR_OUTPUT */	
 } supervisoroperationgetstate_struct;
 
@@ -639,123 +521,48 @@ typedef void (CDECL CDECL_EXT* PFSUPERVISOROPERATIONGETSTATE_IEC) (supervisorope
 	#define GET_supervisoroperationgetstate(fl)  CAL_CMGETAPI( "supervisoroperationgetstate" ) 
 	#define CAL_supervisoroperationgetstate  supervisoroperationgetstate
 	#define CHK_supervisoroperationgetstate  TRUE
-	#define EXP_supervisoroperationgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate", (RTS_UINTPTR)supervisoroperationgetstate, 1, 0, 0x03050C00) 
+	#define EXP_supervisoroperationgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate", (RTS_UINTPTR)supervisoroperationgetstate, 1, 0x7F07C851, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
 	#define USE_supervisoroperationgetstate
 	#define EXT_supervisoroperationgetstate
 	#define GET_supervisoroperationgetstate(fl)  CAL_CMGETAPI( "supervisoroperationgetstate" ) 
 	#define CAL_supervisoroperationgetstate  supervisoroperationgetstate
 	#define CHK_supervisoroperationgetstate  TRUE
-	#define EXP_supervisoroperationgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate", (RTS_UINTPTR)supervisoroperationgetstate, 1, 0, 0x03050C00) 
+	#define EXP_supervisoroperationgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate", (RTS_UINTPTR)supervisoroperationgetstate, 1, 0x7F07C851, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpSupervisorsupervisoroperationgetstate
 	#define EXT_CmpSupervisorsupervisoroperationgetstate
 	#define GET_CmpSupervisorsupervisoroperationgetstate  ERR_OK
 	#define CAL_CmpSupervisorsupervisoroperationgetstate  supervisoroperationgetstate
 	#define CHK_CmpSupervisorsupervisoroperationgetstate  TRUE
-	#define EXP_CmpSupervisorsupervisoroperationgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate", (RTS_UINTPTR)supervisoroperationgetstate, 1, 0, 0x03050C00) 
+	#define EXP_CmpSupervisorsupervisoroperationgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate", (RTS_UINTPTR)supervisoroperationgetstate, 1, 0x7F07C851, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_supervisoroperationgetstate
 	#define EXT_supervisoroperationgetstate
 	#define GET_supervisoroperationgetstate(fl)  CAL_CMGETAPI( "supervisoroperationgetstate" ) 
 	#define CAL_supervisoroperationgetstate  supervisoroperationgetstate
 	#define CHK_supervisoroperationgetstate  TRUE
-	#define EXP_supervisoroperationgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate", (RTS_UINTPTR)supervisoroperationgetstate, 1, 0, 0x03050C00) 
+	#define EXP_supervisoroperationgetstate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate", (RTS_UINTPTR)supervisoroperationgetstate, 1, 0x7F07C851, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_supervisoroperationgetstate  PFSUPERVISOROPERATIONGETSTATE_IEC pfsupervisoroperationgetstate;
 	#define EXT_supervisoroperationgetstate  extern PFSUPERVISOROPERATIONGETSTATE_IEC pfsupervisoroperationgetstate;
-	#define GET_supervisoroperationgetstate(fl)  s_pfCMGetAPI2( "supervisoroperationgetstate", (RTS_VOID_FCTPTR *)&pfsupervisoroperationgetstate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0, 0x03050C00)
+	#define GET_supervisoroperationgetstate(fl)  s_pfCMGetAPI2( "supervisoroperationgetstate", (RTS_VOID_FCTPTR *)&pfsupervisoroperationgetstate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x7F07C851, 0x03050A00)
 	#define CAL_supervisoroperationgetstate  pfsupervisoroperationgetstate
 	#define CHK_supervisoroperationgetstate  (pfsupervisoroperationgetstate != NULL)
-	#define EXP_supervisoroperationgetstate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate", (RTS_UINTPTR)supervisoroperationgetstate, 1, 0, 0x03050C00) 
+	#define EXP_supervisoroperationgetstate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate", (RTS_UINTPTR)supervisoroperationgetstate, 1, 0x7F07C851, 0x03050A00) 
 #endif
 
 
 /**
- *  Retrieves the supervisor state for all supervised operations! Here you can check with one call how many operations failed.
- *
- * :return: Error code
- *
- * Error code:
- *     + ERR_OK: The SupervisorState was successfully retrieved
- *     + ERR_NOTINITIALIZED: The operation memory is not initialized
- *     + ERR_PARAMETER: The pointer to the SupervisorState is invalid
- *     + ERR_NOT_SUPPORTED">SysTimeGetUs is not supported
- *
- */
-typedef struct tagsupervisoroperationgetstate2_struct
-{
-	SupervisorState *pSupervisorState;	/* VAR_INPUT */	/* Pointer to the SupervisorState, will be filled with the corresponding information. The caller has to hold the buffer. */
-	RTS_IEC_RESULT SupervisorOperationGetState2;	/* VAR_OUTPUT */	
-} supervisoroperationgetstate2_struct;
-
-void CDECL CDECL_EXT supervisoroperationgetstate2(supervisoroperationgetstate2_struct *p);
-typedef void (CDECL CDECL_EXT* PFSUPERVISOROPERATIONGETSTATE2_IEC) (supervisoroperationgetstate2_struct *p);
-#if defined(CMPSUPERVISOR_NOTIMPLEMENTED) || defined(SUPERVISOROPERATIONGETSTATE2_NOTIMPLEMENTED)
-	#define USE_supervisoroperationgetstate2
-	#define EXT_supervisoroperationgetstate2
-	#define GET_supervisoroperationgetstate2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_supervisoroperationgetstate2(p0) 
-	#define CHK_supervisoroperationgetstate2  FALSE
-	#define EXP_supervisoroperationgetstate2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_supervisoroperationgetstate2
-	#define EXT_supervisoroperationgetstate2
-	#define GET_supervisoroperationgetstate2(fl)  CAL_CMGETAPI( "supervisoroperationgetstate2" ) 
-	#define CAL_supervisoroperationgetstate2  supervisoroperationgetstate2
-	#define CHK_supervisoroperationgetstate2  TRUE
-	#define EXP_supervisoroperationgetstate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate2", (RTS_UINTPTR)supervisoroperationgetstate2, 1, 0x284A6A2A, 0x03050C00) 
-#elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
-	#define USE_supervisoroperationgetstate2
-	#define EXT_supervisoroperationgetstate2
-	#define GET_supervisoroperationgetstate2(fl)  CAL_CMGETAPI( "supervisoroperationgetstate2" ) 
-	#define CAL_supervisoroperationgetstate2  supervisoroperationgetstate2
-	#define CHK_supervisoroperationgetstate2  TRUE
-	#define EXP_supervisoroperationgetstate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate2", (RTS_UINTPTR)supervisoroperationgetstate2, 1, 0x284A6A2A, 0x03050C00) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpSupervisorsupervisoroperationgetstate2
-	#define EXT_CmpSupervisorsupervisoroperationgetstate2
-	#define GET_CmpSupervisorsupervisoroperationgetstate2  ERR_OK
-	#define CAL_CmpSupervisorsupervisoroperationgetstate2  supervisoroperationgetstate2
-	#define CHK_CmpSupervisorsupervisoroperationgetstate2  TRUE
-	#define EXP_CmpSupervisorsupervisoroperationgetstate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate2", (RTS_UINTPTR)supervisoroperationgetstate2, 1, 0x284A6A2A, 0x03050C00) 
-#elif defined(CPLUSPLUS)
-	#define USE_supervisoroperationgetstate2
-	#define EXT_supervisoroperationgetstate2
-	#define GET_supervisoroperationgetstate2(fl)  CAL_CMGETAPI( "supervisoroperationgetstate2" ) 
-	#define CAL_supervisoroperationgetstate2  supervisoroperationgetstate2
-	#define CHK_supervisoroperationgetstate2  TRUE
-	#define EXP_supervisoroperationgetstate2  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate2", (RTS_UINTPTR)supervisoroperationgetstate2, 1, 0x284A6A2A, 0x03050C00) 
-#else /* DYNAMIC_LINK */
-	#define USE_supervisoroperationgetstate2  PFSUPERVISOROPERATIONGETSTATE2_IEC pfsupervisoroperationgetstate2;
-	#define EXT_supervisoroperationgetstate2  extern PFSUPERVISOROPERATIONGETSTATE2_IEC pfsupervisoroperationgetstate2;
-	#define GET_supervisoroperationgetstate2(fl)  s_pfCMGetAPI2( "supervisoroperationgetstate2", (RTS_VOID_FCTPTR *)&pfsupervisoroperationgetstate2, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x284A6A2A, 0x03050C00)
-	#define CAL_supervisoroperationgetstate2  pfsupervisoroperationgetstate2
-	#define CHK_supervisoroperationgetstate2  (pfsupervisoroperationgetstate2 != NULL)
-	#define EXP_supervisoroperationgetstate2   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationgetstate2", (RTS_UINTPTR)supervisoroperationgetstate2, 1, 0x284A6A2A, 0x03050C00) 
-#endif
-
-
-/**
- * Register an operation for supervision.
- * The operation will be regtistered disabled! To activate the supervision you have to call a subsequent SupervisorOperationEnable()!
- *
- * Error code:
- *     + ERR_OK: Operation was successfully registered
- *     + ERR_FAILED:  Register operation failed
- *     + ERR_NOTINITIALIZED: The operation memory is not initialized
- *     + ERR_DUPLICATE: The combination of ui32OperationID and cmpId is already registered 
- *     + ERR_NOMEMORY: There is no more memory left to register the operation
- *
- * :return: Handle to operation for all other management functions or RTS_INVALID_HANDLE in case of an error
+ * <description>supervisoroperationregister</description>
  */
 typedef struct tagsupervisoroperationregister_struct
 {
-	RTS_IEC_DWORD ui32OperationID;		/* VAR_INPUT */	/* Unique operation ID */
-	RTS_IEC_DWORD cmpId;				/* VAR_INPUT */	/* ComponentID of the component which operation is supervised */
-	RTS_IEC_STRING *pszOperationDescription;	/* VAR_INPUT */	/* Description of the operation, may be empty; the string must be a constant, it is not copied, just the reference is stored */
-	RTS_IEC_ULINT stTimeoutUs;			/* VAR_INPUT */	/* Timeout limit in [us] (enables time check, 0 means no timeout check) */
-	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Pointer to error code */
+	RTS_IEC_DWORD ui32OperationID;		/* VAR_INPUT */	
+	RTS_IEC_DWORD cmpId;				/* VAR_INPUT */	
+	RTS_IEC_STRING *pszOperationDescription;	/* VAR_INPUT */	
+	RTS_IEC_ULINT stTimeoutUs;			/* VAR_INPUT */	
+	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	
 	RTS_IEC_HANDLE SupervisorOperationRegister;	/* VAR_OUTPUT */	
 } supervisoroperationregister_struct;
 
@@ -774,55 +581,45 @@ typedef void (CDECL CDECL_EXT* PFSUPERVISOROPERATIONREGISTER_IEC) (supervisorope
 	#define GET_supervisoroperationregister(fl)  CAL_CMGETAPI( "supervisoroperationregister" ) 
 	#define CAL_supervisoroperationregister  supervisoroperationregister
 	#define CHK_supervisoroperationregister  TRUE
-	#define EXP_supervisoroperationregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationregister", (RTS_UINTPTR)supervisoroperationregister, 1, 0x6D8179C0, 0x03050C00) 
+	#define EXP_supervisoroperationregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationregister", (RTS_UINTPTR)supervisoroperationregister, 1, 0x6D8179C0, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
 	#define USE_supervisoroperationregister
 	#define EXT_supervisoroperationregister
 	#define GET_supervisoroperationregister(fl)  CAL_CMGETAPI( "supervisoroperationregister" ) 
 	#define CAL_supervisoroperationregister  supervisoroperationregister
 	#define CHK_supervisoroperationregister  TRUE
-	#define EXP_supervisoroperationregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationregister", (RTS_UINTPTR)supervisoroperationregister, 1, 0x6D8179C0, 0x03050C00) 
+	#define EXP_supervisoroperationregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationregister", (RTS_UINTPTR)supervisoroperationregister, 1, 0x6D8179C0, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpSupervisorsupervisoroperationregister
 	#define EXT_CmpSupervisorsupervisoroperationregister
 	#define GET_CmpSupervisorsupervisoroperationregister  ERR_OK
 	#define CAL_CmpSupervisorsupervisoroperationregister  supervisoroperationregister
 	#define CHK_CmpSupervisorsupervisoroperationregister  TRUE
-	#define EXP_CmpSupervisorsupervisoroperationregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationregister", (RTS_UINTPTR)supervisoroperationregister, 1, 0x6D8179C0, 0x03050C00) 
+	#define EXP_CmpSupervisorsupervisoroperationregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationregister", (RTS_UINTPTR)supervisoroperationregister, 1, 0x6D8179C0, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_supervisoroperationregister
 	#define EXT_supervisoroperationregister
 	#define GET_supervisoroperationregister(fl)  CAL_CMGETAPI( "supervisoroperationregister" ) 
 	#define CAL_supervisoroperationregister  supervisoroperationregister
 	#define CHK_supervisoroperationregister  TRUE
-	#define EXP_supervisoroperationregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationregister", (RTS_UINTPTR)supervisoroperationregister, 1, 0x6D8179C0, 0x03050C00) 
+	#define EXP_supervisoroperationregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationregister", (RTS_UINTPTR)supervisoroperationregister, 1, 0x6D8179C0, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_supervisoroperationregister  PFSUPERVISOROPERATIONREGISTER_IEC pfsupervisoroperationregister;
 	#define EXT_supervisoroperationregister  extern PFSUPERVISOROPERATIONREGISTER_IEC pfsupervisoroperationregister;
-	#define GET_supervisoroperationregister(fl)  s_pfCMGetAPI2( "supervisoroperationregister", (RTS_VOID_FCTPTR *)&pfsupervisoroperationregister, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6D8179C0, 0x03050C00)
+	#define GET_supervisoroperationregister(fl)  s_pfCMGetAPI2( "supervisoroperationregister", (RTS_VOID_FCTPTR *)&pfsupervisoroperationregister, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x6D8179C0, 0x03050A00)
 	#define CAL_supervisoroperationregister  pfsupervisoroperationregister
 	#define CHK_supervisoroperationregister  (pfsupervisoroperationregister != NULL)
-	#define EXP_supervisoroperationregister   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationregister", (RTS_UINTPTR)supervisoroperationregister, 1, 0x6D8179C0, 0x03050C00) 
+	#define EXP_supervisoroperationregister   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationregister", (RTS_UINTPTR)supervisoroperationregister, 1, 0x6D8179C0, 0x03050A00) 
 #endif
 
 
 /**
- * Sets a (new) timeout for the given operation
- * Supervision must be disabled to modify the timeout and should be enabled afterwards. 
- *
- * :return: Error code
- *
- * Error code:
- *     + ERR_OK: The timeout was successfully set
- *     + ERR_NOTINITIALIZED: The operation memory is not initialized
- *     + ERR_INVALID_HANDLE: The handle to the operation is invalid
- *     + ERR_PARAMETER: The handle to the operation is invalid
- *     + ERR_NO_CHANGE: The timeout was not modified because supervision is enabled!
+ * <description>supervisoroperationsettimeout</description>
  */
 typedef struct tagsupervisoroperationsettimeout_struct
 {
-	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */	/* Handle to the operation */
-	RTS_IEC_ULINT stTimeoutUs;			/* VAR_INPUT */	/* Timeout limit in [us] */
+	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */
+	RTS_IEC_ULINT stTimeoutUs;			/* VAR_INPUT */
 	RTS_IEC_RESULT SupervisorOperationSetTimeout;	/* VAR_OUTPUT */	
 } supervisoroperationsettimeout_struct;
 
@@ -841,52 +638,44 @@ typedef void (CDECL CDECL_EXT* PFSUPERVISOROPERATIONSETTIMEOUT_IEC) (supervisoro
 	#define GET_supervisoroperationsettimeout(fl)  CAL_CMGETAPI( "supervisoroperationsettimeout" ) 
 	#define CAL_supervisoroperationsettimeout  supervisoroperationsettimeout
 	#define CHK_supervisoroperationsettimeout  TRUE
-	#define EXP_supervisoroperationsettimeout  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationsettimeout", (RTS_UINTPTR)supervisoroperationsettimeout, 1, 0xDB1591C0, 0x03050C00) 
+	#define EXP_supervisoroperationsettimeout  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationsettimeout", (RTS_UINTPTR)supervisoroperationsettimeout, 1, 0xDB1591C0, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
 	#define USE_supervisoroperationsettimeout
 	#define EXT_supervisoroperationsettimeout
 	#define GET_supervisoroperationsettimeout(fl)  CAL_CMGETAPI( "supervisoroperationsettimeout" ) 
 	#define CAL_supervisoroperationsettimeout  supervisoroperationsettimeout
 	#define CHK_supervisoroperationsettimeout  TRUE
-	#define EXP_supervisoroperationsettimeout  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationsettimeout", (RTS_UINTPTR)supervisoroperationsettimeout, 1, 0xDB1591C0, 0x03050C00) 
+	#define EXP_supervisoroperationsettimeout  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationsettimeout", (RTS_UINTPTR)supervisoroperationsettimeout, 1, 0xDB1591C0, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpSupervisorsupervisoroperationsettimeout
 	#define EXT_CmpSupervisorsupervisoroperationsettimeout
 	#define GET_CmpSupervisorsupervisoroperationsettimeout  ERR_OK
 	#define CAL_CmpSupervisorsupervisoroperationsettimeout  supervisoroperationsettimeout
 	#define CHK_CmpSupervisorsupervisoroperationsettimeout  TRUE
-	#define EXP_CmpSupervisorsupervisoroperationsettimeout  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationsettimeout", (RTS_UINTPTR)supervisoroperationsettimeout, 1, 0xDB1591C0, 0x03050C00) 
+	#define EXP_CmpSupervisorsupervisoroperationsettimeout  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationsettimeout", (RTS_UINTPTR)supervisoroperationsettimeout, 1, 0xDB1591C0, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_supervisoroperationsettimeout
 	#define EXT_supervisoroperationsettimeout
 	#define GET_supervisoroperationsettimeout(fl)  CAL_CMGETAPI( "supervisoroperationsettimeout" ) 
 	#define CAL_supervisoroperationsettimeout  supervisoroperationsettimeout
 	#define CHK_supervisoroperationsettimeout  TRUE
-	#define EXP_supervisoroperationsettimeout  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationsettimeout", (RTS_UINTPTR)supervisoroperationsettimeout, 1, 0xDB1591C0, 0x03050C00) 
+	#define EXP_supervisoroperationsettimeout  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationsettimeout", (RTS_UINTPTR)supervisoroperationsettimeout, 1, 0xDB1591C0, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_supervisoroperationsettimeout  PFSUPERVISOROPERATIONSETTIMEOUT_IEC pfsupervisoroperationsettimeout;
 	#define EXT_supervisoroperationsettimeout  extern PFSUPERVISOROPERATIONSETTIMEOUT_IEC pfsupervisoroperationsettimeout;
-	#define GET_supervisoroperationsettimeout(fl)  s_pfCMGetAPI2( "supervisoroperationsettimeout", (RTS_VOID_FCTPTR *)&pfsupervisoroperationsettimeout, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xDB1591C0, 0x03050C00)
+	#define GET_supervisoroperationsettimeout(fl)  s_pfCMGetAPI2( "supervisoroperationsettimeout", (RTS_VOID_FCTPTR *)&pfsupervisoroperationsettimeout, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xDB1591C0, 0x03050A00)
 	#define CAL_supervisoroperationsettimeout  pfsupervisoroperationsettimeout
 	#define CHK_supervisoroperationsettimeout  (pfsupervisoroperationsettimeout != NULL)
-	#define EXP_supervisoroperationsettimeout   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationsettimeout", (RTS_UINTPTR)supervisoroperationsettimeout, 1, 0xDB1591C0, 0x03050C00) 
+	#define EXP_supervisoroperationsettimeout   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationsettimeout", (RTS_UINTPTR)supervisoroperationsettimeout, 1, 0xDB1591C0, 0x03050A00) 
 #endif
 
 
 /**
- * Unregister a previously registered operation from supervision
- *
- * :return: Error code
- *
- * Error code:
- *     + ERR_OK: Operation was successfully unregistered
- *     + ERR_NOTINITIALIZED: The operation memory is not initialized
- *     + ERR_INVALID_HANDLE: The handle to the operation is invalid
- *     + ERR_PARAMETER: The handle to the operation is invalid
+ * <description>supervisoroperationunregister</description>
  */
 typedef struct tagsupervisoroperationunregister_struct
 {
-	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */	/* Handle to the operation */
+	RTS_IEC_HANDLE hOperation;			/* VAR_INPUT */	
 	RTS_IEC_RESULT SupervisorOperationUnregister;	/* VAR_OUTPUT */	
 } supervisoroperationunregister_struct;
 
@@ -905,35 +694,35 @@ typedef void (CDECL CDECL_EXT* PFSUPERVISOROPERATIONUNREGISTER_IEC) (supervisoro
 	#define GET_supervisoroperationunregister(fl)  CAL_CMGETAPI( "supervisoroperationunregister" ) 
 	#define CAL_supervisoroperationunregister  supervisoroperationunregister
 	#define CHK_supervisoroperationunregister  TRUE
-	#define EXP_supervisoroperationunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationunregister", (RTS_UINTPTR)supervisoroperationunregister, 1, 0xF19896D6, 0x03050C00) 
+	#define EXP_supervisoroperationunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationunregister", (RTS_UINTPTR)supervisoroperationunregister, 1, 0xF19896D6, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
 	#define USE_supervisoroperationunregister
 	#define EXT_supervisoroperationunregister
 	#define GET_supervisoroperationunregister(fl)  CAL_CMGETAPI( "supervisoroperationunregister" ) 
 	#define CAL_supervisoroperationunregister  supervisoroperationunregister
 	#define CHK_supervisoroperationunregister  TRUE
-	#define EXP_supervisoroperationunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationunregister", (RTS_UINTPTR)supervisoroperationunregister, 1, 0xF19896D6, 0x03050C00) 
+	#define EXP_supervisoroperationunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationunregister", (RTS_UINTPTR)supervisoroperationunregister, 1, 0xF19896D6, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpSupervisorsupervisoroperationunregister
 	#define EXT_CmpSupervisorsupervisoroperationunregister
 	#define GET_CmpSupervisorsupervisoroperationunregister  ERR_OK
 	#define CAL_CmpSupervisorsupervisoroperationunregister  supervisoroperationunregister
 	#define CHK_CmpSupervisorsupervisoroperationunregister  TRUE
-	#define EXP_CmpSupervisorsupervisoroperationunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationunregister", (RTS_UINTPTR)supervisoroperationunregister, 1, 0xF19896D6, 0x03050C00) 
+	#define EXP_CmpSupervisorsupervisoroperationunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationunregister", (RTS_UINTPTR)supervisoroperationunregister, 1, 0xF19896D6, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_supervisoroperationunregister
 	#define EXT_supervisoroperationunregister
 	#define GET_supervisoroperationunregister(fl)  CAL_CMGETAPI( "supervisoroperationunregister" ) 
 	#define CAL_supervisoroperationunregister  supervisoroperationunregister
 	#define CHK_supervisoroperationunregister  TRUE
-	#define EXP_supervisoroperationunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationunregister", (RTS_UINTPTR)supervisoroperationunregister, 1, 0xF19896D6, 0x03050C00) 
+	#define EXP_supervisoroperationunregister  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationunregister", (RTS_UINTPTR)supervisoroperationunregister, 1, 0xF19896D6, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_supervisoroperationunregister  PFSUPERVISOROPERATIONUNREGISTER_IEC pfsupervisoroperationunregister;
 	#define EXT_supervisoroperationunregister  extern PFSUPERVISOROPERATIONUNREGISTER_IEC pfsupervisoroperationunregister;
-	#define GET_supervisoroperationunregister(fl)  s_pfCMGetAPI2( "supervisoroperationunregister", (RTS_VOID_FCTPTR *)&pfsupervisoroperationunregister, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xF19896D6, 0x03050C00)
+	#define GET_supervisoroperationunregister(fl)  s_pfCMGetAPI2( "supervisoroperationunregister", (RTS_VOID_FCTPTR *)&pfsupervisoroperationunregister, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xF19896D6, 0x03050A00)
 	#define CAL_supervisoroperationunregister  pfsupervisoroperationunregister
 	#define CHK_supervisoroperationunregister  (pfsupervisoroperationunregister != NULL)
-	#define EXP_supervisoroperationunregister   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationunregister", (RTS_UINTPTR)supervisoroperationunregister, 1, 0xF19896D6, 0x03050C00) 
+	#define EXP_supervisoroperationunregister   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"supervisoroperationunregister", (RTS_UINTPTR)supervisoroperationunregister, 1, 0xF19896D6, 0x03050A00) 
 #endif
 
 
@@ -943,7 +732,6 @@ typedef void (CDECL CDECL_EXT* PFSUPERVISOROPERATIONUNREGISTER_IEC) (supervisoro
 
 /** EXTERN LIB SECTION END **/
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -952,11 +740,6 @@ extern "C" {
  * <description>
  * Register an operation for supervision.
  * The operation will be regtistered disabled! To activate the supervision you have to call a subsequent SupervisorOperationEnable()!
- *
- * NOTES:
- * - Any consumer/hardware watchdog, which controls all vital operations can be registered as a normal operation, but have to set the RTS_SUPERVISOR_FLAG_WATCHDOG flag in its SupervisorEntry!
- * - Additionally the consumer have to check its bEnable flag additionally to the state of the supervisor, if a vital operation will fail! If the bEnable flag is FALSE, you have to continue
- *   retriggering the watchdog, because your watchdog expiration is selectively be disabled!
  * </description>
  * <param name="ui32OperationID" type="IN">Unique operation ID</element>
  * <param name="cmpId" type="IN">ComponentID of the component which operation is supervised</element>
@@ -964,7 +747,6 @@ extern "C" {
  * <param name="stTimeoutUs" type="IN">Timeout limit in [us] (enables time check, 0 means no timeout check)</element>
  * <param name="pResult" type="OUT">Pointer to error code</param>
  * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Operation was successfully registered</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_FAILED">Register operation failed</errorcode> 
  * <errorcode name="RTS_RESULT pResult" type="ERR_NOTINITIALIZED">The operation memory is not initialized</errorcode>
  * <errorcode name="RTS_RESULT pResult" type="ERR_DUPLICATE">The combination of ui32OperationID and cmpId is already registered</errorcode>
  * <errorcode name="RTS_RESULT pResult" type="ERR_NOMEMORY">There is no more memory left to register the operation</errorcode>
@@ -1081,7 +863,6 @@ typedef RTS_RESULT (CDECL * PFSUPERVISOROPERATIONUNREGISTER) (RTS_HANDLE hOperat
 
 /**
  * <description>
- * Deprecated, use SupervisorOperationGetState2 instead.
  * Returns the global supervisor state for all supervised operations! Here you can check with one call how many operations failed.
  * </description>
  * <param name="pResult" type="OUT">Pointer to error code</param>
@@ -1134,66 +915,6 @@ typedef SupervisorState* (CDECL * PFSUPERVISOROPERATIONGETSTATE) (RTS_RESULT *pR
 	#define CAL_SupervisorOperationGetState  pfSupervisorOperationGetState
 	#define CHK_SupervisorOperationGetState  (pfSupervisorOperationGetState != NULL)
 	#define EXP_SupervisorOperationGetState  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SupervisorOperationGetState", (RTS_UINTPTR)SupervisorOperationGetState, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- * Returns the global supervisor state for all supervised operations! Here you can check with one call how many operations failed.
- * </description>
- * <param name="pSupervisorState" type="OUT">Pointer to the SupervisorState, will be filled with the corresponding information. The caller has to hold the buffer.</param>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">The SupervisorState was successfully retrieved</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_NOTINITIALIZED">The operation memory is not initialized</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_PARAMETER">The pointer to the SupervisorState is invalid</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_NOT_SUPPORTED">SysTimeGetUs is not supported</errorcode>
- */
-RTS_RESULT CDECL SupervisorOperationGetState2(SupervisorState *pSupervisorState);
-typedef RTS_RESULT (CDECL * PFSUPERVISOROPERATIONGETSTATE2) (SupervisorState *pSupervisorState);
-#if defined(CMPSUPERVISOR_NOTIMPLEMENTED) || defined(SUPERVISOROPERATIONGETSTATE2_NOTIMPLEMENTED)
-	#define USE_SupervisorOperationGetState2
-	#define EXT_SupervisorOperationGetState2
-	#define GET_SupervisorOperationGetState2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SupervisorOperationGetState2(p0)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SupervisorOperationGetState2  FALSE
-	#define EXP_SupervisorOperationGetState2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SupervisorOperationGetState2
-	#define EXT_SupervisorOperationGetState2
-	#define GET_SupervisorOperationGetState2(fl)  CAL_CMGETAPI( "SupervisorOperationGetState2" ) 
-	#define CAL_SupervisorOperationGetState2  SupervisorOperationGetState2
-	#define CHK_SupervisorOperationGetState2  TRUE
-	#define EXP_SupervisorOperationGetState2  CAL_CMEXPAPI( "SupervisorOperationGetState2" ) 
-#elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
-	#define USE_SupervisorOperationGetState2
-	#define EXT_SupervisorOperationGetState2
-	#define GET_SupervisorOperationGetState2(fl)  CAL_CMGETAPI( "SupervisorOperationGetState2" ) 
-	#define CAL_SupervisorOperationGetState2  SupervisorOperationGetState2
-	#define CHK_SupervisorOperationGetState2  TRUE
-	#define EXP_SupervisorOperationGetState2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SupervisorOperationGetState2", (RTS_UINTPTR)SupervisorOperationGetState2, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpSupervisorSupervisorOperationGetState2
-	#define EXT_CmpSupervisorSupervisorOperationGetState2
-	#define GET_CmpSupervisorSupervisorOperationGetState2  ERR_OK
-	#define CAL_CmpSupervisorSupervisorOperationGetState2 pICmpSupervisor->ISupervisorOperationGetState2
-	#define CHK_CmpSupervisorSupervisorOperationGetState2 (pICmpSupervisor != NULL)
-	#define EXP_CmpSupervisorSupervisorOperationGetState2  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SupervisorOperationGetState2
-	#define EXT_SupervisorOperationGetState2
-	#define GET_SupervisorOperationGetState2(fl)  CAL_CMGETAPI( "SupervisorOperationGetState2" ) 
-	#define CAL_SupervisorOperationGetState2 pICmpSupervisor->ISupervisorOperationGetState2
-	#define CHK_SupervisorOperationGetState2 (pICmpSupervisor != NULL)
-	#define EXP_SupervisorOperationGetState2  CAL_CMEXPAPI( "SupervisorOperationGetState2" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SupervisorOperationGetState2  PFSUPERVISOROPERATIONGETSTATE2 pfSupervisorOperationGetState2;
-	#define EXT_SupervisorOperationGetState2  extern PFSUPERVISOROPERATIONGETSTATE2 pfSupervisorOperationGetState2;
-	#define GET_SupervisorOperationGetState2(fl)  s_pfCMGetAPI2( "SupervisorOperationGetState2", (RTS_VOID_FCTPTR *)&pfSupervisorOperationGetState2, (fl), 0, 0)
-	#define CAL_SupervisorOperationGetState2  pfSupervisorOperationGetState2
-	#define CHK_SupervisorOperationGetState2  (pfSupervisorOperationGetState2 != NULL)
-	#define EXP_SupervisorOperationGetState2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SupervisorOperationGetState2", (RTS_UINTPTR)SupervisorOperationGetState2, 0, 0) 
 #endif
 
 
@@ -1689,66 +1410,6 @@ typedef RTS_RESULT (CDECL * PFSUPERVISOROPERATIONSETTIMEOUT) (RTS_HANDLE hOperat
 
 
 
-/**
- * <description>
- * Get operation specified by operationid and componentid.
- * </description>
- * <param name="ui32OperationID" type="IN">Unique operation ID</element>
- * <param name="cmpId" type="IN">ComponentID of the component which operation is supervised</element>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <errorcode name="RTS_RESULT pResult" type="ERR_OK">Operation was found</errorcode>
- * <errorcode name="RTS_RESULT pResult" type="ERR_NO_OBJECT">No operation found</errorcode> 
- * <result>Handle to operation for all other management functions or RTS_INVALID_HANDLE in case of an error</result>
- */
-RTS_HANDLE CDECL SupervisorOperationGet(RTS_UI32 ui32OperationID, RTS_UI32 cmpId, RTS_RESULT *pResult);
-typedef RTS_HANDLE (CDECL * PFSUPERVISOROPERATIONGET) (RTS_UI32 ui32OperationID, RTS_UI32 cmpId, RTS_RESULT *pResult);
-#if defined(CMPSUPERVISOR_NOTIMPLEMENTED) || defined(SUPERVISOROPERATIONGET_NOTIMPLEMENTED)
-	#define USE_SupervisorOperationGet
-	#define EXT_SupervisorOperationGet
-	#define GET_SupervisorOperationGet(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SupervisorOperationGet(p0,p1,p2)  (RTS_HANDLE)RTS_INVALID_HANDLE
-	#define CHK_SupervisorOperationGet  FALSE
-	#define EXP_SupervisorOperationGet  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SupervisorOperationGet
-	#define EXT_SupervisorOperationGet
-	#define GET_SupervisorOperationGet(fl)  CAL_CMGETAPI( "SupervisorOperationGet" ) 
-	#define CAL_SupervisorOperationGet  SupervisorOperationGet
-	#define CHK_SupervisorOperationGet  TRUE
-	#define EXP_SupervisorOperationGet  CAL_CMEXPAPI( "SupervisorOperationGet" ) 
-#elif defined(MIXED_LINK) && !defined(CMPSUPERVISOR_EXTERNAL)
-	#define USE_SupervisorOperationGet
-	#define EXT_SupervisorOperationGet
-	#define GET_SupervisorOperationGet(fl)  CAL_CMGETAPI( "SupervisorOperationGet" ) 
-	#define CAL_SupervisorOperationGet  SupervisorOperationGet
-	#define CHK_SupervisorOperationGet  TRUE
-	#define EXP_SupervisorOperationGet  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SupervisorOperationGet", (RTS_UINTPTR)SupervisorOperationGet, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpSupervisorSupervisorOperationGet
-	#define EXT_CmpSupervisorSupervisorOperationGet
-	#define GET_CmpSupervisorSupervisorOperationGet  ERR_OK
-	#define CAL_CmpSupervisorSupervisorOperationGet pICmpSupervisor->ISupervisorOperationGet
-	#define CHK_CmpSupervisorSupervisorOperationGet (pICmpSupervisor != NULL)
-	#define EXP_CmpSupervisorSupervisorOperationGet  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SupervisorOperationGet
-	#define EXT_SupervisorOperationGet
-	#define GET_SupervisorOperationGet(fl)  CAL_CMGETAPI( "SupervisorOperationGet" ) 
-	#define CAL_SupervisorOperationGet pICmpSupervisor->ISupervisorOperationGet
-	#define CHK_SupervisorOperationGet (pICmpSupervisor != NULL)
-	#define EXP_SupervisorOperationGet  CAL_CMEXPAPI( "SupervisorOperationGet" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SupervisorOperationGet  PFSUPERVISOROPERATIONGET pfSupervisorOperationGet;
-	#define EXT_SupervisorOperationGet  extern PFSUPERVISOROPERATIONGET pfSupervisorOperationGet;
-	#define GET_SupervisorOperationGet(fl)  s_pfCMGetAPI2( "SupervisorOperationGet", (RTS_VOID_FCTPTR *)&pfSupervisorOperationGet, (fl), 0, 0)
-	#define CAL_SupervisorOperationGet  pfSupervisorOperationGet
-	#define CHK_SupervisorOperationGet  (pfSupervisorOperationGet != NULL)
-	#define EXP_SupervisorOperationGet  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SupervisorOperationGet", (RTS_UINTPTR)SupervisorOperationGet, 0, 0) 
-#endif
-
-
-
-
 #ifdef __cplusplus
 }
 #endif
@@ -1761,7 +1422,6 @@ typedef struct
 	PFSUPERVISOROPERATIONREGISTER ISupervisorOperationRegister;
  	PFSUPERVISOROPERATIONUNREGISTER ISupervisorOperationUnregister;
  	PFSUPERVISOROPERATIONGETSTATE ISupervisorOperationGetState;
- 	PFSUPERVISOROPERATIONGETSTATE2 ISupervisorOperationGetState2;
  	PFSUPERVISOROPERATIONGETFIRST ISupervisorOperationGetFirst;
  	PFSUPERVISOROPERATIONGETNEXT ISupervisorOperationGetNext;
  	PFSUPERVISOROPERATIONGETENTRY ISupervisorOperationGetEntry;
@@ -1770,7 +1430,6 @@ typedef struct
  	PFSUPERVISOROPERATIONALIVE ISupervisorOperationAlive;
  	PFSUPERVISOROPERATIONDEAD ISupervisorOperationDead;
  	PFSUPERVISOROPERATIONSETTIMEOUT ISupervisorOperationSetTimeout;
- 	PFSUPERVISOROPERATIONGET ISupervisorOperationGet;
  } ICmpSupervisor_C;
 
 #ifdef CPLUSPLUS
@@ -1780,7 +1439,6 @@ class ICmpSupervisor : public IBase
 		virtual RTS_HANDLE CDECL ISupervisorOperationRegister(RTS_UI32 ui32OperationID, CMPID cmpId, char *pszOperationDescription, RTS_SYSTIME stTimeoutUs, RTS_RESULT *pResult) =0;
 		virtual RTS_RESULT CDECL ISupervisorOperationUnregister(RTS_HANDLE hOperation) =0;
 		virtual SupervisorState* CDECL ISupervisorOperationGetState(RTS_RESULT *pResult) =0;
-		virtual RTS_RESULT CDECL ISupervisorOperationGetState2(SupervisorState *pSupervisorState) =0;
 		virtual RTS_HANDLE CDECL ISupervisorOperationGetFirst(RTS_RESULT *pResult) =0;
 		virtual RTS_HANDLE CDECL ISupervisorOperationGetNext(RTS_HANDLE hPrevOperation, RTS_RESULT *pResult) =0;
 		virtual SupervisorEntry* CDECL ISupervisorOperationGetEntry(RTS_HANDLE hOperation, RTS_RESULT *pResult) =0;
@@ -1789,7 +1447,6 @@ class ICmpSupervisor : public IBase
 		virtual RTS_RESULT CDECL ISupervisorOperationAlive(RTS_HANDLE hOperation, RTS_SYSTIME *pstTimestampUs) =0;
 		virtual RTS_RESULT CDECL ISupervisorOperationDead(RTS_HANDLE hOperation) =0;
 		virtual RTS_RESULT CDECL ISupervisorOperationSetTimeout(RTS_HANDLE hOperation, RTS_SYSTIME stTimeoutUs) =0;
-		virtual RTS_HANDLE CDECL ISupervisorOperationGet(RTS_UI32 ui32OperationID, RTS_UI32 cmpId, RTS_RESULT *pResult) =0;
 };
 	#ifndef ITF_CmpSupervisor
 		#define ITF_CmpSupervisor static ICmpSupervisor *pICmpSupervisor = NULL;

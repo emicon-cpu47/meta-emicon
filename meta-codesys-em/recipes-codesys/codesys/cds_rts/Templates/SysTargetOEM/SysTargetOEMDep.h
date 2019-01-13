@@ -9,16 +9,14 @@
  *	Target specific functions
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 #define CMPID_SysTargetOEM 0x12345
 
 #ifndef _SYSTARGETOEMDEP_H_
 #define _SYSTARGETOEMDEP_H_
 
-#define COMPONENT_NAME "SysTargetOEM" COMPONENT_NAME_POSTFIX
+#define COMPONENT_NAME "SysTargetOEM"COMPONENT_NAME_POSTFIX
 #define COMPONENT_ID    ADDVENDORID(CMP_VENDORID, CMPID_SysTargetOEM)
 #define COMPONENT_NAME_UNQUOTED SysTargetOEM
 
@@ -27,9 +25,9 @@
 
 
 
-#define CMP_VERSION         UINT32_C(0x03050D00)
-#define CMP_VERSION_STRING "3.5.13.0"
-#define CMP_VERSION_RC      3,5,13,0
+#define CMP_VERSION         UINT32_C(0x03050A00)
+#define CMP_VERSION_STRING "3.5.10.0"
+#define CMP_VERSION_RC      3,5,10,0
 #define CMP_VENDORID       RTS_VENDORID_3S
 
 #ifndef WIN32_RESOURCES
@@ -45,9 +43,6 @@
 
 
 #include "CmpSettingsItf.h"
-
-
-#include "CmpEventMgrItf.h"
 
 
 #include "SysMemItf.h"
@@ -75,18 +70,6 @@
     
 
 
-      
-
-
-     
-
-    
-
-
-
-
-
-
 
 
 
@@ -96,10 +79,6 @@
 
 
      
-
-
-
-
 
 
 
@@ -163,15 +142,6 @@
                 pIBase->Release(pIBase); \
             } \
         } \
-          if (pICmpEventMgr == NULL && s_pfCMCreateInstance != NULL) \
-        { \
-            pIBase = (IBase *)s_pfCMCreateInstance(CLASSID_CCmpEventMgr, &initResult); \
-            if (pIBase != NULL) \
-            { \
-                pICmpEventMgr = (ICmpEventMgr *)pIBase->QueryInterface(pIBase, ITFID_ICmpEventMgr, &initResult); \
-                pIBase->Release(pIBase); \
-            } \
-        } \
           if (pICmpSettings == NULL && s_pfCMCreateInstance != NULL) \
         { \
             pIBase = (IBase *)s_pfCMCreateInstance(CLASSID_CCmpSettings, &initResult); \
@@ -200,7 +170,6 @@
         pISysCpuHandling = NULL; \
           pISysTarget = NULL; \
           pISysMem = NULL; \
-          pICmpEventMgr = NULL; \
           pICmpSettings = NULL; \
           /*Obsolete include CMUtils*/ \
 		  pICM = NULL; \
@@ -260,16 +229,6 @@
                     pISysMem = NULL; \
             } \
         } \
-          if (pICmpEventMgr != NULL) \
-        { \
-            pIBase = (IBase *)pICmpEventMgr->QueryInterface(pICmpEventMgr, ITFID_IBase, &exitResult); \
-            if (pIBase != NULL) \
-            { \
-                 pIBase->Release(pIBase); \
-                 if (pIBase->Release(pIBase) == 0) /* The object will be deleted here! */ \
-                    pICmpEventMgr = NULL; \
-            } \
-        } \
           if (pICmpSettings != NULL) \
         { \
             pIBase = (IBase *)pICmpSettings->QueryInterface(pICmpSettings, ITFID_IBase, &exitResult); \
@@ -311,12 +270,8 @@
         INIT_STMT   \
         TempResult = GET_LogAdd(CM_IMPORT_OPTIONAL_FUNCTION); \
         TempResult = GET_CMUtlMemCpy(CM_IMPORT_OPTIONAL_FUNCTION); \
-        if (ERR_OK == importResult ) importResult = GET_SettgSetWStringValue(0);\
-          if (ERR_OK == importResult ) importResult = GET_SettgRemoveKey(0);\
-          if (ERR_OK == importResult ) importResult = GET_SysTargetGetConfiguredNodeName(0);\
+        if (ERR_OK == importResult ) importResult = GET_SysTargetGetConfiguredNodeName(0);\
           if (ERR_OK == importResult ) importResult = GET_SysMemSwap(0);\
-          if (ERR_OK == importResult ) importResult = GET_SysMemFreeData(0);\
-          if (ERR_OK == importResult ) importResult = GET_SysMemAllocData(0);\
           if (ERR_OK == importResult ) importResult = GET_SettgGetIntValue(0);\
           if (ERR_OK == importResult ) importResult = GET_SettgGetStringValue(0);\
           if (ERR_OK == importResult ) importResult = GET_SettgGetWStringValue(0);\
@@ -326,9 +281,6 @@
           if (ERR_OK == importResult ) importResult = GET_CMUtlwstrlen(0);\
           if (ERR_OK == importResult ) importResult = GET_CMUtlwstrcat(0);\
           if (ERR_OK == importResult ) importResult = GET_CMUtlwstrcpy(0);\
-          if (ERR_OK == importResult ) TempResult = GET_EventPost2(CM_IMPORT_OPTIONAL_FUNCTION);\
-          if (ERR_OK == importResult ) TempResult = GET_EventDelete(CM_IMPORT_OPTIONAL_FUNCTION);\
-          if (ERR_OK == importResult ) TempResult = GET_EventCreate3(CM_IMPORT_OPTIONAL_FUNCTION);\
            \
         /* To make LINT happy */\
         TempResult = TempResult;\
@@ -340,7 +292,7 @@
 
 #ifndef SYSTARGETOEM_DISABLE_EXTREF
 #define EXPORT_EXTREF_STMT \
-                                        { (RTS_VOID_FCTPTR)systargetgetversion2, "systargetgetversion2", 0x183560B4, 0x03050500 },\
+                                    { (RTS_VOID_FCTPTR)systargetgetversion2, "systargetgetversion2", 0x183560B4, 0x03050500 },\
           { (RTS_VOID_FCTPTR)systargetgetversion, "systargetgetversion", 0x03C80949, 0x03050500 },\
           { (RTS_VOID_FCTPTR)systargetgetvendorname2, "systargetgetvendorname2", 0xECA5949D, 0x03050500 },\
           { (RTS_VOID_FCTPTR)systargetgetvendorname, "systargetgetvendorname", 0xC7C8EF60, 0x03050500 },\
@@ -361,16 +313,14 @@
 #endif
 #ifndef SYSTARGETOEM_DISABLE_EXTREF2
 #define EXPORT_EXTREF2_STMT \
-                                                                      
+                                                                  
 #else
 #define EXPORT_EXTREF2_STMT
 #endif
 #if !defined(STATIC_LINK) && !defined(CPLUSPLUS) && !defined(CPLUSPLUS_ONLY)
 #define EXPORT_CMPITF_STMT \
     {\
-        { (RTS_VOID_FCTPTR)SysTargetSetNodeName, "SysTargetSetNodeName", 0, 0 },\
-          { (RTS_VOID_FCTPTR)SysTargetGetAPI, "SysTargetGetAPI", 0, 0 },\
-          { (RTS_VOID_FCTPTR)SysTargetCheckIdent, "SysTargetCheckIdent", 0, 0 },\
+        { (RTS_VOID_FCTPTR)SysTargetCheckIdent, "SysTargetCheckIdent", 0, 0 },\
           { (RTS_VOID_FCTPTR)SysTargetGetDeviceMask, "SysTargetGetDeviceMask", 0, 0 },\
           { (RTS_VOID_FCTPTR)SysTargetGetSignature, "SysTargetGetSignature", 0, 0 },\
           { (RTS_VOID_FCTPTR)SysTargetGetSerialNumber_Secure, "SysTargetGetSerialNumber_Secure", 0, 0 },\
@@ -451,13 +401,9 @@
 	ITF_CM     \
 	/*obsolete entry ITF_CMUtils*/      \
 	ITF_CmpSettings     \
-	ITF_CmpEventMgr     \
 	ITF_SysMem     \
 	ITF_SysTarget     \
 	ITF_SysCpuHandling      \
-    USE_EventCreate3      \
-    USE_EventDelete      \
-    USE_EventPost2      \
     USE_CMUtlwstrcpy      \
     USE_CMUtlwstrcat      \
     USE_CMUtlwstrlen      \
@@ -467,12 +413,8 @@
     USE_SettgGetWStringValue      \
     USE_SettgGetStringValue      \
     USE_SettgGetIntValue      \
-    USE_SysMemAllocData      \
-    USE_SysMemFreeData      \
     USE_SysMemSwap      \
-    USE_SysTargetGetConfiguredNodeName      \
-    USE_SettgRemoveKey      \
-    USE_SettgSetWStringValue     
+    USE_SysTargetGetConfiguredNodeName     
 #define USEIMPORT_STMT \
     /*lint -save --e{551} */ \
     static volatile PF_REGISTER_API s_pfCMRegisterAPI; \
@@ -490,13 +432,9 @@
 	ITF_CM    \
 	/*obsolete entry ITF_CMUtils*/     \
 	ITF_CmpSettings    \
-	ITF_CmpEventMgr    \
 	ITF_SysMem    \
 	ITF_SysTarget    \
 	ITF_SysCpuHandling     \
-    USE_EventCreate3      \
-    USE_EventDelete      \
-    USE_EventPost2      \
     USE_CMUtlwstrcpy      \
     USE_CMUtlwstrcat      \
     USE_CMUtlwstrlen      \
@@ -506,25 +444,17 @@
     USE_SettgGetWStringValue      \
     USE_SettgGetStringValue      \
     USE_SettgGetIntValue      \
-    USE_SysMemAllocData      \
-    USE_SysMemFreeData      \
     USE_SysMemSwap      \
-    USE_SysTargetGetConfiguredNodeName      \
-    USE_SettgRemoveKey      \
-    USE_SettgSetWStringValue     
+    USE_SysTargetGetConfiguredNodeName     
 #define USEEXTERN_STMT \
     EXT_CMUtlMemCpy  \
     EXT_LogAdd \
 	EXTITF_CM    \
 	/*obsolete entry EXTITF_CMUtils*/     \
 	EXTITF_CmpSettings    \
-	EXTITF_CmpEventMgr    \
 	EXTITF_SysMem    \
 	EXTITF_SysTarget    \
 	EXTITF_SysCpuHandling     \
-    EXT_EventCreate3  \
-    EXT_EventDelete  \
-    EXT_EventPost2  \
     EXT_CMUtlwstrcpy  \
     EXT_CMUtlwstrcat  \
     EXT_CMUtlwstrlen  \
@@ -534,12 +464,8 @@
     EXT_SettgGetWStringValue  \
     EXT_SettgGetStringValue  \
     EXT_SettgGetIntValue  \
-    EXT_SysMemAllocData  \
-    EXT_SysMemFreeData  \
     EXT_SysMemSwap  \
-    EXT_SysTargetGetConfiguredNodeName  \
-    EXT_SettgRemoveKey  \
-    EXT_SettgSetWStringValue 
+    EXT_SysTargetGetConfiguredNodeName 
 #ifndef COMPONENT_NAME
     #error COMPONENT_NAME is not defined. This prevents the component from being linked statically. Use SET_COMPONENT_NAME(<name_of_your_component>) to set the name of the component in your .m4 component description.
 #endif
@@ -613,8 +539,6 @@ class CSysTargetOEM : public ISysTarget
         virtual RTS_RESULT CDECL ISysTargetGetSignature(RTS_UI32 ulChallenge, RTS_UI32 *pulSignature);
         virtual RTS_RESULT CDECL ISysTargetGetDeviceMask(RTS_UI16 *pusDeviceMask);
         virtual RTS_RESULT CDECL ISysTargetCheckIdent(SysTargetIdent *pTargetIdentReq, SysTargetIdent *pTargetIdent);
-        virtual RTS_RESULT CDECL ISysTargetGetAPI(API_RESOLVE_INFO apiInfo, RTS_VOID_FCTPTR *ppfAPIFunction);
-        virtual RTS_RESULT CDECL ISysTargetSetNodeName(RTS_WCHAR *pwszName);
 
     public:
         RTS_HANDLE hSysTargetOEM;

@@ -1,1 +1,0 @@
-For documentation see: /Tutorials/CODESYSControlV3_CANMiniDriver_Guidelines.pdf

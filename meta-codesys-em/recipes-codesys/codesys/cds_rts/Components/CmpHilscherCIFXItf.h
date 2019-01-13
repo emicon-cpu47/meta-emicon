@@ -36,7 +36,7 @@
  *		- or per single card with:
  *			Device.n.DynamicFirmware=1
  *
- *		To specify the firmware matching to the corresponding fieldbus type there are 3 options:
+ *		To specify the firmware matching to the corresponding fieldbus type there are 2 options:
   *		1. Default firmware:
  *			You can specify the path to all firmware files:
  *				FirmwareFilePath=./HilscherCIFX/Firmware
@@ -49,22 +49,9 @@
  *				Device.n.FirmwareFile.1.1=EthernetIPMaster, ./HilscherCIFX/Firmware/cifxeim.nxf
  *			For the list of possible fieldbus type names see the defines CIFX_NAME_XXX.
  *
- *		3. You can specify a firmware matching to the corresponding fieldbus by its name as a key with a list of filenames and versions.
- *			The version is optained via EVT_CIFX_GETFIRMWARE/EVTPARAM_CIFX_GetFirmware. 
- *			In case the version is set in the event callback, it is matched with a list of elements, configured as:
- *				<MasterName>.n=<FirmwareName>, [<FirmwareVersion>]
- *				Example:
- *				ProfibusMaster.0=cifxdpm.nxf, 0x01020304
- *				ProfibusMaster.1=cifxdpm2.nxf, 0x01020306
- *				ProfinetMaster.0=cifXpnm.nxf, 0x01020304
- *				ProfinetMaster.1=cifXpnm2.nxf, 0x01020306
- *			For the list of possible fieldbus type names see the defines CIFX_NAME_XXX. The path is taken from the FirmwareFilePath configuiration.
-
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -85,7 +72,6 @@
 #include "CmpItf.h"
 #include "SysIntItf.h"
 #include "CmpIoDrvItf.h"
-#include "CMUtilsHashItf.h"
 
 #ifndef APIENTRY 
     #define APIENTRY 
@@ -124,7 +110,7 @@
 #endif
 
 #ifndef CIFX_QUEUE_MAX_PACKETS
-	#define CIFX_QUEUE_MAX_PACKETS	50
+	#define CIFX_QUEUE_MAX_PACKETS	100
 #endif
 
 #ifndef CIFX_QUEUE_FREE_TIMEOUT
@@ -504,33 +490,31 @@ typedef struct
 	CIFXHANDLE		hChannel;
 	RTS_IEC_UDINT	ulQueueMode;
 	CAA_HANDLE		hRxQueue;			/* Flat or FIFO */
-	CAA_HANDLE		hIndicationQueue;	/* only for QueueMode SrcId */
-	RTS_UI32		ulMsgCount;
-	RTS_UI32		ulAppId;
-	RTS_UI32		ulAppRegDone;
-	RTS_UI32		ulSessionId;
+	CAA_HANDLE		hIndicationQueue;	/*only for QueueMode SrcId*/
+	RTS_UI32	ulMsgCount;
+	RTS_UI32	ulAppId;
+	RTS_UI32	ulAppRegDone;
+	RTS_UI32	ulSessionId;
 	CAA_HANDLE		hMsgAppReg;
-	RTS_UI32		ulPacketTimeout;
+	RTS_UI32	ulPacketTimeout;
 	RTS_HANDLE		hSem;
 	CCBListEntry	tList;
-	RTS_UI32		ulLostMsgCounter;
-	RTS_UI32		ulRecvTimeout;
+	RTS_UI32	ulLostMsgCounter;
+	RTS_UI32	ulRecvTimeout;
 	RTS_HANDLE		hRecvTask;
 	CAA_HANDLE		hTxPool;
 	CAA_HANDLE		hTxQueue;
 	CAA_HANDLE		hRxPool;
-	CMUtlHashTable  hHashSendPackets;
 } CCB;
 
 typedef struct
 {
 	CCB*			pCCB;
-	RTS_UI32		ulSessionId;
-	RTS_UI32		ulSendErrorCounter;
-	RTS_UI32		ulSrcId;
-	RTS_UI32		ulTimestamp;
+	RTS_UI32	ulSessionId;
+	RTS_UI32	ulSendErrorCounter;
+	RTS_UI32	ulSrcId;
+	RTS_UI32	ulTimestamp;
 	CIFX_PACKET		tPkt;
-	CMUtlHashEntry	hashEntry;
 } PCB;
 
 /**
@@ -652,7 +636,6 @@ typedef struct
  * <element name="pszFile" type="OUT">Pointer to return firmware filename (including path, relative or absolute)</element>
  * <element name="iLen" type="IN">Max lenght of pszFile</element>
  * <element name="result" type="OUT">Error code of the operation</element>
- * <element name="firmwareVersion" type="OUT">Optional version to select from configured firmware files (see Dynamic configuration 3.3 above)</element>
  */
 typedef struct
 {
@@ -660,10 +643,9 @@ typedef struct
 	char *pszFile;
 	RTS_I32 iLen;
 	RTS_RESULT result;
-	RTS_UI32 firmwareVersion;
 } EVTPARAM_CIFX_GetFirmware;
 #define EVTPARAMID_CIFX_GetFirmware				0x0004
-#define EVTVERSION_CIFX_GetFirmware				0x0002
+#define EVTVERSION_CIFX_GetFirmware				0x0001
 
 /**
  * <category>Event parameter</category>
@@ -817,7 +799,6 @@ typedef struct
  * <category>Events</category>
  * <description>
  *	Event is sent to configure the correct firmware to the corresponding card.
- *	Optionally a firmware version can be returned to select from configured firmware files. See EVTPARAM_CIFX_GetFirmware.
  *  </description>
  * <param name="pEventParam" type="IN">EVTPARAM_CIFX_GetFirmware</param>
  */

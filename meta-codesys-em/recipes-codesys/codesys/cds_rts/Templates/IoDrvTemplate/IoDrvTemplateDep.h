@@ -9,14 +9,12 @@
  *  An example on how to implement an IO-driver in C.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 #ifndef _IODRVTEMPLATEDEP_H_
 #define _IODRVTEMPLATEDEP_H_
 
-#define COMPONENT_NAME "IoDrvTemplate" COMPONENT_NAME_POSTFIX
+#define COMPONENT_NAME "IoDrvTemplate"COMPONENT_NAME_POSTFIX
 #define COMPONENT_ID    ADDVENDORID(CMP_VENDORID, CMPID_IoDrvTemplate)
 #define COMPONENT_NAME_UNQUOTED IoDrvTemplate
 
@@ -25,9 +23,9 @@
 
 
 
-#define CMP_VERSION         UINT32_C(0x03050D00)
-#define CMP_VERSION_STRING "3.5.13.0"
-#define CMP_VERSION_RC      3,5,13,0
+#define CMP_VERSION         UINT32_C(0x03050A00)
+#define CMP_VERSION_STRING "3.5.10.0"
+#define CMP_VERSION_RC      3,5,10,0
 
 /* NOTE: REPLACE 0x0001 BY YOUR VENDORID */
 #define CMP_VENDORID       0x0001
@@ -130,9 +128,7 @@
 
 
 
-
      
-
 
 
 
@@ -454,7 +450,6 @@
           if (ERR_OK == importResult ) importResult = GET_EventCreate(0);\
           if (ERR_OK == importResult ) importResult = GET_IoDrvDelete(0);\
           if (ERR_OK == importResult ) importResult = GET_IoDrvCreate(0);\
-          if (ERR_OK == importResult ) importResult = GET_IoMgrWatchdogTrigger(0);\
           if (ERR_OK == importResult ) importResult = GET_IoMgrCopyOutputLE(0);\
           if (ERR_OK == importResult ) importResult = GET_IoMgrCopyInputLE(0);\
           if (ERR_OK == importResult ) importResult = GET_IoMgrConfigResetDiagnosis(0);\
@@ -603,7 +598,6 @@
     USE_IoMgrConfigResetDiagnosis      \
     USE_IoMgrCopyInputLE      \
     USE_IoMgrCopyOutputLE      \
-    USE_IoMgrWatchdogTrigger      \
     USE_IoDrvCreate      \
     USE_IoDrvDelete      \
     USE_EventCreate      \
@@ -671,7 +665,6 @@
     USE_IoMgrConfigResetDiagnosis      \
     USE_IoMgrCopyInputLE      \
     USE_IoMgrCopyOutputLE      \
-    USE_IoMgrWatchdogTrigger      \
     USE_IoDrvCreate      \
     USE_IoDrvDelete      \
     USE_EventCreate      \
@@ -728,7 +721,6 @@
     EXT_IoMgrConfigResetDiagnosis  \
     EXT_IoMgrCopyInputLE  \
     EXT_IoMgrCopyOutputLE  \
-    EXT_IoMgrWatchdogTrigger  \
     EXT_IoDrvCreate  \
     EXT_IoDrvDelete  \
     EXT_EventCreate  \

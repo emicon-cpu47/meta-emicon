@@ -4,9 +4,7 @@
  *	Interface of the garbage collector, that detects memory leaks and memory overwrite operations.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -25,20 +23,6 @@
 
 
 #include "CMUtilsItf.h"
-#include "CMUtilsHashItf.h"
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- *	Enable CheckBounds check in comm cycle hook
- *	this leads to additional load if components or applications allocate a lot of dynamic memory
- *  (or if there is a memory leak somewhere)
- * </description>
- */
-#define ENABLE_CYCLIC_MEMGC_CHECK							"EnableCyclicMemGcCheck"
-#define ENABLE_CYCLIC_MEMGC_CHECK_DEFAULT					0
-
 
 typedef struct GARBAGE_COLLECTORtag *PGARBAGE_COLLECTOR;
 
@@ -57,9 +41,6 @@ typedef struct GARBAGE_COLLECTORtag
 	PGARBAGE_COLLECTOR pprev;
 	PGARBAGE_COLLECTOR pnext;
 	RTS_SIZE ulSize;
-#ifndef CMUTILSHASH_NOTIMPLEMENTED
-    CMUtlHashEntry hashEntry;
-#endif
 	RTS_UI8 Mem;
 } GARBAGE_COLLECTOR;
 
@@ -134,62 +115,6 @@ typedef RTS_SIZE (CDECL * PFMEMGCGETSIZE) (RTS_SIZE ulSize);
 
 /**
  * <description>
- *	Routine to get total size of the currently allocated heap memory.
- * </description>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <result>Size of the memory in bytes that is currently allocated from the heap</result>
- */
-RTS_SIZE CDECL MemGCGetCurrentHeapSize(RTS_RESULT *pResult);
-typedef RTS_SIZE (CDECL * PFMEMGCGETCURRENTHEAPSIZE) (RTS_RESULT *pResult);
-#if defined(CMPMEMGC_NOTIMPLEMENTED) || defined(MEMGCGETCURRENTHEAPSIZE_NOTIMPLEMENTED)
-	#define USE_MemGCGetCurrentHeapSize
-	#define EXT_MemGCGetCurrentHeapSize
-	#define GET_MemGCGetCurrentHeapSize(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_MemGCGetCurrentHeapSize(p0)  (RTS_SIZE)ERR_NOTIMPLEMENTED
-	#define CHK_MemGCGetCurrentHeapSize  FALSE
-	#define EXP_MemGCGetCurrentHeapSize  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_MemGCGetCurrentHeapSize
-	#define EXT_MemGCGetCurrentHeapSize
-	#define GET_MemGCGetCurrentHeapSize(fl)  CAL_CMGETAPI( "MemGCGetCurrentHeapSize" ) 
-	#define CAL_MemGCGetCurrentHeapSize  MemGCGetCurrentHeapSize
-	#define CHK_MemGCGetCurrentHeapSize  TRUE
-	#define EXP_MemGCGetCurrentHeapSize  CAL_CMEXPAPI( "MemGCGetCurrentHeapSize" ) 
-#elif defined(MIXED_LINK) && !defined(CMPMEMGC_EXTERNAL)
-	#define USE_MemGCGetCurrentHeapSize
-	#define EXT_MemGCGetCurrentHeapSize
-	#define GET_MemGCGetCurrentHeapSize(fl)  CAL_CMGETAPI( "MemGCGetCurrentHeapSize" ) 
-	#define CAL_MemGCGetCurrentHeapSize  MemGCGetCurrentHeapSize
-	#define CHK_MemGCGetCurrentHeapSize  TRUE
-	#define EXP_MemGCGetCurrentHeapSize  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"MemGCGetCurrentHeapSize", (RTS_UINTPTR)MemGCGetCurrentHeapSize, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_CmpMemGCMemGCGetCurrentHeapSize
-	#define EXT_CmpMemGCMemGCGetCurrentHeapSize
-	#define GET_CmpMemGCMemGCGetCurrentHeapSize  ERR_OK
-	#define CAL_CmpMemGCMemGCGetCurrentHeapSize pICmpMemGC->IMemGCGetCurrentHeapSize
-	#define CHK_CmpMemGCMemGCGetCurrentHeapSize (pICmpMemGC != NULL)
-	#define EXP_CmpMemGCMemGCGetCurrentHeapSize  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_MemGCGetCurrentHeapSize
-	#define EXT_MemGCGetCurrentHeapSize
-	#define GET_MemGCGetCurrentHeapSize(fl)  CAL_CMGETAPI( "MemGCGetCurrentHeapSize" ) 
-	#define CAL_MemGCGetCurrentHeapSize pICmpMemGC->IMemGCGetCurrentHeapSize
-	#define CHK_MemGCGetCurrentHeapSize (pICmpMemGC != NULL)
-	#define EXP_MemGCGetCurrentHeapSize  CAL_CMEXPAPI( "MemGCGetCurrentHeapSize" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_MemGCGetCurrentHeapSize  PFMEMGCGETCURRENTHEAPSIZE pfMemGCGetCurrentHeapSize;
-	#define EXT_MemGCGetCurrentHeapSize  extern PFMEMGCGETCURRENTHEAPSIZE pfMemGCGetCurrentHeapSize;
-	#define GET_MemGCGetCurrentHeapSize(fl)  s_pfCMGetAPI2( "MemGCGetCurrentHeapSize", (RTS_VOID_FCTPTR *)&pfMemGCGetCurrentHeapSize, (fl), 0, 0)
-	#define CAL_MemGCGetCurrentHeapSize  pfMemGCGetCurrentHeapSize
-	#define CHK_MemGCGetCurrentHeapSize  (pfMemGCGetCurrentHeapSize != NULL)
-	#define EXP_MemGCGetCurrentHeapSize  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"MemGCGetCurrentHeapSize", (RTS_UINTPTR)MemGCGetCurrentHeapSize, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
  *	Routine to add a new heap memblock to the garbage collector.	
  * </description>
  * <param name="pszComponentName" type="IN">Component name, that allocates the memory</param>
@@ -252,7 +177,7 @@ typedef void * (CDECL * PFMEMGCADD) (char *pszComponentName, void *pMem, RTS_SIZ
  * </description>
  * <param name="pszComponentName" type="IN">Component name, that allocates the memory</param>
  * <param name="pMem" type="IN">Pointer to the memory data block</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
+ * <param name="ulSizeGc" type="IN">Size of the memory block including the garbage collection overhead (see result of MemGCGetSize)</param>
  * <result>Pointer to the memory block to free</result>
  */
 void * CDECL MemGCRemove(char *pszComponentName, void *pMem, RTS_RESULT *pResult);
@@ -537,7 +462,6 @@ typedef struct
 {
 	IBase_C *pBase;
 	PFMEMGCGETSIZE IMemGCGetSize;
- 	PFMEMGCGETCURRENTHEAPSIZE IMemGCGetCurrentHeapSize;
  	PFMEMGCADD IMemGCAdd;
  	PFMEMGCREMOVE IMemGCRemove;
  	PFMEMGCCHECKBOUNDSALL IMemGCCheckBoundsAll;
@@ -551,7 +475,6 @@ class ICmpMemGC : public IBase
 {
 	public:
 		virtual RTS_SIZE CDECL IMemGCGetSize(RTS_SIZE ulSize) =0;
-		virtual RTS_SIZE CDECL IMemGCGetCurrentHeapSize(RTS_RESULT *pResult) =0;
 		virtual void * CDECL IMemGCAdd(char *pszComponentName, void *pMem, RTS_SIZE ulSizeGc) =0;
 		virtual void * CDECL IMemGCRemove(char *pszComponentName, void *pMem, RTS_RESULT *pResult) =0;
 		virtual RTS_RESULT CDECL IMemGCCheckBoundsAll(void) =0;

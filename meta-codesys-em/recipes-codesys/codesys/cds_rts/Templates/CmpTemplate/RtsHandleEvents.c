@@ -1,22 +1,20 @@
-/**
- * <name>RtsDisableOperations.c</name>
- * <description> 
- *	Template module to handle events
- *
- *	- CH_INIT2: call CreateEvents() from your component hook function
- *	- CH_INIT3: call RegisterEventHandler() from your component hook function
- *	- CH_EXIT3: call UnregisterEventHandler() from your component hook function
- *	- CH_EXIT2: call DeleteEvents() from your component hook function
- * </description>
- *
- * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
- */
+/*************************************************************************************
+*
+*	Copyright:		© 3S - Smart Software Solutions GmbH, Kempten
+*	Program:		Runtime System for the CoDeSys Soft-Plc
+*	Module: 		Template module to handle events
+*	Version:
+*	Description:
+*		- CH_INIT2: call CreateEvents() from your component hook function
+*		- CH_INIT3: call RegisterEventHandler() from your component hook function
+*		- CH_EXIT3: call UnregisterEventHandler() from your component hook function
+*		- CH_EXIT2: call DeleteEvents() from your component hook function
+**************************************************************************************/
 
 #include "CmpStd.h"
 #include "CmpIecVarAccessItf.h"
 #include "CmpIoMgrItf.h"
 #include "CmpTemplateDep.h"
-#include "CmpChannelServerItf.h"
 
 #define EVTPARAMID_CmpTemplate		0x0001
 #define EVTVERSION_CmpTemplate		0x0001
@@ -49,7 +47,6 @@ static RTS_HANDLE s_hEventLogin = RTS_INVALID_HANDLE;
 static RTS_HANDLE s_hEventLogout = RTS_INVALID_HANDLE;
 static RTS_HANDLE s_hEventPrepareOnlineChange = RTS_INVALID_HANDLE;
 static RTS_HANDLE s_hEventOnlineChangeDone = RTS_INVALID_HANDLE;
-static RTS_HANDLE s_hEventOEMRegsiteredFunction = RTS_INVALID_HANDLE;
 
 static RTS_HANDLE s_hEventConfigStartDone = RTS_INVALID_HANDLE;
 static RTS_HANDLE s_hEventConfigPrepareStop = RTS_INVALID_HANDLE;
@@ -68,15 +65,6 @@ static RTS_HANDLE s_hEventSysFileClose = RTS_INVALID_HANDLE;
 
 static RTS_HANDLE s_hEventAllocArea = RTS_INVALID_HANDLE;
 
-static RTS_HANDLE s_hEventChSChannelOpened = RTS_INVALID_HANDLE;
-static RTS_HANDLE s_hEventChSChannelClosed = RTS_INVALID_HANDLE;
-
-static RTS_HANDLE s_hEventSupervisorStateChanged = RTS_INVALID_HANDLE;
-
-static RTS_HANDLE s_hEventUserMgrDatabaseChanged = RTS_INVALID_HANDLE;
-
-static RTS_HANDLE s_hEventLogAdd = RTS_INVALID_HANDLE;
-
 static void CDECL CBApp(EventParam *pEventParam);
 static void CDECL CBBreakpoints(EventParam *pEventParam);
 static void CDECL CBMonitoring(EventParam *pEventParam);
@@ -84,10 +72,6 @@ static void CDECL CBIecVarAccess(EventParam *pEventParam);
 static void CDECL CBIoMgr(EventParam *pEventParam);
 static void CDECL CBSysExcept(EventParam *pEventParam);
 static void CDECL CBSysFile(EventParam *pEventParam);
-static void CDECL CBChannelServer(EventParam *pEventParam);
-static void CDECL CBSupervisor(EventParam *pEventParam);
-static void CDECL CBUserMgr(EventParam *pEventParam);
-static void CDECL CBLogger(EventParam *pEventParam);
 
 static RTS_RESULT CDECL CreateEvents(void)
 {
@@ -142,7 +126,6 @@ static RTS_RESULT CDECL RegisterEventHandler(void)
 		s_hEventLogout = CAL_EventOpen(EVT_Logout, CMPID_CmpApp, NULL);
 		s_hEventPrepareOnlineChange = CAL_EventOpen(EVT_PrepareOnlineChange, CMPID_CmpApp, NULL);
 		s_hEventOnlineChangeDone = CAL_EventOpen(EVT_OnlineChangeDone, CMPID_CmpApp, NULL);
-		s_hEventOEMRegsiteredFunction = CAL_EventOpen(EVT_OEMRegisteredIecFunction, CMPID_CmpApp, NULL);
 	
 		s_hEventCodePatch = CAL_EventOpen(EVT_CmpAppBP_CodePatch, CMPID_CmpAppBP, NULL);
 
@@ -162,15 +145,6 @@ static RTS_RESULT CDECL RegisterEventHandler(void)
 		s_hEventSysFileClose = CAL_EventOpen(EVT_SysFileClose, CMPID_SysFile, NULL);
 
 		s_hEventAllocArea = CAL_EventOpen(EVT_AllocArea, CMPID_CmpApp, NULL);
-
-		s_hEventChSChannelOpened = CAL_EventOpen(EVT_ChSChannelOpened, CMPID_CmpChannelServer, NULL);
-		s_hEventChSChannelClosed = CAL_EventOpen(EVT_ChSChannelClosed, CMPID_CmpChannelServer, NULL);
-		
-		s_hEventSupervisorStateChanged = CAL_EventOpen(EVT_Supervisor_StateChanged, CMPID_CmpSupervisor, NULL);
-
-		s_hEventUserMgrDatabaseChanged = CAL_EventOpen(EVT_UserMgrDatabaseChanged, CMPID_CmpUserMgr, NULL);
-
-		s_hEventLogAdd = CAL_EventOpen(EVT_LogAdd, CMPID_CmpLog, NULL);
 	}
 	if (CHK_EventRegisterCallbackFunction)
 	{
@@ -202,8 +176,7 @@ static RTS_RESULT CDECL RegisterEventHandler(void)
 		CAL_EventRegisterCallbackFunction(s_hEventPrepareOnlineChange, CBApp, 0);
 		CAL_EventRegisterCallbackFunction(s_hEventOnlineChangeDone, CBApp, 0);
 		CAL_EventRegisterCallbackFunction(s_hEventAllocArea, CBApp, 0);
-		CAL_EventRegisterCallbackFunction(s_hEventOEMRegsiteredFunction, CBApp, 0);
-		
+
 		CAL_EventRegisterCallbackFunction(s_hEventCodePatch, CBBreakpoints, 0);
 		
 		CAL_EventRegisterCallbackFunction(s_hEventPrepareWriteVariable, CBMonitoring, 0);
@@ -226,19 +199,6 @@ static RTS_RESULT CDECL RegisterEventHandler(void)
 		/* SysFile events */
 		CAL_EventRegisterCallbackFunction(s_hEventSysFileOpen, CBSysFile, 0);
 		CAL_EventRegisterCallbackFunction(s_hEventSysFileClose, CBSysFile, 0);
-
-		/* ChannelServer events */
-		CAL_EventRegisterCallbackFunction(s_hEventChSChannelOpened, CBChannelServer, 0);
-		CAL_EventRegisterCallbackFunction(s_hEventChSChannelClosed, CBChannelServer, 0);
-
-		/* CmpSupervisor event */
-		CAL_EventRegisterCallbackFunction(s_hEventSupervisorStateChanged, CBSupervisor, 0);
-
-		/* CmpUserMgr event */
-		CAL_EventRegisterCallbackFunction(s_hEventUserMgrDatabaseChanged, CBUserMgr, 0);
-
-		/* CmpLog event */
-		CAL_EventRegisterCallbackFunction(s_hEventLogAdd, CBLogger, 0);
 	}
 	/* Register callback Interface */
 	pIBase = (IBase *)CreateInstance(CLASSID_CCmpTemplate, NULL);
@@ -283,8 +243,7 @@ static RTS_RESULT CDECL UnregisterEventHandler(void)
 		CAL_EventUnregisterCallbackFunction(s_hEventPrepareOnlineChange, CBApp);
 		CAL_EventUnregisterCallbackFunction(s_hEventOnlineChangeDone, CBApp);
 		CAL_EventUnregisterCallbackFunction(s_hEventAllocArea, CBApp);
-		CAL_EventUnregisterCallbackFunction(s_hEventOEMRegsiteredFunction, CBApp);
-		
+
 		CAL_EventUnregisterCallbackFunction(s_hEventCodePatch, CBBreakpoints);
 		
 		CAL_EventUnregisterCallbackFunction(s_hEventPrepareWriteVariable, CBMonitoring);
@@ -303,15 +262,6 @@ static RTS_RESULT CDECL UnregisterEventHandler(void)
 
 		CAL_EventUnregisterCallbackFunction(s_hEventSysFileOpen, CBSysFile);
 		CAL_EventUnregisterCallbackFunction(s_hEventSysFileClose, CBSysFile);
-
-		CAL_EventUnregisterCallbackFunction(s_hEventChSChannelOpened, CBChannelServer);
-		CAL_EventUnregisterCallbackFunction(s_hEventChSChannelClosed, CBChannelServer);
-
-		CAL_EventUnregisterCallbackFunction(s_hEventSupervisorStateChanged, CBSupervisor);
-
-		CAL_EventUnregisterCallbackFunction(s_hEventUserMgrDatabaseChanged, CBUserMgr);
-
-		CAL_EventUnregisterCallbackFunction(s_hEventLogAdd, CBLogger);
 	}
 	/* Unregister callback Interface */
 	pIBase = (IBase *)CreateInstance(CLASSID_CCmpTemplate, NULL);
@@ -351,7 +301,6 @@ static RTS_RESULT CDECL UnregisterEventHandler(void)
 		CAL_EventClose(s_hEventLogout);
 		CAL_EventClose(s_hEventPrepareOnlineChange);
 		CAL_EventClose(s_hEventOnlineChangeDone);
-		CAL_EventClose(s_hEventOEMRegsiteredFunction);
 
 		CAL_EventClose(s_hEventCodePatch);
 
@@ -366,16 +315,6 @@ static RTS_RESULT CDECL UnregisterEventHandler(void)
 		CAL_EventClose(s_hEventConfigStopDone);
 
 		CAL_EventClose(s_hEventSysExcept);
-
-		CAL_EventClose(s_hEventSysFileOpen);
-		CAL_EventClose(s_hEventSysFileClose);
-
-		CAL_EventClose(s_hEventChSChannelOpened);
-		CAL_EventClose(s_hEventChSChannelClosed);
-
-		CAL_EventClose(s_hEventSupervisorStateChanged);
-
-		CAL_EventClose(s_hEventUserMgrDatabaseChanged);
 	}
 	return ERR_OK;
 }
@@ -389,12 +328,6 @@ static void CDECL CBApp(EventParam *pEventParam)
 {
 	switch (pEventParam->EventId)
 	{	
-		case EVT_OEMRegisteredIecFunction:
-		{
-			EVTPARAM_CmpApp_OEMRegisteredIecFunction *pParam = (EVTPARAM_CmpApp_OEMRegisteredIecFunction *)pEventParam->pParameter;
-			CAL_LogAdd(STD_LOGGER, COMPONENT_ID, LOG_INFO, ERR_OK, 0, "*** EVT_OEMRegisteredIecFunction received: App=%s, FctName=%s ***", pParam->pApp->szName, pParam->pszName);
-			break;
-		}
 		case EVT_PrepareOnlineChange:
 		{
 			if (pEventParam->usVersion >= EVTVERSION_CmpApp)
@@ -647,100 +580,6 @@ static void CDECL CBApp(EventParam *pEventParam)
 			}
 			break;
 		}
-		/**
-		* Custom Download Service
-		* =======================
-		* a) Introduction
-		* b) Codesnippet for a CODESYS plugin
-		* c) Eventhandlig example of CmpTemplate
-		* 
-		* Introduction
-		* ------------
-		* With the Custom Download Service it is possible to transfer custom data to the PLC before the application download is finished. The data may be considered as part of the application, as the last POU so to say.
-		* Unlike the application related external files in the device tree this transfer is much earlier, prior to any after-download events.
-		* 
-		* There are two requirements for this to achive: a CODESYS plugin which provides the data and an event-handler in the RTS which consumes the data.
-		* 
-		* NOTE: With V3.5 SP11 this Custom Download Service is now secured with a savepoint when the download context is passed via event to the custom event handler to make sure the download can be finished successfully.
-		* 
-		* Codesnippet for a CODESYS plugin
-		* --------------------------------
-		* This code example transfers 200k Bytes in total within ten 20k-blocks (chunks) to the PLC with subsequent tags, assuming the transfer buffer is about 95k in size (default). This code can be included in any plugin.
-		* 
-		* .. code-block:: csharp
-		* 
-		* 	[TypeGuid("{736290BC-8A9C-49fe-9BDB-2553263E9740}")]
-		* 	public class CustomDownloadTagProvider : ICustomDownloadTagProvider
-		* 	{
-		* 		private const int ChunkSize = 20000;
-		* 		private byte[] _bytes;
-		* 		private int _index;
-		* 		private int _tagId;
-		* 
-		* 		public CustomDownloadTagProvider()
-		* 		{
-		* 			_bytes = Enumerable.Range(0, 200000).Select(v => (byte)(v / ChunkSize + 1)).ToArray();
-		* 		}
-		* 
-		* 		#region ICustomDownloadTagProvider Members
-		* 
-		* 		public ushort VendorSpecificTagID
-		* 		{
-		* 			get { return 0x074B; }
-		* 		}
-		* 
-		* 		public bool ExistingDownloadTagsRequested
-		* 		{
-		* 			// Return TRUE if the OEM wants to double-check or record the written data
-		* 			get { return false; }
-		* 		}
-		* 
-		* 		public void GetCustomDownloadTag(IComplexNodeWriter complexNodeForAddingCustomTag, int nLastSuccessfulTagIndex, Guid ApplicationGuid, bool bIsOnlineChange, out bool bFinished)
-		* 		{
-		* 			Debug.Print("\t[TRY TO ADD TAG] Available Bytes:{0} Last successful tag index:{1}", complexNodeForAddingCustomTag.AvailableBytes, nLastSuccessfulTagIndex);
-		* 
-		* 			if (_index < _bytes.Length)
-		* 			{
-		* 				var remainBytes = this._bytes.Length - this._index;
-		* 				var length = Math.Min(ChunkSize, remainBytes);
-		* 				var dataTag = complexNodeForAddingCustomTag.AddDataTag(this._tagId, ContentAlignment.Align40);
-		* 				dataTag.Write(this._bytes, this._index, length);
-		* 				dataTag.AlignWithFillByte(0);
-		* 				this._index += length;
-		* 				Debug.Print("\t[SUCCESS ADD TAG] TAG ID:{0} SENT BYTES:{1} REMAINING BYTES:{2}", this._tagId, length, _bytes.Length - _index);
-		* 
-		* 				_tagId++;
-		* 			}
-		* 
-		* 			bFinished = this._index >= this._bytes.Length;
-		* 		}
-		* 
-		* 		public void SetExistingDownloadTags(BinaryWriter ExistingDownloadTags)
-		* 		{
-		* 			// Normally nothing to do here
-		* 			
-		* 			// Only of interest if the OEM wants to double-check or record the written data, e.g.
-		* 			// Stream stream = new MemoryStream();
-		* 			// stream = ExistingDownloadTags.BaseStream;
-		* 		}
-		* 
-		* 		public void SetDownloadResult(ushort usResult)
-		* 		{
-		* 			_tagId = 0;
-		* 			_index = 0;
-		* 		}
-		* 
-		* 		#endregion
-		* 	}
-		* 
-		* 
-		* Eventhandlig example of CmpTemplate
-		* -----------------------------------
-		* This code consumes the vendor specific tags and its data in the download stream until either the transfer buffer ends or a next toplevel tag is found which is not for this vendor.
-		* 
-		* NOTE: The CMP_VENDORID must be correctly set. To correspond with the code snippet above it is 0x074B.
-		* 
-		*/
 		case EVT_OEMDownloadServiceTag:
 		{
 			if (pEventParam->usParamId == EVTPARAMID_CmpApp_OEMServiceTag)
@@ -759,12 +598,8 @@ static void CDECL CBApp(EventParam *pEventParam)
 					{
 						if (ulToplevelTag == 0xFFFFFFFF)
 							ulToplevelTag = pParam->ulToplevelTag;
-						CAL_LogAdd(STD_LOGGER, COMPONENT_ID, LOG_INFO, ERR_OK, 0, "*** EVT_OEMDownloadServiceTag received: bDownload=%d, ToplevelTag=0x%X, Tag=0x%X ***", 
-							(pParam->pHeaderTag->usService == SRV_DOWNLOAD), ulToplevelTag, ulTag);
+						CAL_LogAdd(STD_LOGGER, COMPONENT_ID, LOG_INFO, ERR_OK, 0, "*** EVT_OEMDownloadServiceTag received: bDownload=%d, ToplevelTag=0x%X, Tag=0x%X ***", (pParam->pHeaderTag->usService == SRV_DOWNLOAD), ulToplevelTag, ulTag);
 						pContent = CAL_BTagReaderGetNextTag(pParam->pReader, &ulToplevelTag, &ulTag, &ulSize, &Result);
-						
-						if (((ulToplevelTag >> 16) & 0xFFFF) != CMP_VENDORID)
-							break;
 					}
 					sResult = ERR_OK;
 				}
@@ -1014,36 +849,32 @@ static void CDECL CBSysExcept(EventParam *pEventParam)
 		{	
 			case EVT_EXCPT_GenerateException2:
 			{
-				RTS_RESULT result;
 				APPLICATION *pApp;
-				RTS_HANDLE  hSysTask;
+				SYS_TASK_INFO *pSysInfo;
 				RTS_HANDLE hIecTask;
 				EVTPARAM_SysExcept *pParam = (EVTPARAM_SysExcept *)pEventParam->pParameter;
 				CAL_LogAdd(STD_LOGGER, COMPONENT_ID, LOG_INFO, ERR_OK, 0, "*** EVT_EXCPT_GenerateException2 received ***");
 
-				if (CHK_SysTaskGetHandleByOSHandle)
+				pSysInfo = CAL_SysTaskGetByOSHandle(pParam->uiTaskOSHandle);
+				if (pSysInfo != NULL)
 				{
-					hSysTask = CAL_SysTaskGetHandleByOSHandle(pParam->uiTaskOSHandle, &result);
-					if (hSysTask != RTS_INVALID_HANDLE && result == ERR_OK)
+					pApp = CAL_AppGetFirstApp(NULL);
+					while (pApp != NULL)
 					{
-						pApp = CAL_AppGetFirstApp(NULL);
-						while (pApp != NULL)
+						hIecTask = CAL_IecTaskGetFirst2(pApp, NULL);
+						while (hIecTask != RTS_INVALID_HANDLE)
 						{
-							hIecTask = CAL_IecTaskGetFirst2(pApp, NULL);
-							while (hIecTask != RTS_INVALID_HANDLE)
+							Task_Desc *pTaskDesc = CAL_IecTaskGetDesc(hIecTask);
+							if (pTaskDesc != NULL)
 							{
-								Task_Desc *pTaskDesc = CAL_IecTaskGetDesc(hIecTask);
-								if (pTaskDesc != NULL)
+								if (strcmp(pTaskDesc->pInfo->pszName, CAL_SysTaskGetName((RTS_HANDLE)pSysInfo, NULL)) == 0 && IsInIoUpdate(pTaskDesc))
 								{
-									if (strcmp(pTaskDesc->pInfo->pszName, CAL_SysTaskGetName(hSysTask, NULL)) == 0 && IsInIoUpdate(pTaskDesc))
-									{
-										/* An IEC-Task generates an exception in IO-Update! This is a serious error! */
-									}
+									/* An IEC-Task generates an exception in IO-Update! This is a serious error! */
 								}
-								hIecTask = CAL_IecTaskGetNext2(pApp, hIecTask, NULL);
 							}
-							pApp = CAL_AppGetNextApp(pApp, NULL);
+							hIecTask = CAL_IecTaskGetNext2(pApp, hIecTask, NULL);
 						}
+						pApp = CAL_AppGetNextApp(pApp, NULL);
 					}
 				}
 				break;
@@ -1085,75 +916,4 @@ static void CDECL CBSysFile(EventParam *pEventParam)
 	}
 }
 
-static void CDECL CBChannelServer(EventParam *pEventParam)
-{
-	switch (pEventParam->EventId)
-	{
-		case EVT_ChSChannelOpened:
-		{
-			EVTPARAM_CmpChS_ChannelOpened *pParam = (EVTPARAM_CmpChS_ChannelOpened *)pEventParam->pParameter;
-			CAL_LogAdd(STD_LOGGER, COMPONENT_ID, LOG_INFO, ERR_OK, 0, "*** EVT_ChSChannelOpened received. ulChannelHandle=0x%08x", pParam->ulChannelHandle);
-			break;
-		}
-		case EVT_ChSChannelClosed:
-		{
-			CAL_LogAdd(STD_LOGGER, COMPONENT_ID, LOG_INFO, ERR_OK, 0, "*** EVT_ChSChannelClosed received.");
-			break;
-		}
-		default:
-			break;
-	}
-}
 
-static void CDECL CBSupervisor(EventParam *pEventParam)
-{
-	switch (pEventParam->EventId)
-	{
-		case EVT_Supervisor_StateChanged:
-		{
-			EVTPARAM_CmpSupervisor_StateChanged *pParam = (EVTPARAM_CmpSupervisor_StateChanged *)pEventParam->pParameter;
-			CAL_LogAdd(STD_LOGGER, COMPONENT_ID, LOG_INFO, ERR_OK, 0, "*** EVT_Supervisor_StateChanged received: RegOperations=%ld, Operations=%ld, FailedOperations=%ld", pParam->nNumOfRegisteredOperations, pParam->nNumOfOperations, pParam->nNumOfFailedOperations);
-			break;
-		}
-		default:
-			break;
-	}
-}
-
-static void CDECL CBUserMgr(EventParam *pEventParam)
-{
-	switch (pEventParam->EventId)
-	{
-		case EVT_UserMgrDatabaseChanged:
-		{
-			EVTPARAM_CmpUserMgrDatabaseChanged *pParam = (EVTPARAM_CmpUserMgrDatabaseChanged *)pEventParam->pParameter;
-			CAL_LogAdd(STD_LOGGER, COMPONENT_ID, LOG_INFO, ERR_OK, 0, "*** EVT_UserMgrDatabaseChanged received: UserManagementChanged=%d, RightsManagementChanged=%d", pParam->bUserManagementChanged, pParam->bRightsManagementChanged);
-			break;
-		}
-		default:
-			break;
-	}
-}
-
-static void CDECL CBLogger(EventParam *pEventParam)
-{
-	switch (pEventParam->EventId)
-	{
-		case EVT_LogAdd:
-		{
-			/* In this event you get all log messages which are created after CH_INIT2!
-			   This implementation is only for testing.
-			   Don't use the logger here to avoid endless recursions!
-			 */
-#if 0
-			char szInfo[255];
-			EVTPARAM_CmpLogAdd *pParam = (EVTPARAM_CmpLogAdd *)pEventParam->pParameter;
-			CAL_CMUtlvsnprintf(szInfo, sizeof(szInfo), pParam->pszInfo, pParam->pargList);
-			printf("*** EVT_LogAdd received: CmpId=%ld, iClassID=%ld, iErrorID=%ld, iInfoID=%ld, pszInfo=%s\n", pParam->CmpId, pParam->iClassID, pParam->iErrorID, pParam->iInfoID, szInfo);
-#endif
-			break;
-		}
-		default:
-			break;
-	}
-}

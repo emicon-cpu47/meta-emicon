@@ -21,9 +21,7 @@
  *	</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -59,11 +57,6 @@ RTS_RESULT CDECL SysSemCountOSHookFunction(RTS_UI32 ulHook, RTS_UINTPTR ulParam1
  * <description>
  *	Create a new counting semaphore object 
  * </description>
- * <param name="ui32InitialValue" type="IN">Initial semaphore value. Value is counted down by each SysSemCountEnter() call and blocks, if internal counter is 0!
- *	At each SysSemCountLeave() call, the counter is counting up. So the initial value is the number of critical sections, which can be entered at the same time!
- *  NOTE:
- *	A SysSemCount semaphore is typically not inversion safe and is not thread local (multiple eneter in one task blocks the semaphore, if internal counter reaches 0)!
- * </param>
  * <param name="pResult" type="OUT">
  * One of:
  * ERR_OK: The semaphore was created.
@@ -161,14 +154,14 @@ typedef RTS_RESULT (CDECL * PFSYSSEMCOUNTDELETE) (RTS_HANDLE hSemaphore);
 	#define USE_SysSemCountSysSemCountDelete
 	#define EXT_SysSemCountSysSemCountDelete
 	#define GET_SysSemCountSysSemCountDelete  ERR_OK
-	#define CAL_SysSemCountSysSemCountDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysSemCount*)p0)->ISysSemCountDelete())
+	#define CAL_SysSemCountSysSemCountDelete(p0) ((ISysSemCount*)p0)->ISysSemCountDelete()
 	#define CHK_SysSemCountSysSemCountDelete  TRUE
 	#define EXP_SysSemCountSysSemCountDelete  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysSemCountDelete
 	#define EXT_SysSemCountDelete
 	#define GET_SysSemCountDelete(fl)  CAL_CMGETAPI( "SysSemCountDelete" ) 
-	#define CAL_SysSemCountDelete(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysSemCount*)p0)->ISysSemCountDelete())
+	#define CAL_SysSemCountDelete(p0) ((ISysSemCount*)p0)->ISysSemCountDelete()
 	#define CHK_SysSemCountDelete  TRUE
 	#define EXP_SysSemCountDelete  CAL_CMEXPAPI( "SysSemCountDelete" ) 
 #else /* DYNAMIC_LINK */
@@ -198,7 +191,7 @@ typedef RTS_RESULT (CDECL * PFSYSSEMCOUNTDELETE) (RTS_HANDLE hSemaphore);
  * <result>e
  * One of:
  * - ERR_OK: The semaphore was enterd.
- * - ERR_FAILED: The semaphore couldn't be entered.
+ * - ERR_FAILED: The semaphore couldn't be enterd.
  * - ERR_TIMEOUT: The given timeout expired.
  * - ERR_INVALID_HANDLE: The given semaphore isn't a valid semaphore handle.
  * - ERR_PARAMETER: Error within the given parameters.

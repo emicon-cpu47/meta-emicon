@@ -206,8 +206,6 @@ Macros
 
 - #define :ref:`SOCKET_IPPROTO_ND <group___sys_socket_itf___socketprotocols_1gaaffc49d5b07ac8286287ffb6c741841c>` 77		/* UNOFFICIAL net disk proto */
 
-- #define :ref:`SOCKET_IPPROTO_TLS <group___sys_socket_itf___socketprotocols_1gad46162dcb9dcf057be67bd4427d784f8>` 254		/* UNOFFICIAL TCP / TLS protocol */
-
 - #define :ref:`SOCKET_IPPROTO_RAW <group___sys_socket_itf___socketprotocols_1gada197409b41d2f68a261d05462d38187>` 255		/* raw IP packet */
 
 - #define :ref:`SOCKET_IPPROTO_MAX <group___sys_socket_itf___socketprotocols_1ga7bb02cd3eb6c92e7cd786390361d040a>` 256
@@ -251,8 +249,6 @@ Macros
 - #define :ref:`SOCKET_SO_TYPE <group___sys_socket_itf___socketoptions_1ga5f92b5db6137482c64bee7c26063f267>` 0x1008		/* get socket type */
 
 - #define :ref:`SOCKET_SO_PROTOTYPE <group___sys_socket_itf___socketoptions_1gad7116f81233bc37fdd32bcdd6e942d46>` 0x1009		/* get/set protocol type */
-
-- #define :ref:`SOCKET_SO_HOSTNAME <group___sys_socket_itf___socketoptions_1gabce31cf4970098583317a6c2bc45f0d6>` 0x2001		/* get/set the hostname for TLS connections. Needed for SNI support */
 
 - #define :ref:`SOCKET_TCP_NODELAY <group___sys_socket_itf___socket_t_c_poptions_1ga50e904b0adcc6c319bc93af43aa172ee>` 0x0001		/* don't delay send to coalesce packets */
 
@@ -388,7 +384,7 @@ Macros
 
 - #define :ref:`SYSSOCKETKEY_WSTRING_NAME_UNICODE <group___sys_socket_itf___settings_1ga7c2bd56b2fa2f237dc0cef91fc413cb1>` "NameUnicode"
 
-- #define :ref:`SYSSOCKETKEY_STRING_NAME <group___sys_socket_itf___settings_1gaf70423df6d051558ba0cc45d4b14ebc9>` "Name"
+- #define :ref:`SYSSOCKETKEY_WSTRING_NAME <group___sys_socket_itf___settings_1ga48e5a975f8e73de1deae2b9ef4b28bdb>` "Name"
 
 - #define :ref:`SYSSOCKETKEY_INT_ENABLE_SETIPANDMASK <group___sys_socket_itf___settings_1ga820af6f0e30e50b47b6bd901e1862fa8>` "EnableSetIpAndMask"
 
@@ -412,7 +408,7 @@ Macros
 
 - #define :ref:`SOCKET_MTU_SIZE <group___sys_socket_itf___staticdefines_1ga1f987d80c8ae62020f55e8da16c3bd52>` 1500
 
-- #define :ref:`SOCKET_BUFFER_SIZE <group___sys_socket_itf___staticdefines_1ga39bd9346967d7f7bad6f917eb4f0fbbd>` ( :ref:`SOCKET_MTU_SIZE <group___sys_socket_itf___staticdefines_1ga1f987d80c8ae62020f55e8da16c3bd52>` *3)
+- #define :ref:`SOCKET_BUFFER_SIZE <group___sys_socket_itf___staticdefines_1ga39bd9346967d7f7bad6f917eb4f0fbbd>` (:ref:`SOCKET_MTU_SIZE <group___sys_socket_itf___staticdefines_1ga1f987d80c8ae62020f55e8da16c3bd52>` *3)
 
 - #define :ref:`SYSSOCKET_NUM_OF_STATIC_SOCKETS <group___sys_socket_itf___staticdefines_1ga2c42fb0e5e90f6ed1b6854a703a4f8cf>` 1
 
@@ -426,11 +422,9 @@ Macros
 
 - #define :ref:`EVTVERSION_SysSocket_SetIpAndMask <group___sys_socket_itf___eventparameter_1ga601d43337a26bd5cf678128c68605a3f>` 0x0001
 
-- #define :ref:`EVT_SysSocket_BeforeSetIpAndMask <group___sys_socket_itf___events_1gaad79aa95a240e7e622ff4c3736ab0908>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
+- #define :ref:`EVT_SysSocket_BeforeSetIpAndMask <group___sys_socket_itf___events_1gaad79aa95a240e7e622ff4c3736ab0908>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 1)
 
-- #define :ref:`EVT_SysSocket_AfterSetIpAndMask <group___sys_socket_itf___events_1gadcbb320f2007bf523d645b80447afee2>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` ( :ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
-
-- #define :ref:`SOCK_IFLAG_AF_INETFOUND <group___sys_socket_itf___internalflagsforadaptermanagement_1ga08cf3718e0f3ea11f7bb96639ef919cd>` 0x00000001	/* Adapter information for AF_INET already found - to be used internally in SysSocketOS implementation */
+- #define :ref:`EVT_SysSocket_AfterSetIpAndMask <group___sys_socket_itf___events_1gadcbb320f2007bf523d645b80447afee2>` :ref:`MAKE_EVENTID <group___cmp_event_mgr_itf___convertmacro_1ga8f45ad6798a634d4e00140c12039007e>` (:ref:`EVTCLASS_INFO <group___cmp_event_mgr_itf___eventclasses_1ga711863810010aec40693ca7c4643a025>` , 2)
 
 - #define :ref:`SOCK_IFLAG_IN_PROGRESS <group___sys_socket_itf___internalflagsforadaptermanagement_1gad232211ba87034a4fbd14072d186363b>` 0x00000002	/* Adapter information is currently checked for update - to be used internally in SysSocketOS implementation */
 
@@ -729,7 +723,7 @@ Functions
 Detailed Description
 --------------------
 
-Definition in file C:/Jenkins/workspace/3.5.13.x/BUILD_V3.5.13.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysSocketItf.h
+Definition in file C:/Jenkins/workspace/BUILD_V3.5.10.x_RTS_Create_Docu/CodesysSpV3/Tools/GenerateDocumentation/Doxygen/temp/SysSocketItf.h
 
  
 .. last line of file.rst template

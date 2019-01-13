@@ -17,8 +17,6 @@ Modules
 
 - :ref:`Platform defines <group___sys_cpu_handling_itf___platformdefines>`
 
-- :ref:`Register Offsets <group___sys_cpu_handling_itf___register_offsets>`
-
 - :ref:`Settings <group___sys_cpu_handling_itf___settings>`
 
 - :ref:`Static defines <group___sys_cpu_handling_itf___staticdefines>`
@@ -27,10 +25,6 @@ Data Structures
 ---------------
 
 - struct :ref:`tagsyscpuatomicadd_struct <structtagsyscpuatomicadd__struct>`
-
-- struct :ref:`tagsyscpuatomicadd64_struct <structtagsyscpuatomicadd64__struct>`
-
-- struct :ref:`tagsyscpuatomiccompareandswap_struct <structtagsyscpuatomiccompareandswap__struct>`
 
 - struct :ref:`tagsyscpucalliecfuncwithparams_struct <structtagsyscpucalliecfuncwithparams__struct>`
 
@@ -54,10 +48,6 @@ Typedefs
 
 - typedef struct :ref:`tagsyscpuatomicadd_struct <structtagsyscpuatomicadd__struct>` :ref:`syscpuatomicadd_struct <group___sys_cpu_handling_itf_1ga50aabc20d5e6ebeb33501c4c2a08176a>`
 
-- typedef struct :ref:`tagsyscpuatomicadd64_struct <structtagsyscpuatomicadd64__struct>` :ref:`syscpuatomicadd64_struct <group___sys_cpu_handling_itf_1ga2d5fc38c2d2b1686471aa0b2777465f7>`
-
-- typedef struct :ref:`tagsyscpuatomiccompareandswap_struct <structtagsyscpuatomiccompareandswap__struct>` :ref:`syscpuatomiccompareandswap_struct <group___sys_cpu_handling_itf_1ga514f459b5057ef79692f596e01b87271>`
-
 - typedef struct :ref:`tagsyscpucalliecfuncwithparams_struct <structtagsyscpucalliecfuncwithparams__struct>` :ref:`syscpucalliecfuncwithparams_struct <group___sys_cpu_handling_itf_1ga9ad4c2d68fbe821e17fc3e1ddddc92d7>`
 
 - typedef struct :ref:`tagsyscputestandreset_struct <structtagsyscputestandreset__struct>` :ref:`syscputestandreset_struct <group___sys_cpu_handling_itf_1ga4ce7f1fe46dbd728cef005e0d1ea2e07>`
@@ -72,10 +62,6 @@ Functions
 ---------
 
 - void :ref:`syscpuatomicadd <group___sys_cpu_handling_itf_1ga8c261020d58afb5468eb75cd51370829>` (:ref:`syscpuatomicadd_struct <group___sys_cpu_handling_itf_1ga50aabc20d5e6ebeb33501c4c2a08176a>` * p)
-
-- void :ref:`syscpuatomicadd64 <group___sys_cpu_handling_itf_1gaee858b810cf1482f1a5ba709f0774e72>` (:ref:`syscpuatomicadd64_struct <group___sys_cpu_handling_itf_1ga2d5fc38c2d2b1686471aa0b2777465f7>` * p)
-
-- void :ref:`syscpuatomiccompareandswap <group___sys_cpu_handling_itf_1gaacc60cea73b09061bc6579895cab7f3b>` (:ref:`syscpuatomiccompareandswap_struct <group___sys_cpu_handling_itf_1ga514f459b5057ef79692f596e01b87271>` * p)
 
 - void :ref:`syscpucalliecfuncwithparams <group___sys_cpu_handling_itf_1ga342ad004d7518950bad3f3b11a7b9bc0>` (:ref:`syscpucalliecfuncwithparams_struct <group___sys_cpu_handling_itf_1ga9ad4c2d68fbe821e17fc3e1ddddc92d7>` * p)
 
@@ -92,8 +78,6 @@ Functions
 - int :ref:`SysCpuFlushInstructionCache <group___sys_cpu_handling_itf_1gad9c708fa59e4da7c362a2bd305dee8bc>` (void * pBaseAddress, unsigned long ulSize)
 
 - RTS_RESULT :ref:`SysCpuCallIecFuncWithParams <group___sys_cpu_handling_itf_1ga008f25292ebc98e6882d51ebd6303c14>` (RTS_VOID_FCTPTR pfIECFunc, void * pParam, int iSize)
-
-- RTS_RESULT :ref:`SysCpuSetRegisterValue <group___sys_cpu_handling_itf_1gab93592451daf8f547df9e5ff298104a2>` (RTS_UINTPTR * pRegBuff, RTS_I32 nRegisterNumber, RTS_UINTPTR newValue)
 
 - void :ref:`syscpudebughandler <group___sys_cpu_handling_itf_1gaf578b1b3a5575decb892beb9ce698a90>` (void)
 
@@ -121,22 +105,6 @@ Functions
 
 - RTS_I32 :ref:`SysCpuAtomicAdd <group___sys_cpu_handling_itf_1gaa546c6642b797434c619a165d0cd3714>` (RTS_I32 * piValue, RTS_I32 nSum, RTS_RESULT * pResult)
 
-- RTS_I64 :ref:`SysCpuAtomicAdd64 <group___sys_cpu_handling_itf_1ga76fae609a3a3212e3ba964a7f563a1c1>` (RTS_I64 * pi64Value, RTS_I64 nSum, RTS_RESULT * pResult)
-
-- RTS_RESULT :ref:`SysCpuAtomicCompareAndSwap <group___sys_cpu_handling_itf_1gab1318c09a385367612ec8efbae08ed22>` (void * pAddress, void * pSwapValue, void * pCompareValue, RTS_UI8 valueSize)
-
-- RTS_I64 :ref:`SysCpuReadInt64 <group___sys_cpu_handling_itf_1ga61ac7c09ad81724a97709944a601dc9f>` (RTS_I64 * pSrc, RTS_RESULT * pResult)
-
-- RTS_RESULT :ref:`SysCpuWriteInt64 <group___sys_cpu_handling_itf_1gadcdac72472ff6647d7649236eb71de26>` (RTS_I64 * pDest, RTS_I64 i64Value)
-
-- RTS_REAL64 :ref:`SysCpuReadReal64 <group___sys_cpu_handling_itf_1ga385c32805057dd999ad5a02452b1f2b2>` (RTS_REAL64 * pSrc, RTS_RESULT * pResult)
-
-- RTS_RESULT :ref:`SysCpuWriteReal64 <group___sys_cpu_handling_itf_1gaedab8a704ce10c7088ac852a99c2905d>` (RTS_REAL64 * pDest, RTS_REAL64 r64Value)
-
-- RTS_RESULT :ref:`SysCpuWriteValueAtomic <group___sys_cpu_handling_itf_1ga8e4cc6e035e5082ca20a32ea4a904be3>` (void * pDest, void * pSrc, RTS_UI32 nLen)
-
-- RTS_RESULT :ref:`SysCpuReadValueAtomic <group___sys_cpu_handling_itf_1ga83020bd88a10f540befa908c6fafa96c>` (void * pSrc, void * pDest, RTS_UI32 nLen)
-
 .. _group___sys_cpu_handling_itf-details:
 
 Detailed Description
@@ -150,7 +118,7 @@ To detect, for which platform the component is compiled, there are special defin
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -174,7 +142,7 @@ typedef struct tagsyscpuatomicadd_struct  syscpuatomicadd_struct
 
 EXTERN LIB SECTION BEGIN <SIL2>
 
-Function to increment the content of the given pointer by nSum in one atomic operation (task safe). IMPLEMENTATION NOTE:
+Function to increment the content of the given pointer by 1 in one atomic operation (task safe). IMPLEMENTATION NOTE:
 
 - Add/Sub the value to the content of the pointer
 
@@ -183,36 +151,6 @@ Function to increment the content of the given pointer by nSum in one atomic ope
 **Returns:**
 
 *RESULT: Returns the value after the increment operation in an atomic way!
-
-.. _group___sys_cpu_handling_itf_1ga2d5fc38c2d2b1686471aa0b2777465f7:
-
-typedef struct tagsyscpuatomicadd64_struct  syscpuatomicadd64_struct
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-<SIL2>
-
-Function to increment the content of the given pointer by nSum in one atomic operation (task safe). IMPLEMENTATION NOTE:
-
-- Add/Sub the value to the content of the pointer
-
-- Return the value after the Add/Sub operation Both things must be done atomic!
-
-**Returns:**
-
-*RESULT: Returns the value after the increment operation in an atomic way!
-
-.. _group___sys_cpu_handling_itf_1ga514f459b5057ef79692f596e01b87271:
-
-typedef struct tagsyscpuatomiccompareandswap_struct  syscpuatomiccompareandswap_struct
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-<SIL2>
-
-Function for compare-and-swap in one atomic operation (task safe). Supports only 32- and 64-bit types
-
-**Returns:**
-
-*RESULT: Returns ERR_OK if the swap was successful
 
 .. _group___sys_cpu_handling_itf_1ga9ad4c2d68fbe821e17fc3e1ddddc92d7:
 
@@ -283,16 +221,6 @@ Function Documentation
 void syscpuatomicadd (syscpuatomicadd_struct *p)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _group___sys_cpu_handling_itf_1gaee858b810cf1482f1a5ba709f0774e72:
-
-void syscpuatomicadd64 (syscpuatomicadd64_struct *p)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_cpu_handling_itf_1gaacc60cea73b09061bc6579895cab7f3b:
-
-void syscpuatomiccompareandswap (syscpuatomiccompareandswap_struct *p)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. _group___sys_cpu_handling_itf_1ga342ad004d7518950bad3f3b11a7b9bc0:
 
 void syscpucalliecfuncwithparams (syscpucalliecfuncwithparams_struct *p)
@@ -349,9 +277,7 @@ error code
 RTS_RESULT SysCpuCallIecFuncWithParams (RTS_VOID_FCTPTR pfIECFunc, void *pParam, int iSize)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Call an IEC function from plain C code. Since different CPU's/systems use different calling conventions, this function should be used as a wrapper. But this function respectively the IEC callback code is not synchronized against an OnlineChange of the corresponding application!
-
-ATTENTION: To be safe on multitasking and muticore systems you have to use :ref:`IecTaskCallIecFuncWithParams() <group___cmp_app_dep___task_1ga2d017ea03010554b1edcc575fa3b3d1a>` instead (see :ref:`CmpIecTaskItf.h <_cmp_iec_task_itf_8h>` )!
+Call an IEC function from plain C code. Since different CPU's/systems use different calling conventions, this function should be used as a wrapper.
 
 IEC functions or methods of function block use all the same calling convention: They have no return value and exactly one parameter, which is a pointer to a struct that contains all required IN and OUT parameters.
 
@@ -378,27 +304,6 @@ IMPLEMENTATION NOTE: Unused parameter pParam can be NULL, if function has no arg
 +--------------------+-------------------------------------------------------------+
 | ERR_NOTIMPLEMENTED | Function is not implemented                                 |
 +--------------------+-------------------------------------------------------------+
-
-**Returns:**
-
-error code
-
-.. _group___sys_cpu_handling_itf_1gab93592451daf8f547df9e5ff298104a2:
-
-RTS_RESULT SysCpuSetRegisterValue (RTS_UINTPTR *pRegBuff, RTS_I32 nRegisterNumber, RTS_UINTPTR newValue)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sets the specified register to the given value inside the 'syscpudebughandler'
-
-**Parameters**
-
-+---------+-----------------+------------------------------------------------------------------------+
-| [in]    | pRegBuff        | Pointer to start of saved registers                                    |
-+---------+-----------------+------------------------------------------------------------------------+
-| [in]    | nRegisterNumber | Register number to be set. See category "Register offsets" for details |
-+---------+-----------------+------------------------------------------------------------------------+
-| [in]    | newValue        | The new value                                                          |
-+---------+-----------------+------------------------------------------------------------------------+
 
 **Returns:**
 
@@ -758,262 +663,12 @@ Returns the value after the increment operation in an atomic way!
 **Return values**
 
 +--------------------+---------------------------+
-| ERR_OK             | Call was sucessful        |
+| ERR_OK             | Call was sucessfull       |
 +--------------------+---------------------------+
 | ERR_PARAMETER      | piValue was NULL          |
 +--------------------+---------------------------+
 | ERR_NOTIMPLEMENTED | Function is not supported |
 +--------------------+---------------------------+
-
-.. _group___sys_cpu_handling_itf_1ga76fae609a3a3212e3ba964a7f563a1c1:
-
-RTS_I64 SysCpuAtomicAdd64 (RTS_I64 *pi64Value, RTS_I64 nSum, RTS_RESULT *pResult)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Function to increment the content of the given pointer by nSum in one atomic operation (task safe).
-
-IMPLEMENTATION NOTE: Add or substract the value to/from the content of the pointer, and return the value after this operation atomically.
-
-**Parameters**
-
-+---------+-----------+-------------------------------------------------------------------------+
-| [inout] | pi64Value | Pointer to the value to increment                                       |
-+---------+-----------+-------------------------------------------------------------------------+
-| [in]    | nSum      | Summand for the operation. greater 0 to increment, lower 0 to decrement |
-+---------+-----------+-------------------------------------------------------------------------+
-| [out]   | pResult   | Pointer to error code                                                   |
-+---------+-----------+-------------------------------------------------------------------------+
-
-**Returns:**
-
-Returns the value after the increment operation in an atomic way!
-
-**Return values**
-
-+-------------------+---------------------------+
-| ERR_OK            | Call was sucessful        |
-+-------------------+---------------------------+
-| ERR_PARAMETER     | pi64Value was NULL        |
-+-------------------+---------------------------+
-| ERR_NOT_SUPPORTED | Function is not supported |
-+-------------------+---------------------------+
-
-.. _group___sys_cpu_handling_itf_1gab1318c09a385367612ec8efbae08ed22:
-
-RTS_RESULT SysCpuAtomicCompareAndSwap (void *pAddress, void *pSwapValue, void *pCompareValue, RTS_UI8 valueSize)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Function for compare-and-swap in one atomic operation (task safe). Supports only 32- and 64-bit types (i.e. a valid valueSize is 4 or 8)
-
-**Parameters**
-
-+---------+---------------+----------------------------------------------------------+
-| [inout] | pAddress      | Pointer to the value to handle                           |
-+---------+---------------+----------------------------------------------------------+
-| [in]    | pSwapValue    | Pointer to the swap value                                |
-+---------+---------------+----------------------------------------------------------+
-| [in]    | pCompareValue | Pointer to the compare value                             |
-+---------+---------------+----------------------------------------------------------+
-| [in]    | valueSize     | Size of the value in bytes (a valid valueSize is 4 or 8) |
-+---------+---------------+----------------------------------------------------------+
-
-**Returns:**
-
-Returns errorcode
-
-**Return values**
-
-+-------------------+-----------------------------------------------------------+
-| ERR_OK            | Swap was successful                                       |
-+-------------------+-----------------------------------------------------------+
-| ERR_FAILED        | Swap was not successful                                   |
-+-------------------+-----------------------------------------------------------+
-| ERR_PARAMETER     | At least one of the pointers was NULL                     |
-+-------------------+-----------------------------------------------------------+
-| ERR_NOT_SUPPORTED | Swap not supported for this byte size or on this platform |
-+-------------------+-----------------------------------------------------------+
-
-.. _group___sys_cpu_handling_itf_1ga61ac7c09ad81724a97709944a601dc9f:
-
-RTS_I64 SysCpuReadInt64 (RTS_I64 *pSrc, RTS_RESULT *pResult)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Function to read a 64bit integer value atomic / consistent.
-
-**Parameters**
-
-+---------+---------+------------------------------+
-| [in]    | pSrc    | Pointer to the value to read |
-+---------+---------+------------------------------+
-| [out]   | pResult | Pointer to error code        |
-+---------+---------+------------------------------+
-
-**Returns:**
-
-Returns the read value
-
-**Return values**
-
-+-------------------+-----------------------------------+
-| ERR_OK            | Call was sucessful                |
-+-------------------+-----------------------------------+
-| ERR_PARAMETER     | pSrc is NULL                      |
-+-------------------+-----------------------------------+
-| ERR_NOT_SUPPORTED | Atomic function is not supported! |
-+-------------------+-----------------------------------+
-
-.. _group___sys_cpu_handling_itf_1gadcdac72472ff6647d7649236eb71de26:
-
-RTS_RESULT SysCpuWriteInt64 (RTS_I64 *pDest, RTS_I64 i64Value)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Function to write a 64bit integer value atomic / consistent.
-
-**Parameters**
-
-+---------+----------+-------------------------------+
-| [in]    | pDest    | Pointer to the value to write |
-+---------+----------+-------------------------------+
-| [in]    | i64Value | Value to write                |
-+---------+----------+-------------------------------+
-
-**Returns:**
-
-Error code
-
-**Return values**
-
-+-------------------+-----------------------------------+
-| ERR_OK            | Call was sucessful                |
-+-------------------+-----------------------------------+
-| ERR_PARAMETER     | pDest is NULL                     |
-+-------------------+-----------------------------------+
-| ERR_NOT_SUPPORTED | Atomic function is not supported! |
-+-------------------+-----------------------------------+
-
-.. _group___sys_cpu_handling_itf_1ga385c32805057dd999ad5a02452b1f2b2:
-
-RTS_REAL64 SysCpuReadReal64 (RTS_REAL64 *pSrc, RTS_RESULT *pResult)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Function to read a 64bit real value atomic / consistent.
-
-**Parameters**
-
-+---------+---------+------------------------------+
-| [in]    | pSrc    | Pointer to the value to read |
-+---------+---------+------------------------------+
-| [out]   | pResult | Pointer to error code        |
-+---------+---------+------------------------------+
-
-**Returns:**
-
-Returns the read value
-
-**Return values**
-
-+-------------------+-----------------------------------+
-| ERR_OK            | Call was sucessful                |
-+-------------------+-----------------------------------+
-| ERR_PARAMETER     | pSrc is NULL                      |
-+-------------------+-----------------------------------+
-| ERR_NOT_SUPPORTED | Atomic function is not supported! |
-+-------------------+-----------------------------------+
-
-.. _group___sys_cpu_handling_itf_1gaedab8a704ce10c7088ac852a99c2905d:
-
-RTS_RESULT SysCpuWriteReal64 (RTS_REAL64 *pDest, RTS_REAL64 r64Value)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Function to write a 64bit real value atomic / consistent.
-
-**Parameters**
-
-+---------+----------+-------------------------------+
-| [in]    | pDest    | Pointer to the value to write |
-+---------+----------+-------------------------------+
-| [in]    | r64Value | Value to write                |
-+---------+----------+-------------------------------+
-
-**Returns:**
-
-Error code
-
-**Return values**
-
-+-------------------+-----------------------------------+
-| ERR_OK            | Call was sucessful                |
-+-------------------+-----------------------------------+
-| ERR_PARAMETER     | pDest is NULL                     |
-+-------------------+-----------------------------------+
-| ERR_NOT_SUPPORTED | Atomic function is not supported! |
-+-------------------+-----------------------------------+
-
-.. _group___sys_cpu_handling_itf_1ga8e4cc6e035e5082ca20a32ea4a904be3:
-
-RTS_RESULT SysCpuWriteValueAtomic (void *pDest, void *pSrc, RTS_UI32 nLen)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This function will write values with with 1, 2, 4 or 8 byte size as an atomic operation. Note: pDest has to be aligned according to the nLen parameter. If the alignment isn't correct the function will fail.
-
-**Parameters**
-
-+---------+-------+------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pDest | Pointer to the destination address. The value will be written to this address. The write operation to this address will be atomic. |
-+---------+-------+------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pSrc  | Pointer to the source address. The value will be read from this address.                                                           |
-+---------+-------+------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | nLen  | Size of the value to be written. 1, 2, 4 and 8 will be accepted.                                                                   |
-+---------+-------+------------------------------------------------------------------------------------------------------------------------------------+
-
-**Returns:**
-
-Error code
-
-**Return values**
-
-+-------------------+----------------------------------------------+
-| ERR_OK            | Call was sucessful                           |
-+-------------------+----------------------------------------------+
-| ERR_PARAMETER     | pDest, pSrc is NULL or nLen isn't supported. |
-+-------------------+----------------------------------------------+
-| ERR_NOT_SUPPORTED | Atomic function is not supported!            |
-+-------------------+----------------------------------------------+
-| ERR_ALIGNMENT     | pDest was not aligned according to nLen.     |
-+-------------------+----------------------------------------------+
-
-.. _group___sys_cpu_handling_itf_1ga83020bd88a10f540befa908c6fafa96c:
-
-RTS_RESULT SysCpuReadValueAtomic (void *pSrc, void *pDest, RTS_UI32 nLen)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This function will read values with with 1, 2, 4 or 8 byte size as an atomic operation. Note: pSrc has to be aligned according to the nLen parameter. If the alignment isn't correct the function will fail.
-
-**Parameters**
-
-+---------+------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pSrc | Pointer to the source address. The value will be read from this address. The read operation from this address will be atomic. |
-+---------+------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pDst | Pointer to the destination address. The value will be written to this address.                                                |
-+---------+------+-------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | nLen | Size of the value to be read. 1, 2, 4 and 8 will be accepted.                                                                 |
-+---------+------+-------------------------------------------------------------------------------------------------------------------------------+
-
-**Returns:**
-
-Error code
-
-**Return values**
-
-+-------------------+------------------------------------------------+
-| ERR_OK            | Call was sucessful                             |
-+-------------------+------------------------------------------------+
-| ERR_PARAMETER     | pSrc or pDest is NULL or nLen isn't supported. |
-+-------------------+------------------------------------------------+
-| ERR_NOT_SUPPORTED | Atomic function is not supported!              |
-+-------------------+------------------------------------------------+
-| ERR_ALIGNMENT     | pSrc was not aligned according to nLen.        |
-+-------------------+------------------------------------------------+
 
 .. last line of group.rst template
 .. last line of composition.rst template

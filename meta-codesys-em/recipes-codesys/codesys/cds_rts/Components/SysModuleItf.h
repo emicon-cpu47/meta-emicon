@@ -5,9 +5,7 @@
  *	available on systems, that supports dynamically loading and unloading modules.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -99,71 +97,6 @@ typedef RTS_HANDLE (CDECL * PFSYSMODULELOAD) (char *pszModuleName, RTS_RESULT *p
 
 /**
  * <description>
- * Load a specified module
- * </description>
- * <param name="pszModuleName" type="IN">Pointer to the module name.
- * NOTE:
- * Module names must _NOT_ include operating system specific endings (e.g. .dll, .o, etc.)</param>
- * <param name="pszModuleFileName" type="IN">Pointer to the module file name.
- * NOTE:
- * Module names _must_ include operating system specific endings (e.g. .dll, .o, etc.) and optional the path of the file!</param>
- * <param name="pResult" type="OUT">Pointer to error code</param>
- * <errorcode name="RTS_RESULT" type="ERR_OK">Module could be loaded</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">Failed to load module</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid parameter (pszModuleName = NULL/empty or pszModuleFileName = NULL/empty)</errorcode>
- * <result>Handle to the loaded module or RTS_INVALID_HANDLE if failed</result>
- */
-RTS_HANDLE CDECL SysModuleLoad2(char *pszModuleName, char *pszModuleFileName, RTS_RESULT *pResult);
-typedef RTS_HANDLE (CDECL * PFSYSMODULELOAD2) (char *pszModuleName, char *pszModuleFileName, RTS_RESULT *pResult);
-#if defined(SYSMODULE_NOTIMPLEMENTED) || defined(SYSMODULELOAD2_NOTIMPLEMENTED)
-	#define USE_SysModuleLoad2
-	#define EXT_SysModuleLoad2
-	#define GET_SysModuleLoad2(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysModuleLoad2(p0,p1,p2)  (RTS_HANDLE)RTS_INVALID_HANDLE
-	#define CHK_SysModuleLoad2  FALSE
-	#define EXP_SysModuleLoad2  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysModuleLoad2
-	#define EXT_SysModuleLoad2
-	#define GET_SysModuleLoad2(fl)  CAL_CMGETAPI( "SysModuleLoad2" ) 
-	#define CAL_SysModuleLoad2  SysModuleLoad2
-	#define CHK_SysModuleLoad2  TRUE
-	#define EXP_SysModuleLoad2  CAL_CMEXPAPI( "SysModuleLoad2" ) 
-#elif defined(MIXED_LINK) && !defined(SYSMODULE_EXTERNAL)
-	#define USE_SysModuleLoad2
-	#define EXT_SysModuleLoad2
-	#define GET_SysModuleLoad2(fl)  CAL_CMGETAPI( "SysModuleLoad2" ) 
-	#define CAL_SysModuleLoad2  SysModuleLoad2
-	#define CHK_SysModuleLoad2  TRUE
-	#define EXP_SysModuleLoad2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysModuleLoad2", (RTS_UINTPTR)SysModuleLoad2, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysModuleSysModuleLoad2
-	#define EXT_SysModuleSysModuleLoad2
-	#define GET_SysModuleSysModuleLoad2  ERR_OK
-	#define CAL_SysModuleSysModuleLoad2  ((ISysModule*)s_pfCMCreateInstance(CLASSID_CSysModule, NULL))->ISysModuleLoad2
-	#define CHK_SysModuleSysModuleLoad2	(s_pfCMCreateInstance != NULL && pISysModule != NULL)
-	#define EXP_SysModuleSysModuleLoad2  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysModuleLoad2
-	#define EXT_SysModuleLoad2
-	#define GET_SysModuleLoad2(fl)  CAL_CMGETAPI( "SysModuleLoad2" ) 
-	#define CAL_SysModuleLoad2  ((ISysModule*)s_pfCMCreateInstance(CLASSID_CSysModule, NULL))->ISysModuleLoad2
-	#define CHK_SysModuleLoad2	(s_pfCMCreateInstance != NULL && pISysModule != NULL)
-	#define EXP_SysModuleLoad2  CAL_CMEXPAPI( "SysModuleLoad2" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysModuleLoad2  PFSYSMODULELOAD2 pfSysModuleLoad2;
-	#define EXT_SysModuleLoad2  extern PFSYSMODULELOAD2 pfSysModuleLoad2;
-	#define GET_SysModuleLoad2(fl)  s_pfCMGetAPI2( "SysModuleLoad2", (RTS_VOID_FCTPTR *)&pfSysModuleLoad2, (fl), 0, 0)
-	#define CAL_SysModuleLoad2  pfSysModuleLoad2
-	#define CHK_SysModuleLoad2  (pfSysModuleLoad2 != NULL)
-	#define EXP_SysModuleLoad2  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysModuleLoad2", (RTS_UINTPTR)SysModuleLoad2, 0, 0) 
-#endif
-
-
- 
-
-/**
- * <description>
  *	Unload a module
  * </description>
  * <param name="hModule" type="IN">Handle to the module</param>
@@ -196,14 +129,14 @@ typedef RTS_RESULT (CDECL * PFSYSMODULEUNLOAD) (RTS_HANDLE hModule);
 	#define USE_SysModuleSysModuleUnload
 	#define EXT_SysModuleSysModuleUnload
 	#define GET_SysModuleSysModuleUnload  ERR_OK
-	#define CAL_SysModuleSysModuleUnload(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysModule*)p0)->ISysModuleUnload())
+	#define CAL_SysModuleSysModuleUnload(p0) ((ISysModule*)p0)->ISysModuleUnload()
 	#define CHK_SysModuleSysModuleUnload  TRUE
 	#define EXP_SysModuleSysModuleUnload  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysModuleUnload
 	#define EXT_SysModuleUnload
 	#define GET_SysModuleUnload(fl)  CAL_CMGETAPI( "SysModuleUnload" ) 
-	#define CAL_SysModuleUnload(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysModule*)p0)->ISysModuleUnload())
+	#define CAL_SysModuleUnload(p0) ((ISysModule*)p0)->ISysModuleUnload()
 	#define CHK_SysModuleUnload  TRUE
 	#define EXP_SysModuleUnload  CAL_CMEXPAPI( "SysModuleUnload" ) 
 #else /* DYNAMIC_LINK */
@@ -287,7 +220,6 @@ typedef struct
 {
 	IBase_C *pBase;
 	PFSYSMODULELOAD ISysModuleLoad;
- 	PFSYSMODULELOAD2 ISysModuleLoad2;
  	PFSYSMODULEUNLOAD ISysModuleUnload;
  	PFSYSMODULEGETFUNCTIONPOINTER ISysModuleGetFunctionPointer;
  } ISysModule_C;
@@ -297,7 +229,6 @@ class ISysModule : public IBase
 {
 	public:
 		virtual RTS_HANDLE CDECL ISysModuleLoad(char *pszModuleName, RTS_RESULT *pResult) =0;
-		virtual RTS_HANDLE CDECL ISysModuleLoad2(char *pszModuleName, char *pszModuleFileName, RTS_RESULT *pResult) =0;
 		virtual RTS_RESULT CDECL ISysModuleUnload(void) =0;
 		virtual RTS_RESULT CDECL ISysModuleGetFunctionPointer(char *pszFctName, void **ppFunction) =0;
 };

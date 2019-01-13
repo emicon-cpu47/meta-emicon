@@ -3,7 +3,7 @@
  * <description></description>
  *
  * <copyright>
- *  Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+ *  (c) 2003-2016 3S-Smart Software Solutions
  * </copyright>
  */
 
@@ -49,15 +49,10 @@
  * <element name="RTS_CODEMETER_LICENSES_FIRMCODE" type="IN">Firmcode for hardkey licenses (CmDongle)</element>
  * <element name="RTS_CODEMETER_ENCRYPTION_FIRMCODE" type="IN">Firmcode for encryption of the bootproject</element>
  */
-#ifndef RTS_CODEMETER_SOFTLICENSES_FIRMCODE
-	#define RTS_CODEMETER_SOFTLICENSES_FIRMCODE		5000304
-#endif
-#ifndef RTS_CODEMETER_LICENSES_FIRMCODE
-	#define RTS_CODEMETER_LICENSES_FIRMCODE			101597
-#endif
-#ifndef RTS_CODEMETER_ENCRYPTION_FIRMCODE
-	#define RTS_CODEMETER_ENCRYPTION_FIRMCODE		101599
-#endif
+#define RTS_CODEMETER_SOFTLICENSES_FIRMCODE		5000304
+#define RTS_CODEMETER_LICENSES_FIRMCODE			101597
+#define RTS_CODEMETER_ENCRYPTION_FIRMCODE		101599
+
 
 /**
  * <category>Settings</category>
@@ -1715,7 +1710,6 @@ typedef RTS_RESULT (CDECL * PFCODEMDECRYPTDIRECT) (RTS_UI8 *pKey, RTS_UI32 ulLey
  * <description>
  *	Function to generate the export license file for the specified firmcodes
  * </description>
- * <param name="containerSerialNumber" type="IN">Serial number of the specified container from which the context file should be retrieved</param>
  * <param name="paulFirmCodes" type="IN">Pointer to array of firmcodes</param>
  * <param name="ulFirmCodes" type="IN">Number of firmcodes in the array</param>
  * <param name="pszLicenseFile" type="IN">License file to store license information</param>
@@ -1727,13 +1721,13 @@ typedef RTS_RESULT (CDECL * PFCODEMDECRYPTDIRECT) (RTS_UI8 *pKey, RTS_UI32 ulLey
  *   </ul>
  * </result>
  */
-RTS_RESULT CDECL CodeMGenerateLicenseFile(RTS_UI32 ui32SerialNumber, RTS_UI32 *paulFirmCodes, RTS_UI32 ulFirmCodes, const char *pszLicenseFile);
-typedef RTS_RESULT (CDECL * PFCODEMGENERATELICENSEFILE) (RTS_UI32 ui32SerialNumber, RTS_UI32 *paulFirmCodes, RTS_UI32 ulFirmCodes, const char *pszLicenseFile);
+RTS_RESULT CDECL CodeMGenerateLicenseFile(RTS_UI32 *paulFirmCodes, RTS_UI32 ulFirmCodes, const char *pszLicenseFile);
+typedef RTS_RESULT (CDECL * PFCODEMGENERATELICENSEFILE) (RTS_UI32 *paulFirmCodes, RTS_UI32 ulFirmCodes, const char *pszLicenseFile);
 #if defined(CMPCODEMETER_NOTIMPLEMENTED) || defined(CODEMGENERATELICENSEFILE_NOTIMPLEMENTED)
 	#define USE_CodeMGenerateLicenseFile
 	#define EXT_CodeMGenerateLicenseFile
 	#define GET_CodeMGenerateLicenseFile(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_CodeMGenerateLicenseFile(p0,p1,p2,p3)  (RTS_RESULT)ERR_NOTIMPLEMENTED
+	#define CAL_CodeMGenerateLicenseFile(p0,p1,p2)  (RTS_RESULT)ERR_NOTIMPLEMENTED
 	#define CHK_CodeMGenerateLicenseFile  FALSE
 	#define EXP_CodeMGenerateLicenseFile  ERR_OK
 #elif defined(STATIC_LINK)
@@ -1841,17 +1835,16 @@ typedef RTS_RESULT (CDECL * PFCODEMWRITELICENSEFILE) (RTS_UI32 ui32SerialNumber,
 
 /**
  * <description>
- *	Function to read all licenses for a specific firmcode. 
+ *	Function to read all licenses for a specific frimcode. 
  * </description>
  * <param name="ulFirmcode" type="IN">Firmcode to enumerate.</param>
  * <param name="paEntry" type="OUT">Array of RTS_CMBOXENTRY-structures to receive the boxentries.</param>
- * <param name="pnEntries" type="IN OUT">Pointer to an initialized variable. Initvalue is number of structs in paEntry.</param>
+ * <param name="pnEntries" type="IN OUT">Pointer to an initialized variable. Initvalue is number of structs in paEntry</param>
  * <result>Error code:
  *   <ul>
  *     <li>ERR_OK: Successful</li>
  *     <li>ERR_PARAMETER: License entry pointer is NULL</li>
  *     <li>ERR_NOT_SUPPORTED: License entry not found</li> 
- *     <li>ERR_NOBUFFER: Buffer is too small, check output of pnEntries for required number of structs in paEntry.</li> 
  *   </ul>
  * </result>
  */
@@ -2079,7 +2072,7 @@ class ICmpCodeMeter : public IBase
 		virtual RTS_RESULT CDECL ICodeMDecrypt(RTS_HANDLE hCodeMeter, RTS_UI32 ulEncryptionCode, RTS_UI32 ulCRC, RTS_UI8 *pbyData, RTS_SIZE ulDataLen) =0;
 		virtual RTS_RESULT CDECL ICodeMEncryptDirect(RTS_UI8 *pKey, RTS_UI32 ulLeyLen, RTS_UI8 *pbyData, RTS_UI32 ulDataLen) =0;
 		virtual RTS_RESULT CDECL ICodeMDecryptDirect(RTS_UI8 *pKey, RTS_UI32 ulLeyLen, RTS_UI8 *pbyData, RTS_UI32 ulDataLen) =0;
-		virtual RTS_RESULT CDECL ICodeMGenerateLicenseFile(RTS_UI32 ui32SerialNumber, RTS_UI32 *paulFirmCodes, RTS_UI32 ulFirmCodes, const char *pszLicenseFile) =0;
+		virtual RTS_RESULT CDECL ICodeMGenerateLicenseFile(RTS_UI32 *paulFirmCodes, RTS_UI32 ulFirmCodes, const char *pszLicenseFile) =0;
 		virtual RTS_RESULT CDECL ICodeMWriteLicenseFile(RTS_UI32 ui32SerialNumber, const char *pszLicenseFile) =0;
 		virtual RTS_RESULT CDECL ICodeMGetContentByFirmcode(RTS_UI32 ulFirmcode, RTS_CMBOXENTRY *paEntry, RTS_UI32 *pnEntries) =0;
 		virtual RTS_RESULT CDECL ICodeMGetContentByFirmcode2(RTS_UI32 ulFirmcode, RTS_UI32 ulProductcode, RTS_CMBOXENTRY *paEntry) =0;

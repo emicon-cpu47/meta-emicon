@@ -4,14 +4,12 @@
  *  An example on how to implement an IO-driver in C.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 SET_COMPONENT_NAME(`IoDrvSoundDemo')
 COMPONENT_SOURCES(`IoDrvSoundDemo.c')
 
-COMPONENT_VERSION(`0x03050D00')
+COMPONENT_VERSION(`0x03050A00')
 COMPONENT_VENDORID(`RTS_VENDORID_3S')
 
 #define CMPID_IoDrvSoundDemo		0x0000FF02

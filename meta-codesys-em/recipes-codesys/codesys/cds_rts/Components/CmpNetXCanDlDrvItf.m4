@@ -4,9 +4,7 @@
  *	<p>This is the CAA Can Mini Driver for NetX Can Open cards. It is based on the NetX Dl layer.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 SET_INTERFACE_NAME(`CmpNetXCanDlDrv')
 

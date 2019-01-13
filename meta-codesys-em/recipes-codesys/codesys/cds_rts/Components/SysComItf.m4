@@ -7,9 +7,7 @@
  *	the serial device! Don't block the read and write routines, until the operations are finished.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysCom')
@@ -64,17 +62,6 @@ SET_INTERFACE_NAME(`SysCom')
  */
 #define SYSCOMKEY_STRING_LINUX_DEVICEFILE			"Linux.Devicefile"
 #define SYSCOMKEY_STRING_LINUX_DEVICEFILE_DEFAULT	"/dev/ttyS"
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- * Activate exclusive access to the devicefile (Only for Linux).
- * </description>
- */
-#define SYSCOMKEY_INT_LINUX_EXCLUSIVE_ACCESS			"Linux.ExclusiveAccess"
-#define SYSCOMKEY_INT_LINUX_EXCLUSIVE_ACCESS_DEFAULT	0
-
 
 /**
  * <category>Settings</category>

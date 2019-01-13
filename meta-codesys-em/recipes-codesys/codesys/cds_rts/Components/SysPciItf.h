@@ -5,9 +5,7 @@
  *	can only be used on architectures with a PCI bus.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -154,7 +152,7 @@ typedef struct tagPCI_SLOT_NUMBER_3S
             unsigned int DeviceNumber:5;
 	#endif
         } bits;
-        RTS_UI32 AsULONG;
+        unsigned long AsULONG;
     } u;
 } PCI_SLOT_NUMBER_3S, *PPCI_SLOT_NUMBER_3S;
 

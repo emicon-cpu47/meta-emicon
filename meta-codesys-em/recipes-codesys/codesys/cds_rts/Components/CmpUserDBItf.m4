@@ -25,9 +25,7 @@
  *
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved. GmbH
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions GmbH</copyright>
  */
 
 SET_INTERFACE_NAME(`CmpUserDB')
@@ -60,21 +58,35 @@ SET_INTERFACE_NAME(`CmpUserDB')
 #endif
 
 /**
+ * <category>Static defines</category>
+ * <description>Number of objects at startup</description>
+ */
+#ifndef USERDB_NUM_OF_STATIC_OBJECTS
+	#define USERDB_NUM_OF_STATIC_OBJECTS		6
+#endif
+
+/**
+ * <category>Static defines</category>
+ * <description>Number of usergroup specific rights at startup</description>
+ */
+#ifndef USERDB_NUM_OF_STATIC_GROUPRIGHTS
+	#define USERDB_NUM_OF_STATIC_GROUPRIGHTS	10
+#endif
+
+/**
  * <category>UserDB properties</category>
  * <description>Properties for a user or usergroup</description>
  */
-#define USERDB_PROP_NONE					UINT32_C(0x00000000)
-#define USERDB_PROP_EDITABLE				UINT32_C(0x00000001)
-#define USERDB_PROP_ADD_MEMBER				UINT32_C(0x00000002)
-#define USERDB_PROP_REMOVE_MEMBER			UINT32_C(0x00000004)
-#define USERDB_PROP_CREATE					UINT32_C(0x00000008)
-#define USERDB_PROP_DELETE					UINT32_C(0x00000010)
-#define USERDB_PROP_REMOVE_ALL_MEMBERS		UINT32_C(0x00000020)
-#define USERDB_PROP_EDIT_RIGHTS				UINT32_C(0x00000040)
-#define USERDB_PROP_OWNER					UINT32_C(0x00000080)
-#define USERDB_PROP_NAME_EDITABLE			UINT32_C(0x00000100)
-#define USERDB_PROP_PASSWORD_UPTODATE		UINT32_C(0x00001000)
-#define USERDB_PROP_ENABLE_CHANGE_PASSWORD	UINT32_C(0x00002000)
+#define USERDB_PROP_NONE				UINT32_C(0x00000000)
+#define USERDB_PROP_EDITABLE			UINT32_C(0x00000001)
+#define USERDB_PROP_ADD_MEMBER			UINT32_C(0x00000002)
+#define USERDB_PROP_REMOVE_MEMBER		UINT32_C(0x00000004)
+#define USERDB_PROP_CREATE				UINT32_C(0x00000008)
+#define USERDB_PROP_DELETE				UINT32_C(0x00000010)
+#define USERDB_PROP_REMOVE_ALL_MEMBERS	UINT32_C(0x00000020)
+#define USERDB_PROP_EDIT_RIGHTS			UINT32_C(0x00000040)
+#define USERDB_PROP_OWNER				UINT32_C(0x00000080)
+#define USERDB_PROP_NAME_EDITABLE		UINT32_C(0x00000100)
 #define USERDB_PROP_ALL					(UINT32_C(0x0FFFFFFF) & ~USERDB_PROP_OWNER)
 
 #define USERDB_PROP_GROUP_ADMINISTRATOR_DEFAULT	(USERDB_PROP_EDITABLE | USERDB_PROP_ADD_MEMBER | USERDB_PROP_REMOVE_MEMBER | USERDB_PROP_CREATE | USERDB_PROP_OWNER)
@@ -163,7 +175,7 @@ typedef struct
  * <description>Predefined users that are created for the default user management</description>
  */
 #define USERDB_USER_ADMINISTRATOR		"Administrator"
-#define USERDB_USER_ANONYMOUS			"Anonymous"
+#define USERDB_USER_EVERYONE			"Everyone"
 
 
 /**
@@ -173,7 +185,7 @@ typedef struct
  * <element name="USERDB_RIGHT_VIEW" type="IN">Only view rights on the object. Object cannot be modified in any way!</element>
  * <element name="USERDB_RIGHT_MODIFY" type="IN">Object can be viewed and modified</element>
  * <element name="USERDB_RIGHT_EXECUTE" type="IN">Object can be executed</element>
- * <element name="USERDB_RIGHT_ADD_REMOVE" type="IN">It is allowed to add and remove subobjects</element>
+ * <element name="USERDB_RIGHT_ADD_REMOVE_CHILDS" type="IN">It is allowed to add and remove subobjects</element>
  * <element name="USERDB_RIGHT_OEM" type="IN">The upper 8 bits of the access rights are reserved for OEM specific access rights</element>
  * <element name="USERDB_RIGHT_ALL" type="IN">All rights allowed on the object</element>
  */
@@ -181,29 +193,44 @@ typedef struct
 #define USERDB_RIGHT_VIEW					UINT32_C(0x00000001)
 #define USERDB_RIGHT_MODIFY					UINT32_C(0x00000002)
 #define USERDB_RIGHT_EXECUTE				UINT32_C(0x00000004)
-#define USERDB_RIGHT_ADD_REMOVE				UINT32_C(0x00000008)
+#define USERDB_RIGHT_ADD_REMOVE_CHILDS		UINT32_C(0x00000008)
 #define USERDB_RIGHT_OEM					UINT32_C(0xFF000000)
 #define USERDB_RIGHT_ALL					UINT32_C(0xFFFFFFFF)
 
+
 /**
- * <category>Event parameter</category>
- * <element name="bUserManagementChanged" type="IN">TRUE: Usermanagement database changed; FALSE: Not changed</element>
- * <element name="bRightsManagementChanged" type="IN">TRUE: Rightsmanagement database changed; FALSE: Not changed</element>
+ * <category>Group rights entry</category>
+ * <description>
+ *	Entry to store the rights in a specified group.
+ * </description>
+ * <element name="hGroup" type="IN">Handle to the group</element>
+ * <element name="ulRights" type="IN">Rights of the group</element>
+ * <element name="ulDeniedRights" type="IN">Denied rights of the group</element>
  */
-typedef struct
+typedef struct tagGroupRightsEntry
 {
 	RTS_HANDLE hGroup;
-} EVTPARAM_UserDbRemoveGroupFromRightsDB;
-
-#define EVTPARAMID_UserDbRemoveGroupFromRightsDB	0x0001
-#define EVTVERSION_UserDbRemoveGroupFromRightsDB	0x0001
+	RTS_UI32 ulRights;
+	RTS_UI32 ulDeniedRights;
+} GroupRightsEntry;
 
 /**
- * <category>Events</category>
- * <description>Event is sent every time the usermanagement database or the userrights database was changed</description>
- * <param name="pEventParam" type="IN">EVTPARAM_CmpUserMgrDatabaseChanged</param>
+ * <category>Object entry</category>
+ * <description>
+ *	Entry to store an object in the object tree.
+ * </description>
+ * <element name="pszObject" type="IN">Name of the object</element>
+ * <element name="hFatherObject" type="IN">Handle of the father object</element>
+ * <element name="hGroupRightsList" type="IN">Handle to a memory pool to store the list of all usergroups on which rights are explicitly assigned to the object</element>
+ * <element name="ulID" type="IN">ID of the object</element>
  */
-#define EVT_UserDbRemoveGroupFromRightsDB		MAKE_EVENTID(EVTCLASS_INFO, 1)
+typedef struct tagObjectEntry
+{
+	char *pszObject;
+	RTS_HANDLE hFatherObject;
+	RTS_HANDLE hGroupRightsList;
+	RTS_UI32 ulID;
+} ObjectEntry;
 
 
 #ifdef __cplusplus
@@ -286,7 +313,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBRemove', `(RTS_HANDLE hUser)')
  * <result>Error code</result>
  * <errorcode name="RTS_RESULT" type="ERR_OK">Password could be set</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid user handle or password = NULL</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_DUPLICATE">The new and the old password are the same</errorcode>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBSetPassword', `(RTS_HANDLE hUser, char *pszPassword)')
 
@@ -311,7 +337,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBGetPasswordMD5', `(RTS_HANDLE hUser, u
  * <errorcode name="RTS_RESULT" type="ERR_OK">Password could be set</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid user handle or piMaxLen = NULL</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_BUFFERSIZE">If password is too short. Needed length is returned in *piMaxLen </errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_DUPLICATE">The new and the old password are the same</errorcode>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBSetPasswordMD5', `(RTS_HANDLE hUser, unsigned char *pbyPasswordMD5, int *piMaxLen)')
 
@@ -322,7 +347,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBSetPasswordMD5', `(RTS_HANDLE hUser, u
  * <result>Error code</result>
  * <errorcode name="RTS_RESULT" type="ERR_OK">Properties could be set</errorcode>
  * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid user handle or property pointer = NULL</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">Invalid combination of property flags (password change not allowed but password not up to date)</errorcode>
  */
 DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBSetProperty', `(RTS_HANDLE hUser, RTS_UI32 ulProperty)')
 
@@ -513,16 +537,6 @@ DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBGroupAddMember', `(RTS_HANDLE hGroup, 
  */
  DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBGroupRemoveMember', `(RTS_HANDLE hGroup, RTS_HANDLE hGroupMember)')
 
-/**
- * <description>Explicitly enforce the usage of user authentication: no anonymous login is possible, login with user and password is required
- * NOTE: The UserDB is enforced implicitly when a DB file is loaded or configured via CODESYS.
- * </description>
- * <result>Error code</result>
- * <errorcode name="RTS_RESULT" type="ERR_OK">User and password login is required</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_FAILED">Anonymous login is possible</errorcode>
- * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The user management is not initialized or it is not loaded yet</errorcode>
- */
- DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBEnforce', `(void)')
 
 /* --------- Group management ------------------------------------------------ */
 /* This section of functions is MANDATORY for the user management!             */
@@ -657,6 +671,314 @@ DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserDBGroupGetFirstMember', `(RTS_HANDLE hGr
  */
 DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserDBGroupGetNextMember', `(RTS_HANDLE hGroup, RTS_HANDLE hPrevGroupMember, RTS_RESULT *pResult)')
 
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/*                    Objects and Rights management																															*/
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+/* --------- Objects and Rights management configuration --------------------- */
+/* This section of functions is MANDATORY and must be implemented			   */
+
+/**
+ * <description>Load the user rights database into memory</description>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Succeeded</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_FAILED">Error loading user rights database</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Is not implemented perhaps the UserDBRights is fix</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBRightsLoad', `(void)')
+
+/**
+ * <description>Storing the current user rights management into permanent database file</description>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Succeeded</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_FAILED">Error storing user rights database</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Is not implemented perhaps the UserDBRights is fix</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBRightsStore', `(void)')
+
+/**
+ * <description>Release user rights management in memory. NOTE: The database file is not removed!</description>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Succeeded</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_FAILED">Failed releasing user rights management</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTIMPLEMENTED">Is not implemented perhaps the UserDBRights is fix</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBRightsRelease', `(void)')
+
+/* Objects management configuration */
+
+/**
+ * <description>
+ *	Add a new object to the object management, so the access rights can be configured on that object.
+ *	NOTE:
+ *	The name of the object must include the full namespace with "Device" as the root node, e.g. "Device.MyObject" or if it's a filesystem object with "/" as the root node.
+ * </description>
+ * <param name="pszObject" type="IN">Full object name (see object tree)</param>
+ * <param name="pResult" type="OUT">Pointer to error code</param>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Object could be added</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Object invalid = NULL or empty</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The user management is not initialized or it is not loaded yet</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOMEMORY">If memory could not be allocated to store this object</errorcode>
+ * <result>Handle to the object or RTS_INVALID_HANDLE if it could not be added</result>
+ */
+DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserDBObjectAdd', `(char *pszObject, RTS_RESULT *pResult)')
+
+/**
+ * <description>Remove an object from the object management and all its children</description>
+ * <param name="hObject" type="IN">Handle to object</param>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Object could be removed</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid object handle</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBObjectRemove', `(RTS_HANDLE hObject)')
+
+/**
+ * <description>
+ *	Add a new object under a father object specified by its name to the object management, so the access rights can be configured on that object.
+ * </description>
+ * <param name="hFatherObject" type="IN">Handle to the father object, under which the object will be added</param>
+ * <param name="pszObject" type="IN">Object name (see object tree)</param>
+ * <param name="pResult" type="OUT">Pointer to error code</param>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Object could be added</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Object invalid = NULL or empty</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The user management is not initialized or it is not loaded yet</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOMEMORY">If memory could not be allocated to store this object</errorcode>
+ * <result>Handle to the object or RTS_INVALID_HANDLE if it could not be added</result>
+ */
+DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserDBObjectAddChild', `(RTS_HANDLE hFatherObject, char *pszObject, RTS_RESULT *pResult)')
+
+/**
+ * <description>Get a unique identifier of an object</description>
+ * <param name="hObject" type="IN">Handle to object</param>
+ * <param name="pulID" type="OUT">Pointer to get the ObjectID</param>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">ObjectID could be retrieved</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid object handle</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBObjectGetID', `(RTS_HANDLE hObject, RTS_UI32 *pulID)')
+
+/**
+ * <description>Set a unique identifier of an object</description>
+ * <param name="hObject" type="IN">Handle to object</param>
+ * <param name="ulID" type="IN">ObjectID to set</param>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">ObjectID could be set</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid object handle</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBObjectSetID', `(RTS_HANDLE hObject, RTS_UI32 ulID)')
+
+/* Rights management configuration */
+
+/**
+ * <description>Add a group to the specified object to manage access rights</description>
+ * <param name="hObject" type="IN">Handle to object</param>
+ * <param name="hGroup" type="IN">Handle to the group that should be attached</param>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Group could be added or is already added</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid handles</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOMEMORY">No memory to add group</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBObjectAddGroup', `(RTS_HANDLE hObject, RTS_HANDLE hGroup)')
+
+/**
+ * <description>Remove a group from the specified object</description>
+ * <param name="hObject" type="IN">Handle to object</param>
+ * <param name="hGroup" type="IN">Handle to the group that should be removed</param>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Group could be removed</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid handles</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBObjectRemoveGroup', `(RTS_HANDLE hObject, RTS_HANDLE hGroup)')
+
+/**
+ * <description>Set the access rights for the group at the specified object</description>
+ * <param name="hObject" type="IN">Handle to object</param>
+ * <param name="hGroup" type="IN">Handle to the group</param>
+ * <element name="ulRights" type="IN">Rights of the group. See category "User rights" for details</element>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Access rights could be set</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid handles</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBObjectSetGroupRights', `(RTS_HANDLE hObject, RTS_HANDLE hGroup, RTS_UI32 ulRights)')
+
+/**
+ * <description>Set the denied access rights for the group at the specified object</description>
+ * <param name="hObject" type="IN">Handle to object</param>
+ * <param name="hGroup" type="IN">Handle to the group</param>
+ * <element name="ulDeniedRights" type="IN">Denied rights of the group. See category "User rights" for details</element>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Access rights could be set</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid handles</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBObjectSetGroupDeniedRights', `(RTS_HANDLE hObject, RTS_HANDLE hGroup, RTS_UI32 ulDeniedRights)')
+
+
+/* --------- Objects and Rights managament ---------------------------------- */
+/* This section of functions is MANDATORY and must be implemented			  */
+
+/* Object iteration */
+
+/**
+ * <description>Iteration interface to get the first object of the user rights management</description>
+ * <param name="pResult" type="OUT">Pointer to error code</param>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">First object of the user rights management available</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NO_OBJECT">No object available</errorcode>
+ * <result>Handle to the first object in the user rights management or RTS_INVALID_HANDLE if failed</result>
+ */
+DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserDBObjectGetFirst', `(RTS_RESULT *pResult)')
+
+/**
+ * <description>Iteration interface to get next object of the user rights management. Must be started with UserDBObjectGetFirst()</description>
+ * <param name="hPrevObject" type="IN">Handle to the previous object retrieved via UserDBObjectGetFirst() or subsequent calls of UserDBObjectGetNext()</param>
+ * <param name="pResult" type="OUT">Pointer to error code</param>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Next object available</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid handles</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NO_OBJECT">No next object available</errorcode>
+ * <result>Handle to the next object in the user rights management or RTS_INVALID_HANDLE if failed</result>
+ */
+DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserDBObjectGetNext', `(RTS_HANDLE hPrevObject, RTS_RESULT *pResult)')
+
+/* Single object access */
+
+/**
+ * <description>Open object specified by its name</description>
+ * <param name="pszObject" type="IN">Full object name (see object tree)</param>
+ * <param name="pResult" type="OUT">Pointer to error code</param>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Object could be opened</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid parameter. pszObject = NULL or empty</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The user management is not initialized or it is not loaded yet</errorcode>
+ * <result>Handle to the object or RTS_INVALID_HANDLE if failed</result>
+ */
+DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserDBObjectOpen', `(char *pszObject, RTS_RESULT *pResult)')
+
+/**
+ * <description>Close an object</description>
+ * <param name="hObject" type="IN">Handle to the object</param>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Object could be closed</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid object handle</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBObjectClose', `(RTS_HANDLE hObject)')
+
+/**
+ * <description>Get object name</description>
+ * <param name="hObject" type="IN">Handle to the object</param>
+ * <param name="pszObject" type="OUT">Pointer to get object name</param>
+ * <param name="piMaxLen" type="INOUT">Pointer to length of buffer in pszObject. If pszObject = NULL, only the length of the object name is returned in *piMaxLen</param>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Object name is returned</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid object handle or pszObject = NULL and piMaxLen = NULL</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBObjectGetName', `(RTS_HANDLE hObject, char *pszObject, int *piMaxLen)')
+
+/**
+ * <description>Get the complete object path name</description>
+ * <param name="hObject" type="IN">Handle to the object</param>
+ * <param name="pszObject" type="IN">Full object path name (see object tree)</param>
+ * <param name="piMaxLen" type="INOUT">Pointer to length of buffer in pszObject. If pszObject = NULL, only the length of the object name is returned in *piMaxLen</param>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Object name is returned</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid object handle or pszObject = NULL and piMaxLen = NULL</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBObjectGetPath', `(RTS_HANDLE hObject, char *pszObject, int *piMaxLen)')
+
+/**
+ * <description>Get first child object in object tree of the specified father object</description>
+ * <param name="hFatherObject" type="IN">Handle to the father object</param>
+ * <param name="pResult" type="OUT">Pointer to error code</param>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">First child object available</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid parameter hFatherObject</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The user management is not initialized or it is not loaded yet</errorcode>
+ * <result>Handle to the child object or RTS_INVALID_HANDLE if failed</result>
+ */
+DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserDBObjectGetFirstChild', `(RTS_HANDLE hFatherObject, RTS_RESULT *pResult)')
+
+/**
+ * <description>Get next child object in object tree of the specified father object. Must be started with UserDBObjectGetFirstChild()</description>
+ * <param name="hFatherObject" type="IN">Handle to the father object</param>
+ * <param name="hPrevChildObject" type="IN">Handle to the previous child object retrieved by UserDBObjectGetFirstChild() or subsequent calls of UserDBObjectGetNextChild()</param>
+ * <param name="pResult" type="OUT">Pointer to error code</param>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Next child object available</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid parameter hFatherObject or hPrevChildObject</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The user management is not initialized or it is not loaded yet</errorcode>
+ * <result>Handle to the next child object or RTS_INVALID_HANDLE if failed</result>
+ */
+DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserDBObjectGetNextChild', `(RTS_HANDLE hFatherObject, RTS_HANDLE hPrevChildObject, RTS_RESULT *pResult)')
+
+/**
+ * <description>Get the father object in object tree of the specified child object</description>
+ * <param name="hChildObject" type="IN">Handle to the child object</param>
+ * <param name="pResult" type="OUT">Pointer to error code</param>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Father object could be retrieved</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid parameter hChildObject</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NOTINITIALIZED">The user management is not initialized or it is not loaded yet</errorcode>
+ * <result>Handle to the father/parent object or RTS_INVALID_HANDLE if failed</result>
+ */
+DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserDBObjectGetFather', `(RTS_HANDLE hChildObject, RTS_RESULT *pResult)')
+
+/* Iteration over all groups that are assigned to the object */
+
+/**
+ * <description>Iteration interface to get the first group in the user rights management of the specified object</description>
+ * <param name="hObject" type="IN">Handle to the object</param>
+ * <param name="pResult" type="OUT">Pointer to error code</param>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">First group available</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NO_OBJECT">No group available</errorcode>
+ * <result>Handle to the first group of the object in the user rights management or RTS_INVALID_HANDLE if failed</result>
+ */
+DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserDBObjectGetFirstGroup', `(RTS_HANDLE hObject, RTS_RESULT *pResult)')
+
+/**
+ * <description>Iteration interface to get next group in the user rights management of the specified object. Must be started with UserDBObjectGetFirstGroup()</description>
+ * <param name="hObject" type="IN">Handle to the object</param>
+ * <param name="hPrevGroup" type="IN">Handle to the previous group retrieved via UserDBObjectGetFirstGroup() or subsequent calls of UserDBObjectGetNextGroup()</param>
+ * <param name="pResult" type="OUT">Pointer to error code</param>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Next group available</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid handles</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NO_OBJECT">No next group available</errorcode>
+ * <result>Handle to the next group of the object in the user rights management or RTS_INVALID_HANDLE if failed</result>
+ */
+DEF_ITF_API(`RTS_HANDLE', `CDECL', `UserDBObjectGetNextGroup', `(RTS_HANDLE hObject, RTS_HANDLE hPrevGroup, RTS_RESULT *pResult)')
+
+/* Get rights */
+
+/**
+ * <description>Get the rights and the denied rights of a group on a specified object</description>
+ * <param name="hObject" type="IN">Handle to object</param>
+ * <param name="hGroup" type="IN">Handle to the group which access rights are requested</param>
+ * <element name="pulRights" type="IN">Pointer to get rights of the group. See category "User rights" for details</element>
+ * <element name="pulDeniedRights" type="IN">Pointer to get denied rights of the group. See category "User rights" for details</element>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Access rights could be retrieved</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid handles</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBObjectGetGroupRights', `(RTS_HANDLE hObject, RTS_HANDLE hGroup, RTS_UI32 *pulRights, RTS_UI32 *pulDeniedRights)')
+
+/**
+ * <description>Check access rights of a user on an object (authorization)</description>
+ * <param name="pszObject" type="IN">Full object name (see object tree)</param>
+ * <param name="hUser" type="IN">Handle to the user which access rights are checked</param>
+ * <element name="ulRequestedRights" type="IN">Requested access rights. See category "User rights" for details</element>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Access permitted</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Access rights could not be retrieved, so no access rights!</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_NO_ACCESS_RIGHTS">No access rights!</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBObjectHasRights', `(char *pszObject, RTS_HANDLE hUser, RTS_UI32 ulRequestedRights)')
+
+/**
+ * <description>Get the rights and the denied rights of a user on a specified object</description>
+ * <param name="pszObject" type="IN">Full object name (see object tree)</param>
+ * <param name="hUser" type="IN">Handle to the user which access rights are requested</param>
+ * <element name="pulRights" type="IN">Pointer to get rights of the user. See category "User rights" for details</element>
+ * <element name="pulDeniedRights" type="IN">Pointer to get denied rights of the user. See category "User rights" for details</element>
+ * <result>Error code</result>
+ * <errorcode name="RTS_RESULT" type="ERR_OK">Access rights could be retrieved</errorcode>
+ * <errorcode name="RTS_RESULT" type="ERR_PARAMETER">Invalid handles</errorcode>
+ */
+DEF_ITF_API(`RTS_RESULT', `CDECL', `UserDBObjectGetRights', `(char *pszObject, RTS_HANDLE hUser, RTS_UI32 *pulRights, RTS_UI32 *pulDeniedRights)')
 
 #ifdef __cplusplus
 }

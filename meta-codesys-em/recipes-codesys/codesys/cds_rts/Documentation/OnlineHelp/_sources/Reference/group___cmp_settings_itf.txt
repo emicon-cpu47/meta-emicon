@@ -132,7 +132,7 @@ Interface for the settings component. The settings component can have different 
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -462,37 +462,25 @@ RTS_RESULT SettgGetStringValue (const char *pszComponent, const char *pszKey, ch
 
 Get a string value from settings
 
-The following parameter sets are typical use cases:
-
-- pszValue = NULL, piLen = NULL: Check if the setting exists (ERR_OK) or not (ERR_FAILED).
-
-- pszValue = NULL, piLen != NULL: Check if the setting exists (ERR_OK) or not (ERR_FAILED) and retrieve the needed buffer size to read the setting or the default value (including NUL termination).
-
-- pszValue != NULL, piLen != NULL: Read the setting (or default value). If ERR_BUFFERSIZE is returned, the buffer was too small regardless of whether the setting or the default value was read. Thus in this case there is no indication, if the setting exists or not.
-
 **Parameters**
 
-+---------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pszComponent | Name of component                                                                                                                                                 |
-+---------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pszKey       | Name of key                                                                                                                                                       |
-+---------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [inout] | pszValue     | Pointer to value for result. Can be NULL to get the needed buffer length for the value (including the NUL ending).                                                |
-+---------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [inout] | piLen        | Max length of string value as IN and number of copied characters excluding the NUL ending as OUT. If pszValue is NULL, then the needed buffer length is returned. |
-+---------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pszDefault   | Default value to set, if key not found                                                                                                                            |
-+---------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | bCached      | Flag, if value should be read cached or direct from file (CMPSETTINGS_CACHED, CMPSETTINGS_NOT_CACHED)                                                             |
-+---------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------+--------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pszComponent | Name of component                                                                                     |
++---------+--------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pszKey       | Name of key                                                                                           |
++---------+--------------+-------------------------------------------------------------------------------------------------------+
+| [inout] | pszValue     | Pointer to value for result                                                                           |
++---------+--------------+-------------------------------------------------------------------------------------------------------+
+| [inout] | piLen        | Max length of string value as IN and length of copied values excluding the NUL ending as OUT!         |
++---------+--------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | pszDefault   | Default value to set, if key not found                                                                |
++---------+--------------+-------------------------------------------------------------------------------------------------------+
+| [in]    | bCached      | Flag, if value should be read cached or direct from file (CMPSETTINGS_CACHED, CMPSETTINGS_NOT_CACHED) |
++---------+--------------+-------------------------------------------------------------------------------------------------------+
 
 **Returns:**
 
 ERR_OK
-
-ERR_PARAMETER: Invalid parameter given
-
-ERR_BUFFERSIZE: Buffer size is not sufficient to carry out the complete key; only a part is returned.
 
 ERR_FAILED: Key not found
 
@@ -517,64 +505,34 @@ Write a string value to settings
 
 **Returns:**
 
-ERR_OK: Success
-
-ERR_PARAMETER: Invalid parameter given
-
-ERR_NOTINITIALIZED: Component has not been initialized yet
-
-ERR_NOMEMORY: Not enough memory to handle the settings cache
-
-ERR_NOT_SUPPORTED: Unsupported character in key value: '=', '[', ']' or control character 0x00-0x1F, 0x7F
-
-ERR_NO_ACCESS_RIGHTS: No write access rights to corresponding settings file
-
-ERR_FAILED: Any other reason for failure
+ERR_OK
 
 .. _group___cmp_settings_itf_1ga77c04e408cacfe28972f2599d5dc7b77:
 
 RTS_RESULT SettgGetWStringValue (const char *pszComponent, const char *pszKey, RTS_WCHAR *pwszValue, RTS_I32 *piLen, RTS_WCHAR *pwszDefault, int bCached)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Get a WSTRING value from settings. The storage format is conform to UTF-16, that means one character consists of 2 byte values like "\ab\cd". Plain ASCII characters can also be represented in a mixed way in order to keep the readability of the string, e.g. "a\00". The value is interpreted depending on the target byteorder, e.g:
-
-- INTEL: NodeNameUnicode="T\00e\00s\00t\00"
-
-- MOTOROLA: NodeNameUnicode="\00T\00e\00s\00t" Example: The unicode character 'DEGREE CELSIUS' (U+2103) is stored as
-
-- INTEL: "\03\21"
-
-- MOTOROLA: "\21\03" The following parameter sets are typical use cases:
-
-- pwszValue = NULL, piLen = NULL: Check if the setting exists (ERR_OK) or not (ERR_FAILED).
-
-- pwszValue = NULL, piLen != NULL: Check if the setting exists (ERR_OK) or not (ERR_FAILED) and retrieve the needed buffer size to read the setting or the default value (in WSTRING characters including NUL termination).
-
-- pwszValue != NULL, piLen != NULL: Read the setting (or default value). If ERR_BUFFERSIZE is returned, the buffer was too small regardless of whether the setting or the default value was read. Thus in this case there is no indication, if the setting exists or not.
+Get a WSTRING value from settings
 
 **Parameters**
 
-+---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pszComponent | Name of component                                                                                                                                                                                       |
-+---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pszKey       | Name of key                                                                                                                                                                                             |
-+---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [inout] | pwszValue    | Pointer to value for result. Can be NULL to get the needed buffer length for the value (including the NUL ending).                                                                                      |
-+---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [inout] | piLen        | Max length of buffer in WSTRING characters (not bytes!) as IN and number of copied WSTRING characters excluding the NUL ending as OUT. If pwszValue is NULL, then the needed buffer length is returned. |
-+---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | pwszDefault  | Default value to set, if key not found                                                                                                                                                                  |
-+---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [in]    | bCached      | Flag, if value should be read cached or direct from file (CMPSETTINGS_CACHED, CMPSETTINGS_NOT_CACHED)                                                                                                   |
-+---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszComponent | Name of component                                                                                                                     |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pszKey       | Name of key                                                                                                                           |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | pwszValue    | Pointer to value for result                                                                                                           |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| [inout] | piLen        | Max length of string in WSTRING characters (not bytes!) as IN and length of copied WSTRING characters excluding the NUL ending as OUT |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | pwszDefault  | Default value to set, if key not found                                                                                                |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| [in]    | bCached      | Flag, if value should be read cached or direct from file (CMPSETTINGS_CACHED, CMPSETTINGS_NOT_CACHED)                                 |
++---------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+
 
 **Returns:**
 
 ERR_OK
-
-ERR_PARAMETER: Invalid parameter given
-
-ERR_BUFFERSIZE: Buffer size is not sufficient to carry out the complete setting or default value; only a part is returned.
 
 ERR_FAILED: Key not found
 
@@ -583,15 +541,7 @@ ERR_FAILED: Key not found
 RTS_RESULT SettgSetWStringValue (const char *pszComponent, const char *pszKey, RTS_WCHAR *pwszValue, RTS_I32 iLen)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Write a WSTRING value to settings. The storage format is conform to UTF-16, that means one character consists of 2 byte values like "\ab\cd". Plain ASCII characters can also be represented in a mixed way in order to keep the readability of the string, e.g. "a\00". The value is interpreted depending on the target byteorder, e.g:
-
-- INTEL: NodeNameUnicode="T\00e\00s\00t\00"
-
-- MOTOROLA: NodeNameUnicode="\00T\00e\00s\00t" Example: The unicode character 'DEGREE CELSIUS' (U+2103) is stored as
-
-- INTEL: "\03\21"
-
-- MOTOROLA: "\21\03"
+Write a WSTRING value to settings
 
 **Parameters**
 

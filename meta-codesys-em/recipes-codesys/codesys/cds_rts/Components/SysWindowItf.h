@@ -5,9 +5,7 @@
  *	To handle the window of the target visualisation.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 
@@ -308,45 +306,6 @@ typedef struct
 #define SYSWINDOW_INT_WINCE_SETCARETBLINKTIME_DEFAULT		0		
 
 /**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- * The Targetvisualization in Linux operating systems supports two different modes of operation. The classical mode (value == 0)
- * opens a window only while the targetvisualization is running. After a deletion of an application or between reset and start of
- * a targetvisu application, there is no open window. 
- * Additionally it is possible to keep the main window open until shutdown of the application (value == 1). This prevents problems
- * on systems based on the Qt5 platform plugin "EGLFS" (for details see http://doc.qt.io/qt-5/embedded-linux.html for example).
- * Nevertheless in this mode there is no possibility for opening several concurrent targetvisu windows as it is possible at least
- * in X-server based installations using the classical mode (value == 0).
- * It is not recommended to use a value != 0 together with X-server based installations as the resulting behaviour will not be the
- * one that users of X-server based systems are expecting.
- * </description>
- */
-/* take care: if changing the following setting as there might be a copy of that value in the C++ part of the linux targetvisualization */
-#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN				"Linux.KeepMainWindowOpen"
-/* take care: if changing the following default as there might be a copy of that value in the C++ part of the linux targetvisualization */
-#ifndef SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_DEFAULT	
-	#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_DEFAULT		0		
-#endif
-
-/**
- * <category>Settings</category>
- * <type>Int</type>
- * <description>
- * Only relevant if Linux.KeepMainWindowOpen == 1.
- * To reduce the number of states the targetvisualization window can be in (before showing the window, targetvisu displayed, targetvisu not displayed),
- * this setting can be used to remove the state "before showing the window". If this setting has the value 1, then
- * the window will be displayed immediately at startup without showing a targetvisualization yet. As this mode is recommended only for embedded devices
- * (see SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN too) the initial window is opened in full screen mode.
- * </description>
- */
-#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY				"Linux.KeepMainWindowOpenShowImmediately"
-/* take care: if changing the following setting as there might be a copy of that value in the C++ part of the linux targetvisualization */
-#ifndef SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY_DEFAULT		
-	#define SYSWINDOW_INT_LINUX_KEEPMAINWINDOWOPEN_SHOW_IMMEDIATELY_DEFAULT		1
-#endif
-
-/**
  * <description>Notification code that can be sent to a window using <see>SysWindowNotify</see>. The intention of this notification is
  *	to trigger a refresh and repaint of the window. In case of a targetvisualization window, this notification will usually be sent,
  *	when there is new paintinformation available that should be retrieved by the window.
@@ -594,14 +553,14 @@ typedef RTS_RESULT (CDECL * PFSYSWINDOWDESTROY) (RTS_HANDLE hWindow);
 	#define USE_SysWindowSysWindowDestroy
 	#define EXT_SysWindowSysWindowDestroy
 	#define GET_SysWindowSysWindowDestroy  ERR_OK
-	#define CAL_SysWindowSysWindowDestroy(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysWindow*)p0)->ISysWindowDestroy())
+	#define CAL_SysWindowSysWindowDestroy(p0) ((ISysWindow*)p0)->ISysWindowDestroy()
 	#define CHK_SysWindowSysWindowDestroy  TRUE
 	#define EXP_SysWindowSysWindowDestroy  ERR_OK
 #elif defined(CPLUSPLUS)
 	#define USE_SysWindowDestroy
 	#define EXT_SysWindowDestroy
 	#define GET_SysWindowDestroy(fl)  CAL_CMGETAPI( "SysWindowDestroy" ) 
-	#define CAL_SysWindowDestroy(p0) (((RTS_HANDLE)p0 == NULL || (RTS_HANDLE)p0 == RTS_INVALID_HANDLE) ? ERR_PARAMETER : ((ISysWindow*)p0)->ISysWindowDestroy())
+	#define CAL_SysWindowDestroy(p0) ((ISysWindow*)p0)->ISysWindowDestroy()
 	#define CHK_SysWindowDestroy  TRUE
 	#define EXP_SysWindowDestroy  CAL_CMEXPAPI( "SysWindowDestroy" ) 
 #else /* DYNAMIC_LINK */
@@ -2342,265 +2301,6 @@ typedef RTS_UI32 (CDECL * PFSYSWINDOWSUPPORTINFO) (RTS_HANDLE hWindow, RTS_RESUL
 
 
 
-/** 
- * <description> Signature of the callback passed to <see>SysWindowCreateTimer</see>. </description>
- */
-typedef void (*SysWindowTimerCallback)(RTS_HANDLE hWindow, void* pParams);
-
-/**
- * <description>Creates a timer that periodically calls a function.</description>
- * <param name="hWindow" type="IN">Handle to the window</param>
- * <param name="interval" type="IN">The timer interval in milliseconds.</param>
- * <param name="callback" type="IN">The function to call after every interval.</param>
- * <param name="callbackParams" type="IN">The paramaters that should be passed to the callback function.</param>
- * <result>Identifier for the timer that can be used to destroy it.</result>
- */
-RTS_HANDLE CDECL SysWindowCreateTimer(RTS_HANDLE hWindow, RTS_UI32 interval, SysWindowTimerCallback callback, void* pCallbackParams, RTS_RESULT* pResult);
-typedef RTS_HANDLE (CDECL * PFSYSWINDOWCREATETIMER) (RTS_HANDLE hWindow, RTS_UI32 interval, SysWindowTimerCallback callback, void* pCallbackParams, RTS_RESULT* pResult);
-#if defined(SYSWINDOW_NOTIMPLEMENTED) || defined(SYSWINDOWCREATETIMER_NOTIMPLEMENTED)
-	#define USE_SysWindowCreateTimer
-	#define EXT_SysWindowCreateTimer
-	#define GET_SysWindowCreateTimer(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysWindowCreateTimer(p0,p1,p2,p3,p4)  (RTS_HANDLE)RTS_INVALID_HANDLE
-	#define CHK_SysWindowCreateTimer  FALSE
-	#define EXP_SysWindowCreateTimer  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysWindowCreateTimer
-	#define EXT_SysWindowCreateTimer
-	#define GET_SysWindowCreateTimer(fl)  CAL_CMGETAPI( "SysWindowCreateTimer" ) 
-	#define CAL_SysWindowCreateTimer  SysWindowCreateTimer
-	#define CHK_SysWindowCreateTimer  TRUE
-	#define EXP_SysWindowCreateTimer  CAL_CMEXPAPI( "SysWindowCreateTimer" ) 
-#elif defined(MIXED_LINK) && !defined(SYSWINDOW_EXTERNAL)
-	#define USE_SysWindowCreateTimer
-	#define EXT_SysWindowCreateTimer
-	#define GET_SysWindowCreateTimer(fl)  CAL_CMGETAPI( "SysWindowCreateTimer" ) 
-	#define CAL_SysWindowCreateTimer  SysWindowCreateTimer
-	#define CHK_SysWindowCreateTimer  TRUE
-	#define EXP_SysWindowCreateTimer  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysWindowCreateTimer", (RTS_UINTPTR)SysWindowCreateTimer, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysWindowSysWindowCreateTimer
-	#define EXT_SysWindowSysWindowCreateTimer
-	#define GET_SysWindowSysWindowCreateTimer  ERR_OK
-	#define CAL_SysWindowSysWindowCreateTimer(p0,p1,p2,p3,p4)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pISysWindow->ISysWindowCreateTimer(p1,p2,p3,p4) : ((ISysWindow*)p0)->ISysWindowCreateTimer(p1,p2,p3,p4))
-	#define CHK_SysWindowSysWindowCreateTimer  (pISysWindow != NULL)
-	#define EXP_SysWindowSysWindowCreateTimer  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysWindowCreateTimer
-	#define EXT_SysWindowCreateTimer
-	#define GET_SysWindowCreateTimer(fl)  CAL_CMGETAPI( "SysWindowCreateTimer" ) 
-	#define CAL_SysWindowCreateTimer(p0,p1,p2,p3,p4)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pISysWindow->ISysWindowCreateTimer(p1,p2,p3,p4) : ((ISysWindow*)p0)->ISysWindowCreateTimer(p1,p2,p3,p4))
-	#define CHK_SysWindowCreateTimer  (pISysWindow != NULL)
-	#define EXP_SysWindowCreateTimer  CAL_CMEXPAPI( "SysWindowCreateTimer" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysWindowCreateTimer  PFSYSWINDOWCREATETIMER pfSysWindowCreateTimer;
-	#define EXT_SysWindowCreateTimer  extern PFSYSWINDOWCREATETIMER pfSysWindowCreateTimer;
-	#define GET_SysWindowCreateTimer(fl)  s_pfCMGetAPI2( "SysWindowCreateTimer", (RTS_VOID_FCTPTR *)&pfSysWindowCreateTimer, (fl), 0, 0)
-	#define CAL_SysWindowCreateTimer  pfSysWindowCreateTimer
-	#define CHK_SysWindowCreateTimer  (pfSysWindowCreateTimer != NULL)
-	#define EXP_SysWindowCreateTimer  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysWindowCreateTimer", (RTS_UINTPTR)SysWindowCreateTimer, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>Creates a timer that periodically calls a function.</description>
- * <param name="hTimer" type="IN">The timer to destroy.</param>
- * <result>Error code.</result>
- */
-RTS_RESULT CDECL SysWindowDestroyTimer(RTS_HANDLE hWindow, RTS_HANDLE hTimer);
-typedef RTS_RESULT (CDECL * PFSYSWINDOWDESTROYTIMER) (RTS_HANDLE hWindow, RTS_HANDLE hTimer);
-#if defined(SYSWINDOW_NOTIMPLEMENTED) || defined(SYSWINDOWDESTROYTIMER_NOTIMPLEMENTED)
-	#define USE_SysWindowDestroyTimer
-	#define EXT_SysWindowDestroyTimer
-	#define GET_SysWindowDestroyTimer(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysWindowDestroyTimer(p0,p1)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysWindowDestroyTimer  FALSE
-	#define EXP_SysWindowDestroyTimer  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysWindowDestroyTimer
-	#define EXT_SysWindowDestroyTimer
-	#define GET_SysWindowDestroyTimer(fl)  CAL_CMGETAPI( "SysWindowDestroyTimer" ) 
-	#define CAL_SysWindowDestroyTimer  SysWindowDestroyTimer
-	#define CHK_SysWindowDestroyTimer  TRUE
-	#define EXP_SysWindowDestroyTimer  CAL_CMEXPAPI( "SysWindowDestroyTimer" ) 
-#elif defined(MIXED_LINK) && !defined(SYSWINDOW_EXTERNAL)
-	#define USE_SysWindowDestroyTimer
-	#define EXT_SysWindowDestroyTimer
-	#define GET_SysWindowDestroyTimer(fl)  CAL_CMGETAPI( "SysWindowDestroyTimer" ) 
-	#define CAL_SysWindowDestroyTimer  SysWindowDestroyTimer
-	#define CHK_SysWindowDestroyTimer  TRUE
-	#define EXP_SysWindowDestroyTimer  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysWindowDestroyTimer", (RTS_UINTPTR)SysWindowDestroyTimer, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysWindowSysWindowDestroyTimer
-	#define EXT_SysWindowSysWindowDestroyTimer
-	#define GET_SysWindowSysWindowDestroyTimer  ERR_OK
-	#define CAL_SysWindowSysWindowDestroyTimer(p0,p1)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pISysWindow->ISysWindowDestroyTimer(p1) : ((ISysWindow*)p0)->ISysWindowDestroyTimer(p1))
-	#define CHK_SysWindowSysWindowDestroyTimer  (pISysWindow != NULL)
-	#define EXP_SysWindowSysWindowDestroyTimer  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysWindowDestroyTimer
-	#define EXT_SysWindowDestroyTimer
-	#define GET_SysWindowDestroyTimer(fl)  CAL_CMGETAPI( "SysWindowDestroyTimer" ) 
-	#define CAL_SysWindowDestroyTimer(p0,p1)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pISysWindow->ISysWindowDestroyTimer(p1) : ((ISysWindow*)p0)->ISysWindowDestroyTimer(p1))
-	#define CHK_SysWindowDestroyTimer  (pISysWindow != NULL)
-	#define EXP_SysWindowDestroyTimer  CAL_CMEXPAPI( "SysWindowDestroyTimer" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysWindowDestroyTimer  PFSYSWINDOWDESTROYTIMER pfSysWindowDestroyTimer;
-	#define EXT_SysWindowDestroyTimer  extern PFSYSWINDOWDESTROYTIMER pfSysWindowDestroyTimer;
-	#define GET_SysWindowDestroyTimer(fl)  s_pfCMGetAPI2( "SysWindowDestroyTimer", (RTS_VOID_FCTPTR *)&pfSysWindowDestroyTimer, (fl), 0, 0)
-	#define CAL_SysWindowDestroyTimer  pfSysWindowDestroyTimer
-	#define CHK_SysWindowDestroyTimer  (pfSysWindowDestroyTimer != NULL)
-	#define EXP_SysWindowDestroyTimer  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysWindowDestroyTimer", (RTS_UINTPTR)SysWindowDestroyTimer, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- *	Function to open a message box.
- * </description>
- * <param name="hWindow" type="IN">Handle to the window</param>
- * <param name="pszText" type="IN">The message to show</param>
- * <param name="pszCaption" type="IN">The caption to show</param>
- * <param name="uiType" type="IN">The type of message box. See MB_TYPE defines</param>
- * <result>see MB_RESULT defines</result>
- */
-RTS_RESULT CDECL SysWindowOpenMessageBox(RTS_HANDLE hWindow, char* pszText, char* pszCaption, RTS_UI32 uiType);
-typedef RTS_RESULT (CDECL * PFSYSWINDOWOPENMESSAGEBOX) (RTS_HANDLE hWindow, char* pszText, char* pszCaption, RTS_UI32 uiType);
-#if defined(SYSWINDOW_NOTIMPLEMENTED) || defined(SYSWINDOWOPENMESSAGEBOX_NOTIMPLEMENTED)
-	#define USE_SysWindowOpenMessageBox
-	#define EXT_SysWindowOpenMessageBox
-	#define GET_SysWindowOpenMessageBox(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysWindowOpenMessageBox(p0,p1,p2,p3)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysWindowOpenMessageBox  FALSE
-	#define EXP_SysWindowOpenMessageBox  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysWindowOpenMessageBox
-	#define EXT_SysWindowOpenMessageBox
-	#define GET_SysWindowOpenMessageBox(fl)  CAL_CMGETAPI( "SysWindowOpenMessageBox" ) 
-	#define CAL_SysWindowOpenMessageBox  SysWindowOpenMessageBox
-	#define CHK_SysWindowOpenMessageBox  TRUE
-	#define EXP_SysWindowOpenMessageBox  CAL_CMEXPAPI( "SysWindowOpenMessageBox" ) 
-#elif defined(MIXED_LINK) && !defined(SYSWINDOW_EXTERNAL)
-	#define USE_SysWindowOpenMessageBox
-	#define EXT_SysWindowOpenMessageBox
-	#define GET_SysWindowOpenMessageBox(fl)  CAL_CMGETAPI( "SysWindowOpenMessageBox" ) 
-	#define CAL_SysWindowOpenMessageBox  SysWindowOpenMessageBox
-	#define CHK_SysWindowOpenMessageBox  TRUE
-	#define EXP_SysWindowOpenMessageBox  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysWindowOpenMessageBox", (RTS_UINTPTR)SysWindowOpenMessageBox, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysWindowSysWindowOpenMessageBox
-	#define EXT_SysWindowSysWindowOpenMessageBox
-	#define GET_SysWindowSysWindowOpenMessageBox  ERR_OK
-	#define CAL_SysWindowSysWindowOpenMessageBox(p0,p1,p2,p3)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pISysWindow->ISysWindowOpenMessageBox(p1,p2,p3) : ((ISysWindow*)p0)->ISysWindowOpenMessageBox(p1,p2,p3))
-	#define CHK_SysWindowSysWindowOpenMessageBox  (pISysWindow != NULL)
-	#define EXP_SysWindowSysWindowOpenMessageBox  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysWindowOpenMessageBox
-	#define EXT_SysWindowOpenMessageBox
-	#define GET_SysWindowOpenMessageBox(fl)  CAL_CMGETAPI( "SysWindowOpenMessageBox" ) 
-	#define CAL_SysWindowOpenMessageBox(p0,p1,p2,p3)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pISysWindow->ISysWindowOpenMessageBox(p1,p2,p3) : ((ISysWindow*)p0)->ISysWindowOpenMessageBox(p1,p2,p3))
-	#define CHK_SysWindowOpenMessageBox  (pISysWindow != NULL)
-	#define EXP_SysWindowOpenMessageBox  CAL_CMEXPAPI( "SysWindowOpenMessageBox" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysWindowOpenMessageBox  PFSYSWINDOWOPENMESSAGEBOX pfSysWindowOpenMessageBox;
-	#define EXT_SysWindowOpenMessageBox  extern PFSYSWINDOWOPENMESSAGEBOX pfSysWindowOpenMessageBox;
-	#define GET_SysWindowOpenMessageBox(fl)  s_pfCMGetAPI2( "SysWindowOpenMessageBox", (RTS_VOID_FCTPTR *)&pfSysWindowOpenMessageBox, (fl), 0, 0)
-	#define CAL_SysWindowOpenMessageBox  pfSysWindowOpenMessageBox
-	#define CHK_SysWindowOpenMessageBox  (pfSysWindowOpenMessageBox != NULL)
-	#define EXP_SysWindowOpenMessageBox  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysWindowOpenMessageBox", (RTS_UINTPTR)SysWindowOpenMessageBox, 0, 0) 
-#endif
-
-
-
-
-/**
- * <description>
- *	Function to open a message box.
- * </description>
- * <param name="hWindow" type="IN">Handle to the window</param>
- * <param name="pwsText" type="IN">The message to show</param>
- * <param name="pwsCaption" type="IN">The caption to show</param>
- * <param name="uiType" type="IN">The type of message box. See MB_TYPE defines</param>
- * <result>see MB_RESULT defines</result>
- */
-RTS_RESULT CDECL SysWindowOpenMessageBoxW(RTS_HANDLE hWindow, RTS_WCHAR* pwsText, RTS_WCHAR* pwsCaption, RTS_UI32 uiType);
-typedef RTS_RESULT (CDECL * PFSYSWINDOWOPENMESSAGEBOXW) (RTS_HANDLE hWindow, RTS_WCHAR* pwsText, RTS_WCHAR* pwsCaption, RTS_UI32 uiType);
-#if defined(SYSWINDOW_NOTIMPLEMENTED) || defined(SYSWINDOWOPENMESSAGEBOXW_NOTIMPLEMENTED)
-	#define USE_SysWindowOpenMessageBoxW
-	#define EXT_SysWindowOpenMessageBoxW
-	#define GET_SysWindowOpenMessageBoxW(fl)  ERR_NOTIMPLEMENTED
-	#define CAL_SysWindowOpenMessageBoxW(p0,p1,p2,p3)  (RTS_RESULT)ERR_NOTIMPLEMENTED
-	#define CHK_SysWindowOpenMessageBoxW  FALSE
-	#define EXP_SysWindowOpenMessageBoxW  ERR_OK
-#elif defined(STATIC_LINK)
-	#define USE_SysWindowOpenMessageBoxW
-	#define EXT_SysWindowOpenMessageBoxW
-	#define GET_SysWindowOpenMessageBoxW(fl)  CAL_CMGETAPI( "SysWindowOpenMessageBoxW" ) 
-	#define CAL_SysWindowOpenMessageBoxW  SysWindowOpenMessageBoxW
-	#define CHK_SysWindowOpenMessageBoxW  TRUE
-	#define EXP_SysWindowOpenMessageBoxW  CAL_CMEXPAPI( "SysWindowOpenMessageBoxW" ) 
-#elif defined(MIXED_LINK) && !defined(SYSWINDOW_EXTERNAL)
-	#define USE_SysWindowOpenMessageBoxW
-	#define EXT_SysWindowOpenMessageBoxW
-	#define GET_SysWindowOpenMessageBoxW(fl)  CAL_CMGETAPI( "SysWindowOpenMessageBoxW" ) 
-	#define CAL_SysWindowOpenMessageBoxW  SysWindowOpenMessageBoxW
-	#define CHK_SysWindowOpenMessageBoxW  TRUE
-	#define EXP_SysWindowOpenMessageBoxW  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysWindowOpenMessageBoxW", (RTS_UINTPTR)SysWindowOpenMessageBoxW, 0, 0) 
-#elif defined(CPLUSPLUS_ONLY)
-	#define USE_SysWindowSysWindowOpenMessageBoxW
-	#define EXT_SysWindowSysWindowOpenMessageBoxW
-	#define GET_SysWindowSysWindowOpenMessageBoxW  ERR_OK
-	#define CAL_SysWindowSysWindowOpenMessageBoxW(p0,p1,p2,p3)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pISysWindow->ISysWindowOpenMessageBoxW(p1,p2,p3) : ((ISysWindow*)p0)->ISysWindowOpenMessageBoxW(p1,p2,p3))
-	#define CHK_SysWindowSysWindowOpenMessageBoxW  (pISysWindow != NULL)
-	#define EXP_SysWindowSysWindowOpenMessageBoxW  ERR_OK
-#elif defined(CPLUSPLUS)
-	#define USE_SysWindowOpenMessageBoxW
-	#define EXT_SysWindowOpenMessageBoxW
-	#define GET_SysWindowOpenMessageBoxW(fl)  CAL_CMGETAPI( "SysWindowOpenMessageBoxW" ) 
-	#define CAL_SysWindowOpenMessageBoxW(p0,p1,p2,p3)		(p0 == RTS_INVALID_HANDLE || p0 == NULL ? pISysWindow->ISysWindowOpenMessageBoxW(p1,p2,p3) : ((ISysWindow*)p0)->ISysWindowOpenMessageBoxW(p1,p2,p3))
-	#define CHK_SysWindowOpenMessageBoxW  (pISysWindow != NULL)
-	#define EXP_SysWindowOpenMessageBoxW  CAL_CMEXPAPI( "SysWindowOpenMessageBoxW" ) 
-#else /* DYNAMIC_LINK */
-	#define USE_SysWindowOpenMessageBoxW  PFSYSWINDOWOPENMESSAGEBOXW pfSysWindowOpenMessageBoxW;
-	#define EXT_SysWindowOpenMessageBoxW  extern PFSYSWINDOWOPENMESSAGEBOXW pfSysWindowOpenMessageBoxW;
-	#define GET_SysWindowOpenMessageBoxW(fl)  s_pfCMGetAPI2( "SysWindowOpenMessageBoxW", (RTS_VOID_FCTPTR *)&pfSysWindowOpenMessageBoxW, (fl), 0, 0)
-	#define CAL_SysWindowOpenMessageBoxW  pfSysWindowOpenMessageBoxW
-	#define CHK_SysWindowOpenMessageBoxW  (pfSysWindowOpenMessageBoxW != NULL)
-	#define EXP_SysWindowOpenMessageBoxW  s_pfCMRegisterAPI( (const CMP_EXT_FUNCTION_REF*)"SysWindowOpenMessageBoxW", (RTS_UINTPTR)SysWindowOpenMessageBoxW, 0, 0) 
-#endif
-
-
-
-
-#define MB_TYPE_OK					0x0000
-#define MB_TYPE_OKCANCEL			0x0001
-#define MB_TYPE_ABORTRETRYIGNORE	0x0002
-#define MB_TYPE_YESNOCANCEL			0x0003
-#define MB_TYPE_YESNO				0x0004
-#define MB_TYPE_RETRYCANCEL			0x0005
-
-#define MB_TYPE_ICONERROR			0x0010
-#define MB_TYPE_ICONQUESTION		0x0020
-#define MB_TYPE_ICONWARNING			0x0030
-#define MB_TYPE_ICONINFORMATION		0x0040
-
-#define MB_TYPE_DEFBUTTON1			0x0000
-#define MB_TYPE_DEFBUTTON2			0x0100
-#define MB_TYPE_DEFBUTTON3			0x0200
-#define MB_TYPE_DEFBUTTON4			0x0300
-
-#define MB_RESULT_OK				0x0001
-#define MB_RESULT_CANCEL			0x0002
-#define MB_RESULT_ABORT				0x0003
-#define MB_RESULT_RETRY				0x0004
-#define MB_RESULT_IGNORE			0x0005
-#define MB_RESULT_YES				0x0006
-#define MB_RESULT_NO				0x0007
-
 #ifdef __cplusplus
 }
 #endif
@@ -2642,10 +2342,6 @@ typedef struct
  	PFSYSWINDOWPRINTRELEASE ISysWindowPrintRelease;
  	PFSYSWINDOWNOTIFY ISysWindowNotify;
  	PFSYSWINDOWSUPPORTINFO ISysWindowSupportInfo;
- 	PFSYSWINDOWCREATETIMER ISysWindowCreateTimer;
- 	PFSYSWINDOWDESTROYTIMER ISysWindowDestroyTimer;
- 	PFSYSWINDOWOPENMESSAGEBOX ISysWindowOpenMessageBox;
- 	PFSYSWINDOWOPENMESSAGEBOXW ISysWindowOpenMessageBoxW;
  } ISysWindow_C;
 
 #ifdef CPLUSPLUS
@@ -2683,10 +2379,6 @@ class ISysWindow : public IBase
 		virtual RTS_RESULT CDECL ISysWindowPrintRelease(void) =0;
 		virtual RTS_RESULT CDECL ISysWindowNotify(RTS_UI32 notificationCode, void* notificationParam) =0;
 		virtual RTS_UI32 CDECL ISysWindowSupportInfo(RTS_RESULT* pResult) =0;
-		virtual RTS_HANDLE CDECL ISysWindowCreateTimer(RTS_UI32 interval, SysWindowTimerCallback callback, void* pCallbackParams, RTS_RESULT* pResult) =0;
-		virtual RTS_RESULT CDECL ISysWindowDestroyTimer(RTS_HANDLE hTimer) =0;
-		virtual RTS_RESULT CDECL ISysWindowOpenMessageBox(char* pszText, char* pszCaption, RTS_UI32 uiType) =0;
-		virtual RTS_RESULT CDECL ISysWindowOpenMessageBoxW(RTS_WCHAR* pwsText, RTS_WCHAR* pwsCaption, RTS_UI32 uiType) =0;
 };
 	#ifndef ITF_SysWindow
 		#define ITF_SysWindow static ISysWindow *pISysWindow = NULL;

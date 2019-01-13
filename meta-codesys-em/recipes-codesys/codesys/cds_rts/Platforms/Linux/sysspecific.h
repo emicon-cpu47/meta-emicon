@@ -48,41 +48,11 @@
 #endif
 /* --------------------------------------------------------------------------------------------------- */
 
-#if defined(LINUX_SL_PRODUCT) && !defined(TRG_64BIT) 
+#ifdef RASPBERRYPI
 	#define memcpy(a,b,c) CMUtlMemCpy(a,b,c)
 #endif
 
 
 extern int rts_system(const char *command);
-
-#if defined (TRG_MIPS) || defined (QNX)
-#define NO_CAS_SUPPORT
-#endif
-
-#if defined (TRG_PPC) 
-#define NO_CAS64_SUPPORT
-#endif
-
-#ifdef NO_CAS_SUPPORT
-#define NO_CAS64_SUPPORT
-#else
-#define SYS_ATOMIC_COMPARE_AND_SWAP(piValue, iExchangeValue, iCompareValue, Result) \
-	do { \
-		if (__sync_bool_compare_and_swap((unsigned int *)piValue, (unsigned int)iCompareValue, (unsigned int)iExchangeValue)) \
-			Result = ERR_OK; \
-		else \
-			Result = ERR_FAILED; \
-	} while (0)
-#endif
-
-#ifndef NO_CAS64_SUPPORT
-#define SYS_ATOMIC_COMPARE_AND_SWAP64(pi64Value, i64ExchangeValue, i64CompareValue, Result) \
-			do { \
-				if (__sync_bool_compare_and_swap((unsigned long long *)pi64Value, (unsigned long long)i64CompareValue, (unsigned long long)i64ExchangeValue)) \
-					Result = ERR_OK; \
-				else \
-					Result = ERR_FAILED; \
-			} while (0)
-#endif
-
 #endif	/*__SYSSPECIFIC__H__*/
+  	

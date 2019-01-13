@@ -11,13 +11,13 @@
  *  implemented IOMgr is necessary.
  *  </description>
  *  <copyright>
- *  Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+ *  (c) 2003-2016 3S-Smart Software Solutions
  *  </copyright>
  */
 #ifndef _CMPIOMGRSTUBDEP_H_
 #define _CMPIOMGRSTUBDEP_H_
 
-#define COMPONENT_NAME "CmpIoMgrStub" COMPONENT_NAME_POSTFIX
+#define COMPONENT_NAME "CmpIoMgrStub"COMPONENT_NAME_POSTFIX
 #define COMPONENT_ID    ADDVENDORID(CMP_VENDORID, CMPID_CmpIoMgrStub)
 #define COMPONENT_NAME_UNQUOTED CmpIoMgrStub
 
@@ -26,9 +26,9 @@
 
 
 
-#define CMP_VERSION         UINT32_C(0x03050D00)
-#define CMP_VERSION_STRING "3.5.13.0"
-#define CMP_VERSION_RC      3,5,13,0
+#define CMP_VERSION         UINT32_C(0x03050A00)
+#define CMP_VERSION_STRING "3.5.10.0"
+#define CMP_VERSION_RC      3,5,10,0
 #define CMP_VENDORID       RTS_VENDORID_3S
 
 #ifndef WIN32_RESOURCES
@@ -122,7 +122,7 @@
 
 #ifndef CMPIOMGRSTUB_DISABLE_EXTREF
 #define EXPORT_EXTREF_STMT \
-                                                                                                      { (RTS_VOID_FCTPTR)iomgrregisterinstance, "iomgrregisterinstance", 0, 0 },\
+                                                                                                    { (RTS_VOID_FCTPTR)iomgrregisterinstance, "iomgrregisterinstance", 0, 0 },\
               { (RTS_VOID_FCTPTR)iomgrconfiggetiodriver, "iomgrconfiggetiodriver", 0, 0x3010200 },\
           { (RTS_VOID_FCTPTR)iomgrwriteparameter, "iomgrwriteparameter", RTSITF_GET_SIGNATURE(0, 0xAD04F7E8), 0x03050800 },\
           { (RTS_VOID_FCTPTR)iomgrwriteoutputs, "iomgrwriteoutputs", RTSITF_GET_SIGNATURE(0, 0xDA3433B3), 0x03050800 },\
@@ -175,7 +175,7 @@
 #endif
 #ifndef CMPIOMGRSTUB_DISABLE_EXTREF2
 #define EXPORT_EXTREF2_STMT \
-                                                                                                                                                                                                        
+                                                                                                                                                                                                      
 #else
 #define EXPORT_EXTREF2_STMT
 #endif
@@ -216,7 +216,6 @@
           { (RTS_VOID_FCTPTR)IoMgrReconfigure, "IoMgrReconfigure", 0, 0 },\
           { (RTS_VOID_FCTPTR)IoMgrUpdateMapping2, "IoMgrUpdateMapping2", 0, 0 },\
           { (RTS_VOID_FCTPTR)IoMgrUpdateMapping, "IoMgrUpdateMapping", 0, 0 },\
-          { (RTS_VOID_FCTPTR)IoMgrHasTaskIOs, "IoMgrHasTaskIOs", 0, 0 },\
           { (RTS_VOID_FCTPTR)IoMgrUpdateConfiguration2, "IoMgrUpdateConfiguration2", 0, 0 },\
           { (RTS_VOID_FCTPTR)IoMgrUpdateConfiguration, "IoMgrUpdateConfiguration", 0, 0 },\
           { (RTS_VOID_FCTPTR)IoMgrGetConfigApplication, "IoMgrGetConfigApplication", 0, 0 },\
@@ -385,7 +384,6 @@ class CCmpIoMgrStub : public ICmpIoMgr
         virtual RTS_RESULT CDECL IIoMgrGetConfigApplication(char *pszConfigApplication, int *pnMaxLen);
         virtual RTS_RESULT CDECL IIoMgrUpdateConfiguration(IoConfigConnector *pConnectorList, int nCount);
         virtual RTS_RESULT CDECL IIoMgrUpdateConfiguration2(IoConfigConnector *pConnectorList, int nCount, char *pszConfigApplication);
-        virtual RTS_BOOL CDECL IIoMgrHasTaskIOs(RTS_UI32 dwTaskId, RTS_UI16 taskMapType, RTS_RESULT *pResult);
         virtual RTS_RESULT CDECL IIoMgrUpdateMapping(IoConfigTaskMap *pTaskMapList, int nCount);
         virtual RTS_RESULT CDECL IIoMgrUpdateMapping2(IoConfigTaskMap *pTaskMapList, int nCount, char *pszConfigApplication);
         virtual RTS_RESULT CDECL IIoMgrReconfigure(IoConfigConnector *pConnector, RTS_UI32 *pui32State);

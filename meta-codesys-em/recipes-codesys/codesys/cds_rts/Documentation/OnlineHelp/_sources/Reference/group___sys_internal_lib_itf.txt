@@ -271,10 +271,6 @@ Functions
 
 - void :ref:`int64__to__any32 <group___sys_internal_lib_itf_1ga846ed897bab94cdb5bbb43c4b814b4d3>` (:ref:`int64_to_any32_struct <structint64__to__any32__struct>` * p)
 
-- void :ref:`int64__atomicread <group___sys_internal_lib_itf_1gafdc0dec98a62c7271a63ff62a6c00aff>` (:ref:`int64_atomicread_struct <structint64__atomicread__struct>` * p)
-
-- void :ref:`int64__atomicwrite <group___sys_internal_lib_itf_1ga47e731b2c966ad352a15ed13db995d43>` (:ref:`int64_atomicwrite_struct <structint64__atomicwrite__struct>` * p)
-
 - void :ref:`real32__to__any32 <group___sys_internal_lib_itf_1ga23a6698447f26cce3b1338e636c16480>` (:ref:`real32_to_any32_struct <structreal32__to__any32__struct>` * p)
 
 - void :ref:`any32__to__real32 <group___sys_internal_lib_itf_1gae8eb719ca8bf32391e276840f01fea53>` (:ref:`any32_to_real32_struct <structany32__to__real32__struct>` * p)
@@ -294,10 +290,6 @@ Functions
 - void :ref:`real64__to__real32 <group___sys_internal_lib_itf_1ga5b4aa4bf87cbf99c690ebe5c820946c9>` (:ref:`real64_to_real32_struct <structreal64__to__real32__struct>` * p)
 
 - void :ref:`real32__to__real64 <group___sys_internal_lib_itf_1ga196590d2a3de6e19b4616388839bbc9a>` (:ref:`real32_to_real64_struct <structreal32__to__real64__struct>` * p)
-
-- void :ref:`real64__atomicread <group___sys_internal_lib_itf_1gaec072632505a9535d34fc7aa3582ea6e>` (:ref:`real64_atomicread_struct <structreal64__atomicread__struct>` * p)
-
-- void :ref:`real64__atomicwrite <group___sys_internal_lib_itf_1gacccfca584e3180ddaaff46b6383211e8>` (:ref:`real64_atomicwrite_struct <structreal64__atomicwrite__struct>` * p)
 
 - void :ref:`get__time <group___sys_internal_lib_itf_1gac3222897d2f27c2605567757d39d7799>` (:ref:`get_time_struct <structget__time__struct>` * p)
 
@@ -346,7 +338,7 @@ If the define SYSINTERNALLIB_DISABLE_REAL_DIVBYZERO_CHECK is set, you can disabl
 
 **Copyright:**
 
-Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
+\(c) 2003-2016 3S-Smart Software Solutions
 
 Macro Definition Documentation
 ------------------------------
@@ -2588,44 +2580,6 @@ Only integer datatypes are allowed.
 | [out]   | out        | ***PSEUDO*** Input value as 32-bit data type.                                                                                                                                              |
 +---------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. _group___sys_internal_lib_itf_1gafdc0dec98a62c7271a63ff62a6c00aff:
-
-void int64__atomicread (int64_atomicread_struct *p)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This function read a 64bit integer value atomic.
-
-**Parameters**
-
-+---------+---------+-----------------------------------------------------+
-| [in]    | p       | Pointer to the input structure                      |
-+---------+---------+-----------------------------------------------------+
-| [in]    | pSrc    | ***PSEUDO*** Pointer to source address to read from |
-+---------+---------+-----------------------------------------------------+
-| [in]    | pResult | ***PSEUDO*** Pointer to error code                  |
-+---------+---------+-----------------------------------------------------+
-| [out]   | out     | ***PSEUDO*** Read 64bit integer value.              |
-+---------+---------+-----------------------------------------------------+
-
-.. _group___sys_internal_lib_itf_1ga47e731b2c966ad352a15ed13db995d43:
-
-void int64__atomicwrite (int64_atomicwrite_struct *p)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This function write a 64bit integer value atomic.
-
-**Parameters**
-
-+---------+-------+---------------------------------------------------------+
-| [in]    | p     | Pointer to the input structure                          |
-+---------+-------+---------------------------------------------------------+
-| [in]    | pDest | ***PSEUDO*** Pointer to destination address to write to |
-+---------+-------+---------------------------------------------------------+
-| [in]    | write | ***PSEUDO*** Value to write                             |
-+---------+-------+---------------------------------------------------------+
-| [out]   | out   | ***PSEUDO*** Error code for result.                     |
-+---------+-------+---------------------------------------------------------+
-
 .. _group___sys_internal_lib_itf_1ga23a6698447f26cce3b1338e636c16480:
 
 void real32__to__any32 (real32_to_any32_struct *p)
@@ -2851,16 +2805,6 @@ This function Converts a 32-bit real value to a 64-bit real value.
 +---------+-----+----------------------------------------------------------------------+
 | [out]   | out | ***PSEUDO*** Input value as 64-bit real value.                       |
 +---------+-----+----------------------------------------------------------------------+
-
-.. _group___sys_internal_lib_itf_1gaec072632505a9535d34fc7aa3582ea6e:
-
-void real64__atomicread (real64_atomicread_struct *p)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _group___sys_internal_lib_itf_1gacccfca584e3180ddaaff46b6383211e8:
-
-void real64__atomicwrite (real64_atomicwrite_struct *p)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _group___sys_internal_lib_itf_1gac3222897d2f27c2605567757d39d7799:
 

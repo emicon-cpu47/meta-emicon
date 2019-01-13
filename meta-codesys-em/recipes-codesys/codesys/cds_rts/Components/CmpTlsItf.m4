@@ -8,9 +8,7 @@
  *	- The functions for secure CODESYS communication are only prototypes. They don't have to be used.
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
  
  SET_INTERFACE_NAME(`CmpTls')
@@ -156,7 +154,7 @@ REF_ITF(`CmpCryptoItf.m4')
  */
 #define TLSKEY_STR_CTX_CIPHER_LIST						"CipherList"
 #ifndef TLSVALUE_STR_CTX_CIPHER_LIST_DEFAULT
-	#define TLSVALUE_STR_CTX_CIPHER_LIST_DEFAULT		"HIGH+ECDH:HIGH+DH"
+	#define TLSVALUE_STR_CTX_CIPHER_LIST_DEFAULT		"HIGH+DH"
 #endif
 
 /**
@@ -184,7 +182,7 @@ extern "C" {
  connections. A Context contains all the application specific information of the connection. New connections are 
  initialized using a context.</description>
  * <param name="pszNamespace" type="IN">Namespace of the context. Settings of the context are read from the config file.</param>
- * <param name="pResult" type="OUT">Result of this operation.</param>
+ * <param name="pResult" type="out">Result of this operation.</param>
  * <result>Handle to the created TLS context.</result>
  */
 DEF_ITF_API(`RTS_HANDLE',`CDECL',`TlsCreateContext',`(char* pszNamespace, RTS_RESULT* pResult)')
@@ -319,8 +317,8 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`TlsConnect',`(RTS_HANDLE hTlsConn)')
  * automatically the need to send data will be indicated using the corresponding error code.</description>
  * <param name="hTlsConn" type="IN">Handle of the TLS connection, created with one of the TLSxxxOpen functions</param>
  * <param name="pbyData" type="IN">Pointer to a data buffer, where the received data should be written to.</param>
- * <param name="lDataSize" type="IN">Size of pbyData. Maximum number of bytes, that could be received from the TLS connection.</param>
- * <param name="pResult" type="OUT">Result of this operation. May be one of these values:
+ * <param name="lDataSize" type="in">Size of pbyData. Maximum number of bytes, that could be received from the TLS connection.</param>
+ * <param name="pResult" type="out">Result of this operation. May be one of these values:
  *		- ERR_OK: No error. Everything worked as expected.
  *		- ERR_NOTINITIALIZED: The TLS component was not initialized properly.
  *		- ERR_TLS_CONNECTION_CLOSED: The TLS connection is closed. Use TlsShutdown to shutdown locally.
@@ -342,7 +340,7 @@ DEF_ITF_API(`RTS_SSIZE',`CDECL',`TlsRead',`(RTS_HANDLE hTlsConn, RTS_UI8* pbyBuf
  * <param name="hTlsConn" type="IN">Handle of the TLS connection, created with one of the TLSxxxOpen functions</param>
  * <param name="pbyData" type="IN">Pointer to data, that should be sent over the TLS connection</param>
  * <param name="lDataSize" type="IN">Size of pbyData. Number of bytes that should be sent over the TLS connection</param>
- * <param name="pResult" type="OUT">Result of this operation. May be one of these values:
+ * <param name="pResult" type="out">Result of this operation. May be one of these values:
  *		- ERR_OK: No error. Everything worked as expected.
  *		- ERR_NOTINITIALIZED: The TLS component was not initialized properly.
  *		- ERR_TLS_CONNECTION_CLOSED: The TLS connection is closed. Use TlsShutdown to shutdown locally.
@@ -391,7 +389,7 @@ DEF_ITF_API(`RTS_RESULT',`CDECL',`TlsClose',`(RTS_HANDLE hTlsConn)')
 /*
  * <description>Get the certificate of the peer connected to.</description>
  * <param name="hTlsConn" type="IN">Handle of the TLS connection, created with one of the TLSWrap functions</param>
- * <param name="pResult" type="OUT">Result of this operation.</param>
+ * <param name="pResult" type="out">Result of this operation.</param>
  * <result>A pointer to the certificate received from the peer. NULL, if no certificate could be received. 
  * Check pResult for more information</result>
  */

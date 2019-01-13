@@ -11,15 +11,9 @@
  *  Please see further description for SysFileFlash and our Flash-Filesystem.
  *	Please note that the offsets of the files have to correspond with sector borders of the flash. One file should be
  *	stored in one sector.</p>
- *  <p>There is also the possibility to use more than one code area in the project and to move the 
- *  application code between those areas. The OEM SysFlash implementation should then check the offset parameter
- *  and decide, which of the flash areas should be modified then. When the offset parameter is bigger than the first
- *  code area for example, then the second code area should be accessed.</p>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 SET_INTERFACE_NAME(`SysFlash')

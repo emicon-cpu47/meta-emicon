@@ -8,8 +8,6 @@
 
 
 
-
-
 #include "SysTargetOEM.c"
 
 
@@ -104,17 +102,6 @@ RTS_RESULT CDECL CSysTargetOEM::ISysTargetCheckIdent(SysTargetIdent *pTargetIden
 {
 	return SysTargetCheckIdent(pTargetIdentReq,pTargetIdent);
 }
-
-RTS_RESULT CDECL CSysTargetOEM::ISysTargetGetAPI(API_RESOLVE_INFO apiInfo, RTS_VOID_FCTPTR *ppfAPIFunction)
-{
-	return SysTargetGetAPI(apiInfo,ppfAPIFunction);
-}
-
-RTS_RESULT CDECL CSysTargetOEM::ISysTargetSetNodeName(RTS_WCHAR *pwszName)
-{
-	return SysTargetSetNodeName(pwszName);
-}
-
 
 
 

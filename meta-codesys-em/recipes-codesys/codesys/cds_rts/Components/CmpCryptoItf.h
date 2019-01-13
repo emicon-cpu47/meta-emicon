@@ -12,9 +12,7 @@
  *	</ul>
  * </description>
  *
- * <copyright>
- * Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.
- * </copyright>
+ * <copyright>(c) 2003-2016 3S-Smart Software Solutions</copyright>
  */
 
 	
@@ -41,44 +39,32 @@ extern "C" {
 /**
  * <description>Enum: RtsCryptoID</description>
  */
-
-/* --- Symmetric chipers --- */
-#define RTSCRYPTOID_AES_128_CBC				RTS_IEC_UDINT_C(0x1001)
-#define RTSCRYPTOID_AES_128_CFB				RTS_IEC_UDINT_C(0x1002)	
-#define RTSCRYPTOID_AES_256_CBC				RTS_IEC_UDINT_C(0x1003)	
-#define RTSCRYPTOID_DES_CBC					RTS_IEC_UDINT_C(0x1004)	
-#define RTSCRYPTOID_AES_256_CTR				RTS_IEC_UDINT_C(0x1005)
-
-/* --- Asymmetric Cipers --- */	
-#define RTSCRYPTOID_RSA						RTS_IEC_UDINT_C(0x2001)
-#define RTSCRYPTOID_RSA_OAEP_PADDING		RTS_IEC_UDINT_C(0x2002)	
-#define RTSCRYPTOID_RSA_PKCS1_V15_PADDING   RTS_IEC_UDINT_C(0x2003)	
-
-/* --- Hash functions --- */
-#define RTSCRYPTOID_HASH_MD5				RTS_IEC_UDINT_C(0x3001)	
-#define RTSCRYPTOID_HASH_SHA1				RTS_IEC_UDINT_C(0x3002)	
-#define RTSCRYPTOID_HASH_SHA224				RTS_IEC_UDINT_C(0x3003)	
-#define RTSCRYPTOID_HASH_SHA256				RTS_IEC_UDINT_C(0x3004)	
-#define RTSCRYPTOID_HASH_SHA384				RTS_IEC_UDINT_C(0x3005)	
-#define RTSCRYPTOID_HASH_SHA512				RTS_IEC_UDINT_C(0x3006)	
-
-/* --- Signature Functions --- */
-/* HMAC Functions */
-#define RTSCRYPTOID_HMAC_MD5				RTS_IEC_UDINT_C(0x4001)
-#define RTSCRYPTOID_HMAC_SHA1				RTS_IEC_UDINT_C(0x4002)	
-#define RTSCRYPTOID_HMAC_SHA224				RTS_IEC_UDINT_C(0x4003)	
-#define RTSCRYPTOID_HMAC_SHA256				RTS_IEC_UDINT_C(0x4004)	
-#define RTSCRYPTOID_HMAC_SHA384				RTS_IEC_UDINT_C(0x4005)	
-#define RTSCRYPTOID_HMAC_SHA512				RTS_IEC_UDINT_C(0x4006)	
-
-/* RSA Functions */
-#define RTSCRYPTOID_RSA_OAEP_SHA1			RTS_IEC_UDINT_C(0x5003)
-#define RTSCRYPTOID_RSA_OAEP_SHA256			RTS_IEC_UDINT_C(0x5004)	
-#define RTSCRYPTOID_RSA_PKCS1_V15_SHA1		RTS_IEC_UDINT_C(0x5001)	
+#define RTSCRYPTOID_AES_128_CBC    RTS_IEC_UDINT_C(0x1001)	/* Symmetric chipers */
+#define RTSCRYPTOID_AES_128_CFB    RTS_IEC_UDINT_C(0x1002)	
+#define RTSCRYPTOID_AES_256_CBC    RTS_IEC_UDINT_C(0x1003)	
+#define RTSCRYPTOID_DES_CBC    RTS_IEC_UDINT_C(0x1004)	
+#define RTSCRYPTOID_AES_256_CTR    RTS_IEC_UDINT_C(0x1005)	
+#define RTSCRYPTOID_RSA    RTS_IEC_UDINT_C(0x2001)	/* Asymmetric Cipers */
+#define RTSCRYPTOID_RSA_OAEP_PADDING    RTS_IEC_UDINT_C(0x2002)	
+#define RTSCRYPTOID_RSA_PKCS1_V15_PADDING    RTS_IEC_UDINT_C(0x2003)	
+#define RTSCRYPTOID_HASH_MD5    RTS_IEC_UDINT_C(0x3001)	/* Hash functions */
+#define RTSCRYPTOID_HASH_SHA1    RTS_IEC_UDINT_C(0x3002)	
+#define RTSCRYPTOID_HASH_SHA224    RTS_IEC_UDINT_C(0x3003)	
+#define RTSCRYPTOID_HASH_SHA256    RTS_IEC_UDINT_C(0x3004)	
+#define RTSCRYPTOID_HASH_SHA384    RTS_IEC_UDINT_C(0x3005)	
+#define RTSCRYPTOID_HASH_SHA512    RTS_IEC_UDINT_C(0x3006)	
+#define RTSCRYPTOID_HMAC_MD5    RTS_IEC_UDINT_C(0x4001)	/* HMAC Functions */
+#define RTSCRYPTOID_HMAC_SHA1    RTS_IEC_UDINT_C(0x4002)	
+#define RTSCRYPTOID_HMAC_SHA224    RTS_IEC_UDINT_C(0x4003)	
+#define RTSCRYPTOID_HMAC_SHA256    RTS_IEC_UDINT_C(0x4004)	
+#define RTSCRYPTOID_HMAC_SHA384    RTS_IEC_UDINT_C(0x4005)	
+#define RTSCRYPTOID_HMAC_SHA512    RTS_IEC_UDINT_C(0x4006)	
+#define RTSCRYPTOID_RSA_OAEP_SHA1    RTS_IEC_UDINT_C(0x5003)	/* Signature Functions */
+#define RTSCRYPTOID_RSA_OAEP_SHA256    RTS_IEC_UDINT_C(0x5004)	
+#define RTSCRYPTOID_RSA_PKCS1_V15_SHA1    RTS_IEC_UDINT_C(0x5001)	
 #define RTSCRYPTOID_RSA_PKCS1_V15_SHA256    RTS_IEC_UDINT_C(0x5002)	
-
 /* Typed enum definition */
-#define RTSCRYPTOID							RTS_IEC_UDINT
+#define RTSCRYPTOID    RTS_IEC_UDINT
 
 /**
  * <description>Enum: RtsCryptoKeyType</description>
@@ -157,35 +143,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOASYMMETRICDECRYPT_IEC) (cryptoasymmetricd
 	#define GET_cryptoasymmetricdecrypt(fl)  CAL_CMGETAPI( "cryptoasymmetricdecrypt" ) 
 	#define CAL_cryptoasymmetricdecrypt  cryptoasymmetricdecrypt
 	#define CHK_cryptoasymmetricdecrypt  TRUE
-	#define EXP_cryptoasymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricdecrypt", (RTS_UINTPTR)cryptoasymmetricdecrypt, 1, 0x126B86CC, 0x03050B00) 
+	#define EXP_cryptoasymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricdecrypt", (RTS_UINTPTR)cryptoasymmetricdecrypt, 1, 0x126B86CC, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptoasymmetricdecrypt
 	#define EXT_cryptoasymmetricdecrypt
 	#define GET_cryptoasymmetricdecrypt(fl)  CAL_CMGETAPI( "cryptoasymmetricdecrypt" ) 
 	#define CAL_cryptoasymmetricdecrypt  cryptoasymmetricdecrypt
 	#define CHK_cryptoasymmetricdecrypt  TRUE
-	#define EXP_cryptoasymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricdecrypt", (RTS_UINTPTR)cryptoasymmetricdecrypt, 1, 0x126B86CC, 0x03050B00) 
+	#define EXP_cryptoasymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricdecrypt", (RTS_UINTPTR)cryptoasymmetricdecrypt, 1, 0x126B86CC, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptoasymmetricdecrypt
 	#define EXT_CmpCryptocryptoasymmetricdecrypt
 	#define GET_CmpCryptocryptoasymmetricdecrypt  ERR_OK
 	#define CAL_CmpCryptocryptoasymmetricdecrypt  cryptoasymmetricdecrypt
 	#define CHK_CmpCryptocryptoasymmetricdecrypt  TRUE
-	#define EXP_CmpCryptocryptoasymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricdecrypt", (RTS_UINTPTR)cryptoasymmetricdecrypt, 1, 0x126B86CC, 0x03050B00) 
+	#define EXP_CmpCryptocryptoasymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricdecrypt", (RTS_UINTPTR)cryptoasymmetricdecrypt, 1, 0x126B86CC, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptoasymmetricdecrypt
 	#define EXT_cryptoasymmetricdecrypt
 	#define GET_cryptoasymmetricdecrypt(fl)  CAL_CMGETAPI( "cryptoasymmetricdecrypt" ) 
 	#define CAL_cryptoasymmetricdecrypt  cryptoasymmetricdecrypt
 	#define CHK_cryptoasymmetricdecrypt  TRUE
-	#define EXP_cryptoasymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricdecrypt", (RTS_UINTPTR)cryptoasymmetricdecrypt, 1, 0x126B86CC, 0x03050B00) 
+	#define EXP_cryptoasymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricdecrypt", (RTS_UINTPTR)cryptoasymmetricdecrypt, 1, 0x126B86CC, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptoasymmetricdecrypt  PFCRYPTOASYMMETRICDECRYPT_IEC pfcryptoasymmetricdecrypt;
 	#define EXT_cryptoasymmetricdecrypt  extern PFCRYPTOASYMMETRICDECRYPT_IEC pfcryptoasymmetricdecrypt;
-	#define GET_cryptoasymmetricdecrypt(fl)  s_pfCMGetAPI2( "cryptoasymmetricdecrypt", (RTS_VOID_FCTPTR *)&pfcryptoasymmetricdecrypt, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x126B86CC, 0x03050B00)
+	#define GET_cryptoasymmetricdecrypt(fl)  s_pfCMGetAPI2( "cryptoasymmetricdecrypt", (RTS_VOID_FCTPTR *)&pfcryptoasymmetricdecrypt, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x126B86CC, 0x03050A00)
 	#define CAL_cryptoasymmetricdecrypt  pfcryptoasymmetricdecrypt
 	#define CHK_cryptoasymmetricdecrypt  (pfcryptoasymmetricdecrypt != NULL)
-	#define EXP_cryptoasymmetricdecrypt   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricdecrypt", (RTS_UINTPTR)cryptoasymmetricdecrypt, 1, 0x126B86CC, 0x03050B00) 
+	#define EXP_cryptoasymmetricdecrypt   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricdecrypt", (RTS_UINTPTR)cryptoasymmetricdecrypt, 1, 0x126B86CC, 0x03050A00) 
 #endif
 
 
@@ -217,35 +203,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOASYMMETRICENCRYPT_IEC) (cryptoasymmetrice
 	#define GET_cryptoasymmetricencrypt(fl)  CAL_CMGETAPI( "cryptoasymmetricencrypt" ) 
 	#define CAL_cryptoasymmetricencrypt  cryptoasymmetricencrypt
 	#define CHK_cryptoasymmetricencrypt  TRUE
-	#define EXP_cryptoasymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricencrypt", (RTS_UINTPTR)cryptoasymmetricencrypt, 1, 0xC14613D0, 0x03050B00) 
+	#define EXP_cryptoasymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricencrypt", (RTS_UINTPTR)cryptoasymmetricencrypt, 1, 0xC14613D0, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptoasymmetricencrypt
 	#define EXT_cryptoasymmetricencrypt
 	#define GET_cryptoasymmetricencrypt(fl)  CAL_CMGETAPI( "cryptoasymmetricencrypt" ) 
 	#define CAL_cryptoasymmetricencrypt  cryptoasymmetricencrypt
 	#define CHK_cryptoasymmetricencrypt  TRUE
-	#define EXP_cryptoasymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricencrypt", (RTS_UINTPTR)cryptoasymmetricencrypt, 1, 0xC14613D0, 0x03050B00) 
+	#define EXP_cryptoasymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricencrypt", (RTS_UINTPTR)cryptoasymmetricencrypt, 1, 0xC14613D0, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptoasymmetricencrypt
 	#define EXT_CmpCryptocryptoasymmetricencrypt
 	#define GET_CmpCryptocryptoasymmetricencrypt  ERR_OK
 	#define CAL_CmpCryptocryptoasymmetricencrypt  cryptoasymmetricencrypt
 	#define CHK_CmpCryptocryptoasymmetricencrypt  TRUE
-	#define EXP_CmpCryptocryptoasymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricencrypt", (RTS_UINTPTR)cryptoasymmetricencrypt, 1, 0xC14613D0, 0x03050B00) 
+	#define EXP_CmpCryptocryptoasymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricencrypt", (RTS_UINTPTR)cryptoasymmetricencrypt, 1, 0xC14613D0, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptoasymmetricencrypt
 	#define EXT_cryptoasymmetricencrypt
 	#define GET_cryptoasymmetricencrypt(fl)  CAL_CMGETAPI( "cryptoasymmetricencrypt" ) 
 	#define CAL_cryptoasymmetricencrypt  cryptoasymmetricencrypt
 	#define CHK_cryptoasymmetricencrypt  TRUE
-	#define EXP_cryptoasymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricencrypt", (RTS_UINTPTR)cryptoasymmetricencrypt, 1, 0xC14613D0, 0x03050B00) 
+	#define EXP_cryptoasymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricencrypt", (RTS_UINTPTR)cryptoasymmetricencrypt, 1, 0xC14613D0, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptoasymmetricencrypt  PFCRYPTOASYMMETRICENCRYPT_IEC pfcryptoasymmetricencrypt;
 	#define EXT_cryptoasymmetricencrypt  extern PFCRYPTOASYMMETRICENCRYPT_IEC pfcryptoasymmetricencrypt;
-	#define GET_cryptoasymmetricencrypt(fl)  s_pfCMGetAPI2( "cryptoasymmetricencrypt", (RTS_VOID_FCTPTR *)&pfcryptoasymmetricencrypt, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xC14613D0, 0x03050B00)
+	#define GET_cryptoasymmetricencrypt(fl)  s_pfCMGetAPI2( "cryptoasymmetricencrypt", (RTS_VOID_FCTPTR *)&pfcryptoasymmetricencrypt, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xC14613D0, 0x03050A00)
 	#define CAL_cryptoasymmetricencrypt  pfcryptoasymmetricencrypt
 	#define CHK_cryptoasymmetricencrypt  (pfcryptoasymmetricencrypt != NULL)
-	#define EXP_cryptoasymmetricencrypt   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricencrypt", (RTS_UINTPTR)cryptoasymmetricencrypt, 1, 0xC14613D0, 0x03050B00) 
+	#define EXP_cryptoasymmetricencrypt   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptoasymmetricencrypt", (RTS_UINTPTR)cryptoasymmetricencrypt, 1, 0xC14613D0, 0x03050A00) 
 #endif
 
 
@@ -276,35 +262,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOGENERATEHASH_IEC) (cryptogeneratehash_str
 	#define GET_cryptogeneratehash(fl)  CAL_CMGETAPI( "cryptogeneratehash" ) 
 	#define CAL_cryptogeneratehash  cryptogeneratehash
 	#define CHK_cryptogeneratehash  TRUE
-	#define EXP_cryptogeneratehash  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneratehash", (RTS_UINTPTR)cryptogeneratehash, 1, 0x34E1A812, 0x03050B00) 
+	#define EXP_cryptogeneratehash  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneratehash", (RTS_UINTPTR)cryptogeneratehash, 1, 0x34E1A812, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptogeneratehash
 	#define EXT_cryptogeneratehash
 	#define GET_cryptogeneratehash(fl)  CAL_CMGETAPI( "cryptogeneratehash" ) 
 	#define CAL_cryptogeneratehash  cryptogeneratehash
 	#define CHK_cryptogeneratehash  TRUE
-	#define EXP_cryptogeneratehash  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneratehash", (RTS_UINTPTR)cryptogeneratehash, 1, 0x34E1A812, 0x03050B00) 
+	#define EXP_cryptogeneratehash  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneratehash", (RTS_UINTPTR)cryptogeneratehash, 1, 0x34E1A812, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptogeneratehash
 	#define EXT_CmpCryptocryptogeneratehash
 	#define GET_CmpCryptocryptogeneratehash  ERR_OK
 	#define CAL_CmpCryptocryptogeneratehash  cryptogeneratehash
 	#define CHK_CmpCryptocryptogeneratehash  TRUE
-	#define EXP_CmpCryptocryptogeneratehash  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneratehash", (RTS_UINTPTR)cryptogeneratehash, 1, 0x34E1A812, 0x03050B00) 
+	#define EXP_CmpCryptocryptogeneratehash  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneratehash", (RTS_UINTPTR)cryptogeneratehash, 1, 0x34E1A812, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptogeneratehash
 	#define EXT_cryptogeneratehash
 	#define GET_cryptogeneratehash(fl)  CAL_CMGETAPI( "cryptogeneratehash" ) 
 	#define CAL_cryptogeneratehash  cryptogeneratehash
 	#define CHK_cryptogeneratehash  TRUE
-	#define EXP_cryptogeneratehash  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneratehash", (RTS_UINTPTR)cryptogeneratehash, 1, 0x34E1A812, 0x03050B00) 
+	#define EXP_cryptogeneratehash  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneratehash", (RTS_UINTPTR)cryptogeneratehash, 1, 0x34E1A812, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptogeneratehash  PFCRYPTOGENERATEHASH_IEC pfcryptogeneratehash;
 	#define EXT_cryptogeneratehash  extern PFCRYPTOGENERATEHASH_IEC pfcryptogeneratehash;
-	#define GET_cryptogeneratehash(fl)  s_pfCMGetAPI2( "cryptogeneratehash", (RTS_VOID_FCTPTR *)&pfcryptogeneratehash, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x34E1A812, 0x03050B00)
+	#define GET_cryptogeneratehash(fl)  s_pfCMGetAPI2( "cryptogeneratehash", (RTS_VOID_FCTPTR *)&pfcryptogeneratehash, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x34E1A812, 0x03050A00)
 	#define CAL_cryptogeneratehash  pfcryptogeneratehash
 	#define CHK_cryptogeneratehash  (pfcryptogeneratehash != NULL)
-	#define EXP_cryptogeneratehash   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneratehash", (RTS_UINTPTR)cryptogeneratehash, 1, 0x34E1A812, 0x03050B00) 
+	#define EXP_cryptogeneratehash   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneratehash", (RTS_UINTPTR)cryptogeneratehash, 1, 0x34E1A812, 0x03050A00) 
 #endif
 
 
@@ -334,35 +320,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOGENERATERANDOMNUMBER_IEC) (cryptogenerate
 	#define GET_cryptogeneraterandomnumber(fl)  CAL_CMGETAPI( "cryptogeneraterandomnumber" ) 
 	#define CAL_cryptogeneraterandomnumber  cryptogeneraterandomnumber
 	#define CHK_cryptogeneraterandomnumber  TRUE
-	#define EXP_cryptogeneraterandomnumber  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneraterandomnumber", (RTS_UINTPTR)cryptogeneraterandomnumber, 1, 0xF9FC5437, 0x03050B00) 
+	#define EXP_cryptogeneraterandomnumber  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneraterandomnumber", (RTS_UINTPTR)cryptogeneraterandomnumber, 1, 0xF9FC5437, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptogeneraterandomnumber
 	#define EXT_cryptogeneraterandomnumber
 	#define GET_cryptogeneraterandomnumber(fl)  CAL_CMGETAPI( "cryptogeneraterandomnumber" ) 
 	#define CAL_cryptogeneraterandomnumber  cryptogeneraterandomnumber
 	#define CHK_cryptogeneraterandomnumber  TRUE
-	#define EXP_cryptogeneraterandomnumber  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneraterandomnumber", (RTS_UINTPTR)cryptogeneraterandomnumber, 1, 0xF9FC5437, 0x03050B00) 
+	#define EXP_cryptogeneraterandomnumber  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneraterandomnumber", (RTS_UINTPTR)cryptogeneraterandomnumber, 1, 0xF9FC5437, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptogeneraterandomnumber
 	#define EXT_CmpCryptocryptogeneraterandomnumber
 	#define GET_CmpCryptocryptogeneraterandomnumber  ERR_OK
 	#define CAL_CmpCryptocryptogeneraterandomnumber  cryptogeneraterandomnumber
 	#define CHK_CmpCryptocryptogeneraterandomnumber  TRUE
-	#define EXP_CmpCryptocryptogeneraterandomnumber  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneraterandomnumber", (RTS_UINTPTR)cryptogeneraterandomnumber, 1, 0xF9FC5437, 0x03050B00) 
+	#define EXP_CmpCryptocryptogeneraterandomnumber  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneraterandomnumber", (RTS_UINTPTR)cryptogeneraterandomnumber, 1, 0xF9FC5437, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptogeneraterandomnumber
 	#define EXT_cryptogeneraterandomnumber
 	#define GET_cryptogeneraterandomnumber(fl)  CAL_CMGETAPI( "cryptogeneraterandomnumber" ) 
 	#define CAL_cryptogeneraterandomnumber  cryptogeneraterandomnumber
 	#define CHK_cryptogeneraterandomnumber  TRUE
-	#define EXP_cryptogeneraterandomnumber  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneraterandomnumber", (RTS_UINTPTR)cryptogeneraterandomnumber, 1, 0xF9FC5437, 0x03050B00) 
+	#define EXP_cryptogeneraterandomnumber  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneraterandomnumber", (RTS_UINTPTR)cryptogeneraterandomnumber, 1, 0xF9FC5437, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptogeneraterandomnumber  PFCRYPTOGENERATERANDOMNUMBER_IEC pfcryptogeneraterandomnumber;
 	#define EXT_cryptogeneraterandomnumber  extern PFCRYPTOGENERATERANDOMNUMBER_IEC pfcryptogeneraterandomnumber;
-	#define GET_cryptogeneraterandomnumber(fl)  s_pfCMGetAPI2( "cryptogeneraterandomnumber", (RTS_VOID_FCTPTR *)&pfcryptogeneraterandomnumber, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xF9FC5437, 0x03050B00)
+	#define GET_cryptogeneraterandomnumber(fl)  s_pfCMGetAPI2( "cryptogeneraterandomnumber", (RTS_VOID_FCTPTR *)&pfcryptogeneraterandomnumber, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xF9FC5437, 0x03050A00)
 	#define CAL_cryptogeneraterandomnumber  pfcryptogeneraterandomnumber
 	#define CHK_cryptogeneraterandomnumber  (pfcryptogeneraterandomnumber != NULL)
-	#define EXP_cryptogeneraterandomnumber   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneraterandomnumber", (RTS_UINTPTR)cryptogeneraterandomnumber, 1, 0xF9FC5437, 0x03050B00) 
+	#define EXP_cryptogeneraterandomnumber   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogeneraterandomnumber", (RTS_UINTPTR)cryptogeneraterandomnumber, 1, 0xF9FC5437, 0x03050A00) 
 #endif
 
 
@@ -392,47 +378,47 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOGETALGORITHMBYID_IEC) (cryptogetalgorithm
 	#define GET_cryptogetalgorithmbyid(fl)  CAL_CMGETAPI( "cryptogetalgorithmbyid" ) 
 	#define CAL_cryptogetalgorithmbyid  cryptogetalgorithmbyid
 	#define CHK_cryptogetalgorithmbyid  TRUE
-	#define EXP_cryptogetalgorithmbyid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetalgorithmbyid", (RTS_UINTPTR)cryptogetalgorithmbyid, 1, 0x3D0776D3, 0x03050B00) 
+	#define EXP_cryptogetalgorithmbyid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetalgorithmbyid", (RTS_UINTPTR)cryptogetalgorithmbyid, 1, 0x3D0776D3, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptogetalgorithmbyid
 	#define EXT_cryptogetalgorithmbyid
 	#define GET_cryptogetalgorithmbyid(fl)  CAL_CMGETAPI( "cryptogetalgorithmbyid" ) 
 	#define CAL_cryptogetalgorithmbyid  cryptogetalgorithmbyid
 	#define CHK_cryptogetalgorithmbyid  TRUE
-	#define EXP_cryptogetalgorithmbyid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetalgorithmbyid", (RTS_UINTPTR)cryptogetalgorithmbyid, 1, 0x3D0776D3, 0x03050B00) 
+	#define EXP_cryptogetalgorithmbyid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetalgorithmbyid", (RTS_UINTPTR)cryptogetalgorithmbyid, 1, 0x3D0776D3, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptogetalgorithmbyid
 	#define EXT_CmpCryptocryptogetalgorithmbyid
 	#define GET_CmpCryptocryptogetalgorithmbyid  ERR_OK
 	#define CAL_CmpCryptocryptogetalgorithmbyid  cryptogetalgorithmbyid
 	#define CHK_CmpCryptocryptogetalgorithmbyid  TRUE
-	#define EXP_CmpCryptocryptogetalgorithmbyid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetalgorithmbyid", (RTS_UINTPTR)cryptogetalgorithmbyid, 1, 0x3D0776D3, 0x03050B00) 
+	#define EXP_CmpCryptocryptogetalgorithmbyid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetalgorithmbyid", (RTS_UINTPTR)cryptogetalgorithmbyid, 1, 0x3D0776D3, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptogetalgorithmbyid
 	#define EXT_cryptogetalgorithmbyid
 	#define GET_cryptogetalgorithmbyid(fl)  CAL_CMGETAPI( "cryptogetalgorithmbyid" ) 
 	#define CAL_cryptogetalgorithmbyid  cryptogetalgorithmbyid
 	#define CHK_cryptogetalgorithmbyid  TRUE
-	#define EXP_cryptogetalgorithmbyid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetalgorithmbyid", (RTS_UINTPTR)cryptogetalgorithmbyid, 1, 0x3D0776D3, 0x03050B00) 
+	#define EXP_cryptogetalgorithmbyid  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetalgorithmbyid", (RTS_UINTPTR)cryptogetalgorithmbyid, 1, 0x3D0776D3, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptogetalgorithmbyid  PFCRYPTOGETALGORITHMBYID_IEC pfcryptogetalgorithmbyid;
 	#define EXT_cryptogetalgorithmbyid  extern PFCRYPTOGETALGORITHMBYID_IEC pfcryptogetalgorithmbyid;
-	#define GET_cryptogetalgorithmbyid(fl)  s_pfCMGetAPI2( "cryptogetalgorithmbyid", (RTS_VOID_FCTPTR *)&pfcryptogetalgorithmbyid, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x3D0776D3, 0x03050B00)
+	#define GET_cryptogetalgorithmbyid(fl)  s_pfCMGetAPI2( "cryptogetalgorithmbyid", (RTS_VOID_FCTPTR *)&pfcryptogetalgorithmbyid, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x3D0776D3, 0x03050A00)
 	#define CAL_cryptogetalgorithmbyid  pfcryptogetalgorithmbyid
 	#define CHK_cryptogetalgorithmbyid  (pfcryptogetalgorithmbyid != NULL)
-	#define EXP_cryptogetalgorithmbyid   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetalgorithmbyid", (RTS_UINTPTR)cryptogetalgorithmbyid, 1, 0x3D0776D3, 0x03050B00) 
+	#define EXP_cryptogetalgorithmbyid   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetalgorithmbyid", (RTS_UINTPTR)cryptogetalgorithmbyid, 1, 0x3D0776D3, 0x03050A00) 
 #endif
 
 
 /**
- * Get the asymmetric key size in bits.
- * :return: Size of the asymmetric key in bits
+ * Get the PRIVATE key size in bytes.
+ * :return: Size of the private key in bytes
  */
 typedef struct tagcryptogetasymmetrickeylength_struct
 {
-	RtsCryptoKey asymmetricKey;			/* VAR_INPUT */	/* Asymmetric key of intrest. */
+	RtsCryptoKey privateKey;			/* VAR_INPUT */	/* Private key of intrest. */
 	RTS_IEC_RESULT *pResult;			/* VAR_INPUT */	/* Operation Result */
-	RTS_IEC_UDINT CryptoGetAsymmetricKeyLength;	/* VAR_OUTPUT */	
+	RTS_IEC_RESULT CryptoGetAsymmetricKeyLength;	/* VAR_OUTPUT */	
 } cryptogetasymmetrickeylength_struct;
 
 void CDECL CDECL_EXT cryptogetasymmetrickeylength(cryptogetasymmetrickeylength_struct *p);
@@ -450,35 +436,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOGETASYMMETRICKEYLENGTH_IEC) (cryptogetasy
 	#define GET_cryptogetasymmetrickeylength(fl)  CAL_CMGETAPI( "cryptogetasymmetrickeylength" ) 
 	#define CAL_cryptogetasymmetrickeylength  cryptogetasymmetrickeylength
 	#define CHK_cryptogetasymmetrickeylength  TRUE
-	#define EXP_cryptogetasymmetrickeylength  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetasymmetrickeylength", (RTS_UINTPTR)cryptogetasymmetrickeylength, 1, 0, 0x03050B00) 
+	#define EXP_cryptogetasymmetrickeylength  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetasymmetrickeylength", (RTS_UINTPTR)cryptogetasymmetrickeylength, 1, 0x0F3B29BE, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptogetasymmetrickeylength
 	#define EXT_cryptogetasymmetrickeylength
 	#define GET_cryptogetasymmetrickeylength(fl)  CAL_CMGETAPI( "cryptogetasymmetrickeylength" ) 
 	#define CAL_cryptogetasymmetrickeylength  cryptogetasymmetrickeylength
 	#define CHK_cryptogetasymmetrickeylength  TRUE
-	#define EXP_cryptogetasymmetrickeylength  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetasymmetrickeylength", (RTS_UINTPTR)cryptogetasymmetrickeylength, 1, 0, 0x03050B00) 
+	#define EXP_cryptogetasymmetrickeylength  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetasymmetrickeylength", (RTS_UINTPTR)cryptogetasymmetrickeylength, 1, 0x0F3B29BE, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptogetasymmetrickeylength
 	#define EXT_CmpCryptocryptogetasymmetrickeylength
 	#define GET_CmpCryptocryptogetasymmetrickeylength  ERR_OK
 	#define CAL_CmpCryptocryptogetasymmetrickeylength  cryptogetasymmetrickeylength
 	#define CHK_CmpCryptocryptogetasymmetrickeylength  TRUE
-	#define EXP_CmpCryptocryptogetasymmetrickeylength  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetasymmetrickeylength", (RTS_UINTPTR)cryptogetasymmetrickeylength, 1, 0, 0x03050B00) 
+	#define EXP_CmpCryptocryptogetasymmetrickeylength  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetasymmetrickeylength", (RTS_UINTPTR)cryptogetasymmetrickeylength, 1, 0x0F3B29BE, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptogetasymmetrickeylength
 	#define EXT_cryptogetasymmetrickeylength
 	#define GET_cryptogetasymmetrickeylength(fl)  CAL_CMGETAPI( "cryptogetasymmetrickeylength" ) 
 	#define CAL_cryptogetasymmetrickeylength  cryptogetasymmetrickeylength
 	#define CHK_cryptogetasymmetrickeylength  TRUE
-	#define EXP_cryptogetasymmetrickeylength  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetasymmetrickeylength", (RTS_UINTPTR)cryptogetasymmetrickeylength, 1, 0, 0x03050B00) 
+	#define EXP_cryptogetasymmetrickeylength  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetasymmetrickeylength", (RTS_UINTPTR)cryptogetasymmetrickeylength, 1, 0x0F3B29BE, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptogetasymmetrickeylength  PFCRYPTOGETASYMMETRICKEYLENGTH_IEC pfcryptogetasymmetrickeylength;
 	#define EXT_cryptogetasymmetrickeylength  extern PFCRYPTOGETASYMMETRICKEYLENGTH_IEC pfcryptogetasymmetrickeylength;
-	#define GET_cryptogetasymmetrickeylength(fl)  s_pfCMGetAPI2( "cryptogetasymmetrickeylength", (RTS_VOID_FCTPTR *)&pfcryptogetasymmetrickeylength, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0, 0x03050B00)
+	#define GET_cryptogetasymmetrickeylength(fl)  s_pfCMGetAPI2( "cryptogetasymmetrickeylength", (RTS_VOID_FCTPTR *)&pfcryptogetasymmetrickeylength, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x0F3B29BE, 0x03050A00)
 	#define CAL_cryptogetasymmetrickeylength  pfcryptogetasymmetrickeylength
 	#define CHK_cryptogetasymmetrickeylength  (pfcryptogetasymmetrickeylength != NULL)
-	#define EXP_cryptogetasymmetrickeylength   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetasymmetrickeylength", (RTS_UINTPTR)cryptogetasymmetrickeylength, 1, 0, 0x03050B00) 
+	#define EXP_cryptogetasymmetrickeylength   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetasymmetrickeylength", (RTS_UINTPTR)cryptogetasymmetrickeylength, 1, 0x0F3B29BE, 0x03050A00) 
 #endif
 
 
@@ -511,35 +497,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOGETFIRSTALGORITHM_IEC) (cryptogetfirstalg
 	#define GET_cryptogetfirstalgorithm(fl)  CAL_CMGETAPI( "cryptogetfirstalgorithm" ) 
 	#define CAL_cryptogetfirstalgorithm  cryptogetfirstalgorithm
 	#define CHK_cryptogetfirstalgorithm  TRUE
-	#define EXP_cryptogetfirstalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetfirstalgorithm", (RTS_UINTPTR)cryptogetfirstalgorithm, 1, 0xC8A4A345, 0x03050B00) 
+	#define EXP_cryptogetfirstalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetfirstalgorithm", (RTS_UINTPTR)cryptogetfirstalgorithm, 1, 0xC8A4A345, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptogetfirstalgorithm
 	#define EXT_cryptogetfirstalgorithm
 	#define GET_cryptogetfirstalgorithm(fl)  CAL_CMGETAPI( "cryptogetfirstalgorithm" ) 
 	#define CAL_cryptogetfirstalgorithm  cryptogetfirstalgorithm
 	#define CHK_cryptogetfirstalgorithm  TRUE
-	#define EXP_cryptogetfirstalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetfirstalgorithm", (RTS_UINTPTR)cryptogetfirstalgorithm, 1, 0xC8A4A345, 0x03050B00) 
+	#define EXP_cryptogetfirstalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetfirstalgorithm", (RTS_UINTPTR)cryptogetfirstalgorithm, 1, 0xC8A4A345, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptogetfirstalgorithm
 	#define EXT_CmpCryptocryptogetfirstalgorithm
 	#define GET_CmpCryptocryptogetfirstalgorithm  ERR_OK
 	#define CAL_CmpCryptocryptogetfirstalgorithm  cryptogetfirstalgorithm
 	#define CHK_CmpCryptocryptogetfirstalgorithm  TRUE
-	#define EXP_CmpCryptocryptogetfirstalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetfirstalgorithm", (RTS_UINTPTR)cryptogetfirstalgorithm, 1, 0xC8A4A345, 0x03050B00) 
+	#define EXP_CmpCryptocryptogetfirstalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetfirstalgorithm", (RTS_UINTPTR)cryptogetfirstalgorithm, 1, 0xC8A4A345, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptogetfirstalgorithm
 	#define EXT_cryptogetfirstalgorithm
 	#define GET_cryptogetfirstalgorithm(fl)  CAL_CMGETAPI( "cryptogetfirstalgorithm" ) 
 	#define CAL_cryptogetfirstalgorithm  cryptogetfirstalgorithm
 	#define CHK_cryptogetfirstalgorithm  TRUE
-	#define EXP_cryptogetfirstalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetfirstalgorithm", (RTS_UINTPTR)cryptogetfirstalgorithm, 1, 0xC8A4A345, 0x03050B00) 
+	#define EXP_cryptogetfirstalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetfirstalgorithm", (RTS_UINTPTR)cryptogetfirstalgorithm, 1, 0xC8A4A345, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptogetfirstalgorithm  PFCRYPTOGETFIRSTALGORITHM_IEC pfcryptogetfirstalgorithm;
 	#define EXT_cryptogetfirstalgorithm  extern PFCRYPTOGETFIRSTALGORITHM_IEC pfcryptogetfirstalgorithm;
-	#define GET_cryptogetfirstalgorithm(fl)  s_pfCMGetAPI2( "cryptogetfirstalgorithm", (RTS_VOID_FCTPTR *)&pfcryptogetfirstalgorithm, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xC8A4A345, 0x03050B00)
+	#define GET_cryptogetfirstalgorithm(fl)  s_pfCMGetAPI2( "cryptogetfirstalgorithm", (RTS_VOID_FCTPTR *)&pfcryptogetfirstalgorithm, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xC8A4A345, 0x03050A00)
 	#define CAL_cryptogetfirstalgorithm  pfcryptogetfirstalgorithm
 	#define CHK_cryptogetfirstalgorithm  (pfcryptogetfirstalgorithm != NULL)
-	#define EXP_cryptogetfirstalgorithm   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetfirstalgorithm", (RTS_UINTPTR)cryptogetfirstalgorithm, 1, 0xC8A4A345, 0x03050B00) 
+	#define EXP_cryptogetfirstalgorithm   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetfirstalgorithm", (RTS_UINTPTR)cryptogetfirstalgorithm, 1, 0xC8A4A345, 0x03050A00) 
 #endif
 
 
@@ -573,35 +559,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOGETNEXTALGORITHM_IEC) (cryptogetnextalgor
 	#define GET_cryptogetnextalgorithm(fl)  CAL_CMGETAPI( "cryptogetnextalgorithm" ) 
 	#define CAL_cryptogetnextalgorithm  cryptogetnextalgorithm
 	#define CHK_cryptogetnextalgorithm  TRUE
-	#define EXP_cryptogetnextalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetnextalgorithm", (RTS_UINTPTR)cryptogetnextalgorithm, 1, 0x79EC29C8, 0x03050B00) 
+	#define EXP_cryptogetnextalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetnextalgorithm", (RTS_UINTPTR)cryptogetnextalgorithm, 1, 0x79EC29C8, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptogetnextalgorithm
 	#define EXT_cryptogetnextalgorithm
 	#define GET_cryptogetnextalgorithm(fl)  CAL_CMGETAPI( "cryptogetnextalgorithm" ) 
 	#define CAL_cryptogetnextalgorithm  cryptogetnextalgorithm
 	#define CHK_cryptogetnextalgorithm  TRUE
-	#define EXP_cryptogetnextalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetnextalgorithm", (RTS_UINTPTR)cryptogetnextalgorithm, 1, 0x79EC29C8, 0x03050B00) 
+	#define EXP_cryptogetnextalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetnextalgorithm", (RTS_UINTPTR)cryptogetnextalgorithm, 1, 0x79EC29C8, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptogetnextalgorithm
 	#define EXT_CmpCryptocryptogetnextalgorithm
 	#define GET_CmpCryptocryptogetnextalgorithm  ERR_OK
 	#define CAL_CmpCryptocryptogetnextalgorithm  cryptogetnextalgorithm
 	#define CHK_CmpCryptocryptogetnextalgorithm  TRUE
-	#define EXP_CmpCryptocryptogetnextalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetnextalgorithm", (RTS_UINTPTR)cryptogetnextalgorithm, 1, 0x79EC29C8, 0x03050B00) 
+	#define EXP_CmpCryptocryptogetnextalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetnextalgorithm", (RTS_UINTPTR)cryptogetnextalgorithm, 1, 0x79EC29C8, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptogetnextalgorithm
 	#define EXT_cryptogetnextalgorithm
 	#define GET_cryptogetnextalgorithm(fl)  CAL_CMGETAPI( "cryptogetnextalgorithm" ) 
 	#define CAL_cryptogetnextalgorithm  cryptogetnextalgorithm
 	#define CHK_cryptogetnextalgorithm  TRUE
-	#define EXP_cryptogetnextalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetnextalgorithm", (RTS_UINTPTR)cryptogetnextalgorithm, 1, 0x79EC29C8, 0x03050B00) 
+	#define EXP_cryptogetnextalgorithm  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetnextalgorithm", (RTS_UINTPTR)cryptogetnextalgorithm, 1, 0x79EC29C8, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptogetnextalgorithm  PFCRYPTOGETNEXTALGORITHM_IEC pfcryptogetnextalgorithm;
 	#define EXT_cryptogetnextalgorithm  extern PFCRYPTOGETNEXTALGORITHM_IEC pfcryptogetnextalgorithm;
-	#define GET_cryptogetnextalgorithm(fl)  s_pfCMGetAPI2( "cryptogetnextalgorithm", (RTS_VOID_FCTPTR *)&pfcryptogetnextalgorithm, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x79EC29C8, 0x03050B00)
+	#define GET_cryptogetnextalgorithm(fl)  s_pfCMGetAPI2( "cryptogetnextalgorithm", (RTS_VOID_FCTPTR *)&pfcryptogetnextalgorithm, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x79EC29C8, 0x03050A00)
 	#define CAL_cryptogetnextalgorithm  pfcryptogetnextalgorithm
 	#define CHK_cryptogetnextalgorithm  (pfcryptogetnextalgorithm != NULL)
-	#define EXP_cryptogetnextalgorithm   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetnextalgorithm", (RTS_UINTPTR)cryptogetnextalgorithm, 1, 0x79EC29C8, 0x03050B00) 
+	#define EXP_cryptogetnextalgorithm   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptogetnextalgorithm", (RTS_UINTPTR)cryptogetnextalgorithm, 1, 0x79EC29C8, 0x03050A00) 
 #endif
 
 
@@ -633,35 +619,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOHMACSIGN_IEC) (cryptohmacsign_struct *p);
 	#define GET_cryptohmacsign(fl)  CAL_CMGETAPI( "cryptohmacsign" ) 
 	#define CAL_cryptohmacsign  cryptohmacsign
 	#define CHK_cryptohmacsign  TRUE
-	#define EXP_cryptohmacsign  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacsign", (RTS_UINTPTR)cryptohmacsign, 1, 0x931A9470, 0x03050B00) 
+	#define EXP_cryptohmacsign  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacsign", (RTS_UINTPTR)cryptohmacsign, 1, 0x931A9470, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptohmacsign
 	#define EXT_cryptohmacsign
 	#define GET_cryptohmacsign(fl)  CAL_CMGETAPI( "cryptohmacsign" ) 
 	#define CAL_cryptohmacsign  cryptohmacsign
 	#define CHK_cryptohmacsign  TRUE
-	#define EXP_cryptohmacsign  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacsign", (RTS_UINTPTR)cryptohmacsign, 1, 0x931A9470, 0x03050B00) 
+	#define EXP_cryptohmacsign  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacsign", (RTS_UINTPTR)cryptohmacsign, 1, 0x931A9470, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptohmacsign
 	#define EXT_CmpCryptocryptohmacsign
 	#define GET_CmpCryptocryptohmacsign  ERR_OK
 	#define CAL_CmpCryptocryptohmacsign  cryptohmacsign
 	#define CHK_CmpCryptocryptohmacsign  TRUE
-	#define EXP_CmpCryptocryptohmacsign  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacsign", (RTS_UINTPTR)cryptohmacsign, 1, 0x931A9470, 0x03050B00) 
+	#define EXP_CmpCryptocryptohmacsign  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacsign", (RTS_UINTPTR)cryptohmacsign, 1, 0x931A9470, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptohmacsign
 	#define EXT_cryptohmacsign
 	#define GET_cryptohmacsign(fl)  CAL_CMGETAPI( "cryptohmacsign" ) 
 	#define CAL_cryptohmacsign  cryptohmacsign
 	#define CHK_cryptohmacsign  TRUE
-	#define EXP_cryptohmacsign  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacsign", (RTS_UINTPTR)cryptohmacsign, 1, 0x931A9470, 0x03050B00) 
+	#define EXP_cryptohmacsign  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacsign", (RTS_UINTPTR)cryptohmacsign, 1, 0x931A9470, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptohmacsign  PFCRYPTOHMACSIGN_IEC pfcryptohmacsign;
 	#define EXT_cryptohmacsign  extern PFCRYPTOHMACSIGN_IEC pfcryptohmacsign;
-	#define GET_cryptohmacsign(fl)  s_pfCMGetAPI2( "cryptohmacsign", (RTS_VOID_FCTPTR *)&pfcryptohmacsign, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x931A9470, 0x03050B00)
+	#define GET_cryptohmacsign(fl)  s_pfCMGetAPI2( "cryptohmacsign", (RTS_VOID_FCTPTR *)&pfcryptohmacsign, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x931A9470, 0x03050A00)
 	#define CAL_cryptohmacsign  pfcryptohmacsign
 	#define CHK_cryptohmacsign  (pfcryptohmacsign != NULL)
-	#define EXP_cryptohmacsign   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacsign", (RTS_UINTPTR)cryptohmacsign, 1, 0x931A9470, 0x03050B00) 
+	#define EXP_cryptohmacsign   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacsign", (RTS_UINTPTR)cryptohmacsign, 1, 0x931A9470, 0x03050A00) 
 #endif
 
 
@@ -693,35 +679,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOHMACVERIFY_IEC) (cryptohmacverify_struct 
 	#define GET_cryptohmacverify(fl)  CAL_CMGETAPI( "cryptohmacverify" ) 
 	#define CAL_cryptohmacverify  cryptohmacverify
 	#define CHK_cryptohmacverify  TRUE
-	#define EXP_cryptohmacverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacverify", (RTS_UINTPTR)cryptohmacverify, 1, 0x49EEB4A9, 0x03050B00) 
+	#define EXP_cryptohmacverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacverify", (RTS_UINTPTR)cryptohmacverify, 1, 0x49EEB4A9, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptohmacverify
 	#define EXT_cryptohmacverify
 	#define GET_cryptohmacverify(fl)  CAL_CMGETAPI( "cryptohmacverify" ) 
 	#define CAL_cryptohmacverify  cryptohmacverify
 	#define CHK_cryptohmacverify  TRUE
-	#define EXP_cryptohmacverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacverify", (RTS_UINTPTR)cryptohmacverify, 1, 0x49EEB4A9, 0x03050B00) 
+	#define EXP_cryptohmacverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacverify", (RTS_UINTPTR)cryptohmacverify, 1, 0x49EEB4A9, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptohmacverify
 	#define EXT_CmpCryptocryptohmacverify
 	#define GET_CmpCryptocryptohmacverify  ERR_OK
 	#define CAL_CmpCryptocryptohmacverify  cryptohmacverify
 	#define CHK_CmpCryptocryptohmacverify  TRUE
-	#define EXP_CmpCryptocryptohmacverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacverify", (RTS_UINTPTR)cryptohmacverify, 1, 0x49EEB4A9, 0x03050B00) 
+	#define EXP_CmpCryptocryptohmacverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacverify", (RTS_UINTPTR)cryptohmacverify, 1, 0x49EEB4A9, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptohmacverify
 	#define EXT_cryptohmacverify
 	#define GET_cryptohmacverify(fl)  CAL_CMGETAPI( "cryptohmacverify" ) 
 	#define CAL_cryptohmacverify  cryptohmacverify
 	#define CHK_cryptohmacverify  TRUE
-	#define EXP_cryptohmacverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacverify", (RTS_UINTPTR)cryptohmacverify, 1, 0x49EEB4A9, 0x03050B00) 
+	#define EXP_cryptohmacverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacverify", (RTS_UINTPTR)cryptohmacverify, 1, 0x49EEB4A9, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptohmacverify  PFCRYPTOHMACVERIFY_IEC pfcryptohmacverify;
 	#define EXT_cryptohmacverify  extern PFCRYPTOHMACVERIFY_IEC pfcryptohmacverify;
-	#define GET_cryptohmacverify(fl)  s_pfCMGetAPI2( "cryptohmacverify", (RTS_VOID_FCTPTR *)&pfcryptohmacverify, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x49EEB4A9, 0x03050B00)
+	#define GET_cryptohmacverify(fl)  s_pfCMGetAPI2( "cryptohmacverify", (RTS_VOID_FCTPTR *)&pfcryptohmacverify, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x49EEB4A9, 0x03050A00)
 	#define CAL_cryptohmacverify  pfcryptohmacverify
 	#define CHK_cryptohmacverify  (pfcryptohmacverify != NULL)
-	#define EXP_cryptohmacverify   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacverify", (RTS_UINTPTR)cryptohmacverify, 1, 0x49EEB4A9, 0x03050B00) 
+	#define EXP_cryptohmacverify   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptohmacverify", (RTS_UINTPTR)cryptohmacverify, 1, 0x49EEB4A9, 0x03050A00) 
 #endif
 
 
@@ -749,35 +735,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOKEYEXIT_IEC) (cryptokeyexit_struct *p);
 	#define GET_cryptokeyexit(fl)  CAL_CMGETAPI( "cryptokeyexit" ) 
 	#define CAL_cryptokeyexit  cryptokeyexit
 	#define CHK_cryptokeyexit  TRUE
-	#define EXP_cryptokeyexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyexit", (RTS_UINTPTR)cryptokeyexit, 1, 0xD71ED5F3, 0x03050B00) 
+	#define EXP_cryptokeyexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyexit", (RTS_UINTPTR)cryptokeyexit, 1, 0xD71ED5F3, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptokeyexit
 	#define EXT_cryptokeyexit
 	#define GET_cryptokeyexit(fl)  CAL_CMGETAPI( "cryptokeyexit" ) 
 	#define CAL_cryptokeyexit  cryptokeyexit
 	#define CHK_cryptokeyexit  TRUE
-	#define EXP_cryptokeyexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyexit", (RTS_UINTPTR)cryptokeyexit, 1, 0xD71ED5F3, 0x03050B00) 
+	#define EXP_cryptokeyexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyexit", (RTS_UINTPTR)cryptokeyexit, 1, 0xD71ED5F3, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptokeyexit
 	#define EXT_CmpCryptocryptokeyexit
 	#define GET_CmpCryptocryptokeyexit  ERR_OK
 	#define CAL_CmpCryptocryptokeyexit  cryptokeyexit
 	#define CHK_CmpCryptocryptokeyexit  TRUE
-	#define EXP_CmpCryptocryptokeyexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyexit", (RTS_UINTPTR)cryptokeyexit, 1, 0xD71ED5F3, 0x03050B00) 
+	#define EXP_CmpCryptocryptokeyexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyexit", (RTS_UINTPTR)cryptokeyexit, 1, 0xD71ED5F3, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptokeyexit
 	#define EXT_cryptokeyexit
 	#define GET_cryptokeyexit(fl)  CAL_CMGETAPI( "cryptokeyexit" ) 
 	#define CAL_cryptokeyexit  cryptokeyexit
 	#define CHK_cryptokeyexit  TRUE
-	#define EXP_cryptokeyexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyexit", (RTS_UINTPTR)cryptokeyexit, 1, 0xD71ED5F3, 0x03050B00) 
+	#define EXP_cryptokeyexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyexit", (RTS_UINTPTR)cryptokeyexit, 1, 0xD71ED5F3, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptokeyexit  PFCRYPTOKEYEXIT_IEC pfcryptokeyexit;
 	#define EXT_cryptokeyexit  extern PFCRYPTOKEYEXIT_IEC pfcryptokeyexit;
-	#define GET_cryptokeyexit(fl)  s_pfCMGetAPI2( "cryptokeyexit", (RTS_VOID_FCTPTR *)&pfcryptokeyexit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xD71ED5F3, 0x03050B00)
+	#define GET_cryptokeyexit(fl)  s_pfCMGetAPI2( "cryptokeyexit", (RTS_VOID_FCTPTR *)&pfcryptokeyexit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xD71ED5F3, 0x03050A00)
 	#define CAL_cryptokeyexit  pfcryptokeyexit
 	#define CHK_cryptokeyexit  (pfcryptokeyexit != NULL)
-	#define EXP_cryptokeyexit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyexit", (RTS_UINTPTR)cryptokeyexit, 1, 0xD71ED5F3, 0x03050B00) 
+	#define EXP_cryptokeyexit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyexit", (RTS_UINTPTR)cryptokeyexit, 1, 0xD71ED5F3, 0x03050A00) 
 #endif
 
 
@@ -807,35 +793,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOKEYINIT_IEC) (cryptokeyinit_struct *p);
 	#define GET_cryptokeyinit(fl)  CAL_CMGETAPI( "cryptokeyinit" ) 
 	#define CAL_cryptokeyinit  cryptokeyinit
 	#define CHK_cryptokeyinit  TRUE
-	#define EXP_cryptokeyinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyinit", (RTS_UINTPTR)cryptokeyinit, 1, 0xE8E228B3, 0x03050B00) 
+	#define EXP_cryptokeyinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyinit", (RTS_UINTPTR)cryptokeyinit, 1, 0xE8E228B3, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptokeyinit
 	#define EXT_cryptokeyinit
 	#define GET_cryptokeyinit(fl)  CAL_CMGETAPI( "cryptokeyinit" ) 
 	#define CAL_cryptokeyinit  cryptokeyinit
 	#define CHK_cryptokeyinit  TRUE
-	#define EXP_cryptokeyinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyinit", (RTS_UINTPTR)cryptokeyinit, 1, 0xE8E228B3, 0x03050B00) 
+	#define EXP_cryptokeyinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyinit", (RTS_UINTPTR)cryptokeyinit, 1, 0xE8E228B3, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptokeyinit
 	#define EXT_CmpCryptocryptokeyinit
 	#define GET_CmpCryptocryptokeyinit  ERR_OK
 	#define CAL_CmpCryptocryptokeyinit  cryptokeyinit
 	#define CHK_CmpCryptocryptokeyinit  TRUE
-	#define EXP_CmpCryptocryptokeyinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyinit", (RTS_UINTPTR)cryptokeyinit, 1, 0xE8E228B3, 0x03050B00) 
+	#define EXP_CmpCryptocryptokeyinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyinit", (RTS_UINTPTR)cryptokeyinit, 1, 0xE8E228B3, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptokeyinit
 	#define EXT_cryptokeyinit
 	#define GET_cryptokeyinit(fl)  CAL_CMGETAPI( "cryptokeyinit" ) 
 	#define CAL_cryptokeyinit  cryptokeyinit
 	#define CHK_cryptokeyinit  TRUE
-	#define EXP_cryptokeyinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyinit", (RTS_UINTPTR)cryptokeyinit, 1, 0xE8E228B3, 0x03050B00) 
+	#define EXP_cryptokeyinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyinit", (RTS_UINTPTR)cryptokeyinit, 1, 0xE8E228B3, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptokeyinit  PFCRYPTOKEYINIT_IEC pfcryptokeyinit;
 	#define EXT_cryptokeyinit  extern PFCRYPTOKEYINIT_IEC pfcryptokeyinit;
-	#define GET_cryptokeyinit(fl)  s_pfCMGetAPI2( "cryptokeyinit", (RTS_VOID_FCTPTR *)&pfcryptokeyinit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE8E228B3, 0x03050B00)
+	#define GET_cryptokeyinit(fl)  s_pfCMGetAPI2( "cryptokeyinit", (RTS_VOID_FCTPTR *)&pfcryptokeyinit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xE8E228B3, 0x03050A00)
 	#define CAL_cryptokeyinit  pfcryptokeyinit
 	#define CHK_cryptokeyinit  (pfcryptokeyinit != NULL)
-	#define EXP_cryptokeyinit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyinit", (RTS_UINTPTR)cryptokeyinit, 1, 0xE8E228B3, 0x03050B00) 
+	#define EXP_cryptokeyinit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptokeyinit", (RTS_UINTPTR)cryptokeyinit, 1, 0xE8E228B3, 0x03050A00) 
 #endif
 
 
@@ -863,35 +849,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTORTSBYTESTRINGEXIT_IEC) (cryptortsbytestri
 	#define GET_cryptortsbytestringexit(fl)  CAL_CMGETAPI( "cryptortsbytestringexit" ) 
 	#define CAL_cryptortsbytestringexit  cryptortsbytestringexit
 	#define CHK_cryptortsbytestringexit  TRUE
-	#define EXP_cryptortsbytestringexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringexit", (RTS_UINTPTR)cryptortsbytestringexit, 1, 0x16B297C5, 0x03050B00) 
+	#define EXP_cryptortsbytestringexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringexit", (RTS_UINTPTR)cryptortsbytestringexit, 1, 0x16B297C5, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptortsbytestringexit
 	#define EXT_cryptortsbytestringexit
 	#define GET_cryptortsbytestringexit(fl)  CAL_CMGETAPI( "cryptortsbytestringexit" ) 
 	#define CAL_cryptortsbytestringexit  cryptortsbytestringexit
 	#define CHK_cryptortsbytestringexit  TRUE
-	#define EXP_cryptortsbytestringexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringexit", (RTS_UINTPTR)cryptortsbytestringexit, 1, 0x16B297C5, 0x03050B00) 
+	#define EXP_cryptortsbytestringexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringexit", (RTS_UINTPTR)cryptortsbytestringexit, 1, 0x16B297C5, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptortsbytestringexit
 	#define EXT_CmpCryptocryptortsbytestringexit
 	#define GET_CmpCryptocryptortsbytestringexit  ERR_OK
 	#define CAL_CmpCryptocryptortsbytestringexit  cryptortsbytestringexit
 	#define CHK_CmpCryptocryptortsbytestringexit  TRUE
-	#define EXP_CmpCryptocryptortsbytestringexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringexit", (RTS_UINTPTR)cryptortsbytestringexit, 1, 0x16B297C5, 0x03050B00) 
+	#define EXP_CmpCryptocryptortsbytestringexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringexit", (RTS_UINTPTR)cryptortsbytestringexit, 1, 0x16B297C5, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptortsbytestringexit
 	#define EXT_cryptortsbytestringexit
 	#define GET_cryptortsbytestringexit(fl)  CAL_CMGETAPI( "cryptortsbytestringexit" ) 
 	#define CAL_cryptortsbytestringexit  cryptortsbytestringexit
 	#define CHK_cryptortsbytestringexit  TRUE
-	#define EXP_cryptortsbytestringexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringexit", (RTS_UINTPTR)cryptortsbytestringexit, 1, 0x16B297C5, 0x03050B00) 
+	#define EXP_cryptortsbytestringexit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringexit", (RTS_UINTPTR)cryptortsbytestringexit, 1, 0x16B297C5, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptortsbytestringexit  PFCRYPTORTSBYTESTRINGEXIT_IEC pfcryptortsbytestringexit;
 	#define EXT_cryptortsbytestringexit  extern PFCRYPTORTSBYTESTRINGEXIT_IEC pfcryptortsbytestringexit;
-	#define GET_cryptortsbytestringexit(fl)  s_pfCMGetAPI2( "cryptortsbytestringexit", (RTS_VOID_FCTPTR *)&pfcryptortsbytestringexit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x16B297C5, 0x03050B00)
+	#define GET_cryptortsbytestringexit(fl)  s_pfCMGetAPI2( "cryptortsbytestringexit", (RTS_VOID_FCTPTR *)&pfcryptortsbytestringexit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x16B297C5, 0x03050A00)
 	#define CAL_cryptortsbytestringexit  pfcryptortsbytestringexit
 	#define CHK_cryptortsbytestringexit  (pfcryptortsbytestringexit != NULL)
-	#define EXP_cryptortsbytestringexit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringexit", (RTS_UINTPTR)cryptortsbytestringexit, 1, 0x16B297C5, 0x03050B00) 
+	#define EXP_cryptortsbytestringexit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringexit", (RTS_UINTPTR)cryptortsbytestringexit, 1, 0x16B297C5, 0x03050A00) 
 #endif
 
 
@@ -919,35 +905,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTORTSBYTESTRINGINIT_IEC) (cryptortsbytestri
 	#define GET_cryptortsbytestringinit(fl)  CAL_CMGETAPI( "cryptortsbytestringinit" ) 
 	#define CAL_cryptortsbytestringinit  cryptortsbytestringinit
 	#define CHK_cryptortsbytestringinit  TRUE
-	#define EXP_cryptortsbytestringinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringinit", (RTS_UINTPTR)cryptortsbytestringinit, 1, 0xC1B4C2F9, 0x03050B00) 
+	#define EXP_cryptortsbytestringinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringinit", (RTS_UINTPTR)cryptortsbytestringinit, 1, 0xC1B4C2F9, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptortsbytestringinit
 	#define EXT_cryptortsbytestringinit
 	#define GET_cryptortsbytestringinit(fl)  CAL_CMGETAPI( "cryptortsbytestringinit" ) 
 	#define CAL_cryptortsbytestringinit  cryptortsbytestringinit
 	#define CHK_cryptortsbytestringinit  TRUE
-	#define EXP_cryptortsbytestringinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringinit", (RTS_UINTPTR)cryptortsbytestringinit, 1, 0xC1B4C2F9, 0x03050B00) 
+	#define EXP_cryptortsbytestringinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringinit", (RTS_UINTPTR)cryptortsbytestringinit, 1, 0xC1B4C2F9, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptortsbytestringinit
 	#define EXT_CmpCryptocryptortsbytestringinit
 	#define GET_CmpCryptocryptortsbytestringinit  ERR_OK
 	#define CAL_CmpCryptocryptortsbytestringinit  cryptortsbytestringinit
 	#define CHK_CmpCryptocryptortsbytestringinit  TRUE
-	#define EXP_CmpCryptocryptortsbytestringinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringinit", (RTS_UINTPTR)cryptortsbytestringinit, 1, 0xC1B4C2F9, 0x03050B00) 
+	#define EXP_CmpCryptocryptortsbytestringinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringinit", (RTS_UINTPTR)cryptortsbytestringinit, 1, 0xC1B4C2F9, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptortsbytestringinit
 	#define EXT_cryptortsbytestringinit
 	#define GET_cryptortsbytestringinit(fl)  CAL_CMGETAPI( "cryptortsbytestringinit" ) 
 	#define CAL_cryptortsbytestringinit  cryptortsbytestringinit
 	#define CHK_cryptortsbytestringinit  TRUE
-	#define EXP_cryptortsbytestringinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringinit", (RTS_UINTPTR)cryptortsbytestringinit, 1, 0xC1B4C2F9, 0x03050B00) 
+	#define EXP_cryptortsbytestringinit  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringinit", (RTS_UINTPTR)cryptortsbytestringinit, 1, 0xC1B4C2F9, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptortsbytestringinit  PFCRYPTORTSBYTESTRINGINIT_IEC pfcryptortsbytestringinit;
 	#define EXT_cryptortsbytestringinit  extern PFCRYPTORTSBYTESTRINGINIT_IEC pfcryptortsbytestringinit;
-	#define GET_cryptortsbytestringinit(fl)  s_pfCMGetAPI2( "cryptortsbytestringinit", (RTS_VOID_FCTPTR *)&pfcryptortsbytestringinit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xC1B4C2F9, 0x03050B00)
+	#define GET_cryptortsbytestringinit(fl)  s_pfCMGetAPI2( "cryptortsbytestringinit", (RTS_VOID_FCTPTR *)&pfcryptortsbytestringinit, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xC1B4C2F9, 0x03050A00)
 	#define CAL_cryptortsbytestringinit  pfcryptortsbytestringinit
 	#define CHK_cryptortsbytestringinit  (pfcryptortsbytestringinit != NULL)
-	#define EXP_cryptortsbytestringinit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringinit", (RTS_UINTPTR)cryptortsbytestringinit, 1, 0xC1B4C2F9, 0x03050B00) 
+	#define EXP_cryptortsbytestringinit   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptortsbytestringinit", (RTS_UINTPTR)cryptortsbytestringinit, 1, 0xC1B4C2F9, 0x03050A00) 
 #endif
 
 
@@ -979,35 +965,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOSIGNATUREGENERATE_IEC) (cryptosignaturege
 	#define GET_cryptosignaturegenerate(fl)  CAL_CMGETAPI( "cryptosignaturegenerate" ) 
 	#define CAL_cryptosignaturegenerate  cryptosignaturegenerate
 	#define CHK_cryptosignaturegenerate  TRUE
-	#define EXP_cryptosignaturegenerate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignaturegenerate", (RTS_UINTPTR)cryptosignaturegenerate, 1, 0x0C2FBF80, 0x03050B00) 
+	#define EXP_cryptosignaturegenerate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignaturegenerate", (RTS_UINTPTR)cryptosignaturegenerate, 1, 0x0C2FBF80, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptosignaturegenerate
 	#define EXT_cryptosignaturegenerate
 	#define GET_cryptosignaturegenerate(fl)  CAL_CMGETAPI( "cryptosignaturegenerate" ) 
 	#define CAL_cryptosignaturegenerate  cryptosignaturegenerate
 	#define CHK_cryptosignaturegenerate  TRUE
-	#define EXP_cryptosignaturegenerate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignaturegenerate", (RTS_UINTPTR)cryptosignaturegenerate, 1, 0x0C2FBF80, 0x03050B00) 
+	#define EXP_cryptosignaturegenerate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignaturegenerate", (RTS_UINTPTR)cryptosignaturegenerate, 1, 0x0C2FBF80, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptosignaturegenerate
 	#define EXT_CmpCryptocryptosignaturegenerate
 	#define GET_CmpCryptocryptosignaturegenerate  ERR_OK
 	#define CAL_CmpCryptocryptosignaturegenerate  cryptosignaturegenerate
 	#define CHK_CmpCryptocryptosignaturegenerate  TRUE
-	#define EXP_CmpCryptocryptosignaturegenerate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignaturegenerate", (RTS_UINTPTR)cryptosignaturegenerate, 1, 0x0C2FBF80, 0x03050B00) 
+	#define EXP_CmpCryptocryptosignaturegenerate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignaturegenerate", (RTS_UINTPTR)cryptosignaturegenerate, 1, 0x0C2FBF80, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptosignaturegenerate
 	#define EXT_cryptosignaturegenerate
 	#define GET_cryptosignaturegenerate(fl)  CAL_CMGETAPI( "cryptosignaturegenerate" ) 
 	#define CAL_cryptosignaturegenerate  cryptosignaturegenerate
 	#define CHK_cryptosignaturegenerate  TRUE
-	#define EXP_cryptosignaturegenerate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignaturegenerate", (RTS_UINTPTR)cryptosignaturegenerate, 1, 0x0C2FBF80, 0x03050B00) 
+	#define EXP_cryptosignaturegenerate  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignaturegenerate", (RTS_UINTPTR)cryptosignaturegenerate, 1, 0x0C2FBF80, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptosignaturegenerate  PFCRYPTOSIGNATUREGENERATE_IEC pfcryptosignaturegenerate;
 	#define EXT_cryptosignaturegenerate  extern PFCRYPTOSIGNATUREGENERATE_IEC pfcryptosignaturegenerate;
-	#define GET_cryptosignaturegenerate(fl)  s_pfCMGetAPI2( "cryptosignaturegenerate", (RTS_VOID_FCTPTR *)&pfcryptosignaturegenerate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x0C2FBF80, 0x03050B00)
+	#define GET_cryptosignaturegenerate(fl)  s_pfCMGetAPI2( "cryptosignaturegenerate", (RTS_VOID_FCTPTR *)&pfcryptosignaturegenerate, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x0C2FBF80, 0x03050A00)
 	#define CAL_cryptosignaturegenerate  pfcryptosignaturegenerate
 	#define CHK_cryptosignaturegenerate  (pfcryptosignaturegenerate != NULL)
-	#define EXP_cryptosignaturegenerate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignaturegenerate", (RTS_UINTPTR)cryptosignaturegenerate, 1, 0x0C2FBF80, 0x03050B00) 
+	#define EXP_cryptosignaturegenerate   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignaturegenerate", (RTS_UINTPTR)cryptosignaturegenerate, 1, 0x0C2FBF80, 0x03050A00) 
 #endif
 
 
@@ -1039,35 +1025,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOSIGNATUREVERIFY_IEC) (cryptosignatureveri
 	#define GET_cryptosignatureverify(fl)  CAL_CMGETAPI( "cryptosignatureverify" ) 
 	#define CAL_cryptosignatureverify  cryptosignatureverify
 	#define CHK_cryptosignatureverify  TRUE
-	#define EXP_cryptosignatureverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignatureverify", (RTS_UINTPTR)cryptosignatureverify, 1, 0x3F425BB9, 0x03050B00) 
+	#define EXP_cryptosignatureverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignatureverify", (RTS_UINTPTR)cryptosignatureverify, 1, 0x3F425BB9, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptosignatureverify
 	#define EXT_cryptosignatureverify
 	#define GET_cryptosignatureverify(fl)  CAL_CMGETAPI( "cryptosignatureverify" ) 
 	#define CAL_cryptosignatureverify  cryptosignatureverify
 	#define CHK_cryptosignatureverify  TRUE
-	#define EXP_cryptosignatureverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignatureverify", (RTS_UINTPTR)cryptosignatureverify, 1, 0x3F425BB9, 0x03050B00) 
+	#define EXP_cryptosignatureverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignatureverify", (RTS_UINTPTR)cryptosignatureverify, 1, 0x3F425BB9, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptosignatureverify
 	#define EXT_CmpCryptocryptosignatureverify
 	#define GET_CmpCryptocryptosignatureverify  ERR_OK
 	#define CAL_CmpCryptocryptosignatureverify  cryptosignatureverify
 	#define CHK_CmpCryptocryptosignatureverify  TRUE
-	#define EXP_CmpCryptocryptosignatureverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignatureverify", (RTS_UINTPTR)cryptosignatureverify, 1, 0x3F425BB9, 0x03050B00) 
+	#define EXP_CmpCryptocryptosignatureverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignatureverify", (RTS_UINTPTR)cryptosignatureverify, 1, 0x3F425BB9, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptosignatureverify
 	#define EXT_cryptosignatureverify
 	#define GET_cryptosignatureverify(fl)  CAL_CMGETAPI( "cryptosignatureverify" ) 
 	#define CAL_cryptosignatureverify  cryptosignatureverify
 	#define CHK_cryptosignatureverify  TRUE
-	#define EXP_cryptosignatureverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignatureverify", (RTS_UINTPTR)cryptosignatureverify, 1, 0x3F425BB9, 0x03050B00) 
+	#define EXP_cryptosignatureverify  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignatureverify", (RTS_UINTPTR)cryptosignatureverify, 1, 0x3F425BB9, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptosignatureverify  PFCRYPTOSIGNATUREVERIFY_IEC pfcryptosignatureverify;
 	#define EXT_cryptosignatureverify  extern PFCRYPTOSIGNATUREVERIFY_IEC pfcryptosignatureverify;
-	#define GET_cryptosignatureverify(fl)  s_pfCMGetAPI2( "cryptosignatureverify", (RTS_VOID_FCTPTR *)&pfcryptosignatureverify, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x3F425BB9, 0x03050B00)
+	#define GET_cryptosignatureverify(fl)  s_pfCMGetAPI2( "cryptosignatureverify", (RTS_VOID_FCTPTR *)&pfcryptosignatureverify, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x3F425BB9, 0x03050A00)
 	#define CAL_cryptosignatureverify  pfcryptosignatureverify
 	#define CHK_cryptosignatureverify  (pfcryptosignatureverify != NULL)
-	#define EXP_cryptosignatureverify   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignatureverify", (RTS_UINTPTR)cryptosignatureverify, 1, 0x3F425BB9, 0x03050B00) 
+	#define EXP_cryptosignatureverify   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosignatureverify", (RTS_UINTPTR)cryptosignatureverify, 1, 0x3F425BB9, 0x03050A00) 
 #endif
 
 
@@ -1101,35 +1087,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOSYMMETRICDECRYPT_IEC) (cryptosymmetricdec
 	#define GET_cryptosymmetricdecrypt(fl)  CAL_CMGETAPI( "cryptosymmetricdecrypt" ) 
 	#define CAL_cryptosymmetricdecrypt  cryptosymmetricdecrypt
 	#define CHK_cryptosymmetricdecrypt  TRUE
-	#define EXP_cryptosymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricdecrypt", (RTS_UINTPTR)cryptosymmetricdecrypt, 1, 0xF3963545, 0x03050B00) 
+	#define EXP_cryptosymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricdecrypt", (RTS_UINTPTR)cryptosymmetricdecrypt, 1, 0xF3963545, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptosymmetricdecrypt
 	#define EXT_cryptosymmetricdecrypt
 	#define GET_cryptosymmetricdecrypt(fl)  CAL_CMGETAPI( "cryptosymmetricdecrypt" ) 
 	#define CAL_cryptosymmetricdecrypt  cryptosymmetricdecrypt
 	#define CHK_cryptosymmetricdecrypt  TRUE
-	#define EXP_cryptosymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricdecrypt", (RTS_UINTPTR)cryptosymmetricdecrypt, 1, 0xF3963545, 0x03050B00) 
+	#define EXP_cryptosymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricdecrypt", (RTS_UINTPTR)cryptosymmetricdecrypt, 1, 0xF3963545, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptosymmetricdecrypt
 	#define EXT_CmpCryptocryptosymmetricdecrypt
 	#define GET_CmpCryptocryptosymmetricdecrypt  ERR_OK
 	#define CAL_CmpCryptocryptosymmetricdecrypt  cryptosymmetricdecrypt
 	#define CHK_CmpCryptocryptosymmetricdecrypt  TRUE
-	#define EXP_CmpCryptocryptosymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricdecrypt", (RTS_UINTPTR)cryptosymmetricdecrypt, 1, 0xF3963545, 0x03050B00) 
+	#define EXP_CmpCryptocryptosymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricdecrypt", (RTS_UINTPTR)cryptosymmetricdecrypt, 1, 0xF3963545, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptosymmetricdecrypt
 	#define EXT_cryptosymmetricdecrypt
 	#define GET_cryptosymmetricdecrypt(fl)  CAL_CMGETAPI( "cryptosymmetricdecrypt" ) 
 	#define CAL_cryptosymmetricdecrypt  cryptosymmetricdecrypt
 	#define CHK_cryptosymmetricdecrypt  TRUE
-	#define EXP_cryptosymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricdecrypt", (RTS_UINTPTR)cryptosymmetricdecrypt, 1, 0xF3963545, 0x03050B00) 
+	#define EXP_cryptosymmetricdecrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricdecrypt", (RTS_UINTPTR)cryptosymmetricdecrypt, 1, 0xF3963545, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptosymmetricdecrypt  PFCRYPTOSYMMETRICDECRYPT_IEC pfcryptosymmetricdecrypt;
 	#define EXT_cryptosymmetricdecrypt  extern PFCRYPTOSYMMETRICDECRYPT_IEC pfcryptosymmetricdecrypt;
-	#define GET_cryptosymmetricdecrypt(fl)  s_pfCMGetAPI2( "cryptosymmetricdecrypt", (RTS_VOID_FCTPTR *)&pfcryptosymmetricdecrypt, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xF3963545, 0x03050B00)
+	#define GET_cryptosymmetricdecrypt(fl)  s_pfCMGetAPI2( "cryptosymmetricdecrypt", (RTS_VOID_FCTPTR *)&pfcryptosymmetricdecrypt, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0xF3963545, 0x03050A00)
 	#define CAL_cryptosymmetricdecrypt  pfcryptosymmetricdecrypt
 	#define CHK_cryptosymmetricdecrypt  (pfcryptosymmetricdecrypt != NULL)
-	#define EXP_cryptosymmetricdecrypt   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricdecrypt", (RTS_UINTPTR)cryptosymmetricdecrypt, 1, 0xF3963545, 0x03050B00) 
+	#define EXP_cryptosymmetricdecrypt   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricdecrypt", (RTS_UINTPTR)cryptosymmetricdecrypt, 1, 0xF3963545, 0x03050A00) 
 #endif
 
 
@@ -1163,35 +1149,35 @@ typedef void (CDECL CDECL_EXT* PFCRYPTOSYMMETRICENCRYPT_IEC) (cryptosymmetricenc
 	#define GET_cryptosymmetricencrypt(fl)  CAL_CMGETAPI( "cryptosymmetricencrypt" ) 
 	#define CAL_cryptosymmetricencrypt  cryptosymmetricencrypt
 	#define CHK_cryptosymmetricencrypt  TRUE
-	#define EXP_cryptosymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricencrypt", (RTS_UINTPTR)cryptosymmetricencrypt, 1, 0x8D659084, 0x03050B00) 
+	#define EXP_cryptosymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricencrypt", (RTS_UINTPTR)cryptosymmetricencrypt, 1, 0x8D659084, 0x03050A00) 
 #elif defined(MIXED_LINK) && !defined(CMPCRYPTO_EXTERNAL)
 	#define USE_cryptosymmetricencrypt
 	#define EXT_cryptosymmetricencrypt
 	#define GET_cryptosymmetricencrypt(fl)  CAL_CMGETAPI( "cryptosymmetricencrypt" ) 
 	#define CAL_cryptosymmetricencrypt  cryptosymmetricencrypt
 	#define CHK_cryptosymmetricencrypt  TRUE
-	#define EXP_cryptosymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricencrypt", (RTS_UINTPTR)cryptosymmetricencrypt, 1, 0x8D659084, 0x03050B00) 
+	#define EXP_cryptosymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricencrypt", (RTS_UINTPTR)cryptosymmetricencrypt, 1, 0x8D659084, 0x03050A00) 
 #elif defined(CPLUSPLUS_ONLY)
 	#define USE_CmpCryptocryptosymmetricencrypt
 	#define EXT_CmpCryptocryptosymmetricencrypt
 	#define GET_CmpCryptocryptosymmetricencrypt  ERR_OK
 	#define CAL_CmpCryptocryptosymmetricencrypt  cryptosymmetricencrypt
 	#define CHK_CmpCryptocryptosymmetricencrypt  TRUE
-	#define EXP_CmpCryptocryptosymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricencrypt", (RTS_UINTPTR)cryptosymmetricencrypt, 1, 0x8D659084, 0x03050B00) 
+	#define EXP_CmpCryptocryptosymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricencrypt", (RTS_UINTPTR)cryptosymmetricencrypt, 1, 0x8D659084, 0x03050A00) 
 #elif defined(CPLUSPLUS)
 	#define USE_cryptosymmetricencrypt
 	#define EXT_cryptosymmetricencrypt
 	#define GET_cryptosymmetricencrypt(fl)  CAL_CMGETAPI( "cryptosymmetricencrypt" ) 
 	#define CAL_cryptosymmetricencrypt  cryptosymmetricencrypt
 	#define CHK_cryptosymmetricencrypt  TRUE
-	#define EXP_cryptosymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricencrypt", (RTS_UINTPTR)cryptosymmetricencrypt, 1, 0x8D659084, 0x03050B00) 
+	#define EXP_cryptosymmetricencrypt  s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricencrypt", (RTS_UINTPTR)cryptosymmetricencrypt, 1, 0x8D659084, 0x03050A00) 
 #else /* DYNAMIC_LINK */
 	#define USE_cryptosymmetricencrypt  PFCRYPTOSYMMETRICENCRYPT_IEC pfcryptosymmetricencrypt;
 	#define EXT_cryptosymmetricencrypt  extern PFCRYPTOSYMMETRICENCRYPT_IEC pfcryptosymmetricencrypt;
-	#define GET_cryptosymmetricencrypt(fl)  s_pfCMGetAPI2( "cryptosymmetricencrypt", (RTS_VOID_FCTPTR *)&pfcryptosymmetricencrypt, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x8D659084, 0x03050B00)
+	#define GET_cryptosymmetricencrypt(fl)  s_pfCMGetAPI2( "cryptosymmetricencrypt", (RTS_VOID_FCTPTR *)&pfcryptosymmetricencrypt, (fl) | CM_IMPORT_EXTERNAL_LIB_FUNCTION, 0x8D659084, 0x03050A00)
 	#define CAL_cryptosymmetricencrypt  pfcryptosymmetricencrypt
 	#define CHK_cryptosymmetricencrypt  (pfcryptosymmetricencrypt != NULL)
-	#define EXP_cryptosymmetricencrypt   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricencrypt", (RTS_UINTPTR)cryptosymmetricencrypt, 1, 0x8D659084, 0x03050B00) 
+	#define EXP_cryptosymmetricencrypt   s_pfCMRegisterAPI2( (const CMP_EXT_FUNCTION_REF*)"cryptosymmetricencrypt", (RTS_UINTPTR)cryptosymmetricencrypt, 1, 0x8D659084, 0x03050A00) 
 #endif
 
 
@@ -1484,7 +1470,7 @@ typedef RtsCryptoInfo* (CDECL * PFCRYPTOGETALGORITHMINFO) (RTS_HANDLE hCrypto, R
  * <param name="pPlainText" type="IN">Data to be encrypted</param>
  * <param name="key" type="IN">Key to encrypt the data. Has to be a KeyType_Key key.</param>
  * <param name="pInitVector" type="IN">Init vector of the ecryption</param>
- * <param name="bEnablePadding" type="IN">Enables the padding of the algorithm. If padding is not enabled the plaintext length has to match a multiple of the cipher block length</param>
+ * <param name="bEnablePadding" type="in">Enables the padding of the algorithm. If padding is not enabled the plaintext length has to match a multiple of the cipher block length</param>
  * <param name="pCipherText" type="OUT">Encrypted data.</param>
  * <result>Error code: Result of the operation</result>
  */
@@ -1543,7 +1529,7 @@ typedef RTS_RESULT (CDECL * PFCRYPTOSYMMETRICENCRYPT) (RTS_HANDLE hAlgo, RtsByte
  * <param name="pCipherText" type="IN">Data to be decrypted</param>
  * <param name="key" type="IN">Key to decrypt the data. Has to be a KeyType_Key key.</param>
  * <param name="pInitVector" type="IN">Init vector of the decrypt.</param>
- * <param name="bEnablePadding" type="IN">Enables the padding of the algorithm. If padding is not enabled the plaintext length has to match a multiple of the cipher block length</param>
+ * <param name="bEnablePadding" type="in">Enables the padding of the algorithm. If padding is not enabled the plaintext length has to match a multiple of the cipher block length</param>
  * <param name="pCipherText" type="OUT">Decrypted data.</param>
  * <result>Error code: Result of the operation</result>
  */
@@ -1600,7 +1586,7 @@ typedef RTS_RESULT (CDECL * PFCRYPTOSYMMETRICDECRYPT) (RTS_HANDLE hAlgo, RtsByte
  * <description>Perform an asymmetric encryption using the algorithm handle.</description>
  * <param name="hAlgo" type="IN">Handle to the algorithm.</param>
  * <param name="pPlainText" type="IN">Data to be encrypted</param>
- * <param name="publicKey" type="IN">Public key used to encrypt the data. Use X509CertGetPublicKey to get the public key form an certificate.</param>
+ * <param name="publicKey" type="IN">Public key used to encrypt the data.</param>
  * <param name="pCipherText" type="OUT">Encrypted data.</param>
  * <result>Error code: Result of the operation</result>
  */
@@ -1657,7 +1643,7 @@ typedef RTS_RESULT (CDECL * PFCRYPTOASYMMETRICENCRYPT) (RTS_HANDLE hAlgo, RtsByt
  * <description>Perform an asymmetric decryption using the algorithm handle.</description>
  * <param name="hAlgo" type="IN">Handle to the algorithm.</param>
  * <param name="pCiperText" type="IN">Data to be decrypted</param>
- * <param name="privateKey" type="IN">Private key used to decrypt the data. Use X509CertGetPrivateKey to get the private key from an certificate.</param>
+ * <param name="privateKey" type="IN">Private key used to decrypt the data.</param>
  * <param name="pCipherText" type="OUT">Decrypted data.</param>
  * <result>Error code: Result of the operation</result>
  */
@@ -1711,13 +1697,13 @@ typedef RTS_RESULT (CDECL * PFCRYPTOASYMMETRICDECRYPT) (RTS_HANDLE hAlgo, RtsByt
 
 
 /**
- * <description>Get the private key size in bits.</description>
- * <param name="priavteKey" type="IN">Asymmetric key of intrest. Use X509CertGetPublicKey or X509CertGetPrivateKey to get the asymmetric key.</param>
+ * <description>Get the private key size in bytes.</description>
+ * <param name="priavteKey" type="IN">Private key of intrest.</param>
  * <param name="pResult" type="OUT">Error code: Operation Result</param>
- * <result>Size of the private key in bits</result>
+ * <result>Size of the private key in bytes</result>
  */
-RTS_UI32 CDECL CryptoGetAsymmetricKeyLength(RtsCryptoKey asymmetricKey, RTS_RESULT* pResult);
-typedef RTS_UI32 (CDECL * PFCRYPTOGETASYMMETRICKEYLENGTH) (RtsCryptoKey asymmetricKey, RTS_RESULT* pResult);
+RTS_UI32 CDECL CryptoGetAsymmetricKeyLength(RtsCryptoKey privateKey, RTS_RESULT* pResult);
+typedef RTS_UI32 (CDECL * PFCRYPTOGETASYMMETRICKEYLENGTH) (RtsCryptoKey privateKey, RTS_RESULT* pResult);
 #if defined(CMPCRYPTO_NOTIMPLEMENTED) || defined(CRYPTOGETASYMMETRICKEYLENGTH_NOTIMPLEMENTED)
 	#define USE_CryptoGetAsymmetricKeyLength
 	#define EXT_CryptoGetAsymmetricKeyLength
@@ -1939,7 +1925,7 @@ typedef RTS_RESULT (CDECL * PFCRYPTOHMACVERIFY) (RTS_HANDLE hAlgo, RtsByteString
  * <description>Sign the data using a specific message digest and the private key.</description>
  * <param name="hAlgo" type="IN">Handle to the algorithm.</param>
  * <param name="pData" type="IN">Data to be signed.</param>
- * <param name="privateKey" type="IN">Key to be used signing. Has to be a private key. Use X509CertGetPrivateKey to get the private key.</param>
+ * <param name="privateKey" type="IN">Key to be used signing. Has to be a private key.</param>
  * <param name="pSignature" type="IN">Calculated signature of the data.</param>
  * <result>Error code: Result of the operation.</result>
  **/
@@ -1996,7 +1982,7 @@ typedef RTS_RESULT (CDECL * PFCRYPTOSIGNATUREGENERATE) (RTS_HANDLE hAlgo, RtsByt
  * <description>Verify a received signature</description>
  * <param name="hAlgo" type="IN">Handle to the algorithm.</param>
  * <param name="pData" type="IN">Data to verify.</param>
- * <param name="publicKey" type="IN">Public key of the sender. X509CertGetPublicKey to get the key.</param>
+ * <param name="publicKey" type="IN">Public key of the sender.</param>
  * <param name="pSignature" type="IN">Received signature.</param>
  * <result>Error code: Function returns ERR_OK if the signature is valid.</result>
  **/
@@ -2419,7 +2405,7 @@ class ICmpCrypto : public IBase
 		virtual RTS_RESULT CDECL ICryptoSymmetricDecrypt(RTS_HANDLE hAlgo, RtsByteString* pCipherText, RtsCryptoKey key, RtsByteString* pInitVector, RTS_BOOL bEnablePadding, RtsByteString* pPlainText) =0;
 		virtual RTS_RESULT CDECL ICryptoAsymmetricEncrypt(RTS_HANDLE hAlgo, RtsByteString* pPlainText, RtsCryptoKey publicKey, RtsByteString* pCipherText) =0;
 		virtual RTS_RESULT CDECL ICryptoAsymmetricDecrypt(RTS_HANDLE hAlgo, RtsByteString* pCipherText, RtsCryptoKey privateKey, RtsByteString* pPlainText) =0;
-		virtual RTS_UI32 CDECL ICryptoGetAsymmetricKeyLength(RtsCryptoKey asymmetricKey, RTS_RESULT* pResult) =0;
+		virtual RTS_UI32 CDECL ICryptoGetAsymmetricKeyLength(RtsCryptoKey privateKey, RTS_RESULT* pResult) =0;
 		virtual RTS_RESULT CDECL ICryptoGenerateHash(RTS_HANDLE hAlgo, RtsByteString* pData, RtsByteString* pHash) =0;
 		virtual RTS_RESULT CDECL ICryptoHMACSign(RTS_HANDLE hAlgo, RtsByteString* pData, RtsCryptoKey key, RtsByteString* pSignature) =0;
 		virtual RTS_RESULT CDECL ICryptoHMACVerify(RTS_HANDLE hAlgo, RtsByteString* pData, RtsCryptoKey key, RtsByteString* pSignature) =0;

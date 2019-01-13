@@ -309,7 +309,7 @@
 		#define ASM_NUM_OF_JOBS		20		/* Number of Jobs */
 	#endif
 	#ifndef ASM_NUM_OF_WORKERS
-		#define ASM_NUM_OF_WORKERS	50		/* Number of Workers*/
+		#define ASM_NUM_OF_WORKERS	45		/* Number of Workers*/
 	#endif
 	#undef CAA_ASM_IMP
 #endif
@@ -353,10 +353,9 @@
 		#define CAA_DIR_OPEN					CAADirOpen
 		#define CAA_DIR_REMOVE					CAADirRemove
 		#define CAA_DIR_RENAME					CAADirRename
-		#define CAA_DIR_CLOSE					CAADirClose
-		#define CAA_FILE_CLOSE					CAAFileClose
+		#define CAA_DIR_CLOSE					CAL_SysDirClose
+		#define CAA_FILE_CLOSE					CAL_SysFileClose
 		#define CAA_FILE_FLUSH					CAAFileFlush
-		#define CAA_DIR_COPY					CAADirCopy
 
 
 		#ifndef CAA_FILE_GETJOBGROUP

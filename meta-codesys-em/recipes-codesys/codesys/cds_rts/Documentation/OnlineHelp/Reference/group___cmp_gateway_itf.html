@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>CmpGatewayItf &#8212; RuntimeSystemOnlineHelp V3.5.13.10</title>
+    <title>CmpGatewayItf &mdash; RuntimeSystemOnlineHelp V3.5.10.0</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.5.13.10',
+        VERSION:     '3.5.10.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,20 +24,18 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.13.10" href="../index.html" />
+    <link rel="top" title="RuntimeSystemOnlineHelp V3.5.10.0" href="../index.html" />
     <link rel="up" title="Reference" href="index.html" />
     <link rel="next" title="CmpGwClientItf" href="group___cmp_gw_client_itf.html" />
     <link rel="prev" title="CmpFileTransferItf" href="group___cmp_file_transfer_itf.html" /> 
   </head>
-  <body role="document">
+  <body>
 	<div id="header">
 		<a href="#" title="CODESYS" target="_top" id="logo"><img src="../_static/logo.png" width="134" height="130" alt=""></a>
 		<a href="#" title="CODESYS Documentation" target="_top" id="logo-store"><img src="../_static/logo2.png" width="137" height="130" alt=""></a>
 	</div>
 
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -49,11 +47,11 @@
         <li class="right" >
           <a href="group___cmp_file_transfer_itf.html" title="CmpFileTransferItf"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Reference</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
@@ -70,13 +68,20 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#typedef-documentation">Typedef Documentation</a><ul>
+<li><a class="reference internal" href="#typedef-int-pfauthmodbeginauth-unsigned-long-dwclientid">typedef int( * PFAUTHMODBEGINAUTH)(unsigned long dwClientId)</a></li>
+<li><a class="reference internal" href="#typedef-int-pfauthmodhandlemessage-unsigned-long-dwclientid-unsigned-short-wcommandid-unsigned-long-dwrequestid-protocol-data-unit-data">typedef int( * PFAUTHMODHANDLEMESSAGE)(unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)</a></li>
+<li><a class="reference internal" href="#typedef-int-pfgwsendreply-unsigned-long-dwclientid-unsigned-long-dwrequestid-protocol-data-unit-data">typedef int( * PFGWSENDREPLY)(unsigned long dwClientId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)</a></li>
+<li><a class="reference internal" href="#typedef-int-pfgwauthfinished-unsigned-long-dwclientid-int-nresult">typedef int( * PFGWAUTHFINISHED)(unsigned long dwClientId, int nResult)</a></li>
 <li><a class="reference internal" href="#typedef-icmpgateway-c-icmpgateway">typedef ICmpGateway_C ICmpGateway</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#function-documentation">Function Documentation</a><ul>
-<li><a class="reference internal" href="#rts-result-gwconnectionready-rts-handle-hdriverhandle-rts-handle-hconnhandle-rts-i32-naction">RTS_RESULT GWConnectionReady (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction)</a></li>
-<li><a class="reference internal" href="#rts-result-gwclientconnect-rts-handle-hdriverhandle-rts-handle-hconnhandle">RTS_RESULT GWClientConnect (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)</a></li>
-<li><a class="reference internal" href="#rts-result-gwclientdisconnect-rts-handle-hdriverhandle-rts-handle-hconnhandle">RTS_RESULT GWClientDisconnect (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)</a></li>
+<li><a class="reference internal" href="#int-gwconnectionready-unsigned-long-dwdriverhandle-unsigned-long-dwconnhandle-int-naction">int GWConnectionReady (unsigned long dwDriverHandle, unsigned long dwConnHandle, int nAction)</a></li>
+<li><a class="reference internal" href="#int-gwclientconnect-unsigned-long-dwdriverid-unsigned-long-dwconnhandle">int GWClientConnect (unsigned long dwDriverId, unsigned long dwConnHandle)</a></li>
+<li><a class="reference internal" href="#int-gwclientdisconnect-unsigned-long-dwdriverid-unsigned-long-dwconnhandle">int GWClientDisconnect (unsigned long dwDriverId, unsigned long dwConnHandle)</a></li>
+<li><a class="reference internal" href="#int-authmodbeginauth-unsigned-long-dwclientid">int AuthModBeginAuth (unsigned long dwClientId)</a></li>
+<li><a class="reference internal" href="#int-authmodhandlemessage-unsigned-long-dwclientid-unsigned-short-wcommandid-unsigned-long-dwrequestid-protocol-data-unit-data">int AuthModHandleMessage (unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)</a></li>
+<li><a class="reference internal" href="#int-gwregisterauthmodule-authmodinfo-pfauthmodinfo-gwauthfuncs-pfgwfuncs">int GWRegisterAuthModule (AUTHMODINFO *pfAuthModInfo, GWAUTHFUNCS *pfGWFuncs)</a></li>
 </ul>
 </li>
 </ul>
@@ -89,21 +94,22 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="group___cmp_gw_client_itf.html"
                         title="next chapter">CmpGwClientItf</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/Reference/group___cmp_gateway_itf.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/Reference/group___cmp_gateway_itf.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -112,42 +118,51 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body" role="main">
+          <div class="body">
             
   <div class="section" id="cmpgatewayitf">
 <span id="group-cmp-gateway-itf"></span><h1>CmpGatewayItf<a class="headerlink" href="#cmpgatewayitf" title="Permalink to this headline">¶</a></h1>
-<p>Interface of CmpGateway. <a class="reference internal" href="#group-cmp-gateway-itf-details"><span class="std std-ref">More...</span></a></p>
+<p>Interface of CmpGateway. <a class="reference internal" href="#group-cmp-gateway-itf-details"><em>More...</em></a></p>
 <div class="section" id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="group___cmp_gateway_itf___settings.html#group-cmp-gateway-itf-settings"><span class="std std-ref">Settings</span></a></li>
+<li><a class="reference internal" href="group___cmp_gateway_itf___settings.html#group-cmp-gateway-itf-settings"><em>Settings</em></a></li>
 </ul>
 </div>
 <div class="section" id="data-structures">
 <h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>struct <a class="reference internal" href="struct_i_cmp_gateway___c.html#struct-i-cmp-gateway-c"><span class="std std-ref">ICmpGateway_C</span></a></li>
+<li>struct <a class="reference internal" href="struct_a_u_t_h_m_o_d_i_n_f_o.html#struct-a-u-t-h-m-o-d-i-n-f-o"><em>AUTHMODINFO</em></a></li>
+<li>struct <a class="reference internal" href="struct_g_w_a_u_t_h_f_u_n_c_s.html#struct-g-w-a-u-t-h-f-u-n-c-s"><em>GWAUTHFUNCS</em></a></li>
+<li>struct <a class="reference internal" href="struct_i_cmp_gateway___c.html#struct-i-cmp-gateway-c"><em>ICmpGateway_C</em></a></li>
 </ul>
 </div>
 <div class="section" id="macros">
 <h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>#define <a class="reference internal" href="#group-cmp-gateway-itf-1gab4cfcc051803846dbab29af419577116"><span class="std std-ref">ITF_CmpGateway</span></a></li>
-<li>#define <a class="reference internal" href="#group-cmp-gateway-itf-1gaa7e7f55c14f76ab6c0a12acdc844bc27"><span class="std std-ref">EXTITF_CmpGateway</span></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-gateway-itf-1gab4cfcc051803846dbab29af419577116"><em>ITF_CmpGateway</em></a></li>
+<li>#define <a class="reference internal" href="#group-cmp-gateway-itf-1gaa7e7f55c14f76ab6c0a12acdc844bc27"><em>EXTITF_CmpGateway</em></a></li>
 </ul>
 </div>
 <div class="section" id="typedefs">
 <h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>typedef <a class="reference internal" href="struct_i_cmp_gateway___c.html#struct-i-cmp-gateway-c"><span class="std std-ref">ICmpGateway_C</span></a> <a class="reference internal" href="#group-cmp-gateway-itf-1ga94ad6f83424506d92106651fdbfcc441"><span class="std std-ref">ICmpGateway</span></a></li>
+<li>typedef int(* <a class="reference internal" href="#group-cmp-gateway-itf-1ga6a8df81eefac730bdd20221cc378849b"><em>PFAUTHMODBEGINAUTH</em></a>)(unsigned long dwClientId)</li>
+<li>typedef int(* <a class="reference internal" href="#group-cmp-gateway-itf-1gabe4a2b601ab8a7a24f183b34f5100b2c"><em>PFAUTHMODHANDLEMESSAGE</em></a>)(unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)</li>
+<li>typedef int(* <a class="reference internal" href="#group-cmp-gateway-itf-1ga295c1d68cc415a8d61ab14b10da1f8fe"><em>PFGWSENDREPLY</em></a>)(unsigned long dwClientId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)</li>
+<li>typedef int(* <a class="reference internal" href="#group-cmp-gateway-itf-1gab835c665a1432a16640856b323a0ee48"><em>PFGWAUTHFINISHED</em></a>)(unsigned long dwClientId, int nResult)</li>
+<li>typedef <a class="reference internal" href="struct_i_cmp_gateway___c.html#struct-i-cmp-gateway-c"><em>ICmpGateway_C</em></a> <a class="reference internal" href="#group-cmp-gateway-itf-1ga94ad6f83424506d92106651fdbfcc441"><em>ICmpGateway</em></a></li>
 </ul>
 </div>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>RTS_RESULT <a class="reference internal" href="#group-cmp-gateway-itf-1ga8710f436ff795cf02a64516f92c660b5"><span class="std std-ref">GWConnectionReady</span></a> (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction)</li>
-<li>RTS_RESULT <a class="reference internal" href="#group-cmp-gateway-itf-1ga5ab846bd6ceb2bf35a358f662a48c280"><span class="std std-ref">GWClientConnect</span></a> (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)</li>
-<li>RTS_RESULT <a class="reference internal" href="#group-cmp-gateway-itf-1gaed50886539cfaaa4b160cdb5c02668e6"><span class="std std-ref">GWClientDisconnect</span></a> (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)</li>
+<li>int <a class="reference internal" href="#group-cmp-gateway-itf-1ga298f83f482697191fd0b086dc77d54fc"><em>GWConnectionReady</em></a> (unsigned long dwDriverHandle, unsigned long dwConnHandle, int nAction)</li>
+<li>int <a class="reference internal" href="#group-cmp-gateway-itf-1gacb5070108907e17f34419eadbe51538b"><em>GWClientConnect</em></a> (unsigned long dwDriverId, unsigned long dwConnHandle)</li>
+<li>int <a class="reference internal" href="#group-cmp-gateway-itf-1ga237efe3c2d0ba14400e50c68ffb11156"><em>GWClientDisconnect</em></a> (unsigned long dwDriverId, unsigned long dwConnHandle)</li>
+<li>int <a class="reference internal" href="#group-cmp-gateway-itf-1ga562165c13f96b46a3eac858d8746ea47"><em>AuthModBeginAuth</em></a> (unsigned long dwClientId)</li>
+<li>int <a class="reference internal" href="#group-cmp-gateway-itf-1gad29b6a3a4b4213e99e3c854439a937b9"><em>AuthModHandleMessage</em></a> (unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, <a class="reference internal" href="struct_p_r_o_t_o_c_o_l___d_a_t_a___u_n_i_t.html#struct-p-r-o-t-o-c-o-l-d-a-t-a-u-n-i-t"><em>PROTOCOL_DATA_UNIT</em></a>  data)</li>
+<li>int <a class="reference internal" href="#group-cmp-gateway-itf-1ga78ae98ca86e1f558b3b62b800ded0d02"><em>GWRegisterAuthModule</em></a> (<a class="reference internal" href="struct_a_u_t_h_m_o_d_i_n_f_o.html#struct-a-u-t-h-m-o-d-i-n-f-o"><em>AUTHMODINFO</em></a> * pfAuthModInfo, <a class="reference internal" href="struct_g_w_a_u_t_h_f_u_n_c_s.html#struct-g-w-a-u-t-h-f-u-n-c-s"><em>GWAUTHFUNCS</em></a> * pfGWFuncs)</li>
 </ul>
 </div>
 <div class="section" id="detailed-description">
@@ -155,7 +170,7 @@
 <p>Interface of CmpGateway.</p>
 <p>Interface of the gateway</p>
 <p><strong>Copyright:</strong></p>
-<p>Copyright (c) 2017-2018 CODESYS GmbH, Copyright (c) 1994-2016 3S-Smart Software Solutions GmbH. All rights reserved.</p>
+<p>(c) 2003-2016 3S-Smart Software Solutions</p>
 </div>
 <div class="section" id="macro-definition-documentation">
 <h2>Macro Definition Documentation<a class="headerlink" href="#macro-definition-documentation" title="Permalink to this headline">¶</a></h2>
@@ -168,29 +183,41 @@
 </div>
 <div class="section" id="typedef-documentation">
 <h2>Typedef Documentation<a class="headerlink" href="#typedef-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="typedef-int-pfauthmodbeginauth-unsigned-long-dwclientid">
+<span id="group-cmp-gateway-itf-1ga6a8df81eefac730bdd20221cc378849b"></span><h3>typedef int( * PFAUTHMODBEGINAUTH)(unsigned long dwClientId)<a class="headerlink" href="#typedef-int-pfauthmodbeginauth-unsigned-long-dwclientid" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-int-pfauthmodhandlemessage-unsigned-long-dwclientid-unsigned-short-wcommandid-unsigned-long-dwrequestid-protocol-data-unit-data">
+<span id="group-cmp-gateway-itf-1gabe4a2b601ab8a7a24f183b34f5100b2c"></span><h3>typedef int( * PFAUTHMODHANDLEMESSAGE)(unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)<a class="headerlink" href="#typedef-int-pfauthmodhandlemessage-unsigned-long-dwclientid-unsigned-short-wcommandid-unsigned-long-dwrequestid-protocol-data-unit-data" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-int-pfgwsendreply-unsigned-long-dwclientid-unsigned-long-dwrequestid-protocol-data-unit-data">
+<span id="group-cmp-gateway-itf-1ga295c1d68cc415a8d61ab14b10da1f8fe"></span><h3>typedef int( * PFGWSENDREPLY)(unsigned long dwClientId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)<a class="headerlink" href="#typedef-int-pfgwsendreply-unsigned-long-dwclientid-unsigned-long-dwrequestid-protocol-data-unit-data" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="typedef-int-pfgwauthfinished-unsigned-long-dwclientid-int-nresult">
+<span id="group-cmp-gateway-itf-1gab835c665a1432a16640856b323a0ee48"></span><h3>typedef int( * PFGWAUTHFINISHED)(unsigned long dwClientId, int nResult)<a class="headerlink" href="#typedef-int-pfgwauthfinished-unsigned-long-dwclientid-int-nresult" title="Permalink to this headline">¶</a></h3>
+</div>
 <div class="section" id="typedef-icmpgateway-c-icmpgateway">
 <span id="group-cmp-gateway-itf-1ga94ad6f83424506d92106651fdbfcc441"></span><h3>typedef ICmpGateway_C ICmpGateway<a class="headerlink" href="#typedef-icmpgateway-c-icmpgateway" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="function-documentation">
 <h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="rts-result-gwconnectionready-rts-handle-hdriverhandle-rts-handle-hconnhandle-rts-i32-naction">
-<span id="group-cmp-gateway-itf-1ga8710f436ff795cf02a64516f92c660b5"></span><h3>RTS_RESULT GWConnectionReady (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle, RTS_I32 nAction)<a class="headerlink" href="#rts-result-gwconnectionready-rts-handle-hdriverhandle-rts-handle-hconnhandle-rts-i32-naction" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="int-gwconnectionready-unsigned-long-dwdriverhandle-unsigned-long-dwconnhandle-int-naction">
+<span id="group-cmp-gateway-itf-1ga298f83f482697191fd0b086dc77d54fc"></span><h3>int GWConnectionReady (unsigned long dwDriverHandle, unsigned long dwConnHandle, int nAction)<a class="headerlink" href="#int-gwconnectionready-unsigned-long-dwdriverhandle-unsigned-long-dwconnhandle-int-naction" title="Permalink to this headline">¶</a></h3>
 <p>May be called by a commdriver if a connection is ready to send/receive. This function shall not signal a condition more then once without the gateway reacting to that signal. Eg. if the commdriver signals that a connection is ready to send it shall not signal this situation again before the gateway actually called &#8220;send&#8221;. The gwclient must not rely on this function to be called but may use it to increase the performance of the connection.</p>
 <p><strong>Parameters</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="8%" />
 <col width="13%" />
-<col width="80%" />
+<col width="79%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>[in]</td>
-<td>hDriverHandle</td>
+<td>dwDriverHandle</td>
 <td>The driver handle returned by GWRegisterCommDrv.</td>
 </tr>
 <tr class="row-even"><td>[in]</td>
-<td>hConnHandle</td>
+<td>dwConnHandle</td>
 <td>The handle to the connection.</td>
 </tr>
 <tr class="row-odd"><td>[in]</td>
@@ -200,11 +227,20 @@
 </tbody>
 </table>
 </div>
-<div class="section" id="rts-result-gwclientconnect-rts-handle-hdriverhandle-rts-handle-hconnhandle">
-<span id="group-cmp-gateway-itf-1ga5ab846bd6ceb2bf35a358f662a48c280"></span><h3>RTS_RESULT GWClientConnect (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)<a class="headerlink" href="#rts-result-gwclientconnect-rts-handle-hdriverhandle-rts-handle-hconnhandle" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="int-gwclientconnect-unsigned-long-dwdriverid-unsigned-long-dwconnhandle">
+<span id="group-cmp-gateway-itf-1gacb5070108907e17f34419eadbe51538b"></span><h3>int GWClientConnect (unsigned long dwDriverId, unsigned long dwConnHandle)<a class="headerlink" href="#int-gwclientconnect-unsigned-long-dwdriverid-unsigned-long-dwconnhandle" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="rts-result-gwclientdisconnect-rts-handle-hdriverhandle-rts-handle-hconnhandle">
-<span id="group-cmp-gateway-itf-1gaed50886539cfaaa4b160cdb5c02668e6"></span><h3>RTS_RESULT GWClientDisconnect (RTS_HANDLE hDriverHandle, RTS_HANDLE hConnHandle)<a class="headerlink" href="#rts-result-gwclientdisconnect-rts-handle-hdriverhandle-rts-handle-hconnhandle" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="int-gwclientdisconnect-unsigned-long-dwdriverid-unsigned-long-dwconnhandle">
+<span id="group-cmp-gateway-itf-1ga237efe3c2d0ba14400e50c68ffb11156"></span><h3>int GWClientDisconnect (unsigned long dwDriverId, unsigned long dwConnHandle)<a class="headerlink" href="#int-gwclientdisconnect-unsigned-long-dwdriverid-unsigned-long-dwconnhandle" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="int-authmodbeginauth-unsigned-long-dwclientid">
+<span id="group-cmp-gateway-itf-1ga562165c13f96b46a3eac858d8746ea47"></span><h3>int AuthModBeginAuth (unsigned long dwClientId)<a class="headerlink" href="#int-authmodbeginauth-unsigned-long-dwclientid" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="int-authmodhandlemessage-unsigned-long-dwclientid-unsigned-short-wcommandid-unsigned-long-dwrequestid-protocol-data-unit-data">
+<span id="group-cmp-gateway-itf-1gad29b6a3a4b4213e99e3c854439a937b9"></span><h3>int AuthModHandleMessage (unsigned long dwClientId, unsigned short wCommandId, unsigned long dwRequestId, PROTOCOL_DATA_UNIT data)<a class="headerlink" href="#int-authmodhandlemessage-unsigned-long-dwclientid-unsigned-short-wcommandid-unsigned-long-dwrequestid-protocol-data-unit-data" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="int-gwregisterauthmodule-authmodinfo-pfauthmodinfo-gwauthfuncs-pfgwfuncs">
+<span id="group-cmp-gateway-itf-1ga78ae98ca86e1f558b3b62b800ded0d02"></span><h3>int GWRegisterAuthModule (AUTHMODINFO <a href="#id1"><span class="problematic" id="id2">*</span></a>pfAuthModInfo, GWAUTHFUNCS <a href="#id3"><span class="problematic" id="id4">*</span></a>pfGWFuncs)<a class="headerlink" href="#int-gwregisterauthmodule-authmodinfo-pfauthmodinfo-gwauthfuncs-pfgwfuncs" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
@@ -215,7 +251,7 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -227,13 +263,13 @@
         <li class="right" >
           <a href="group___cmp_file_transfer_itf.html" title="CmpFileTransferItf"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">RuntimeSystemOnlineHelp V3.5.13.10</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+        <li><a href="../index.html">RuntimeSystemOnlineHelp V3.5.10.0</a> &raquo;</li>
+          <li><a href="index.html" >Reference</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2016, 3S-Smart Software Solutions GmbH.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    <div class="footer">
+        &copy; Copyright 2016, 3S-Smart Software Solutions GmbH.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>
