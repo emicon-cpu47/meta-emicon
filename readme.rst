@@ -44,7 +44,7 @@ $ mkdir ~/yocto_varsomam33/tisdk/sources
 
 $ cd ~/yocto_varsomam33/tisdk/sources
 
-$ git clone https://emicon67@bitbucket.org/emicon67/meta-emicon.git -b cds_3.5.10.0
+$ git clone https://emicon67@bitbucket.org/emicon67/meta-emicon.git -b cds_3.5.10.x
 
 $ cd ~/yocto_varsomam33/tisdk
 
