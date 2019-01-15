@@ -8,6 +8,12 @@ PV = "2014"
 PR = "+gitr${SRCPV}"
 
 SRC_URI = "git://github.com/varigit/u-boot-VAR-SOM-AM33-SDK7.git;protocol=git;branch=${BRANCH}"
+SRC_URI += " \
+			file://u-boot-sd \
+			file://nand-recovery.sh \
+			"
+
+
 
 BRANCH = "krogoth"
 

@@ -74,7 +74,7 @@ ARAGO_TISDK_DIR=$1
 ROOTFS_DIR=$2
 MACHINE="varsomam33"
 ARAGO_IMAGES_DIR="$ARAGO_TISDK_DIR/build/arago-tmp-external-linaro-toolchain/deploy/images/$MACHINE"
-VAR_UTILS_DIR="$ARAGO_TISDK_DIR/sources/meta-variscite-amx3/utils"
+VAR_UTILS_DIR="$ARAGO_TISDK_DIR/sources/meta-emicon/meta-variscite-amx3-em/utils"
 
 # Recovery file names
 RECOVERY_UBIFS_FILENAME=tisdk-rootfs-image-varsomam33.ubi
