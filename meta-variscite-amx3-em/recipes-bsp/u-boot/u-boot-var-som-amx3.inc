@@ -31,6 +31,7 @@ do_install_append () {
 do_deploy_append () {
     cp -r ${WORKDIR}/u-boot-sd ${DEPLOYDIR}
     cp -r ${WORKDIR}/nand-recovery.sh ${DEPLOYDIR}
+
     cd ${DEPLOYDIR}
     if [ "x${SPL_UART_BINARY}" != "x" ]
     then

@@ -7,7 +7,7 @@ OS=TISDK
 MLO_IMAGE=MLO
 UBOOT_IMAGE=u-boot.img
 KERNEL_IMAGE=zImage
-ROOTFS_IMAGE=rootfs-var-som-amx3.ubi.img
+ROOTFS_IMAGE=rootfs-emicon.ubi.img
 
 install_bootloader()
 {
