@@ -47,6 +47,7 @@ KERNEL_DEVICETREE_k2l-evm = "k2l-evm.dtb"
 KERNEL_DEVICETREE_varsomam33 = "var-som-am33.dtb"
 KERNEL_DEVICETREE_varsomam43 = "var-som-am43.dtb var-som-am43-eth1.dtb"
 KERNEL_DEVICETREE_ememu = "vexpress-v2p-ca9.dtb"
+KERNEL_DEVICETREE_emcpu47 = "var-som-am33.dtb"
 
 KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
 
