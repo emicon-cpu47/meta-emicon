@@ -83,10 +83,6 @@ SRC_URI_append_emcpu47 += " \
     file://patch-4.4.19-rt27.patch \
 "
 
-SRC_URI_append_ememu += " \
-    file://patch-4.4.19-rt27.patch \
-"
-
 do_compile_prepend_emcpu47 () {
     cp -f ${WORKDIR}/*.dts ${WORKDIR}/*.dtsi ${S}/arch/arm/boot/dts/
 }
