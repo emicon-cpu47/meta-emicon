@@ -19,8 +19,8 @@ IMAGE_CMD_sdcard-recovery () {
 	cp ${DEPLOY_DIR_IMAGE}/u-boot.img ${SD_ROOTFS}/opt/TISDK/nand
 	cp ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE} ${SD_ROOTFS}/opt/TISDK/
 
-	cp ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${KERNEL_DEVICETREE_varsomam33} ${SD_ROOTFS}/opt/TISDK/zImage-var-som-amx3.dtb
-	cp ${DEPLOY_DIR_IMAGE}/${IMAGE_BASENAME}-${MACHINE}.ubi ${SD_ROOTFS}/opt/TISDK/rootfs-var-som-amx3.ubi.img
+	cp ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${KERNEL_DEVICETREE} ${SD_ROOTFS}/opt/TISDK/zImage-devicetree.dtb
+	cp ${DEPLOY_DIR_IMAGE}/${IMAGE_BASENAME}-${MACHINE}.ubi ${SD_ROOTFS}/opt/TISDK/rootfs.ubi.img
 	cp ${DEPLOY_DIR_IMAGE}/nand-recovery.sh ${SD_ROOTFS}/sbin
 
 }

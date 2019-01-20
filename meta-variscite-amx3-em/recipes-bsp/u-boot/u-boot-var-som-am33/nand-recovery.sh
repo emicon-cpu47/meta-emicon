@@ -7,7 +7,7 @@ OS=TISDK
 MLO_IMAGE=MLO
 UBOOT_IMAGE=u-boot.img
 KERNEL_IMAGE=zImage
-ROOTFS_IMAGE=rootfs-var-som-amx3.ubi.img
+ROOTFS_IMAGE=rootfs.ubi.img
 
 install_bootloader()
 {
@@ -27,7 +27,7 @@ install_bootloader()
         nandwrite -p /dev/mtd2 $MEDIA/$OS/nand/$MLO_IMAGE > /dev/null
         nandwrite -p /dev/mtd3 $MEDIA/$OS/nand/$MLO_IMAGE > /dev/null
 
-        nandwrite -p /dev/mtd4 $MEDIA/$OS/zImage-var-som-amx3.dtb > /dev/null
+        nandwrite -p /dev/mtd4 $MEDIA/$OS/zImage-devicetree.dtb > /dev/null
 
         if [ ! -f $MEDIA/$OS/nand/$UBOOT_IMAGE ]
         then

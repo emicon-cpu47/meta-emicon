@@ -47,7 +47,7 @@ KERNEL_DEVICETREE_k2l-evm = "k2l-evm.dtb"
 KERNEL_DEVICETREE_varsomam33 = "var-som-am33.dtb"
 KERNEL_DEVICETREE_varsomam43 = "var-som-am43.dtb var-som-am43-eth1.dtb"
 KERNEL_DEVICETREE_ememu = "vexpress-v2p-ca9.dtb"
-KERNEL_DEVICETREE_emcpu47 = "var-som-am33.dtb"
+KERNEL_DEVICETREE_emcpu47 = "emcpu47.dtb var-som-am33.dtb"
 
 KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
 
@@ -77,3 +77,16 @@ KERNEL_GIT_URI = "git://github.com/varigit/VAR-SOM-AMx3-Kernel-4-x.git"
 KERNEL_GIT_PROTOCOL = "git"
 SRC_URI += "${KERNEL_GIT_URI};protocol=${KERNEL_GIT_PROTOCOL};branch=${BRANCH} \
             file://defconfig"
+
+SRC_URI_append_emcpu47 += " \
+    file://emcpu47.dts \
+    file://patch-4.4.19-rt27.patch \
+"
+
+SRC_URI_append_ememu += " \
+    file://patch-4.4.19-rt27.patch \
+"
+
+do_compile_prepend_emcpu47 () {
+    cp -f ${WORKDIR}/*.dts ${WORKDIR}/*.dtsi ${S}/arch/arm/boot/dts/
+}
