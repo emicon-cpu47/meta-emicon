@@ -44,11 +44,11 @@ $ mkdir ~/yocto_varsomam33/tisdk/sources
 
 $ cd ~/yocto_varsomam33/tisdk/sources
 
-$ git clone https://emicon67@bitbucket.org/emicon67/meta-emicon.git -b cds_3.5.10.x
+$ git clone https://emicon67@bitbucket.org/emicon67/meta-emicon.git
 
 $ cd ~/yocto_varsomam33/tisdk
 
-$ ./oe-layertool-setup.sh -f sources/meta-emicon/meta-variscite-amx3-em/conf/var-som-amx3_sdk-03.00.00-config.txt
+$ ./oe-layertool-setup.sh -f sources/meta-emicon/meta-variscite-amx3-em/conf/emicon_sdk-01.00.00-config.txt
 
 $ cd ~/yocto_varsomam33/tisdk/build
 
