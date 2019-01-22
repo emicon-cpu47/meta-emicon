@@ -23,5 +23,7 @@ IMAGE_CMD_sdcard-recovery () {
 	cp ${DEPLOY_DIR_IMAGE}/${IMAGE_BASENAME}-${MACHINE}.ubi ${SD_ROOTFS}/opt/TISDK/rootfs.ubi.img
 	cp ${DEPLOY_DIR_IMAGE}/nand-recovery.sh ${SD_ROOTFS}/sbin
 
+	# codesys is not needed for sdcard image
+	rm  ${SD_ROOTFS}/etc/init.d/codesys
 }
 
