@@ -36,7 +36,6 @@ IMAGE_CMD_sdcard-ememu () {
 	cp ${DEPLOY_DIR_IMAGE}/zImage-vexpress-v2p-ca9.dtb ${DEPLOY_DIR_IMAGE}/ememu/ememu/system/emu.dtb
 	
 	cp -r ${DEPLOY_DIR_IMAGE}/ForCODESYS ${DEPLOY_DIR_IMAGE}/ememu/
-	rm -r ${DEPLOY_DIR_IMAGE}/ForCODESYS
 }
 
 # The sdcard requires the rootfs filesystem to be built before using
