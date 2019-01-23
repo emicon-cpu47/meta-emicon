@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/systemd:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 SRC_URI += " \
     file://10-eth.network \
@@ -6,7 +6,7 @@ SRC_URI += " \
 
 PACKAGECONFIG_append = " networkd"
 
-do_install_append_ememu() {
+do_install_append() {
     install -d ${D}${sysconfdir}/systemd/network
     cp ${WORKDIR}/10-eth.network ${D}${sysconfdir}/systemd/network
 }
