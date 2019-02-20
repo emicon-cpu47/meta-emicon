@@ -25,7 +25,7 @@ do_compile () {
 do_install () {
 	install -m 755 -d ${D}${bindir}/codesys
 	install -m 0755 ${S}/lcd_menu ${D}${bindir}/codesys
-	echo ${CDS_IMAGE_VER} > ${D}${bindir}/codesys/sysversion.txt
+	echo ${SYS_VER_SHOW_IN_MENU} > ${D}${bindir}/codesys/sysversion.txt
 
 	install -d ${D}${sysconfdir}
 	install -d ${D}${sysconfdir}/init.d
@@ -41,6 +41,6 @@ do_install () {
 FILES_${PN} += " \ 
    ${bindir}/codesys/lcd_menu \
    ${sysconfdir}/init.d/lcd_menu \
-   ${D}${sysconfdir}/net_file_create.sh \
-   ${D}${sysconfdir}/update_codesys_reboot.sh \
+   ${sysconfdir}/net_file_create.sh \
+   ${sysconfdir}/update_codesys_reboot.sh \
 "
