@@ -25,6 +25,12 @@
 #include <stdio.h>
 
 
+#include <errno.h>
+#include <signal.h>
+#include <ctype.h>
+#include <sys/mman.h>
+
+
 #define NET_NAME "eth0"
 #define LCD_START_SCREEN 0
 #define LCD_RTS_MENU_SCREEN 1
@@ -49,6 +55,12 @@
 #define DEFAULT_SCREEN_INDEX 0
 
 #define VERSION_FILE "sysversion.txt"
+
+#define BYTE_OF_PARAM 197082		// %MW98541
+const uint32_t NWRAM_ADDRESS = 0x2000000;
+#define MAP_SIZE 4096UL
+#define MAP_MASK (MAP_SIZE - 1)
+
 /*
  * Структура хранения экрана в памяти
  */
@@ -157,6 +169,16 @@ int create_menu(uint8_t n, char *str_line0, char *str_line1,
  * возвращает текущий момент времени
  */
 long int get_curent_time(void);
+
+/*
+ * Определяет установленный режим ЦПУ (основной/резервный):
+ * true - резервный, false - основной.
+ * Тк эта функция предназначена для включения/выключения видимости меню при
+ * разных режимах ЦПУ, то в случае ошибки определения функция так же возвращает
+ * false - это позволит оставить пункты меню в режиме ОСНОВНОЙ
+ * При  этом в log терминала выдается сообщение.
+ */
+bool is_cpu_slave(void);
 
 /*
  * Секция функций МЕНЮ.
@@ -273,7 +295,11 @@ void lcd_init(void)
 	lcd_puts(LCD_START_SCREEN, 1, 0, "");
 
 	create_menu(MENU_EXIT_SCREEN, "Sys Menu", "Exit    ", &menu_fn_exit);
-	create_menu(MENU_SYNC_SCREEN, "Sys Menu", "App Sync", &menu_fn_sync_rts);
+
+	if (is_cpu_slave())
+		create_menu(MENU_SYNC_SCREEN, "Sys Menu", "App Sync",
+					&menu_fn_sync_rts);
+
 	create_menu(MENU_SHOW_VER, "Sys Menu", "Show VER", &menu_fn_show_ver);
 	// create_menu(MENU_NET_SHOW_SCREEN, "M:SYS   ", "NET SHOW",
 	// 	    &menu_fn_net_show);
@@ -690,17 +716,17 @@ int menu_fn_net_show(void)
 int menu_fn_show_ver(void)
 {
 
-	#define BUF_SIZE 8
+	int read_bus_size = 8;
 	int fd;
 	int ret_in;
-	char buff[BUF_SIZE + 1];
+	char buff[read_bus_size + 1];
 
 	fd = open(VERSION_FILE, O_RDONLY);
 	if (fd == -1) {
 		fprintf(stderr, "Файл системной версии НЕ открылся!\n");
 		strcpy(buff, "Not found");
 	} else {
-		ret_in = read(fd, &buff, BUF_SIZE);
+		ret_in = read(fd, &buff, read_bus_size);
 		buff[ret_in] = '\0';
 		close(fd);
 	}
@@ -711,3 +737,33 @@ int menu_fn_show_ver(void)
 	return 0;
 }
 
+bool is_cpu_slave(void)
+{
+	int fd;
+	void *map_base, *virt_addr; 
+	unsigned short read_result;
+	off_t target = NWRAM_ADDRESS + BYTE_OF_PARAM;
+	unsigned short bit_param_mode = 0x0004;
+
+	if((fd = open("/dev/mem", O_RDWR | O_SYNC)) == -1) {
+		printf("lcd_menu: /dev/mem openen - Filed!\n"); 
+		fflush(stdout);
+		return false;
+	}
+
+	/* Map one page */
+	map_base = mmap(0, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd,
+					target & ~MAP_MASK);
+	if(map_base == (void *) -1) {
+		printf("lcd_menu: mapping filed!\n"); 
+		fflush(stdout);
+		close(fd);
+		return false;
+	}
+
+	virt_addr = map_base + (target & MAP_MASK);
+	read_result = *((unsigned short *) virt_addr);
+	close(fd);
+
+	return read_result & bit_param_mode;
+}
