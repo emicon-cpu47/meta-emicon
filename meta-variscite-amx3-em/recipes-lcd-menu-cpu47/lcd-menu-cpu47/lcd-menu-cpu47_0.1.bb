@@ -11,6 +11,8 @@ COMPATIBLE_MACHINE = "emcpu47"
 SRC_URI += " \
 	file://lcd_menu \
     file://lcd_menu.sh \
+    file://net_file_create.sh \
+    file://update_codesys_reboot.sh \
 "
 
 S="${WORKDIR}/lcd_menu"
@@ -22,13 +24,20 @@ do_compile () {
 do_install () {
 	install -m 755 -d ${D}${bindir}/codesys
 	install -m 0755 ${S}/lcd_menu ${D}${bindir}/codesys
-
+	install -d ${D}${sysconfdir}
 	install -d ${D}${sysconfdir}/init.d
+
 	install -m 0755 ${WORKDIR}/lcd_menu.sh ${D}${sysconfdir}/init.d/lcd_menu
 	update-rc.d -r ${D} lcd_menu defaults
+
+	install -m 0755 ${WORKDIR}/net_file_create.sh ${D}${sysconfdir}
+	install -m 0755 ${WORKDIR}/update_codesys_reboot.sh ${D}${sysconfdir}
+
 }
 
 FILES_${PN} += " \ 
    ${bindir}/codesys/lcd_menu \
    ${sysconfdir}/init.d/lcd_menu \
+   ${D}${sysconfdir}/net_file_create.sh \
+   ${D}${sysconfdir}/update_codesys_reboot.sh \
 "
