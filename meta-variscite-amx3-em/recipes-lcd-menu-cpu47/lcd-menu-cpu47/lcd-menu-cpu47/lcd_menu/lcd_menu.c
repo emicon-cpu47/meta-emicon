@@ -31,6 +31,7 @@
 #define MENU_EXIT_SCREEN 201
 #define MENU_SYNC_SCREEN 202
 #define MENU_NET_SHOW_SCREEN 203
+#define MENU_SHOW_VER 204
 #define SCREENS_INDEX_MAX 	200 	// количество экранов
 #define MENU_SCREENS_INDEX_MAX 	250 	// максимальный индекс менюшек
 #define SWITCH_TO_DEFAULT_SCREEN_INTERVAL 30000// milliseconds
@@ -47,6 +48,7 @@
 #define BITRATE 57600
 #define DEFAULT_SCREEN_INDEX 0
 
+#define VERSION_FILE "sysversion.txt"
 /*
  * Структура хранения экрана в памяти
  */
@@ -162,6 +164,7 @@ long int get_curent_time(void);
 int menu_fn_sync_rts(void);
 int menu_fn_exit(void);
 int menu_fn_net_show(void);
+int menu_fn_show_ver(void);
 
 static bool _start_fw = false;
 static bool _sys_menu_mode = false;
@@ -271,6 +274,7 @@ void lcd_init(void)
 
 	create_menu(MENU_EXIT_SCREEN, "Sys Menu", "Exit    ", &menu_fn_exit);
 	create_menu(MENU_SYNC_SCREEN, "Sys Menu", "App Sync", &menu_fn_sync_rts);
+	create_menu(MENU_SHOW_VER, "Sys Menu", "Show VER", &menu_fn_show_ver);
 	// create_menu(MENU_NET_SHOW_SCREEN, "M:SYS   ", "NET SHOW",
 	// 	    &menu_fn_net_show);
 	return;
@@ -682,3 +686,28 @@ int menu_fn_net_show(void)
 	freeifaddrs(ifaddr);
 	return 0;
 }
+
+int menu_fn_show_ver(void)
+{
+
+	#define BUF_SIZE 8
+	int fd;
+	int ret_in;
+	char buff[BUF_SIZE + 1];
+
+	fd = open(VERSION_FILE, O_RDONLY);
+	if (fd == -1) {
+		fprintf(stderr, "Файл системной версии НЕ открылся!\n");
+		strcpy(buff, "Not found");
+	} else {
+		ret_in = read(fd, &buff, BUF_SIZE);
+		buff[ret_in] = '\0';
+		close(fd);
+	}
+
+	lcd_puts(MENU_SHOW_VER, 0, 0, "Sys Ver:");
+	lcd_puts(MENU_SHOW_VER, 1, 0, buff);
+
+	return 0;
+}
+

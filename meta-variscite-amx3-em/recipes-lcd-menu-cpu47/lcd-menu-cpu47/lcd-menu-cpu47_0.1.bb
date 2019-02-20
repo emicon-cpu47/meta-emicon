@@ -2,8 +2,9 @@ DESCRIPTION = "LCD driver for Emicon CPU47 PLC"
 LICENSE = "CLOSED"
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
-
 COMPATIBLE_MACHINE = "emcpu47"
+
+SYS_VER_SHOW_IN_MENU = "4.4 0001"
 
 # FILES_SOLIBSDEV = ""
 # INSANE_SKIP_${PN} += "dev-so"
@@ -24,6 +25,8 @@ do_compile () {
 do_install () {
 	install -m 755 -d ${D}${bindir}/codesys
 	install -m 0755 ${S}/lcd_menu ${D}${bindir}/codesys
+	echo ${CDS_IMAGE_VER} > ${D}${bindir}/codesys/sysversion.txt
+
 	install -d ${D}${sysconfdir}
 	install -d ${D}${sysconfdir}/init.d
 
