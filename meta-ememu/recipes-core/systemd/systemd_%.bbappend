@@ -8,5 +8,5 @@ PACKAGECONFIG_append = " networkd"
 
 do_install_append() {
     install -d ${D}${sysconfdir}/systemd/network
-    cp ${WORKDIR}/10-eth.network ${D}${sysconfdir}/systemd/network
+    install -m 0755 ${WORKDIR}/10-eth.network ${D}${sysconfdir}/systemd/network
 }
