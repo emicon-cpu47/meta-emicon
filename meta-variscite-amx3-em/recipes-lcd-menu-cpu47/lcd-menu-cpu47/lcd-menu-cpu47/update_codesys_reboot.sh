@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Этот вариант файла нужен для прошивки из системного меню lcd_menu
+
 /etc/init.d/codesys stop
 cd /usr/bin/codesys
 tar -xf update.tar
