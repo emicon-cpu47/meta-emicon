@@ -83,7 +83,7 @@ $ export PATH=/opt/gcc-linaro-5.3.1-2016.05-x86_64_arm-linux-gnueabihf/bin:$PATH
 $ . conf/setenv
 $  MACHINE=ememu bitbake core-image-minimal
 
-Для настоящего ПЛК MACHINE=varsomam33
+Для настоящего ПЛК MACHINE=emcpu47
 
 Список доступных образов для отладки:
 arago-base-image.bb
