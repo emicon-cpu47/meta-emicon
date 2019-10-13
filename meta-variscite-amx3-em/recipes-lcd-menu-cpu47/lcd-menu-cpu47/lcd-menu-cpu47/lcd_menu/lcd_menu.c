@@ -92,9 +92,13 @@ struct {
 
 /*
  * Инициализация всего модуля. Сбарсывание буферов и указателей.
- * Установка начальных экранов.
  */
 void lcd_init(void);
+
+/*
+ * Установка начальных экранов.
+ */
+void menu_init(void);
 
 /*
  * Очищает одну линию на LCD.
@@ -242,6 +246,7 @@ void main(void)
 					(*shown_screen.screen.p_function)();
 				} else {
 					_sys_menu_mode = true;
+					menu_init();
 					next_screen_on_LCD(_sys_menu_mode);
 				}
 
@@ -294,17 +299,24 @@ void lcd_init(void)
 	lcd_puts(LCD_START_SCREEN, 0, 0, "");
 	lcd_puts(LCD_START_SCREEN, 1, 0, "");
 
+	return;
+}
+
+void menu_init(void)
+{
+	lcd_screen *screen;
+
 	create_menu(MENU_EXIT_SCREEN, "Sys Menu", "Exit    ", &menu_fn_exit);
 
-	if (is_cpu_slave())
-		create_menu(MENU_SYNC_SCREEN, "Sys Menu", "App Sync",
-					&menu_fn_sync_rts);
+	create_menu(MENU_SYNC_SCREEN, "Sys Menu", "App Sync", &menu_fn_sync_rts);
+	screen = get_or_create_screen_by_number(MENU_SYNC_SCREEN);
+	screen->hidden = !is_cpu_slave();
 
 	create_menu(MENU_SHOW_VER, "Sys Menu", "Show VER", &menu_fn_show_ver);
 	// create_menu(MENU_NET_SHOW_SCREEN, "M:SYS   ", "NET SHOW",
 	// 	    &menu_fn_net_show);
-	return;
 }
+
 
 int lcd_puts(uint8_t n, uint8_t line, uint8_t pos, char *str)
 {
@@ -479,10 +491,8 @@ int next_screen_on_LCD(bool menu_mode)
 		if (++i > screens_storage.number)
 			return 0;
 
-
-
-	} while (menu_mode ? screen->p_function == NULL :
-			     (screen->hidden || screen->p_function != NULL));
+	} while (menu_mode ? (screen->hidden || screen->p_function == NULL) :
+			      								screen->p_function != NULL);
 
 	res = 0;
 	if (next_screen_index != old_index)
@@ -731,7 +741,7 @@ int menu_fn_show_ver(void)
 		close(fd);
 	}
 
-	lcd_puts(MENU_SHOW_VER, 0, 0, "Sys Ver:");
+	lcd_puts(MENU_SHOW_VER, 0, 0, "Sys Ver.");
 	lcd_puts(MENU_SHOW_VER, 1, 0, buff);
 
 	return 0;
@@ -739,31 +749,21 @@ int menu_fn_show_ver(void)
 
 bool is_cpu_slave(void)
 {
+
 	int fd;
-	void *map_base, *virt_addr; 
-	unsigned short read_result;
-	off_t target = NWRAM_ADDRESS + BYTE_OF_PARAM;
-	unsigned short bit_param_mode = 0x0004;
-
-	if((fd = open("/dev/mem", O_RDWR | O_SYNC)) == -1) {
-		printf("lcd_menu: /dev/mem openen - Filed!\n"); 
+	char ascii_code = 0;
+	fd = open("/sys/class/gpio/gpio49/value", O_RDONLY);
+	if (fd == -1) {
+		printf("lcd_menu: gpio49 openen - Filed!\n"); 
 		fflush(stdout);
-		return false;
+		return true;
 	}
-
-	/* Map one page */
-	map_base = mmap(0, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd,
-					target & ~MAP_MASK);
-	if(map_base == (void *) -1) {
-		printf("lcd_menu: mapping filed!\n"); 
-		fflush(stdout);
-		close(fd);
-		return false;
-	}
-
-	virt_addr = map_base + (target & MAP_MASK);
-	read_result = *((unsigned short *) virt_addr);
+	read(fd, &ascii_code, 1);
 	close(fd);
 
-	return read_result & bit_param_mode;
+	// 48 ascii code of 0 => CPU is Master
+	if (ascii_code == 48)
+		return false;
+	else
+		return true;
 }
