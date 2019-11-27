@@ -7,7 +7,7 @@
 Необходимые пакеты
 ~~~~~~~~~~~~~~~~~~
 
-sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping libncurses5-dev bison flex bc libelf-dev libsdl1.2-dev mtd-utils dos2unix gettext
+sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping libncurses5-dev bison flex bc libelf-dev libsdl1.2-dev mtd-utils dos2unix gettext zip
 
 sudo ln -s /usr/bin/dos2unix /usr/bin/fromdos
 
@@ -58,32 +58,36 @@ Change your parallel build and download directory:
 Set the build parameters to fully utilize your host machine BB_NUMBER_THREADS = '4'
 PARALLEL_MAKE = '-j 6' BB_NUMBER_THREADS should be your host machine's number of threads minus 2 or same. PARALLEL_MAKE should be the number of threads your host machine has plus two.
 
-and add:
+and add mirrors::
 
-TI_MIRROR = "http://software-dl.ti.com/processor-sdk-mirror/sources/"
-MIRRORS += " \
- bzr://.*/.*      ${TI_MIRROR} \n \
- cvs://.*/.*      ${TI_MIRROR} \n \
- git://.*/.*      ${TI_MIRROR} \n \
- gitsm://.*/.*    ${TI_MIRROR} \n \
- hg://.*/.*       ${TI_MIRROR} \n \
- osc://.*/.*      ${TI_MIRROR} \n \
- p4://.*/.*       ${TI_MIRROR} \n \
- npm://.*/.*      ${TI_MIRROR} \n \
- ftp://.*/.*      ${TI_MIRROR} \n \
- https?$://.*/.*  ${TI_MIRROR} \n \
- svn://.*/.*      ${TI_MIRROR} \n \
-"
+	TI_MIRROR = "http://software-dl.ti.com/processor-sdk-mirror/sources/"
+	MIRRORS += " \
+		bzr://.*/.*      ${TI_MIRROR} \n \
+		cvs://.*/.*      ${TI_MIRROR} \n \
+		git://.*/.*      ${TI_MIRROR} \n \
+		gitsm://.*/.*    ${TI_MIRROR} \n \
+		hg://.*/.*       ${TI_MIRROR} \n \
+		osc://.*/.*      ${TI_MIRROR} \n \
+		p4://.*/.*       ${TI_MIRROR} \n \
+		npm://.*/.*      ${TI_MIRROR} \n \
+		ftp://.*/.*      ${TI_MIRROR} \n \
+		https?$://.*/.*  ${TI_MIRROR} \n \
+		svn://.*/.*      ${TI_MIRROR} \n \
+	"
 
 Building the VAR-SOM-AM33 Yocto image
 
 $ cd ~/yocto_varsomam33/tisdk/build
 
 $ export PATH=/opt/gcc-linaro-5.3.1-2016.05-x86_64_arm-linux-gnueabihf/bin:$PATH
+
 $ . conf/setenv
-$  MACHINE=ememu bitbake core-image-minimal
+
+$ MACHINE=ememu bitbake core-image-minimal
 
 Для настоящего ПЛК MACHINE=emcpu47
+
+$ MACHINE=emcpu47 bitbake core-image-minimal
 
 Список доступных образов для отладки:
 arago-base-image.bb
