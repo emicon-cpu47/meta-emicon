@@ -7,6 +7,7 @@ IMAGE_TYPEDEP_sdcard-recovery += " tar"
 IMAGE_DEPENDS_sdcard-recovery = "parted-native:do_populate_sysroot \
                         dosfstools-native:do_populate_sysroot \
                         mtools-native:do_populate_sysroot \
+                        am33-recovery-utils:do_deploy \
                         virtual/kernel:do_deploy \
                         ${@d.getVar('IMAGE_BOOTLOADER', True) and d.getVar('IMAGE_BOOTLOADER', True) + ':do_deploy' or ''}"
 
