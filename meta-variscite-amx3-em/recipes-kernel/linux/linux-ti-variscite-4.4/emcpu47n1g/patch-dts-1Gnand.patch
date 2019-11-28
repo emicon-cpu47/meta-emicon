@@ -1,0 +1,67 @@
+diff --git a/arch/arm/boot/dts/var-som-am33.dts b/arch/arm/boot/dts/var-som-am33.dts
+index 4aa7312..cb0af6c 100644
+--- a/arch/arm/boot/dts/var-som-am33.dts
++++ b/arch/arm/boot/dts/var-som-am33.dts
+@@ -630,7 +630,7 @@
+ 		interrupts = <0 IRQ_TYPE_NONE>, /* fifoevent */
+ 			     <1 IRQ_TYPE_NONE>;	/* termcount */
+ 		rb-gpios = <&gpmc 0 GPIO_ACTIVE_HIGH>; /* gpmc_wait0 */
+-		ti,nand-ecc-opt= "bch8";
++		ti,nand-ecc-opt= "bch16";
+ 		ti,elm-id = <&elm>;
+ 		nand-bus-width = <8>;
+ 		gpmc,device-width = <1>;
+@@ -664,43 +664,43 @@
+ 		#size-cells = <1>;
+ 		partition@0 {
+ 			label = "NAND.SPL";
+-			reg = <0x00000000 0x000020000>;
++			reg = <0x00000000 0x000080000>;
+ 		};
+ 		partition@1 {
+ 			label = "NAND.SPL.backup1";
+-			reg = <0x00020000 0x00020000>;
++			reg = <0x00080000 0x00080000>;
+ 		};
+ 		partition@2 {
+ 			label = "NAND.SPL.backup2";
+-			reg = <0x00040000 0x00020000>;
++			reg = <0x00100000 0x00080000>;
+ 		};
+ 		partition@3 {
+ 			label = "NAND.SPL.backup3";
+-			reg = <0x00060000 0x00020000>;
++			reg = <0x00180000 0x00080000>;
+ 		};
+ 		partition@4 {
+ 			label = "NAND.u-boot-spl-os";
+-			reg = <0x00080000 0x00040000>;
++			reg = <0x00200000 0x00080000>;
+ 		};
+ 		partition@5 {
+ 			label = "NAND.u-boot";
+-			reg = <0x000C0000 0x00100000>;
++			reg = <0x00280000 0x00100000>;
+ 		};
+ 		partition@6 {
+ 			label = "NAND.u-boot-env";
+-			reg = <0x001C0000 0x00020000>;
++			reg = <0x00380000 0x00080000>;
+ 		};
+ 		partition@7 {
+ 			label = "NAND.u-boot-env.backup1";
+-			reg = <0x001E0000 0x00020000>;
++			reg = <0x00400000 0x00080000>;
+ 		};
+ 		partition@8 {
+ 			label = "NAND.kernel";
+-			reg = <0x00200000 0x00800000>;
++			reg = <0x00480000 0x00800000>;
+ 		};
+ 		partition@9 {
+ 			label = "NAND.file-system";
+-			reg = <0x00A00000 0x1f600000>;
++			reg = <0x00C80000 0x1f600000>;
+ 		};
+ 	};
+ };

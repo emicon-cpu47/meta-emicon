@@ -35,6 +35,11 @@ PREFERRED_PROVIDER_virtual/kernel_emcpu47 = "linux-ti-variscite"
 PREFERRED_PROVIDER_virtual/bootloader_emcpu47 = "u-boot-var-som-am33"
 PREFERRED_PROVIDER_u-boot_emcpu47 = "u-boot-var-som-am33"
 
+PREFERRED_PROVIDER_virtual/kernel_emcpu47n1g = "linux-ti-variscite"
+PREFERRED_PROVIDER_virtual/bootloader_emcpu47n1g = "u-boot-var-som-am33"
+PREFERRED_PROVIDER_u-boot_emcpu47n1g = "u-boot-var-som-am33"
+
+
 KERNEL_IMAGETYPE = "zImage"
 
 UBOOT_ARCH = "arm"
