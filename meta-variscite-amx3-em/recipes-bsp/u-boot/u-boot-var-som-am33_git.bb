@@ -10,7 +10,7 @@ PR = "+gitr${SRCPV}"
 SRC_URI = "git://github.com/varigit/u-boot-VAR-SOM-AM33-SDK7.git;protocol=git;branch=${BRANCH}"
 
 SRC_URI_append_emcpu47n1g += " \
-    file://patch-u-boot-1Gnand.patch \
+    file://patch-u-boot-1Gnand_new.patch \
 "
 
 BRANCH = "krogoth"

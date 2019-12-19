@@ -77,7 +77,7 @@ do_compile_prepend_emcpu47 () {
 SRC_URI_append_emcpu47n1g += " \
     file://emcpu47n1g.dts \
     file://patch-4.4.19-rt27.patch \
-    file://patch-dts-1Gnand.patch \
+    file://patch-dts-1Gnand_new.patch \
 "
 
 do_compile_prepend_emcpu47n1g () {
