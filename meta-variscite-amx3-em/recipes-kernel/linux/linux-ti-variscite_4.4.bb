@@ -77,9 +77,19 @@ do_compile_prepend_emcpu47 () {
 SRC_URI_append_emcpu47n1g += " \
     file://emcpu47n1g.dts \
     file://patch-4.4.19-rt27.patch \
-    file://patch-dts-1Gnand_new.patch \
 "
 
 do_compile_prepend_emcpu47n1g () {
+    cp -f ${WORKDIR}/*.dts ${WORKDIR}/*.dtsi ${S}/arch/arm/boot/dts/
+}
+
+
+SRC_URI_append_emcpu47n1g2 += " \
+    file://emcpu47n1g2.dts \
+    file://patch-4.4.19-rt27.patch \
+    file://patch-dts-1Gnand_new.patch \
+"
+
+do_compile_prepend_emcpu47n1g2 () {
     cp -f ${WORKDIR}/*.dts ${WORKDIR}/*.dtsi ${S}/arch/arm/boot/dts/
 }
