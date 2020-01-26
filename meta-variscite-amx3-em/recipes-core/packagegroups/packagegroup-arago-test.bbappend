@@ -28,3 +28,11 @@ ARAGO_TI_TEST_remove_emcpu47n1g = "\
 ARAGO_TEST_remove_emcpu47n1g ="\
     mtd-utils-ubifs-tests \
 "
+
+ARAGO_TI_TEST_remove_emcpu47n1g2 = "\
+    ltp-ddt \
+    "
+
+ARAGO_TEST_remove_emcpu47n1g2 ="\
+    mtd-utils-ubifs-tests \
+"

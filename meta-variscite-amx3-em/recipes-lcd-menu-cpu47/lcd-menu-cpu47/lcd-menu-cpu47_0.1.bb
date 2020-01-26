@@ -2,7 +2,7 @@ DESCRIPTION = "LCD driver for Emicon CPU47 PLC"
 LICENSE = "CLOSED"
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
-COMPATIBLE_MACHINE = "emcpu47|emcpu47n1g"
+COMPATIBLE_MACHINE = "emcpu47|emcpu47n1g|emcpu47n1g2"
 
 SYS_VER_SHOW_IN_MENU = "4.4 0002"
 
