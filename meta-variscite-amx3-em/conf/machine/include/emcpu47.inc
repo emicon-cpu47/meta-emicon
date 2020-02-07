@@ -49,7 +49,7 @@ DISTRO_FEATURES_append = " bluez5"
 RDEPENDS_packagegroup-arago-tisdk-addons_remove = " dropbear"
 BBMASK = "oe-core/meta/recipes-core/dropbear"
 
-IMAGE_INSTALL_append = " libstdc++ mtd-utils mtd-utils-ubifs htop openssh codesys am33-recovery-utils lcd-menu-cpu47 rt-tests"
+IMAGE_INSTALL_append = " libstdc++ mtd-utils mtd-utils-ubifs htop openssh codesys am33-recovery-utils lcd-menu-cpu47 rt-tests devmem2"
 
 # SDCARD parameters
 WKS_FILE = "sdimage-bootpart.wks"
