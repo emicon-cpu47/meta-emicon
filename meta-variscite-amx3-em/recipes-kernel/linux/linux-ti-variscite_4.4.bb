@@ -58,7 +58,7 @@ KERNEL_CONFIG_FRAGMENTS_append_dra7xx = " ${KERNEL_CONFIG_DIR}/dra7_only.cfg"
 MULTI_CONFIG_BASE_SUFFIX = ""
 
 # KERNEL_GIT_URI = "git://github.com/varigit/VAR-SOM-AMx3-Kernel-4-x.git"
-KERNEL_GIT_URI = "git://github.com/emicon67/VAR-SOM-AMx3-Kernel-4-x.git"
+KERNEL_GIT_URI = "git://github.com/emicon-cpu47/VAR-SOM-AMx3-Kernel-4-x.git"
 
 KERNEL_GIT_PROTOCOL = "git"
 SRC_URI += "${KERNEL_GIT_URI};protocol=${KERNEL_GIT_PROTOCOL};branch=${BRANCH} \
