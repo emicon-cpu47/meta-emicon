@@ -4,7 +4,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 COMPATIBLE_MACHINE = "emcpu47|emcpu47n1g|emcpu47n1g2"
 
-SYS_VER_SHOW_IN_MENU = "4.4 0002"
+SYS_VER_SHOW_IN_MENU = "5.0     "
 
 # FILES_SOLIBSDEV = ""
 # INSANE_SKIP_${PN} += "dev-so"

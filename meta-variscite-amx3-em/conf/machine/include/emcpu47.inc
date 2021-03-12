@@ -1,6 +1,6 @@
 require conf/machine/include/var-ti33x.inc
 
-CUSTOM_IMAGE_VER = "4.3"
+CUSTOM_IMAGE_VER = "5.0"
 
 # Use built-in LCD by default
 XSERVER += "xf86-input-tslib"
