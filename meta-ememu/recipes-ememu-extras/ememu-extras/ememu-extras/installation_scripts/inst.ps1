@@ -73,7 +73,7 @@ $multistring =@"
 -kernel "$install_path\$emu_folder_name\system\emu_kernel" ^
 -sd "$install_path\$emu_folder_name\system\emufs.ext3" ^
 -append "root=/dev/mmcblk0 console=ttyAMA0" ^
- --nographic -net nic -net "tap,ifname=$($tap.netconnectionid)" -m 640
+ --nographic -m 640  -nic tap,ifname=$($tap.netconnectionid),script=no,downscript=no,mac=02:ca:fe:f0:0d:01
 @pause
 "@
 $multistring | out-file $install_path\$emu_folder_name\ememu.bat -encoding oem
