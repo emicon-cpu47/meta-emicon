@@ -1,6 +1,6 @@
 require conf/machine/include/var-ti33x.inc
 
-CUSTOM_IMAGE_VER = "5.0"
+CUSTOM_IMAGE_VER = "6.0"
 
 # Use built-in LCD by default
 XSERVER += "xf86-input-tslib"
@@ -61,3 +61,9 @@ IMAGE_TYPEDEP_wic +=" sdcard-recovery"
 do_image_wic[depends] += " mtools-native:do_populate_sysroot dosfstools-native:do_populate_sysroot "
 
 #IMAGE_ROOTFS_EXTRA_SPACE = "409600"
+
+# password generated: openssl passwd <password>
+inherit extrausers
+EXTRA_USERS_PARAMS = "\
+    usermod -p PAi8fUWK9BpUo root; \
+"
